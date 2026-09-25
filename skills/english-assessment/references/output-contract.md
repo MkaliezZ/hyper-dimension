@@ -12,7 +12,7 @@
 ## 测评蓝图 blueprint
 
 - blueprint_id、version、purpose（placement/formative/weekly/term）、age_range、school_grade、book_ids、school_progress、target_cefr_descriptor_refs、capability_ids
-- 题目数量与时长、四技能覆盖、教材熟悉情境与迁移情境的比例、难度梯度、允许支持、缺口、教师审批状态
+- 题目数量与时长、四技能覆盖、教材熟悉情境与迁移情境的比例、难度梯度、允许支持、缺口、teacher_policy_id/version、实时生成状态与质量门结果
 - 若某技能未实际施测，coverage 明示 missing，不能默认为零分。
 
 ## 题目 item
@@ -24,7 +24,7 @@
 
 ## 作答 response 与报告 report
 
-- response：attempt_id、student_ref、item_id/version、interviewer_version、start/end、turn_events（角色、话语文本/音频引用、时间、提示、ASR置信、设备质量）、raw_answer_ref、hints、media_quality、scorer_draft、evidence_span_refs、teacher_decision、decision_reason、audit_refs
-- report：report_id/version、student_ref、period、textbook_progress、coverage、capability_results、cefr_reference_only、evidence_refs、error_patterns_with_uncertainty、strengths、priority_goals、four_week_plan、retest_conditions、teacher_approval、visibility_scope、audit_refs
+- response：attempt_id、student_ref、item_id/version、interviewer_version、start/end、turn_events（角色、话语文本/音频引用、时间、提示、ASR置信、设备质量）、raw_answer_ref、hints、media_quality、scorer_draft、evidence_span_refs、decision_mode、teacher_policy_ref、decision_reason、audit_refs
+- report：report_id/version、student_ref、period、textbook_progress、coverage、capability_results、cefr_reference_only、evidence_refs、error_patterns_with_uncertainty、strengths、priority_goals、four_week_plan、retest_conditions、approval_mode、teacher_policy_ref、approved_by、visibility_scope、audit_refs
 - 逐题解析和错题累计必须保留 item_id/version、原答、正确证据、错因候选、讲解和下一次迁移任务；不能只存一个“错题”标签。
-- 报告状态 draft / pending_review / approved / retracted。学生或家长可见版本只由教师审批后生成。未来 Agent 间只交换授权的对象引用及状态，不直接夹带原始录音和教材页。
+- 报告状态 draft / needs_review / approved / retracted。教师预授权策略允许合格报告自动批准，记录 decision_mode=auto_under_teacher_policy、策略版本、Agent 版本和审计事件；异常由教师覆核。未来 Agent 间只交换授权的对象引用及状态，不直接夹带原始录音和教材页。
