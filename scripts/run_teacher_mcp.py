@@ -12,6 +12,7 @@ from pathlib import Path
 from hyper_dimension.assessment_runtime import AssessmentService
 from hyper_dimension.no_backend_model import NoBackendModel
 from hyper_dimension.student_records import StudentRecords
+from hyper_dimension.textbook_catalog import TextbookCatalog
 from hyper_dimension.teacher_mcp import create_teacher_mcp
 
 
@@ -24,8 +25,13 @@ def main() -> None:
     archive.mkdir(parents=True, exist_ok=True)
     assessment = AssessmentService(database, NoBackendModel())
     records = StudentRecords(assessment, archive, teacher_id=os.environ["HD_TEACHER_ID"])
+    catalog = TextbookCatalog(
+        os.environ["HD_TEXTBOOK_CATALOG_DB"],
+        assessment, teacher_id=os.environ["HD_TEACHER_ID"],
+    )
     create_teacher_mcp(
         assessment, records, tenant_id=tenant_id, teacher_id=teacher_id,
+        catalog=catalog,
     ).run(transport="stdio")
 
 

@@ -16,7 +16,7 @@ MCP 是教师 Agent 的受控工具入口。明确的工具名、参数类型和
 
 作答提交使用 bundle_ref、attempt_ref 和 idempotency_key。重复请求返回同一结果；改动内容后复用键会被拒绝。出题也使用幂等键。报告获准后，本地 API 保存完整私有快照：题目、答案、量规、作答、评分、批准策略与报告。数据库保留不可变版本、SHA-256 摘要和审计事件；学生文件夹是可核验导出，被篡改会校验失败。
 
-开岛时默认接入的目标流程与 Hermes 候选配置见[教师 Agent 与 MCP 开岛契约](teacher-agent-mcp-onboarding-v0.1.md)。云端开岛、远程身份网关与自动激活尚未实现。
+班级确认教材版本后，Agent 原生模式的新学生档案保存 edition_ref/section_ref；班级换版需教师显式迁移现有学生，期间 MCP 返回 mismatch 并阻止发布新题包。历史题包与报告保留原版次引用。开岛时默认接入的目标流程与 Hermes 候选配置见[教师 Agent 与 MCP 开岛契约](teacher-agent-mcp-onboarding-v0.1.md)。云端开岛、远程身份网关与自动激活尚未实现。
 
 ## 教师 MCP 工具
 
@@ -26,6 +26,7 @@ MCP 是教师 Agent 的受控工具入口。明确的工具名、参数类型和
 | assessment_generation_context_read / assessment_bundle_submit | 读取可信档案和预授权策略；教师 Agent 自行出题后提交完整题包、答案与量规，由后端验证并幂等保存 |
 | assessment_pending_attempts_read / assessment_grading_context_read / assessment_grade_submit | 读取待批改引用及写作题/作答/量规；教师 Agent 提交评分与报告草稿，后端评分、审批、审计并归档 |
 | assessment_report_read | 读取本岛已批准报告 |
+| resolve_textbook_edition / list_textbook_sections / class_textbook_binding_read / search_textbook_evidence | 解析待教师确认的具体版次；列章节核验级别；读取班级确认绑定；只返回有权利且正文审阅达到 E2 的原创摘要和页码/哈希证据 |
 | class_milestone_read / alignment_evidence_propose / student_capability_evidence_read / class_alignment_preview / student_plan_draft_submit | 读取教师确认的目标，提议报告证据标签，读取证据，生成确定性班级建议，提交私有四周计划草稿；证据确认、分组决定及计划批准均由教师 API 执行 |
 | student_archive_list / student_archive_verify | 列出归档摘要和核验文件 |
 | student_error_history_read | 读取错题引用 |
@@ -48,7 +49,7 @@ MCP 不提供登记公开许可、正式发布、撤回许可工具。Agent 可�
 
 ## 本地运行与后续开发
 
-安装 python -m pip install -e ".[dev,mcp]"。将 HD_LOCAL_DB、HD_LOCAL_ARCHIVE 指向仓库外目录，并设置本地会话的 HD_TENANT_ID 和 HD_TEACHER_ID；运行 python scripts/run_teacher_mcp.py 启动 stdio 工具。教师 Agent 自行选择模型并提交草稿，本地 MCP 启动脚本不读取 DEEPSEEK_API_KEY。配置、密钥和档案不得提交 Git。若要运行本地 HTTP 验收入口，再设 HD_TEACHER_TOKEN 为至少 24 字符的随机值，并运行 python scripts/run_local_education_api.py；它只监听 127.0.0.1，默认端口 8765；启动脚本使用 Agent 原生模式，学生提交先保存为待批改，需教师 Agent 调用 MCP 才完成评分。
+安装 python -m pip install -e ".[dev,mcp]"。将 HD_LOCAL_DB、HD_LOCAL_ARCHIVE 和 HD_TEXTBOOK_CATALOG_DB 指向仓库外目录；同一集群内模拟教师进程共用同一教材目录 DB，并设置本地会话的 HD_TENANT_ID 和 HD_TEACHER_ID；运行 python scripts/run_teacher_mcp.py 启动 stdio 工具。教师 Agent 自行选择模型并提交草稿，本地 MCP 启动脚本不读取 DEEPSEEK_API_KEY。配置、密钥和档案不得提交 Git。若要运行本地 HTTP 验收入口，再设 HD_TEACHER_TOKEN 为至少 24 字符的随机值，并运行 python scripts/run_local_education_api.py；它只监听 127.0.0.1，默认端口 8765；启动脚本使用 Agent 原生模式，学生提交先保存为待批改，需教师 Agent 调用 MCP 才完成评分。
 
 后续依次实现生产教师/监护人身份网关、PostgreSQL 迁移、2D 教师编辑页与学生答题页，然后将本机只读切片升级为受生产身份网关保护的 A2A Agent Card、端点及跨 Agent 兼容测试。MCP 与 A2A 复用同一业务服务与版本语义。
 

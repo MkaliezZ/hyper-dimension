@@ -11,6 +11,7 @@ from typing import Any
 from hyper_dimension.assessment_runtime import AssessmentError, AssessmentService
 from hyper_dimension.student_records import StudentRecords
 from hyper_dimension.progress_alignment import ProgressAlignmentService
+from hyper_dimension.textbook_catalog import TextbookCatalog
 
 
 TEACHER_MCP_TOOL_NAMES = (
@@ -32,6 +33,10 @@ TEACHER_MCP_TOOL_NAMES = (
     "student_capability_evidence_read",
     "class_alignment_preview",
     "student_plan_draft_submit",
+    "resolve_textbook_edition",
+    "list_textbook_sections",
+    "class_textbook_binding_read",
+    "search_textbook_evidence",
 )
 
 
@@ -41,6 +46,7 @@ def create_teacher_mcp(
     *,
     tenant_id: str,
     teacher_id: str,
+    catalog: TextbookCatalog | None = None,
 ):
     from mcp.server.fastmcp import FastMCP
 
@@ -50,12 +56,26 @@ def create_teacher_mcp(
     alignment = ProgressAlignmentService(
         assessment, records, teacher_id=teacher_id,
     )
+    catalog = catalog or TextbookCatalog(
+        assessment.path, assessment, teacher_id=teacher_id,
+    )
+    if catalog.teacher_id != teacher_id or catalog.assessment is not assessment:
+        raise ValueError("Trusted textbook catalog binding required")
 
     def require_student(student_ref: str) -> dict[str, Any]:
         records.profile(tenant_id, student_ref)
         context = assessment.generation_context(tenant_id, student_ref)
         if context["policy"]["teacher_id"] != teacher_id:
             raise AssessmentError("Student is assigned to another teacher policy")
+        binding = catalog.class_binding(
+            tenant_id=tenant_id, class_id=context["profile"]["class_id"],
+        )
+        context["textbook_binding"] = binding
+        context["textbook_alignment_status"] = (
+            "mismatch" if binding["status"] == "bound" and
+            context["profile"]["book_id"] != binding["edition_ref"]
+            else "aligned" if binding["status"] == "bound" else "unbound"
+        )
         return context
 
     @server.tool()
@@ -91,7 +111,9 @@ def create_teacher_mcp(
         student_ref: str, idempotency_key: str, bundle: dict[str, Any],
     ) -> dict[str, Any]:
         """Validate and publish an Agent-authored item bundle; no platform model call."""
-        require_student(student_ref)
+        context = require_student(student_ref)
+        if context["textbook_alignment_status"] == "mismatch":
+            raise AssessmentError("Student textbook differs from class binding")
         return assessment.publish_agent_bundle(
             tenant_id, student_ref, bundle, idempotency_key=idempotency_key,
         )
@@ -198,6 +220,43 @@ def create_teacher_mcp(
             tenant_id=tenant_id, run_id=run_ref, student_id=student_ref,
             idempotency_key=idempotency_key, plan=plan,
             agent_version=agent_version,
+        )
+
+    @server.tool()
+    def resolve_textbook_edition(
+        class_ref: str, publisher: str, grade: int, volume: str,
+        school_system: str | None = None, series: str | None = None,
+        revision_year: int | None = None, printing: str | None = None,
+        isbn: str | None = None,
+    ) -> dict[str, Any]:
+        """Resolve edition metadata; ambiguous or unverified records require teacher review."""
+        return catalog.resolve_edition(
+            tenant_id=tenant_id, class_id=class_ref,
+            publisher=publisher, grade=grade, volume=volume,
+            school_system=school_system, series=series,
+            revision_year=revision_year, printing=printing, isbn=isbn,
+        )
+
+    @server.tool()
+    def list_textbook_sections(class_ref: str, edition_ref: str) -> dict[str, Any]:
+        """List section titles and review levels without textbook body content."""
+        return catalog.list_sections(
+            tenant_id=tenant_id, class_id=class_ref, edition_ref=edition_ref,
+        )
+
+    @server.tool()
+    def class_textbook_binding_read(class_ref: str) -> dict[str, Any]:
+        """Read this teacher's confirmed class edition and teaching section."""
+        return catalog.class_binding(tenant_id=tenant_id, class_id=class_ref)
+
+    @server.tool()
+    def search_textbook_evidence(
+        class_ref: str, edition_ref: str, section_ref: str, query: str,
+    ) -> dict[str, Any]:
+        """Read only rights-cleared original summaries with verified page evidence."""
+        return catalog.search_evidence(
+            tenant_id=tenant_id, class_id=class_ref,
+            edition_ref=edition_ref, section_ref=section_ref, query=query,
         )
 
     @server.tool()

@@ -17,6 +17,7 @@ from hyper_dimension.guardian_authorization import (
 )
 from hyper_dimension.student_records import StudentRecords
 from hyper_dimension.progress_alignment import ProgressAlignmentService
+from hyper_dimension.textbook_catalog import TextbookCatalog
 
 
 class Enrollment(BaseModel):
@@ -24,8 +25,8 @@ class Enrollment(BaseModel):
     display_name: str
     age: int = Field(ge=6, le=15)
     grade: int = Field(ge=1, le=9)
-    book_id: str
-    school_progress: str
+    book_id: str | None = None
+    school_progress: str | None = None
     guardian_consent_ref: str | None = None
     public_alias: str | None = None
 
@@ -49,6 +50,18 @@ class StudentSubmission(BaseModel):
     attempt_ref: str
     idempotency_key: str
     answers: dict[str, str]
+
+
+class TextbookBindingRequest(BaseModel):
+    edition_ref: str
+    section_ref: str
+    expected_version: int | None = Field(default=None, ge=0)
+
+
+class StudentTextbookRebind(BaseModel):
+    expected_version: int = Field(ge=1)
+    edition_ref: str
+    section_ref: str
 
 
 class ClassMilestone(BaseModel):
@@ -100,6 +113,7 @@ def create_local_education_app(
     tenant_id: str, teacher_id: str, teacher_token: str,
     guardian_authorization: GuardianAuthorizationProvider | None = None,
     agent_native: bool = False,
+    catalog: TextbookCatalog | None = None,
 ) -> FastAPI:
     if (not all((tenant_id, teacher_id, teacher_token)) or
         len(teacher_token) < 24 or records.teacher_id != teacher_id):
@@ -107,6 +121,11 @@ def create_local_education_app(
     app = FastAPI(title="Hyper Dimension Local Education Prototype")
     consent_provider = guardian_authorization or DemoGuardianAuthorizationProvider()
     alignment = ProgressAlignmentService(assessment, records, teacher_id=teacher_id)
+    catalog = catalog or TextbookCatalog(
+        assessment.path, assessment, teacher_id=teacher_id,
+    )
+    if catalog.teacher_id != teacher_id or catalog.assessment is not assessment:
+        raise ValueError("Trusted textbook catalog binding required")
 
     def teacher(authorization: str | None = Header(default=None)) -> str:
         if (authorization is None or not authorization.startswith("Bearer ") or
@@ -123,10 +142,32 @@ def create_local_education_app(
     @app.post("/api/v1/teacher/students", dependencies=[Depends(teacher)])
     def enroll(body: Enrollment) -> dict[str, str]:
         decision = consent_provider.resolve_enrollment(body.guardian_consent_ref)
+        if agent_native:
+            binding = safe(lambda: catalog.class_binding(
+                tenant_id=tenant_id, class_id=body.class_id,
+            ))
+            if binding["status"] == "bound":
+                if body.book_id is not None and body.book_id != binding["edition_ref"]:
+                    raise HTTPException(
+                        status_code=422, detail="Student edition conflicts with class binding",
+                    )
+                book_id = binding["edition_ref"]
+                school_progress = body.school_progress or binding["section_ref"]
+                safe(lambda: catalog.require_bound_section(
+                    tenant_id=tenant_id, class_id=body.class_id,
+                    edition_ref=book_id, section_ref=school_progress,
+                ))
+            else:
+                book_id = body.book_id or "unbound"
+                school_progress = body.school_progress or ""
+        else:
+            # Legacy synthetic API tests have no teacher policy or catalog binding.
+            book_id = body.book_id or "unbound"
+            school_progress = body.school_progress or ""
         student = safe(lambda: records.create_student(
             tenant_id=tenant_id, class_id=body.class_id,
             display_name=body.display_name, age=body.age, grade=body.grade,
-            book_id=body.book_id, school_progress=body.school_progress,
+            book_id=book_id, school_progress=school_progress,
             guardian_consent_ref=decision.consent_ref,
             public_alias=body.public_alias,
         ))
@@ -150,6 +191,20 @@ def create_local_education_app(
             tenant_id, student_ref, **body.model_dump(),
         ))
 
+    @app.put("/api/v1/teacher/students/{student_ref}/textbook-binding",
+             dependencies=[Depends(teacher)])
+    def rebind_student_textbook(
+        student_ref: str, body: StudentTextbookRebind,
+    ) -> dict[str, Any]:
+        current = safe(lambda: records.profile(tenant_id, student_ref))
+        safe(lambda: catalog.require_bound_section(
+            tenant_id=tenant_id, class_id=current["class_id"],
+            edition_ref=body.edition_ref, section_ref=body.section_ref,
+        ))
+        return safe(lambda: records.rebind_textbook(
+            tenant_id, student_ref, **body.model_dump(),
+        ))
+
     @app.post("/api/v1/teacher/students/{student_ref}/assignments",
               dependencies=[Depends(teacher)])
     def assignment(student_ref: str, body: AssignmentRequest) -> dict[str, Any]:
@@ -157,6 +212,15 @@ def create_local_education_app(
             raise HTTPException(status_code=409, detail="Teacher Agent submits bundles through MCP")
         return safe(lambda: assessment.create_assignment(
             tenant_id, student_ref, idempotency_key=body.idempotency_key,
+        ))
+
+    @app.put("/api/v1/teacher/classes/{class_ref}/textbook-binding",
+             dependencies=[Depends(teacher)])
+    def bind_textbook(
+        class_ref: str, body: TextbookBindingRequest,
+    ) -> dict[str, Any]:
+        return safe(lambda: catalog.bind_class(
+            tenant_id=tenant_id, class_id=class_ref, **body.model_dump(),
         ))
 
     @app.post("/api/v1/teacher/classes/{class_ref}/milestones",

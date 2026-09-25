@@ -242,6 +242,47 @@ class StudentRecords:
         )
         return updated
 
+    def rebind_textbook(
+        self, tenant_id: str, student_id: str, *,
+        expected_version: int, edition_ref: str, section_ref: str,
+    ) -> dict[str, Any]:
+        """Teacher-approved textbook change; profile history and ID stay stable."""
+        if not edition_ref or not section_ref or expected_version < 1:
+            raise AssessmentError("Invalid student textbook binding")
+        with self.assessment._db() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute(
+                """SELECT p.version,s.book_id,s.school_progress
+                   FROM student_profiles p JOIN students s
+                   ON s.tenant_id=p.tenant_id AND s.student_id=p.student_id
+                   WHERE p.tenant_id=? AND p.student_id=?""",
+                (tenant_id, student_id),
+            ).fetchone()
+            if row is None or row["version"] != expected_version:
+                raise AssessmentError("Profile version conflict or student missing")
+            if (row["book_id"], row["school_progress"]) == (edition_ref, section_ref):
+                return self.profile(tenant_id, student_id)
+            db.execute(
+                """UPDATE students SET book_id=?,school_progress=?
+                   WHERE tenant_id=? AND student_id=?""",
+                (edition_ref, section_ref, tenant_id, student_id),
+            )
+            db.execute(
+                """UPDATE student_profiles SET version=version+1,updated_at=?
+                   WHERE tenant_id=? AND student_id=?""",
+                (_now(), tenant_id, student_id),
+            )
+            self.assessment._event(
+                db, tenant_id, student_id, None, "student.textbook_rebound",
+                "teacher", self.teacher_id, edition_ref,
+            )
+        updated = self.profile(tenant_id, student_id)
+        self.archive_document(
+            tenant_id=tenant_id, student_id=student_id, kind="profile",
+            source_ref=f"profile:v{updated['version']}", body=updated,
+        )
+        return updated
+
     def archive_document(self, *, tenant_id: str, student_id: str,
                          kind: str, source_ref: str,
                          body: dict[str, Any]) -> dict[str, str]:

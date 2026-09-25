@@ -15,6 +15,7 @@ from hyper_dimension.no_backend_model import NoBackendModel
 from hyper_dimension.assessment_runtime import AssessmentService
 from hyper_dimension.local_education_api import create_local_education_app
 from hyper_dimension.student_records import StudentRecords
+from hyper_dimension.textbook_catalog import TextbookCatalog
 
 
 def main() -> None:
@@ -24,12 +25,17 @@ def main() -> None:
     archive.mkdir(parents=True, exist_ok=True)
     assessment = AssessmentService(database, NoBackendModel())
     records = StudentRecords(assessment, archive, teacher_id=os.environ["HD_TEACHER_ID"])
+    catalog = TextbookCatalog(
+        os.environ["HD_TEXTBOOK_CATALOG_DB"],
+        assessment, teacher_id=os.environ["HD_TEACHER_ID"],
+    )
     app = create_local_education_app(
         assessment, records,
         tenant_id=os.environ["HD_TENANT_ID"],
         teacher_id=os.environ["HD_TEACHER_ID"],
         teacher_token=os.environ["HD_TEACHER_TOKEN"],
         agent_native=True,
+        catalog=catalog,
     )
     uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("HD_LOCAL_API_PORT", "8765")))
 
