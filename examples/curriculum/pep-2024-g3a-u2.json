@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.1",
+  "unit_package_id": "pep-2024-g3a-u2-school-things",
+  "status": "draft",
+  "edition": {
+    "publisher": "人民教育出版社",
+    "series": "英语 PEP 三年级起点新版",
+    "edition_year": 2024,
+    "grade": 3,
+    "volume": "上册",
+    "unit_label": "Unit 2",
+    "unit_title": "School things",
+    "source_url": "https://www.pep.com.cn/zslth/yyptzy/xyjt/3s/",
+    "verification_status": "publisher_verified"
+  },
+  "age_range": {"min": 8, "max": 9},
+  "capability_ids": ["C01", "C02", "C04"],
+  "big_question": "怎样帮助新同学找到并准备上课物品？",
+  "mission": {
+    "scenario": "班级物品服务台向新同学提供帮助",
+    "audience": "一名模拟新同学",
+    "student_product": "请求、确认、回应的两轮口语互动",
+    "success_criteria": ["主动说明需要的物品", "核对物品特征并得到回应", "在物品变化时仍可完成任务"]
+  },
+  "lessons": [
+    {
+      "sequence": 1, "phase": "context", "duration_minutes": 35,
+      "teacher_prompt": "新同学的书包少了东西；先听懂他需要什么。",
+      "student_action": "听自制短语音，指图并说明缺少的物品。",
+      "scaffold": "图片与实物二选一",
+      "evidence": "听辨结果与提示次数"
+    },
+    {
+      "sequence": 2, "phase": "noticing", "duration_minutes": 35,
+      "teacher_prompt": "示范提出需求、澄清和确认三个步骤。",
+      "student_action": "两人轮换角色，用自己的话提出需求与回应。",
+      "scaffold": "可使用三步提示卡",
+      "evidence": "发起问题和回应相关性"
+    },
+    {
+      "sequence": 3, "phase": "guided_output", "duration_minutes": 35,
+      "teacher_prompt": "分发信息不同的图卡，观察学生是否主动确认。",
+      "student_action": "不展示卡片，通过口语找到匹配物品。",
+      "scaffold": "可选择图片或词组卡",
+      "evidence": "两轮互动与提示强度"
+    },
+    {
+      "sequence": 4, "phase": "independent_output", "duration_minutes": 35,
+      "teacher_prompt": "更换物品组合，不示范完整对话。",
+      "student_action": "独立完成服务台请求和确认。",
+      "scaffold": "仅在任务卡上保留情境",
+      "evidence": "任务完成、可理解度与追问"
+    },
+    {
+      "sequence": 5, "phase": "transfer", "duration_minutes": 35,
+      "teacher_prompt": "将场景换为借书或整理美术材料。",
+      "student_action": "在新情境中再次请求、回应并自评。",
+      "scaffold": "按证据决定是否保留图片",
+      "evidence": "跨情境迁移与修正"
+    }
+  ],
+  "assessment": {
+    "rubric_version": "oral-interaction-draft-0.1",
+    "formative": "每次学习末向同伴提出一次真实需要并确认。",
+    "weekly": "更换物品和角色，完成未练过的服务台任务。",
+    "transfer": "在借书或整理材料场景重新完成请求与确认。"
+  },
+  "rights": {
+    "task_origin": "hyper_dimension_original",
+    "textbook_excerpt_included": false
+  },
+  "approval": {
+    "reviewer": null,
+    "reviewed_at": null
+  }
+}

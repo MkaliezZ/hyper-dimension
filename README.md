@@ -11,7 +11,7 @@
 - FastAPI 起点与 `/healthz` 健康检查。
 - Hyper Dimension Education Protocol v1 的请求和结果 JSON Schema、校验函数及测试。
 - `web/`：可独立运行的 2D 小岛视觉基线。人物、文字、图片、视频入口均为可替换的 **DEMO** 内容；详见 [前端说明](web/README.md) 和 [素材来源](web/ASSETS.md)。
-- [教师版切片](docs/teacher-first-slice.md)与[前端基线](docs/frontend-baseline.md)。
+- [教师版切片](docs/teacher-first-slice.md)、[前端基线](docs/frontend-baseline.md)及[英语课程与多教材适配设计](docs/curriculum/curriculum-architecture-v0.1.md)、[原创单元样板](docs/curriculum/sample-unit-packs-v0.1.md)与[测评报告格式](docs/curriculum/assessment-and-report-format-v0.1.md)。
 
 教师测评后端、学生 Agent、生产级身份认证与真实学生数据流程尚未实现。请勿把真实学生档案、录音、授权信息、密钥或生产日志提交到公开仓库。
 
@@ -48,7 +48,7 @@ This MIT-licensed repository contains the first phase of Hyper Dimension. The in
 - A FastAPI starting point and `/healthz` endpoint.
 - Hyper Dimension Education Protocol v1 request/result JSON Schemas, validation helpers, and tests.
 - `web/`, a runnable 2D island visual baseline. Its characters, copy, images, and optional video slots are replaceable **DEMO** content; see the [web guide](web/README.md) and [asset notes](web/ASSETS.md).
-- [Teacher-first implementation slice](docs/teacher-first-slice.md) and [frontend baseline](docs/frontend-baseline.md) (currently documented in Chinese).
+- [Teacher-first implementation slice](docs/teacher-first-slice.md), [frontend baseline](docs/frontend-baseline.md), and [curriculum and multi-edition design](docs/curriculum/curriculum-architecture-v0.1.md) (currently documented in Chinese).
 
 Assessment services, the student agent, production authentication, and processing of real student records are still pending. Keep real student records, recordings, consent data, secrets, and production logs out of this public repository.
 
