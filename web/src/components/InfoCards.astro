@@ -1,0 +1,99 @@
+---
+import { url } from "../config";
+import { INFO_CARDS } from "../data/infoCards";
+---
+<dialog id="island-info-dialog" class="island-info-dialog" aria-label="小岛信息卡片">
+  <button id="island-info-close" type="button" class="info-close" aria-label="关闭信息卡片">✕</button>
+  {INFO_CARDS.map((card) => (
+    <article data-info-panel={card.id} hidden>
+      <div class="info-heading">
+        <img src={url(card.icon)} alt="" width="56" height="56" />
+        <div>
+          <p class="info-eyebrow">{card.eyebrow}</p>
+          <h2>{card.label}</h2>
+        </div>
+      </div>
+      <div class="info-rule"></div>
+      <h3>{card.title}</h3>
+      <p class="info-description">{card.description}</p>
+      {card.media && (
+        <figure class="info-media">
+          {card.media.type === "image" ? (
+            <img src={url(card.media.src)} alt={card.media.alt} loading="lazy" />
+          ) : (
+            <video controls playsinline preload="metadata" poster={card.media.poster ? url(card.media.poster) : undefined}>
+              <source src={url(card.media.src)} />
+              浏览器不支持视频播放。
+            </video>
+          )}
+          {card.media.type === "video" && card.media.caption && <figcaption>{card.media.caption}</figcaption>}
+        </figure>
+      )}
+      {card.sections.length > 0 && (
+        <div class="info-sections">
+          {card.sections.map((section) => (
+            <section>
+              <h4>{section.heading}</h4>
+              <ul>{section.items.map((item) => <li>{item}</li>)}</ul>
+            </section>
+          ))}
+        </div>
+      )}
+      <p class="info-detail">{card.detail}</p>
+      <a href={url(card.route)} class="info-action">{card.action}<span aria-hidden="true">↗</span></a>
+    </article>
+  ))}
+</dialog>
+<script>
+  const appWindow = window as Window & { __infoCardsClickBound?: boolean };
+  if (!appWindow.__infoCardsClickBound) {
+    appWindow.__infoCardsClickBound = true;
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const dialog = document.getElementById("island-info-dialog") as HTMLDialogElement | null;
+      if (!dialog) return;
+      const trigger = target.closest<HTMLElement>("[data-info-card]");
+      if (trigger) {
+        const selected = Array.from(dialog.querySelectorAll<HTMLElement>("[data-info-panel]"))
+          .find((panel) => panel.dataset.infoPanel === trigger.dataset.infoCard);
+        if (!selected) return;
+        dialog.querySelectorAll<HTMLElement>("[data-info-panel]").forEach((panel) => {
+          panel.hidden = panel !== selected;
+        });
+        dialog.showModal();
+      } else if (target.closest("#island-info-close") || target.closest(".info-action") || target === dialog) {
+        dialog.close();
+      }
+    });
+  }
+</script>
+<style>
+  .island-info-dialog { width: min(calc(100vw - 32px), 460px); max-height: min(85vh, 620px); margin: auto; padding: 1.5rem; overflow-y: auto; border: 1px solid #d8e7da; border-radius: 24px; color: #34483e; background: #fffdf6; box-shadow: 0 28px 80px rgba(27,52,54,.28); }
+  .island-info-dialog:not([open]), .island-info-dialog [hidden] { display: none; }
+  .island-info-dialog::backdrop { background: rgba(29,49,51,.56); backdrop-filter: blur(5px); }
+  .info-close { position: absolute; top: 1rem; right: 1rem; display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; color: #50685b; background: #eef2e9; cursor: pointer; }
+  .info-heading { display: flex; align-items: center; gap: .9rem; padding-right: 2rem; }
+  .info-heading img { flex: none; border-radius: 14px; }
+  .info-eyebrow { margin: 0 0 .2rem; color: #799080; font-size: .72rem; letter-spacing: .05em; }
+  .info-heading h2 { margin: 0; font-size: 1.25rem; font-weight: 750; }
+  .info-rule { height: 1px; margin: 1.15rem 0; background: linear-gradient(90deg, #bed9c6, transparent); }
+  .island-info-dialog h3 { margin: 0 0 .65rem; font-size: 1.45rem; font-weight: 750; }
+  .info-description { margin: 0; line-height: 1.75; }
+  .info-sections { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem; margin-top: 1rem; }
+  .info-sections section { padding: .75rem; border: 1px solid #e1eadc; border-radius: 12px; background: #f7f8f1; }
+  .info-sections h4 { margin: 0 0 .4rem; color: #397c70; font-size: .78rem; font-weight: 750; }
+  .info-sections ul { margin: 0; padding-left: 1rem; font-size: .75rem; line-height: 1.65; }
+  .info-sections li + li { margin-top: .15rem; }
+  .info-detail { margin: 1.15rem 0; padding: .65rem .8rem; border-radius: 12px; color: #5d786a; background: #edf4e9; font-size: .82rem; }
+  .info-action { display: inline-flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 150px; padding: .7rem .95rem; border-radius: 12px; color: #fffdf7; background: #397c70; font-size: .85rem; font-weight: 700; text-decoration: none; }
+  .info-action:hover { background: #2c695f; }
+  .info-action:focus-visible, .info-close:focus-visible { outline: 3px solid #a1c69f; outline-offset: 3px; }
+</style>
+
+
+<style>
+  .info-media { margin: 1rem 0 0; }
+  .info-media img, .info-media video { display: block; width: 100%; max-height: 260px; border-radius: 14px; object-fit: cover; background: #e6eee6; }
+  .info-media figcaption { margin-top: .35rem; color: #5d786a; font-size: .78rem; }
+</style>

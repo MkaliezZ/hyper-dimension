@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
+import { url } from "../../config";
+
+export async function getStaticPaths({ paginate }) {
+  const projects = await getCollection("projects");
+  projects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(projects, { pageSize: 10 });
+}
+const { page } = Astro.props;
+const services = [
+  { title: "2D 小岛视觉设计", icon: "icon-portfolio.svg", description: "从配色、岛图分层到热点校准，设计适合桌面与手机浏览的个人小岛。" },
+  { title: "互动内容编排", icon: "icon-chat.svg", description: "把文章、作品与访客入口组织成可探索的信息节点，为后续交互体验预留位置。" },
+];
+const projectIcons: Record<string, string> = {
+  demo: "icon-chat.svg",
+  postcards: "icon-letter.svg",
+  "growing-map": "icon-home.svg",
+};
+---
+<BaseLayout title="作品集与服务 · 云上手作岛" sideBarActiveItemID="projects">
+  <div class="mx-auto max-w-3xl text-ac-text">
+    <header class="mb-10">
+      <p class="text-sm opacity-60 mb-2">林屿的创作工坊 · 模拟展示</p>
+      <h1 class="text-4xl font-bold mb-4">作品集与服务</h1>
+      <p class="text-lg leading-relaxed">这里陈列岛上的视觉与互动作品，也展示可以为新小岛提供的创作方向。</p>
+    </header>
+
+    <section aria-labelledby="services-title" class="mb-12">
+      <h2 id="services-title" class="text-2xl font-bold mb-5">可提供的服务</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {services.map((service) => (
+          <article class="rounded-ac-lg bg-ac-cream-dark p-6">
+            <img src={url(service.icon)} alt="" width="48" height="48" class="w-12 h-12 rounded-ac-md mb-4" />
+            <h3 class="text-lg font-bold mb-2">{service.title}</h3>
+            <p class="leading-relaxed">{service.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="works-title">
+      <div class="flex items-baseline justify-between gap-3 mb-5">
+        <h2 id="works-title" class="text-2xl font-bold">作品集</h2>
+        <span class="text-sm opacity-60">{page.data.length} 件模拟作品</span>
+      </div>
+      <div class="grid gap-4">
+        {page.data.map((project) => (
+          <a href={url("projects/" + createSlug(project.data.title, project.slug))} class="group flex gap-4 rounded-ac-lg border border-ac-sand bg-base-100 p-5 shadow-ac transition-colors hover:bg-ac-cream-dark">
+            <img src={url(projectIcons[project.slug] || "icon-brush.svg")} alt="" width="56" height="56" class="w-14 h-14 shrink-0 rounded-ac-md" />
+            <div class="min-w-0 grow">
+              <p class="text-xs opacity-60 mb-1">虚构作品 · {project.data.pubDate.getFullYear()}</p>
+              <h3 class="text-xl font-bold mb-1">{project.data.title}</h3>
+              <p class="leading-relaxed">{project.data.description}</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {project.data.tags?.map((tag) => <span class="badge badge-outline">{tag}</span>)}
+              </div>
+            </div>
+            <span class="self-start text-ac-primary-dark" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {(page.url.prev || page.url.next) && (
+      <nav class="flex justify-between mt-9" aria-label="作品分页">
+        {page.url.prev ? <a href={page.url.prev} class="btn btn-ghost">上一页</a> : <span />}
+        {page.url.next ? <a href={page.url.next} class="btn btn-ghost">下一页</a> : <span />}
+      </nav>
+    )}
+    <p class="mt-10 text-sm opacity-60">以上作品及服务内容均为本地演示用的模拟信息。</p>
+  </div>
+</BaseLayout>

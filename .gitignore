@@ -11,14 +11,19 @@ credentials/
 # Student information and local media
 data/
 uploads/
-media/
+private_media/
+student_media/
 reports/
 *.sqlite
 *.sqlite3
 *.db
 *.wav
 *.mp3
+!web/public/media/*.mp3
+!web/public/media/**/*.mp3
 *.mp4
+!web/public/media/*.mp4
+!web/public/media/**/*.mp4
 
 # Python and tools
 __pycache__/

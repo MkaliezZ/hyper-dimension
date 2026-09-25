@@ -1,0 +1,77 @@
+---
+import { type BlogSchema } from "../content/config";
+import BaseLayout from "./BaseLayout.astro";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+
+export interface Props extends BlogSchema {}
+
+const {
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    heroImage,
+    badge,
+    tags = [],
+} = Astro.props;
+dayjs.extend(localizedFormat);
+const displayDate = dayjs(pubDate).format("ll");
+import { Image } from "astro:assets";
+import { AUTHOR_INITIAL, url } from "../config";
+---
+
+<BaseLayout
+    title={AUTHOR_INITIAL + " | " + title}
+    description={description}
+    image={heroImage}
+    ,
+    ogType="article"
+>
+    <main class="md:flex md:justify-center">
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+            integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
+            crossorigin="anonymous"
+        />
+        <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
+            {
+                heroImage && (
+                    <img
+                        width="750"
+                        height="422"
+                        src={url(heroImage)}
+                        alt={title}
+                        class="w-full mb-6 rounded-ac-lg"
+                    />
+                )
+            }
+            <h1 class="title my-2 text-4xl font-bold">{title}</h1>
+            {pubDate && <time>{displayDate}</time>}
+            <br />
+            {badge && <div class="badge badge-secondary my-1">{badge}</div>}
+            {
+                tags &&
+                    tags.map((tag) => (
+                        <a
+                            href={`/blog/tag/${tag}`}
+                            class="badge badge-outline ml-2 no-underline"
+                        >
+                            {tag}
+                        </a>
+                    ))
+            }
+            {
+                updatedDate && (
+                    <div>
+                        {" "}
+                        Last updated on <time>{updatedDate}</time>{" "}
+                    </div>
+                )
+            }
+            <div class="divider my-2"></div>
+            <slot />
+        </article>
+    </main>
+</BaseLayout>

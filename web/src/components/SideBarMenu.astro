@@ -1,0 +1,20 @@
+---
+import { url } from "../config";
+const { sideBarActiveItemID } = Astro.props;
+const activeClass = "bg-ac-primary/15 text-ac-primary-dark rounded-ac-md";
+const items = [
+  { id: "home", label: "小岛首页", href: "", icon: "icon-home.svg" },
+  { id: "blog", label: "岛上日记", href: "blog", icon: "icon-journal.svg" },
+  { id: "personal", label: "认识岛主", href: "personal", icon: "icon-person.svg" },
+  { id: "projects", label: "作品与服务", href: "projects", icon: "icon-brush.svg" },
+];
+---
+<ul class="menu grow shrink menu-md overflow-y-auto">
+  {items.map((item) => (
+    <li><a class="py-3 text-base rounded-ac-md transition-colors hover:bg-ac-sand" id={item.id} href={url(item.href)}><img src={url(item.icon)} alt="" class="w-6 h-6 rounded-ac-sm" />{item.label}</a></li>
+  ))}
+</ul>
+<script define:vars={{ sideBarActiveItemID, activeClass }}>
+  const activeItemElem = document.getElementById(sideBarActiveItemID);
+  activeItemElem && activeClass.split(' ').forEach((c) => activeItemElem.classList.add(c));
+</script>

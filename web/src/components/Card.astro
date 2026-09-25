@@ -1,0 +1,22 @@
+---
+const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+import { url as baseUrl } from "../config";
+---
+
+<div class="md:w-1/3 w-full">
+  <a href={url} target={target}>
+    <div class="card bg-base-100 rounded-ac-lg shadow-ac transition ease-in-out hover:shadow-ac-hover mx-6 my-2 hover:scale-[102%] overflow-hidden border-t-4 border-ac-primary">
+      {img && <img width="750" height="422" src={baseUrl(img)} alt={title} class="rounded-ac-md" />}
+      <div class="card-body">
+        <h2 class="card-title">
+          {title}
+          {badge && <div class="badge badge-secondary">{badge}</div>}
+        </h2>
+        <p>{desc}</p>
+        <div class="card-actions justify-end">
+          {tags && tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

@@ -1,0 +1,87 @@
+{
+  "demo": true,
+  "notice": "所有视觉素材、人物和展示信息均为可替换的演示内容，不代表真实教师或学生。",
+  "siteConfig": "src/data/demoSite.ts",
+  "editableContent": [
+    {
+      "kind": "site_text_and_primary_media",
+      "file": "src/data/demoSite.ts"
+    },
+    {
+      "kind": "six_houses_names_actions_and_hotspots",
+      "file": "src/data/island.ts"
+    },
+    {
+      "kind": "footer_cards_text_icons_and_optional_image_video",
+      "file": "src/data/infoCards.ts"
+    },
+    {
+      "kind": "sidebar_tags",
+      "file": "src/components/SideBarMenu.astro"
+    },
+    {
+      "kind": "profile_page",
+      "file": "src/pages/personal.astro"
+    },
+    {
+      "kind": "articles_and_cases",
+      "file": "src/content"
+    }
+  ],
+  "replaceableVisualAssets": [
+    {
+      "path": "public/island-foreground.webp",
+      "kind": "image",
+      "role": "floating island foreground",
+      "source": "Hyper Dimension 2D demo"
+    },
+    {
+      "path": "public/sky-background.webp",
+      "kind": "image",
+      "role": "sky background",
+      "source": "Hyper Dimension 2D demo"
+    },
+    {
+      "path": "public/profile-island.png",
+      "kind": "image",
+      "role": "fictional owner avatar",
+      "source": "Hyper Dimension generated demo"
+    },
+    {
+      "path": "public/header_banner_light.png",
+      "kind": "image",
+      "role": "light header ornament",
+      "source": "upstream Astro 2D demo MIT"
+    },
+    {
+      "path": "public/header_banner_dark.png",
+      "kind": "image",
+      "role": "dark header ornament",
+      "source": "upstream Astro 2D demo MIT"
+    },
+    {
+      "path": "public/banner_light.png",
+      "kind": "image",
+      "role": "light footer ornament",
+      "source": "upstream Astro 2D demo MIT"
+    },
+    {
+      "path": "public/banner_dark.png",
+      "kind": "image",
+      "role": "dark footer ornament",
+      "source": "upstream Astro 2D demo MIT"
+    },
+    {
+      "path": "public/icon-*.svg",
+      "kind": "image",
+      "role": "original demo navigation icons",
+      "source": "created for this repository"
+    },
+    {
+      "path": "public/media/",
+      "kind": "image_or_video",
+      "role": "optional user supplied card media",
+      "source": "empty by default"
+    }
+  ]
+}

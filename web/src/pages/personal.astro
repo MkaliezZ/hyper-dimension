@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { DEMO_SITE } from "../data/demoSite";
+---
+<BaseLayout title={"认识" + DEMO_SITE.authorShortName + " · 云上手作岛"} sideBarActiveItemID="personal">
+  <article class="mx-auto max-w-3xl px-5 py-10 text-ac-text">
+    <div class="flex flex-col sm:flex-row gap-7 items-center sm:items-start">
+      <img src={"/" + DEMO_SITE.assets.avatar} alt={DEMO_SITE.avatarAlt} class="w-40 h-40 rounded-full object-cover shadow-xl" />
+      <div>
+        <p class="text-sm opacity-60">虚构角色资料 · 2D 小岛演示</p>
+        <h1 class="text-4xl font-bold mt-2 mb-4">你好，我是{DEMO_SITE.authorShortName}</h1>
+        <p class="text-lg leading-relaxed">我喜欢画地图、做小玩具，也喜欢收集旅人带来的故事。这座小岛是我的公开客厅，每栋房子都藏着一部分生活。</p>
+      </div>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-5 mt-12">
+      <section class="rounded-2xl bg-ac-cream-dark p-6"><h2 class="text-xl font-bold mb-3">岛上日常</h2><p>清晨画画，午后整理故事，夜里在观星屋记下新点子。最喜欢的饮料是海盐桂花茶。</p></section>
+      <section class="rounded-2xl bg-ac-cream-dark p-6"><h2 class="text-xl font-bold mb-3">正在创作</h2><p>一套可交换的旅行明信片、一个互动留言板，以及一张不断生长的小岛地图。</p></section>
+    </div>
+    <p class="mt-10 text-sm opacity-60">以上身份、经历与项目均为模拟信息，用于展示建岛流程。</p>
+  </article>
+</BaseLayout>

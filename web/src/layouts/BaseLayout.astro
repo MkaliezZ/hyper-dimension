@@ -1,0 +1,110 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SideBar from "../components/SideBar.astro";
+import InfoCards from "../components/InfoCards.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME, TRANSITION_API, url } from "../config";
+import { DEMO_SITE } from "../data/demoSite";
+
+const {
+    image,
+    title = SITE_TITLE,
+    description = SITE_DESCRIPTION,
+    includeSidebar = true,
+    sideBarActiveItemID,
+    ogType,
+    fullBleed = false, // 全幅舞台模式（首页 3D 沙盘）：无 banner/内边距/页脚流，页面不滚动
+} = Astro.props;
+const thisYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <BaseHead
+            title={title}
+            description={description}
+            image={image}
+            ogType={ogType}
+        />
+        {TRANSITION_API && <ViewTransitions />}
+        <Fragment set:html={`<style is:inline>:root{--divider-img:url("${url('divider_line.svg')}")}</style>`} />
+        <script is:inline>
+            (function(){
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'nord';
+                document.documentElement.setAttribute('data-theme', t);
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="bg-ac-cream drawer lg:drawer-open">
+            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+            <div
+                class="drawer-content bg-base-100 rounded-tl-ac-xl relative flex flex-col"
+                class:list={[{ "h-screen overflow-hidden": fullBleed, "min-h-screen": !fullBleed }]}
+            >
+                {
+                    !fullBleed && (
+                        <div class="w-full overflow-hidden pointer-events-none select-none">
+                            <img src={url(DEMO_SITE.assets.headerLight)} alt="" width="3840" height="195" decoding="async" class="w-full object-cover object-center h-[clamp(3rem,4vw,5rem)] lg:h-auto show-light" />
+                            <img src={url(DEMO_SITE.assets.headerDark)} alt="" width="3840" height="195" decoding="async" class="w-full object-cover object-center h-[clamp(3rem,4vw,5rem)] lg:h-auto show-dark" />
+                        </div>
+                    )
+                }
+                <Header title={SITE_TITLE} />
+                {
+                    fullBleed ? (
+                        /* 全幅舞台：画布铺满，页脚 © 叠为角落小字，页面无垂直滚动 */
+                        <main class="relative flex-1 w-full overflow-hidden">
+                            <slot />
+                            <div class="absolute bottom-1.5 right-4 z-30 text-[11px] opacity-50 pointer-events-none select-none">
+                                &copy; {thisYear} {AUTHOR_NAME}
+                            </div>
+                        </main>
+                    ) : (
+                        <>
+                            <div class="md:flex md:justify-center flex-1 w-full">
+                                <main class="p-6 pt-10 w-full lg:max-w-[900px] max-w-[100vw]">
+                                    <slot />
+                                </main>
+                            </div>
+                            <Footer />
+                            <div class="w-full overflow-hidden pointer-events-none select-none flex justify-end mt-auto">
+                                <img src={url(DEMO_SITE.assets.footerLight)} alt="" width="3840" height="523" decoding="async" class="w-full object-cover object-right-bottom h-[clamp(5rem,11vw,15rem)] lg:h-auto show-light" />
+                                <img src={url(DEMO_SITE.assets.footerDark)} alt="" width="3840" height="521" decoding="async" class="w-full object-cover object-right-bottom h-[clamp(5rem,11vw,15rem)] lg:h-auto show-dark" />
+                            </div>
+                        </>
+                    )
+                }
+            </div>
+            {
+                includeSidebar && (
+                    <SideBar sideBarActiveItemID={sideBarActiveItemID} />
+                )
+            }
+        </div>
+        {includeSidebar && <InfoCards />}
+        <script is:inline>
+            // Theme visuals (banners, toggle icon/label) are pure CSS via
+            // .show-light/.show-dark + [data-theme], so this only flips the attribute.
+            window.toggleTheme = function() {
+                var next = document.documentElement.getAttribute('data-theme') === 'night' ? 'nord' : 'night';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            };
+            // Re-apply after Astro View Transitions page swap. This inline script
+            // re-runs on every navigation, so guard against duplicate listeners.
+            if (!window.__themeSwapBound) {
+                window.__themeSwapBound = true;
+                document.addEventListener('astro:after-swap', function() {
+                    var t = localStorage.getItem('theme');
+                    if (t) document.documentElement.setAttribute('data-theme', t);
+                });
+            }
+        </script>
+    </body>
+</html>
