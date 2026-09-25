@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.2",
+  "unit_package_id": "pep-2022standard-g3a-u1-making-friends",
+  "status": "draft",
+  "edition": {
+    "publisher": "人民教育出版社",
+    "series": "英语 PEP 三年级起点新版",
+    "edition_year": null,
+    "grade": 3,
+    "volume": "上册",
+    "unit_label": "Unit 1",
+    "unit_title": "Making friends",
+    "source_url": "https://www.pep.com.cn/zslth/yyptzy/xyjt/3s/",
+    "verification_status": "publisher_verified",
+    "school_system": "六三制",
+    "content_review_status": "not_reviewed",
+    "content_review_ref": null
+  },
+  "age_range": {
+    "min": 8,
+    "max": 9
+  },
+  "capability_ids": [
+    "C01",
+    "C02"
+  ],
+  "big_question": "怎样让新同伴愿意与你交流？",
+  "mission": {
+    "scenario": "一位新同伴加入小组",
+    "audience": "模拟的新同伴",
+    "student_product": "介绍自己、询问对方并作相关回应的双向口语互动",
+    "success_criteria": [
+      "让对方知道自己的称呼",
+      "主动询问并听懂对方称呼",
+      "根据对方回答作相关回应"
+    ]
+  },
+  "lessons": [
+    {
+      "sequence": 1,
+      "phase": "context",
+      "duration_minutes": 35,
+      "teacher_prompt": "一位新同伴来到小组，你想让对方知道什么？",
+      "student_action": "听原创短对话，识别谁在介绍自己。",
+      "scaffold": "人物图片",
+      "evidence": "听辨结果与提示次数"
+    },
+    {
+      "sequence": 2,
+      "phase": "noticing",
+      "duration_minutes": 35,
+      "teacher_prompt": "示范介绍、询问与回应的交流顺序。",
+      "student_action": "两人轮换角色，用自己的话介绍并询问。",
+      "scaffold": "可使用关键词卡",
+      "evidence": "主动提问与回应相关性"
+    },
+    {
+      "sequence": 3,
+      "phase": "guided_output",
+      "duration_minutes": 35,
+      "teacher_prompt": "分发不同的人物卡，观察学生是否主动获取信息。",
+      "student_action": "不展示卡片，通过口语认识同伴。",
+      "scaffold": "人物图片或关键词卡",
+      "evidence": "双向互动与提示强度"
+    },
+    {
+      "sequence": 4,
+      "phase": "independent_output",
+      "duration_minutes": 35,
+      "teacher_prompt": "更换角色，不示范完整台词。",
+      "student_action": "独立与新同伴完成初次交流。",
+      "scaffold": "仅保留情境图",
+      "evidence": "意图达成、可理解度与追问"
+    },
+    {
+      "sequence": 5,
+      "phase": "transfer",
+      "duration_minutes": 35,
+      "teacher_prompt": "把场景换成社团迎新。",
+      "student_action": "在新情境中再次介绍、询问并回应。",
+      "scaffold": "按证据决定是否保留图片",
+      "evidence": "跨情境迁移与修正"
+    }
+  ],
+  "assessment": {
+    "rubric_version": "oral-interaction-draft-0.1",
+    "formative": "每次学习末与一名同伴完成一次介绍与询问。",
+    "weekly": "更换角色与场景，完成未练过的初次交流。",
+    "transfer": "在社团迎新场景重新完成介绍、询问和回应。"
+  },
+  "rights": {
+    "task_origin": "hyper_dimension_original",
+    "textbook_excerpt_included": false
+  },
+  "approval": {
+    "reviewer": null,
+    "reviewed_at": null
+  }
+}

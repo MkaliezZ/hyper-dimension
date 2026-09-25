@@ -37,7 +37,7 @@
 
 ## 多版本适配
 
-- 人教 PEP 新版三年级上册：出版社公开资源列有 Unit 1 Greetings、Unit 2 School things。先以 Unit 2 做原创样板。
+- 人教 PEP 新版三年级上册：已核对本地原书：Unit 1 Making friends、Unit 2 Different families。原先将 Unit 2 标为 School things 的样板坐标错误，现以 Unit 1 做原创样板。
 - 人教新版七年级上册：出版社公开资源列有 Unit 1 You and Me。先以此做初中样板。旧 2011 版目录不能混用。
 - 教育科学出版社 2024 教科版：出版社证实采用任务导向、教—学—评一体化。具体单元题名在出版社公开页面尚未核实，映射状态为 pending_source；通用能力主线照常使用。
 

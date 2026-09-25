@@ -25,6 +25,9 @@ reports/
 !web/public/media/*.mp4
 !web/public/media/**/*.mp4
 
+# Textbook research kept local
+research-data/
+
 # Python and tools
 __pycache__/
 *.py[cod]

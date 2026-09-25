@@ -1,0 +1,104 @@
+{
+  "bundle_version": "0.1",
+  "book_evidence": [
+    {
+      "book_id": "pep-2022standard-g3a-wuxin",
+      "relative_pdf_path": "小学/人教版（主编：吴欣）/三年级上册/（根据2022年版课程标准修订）义务教育教科书•英语 三年级上册.pdf",
+      "publisher": "人民教育出版社",
+      "series": "PEP",
+      "editor": "吴欣",
+      "school_system": "六三制",
+      "grade": 3,
+      "volume": "上册",
+      "edition_or_revision": "根据2022年版课程标准修订",
+      "content_status": "pages_reviewed",
+      "unit_label": "Unit 1",
+      "unit_title": "Making friends",
+      "pdf_page_refs": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "observed_language_actions": [
+        "介绍自己",
+        "回应问候",
+        "与同伴分享"
+      ],
+      "reviewed_at": "2026-09-25",
+      "source_rights_note": "本地教材仅作私有教学证据，不打包出版内容",
+      "reviewer": "agent-assisted local PDF spot review"
+    }
+  ],
+  "blueprint": {
+    "blueprint_id": "demo-g3-introduction",
+    "version": "0.1",
+    "purpose": "formative",
+    "age_range": [
+      8,
+      9
+    ],
+    "school_grade": 3,
+    "book_ids": [
+      "pep-2022standard-g3a-wuxin"
+    ],
+    "capability_ids": [
+      "C01",
+      "C02",
+      "C04"
+    ],
+    "cefr_level_reference": "Pre-A1 to A1 candidate, not a certified result",
+    "coverage": {
+      "speaking_interaction": "tested",
+      "listening": "missing",
+      "reading": "missing",
+      "writing": "missing"
+    },
+    "teacher_approval": "pending_review"
+  },
+  "items": [
+    {
+      "item_id": "demo-g3-introduction-s1",
+      "version": "0.1",
+      "origin": "original",
+      "task_family": "guided_peer_interaction",
+      "modality": "speaking_interaction",
+      "target_behaviour": "向新同伴介绍自己并主动询问对方称呼",
+      "capability_ids": [
+        "C01",
+        "C02"
+      ],
+      "cefr_descriptor_refs": [
+        "CEFR Pre-A1/A1 spoken interaction candidate"
+      ],
+      "book_evidence_refs": [
+        "pep-2022standard-g3a-wuxin"
+      ],
+      "prompt": "一位新同伴来到你的小组。请先介绍自己，再问对方叫什么，并用一句话回应。可以看人物图片，但不能照读完整台词。",
+      "interactive_role": "教师或同伴扮演新成员，回答姓名并提出一个简单追问",
+      "support_allowed": "人物图片；不提供完整句子",
+      "analytic_rubric": {
+        "intent": "对方是否知道学生是谁",
+        "initiative": "是否主动询问新成员",
+        "response": "是否根据对方回答作出相关回应",
+        "intelligibility": "表达是否可被理解"
+      },
+      "explanation": "观察是否完成介绍、提问和回应；可接受不同正确表达，保留提示和原话证据。",
+      "expected_minutes": 3,
+      "review_status": "pending_teacher_review",
+      "public_format_source_url": "https://www.cambridgeenglish.org/exams-and-tests/qualifications/key/format/",
+      "knowledge_tags": [
+        {
+          "category": "communicative_function",
+          "label": "介绍自己并询问对方称呼",
+          "book_evidence_ref": "pep-2022standard-g3a-wuxin",
+          "cefr_reference": "Pre-A1/A1 spoken interaction candidate",
+          "lexical_grammar_reference": "English Profile to be checked before claiming a specific level"
+        }
+      ]
+    }
+  ]
+}

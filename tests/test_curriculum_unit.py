@@ -8,7 +8,7 @@ from jsonschema import ValidationError
 from hyper_dimension.contracts import validate_curriculum_unit
 
 
-EXAMPLE = Path(__file__).resolve().parents[1] / "examples" / "curriculum" / "pep-2024-g3a-u2.json"
+EXAMPLE = Path(__file__).resolve().parents[1] / "examples" / "curriculum" / "pep-2022standard-g3a-u1.json"
 
 
 def test_draft_unit_package_is_valid() -> None:
@@ -27,6 +27,11 @@ def test_approval_requires_reviewed_source_and_person() -> None:
         validate_curriculum_unit(unit)
 
     unit["approval"] = {"reviewer": "teacher-demo", "reviewed_at": "2026-09-25T10:00:00Z"}
+    with pytest.raises(ValidationError):
+        validate_curriculum_unit(unit)
+
+    unit["edition"]["content_review_status"] = "unit_pages_reviewed"
+    unit["edition"]["content_review_ref"] = "private:review-evidence-demo"
     validate_curriculum_unit(unit)
 
 
@@ -52,6 +57,8 @@ def test_age_range_and_lesson_order_are_consistent() -> None:
 def test_approval_timestamp_must_be_iso_datetime() -> None:
     unit = json.loads(EXAMPLE.read_text(encoding="utf-8"))
     unit["status"] = "approved"
+    unit["edition"]["content_review_status"] = "unit_pages_reviewed"
+    unit["edition"]["content_review_ref"] = "private:review-evidence-demo"
     unit["approval"] = {"reviewer": "teacher-demo", "reviewed_at": "yesterday"}
     with pytest.raises(ValidationError):
         validate_curriculum_unit(unit)

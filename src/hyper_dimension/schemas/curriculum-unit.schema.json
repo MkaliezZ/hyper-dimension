@@ -1,92 +1,363 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:hyperdimension:curriculum:unit:0.1",
-  "title": "Hyper Dimension Curriculum Unit Package v0.1",
+  "$id": "urn:hyperdimension:curriculum:unit:0.2",
+  "title": "Hyper Dimension Curriculum Unit Package v0.2",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "unit_package_id", "status", "edition", "age_range", "capability_ids", "big_question", "mission", "lessons", "assessment", "rights", "approval"],
+  "required": [
+    "schema_version",
+    "unit_package_id",
+    "status",
+    "edition",
+    "age_range",
+    "capability_ids",
+    "big_question",
+    "mission",
+    "lessons",
+    "assessment",
+    "rights",
+    "approval"
+  ],
   "properties": {
-    "schema_version": {"const": "0.1"},
-    "unit_package_id": {"type": "string", "pattern": "^[a-z0-9-]+$", "minLength": 5},
-    "status": {"enum": ["draft", "reviewed", "approved"]},
+    "schema_version": {
+      "const": "0.2"
+    },
+    "unit_package_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 5
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved"
+      ]
+    },
     "edition": {
-      "type": "object", "additionalProperties": false,
-      "required": ["publisher", "series", "edition_year", "grade", "volume", "unit_label", "unit_title", "source_url", "verification_status"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publisher",
+        "series",
+        "edition_year",
+        "grade",
+        "volume",
+        "unit_label",
+        "unit_title",
+        "source_url",
+        "verification_status",
+        "school_system",
+        "content_review_status",
+        "content_review_ref"
+      ],
       "properties": {
-        "publisher": {"type": "string", "minLength": 2},
-        "series": {"type": "string", "minLength": 2},
-        "edition_year": {"type": "integer", "minimum": 2022, "maximum": 2100},
-        "grade": {"type": "integer", "minimum": 1, "maximum": 9},
-        "volume": {"enum": ["上册", "下册", "全一册"]},
-        "unit_label": {"type": "string", "minLength": 1},
-        "unit_title": {"type": "string", "minLength": 1},
-        "source_url": {"type": "string", "pattern": "^https://"},
-        "verification_status": {"enum": ["publisher_verified", "teacher_verified", "pending_source"]}
+        "publisher": {
+          "type": "string",
+          "minLength": 2
+        },
+        "series": {
+          "type": "string",
+          "minLength": 2
+        },
+        "edition_year": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 2022,
+          "maximum": 2100
+        },
+        "grade": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9
+        },
+        "volume": {
+          "enum": [
+            "上册",
+            "下册",
+            "全一册"
+          ]
+        },
+        "unit_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_url": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "verification_status": {
+          "enum": [
+            "publisher_verified",
+            "teacher_verified",
+            "pending_source"
+          ]
+        },
+        "school_system": {
+          "enum": [
+            "六三制",
+            "五四制",
+            "待核实"
+          ]
+        },
+        "content_review_status": {
+          "enum": [
+            "not_reviewed",
+            "unit_pages_reviewed",
+            "full_book_reviewed"
+          ]
+        },
+        "content_review_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
-    "age_range": {"type": "object", "additionalProperties": false, "required": ["min", "max"], "properties": {"min": {"type": "integer", "minimum": 6, "maximum": 15}, "max": {"type": "integer", "minimum": 6, "maximum": 15}}},
-    "capability_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^C0[1-8]$"}},
-    "big_question": {"type": "string", "minLength": 8},
-    "mission": {
-      "type": "object", "additionalProperties": false,
-      "required": ["scenario", "audience", "student_product", "success_criteria"],
+    "age_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
       "properties": {
-        "scenario": {"type": "string", "minLength": 8},
-        "audience": {"type": "string", "minLength": 2},
-        "student_product": {"type": "string", "minLength": 4},
-        "success_criteria": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 4}}
+        "min": {
+          "type": "integer",
+          "minimum": 6,
+          "maximum": 15
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 6,
+          "maximum": 15
+        }
+      }
+    },
+    "capability_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^C0[1-8]$"
+      }
+    },
+    "big_question": {
+      "type": "string",
+      "minLength": 8
+    },
+    "mission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario",
+        "audience",
+        "student_product",
+        "success_criteria"
+      ],
+      "properties": {
+        "scenario": {
+          "type": "string",
+          "minLength": 8
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 2
+        },
+        "student_product": {
+          "type": "string",
+          "minLength": 4
+        },
+        "success_criteria": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 4
+          }
+        }
       }
     },
     "lessons": {
-      "type": "array", "minItems": 4,
+      "type": "array",
+      "minItems": 4,
       "items": {
-        "type": "object", "additionalProperties": false,
-        "required": ["sequence", "phase", "duration_minutes", "teacher_prompt", "student_action", "scaffold", "evidence"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "phase",
+          "duration_minutes",
+          "teacher_prompt",
+          "student_action",
+          "scaffold",
+          "evidence"
+        ],
         "properties": {
-          "sequence": {"type": "integer", "minimum": 1},
-          "phase": {"enum": ["context", "input", "noticing", "guided_output", "independent_output", "transfer"]},
-          "duration_minutes": {"type": "integer", "minimum": 10, "maximum": 90},
-          "teacher_prompt": {"type": "string", "minLength": 8},
-          "student_action": {"type": "string", "minLength": 8},
-          "scaffold": {"type": "string", "minLength": 4},
-          "evidence": {"type": "string", "minLength": 4}
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "phase": {
+            "enum": [
+              "context",
+              "input",
+              "noticing",
+              "guided_output",
+              "independent_output",
+              "transfer"
+            ]
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 90
+          },
+          "teacher_prompt": {
+            "type": "string",
+            "minLength": 8
+          },
+          "student_action": {
+            "type": "string",
+            "minLength": 8
+          },
+          "scaffold": {
+            "type": "string",
+            "minLength": 4
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 4
+          }
         }
       }
     },
     "assessment": {
-      "type": "object", "additionalProperties": false,
-      "required": ["rubric_version", "formative", "weekly", "transfer"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rubric_version",
+        "formative",
+        "weekly",
+        "transfer"
+      ],
       "properties": {
-        "rubric_version": {"type": "string", "minLength": 3},
-        "formative": {"type": "string", "minLength": 8},
-        "weekly": {"type": "string", "minLength": 8},
-        "transfer": {"type": "string", "minLength": 8}
+        "rubric_version": {
+          "type": "string",
+          "minLength": 3
+        },
+        "formative": {
+          "type": "string",
+          "minLength": 8
+        },
+        "weekly": {
+          "type": "string",
+          "minLength": 8
+        },
+        "transfer": {
+          "type": "string",
+          "minLength": 8
+        }
       }
     },
     "rights": {
-      "type": "object", "additionalProperties": false,
-      "required": ["task_origin", "textbook_excerpt_included"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_origin",
+        "textbook_excerpt_included"
+      ],
       "properties": {
-        "task_origin": {"const": "hyper_dimension_original"},
-        "textbook_excerpt_included": {"const": false}
+        "task_origin": {
+          "const": "hyper_dimension_original"
+        },
+        "textbook_excerpt_included": {
+          "const": false
+        }
       }
     },
     "approval": {
-      "type": "object", "additionalProperties": false,
-      "required": ["reviewer", "reviewed_at"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewer",
+        "reviewed_at"
+      ],
       "properties": {
-        "reviewer": {"type": ["string", "null"]},
-        "reviewed_at": {"type": ["string", "null"], "format": "date-time"}
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
       }
     }
   },
-  "allOf": [{
-    "if": {"properties": {"status": {"const": "approved"}}},
-    "then": {
-      "properties": {
-        "edition": {"properties": {"verification_status": {"enum": ["publisher_verified", "teacher_verified"]}}},
-        "approval": {"properties": {"reviewer": {"type": "string", "minLength": 2}, "reviewed_at": {"type": "string"}}}
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "approved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "edition": {
+            "properties": {
+              "verification_status": {
+                "enum": [
+                  "publisher_verified",
+                  "teacher_verified"
+                ]
+              },
+              "school_system": {
+                "enum": [
+                  "六三制",
+                  "五四制"
+                ]
+              },
+              "content_review_status": {
+                "enum": [
+                  "unit_pages_reviewed",
+                  "full_book_reviewed"
+                ]
+              },
+              "content_review_ref": {
+                "type": "string",
+                "minLength": 8
+              }
+            }
+          },
+          "approval": {
+            "properties": {
+              "reviewer": {
+                "type": "string",
+                "minLength": 2
+              },
+              "reviewed_at": {
+                "type": "string"
+              }
+            }
+          }
+        }
       }
     }
-  }]
+  ]
 }
