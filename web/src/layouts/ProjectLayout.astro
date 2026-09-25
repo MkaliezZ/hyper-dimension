@@ -14,8 +14,6 @@ const {
     heroImage,
     badge,
     tags = [],
-    github,
-    liveUrl,
 } = Astro.props;
 dayjs.extend(localizedFormat);
 const displayDate = dayjs(pubDate).format("ll");
@@ -58,28 +56,7 @@ import { AUTHOR_INITIAL, url } from "../config";
             </div>
 
             <div class="mt-2">
-                {
-                    github && (
-                        <a
-                            href={github}
-                            target="_blank"
-                            class="btn-ac btn-sm"
-                        >
-                            View source on GitHub
-                        </a>
-                    )
-                }
-                {
-                    liveUrl && (
-                        <a
-                            href={liveUrl}
-                            target="_blank"
-                            class="btn-ac btn-sm"
-                        >
-                            Live Demo
-                        </a>
-                    )
-                }
+
 
                 <div class="divider my-2"></div>
                 <slot />

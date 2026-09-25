@@ -8,10 +8,7 @@ const common = z.object({
   badge: z.string().optional(),
   tags: z.array(z.string()).refine((items) => new Set(items).size === items.length, { message: "tags must be unique" }).optional(),
 });
-const projectsSchema = common.extend({
-  github: z.string().optional(),
-  liveUrl: z.string().optional(),
-});
+const projectsSchema = common;
 export type BlogSchema = z.infer<typeof common>;
 export type ProjectsSchema = z.infer<typeof projectsSchema>;
 export const collections = {
