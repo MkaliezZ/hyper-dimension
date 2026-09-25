@@ -50,6 +50,10 @@ def validate(data: dict) -> list[str]:
             errors.append(f"{item_id}: listening requires audio and transcript references")
         if modality and modality.startswith("speaking") and not item.get("analytic_rubric"):
             errors.append(f"{item_id}: speaking requires an analytic rubric")
+        if item.get("delivery_mode") == "agent_interview":
+            for field in ("interviewer_version", "interview_script", "allowed_probes", "hint_policy", "stop_rule"):
+                if not item.get(field):
+                    errors.append(f"{item_id}: agent interview requires {field}")
         if modality in {"reading", "listening"} and not item.get("answer_key"):
             errors.append(f"{item_id}: objective task requires an answer key")
     return errors

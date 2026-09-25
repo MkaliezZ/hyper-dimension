@@ -24,3 +24,8 @@ def test_listening_requires_real_media_refs() -> None:
     bundle = copy.deepcopy(EXAMPLE)
     bundle["items"][0]["modality"] = "listening"
     assert any("audio and transcript" in error for error in VALIDATE(bundle))
+
+def test_agent_interview_requires_versioned_script() -> None:
+    bundle = copy.deepcopy(EXAMPLE)
+    bundle["items"][0].pop("interview_script")
+    assert any("agent interview requires interview_script" in error for error in VALIDATE(bundle))

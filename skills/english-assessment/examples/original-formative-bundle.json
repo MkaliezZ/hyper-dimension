@@ -98,7 +98,32 @@
           "cefr_reference": "Pre-A1/A1 spoken interaction candidate",
           "lexical_grammar_reference": "English Profile to be checked before claiming a specific level"
         }
-      ]
+      ],
+      "delivery_mode": "agent_interview",
+      "interviewer_version": "demo-g3-peer-v0.1",
+      "interview_script": [
+        {
+          "state": "opening",
+          "agent_says": "Hi!",
+          "observe": "学生是否主动介绍自己并询问新同伴姓名"
+        },
+        {
+          "state": "reply_to_name_question",
+          "condition": "学生询问姓名",
+          "agent_says": "I'm Mia. Nice to meet you.",
+          "observe": "学生是否给出相关回应"
+        },
+        {
+          "state": "follow_up",
+          "agent_says": "Can we share?",
+          "observe": "学生是否理解并作相关回应"
+        }
+      ],
+      "allowed_probes": [
+        "如果学生沉默，可提示一次：请向新同伴介绍自己并问一个问题；记录提示，不提供完整英文台词"
+      ],
+      "hint_policy": "诊断模式只允许上述一次提示；练习模式可追加引导但不沿用诊断评分",
+      "stop_rule": "完成介绍、询问和回应，或达到三分钟；设备故障则标记无效"
     }
   ]
 }
