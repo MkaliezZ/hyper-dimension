@@ -6,6 +6,8 @@
 
 这是 Hyper Dimension 的公开首期业务代码仓库，采用 MIT 许可证。当前聚焦 **6–15 岁英语教师版**：目标、实时任务、读写自动评测、教师异常复核、个性化计划与报告。学生 Agent 与教师 Agent 的 A2A 通信预留在版本化业务协议中。
 
+完整的开发顺序、技术选型与验收边界见[《03｜技术栈与首期实现》](docs/03-技术栈与首期实现.md)。
+
 ### 当前可运行内容
 
 - FastAPI 默认入口仅开放 `/healthz`；另有须注入教师令牌的本地教育 API 工厂。SQLite 本地核心可用模拟资料持久化题包、作答、评分、自动批准、报告、私有学生档案和审计。
@@ -49,6 +51,8 @@ A2A 承载 Agent Card、Message、Task 和传输；Hyper Dimension Education Pro
 ## English
 
 This MIT-licensed repository contains the first phase of Hyper Dimension. The initial product targets **English teachers of learners aged 6–15**: learning goals, live task generation, automated reading and writing assessment under teacher policy, exception review, personalized plans, and reports. Versioned business schemas reserve an interface for future student-agent and teacher-agent communication over A2A.
+
+The development order, stack choices, and acceptance gates are documented in [Technical Stack and First Phase](docs/03-技术栈与首期实现.md) (Chinese).
 
 ### What runs today
 
