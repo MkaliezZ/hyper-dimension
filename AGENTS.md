@@ -10,6 +10,7 @@
 
 ## 英语课程内容与教材映射
 
+- 生成或修订英语题目时，先读 skills/english-assessment/SKILL.md 与 skills/english-assessment/references/item-generation-workflow.md，按教材证据、公开考试来源级别、测评蓝图、答案/量规和教师审核顺序交付；不要把样卷直接当成已验证题库。
 - 课程单元包遵守 src/hyper_dimension/schemas/curriculum-unit.schema.json；能力节点和多版本映射原则见 docs/curriculum/curriculum-architecture-v0.1.md。
 - 每条教材单元题名记录出版社来源和核实状态。教科版逐单元映射在出版社资料或教师核对前维持 pending_source，不借用人教版的单元、页码或词汇表。
 - 国际教材仅借鉴可公开描述的教学方法；题目、对话、图片、音频须原创或取得可公开授权。不得将版权课本页、教参、音视频直接提交公库。
