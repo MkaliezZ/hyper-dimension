@@ -6,7 +6,7 @@
 
 MCP 是教师 Agent 的受控工具入口。明确的工具名、参数类型和结构化结果会减少格式错误，但不能保证 Agent 总选对工具；服务端仍需核验身份、权限、状态和幂等。A2A 用于未来学生 Agent 与教师 Agent 之间的任务通信，其 JSON DataPart 承载版本化 Hyper Dimension 业务命令；A2A Task 历史不替代业务审计。英语测评 Skill 继续说明教材证据、出题和量规方法，不承担授权和数据库写入。
 
-现有代码实现本地 stdio MCP 工具、严格业务命令 Schema、A2A DataPart 校验、本地受保护 HTTP 切片。尚无公开 A2A Agent Card 或端点，也没有生产身份网关。默认 hyper_dimension.api:app 仍只开放 /healthz。本地 HTTP 工厂仅以模拟数据验收，不接真实学生。
+现有代码实现本地 stdio MCP 工具、严格业务命令 Schema、A2A DataPart 校验、本地受保护 HTTP 切片。新增仅监听本机的 A2A Agent Card/JSON-RPC 两项只读原型；尚无公网 A2A 端点或生产身份网关。默认 hyper_dimension.api:app 仍只开放 /healthz。本地 HTTP 工厂仅以模拟数据验收，不接真实学生。
 
 ## 稳定学生引用与答题核验
 
@@ -40,12 +40,12 @@ MCP 不提供登记公开许可、正式发布、撤回许可工具。Agent 可�
 
 新的统一[教育 A2A 业务语义 Profile v1](a2a-education-profile-v1.md)规定封套 1.2 的十一项操作、每项严格 payload、角色矩阵、幂等与引用归属、结果原因码及 A2A Task 状态映射。机器可读[命令 Schema](../src/hyper_dimension/schemas/hd-education-command-v1.2.schema.json)与[结果 Schema](../src/hyper_dimension/schemas/hd-education-result-v1.2.schema.json)由同一代码定义导出，并有正反例一致性测试。
 
-早期 1.0 评测请求和 1.1 档案命令是本地草案。新 A2A 接入只接 1.2，不按自然语言推断操作，也不把旧 payload_refs 自动改写为新 payload。学生 Agent 的五项学习操作目前只有契约，没有真实 A2A 服务；教师 MCP 仍使用同一业务服务，并在授权逻辑完善后绑定到对应操作语义。任何通过 Schema 的命令仍须由服务端认证主体、核查角色、同意、学生关系、记录归属、版本和幂等。
+早期 1.0 评测请求和 1.1 档案命令是本地草案。新 A2A 接入只接 1.2，不按自然语言推断操作，也不把旧 payload_refs 自动改写为新 payload。学生 Agent 的五项学习操作目前只有契约，没有可执行 A2A 服务；本地只读能力与限制见[验收说明](local-a2a-read-prototype.md)。教师 MCP 仍使用同一业务服务，并在授权逻辑完善后绑定到对应操作语义。任何通过 Schema 的命令仍须由服务端认证主体、核查角色、同意、学生关系、记录归属、版本和幂等。
 
 ## 本地运行与后续开发
 
 安装 python -m pip install -e ".[dev,mcp]"。将 HD_LOCAL_DB、HD_LOCAL_ARCHIVE 指向仓库外目录，并设置本地会话的 HD_TENANT_ID 和 HD_TEACHER_ID；运行 python scripts/run_teacher_mcp.py 启动 stdio 工具。调用出题时才需从当前进程提供 DEEPSEEK_API_KEY。配置、密钥和档案不得提交 Git。若要运行本地 HTTP 验收入口，再设 HD_TEACHER_TOKEN 为至少 24 字符的随机值，并运行 python scripts/run_local_education_api.py；它只监听 127.0.0.1，默认端口 8765。
 
-后续依次实现生产教师/监护人身份网关、PostgreSQL 迁移、2D 教师编辑页与学生答题页，然后接真正的 A2A Agent Card、端点及跨 Agent 兼容测试。MCP 与 A2A 复用同一业务服务与版本语义。
+后续依次实现生产教师/监护人身份网关、PostgreSQL 迁移、2D 教师编辑页与学生答题页，然后将本机只读切片升级为受生产身份网关保护的 A2A Agent Card、端点及跨 Agent 兼容测试。MCP 与 A2A 复用同一业务服务与版本语义。
 
 参考：[MCP 官方 Python SDK](https://github.com/modelcontextprotocol/python-sdk)、[A2A v1 规范](https://a2a-protocol.org/v1.0.0/specification/)。

@@ -19,6 +19,9 @@ dependencies = [
 mcp = [
   "mcp>=1.28,<2",
 ]
+a2a = [
+  "a2a-sdk[http-server]>=1.1.5,<1.2",
+]
 pdf = [
   "pymupdf>=1.26,<2",
 ]

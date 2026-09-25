@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hyperdimension:education:a2a-read-content:1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "request_id",
+    "operation",
+    "payload"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "1.2"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation": {
+      "enum": [
+        "hd.education.student.profile.read.v1",
+        "hd.education.showcase.public.read.v1"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "operation": {
+          "const": "hd.education.student.profile.read.v1"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "profile"
+          ],
+          "properties": {
+            "profile": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "student_ref",
+                "class_id",
+                "age",
+                "grade",
+                "book_id",
+                "school_progress",
+                "display_name",
+                "public_alias",
+                "teacher_notes",
+                "learning_goals",
+                "version"
+              ],
+              "properties": {
+                "student_ref": {
+                  "type": "string",
+                  "pattern": "^stu_[0-9a-f]{32}$"
+                },
+                "class_id": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "integer"
+                },
+                "grade": {
+                  "type": "integer"
+                },
+                "book_id": {
+                  "type": "string"
+                },
+                "school_progress": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "public_alias": {
+                  "type": "string"
+                },
+                "teacher_notes": {
+                  "type": "string"
+                },
+                "learning_goals": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "operation": {
+          "const": "hd.education.showcase.public.read.v1"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "entries",
+            "has_more"
+          ],
+          "properties": {
+            "entries": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "entry_ref",
+                  "slot",
+                  "kind",
+                  "title",
+                  "summary",
+                  "student_alias",
+                  "metrics"
+                ],
+                "properties": {
+                  "entry_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "slot": {
+                    "enum": [
+                      "learning",
+                      "portfolio",
+                      "honors"
+                    ]
+                  },
+                  "kind": {
+                    "enum": [
+                      "improvement",
+                      "honor"
+                    ]
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "student_alias": {
+                    "type": "string"
+                  },
+                  "metrics": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "before_score": {
+                        "type": "number"
+                      },
+                      "after_score": {
+                        "type": "number"
+                      },
+                      "unit": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "has_more": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

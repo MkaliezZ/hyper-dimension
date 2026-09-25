@@ -12,6 +12,9 @@ from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 
 from hyper_dimension.assessment_runtime import AssessmentError, AssessmentService
+from hyper_dimension.guardian_authorization import (
+    DemoGuardianAuthorizationProvider, GuardianAuthorizationProvider,
+)
 from hyper_dimension.student_records import StudentRecords
 
 
@@ -22,7 +25,7 @@ class Enrollment(BaseModel):
     grade: int = Field(ge=1, le=9)
     book_id: str
     school_progress: str
-    guardian_consent_ref: str
+    guardian_consent_ref: str | None = None
     public_alias: str | None = None
 
 
@@ -73,11 +76,13 @@ class ShowcaseDraft(BaseModel):
 def create_local_education_app(
     assessment: AssessmentService, records: StudentRecords, *,
     tenant_id: str, teacher_id: str, teacher_token: str,
+    guardian_authorization: GuardianAuthorizationProvider | None = None,
 ) -> FastAPI:
     if (not all((tenant_id, teacher_id, teacher_token)) or
         len(teacher_token) < 24 or records.teacher_id != teacher_id):
         raise ValueError("Local teacher identity binding and strong token required")
     app = FastAPI(title="Hyper Dimension Local Education Prototype")
+    consent_provider = guardian_authorization or DemoGuardianAuthorizationProvider()
 
     def teacher(authorization: str | None = Header(default=None)) -> str:
         if (authorization is None or not authorization.startswith("Bearer ") or
@@ -93,13 +98,23 @@ def create_local_education_app(
 
     @app.post("/api/v1/teacher/students", dependencies=[Depends(teacher)])
     def enroll(body: Enrollment) -> dict[str, str]:
-        return safe(lambda: records.create_student(
+        decision = consent_provider.resolve_enrollment(body.guardian_consent_ref)
+        student = safe(lambda: records.create_student(
             tenant_id=tenant_id, class_id=body.class_id,
             display_name=body.display_name, age=body.age, grade=body.grade,
             book_id=body.book_id, school_progress=body.school_progress,
-            guardian_consent_ref=body.guardian_consent_ref,
+            guardian_consent_ref=decision.consent_ref,
             public_alias=body.public_alias,
         ))
+        student["consent_assurance"] = decision.assurance
+        if decision.showcase_fields:
+            student["showcase_consent_ref"] = safe(lambda: records.record_showcase_consent(
+                tenant_id=tenant_id, student_id=student["student_ref"],
+                guardian_ref=decision.showcase_guardian_ref,
+                evidence_ref=decision.showcase_evidence_ref,
+                allowed_fields=list(decision.showcase_fields),
+            ))
+        return student
 
     @app.get("/api/v1/teacher/students/{student_ref}", dependencies=[Depends(teacher)])
     def profile(student_ref: str) -> dict[str, Any]:
