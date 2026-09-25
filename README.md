@@ -8,6 +8,7 @@
 - Hyper Dimension Education Protocol v1 请求/结果 JSON Schema
 - 协议加载与校验函数及对应测试
 - 教师版开发顺序与 A2A 接口边界文档
+- 2D 小岛前端基线与教师业务页面的风格约束（Web 前端尚未导入）
 
 这些是首个基础提交，不代表学生测评闭环已经上线。下一迭代从 PostgreSQL 数据模型、权限和审计开始。
 
@@ -32,7 +33,7 @@ Windows PowerShell 中先激活本地虚拟环境，或直接使用虚拟环境�
 - Hyper Dimension Education Protocol 负责学生证据、计划、反馈、授权、审批和审计的业务语义。
 - 首期网页与未来 A2A 适配器调用同一业务服务，不维护两份测评数据。
 
-参见 docs/teacher-first-slice.md 和 src/hyper_dimension/schemas。
+参见 docs/teacher-first-slice.md、docs/frontend-baseline.md 和 src/hyper_dimension/schemas。
 
 ## 公开仓库约定
 
