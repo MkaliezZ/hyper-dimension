@@ -102,6 +102,11 @@ class AssessmentService:
                     idempotency_key TEXT NOT NULL, bundle_id TEXT NOT NULL,
                     PRIMARY KEY (tenant_id, student_id, idempotency_key)
                 );
+                CREATE TABLE IF NOT EXISTS agent_bundle_request_hashes (
+                    tenant_id TEXT NOT NULL, student_id TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL, bundle_sha256 TEXT NOT NULL,
+                    PRIMARY KEY (tenant_id, student_id, idempotency_key)
+                );
                 CREATE TABLE IF NOT EXISTS attempts (
                     attempt_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL,
                     student_id TEXT NOT NULL, bundle_id TEXT NOT NULL,
@@ -272,8 +277,15 @@ class AssessmentService:
         if sum(policy["weights"].values()) <= 0:
             raise AssessmentError("Invalid policy weights")
 
+    def generation_context(self, tenant_id: str, student_id: str) -> dict[str, Any]:
+        """Return the trusted profile and active policy for an external teacher Agent."""
+        with self._db() as db:
+            profile, policy = self._context(db, tenant_id, student_id)
+        return {"profile": profile, "policy": policy}
+
     def create_assignment(self, tenant_id: str, student_id: str,
                           idempotency_key: str | None = None) -> dict[str, Any]:
+        """Legacy local model path, retained for synthetic regression tests."""
         if idempotency_key is not None and not idempotency_key:
             raise AssessmentError("Empty assignment idempotency key")
         with self._db() as db:
@@ -282,7 +294,6 @@ class AssessmentService:
                 if previous is not None:
                     return previous
             profile, policy = self._context(db, tenant_id, student_id)
-        # JSON mode does not guarantee answer-key consistency. Retry once, then fail closed.
         for generation_attempt in range(2):
             bundle = self.agent.generate(profile, policy)
             try:
@@ -291,6 +302,36 @@ class AssessmentService:
             except AssessmentError:
                 if generation_attempt == 1:
                     raise
+        return self.publish_agent_bundle(
+            tenant_id, student_id, bundle,
+            idempotency_key=idempotency_key, strict_idempotency=False,
+        )
+
+    def publish_agent_bundle(
+        self, tenant_id: str, student_id: str, bundle: dict[str, Any], *,
+        idempotency_key: str | None, strict_idempotency: bool = True,
+    ) -> dict[str, Any]:
+        """Validate and store an Agent-authored bundle; never call a model."""
+        if strict_idempotency and not idempotency_key:
+            raise AssessmentError("Assignment idempotency key required")
+        if not isinstance(bundle, dict):
+            raise AssessmentError("Agent bundle must be an object")
+        digest = hashlib.sha256(_json(bundle).encode()).hexdigest()
+        with self._db() as db:
+            previous = (self._assignment_request(db, tenant_id, student_id, idempotency_key)
+                        if idempotency_key is not None else None)
+            if previous is not None:
+                if strict_idempotency:
+                    row = db.execute(
+                        """SELECT bundle_sha256 FROM agent_bundle_request_hashes
+                           WHERE tenant_id=? AND student_id=? AND idempotency_key=?""",
+                        (tenant_id, student_id, idempotency_key),
+                    ).fetchone()
+                    if row is None or row["bundle_sha256"] != digest:
+                        raise AssessmentError("Idempotency key reused with different bundle")
+                return previous
+            profile, policy = self._context(db, tenant_id, student_id)
+        self._validate_bundle(bundle, policy)
         bundle_id = _id("bundle")
         student_questions = [
             {key: question[key] for key in ("id", "kind", "prompt", "options") if key in question}
@@ -300,10 +341,18 @@ class AssessmentService:
                         "book_id": profile["book_id"], "school_progress": profile["school_progress"]}
         with self._db() as db:
             db.execute("BEGIN IMMEDIATE")
-            if idempotency_key is not None:
-                previous = self._assignment_request(db, tenant_id, student_id, idempotency_key)
-                if previous is not None:
-                    return previous
+            previous = (self._assignment_request(db, tenant_id, student_id, idempotency_key)
+                        if idempotency_key is not None else None)
+            if previous is not None:
+                if strict_idempotency:
+                    row = db.execute(
+                        """SELECT bundle_sha256 FROM agent_bundle_request_hashes
+                           WHERE tenant_id=? AND student_id=? AND idempotency_key=?""",
+                        (tenant_id, student_id, idempotency_key),
+                    ).fetchone()
+                    if row is None or row["bundle_sha256"] != digest:
+                        raise AssessmentError("Idempotency key reused with different bundle")
+                return previous
             current_profile, current_policy = self._context(db, tenant_id, student_id)
             if (current_profile["class_id"] != profile["class_id"] or
                 current_policy["policy_id"] != policy["policy_id"] or
@@ -322,7 +371,67 @@ class AssessmentService:
                     "INSERT INTO assignment_requests VALUES (?,?,?,?)",
                     (tenant_id, student_id, idempotency_key, bundle_id),
                 )
+            if strict_idempotency:
+                db.execute(
+                    "INSERT INTO agent_bundle_request_hashes VALUES (?,?,?,?)",
+                    (tenant_id, student_id, idempotency_key, digest),
+                )
         return {**student_view, "audit_event_id": event_id}
+
+    def grading_context(self, tenant_id: str, student_id: str, attempt_id: str) -> dict[str, Any]:
+        """Return only the writing prompt, response and rubric; score MCQs on the server."""
+        with self._db() as db:
+            profile, policy = self._context(db, tenant_id, student_id)
+            row = db.execute(
+                """SELECT a.status,a.answers_json,b.student_json,b.key_json,b.rubric_json,
+                          b.policy_id,b.policy_version
+                   FROM attempts a JOIN item_bundles b ON b.bundle_id=a.bundle_id
+                   WHERE a.tenant_id=? AND a.student_id=? AND a.attempt_id=?""",
+                (tenant_id, student_id, attempt_id),
+            ).fetchone()
+            if row is None or row["status"] != "submitted":
+                raise AssessmentError("No pending attempt for this student")
+            if (row["policy_id"], row["policy_version"]) != (policy["policy_id"], policy["version"]):
+                raise AssessmentError("Assignment policy changed before grading")
+            questions = _load(row["student_json"])["questions"]
+            answers = _load(row["answers_json"])
+            key = _load(row["key_json"])
+            objective = [q for q in questions if q["kind"] == "mcq"]
+            question = next(q for q in questions if q["kind"] == "writing")
+            return {
+                "attempt_id": attempt_id,
+                "profile": profile,
+                "policy": policy,
+                "writing": {"question": question, "answer": answers[question["id"]]},
+                "objective_result": {
+                    "score": 100 * sum(answers[q["id"]] == key[q["id"]] for q in objective) / len(objective),
+                    "wrong_item_ids": [q["id"] for q in objective if answers[q["id"]] != key[q["id"]]],
+                },
+                "rubric": _load(row["rubric_json"]),
+            }
+
+    def pending_attempts(self, tenant_id: str, class_id: str, teacher_id: str) -> list[dict[str, str]]:
+        """List references for the active teacher policy, without peer answers."""
+        with self._db() as db:
+            policy = db.execute(
+                """SELECT policy_id,version,teacher_id FROM teacher_policies
+                   WHERE tenant_id=? AND class_id=? AND active=1 ORDER BY version DESC LIMIT 1""",
+                (tenant_id, class_id),
+            ).fetchone()
+            if policy is None or policy["teacher_id"] != teacher_id:
+                raise AssessmentError("No active teacher policy for this class")
+            rows = db.execute(
+                """SELECT a.attempt_id,a.student_id,a.created_at FROM attempts a
+                   JOIN students s ON s.tenant_id=a.tenant_id AND s.student_id=a.student_id
+                   JOIN guardian_consents c ON c.tenant_id=a.tenant_id AND c.student_id=a.student_id
+                   JOIN item_bundles b ON b.bundle_id=a.bundle_id
+                   WHERE a.tenant_id=? AND s.class_id=? AND a.status='submitted'
+                     AND c.active=1 AND c.scope='english_assessment'
+                     AND b.policy_id=? AND b.policy_version=?
+                   ORDER BY a.created_at,a.attempt_id""",
+                (tenant_id, class_id, policy["policy_id"], policy["version"]),
+            ).fetchall()
+            return [dict(row) for row in rows]
 
     def _assignment_request(self, db: sqlite3.Connection, tenant_id: str,
                             student_id: str, key: str) -> dict[str, Any] | None:
@@ -338,7 +447,8 @@ class AssessmentService:
         return {**_load(row["student_json"]), "audit_event_id": row["event_id"]} if row else None
 
     def submit(self, *, tenant_id: str, student_id: str, bundle_id: str,
-               attempt_id: str, idempotency_key: str, answers: dict[str, str]) -> dict[str, Any]:
+               attempt_id: str, idempotency_key: str, answers: dict[str, str],
+               auto_process: bool = True) -> dict[str, Any]:
         if not all((bundle_id, attempt_id, idempotency_key)) or not isinstance(answers, dict):
             raise AssessmentError("Missing submission identity or answers")
         content_sha = hashlib.sha256(_json({"bundle_id": bundle_id, "answers": answers}).encode()).hexdigest()
@@ -371,6 +481,9 @@ class AssessmentService:
                 (attempt_id, tenant_id, student_id, bundle_id, idempotency_key,
                  content_sha, _json(answers), "submitted", event_id, _now()),
             )
+        if not auto_process:
+            return {"attempt_id": attempt_id, "status": "submitted",
+                    "audit_event_id": event_id, "report_id": None}
         try:
             return self.process_attempt(tenant_id, student_id, attempt_id)
         except AssessmentError:
@@ -379,7 +492,12 @@ class AssessmentService:
                 row = db.execute("SELECT * FROM attempts WHERE attempt_id=?", (attempt_id,)).fetchone()
                 return self._result(db, row)
 
-    def process_attempt(self, tenant_id: str, student_id: str, attempt_id: str) -> dict[str, Any]:
+    def process_attempt(
+        self, tenant_id: str, student_id: str, attempt_id: str,
+        *, critique: dict[str, Any] | None = None,
+        narrative: dict[str, Any] | None = None,
+        agent_supplied: bool = False,
+    ) -> dict[str, Any]:
         with self._db() as db:
             attempt = db.execute(
                 "SELECT * FROM attempts WHERE tenant_id=? AND student_id=? AND attempt_id=?",
@@ -401,22 +519,29 @@ class AssessmentService:
         mcq = [q for q in questions if q["kind"] == "mcq"]
         writing = next(q for q in questions if q["kind"] == "writing")
         reading = 100 * sum(answers[q["id"]] == key[q["id"]] for q in mcq) / len(mcq)
+        if agent_supplied and (critique is None or narrative is None):
+            raise AssessmentError("Agent grading and report drafts are both required")
         try:
-            critique = self.agent.grade_writing(
-                {"questions": questions, "rubric": _load(bundle["rubric_json"]),
-                 "agent_version": bundle["agent_version"]},
-                answers[writing["id"]],
-            )
+            if not agent_supplied:
+                critique = self.agent.grade_writing(
+                    {"questions": questions, "rubric": _load(bundle["rubric_json"]),
+                     "agent_version": bundle["agent_version"]},
+                    answers[writing["id"]],
+                )
             dimensions = critique["scores"]
             confidence = critique["confidence"]
             evidence = critique["evidence"]
-            if (set(dimensions) != set(DIMENSIONS) - {"reading"} or
+            grader_version = critique.get("agent_version") if agent_supplied else bundle["agent_version"]
+            if (not isinstance(grader_version, str) or not grader_version.strip() or
+                set(dimensions) != set(DIMENSIONS) - {"reading"} or
                 any(not isinstance(v, (int, float)) or isinstance(v, bool) or not math.isfinite(v) or not 0 <= v <= 100
                     for v in dimensions.values()) or
                 not isinstance(confidence, (int, float)) or not math.isfinite(confidence) or not 0 <= confidence <= 1 or
                 not isinstance(evidence, str)):
                 raise ValueError("Agent grade does not meet rubric contract")
-        except Exception:
+        except Exception as exc:
+            if agent_supplied:
+                raise AssessmentError("Invalid Agent grading draft") from exc
             # The committed submission remains resumable after an Agent outage.
             return {"attempt_id": attempt_id, "status": "submitted",
                     "audit_event_id": attempt["submit_event_id"], "report_id": None}
@@ -426,15 +551,15 @@ class AssessmentService:
         reason = "approved" if confidence >= policy["min_confidence"] and evidence.strip() else "low_confidence_or_missing_evidence"
         status = "approved" if reason == "approved" else "needs_review"
         wrong_answers = [q["id"] for q in mcq if answers[q["id"]] != key[q["id"]]]
-        narrative = None
         if status == "approved":
             try:
-                narrative = self.agent.draft_report({
-                    "profile": {k: profile[k] for k in ("age", "grade", "book_id", "school_progress")},
-                    "questions": questions, "answers": answers,
-                    "answer_key": key, "score": total, "breakdown": breakdown,
-                    "wrong_answers": wrong_answers, "writing_evidence": evidence,
-                })
+                if not agent_supplied:
+                    narrative = self.agent.draft_report({
+                        "profile": {k: profile[k] for k in ("age", "grade", "book_id", "school_progress")},
+                        "questions": questions, "answers": answers,
+                        "answer_key": key, "score": total, "breakdown": breakdown,
+                        "wrong_answers": wrong_answers, "writing_evidence": evidence,
+                    })
                 if (not isinstance(narrative, dict) or
                     not isinstance(narrative.get("summary"), str) or
                     not narrative["summary"].strip() or
@@ -443,7 +568,9 @@ class AssessmentService:
                         any(not isinstance(x, str) or not x.strip() for x in narrative[k])
                         for k in ("strengths", "needs_work", "next_steps"))):
                     raise ValueError("Incomplete Agent report")
-            except Exception:
+            except Exception as exc:
+                if agent_supplied:
+                    raise AssessmentError("Invalid Agent report draft") from exc
                 # Keep the answer resumable instead of publishing an incomplete report.
                 return {"attempt_id": attempt_id, "status": "submitted",
                         "audit_event_id": attempt["submit_event_id"], "report_id": None}
@@ -465,10 +592,10 @@ class AssessmentService:
                 (_id("grade"), attempt_id, total,
                  _json({"scores": breakdown, "weights": weights, "evidence": evidence,
                         "wrong_answers": wrong_answers}),
-                 confidence, status, bundle["agent_version"], _now()),
+                 confidence, status, grader_version, _now()),
             )
             self._event(db, tenant_id, student_id, attempt_id,
-                        "grade.completed", "agent", bundle["agent_version"], attempt_id)
+                        "grade.completed", "agent", grader_version, attempt_id)
             db.execute(
                 "INSERT INTO approval_decisions VALUES (?,?,?,?,?,?,?)",
                 (_id("decision"), attempt_id,

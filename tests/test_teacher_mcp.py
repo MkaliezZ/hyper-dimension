@@ -10,6 +10,7 @@ from hyper_dimension.education_command import (
 )
 from hyper_dimension.student_records import StudentRecords
 from hyper_dimension.teacher_mcp import create_teacher_mcp
+from hyper_dimension.no_backend_model import NoBackendModel
 
 
 class DemoAgent:
@@ -112,43 +113,87 @@ def test_command_operation_payload_and_purpose_are_bound(setup):
 
 def test_mcp_tools_are_teacher_scoped_and_do_not_publish(setup):
     assessment, records, student = setup
+    # If any MCP tool tries to use a platform model, the test fails closed.
+    assessment.agent = NoBackendModel()
     server = create_teacher_mcp(
         assessment, records, tenant_id="island-1", teacher_id="teacher-1",
     )
-    tools = asyncio.run(server.list_tools())
-    names = {tool.name for tool in tools}
+    names = {tool.name for tool in asyncio.run(server.list_tools())}
     assert "student_profile_read" in names
-    assert "assessment_assignment_create" in names
-    assert "showcase_draft_create" in names
+    assert "assessment_assignment_create" not in names
+    assert {"assessment_generation_context_read", "assessment_bundle_submit",
+            "assessment_pending_attempts_read", "assessment_grading_context_read",
+            "assessment_grade_submit"} <= names
     assert not any("publish" in name for name in names)
-    profile = asyncio.run(
-        server._tool_manager.call_tool(
-            "student_profile_read", {"student_ref": student["student_ref"]},
-        )
+
+    def call(name, **arguments):
+        return asyncio.run(server._tool_manager.call_tool(name, arguments))
+
+    ref = student["student_ref"]
+    context = call("assessment_generation_context_read", student_ref=ref)
+    assert context["profile"]["student_id"] == ref
+    assert context["policy"]["teacher_id"] == "teacher-1"
+    bundle = DemoAgent().generate(context["profile"], context["policy"])
+    first = call("assessment_bundle_submit", student_ref=ref,
+                 idempotency_key="task-1", bundle=bundle)
+    assert call("assessment_bundle_submit", student_ref=ref,
+                idempotency_key="task-1", bundle=bundle) == first
+    assert "answer_key" not in first
+    changed = {**bundle, "answer_key": {"r1": "There"}}
+    with pytest.raises(Exception):
+        call("assessment_bundle_submit", student_ref=ref,
+             idempotency_key="task-1", bundle=changed)
+    submitted = assessment.submit(
+        tenant_id="island-1", student_id=ref, bundle_id=first["bundle_id"],
+        attempt_id="attempt-mcp", idempotency_key="submit-mcp",
+        answers={"r1": "There", "w1": "Please join me tomorrow."},
+        auto_process=False,
     )
-    assert profile["display_name"] == "Lin Mei"
-    first = asyncio.run(
-        server._tool_manager.call_tool(
-            "assessment_assignment_create",
-            {"student_ref": student["student_ref"], "idempotency_key": "task-1"},
-        )
-    )
-    second = asyncio.run(
-        server._tool_manager.call_tool(
-            "assessment_assignment_create",
-            {"student_ref": student["student_ref"], "idempotency_key": "task-1"},
-        )
-    )
-    assert first == second
+    assert submitted["status"] == "submitted"
+    queue = call("assessment_pending_attempts_read", class_ref="class-1")
+    assert len(queue["attempts"]) == 1
+    grading = call("assessment_grading_context_read",
+                   student_ref=ref, attempt_ref="attempt-mcp")
+    assert grading["writing"]["answer"] == "Please join me tomorrow."
+    assert grading["objective_result"] == {"score": 0.0, "wrong_item_ids": ["r1"]}
+    assert "answer_key" not in str(grading)
+    critique = DemoAgent().grade_writing({}, grading["writing"]["answer"])
+    critique["agent_version"] = "teacher-agent-synthetic-v1"
+    narrative = DemoAgent().draft_report({})
+    with pytest.raises(Exception):
+        call("assessment_grade_submit", student_ref=ref, attempt_ref="attempt-mcp",
+             critique={**critique, "confidence": 2}, narrative=narrative)
+    result = call("assessment_grade_submit", student_ref=ref,
+                  attempt_ref="attempt-mcp", critique=critique, narrative=narrative)
+    assert result["status"] == "approved"
+    assert result["archive"]["artifact_id"]
+    assert assessment.report("island-1", ref, result["report_id"])["summary"] == "Synthetic report"
+    assert call("assessment_pending_attempts_read", class_ref="class-1")["attempts"] == []
+    assert call("assessment_grade_submit", student_ref=ref,
+                attempt_ref="attempt-mcp", critique=critique, narrative=narrative) == result
+
     other_server = create_teacher_mcp(
         assessment, records, tenant_id="another-island", teacher_id="teacher-1",
     )
     with pytest.raises(Exception):
-        asyncio.run(
-            other_server._tool_manager.call_tool(
-                "student_profile_read", {"student_ref": student["student_ref"]},
-            )
-        )
+        asyncio.run(other_server._tool_manager.call_tool(
+            "student_profile_read", {"student_ref": ref},
+        ))
+    another_teacher_records = StudentRecords(
+        assessment, records.archive_root, teacher_id="teacher-2",
+    )
+    other_teacher_server = create_teacher_mcp(
+        assessment, another_teacher_records,
+        tenant_id="island-1", teacher_id="teacher-2",
+    )
+    with pytest.raises(Exception):
+        asyncio.run(other_teacher_server._tool_manager.call_tool(
+            "student_profile_read", {"student_ref": ref},
+        ))
+    with pytest.raises(Exception):
+        asyncio.run(other_teacher_server._tool_manager.call_tool(
+            "assessment_pending_attempts_read", {"class_ref": "class-1"},
+        ))
 
 
 
@@ -221,6 +266,53 @@ def test_local_api_authentication_archive_and_publication(setup):
     cards = client.get("/api/v1/showcase").json()["entries"]
     assert len(cards) == 1 and cards[0]["student_alias"] == "Star One"
     assert "student_id" not in cards[0]
+
+
+
+def test_agent_native_local_api_waits_for_teacher_mcp_grading(setup):
+    from fastapi.testclient import TestClient
+    from hyper_dimension.local_education_api import create_local_education_app
+
+    assessment, records, student = setup
+    assessment.agent = NoBackendModel()
+    token = "synthetic-teacher-token-very-long"
+    client = TestClient(create_local_education_app(
+        assessment, records, tenant_id="island-1", teacher_id="teacher-1",
+        teacher_token=token, agent_native=True,
+    ))
+    ref = student["student_ref"]
+    teacher_base = f"/api/v1/teacher/students/{ref}"
+    headers = {"Authorization": "Bearer " + token}
+    assert client.post(
+        teacher_base + "/assignments", headers=headers,
+        json={"idempotency_key": "api-native"},
+    ).status_code == 409
+    bundle = assessment.publish_agent_bundle(
+        "island-1", ref, DemoAgent().generate({}, {}),
+        idempotency_key="api-native",
+    )
+    response = client.post("/api/v1/student/attempts", json={
+        "access_code": student["access_code"], "signed_name": "Lin Mei",
+        "bundle_ref": bundle["bundle_id"], "attempt_ref": "api-native-attempt",
+        "idempotency_key": "api-native-submit",
+        "answers": {"r1": "Here", "w1": "Please come tomorrow."},
+    })
+    assert response.status_code == 200
+    assert response.json()["status"] == "submitted"
+    assert response.json()["report_id"] is None
+    server = create_teacher_mcp(
+        assessment, records, tenant_id="island-1", teacher_id="teacher-1",
+    )
+    critique = DemoAgent().grade_writing({}, "")
+    critique["agent_version"] = "teacher-agent-synthetic-v1"
+    result = asyncio.run(server._tool_manager.call_tool(
+        "assessment_grade_submit", {
+            "student_ref": ref, "attempt_ref": "api-native-attempt",
+            "critique": critique, "narrative": DemoAgent().draft_report({}),
+        },
+    ))
+    assert result["status"] == "approved"
+    assert result["archive"]["artifact_id"]
 
 
 

@@ -16,6 +16,7 @@ from hyper_dimension.guardian_authorization import (
     DemoGuardianAuthorizationProvider, GuardianAuthorizationProvider,
 )
 from hyper_dimension.student_records import StudentRecords
+from hyper_dimension.progress_alignment import ProgressAlignmentService
 
 
 class Enrollment(BaseModel):
@@ -50,6 +51,27 @@ class StudentSubmission(BaseModel):
     answers: dict[str, str]
 
 
+class ClassMilestone(BaseModel):
+    capability_node: str
+    prerequisite_nodes: list[str] = Field(default_factory=list)
+    construct_ref: str
+    score_dimension: str
+    target_difficulty: int = Field(ge=1, le=3)
+    support_threshold: float = Field(default=60, ge=0, le=100)
+    transfer_threshold: float = Field(default=80, ge=0, le=100)
+    target_date: str
+
+
+class AlignmentDecision(BaseModel):
+    decision: str
+    reason: str
+    override_group: str | None = None
+
+
+class PlanApproval(BaseModel):
+    reason: str
+
+
 class TeacherNote(BaseModel):
     evidence_ref: str
     title: str
@@ -77,12 +99,14 @@ def create_local_education_app(
     assessment: AssessmentService, records: StudentRecords, *,
     tenant_id: str, teacher_id: str, teacher_token: str,
     guardian_authorization: GuardianAuthorizationProvider | None = None,
+    agent_native: bool = False,
 ) -> FastAPI:
     if (not all((tenant_id, teacher_id, teacher_token)) or
         len(teacher_token) < 24 or records.teacher_id != teacher_id):
         raise ValueError("Local teacher identity binding and strong token required")
     app = FastAPI(title="Hyper Dimension Local Education Prototype")
     consent_provider = guardian_authorization or DemoGuardianAuthorizationProvider()
+    alignment = ProgressAlignmentService(assessment, records, teacher_id=teacher_id)
 
     def teacher(authorization: str | None = Header(default=None)) -> str:
         if (authorization is None or not authorization.startswith("Bearer ") or
@@ -129,8 +153,43 @@ def create_local_education_app(
     @app.post("/api/v1/teacher/students/{student_ref}/assignments",
               dependencies=[Depends(teacher)])
     def assignment(student_ref: str, body: AssignmentRequest) -> dict[str, Any]:
+        if agent_native:
+            raise HTTPException(status_code=409, detail="Teacher Agent submits bundles through MCP")
         return safe(lambda: assessment.create_assignment(
             tenant_id, student_ref, idempotency_key=body.idempotency_key,
+        ))
+
+    @app.post("/api/v1/teacher/classes/{class_ref}/milestones",
+              dependencies=[Depends(teacher)])
+    def create_milestone(class_ref: str, body: ClassMilestone) -> dict[str, Any]:
+        return safe(lambda: alignment.create_milestone(
+            tenant_id=tenant_id, class_id=class_ref, **body.model_dump(),
+        ))
+
+    @app.post("/api/v1/teacher/students/{student_ref}/alignment-evidence/{evidence_ref}/confirm",
+              dependencies=[Depends(teacher)])
+    def confirm_evidence(student_ref: str, evidence_ref: str) -> dict[str, str]:
+        return safe(lambda: alignment.confirm_evidence(
+            tenant_id, student_ref, evidence_ref,
+        ))
+
+    @app.post("/api/v1/teacher/alignment-runs/{run_ref}/students/{student_ref}/decision",
+              dependencies=[Depends(teacher)])
+    def decide_alignment(
+        run_ref: str, student_ref: str, body: AlignmentDecision,
+    ) -> dict[str, str]:
+        return safe(lambda: alignment.decide(
+            tenant_id, run_ref, student_ref, body.decision, body.reason,
+            body.override_group,
+        ))
+
+    @app.post("/api/v1/teacher/students/{student_ref}/plans/{plan_ref}/approve",
+              dependencies=[Depends(teacher)])
+    def approve_plan(
+        student_ref: str, plan_ref: str, body: PlanApproval,
+    ) -> dict[str, str]:
+        return safe(lambda: alignment.approve_plan(
+            tenant_id, student_ref, plan_ref, body.reason,
         ))
 
     @app.get("/api/v1/teacher/students/{student_ref}/archive",
@@ -191,6 +250,7 @@ def create_local_education_app(
             tenant_id=tenant_id, student_id=student_ref,
             bundle_id=body.bundle_ref, attempt_id=body.attempt_ref,
             idempotency_key=body.idempotency_key, answers=body.answers,
+            auto_process=not agent_native,
         ))
         if result.get("report_id"):
             result["archive"] = safe(lambda: records.archive_report(
