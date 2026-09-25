@@ -1,11 +1,11 @@
 {
-  "name": "astrofy",
-  "description": "Astrofy is a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS. Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed.",
+  "name": "hyper-dimension-2d-visual-demo",
+  "description": "Replaceable 2D personal island visual demo for Hyper Dimension",
   "type": "module",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--max-http-header-size=32768' astro dev",
+    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro sync && tsc --noEmit && astro build",
     "preview": "astro preview",
