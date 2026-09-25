@@ -18,6 +18,7 @@ from hyper_dimension.guardian_authorization import (
 from hyper_dimension.student_records import StudentRecords
 from hyper_dimension.progress_alignment import ProgressAlignmentService
 from hyper_dimension.textbook_catalog import TextbookCatalog
+from hyper_dimension.teacher_identity import TeacherAuthenticationError, TeacherOIDCVerifier
 
 
 class Enrollment(BaseModel):
@@ -110,14 +111,16 @@ class ShowcaseDraft(BaseModel):
 
 def create_local_education_app(
     assessment: AssessmentService, records: StudentRecords, *,
-    tenant_id: str, teacher_id: str, teacher_token: str,
+    tenant_id: str, teacher_id: str, teacher_token: str | None = None,
+    teacher_verifier: TeacherOIDCVerifier | None = None,
     guardian_authorization: GuardianAuthorizationProvider | None = None,
     agent_native: bool = False,
     catalog: TextbookCatalog | None = None,
 ) -> FastAPI:
-    if (not all((tenant_id, teacher_id, teacher_token)) or
-        len(teacher_token) < 24 or records.teacher_id != teacher_id):
-        raise ValueError("Local teacher identity binding and strong token required")
+    if (not tenant_id or not teacher_id or records.teacher_id != teacher_id
+            or (teacher_token is None) == (teacher_verifier is None)
+            or (teacher_token is not None and len(teacher_token) < 24)):
+        raise ValueError("Exactly one bound teacher credential mode required")
     app = FastAPI(title="Hyper Dimension Local Education Prototype")
     consent_provider = guardian_authorization or DemoGuardianAuthorizationProvider()
     alignment = ProgressAlignmentService(assessment, records, teacher_id=teacher_id)
@@ -128,8 +131,19 @@ def create_local_education_app(
         raise ValueError("Trusted textbook catalog binding required")
 
     def teacher(authorization: str | None = Header(default=None)) -> str:
-        if (authorization is None or not authorization.startswith("Bearer ") or
-            not hmac.compare_digest(authorization[7:], teacher_token)):
+        if authorization is None or not authorization.startswith("Bearer "):
+            raise HTTPException(status_code=401, detail="Teacher authentication required")
+        token = authorization[7:]
+        if teacher_verifier is not None:
+            try:
+                teacher_verifier.verify(
+                    token, tenant_id=tenant_id, teacher_id=teacher_id,
+                )
+            except TeacherAuthenticationError as exc:
+                raise HTTPException(
+                    status_code=401, detail="Teacher authentication required",
+                ) from exc
+        elif teacher_token is None or not hmac.compare_digest(token, teacher_token):
             raise HTTPException(status_code=401, detail="Teacher authentication required")
         return teacher_id
 
