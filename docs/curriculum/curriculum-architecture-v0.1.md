@@ -43,6 +43,11 @@
 
 新增版本须登记出版社、系列、ISBN 或修订年、册次和官方来源。内容编辑提出候选映射，第二人核实后批准。书名相同或话题相近不构成等值证据。每条映射保存 source_url、verification_status、reviewed_at 和 mapper_version。
 
+## 教材检索与版本核验
+
+用户提供的电子课本网教科版英语目录（https://www.dzkbw.com/books/jkb/yingyu/）登记为**候选检索入口**，用于发现可能存在的册次、封面与目录。2026-09-25 直接抓取该 .com 页面返回 502，尚未逐册核对；不把站点的“最新”标签自动认定为版本事实，也不把第三方页面单独标为 publisher_verified。
+
+教科版名下须分清具体系列/地域分支，不能只保存“教科版”三个字。适配记录至少包含出版社、编写单位或主编、系列名称、修订/启用年份、年级、册次、封面或版权页识别信息、单元题名、学校实际使用版本及来源链接。可用教育部教学用书目录确认教材系列是否列入，再用出版社公开目录或教师所持实物核对具体单元；若仍无法核实，保持 pending_source。第三方站点的课本图片、PDF、课文和音频不复制进公开仓库，原创教学任务只引用必要的教材元数据。
 ## 文件与 Protocol
 
 单元包采用 curriculum-unit.schema.json，示例见 examples/curriculum。原始答卷、口语录音、评分修订和报告分别存储，单元包只引用能力节点和量规版本。教师报告须引用 unit_package_id、capability_id、item_version、evidence_ref、rubric_version 和 teacher_approval_ref。未来学生 Agent 使用现有 hd.education.evidence.submit.v1 提交受控证据引用；A2A 只负责传输和任务状态，教材映射、评分、授权归业务服务管理。
@@ -57,6 +62,8 @@
 - 人教三年级上册公开资源：https://www.pep.com.cn/zslth/yyptzy/xyjt/3s/
 - 人教七年级上册公开资源：https://www.pep.com.cn/zslth/yyptzy/czyy/7s/
 - 教科版 2024 介绍：https://www.esph.com.cn/zttj/4e753e04a6ba475396c138ff61e3ec9e.htm
+- 教育部 2024 教学用书目录：https://www.moe.gov.cn/srcsite/A26/s8001/202408/W020250418502592948423.pdf
+- 用户提供的第三方教材检索入口（待核验）：https://www.dzkbw.com/books/jkb/yingyu/
 - 欧洲委员会 CEFR 描述符：https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors
 - 欧洲委员会青少年描述符库：https://www.coe.int/en/web/common-european-framework-reference-languages/bank-of-supplementary-descriptors
 - Cambridge Power Up 第二版：https://www.cambridge.es/en/catalogue/primary/courses/powerup2ed
