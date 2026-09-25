@@ -40,5 +40,12 @@ def test_read_write_bundle_passes() -> None:
 
 def test_writing_requires_rubric() -> None:
     bundle = copy.deepcopy(READ_WRITE)
-    bundle["items"][1].pop("analytic_rubric")
+    bundle["items"][2].pop("analytic_rubric")
     assert any("writing requires an analytic rubric" in error for error in VALIDATE(bundle))
+
+
+def test_reading_mcq_has_key_and_distractor_reasons() -> None:
+    item = READ_WRITE["items"][1]
+    assert item["task_family"] == "short_message_multiple_choice"
+    assert set(item["answer_key"]) == {"Q1", "Q2"}
+    assert all(item["distractor_rationales"][q] for q in item["answer_key"])

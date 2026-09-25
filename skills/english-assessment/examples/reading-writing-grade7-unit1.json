@@ -131,6 +131,79 @@
       "public_format_source_url": "https://www.cambridgeenglish.org/exams-and-tests/qualifications/key/format/"
     },
     {
+      "item_id": "demo-g7-r2-short-messages-mcq",
+      "version": "0.1",
+      "origin": "original",
+      "task_family": "short_message_multiple_choice",
+      "modality": "reading",
+      "target_behaviour": "理解校园真实短消息的主要目的和关键安排",
+      "capability_ids": [
+        "C02",
+        "C08"
+      ],
+      "cefr_descriptor_refs": [
+        "CEFR A1/A2 short-message reading candidate"
+      ],
+      "book_evidence_refs": [
+        "pep-2022standard-g7a"
+      ],
+      "knowledge_tags": [
+        {
+          "category": "discourse",
+          "label": "识别短通知与同伴消息中的行动要求",
+          "book_evidence_ref": "pep-2022standard-g7a",
+          "cefr_reference": "A1/A2 reading candidate",
+          "lexical_grammar_reference": "English Profile check pending"
+        }
+      ],
+      "prompt": "Read each short message. Choose A, B or C for the best answer.",
+      "questions": [
+        {
+          "id": "Q1",
+          "stimulus": "New students: Please leave a short note about one thing you enjoy on the welcome board before Friday. We will use the notes to make small activity groups.",
+          "text": "Why should new students write a note?",
+          "options": {
+            "A": "To help the school make activity groups",
+            "B": "To ask for a different school timetable",
+            "C": "To choose the food for Friday"
+          }
+        },
+        {
+          "id": "Q2",
+          "stimulus": "Hi Jo, I will wait outside the library after school. The music room is closed today, so let’s practise in Room 6 instead. —Maya",
+          "text": "Where should Jo go first?",
+          "options": {
+            "A": "To the music room",
+            "B": "To the library entrance",
+            "C": "To Room 6"
+          }
+        }
+      ],
+      "answer_key": {
+        "Q1": "A",
+        "Q2": "B"
+      },
+      "evidence_for_answer": {
+        "Q1": "The note is used to make small activity groups.",
+        "Q2": "Maya says she will wait outside the library before they practise elsewhere."
+      },
+      "distractor_rationales": {
+        "Q1": {
+          "B": "The notice says nothing about timetables.",
+          "C": "Friday is a deadline, not a food event."
+        },
+        "Q2": {
+          "A": "The music room is closed.",
+          "C": "Room 6 is where they will practise later, not where they meet first."
+        }
+      },
+      "explanation": "先定位任务目的或时间顺序，再逐项比较选项；错选 Q2-C 时记录“把最终地点误作初次会合地点”为候选错因，另用新情境复测。",
+      "expected_minutes": 4,
+      "support_allowed": "诊断时无提示；练习时可提供关键词帮助并单独记录条件",
+      "review_status": "pending_teacher_review",
+      "public_format_source_url": "https://www.cambridgeenglish.org/exams-and-tests/qualifications/key/format/"
+    },
+    {
       "item_id": "demo-g7-w1-welcome-message",
       "version": "0.1",
       "origin": "original",
