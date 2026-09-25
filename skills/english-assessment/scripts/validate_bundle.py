@@ -56,6 +56,8 @@ def validate(data: dict) -> list[str]:
                     errors.append(f"{item_id}: agent interview requires {field}")
         if modality in {"reading", "listening"} and not item.get("answer_key"):
             errors.append(f"{item_id}: objective task requires an answer key")
+        if modality == "writing" and not item.get("analytic_rubric"):
+            errors.append(f"{item_id}: writing requires an analytic rubric")
     return errors
 
 

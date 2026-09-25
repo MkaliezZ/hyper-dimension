@@ -19,7 +19,7 @@
 
 - item_id、version、origin=original、task_family、modality、target_behaviour、capability_ids、cefr_descriptor_refs、book_evidence_refs
 - knowledge_tags（交际功能/词汇/语法/语音拼读/篇章/策略，含教材页证据与英文级别参考来源）、prompt、stimulus_ref、options（如适用）、answer_key 或 analytic_rubric、evidence_for_answer、distractor_rationales、explanation、expected_minutes、support_allowed、review_status
-- 听力还需 audio_ref、transcript_ref、speaker/accent 与播放条件；口语还需互动角色、追问规则与观察量规；Agent 访谈另需 interviewer_version、interview_script、allowed_probes、hint_policy、stop_rule。图片需原创或授权记录。
+- 听力还需 audio_ref、transcript_ref、speaker/accent 与播放条件；写作还需分析性量规；口语暂定，未来若启用则需互动角色、追问规则与观察量规；Agent 访谈另需 interviewer_version、interview_script、allowed_probes、hint_policy、stop_rule。图片需原创或授权记录。
 - 参考题型时另存 public_format_source_url，不保存样题内容。每题必须说明“这题测什么”，并检查答案唯一性。
 
 ## 作答 response 与报告 report

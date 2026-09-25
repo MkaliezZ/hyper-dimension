@@ -1,0 +1,196 @@
+{
+  "bundle_version": "0.1",
+  "book_evidence": [
+    {
+      "book_id": "pep-2022standard-g7a",
+      "relative_pdf_path": "初中/人教版/七年级上册/（根据2022年版课程标准修订）义务教育教科书•英语 七年级上册.pdf",
+      "publisher": "人民教育出版社",
+      "series": "英语 七年级上册",
+      "editor": "刘道义、郑旺全",
+      "school_system": "六三制",
+      "grade": 7,
+      "volume": "上册",
+      "edition_or_revision": "根据2022年版课程标准修订",
+      "content_status": "pages_reviewed",
+      "unit_label": "Unit 1",
+      "unit_title": "You and Me",
+      "pdf_page_refs": [
+        28,
+        33,
+        34,
+        35
+      ],
+      "observed_language_actions": [
+        "阅读同龄人简介并提取信息",
+        "介绍个人信息",
+        "写给新同学的简短消息"
+      ],
+      "reviewed_at": "2026-09-25",
+      "reviewer": "agent-assisted local PDF spot review",
+      "source_rights_note": "本地教材仅作私有教学证据，不打包出版内容"
+    }
+  ],
+  "blueprint": {
+    "blueprint_id": "demo-g7-reading-writing-you-and-me",
+    "version": "0.1",
+    "purpose": "formative",
+    "age_range": [
+      12,
+      13
+    ],
+    "school_grade": 7,
+    "book_ids": [
+      "pep-2022standard-g7a"
+    ],
+    "capability_ids": [
+      "C01",
+      "C02",
+      "C04",
+      "C08"
+    ],
+    "cefr_level_reference": "A1 to A2 candidate, not a certified result",
+    "coverage": {
+      "reading": "tested",
+      "writing": "tested",
+      "listening": "missing",
+      "speaking_interaction": "missing"
+    },
+    "teacher_approval": "pending_review"
+  },
+  "items": [
+    {
+      "item_id": "demo-g7-r1-school-board",
+      "version": "0.1",
+      "origin": "original",
+      "task_family": "short_text_multiple_matching",
+      "modality": "reading",
+      "target_behaviour": "从三条同龄人留言中定位与新同学需求相符的信息",
+      "capability_ids": [
+        "C02",
+        "C08"
+      ],
+      "cefr_descriptor_refs": [
+        "CEFR A1/A2 reading for orientation candidate"
+      ],
+      "book_evidence_refs": [
+        "pep-2022standard-g7a"
+      ],
+      "knowledge_tags": [
+        {
+          "category": "communicative_function",
+          "label": "从简短留言中寻找能提供帮助的人",
+          "book_evidence_ref": "pep-2022standard-g7a",
+          "cefr_reference": "A1/A2 reading candidate",
+          "lexical_grammar_reference": "English Profile check pending"
+        }
+      ],
+      "prompt": "Read the three messages on a school welcome board. For questions 1–3, choose Nina, Ben or Omar.",
+      "stimulus": {
+        "Nina": "I spend my lunch break in the library. I know where students can borrow storybooks. Come and find me if you need a book.",
+        "Ben": "I enjoy drawing. The art room is beside the music room. I can show you the way after class.",
+        "Omar": "On Wednesdays, I help in the school garden. New students can join me to plant flowers."
+      },
+      "questions": [
+        {
+          "id": "Q1",
+          "text": "You want to borrow a storybook. Who can help you?"
+        },
+        {
+          "id": "Q2",
+          "text": "You want to find a place to draw after class. Who should you ask?"
+        },
+        {
+          "id": "Q3",
+          "text": "You want to help grow flowers. Who can you join?"
+        }
+      ],
+      "options": [
+        "Nina",
+        "Ben",
+        "Omar"
+      ],
+      "answer_key": {
+        "Q1": "Nina",
+        "Q2": "Ben",
+        "Q3": "Omar"
+      },
+      "evidence_for_answer": {
+        "Q1": "Nina knows how to borrow storybooks from the library.",
+        "Q2": "Ben knows the art room and offers to show the way.",
+        "Q3": "Omar invites new students to plant flowers in the garden."
+      },
+      "distractor_rationales": {
+        "Q1": "Ben discusses drawing; Omar discusses gardening.",
+        "Q2": "Nina discusses library books; Omar discusses gardening.",
+        "Q3": "Nina discusses library books; Ben discusses drawing."
+      },
+      "explanation": "逐题指出留言中的支持信息；若学生选错，区分是否混淆活动地点、人物与需求，不从一次错误推断稳定能力缺陷。",
+      "expected_minutes": 5,
+      "support_allowed": "诊断时无词汇提示；练习时可提供词义卡，但另存作答条件",
+      "review_status": "pending_teacher_review",
+      "public_format_source_url": "https://www.cambridgeenglish.org/exams-and-tests/qualifications/key/format/"
+    },
+    {
+      "item_id": "demo-g7-w1-welcome-message",
+      "version": "0.1",
+      "origin": "original",
+      "task_family": "guided_message_writing",
+      "modality": "writing",
+      "target_behaviour": "向新同学写一条能达成认识和邀约目的的简短消息",
+      "capability_ids": [
+        "C01",
+        "C04"
+      ],
+      "cefr_descriptor_refs": [
+        "CEFR A1/A2 written interaction candidate"
+      ],
+      "book_evidence_refs": [
+        "pep-2022standard-g7a"
+      ],
+      "knowledge_tags": [
+        {
+          "category": "communicative_function",
+          "label": "介绍自己并邀请新同学参加活动",
+          "book_evidence_ref": "pep-2022standard-g7a",
+          "cefr_reference": "A1/A2 written interaction candidate",
+          "lexical_grammar_reference": "English Profile check pending"
+        }
+      ],
+      "prompt": "A new classmate, Sam, wants to meet someone after school. Write Sam a message of at least 25 words. Say who you are and which class you are in, tell Sam one activity you enjoy, invite Sam to join you, and say where to meet.",
+      "minimum_words": 25,
+      "analytic_rubric": {
+        "scoring_note": "四维各0—3分，仅作内部草评；缺答、设备问题和未提交分开记录，不换算剑桥分数。",
+        "content": {
+          "0": "无可评价的相关内容",
+          "1": "只提供少量任务要求的信息",
+          "2": "大部分要求的信息已提供，仍缺少一项关键内容",
+          "3": "身份、班级、活动、邀请和地点均可找到"
+        },
+        "communicative_achievement": {
+          "0": "收信人无法判断写信目的",
+          "1": "大致知道目的，但难以据此回应",
+          "2": "能理解邀请，个别细节不清",
+          "3": "能明确理解活动和见面安排并作出回应"
+        },
+        "organisation": {
+          "0": "内容难以连贯理解",
+          "1": "主要是零散短语",
+          "2": "信息顺序基本清楚",
+          "3": "信息顺序清楚并有恰当的基本衔接"
+        },
+        "language": {
+          "0": "语言不足以传达任务意图",
+          "1": "简单表达中有多处影响理解的问题",
+          "2": "能传达主要意思，存在不妨碍理解的错误",
+          "3": "简单词句使用较恰当，意思清楚"
+        }
+      },
+      "explanation": "根据原文引用已满足与缺失的信息，给出一个优先修改点和一项可迁移的新情境练习；Agent 仅作草评，教师确认。",
+      "expected_minutes": 10,
+      "support_allowed": "诊断时不提供整句模板；练习时可提供关键词表并单独记录",
+      "review_status": "pending_teacher_review",
+      "public_format_source_url": "https://www.cambridgeenglish.org/exams-and-tests/qualifications/key/format/",
+      "rubric_version": "hd-writing-4x3-draft-0.1"
+    }
+  ]
+}

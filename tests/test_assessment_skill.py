@@ -29,3 +29,16 @@ def test_agent_interview_requires_versioned_script() -> None:
     bundle = copy.deepcopy(EXAMPLE)
     bundle["items"][0].pop("interview_script")
     assert any("agent interview requires interview_script" in error for error in VALIDATE(bundle))
+
+
+READ_WRITE = json.loads((SKILL / "examples" / "reading-writing-grade7-unit1.json").read_text(encoding="utf-8"))
+
+
+def test_read_write_bundle_passes() -> None:
+    assert VALIDATE(READ_WRITE) == []
+
+
+def test_writing_requires_rubric() -> None:
+    bundle = copy.deepcopy(READ_WRITE)
+    bundle["items"][1].pop("analytic_rubric")
+    assert any("writing requires an analytic rubric" in error for error in VALIDATE(bundle))
