@@ -1,5 +1,10 @@
 # Hyper Dimension 2D Web · DEMO
 
+
+[中文](#中文) · [English](#english)
+
+## 中文
+
 这是公开首期仓库中的可运行 2D 前端基线，来自项目的 2D 本地演示。当前岛主“林屿”、六栋房子、卡片、文章、头像、岛屿和天空均为**演示内容**。用户可以替换名称、说明、文章、图片、视频、图标、背景、岛体和卡片链接。真实学生资料不得放入公开配置。
 
 ## 运行
@@ -38,3 +43,33 @@ media: { type: "video", src: "media/my-video.mp4", poster: "media/poster.webp", 
 ## 授权边界
 
 前端模板代码保留原作者的 MIT 声明，见 LICENSE.UPSTREAM。旧演示里的外部图标包没有纳入此公开版本；这里的导航图标是新绘制的 SVG。用户更换的图片、视频和文字需由用户自行拥有公开展示或再分发权。
+
+
+## English
+
+This runnable **2D visual DEMO** is the public island frontend baseline. Lin Yu, the six houses, cards, articles, avatar, island and sky are fictional, replaceable content. The frontend does not include the teacher assessment backend or real student records.
+
+### Run locally
+
+With Node.js and pnpm installed:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm build
+pnpm dev
+```
+
+### Replace content and media
+
+| Content | Location |
+| --- | --- |
+| Site name, hero copy, primary images | `src/data/demoSite.ts` |
+| Six houses, actions, and hit polygons | `src/data/island.ts` |
+| Three footer cards and optional image/video | `src/data/infoCards.ts` |
+| Sidebar labels, icons, destinations | `src/components/SideBarMenu.astro` |
+| Profile, articles, portfolio and services | `src/pages/`, `src/content/` |
+| Image/video files | `public/` |
+
+For card media, use `{ type: "image", src: "media/photo.webp", alt: "Description" }` or `{ type: "video", src: "media/video.mp4", poster: "media/poster.webp", caption: "Description" }` in `src/data/infoCards.ts`, with files under `public/media/`. Videos play on user action. Recalibrate the house polygons when replacing the island artwork. Only turn off the DEMO badge after replacing all fictional content and confirming publication rights.
+
+See [demo-assets.json](demo-assets.json) for the replacement manifest and [ASSETS.md](ASSETS.md) for provenance. The upstream MIT notice is in [LICENSE.UPSTREAM](LICENSE.UPSTREAM); old external icons were removed and replaced with newly drawn SVGs.
