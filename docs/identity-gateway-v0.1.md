@@ -131,4 +131,6 @@ MCP stdio 进程可从网关获得短期上下文，不把教师 ID 当工具参
 
 **教师 OIDC 凭据验证切片（2026-09-26）**：已在教师 API 增加可选的 TeacherOIDCVerifier 模式，使用固定 RS256/JWKS、精确 iss 与单 aud、azp、短时效、hd.teacher scope，并在每次请求调用受信成员关系查询来检查 IdP sub 对应的 island_id 与 teacher_id。缺失/轮换密钥、无效声明、撤销关系或关系服务不可用均拒绝。静态本地令牌与 OIDC 模式互斥。测试使用内存模拟 JWKS 和关系源；尚未接 Keycloak discovery、真实 PostgreSQL 关系、撤销令牌清单、远程 MCP、A2A Task ACL 或真实监护流程。此切片仍仅供模拟资料使用，不能据此开启真实学生或公网 A2A。接入 Keycloak 时须为教师 API 配置专用 audience、授权客户端 azp 和 hd.teacher scope，JWKS 来源与签发方固定在服务端配置，不从请求头或 JWT 的 jku 读取；成员关系查询必须由服务端数据库提供。
 
+**Agent MCP 工作负载认证切片（2026-09-26）**：create_teacher_remote_mcp 用官方 SDK 的 Streamable HTTP 资源服务器接口，要求与人类教师令牌分开的 Agent 凭据。它验证 RS256 签名、固定发行方、单一 MCP 资源 audience、客户端 azp、hd.teacher.mcp scope、短时效、agent_id 与 sub 一致、delegation_id、目标岛/教师，并在每次请求调用受信委托关系源。实际 initialize、tools/list 及撤销后拒绝已通过合成密钥和模拟关系源测试。尚未实现正式 Agent 注册/令牌签发、PostgreSQL 委托表、Keycloak 连接、HTTPS 部署、Hermes 实机和开岛激活；此处不构成生产授权网关。服务端必须在真正的关系库中实现 active_delegation，并保留撤销、审计和配额。
+
 **当前实装口径**：本仓库已实现本地模拟学生访问码、显式标记未核验的默认监护授权、静态教师 Bearer 和部分业务权限校验。新 A2A 本地读适配器的测试只能证明官方 SDK JSON-RPC、全路由本地令牌防护、两项只读业务和本地审计可工作；它不证明 OIDC、监护关系核验、跨 Agent 委托、持久 Task ACL、PostgreSQL 或公网安全已完成。

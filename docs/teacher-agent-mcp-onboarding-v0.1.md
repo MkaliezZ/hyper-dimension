@@ -1,6 +1,6 @@
 # 教师开岛与后端 MCP 默认接入 v0.1
 
-状态：本地可执行配置契约和 stdio 原型；云端开岛、远程 MCP 身份网关及自动激活尚未实现。Hermes Agent 是候选运行时，教师 Agent 可替换。
+状态：本地可执行配置契约和 stdio 原型；已实现独立 Agent 工作负载令牌与实时委托检查的 Streamable HTTP MCP 认证切片，并通过真实 MCP HTTP 请求测试。云端开岛、正式身份网关数据库及自动激活尚未实现。Hermes Agent 是候选运行时，教师 Agent 可替换。
 
 ## 职责边界
 
@@ -16,7 +16,7 @@
 4. 开岛服务通过真实 MCP list_tools 探测必需工具，做授权/拒绝/跨岛测试，成功后才将绑定状态标为 active 并启动教师 Agent。失败则岛屿保持待激活，不能向教师宣称 Agent 已可用。
 5. 教师更换 Agent 运行时或模型时保留同一业务 MCP 契约。撤销教师身份、监护许可、岛屿委托或 Agent 凭据后，网关立即拒绝后续调用；业务审计保留历史引用。
 
-第 3—5 步是待开发门槛。当前 Hermes 配置生成器因此输出 enabled: false，不会声称已经连到云端。正式激活必须由身份网关和连接探测完成，不能靠手动把布尔值改为 true 就视作已授权。Hermes 文档确认支持远程 HTTP MCP、环境变量引用、工具白名单；此处只采用其配置格式，未完成 Hermes 进程联调。
+第 3—5 步仍是待开发门槛：当前 create_teacher_remote_mcp 只提供已签名短时 Agent 凭据、专用 audience/scope、岛屿/教师/Agent 委托匹配和每次 HTTP 请求关系检查的可执行入口；测试源为内存模拟，尚无正式凭据签发、持久委托关系和开岛事务。当前 Hermes 配置生成器因此输出 enabled: false，不会声称已经连到云端。正式激活必须由身份网关和连接探测完成，不能靠手动把布尔值改为 true 就视作已授权。Hermes 文档确认支持远程 HTTP MCP、环境变量引用、工具白名单；此处只采用其配置格式，未完成 Hermes 进程联调。
 
 ## MCP 能力按开发顺序
 
@@ -32,6 +32,6 @@
 
 ## 验收门槛
 
-本地已覆盖：MCP 工具名与配置清单一致；Agent 出题和评分草稿经过服务端校验；重复题包请求不复制记录；改内容复用幂等键被拒；MCQ 答案键不进入批改上下文；报告经后端评分批准后归档；无平台模型仍可完成路径。四名模拟学生的前置支撑、核心练习、迁移挑战和待补证，以及同分但提示强度不同、不同构念不混比、教师确认与不可变运行已有本地测试。远程接入、Hermes 实机、云端开岛自动激活、生产能力快照、真实跨岛安全和教学效度属于后续验收。
+本地已覆盖：MCP 工具名与配置清单一致；Agent 出题和评分草稿经过服务端校验；重复题包请求不复制记录；改内容复用幂等键被拒；MCQ 答案键不进入批改上下文；报告经后端评分批准后归档；无平台模型仍可完成路径。四名模拟学生的前置支撑、核心练习、迁移挑战和待补证，以及同分但提示强度不同、不同构念不混比、教师确认与不可变运行已有本地测试。已用 SDK 的 Streamable HTTP initialize 与 tools/list 请求验收认证放行和委托撤销拒绝。真实远程服务部署、Hermes 实机、云端开岛自动激活、生产能力快照、真实跨岛安全和教学效度属于后续验收。
 
 参考：[Hermes MCP 功能](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/mcp.md)、[Hermes MCP 配置](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/mcp-config-reference.md)、[MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)。

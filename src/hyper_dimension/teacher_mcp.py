@@ -47,12 +47,23 @@ def create_teacher_mcp(
     tenant_id: str,
     teacher_id: str,
     catalog: TextbookCatalog | None = None,
+    remote_token_verifier: Any | None = None,
+    remote_auth: Any | None = None,
+    remote_transport_security: Any | None = None,
 ):
     from mcp.server.fastmcp import FastMCP
 
+    if ((remote_token_verifier is None) != (remote_auth is None)
+            or (remote_auth is None and remote_transport_security is not None)):
+        raise ValueError("Remote MCP verifier and auth settings must be supplied together")
     if not tenant_id or not teacher_id or records.teacher_id != teacher_id:
         raise ValueError("A trusted tenant and teacher binding is required")
-    server = FastMCP("Hyper Dimension Teacher Education", json_response=True)
+    server = FastMCP(
+        "Hyper Dimension Teacher Education", json_response=True,
+        token_verifier=remote_token_verifier, auth=remote_auth,
+        stateless_http=remote_auth is not None,
+        transport_security=remote_transport_security,
+    )
     alignment = ProgressAlignmentService(
         assessment, records, teacher_id=teacher_id,
     )
