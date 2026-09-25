@@ -1,0 +1,45 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+credentials/
+
+# Student information and local media
+data/
+uploads/
+media/
+reports/
+*.sqlite
+*.sqlite3
+*.db
+*.wav
+*.mp3
+*.mp4
+
+# Python and tools
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Web build outputs
+node_modules/
+.astro/
+.next/
+coverage/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

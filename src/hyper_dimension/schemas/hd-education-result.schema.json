@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hyperdimension:education:v1:result",
+  "title": "Hyper Dimension Education Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "request_id",
+    "status",
+    "record_refs",
+    "reason_code",
+    "audit_event_id"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "status": {
+      "enum": [
+        "accepted",
+        "pending_review",
+        "completed",
+        "denied",
+        "needs_consent",
+        "insufficient_evidence"
+      ]
+    },
+    "record_refs": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "ref"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "assignment",
+              "response",
+              "evidence",
+              "plan",
+              "feedback",
+              "teacher_help",
+              "report"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    "reason_code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "audit_event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "interaction_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  }
+}

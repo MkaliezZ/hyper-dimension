@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hyperdimension:education:v1:request",
+  "title": "Hyper Dimension Education Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "operation",
+    "request_id",
+    "island_id",
+    "student_ref",
+    "purpose",
+    "idempotency_key",
+    "payload_refs"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "operation": {
+      "enum": [
+        "hd.education.plan.read.v1",
+        "hd.education.assignment.read.v1",
+        "hd.education.evidence.submit.v1",
+        "hd.education.feedback.request.v1",
+        "hd.education.teacher_help.request.v1"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "island_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "class_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "student_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "consent_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "payload_refs": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "ref"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "assignment",
+              "response",
+              "evidence",
+              "audio_upload",
+              "plan",
+              "feedback",
+              "teacher_help"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.evidence.submit.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload_refs": {
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "kind": {
+                      "const": "assignment"
+                    }
+                  }
+                }
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "response",
+                        "audio_upload"
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.feedback.request.v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload_refs": {
+            "contains": {
+              "properties": {
+                "kind": {
+                  "const": "evidence"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
