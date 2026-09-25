@@ -38,27 +38,9 @@ MCP 不提供登记公开许可、正式发布、撤回许可工具。Agent 可�
 
 ## A2A 可复用命令
 
-[严格 JSON Schema](../src/hyper_dimension/schemas/hd-education-command-v1.1.schema.json)定义 protocol_version=1.1、唯一 operation、request_id、island_id、student_ref、purpose、idempotency_key，以及按操作区分的 payload。未知操作、额外字段、错误用途和缺少参数均拒绝。已有[评测请求 v1](../src/hyper_dimension/schemas/hd-education-request.schema.json)继续承载计划、任务读取与作答提交等引用型请求；新版本追加档案和展示操作，不改变旧操作含义。
+新的统一[教育 A2A 业务语义 Profile v1](a2a-education-profile-v1.md)规定封套 1.2 的十一项操作、每项严格 payload、角色矩阵、幂等与引用归属、结果原因码及 A2A Task 状态映射。机器可读[命令 Schema](../src/hyper_dimension/schemas/hd-education-command-v1.2.schema.json)与[结果 Schema](../src/hyper_dimension/schemas/hd-education-result-v1.2.schema.json)由同一代码定义导出，并有正反例一致性测试。
 
-A2A v1 的业务命令用 JSON DataPart，例如：
-
-~~~json
-{
-  "data": {
-    "protocol_version": "1.1",
-    "operation": "hd.education.student.profile.read.v1",
-    "request_id": "req-123",
-    "island_id": "island-demo",
-    "student_ref": "stu_0123456789abcdef0123456789abcdef",
-    "idempotency_key": "read-123",
-    "purpose": "student_record",
-    "payload": {}
-  },
-  "mediaType": "application/json"
-}
-~~~
-
-适配器只将结构化数据解析为待授权的业务意图，不会因为 Schema 通过就执行。未来 A2A 网关还须依据会话认证、声明的能力、租户、学生关系、监护许可及教师策略执行服务端授权。学生 Agent 只能读取获准的本人数据，不能编辑教师档案或授权发布。自然语言文本仅供解释，不解析为敏感动作。结果依照[命令结果 Schema](../src/hyper_dimension/schemas/hd-education-command-result-v1.1.schema.json)包含原 request_id、明确状态与原因码、业务引用和审计事件引用。
+早期 1.0 评测请求和 1.1 档案命令是本地草案。新 A2A 接入只接 1.2，不按自然语言推断操作，也不把旧 payload_refs 自动改写为新 payload。学生 Agent 的五项学习操作目前只有契约，没有真实 A2A 服务；教师 MCP 仍使用同一业务服务，并在授权逻辑完善后绑定到对应操作语义。任何通过 Schema 的命令仍须由服务端认证主体、核查角色、同意、学生关系、记录归属、版本和幂等。
 
 ## 本地运行与后续开发
 

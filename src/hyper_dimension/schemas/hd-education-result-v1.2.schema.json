@@ -1,0 +1,518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hyperdimension:education:result:1.2",
+  "title": "Hyper Dimension Education Result 1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "request_id",
+    "operation",
+    "status",
+    "reason_code",
+    "record_refs",
+    "audit_event_id"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "1.2"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "\\S"
+    },
+    "operation": {
+      "enum": [
+        "hd.education.plan.read.v1",
+        "hd.education.assignment.read.v1",
+        "hd.education.evidence.submit.v1",
+        "hd.education.feedback.request.v1",
+        "hd.education.teacher_help.request.v1",
+        "hd.education.student.profile.read.v1",
+        "hd.education.student.profile.update.v1",
+        "hd.education.student.archive.list.v1",
+        "hd.education.student.archive.verify.v1",
+        "hd.education.showcase.draft.create.v1",
+        "hd.education.showcase.public.read.v1"
+      ]
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "accepted",
+        "pending_review",
+        "needs_consent",
+        "rejected"
+      ]
+    },
+    "reason_code": {
+      "enum": [
+        "CONSENT_REQUIRED",
+        "IDEMPOTENCY_CONFLICT",
+        "INVALID_REQUEST",
+        "NOT_FOUND",
+        "OK",
+        "POLICY_BLOCKED",
+        "QUEUED",
+        "RATE_LIMITED",
+        "REFERENCE_MISMATCH",
+        "REVIEW_REQUIRED",
+        "UNAUTHENTICATED",
+        "UNAUTHORIZED",
+        "VERSION_CONFLICT"
+      ]
+    },
+    "record_refs": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "ref"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "artifact",
+              "assignment",
+              "feedback",
+              "plan",
+              "profile",
+              "showcase_entry",
+              "submission",
+              "teacher_help"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "audit_event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "\\S"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "OK"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "accepted"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "QUEUED"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "pending_review"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "REVIEW_REQUIRED"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "needs_consent"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "CONSENT_REQUIRED"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "rejected"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reason_code": {
+            "enum": [
+              "INVALID_REQUEST",
+              "UNAUTHENTICATED",
+              "UNAUTHORIZED",
+              "NOT_FOUND",
+              "VERSION_CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "POLICY_BLOCKED",
+              "REFERENCE_MISMATCH",
+              "RATE_LIMITED"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "rejected",
+              "needs_consent"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.plan.read.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "plan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.assignment.read.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "assignment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.evidence.submit.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "submission"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.feedback.request.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "feedback"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.teacher_help.request.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "teacher_help"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.student.profile.read.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "profile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.student.profile.update.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "profile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.student.archive.list.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "artifact"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.student.archive.verify.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "artifact"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.showcase.draft.create.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "showcase_entry"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "hd.education.showcase.public.read.v1"
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "record_refs": {
+            "items": {
+              "properties": {
+                "kind": {
+                  "const": "showcase_entry"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
