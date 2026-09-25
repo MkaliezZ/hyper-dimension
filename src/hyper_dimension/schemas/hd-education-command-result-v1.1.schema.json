@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hyperdimension:education:command-result:1.1",
+  "title": "Hyper Dimension Education Command Result 1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_version", "request_id", "operation", "status", "reason_code", "record_refs", "audit_event_id"],
+  "properties": {
+    "protocol_version": {"const": "1.1"},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "operation": {"enum": [
+      "hd.education.student.profile.read.v1",
+      "hd.education.student.profile.update.v1",
+      "hd.education.student.archive.list.v1",
+      "hd.education.student.archive.verify.v1",
+      "hd.education.showcase.draft.create.v1",
+      "hd.education.showcase.public.read.v1"
+    ]},
+    "status": {"enum": ["completed", "rejected", "needs_teacher_review"]},
+    "reason_code": {"enum": ["OK", "INVALID_REQUEST", "UNAUTHORIZED", "CONSENT_REQUIRED", "VERSION_CONFLICT", "NOT_FOUND", "POLICY_BLOCKED", "REVIEW_REQUIRED"]},
+    "record_refs": {"type": "array", "maxItems": 20, "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": {"enum": ["student", "profile", "artifact", "showcase_entry"]},
+        "ref": {"type": "string", "minLength": 1, "maxLength": 128}
+      }
+    }},
+    "audit_event_id": {"type": ["string", "null"], "maxLength": 128}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "completed"}}}, "then": {"properties": {"reason_code": {"const": "OK"}}}},
+    {"if": {"properties": {"status": {"const": "rejected"}}}, "then": {"properties": {"reason_code": {"not": {"const": "OK"}}}, "record_refs": {"maxItems": 0}}}
+  ]
+}

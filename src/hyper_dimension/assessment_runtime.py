@@ -97,6 +97,11 @@ class AssessmentService:
                     rubric_json TEXT NOT NULL, agent_version TEXT NOT NULL,
                     status TEXT NOT NULL, created_at TEXT NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS assignment_requests (
+                    tenant_id TEXT NOT NULL, student_id TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL, bundle_id TEXT NOT NULL,
+                    PRIMARY KEY (tenant_id, student_id, idempotency_key)
+                );
                 CREATE TABLE IF NOT EXISTS attempts (
                     attempt_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL,
                     student_id TEXT NOT NULL, bundle_id TEXT NOT NULL,
@@ -267,8 +272,15 @@ class AssessmentService:
         if sum(policy["weights"].values()) <= 0:
             raise AssessmentError("Invalid policy weights")
 
-    def create_assignment(self, tenant_id: str, student_id: str) -> dict[str, Any]:
+    def create_assignment(self, tenant_id: str, student_id: str,
+                          idempotency_key: str | None = None) -> dict[str, Any]:
+        if idempotency_key is not None and not idempotency_key:
+            raise AssessmentError("Empty assignment idempotency key")
         with self._db() as db:
+            if idempotency_key is not None:
+                previous = self._assignment_request(db, tenant_id, student_id, idempotency_key)
+                if previous is not None:
+                    return previous
             profile, policy = self._context(db, tenant_id, student_id)
         # JSON mode does not guarantee answer-key consistency. Retry once, then fail closed.
         for generation_attempt in range(2):
@@ -288,6 +300,10 @@ class AssessmentService:
                         "book_id": profile["book_id"], "school_progress": profile["school_progress"]}
         with self._db() as db:
             db.execute("BEGIN IMMEDIATE")
+            if idempotency_key is not None:
+                previous = self._assignment_request(db, tenant_id, student_id, idempotency_key)
+                if previous is not None:
+                    return previous
             current_profile, current_policy = self._context(db, tenant_id, student_id)
             if (current_profile["class_id"] != profile["class_id"] or
                 current_policy["policy_id"] != policy["policy_id"] or
@@ -301,7 +317,25 @@ class AssessmentService:
             )
             event_id = self._event(db, tenant_id, student_id, None, "bundle.published",
                                    "agent", bundle["agent_version"], bundle_id)
+            if idempotency_key is not None:
+                db.execute(
+                    "INSERT INTO assignment_requests VALUES (?,?,?,?)",
+                    (tenant_id, student_id, idempotency_key, bundle_id),
+                )
         return {**student_view, "audit_event_id": event_id}
+
+    def _assignment_request(self, db: sqlite3.Connection, tenant_id: str,
+                            student_id: str, key: str) -> dict[str, Any] | None:
+        row = db.execute(
+            """SELECT b.student_json,e.event_id FROM assignment_requests r
+               JOIN item_bundles b ON b.bundle_id=r.bundle_id
+               JOIN audit_events e ON e.tenant_id=r.tenant_id AND
+                  e.student_id=r.student_id AND e.object_ref=r.bundle_id AND
+                  e.event_type='bundle.published'
+               WHERE r.tenant_id=? AND r.student_id=? AND r.idempotency_key=?""",
+            (tenant_id, student_id, key),
+        ).fetchone()
+        return {**_load(row["student_json"]), "audit_event_id": row["event_id"]} if row else None
 
     def submit(self, *, tenant_id: str, student_id: str, bundle_id: str,
                attempt_id: str, idempotency_key: str, answers: dict[str, str]) -> dict[str, Any]:

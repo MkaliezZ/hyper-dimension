@@ -8,14 +8,15 @@
 
 ### 当前可运行内容
 
-- FastAPI 起点与 `/healthz` 健康检查；本地自动评测核心 `AssessmentService` 可用 SQLite 持久化模拟学生题包、作答、评分、自动批准、报告与审计。
-- Hyper Dimension Education Protocol v1 的请求和结果 JSON Schema、校验函数及测试。
+- FastAPI 默认入口仅开放 `/healthz`；另有须注入教师令牌的本地教育 API 工厂。SQLite 本地核心可用模拟资料持久化题包、作答、评分、自动批准、报告、私有学生档案和审计。
+- Hyper Dimension Education Protocol v1 的请求/结果契约，以及严格的 1.1 档案/展示命令与结果 Schema；A2A v1 JSON DataPart 解析器仅验证业务意图，尚非 A2A 服务端。
 - `web/`：可独立运行的 2D 小岛视觉基线。人物、文字、图片、视频入口均为可替换的 **DEMO** 内容；详见 [前端说明](web/README.md) 和 [素材来源](web/ASSETS.md)。
 - [英语测评 Agent Skill](skills/english-assessment/SKILL.md)、[原创题目生成流程](skills/english-assessment/references/item-generation-workflow.md)及[2026 公开样本核验](docs/curriculum/2026-exam-task-review.md)：按教材页证据、当年地区试题来源级别、CEFR 描述符与 A2 Key/B1 Preliminary for Schools 的公开任务逻辑生成原创题目、答案解析和教师报告草稿。教材 PDF 与真实学生证据不在本仓库。
+- 教师版 [MCP 工具与 A2A 接入契约](docs/teacher-mcp-a2a-contract.md)：本地 stdio MCP 提供教师档案、幂等出题、归档核验与展示草稿；正式发布由教师受保护 API 执行。学生使用随机访问码加签写姓名核对，归档按稳定 `student_id` 保存。MCP 是可选安装项 `.[mcp]`。
 - 可替换的 [DeepSeek Agent 适配器](src/hyper_dimension/agent_deepseek.py)和[本地服务](src/hyper_dimension/assessment_runtime.py)；`scripts/smoke_deepseek.py` 只用模拟学生资料验证真实 API，密钥从当前进程环境变量读取，不写入仓库。
 - [实时出题、自动评测与审计契约](docs/curriculum/realtime-assessment-and-audit-v0.1.md)、[教师版切片](docs/teacher-first-slice.md)、[前端基线](docs/frontend-baseline.md)及[英语课程与多教材适配设计](docs/curriculum/curriculum-architecture-v0.1.md)、[原创单元样板](docs/curriculum/sample-unit-packs-v0.1.md)与[测评报告格式](docs/curriculum/assessment-and-report-format-v0.1.md)。
 
-当前完成度见[开发状态与下一步](docs/development-status.md)。本地自动评测核心已实现；生产用 PostgreSQL 迁移、受保护 API、教师/学生页面、学生 Agent、生产级身份认证与真实学生数据流程仍未实现。请勿把真实学生档案、录音、授权信息、密钥或生产日志提交到公开仓库。
+当前完成度见[开发状态与下一步](docs/development-status.md)。本地自动评测、学生档案、MCP 工具和令牌保护的模拟数据 API 已实现；生产用 PostgreSQL、教师/学生页面、学生 Agent、生产级身份与监护同意流程仍未实现。请勿把真实学生档案、录音、授权信息、密钥或生产日志提交到公开仓库。
 
 ### 本地运行
 
@@ -50,14 +51,15 @@ This MIT-licensed repository contains the first phase of Hyper Dimension. The in
 
 ### What runs today
 
-- A FastAPI starting point and `/healthz` endpoint; a local `AssessmentService` persists synthetic assignments, submissions, grades, automatic approvals, reports, and audit events in SQLite.
-- Hyper Dimension Education Protocol v1 request/result JSON Schemas, validation helpers, and tests.
+- The default FastAPI app exposes only `/healthz`. An injected local education API requires a teacher token. The SQLite service persists synthetic assignments, submissions, grades, reports, private student archives, and audit events.
+- Hyper Dimension Education Protocol v1 request/result contracts and strict 1.1 commands for student records and showcase drafts. The A2A v1 JSON DataPart parser validates intent but is not a deployed A2A server.
 - `web/`, a runnable 2D island visual baseline. Its characters, copy, images, and optional video slots are replaceable **DEMO** content; see the [web guide](web/README.md) and [asset notes](web/ASSETS.md).
 - [Reusable English assessment agent skill](skills/english-assessment/SKILL.md) and [item generation workflow](skills/english-assessment/references/item-generation-workflow.md) for original tasks, explanations, and reports approved under versioned teacher policies, with exception review, grounded in textbook evidence, verified local exam sources, CEFR descriptors, and public A2 Key/B1 Preliminary for Schools formats. Copyrighted textbook PDFs and student records are not included.
+- [Teacher MCP and A2A contract](docs/teacher-mcp-a2a-contract.md): local stdio MCP tools for private profiles, idempotent assignment generation, archive verification, and private showcase drafts. Teacher-authenticated HTTP alone can publish. Install the optional `.[mcp]` extra.
 - A replaceable [DeepSeek Agent adapter](src/hyper_dimension/agent_deepseek.py) and [local assessment service](src/hyper_dimension/assessment_runtime.py). `scripts/smoke_deepseek.py` uses synthetic records and reads its API key only from the current process environment.
 - [Real-time assessment and audit contract](docs/curriculum/realtime-assessment-and-audit-v0.1.md), [teacher-first implementation slice](docs/teacher-first-slice.md), [frontend baseline](docs/frontend-baseline.md), and [curriculum and multi-edition design](docs/curriculum/curriculum-architecture-v0.1.md) (currently documented in Chinese).
 
-See [development status and next steps](docs/development-status.md). The local assessment core runs; PostgreSQL migrations, protected APIs, the student agent, production authentication, and processing of real student records are still pending. Keep real student records, recordings, consent data, secrets, and production logs out of this public repository.
+See [development status and next steps](docs/development-status.md). The local assessment, student archive, MCP tools and token-protected synthetic API run. PostgreSQL migration, teacher/student pages, the student agent, production authentication, and processing of real student records are still pending. Keep real student records, recordings, consent data, secrets, and production logs out of this public repository.
 
 ### Run locally
 

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hyperdimension:education:command:1.1",
+  "title": "Hyper Dimension Education Command 1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_version", "operation", "request_id", "island_id", "idempotency_key", "purpose", "payload"],
+  "properties": {
+    "protocol_version": {"const": "1.1"},
+    "operation": {"enum": [
+      "hd.education.student.profile.read.v1",
+      "hd.education.student.profile.update.v1",
+      "hd.education.student.archive.list.v1",
+      "hd.education.student.archive.verify.v1",
+      "hd.education.showcase.draft.create.v1",
+      "hd.education.showcase.public.read.v1"
+    ]},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "island_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "student_ref": {"type": "string", "pattern": "^stu_[0-9a-f]{32}$"},
+    "idempotency_key": {"type": "string", "minLength": 1, "maxLength": 128},
+    "purpose": {"enum": ["student_record", "public_showcase"]},
+    "payload": {"type": "object"}
+  },
+  "oneOf": [
+    {"properties": {"operation": {"const": "hd.education.student.profile.read.v1"}, "purpose": {"const": "student_record"}, "payload": {"type": "object", "additionalProperties": false, "maxProperties": 0}}, "required": ["student_ref"]},
+    {"properties": {"operation": {"const": "hd.education.student.profile.update.v1"}, "purpose": {"const": "student_record"}, "payload": {"type": "object", "additionalProperties": false, "required": ["expected_version", "display_name", "public_alias", "teacher_notes", "learning_goals"], "properties": {"expected_version": {"type": "integer", "minimum": 1}, "display_name": {"type": "string", "minLength": 1, "maxLength": 80}, "public_alias": {"type": "string", "minLength": 1, "maxLength": 80}, "teacher_notes": {"type": "string", "maxLength": 6000}, "learning_goals": {"type": "string", "maxLength": 3000}}}}, "required": ["student_ref"]},
+    {"properties": {"operation": {"const": "hd.education.student.archive.list.v1"}, "purpose": {"const": "student_record"}, "payload": {"type": "object", "additionalProperties": false, "maxProperties": 0}}, "required": ["student_ref"]},
+    {"properties": {"operation": {"const": "hd.education.student.archive.verify.v1"}, "purpose": {"const": "student_record"}, "payload": {"type": "object", "additionalProperties": false, "required": ["artifact_ref"], "properties": {"artifact_ref": {"type": "string", "minLength": 1, "maxLength": 128}}}}, "required": ["student_ref"]},
+    {"properties": {"operation": {"const": "hd.education.showcase.draft.create.v1"}, "purpose": {"const": "public_showcase"}, "payload": {"type": "object", "additionalProperties": false, "required": ["slot", "kind", "title", "summary", "source_artifact_ref", "publication_consent_ref"], "dependentRequired": {"metrics": ["baseline_artifact_ref"]}, "properties": {"slot": {"enum": ["learning", "portfolio", "honors"]}, "kind": {"enum": ["improvement", "honor"]}, "title": {"type": "string", "minLength": 1, "maxLength": 100}, "summary": {"type": "string", "minLength": 1, "maxLength": 500}, "source_artifact_ref": {"type": "string", "minLength": 1, "maxLength": 128}, "publication_consent_ref": {"type": "string", "minLength": 1, "maxLength": 128}, "baseline_artifact_ref": {"type": "string", "minLength": 1, "maxLength": 128}, "metrics": {"type": "object", "additionalProperties": false, "required": ["before_score", "after_score", "unit"], "properties": {"before_score": {"type": "number", "minimum": 0, "maximum": 100}, "after_score": {"type": "number", "minimum": 0, "maximum": 100}, "unit": {"type": "string", "minLength": 1, "maxLength": 20}}}}}}, "required": ["student_ref"]},
+    {"properties": {"operation": {"const": "hd.education.showcase.public.read.v1"}, "purpose": {"const": "public_showcase"}, "payload": {"type": "object", "additionalProperties": false, "properties": {"slot": {"enum": ["learning", "portfolio", "honors"]}}}}, "not": {"required": ["student_ref"]}}
+  ]
+}

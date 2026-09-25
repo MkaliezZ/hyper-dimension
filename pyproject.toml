@@ -16,6 +16,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+mcp = [
+  "mcp>=1.28,<2",
+]
 pdf = [
   "pymupdf>=1.26,<2",
 ]
