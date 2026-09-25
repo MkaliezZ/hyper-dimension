@@ -29,6 +29,8 @@
 
 报告记录本身至少包含：report_id、schema_version、student_ref、class_ref、period_start/end、textbook_edition_ref、unit_package_refs、capability_results、evidence_refs、rubric_versions、coverage、confidence_reason、school_progress_comparison、priority_goal、four_week_plan、teacher_notes、approval_state、approval_mode、teacher_policy_ref、approved_by、approved_at、visibility_scope、audit_event_refs。外部展示使用假名或授权姓名；公开岛案例另走独立的脱敏和授权审批。
 
+班级进度对齐另存不可变 alignment_run 和教师决定；个人报告引用共同里程碑、个人计划版本及对应证据，不能只写一个组别标签。详细规则见[动态进度对齐契约](dynamic-progress-alignment-v0.1.md)。
+
 书面页面按以下顺序：
 
 1. 本期背景：教材、单元、真实授课进度和本次证据覆盖。
