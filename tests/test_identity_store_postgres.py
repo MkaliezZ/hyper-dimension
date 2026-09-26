@@ -10,6 +10,8 @@ from uuid import uuid4
 
 import jwt
 import pytest
+import httpx
+from fastapi.testclient import TestClient
 from cryptography.hazmat.primitives.asymmetric import rsa
 
 if not os.getenv("HD_TEST_PG_DSN"):
@@ -22,6 +24,9 @@ from psycopg.conninfo import make_conninfo
 
 from hyper_dimension.agent_mcp_identity import AgentMCPTokenVerifier
 from hyper_dimension.identity_store import IdentityStore, apply_identity_migration
+from hyper_dimension.identity_runtime import build_synthetic_island_services
+from hyper_dimension.assessment_runtime import AssessmentService
+from hyper_dimension.student_records import StudentRecords
 from hyper_dimension.teacher_identity import TeacherOIDCVerifier
 
 ISSUER = "https://id.example.test/realms/demo"
@@ -213,3 +218,87 @@ def test_migration_checksum_rejects_changed_sql(store, tmp_path):
                        encoding="utf-8")
     with pytest.raises(ValueError, match="checksum"):
         apply_identity_migration(dsn, changed)
+
+
+def test_http_teacher_and_mcp_use_same_live_postgres_acl(store, tmp_path):
+    repo, dsn = store
+    provision(store)
+    private = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    jwk = jwt.algorithms.RSAAlgorithm.to_jwk(
+        private.public_key(), as_dict=True,
+    ) | {"kid": "key-1", "alg": "RS256", "use": "sig"}
+    jwks_url = ISSUER + "/protocol/openid-connect/certs"
+    with httpx.Client(transport=httpx.MockTransport(
+        lambda request: httpx.Response(200, json={"keys": [jwk]})
+    )) as jwks_client:
+        assessment = AssessmentService(tmp_path / "synthetic.sqlite3", object())
+        records = StudentRecords(
+            assessment, tmp_path / "archive", teacher_id="teacher-1",
+        )
+        student = records.create_student(
+            tenant_id="island-1", class_id="class-1",
+            display_name="Synthetic Learner", public_alias="Learner",
+            age=12, grade=7, book_id="demo", school_progress="Unit 1",
+            guardian_consent_ref="synthetic-consent",
+        )
+        services = build_synthetic_island_services(
+            assessment, records, database_dsn=dsn,
+            island_id="island-1", teacher_id="teacher-1",
+            issuer=ISSUER, jwks_url=jwks_url,
+            teacher_api_audience="hd-teacher-api",
+            teacher_client_id="teacher-web",
+            agent_client_id="teacher-runtime", mcp_resource_url=RESOURCE,
+            jwks_client=jwks_client,
+        )
+        now = datetime.now(timezone.utc)
+        common = {"iss": ISSUER, "iat": now, "nbf": now,
+                  "exp": now + timedelta(minutes=5), "jti": "test-jti"}
+        teacher_token = jwt.encode(
+            common | {"sub": "idp-teacher-1", "aud": "hd-teacher-api",
+                      "azp": "teacher-web", "scope": "hd.teacher"},
+            private, algorithm="RS256", headers={"kid": "key-1"},
+        )
+        agent_token = jwt.encode(
+            common | {"sub": "agent-1", "agent_id": "agent-1",
+                      "delegation_id": "grant-1", "aud": RESOURCE,
+                      "azp": "teacher-runtime", "scope": "hd.teacher.mcp",
+                      "island_id": "island-1", "teacher_id": "teacher-1"},
+            private, algorithm="RS256", headers={"kid": "key-1"},
+        )
+        profile_path = "/api/v1/teacher/students/" + student["student_ref"]
+        teacher_headers = {"Authorization": "Bearer " + teacher_token}
+        mcp_headers = {
+            "Authorization": "Bearer " + agent_token,
+            "Accept": "application/json, text/event-stream",
+            "Content-Type": "application/json",
+            "MCP-Protocol-Version": "2025-06-18",
+        }
+        initialize = {
+            "jsonrpc": "2.0", "id": 1, "method": "initialize",
+            "params": {
+                "protocolVersion": "2025-06-18", "capabilities": {},
+                "clientInfo": {"name": "postgres-integration", "version": "1"},
+            },
+        }
+        with TestClient(services.teacher_api) as teacher_client, TestClient(
+            services.teacher_mcp_http, base_url="https://mcp.example.test"
+        ) as mcp_client:
+            assert teacher_client.get(
+                profile_path, headers=teacher_headers,
+            ).status_code == 200
+            assert mcp_client.post(
+                "/mcp", json=initialize, headers=mcp_headers,
+            ).status_code == 200
+            repo.revoke_delegation("grant-1", actor_ref="operator-test")
+            assert mcp_client.post(
+                "/mcp", json={"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
+                headers=mcp_headers,
+            ).status_code == 401
+            assert teacher_client.get(
+                profile_path, headers=teacher_headers,
+            ).status_code == 200
+            repo.revoke_teacher("island-1", "teacher-1",
+                                actor_ref="operator-test")
+            assert teacher_client.get(
+                profile_path, headers=teacher_headers,
+            ).status_code == 401

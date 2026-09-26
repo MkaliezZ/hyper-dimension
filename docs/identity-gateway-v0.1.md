@@ -135,4 +135,6 @@ MCP stdio 进程可从网关获得短期上下文，不把教师 ID 当工具参
 
 **PostgreSQL 关系存储切片（2026-09-26）**：已提交 migrations/0001_identity_gateway.sql、identity_store.py 与 scripts/migrate_identity.py。初始迁移包含岛屿、内部主体、教师成员关系、Agent 实例、受限委托和授权变更审计表；迁移具备事务、校验和检查。IdentityStore.active_teacher 与 active_delegation 可直接供上述验证器逐请求调用，教师关系或委托撤销后查询立即拒绝。GitHub Actions 的 PostgreSQL 17 服务容器已运行全部 118 个测试且无跳过：[实库验收记录](https://github.com/MkaliezZ/hyper-dimension/actions/runs/36224991215)。这只验证了基础身份关系和撤销，不包含监护人关系/同意、班级/学生分配、青少年模式、正式凭据签发、管理员授权 API 或生产部署。写入方法是受保护网关未来调用的内部存储函数，不能直接暴露给 Agent。
 
+**服务装配切片（2026-09-26）**：identity_runtime.py 固定 Keycloak 同 Realm 的 HTTPS JWKS 地址，在启动时取公钥，短时缓存并在更新失败时拒绝继续使用过期缓存。build_synthetic_island_services 将同一个 PostgreSQL IdentityStore 注入教师 API 与 Streamable HTTP MCP；两端使用不同的 audience/scope 和人类/Agent 凭据。此装配仍连接 SQLite 模拟业务资料及默认未核验监护假设，不提供登录、凭据签发、正式上传或互联网部署。真实学生数据仍被禁止。
+
 **当前实装口径**：本仓库已实现本地模拟学生访问码、显式标记未核验的默认监护授权、静态教师 Bearer 和部分业务权限校验。新 A2A 本地读适配器的测试只能证明官方 SDK JSON-RPC、全路由本地令牌防护、两项只读业务和本地审计可工作；它不证明正式 OIDC 登录、监护关系核验、跨 Agent 互通、持久 Task ACL、完整 PostgreSQL 业务迁移或公网安全已完成。
