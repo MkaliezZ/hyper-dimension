@@ -661,6 +661,30 @@ class AssessmentService:
                 "audit_event_id": attempt["submit_event_id"],
                 "report_id": report["report_id"] if report else None}
 
+    def student_reports(
+        self, tenant_id: str, student_id: str,
+    ) -> list[dict[str, Any]]:
+        """Return bounded approved report summaries without raw answers."""
+        with self._db() as db:
+            rows = db.execute(
+                """SELECT report_id,attempt_id,body_json,created_at
+                   FROM report_revisions
+                   WHERE tenant_id=? AND student_id=?
+                   ORDER BY created_at DESC,report_id DESC LIMIT 100""",
+                (tenant_id, student_id),
+            ).fetchall()
+            result = []
+            for row in rows:
+                report = _load(row["body_json"])
+                result.append({
+                    "report_ref": row["report_id"],
+                    "attempt_ref": row["attempt_id"],
+                    "score": report["score"],
+                    "summary": report["summary"],
+                    "created_at": row["created_at"],
+                })
+            return result
+
     def report(self, tenant_id: str, student_id: str, report_id: str) -> dict[str, Any]:
         with self._db() as db:
             row = db.execute(

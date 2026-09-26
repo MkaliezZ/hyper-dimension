@@ -68,6 +68,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
       </section>
 
+      <section class="teacher-card" aria-labelledby="pending-title">
+        <div class="teacher-card-heading">
+          <div>
+            <p class="teacher-eyebrow">ASSESSMENT QUEUE</p>
+            <h2 id="pending-title">待批改答卷</h2>
+          </div>
+          <button id="pending-refresh" type="button">刷新</button>
+        </div>
+        <p class="teacher-hint">
+          教师 Agent 通过 MCP
+          读取写作作答与量规并提交评分草稿；这里仅显示待处理引用。
+        </p>
+        <p
+          id="pending-status"
+          class="teacher-hint"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
+        <ul id="pending-attempts" class="teacher-roster"></ul>
+      </section>
+
       <section class="teacher-card" aria-labelledby="alignment-title">
         <div class="teacher-card-heading">
           <div>
@@ -140,6 +162,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             ></textarea></label
           >
           <button class="btn-ac" type="button">保存档案修订</button>
+        </div>
+        <div class="teacher-reports">
+          <h3>已批准报告</h3>
+          <p class="teacher-hint">
+            只展示后端已批准的测评结果；未批改或待复核答卷不会显示在这里。
+          </p>
+          <p
+            id="teacher-report-status"
+            class="teacher-hint"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+          <ul id="teacher-reports"></ul>
+          <div id="teacher-report-detail" class="teacher-report-detail" hidden>
+          </div>
         </div>
         <div class="teacher-archive">
           <h3>审计归档</h3>
@@ -378,6 +416,63 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
   .teacher-wide {
     grid-column: 1 / -1;
+  }
+  #pending-attempts :global(li) {
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    background: var(--ac-cream);
+    padding: 0.8rem 1rem;
+    overflow-wrap: anywhere;
+  }
+  #pending-refresh,
+  .teacher-reports :global(button) {
+    border: 1px solid var(--ac-primary-dark);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    color: var(--ac-primary-dark);
+    padding: 0.5rem 0.8rem;
+    font-weight: 800;
+  }
+  .teacher-reports {
+    margin-top: 2rem;
+    border-top: 1px solid var(--ac-border);
+    padding-top: 1.4rem;
+  }
+  .teacher-reports h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .teacher-reports :global(li) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--ac-border);
+  }
+  .teacher-reports :global(li span) {
+    overflow-wrap: anywhere;
+  }
+  .teacher-report-detail {
+    margin-top: 1rem;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    background: var(--ac-surface-hover);
+    padding: 1rem;
+    overflow-wrap: anywhere;
+  }
+  .teacher-report-detail :global(p) {
+    margin: 0.45rem 0;
+    line-height: 1.55;
+  }
+  #pending-status[data-error="true"],
+  #teacher-report-status[data-error="true"] {
+    color: #a33d38;
+  }
+  #pending-refresh:focus-visible,
+  .teacher-reports :global(button:focus-visible) {
+    outline: 3px solid var(--ac-primary);
+    outline-offset: 2px;
   }
   .teacher-archive {
     margin-top: 2rem;

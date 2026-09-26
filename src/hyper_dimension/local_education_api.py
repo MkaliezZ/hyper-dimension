@@ -307,6 +307,32 @@ def create_local_education_app(
             tenant_id, student_ref, plan_ref, body.reason,
         ))
 
+    @app.get("/api/v1/teacher/classes/{class_ref}/pending-attempts",
+             dependencies=[Depends(teacher)])
+    def class_pending_attempts(class_ref: str) -> dict[str, Any]:
+        return {"class_ref": class_ref, "attempts": safe(
+            lambda: assessment.pending_attempts(tenant_id, class_ref, teacher_id),
+        )}
+
+    def require_teacher_student(student_ref: str) -> None:
+        context = assessment.generation_context(tenant_id, student_ref)
+        if context["policy"]["teacher_id"] != teacher_id:
+            raise AssessmentError("Student belongs to another teacher policy")
+
+    @app.get("/api/v1/teacher/students/{student_ref}/reports",
+             dependencies=[Depends(teacher)])
+    def student_reports(student_ref: str) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
+        return {"student_ref": student_ref, "reports": safe(
+            lambda: assessment.student_reports(tenant_id, student_ref),
+        )}
+
+    @app.get("/api/v1/teacher/students/{student_ref}/reports/{report_ref}",
+             dependencies=[Depends(teacher)])
+    def student_report(student_ref: str, report_ref: str) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
+        return safe(lambda: assessment.report(tenant_id, student_ref, report_ref))
+
     @app.get("/api/v1/teacher/students/{student_ref}/archive",
              dependencies=[Depends(teacher)])
     def archive(student_ref: str) -> dict[str, Any]:

@@ -1,3 +1,5 @@
+import { createTeacherReports } from "./teacherReports";
+
 type StudentSummary = {
   student_ref: string;
   display_name: string;
@@ -150,6 +152,13 @@ export function initTeacherDashboard(): void {
     }
     return response.json() as Promise<T>;
   }
+
+  const teacherReports = createTeacherReports(
+    dashboard,
+    api,
+    () => classRef,
+    () => rosterNames,
+  );
 
   const decisionLabels: Record<string, string> = {
     confirm: "确认",
@@ -512,8 +521,22 @@ export function initTeacherDashboard(): void {
         field.value = value[name] || "";
       }
       studentPanel.hidden = false;
-      await loadArchive(ref);
-      if (sequence === studentLoadSequence) message("档案已读取。");
+      let archiveFailed = false;
+      try {
+        await loadArchive(ref);
+      } catch (error) {
+        archiveFailed = true;
+        if (sequence === studentLoadSequence) {
+          message(
+            "档案已读取，归档暂不可用：" + (error as Error).message,
+            true,
+          );
+        }
+      }
+      if (sequence !== studentLoadSequence) return;
+      await teacherReports.loadStudentReports(ref);
+      if (sequence === studentLoadSequence && !archiveFailed)
+        message("档案已读取。");
     } catch (error) {
       if (sequence !== studentLoadSequence) return;
       studentPanel.hidden = true;
@@ -580,7 +603,7 @@ export function initTeacherDashboard(): void {
         throw new Error("请填写班级 ID 和本地演示令牌。");
       await loadRoster();
       message("已连接班级 " + classRef + "。");
-      await loadAlignment();
+      await Promise.all([loadAlignment(), teacherReports.loadPending()]);
     } catch (error) {
       token = "";
       message((error as Error).message, true);

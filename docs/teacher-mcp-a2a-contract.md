@@ -33,6 +33,8 @@ MCP 是教师 Agent 的受控工具入口。明确的工具名、参数类型和
 | showcase_draft_create | 按公开许可和证据制作私有草稿，不发布 |
 | showcase_public_read | 读取仍有许可的公开卡片 |
 
+本地模拟教师 HTTP API 现可读取 `GET /api/v1/teacher/classes/{class_ref}/pending-attempts` 和 `GET /api/v1/teacher/students/{student_ref}/reports`、`GET /api/v1/teacher/students/{student_ref}/reports/{report_ref}`。待批改列表只含引用，不下发待批改作答；报告接口仅返回已批准版本。评分草稿仍由教师 Agent 经 MCP 提交，页面不自行评分。
+
 MCP 不提供登记公开许可、正式发布、撤回许可工具。Agent 可以备草稿，发布由教师受保护 API 执行。租户与教师来自本地可信进程绑定，工具参数不能自称其他身份；该进程配置不等于生产登录。
 
 ## 成果展示状态约束
