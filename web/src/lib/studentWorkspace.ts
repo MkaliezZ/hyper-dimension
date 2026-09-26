@@ -5,6 +5,34 @@ type Question = {
   options?: string[];
 };
 
+type StudentResult = {
+  reports: {
+    report_ref: string;
+    created_at: string;
+    report: {
+      score: number;
+      breakdown: Record<string, number>;
+      summary: string;
+      strengths: string[];
+      needs_work: string[];
+      next_steps: string[];
+      wrong_answers: string[];
+      note: string;
+    };
+  }[];
+  plans: {
+    plan_ref: string;
+    approved_at: string;
+    plan: {
+      goal: string;
+      next_task: string;
+      review_date: string;
+      weekly_steps: string[];
+    };
+  }[];
+  audit_event_id: string;
+};
+
 type Assignment = {
   bundle_id: string;
   questions: Question[];
@@ -33,6 +61,27 @@ export function initStudentWorkspace(): void {
   const questions = required<HTMLElement>(workspace, "#student-questions");
   const status = required<HTMLElement>(workspace, "#student-status");
   const result = required<HTMLElement>(workspace, "#student-result");
+  const progressAccess = required<HTMLElement>(
+    workspace,
+    "#student-progress-access",
+  );
+  const progressPanel = required<HTMLElement>(
+    workspace,
+    "#student-progress-panel",
+  );
+  const progressStatus = required<HTMLElement>(
+    workspace,
+    "#student-progress-status",
+  );
+  const progressReports = required<HTMLUListElement>(
+    workspace,
+    "#student-progress-reports",
+  );
+  const progressPlans = required<HTMLUListElement>(
+    workspace,
+    "#student-progress-plans",
+  );
+  let progressSequence = 0;
   const submitButton = required<HTMLButtonElement>(
     workspace,
     "#student-submit",
@@ -60,7 +109,7 @@ export function initStudentWorkspace(): void {
     if (!response.ok) {
       throw new Error(
         response.status === 422
-          ? "身份、题包或答案未通过校验，请核对后重试。"
+          ? "身份或提交内容未通过校验，请核对后重试。"
           : "本地任务 API 请求失败（HTTP " + response.status + "）。",
       );
     }
@@ -225,6 +274,117 @@ export function initStudentWorkspace(): void {
       message(result, (error as Error).message, true);
     }
   }
+
+  function resultLine(label: string, value: string): HTMLParagraphElement {
+    const line = document.createElement("p");
+    line.textContent = label + "：" + value;
+    return line;
+  }
+
+  function renderProgress(value: StudentResult): void {
+    progressReports.replaceChildren();
+    progressPlans.replaceChildren();
+    if (value.reports.length === 0) {
+      const empty = document.createElement("li");
+      empty.textContent = "暂无已批准报告。";
+      progressReports.append(empty);
+    }
+    for (const item of value.reports) {
+      const row = document.createElement("li");
+      const title = document.createElement("strong");
+      title.textContent =
+        item.report.score +
+        " 分 · " +
+        new Date(item.created_at).toLocaleDateString("zh-CN");
+      row.append(
+        title,
+        resultLine("诊断", item.report.summary),
+        resultLine("优势", item.report.strengths.join("；")),
+        resultLine("需加强", item.report.needs_work.join("；")),
+        resultLine("下一步", item.report.next_steps.join("；")),
+        resultLine(
+          "维度",
+          Object.entries(item.report.breakdown)
+            .map(([name, score]) => name + " " + score)
+            .join(" · "),
+        ),
+        resultLine("说明", item.report.note),
+      );
+      progressReports.append(row);
+    }
+    if (value.plans.length === 0) {
+      const empty = document.createElement("li");
+      empty.textContent = "暂无教师已批准的个人计划。";
+      progressPlans.append(empty);
+    }
+    for (const item of value.plans) {
+      const row = document.createElement("li");
+      const title = document.createElement("strong");
+      title.textContent = item.plan.goal;
+      row.append(
+        title,
+        resultLine("下一项任务", item.plan.next_task),
+        resultLine("复核日期", item.plan.review_date),
+      );
+      const weeks = document.createElement("ol");
+      for (const step of item.plan.weekly_steps) {
+        const line = document.createElement("li");
+        line.textContent = step;
+        weeks.append(line);
+      }
+      row.append(weeks);
+      progressPlans.append(row);
+    }
+    progressPanel.hidden = false;
+  }
+
+  async function openProgress(): Promise<void> {
+    const sequence = ++progressSequence;
+    const name = required<HTMLInputElement>(
+      workspace,
+      "#student-progress-name",
+    );
+    const code = required<HTMLInputElement>(
+      workspace,
+      "#student-progress-code",
+    );
+    const signedName = name.value.trim();
+    const accessCode = code.value.trim();
+    name.value = "";
+    code.value = "";
+    progressPanel.hidden = true;
+    progressReports.replaceChildren();
+    progressPlans.replaceChildren();
+    if (!signedName || !accessCode) {
+      message(progressStatus, "请签写姓名并填写个人访问码。", true);
+      return;
+    }
+    message(progressStatus, "正在读取本人已批准结果……");
+    try {
+      const data = await post<StudentResult>("/api/v1/student/results/lookup", {
+        signed_name: signedName,
+        access_code: accessCode,
+      });
+      if (sequence !== progressSequence) return;
+      renderProgress(data);
+      message(progressStatus, "已读取本人结果，并记录访问审计。");
+    } catch (error) {
+      if (sequence === progressSequence) {
+        message(progressStatus, (error as Error).message, true);
+      }
+    }
+  }
+
+  required<HTMLButtonElement>(progressAccess, "button").addEventListener(
+    "click",
+    () => void openProgress(),
+  );
+  progressAccess.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && event.target instanceof HTMLInputElement) {
+      event.preventDefault();
+      void openProgress();
+    }
+  });
 
   required<HTMLButtonElement>(access, "button").addEventListener(
     "click",

@@ -47,6 +47,42 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </section>
 
+    <section class="student-card" aria-labelledby="student-progress-title">
+      <h2 id="student-progress-title">我的学习进度</h2>
+      <p class="student-hint">
+        用个人访问码和签写姓名读取本人已批准的报告与四周计划。草稿和其他学生的资料不会显示。
+      </p>
+      <div id="student-progress-access" class="student-access">
+        <label
+          >签写姓名<input
+            id="student-progress-name"
+            autocomplete="off"
+          /></label
+        >
+        <label
+          >个人访问码<input
+            id="student-progress-code"
+            type="password"
+            autocomplete="off"
+          /></label
+        >
+        <button type="button" class="btn-ac">读取我的进度</button>
+      </div>
+      <p
+        id="student-progress-status"
+        class="student-status"
+        role="status"
+        aria-live="polite"
+      >
+      </p>
+      <div id="student-progress-panel" class="student-progress" hidden>
+        <h3>已批准报告</h3>
+        <ul id="student-progress-reports"></ul>
+        <h3>四周个人计划</h3>
+        <ul id="student-progress-plans"></ul>
+      </div>
+    </section>
+
     <section
       id="student-questions-panel"
       class="student-card"
@@ -202,6 +238,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: block;
     min-height: 9rem;
     margin-top: 0.7rem;
+  }
+  .student-progress {
+    margin-top: 1.2rem;
+    border-top: 1px solid var(--ac-border);
+    padding-top: 1rem;
+  }
+  .student-progress h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-top: 1rem;
+  }
+  .student-progress :global(li) {
+    margin: 0.75rem 0;
+    padding: 0.9rem;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    background: var(--ac-surface-hover);
+    overflow-wrap: anywhere;
+  }
+  .student-progress :global(li li) {
+    padding: 0.15rem 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+  }
+  .student-progress :global(p) {
+    margin: 0.35rem 0;
+    line-height: 1.55;
+  }
+  .student-progress :global(ol) {
+    margin: 0.5rem 0 0.5rem 1.5rem;
   }
   @media (max-width: 640px) {
     .student-access {

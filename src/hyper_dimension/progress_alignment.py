@@ -539,6 +539,48 @@ class ProgressAlignmentService:
                 "approved_at": row["approved_at"],
             } for row in rows]
 
+    def student_result_view(self, tenant_id: str, student_id: str) -> dict[str, Any]:
+        """Student-visible approved reports and plans, with an access audit."""
+        self._student(tenant_id, student_id)
+        with self.assessment._db() as db:
+            reports = db.execute(
+                """SELECT report_id,body_json,created_at FROM report_revisions
+                   WHERE tenant_id=? AND student_id=?
+                   ORDER BY created_at DESC,report_id DESC LIMIT 20""",
+                (tenant_id, student_id),
+            ).fetchall()
+            plans = db.execute(
+                """SELECT plan_id,body_json,approved_at FROM alignment_plan_drafts
+                   WHERE tenant_id=? AND student_id=? AND status='approved'
+                   ORDER BY approved_at DESC,plan_id DESC LIMIT 20""",
+                (tenant_id, student_id),
+            ).fetchall()
+            event_id = self.assessment._event(
+                db, tenant_id, student_id, None, "student.results_opened",
+                "student", student_id, student_id,
+            )
+            visible_reports = []
+            visible_fields = (
+                "score", "breakdown", "summary", "strengths",
+                "needs_work", "next_steps", "wrong_answers", "note",
+            )
+            for row in reports:
+                report = _load(row["body_json"])
+                visible_reports.append({
+                    "report_ref": row["report_id"],
+                    "created_at": row["created_at"],
+                    "report": {key: report[key] for key in visible_fields},
+                })
+            return {
+                "reports": visible_reports,
+                "plans": [{
+                    "plan_ref": row["plan_id"],
+                    "approved_at": row["approved_at"],
+                    "plan": _load(row["body_json"]),
+                } for row in plans],
+                "audit_event_id": event_id,
+            }
+
     def approve_plan(self, tenant_id: str, student_id: str,
                      plan_id: str, reason: str) -> dict[str, str]:
         self._student(tenant_id, student_id)

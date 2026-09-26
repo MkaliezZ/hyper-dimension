@@ -8,7 +8,7 @@ from __future__ import annotations
 import hmac
 from typing import Any
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel, Field
 
 from hyper_dimension.assessment_runtime import AssessmentError, AssessmentService
@@ -48,6 +48,11 @@ class StudentAssignmentLookup(BaseModel):
     access_code: str = Field(min_length=1)
     signed_name: str = Field(min_length=1)
     bundle_ref: str = Field(min_length=1)
+
+
+class StudentResultLookup(BaseModel):
+    access_code: str = Field(min_length=1)
+    signed_name: str = Field(min_length=1)
 
 
 class StudentSubmission(BaseModel):
@@ -396,6 +401,16 @@ def create_local_education_app(
         ))
         return safe(lambda: assessment.student_assignment(
             tenant_id, student_ref, body.bundle_ref,
+        ))
+
+    @app.post("/api/v1/student/results/lookup")
+    def student_results_lookup(body: StudentResultLookup, response: Response) -> dict[str, Any]:
+        response.headers["Cache-Control"] = "no-store"
+        student_ref = safe(lambda: records.verify_student(
+            tenant_id, body.access_code, body.signed_name,
+        ))
+        return safe(lambda: alignment.student_result_view(
+            tenant_id, student_ref,
         ))
 
     @app.post("/api/v1/student/attempts")

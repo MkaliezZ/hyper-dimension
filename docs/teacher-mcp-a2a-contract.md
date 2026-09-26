@@ -35,6 +35,8 @@ MCP 是教师 Agent 的受控工具入口。明确的工具名、参数类型和
 
 本地模拟教师 HTTP API 现可读取 `GET /api/v1/teacher/classes/{class_ref}/pending-attempts` 和 `GET /api/v1/teacher/students/{student_ref}/reports`、`GET /api/v1/teacher/students/{student_ref}/reports/{report_ref}`。待批改列表只含引用，不下发待批改作答；报告接口仅返回已批准版本。评分草稿仍由教师 Agent 经 MCP 提交，页面不自行评分。教师还可经受保护的 `GET /api/v1/teacher/students/{student_ref}/plans` 查看四周计划草稿与已批准版本，通过原有 `POST /api/v1/teacher/students/{student_ref}/plans/{plan_ref}/approve` 填写依据并批准；计划草稿仍由教师 Agent 经 MCP 提交。
 
+模拟学生通过 `POST /api/v1/student/results/lookup` 以随机访问码与签写姓名再次验身，只读取本人已批准报告和已批准四周计划；草稿、评分量规及他人数据不返回。成功读取写入 `student.results_opened` 审计事件，并设置 `Cache-Control: no-store`。生产身份与监护核验尚未接入。
+
 MCP 不提供登记公开许可、正式发布、撤回许可工具。Agent 可以备草稿，发布由教师受保护 API 执行。租户与教师来自本地可信进程绑定，工具参数不能自称其他身份；该进程配置不等于生产登录。
 
 ## 成果展示状态约束

@@ -211,6 +211,24 @@ def test_four_student_alignment_uses_confirmed_comparable_evidence(tmp_path):
     assert drafts[0]["run_ref"] == preview["run_ref"]
     assert drafts[0]["plan"] == plan
     assert drafts[0]["status"] == "draft"
+    results_path = "/api/v1/student/results/lookup"
+    access_code = records.rotate_access_code("island", students["core"])
+    identity = {"access_code": access_code, "signed_name": "Synthetic core"}
+    assert client.post(results_path, json={
+        **identity, "signed_name": "Synthetic support",
+    }).status_code == 422
+    assert client.post(results_path, json={
+        **identity, "access_code": "wrong-code",
+    }).status_code == 422
+    initial_response = client.post(results_path, json=identity)
+    assert initial_response.headers["cache-control"] == "no-store"
+    before_approval = initial_response.json()
+    assert before_approval["plans"] == []
+    assert before_approval["reports"]
+    assert "writing_evidence" not in str(before_approval["reports"])
+    assert assessment.audit_event(
+        "island", students["core"], before_approval["audit_event_id"],
+    )["event_type"] == "student.results_opened"
     assert client.get(
         "/api/v1/teacher/students/missing-student/plans", headers=headers,
     ).status_code == 422
@@ -222,6 +240,11 @@ def test_four_student_alignment_uses_confirmed_comparable_evidence(tmp_path):
     assert approved["status"] == "approved"
     assert approved["approval_reason"] == "Teacher reviewed the four-week plan."
     assert approved["approved_at"]
+    student_view = client.post(results_path, json=identity).json()
+    assert len(student_view["plans"]) == 1
+    assert student_view["plans"][0]["plan_ref"] == drafted["plan_ref"]
+    assert student_view["plans"][0]["plan"] == plan
+    assert all(item["report"]["summary"] for item in student_view["reports"])
     assert client.post(approve_path, headers=headers, json={
         "reason": "Changed reason after approval",
     }).status_code == 422
@@ -257,6 +280,8 @@ def test_four_student_alignment_uses_confirmed_comparable_evidence(tmp_path):
     assert groups[students["transfer"]] == "迁移挑战"
     assert next_groups[students["transfer"]] == "核心练习"
     assert groups[students["core"]] == "核心练习"
+    assessment.revoke_consent("island", students["core"], "synthetic-guardian")
+    assert client.post(results_path, json=identity).status_code == 422
 
 
 def test_evidence_cannot_be_attached_to_another_student(tmp_path):
