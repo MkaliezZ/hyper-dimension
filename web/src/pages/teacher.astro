@@ -1,0 +1,301 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="教师工作台 · Hyper Dimension DEMO"
+  sideBarActiveItemID="teacher"
+>
+  <div id="teacher-dashboard" class="teacher-page">
+    <div class="teacher-heading">
+      <div>
+        <p class="teacher-eyebrow">HYPER DIMENSION · TEACHER DEMO</p>
+        <h1>教师工作台</h1>
+        <p>从班级进入学生档案，核对教材进度与可审计的归档记录。</p>
+      </div>
+      <span class="teacher-badge">仅限模拟资料</span>
+    </div>
+
+    <section class="teacher-card" aria-labelledby="connection-title">
+      <h2 id="connection-title">连接本地教师 API</h2>
+      <p class="teacher-hint">
+        令牌只保存在当前页面内存中，刷新后需重新输入。请勿使用真实学生资料或生产凭据。
+      </p>
+      <div id="teacher-connect" class="teacher-connect">
+        <label
+          >班级 ID<input
+            id="teacher-class"
+            name="class"
+            value="class-demo"
+            autocomplete="off"
+            required
+          /></label
+        >
+        <label
+          >本地演示令牌<input
+            id="teacher-token"
+            name="token"
+            type="password"
+            autocomplete="off"
+            required
+          /></label
+        >
+        <button class="btn-ac" type="button">读取班级</button>
+      </div>
+      <p
+        id="teacher-status"
+        class="teacher-status"
+        role="status"
+        aria-live="polite"
+      >
+        等待连接。
+      </p>
+    </section>
+
+    <div id="teacher-workspace" class="teacher-workspace" hidden>
+      <section class="teacher-card" aria-labelledby="roster-title">
+        <div class="teacher-card-heading">
+          <div>
+            <p class="teacher-eyebrow">CLASS</p><h2 id="roster-title">
+              班级学生
+            </h2>
+          </div>
+          <span id="roster-count" class="teacher-count"></span>
+        </div>
+        <ul id="teacher-roster" class="teacher-roster"></ul>
+        <p id="roster-more" class="teacher-hint" hidden>
+          当前只显示前 100 位学生。
+        </p>
+      </section>
+
+      <section
+        id="student-panel"
+        class="teacher-card"
+        aria-labelledby="student-title"
+        hidden
+      >
+        <div class="teacher-card-heading">
+          <div>
+            <p class="teacher-eyebrow">PRIVATE PROFILE</p><h2
+              id="student-title"
+            >
+              学生档案
+            </h2>
+          </div>
+          <span id="student-version" class="teacher-count"></span>
+        </div>
+        <p id="student-meta" class="teacher-hint"></p>
+        <div id="teacher-profile" class="teacher-profile">
+          <label
+            >姓名<input name="display_name" required maxlength="80" /></label
+          >
+          <label
+            >公开别名<input
+              name="public_alias"
+              required
+              maxlength="80"
+            /></label
+          >
+          <label class="teacher-wide"
+            >教学目标<textarea name="learning_goals" rows="3" maxlength="3000"
+            ></textarea></label
+          >
+          <label class="teacher-wide"
+            >教师备注<textarea name="teacher_notes" rows="4" maxlength="6000"
+            ></textarea></label
+          >
+          <button class="btn-ac" type="button">保存档案修订</button>
+        </div>
+        <div class="teacher-archive">
+          <h3>审计归档</h3>
+          <p class="teacher-hint">
+            显示归档引用和校验状态，不在页面中暴露原始答卷。
+          </p>
+          <ul id="teacher-artifacts"></ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initTeacherDashboard } from "../lib/teacherDashboard";
+  document.addEventListener("astro:page-load", initTeacherDashboard);
+  initTeacherDashboard();
+</script>
+
+<style>
+  .teacher-page {
+    color: var(--ac-text-dark);
+    max-width: 980px;
+    margin: 0 auto 4rem;
+  }
+  .teacher-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .teacher-heading h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0.25rem 0 0.5rem;
+  }
+  .teacher-heading p:last-child {
+    color: var(--ac-text);
+    line-height: 1.6;
+  }
+  .teacher-eyebrow {
+    color: var(--ac-primary-dark);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+  .teacher-badge,
+  .teacher-count {
+    background: var(--ac-cream-dark);
+    color: var(--ac-text-dark);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .teacher-card {
+    background: var(--ac-surface);
+    border: 1px solid var(--ac-border);
+    border-top: 4px solid var(--ac-primary);
+    border-radius: var(--ac-radius-lg);
+    box-shadow: var(--ac-shadow);
+    padding: clamp(1.1rem, 3vw, 1.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .teacher-card h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 0.25rem 0 0.7rem;
+  }
+  .teacher-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .teacher-hint {
+    color: var(--ac-text);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .teacher-connect,
+  .teacher-profile {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: end;
+  }
+  .teacher-connect label,
+  .teacher-profile label {
+    display: grid;
+    gap: 0.45rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .teacher-connect input,
+  .teacher-profile input,
+  .teacher-profile textarea {
+    width: 100%;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    padding: 0.75rem;
+    color: var(--ac-text-dark);
+    font: inherit;
+  }
+  .teacher-connect input:focus-visible,
+  .teacher-profile input:focus-visible,
+  .teacher-profile textarea:focus-visible,
+  .teacher-roster :global(button:focus-visible) {
+    outline: 3px solid var(--ac-primary);
+    outline-offset: 2px;
+  }
+  .teacher-connect button,
+  .teacher-profile button {
+    justify-self: start;
+  }
+  .teacher-status {
+    margin-top: 1rem;
+    min-height: 1.5rem;
+    color: var(--ac-primary-dark);
+    font-weight: 700;
+  }
+  .teacher-status[data-error="true"] {
+    color: #a33d38;
+  }
+  .teacher-roster {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1rem;
+  }
+  .teacher-roster :global(button) {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    background: var(--ac-cream);
+    transition: var(--ac-transition);
+  }
+  .teacher-roster :global(button:hover),
+  .teacher-roster :global(button[aria-current="true"]) {
+    border-color: var(--ac-primary);
+    background: var(--ac-surface-hover);
+    box-shadow: var(--ac-shadow);
+  }
+  .teacher-roster :global(small) {
+    color: var(--ac-text);
+  }
+  .teacher-wide {
+    grid-column: 1 / -1;
+  }
+  .teacher-archive {
+    margin-top: 2rem;
+    border-top: 1px solid var(--ac-border);
+    padding-top: 1.4rem;
+  }
+  .teacher-archive h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .teacher-archive :global(li) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--ac-border);
+    overflow-wrap: anywhere;
+  }
+  .teacher-archive :global(button) {
+    color: var(--ac-primary-dark);
+    font-weight: 800;
+    text-decoration: underline;
+  }
+  @media (max-width: 640px) {
+    .teacher-heading {
+      display: block;
+    }
+    .teacher-badge {
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .teacher-connect,
+    .teacher-profile {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

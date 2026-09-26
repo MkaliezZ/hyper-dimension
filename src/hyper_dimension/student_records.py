@@ -193,6 +193,42 @@ class StudentRecords:
             )
         return code
 
+    def list_class_students(
+        self, tenant_id: str, class_id: str,
+    ) -> dict[str, Any]:
+        """List a bounded private class roster for the bound teacher process."""
+        if not tenant_id or not class_id or len(class_id) > 120:
+            raise AssessmentError("Invalid class reference")
+        with self.assessment._db() as db:
+            rows = db.execute(
+                """SELECT s.student_id, s.age, s.grade, s.book_id,
+                          s.school_progress, p.display_name,
+                          p.public_alias, p.version
+                   FROM students s JOIN student_profiles p
+                     ON p.tenant_id = s.tenant_id
+                    AND p.student_id = s.student_id
+                   WHERE s.tenant_id = ? AND s.class_id = ?
+                   ORDER BY p.display_name, s.student_id LIMIT 101""",
+                (tenant_id, class_id),
+            ).fetchall()
+        return {
+            "class_ref": class_id,
+            "students": [
+                {
+                    "student_ref": row["student_id"],
+                    "display_name": row["display_name"],
+                    "public_alias": row["public_alias"],
+                    "age": row["age"],
+                    "grade": row["grade"],
+                    "book_id": row["book_id"],
+                    "school_progress": row["school_progress"],
+                    "version": row["version"],
+                }
+                for row in rows[:100]
+            ],
+            "has_more": len(rows) > 100,
+        }
+
     def profile(self, tenant_id: str, student_id: str) -> dict[str, Any]:
         with self.assessment._db() as db:
             row = db.execute(

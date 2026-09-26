@@ -195,6 +195,11 @@ def create_local_education_app(
             ))
         return student
 
+    @app.get("/api/v1/teacher/classes/{class_ref}/students",
+             dependencies=[Depends(teacher)])
+    def class_students(class_ref: str) -> dict[str, Any]:
+        return safe(lambda: records.list_class_students(tenant_id, class_ref))
+
     @app.get("/api/v1/teacher/students/{student_ref}", dependencies=[Depends(teacher)])
     def profile(student_ref: str) -> dict[str, Any]:
         return safe(lambda: records.profile(tenant_id, student_ref))

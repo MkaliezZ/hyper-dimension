@@ -18,6 +18,12 @@ export default defineConfig({
   vite: {
     server: {
       maxHeaderSize: 32768,
+      proxy: {
+        "/api": {
+          target: process.env.HD_LOCAL_API_ORIGIN || "http://127.0.0.1:8765",
+          changeOrigin: false,
+        },
+      },
     },
   },
 });
