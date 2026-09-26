@@ -1,0 +1,211 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="英语任务 · Hyper Dimension DEMO"
+  sideBarActiveItemID="student"
+>
+  <div id="student-workspace" class="student-page">
+    <div class="student-heading">
+      <p class="student-eyebrow">HYPER DIMENSION · STUDENT DEMO</p>
+      <h1>英语任务</h1>
+      <p>
+        用老师提供的题包编号和个人访问码进入任务。请签写姓名，防止答卷归错档。
+      </p>
+      <span class="student-badge">仅限模拟资料</span>
+    </div>
+
+    <section class="student-card" aria-labelledby="student-access-title">
+      <h2 id="student-access-title">领取任务</h2>
+      <p class="student-hint">
+        本地演示不会保存访问码到浏览器存储。这里不接收真实学生资料。
+      </p>
+      <div id="student-access" class="student-access">
+        <label
+          >题包编号<input id="student-bundle-ref" autocomplete="off" /></label
+        >
+        <label
+          >签写姓名<input id="student-signed-name" autocomplete="off" /></label
+        >
+        <label
+          >个人访问码<input
+            id="student-access-code"
+            type="password"
+            autocomplete="off"
+          /></label
+        >
+        <button type="button" class="btn-ac">读取题目</button>
+      </div>
+      <p
+        id="student-status"
+        class="student-status"
+        role="status"
+        aria-live="polite"
+      >
+        等待领取任务。
+      </p>
+    </section>
+
+    <section
+      id="student-questions-panel"
+      class="student-card"
+      aria-labelledby="student-questions-title"
+      hidden
+    >
+      <div class="student-card-heading">
+        <div>
+          <p class="student-eyebrow">READING & WRITING</p>
+          <h2 id="student-questions-title">本次题目</h2>
+        </div>
+        <span id="student-question-count" class="student-badge"></span>
+      </div>
+      <p id="student-assignment-meta" class="student-hint"></p>
+      <div id="student-questions" class="student-questions"></div>
+      <button id="student-submit" type="button" class="btn-ac">提交答卷</button>
+      <p
+        id="student-result"
+        class="student-status"
+        role="status"
+        aria-live="polite"
+      >
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initStudentWorkspace } from "../lib/studentWorkspace";
+  document.addEventListener("astro:page-load", initStudentWorkspace);
+  initStudentWorkspace();
+</script>
+
+<style>
+  .student-page {
+    color: var(--ac-text-dark);
+    max-width: 860px;
+    margin: 0 auto 4rem;
+  }
+  .student-heading {
+    margin-bottom: 1.5rem;
+  }
+  .student-eyebrow {
+    color: var(--ac-primary-dark);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+  .student-heading h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin: 0.25rem 0 0.5rem;
+  }
+  .student-heading p:not(.student-eyebrow) {
+    line-height: 1.6;
+    color: var(--ac-text);
+  }
+  .student-badge {
+    display: inline-block;
+    background: var(--ac-cream-dark);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .student-card {
+    background: var(--ac-surface);
+    border: 1px solid var(--ac-border);
+    border-top: 4px solid var(--ac-primary);
+    border-radius: var(--ac-radius-lg);
+    box-shadow: var(--ac-shadow);
+    padding: clamp(1.1rem, 3vw, 1.75rem);
+    margin-bottom: 1.25rem;
+  }
+  .student-card h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+  .student-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .student-hint {
+    color: var(--ac-text);
+    line-height: 1.55;
+    margin: 0.6rem 0 1rem;
+  }
+  .student-access {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: end;
+  }
+  .student-access label {
+    display: grid;
+    gap: 0.4rem;
+    font-weight: 700;
+  }
+  .student-access input,
+  .student-questions :global(textarea) {
+    width: 100%;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    padding: 0.75rem;
+    color: var(--ac-text-dark);
+    font: inherit;
+  }
+  .student-access button {
+    justify-self: start;
+  }
+  .student-access input:focus-visible,
+  .student-questions :global(textarea:focus-visible),
+  .student-questions :global(input:focus-visible) {
+    outline: 3px solid var(--ac-primary);
+    outline-offset: 2px;
+  }
+  .student-status {
+    min-height: 1.5rem;
+    margin-top: 1rem;
+    color: var(--ac-primary-dark);
+    font-weight: 700;
+  }
+  .student-status[data-error="true"] {
+    color: #a33d38;
+  }
+  .student-questions {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .student-questions :global(fieldset),
+  .student-questions :global(.writing-item) {
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    padding: 1rem;
+    background: var(--ac-surface-hover);
+  }
+  .student-questions :global(legend),
+  .student-questions :global(.writing-item label) {
+    font-weight: 800;
+    line-height: 1.5;
+  }
+  .student-questions :global(.option) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+  }
+  .student-questions :global(textarea) {
+    display: block;
+    min-height: 9rem;
+    margin-top: 0.7rem;
+  }
+  @media (max-width: 640px) {
+    .student-access {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

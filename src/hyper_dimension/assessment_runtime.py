@@ -446,6 +446,35 @@ class AssessmentService:
         ).fetchone()
         return {**_load(row["student_json"]), "audit_event_id": row["event_id"]} if row else None
 
+    def student_assignment(
+        self, tenant_id: str, student_id: str, bundle_id: str,
+    ) -> dict[str, Any]:
+        """Return only a published student view under current consent and policy."""
+        if not bundle_id:
+            raise AssessmentError("Assignment reference required")
+        with self._db() as db:
+            db.execute("BEGIN IMMEDIATE")
+            _, policy = self._context(db, tenant_id, student_id)
+            row = db.execute(
+                """SELECT student_json,policy_id,policy_version
+                   FROM item_bundles
+                   WHERE tenant_id=? AND student_id=? AND bundle_id=?
+                     AND status='published'""",
+                (tenant_id, student_id, bundle_id),
+            ).fetchone()
+            if row is None:
+                raise AssessmentError("No published assignment for this student")
+            if (row["policy_id"], row["policy_version"]) != (
+                policy["policy_id"], policy["version"],
+            ):
+                raise AssessmentError("Assignment policy is no longer active")
+            view = _load(row["student_json"])
+            event_id = self._event(
+                db, tenant_id, student_id, None, "bundle.opened",
+                "student", student_id, bundle_id,
+            )
+            return {**view, "audit_event_id": event_id}
+
     def submit(self, *, tenant_id: str, student_id: str, bundle_id: str,
                attempt_id: str, idempotency_key: str, answers: dict[str, str],
                auto_process: bool = True) -> dict[str, Any]:

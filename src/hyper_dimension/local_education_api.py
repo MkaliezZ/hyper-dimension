@@ -44,6 +44,12 @@ class AssignmentRequest(BaseModel):
     idempotency_key: str
 
 
+class StudentAssignmentLookup(BaseModel):
+    access_code: str = Field(min_length=1)
+    signed_name: str = Field(min_length=1)
+    bundle_ref: str = Field(min_length=1)
+
+
 class StudentSubmission(BaseModel):
     access_code: str
     signed_name: str
@@ -349,6 +355,15 @@ def create_local_education_app(
     def showcase_publish(student_ref: str, entry_ref: str) -> dict[str, str]:
         safe(lambda: records.publish_showcase(tenant_id, student_ref, entry_ref))
         return {"entry_ref": entry_ref, "status": "published"}
+
+    @app.post("/api/v1/student/assignments/lookup")
+    def student_assignment_lookup(body: StudentAssignmentLookup) -> dict[str, Any]:
+        student_ref = safe(lambda: records.verify_student(
+            tenant_id, body.access_code, body.signed_name,
+        ))
+        return safe(lambda: assessment.student_assignment(
+            tenant_id, student_ref, body.bundle_ref,
+        ))
 
     @app.post("/api/v1/student/attempts")
     def student_submit(body: StudentSubmission) -> dict[str, Any]:

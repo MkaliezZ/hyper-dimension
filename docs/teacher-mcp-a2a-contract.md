@@ -12,7 +12,7 @@ MCP 是教师 Agent 的受控工具入口。明确的工具名、参数类型和
 
 教师首次登记时由服务端生成 stu_ 加 UUID4 十六进制的内部 student_id；协议 student_ref 使用这个租户内不含姓名的引用。私有档案目录按租户哈希和 student_id 建立，不按姓名命名，因此改名和同名不会混档。
 
-学生每次进入教师版答题页时输入教师发放的随机访问码并签写姓名。访问码校验哈希后认证，姓名只核对是否拿错卡；二者都不是对外的稳定学生 ID。访问码可轮换，不放进 A2A DataPart、URL、公开卡片或日志。正式产品仍需补教师、学生、监护人账号和授权证明。
+学生每次进入教师版答题页时输入教师发放的随机访问码并签写姓名。访问码校验哈希后认证，姓名只核对是否拿错卡；二者都不是对外的稳定学生 ID。 本地模拟 `/student` 页通过 `POST /api/v1/student/assignments/lookup` 将访问码、签写姓名和题包引用放在请求正文，后端仅返回该学生当下策略允许的已发布题目视图，不返回答案或量规，并记录 `bundle.opened` 审计事件。访问码可轮换，不放进 A2A DataPart、URL、公开卡片或日志。正式产品仍需补教师、学生、监护人账号和授权证明。
 
 作答提交使用 bundle_ref、attempt_ref 和 idempotency_key。重复请求返回同一结果；改动内容后复用键会被拒绝。出题也使用幂等键。报告获准后，本地 API 保存完整私有快照：题目、答案、量规、作答、评分、批准策略与报告。数据库保留不可变版本、SHA-256 摘要和审计事件；学生文件夹是可核验导出，被篡改会校验失败。
 
@@ -51,6 +51,6 @@ MCP 不提供登记公开许可、正式发布、撤回许可工具。Agent 可�
 
 安装 python -m pip install -e ".[dev,mcp]"。将 HD_LOCAL_DB、HD_LOCAL_ARCHIVE 和 HD_TEXTBOOK_CATALOG_DB 指向仓库外目录；同一集群内模拟教师进程共用同一教材目录 DB，并设置本地会话的 HD_TENANT_ID 和 HD_TEACHER_ID；运行 python scripts/run_teacher_mcp.py 启动 stdio 工具。教师 Agent 自行选择模型并提交草稿，本地 MCP 启动脚本不读取 DEEPSEEK_API_KEY。配置、密钥和档案不得提交 Git。若要运行本地 HTTP 验收入口，再设 HD_TEACHER_TOKEN 为至少 24 字符的随机值，并运行 python scripts/run_local_education_api.py；它只监听 127.0.0.1，默认端口 8765；启动脚本使用 Agent 原生模式，学生提交先保存为待批改，需教师 Agent 调用 MCP 才完成评分。
 
-后续依次实现生产教师/监护人身份网关、PostgreSQL 迁移、2D 教师编辑页与学生答题页，然后将本机只读切片升级为受生产身份网关保护的 A2A Agent Card、端点及跨 Agent 兼容测试。MCP 与 A2A 复用同一业务服务与版本语义。
+后续依次实现生产教师/监护人身份网关、PostgreSQL 业务迁移，扩展已可运行的 2D 模拟教师编辑页与学生答题页到任务、报告和个人计划，再将本机只读切片升级为受生产身份网关保护的 A2A Agent Card、端点及跨 Agent 兼容测试。MCP 与 A2A 复用同一业务服务与版本语义。
 
 参考：[MCP 官方 Python SDK](https://github.com/modelcontextprotocol/python-sdk)、[A2A v1 规范](https://a2a-protocol.org/v1.0.0/specification/)。

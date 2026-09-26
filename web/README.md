@@ -17,7 +17,7 @@ pnpm build
 pnpm dev
 ~~~
 
-打开本地开发服务器显示的地址。教师入口位于 `/teacher`：目前可对**模拟数据**读取班级名单、编辑学生档案、校验归档，并查看教师 Agent 经 MCP 生成的进度建议快照、证据和逐人确认/调整/驳回。先按仓库 `docs/teacher-mcp-a2a-contract.md` 启动监听本机的模拟教师 API，设置同一进程使用的班级 ID 与至少 24 字符的演示令牌，再在页面输入。开发服务器将 `/api` 代理到 `HD_LOCAL_API_ORIGIN`（默认 `http://127.0.0.1:8765`）。进度建议需先由教师 Agent 调用 MCP 生成不可变快照，页面只负责读取证据与记录教师决定。静态构建部署时须由服务端配置同源 `/api` 路由；页面不包含生产登录。令牌仅存于当前页面内存，刷新即清除。不得输入真实学生资料或生产凭据。
+打开本地开发服务器显示的地址。教师入口位于 `/teacher`：目前可对**模拟数据**读取班级名单、编辑学生档案、校验归档，并查看教师 Agent 经 MCP 生成的进度建议快照、证据和逐人确认/调整/驳回。先按仓库 `docs/teacher-mcp-a2a-contract.md` 启动监听本机的模拟教师 API，设置同一进程使用的班级 ID 与至少 24 字符的演示令牌，再在页面输入。开发服务器将 `/api` 代理到 `HD_LOCAL_API_ORIGIN`（默认 `http://127.0.0.1:8765`）。进度建议需先由教师 Agent 调用 MCP 生成不可变快照，页面只负责读取证据与记录教师决定。学生入口位于 `/student`：模拟学生填题包编号、签写姓名和个人访问码，只读取本人的已发布题目；答案和量规不会下发。提交后只显示待批改状态，不伪造评测报告。访问码不写入 URL 或浏览器存储。静态构建部署时须由服务端配置同源 `/api` 路由；页面不包含生产登录。令牌仅存于当前页面内存，刷新即清除。不得输入真实学生资料或生产凭据。
 
 ## 更换内容和素材
 
@@ -59,7 +59,7 @@ pnpm build
 pnpm dev
 ```
 
-During local development, Vite proxies same-origin `/api` requests to `HD_LOCAL_API_ORIGIN` (default `http://127.0.0.1:8765`). Start the synthetic local education API described in `docs/teacher-mcp-a2a-contract.md`, then enter its class ID and demo token on `/teacher`. A static deployment needs its own same-origin `/api` reverse proxy. Never use real student data or production credentials in this demo.
+During local development, Vite proxies same-origin `/api` requests to `HD_LOCAL_API_ORIGIN` (default `http://127.0.0.1:8765`). Start the synthetic local education API described in `docs/teacher-mcp-a2a-contract.md`, then enter its class ID and demo token on `/teacher`. The `/student` demo asks for a bundle reference, signed name, and private access code, returns only that student's questions, and submits an auditable attempt. The answer key and rubric are never sent to the page. Access codes stay in page memory and are never placed in URLs or browser storage. A static deployment needs its own same-origin `/api` reverse proxy. Never use real student data or production credentials in this demo.
 
 ### Replace content and media
 
