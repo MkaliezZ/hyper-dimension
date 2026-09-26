@@ -1,6 +1,6 @@
 # 教师开岛与后端 MCP 默认接入 v0.1
 
-状态：本地可执行配置契约和 stdio 原型；已实现独立 Agent 工作负载令牌与实时委托检查的 Streamable HTTP MCP 认证切片，并通过真实 MCP HTTP 请求测试。云端开岛、正式身份网关数据库及自动激活尚未实现。Hermes Agent 是候选运行时，教师 Agent 可替换。
+状态：本地可执行配置契约和 stdio 原型；已实现独立 Agent 工作负载令牌与实时委托检查的 Streamable HTTP MCP 认证切片，并通过真实 MCP HTTP 请求测试。云端开岛、完整身份网关和自动激活尚未实现；PostgreSQL 基础关系与委托撤销已通过实库测试。Hermes Agent 是候选运行时，教师 Agent 可替换。
 
 ## 职责边界
 
@@ -16,7 +16,7 @@
 4. 开岛服务通过真实 MCP list_tools 探测必需工具，做授权/拒绝/跨岛测试，成功后才将绑定状态标为 active 并启动教师 Agent。失败则岛屿保持待激活，不能向教师宣称 Agent 已可用。
 5. 教师更换 Agent 运行时或模型时保留同一业务 MCP 契约。撤销教师身份、监护许可、岛屿委托或 Agent 凭据后，网关立即拒绝后续调用；业务审计保留历史引用。
 
-第 3—5 步仍是待开发门槛：当前 create_teacher_remote_mcp 只提供已签名短时 Agent 凭据、专用 audience/scope、岛屿/教师/Agent 委托匹配和每次 HTTP 请求关系检查的可执行入口；测试源为内存模拟，尚无正式凭据签发、持久委托关系和开岛事务。当前 Hermes 配置生成器因此输出 enabled: false，不会声称已经连到云端。正式激活必须由身份网关和连接探测完成，不能靠手动把布尔值改为 true 就视作已授权。Hermes 文档确认支持远程 HTTP MCP、环境变量引用、工具白名单；此处只采用其配置格式，未完成 Hermes 进程联调。
+第 3—5 步仍是待开发门槛：当前 create_teacher_remote_mcp 只提供已签名短时 Agent 凭据、专用 audience/scope、岛屿/教师/Agent 委托匹配和每次 HTTP 请求关系检查的可执行入口；HTTP 测试源为内存模拟；PostgreSQL 持久委托关系另经实库测试，但尚无正式凭据签发、网关装配和开岛事务。当前 Hermes 配置生成器因此输出 enabled: false，不会声称已经连到云端。正式激活必须由身份网关和连接探测完成，不能靠手动把布尔值改为 true 就视作已授权。Hermes 文档确认支持远程 HTTP MCP、环境变量引用、工具白名单；此处只采用其配置格式，未完成 Hermes 进程联调。
 
 ## MCP 能力按开发顺序
 

@@ -154,3 +154,62 @@ def test_invalid_provisioning_is_atomic_and_not_audited(store):
         assert conn.execute("SELECT count(*) FROM auth_audit_events").fetchone()[0] == 1
         assert conn.execute("SELECT count(*) FROM teacher_memberships").fetchone()[0] == 0
         assert conn.execute("SELECT count(*) FROM agent_instances").fetchone()[0] == 0
+
+
+def test_island_agent_and_teacher_revocation_all_stop_agent_access(store):
+    repo, dsn = store
+    provision(store)
+    call = lambda: repo.active_delegation(
+        ISSUER, "agent-1", "grant-1", "island-1", "teacher-1",
+    )
+    assert call()
+    with psycopg.connect(dsn) as conn:
+        conn.execute(
+            "UPDATE identity_islands SET state = 'suspended' WHERE island_id = %s",
+            ("island-1",),
+        )
+    assert not call()
+    with psycopg.connect(dsn) as conn:
+        conn.execute(
+            "UPDATE identity_islands SET state = 'active' WHERE island_id = %s",
+            ("island-1",),
+        )
+        conn.execute(
+            "UPDATE agent_instances SET state = 'suspended' WHERE agent_id = %s",
+            ("agent-1",),
+        )
+    assert not call()
+    with psycopg.connect(dsn) as conn:
+        conn.execute(
+            "UPDATE agent_instances SET state = 'active' WHERE agent_id = %s",
+            ("agent-1",),
+        )
+        conn.execute(
+            """UPDATE agent_delegations
+               SET valid_from = now() - interval '2 minutes',
+                   valid_until = now() - interval '1 minute'
+               WHERE delegation_id = %s""",
+            ("grant-1",),
+        )
+    assert not call()
+    with psycopg.connect(dsn) as conn:
+        conn.execute(
+            """UPDATE agent_delegations
+               SET valid_from = now() - interval '1 minute',
+                   valid_until = now() + interval '10 minutes'
+               WHERE delegation_id = %s""",
+            ("grant-1",),
+        )
+    assert call()
+    assert repo.revoke_teacher("island-1", "teacher-1",
+                               actor_ref="operator-test")
+    assert not call()
+
+
+def test_migration_checksum_rejects_changed_sql(store, tmp_path):
+    _, dsn = store
+    changed = tmp_path / "changed.sql"
+    changed.write_text(MIGRATION.read_text(encoding="utf-8") + "\n-- drift\n",
+                       encoding="utf-8")
+    with pytest.raises(ValueError, match="checksum"):
+        apply_identity_migration(dsn, changed)
