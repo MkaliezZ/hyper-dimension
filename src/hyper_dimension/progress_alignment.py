@@ -155,6 +155,87 @@ class ProgressAlignmentService:
             self._class_policy(db, tenant_id, row["class_id"])
             return {**dict(row), "prerequisite_nodes": _load(row["prerequisite_nodes_json"])}
 
+    def class_milestones(self, tenant_id: str, class_id: str) -> list[dict[str, Any]]:
+        """Read teacher-confirmed milestones for one authorized class."""
+        with self.assessment._db() as db:
+            self._class_policy(db, tenant_id, class_id)
+            rows = db.execute(
+                """SELECT milestone_id,capability_node,prerequisite_nodes_json,
+                          construct_ref,score_dimension,target_difficulty,
+                          support_threshold,transfer_threshold,target_date,
+                          version,created_at
+                   FROM class_milestones WHERE tenant_id=? AND class_id=?
+                   ORDER BY version DESC LIMIT 100""",
+                (tenant_id, class_id),
+            ).fetchall()
+            return [
+                {
+                    **{key: value for key, value in dict(row).items()
+                       if key != "prerequisite_nodes_json"},
+                    "prerequisite_nodes": _load(row["prerequisite_nodes_json"]),
+                }
+                for row in rows
+            ]
+
+    def class_runs(self, tenant_id: str, class_id: str) -> list[dict[str, Any]]:
+        """Read recent immutable alignment snapshots for one authorized class."""
+        with self.assessment._db() as db:
+            self._class_policy(db, tenant_id, class_id)
+            rows = db.execute(
+                """SELECT r.run_id,r.milestone_id,r.body_json,r.created_at
+                   FROM alignment_runs r JOIN class_milestones m
+                     ON m.tenant_id=r.tenant_id AND m.milestone_id=r.milestone_id
+                   WHERE r.tenant_id=? AND m.class_id=?
+                   ORDER BY r.created_at DESC,r.run_id DESC LIMIT 50""",
+                (tenant_id, class_id),
+            ).fetchall()
+            result = []
+            for row in rows:
+                snapshot = _load(row["body_json"])
+                result.append({
+                    "run_ref": row["run_id"],
+                    "milestone_ref": row["milestone_id"],
+                    "milestone_version": snapshot["milestone_version"],
+                    "recommendation_count": len(snapshot["recommendations"]),
+                    "created_at": row["created_at"],
+                })
+            return result
+
+    def run(self, tenant_id: str, run_id: str) -> dict[str, Any]:
+        """Read one snapshot with its teacher decisions; never recompute it."""
+        with self.assessment._db() as db:
+            row = db.execute(
+                """SELECT r.body_json,r.created_at,m.class_id
+                   FROM alignment_runs r JOIN class_milestones m
+                     ON m.tenant_id=r.tenant_id AND m.milestone_id=r.milestone_id
+                   WHERE r.tenant_id=? AND r.run_id=?""",
+                (tenant_id, run_id),
+            ).fetchone()
+            if row is None:
+                raise AssessmentError("Unknown alignment run")
+            self._class_policy(db, tenant_id, row["class_id"])
+            decisions = db.execute(
+                """SELECT student_id,decision,override_group,reason,created_at
+                   FROM alignment_decisions
+                   WHERE tenant_id=? AND run_id=? ORDER BY created_at,student_id""",
+                (tenant_id, run_id),
+            ).fetchall()
+            return {
+                "run_ref": run_id,
+                **_load(row["body_json"]),
+                "created_at": row["created_at"],
+                "decisions": [
+                    {
+                        "student_ref": decision["student_id"],
+                        "decision": decision["decision"],
+                        "override_group": decision["override_group"],
+                        "reason": decision["reason"],
+                        "created_at": decision["created_at"],
+                    }
+                    for decision in decisions
+                ],
+            }
+
     def propose_evidence(
         self, *, tenant_id: str, student_id: str, report_id: str,
         capability_node: str, construct_ref: str, score_dimension: str,

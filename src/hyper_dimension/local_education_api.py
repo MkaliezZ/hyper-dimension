@@ -242,12 +242,38 @@ def create_local_education_app(
             tenant_id=tenant_id, class_id=class_ref, **body.model_dump(),
         ))
 
+    @app.get("/api/v1/teacher/classes/{class_ref}/milestones",
+             dependencies=[Depends(teacher)])
+    def class_milestones(class_ref: str) -> dict[str, Any]:
+        return {"class_ref": class_ref, "milestones": safe(
+            lambda: alignment.class_milestones(tenant_id, class_ref),
+        )}
+
+    @app.get("/api/v1/teacher/classes/{class_ref}/alignment-runs",
+             dependencies=[Depends(teacher)])
+    def class_alignment_runs(class_ref: str) -> dict[str, Any]:
+        return {"class_ref": class_ref, "runs": safe(
+            lambda: alignment.class_runs(tenant_id, class_ref),
+        )}
+
+    @app.get("/api/v1/teacher/alignment-runs/{run_ref}",
+             dependencies=[Depends(teacher)])
+    def alignment_run(run_ref: str) -> dict[str, Any]:
+        return safe(lambda: alignment.run(tenant_id, run_ref))
+
     @app.post("/api/v1/teacher/classes/{class_ref}/milestones",
               dependencies=[Depends(teacher)])
     def create_milestone(class_ref: str, body: ClassMilestone) -> dict[str, Any]:
         return safe(lambda: alignment.create_milestone(
             tenant_id=tenant_id, class_id=class_ref, **body.model_dump(),
         ))
+
+    @app.get("/api/v1/teacher/students/{student_ref}/alignment-evidence",
+             dependencies=[Depends(teacher)])
+    def student_alignment_evidence(student_ref: str) -> dict[str, Any]:
+        return {"student_ref": student_ref, "evidence": safe(
+            lambda: alignment.student_evidence(tenant_id, student_ref),
+        )}
 
     @app.post("/api/v1/teacher/students/{student_ref}/alignment-evidence/{evidence_ref}/confirm",
               dependencies=[Depends(teacher)])

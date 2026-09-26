@@ -17,7 +17,7 @@ pnpm build
 pnpm dev
 ~~~
 
-打开本地开发服务器显示的地址。教师入口位于 `/teacher`：目前可对**模拟数据**读取班级名单、编辑学生档案和校验归档。先按仓库 `docs/teacher-mcp-a2a-contract.md` 启动监听本机的模拟教师 API，设置同一进程使用的班级 ID 与至少 24 字符的演示令牌，再在页面输入。开发服务器将 `/api` 代理到 `HD_LOCAL_API_ORIGIN`（默认 `http://127.0.0.1:8765`）。静态构建部署时须由服务端配置同源 `/api` 路由；页面不包含生产登录。令牌仅存于当前页面内存，刷新即清除。不得输入真实学生资料或生产凭据。
+打开本地开发服务器显示的地址。教师入口位于 `/teacher`：目前可对**模拟数据**读取班级名单、编辑学生档案、校验归档，并查看教师 Agent 经 MCP 生成的进度建议快照、证据和逐人确认/调整/驳回。先按仓库 `docs/teacher-mcp-a2a-contract.md` 启动监听本机的模拟教师 API，设置同一进程使用的班级 ID 与至少 24 字符的演示令牌，再在页面输入。开发服务器将 `/api` 代理到 `HD_LOCAL_API_ORIGIN`（默认 `http://127.0.0.1:8765`）。进度建议需先由教师 Agent 调用 MCP 生成不可变快照，页面只负责读取证据与记录教师决定。静态构建部署时须由服务端配置同源 `/api` 路由；页面不包含生产登录。令牌仅存于当前页面内存，刷新即清除。不得输入真实学生资料或生产凭据。
 
 ## 更换内容和素材
 
@@ -47,7 +47,7 @@ media: { type: "video", src: "media/my-video.mp4", poster: "media/poster.webp", 
 
 ## English
 
-This runnable **2D visual DEMO** is the public island frontend baseline. Lin Yu, the six houses, cards, articles, avatar, island and sky are fictional, replaceable content. The `/teacher` page now reads a synthetic class roster, edits private student profiles, and verifies archive references through the local teacher API. It does not provide production sign-in, real student data, or the full teacher assessment workflow.
+This runnable **2D visual DEMO** is the public island frontend baseline. Lin Yu, the six houses, cards, articles, avatar, island and sky are fictional, replaceable content. The `/teacher` page now reads a synthetic class roster, edits private student profiles, verifies archive references, and lets the teacher inspect alignment snapshots and evidence before confirming, overriding, or rejecting each recommendation. It does not provide production sign-in, real student data, or the full teacher assessment workflow.
 
 ### Run locally
 

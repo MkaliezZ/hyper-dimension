@@ -68,6 +68,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
       </section>
 
+      <section class="teacher-card" aria-labelledby="alignment-title">
+        <div class="teacher-card-heading">
+          <div>
+            <p class="teacher-eyebrow">LEARNING ALIGNMENT</p>
+            <h2 id="alignment-title">班级进度对齐</h2>
+          </div>
+          <button id="alignment-refresh" type="button">刷新</button>
+        </div>
+        <p class="teacher-hint">
+          教师 Agent 通过 MCP
+          生成不可改写的建议快照。教师在这里核对证据，再逐人确认、改组或驳回；没有证据时保持“待补证”。
+        </p>
+        <div class="alignment-controls">
+          <label
+            >共同能力里程碑
+            <select id="alignment-milestone" aria-label="共同能力里程碑"
+            ></select>
+          </label>
+          <label
+            >建议快照
+            <select id="alignment-run" aria-label="建议快照"></select>
+          </label>
+        </div>
+        <p
+          id="alignment-status"
+          class="teacher-hint"
+          role="status"
+          aria-live="polite"
+        >
+          连接后读取班级进度。
+        </p>
+        <ul id="alignment-recommendations" class="alignment-recommendations">
+        </ul>
+      </section>
+
       <section
         id="student-panel"
         class="teacher-card"
@@ -90,7 +125,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             >姓名<input name="display_name" required maxlength="80" /></label
           >
           <label
-            >公开别名<input
+            >公开别名（不得含姓名）<input
               name="public_alias"
               required
               maxlength="80"
@@ -233,6 +268,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .teacher-status[data-error="true"] {
     color: #a33d38;
   }
+  #alignment-status[data-error="true"] {
+    color: #a33d38;
+  }
   .teacher-roster {
     display: grid;
     gap: 0.55rem;
@@ -258,6 +296,85 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
   .teacher-roster :global(small) {
     color: var(--ac-text);
+  }
+  .alignment-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .alignment-controls label {
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .alignment-controls select,
+  .alignment-recommendations :global(input),
+  .alignment-recommendations :global(select) {
+    width: 100%;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    padding: 0.65rem;
+    color: var(--ac-text-dark);
+    font: inherit;
+  }
+  #alignment-refresh,
+  .alignment-recommendations :global(button) {
+    border: 1px solid var(--ac-primary-dark);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    color: var(--ac-primary-dark);
+    padding: 0.55rem 0.8rem;
+    font-weight: 800;
+  }
+  .alignment-recommendations {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .alignment-recommendations :global(li) {
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    background: var(--ac-surface-hover);
+    padding: 1rem;
+  }
+  .alignment-recommendations :global(h3) {
+    font-size: 1rem;
+    font-weight: 800;
+  }
+  .alignment-recommendations :global(p) {
+    margin: 0.4rem 0;
+    line-height: 1.5;
+  }
+  .alignment-recommendations :global(.alignment-decision) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+  .alignment-recommendations :global(.alignment-decision label) {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .alignment-recommendations :global(.alignment-decision button) {
+    justify-self: start;
+  }
+  .alignment-recommendations :global(.alignment-evidence) {
+    font-size: 0.85rem;
+    color: var(--ac-text);
+    overflow-wrap: anywhere;
+  }
+  .alignment-controls select:focus-visible,
+  #alignment-refresh:focus-visible,
+  .alignment-recommendations :global(button:focus-visible),
+  .alignment-recommendations :global(input:focus-visible),
+  .alignment-recommendations :global(select:focus-visible) {
+    outline: 3px solid var(--ac-primary);
+    outline-offset: 2px;
   }
   .teacher-wide {
     grid-column: 1 / -1;
@@ -294,7 +411,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       margin-top: 1rem;
     }
     .teacher-connect,
-    .teacher-profile {
+    .teacher-profile,
+    .alignment-controls,
+    .alignment-recommendations :global(.alignment-decision) {
       grid-template-columns: 1fr;
     }
   }
