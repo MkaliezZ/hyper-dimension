@@ -63,6 +63,11 @@ def test_teacher_pending_attempts_and_approved_reports(tmp_path):
         agent_native=True,
     ))
     headers = {"Authorization": "Bearer synthetic-teacher-token-32-characters"}
+    denied_client = TestClient(create_local_education_app(
+        assessment, records, tenant_id="island-a", teacher_id="teacher-a",
+        teacher_token="synthetic-teacher-token-32-characters",
+        agent_native=True, class_assignment_check=lambda *_: False,
+    ))
     # A token for teacher A must not expose tenant-local records of teacher B.
     other_path = "/api/v1/teacher/students/" + other["student_ref"]
     assert client.get("/api/v1/teacher/classes/class-other/students",
@@ -81,6 +86,9 @@ def test_teacher_pending_attempts_and_approved_reports(tmp_path):
     assert client.get(
         "/api/v1/teacher/students/" + student["student_ref"], headers=headers,
     ).status_code == 200
+    assert denied_client.get(
+        "/api/v1/teacher/students/" + student["student_ref"], headers=headers,
+    ).status_code == 422
     pending_path = "/api/v1/teacher/classes/class-a/pending-attempts"
     reports_path = "/api/v1/teacher/students/" + student["student_ref"] + "/reports"
     assert client.get(pending_path).status_code == 401

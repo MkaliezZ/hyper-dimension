@@ -99,6 +99,7 @@ def build_synthetic_island_services(
     teacher_api = create_local_education_app(
         assessment, records, tenant_id=island_id, teacher_id=teacher_id,
         teacher_verifier=teacher_verifier, agent_native=True, catalog=catalog,
+        class_assignment_check=store.active_teacher_class,
     )
     remote_mcp = create_teacher_remote_mcp(
         assessment, records, island_id=island_id, teacher_id=teacher_id,

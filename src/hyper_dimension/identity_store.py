@@ -13,8 +13,8 @@ from uuid import uuid4
 import psycopg
 
 
-def apply_identity_migration(dsn: str, sql_path: Path) -> None:
-    """Apply the initial schema once, atomically, to an empty database."""
+def _apply_migration(dsn: str, sql_path: Path, version: str) -> None:
+    """Apply one checksum-locked schema revision in a transaction."""
     sql = sql_path.read_text(encoding="utf-8")
     digest = sha256(sql.encode("utf-8")).hexdigest()
     with psycopg.connect(dsn, connect_timeout=5) as conn:
@@ -28,7 +28,7 @@ def apply_identity_migration(dsn: str, sql_path: Path) -> None:
         )
         row = conn.execute(
             "SELECT checksum FROM schema_migrations WHERE version = %s",
-            ("0001_identity_gateway",),
+            (version,),
         ).fetchone()
         if row is not None:
             if row[0] != digest:
@@ -37,8 +37,16 @@ def apply_identity_migration(dsn: str, sql_path: Path) -> None:
         conn.execute(sql)
         conn.execute(
             "INSERT INTO schema_migrations(version, checksum) VALUES (%s, %s)",
-            ("0001_identity_gateway", digest),
+            (version, digest),
         )
+
+
+def apply_identity_migration(dsn: str, sql_path: Path) -> None:
+    _apply_migration(dsn, sql_path, "0001_identity_gateway")
+
+
+def apply_teacher_class_migration(dsn: str, sql_path: Path) -> None:
+    _apply_migration(dsn, sql_path, "0002_teacher_class_assignments")
 
 
 class IdentityStore:
@@ -52,14 +60,15 @@ class IdentityStore:
     def _audit(conn, operation: str, actor_ref: str, *,
                island_id: str | None = None, teacher_id: str | None = None,
                agent_id: str | None = None,
-               delegation_id: str | None = None) -> None:
+               delegation_id: str | None = None,
+               class_id: str | None = None) -> None:
         conn.execute(
             """INSERT INTO auth_audit_events
                (event_id, operation, outcome, actor_ref, island_id,
-                teacher_id, agent_id, delegation_id)
-               VALUES (%s,%s,'completed',%s,%s,%s,%s,%s)""",
+                teacher_id, agent_id, delegation_id, class_id)
+               VALUES (%s,%s,'completed',%s,%s,%s,%s,%s,%s)""",
             (str(uuid4()), operation, actor_ref, island_id,
-             teacher_id, agent_id, delegation_id),
+             teacher_id, agent_id, delegation_id, class_id),
         )
 
     def register_teacher(self, teacher_id: str, issuer: str, subject: str,
@@ -117,6 +126,85 @@ class IdentityStore:
             self._audit(conn, "teacher.revoke", actor_ref,
                         island_id=island_id, teacher_id=teacher_id)
             return True
+
+    def register_class(self, island_id: str, class_id: str,
+                       *, actor_ref: str) -> None:
+        if not class_id:
+            raise ValueError("Class reference required")
+        with psycopg.connect(self.dsn, connect_timeout=5) as conn:
+            row = conn.execute(
+                """INSERT INTO identity_classes (island_id, class_id, state)
+                   SELECT island_id, %s, 'active'
+                   FROM identity_islands
+                   WHERE island_id = %s AND state = 'active'
+                   RETURNING class_id""",
+                (class_id, island_id),
+            ).fetchone()
+            if row is None:
+                raise ValueError("Island inactive")
+            self._audit(conn, "class.register", actor_ref,
+                        island_id=island_id, class_id=class_id)
+
+    def grant_teacher_class(self, island_id: str, class_id: str,
+                            teacher_id: str, *, actor_ref: str) -> None:
+        with psycopg.connect(self.dsn, connect_timeout=5) as conn:
+            row = conn.execute(
+                """INSERT INTO teacher_class_assignments
+                   (island_id, class_id, teacher_id, state)
+                   SELECT c.island_id,c.class_id,m.teacher_id,'active'
+                   FROM identity_classes c
+                   JOIN identity_islands i ON i.island_id=c.island_id
+                   JOIN teacher_memberships m ON m.island_id=c.island_id
+                   JOIN identity_principals p ON p.principal_id=m.teacher_id
+                   WHERE c.island_id=%s AND c.class_id=%s
+                     AND c.state='active' AND i.state='active'
+                     AND m.teacher_id=%s AND m.state='active'
+                     AND p.kind='teacher' AND p.state='active'
+                   RETURNING class_id""",
+                (island_id, class_id, teacher_id),
+            ).fetchone()
+            if row is None:
+                raise ValueError("Class or teacher membership inactive")
+            self._audit(conn, "teacher.class.grant", actor_ref,
+                        island_id=island_id, class_id=class_id,
+                        teacher_id=teacher_id)
+
+    def revoke_teacher_class(self, island_id: str, class_id: str,
+                             teacher_id: str, *, actor_ref: str) -> bool:
+        with psycopg.connect(self.dsn, connect_timeout=5) as conn:
+            row = conn.execute(
+                """UPDATE teacher_class_assignments
+                   SET state='revoked', revoked_at=now(), version=version+1
+                   WHERE island_id=%s AND class_id=%s AND teacher_id=%s
+                     AND state='active'
+                   RETURNING class_id""",
+                (island_id, class_id, teacher_id),
+            ).fetchone()
+            if row is None:
+                return False
+            self._audit(conn, "teacher.class.revoke", actor_ref,
+                        island_id=island_id, class_id=class_id,
+                        teacher_id=teacher_id)
+            return True
+
+    def active_teacher_class(self, island_id: str, class_id: str,
+                             teacher_id: str) -> bool:
+        with psycopg.connect(self.dsn, connect_timeout=5) as conn:
+            row = conn.execute(
+                """SELECT 1 FROM teacher_class_assignments a
+                   JOIN identity_classes c
+                     ON c.island_id=a.island_id AND c.class_id=a.class_id
+                   JOIN teacher_memberships m
+                     ON m.island_id=a.island_id AND m.teacher_id=a.teacher_id
+                   JOIN identity_principals p ON p.principal_id=a.teacher_id
+                   JOIN identity_islands i ON i.island_id=a.island_id
+                   WHERE a.island_id=%s AND a.class_id=%s AND a.teacher_id=%s
+                     AND a.state='active' AND c.state='active'
+                     AND m.state='active' AND p.kind='teacher'
+                     AND p.state='active' AND i.state='active'""",
+                (island_id, class_id, teacher_id),
+            ).fetchone()
+            return row is not None
 
     def register_agent(self, agent_id: str, issuer: str, island_id: str,
                        teacher_id: str, *, actor_ref: str) -> None:

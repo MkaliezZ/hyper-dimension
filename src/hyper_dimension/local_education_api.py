@@ -6,7 +6,7 @@ development data; real students require production identity and guardian proof.
 from __future__ import annotations
 
 import hmac
-from typing import Any
+from typing import Any, Callable
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Response
 from pydantic import BaseModel, Field
@@ -127,6 +127,7 @@ def create_local_education_app(
     guardian_authorization: GuardianAuthorizationProvider | None = None,
     agent_native: bool = False,
     catalog: TextbookCatalog | None = None,
+    class_assignment_check: Callable[[str, str, str], bool] | None = None,
 ) -> FastAPI:
     if (not tenant_id or not teacher_id or records.teacher_id != teacher_id
             or (teacher_token is None) == (teacher_verifier is None)
@@ -167,6 +168,13 @@ def create_local_education_app(
     def require_teacher_class(class_ref: str) -> None:
         if not class_ref or len(class_ref) > 120:
             raise AssessmentError("Invalid class reference")
+        if class_assignment_check is not None:
+            try:
+                allowed = class_assignment_check(tenant_id, class_ref, teacher_id)
+            except Exception as exc:
+                raise AssessmentError("Class authorization unavailable") from exc
+            if not allowed:
+                raise AssessmentError("No active teacher assignment for this class")
         with assessment._db() as db:
             row = db.execute(
                 """SELECT teacher_id FROM teacher_policies

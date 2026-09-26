@@ -23,7 +23,8 @@ from psycopg import sql
 from psycopg.conninfo import make_conninfo
 
 from hyper_dimension.agent_mcp_identity import AgentMCPTokenVerifier
-from hyper_dimension.identity_store import IdentityStore, apply_identity_migration
+from hyper_dimension.identity_store import (IdentityStore, apply_identity_migration,
+                                            apply_teacher_class_migration)
 from hyper_dimension.identity_runtime import build_synthetic_island_services
 from hyper_dimension.assessment_runtime import AssessmentService
 from hyper_dimension.student_records import StudentRecords
@@ -32,6 +33,7 @@ from hyper_dimension.teacher_identity import TeacherOIDCVerifier
 ISSUER = "https://id.example.test/realms/demo"
 RESOURCE = "https://mcp.example.test/mcp"
 MIGRATION = Path(__file__).parents[1] / "migrations" / "0001_identity_gateway.sql"
+CLASS_MIGRATION = Path(__file__).parents[1] / "migrations" / "0002_teacher_class_assignments.sql"
 
 
 @pytest.fixture
@@ -44,6 +46,8 @@ def store():
     try:
         apply_identity_migration(dsn, MIGRATION)
         apply_identity_migration(dsn, MIGRATION)
+        apply_teacher_class_migration(dsn, CLASS_MIGRATION)
+        apply_teacher_class_migration(dsn, CLASS_MIGRATION)
         yield IdentityStore(dsn, agent_client_id="teacher-runtime"), dsn
     finally:
         with psycopg.connect(base_dsn) as conn:
@@ -58,6 +62,9 @@ def provision(store):
     repo.register_island("island-1", actor_ref="operator-test")
     repo.register_island("island-2", actor_ref="operator-test")
     repo.grant_teacher("island-1", "teacher-1", actor_ref="operator-test")
+    repo.register_class("island-1", "class-1", actor_ref="operator-test")
+    repo.grant_teacher_class("island-1", "class-1", "teacher-1",
+                             actor_ref="operator-test")
     repo.register_agent("agent-1", ISSUER, "island-1", "teacher-1",
                         actor_ref="operator-test")
     repo.grant_delegation(
@@ -71,6 +78,8 @@ def test_live_teacher_and_delegation_revocation_is_persistent(store):
     repo, dsn = store
     provision(store)
     assert repo.active_teacher(ISSUER, "idp-teacher-1", "island-1", "teacher-1")
+    assert repo.active_teacher_class("island-1", "class-1", "teacher-1")
+    assert not repo.active_teacher_class("island-1", "missing", "teacher-1")
     assert not repo.active_teacher(ISSUER, "idp-teacher-1", "island-2", "teacher-1")
     assert not repo.active_teacher(ISSUER, "other", "island-1", "teacher-1")
     assert repo.active_delegation(ISSUER, "agent-1", "grant-1",
@@ -94,9 +103,29 @@ def test_live_teacher_and_delegation_revocation_is_persistent(store):
         events = conn.execute(
             "SELECT operation FROM auth_audit_events ORDER BY occurred_at"
         ).fetchall()
-    assert len(events) == 8
+    assert len(events) == 10
     assert ("agent.delegation.revoke",) in events
     assert ("teacher.revoke",) in events
+
+
+def test_class_assignment_revocation_is_live_and_audited(store):
+    repo, dsn = store
+    provision(store)
+    repo.register_class("island-1", "class-2", actor_ref="operator-test")
+    assert not repo.active_teacher_class("island-1", "class-2", "teacher-1")
+    assert repo.revoke_teacher_class(
+        "island-1", "class-1", "teacher-1", actor_ref="operator-test",
+    )
+    assert not repo.revoke_teacher_class(
+        "island-1", "class-1", "teacher-1", actor_ref="operator-test",
+    )
+    assert not repo.active_teacher_class("island-1", "class-1", "teacher-1")
+    with psycopg.connect(dsn) as conn:
+        row = conn.execute(
+            """SELECT class_id FROM auth_audit_events
+               WHERE operation='teacher.class.revoke'""",
+        ).fetchone()
+    assert row == ("class-1",)
 
 
 def test_signed_teacher_and_agent_verifiers_use_live_postgres(store):
@@ -220,6 +249,17 @@ def test_migration_checksum_rejects_changed_sql(store, tmp_path):
         apply_identity_migration(dsn, changed)
 
 
+def test_class_migration_checksum_rejects_changed_sql(store, tmp_path):
+    _, dsn = store
+    changed = tmp_path / "changed-class.sql"
+    changed.write_text(
+        CLASS_MIGRATION.read_text(encoding="utf-8") + "\n-- drift\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="checksum"):
+        apply_teacher_class_migration(dsn, changed)
+
+
 def test_http_teacher_and_mcp_use_same_live_postgres_acl(store, tmp_path):
     repo, dsn = store
     provision(store)
@@ -232,6 +272,13 @@ def test_http_teacher_and_mcp_use_same_live_postgres_acl(store, tmp_path):
         lambda request: httpx.Response(200, json={"keys": [jwk]})
     )) as jwks_client:
         assessment = AssessmentService(tmp_path / "synthetic.sqlite3", object())
+        assessment.authorize_policy(
+            tenant_id="island-1", class_id="class-1",
+            teacher_id="teacher-1", policy_id="policy-1",
+            weights={"reading": 0.5, "content": 0.125,
+                     "communication": 0.125, "organisation": 0.125,
+                     "language": 0.125},
+        )
         records = StudentRecords(
             assessment, tmp_path / "archive", teacher_id="teacher-1",
         )
@@ -297,6 +344,13 @@ def test_http_teacher_and_mcp_use_same_live_postgres_acl(store, tmp_path):
             assert teacher_client.get(
                 profile_path, headers=teacher_headers,
             ).status_code == 200
+            repo.revoke_teacher_class(
+                "island-1", "class-1", "teacher-1",
+                actor_ref="operator-test",
+            )
+            assert teacher_client.get(
+                profile_path, headers=teacher_headers,
+            ).status_code == 422
             repo.revoke_teacher("island-1", "teacher-1",
                                 actor_ref="operator-test")
             assert teacher_client.get(
