@@ -106,6 +106,7 @@ def build_synthetic_island_services(
         issuer=issuer, resource_url=mcp_resource_url,
         client_id=agent_client_id, jwks_supplier=jwks,
         active_delegation=store.active_delegation, catalog=catalog,
+        class_assignment_check=store.active_teacher_class,
     )
     return SyntheticIslandServices(
         teacher_api=teacher_api,

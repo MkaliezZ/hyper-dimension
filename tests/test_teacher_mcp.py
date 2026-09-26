@@ -197,6 +197,40 @@ def test_mcp_tools_are_teacher_scoped_and_do_not_publish(setup):
 
 
 
+def test_mcp_tools_fail_closed_after_class_assignment_revocation(setup):
+    assessment, records, student = setup
+    allowed = {"value": True}
+
+    def check(island_id, class_id, teacher_id):
+        assert (island_id, class_id, teacher_id) == (
+            "island-1", "class-1", "teacher-1",
+        )
+        return allowed["value"]
+
+    server = create_teacher_mcp(
+        assessment, records, tenant_id="island-1", teacher_id="teacher-1",
+        class_assignment_check=check,
+    )
+
+    def call(name, **arguments):
+        return asyncio.run(server._tool_manager.call_tool(name, arguments))
+
+    ref = student["student_ref"]
+    assert call("student_profile_read", student_ref=ref)["student_id"] == ref
+    allowed["value"] = False
+    for name, arguments in (
+        ("student_profile_read", {"student_ref": ref}),
+        ("assessment_generation_context_read", {"student_ref": ref}),
+        ("assessment_pending_attempts_read", {"class_ref": "class-1"}),
+        ("class_textbook_binding_read", {"class_ref": "class-1"}),
+    ):
+        with pytest.raises(Exception):
+            call(name, **arguments)
+    allowed["value"] = None
+    with pytest.raises(Exception):
+        call("student_profile_read", student_ref=ref)
+
+
 def test_local_api_authentication_archive_and_publication(setup):
     from fastapi.testclient import TestClient
     from hyper_dimension.local_education_api import create_local_education_app

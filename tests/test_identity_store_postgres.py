@@ -336,14 +336,18 @@ def test_http_teacher_and_mcp_use_same_live_postgres_acl(store, tmp_path):
             assert mcp_client.post(
                 "/mcp", json=initialize, headers=mcp_headers,
             ).status_code == 200
-            repo.revoke_delegation("grant-1", actor_ref="operator-test")
-            assert mcp_client.post(
-                "/mcp", json={"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
-                headers=mcp_headers,
-            ).status_code == 401
-            assert teacher_client.get(
-                profile_path, headers=teacher_headers,
-            ).status_code == 200
+            profile_call = {
+                "jsonrpc": "2.0", "id": 3, "method": "tools/call",
+                "params": {
+                    "name": "student_profile_read",
+                    "arguments": {"student_ref": student["student_ref"]},
+                },
+            }
+            tool_result = mcp_client.post(
+                "/mcp", json=profile_call, headers=mcp_headers,
+            )
+            assert tool_result.status_code == 200
+            assert tool_result.json()["result"].get("isError") is not True
             repo.revoke_teacher_class(
                 "island-1", "class-1", "teacher-1",
                 actor_ref="operator-test",
@@ -351,6 +355,16 @@ def test_http_teacher_and_mcp_use_same_live_postgres_acl(store, tmp_path):
             assert teacher_client.get(
                 profile_path, headers=teacher_headers,
             ).status_code == 422
+            denied_tool = mcp_client.post(
+                "/mcp", json=profile_call, headers=mcp_headers,
+            )
+            assert denied_tool.status_code == 200
+            assert denied_tool.json()["result"]["isError"] is True
+            repo.revoke_delegation("grant-1", actor_ref="operator-test")
+            assert mcp_client.post(
+                "/mcp", json={"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
+                headers=mcp_headers,
+            ).status_code == 401
             repo.revoke_teacher("island-1", "teacher-1",
                                 actor_ref="operator-test")
             assert teacher_client.get(

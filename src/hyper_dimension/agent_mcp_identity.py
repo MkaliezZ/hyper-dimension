@@ -122,6 +122,7 @@ def create_teacher_remote_mcp(
     jwks_supplier: Callable[[], Mapping[str, Any]],
     active_delegation: Callable[[str, str, str, str, str], bool],
     catalog=None,
+    class_assignment_check: Callable[[str, str, str], bool] | None = None,
 ):
     """Build one teacher's authenticated, stateless Streamable HTTP MCP server.
 
@@ -141,6 +142,7 @@ def create_teacher_remote_mcp(
     return create_teacher_mcp(
         assessment, records, tenant_id=island_id, teacher_id=teacher_id,
         catalog=catalog, remote_token_verifier=verifier, remote_auth=auth,
+        class_assignment_check=class_assignment_check,
         remote_transport_security=TransportSecuritySettings(
             allowed_hosts=[host], allowed_origins=[],
         ),

@@ -49,6 +49,10 @@ def identity(tmp_path):
     app = create_local_education_app(
         assessment, records, tenant_id="island-1", teacher_id="teacher-1",
         teacher_verifier=verifier,
+        class_assignment_check=lambda island, class_id, teacher: (
+            island == "island-1" and class_id == "class-1"
+            and teacher == "teacher-1"
+        ),
     )
     return private_key, keys, membership, verifier, student, TestClient(app)
 
@@ -152,6 +156,11 @@ def test_mutually_exclusive_credential_modes(tmp_path, identity):
         create_local_education_app(
             assessment, records, tenant_id="island-1", teacher_id="teacher-1",
             teacher_token="synthetic-secret-token-32-characters",
+            teacher_verifier=verifier,
+        )
+    with pytest.raises(ValueError, match="live class assignment"):
+        create_local_education_app(
+            assessment, records, tenant_id="island-1", teacher_id="teacher-1",
             teacher_verifier=verifier,
         )
     with pytest.raises(ValueError, match="Exactly one"):

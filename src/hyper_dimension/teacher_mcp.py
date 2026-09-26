@@ -6,7 +6,7 @@ a verified remote identity gateway before this adapter is exposed over HTTP.
 """
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Callable
 
 from hyper_dimension.assessment_runtime import AssessmentError, AssessmentService
 from hyper_dimension.student_records import StudentRecords
@@ -50,6 +50,7 @@ def create_teacher_mcp(
     remote_token_verifier: Any | None = None,
     remote_auth: Any | None = None,
     remote_transport_security: Any | None = None,
+    class_assignment_check: Callable[[str, str, str], bool] | None = None,
 ):
     from mcp.server.fastmcp import FastMCP
 
@@ -58,6 +59,8 @@ def create_teacher_mcp(
         raise ValueError("Remote MCP verifier and auth settings must be supplied together")
     if not tenant_id or not teacher_id or records.teacher_id != teacher_id:
         raise ValueError("A trusted tenant and teacher binding is required")
+    if remote_auth is not None and class_assignment_check is None:
+        raise ValueError("Remote teacher MCP requires live class assignment check")
     server = FastMCP(
         "Hyper Dimension Teacher Education", json_response=True,
         token_verifier=remote_token_verifier, auth=remote_auth,
@@ -73,8 +76,19 @@ def create_teacher_mcp(
     if catalog.teacher_id != teacher_id or catalog.assessment is not assessment:
         raise ValueError("Trusted textbook catalog binding required")
 
+    def require_class(class_ref: str) -> None:
+        if class_assignment_check is None:
+            return
+        try:
+            allowed = class_assignment_check(tenant_id, class_ref, teacher_id)
+        except Exception as exc:
+            raise AssessmentError("Class authorization unavailable") from exc
+        if not allowed:
+            raise AssessmentError("No active teacher assignment for this class")
+
     def require_student(student_ref: str) -> dict[str, Any]:
-        records.profile(tenant_id, student_ref)
+        profile = records.profile(tenant_id, student_ref)
+        require_class(profile["class_id"])
         context = assessment.generation_context(tenant_id, student_ref)
         if context["policy"]["teacher_id"] != teacher_id:
             raise AssessmentError("Student is assigned to another teacher policy")
@@ -132,6 +146,7 @@ def create_teacher_mcp(
     @server.tool()
     def assessment_pending_attempts_read(class_ref: str) -> dict[str, Any]:
         """List submitted attempt references in the teacher's active class policy."""
+        require_class(class_ref)
         return {"class_ref": class_ref, "attempts": assessment.pending_attempts(
             tenant_id, class_ref, teacher_id,
         )}
@@ -193,7 +208,9 @@ def create_teacher_mcp(
     @server.tool()
     def class_milestone_read(milestone_ref: str) -> dict[str, Any]:
         """Read one teacher-confirmed class milestone and its comparison rules."""
-        return alignment.milestone(tenant_id, milestone_ref)
+        milestone = alignment.milestone(tenant_id, milestone_ref)
+        require_class(milestone["class_id"])
+        return milestone
 
     @server.tool()
     def alignment_evidence_propose(
@@ -202,6 +219,7 @@ def create_teacher_mcp(
         difficulty: int, prompt_strength: int, agent_version: str,
     ) -> dict[str, Any]:
         """Propose a capability tag for an approved report; teacher confirmation is required."""
+        require_student(student_ref)
         return alignment.propose_evidence(
             tenant_id=tenant_id, student_id=student_ref, report_id=report_ref,
             capability_node=capability_node, construct_ref=construct_ref,
@@ -213,12 +231,15 @@ def create_teacher_mcp(
     @server.tool()
     def student_capability_evidence_read(student_ref: str) -> dict[str, Any]:
         """Read confirmed and proposed capability tags for one authorized student."""
+        require_student(student_ref)
         return {"student_ref": student_ref,
                 "evidence": alignment.student_evidence(tenant_id, student_ref)}
 
     @server.tool()
     def class_alignment_preview(milestone_ref: str, idempotency_key: str) -> dict[str, Any]:
         """Compute an immutable class suggestion from confirmed comparable evidence."""
+        milestone = alignment.milestone(tenant_id, milestone_ref)
+        require_class(milestone["class_id"])
         return alignment.preview(tenant_id, milestone_ref, idempotency_key)
 
     @server.tool()
@@ -227,6 +248,9 @@ def create_teacher_mcp(
         plan: dict[str, Any], agent_version: str,
     ) -> dict[str, Any]:
         """Store a private four-week plan draft; never confirm or publish it."""
+        require_student(student_ref)
+        run = alignment.run(tenant_id, run_ref)
+        require_class(run["class_ref"])
         return alignment.plan_draft(
             tenant_id=tenant_id, run_id=run_ref, student_id=student_ref,
             idempotency_key=idempotency_key, plan=plan,
@@ -241,6 +265,7 @@ def create_teacher_mcp(
         isbn: str | None = None,
     ) -> dict[str, Any]:
         """Resolve edition metadata; ambiguous or unverified records require teacher review."""
+        require_class(class_ref)
         return catalog.resolve_edition(
             tenant_id=tenant_id, class_id=class_ref,
             publisher=publisher, grade=grade, volume=volume,
@@ -251,6 +276,7 @@ def create_teacher_mcp(
     @server.tool()
     def list_textbook_sections(class_ref: str, edition_ref: str) -> dict[str, Any]:
         """List section titles and review levels without textbook body content."""
+        require_class(class_ref)
         return catalog.list_sections(
             tenant_id=tenant_id, class_id=class_ref, edition_ref=edition_ref,
         )
@@ -258,6 +284,7 @@ def create_teacher_mcp(
     @server.tool()
     def class_textbook_binding_read(class_ref: str) -> dict[str, Any]:
         """Read this teacher's confirmed class edition and teaching section."""
+        require_class(class_ref)
         return catalog.class_binding(tenant_id=tenant_id, class_id=class_ref)
 
     @server.tool()
@@ -265,6 +292,7 @@ def create_teacher_mcp(
         class_ref: str, edition_ref: str, section_ref: str, query: str,
     ) -> dict[str, Any]:
         """Read only rights-cleared original summaries with verified page evidence."""
+        require_class(class_ref)
         return catalog.search_evidence(
             tenant_id=tenant_id, class_id=class_ref,
             edition_ref=edition_ref, section_ref=section_ref, query=query,

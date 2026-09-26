@@ -101,6 +101,14 @@ def test_live_delegation_revocation_key_rotation_and_wrong_signer(setup):
 
 def test_real_mcp_http_route_refuses_missing_and_revoked_workload(setup):
     private_key, keys, delegation, _, assessment, records = setup
+    with pytest.raises(ValueError, match="live class assignment"):
+        create_teacher_remote_mcp(
+            assessment, records, island_id="island-1", teacher_id="teacher-1",
+            issuer="https://id.example.test/realms/demo",
+            resource_url="https://mcp.example.test/mcp",
+            client_id="teacher-runtime", jwks_supplier=lambda: keys,
+            active_delegation=lambda *_: delegation["active"],
+        )
     server = create_teacher_remote_mcp(
         assessment, records, island_id="island-1", teacher_id="teacher-1",
         issuer="https://id.example.test/realms/demo",
@@ -109,6 +117,10 @@ def test_real_mcp_http_route_refuses_missing_and_revoked_workload(setup):
         active_delegation=lambda iss, agent, grant, island, teacher: (
             delegation["active"] and agent == "agent-1" and grant == "grant-1"
             and island == "island-1" and teacher == "teacher-1"
+        ),
+        class_assignment_check=lambda island, class_id, teacher: (
+            island == "island-1" and class_id == "class-1"
+            and teacher == "teacher-1"
         ),
     )
     assert server.settings.stateless_http is True

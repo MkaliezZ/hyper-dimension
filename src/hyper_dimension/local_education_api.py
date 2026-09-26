@@ -133,6 +133,8 @@ def create_local_education_app(
             or (teacher_token is None) == (teacher_verifier is None)
             or (teacher_token is not None and len(teacher_token) < 24)):
         raise ValueError("Exactly one bound teacher credential mode required")
+    if teacher_verifier is not None and class_assignment_check is None:
+        raise ValueError("OIDC teacher API requires live class assignment check")
     app = FastAPI(title="Hyper Dimension Local Education Prototype")
     consent_provider = guardian_authorization or DemoGuardianAuthorizationProvider()
     alignment = ProgressAlignmentService(assessment, records, teacher_id=teacher_id)
