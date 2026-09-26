@@ -1,0 +1,35 @@
+name: Python and PostgreSQL integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: hd_test
+          POSTGRES_PASSWORD: hd_test_only
+          POSTGRES_DB: hd_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U hd_test -d hd_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      HD_TEST_PG_DSN: postgresql://hd_test:hd_test_only@127.0.0.1:5432/hd_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install project and test dependencies
+        run: python -m pip install -e '.[dev,mcp,a2a,database,pdf]'
+      - name: Run all tests with PostgreSQL
+        run: python -m pytest -q

@@ -23,6 +23,9 @@ mcp = [
 a2a = [
   "a2a-sdk[http-server]>=1.1.5,<1.2",
 ]
+database = [
+  "psycopg[binary]>=3.2,<4",
+]
 pdf = [
   "pymupdf>=1.26,<2",
 ]
