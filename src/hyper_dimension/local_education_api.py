@@ -164,8 +164,30 @@ def create_local_education_app(
         except AssessmentError as exc:
             raise HTTPException(status_code=422, detail=str(exc)) from exc
 
+    def require_teacher_class(class_ref: str) -> None:
+        if not class_ref or len(class_ref) > 120:
+            raise AssessmentError("Invalid class reference")
+        with assessment._db() as db:
+            row = db.execute(
+                """SELECT teacher_id FROM teacher_policies
+                   WHERE tenant_id=? AND class_id=? AND active=1
+                   ORDER BY version DESC LIMIT 1""",
+                (tenant_id, class_ref),
+            ).fetchone()
+        # Legacy local fixtures without policies remain available only when
+        # Agent-native mode is disabled; any known foreign policy is denied.
+        if row is None and not agent_native:
+            return
+        if row is None or row["teacher_id"] != teacher_id:
+            raise AssessmentError("No active teacher policy for this class")
+
+    def require_teacher_student(student_ref: str) -> None:
+        profile = records.profile(tenant_id, student_ref)
+        require_teacher_class(profile["class_id"])
+
     @app.post("/api/v1/teacher/students", dependencies=[Depends(teacher)])
     def enroll(body: Enrollment) -> dict[str, str]:
+        safe(lambda: require_teacher_class(body.class_id))
         decision = consent_provider.resolve_enrollment(body.guardian_consent_ref)
         if agent_native:
             binding = safe(lambda: catalog.class_binding(
@@ -209,14 +231,17 @@ def create_local_education_app(
     @app.get("/api/v1/teacher/classes/{class_ref}/students",
              dependencies=[Depends(teacher)])
     def class_students(class_ref: str) -> dict[str, Any]:
+        safe(lambda: require_teacher_class(class_ref))
         return safe(lambda: records.list_class_students(tenant_id, class_ref))
 
     @app.get("/api/v1/teacher/students/{student_ref}", dependencies=[Depends(teacher)])
     def profile(student_ref: str) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
         return safe(lambda: records.profile(tenant_id, student_ref))
 
     @app.put("/api/v1/teacher/students/{student_ref}", dependencies=[Depends(teacher)])
     def edit_profile(student_ref: str, body: ProfileEdit) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
         return safe(lambda: records.edit_profile(
             tenant_id, student_ref, **body.model_dump(),
         ))
@@ -226,6 +251,7 @@ def create_local_education_app(
     def rebind_student_textbook(
         student_ref: str, body: StudentTextbookRebind,
     ) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
         current = safe(lambda: records.profile(tenant_id, student_ref))
         safe(lambda: catalog.require_bound_section(
             tenant_id=tenant_id, class_id=current["class_id"],
@@ -238,6 +264,7 @@ def create_local_education_app(
     @app.post("/api/v1/teacher/students/{student_ref}/assignments",
               dependencies=[Depends(teacher)])
     def assignment(student_ref: str, body: AssignmentRequest) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
         if agent_native:
             raise HTTPException(status_code=409, detail="Teacher Agent submits bundles through MCP")
         return safe(lambda: assessment.create_assignment(
@@ -249,6 +276,7 @@ def create_local_education_app(
     def bind_textbook(
         class_ref: str, body: TextbookBindingRequest,
     ) -> dict[str, Any]:
+        safe(lambda: require_teacher_class(class_ref))
         return safe(lambda: catalog.bind_class(
             tenant_id=tenant_id, class_id=class_ref, **body.model_dump(),
         ))
@@ -326,11 +354,6 @@ def create_local_education_app(
             lambda: assessment.pending_attempts(tenant_id, class_ref, teacher_id),
         )}
 
-    def require_teacher_student(student_ref: str) -> None:
-        context = assessment.generation_context(tenant_id, student_ref)
-        if context["policy"]["teacher_id"] != teacher_id:
-            raise AssessmentError("Student belongs to another teacher policy")
-
     @app.get("/api/v1/teacher/students/{student_ref}/reports",
              dependencies=[Depends(teacher)])
     def student_reports(student_ref: str) -> dict[str, Any]:
@@ -348,13 +371,14 @@ def create_local_education_app(
     @app.get("/api/v1/teacher/students/{student_ref}/archive",
              dependencies=[Depends(teacher)])
     def archive(student_ref: str) -> dict[str, Any]:
-        safe(lambda: records.profile(tenant_id, student_ref))
+        safe(lambda: require_teacher_student(student_ref))
         return {"student_ref": student_ref,
                 "artifacts": records.artifacts(tenant_id, student_ref)}
 
     @app.get("/api/v1/teacher/students/{student_ref}/archive/{artifact_ref}/verify",
              dependencies=[Depends(teacher)])
     def verify_archive(student_ref: str, artifact_ref: str) -> dict[str, Any]:
+        safe(lambda: require_teacher_student(student_ref))
         return {"artifact_ref": artifact_ref, "verified": safe(
             lambda: records.verify_artifact(tenant_id, student_ref, artifact_ref)
         )}
@@ -362,6 +386,7 @@ def create_local_education_app(
     @app.post("/api/v1/teacher/students/{student_ref}/notes",
               dependencies=[Depends(teacher)])
     def teacher_note(student_ref: str, body: TeacherNote) -> dict[str, str]:
+        safe(lambda: require_teacher_student(student_ref))
         return safe(lambda: records.archive_teacher_note(
             tenant_id, student_ref, teacher_id=teacher_id, **body.model_dump(),
         ))
@@ -371,6 +396,7 @@ def create_local_education_app(
     def record_publication_consent(
         student_ref: str, body: PublicationConsent,
     ) -> dict[str, str]:
+        safe(lambda: require_teacher_student(student_ref))
         return {"consent_ref": safe(lambda: records.record_showcase_consent(
             tenant_id=tenant_id, student_id=student_ref, **body.model_dump(),
         ))}
@@ -378,6 +404,7 @@ def create_local_education_app(
     @app.post("/api/v1/teacher/students/{student_ref}/showcase-drafts",
               dependencies=[Depends(teacher)])
     def showcase_draft(student_ref: str, body: ShowcaseDraft) -> dict[str, str]:
+        safe(lambda: require_teacher_student(student_ref))
         entry_ref = safe(lambda: records.create_showcase_draft(
             tenant_id=tenant_id, student_id=student_ref,
             slot=body.slot, kind=body.kind, title=body.title,
@@ -391,6 +418,7 @@ def create_local_education_app(
     @app.post("/api/v1/teacher/students/{student_ref}/showcase-drafts/{entry_ref}/publish",
               dependencies=[Depends(teacher)])
     def showcase_publish(student_ref: str, entry_ref: str) -> dict[str, str]:
+        safe(lambda: require_teacher_student(student_ref))
         safe(lambda: records.publish_showcase(tenant_id, student_ref, entry_ref))
         return {"entry_ref": entry_ref, "status": "published"}
 

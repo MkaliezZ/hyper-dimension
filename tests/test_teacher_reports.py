@@ -63,6 +63,24 @@ def test_teacher_pending_attempts_and_approved_reports(tmp_path):
         agent_native=True,
     ))
     headers = {"Authorization": "Bearer synthetic-teacher-token-32-characters"}
+    # A token for teacher A must not expose tenant-local records of teacher B.
+    other_path = "/api/v1/teacher/students/" + other["student_ref"]
+    assert client.get("/api/v1/teacher/classes/class-other/students",
+                      headers=headers).status_code == 422
+    assert client.get(other_path, headers=headers).status_code == 422
+    assert client.get(other_path + "/archive", headers=headers).status_code == 422
+    assert client.put(other_path, headers=headers, json={
+        "expected_version": 1, "display_name": "Synthetic B",
+        "public_alias": "Alias B", "teacher_notes": "must stay private",
+        "learning_goals": "None",
+    }).status_code == 422
+    assert client.post(other_path + "/notes", headers=headers, json={
+        "evidence_ref": "synthetic-evidence", "title": "Private",
+        "note": "Must be rejected",
+    }).status_code == 422
+    assert client.get(
+        "/api/v1/teacher/students/" + student["student_ref"], headers=headers,
+    ).status_code == 200
     pending_path = "/api/v1/teacher/classes/class-a/pending-attempts"
     reports_path = "/api/v1/teacher/students/" + student["student_ref"] + "/reports"
     assert client.get(pending_path).status_code == 401
