@@ -179,6 +179,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div id="teacher-report-detail" class="teacher-report-detail" hidden>
           </div>
         </div>
+        <div class="teacher-plans">
+          <h3>四周个人计划</h3>
+          <p class="teacher-hint">
+            教师 Agent
+            根据已确认的进度对齐建议提交草稿；教师逐份核对后填写依据并批准。
+          </p>
+          <p
+            id="teacher-plan-status"
+            class="teacher-hint"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+          <ul id="teacher-plans"></ul>
+        </div>
         <div class="teacher-archive">
           <h3>审计归档</h3>
           <p class="teacher-hint">
@@ -473,6 +488,66 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .teacher-reports :global(button:focus-visible) {
     outline: 3px solid var(--ac-primary);
     outline-offset: 2px;
+  }
+  .teacher-plans {
+    margin-top: 2rem;
+    border-top: 1px solid var(--ac-border);
+    padding-top: 1.4rem;
+  }
+  .teacher-plans h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  #teacher-plans :global(li) {
+    margin-top: 0.8rem;
+    padding: 1rem;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-md);
+    background: var(--ac-surface-hover);
+    overflow-wrap: anywhere;
+  }
+  #teacher-plans :global(li li) {
+    border: 0;
+    margin: 0;
+    padding: 0.15rem 0;
+    background: transparent;
+  }
+  #teacher-plans :global(ol) {
+    margin: 0.5rem 0 0.7rem 1.5rem;
+  }
+  #teacher-plans :global(p) {
+    margin: 0.4rem 0;
+  }
+  #teacher-plans :global(label) {
+    display: block;
+    margin: 0.8rem 0;
+    font-weight: 700;
+  }
+  #teacher-plans :global(textarea) {
+    display: block;
+    width: 100%;
+    margin-top: 0.35rem;
+    padding: 0.6rem;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    color: var(--ac-text-dark);
+  }
+  #teacher-plans :global(button) {
+    border: 1px solid var(--ac-primary-dark);
+    border-radius: var(--ac-radius-sm);
+    background: var(--ac-cream);
+    color: var(--ac-primary-dark);
+    padding: 0.5rem 0.8rem;
+    font-weight: 800;
+  }
+  #teacher-plans :global(button:focus-visible),
+  #teacher-plans :global(textarea:focus-visible) {
+    outline: 3px solid var(--ac-primary);
+    outline-offset: 2px;
+  }
+  #teacher-plan-status[data-error="true"] {
+    color: #a33d38;
   }
   .teacher-archive {
     margin-top: 2rem;

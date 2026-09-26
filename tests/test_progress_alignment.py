@@ -203,10 +203,25 @@ def test_four_student_alignment_uses_confirmed_comparable_evidence(tmp_path):
         plan=plan, agent_version="teacher-synthetic-v1",
     )
     assert drafted["status"] == "draft"
+    plans_path = f"/api/v1/teacher/students/{students['core']}/plans"
+    assert client.get(plans_path).status_code == 401
+    drafts = client.get(plans_path, headers=headers).json()["plans"]
+    assert len(drafts) == 1
+    assert drafts[0]["plan_ref"] == drafted["plan_ref"]
+    assert drafts[0]["run_ref"] == preview["run_ref"]
+    assert drafts[0]["plan"] == plan
+    assert drafts[0]["status"] == "draft"
+    assert client.get(
+        "/api/v1/teacher/students/missing-student/plans", headers=headers,
+    ).status_code == 422
     approve_path = f"/api/v1/teacher/students/{students['core']}/plans/{drafted['plan_ref']}/approve"
     assert client.post(approve_path, headers=headers, json={
         "reason": "Teacher reviewed the four-week plan.",
     }).json()["status"] == "approved"
+    approved = client.get(plans_path, headers=headers).json()["plans"][0]
+    assert approved["status"] == "approved"
+    assert approved["approval_reason"] == "Teacher reviewed the four-week plan."
+    assert approved["approved_at"]
     assert client.post(approve_path, headers=headers, json={
         "reason": "Changed reason after approval",
     }).status_code == 422

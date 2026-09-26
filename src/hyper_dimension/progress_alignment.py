@@ -516,6 +516,29 @@ class ProgressAlignmentService:
             return {"status": decision, "run_ref": run_id,
                     "student_ref": student_id, "effective_group": effective_group}
 
+    def student_plans(self, tenant_id: str, student_id: str) -> list[dict[str, Any]]:
+        """Teacher-scoped, bounded plan drafts and approved revisions."""
+        self._student(tenant_id, student_id)
+        with self.assessment._db() as db:
+            rows = db.execute(
+                """SELECT plan_id,run_id,body_json,status,agent_version,
+                          created_at,approval_reason,approved_at
+                   FROM alignment_plan_drafts
+                   WHERE tenant_id=? AND student_id=?
+                   ORDER BY created_at DESC,plan_id DESC LIMIT 100""",
+                (tenant_id, student_id),
+            ).fetchall()
+            return [{
+                "plan_ref": row["plan_id"],
+                "run_ref": row["run_id"],
+                "plan": _load(row["body_json"]),
+                "status": row["status"],
+                "agent_version": row["agent_version"],
+                "created_at": row["created_at"],
+                "approval_reason": row["approval_reason"],
+                "approved_at": row["approved_at"],
+            } for row in rows]
+
     def approve_plan(self, tenant_id: str, student_id: str,
                      plan_id: str, reason: str) -> dict[str, str]:
         self._student(tenant_id, student_id)

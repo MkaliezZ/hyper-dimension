@@ -1,4 +1,5 @@
 import { createTeacherReports } from "./teacherReports";
+import { createTeacherPlans } from "./teacherPlans";
 
 type StudentSummary = {
   student_ref: string;
@@ -159,6 +160,7 @@ export function initTeacherDashboard(): void {
     () => classRef,
     () => rosterNames,
   );
+  const teacherPlans = createTeacherPlans(dashboard, api);
 
   const decisionLabels: Record<string, string> = {
     confirm: "确认",
@@ -534,7 +536,10 @@ export function initTeacherDashboard(): void {
         }
       }
       if (sequence !== studentLoadSequence) return;
-      await teacherReports.loadStudentReports(ref);
+      await Promise.all([
+        teacherReports.loadStudentReports(ref),
+        teacherPlans.loadStudentPlans(ref),
+      ]);
       if (sequence === studentLoadSequence && !archiveFailed)
         message("档案已读取。");
     } catch (error) {

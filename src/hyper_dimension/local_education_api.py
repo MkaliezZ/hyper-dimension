@@ -298,6 +298,13 @@ def create_local_education_app(
             body.override_group,
         ))
 
+    @app.get("/api/v1/teacher/students/{student_ref}/plans",
+             dependencies=[Depends(teacher)])
+    def student_plans(student_ref: str) -> dict[str, Any]:
+        return {"student_ref": student_ref, "plans": safe(
+            lambda: alignment.student_plans(tenant_id, student_ref),
+        )}
+
     @app.post("/api/v1/teacher/students/{student_ref}/plans/{plan_ref}/approve",
               dependencies=[Depends(teacher)])
     def approve_plan(
