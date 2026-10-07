@@ -3147,8 +3147,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 7336,
-      "sha256": "7c57145cf3875debd8ec0045acd296804e6c8364aae21e04d62960b8d1c56f5d"
+      "bytes": 7342,
+      "sha256": "7c17578049b1ca6160119f2d598a98343b836d36924a640486c258f2eac71fd5"
     },
     {
       "path": "src/serverFacilityUI.js",

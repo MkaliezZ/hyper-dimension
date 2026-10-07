@@ -43,7 +43,7 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   if(!active||settling||claiming)return false;
   if(!await checkpoint())return false;if(settling||saves.pendingAction(theme())||saves.status(theme()).status==='conflict')return false;
   // Drain a long frame batch before changing from the game to the room animation.
-  while(buffer.length){if(!await checkpoint())return}
+  while(buffer.length){if(!await checkpoint())return false}
   claiming=true;lock();status('正在完成制作','收好工作台后，成品会放入背包。',false);
   try{await animate(ticket);const response=await send(identity('finish'));return done(response)}
   catch(e){failure(e);return false}
