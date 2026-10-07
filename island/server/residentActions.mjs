@@ -1,3 +1,4 @@
+import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID} from 'node:crypto';
 import {hydrateTown,commitWork,RECIPES,career,needs} from '../src/townSimulation.js';
@@ -33,7 +34,7 @@ export function residentReplay(doc,i){if(i.kind!=='resident'||!doc?.actions)retu
  else{const r=b.receipts.find(r=>r.ticket.kind==='resident'&&r.ticket.requestId===i.requestId&&r.ticket.epoch===i.epoch&&r.ticket.sequence===i.sequence);if(r)return {document:doc,ticket:r.ticket,receipt:r,replayed:true};}return null;
 }
 function taskValid(s,t){if(!t.assignmentId)return true;const a=s.agentTaskLedger?.find(x=>x.id===t.assignmentId);return a?.status==='running'&&a.npcId===t.actorId&&a.operationId===t.operationId&&(a.assignmentVersion||0)===t.assignmentVersion;}
-function storyValid(s,t){if(!t.storyId)return true;const e=s.residentStories?.episodes?.find(x=>x.id===t.storyId);return !!e&&e.stage==='work'&&['scheduled','working'].includes(e.status)&&e.people.includes(t.actorId)&&e.inFlight[t.actorId]?.operationId===t.operationId;}
+function storyValid(s,t,starting=false){return cooperationWorkAuthorized(s,{...t,intent:t.intent},starting)}
 function plan(s,i,task){
  const d={};for(const k of fields)if(i.intent?.[k]!==undefined)d[k]=i.intent[k];d.buildingId??=null;
  if(!['work','eat','rest','visit'].includes(d.action)||typeof d.goal!=='string'||d.goal.length>40||d.buildingId!==null&&(!Number.isInteger(d.buildingId)||!BUILDINGS[d.buildingId]||s.buildings[d.buildingId]===undefined)||d.purposeId!==undefined&&(typeof d.purposeId!=='string'||d.purposeId.length>100))throw fail('居民活动或建筑无效');
@@ -71,7 +72,8 @@ export function applyResidentCommand(s,b,i,now){
   if(i.actorId===16&&(i.intent?.action==='work'&&!task||s.recruitment?.active?.phase!=='working'||s.recruitment.active.leaveRequested))throw fail('招聘伙伴当前不能工作','resident_task_changed');
   const p=plan(s,assigned?{...i,intent:{...i.intent,...assigned.decision}}:i,task),sequence=b.sequence+1,owner=RESIDENT_LEASE_PREFIX+b.epoch+':'+sequence,operationId=task?.operationId||i.intent?.operationId||'npc-work:'+randomUUID(),storyId=i.intent?.storyId||null;
   if(!key(operationId)||s.taskActionReceipts[operationId])throw fail('居民动作编号已使用','resident_operation');
-  if(storyId&&!storyValid(s,{storyId,actorId:i.actorId,operationId}))throw fail('居民约定已变化','resident_story_changed');
+  if(storyId&&!storyValid(s,{storyId,actorId:i.actorId,operationId,intent:p.d},true))throw fail('居民约定已变化','resident_story_changed');
+  if(storyId&&!['gather','craft'].includes(p.mode))throw fail('本次约定需要实际备料，不能用维护或观察代替','resident_story_changed');
   if(p.mode==='tea'&&residentTickets(b).some(t=>t.intent.facilityId===p.d.facilityId))throw fail('茶炉正在接待其他居民','resident_facility_occupied');
   const sourceTransfer={},held=p.sourceOwner&&s.resourceLedger.reservations[p.sourceOwner];
   if(held)for(const [id,n]of Object.entries(p.cost)){const moved=Math.min(held.items[id]||0,n);if(moved){sourceTransfer[id]=moved;held.items[id]-=moved;if(!held.items[id])delete held.items[id];}}if(held&&!Object.keys(held.items).length)delete s.resourceLedger.reservations[p.sourceOwner];

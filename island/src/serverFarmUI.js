@@ -22,7 +22,7 @@ export function createServerFarm({saves,theme,persist,applyState,startAnimation,
  function play(){lock();show('正在'+current.name,'第 '+(current.index+1)+' 块田 · 动作完成后确认田地和物资。');startAnimation(current,async()=>{try{receipt(await send(identity(current,'finish')))}catch(e){failure(e)}})}
  async function begin(index,step,crop){if(current||locked)return;lock();show('正在准备农活','留好种子与工具，准备进入田垄。');try{const r=await send({kind:'farm',operation:'begin',actor:'player',index,step,crop,requestId:crypto.randomUUID()});if(!receipt(r)){current=r.ticket;play()}}catch(e){failure(e)}}
  async function beginNpc(n,d,type){
-  let r;try{r=await send({kind:'farm',operation:'begin',actor:'npc',actorId:n.npcId,index:d.farmIndex,step:type,crop:type==='sow'&&Object.hasOwn(CROPS,d.resource)?d.resource:saves.status(theme()).state.plots[d.farmIndex].crop,assignmentId:d.assignmentId||null,operationId:d.operationId||null,purposeId:d.purposeId,source:d.source,requestId:crypto.randomUUID()});}catch(e){if(saves.pendingAction(theme()))failure(e);throw e}
+  let r;try{r=await send({kind:'farm',operation:'begin',actor:'npc',actorId:n.npcId,index:d.farmIndex,step:type,crop:type==='sow'&&Object.hasOwn(CROPS,d.resource)?d.resource:saves.status(theme()).state.plots[d.farmIndex].crop,assignmentId:d.assignmentId||null,operationId:d.operationId||null,storyId:d.storyId||null,purposeId:d.purposeId,source:d.source,requestId:crypto.randomUUID()});}catch(e){e.pendingAction=!!saves.pendingAction(theme());if(e.pendingAction)failure(e);throw e}
   if(r.receipt)return null;jobs.set(r.ticket.requestId,r.ticket);return r.ticket;
  }
  async function finishNpc(t){try{const r=await send(identity(t,'finish'));receipt(r);return r}catch(e){if(saves.pendingAction(theme()))failure(e,t);throw e}}

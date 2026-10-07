@@ -1,3 +1,5 @@
+import {recordResidentStoryWork,interruptResidentStory} from '../src/residentStories.js';
+import {cooperationWorkAuthorized,cooperationFarmAvailable,bindCooperationPlot,releaseCooperationPlotToPlayer} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {CROPS,hydrateCrops,tickCrops,cropInfo} from '../src/farming.js';
@@ -13,7 +15,7 @@ import {NPC_CADENCE} from '../src/npcCadence.js';
 export const FARM_LEASE_PREFIX='server-farm:';
 const fail=(message,code='farm_invalid')=>Object.assign(Error(message),{status:409,code});
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-const beginSignature=i=>createHash('sha256').update(JSON.stringify(['index','step','actor','actorId','crop','assignmentId','operationId','purposeId','source'].map(k=>i[k]??null))).digest('hex');
+const beginSignature=i=>createHash('sha256').update(JSON.stringify(['index','step','actor','actorId','crop','assignmentId','operationId','purposeId','source'].map(k=>i[k]??null).concat(i.storyId?['story',i.storyId]:[]))).digest('hex');
 const indexOK=i=>Number.isInteger(i)&&i>=0&&i<8;
 const stages={hoe:0,sow:1,water:2,harvest:4};
 const plotValid=p=>p&&[0,1,2,3,4].includes(p.stage)&&Object.hasOwn(CROPS,p.crop)&&Number.isFinite(p.growth)&&p.growth>=0&&p.growth<=cropInfo(p).seconds;
@@ -82,6 +84,7 @@ export function applyFarmCommand(s,b,input,now){
   if(input.expectedSequence!==b.sequence||(input.epoch??b.epoch)!==b.epoch&&input.epoch!==null)throw fail('农田作业版本已变化','action_sequence');
   const actor=input.actor||'player',actorId=actor==='player'?-1:input.actorId,p=s.plots[input.index];
   if(!['player','npc','facility'].includes(actor)||actor==='npc'&&(!Number.isInteger(actorId)||actorId<0||actorId>16)||actor==='facility'&&typeof actorId!=='string')throw fail('农活负责人无效');
+  if(actor==='npc'&&!cooperationFarmAvailable(s,input.index,actorId,input.storyId))throw fail('这块田正由另一份合作分工照料','farm_story_occupied');
   if(actor==='npc'&&actorId===16&&(!input.assignmentId||s.recruitment?.active?.phase!=='working'||s.recruitment.active.leaveRequested))throw fail('招聘伙伴尚未开始或已结束岛上工作','farm_task_changed');
   if(actor==='player'&&b.active)throw fail('先完成或取消上次岛主作业','action_active');
   if(farmTickets(b).some(t=>t.index===input.index||t.actor===actor&&t.actorId===actorId))throw fail('这块田或负责人正在进行其他农活','farm_occupied');
@@ -94,6 +97,8 @@ export function applyFarmCommand(s,b,input,now){
   const reservedItems=input.step==='sow'?{seed:1}:{};if(tool?.source==='owned')reservedItems[tool.id]=Math.max(1,reservedItems[tool.id]||0);
   const assigned=actor==='npc'?beginAssignedStep(s,b,{assignmentId:input.assignmentId,actorId,kind:'farm',crop,step:input.step}):null,task=assigned?.task||(actor==='npc'&&input.assignmentId?s.agentTaskLedger?.find(x=>x.id===input.assignmentId):null),assignmentOperation=assigned?.operationId||input.operationId;
   if(input.assignmentId&&(!task||task.npcId!==actorId||task.status!=='running'||task.operationId!==assignmentOperation))throw fail('农田分工已暂停或改派','farm_task_changed');
+  const storyId=actor==='npc'&&typeof input.storyId==='string'?input.storyId:null;
+  if(storyId&&!cooperationWorkAuthorized(s,{storyId,actorId,operationId:assignmentOperation,intent:{goal:'farm',buildingId:null,action:'work',resource:crop,step:input.step}},true))throw fail('居民农田约定已变化','farm_story_changed');
   if(input.step==='sow'&&task?.resourceOwner){const held=s.resourceLedger?.reservations?.[task.resourceOwner];if(held?.items.seed){held.items.seed--;if(!held.items.seed)delete held.items.seed;if(!Object.keys(held.items).length)delete s.resourceLedger.reservations[task.resourceOwner]}}
   if(Object.keys(reservedItems).length&&!reserveResources(s,owner,reservedItems,{purpose:'农田作业 '+name,...(task?{projectTaskId:task.id,taskOperation:assignmentOperation,npcId:actorId}:{})}).ok)throw fail('种子或工具不足，或已被其他作业预留','farm_materials');
   if(actor==='facility'){
@@ -102,7 +107,8 @@ export function applyFarmCommand(s,b,input,now){
    u.currentPlot=input.index;u.currentCrop=crop;u.phase='watering';u.elapsed=0;u.serverFarmRequestId=input.requestId;s.functionalFacilities.revision++;
   }
   if(task&&Object.keys(reservedItems).length)Object.assign(s.resourceLedger.reservations[owner],{projectTaskId:task.id,taskOperation:assignmentOperation,npcId:actorId});
-  const operationId=assignmentOperation||'farm-work:'+randomUUID(),t={kind:'farm',beginSignature:beginSignature(input),requestId:input.requestId,epoch:b.epoch,sequence,index:input.index,step:input.step,action:input.step,expectedStage:p.stage,crop,item:CROPS[crop].item,name,actor,actorId,owner,reservedItems,tool,duration,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+30*60*1000,assignmentId:task?.id||null,assignmentVersion:task?.assignmentVersion||0,operationId,decision:actor==='npc'?{goal:'farm',action:'work',farmIndex:input.index,expectedStage:p.stage,resource:crop,resourceOwner:owner,operationId,assignmentId:task?.id||null,projectId:task?.projectId||null,preparing:p.stage!==4,purposeId:String(input.purposeId||'').slice(0,100),source:task?'hermes':input.source==='deepseek'?'deepseek':'local'}:null};
+  const operationId=assignmentOperation||'farm-work:'+randomUUID(),t={kind:'farm',beginSignature:beginSignature(input),requestId:input.requestId,epoch:b.epoch,sequence,index:input.index,step:input.step,action:input.step,expectedStage:p.stage,crop,item:CROPS[crop].item,name,actor,actorId,owner,reservedItems,tool,duration,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+30*60*1000,assignmentId:task?.id||null,assignmentVersion:task?.assignmentVersion||0,operationId,storyId,decision:actor==='npc'?{goal:'farm',action:'work',farmIndex:input.index,expectedStage:p.stage,resource:crop,resourceOwner:owner,operationId,storyId,assignmentId:task?.id||null,projectId:task?.projectId||null,preparing:p.stage!==4,purposeId:String(input.purposeId||'').slice(0,100),source:task?'hermes':input.source==='deepseek'?'deepseek':'local'}:null};
+  if(actor==='player')releaseCooperationPlotToPlayer(s,input.index);else if(storyId)bindCooperationPlot(s,storyId,actorId,input.index);
   b.sequence=sequence;if(actor==='player')b.active=t;else f.leases[t.requestId]=t;sync(s,b);return {ticket:t,receipt:null};
  }
  const t=matching(b,input);if(!t)throw fail('农活已经结束或来自旧存档','action_stale');
@@ -112,12 +118,14 @@ export function applyFarmCommand(s,b,input,now){
   if(now<t.readyAt)throw fail('农活动作尚未完成','action_early');if(now>t.expiresAt)throw fail('农活已过期，可以取消后继续','action_expired');
   const p=s.plots[t.index];if(p.stage!==t.expectedStage||t.step!=='sow'&&p.crop!==t.crop)throw fail('田地阶段已变化','farm_stage');
   if(!taskValid(s,t))throw fail('农田分工已暂停或改派，可取消归还种子','farm_task_changed');
+  if(!cooperationWorkAuthorized(s,{...t,intent:{...t.decision,step:t.step}}))throw fail('居民农田约定已变化，可取消后重新安排','farm_story_changed');
   if(t.actor==='facility'){
    const u=s.functionalFacilities?.units?.[t.actorId];
    if(!u?.enabled||u.serverFarmRequestId!==t.requestId||u.currentPlot!==t.index||u.currentCrop!==t.crop||u.charges<1||!u.targets.includes(t.index)||!irrigationConnected(s,t.actorId))throw fail('滴灌设置已变化，可以取消本次灌溉','farm_irrigation');
    p.stage=3;p.growth=0;u.charges--;u.condition=Math.max(0,u.condition-1);u.delivered++;text='第 '+(t.index+1)+' 块田已灌溉，剩余 '+u.charges+' 次';u.lastText=text;u.phase='idle';u.elapsed=0;u.currentPlot=null;u.currentCrop=null;delete u.serverFarmRequestId;s.functionalFacilities.revision++;
   }else if(t.actor==='npc'){
    hydrateTown(s);p.crop=t.crop;const before={...s.inventory};text=commitWork(t.actorId,t.decision,s,b.farm.activeSeconds);
+   if(t.storyId)recordResidentStoryWork(s,t.storyId,t.actorId,t.operationId);
    gain=Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before[id]||0)]).filter(([,n])=>n>0));cost=t.step==='sow'?{seed:1}:{};
    if(t.assignmentId&&!recordTaskStep(s,t.assignmentId,{operationId:t.operationId,result:text,delta:s.taskActionReceipts[t.operationId]?.delta||{},preparing:t.expectedStage!==4}).ok)throw fail('农田交付未确认','farm_task_changed');
   }else{
@@ -130,6 +138,7 @@ export function applyFarmCommand(s,b,input,now){
   }
  }
  if(input.operation==='cancel'&&t.actor==='facility'){const u=s.functionalFacilities?.units?.[t.actorId];if(u?.serverFarmRequestId===t.requestId){u.phase='idle';u.elapsed=0;u.currentPlot=null;u.currentCrop=null;delete u.serverFarmRequestId;s.functionalFacilities.revision++}}
+ if(input.operation==='cancel'&&t.storyId)interruptResidentStory(s,t.storyId,t.operationId);
  releaseResources(s,t.owner);releaseTaskHold(s,t,input.operation==='cancel');
  const receipt={ticket:t,outcome:input.operation==='finish'?'finished':'cancelled',at:now,day:s.day,gain,cost,text};
  b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);if(t.actor==='player')b.active=null;else delete f.leases[t.requestId];sync(s,b);return {ticket:t,receipt};

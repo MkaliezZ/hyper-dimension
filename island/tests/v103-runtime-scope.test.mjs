@@ -28,7 +28,7 @@ test('data-directory lease still prevents backup when a different checkout uses 
  const root=await mkdtemp(join(await realpath(tmpdir()),'hd-shared-data-')),directory=join(root,'data');await mkdir(directory);await writeFile(join(directory,'value.txt'),'retained');const owner=await acquireDataLease({directory,mode:'runtime',sharedRuntime:true});
  try{await assert.rejects(createDataBackup({directory,output:join(root,'backup')}),e=>e.code==='data_busy');assert.equal(await readFile(join(directory,'value.txt'),'utf8'),'retained');}finally{await owner.release();}
 });
-async function fixture(){const root=await mkdtemp(join(await realpath(tmpdir()),'hd Windows scope '));await mkdir(join(root,'src'));await writeFile(join(root,'src/saveClient.js'),a);await writeFile(join(root,'src/world.js'),b);return root;}
+async function fixture(root=null){root??=await mkdtemp(join(await realpath(tmpdir()),'hd Windows scope '));await mkdir(join(root,'src'),{recursive:true});await writeFile(join(root,'src/saveClient.js'),a);await writeFile(join(root,'src/world.js'),b);return root;}
 async function launch(root,{relative=false}={}){
  const file=join(root,'server.mjs'),code="import fs from 'node:fs';import http from 'node:http';import path from 'node:path';const s=http.createServer((q,r)=>{try{r.end(fs.readFileSync(path.join(process.cwd(),q.url)));}catch{r.statusCode=404;r.end();}});s.listen(0,'127.0.0.1',()=>process.stdout.write(JSON.stringify({port:s.address().port})+'\\n'));process.on('SIGTERM',()=>s.close(()=>process.exit(0)));";
  await writeFile(file,code);const child=spawn(process.execPath,[relative?'server.mjs':file],{cwd:root,windowsHide:true,shell:false,stdio:['ignore','pipe','pipe']});let text='';const info=await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Fixture server did not start')),10000);child.stdout.on('data',b=>{text+=b;try{const value=JSON.parse(text.trim());clearTimeout(timer);resolve(value);}catch{}});child.once('error',e=>{clearTimeout(timer);reject(e)});child.once('exit',code=>{clearTimeout(timer);reject(Error('Fixture exited '+code))});});
@@ -38,7 +38,7 @@ test('actual Windows CIM identifies a live direct old writer with spaces in its 
  const root=await fixture(),s=await launch(root);try{assert((await windowsLegacyProcesses(root)).includes(s.child.pid));}finally{await s.close();}
 });
 test('actual nested Windows QA writer does not block parent deployment backup and backup still verifies bytes',{skip:process.platform!=='win32'},async()=>{
- const root=await fixture(),nested=join(root,'qa','isolated');await mkdir(nested,{recursive:true});const s=await launch(nested);try{
+ const root=await fixture(),nested=await fixture(join(root,'qa','isolated'));const s=await launch(nested);try{
  assert(!(await windowsLegacyProcesses(root)).includes(s.child.pid));assert((await windowsLegacyProcesses(nested)).includes(s.child.pid));
  const directory=join(root,'data');await mkdir(directory);await writeFile(join(directory,'value.txt'),'actual quiet data');
  await createDataBackup({directory,output:join(root,'backup')});const result=await verifyDataBackup(join(root,'backup'));assert.equal(result.manifest.files.length,1);assert.equal(result.inventory.files.length,1);assert.equal(result.manifest.files[0].path,"value.txt");assert.equal(await readFile(join(root,'backup','payload','value.txt'),'utf8'),'actual quiet data');

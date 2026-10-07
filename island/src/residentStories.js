@@ -1,5 +1,6 @@
+import {cooperationPlanFor,validCooperationPlan,cooperationPlanReady,cooperationNeedState,cooperationWorkNeeded,storyWorkMatches} from './residentCooperation.js';
 // Persistent resident episodes advance through completed conversations and real work receipts.
-import {RAW_ROWS} from './catalog-data.js';
+import {ITEM_BY_ID} from './contentCatalog.js';
 import {nextPresentationOperationId,validPresentationOperationId} from './resourceLedger.js';
 import {RESIDENTS,BUILDINGS} from './world.js';
 const OPEN=new Set(['scheduled','meeting','working']);
@@ -10,7 +11,7 @@ const integer=x=>Number.isSafeInteger(x)&&x>=0;
 const object=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
 const pair=ids=>[...ids].sort((a,b)=>a-b).join('-');
 const name=id=>RESIDENTS[id]?.name||'居民';
-const clock=s=>(s.day-1)*900+(s.daySeconds||0);
+const clock=s=>(s.day-1)*900+(s.economy?.daySeconds||0);
 const active=e=>OPEN.has(e.status);
 export const STORY_LIMITS=Object.freeze({active:4,history:60,receipts:320,pairDays:3,graceDays:3});
 export function hydrateResidentStories(s){
@@ -35,13 +36,19 @@ function effect(s,e,delta,text){
  }
 }
 function finish(s,e,status,text,delta={}){
- e.status=status;e.endedDay=s.day;e.inFlight={};entry(s,e,text,status);
+ e.status=status;e.endedDay=s.day;e.inFlight={};if(e.workSites)e.workSites={};entry(s,e,text,status);
  if(Object.keys(delta).length)effect(s,e,delta,text);else for(const id of e.people)memory(s,id,text,e.id);
 }
 export function advanceResidentStories(s){
  const book=hydrateResidentStories(s);let changed=false;
  for(const e of book.episodes)if(active(e)&&s.day>e.expiresDay&&!Object.keys(e.inFlight).length){
   finish(s,e,'closed','约定暂时搁置，保留已经完成的准备，双方先照顾自己的生活。');changed=true;
+ }
+ for(const e of book.episodes)if(active(e)&&e.stage==='work'&&e.demand&&!Object.keys(e.inFlight).length){
+  const need=cooperationNeedState(s,e);
+  if(!need.active||e.people.every(id=>e.contributions[id]||!need.needed.has(cooperationPlanFor(e,id).resource))){
+   finish(s,e,'closed',!need.active?'活动计划已调整或交给管家，收好已经入库的准备，回到各自工作。':'这份分工所需的用品已经备齐；保留真实贡献，不重复采集。');changed=true;
+  }
  }
  const closed=book.episodes.filter(e=>!active(e));
  if(closed.length>STORY_LIMITS.history){const keep=new Set(closed.slice(-STORY_LIMITS.history).map(e=>e.id));book.episodes=book.episodes.filter(e=>active(e)||keep.has(e.id));changed=true;}
@@ -57,11 +64,8 @@ export function restoreResidentStories(s){
 export function pendingResidentStory(s,a,b){
  return s.residentStories?.episodes.find(e=>active(e)&&e.people.includes(a)&&e.people.includes(b))||null;
 }
-const defaultPlan={goal:'forest',buildingId:null,resource:'wood'},sources=new Map(RAW_ROWS.map(r=>[r[0],r[3]]));
-function legalPlan(plan){
- if(!plan)return false;const source=sources.get(plan.resource);
- return plan.goal==='forest'&&plan.buildingId===null&&source==='forest'||plan.goal==='mine'&&plan.buildingId===null&&source==='mine'||plan.goal==='dock'&&plan.buildingId===null&&['shore','fishing'].includes(source)||['building','workshop'].includes(plan.goal)&&plan.buildingId===14&&source==='greenhouse';
-}
+const defaultPlan={goal:'forest',buildingId:null,resource:'wood'};
+const legalPlan=validCooperationPlan;
 function add(s,row,plan){
  const b=hydrateResidentStories(s),people=[...row.participants],key=pair(people);
  if(b.episodes.filter(active).length>=STORY_LIMITS.active||pendingResidentStory(s,...people)||
@@ -73,15 +77,18 @@ function add(s,row,plan){
  else if(row.type==='confession')kind=row.changes.some(c=>c.from===people[1]&&(c.affection||0)>0)?'outing':'friendship';
  else if(row.type==='friendship'&&(rel.interactions||0)>=2&&(rel.trust||0)>=2&&(back.trust||0)>=2)kind='friendship';
  else return null;
+ if(kind==='cooperation'&&plan?.unavailable)return null;
+ const bundle=plan?.plans&&people.every(id=>legalPlan(plan.plans[id]))?plan:null;
  const titles={conflict:'把上次的分歧说清',cooperation:'拿着真实成果，再来谈合作',outing:'工作之外，也想了解你',friendship:'按彼此舒服的节奏相处'};
- const dueDay=s.day+(kind==='friendship'?2:1);
+ const dueDay=s.day+(kind==='cooperation'&&bundle?.demand?0:kind==='friendship'?2:1);
  const e={id:nextPresentationOperationId(s,'resident-story').replace(':','-'),version:1,kind,title:titles[kind],people,
   source:{id:row.id,day:s.day,type:row.type,summary:String(row.summary).slice(0,300),provider:row.source==='deepseek'?'deepseek':'local'},
   createdDay:s.day,dueDay,expiresDay:dueDay+STORY_LIMITS.graceDays,status:'scheduled',
-  stage:kind==='cooperation'?'work':'talk',plan:{...(legalPlan(plan)?plan:defaultPlan)},venue:kind==='conflict'?22:kind==='outing'?5:7,
+  stage:kind==='cooperation'?'work':'talk',plan:{...(bundle?.plan|| (legalPlan(plan)?plan:defaultPlan))},...(bundle?{plans:structuredClone(bundle.plans),...(bundle.demand?{demand:structuredClone(bundle.demand)}:{})}:{}),venue:kind==='conflict'?22:kind==='outing'?5:7,
   contributions:{},inFlight:{},mediation:{},mediated:false,retryAt:0,attempts:0,timeline:[]};
+ if(e.demand&&kind==='cooperation')e.title=('一起为「'+e.demand.name+'」备料').slice(0,100);
  b.episodes.push(e);b.lastPairDay[key]=s.day;
- entry(s,e,kind==='cooperation'?'约定明天各完成一次实际备料，入库后核对成果。':'约定第 '+dueDay+' 天在'+BUILDINGS[e.venue].name+'继续聊；今天先完成自己的工作。','appointment');
+ entry(s,e,kind==='cooperation'?(e.demand?'今天按各自分工为活动准备，实际入库后核对成果。':'约定明天按各自分工完成实际备料，入库后核对成果。'):'约定第 '+dueDay+' 天在'+BUILDINGS[e.venue].name+'继续聊；今天先完成自己的工作。','appointment');
  for(const id of people)memory(s,id,e.title+'：'+e.timeline.at(-1).text,e.id);
  return e;
 }
@@ -122,29 +129,31 @@ export function residentStoryOptions(s,id){
     socialType:e.kind==='conflict'?'reconcile':'friendship',storyId:e.id,purposeId:'story:'+e.id+':talk',score:84,
     reason:e.title+' · 履行第 '+e.dueDay+' 天的约定'});
   }else if(!e.contributions[id]&&!e.inFlight[id]){
-   options.push({...e.plan,goal:e.plan.buildingId===14?BUILDINGS[14].kind:e.plan.goal,action:'work',activity:'station',duration:20,storyId:e.id,purposeId:'story:'+e.id+':work',
-    score:78,reason:'与'+name(partnerId)+'约定互助：实际取得备料，入库后核对'});
+   const plan=cooperationPlanFor(e,id);if(plan.goal==='farm'&&s.plots?.[e.workSites?.[id]?.farmIndex]?.stage===3)continue;if(!cooperationPlanReady(s,plan)||!cooperationWorkNeeded(s,e,id))continue;
+   options.push({...plan,goal:plan.buildingId===14?BUILDINGS[14].kind:plan.goal,action:'work',activity:'station',duration:20,storyId:e.id,purposeId:'story:'+e.id+':work',
+    score:78,reason:'与'+name(partnerId)+'分工'+(e.demand?'准备「'+e.demand.name+'」':'互助')+'：'+(plan.recipeId?'制作':'取得')+ITEM_BY_ID[plan.resource].name+'，实际入库后核对'});
   }
  }
  return options;
 }
-export function claimResidentStory(s,id,npcId,operationId,stage){
+export function claimResidentStory(s,id,npcId,operationId,stage,intent=null){
  const e=hydrateResidentStories(s).episodes.find(e=>e.id===id);
  if(!e||!active(e)||!e.people.includes(npcId)||e.stage!==stage||s.day<e.dueDay||s.day>e.expiresDay||clock(s)<e.retryAt)return false;
  if(stage==='talk'){if(Object.keys(e.inFlight).length)return false;e.inFlight.meeting={operationId};e.status='meeting';}
- else{if(e.contributions[npcId]||e.inFlight[npcId])return false;e.inFlight[npcId]={operationId};e.status='working';}
+ else{if(e.contributions[npcId]||e.inFlight[npcId]||!cooperationPlanReady(s,cooperationPlanFor(e,npcId))||!cooperationWorkNeeded(s,e,npcId)||intent&&!storyWorkMatches(s,e,npcId,intent))return false;e.inFlight[npcId]={operationId};e.status='working';}
  e.version++;return true;
 }
 export function recordResidentStoryWork(s,id,npcId,operationId){
  const e=hydrateResidentStories(s).episodes.find(e=>e.id===id);
  if(!e||!active(e)||e.stage!=='work'||e.inFlight[npcId]?.operationId!==operationId)return {ok:false};
  delete e.inFlight[npcId];
- const r=s.taskActionReceipts?.[operationId],amount=r?.delta?.[e.plan.resource]||0;
+ const resource=cooperationPlanFor(e,npcId).resource,r=s.taskActionReceipts?.[operationId],amount=r?.delta?.[resource]||0;
  if(r?.npcId!==npcId||r.storyId!==id||r.day!==s.day||!Number.isSafeInteger(amount)||amount<1){
-  e.status=Object.keys(e.inFlight).length?'working':'scheduled';e.retryAt=clock(s)+30;
-  entry(s,e,name(npcId)+'尚未实际取得约定物资，保留准备并重新安排。','waiting');return {ok:false};
+  const preparing=r?.npcId===npcId&&r.storyId===id&&r.day===s.day&&['farm','mine'].includes(r.goal);
+  e.status=Object.keys(e.inFlight).length?'working':'scheduled';e.retryAt=preparing?0:clock(s)+30;
+  entry(s,e,preparing?name(npcId)+'已完成一次'+(r.goal==='farm'?'耕作':'开采')+'步骤，继续原分工，收获入库后再计交付。':name(npcId)+'尚未实际取得约定物资，保留准备并重新安排。',preparing?'preparation':'waiting');return {ok:false};
  }
- e.contributions[npcId]={operationId,day:s.day,amount};entry(s,e,name(npcId)+'实际入库 '+amount+' 份备料，等待同伴完成。','delivery');
+ if(e.workSites)delete e.workSites[npcId];e.contributions[npcId]={operationId,day:s.day,amount};entry(s,e,name(npcId)+'实际入库 '+amount+' 份备料，等待同伴完成。','delivery');
  if(e.people.every(id=>e.contributions[id])){
   finish(s,e,'resolved',e.kind==='conflict'?'双方完成了约定的备料，合作成果缓和了分歧。':'两人都交出了真实备料，这次合作有了可信的结果。',
    e.kind==='conflict'?{affinity:2,trust:3,tension:-4}:{affinity:2,trust:3});
@@ -199,9 +208,12 @@ export function validResidentStories(s){
    !integer(e.attempts)||e.attempts>2||!Array.isArray(e.timeline)||e.timeline.length>20)return false;
   if(active(e)){const key=pair(e.people);if(openPairs.has(key))return false;openPairs.add(key);}
   if(e.timeline.some(t=>!integer(t.day)||t.day<e.createdDay||t.day>s.day||typeof t.text!=='string'||t.text.length>500))return false;
+  if(e.plans!==undefined&&(!object(e.plans)||Object.keys(e.plans).length!==2||e.people.some(id=>!legalPlan(e.plans[id]))))return false;
+  if(e.workSites!==undefined&&(!object(e.workSites)||Object.keys(e.workSites).length>2||Object.entries(e.workSites).some(([id,site])=>!e.people.includes(Number(id))||!object(site)||!Number.isInteger(site.farmIndex)||site.farmIndex<0||site.farmIndex>7||cooperationPlanFor(e,Number(id)).goal!=='farm')||new Set(Object.values(e.workSites).map(x=>x.farmIndex)).size!==Object.keys(e.workSites).length))return false;
+  if(e.demand!==undefined&&(!object(e.demand)||!e.plans||!['night','fishing','market','couture','fireworks'].includes(e.demand.template)||typeof e.demand.id!=='string'||e.demand.id.length>100||!integer(e.demand.version)||e.demand.version<1||typeof e.demand.stamp!=='string'||e.demand.stamp.length>1000||typeof e.demand.name!=='string'||e.demand.name.length>100))return false;
   for(const [id,c] of Object.entries(e.contributions)){
    const r=s.taskActionReceipts?.[c?.operationId];if(!e.people.includes(Number(id))||!integer(c?.amount)||!c.amount||!integer(c.day)||c.day<e.dueDay||c.day>s.day||
-    r?.npcId!==Number(id)||r.storyId!==e.id||r.day!==c.day||r.delta?.[e.plan.resource]!==c.amount)return false;
+    r?.npcId!==Number(id)||r.storyId!==e.id||r.day!==c.day||r.delta?.[cooperationPlanFor(e,Number(id)).resource]!==c.amount)return false;
   }
   for(const [id,f] of Object.entries(e.inFlight))if(id!=='meeting'&&!e.people.includes(Number(id))||typeof f?.operationId!=='string'||
    !validPresentationOperationId(f.operationId,id==='meeting'?'npc-talk':'story-work'))return false;

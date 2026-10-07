@@ -5,3 +5,5 @@
 body[data-theme="pixel"] .resident-story-card{border-radius:0;box-shadow:5px 5px 0 color-mix(in srgb,var(--hud-edge) 28%,transparent)}
 body[data-theme="origami"] .resident-story-card{border-radius:3px;position:relative;background:linear-gradient(135deg,var(--hud-highlight) 94%,var(--hud-soft,var(--hud-highlight)) 94%);box-shadow:3px 5px 0 color-mix(in srgb,var(--hud-edge) 16%,transparent)}
 @media(max-width:600px){.resident-story-card{padding:14px}.story-people{grid-template-columns:96px minmax(0,1fr);gap:12px}.story-partner-art{height:130px}.story-people h3{font-size:20px}.story-people p{font-size:16px}.story-dialogue{padding:12px}.story-dialogue>div{display:grid}.story-delivery{padding:12px;gap:12px}}
+
+.story-deliveries{min-width:0;margin-top:18px}.story-deliveries>b{display:block;font-size:17px;line-height:1.7;overflow-wrap:anywhere}.story-delivery>div{min-width:0;overflow-wrap:anywhere}.story-delivery b{font-size:17px;line-height:1.6}

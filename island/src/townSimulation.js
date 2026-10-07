@@ -1,5 +1,6 @@
+import {chooseResidentCooperation,activityCooperationNeeds} from './residentCooperation.js';
 import {teaFacilityOptions,functionalCommand} from './functionalFacilities.js';
-import {hydrateResidentStories,residentStoryOptions,pendingResidentStory} from './residentStories.js';
+import {hydrateResidentStories,residentStoryOptions,pendingResidentStory,STORY_LIMITS} from './residentStories.js';
 import {availableQuantity,commitResources} from './resourceLedger.js';
 import {hydrateEconomy,effectiveQuality,improveQuality,visitorPrice,operatingCost,transact,venueService} from './economy.js';
 import {hydrateContent,ALL_RECIPES,RECIPE_BY_ID,DEFAULT_RECIPES,ITEM_BY_ID,recipeGate,resourceLoot,commitRecipe,consumePlayerCredit} from './contentCatalog.js';
@@ -63,6 +64,18 @@ export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),ma
  if(Number.isInteger(known)&&known!==i&&available&&!pendingResidentStory(s,i,known)&&time>(c.socialAfter||0)&&(n.social<58||relations[0]?.[1]?.tension>12)){
   const rel=relationship(s,i,known),issue=rel.tension>12?'reconcile':rel.affection>12&&rel.trust>8?'confession':rel.affinity<-6?'dispute':main.reason.includes('先取得')&&rel.interactions>0&&(rel.affinity>5||rel.tension>5)?'negotiate':'friendship',bid=socialVenue(i,known,s,issue,time);
   options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:known,socialType:issue,purposeId:'relationship:'+known,score:(rel.tension>12?82:n.social<42?76:40)-crowdPenalty(s,bid,i),reason:'在'+BUILDINGS[bid].name+'与同伴'+(issue==='reconcile'?'谈清上次分歧，尝试修复关系':issue==='confession'?'表达更亲近的心意':issue==='negotiate'?'讨论物资分配与工作互助':'分享工作和生活，交换不同看法')});
+ }
+ // Activity work is offered at normal decision boundaries, without extra model calls.
+ const stories=s.residentStories,open=stories.episodes.filter(e=>['scheduled','meeting','working'].includes(e.status));
+ if(i<15&&n.energy>38&&n.hunger>42&&time>(c.socialAfter||0)&&open.length<STORY_LIMITS.active&&!open.some(e=>e.people.includes(i))){
+  const groups=activityCooperationNeeds(s),partners=Array.from({length:15},(_,j)=>j).filter(j=>j!==i).sort((a,b)=>(relationship(s,i,b).trust||0)-(relationship(s,i,a).trust||0)||a-b);
+  for(const j of partners){
+   const p=s.npcPresence?.find(p=>p.id===j),nn=needs(j,s),rel=relationship(s,i,j),key=[i,j].sort((a,b)=>a-b).join('-');
+   if(p&&(p.meeting||p.assignment||p.partyControlled||p.recruitControlled)||nn.energy<=38||nn.hunger<=42||time<=(career(j,s).socialAfter||0)||rel.tension>12||rel.affinity< -6||open.some(e=>e.people.includes(j))||stories.lastPairDay[key]!==undefined&&s.day-stories.lastPairDay[key]<STORY_LIMITS.pairDays)continue;
+   const proposal=chooseResidentCooperation(s,[i,j],{careers:CAREERS,groups,activityOnly:true});if(!proposal)continue;
+   const bid=socialVenue(i,j,s,'negotiate',time),a=proposal.plans[i],b=proposal.plans[j];
+   options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:j,socialType:'negotiate',purposeId:'activity-cooperation:'+j,score:73-crowdPenalty(s,bid,i),reason:'为「'+proposal.demand.name+'」与'+(s.npcProfiles?.[j]?.name||'同伴')+'商量分工：我准备'+ITEM_BY_ID[a.resource].name+'，对方准备'+ITEM_BY_ID[b.resource].name});break;
+  }
  }
  const bid=LEISURE_VENUES[i],breakDue=(c.workSinceBreak||0)>=3||main.waiting||main.score<10;
  if(time>(c.personalAfter||0))options.push({...target(bid),action:'visit',activity:'leisure',duration:12,purposeId:'life:'+bid,score:(breakDue?70:28)-crowdPenalty(s,bid,i)-repeatPenalty(c,bid,time),reason:'完成一段工作后，去'+BUILDINGS[bid].name+'做自己感兴趣的事'});

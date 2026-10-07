@@ -1,3 +1,4 @@
+import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomInt,randomUUID,createHash} from 'node:crypto';
 import {RAW_MATERIALS} from '../src/contentCatalog.js';
@@ -37,7 +38,7 @@ export function fieldReplay(doc,i){const b=doc?.actions;if(!b||i.kind!=='field')
  return null;
 }
 function taskValid(s,t){const task=t.assignmentId&&s.agentTaskLedger?.find(x=>x.id===t.assignmentId);return !t.assignmentId||task?.status==='running'&&task.npcId===t.actorId&&task.operationId===t.operationId&&(task.assignmentVersion||0)===t.assignmentVersion}
-function storyValid(s,t){if(!t.storyId)return true;const e=s.residentStories?.episodes.find(e=>e.id===t.storyId);return !!e&&['scheduled','working'].includes(e.status)&&e.stage==='work'&&e.people.includes(t.actorId)&&e.inFlight[t.actorId]?.operationId===t.operationId}
+function storyValid(s,t,starting=false){return cooperationWorkAuthorized(s,{...t,intent:{goal:'mine',buildingId:null,action:'work',resource:t.item}},starting)}
 function gameResult(t){return t.field==='mine'?t.game.result:craftResult(t.game)}
 export function applyFieldCommand(s,b,i,now){enableField(s,b,now);assertFieldState(s,b);
  if(i.operation==='begin'){
@@ -51,7 +52,7 @@ export function applyFieldCommand(s,b,i,now){enableField(s,b,now);assertFieldSta
   const assigned=actor==='npc'?beginAssignedStep(s,b,{assignmentId:i.assignmentId,actorId,kind:'field',field:i.field,itemId:i.itemId}):null,task=assigned?.task||(i.assignmentId&&s.agentTaskLedger?.find(t=>t.id===i.assignmentId));
   if(i.assignmentId&&(!task||task.status!=='running'||task.npcId!==actorId||(!assigned&&task.operationId!==i.operationId)))throw fail('分工已暂停或改派','field_task_changed');
   const operationId=actor==='npc'?(assigned?.operationId||i.operationId||'field-work:'+randomUUID()):null,storyId=actor==='npc'&&typeof i.storyId==='string'?i.storyId:null;
-  if(storyId&&!storyValid(s,{storyId,actorId,operationId}))throw fail('居民约定已变化','field_story_changed');
+  if(storyId&&!storyValid(s,{storyId,actorId,operationId,item:item.id},true))throw fail('居民约定已变化','field_story_changed');
   const sequence=b.sequence+1,owner=FIELD_LEASE_PREFIX+b.epoch+':'+sequence,action=i.field==='mine'?'pickaxe':'fish',tool=resolveTool(s,action,{npc:actor==='npc'}),duration=actor==='npc'?NPC_CADENCE.workSeconds:Math.round(Math.max(.85,(i.field==='mine'?1.25:2.2)*(tool?.durationScale||1))*1000)/1000,name=(i.field==='mine'?'采矿':'钓获')+' · '+item.name,reservedItems=tool?.source==='owned'?{[tool.id]:1}:{};
   if(Object.keys(reservedItems).length&&!reserveResources(s,owner,reservedItems,{purpose:'户外作业 '+name}).ok)throw fail('工具已被其他作业预留','field_tool');
   let seed=null,difficulty=1,game=null;
