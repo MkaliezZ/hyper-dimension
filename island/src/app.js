@@ -93,7 +93,7 @@ import {createGameContext} from './gameLevels.js';
 import {acquireRoomSpot,promoteRoomSpot,releaseRoomSpot,inspectRoomClaims} from './sceneOccupancy.js';
 import {hydrateTown,CAREERS,needs,career,RECIPES,TOURISTS} from './townSimulation.js';
 import {createVisitorRuntime} from './visitorRuntime.js';
-import {drawOuterSea,drawIsland,drawHarbor,drawBoats} from './harbor.js';
+import {drawOuterSea,drawIsland,drawHarbor,drawBoats,drawHarborForeground} from './harbor.js';
 import {createResidentRuntime} from './residentRuntime.js';
 import {drawAnimatedCharacter,portraitStyle,characterAssetStatus} from './characters.js';
 import {BASE_TOOLS,wornItems,resolveTool,beginToolUse,endToolUse,clearToolLeases,minePrecision} from './equipmentRules.js';
@@ -372,6 +372,7 @@ function drawWorld(){const img=images[theme];drawOuterSea(ctx,img,theme,animatio
  drawHarbor(ctx,theme,animationNow);drawBoats(ctx,[...(visitors?.boats||[]),...(recruitmentRuntime?.boats||[])],theme,animationNow);nameplate('晨光客运码头',1450,853,12,'place');drawJourneyLandmarks(ctx,state,theme,animationNow,SLOTS,HARBOR);drawSpecializationLandmark(ctx,state,theme,animationNow,SLOTS);
  const entities=[...fireworksPlatforms(state).map(p=>({y:p.y,fireworks:p})),...coutureStage(state).map(p=>({y:p.y-1,couture:p})),...marketStalls(state).map(p=>({y:p.y,market:p})),...state.placedItems.filter(p=>p.version===2).map(p=>({y:p.y,decoration:p})),...wonderPlacements(state,SLOTS).map(p=>({y:p.y,wonder:p})),...SLOTS.map(s=>({y:s.y+s.h/2,slot:s})),...npcs.map((n,i)=>({y:n.y,n,i})).filter(e=>e.n.inside==null&&e.n.visible!==false),...(visitors?.guests||[]).filter(v=>v.visible&&v.inside==null).map(v=>({y:v.y,v})),{y:actor.y,player:true}].sort((a,b)=>a.y-b.y);
  for(const entity of entities){if(entity.fireworks)drawFireworksPlatform(ctx,entity.fireworks,state,theme,animationNow);else if(entity.couture)drawCoutureStage(ctx,entity.couture,theme,animationNow);else if(entity.market)drawMarketStall(ctx,entity.market,state,theme,animationNow);else if(entity.decoration)drawDecoration(ctx,entity.decoration,theme,{s:state,now:animationNow});else if(entity.wonder)drawFishingWonder(ctx,state,theme,SLOTS,animationNow,entity.wonder.id);else if(entity.slot)drawBuilding(entity.slot);else if(entity.v)drawCharacter(entity.v,'#83b3b8',distance(entity.v,actor)<100||entity.v.stage==='waitingBoat'?entity.v.name:'',true,theme==='origami'?.32:.24);else if(entity.player)drawCharacter(actor,theme==='origami'?'#c67170':'#e59755','你',false,theme==='origami'?.32:.24);else drawCharacter(entity.n,profile(entity.i).color,entity.n.meeting||distance(entity.n,actor)<55||entity.i===15?profile(entity.i).name:'',true,theme==='origami'?.32:.24)}
+ drawHarborForeground(ctx,[...(visitors?.boats||[]),...(recruitmentRuntime?.boats||[])],theme,animationNow);
  for(const n of npcs)if(n.inside==null&&n.visible!==false)drawSpeech(n);
 }
 function drawFarm(){const paper=theme==='origami';const sky=ctx.createLinearGradient(0,0,0,660);sky.addColorStop(0,paper?'#e6c6b5':'#a9d8bc');sky.addColorStop(.44,paper?'#f6e5d0':'#d3e6ba');sky.addColorStop(1,paper?'#c7ad8c':'#b7a677');ctx.fillStyle=sky;ctx.fillRect(0,0,1000,660);

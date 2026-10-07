@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v108-agent-source",
+  "release": "hyper-dimension-v109-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 11806,
-      "sha256": "2a306ad6d0edf6b0245f4e3423113d286e19b31712afdab7ea67476ed2e9647c"
+      "bytes": 12302,
+      "sha256": "f9ced4f46819f8c24820800e4a7b8b631036c9ad42978c2ec89762b03ad65397"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8776,
-      "sha256": "248f504b60bc7a351ae99952c452c7ff0ab2aaed1ddf03dd6278300762d6c791"
+      "bytes": 8968,
+      "sha256": "937182a23f927f9732bed92a86a835f7d00281c614fd840ef9e66363d4908867"
     },
     {
       "path": "README.md",
-      "bytes": 8024,
-      "sha256": "4781116725ec6eca73289c38cf423e0058adbc07ca27138dac8d07446bc5e95d"
+      "bytes": 8194,
+      "sha256": "31e471224c6b38cf747ecc572d098fc0444c5d9b2f00bde24c4cd50cb94e85c0"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -81,6 +81,11 @@
       "sha256": "d7ea1b5aa4dafed61680e024de20b2c46a0cc9c878cf883ede7bbeef75a4d488"
     },
     {
+      "path": "docs/harbor-art-v109.md",
+      "bytes": 4957,
+      "sha256": "a00a3ed4c4f3c514a2707871974a3477c6023639f4baf21f8bda718c836340cc"
+    },
+    {
       "path": "docs/media/agent-document.png",
       "bytes": 3656363,
       "sha256": "266ac0598416c20530a6c48d7be220db576b29f3d969f3e99fd22d3466ea9042"
@@ -94,6 +99,16 @@
       "path": "docs/media/compose-original-score.py",
       "bytes": 3863,
       "sha256": "edf184e72fb793c1a19802fefe61889f2c1835a879064094feb4cdb5eef1a308"
+    },
+    {
+      "path": "docs/media/harbor-origami-v109.png",
+      "bytes": 2573243,
+      "sha256": "93057779fb2e797bd7b458e9806bebbbcf9a71ef7fec90bfd21ff958ea1ce499"
+    },
+    {
+      "path": "docs/media/harbor-pixel-v109.png",
+      "bytes": 1554198,
+      "sha256": "52e202f67a77dac24b29ae9da8799badd7b96449db4b30c80da63524985c80a4"
     },
     {
       "path": "docs/media/hyper-dimension-poster.png",
@@ -662,8 +677,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 4938,
-      "sha256": "1c981cb5295a97efd648d05005347c24f54228b9d5181d6e0b55357316a234ce"
+      "bytes": 4969,
+      "sha256": "6f435b2bf0bb99b2d1cc8ad4154f8eae627394650726e6a25c0a79ba878a9c8d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1064,6 +1079,16 @@
       "path": "public/assets/gallery-pixel.png",
       "bytes": 2410861,
       "sha256": "b3bf1c687a07c2188fcf1f57a4a0a2a74be3a65092bf647bb50b27bdc01df58c"
+    },
+    {
+      "path": "public/assets/gangway-origami-v109.png",
+      "bytes": 1566237,
+      "sha256": "68f7f53e4e9997921c50d5969c7c1f4eaf6a5a8f8582550add16b4f885109180"
+    },
+    {
+      "path": "public/assets/gangway-pixel-v109.png",
+      "bytes": 1480654,
+      "sha256": "5331896478fbd568c6d301c9af1c0a80d099cb5df60bde7825405c3b52d2603b"
     },
     {
       "path": "public/assets/garment-frames-v35.json",
@@ -2212,8 +2237,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 129398,
-      "sha256": "578e338934fee2757ded1f8b7715560bce7eb8c5d71bfea44fb7c81130b4cad6"
+      "bytes": 129528,
+      "sha256": "829226206bd2933428d3254f687927e1925fc32581d5f65fdb1d4c7be4bf1a5a"
     },
     {
       "path": "src/arcade.css",
@@ -2637,8 +2662,13 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 3943,
-      "sha256": "44b62452d25370fb59516b31d8da33a422541da16b3568001f01aa7359bf95c8"
+      "bytes": 4099,
+      "sha256": "d66527935dc36f1e553f3aa73ec168dc4202896d4095448a566d92a97ab8b636"
+    },
+    {
+      "path": "src/harborArtwork.js",
+      "bytes": 1567,
+      "sha256": "f4c230de846d041e955132dbfd0872204e1fb287235870800a09f05385e1c9fd"
     },
     {
       "path": "src/harborNavigation.js",
@@ -3684,6 +3714,11 @@
       "path": "tests/v108-recruitment-exchange.test.mjs",
       "bytes": 1655,
       "sha256": "4d6ddeb1829c8223a9173387013c72373c03c043ae743def262b215fa0a387ca"
+    },
+    {
+      "path": "tests/v109-harbor-art.test.mjs",
+      "bytes": 1826,
+      "sha256": "73455740b2e1f2a1fc3bf748af8ba029a5ab843c3789853f125c8f315b44d460"
     },
     {
       "path": "tests/v11-cadence-baseline.mjs",
@@ -5996,5 +6031,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v108-github"
+  "publicRevision": "v109-github"
 }
