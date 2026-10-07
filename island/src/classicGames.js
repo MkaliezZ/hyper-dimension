@@ -11,7 +11,7 @@ import {makeLinkBoard,linkPath,findLinkMove,shuffleLinks,createMatchState,matchM
 export function mountClassicGame(root,id,onFinish,rawOptions,config){
  const options=gameLevelOptions(id,rawOptions),level=options.level,g=config,theme=options.theme||document.body.dataset.theme||'pixel',recipe=options.recipe||DEFAULT_RECIPES[id];
  const art=k=>itemMarkup(k,theme),isLink=g.kind==='link',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const resumed=options.resumeGame;let transportPaused=false;
+ const resumed=options.resumeGame;let transportPaused=false,claiming=false,claimReady=false,claimButton=null;
  let alive=true,done=false,busy=false,paused=false,activeWindow=true,started=resumed?.started??!isLink,frame=0,last=performance.now(),time=resumed?.time||0,selected=null,queue=[],pending=null,replacement=null,detail={},hinted=[],hintUntil=0;
  root.innerHTML='<section class="room-game classic-game" data-game-id="'+id+'" data-kind="'+g.kind+'"><div class="game-brief">'+art(recipe.item)+'<div><b>'+g.title+'</b><p>'+g.instructions+'</p></div></div><div class="classic-objectives"></div><p class="activity-status" role="status"></p><div class="activity-board classic-board"><div class="classic-grid"></div><svg class="link-lines" aria-hidden="true"></svg><span class="classic-combo" aria-live="polite"></span></div><div class="activity-controls"></div><div class="activity-session-controls"></div></section>';
  const board=root.querySelector('.activity-board'),grid=root.querySelector('.classic-grid'),status=root.querySelector('.activity-status'),objectives=root.querySelector('.classic-objectives'),controls=root.querySelector('.activity-controls'),session=root.querySelector('.activity-session-controls'),line=board.querySelector('.link-lines'),combo=board.querySelector('.classic-combo');
@@ -19,18 +19,35 @@ export function mountClassicGame(root,id,onFinish,rawOptions,config){
  const canPlay=()=>alive&&!done&&!busy&&!transportPaused&&!paused&&activeWindow&&!document.hidden;
  function text(s){status.textContent=s}
  function button(label,fn,parent=controls){const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent=label;b.onclick=()=>{if(canPlay())fn()};parent.append(b);return b}
- function restart(mode=options.mode){if(!alive)return;if(options.onRestart){options.onRestart(mode);return}destroy();replacement=mountClassicGame(root,id,onFinish,nextGameOptions(options,mode),g)}
+ function restart(mode=options.mode){if(!alive||claiming||transportPaused)return;if(options.onRestart){options.onRestart(mode);return}destroy();replacement=mountClassicGame(root,id,onFinish,nextGameOptions(options,mode),g)}
  addGameChrome(root,options,restart);
  const restartButton=button('换一局',()=>{},session);restartButton.onclick=()=>restart();
  const pauseButton=button(isLink?'开始计时':'暂停',()=>{},session);
  pauseButton.dataset.session='pause';pauseButton.onclick=()=>{if(!alive||done)return;if(!started){started=true;options.onGameEvent?.({action:{type:'start'}});last=performance.now()}else paused=!paused;if(paused)stage.pause();pauseButton.textContent=paused?'继续':'暂停';};
+ function syncResultControls(){
+  if(claimButton)claimButton.disabled=!alive||!claimReady||claiming||transportPaused;
+  restartButton.disabled=claiming||transportPaused;
+  root.querySelectorAll('[data-difficulty]').forEach(b=>{b.disabled=claiming||transportPaused});
+ }
  function finish(pass,quality){
   if(done||!alive)return;done=true;busy=false;quality=Math.max(55,Math.min(100,Math.round(quality||55)));
   const receipt={passed:pass,score:pass?1:0,total:1,quality};options.onOutcome?.(receipt);
   text(pass?'目标达成 · 品质 '+quality:'本局未达成目标 · 材料未消耗');controls.replaceChildren();pauseButton.disabled=true;
   const claim=button(pass?'领取制作成果':'再来一局',()=>{});claim.className='primary activity-finish';claim.disabled=true;
-  stage.present(pass,()=>{if(alive)claim.disabled=false});
-  claim.onclick=()=>{if(!alive||claim.disabled||transportPaused)return;claim.disabled=true;if(pass){destroy();onFinish(receipt)}else restart()};
+  claimButton=claim;syncResultControls();
+  stage.present(pass,()=>{if(alive){claimReady=true;syncResultControls()}});
+  claim.onclick=()=>{
+   if(!alive||claim.disabled||claiming||transportPaused)return;
+   if(!pass){restart();return}
+   claiming=true;syncResultControls();text('正在确认制作成果…');
+   // Keep the finished board until the controller acknowledges settlement.
+   // A save in flight may refuse this attempt without consuming the result.
+   Promise.resolve().then(()=>onFinish(receipt)).then(accepted=>{
+    if(!alive)return;
+    if(accepted!==false){destroy();return}
+    claiming=false;syncResultControls();text('进度尚在核对，请稍后再次确认完成。');
+   }).catch(()=>{if(alive){claiming=false;syncResultControls();text('这次提交未完成，请重试；当前结果已保留。')}});
+  };
  }
  function enqueue(steps,callback){busy=true;queue=steps;pending=callback;advance()}
  function advance(){const step=queue.shift();if(!step){busy=false;const cb=pending;pending=null;cb?.();return}step.run();queue.unshift({wait:reduced?.035:step.duration});}
@@ -150,6 +167,6 @@ export function mountClassicGame(root,id,onFinish,rawOptions,config){
  }
  frame=requestAnimationFrame(tick);
  if(resumed?.result)queueMicrotask(()=>finish(resumed.result.passed,resumed.result.quality));
- function destroy(){replacement?.destroy();alive=false;queue=[];pending=null;cancelAnimationFrame(frame);stage.destroy();window.removeEventListener('hd-sound-settings',soundSettings);window.removeEventListener('blur',blur);window.removeEventListener('focus',focus)}
- return {config:g,destroy,setTransportPaused(value){transportPaused=value;last=performance.now()},inspect:()=>replacement?replacement.inspect():({id,kind:g.kind,level,t:time,done,busy,started,paused,performance:stage.inspect(),...inspectState()})};
+ function destroy(){replacement?.destroy();if(!alive)return;alive=false;syncResultControls();queue=[];pending=null;cancelAnimationFrame(frame);stage.destroy();window.removeEventListener('hd-sound-settings',soundSettings);window.removeEventListener('blur',blur);window.removeEventListener('focus',focus)}
+ return {config:g,destroy,setTransportPaused(value){transportPaused=value;last=performance.now();syncResultControls()},inspect:()=>replacement?replacement.inspect():({id,kind:g.kind,level,t:time,done,busy,started,paused,alive,claiming,performance:stage.inspect(),...inspectState()})};
 }

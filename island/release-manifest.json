@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v109-agent-source",
+  "release": "hyper-dimension-v110-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 12302,
-      "sha256": "f9ced4f46819f8c24820800e4a7b8b631036c9ad42978c2ec89762b03ad65397"
+      "bytes": 12844,
+      "sha256": "1de2aa21c29e637e25368946dc98d9b4482fdc5abf2354a0cdd993df344d0da1"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8968,
-      "sha256": "937182a23f927f9732bed92a86a835f7d00281c614fd840ef9e66363d4908867"
+      "bytes": 9134,
+      "sha256": "b416ed1d6a15120d884f93bc0a5a6663adf4d048033a2bc647e1203a90108a5d"
     },
     {
       "path": "README.md",
-      "bytes": 8194,
-      "sha256": "31e471224c6b38cf747ecc572d098fc0444c5d9b2f00bde24c4cd50cb94e85c0"
+      "bytes": 8359,
+      "sha256": "b46ad4a17d485e80dab9dd78b9cc07256f91be42d1a5895aec57c1e7ed96b84a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -79,6 +79,11 @@
       "path": "docs/VALIDATION.md",
       "bytes": 4097,
       "sha256": "d7ea1b5aa4dafed61680e024de20b2c46a0cc9c878cf883ede7bbeef75a4d488"
+    },
+    {
+      "path": "docs/classic-settlement-v110.md",
+      "bytes": 2783,
+      "sha256": "9b0680a87c4740f8221b671fdcee49916966dcc96c413245f823d2867d45eb56"
     },
     {
       "path": "docs/harbor-art-v109.md",
@@ -677,8 +682,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 4969,
-      "sha256": "6f435b2bf0bb99b2d1cc8ad4154f8eae627394650726e6a25c0a79ba878a9c8d"
+      "bytes": 5099,
+      "sha256": "99a5a65ac18b247fd0c321edbf9e3ea6accc8335358bc13802f62e2f709ec21b"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2297,8 +2302,8 @@
     },
     {
       "path": "src/classicGames.js",
-      "bytes": 16452,
-      "sha256": "16386632294dad4fac22d223e819fe099ee513e1ae42d0e3dc8c7d46399738a5"
+      "bytes": 17505,
+      "sha256": "5df11a2c7ce7719a2938e6e35da7c6e7b2f2f4e568f8e5f13de315f4db1726ea"
     },
     {
       "path": "src/classicRules.js",
@@ -3729,6 +3734,16 @@
       "path": "tests/v11-cadence-simulation.mjs",
       "bytes": 2808,
       "sha256": "42b0a432fb6e607d2afcf34d335df2b033bec82d4044a99d004d65a0609158a9"
+    },
+    {
+      "path": "tests/v110-classic-recovery-browser.mjs",
+      "bytes": 8739,
+      "sha256": "f0f04e6b34ee7874c46224ab73d3cde247156f97b300836cb4c2e0a9f98ef615"
+    },
+    {
+      "path": "tests/v110-classic-settlement-browser.mjs",
+      "bytes": 5299,
+      "sha256": "e1cf7d6572d6579380e8cc06b71130c05be92ba96a19bb847690452096cd1a97"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -6031,5 +6046,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v109-github"
+  "publicRevision": "v110-github"
 }

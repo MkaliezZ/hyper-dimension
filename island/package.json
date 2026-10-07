@@ -32,7 +32,8 @@
     "deploy:verify": "node tools/agent-deploy.mjs verify",
     "deploy:run": "node tools/agent-deploy.mjs run",
     "release:verify": "node tools/verify-local-release.mjs",
-    "test:release:browser": "node tests/v80-release-browser.mjs"
+    "test:release:browser": "node tests/v80-release-browser.mjs",
+    "test:classic-settlement": "node tests/v110-classic-settlement-browser.mjs && node tests/v110-classic-recovery-browser.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.63.0"
