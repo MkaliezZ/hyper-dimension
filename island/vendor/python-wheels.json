@@ -1,0 +1,882 @@
+{
+  "schema": 80,
+  "target": "Windows x64 / CPython 3.11",
+  "pythonVersion": "3.11.15",
+  "node": {
+    "source": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip",
+    "version": "24.19.0",
+    "bytes": 37304352,
+    "sha256": "57f71ab3652e797d84acddc79c81cc9ff1c6ddb2a1974cdb83f00fee9bff4c73",
+    "verified": true
+  },
+  "hermes": {
+    "version": "0.19.1",
+    "commit": "0a62610f10cc34d696b2239b2c69fa1ba0f1ca63",
+    "sha256": "e232ac2d2fd9d30294d0af573b7433d73fd03b224f9f4a846b23675a84774074",
+    "license": "MIT",
+    "source": "https://github.com/NousResearch/hermes-agent"
+  },
+  "packages": [
+    {
+      "name": "annotated-doc",
+      "version": "0.0.5",
+      "wheel": "annotated_doc-0.0.5-py3-none-any.whl",
+      "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101",
+      "bytes": 5302,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/annotated-doc/annotated_doc-0.0.5.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "annotated_doc-0.0.5.dist-info/METADATA"
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0",
+      "wheel": "annotated_types-0.8.0-py3-none-any.whl",
+      "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0",
+      "bytes": 13427,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/annotated-types/annotated_types-0.8.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "annotated_types-0.8.0.dist-info/METADATA"
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.1",
+      "wheel": "anyio-4.15.1-py3-none-any.whl",
+      "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101",
+      "bytes": 132079,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/anyio/anyio-4.15.1.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "anyio-4.15.1.dist-info/METADATA"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.5.20",
+      "wheel": "certifi-2026.5.20-py3-none-any.whl",
+      "sha256": "3c52e209ba0a4ad7aebe60436a4ab349c39e1e602e8c134221e546902ad25897",
+      "bytes": 134134,
+      "licenseExpression": "MPL-2.0",
+      "licenseFiles": [
+        "licenses/python/certifi/certifi-2026.5.20.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "certifi-2026.5.20.dist-info/METADATA"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1",
+      "wheel": "cffi-2.1.1-cp311-cp311-win_amd64.whl",
+      "sha256": "42f6930c31dc7f50732c9ae793c2786c7b6b044195967bbdde40bb9be81c4cc0",
+      "bytes": 185096,
+      "licenseExpression": "MIT-0",
+      "licenseFiles": [
+        "licenses/python/cffi/cffi-2.1.1.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "cffi-2.1.1.dist-info/METADATA"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "wheel": "charset_normalizer-3.5.2-cp311-cp311-win_amd64.whl",
+      "sha256": "87e50a3e7cb90af586b6c5faf23e302a970415ac73bd7bd90a515a04b427ef96",
+      "bytes": 214932,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/charset-normalizer/charset_normalizer-3.5.2.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "charset_normalizer-3.5.2.dist-info/METADATA"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "wheel": "click-8.5.0-py3-none-any.whl",
+      "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360",
+      "bytes": 125251,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/click/click-8.5.0.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "click-8.5.0.dist-info/METADATA"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "wheel": "colorama-0.4.6-py2.py3-none-any.whl",
+      "sha256": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6",
+      "bytes": 25335,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/colorama/colorama-0.4.6.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "colorama-0.4.6.dist-info/METADATA"
+    },
+    {
+      "name": "concurrent-log-handler",
+      "version": "0.9.29",
+      "wheel": "concurrent_log_handler-0.9.29-py3-none-any.whl",
+      "sha256": "0d6c077fbaef2dae49a25975dcf72a602fe0a6a4ce80a3b7c37696d37e10459a",
+      "bytes": 32052,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/concurrent-log-handler/concurrent_log_handler-0.9.29.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "concurrent_log_handler-0.9.29.dist-info/METADATA"
+    },
+    {
+      "name": "croniter",
+      "version": "6.0.0",
+      "wheel": "croniter-6.0.0-py2.py3-none-any.whl",
+      "sha256": "2f878c3856f17896979b2a4379ba1f09c83e374931ea15cc835c5dd2eee9b368",
+      "bytes": 25468,
+      "licenseExpression": "MIT License",
+      "licenseFiles": [
+        "licenses/python/croniter/croniter-6.0.0.dist-info/LICENSE"
+      ],
+      "metadataFile": "croniter-6.0.0.dist-info/METADATA"
+    },
+    {
+      "name": "cryptography",
+      "version": "48.0.1",
+      "wheel": "cryptography-48.0.1-cp311-abi3-win_amd64.whl",
+      "sha256": "39489bfca54c7a1f6b297efcd8bc608ab92d16c4ca631b0cad4da46724588b24",
+      "bytes": 3817138,
+      "licenseExpression": "Apache-2.0 OR BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/cryptography/cryptography-48.0.1.dist-info/licenses/LICENSE",
+        "licenses/python/cryptography/cryptography-48.0.1.dist-info/licenses/LICENSE.APACHE",
+        "licenses/python/cryptography/cryptography-48.0.1.dist-info/licenses/LICENSE.BSD"
+      ],
+      "metadataFile": "cryptography-48.0.1.dist-info/METADATA"
+    },
+    {
+      "name": "distro",
+      "version": "1.9.0",
+      "wheel": "distro-1.9.0-py3-none-any.whl",
+      "sha256": "7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2",
+      "bytes": 20277,
+      "licenseExpression": "Apache License, Version 2.0",
+      "licenseFiles": [
+        "licenses/python/distro/distro-1.9.0.dist-info/LICENSE"
+      ],
+      "metadataFile": "distro-1.9.0.dist-info/METADATA"
+    },
+    {
+      "name": "et_xmlfile",
+      "version": "2.0.0",
+      "wheel": "et_xmlfile-2.0.0-py3-none-any.whl",
+      "sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa",
+      "bytes": 18059,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/et_xmlfile/et_xmlfile-2.0.0.dist-info/AUTHORS.txt"
+      ],
+      "metadataFile": "et_xmlfile-2.0.0.dist-info/METADATA"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.142.2",
+      "wheel": "fastapi-0.142.2-py3-none-any.whl",
+      "sha256": "bd5f4d81f1e93a88bcd77caf4dfe3c2dbffc3805407a0007e9a114c18b3a670b",
+      "bytes": 144409,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/fastapi/fastapi-0.142.2.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "fastapi-0.142.2.dist-info/METADATA"
+    },
+    {
+      "name": "fire",
+      "version": "0.7.1",
+      "wheel": "fire-0.7.1-py3-none-any.whl",
+      "sha256": "e43fd8a5033a9001e7e2973bab96070694b9f12f2e0ecf96d4683971b5ab1882",
+      "bytes": 115945,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/fire/fire-0.7.1.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "fire-0.7.1.dist-info/METADATA"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "wheel": "h11-0.16.0-py3-none-any.whl",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "bytes": 37515,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/h11/h11-0.16.0.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "h11-0.16.0.dist-info/METADATA"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "wheel": "httpcore-1.0.9-py3-none-any.whl",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+      "bytes": 78784,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/httpcore/httpcore-1.0.9.dist-info/licenses/LICENSE.md"
+      ],
+      "metadataFile": "httpcore-1.0.9.dist-info/METADATA"
+    },
+    {
+      "name": "httptools",
+      "version": "0.8.0",
+      "wheel": "httptools-0.8.0-cp311-cp311-win_amd64.whl",
+      "sha256": "a1b4c8e7a489a0d750d91894e9a8cdc295838f1924c0ca903ae993456fddec07",
+      "bytes": 90991,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/httptools/httptools-0.8.0.dist-info/licenses/LICENSE",
+        "licenses/python/httptools/httptools-0.8.0.dist-info/licenses/vendor/http-parser/LICENSE-MIT",
+        "licenses/python/httptools/httptools-0.8.0.dist-info/licenses/vendor/llhttp/LICENSE"
+      ],
+      "metadataFile": "httptools-0.8.0.dist-info/METADATA"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "wheel": "httpx-0.28.1-py3-none-any.whl",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+      "bytes": 73517,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/httpx/httpx-0.28.1.dist-info/licenses/LICENSE.md"
+      ],
+      "metadataFile": "httpx-0.28.1.dist-info/METADATA"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "wheel": "idna-3.20-py3-none-any.whl",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "bytes": 69583,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/idna/idna-3.20.dist-info/licenses/LICENSE.md"
+      ],
+      "metadataFile": "idna-3.20.dist-info/METADATA"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6",
+      "wheel": "jinja2-3.1.6-py3-none-any.whl",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+      "bytes": 134899,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/Jinja2/jinja2-3.1.6.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "jinja2-3.1.6.dist-info/METADATA"
+    },
+    {
+      "name": "jiter",
+      "version": "0.17.0",
+      "wheel": "jiter-0.17.0-cp311-cp311-win_amd64.whl",
+      "sha256": "e654b6b04e39c9cb19cb8b04c6ddf1f2db07751fa14156413969fd78bad0e5cb",
+      "bytes": 231402,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/jiter/jiter-0.17.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "jiter-0.17.0.dist-info/METADATA"
+    },
+    {
+      "name": "lxml",
+      "version": "6.1.3",
+      "wheel": "lxml-6.1.3-cp311-cp311-win_amd64.whl",
+      "sha256": "7ae4949f212a53b007dbc355884fda122545c5764a54256c9217e419a62a6559",
+      "bytes": 4032700,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/lxml/lxml-6.1.3.dist-info/licenses/LICENSE.txt",
+        "licenses/python/lxml/lxml-6.1.3.dist-info/licenses/LICENSES.txt"
+      ],
+      "metadataFile": "lxml-6.1.3.dist-info/METADATA"
+    },
+    {
+      "name": "Markdown",
+      "version": "3.10.2",
+      "wheel": "markdown-3.10.2-py3-none-any.whl",
+      "sha256": "e91464b71ae3ee7afd3017d9f358ef0baf158fd9a298db92f1d4761133824c36",
+      "bytes": 108180,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/Markdown/markdown-3.10.2.dist-info/licenses/LICENSE.md"
+      ],
+      "metadataFile": "markdown-3.10.2.dist-info/METADATA"
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "4.2.0",
+      "wheel": "markdown_it_py-4.2.0-py3-none-any.whl",
+      "sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a",
+      "bytes": 91687,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/markdown-it-py/markdown_it_py-4.2.0.dist-info/licenses/LICENSE",
+        "licenses/python/markdown-it-py/markdown_it_py-4.2.0.dist-info/licenses/LICENSE.markdown-it"
+      ],
+      "metadataFile": "markdown_it_py-4.2.0.dist-info/METADATA"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.4",
+      "wheel": "markupsafe-3.0.4-cp311-cp311-win_amd64.whl",
+      "sha256": "fdb4ca07ab75ffadab4a8b135ad59cdbb3156b99310f3d565370da74a15d6bd3",
+      "bytes": 14328,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/MarkupSafe/markupsafe-3.0.4.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "markupsafe-3.0.4.dist-info/METADATA"
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2",
+      "wheel": "mdurl-0.1.2-py3-none-any.whl",
+      "sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+      "bytes": 9979,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/mdurl/mdurl-0.1.2.dist-info/LICENSE"
+      ],
+      "metadataFile": "mdurl-0.1.2.dist-info/METADATA"
+    },
+    {
+      "name": "nemo-relay",
+      "version": "0.6.0",
+      "wheel": "nemo_relay-0.6.0-cp311-abi3-win_amd64.whl",
+      "sha256": "bfbbedfd130fa95c9b8c04643c30910df850e0ed3500beeab82b00ca2d94e7ea",
+      "bytes": 9613425,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/nemo-relay/nemo_relay-0.6.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "nemo_relay-0.6.0.dist-info/METADATA"
+    },
+    {
+      "name": "openai",
+      "version": "2.24.0",
+      "wheel": "openai-2.24.0-py3-none-any.whl",
+      "sha256": "fed30480d7d6c884303287bde864980a4b137b60553ffbcf9ab4a233b7a73d94",
+      "bytes": 1120122,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/openai/openai-2.24.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "openai-2.24.0.dist-info/METADATA"
+    },
+    {
+      "name": "openpyxl",
+      "version": "3.1.5",
+      "wheel": "openpyxl-3.1.5-py2.py3-none-any.whl",
+      "sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2",
+      "bytes": 250910,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/openpyxl/LICENCE.rst"
+      ],
+      "metadataFile": "openpyxl-3.1.5.dist-info/METADATA"
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.45.0",
+      "wheel": "opentelemetry_api-1.45.0-py3-none-any.whl",
+      "sha256": "80e068aba7cd56c8b58512d6a36f8d25cb1dfaa0c0a4cc1c938ccf9f362d9cb3",
+      "bytes": 60020,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/opentelemetry-api/opentelemetry_api-1.45.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "opentelemetry_api-1.45.0.dist-info/METADATA"
+    },
+    {
+      "name": "packaging",
+      "version": "26.0",
+      "wheel": "packaging-26.0-py3-none-any.whl",
+      "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529",
+      "bytes": 74366,
+      "licenseExpression": "Apache-2.0 OR BSD-2-Clause",
+      "licenseFiles": [
+        "licenses/python/packaging/packaging/licenses/__init__.py",
+        "licenses/python/packaging/packaging/licenses/_spdx.py",
+        "licenses/python/packaging/packaging-26.0.dist-info/licenses/LICENSE",
+        "licenses/python/packaging/packaging-26.0.dist-info/licenses/LICENSE.APACHE",
+        "licenses/python/packaging/packaging-26.0.dist-info/licenses/LICENSE.BSD"
+      ],
+      "metadataFile": "packaging-26.0.dist-info/METADATA"
+    },
+    {
+      "name": "pathspec",
+      "version": "1.1.1",
+      "wheel": "pathspec-1.1.1-py3-none-any.whl",
+      "sha256": "a00ce642f577bf7f473932318056212bc4f8bfdf53128c78bbd5af0b9b20b189",
+      "bytes": 57328,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/pathspec/pathspec-1.1.1.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pathspec-1.1.1.dist-info/METADATA"
+    },
+    {
+      "name": "pillow",
+      "version": "12.3.0",
+      "wheel": "pillow-12.3.0-cp311-cp311-win_amd64.whl",
+      "sha256": "8e95e1385e4998ae9694eeaa4730ba5457ff61185b3a55e2e7bea0880aef452a",
+      "bytes": 7233653,
+      "licenseExpression": "MIT-CMU",
+      "licenseFiles": [
+        "licenses/python/pillow/pillow-12.3.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pillow-12.3.0.dist-info/METADATA"
+    },
+    {
+      "name": "portalocker",
+      "version": "4.4.0",
+      "wheel": "portalocker-4.4.0-py3-none-any.whl",
+      "sha256": "a8e99ea29bfb61766ee0b4008cbaf0651e8e050f7a2485ebf54316480e99226e",
+      "bytes": 129647,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/portalocker/portalocker-4.4.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "portalocker-4.4.0.dist-info/METADATA"
+    },
+    {
+      "name": "prompt_toolkit",
+      "version": "3.0.52",
+      "wheel": "prompt_toolkit-3.0.52-py3-none-any.whl",
+      "sha256": "9aac639a3bbd33284347de5ad8d68ecc044b91a762dc39b7c21095fcd6a19955",
+      "bytes": 391431,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/prompt_toolkit/prompt_toolkit-3.0.52.dist-info/licenses/AUTHORS.rst",
+        "licenses/python/prompt_toolkit/prompt_toolkit-3.0.52.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "prompt_toolkit-3.0.52.dist-info/METADATA"
+    },
+    {
+      "name": "psutil",
+      "version": "7.2.2",
+      "wheel": "psutil-7.2.2-cp37-abi3-win_amd64.whl",
+      "sha256": "eb7e81434c8d223ec4a219b5fc1c47d0417b12be7ea866e24fb5ad6e84b3d988",
+      "bytes": 137737,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/psutil/psutil-7.2.2.dist-info/LICENSE"
+      ],
+      "metadataFile": "psutil-7.2.2.dist-info/METADATA"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.0",
+      "wheel": "pycparser-3.0-py3-none-any.whl",
+      "sha256": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992",
+      "bytes": 48172,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/pycparser/pycparser-3.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pycparser-3.0.dist-info/METADATA"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.13.4",
+      "wheel": "pydantic-2.13.4-py3-none-any.whl",
+      "sha256": "45a282cde31d808236fd7ea9d919b128653c8b38b393d1c4ab335c62924d9aba",
+      "bytes": 472262,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/pydantic/pydantic-2.13.4.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pydantic-2.13.4.dist-info/METADATA"
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.46.4",
+      "wheel": "pydantic_core-2.46.4-cp311-cp311-win_amd64.whl",
+      "sha256": "6f2eeda33a839975441c86a4119e1383c50b47faf0cbb5176985565c6bb02c33",
+      "bytes": 2071114,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/pydantic_core/pydantic_core-2.46.4.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pydantic_core-2.46.4.dist-info/METADATA"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0",
+      "wheel": "pygments-2.21.0-py3-none-any.whl",
+      "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+      "bytes": 1250147,
+      "licenseExpression": "BSD-2-Clause",
+      "licenseFiles": [
+        "licenses/python/Pygments/pygments-2.21.0.dist-info/licenses/AUTHORS",
+        "licenses/python/Pygments/pygments-2.21.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pygments-2.21.0.dist-info/METADATA"
+    },
+    {
+      "name": "PyJWT",
+      "version": "2.13.0",
+      "wheel": "pyjwt-2.13.0-py3-none-any.whl",
+      "sha256": "66adcc2aff09b3f1bbd95fc1e1577df8ac8723c978552fd43304c8a290ac5728",
+      "bytes": 31274,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/PyJWT/pyjwt-2.13.0.dist-info/licenses/AUTHORS.rst",
+        "licenses/python/PyJWT/pyjwt-2.13.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pyjwt-2.13.0.dist-info/METADATA"
+    },
+    {
+      "name": "pypdf",
+      "version": "6.10.0",
+      "wheel": "pypdf-6.10.0-py3-none-any.whl",
+      "sha256": "90005e959e1596c6e6c84c8b0ad383285b3e17011751cedd17f2ce8fcdfc86de",
+      "bytes": 334459,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/pypdf/pypdf-6.10.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pypdf-6.10.0.dist-info/METADATA"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "2.9.0.post0",
+      "wheel": "python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+      "bytes": 229892,
+      "licenseExpression": "Dual License",
+      "licenseFiles": [
+        "licenses/python/python-dateutil/python_dateutil-2.9.0.post0.dist-info/LICENSE"
+      ],
+      "metadataFile": "python_dateutil-2.9.0.post0.dist-info/METADATA"
+    },
+    {
+      "name": "python-docx",
+      "version": "1.2.0",
+      "wheel": "python_docx-1.2.0-py3-none-any.whl",
+      "sha256": "3fd478f3250fbbbfd3b94fe1e985955737c145627498896a8a6bf81f4baf66c7",
+      "bytes": 252987,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/python-docx/python_docx-1.2.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "python_docx-1.2.0.dist-info/METADATA"
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.2",
+      "wheel": "python_dotenv-1.2.2-py3-none-any.whl",
+      "sha256": "1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a",
+      "bytes": 22101,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/python-dotenv/python_dotenv-1.2.2.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "python_dotenv-1.2.2.dist-info/METADATA"
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.32",
+      "wheel": "python_multipart-0.0.32-py3-none-any.whl",
+      "sha256": "ff6d3f776f16878c894e52e107296ffc890e913c611b1a4ec6c44e2821fe2e23",
+      "bytes": 30042,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/python-multipart/python_multipart-0.0.32.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "python_multipart-0.0.32.dist-info/METADATA"
+    },
+    {
+      "name": "pytz",
+      "version": "2026.5",
+      "wheel": "pytz-2026.5-py2.py3-none-any.whl",
+      "sha256": "e658af3757f9e26a9d25dd2aff38335acd92bc9104f890a894b2c1ba28311b03",
+      "bytes": 506342,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/pytz/pytz-2026.5.dist-info/LICENSE.txt"
+      ],
+      "metadataFile": "pytz-2026.5.dist-info/METADATA"
+    },
+    {
+      "name": "pywin32",
+      "version": "311",
+      "wheel": "pywin32-311-cp311-cp311-win_amd64.whl",
+      "sha256": "3ce80b34b22b17ccbd937a6e78e7225d80c52f5ab9940fe0506a1a16f3dab503",
+      "bytes": 9508308,
+      "licenseExpression": "PSF",
+      "licenseFiles": [
+        "licenses/python/pywin32/adodbapi/license.txt",
+        "licenses/python/pywin32/pythonwin/license.txt",
+        "licenses/python/pywin32/win32/license.txt",
+        "licenses/python/pywin32/win32com/License.txt"
+      ],
+      "metadataFile": "pywin32-311.dist-info/METADATA"
+    },
+    {
+      "name": "pywinpty",
+      "version": "2.0.15",
+      "wheel": "pywinpty-2.0.15-cp311-cp311-win_amd64.whl",
+      "sha256": "9a6bcec2df2707aaa9d08b86071970ee32c5026e10bcc3cc5f6f391d85baf7ca",
+      "bytes": 1405249,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/pywinpty/pywinpty-2.0.15.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "pywinpty-2.0.15.dist-info/METADATA"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "wheel": "pyyaml-6.0.3-cp311-cp311-win_amd64.whl",
+      "sha256": "9f3bfb4965eb874431221a3ff3fdcddc7e74e3b07799e0e84ca4a0f867d449bf",
+      "bytes": 158763,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/PyYAML/pyyaml-6.0.3.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "pyyaml-6.0.3.dist-info/METADATA"
+    },
+    {
+      "name": "requests",
+      "version": "2.33.0",
+      "wheel": "requests-2.33.0-py3-none-any.whl",
+      "sha256": "3324635456fa185245e24865e810cecec7b4caf933d7eb133dcde67d48cee69b",
+      "bytes": 65017,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/requests/requests-2.33.0.dist-info/licenses/LICENSE",
+        "licenses/python/requests/requests-2.33.0.dist-info/licenses/NOTICE"
+      ],
+      "metadataFile": "requests-2.33.0.dist-info/METADATA"
+    },
+    {
+      "name": "rich",
+      "version": "14.3.3",
+      "wheel": "rich-14.3.3-py3-none-any.whl",
+      "sha256": "793431c1f8619afa7d3b52b2cdec859562b950ea0d4b6b505397612db8d5362d",
+      "bytes": 310458,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/rich/rich-14.3.3.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "rich-14.3.3.dist-info/METADATA"
+    },
+    {
+      "name": "ruamel.yaml",
+      "version": "0.18.17",
+      "wheel": "ruamel_yaml-0.18.17-py3-none-any.whl",
+      "sha256": "9c8ba9eb3e793efdf924b60d521820869d5bf0cb9c6f1b82d82de8295e290b9d",
+      "bytes": 121594,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/ruamel.yaml/ruamel_yaml-0.18.17.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "ruamel_yaml-0.18.17.dist-info/METADATA"
+    },
+    {
+      "name": "ruamel.yaml.clib",
+      "version": "0.2.15",
+      "wheel": "ruamel_yaml_clib-0.2.15-cp311-cp311-win_amd64.whl",
+      "sha256": "bdc06ad71173b915167702f55d0f3f027fc61abd975bd308a0968c02db4a4c3e",
+      "bytes": 121996,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/ruamel.yaml.clib/ruamel_yaml_clib-0.2.15.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "ruamel_yaml_clib-0.2.15.dist-info/METADATA"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0",
+      "wheel": "six-1.17.0-py2.py3-none-any.whl",
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "bytes": 11050,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/six/six-1.17.0.dist-info/LICENSE"
+      ],
+      "metadataFile": "six-1.17.0.dist-info/METADATA"
+    },
+    {
+      "name": "sniffio",
+      "version": "1.3.1",
+      "wheel": "sniffio-1.3.1-py3-none-any.whl",
+      "sha256": "2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2",
+      "bytes": 10235,
+      "licenseExpression": "MIT OR Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/sniffio/sniffio-1.3.1.dist-info/LICENSE",
+        "licenses/python/sniffio/sniffio-1.3.1.dist-info/LICENSE.APACHE2",
+        "licenses/python/sniffio/sniffio-1.3.1.dist-info/LICENSE.MIT"
+      ],
+      "metadataFile": "sniffio-1.3.1.dist-info/METADATA"
+    },
+    {
+      "name": "socksio",
+      "version": "1.0.0",
+      "wheel": "socksio-1.0.0-py3-none-any.whl",
+      "sha256": "95dc1f15f9b34e8d7b16f06d74b8ccf48f609af32ab33c608d08761c5dcbb1f3",
+      "bytes": 12763,
+      "licenseExpression": "UNKNOWN",
+      "licenseFiles": [
+        "licenses/python/socksio/socksio-1.0.0.dist-info/LICENSE"
+      ],
+      "metadataFile": "socksio-1.0.0.dist-info/METADATA"
+    },
+    {
+      "name": "starlette",
+      "version": "1.7.0",
+      "wheel": "starlette-1.7.0-py3-none-any.whl",
+      "sha256": "67f8e99895493dd2911a03f11314af6ceebeae4e704bb9f43dfc6a9db151c93e",
+      "bytes": 78980,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/starlette/starlette-1.7.0.dist-info/licenses/LICENSE.md"
+      ],
+      "metadataFile": "starlette-1.7.0.dist-info/METADATA"
+    },
+    {
+      "name": "tenacity",
+      "version": "9.1.4",
+      "wheel": "tenacity-9.1.4-py3-none-any.whl",
+      "sha256": "6095a360c919085f28c6527de529e76a06ad89b23659fa881ae0649b867a9d55",
+      "bytes": 28926,
+      "licenseExpression": "Apache 2.0",
+      "licenseFiles": [
+        "licenses/python/tenacity/tenacity-9.1.4.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "tenacity-9.1.4.dist-info/METADATA"
+    },
+    {
+      "name": "termcolor",
+      "version": "3.3.0",
+      "wheel": "termcolor-3.3.0-py3-none-any.whl",
+      "sha256": "cf642efadaf0a8ebbbf4bc7a31cec2f9b5f21a9f726f4ccbb08192c9c26f43a5",
+      "bytes": 7734,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/termcolor/termcolor-3.3.0.dist-info/licenses/COPYING.txt"
+      ],
+      "metadataFile": "termcolor-3.3.0.dist-info/METADATA"
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.1",
+      "wheel": "tqdm-4.70.1-py3-none-any.whl",
+      "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73",
+      "bytes": 80199,
+      "licenseExpression": "MPL-2.0 AND MIT",
+      "licenseFiles": [
+        "licenses/python/tqdm/tqdm-4.70.1.dist-info/licenses/LICENCE"
+      ],
+      "metadataFile": "tqdm-4.70.1.dist-info/METADATA"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "wheel": "typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "bytes": 45571,
+      "licenseExpression": "PSF-2.0",
+      "licenseFiles": [
+        "licenses/python/typing_extensions/typing_extensions-4.16.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "typing_extensions-4.16.0.dist-info/METADATA"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4",
+      "wheel": "typing_inspection-0.4.4-py3-none-any.whl",
+      "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147",
+      "bytes": 14750,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/typing-inspection/typing_inspection-0.4.4.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "typing_inspection-0.4.4.dist-info/METADATA"
+    },
+    {
+      "name": "tzdata",
+      "version": "2025.3",
+      "wheel": "tzdata-2025.3-py2.py3-none-any.whl",
+      "sha256": "06a47e5700f3081aab02b2e513160914ff0694bce9947d6b76ebd6bf57cfc5d1",
+      "bytes": 348521,
+      "licenseExpression": "Apache-2.0",
+      "licenseFiles": [
+        "licenses/python/tzdata/tzdata-2025.3.dist-info/licenses/LICENSE",
+        "licenses/python/tzdata/tzdata-2025.3.dist-info/licenses/licenses/LICENSE_APACHE"
+      ],
+      "metadataFile": "tzdata-2025.3.dist-info/METADATA"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "wheel": "urllib3-2.8.0-py3-none-any.whl",
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+      "bytes": 135717,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/urllib3/urllib3-2.8.0.dist-info/licenses/LICENSE.txt"
+      ],
+      "metadataFile": "urllib3-2.8.0.dist-info/METADATA"
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.54.0",
+      "wheel": "uvicorn-0.54.0-py3-none-any.whl",
+      "sha256": "505bdb0f318731d45f1f712071fc781a8981f6847a31c902c9f5e652d4f67faf",
+      "bytes": 87427,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/uvicorn/uvicorn-0.54.0.dist-info/licenses/LICENSE.md"
+      ],
+      "metadataFile": "uvicorn-0.54.0.dist-info/METADATA"
+    },
+    {
+      "name": "watchfiles",
+      "version": "1.3.0",
+      "wheel": "watchfiles-1.3.0-cp310-abi3-win_amd64.whl",
+      "sha256": "1acabde19b67e673274e89a04d613b7fb1f122e2c4b8ec9a581e59c149264b61",
+      "bytes": 290643,
+      "licenseExpression": "MIT",
+      "licenseFiles": [
+        "licenses/python/watchfiles/watchfiles-1.3.0.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "watchfiles-1.3.0.dist-info/METADATA"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.9.2",
+      "wheel": "wcwidth-0.9.2-cp310-abi3-win_amd64.whl",
+      "sha256": "2a9746de704242bd4fdaabb31dd46b82f694a56a8d21081ad89b679a89da9fec",
+      "bytes": 597827,
+      "licenseExpression": "",
+      "licenseFiles": [
+        "licenses/python/wcwidth/wcwidth-0.9.2.dist-info/licenses/LICENSE"
+      ],
+      "metadataFile": "wcwidth-0.9.2.dist-info/METADATA"
+    },
+    {
+      "name": "websockets",
+      "version": "15.0.1",
+      "wheel": "websockets-15.0.1-cp311-cp311-win_amd64.whl",
+      "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065",
+      "bytes": 176828,
+      "licenseExpression": "BSD-3-Clause",
+      "licenseFiles": [
+        "licenses/python/websockets/websockets-15.0.1.dist-info/LICENSE"
+      ],
+      "metadataFile": "websockets-15.0.1.dist-info/METADATA"
+    }
+  ],
+  "missingLicenseText": []
+}

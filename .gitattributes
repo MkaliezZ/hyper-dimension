@@ -1,0 +1,9 @@
+# Preserve the sealed deployment payload byte-for-byte on all operating systems.
+island/** -text
+*.png binary
+*.gif binary
+*.mp4 binary
+*.webm binary
+*.whl binary
+*.zip binary
+*.tgz binary

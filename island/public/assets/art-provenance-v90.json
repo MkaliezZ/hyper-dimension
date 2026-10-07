@@ -1,0 +1,23 @@
+{
+  "version": "V90",
+  "mode": "builtin-imagegen",
+  "at": "2026-10-06T16:54:25.763Z",
+  "usage": "SR 星潮留影灯。收藏册、演出结果与烟花工坊庭院共用同一单体素材。三幕演出、伙伴动作和发射平台由实际游戏渲染，不烘焙入图片。",
+  "promptsFile": "qa/v90/art-prompts.json",
+  "assets": [
+    {
+      "file": "public/assets/fireworks-orbit-pixel-v90.png",
+      "original": "source-artifact:exec-8c2aa893-dd76-40be-9164-8e6fb837ed78.png",
+      "theme": "pixel",
+      "sha256": "0035c814ecb6cfaf931c72ed0f430b344856f007ab318ce29f8332175343bdc4",
+      "originalSha256": "0035c814ecb6cfaf931c72ed0f430b344856f007ab318ce29f8332175343bdc4"
+    },
+    {
+      "file": "public/assets/fireworks-orbit-origami-v90.png",
+      "original": "source-artifact:exec-0ccf0ebc-c4bc-42c0-becd-72936ff18919.png",
+      "theme": "origami",
+      "sha256": "48ec6b76e376486c0964055b4784fa66dc5ed746f02a7fde0199a05630652746",
+      "originalSha256": "48ec6b76e376486c0964055b4784fa66dc5ed746f02a7fde0199a05630652746"
+    }
+  ]
+}

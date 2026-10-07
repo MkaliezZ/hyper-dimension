@@ -1,0 +1,28 @@
+{
+  "schema": "hyper-dimension.cocreation/v1",
+  "id": "opc-tide-tea",
+  "title": "潮汐茶席 · 记忆练习",
+  "author": "Hyper Dimension 课程组",
+  "summary": "用茶材配对设计一个有明确目标的迎客练习，观察难度、提示与作品说明如何共同影响体验。",
+  "license": "CC-BY-4.0",
+  "source": "",
+  "themeNotes": {
+    "pixel": "复用岛上像素茶材和手账边框，让提示像一张清晰的小纸条。",
+    "origami": "复用折纸茶材与奶油色卡片，让留白和纸层保持一致。"
+  },
+  "challenges": [
+    {
+      "id": "welcome-tea",
+      "title": "给第一位旅人一桌暖茶",
+      "recipeId": "recipe_tea",
+      "seed": 20261011,
+      "difficulty": 1,
+      "minQuality": 75,
+      "brief": "先观察茶材，再翻出相同的两张。完成整桌配对，品质达到75即可通过共创练习。",
+      "hints": [
+        "先记住四个角落的茶材。",
+        "翻牌失误后停一下，用位置记忆代替连续乱点。"
+      ]
+    }
+  ]
+}

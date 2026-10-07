@@ -1,0 +1,67 @@
+{
+  "version": 98,
+  "source": "built-in image_gen",
+  "scope": "New individual N/SR collectible assets, no existing art overwritten",
+  "assets": [
+    {
+      "id": "island_pinwheel",
+      "theme": "pixel",
+      "file": "island-pinwheel-pixel-v98.png",
+      "promptText": "Use case: stylized-concept. Asset type: finished transparent standalone inventory-and-world collectible for a beautiful island simulation game.\nGenerate exactly ONE polished pixel-art island keepsake: a small pale teal and warm cream PAPER PINWHEEL attached to ONE straight thin wooden stem, permanently mounted in a low warm timber square pedestal with a small blank brass nameplate. Exactly FOUR folded blades radiating from ONE brass center pin. The stem is visibly attached under the center, continuous and straight down into the pedestal. No spare blades, no duplicated objects. A tiny coral ribbon tied around the lower stem provides a festive accent. Warm elegant handmade seaside palette, cream, desaturated turquoise, oak brown, muted coral, tiny gold details. True careful pixel clusters and stepped clean edges, restrained dark outline, precisely constructed toy with consistent upper-left light. Slight elevated front three-quarter/isometric view matching a cozy island map, vertical object and horizontal level base. Clean readable silhouette at 64px game scale, premium classic pixel game art. The whole object including pedestal and blades fully visible with generous transparent margin. Single object centered. Transparent background with original alpha, no cast backdrop, no text, no letters, no watermark. This is the first successful local island gathering collectible, N rarity: charming and modest, not an enormous ornate trophy.",
+      "method": "built-in image_gen",
+      "transparent": true,
+      "sha256": "68d0b06686ab9bfc5d1e42f31d2a686440bd14aab16f5d06cdbd4a43f0180f06",
+      "path": "/assets/island-pinwheel-pixel-v98.png"
+    },
+    {
+      "id": "island_pinwheel",
+      "theme": "origami",
+      "file": "island-pinwheel-origami-v98.png",
+      "promptText": "Use case: style-transfer. Transform the referenced single pixel-art PAPER PINWHEEL keepsake into premium origami paper sculpture style for the same island game. Preserve the exact mechanical construction, one complete object only: FOUR folded paper blades around ONE center pin; ONE straight continuous stem mounted into ONE low square pedestal; one small coral ribbon on the lower stem; blank nameplate. All four blades must remain distinct and connected to the same central pin, no extra blade, duplicate stalk or disconnected parts. Keep the original shape, teal/cream/coral/gold palette, framing and elevated front three-quarter perspective, with the entire object uncut. Replace pixel clusters with crisp folded paper planes, subtle fibrous paper texture, believable fold creases and quiet upper-left lighting. A modest N-rarity first-gathering memento. Transparent background, preserve alpha, clean airy margin, no text or watermark; no extra scenery.",
+      "method": "built-in image_gen",
+      "transparent": true,
+      "sha256": "113a4d9d9b50287809142c4a234645c0a514e719d072e9474c4f1271edef9f81",
+      "path": "/assets/island-pinwheel-origami-v98.png"
+    },
+    {
+      "id": "starlit_diorama",
+      "theme": "pixel",
+      "file": "starlit-diorama-pixel-v98.png",
+      "promptText": "Use case: stylized-concept. Finished transparent game collectible. Exactly ONE pixel-art starry island miniature under ONE clear glass dome, standing on ONE low round warm oak pedestal with blank brass plaque. Inside the dome: ONE tiny teal island mound, ONE gold crescent moon mounted high on a slim curved gold support, exactly THREE small gold five-point stars suspended at differing heights around the moon. Precisely three stars, no star pattern on other parts, no duplicated moons, no floating disconnected island. A narrow turquoise ribbon around the pedestal adds a seaside detail. The transparent dome has a visible continuous glass rim and subtle glass highlights; all interior ornaments are legible, not lost behind opaque glass. Premium elegant classic pixel-art, crisp intentional clusters and stepped outlines, tiny warm highlights, cream/turquoise/oak/coral palette. Slight elevated front three-quarter view matching an island-map exhibit, entire dome and base fully visible, centered single object with generous transparent margin. Readable 80px silhouette. SR rarity quiet magical keepsake of a perfectly completed lantern celebration. Transparent background original alpha, no text, no watermark, no environment or separate icons.",
+      "method": "built-in image_gen",
+      "transparent": true,
+      "sha256": "ad17b6120f5b033b6abe780a6f005ffe72a543ddc019e02e551c6da331110b55",
+      "path": "/assets/starlit-diorama-pixel-v98.png"
+    },
+    {
+      "id": "starlit_diorama",
+      "theme": "origami",
+      "file": "starlit-diorama-origami-v98.png",
+      "promptText": "Use case: style-transfer. Rebuild this ONE starry island miniature as premium origami and paper-craft game art while preserving its exact construction and object count. ONE continuous transparent acetate dome on ONE low round pedestal, ONE miniature island inside, ONE gold crescent moon supported by ONE curved gold arm, exactly THREE suspended five-point stars. Keep all three stars in the reference positions. Never add a fourth star or a second moon. Preserve the clear dome and its unbroken rim; the interior must remain visible, with subtle glass-like highlights on acetate. Sculpt island, leaves, stairway, moon and three stars from folded paper with crisp planes, fine fibers and deliberate folds. Warm oak-colored paper base with a turquoise paper ribbon and blank brass-colored plaque. Same cream/teal/gold/coral palette, same elevated three-quarter perspective and centered whole-object composition, fully visible base and dome. SR keepsake for a perfect lantern gathering. Truly transparent background, preserve alpha; no extra scene, text or watermark.",
+      "method": "built-in image_gen",
+      "transparent": true,
+      "sha256": "65272771ec0b2d86b5df753b15dc666360febfcb10ead81b0c8fb39be5fee61c",
+      "path": "/assets/starlit-diorama-origami-v98.png"
+    },
+    {
+      "id": "muse_wardrobe",
+      "theme": "pixel",
+      "file": "muse-wardrobe-pixel-v98.png",
+      "promptText": "Use case: stylized-concept. Finished transparent game collectible, exactly ONE pixel-art boutique display mannequin on ONE elegant round warm oak pedestal. A normal-proportioned HEADLESS torso mannequin, two curved shoulders, ONE waist taper and ONE neck stump. ONE continuous narrow brass post connects its waist underside to the pedestal. No arms, hands, legs or head. ONE coherent premium cream-and-teal long party dress drapes around the torso with ONE coral waist ribbon, a continuous skirt with a few restrained gold wave details. A single delicate gold shell brooch pinned at the neckline. No extra hanger, no duplicate dresses, no person, no disconnected garment. Premium beautiful classic pixel clusters, clean stepped edges and restrained outline, soft upper-left lighting, readable elegant fashion silhouette at 80px, matching a cozy refined island map. Slight elevated front three-quarter view, upright vertical post and level pedestal; all garment hem, neck and pedestal fully visible. Single centered object with clear transparent margin. SR rarity commemorating a masterful three-model fashion show. Truly transparent background, no text or watermark, no separate objects or scenery.",
+      "method": "built-in image_gen",
+      "transparent": true,
+      "sha256": "d6c09051838cd7e33c69eda8bcf7b19ee247c065e7d76862a1152f76ba60d7a4",
+      "path": "/assets/muse-wardrobe-pixel-v98.png"
+    },
+    {
+      "id": "muse_wardrobe",
+      "theme": "origami",
+      "file": "muse-wardrobe-origami-v98.png",
+      "promptText": "Use case: style-transfer. Transform this exact SINGLE headless boutique mannequin and dress into beautiful origami paper-craft game art. Preserve ONE normal-proportion torso with two shoulders, ONE neck stump, ONE waist, ONE continuous brass-colored support post and ONE round level pedestal. No arms, hands, legs or head; no duplicate dress, no hanger. Keep the coherent cream/teal dress, one coral waist bow and one shell brooch at neckline. Rebuild dress and mannequin with graceful sculpted folded-paper pleats, clean planar folds, subtle fine paper fibers, refined warm highlights. Support stays visibly connected to torso under the skirt and to the center of base. Same elevated front three-quarter view, overall silhouette and cream/teal/coral/gold palette. Premium SR fashion keepsake, complete garment hem and whole base uncut. Single centered object with transparent margins and true alpha. No text, watermark, extra objects or scenery.",
+      "method": "built-in image_gen",
+      "transparent": true,
+      "sha256": "70f0dd3e711bf947dc281ca758be620325423987531f2373eb7799504ce6e4d6",
+      "path": "/assets/muse-wardrobe-origami-v98.png"
+    }
+  ]
+}

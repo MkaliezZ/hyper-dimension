@@ -1,0 +1,29 @@
+{
+  "schema": "hyper-dimension.cocreation/v1",
+  "id": "opc-patient-potter",
+  "title": "一器一形 · 陶艺共创课",
+  "author": "Hyper Dimension 课程组",
+  "summary": "把口沿、釉色分区和三段火候讲清楚，设计一份可被另一位岛主理解并完成的陶艺挑战。",
+  "license": "CC-BY-4.0",
+  "source": "",
+  "themeNotes": {
+    "pixel": "以像素陶器和清晰的分区提示记录手作过程。",
+    "origami": "以折纸陶器和温暖的工作台让形状、釉色与火候层次分明。"
+  },
+  "challenges": [
+    {
+      "id": "patient-vase",
+      "title": "留给晨光岛的一只花瓶",
+      "recipeId": "recipe_pottery",
+      "seed": 20261005,
+      "difficulty": 1,
+      "minQuality": 80,
+      "brief": "先把十二段器型修到目标轮廓，按委托分区上釉，再跟随升温、保温和退火曲线。品质达到80通过。",
+      "hints": [
+        "口沿和器足也需要吻合。",
+        "刷错的釉色可以覆盖重做。",
+        "进入退火时先收火，再调风门。"
+      ]
+    }
+  ]
+}

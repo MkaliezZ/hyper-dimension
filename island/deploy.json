@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "project": "Hyper Dimension",
+  "artifact": "agent-source",
+  "entry": "AGENTS.md",
+  "platforms": [
+    {
+      "os": "win32",
+      "arch": [
+        "x64"
+      ],
+      "pythonExecutable": "Scripts/python.exe"
+    },
+    {
+      "os": "darwin",
+      "arch": [
+        "arm64",
+        "x64"
+      ],
+      "pythonExecutable": "bin/python"
+    },
+    {
+      "os": "linux",
+      "arch": [
+        "x64",
+        "arm64"
+      ],
+      "pythonExecutable": "bin/python"
+    }
+  ],
+  "runtime": {
+    "node": {
+      "minimum": "22.13.0",
+      "preferred": "24.19.0"
+    },
+    "python": {
+      "minimum": "3.11",
+      "maximumExclusive": "3.14",
+      "preferred": "3.11"
+    },
+    "hermes": {
+      "version": "0.19.1",
+      "commit": "0a62610f10cc34d696b2239b2c69fa1ba0f1ca63",
+      "source": "vendor/hermes-agent.zip"
+    }
+  },
+  "commands": {
+    "plan": "node tools/agent-deploy.mjs plan",
+    "doctor": "node tools/agent-deploy.mjs doctor",
+    "setup": "node tools/agent-deploy.mjs setup",
+    "verify": "node tools/agent-deploy.mjs verify",
+    "pixel": "node tools/agent-deploy.mjs run --mode=pixel",
+    "origami": "node tools/agent-deploy.mjs run --mode=origami",
+    "lan": "node tools/agent-deploy.mjs run --mode=lan"
+  },
+  "ports": {
+    "pixel": 4173,
+    "origami": 4174,
+    "lan": 4175
+  },
+  "defaultHost": "127.0.0.1",
+  "provider": {
+    "model": "deepseek-flash",
+    "keyEnvironment": "DEEPSEEK_API_KEY",
+    "automaticIntervalsSeconds": [
+      300,
+      600,
+      950
+    ]
+  },
+  "state": {
+    "paths": [
+      "data",
+      ".env.local",
+      ".runtime/python",
+      ".runtime/hermes-agent"
+    ],
+    "neverIncludedInArtifact": true,
+    "existingProgress": "preserve; refuse replacement; explicit verified backup/restore"
+  },
+  "validation": {
+    "modelCalls": "not made by setup/doctor/verify",
+    "humanAcceptance": "separate",
+    "macOSHardware": "pending"
+  }
+}

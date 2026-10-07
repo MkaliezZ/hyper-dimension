@@ -1,0 +1,428 @@
+{
+  "version": 59,
+  "mode": "built-in image_gen",
+  "reference": "items-{theme}-products-0-v8.png first-row lantern, hoe, pickaxe, axe",
+  "export": "Alpha-preserving trim of transparent margins; proportional resize to 120px inside 128px canvas. No recoloring, repainting or alpha replacement.",
+  "assets": [
+    {
+      "file": "origami-admin.png",
+      "width": 1205,
+      "height": 1305,
+      "trim": {
+        "x": 0,
+        "y": 17,
+        "w": 1173,
+        "h": 1288
+      },
+      "transparentRatio": 0.4984047948363301,
+      "exportSize": 128,
+      "bytes": 21826,
+      "sourceBytes": 1664271
+    },
+    {
+      "file": "origami-bag.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 0,
+        "y": 71,
+        "w": 1192,
+        "h": 1157
+      },
+      "transparentRatio": 0.5145543829124791,
+      "exportSize": 128,
+      "bytes": 23492,
+      "sourceBytes": 1610848
+    },
+    {
+      "file": "origami-build.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 0,
+        "y": 53,
+        "w": 1196,
+        "h": 1130
+      },
+      "transparentRatio": 0.5327112728900691,
+      "exportSize": 128,
+      "bytes": 25032,
+      "sourceBytes": 1663143
+    },
+    {
+      "file": "origami-business.png",
+      "width": 1230,
+      "height": 1278,
+      "trim": {
+        "x": 0,
+        "y": 19,
+        "w": 1216,
+        "h": 1235
+      },
+      "transparentRatio": 0.4949928114304617,
+      "exportSize": 128,
+      "bytes": 24808,
+      "sourceBytes": 1744791
+    },
+    {
+      "file": "origami-gather.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 113,
+        "y": 87,
+        "w": 999,
+        "h": 1167
+      },
+      "transparentRatio": 0.5733741341900496,
+      "exportSize": 128,
+      "bytes": 24065,
+      "sourceBytes": 1507034
+    },
+    {
+      "file": "origami-help.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 47,
+        "y": 21,
+        "w": 1217,
+        "h": 1082
+      },
+      "transparentRatio": 0.5301191033178055,
+      "exportSize": 128,
+      "bytes": 23880,
+      "sourceBytes": 1566591
+    },
+    {
+      "file": "origami-lan.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 0,
+        "y": 23,
+        "w": 1274,
+        "h": 1176
+      },
+      "transparentRatio": 0.5929757267234891,
+      "exportSize": 128,
+      "bytes": 20823,
+      "sourceBytes": 1434787
+    },
+    {
+      "file": "origami-origami.png",
+      "width": 1374,
+      "height": 1145,
+      "trim": {
+        "x": 0,
+        "y": 57,
+        "w": 1356,
+        "h": 1072
+      },
+      "transparentRatio": 0.7183514171481602,
+      "exportSize": 128,
+      "bytes": 12659,
+      "sourceBytes": 971406
+    },
+    {
+      "file": "origami-pixel.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 0,
+        "y": 46,
+        "w": 1254,
+        "h": 1153
+      },
+      "transparentRatio": 0.55516665310523,
+      "exportSize": 128,
+      "bytes": 21643,
+      "sourceBytes": 1606550
+    },
+    {
+      "file": "origami-recipes.png",
+      "width": 1378,
+      "height": 1142,
+      "trim": {
+        "x": 0,
+        "y": 19,
+        "w": 1364,
+        "h": 1099
+      },
+      "transparentRatio": 0.5723783040473388,
+      "exportSize": 128,
+      "bytes": 17975,
+      "sourceBytes": 1428717
+    },
+    {
+      "file": "origami-residents.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 0,
+        "y": 20,
+        "w": 1235,
+        "h": 1179
+      },
+      "transparentRatio": 0.5152337313615004,
+      "exportSize": 128,
+      "bytes": 23655,
+      "sourceBytes": 1570740
+    },
+    {
+      "file": "origami-role.png",
+      "width": 1230,
+      "height": 1278,
+      "trim": {
+        "x": 0,
+        "y": 20,
+        "w": 1218,
+        "h": 1258
+      },
+      "transparentRatio": 0.47116302148936984,
+      "exportSize": 128,
+      "bytes": 24297,
+      "sourceBytes": 1713041
+    },
+    {
+      "file": "origami-steward.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 0,
+        "y": 21,
+        "w": 1238,
+        "h": 1233
+      },
+      "transparentRatio": 0.5886051397887208,
+      "exportSize": 128,
+      "bytes": 20587,
+      "sourceBytes": 1409158
+    },
+    {
+      "file": "origami-workshop.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 0,
+        "y": 53,
+        "w": 1234,
+        "h": 1201
+      },
+      "transparentRatio": 0.5589628340824513,
+      "exportSize": 128,
+      "bytes": 21658,
+      "sourceBytes": 1470457
+    },
+    {
+      "file": "pixel-admin.png",
+      "width": 1230,
+      "height": 1278,
+      "trim": {
+        "x": 0,
+        "y": 19,
+        "w": 1216,
+        "h": 1259
+      },
+      "transparentRatio": 0.5575658103998881,
+      "exportSize": 128,
+      "bytes": 21465,
+      "sourceBytes": 1464289
+    },
+    {
+      "file": "pixel-bag.png",
+      "width": 1230,
+      "height": 1278,
+      "trim": {
+        "x": 0,
+        "y": 9,
+        "w": 1184,
+        "h": 1253
+      },
+      "transparentRatio": 0.46016769087878673,
+      "exportSize": 128,
+      "bytes": 25214,
+      "sourceBytes": 1831894
+    },
+    {
+      "file": "pixel-build.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 0,
+        "y": 82,
+        "w": 1215,
+        "h": 1099
+      },
+      "transparentRatio": 0.49285349083888497,
+      "exportSize": 128,
+      "bytes": 27601,
+      "sourceBytes": 1770736
+    },
+    {
+      "file": "pixel-business.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 89,
+        "y": 109,
+        "w": 1124,
+        "h": 1145
+      },
+      "transparentRatio": 0.543418954083774,
+      "exportSize": 128,
+      "bytes": 27304,
+      "sourceBytes": 1604076
+    },
+    {
+      "file": "pixel-gather.png",
+      "width": 1244,
+      "height": 1264,
+      "trim": {
+        "x": 39,
+        "y": 80,
+        "w": 1175,
+        "h": 1112
+      },
+      "transparentRatio": 0.5342434826407261,
+      "exportSize": 128,
+      "bytes": 27199,
+      "sourceBytes": 1616914
+    },
+    {
+      "file": "pixel-help.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 53,
+        "y": 21,
+        "w": 1225,
+        "h": 1138
+      },
+      "transparentRatio": 0.5309601242905674,
+      "exportSize": 128,
+      "bytes": 24916,
+      "sourceBytes": 1615412
+    },
+    {
+      "file": "pixel-lan.png",
+      "width": 1230,
+      "height": 1278,
+      "trim": {
+        "x": 0,
+        "y": 84,
+        "w": 1157,
+        "h": 1194
+      },
+      "transparentRatio": 0.6000655241294197,
+      "exportSize": 128,
+      "bytes": 22875,
+      "sourceBytes": 1361588
+    },
+    {
+      "file": "pixel-origami.png",
+      "width": 1374,
+      "height": 1145,
+      "trim": {
+        "x": 39,
+        "y": 9,
+        "w": 1315,
+        "h": 1136
+      },
+      "transparentRatio": 0.7538192127025292,
+      "exportSize": 128,
+      "bytes": 12739,
+      "sourceBytes": 882880
+    },
+    {
+      "file": "pixel-pixel.png",
+      "width": 1254,
+      "height": 1254,
+      "trim": {
+        "x": 23,
+        "y": 71,
+        "w": 1191,
+        "h": 1183
+      },
+      "transparentRatio": 0.628532237509825,
+      "exportSize": 128,
+      "bytes": 21051,
+      "sourceBytes": 1149907
+    },
+    {
+      "file": "pixel-recipes.png",
+      "width": 1402,
+      "height": 1122,
+      "trim": {
+        "x": 0,
+        "y": 20,
+        "w": 1362,
+        "h": 1102
+      },
+      "transparentRatio": 0.5381476932622355,
+      "exportSize": 128,
+      "bytes": 20433,
+      "sourceBytes": 1636999
+    },
+    {
+      "file": "pixel-residents.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 0,
+        "y": 17,
+        "w": 1256,
+        "h": 1182
+      },
+      "transparentRatio": 0.49846607437091883,
+      "exportSize": 128,
+      "bytes": 24854,
+      "sourceBytes": 1652807
+    },
+    {
+      "file": "pixel-role.png",
+      "width": 1230,
+      "height": 1278,
+      "trim": {
+        "x": 0,
+        "y": 19,
+        "w": 1216,
+        "h": 1259
+      },
+      "transparentRatio": 0.5910982607478656,
+      "exportSize": 128,
+      "bytes": 20154,
+      "sourceBytes": 1411158
+    },
+    {
+      "file": "pixel-steward.png",
+      "width": 1312,
+      "height": 1199,
+      "trim": {
+        "x": 87,
+        "y": 21,
+        "w": 1170,
+        "h": 1178
+      },
+      "transparentRatio": 0.6306455837181391,
+      "exportSize": 128,
+      "bytes": 21257,
+      "sourceBytes": 1319453
+    },
+    {
+      "file": "pixel-workshop.png",
+      "width": 1299,
+      "height": 1211,
+      "trim": {
+        "x": 0,
+        "y": 21,
+        "w": 1275,
+        "h": 1190
+      },
+      "transparentRatio": 0.6082465772756659,
+      "exportSize": 128,
+      "bytes": 19298,
+      "sourceBytes": 1368661
+    }
+  ]
+}

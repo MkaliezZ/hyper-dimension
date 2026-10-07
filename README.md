@@ -1,88 +1,110 @@
-# Hyper Dimension · 首期实现 / First Phase
+# Hyper Dimension
 
-[中文](#中文) · [English](#english)
+[中文](README.md) · [English](README.en.md) · [部署指南](island/DEPLOYMENT.md) · [教培模块](README.education.md)
 
-## 中文
+**一座会生活的岛，和一位能办事的管家。**
 
-这是 Hyper Dimension 的公开首期业务代码仓库，采用 MIT 许可证。当前聚焦 **6–15 岁英语教师版**：目标、实时任务、读写自动评测、教师异常复核、个性化计划与报告。学生 Agent 与教师 Agent 的 A2A 通信预留在版本化业务协议中。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V107 开发快照**，可本地部署；完整产品验收仍在进行。
 
-完整的开发顺序、技术选型与验收边界见[《03｜技术栈与首期实现》](docs/03-技术栈与首期实现.md)。
+## 30 秒实机演示
 
-### 当前可运行内容
+[![Hyper Dimension 实机预览：折纸与像素海岛](island/docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s.mp4)
 
-- FastAPI 默认入口仅开放 `/healthz`；另有须注入教师令牌的本地教育 API 工厂。SQLite 本地核心可用模拟资料持久化题包、作答、评分、自动批准、报告、私有学生档案和审计。
-- Hyper Dimension Education Protocol v1 的请求/结果契约，以及严格的 1.1 档案/展示命令与结果 Schema；本机 A2A SDK 适配器已提供两项模拟数据只读操作，尚非公网 A2A 服务。
-- `web/`：可独立运行的 2D 小岛视觉基线。人物、文字、图片、视频入口均为可替换的 **DEMO** 内容；详见 [前端说明](web/README.md) 和 [素材来源](web/ASSETS.md)。
-- [英语测评 Agent Skill](skills/english-assessment/SKILL.md)、[原创题目生成流程](skills/english-assessment/references/item-generation-workflow.md)及[2026 公开样本核验](docs/curriculum/2026-exam-task-review.md)：按教材页证据、当年地区试题来源级别、CEFR 描述符与 A2 Key/B1 Preliminary for Schools 的公开任务逻辑生成原创题目、答案解析和教师报告草稿。教材 PDF 与真实学生证据不在本仓库。
-- 教师版 [MCP 工具与 A2A 接入契约](docs/teacher-mcp-a2a-contract.md)：本地 stdio MCP 提供教师档案、Agent 题包/评分草稿提交、待批改读取、归档核验、四学生进度对齐切片与展示草稿；正式发布由教师受保护 API 执行；[教师开岛默认绑定契约](docs/teacher-agent-mcp-onboarding-v0.1.md)说明 Hermes 候选与云端待实现门槛。学生使用随机访问码加签写姓名核对，归档按稳定 `student_id` 保存。MCP 是可选安装项 `.[mcp]`；模拟数据的远程 HTTP MCP 已有 Agent 令牌与委托校验。
-- 可替换的 [DeepSeek Agent 适配器](src/hyper_dimension/agent_deepseek.py)和[本地服务](src/hyper_dimension/assessment_runtime.py)；`scripts/smoke_deepseek.py` 只用模拟学生资料验证真实 API，密钥从当前进程环境变量读取，不写入仓库。
-- [集群共享英语教材库与向量索引设计](docs/curriculum/shared-textbook-catalog-v0.1.md)：教师只存具体教材版本引用和进度；原书、页码、核验状态与已获准索引由集群共用。本地已实现仅含元数据与原创摘要的目录/权利门槛、班级/学生显式版次绑定和教师版 MCP 读取；私有研究区 255 条第三方书目均待核实，未向生产集群上传教材 PDF。
-- [实时出题、自动评测与审计契约](docs/curriculum/realtime-assessment-and-audit-v0.1.md)、[教师版切片](docs/teacher-first-slice.md)、[前端基线](docs/frontend-baseline.md)及[英语课程与多教材适配设计](docs/curriculum/curriculum-architecture-v0.1.md)、[原创单元样板](docs/curriculum/sample-unit-packs-v0.1.md)与[测评报告格式](docs/curriculum/assessment-and-report-format-v0.1.md)。
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
 
-进度对齐本地规则以教师确认的同构念、同维度报告证据生成四类建议；生产能力快照、完整教师进度对齐工作流及教学效度校准仍待实现。当前完成度见[开发状态与下一步](docs/development-status.md)。本地自动评测、学生档案、MCP 工具和令牌保护的模拟数据 API 已实现；PostgreSQL 已增加教师—班级分配与撤销迁移；模拟 Agent 原生教师 API 与远程 MCP 同时检查实时分配关系和活动班级策略，拒绝同岛跨教师档案访问。教师 API 与 HTTP MCP 的模拟数据装配仍共用基础身份库。完整业务迁移、完整教师工作流页面、学生 Agent、生产级登录与监护同意流程仍未实现。模拟学生可在 `/student` 用访问码与签写姓名读取本人已发布题目、提交待批改答卷，并另行读取本人已批准报告与四周计划。现有 `/teacher` 可用模拟数据读取班级名单、编辑档案、校验归档、查看进度对齐快照与证据并记录逐人教师决定；模拟教师页已可查看待批改引用与已批准报告；任务发布页面仍未接入；教师已可查看与批准四周个人计划草稿。请勿把真实学生档案、录音、授权信息、密钥或生产日志提交到公开仓库。
+3840 × 2160 / 30 秒，原创器乐 BGM、中英字幕与镜头推进。包含真实 DeepSeek 居民决策、海风双灶完整结算，以及 Hermes 读取虚构周会资料、生成 Word 并回读确认的过程。实机素材经过剪辑，省略等待；本机路径已遮罩，没有真实用户资料。
 
-### 本地运行
+**当前小游戏仅为占位演示，玩法、美术和动画将持续优化，不代表最终品质。** 视频是产品方向展示，不代表全部验收通过。
 
-Python 3.11+：
+## 小岛里有什么
 
-```bash
-python -m venv .venv
-python -m pip install -e ".[dev]"
-python -m pytest
-python scripts/run_assessment_demo.py
-python -m uvicorn hyper_dimension.api:app --reload
-```
+- **双画风、同一套逻辑**：折纸 / 像素地图、建筑、角色、物品与主题 UI。
+- **经营循环**：采集 → 制作 → 使用 / 陈列 / 接待 → 收入 → 改善设施。每个有效游戏日为 900 秒。
+- **25 座建筑、15 名 AI 居民和 1 位管家**：包含农田、矿洞、工坊、码头与活动广场；角色自动寻路，按工作与需求生活。
+- **小游戏与派对**：烹饪、陶艺、钓鱼、搭配、拼图等建筑玩法；夜集、钓鱼聚会、集市、秀场与烟花活动。
+- **Hermes 管家**：对话、配方分工、物资筹备、招聘，以及用户主动委托的本机文档工作；保留真实执行记录。
+- **服务端存档**：文件存档、受保护的物资 / 作业回执、备份恢复与空浏览器重开；不只依赖浏览器缓存。
+- **本地会客 / 联机基础**：独立账号与岛屿、携带管家和邀请同行居民、会客交流及受限 A2A。跨设备管家桥接等仍在完善。
 
-若要验证 DeepSeek 实际出题和评分，先在当前终端安全地设置 `DEEPSEEK_API_KEY`，再运行 `python scripts/smoke_deepseek.py`；脚本只使用模拟数据，不打印密钥或题目正文。不要把密钥放进 `.env`、命令行参数、测试夹具或 Git。
+### AI 生活与现实工作
 
-Web 前端需要 Node.js 与 pnpm：
+| AI 居民自己的目标 | 管家交付真实文件 |
+| --- | --- |
+| ![真实 AI 居民决策](island/docs/media/ai-resident.png) | ![Hermes 保存并回读 Word 文件](island/docs/media/agent-document.png) |
 
-```bash
-cd web
-pnpm install --frozen-lockfile
-pnpm build
-pnpm dev
-```
+视频中的工作资料全部为虚构示例；管家实际调用工具，计算补货 12 盒、预算 216 元，并保存可打开的 Word 文档。没有用对话文字冒充文件。
 
-### 协议分层
+### 运行截图
 
-A2A 承载 Agent Card、Message、Task 和传输；Hyper Dimension Education Protocol 描述学生证据、计划、反馈、授权、审批与审计的业务语义。未来网页与 A2A 适配器调用同一业务服务。
+| 折纸海岛 | 像素海岛 |
+| --- | --- |
+| ![折纸海岛实机截图](island/docs/media/origami-island.png) | ![像素海岛实机截图](island/docs/media/pixel-island.png) |
 
-## English
+| 海风双灶 | 一器一形 |
+| --- | --- |
+| ![折纸烹饪小游戏](island/docs/media/origami-kitchen.png) | ![像素陶艺小游戏](island/docs/media/pixel-pottery.png) |
 
-This MIT-licensed repository contains the first phase of Hyper Dimension. The initial product targets **English teachers of learners aged 6–15**: learning goals, live task generation, automated reading and writing assessment under teacher policy, exception review, personalized plans, and reports. Versioned business schemas reserve an interface for future student-agent and teacher-agent communication over A2A.
+## 交给 Agent 部署
 
-The development order, stack choices, and acceptance gates are documented in [Technical Stack and First Phase](docs/03-技术栈与首期实现.md) (Chinese).
+仓库与 Release 都包含游戏源码、资源、固定依赖及部署协议，**不需要安装器，也不绑定某一家 Agent**。开发 Agent 需要有终端和文件权限。
 
-### What runs today
+1. 克隆仓库后进入 island/，或解压 Release 中的 Agent 源码包。
+2. 让 Agent 先读 AGENTS.md、deploy.json 和 DEPLOYMENT.md。
+3. 使用 Node.js 24（建议版本）与 Python 3.11。在目标机器重建运行环境。
 
-- The default FastAPI app exposes only `/healthz`. An injected local education API requires a teacher token. The SQLite service persists synthetic assignments, submissions, grades, reports, private student archives, and audit events.
-- Hyper Dimension Education Protocol v1 request/result contracts and strict 1.1 commands for student records and showcase drafts. A local A2A SDK adapter serves two synthetic read operations; there is no public A2A deployment.
-- `web/`, a runnable 2D island visual baseline. Its characters, copy, images, and optional video slots are replaceable **DEMO** content; see the [web guide](web/README.md) and [asset notes](web/ASSETS.md).
-- [Reusable English assessment agent skill](skills/english-assessment/SKILL.md) and [item generation workflow](skills/english-assessment/references/item-generation-workflow.md) for original tasks, explanations, and reports approved under versioned teacher policies, with exception review, grounded in textbook evidence, verified local exam sources, CEFR descriptors, and public A2 Key/B1 Preliminary for Schools formats. Copyrighted textbook PDFs and student records are not included.
-- [Teacher MCP and A2A contract](docs/teacher-mcp-a2a-contract.md): local stdio MCP tools for private profiles, Agent-authored assignment and grading drafts, pending attempts, archive verification, a four-student progress alignment slice, and private showcase drafts. Teacher-authenticated HTTP alone can publish. The [teacher island MCP binding contract](docs/teacher-agent-mcp-onboarding-v0.1.md) describes Hermes as a replaceable candidate and marks cloud activation as pending. A synthetic Streamable HTTP MCP slice validates separate Agent credentials and live delegations. Install the optional `.[mcp]` extra.
-- A replaceable [DeepSeek Agent adapter](src/hyper_dimension/agent_deepseek.py) and [local assessment service](src/hyper_dimension/assessment_runtime.py). `scripts/smoke_deepseek.py` uses synthetic records and reads its API key only from the current process environment.
-- [Shared textbook catalog and vector-index design](docs/curriculum/shared-textbook-catalog-v0.1.md): teachers keep edition/progress references while licensed corpus objects and indexes are shared per cluster. A local metadata and rights-gated catalog, explicit class/student edition binding, and teacher MCP reads now run with synthetic data; 255 third-party entries in the private research area remain unverified. No textbook PDFs are deployed from this repository.
-- [Real-time assessment and audit contract](docs/curriculum/realtime-assessment-and-audit-v0.1.md), [teacher-first implementation slice](docs/teacher-first-slice.md), [frontend baseline](docs/frontend-baseline.md), and [curriculum and multi-edition design](docs/curriculum/curriculum-architecture-v0.1.md) (currently documented in Chinese).
+Windows PowerShell：
 
-The local progress-alignment slice generates four evidence-based groups from teacher-confirmed, comparable report dimensions; production capability snapshots, the complete teacher alignment workflow, and educational validity checks remain pending. See [development status and next steps](docs/development-status.md). The local assessment, student archive, MCP tools and token-protected synthetic API run. A PostgreSQL slice now stores island, teacher, Agent, and teacher-class assignment relationships with revocation; a synthetic assembly connects it to the teacher API and HTTP MCP. The Agent-native synthetic teacher API and remote MCP tools check both live class assignments and active class policies before class rosters and student records are read or changed. Full business-data migration, the complete teacher workflow UI, the student agent, production login, and guardian consent are still pending. A synthetic student can open their own published questions, submit an attempt, and separately read their approved reports and four-week plans at `/student`. The current `/teacher` page covers a synthetic roster, profile edits, archive checks, immutable alignment snapshots, evidence inspection, and teacher decisions. The synthetic teacher page now shows pending attempt references and approved reports; task publishing remains pending; teachers can now review and approve four-week plan drafts. Keep real student records, recordings, consent data, secrets, and production logs out of this public repository.
+    cd island
+    node tools/agent-deploy.mjs plan
+    node tools/agent-deploy.mjs doctor --python=python
+    node tools/agent-deploy.mjs setup --python=python --offline
+    node tools/agent-deploy.mjs verify
+    node tools/agent-deploy.mjs run --mode=lan
 
-### Run locally
+macOS Terminal：
 
-Use Python 3.11+ and Node.js with pnpm:
+    cd island
+    node tools/agent-deploy.mjs plan
+    node tools/agent-deploy.mjs doctor --python=python3.11
+    node tools/agent-deploy.mjs setup --python=python3.11 --offline
+    node tools/agent-deploy.mjs verify
+    node tools/agent-deploy.mjs run --mode=lan
 
-```bash
-python -m venv .venv
-python -m pip install -e ".[dev]"
-python -m pytest
-python scripts/run_assessment_demo.py
-python -m uvicorn hyper_dimension.api:app --reload
-cd web
-pnpm install --frozen-lockfile
-pnpm build
-pnpm dev
-```
+默认会客入口为 http://127.0.0.1:4175/play，本机日志提供首次注册所需信息。直接玩单机可使用 run --mode=pixel（4173）或 run --mode=origami（4174）。独立小游戏在 /src/arcade.html。需要局域网访问时，按部署指南显式设置监听地址。
 
-For a live synthetic Agent smoke test, provide `DEEPSEEK_API_KEY` in the current shell and run `python scripts/smoke_deepseek.py`. Never commit the key or real student data.
+setup 会创建空的私有 .env.local；按需填入自己的 DEEPSEEK_API_KEY，不要提交。未配置密钥时可先运行画面与本地规则，不能视为 AI 已接通。模型配置为 deepseek-flash，不回退到 Pro。
 
-A2A provides agent discovery, messages, tasks, and transport. The Hyper Dimension Education Protocol defines the education-specific semantics and audit trail. Future web and A2A adapters will use the same business service.
+## 平台与验收边界
+
+| 平台 | 当前证据 |
+| --- | --- |
+| Windows x64 | V107 独立解压、离线安装、659 项规则检查及双画风单机 / LAN 采集与存档重开通过。 |
+| macOS 14+ Apple Silicon / Intel | 部署协议、两架构条件依赖和随包文件校验通过；实体 Mac 运行尚待验证。 |
+
+V107 修复居民途中材料变化后仍去旧工位的问题。双画风真实 Hermes / Flash 的从零配方任务、实体行走、制作交付与空浏览器恢复已通过自动化验证。30 个游戏日 × 12 场景的领域经济模拟通过；它不等于全部真实 AI、活动与招聘联合经营验收。
+
+完整产品仍有待办，包括跨设备管家桥接、更多真人与多设备测试、全部小游戏的体验打磨、十场真实主子 Agent 合作活动和 OPC 新人课程验证。**可运行开发快照，不宣称商业完成版。** 详见[验收说明](island/docs/VALIDATION.md)。
+
+## 仓库结构
+
+    island/                  当前海岛游戏、Agent 运行时、资源与测试
+      AGENTS.md              Agent 部署入口
+      deploy.json            机器可读部署协议
+      src/ · server/         前端与本机服务
+      public/ · vendor/      双画风资源与固定依赖
+      docs/                  运行截图、来源及验收说明
+    src/hyper_dimension/      原有教培业务模块
+    web/ · migrations/       教培前端基线与数据库迁移
+    README.education.md      原有教培说明与运行方式
+
+海岛游戏与教培模块的完整业务整合仍在进行。原有教培代码与历史保留，没有被演示页面替代。
+
+## 开发与数据
+
+在 island/ 中运行 npm test，或用 node tools/agent-deploy.mjs verify 执行部署校验。带浏览器的专项验收见部署指南。更新前停止本项目写入进程，创建并验证私有备份；不要把 Windows 虚拟环境直接拷到 macOS。
+
+公开仓库不包含密钥、真实账号存档、聊天历史、学生资料、生产日志或已安装运行时。管家处理主动委托的文件或模型对话时，会使用你配置的服务；请只授予你愿意提供的上下文。详见[隐私与发布边界](island/docs/PRIVACY.md)。
+
+## 许可与致谢
+
+原创代码与文档沿用仓库 [MIT License](LICENSE)。Hermes Agent、Playwright、Fusion Pixel Font 及 Python 依赖保留各自许可证，见[第三方说明](island/THIRD_PARTY_NOTICES.md)。双画风美术的来源记录见[素材说明](island/docs/ASSETS.md)，第三方许可不能由项目 MIT 声明替代。

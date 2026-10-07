@@ -1,0 +1,4906 @@
+{
+  "materials": [
+    {
+      "id": "wood",
+      "name": "木材",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 0
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 0
+        }
+      }
+    },
+    {
+      "id": "bamboo",
+      "name": "竹材",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 1
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 1
+        }
+      }
+    },
+    {
+      "id": "hardwood",
+      "name": "硬木",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 2
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 2
+        }
+      }
+    },
+    {
+      "id": "twig",
+      "name": "树枝",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 3
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 3
+        }
+      }
+    },
+    {
+      "id": "resin",
+      "name": "树脂",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 4
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 4
+        }
+      }
+    },
+    {
+      "id": "bark",
+      "name": "树皮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 5
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 5
+        }
+      }
+    },
+    {
+      "id": "fiber",
+      "name": "植物纤维",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 6
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 6
+        }
+      }
+    },
+    {
+      "id": "leaves",
+      "name": "嫩叶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 7
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 7
+        }
+      }
+    },
+    {
+      "id": "mushroom",
+      "name": "蘑菇",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 8
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 8
+        }
+      }
+    },
+    {
+      "id": "honey",
+      "name": "蜂蜜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 9
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 9
+        }
+      }
+    },
+    {
+      "id": "stone",
+      "name": "石材",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 10
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 10
+        }
+      }
+    },
+    {
+      "id": "ore",
+      "name": "星晶矿石",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 11
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 11
+        }
+      }
+    },
+    {
+      "id": "copper",
+      "name": "铜矿",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 12
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 12
+        }
+      }
+    },
+    {
+      "id": "iron",
+      "name": "铁矿",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 13
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 13
+        }
+      }
+    },
+    {
+      "id": "quartz",
+      "name": "石英",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 14
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 14
+        }
+      }
+    },
+    {
+      "id": "crystal",
+      "name": "紫晶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 15
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 15
+        }
+      }
+    },
+    {
+      "id": "clay",
+      "name": "陶土",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 16
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 16
+        }
+      }
+    },
+    {
+      "id": "sand",
+      "name": "细沙",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 17
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 17
+        }
+      }
+    },
+    {
+      "id": "coal",
+      "name": "煤块",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 18
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 18
+        }
+      }
+    },
+    {
+      "id": "salt",
+      "name": "岩盐",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 19
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 19
+        }
+      }
+    },
+    {
+      "id": "seed",
+      "name": "通用种子",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 20
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 20
+        }
+      }
+    },
+    {
+      "id": "wheat",
+      "name": "小麦",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 21
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 21
+        }
+      }
+    },
+    {
+      "id": "tomato",
+      "name": "番茄",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 22
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 22
+        }
+      }
+    },
+    {
+      "id": "pumpkin",
+      "name": "南瓜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 23
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 23
+        }
+      }
+    },
+    {
+      "id": "carrot",
+      "name": "胡萝卜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 24
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 24
+        }
+      }
+    },
+    {
+      "id": "corn",
+      "name": "玉米",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 25
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 25
+        }
+      }
+    },
+    {
+      "id": "potato",
+      "name": "土豆",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 26
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 26
+        }
+      }
+    },
+    {
+      "id": "rice",
+      "name": "稻米",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 27
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 27
+        }
+      }
+    },
+    {
+      "id": "strawberry",
+      "name": "草莓",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 28
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 28
+        }
+      }
+    },
+    {
+      "id": "cotton",
+      "name": "棉花",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 29
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 29
+        }
+      }
+    },
+    {
+      "id": "flax",
+      "name": "亚麻",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 30
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 30
+        }
+      }
+    },
+    {
+      "id": "herb",
+      "name": "草药",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 31
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 31
+        }
+      }
+    },
+    {
+      "id": "mint",
+      "name": "薄荷",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 32
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 32
+        }
+      }
+    },
+    {
+      "id": "lavender",
+      "name": "薰衣草",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 33
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 33
+        }
+      }
+    },
+    {
+      "id": "rose",
+      "name": "玫瑰",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 34
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 34
+        }
+      }
+    },
+    {
+      "id": "sunflower",
+      "name": "向日葵",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 35
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 35
+        }
+      }
+    },
+    {
+      "id": "bluegrass",
+      "name": "蓝草",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 36
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 36
+        }
+      }
+    },
+    {
+      "id": "mulberry",
+      "name": "桑叶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 37
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 37
+        }
+      }
+    },
+    {
+      "id": "wax",
+      "name": "蜂蜡",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 38
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 38
+        }
+      }
+    },
+    {
+      "id": "amber",
+      "name": "琥珀",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 39
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 39
+        }
+      }
+    },
+    {
+      "id": "fish",
+      "name": "海鱼",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 40
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 40
+        }
+      }
+    },
+    {
+      "id": "shrimp",
+      "name": "海虾",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 41
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 41
+        }
+      }
+    },
+    {
+      "id": "crab",
+      "name": "螃蟹",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 42
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 42
+        }
+      }
+    },
+    {
+      "id": "ink",
+      "name": "乌贼墨",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 43
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 43
+        }
+      }
+    },
+    {
+      "id": "seaweed",
+      "name": "海藻",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 44
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 44
+        }
+      }
+    },
+    {
+      "id": "shell",
+      "name": "贝壳",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 45
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 45
+        }
+      }
+    },
+    {
+      "id": "pearl",
+      "name": "珍珠",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 46
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 46
+        }
+      }
+    },
+    {
+      "id": "coral",
+      "name": "珊瑚碎片",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 47
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 47
+        }
+      }
+    },
+    {
+      "id": "driftwood",
+      "name": "漂流木",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 48
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 48
+        }
+      }
+    },
+    {
+      "id": "seasalt",
+      "name": "海盐",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-materials-v8.png",
+          "frame": 49
+        },
+        "origami": {
+          "file": "items-origami-materials-v8.png",
+          "frame": 49
+        }
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "lantern",
+      "name": "灯笼",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 0
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 0
+        }
+      }
+    },
+    {
+      "id": "hoe",
+      "name": "田间锄头",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 1
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 1
+        }
+      }
+    },
+    {
+      "id": "pickaxe",
+      "name": "矿工镐",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 2
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 2
+        }
+      }
+    },
+    {
+      "id": "watering_can",
+      "name": "浇水壶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 3
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 3
+        }
+      }
+    },
+    {
+      "id": "axe",
+      "name": "伐木斧",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 4
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 4
+        }
+      }
+    },
+    {
+      "id": "sickle",
+      "name": "收割镰",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 5
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 5
+        }
+      }
+    },
+    {
+      "id": "c0_6",
+      "name": "海风木椅",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 6
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 6
+        }
+      }
+    },
+    {
+      "id": "c0_7",
+      "name": "木板",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 7
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 7
+        }
+      }
+    },
+    {
+      "id": "c0_8",
+      "name": "鸟屋",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 8
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 8
+        }
+      }
+    },
+    {
+      "id": "c0_9",
+      "name": "竹编屏风",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 9
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 9
+        }
+      }
+    },
+    {
+      "id": "c0_10",
+      "name": "林间书柜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 10
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 10
+        }
+      }
+    },
+    {
+      "id": "c0_11",
+      "name": "树脂风铃",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 11
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 11
+        }
+      }
+    },
+    {
+      "id": "tea",
+      "name": "花茶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 12
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 12
+        }
+      }
+    },
+    {
+      "id": "c1_1",
+      "name": "薄荷凉饮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 13
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 13
+        }
+      }
+    },
+    {
+      "id": "c1_2",
+      "name": "蜂蜜柠香饮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 14
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 14
+        }
+      }
+    },
+    {
+      "id": "c1_3",
+      "name": "玫瑰茶包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 15
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 15
+        }
+      }
+    },
+    {
+      "id": "c1_4",
+      "name": "薰衣草奶茶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 16
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 16
+        }
+      }
+    },
+    {
+      "id": "c1_5",
+      "name": "海盐气泡饮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 17
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 17
+        }
+      }
+    },
+    {
+      "id": "c1_6",
+      "name": "南瓜香茶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 18
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 18
+        }
+      }
+    },
+    {
+      "id": "c1_7",
+      "name": "草莓果饮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 19
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 19
+        }
+      }
+    },
+    {
+      "id": "c1_8",
+      "name": "竹筒清茶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 20
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 20
+        }
+      }
+    },
+    {
+      "id": "c1_9",
+      "name": "暖手茶炉",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 21
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 21
+        }
+      }
+    },
+    {
+      "id": "c1_10",
+      "name": "六味茶礼盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 22
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 22
+        }
+      }
+    },
+    {
+      "id": "c1_11",
+      "name": "珍珠茶盏",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 23
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 23
+        }
+      }
+    },
+    {
+      "id": "meal",
+      "name": "海岛料理",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 24
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 24
+        }
+      }
+    },
+    {
+      "id": "c2_1",
+      "name": "番茄烩饭",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 25
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 25
+        }
+      }
+    },
+    {
+      "id": "c2_2",
+      "name": "烤玉米",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 26
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 26
+        }
+      }
+    },
+    {
+      "id": "c2_3",
+      "name": "土豆浓汤",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 27
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 27
+        }
+      }
+    },
+    {
+      "id": "c2_4",
+      "name": "香草烤鱼",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 28
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 28
+        }
+      }
+    },
+    {
+      "id": "c2_5",
+      "name": "海虾米饭",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 29
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 29
+        }
+      }
+    },
+    {
+      "id": "c2_6",
+      "name": "蘑菇饭团",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 30
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 30
+        }
+      }
+    },
+    {
+      "id": "c2_7",
+      "name": "南瓜焗饭",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 31
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 31
+        }
+      }
+    },
+    {
+      "id": "c2_8",
+      "name": "蟹肉拼盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 32
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 32
+        }
+      }
+    },
+    {
+      "id": "c2_9",
+      "name": "竹筒野炊饭",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 33
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 33
+        }
+      }
+    },
+    {
+      "id": "c2_10",
+      "name": "海岛宴席",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 34
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 34
+        }
+      }
+    },
+    {
+      "id": "c2_11",
+      "name": "星夜便当",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 35
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 35
+        }
+      }
+    },
+    {
+      "id": "bouquet",
+      "name": "花束",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 36
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 36
+        }
+      }
+    },
+    {
+      "id": "c3_1",
+      "name": "薄荷盆栽",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 37
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 37
+        }
+      }
+    },
+    {
+      "id": "c3_2",
+      "name": "玫瑰胸花",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 38
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 38
+        }
+      }
+    },
+    {
+      "id": "c3_3",
+      "name": "向日葵花环",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 39
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 39
+        }
+      }
+    },
+    {
+      "id": "c3_4",
+      "name": "薰衣草香囊",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 40
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 40
+        }
+      }
+    },
+    {
+      "id": "c3_5",
+      "name": "竹篮花饰",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 41
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 41
+        }
+      }
+    },
+    {
+      "id": "c3_6",
+      "name": "叶片桌花",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 42
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 42
+        }
+      }
+    },
+    {
+      "id": "c3_7",
+      "name": "海贝花瓶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 43
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 43
+        }
+      }
+    },
+    {
+      "id": "c3_8",
+      "name": "流苏花帘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 44
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 44
+        }
+      }
+    },
+    {
+      "id": "c3_9",
+      "name": "节庆花门",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 45
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 45
+        }
+      }
+    },
+    {
+      "id": "c3_10",
+      "name": "珊瑚花雕",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 46
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 46
+        }
+      }
+    },
+    {
+      "id": "c3_11",
+      "name": "四季花灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 47
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 47
+        }
+      }
+    },
+    {
+      "id": "outfit",
+      "name": "主题服装",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 48
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 48
+        }
+      }
+    },
+    {
+      "id": "c4_1",
+      "name": "亚麻衬衫",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 49
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 49
+        }
+      }
+    },
+    {
+      "id": "c4_2",
+      "name": "棉布围裙",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 50
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 50
+        }
+      }
+    },
+    {
+      "id": "c4_3",
+      "name": "海风草帽",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 51
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 51
+        }
+      }
+    },
+    {
+      "id": "c4_4",
+      "name": "矿工手套",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 52
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 52
+        }
+      }
+    },
+    {
+      "id": "c4_5",
+      "name": "花园披肩",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 53
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 53
+        }
+      }
+    },
+    {
+      "id": "c4_6",
+      "name": "星空斗篷",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 54
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 54
+        }
+      }
+    },
+    {
+      "id": "c4_7",
+      "name": "海盐条纹裙",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 55
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 55
+        }
+      }
+    },
+    {
+      "id": "c4_8",
+      "name": "玫瑰礼服",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 56
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 56
+        }
+      }
+    },
+    {
+      "id": "c4_9",
+      "name": "航海制服",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 57
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 57
+        }
+      }
+    },
+    {
+      "id": "c4_10",
+      "name": "珍珠发饰",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 58
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 58
+        }
+      }
+    },
+    {
+      "id": "c4_11",
+      "name": "折光舞衣",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-0-v8.png",
+          "frame": 59
+        },
+        "origami": {
+          "file": "items-origami-products-0-v8.png",
+          "frame": 59
+        }
+      }
+    },
+    {
+      "id": "c5_0",
+      "name": "星图",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 0
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 0
+        }
+      }
+    },
+    {
+      "id": "c5_1",
+      "name": "观星手册",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 1
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 1
+        }
+      }
+    },
+    {
+      "id": "c5_2",
+      "name": "简易望远镜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 2
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 2
+        }
+      }
+    },
+    {
+      "id": "c5_3",
+      "name": "月相挂盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 3
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 3
+        }
+      }
+    },
+    {
+      "id": "c5_4",
+      "name": "流星许愿瓶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 4
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 4
+        }
+      }
+    },
+    {
+      "id": "c5_5",
+      "name": "星座徽章",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 5
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 5
+        }
+      }
+    },
+    {
+      "id": "c5_6",
+      "name": "双筒望远镜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 6
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 6
+        }
+      }
+    },
+    {
+      "id": "c5_7",
+      "name": "星砂标本",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 7
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 7
+        }
+      }
+    },
+    {
+      "id": "c5_8",
+      "name": "银河天球仪",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 8
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 8
+        }
+      }
+    },
+    {
+      "id": "c5_9",
+      "name": "航星罗盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 9
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 9
+        }
+      }
+    },
+    {
+      "id": "c5_10",
+      "name": "月影台灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 10
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 10
+        }
+      }
+    },
+    {
+      "id": "c5_11",
+      "name": "彗星奇观",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 11
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 11
+        }
+      }
+    },
+    {
+      "id": "c6_0",
+      "name": "海藻饲料",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 12
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 12
+        }
+      }
+    },
+    {
+      "id": "c6_1",
+      "name": "卵石底砂",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 13
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 13
+        }
+      }
+    },
+    {
+      "id": "c6_2",
+      "name": "贝壳躲藏屋",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 14
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 14
+        }
+      }
+    },
+    {
+      "id": "c6_3",
+      "name": "水草栽培篮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 15
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 15
+        }
+      }
+    },
+    {
+      "id": "c6_4",
+      "name": "小鱼缸",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 16
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 16
+        }
+      }
+    },
+    {
+      "id": "c6_5",
+      "name": "过滤器",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 17
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 17
+        }
+      }
+    },
+    {
+      "id": "c6_6",
+      "name": "珊瑚展台",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 18
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 18
+        }
+      }
+    },
+    {
+      "id": "c6_7",
+      "name": "潮汐水景",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 19
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 19
+        }
+      }
+    },
+    {
+      "id": "c6_8",
+      "name": "海虾育养盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 20
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 20
+        }
+      }
+    },
+    {
+      "id": "c6_9",
+      "name": "夜光水母灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 21
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 21
+        }
+      }
+    },
+    {
+      "id": "c6_10",
+      "name": "环礁水族箱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 22
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 22
+        }
+      }
+    },
+    {
+      "id": "c6_11",
+      "name": "海洋观察档案",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 23
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 23
+        }
+      }
+    },
+    {
+      "id": "c7_0",
+      "name": "航海日志",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 24
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 24
+        }
+      }
+    },
+    {
+      "id": "c7_1",
+      "name": "植物图鉴",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 25
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 25
+        }
+      }
+    },
+    {
+      "id": "c7_2",
+      "name": "矿物图鉴",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 26
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 26
+        }
+      }
+    },
+    {
+      "id": "c7_3",
+      "name": "手工笔记",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 27
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 27
+        }
+      }
+    },
+    {
+      "id": "c7_4",
+      "name": "书签套装",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 28
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 28
+        }
+      }
+    },
+    {
+      "id": "c7_5",
+      "name": "纸张",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 29
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 29
+        }
+      }
+    },
+    {
+      "id": "c7_6",
+      "name": "岛屿地图册",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 30
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 30
+        }
+      }
+    },
+    {
+      "id": "c7_7",
+      "name": "星空诗集",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 31
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 31
+        }
+      }
+    },
+    {
+      "id": "c7_8",
+      "name": "读书灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 32
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 32
+        }
+      }
+    },
+    {
+      "id": "c7_9",
+      "name": "书籍修复包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 33
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 33
+        }
+      }
+    },
+    {
+      "id": "c7_10",
+      "name": "精装共创手册",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 34
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 34
+        }
+      }
+    },
+    {
+      "id": "c7_11",
+      "name": "故事收藏箱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 35
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 35
+        }
+      }
+    },
+    {
+      "id": "c8_0",
+      "name": "信号灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 36
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 36
+        }
+      }
+    },
+    {
+      "id": "c8_1",
+      "name": "航标浮筒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 37
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 37
+        }
+      }
+    },
+    {
+      "id": "c8_2",
+      "name": "海风旗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 38
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 38
+        }
+      }
+    },
+    {
+      "id": "c8_3",
+      "name": "灯塔油灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 39
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 39
+        }
+      }
+    },
+    {
+      "id": "c8_4",
+      "name": "雾号",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 40
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 40
+        }
+      }
+    },
+    {
+      "id": "c8_5",
+      "name": "航线图",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 41
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 41
+        }
+      }
+    },
+    {
+      "id": "c8_6",
+      "name": "潮汐计",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 42
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 42
+        }
+      }
+    },
+    {
+      "id": "c8_7",
+      "name": "航灯透镜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 43
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 43
+        }
+      }
+    },
+    {
+      "id": "c8_8",
+      "name": "反光路标",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 44
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 44
+        }
+      }
+    },
+    {
+      "id": "c8_9",
+      "name": "码头引航牌",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 45
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 45
+        }
+      }
+    },
+    {
+      "id": "c8_10",
+      "name": "远航信标",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 46
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 46
+        }
+      }
+    },
+    {
+      "id": "c8_11",
+      "name": "晨光纪念灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 47
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 47
+        }
+      }
+    },
+    {
+      "id": "c9_0",
+      "name": "海岛货篮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 48
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 48
+        }
+      }
+    },
+    {
+      "id": "c9_1",
+      "name": "干花货包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 49
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 49
+        }
+      }
+    },
+    {
+      "id": "c9_2",
+      "name": "蔬果礼包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 50
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 50
+        }
+      }
+    },
+    {
+      "id": "c9_3",
+      "name": "矿石样品箱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 51
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 51
+        }
+      }
+    },
+    {
+      "id": "c9_4",
+      "name": "茶点礼包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 52
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 52
+        }
+      }
+    },
+    {
+      "id": "c9_5",
+      "name": "摊位价签",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 53
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 53
+        }
+      }
+    },
+    {
+      "id": "c9_6",
+      "name": "编织购物袋",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 54
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 54
+        }
+      }
+    },
+    {
+      "id": "c9_7",
+      "name": "便携展示架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 55
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 55
+        }
+      }
+    },
+    {
+      "id": "c9_8",
+      "name": "岛屿特产盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 56
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 56
+        }
+      }
+    },
+    {
+      "id": "c9_9",
+      "name": "主题市集招牌",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 57
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 57
+        }
+      }
+    },
+    {
+      "id": "c9_10",
+      "name": "珍珠纪念品",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 58
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 58
+        }
+      }
+    },
+    {
+      "id": "c9_11",
+      "name": "共创展销台",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-1-v8.png",
+          "frame": 59
+        },
+        "origami": {
+          "file": "items-origami-products-1-v8.png",
+          "frame": 59
+        }
+      }
+    },
+    {
+      "id": "remedy",
+      "name": "草药药剂",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 0
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 0
+        }
+      }
+    },
+    {
+      "id": "c10_1",
+      "name": "薄荷舒缓包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 1
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 1
+        }
+      }
+    },
+    {
+      "id": "c10_2",
+      "name": "棉布绷带",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 2
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 2
+        }
+      }
+    },
+    {
+      "id": "c10_3",
+      "name": "草本热敷袋",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 3
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 3
+        }
+      }
+    },
+    {
+      "id": "c10_4",
+      "name": "净水杯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 4
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 4
+        }
+      }
+    },
+    {
+      "id": "c10_5",
+      "name": "药草分装盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 5
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 5
+        }
+      }
+    },
+    {
+      "id": "c10_6",
+      "name": "蜂蜡护手膏",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 6
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 6
+        }
+      }
+    },
+    {
+      "id": "c10_7",
+      "name": "薰香休息枕",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 7
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 7
+        }
+      }
+    },
+    {
+      "id": "c10_8",
+      "name": "诊所工具托盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 8
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 8
+        }
+      }
+    },
+    {
+      "id": "c10_9",
+      "name": "应急护理包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 9
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 9
+        }
+      }
+    },
+    {
+      "id": "c10_10",
+      "name": "康复花篮",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 10
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 10
+        }
+      }
+    },
+    {
+      "id": "c10_11",
+      "name": "居民健康手账",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 11
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 11
+        }
+      }
+    },
+    {
+      "id": "c11_0",
+      "name": "漂流信",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 12
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 12
+        }
+      }
+    },
+    {
+      "id": "c11_1",
+      "name": "岛屿明信片",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 13
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 13
+        }
+      }
+    },
+    {
+      "id": "c11_2",
+      "name": "压花信封",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 14
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 14
+        }
+      }
+    },
+    {
+      "id": "c11_3",
+      "name": "竹纸信笺",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 15
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 15
+        }
+      }
+    },
+    {
+      "id": "c11_4",
+      "name": "蜂蜡封印",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 16
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 16
+        }
+      }
+    },
+    {
+      "id": "c11_5",
+      "name": "邮票册",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 17
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 17
+        }
+      }
+    },
+    {
+      "id": "c11_6",
+      "name": "木质邮袋架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 18
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 18
+        }
+      }
+    },
+    {
+      "id": "c11_7",
+      "name": "航海邀请函",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 19
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 19
+        }
+      }
+    },
+    {
+      "id": "c11_8",
+      "name": "派对请柬",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 20
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 20
+        }
+      }
+    },
+    {
+      "id": "c11_9",
+      "name": "共创委托书",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 21
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 21
+        }
+      }
+    },
+    {
+      "id": "c11_10",
+      "name": "珍珠信封扣",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 22
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 22
+        }
+      }
+    },
+    {
+      "id": "c11_11",
+      "name": "远方故事包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 23
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 23
+        }
+      }
+    },
+    {
+      "id": "c12_0",
+      "name": "竹笛",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 24
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 24
+        }
+      }
+    },
+    {
+      "id": "c12_1",
+      "name": "沙锤",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 25
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 25
+        }
+      }
+    },
+    {
+      "id": "c12_2",
+      "name": "木制响板",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 26
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 26
+        }
+      }
+    },
+    {
+      "id": "c12_3",
+      "name": "海贝口哨",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 27
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 27
+        }
+      }
+    },
+    {
+      "id": "c12_4",
+      "name": "手鼓",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 28
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 28
+        }
+      }
+    },
+    {
+      "id": "c12_5",
+      "name": "亚麻琴套",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 29
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 29
+        }
+      }
+    },
+    {
+      "id": "c12_6",
+      "name": "海风吉他",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 30
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 30
+        }
+      }
+    },
+    {
+      "id": "c12_7",
+      "name": "音乐盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 31
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 31
+        }
+      }
+    },
+    {
+      "id": "c12_8",
+      "name": "星夜乐谱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 32
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 32
+        }
+      }
+    },
+    {
+      "id": "c12_9",
+      "name": "舞台节拍器",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 33
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 33
+        }
+      }
+    },
+    {
+      "id": "c12_10",
+      "name": "岛屿唱片",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 34
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 34
+        }
+      }
+    },
+    {
+      "id": "c12_11",
+      "name": "潮声竖琴",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 35
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 35
+        }
+      }
+    },
+    {
+      "id": "c13_0",
+      "name": "海岛相片",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 36
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 36
+        }
+      }
+    },
+    {
+      "id": "c13_1",
+      "name": "木质相框",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 37
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 37
+        }
+      }
+    },
+    {
+      "id": "c13_2",
+      "name": "花园相册",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 38
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 38
+        }
+      }
+    },
+    {
+      "id": "c13_3",
+      "name": "航拍地图",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 39
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 39
+        }
+      }
+    },
+    {
+      "id": "c13_4",
+      "name": "摄影反光板",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 40
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 40
+        }
+      }
+    },
+    {
+      "id": "c13_5",
+      "name": "竹木三脚架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 41
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 41
+        }
+      }
+    },
+    {
+      "id": "c13_6",
+      "name": "暗房显影盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 42
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 42
+        }
+      }
+    },
+    {
+      "id": "c13_7",
+      "name": "海风镜头",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 43
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 43
+        }
+      }
+    },
+    {
+      "id": "c13_8",
+      "name": "派对留影册",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 44
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 44
+        }
+      }
+    },
+    {
+      "id": "c13_9",
+      "name": "星空摄影架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 45
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 45
+        }
+      }
+    },
+    {
+      "id": "c13_10",
+      "name": "珍珠纪念相框",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 46
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 46
+        }
+      }
+    },
+    {
+      "id": "c13_11",
+      "name": "晨光影集",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 47
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 47
+        }
+      }
+    },
+    {
+      "id": "c14_0",
+      "name": "育苗盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 48
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 48
+        }
+      }
+    },
+    {
+      "id": "c14_1",
+      "name": "薄荷种苗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 49
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 49
+        }
+      }
+    },
+    {
+      "id": "c14_2",
+      "name": "玫瑰种苗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 50
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 50
+        }
+      }
+    },
+    {
+      "id": "c14_3",
+      "name": "薰衣草种苗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 51
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 51
+        }
+      }
+    },
+    {
+      "id": "c14_4",
+      "name": "棉花种苗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 52
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 52
+        }
+      }
+    },
+    {
+      "id": "c14_5",
+      "name": "亚麻种苗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 53
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 53
+        }
+      }
+    },
+    {
+      "id": "c14_6",
+      "name": "滴灌管",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 54
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 54
+        }
+      }
+    },
+    {
+      "id": "c14_7",
+      "name": "竹制苗架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 55
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 55
+        }
+      }
+    },
+    {
+      "id": "c14_8",
+      "name": "温室肥料",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 56
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 56
+        }
+      }
+    },
+    {
+      "id": "c14_9",
+      "name": "遮光帘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 57
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 57
+        }
+      }
+    },
+    {
+      "id": "c14_10",
+      "name": "种子收藏盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 58
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 58
+        }
+      }
+    },
+    {
+      "id": "c14_11",
+      "name": "四季花圃",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-2-v8.png",
+          "frame": 59
+        },
+        "origami": {
+          "file": "items-origami-products-2-v8.png",
+          "frame": 59
+        }
+      }
+    },
+    {
+      "id": "pottery",
+      "name": "陶器",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 0
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 0
+        }
+      }
+    },
+    {
+      "id": "c15_1",
+      "name": "茶杯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 1
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 1
+        }
+      }
+    },
+    {
+      "id": "c15_2",
+      "name": "花瓶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 2
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 2
+        }
+      }
+    },
+    {
+      "id": "c15_3",
+      "name": "小碟",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 3
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 3
+        }
+      }
+    },
+    {
+      "id": "c15_4",
+      "name": "香薰炉",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 4
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 4
+        }
+      }
+    },
+    {
+      "id": "c15_5",
+      "name": "调色盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 5
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 5
+        }
+      }
+    },
+    {
+      "id": "c15_6",
+      "name": "花纹茶壶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 6
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 6
+        }
+      }
+    },
+    {
+      "id": "c15_7",
+      "name": "海贝陶碗",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 7
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 7
+        }
+      }
+    },
+    {
+      "id": "c15_8",
+      "name": "陶制灯罩",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 8
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 8
+        }
+      }
+    },
+    {
+      "id": "c15_9",
+      "name": "水族陶洞",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 9
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 9
+        }
+      }
+    },
+    {
+      "id": "c15_10",
+      "name": "星空瓷瓶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 10
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 10
+        }
+      }
+    },
+    {
+      "id": "c15_11",
+      "name": "岛屿陶雕",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 11
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 11
+        }
+      }
+    },
+    {
+      "id": "rod",
+      "name": "渔竿",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 12
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 12
+        }
+      }
+    },
+    {
+      "id": "c16_1",
+      "name": "竹制鱼篓",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 13
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 13
+        }
+      }
+    },
+    {
+      "id": "c16_2",
+      "name": "贝壳浮漂",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 14
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 14
+        }
+      }
+    },
+    {
+      "id": "c16_3",
+      "name": "鱼饵盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 15
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 15
+        }
+      }
+    },
+    {
+      "id": "c16_4",
+      "name": "海虾鱼饵",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 16
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 16
+        }
+      }
+    },
+    {
+      "id": "c16_5",
+      "name": "备用钓线",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 17
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 17
+        }
+      }
+    },
+    {
+      "id": "c16_6",
+      "name": "精制鱼钩",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 18
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 18
+        }
+      }
+    },
+    {
+      "id": "c16_7",
+      "name": "海风渔网",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 19
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 19
+        }
+      }
+    },
+    {
+      "id": "c16_8",
+      "name": "潮汐钓具包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 20
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 20
+        }
+      }
+    },
+    {
+      "id": "c16_9",
+      "name": "远投钓竿",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 21
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 21
+        }
+      }
+    },
+    {
+      "id": "c16_10",
+      "name": "珍珠鱼漂",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 22
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 22
+        }
+      }
+    },
+    {
+      "id": "c16_11",
+      "name": "冠军钓具箱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 23
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 23
+        }
+      }
+    },
+    {
+      "id": "bread",
+      "name": "面包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 24
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 24
+        }
+      }
+    },
+    {
+      "id": "c17_1",
+      "name": "蜂蜜小面包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 25
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 25
+        }
+      }
+    },
+    {
+      "id": "c17_2",
+      "name": "草莓饼",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 26
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 26
+        }
+      }
+    },
+    {
+      "id": "c17_3",
+      "name": "玉米松饼",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 27
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 27
+        }
+      }
+    },
+    {
+      "id": "c17_4",
+      "name": "南瓜派",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 28
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 28
+        }
+      }
+    },
+    {
+      "id": "c17_5",
+      "name": "香草薄脆",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 29
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 29
+        }
+      }
+    },
+    {
+      "id": "c17_6",
+      "name": "奶香米饼",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 30
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 30
+        }
+      }
+    },
+    {
+      "id": "c17_7",
+      "name": "薰衣草曲奇",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 31
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 31
+        }
+      }
+    },
+    {
+      "id": "c17_8",
+      "name": "海盐蝴蝶酥",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 32
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 32
+        }
+      }
+    },
+    {
+      "id": "c17_9",
+      "name": "庆典花冠面包",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 33
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 33
+        }
+      }
+    },
+    {
+      "id": "c17_10",
+      "name": "星灯蛋糕",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 34
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 34
+        }
+      }
+    },
+    {
+      "id": "c17_11",
+      "name": "共创茶点塔",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 35
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 35
+        }
+      }
+    },
+    {
+      "id": "c18_0",
+      "name": "矿物标本",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 36
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 36
+        }
+      }
+    },
+    {
+      "id": "c18_1",
+      "name": "压叶标本",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 37
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 37
+        }
+      }
+    },
+    {
+      "id": "c18_2",
+      "name": "海贝标本",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 38
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 38
+        }
+      }
+    },
+    {
+      "id": "c18_3",
+      "name": "航海绳结板",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 39
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 39
+        }
+      }
+    },
+    {
+      "id": "c18_4",
+      "name": "陶片复原盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 40
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 40
+        }
+      }
+    },
+    {
+      "id": "c18_5",
+      "name": "旧地图展卷",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 41
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 41
+        }
+      }
+    },
+    {
+      "id": "c18_6",
+      "name": "岛史展签",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 42
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 42
+        }
+      }
+    },
+    {
+      "id": "c18_7",
+      "name": "珊瑚收藏柜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 43
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 43
+        }
+      }
+    },
+    {
+      "id": "c18_8",
+      "name": "珍珠展架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 44
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 44
+        }
+      }
+    },
+    {
+      "id": "c18_9",
+      "name": "琥珀奇观",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 45
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 45
+        }
+      }
+    },
+    {
+      "id": "c18_10",
+      "name": "流星展柜",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 46
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 46
+        }
+      }
+    },
+    {
+      "id": "c18_11",
+      "name": "晨光岛沙盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 47
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 47
+        }
+      }
+    },
+    {
+      "id": "c19_0",
+      "name": "亚麻靠垫",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 48
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 48
+        }
+      }
+    },
+    {
+      "id": "c19_1",
+      "name": "棉布毛毯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 49
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 49
+        }
+      }
+    },
+    {
+      "id": "c19_2",
+      "name": "竹编坐垫",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 50
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 50
+        }
+      }
+    },
+    {
+      "id": "c19_3",
+      "name": "香草安睡袋",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 51
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 51
+        }
+      }
+    },
+    {
+      "id": "c19_4",
+      "name": "海风窗帘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 52
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 52
+        }
+      }
+    },
+    {
+      "id": "c19_5",
+      "name": "花园地毯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 53
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 53
+        }
+      }
+    },
+    {
+      "id": "c19_6",
+      "name": "壁炉木箱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 54
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 54
+        }
+      }
+    },
+    {
+      "id": "c19_7",
+      "name": "床头收纳架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 55
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 55
+        }
+      }
+    },
+    {
+      "id": "c19_8",
+      "name": "海贝夜灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 56
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 56
+        }
+      }
+    },
+    {
+      "id": "c19_9",
+      "name": "温暖摇椅",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 57
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 57
+        }
+      }
+    },
+    {
+      "id": "c19_10",
+      "name": "珍珠镜台",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 58
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 58
+        }
+      }
+    },
+    {
+      "id": "c19_11",
+      "name": "岛主会客桌",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-3-v8.png",
+          "frame": 59
+        },
+        "origami": {
+          "file": "items-origami-products-3-v8.png",
+          "frame": 59
+        }
+      }
+    },
+    {
+      "id": "firework",
+      "name": "烟花",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 0
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 0
+        }
+      }
+    },
+    {
+      "id": "c20_1",
+      "name": "花雨烟花",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 1
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 1
+        }
+      }
+    },
+    {
+      "id": "c20_2",
+      "name": "海蓝礼花",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 2
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 2
+        }
+      }
+    },
+    {
+      "id": "c20_3",
+      "name": "金色喷泉",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 3
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 3
+        }
+      }
+    },
+    {
+      "id": "c20_4",
+      "name": "星光纸筒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 4
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 4
+        }
+      }
+    },
+    {
+      "id": "c20_5",
+      "name": "彩芯套装",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 5
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 5
+        }
+      }
+    },
+    {
+      "id": "c20_6",
+      "name": "庆典引线盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 6
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 6
+        }
+      }
+    },
+    {
+      "id": "c20_7",
+      "name": "花火礼盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 7
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 7
+        }
+      }
+    },
+    {
+      "id": "c20_8",
+      "name": "流星花火",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 8
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 8
+        }
+      }
+    },
+    {
+      "id": "c20_9",
+      "name": "音乐花火组",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 9
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 9
+        }
+      }
+    },
+    {
+      "id": "c20_10",
+      "name": "海岛花火屏",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 10
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 10
+        }
+      }
+    },
+    {
+      "id": "c20_11",
+      "name": "晨光天幕",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 11
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 11
+        }
+      }
+    },
+    {
+      "id": "c21_0",
+      "name": "演出海报",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 12
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 12
+        }
+      }
+    },
+    {
+      "id": "c21_1",
+      "name": "布景幕布",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 13
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 13
+        }
+      }
+    },
+    {
+      "id": "c21_2",
+      "name": "竹木麦架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 14
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 14
+        }
+      }
+    },
+    {
+      "id": "c21_3",
+      "name": "灯光滤片",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 15
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 15
+        }
+      }
+    },
+    {
+      "id": "c21_4",
+      "name": "演出胸牌",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 16
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 16
+        }
+      }
+    },
+    {
+      "id": "c21_5",
+      "name": "彩排指示牌",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 17
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 17
+        }
+      }
+    },
+    {
+      "id": "c21_6",
+      "name": "节拍提示器",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 18
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 18
+        }
+      }
+    },
+    {
+      "id": "c21_7",
+      "name": "星空聚光灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 19
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 19
+        }
+      }
+    },
+    {
+      "id": "c21_8",
+      "name": "派对背景墙",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 20
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 20
+        }
+      }
+    },
+    {
+      "id": "c21_9",
+      "name": "服装快换架",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 21
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 21
+        }
+      }
+    },
+    {
+      "id": "c21_10",
+      "name": "庆典灯阵",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 22
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 22
+        }
+      }
+    },
+    {
+      "id": "c21_11",
+      "name": "海风音乐舞台",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 23
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 23
+        }
+      }
+    },
+    {
+      "id": "c22_0",
+      "name": "营地火种盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 24
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 24
+        }
+      }
+    },
+    {
+      "id": "c22_1",
+      "name": "竹制餐具",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 25
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 25
+        }
+      }
+    },
+    {
+      "id": "c22_2",
+      "name": "亚麻吊床",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 26
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 26
+        }
+      }
+    },
+    {
+      "id": "c22_3",
+      "name": "轻便营灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 27
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 27
+        }
+      }
+    },
+    {
+      "id": "c22_4",
+      "name": "海风帐篷",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 28
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 28
+        }
+      }
+    },
+    {
+      "id": "c22_5",
+      "name": "保温食盒",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 29
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 29
+        }
+      }
+    },
+    {
+      "id": "c22_6",
+      "name": "防风屏",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 30
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 30
+        }
+      }
+    },
+    {
+      "id": "c22_7",
+      "name": "露营茶壶",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 31
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 31
+        }
+      }
+    },
+    {
+      "id": "c22_8",
+      "name": "观星睡袋",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 32
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 32
+        }
+      }
+    },
+    {
+      "id": "c22_9",
+      "name": "营地路灯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 33
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 33
+        }
+      }
+    },
+    {
+      "id": "c22_10",
+      "name": "派对大篷",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 34
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 34
+        }
+      }
+    },
+    {
+      "id": "c22_11",
+      "name": "海岛露营沙盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 35
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 35
+        }
+      }
+    },
+    {
+      "id": "c23_0",
+      "name": "船板",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 36
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 36
+        }
+      }
+    },
+    {
+      "id": "c23_1",
+      "name": "防水树脂",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 37
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 37
+        }
+      }
+    },
+    {
+      "id": "c23_2",
+      "name": "竹篙",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 38
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 38
+        }
+      }
+    },
+    {
+      "id": "c23_3",
+      "name": "船绳",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 39
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 39
+        }
+      }
+    },
+    {
+      "id": "c23_4",
+      "name": "船桨",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 40
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 40
+        }
+      }
+    },
+    {
+      "id": "c23_5",
+      "name": "航海工具箱",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 41
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 41
+        }
+      }
+    },
+    {
+      "id": "c23_6",
+      "name": "救生浮环",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 42
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 42
+        }
+      }
+    },
+    {
+      "id": "c23_7",
+      "name": "海风船帆",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 43
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 43
+        }
+      }
+    },
+    {
+      "id": "c23_8",
+      "name": "小舟模型",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 44
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 44
+        }
+      }
+    },
+    {
+      "id": "c23_9",
+      "name": "码头缆桩",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 45
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 45
+        }
+      }
+    },
+    {
+      "id": "c23_10",
+      "name": "庆典游船",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 46
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 46
+        }
+      }
+    },
+    {
+      "id": "c23_11",
+      "name": "晨光渡船",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 47
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 47
+        }
+      }
+    },
+    {
+      "id": "painting",
+      "name": "画作",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 48
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 48
+        }
+      }
+    },
+    {
+      "id": "c24_1",
+      "name": "矿物颜料",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 49
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 49
+        }
+      }
+    },
+    {
+      "id": "c24_2",
+      "name": "竹木画笔",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 50
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 50
+        }
+      }
+    },
+    {
+      "id": "c24_3",
+      "name": "棉布画板",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 51
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 51
+        }
+      }
+    },
+    {
+      "id": "c24_4",
+      "name": "折纸套件",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 52
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 52
+        }
+      }
+    },
+    {
+      "id": "c24_5",
+      "name": "蓝草染料",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 53
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 53
+        }
+      }
+    },
+    {
+      "id": "c24_6",
+      "name": "海岛拓印",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 54
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 54
+        }
+      }
+    },
+    {
+      "id": "c24_7",
+      "name": "陶瓷画盘",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 55
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 55
+        }
+      }
+    },
+    {
+      "id": "c24_8",
+      "name": "共创工坊徽章",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 56
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 56
+        }
+      }
+    },
+    {
+      "id": "c24_9",
+      "name": "四季画屏",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 57
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 57
+        }
+      }
+    },
+    {
+      "id": "c24_10",
+      "name": "星光挂毯",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 58
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 58
+        }
+      }
+    },
+    {
+      "id": "c24_11",
+      "name": "海岛共创奇观",
+      "art": {
+        "pixel": {
+          "file": "items-pixel-products-4-v8.png",
+          "frame": 59
+        },
+        "origami": {
+          "file": "items-origami-products-4-v8.png",
+          "frame": 59
+        }
+      }
+    }
+  ]
+}

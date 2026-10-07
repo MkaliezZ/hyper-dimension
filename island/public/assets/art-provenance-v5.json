@@ -1,0 +1,60 @@
+{
+  "version": 5,
+  "date": "2026-09-30",
+  "method": "Built-in image_gen, original island maps used only as style/camera reference. New transparent dock sprites and opaque ocean backdrops. Raster originals preserved. Runtime Canvas feathers ocean pixels at the fixed map rim, protecting island and parcel coordinates.",
+  "assets": [
+    {
+      "theme": "pixel",
+      "kind": "dock",
+      "prompt": "Use case: stylized-concept. Generate a NEW game asset, using the input island ONLY as a style/camera reference. Do not redraw the island. Asset: ONE complete passenger dock on transparent background, luxurious detailed hand painted PIXEL ART with fine crisp pixel highlights, textured honey wooden planks, warm turquoise teal roofing, warm golden light. Match the elevated frontal camera and overhead perspective of the island, about 40 degrees looking down, not a low horizon view. Landscape canvas 1536x1024. Connected geometry: a narrow wooden access bridge starts near pixel (100,180) at the upper left and runs diagonally down-right to (690,690), then joins a broad boarding plaza across (650,575) to (1450,840). Central clear walkable route continues horizontally from (690,690) to (1350,690), uninterrupted and without furniture. Beautiful roofed ticket kiosk on the BACK/NORTH edge near (970,410), benches along back edge, cargo crates, rope railings, mooring bollards, lanterns, small nautical pennants, stairs down on the far-right boarding edge. Leave the walking surface completely visible in front of kiosk. Show strong detailed plank texture, posts and underside depth matching the island's native small pier. Professional coherent game environment sprite, very polished. Entire sprite inside canvas with 60px transparent padding, all bridge, kiosk and underside included. No land, no sea, no sky, no boats, no people, no text or labels. True alpha transparency. This must be one continuous dock asset, not a sheet of separate pieces.",
+      "transparent": true,
+      "reference": "source-artifact:island-pixel-v3.png",
+      "source": "source-artifact:exec-64f14d0b-d814-487e-9a1a-858abdd0afa2.png",
+      "file": "public/assets/dock-pixel-v5.png"
+    },
+    {
+      "theme": "pixel",
+      "kind": "sea",
+      "prompt": "Use case: stylized-concept. Generate NEW background texture using input island only as style and color reference, no island redraw. Asset: one continuous ocean water background, landscape1536x1024. Match ONLY the surrounding ocean of the reference, especially its bottom-right open blue water, same camera and detail scale. Fine high quality pixel-painted tropical ocean, saturated deep cobalt blue to cerulean and cyan, intricate natural subtle wave ripples, irregular small interlocking highlights, granular pixel texture, fine dappled light. Fill the entire image edge to edge with only OPEN WATER, consistent level of detail and mid blue across every edge. Gentle organic variation, no obvious large color bands, no tiled repeated pattern. No white foam, land, rocks, docks, boats, plants, people, text, sky, horizon or objects. Preserve visual richness across entire background so game boats can be overlaid. Opaque background.",
+      "transparent": false,
+      "reference": "source-artifact:island-pixel-v3.png",
+      "source": "source-artifact:exec-b5b809d2-4593-4ec8-9ef3-b71623c922d5.png",
+      "file": "public/assets/sea-pixel-v5.png"
+    },
+    {
+      "theme": "origami",
+      "kind": "dock",
+      "prompt": "Use case: stylized-concept. Generate a NEW game asset, using the input island ONLY as a style/camera reference. Do not redraw the island. Asset: ONE complete passenger dock on transparent background, beautiful handcrafted ORIGAMI diorama, crisp folded paper facets, paper-grain timber planks, cream and peach buildings, sage teal roofing, geometric folds, rich daylight and depth. Match the elevated frontal camera and overhead perspective of the island, about 40 degrees looking down, not a low horizon view. Landscape canvas 1536x1024. Connected geometry: a narrow wooden access bridge starts near pixel (100,180) at the upper left and runs diagonally down-right to (690,690), then joins a broad boarding plaza across (650,575) to (1450,840). Central clear walkable route continues horizontally from (690,690) to (1350,690), uninterrupted and without furniture. Beautiful roofed ticket kiosk on the BACK/NORTH edge near (970,410), benches along back edge, cargo crates, rope railings, mooring bollards, lanterns, small nautical pennants, stairs down on the far-right boarding edge. Leave the walking surface completely visible in front of kiosk. Show strong detailed plank texture, posts and underside depth matching the island's native small pier. Professional coherent game environment sprite, very polished. Entire sprite inside canvas with 60px transparent padding, all bridge, kiosk and underside included. No land, no sea, no sky, no boats, no people, no text or labels. True alpha transparency. This must be one continuous dock asset, not a sheet of separate pieces.",
+      "transparent": true,
+      "reference": "source-artifact:island-origami-v3.png",
+      "source": "source-artifact:exec-e7558287-2bea-4b52-91fb-2f93fa2df6f6.png",
+      "file": "public/assets/dock-origami-v5.png"
+    },
+    {
+      "theme": "origami",
+      "kind": "sea",
+      "prompt": "Use case: stylized-concept. Generate NEW background texture using input island only as style and color reference, no island redraw. Asset: one continuous ocean water background, landscape1536x1024. Match ONLY the surrounding ocean of the reference, especially its bottom-right open blue water, same camera and detail scale. Handcrafted folded paper tropical ocean, saturated cerulean blue with cyan folds, irregular triangular geometric facets approximately 45-100px wide, soft paper grain, crisp creases, varied but harmonious facets matching the reference ocean. Fill the entire image edge to edge with only OPEN WATER, consistent level of detail and mid blue across every edge. Gentle organic variation, no obvious large color bands, no tiled repeated pattern. No white foam, land, rocks, docks, boats, plants, people, text, sky, horizon or objects. Preserve visual richness across entire background so game boats can be overlaid. Opaque background.",
+      "transparent": false,
+      "reference": "source-artifact:island-origami-v3.png",
+      "source": "source-artifact:exec-70d7e17c-f228-46b4-91da-5c63d54fa4ef.png",
+      "file": "public/assets/sea-origami-v5.png"
+    }
+  ],
+  "placement": {
+    "dock": {
+      "x": 1100,
+      "y": 750,
+      "width": 510,
+      "height": 340
+    },
+    "originalIsland": {
+      "width": 1536,
+      "height": 1024
+    },
+    "world": {
+      "width": 1856,
+      "height": 1248
+    },
+    "swap": "building 8 (lighthouse) and building 6 (aquarium) exchange calibrated parcels in both themes."
+  }
+}

@@ -51,3 +51,10 @@ coverage/
 Thumbs.db
 .vscode/
 .idea/
+
+# Island private/runtime state and recording scratch files
+island/.runtime/
+island/qa/
+island/.env.local
+island/node_modules/
+*.log

@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';
+import {RESIDENTS,setWorldTheme} from '../src/world.js';import {createResidentRuntime} from '../src/residentRuntime.js';import {createRecruitmentRuntime} from '../src/recruitmentRuntime.js';import {followPath} from '../src/movement.js';import {bindRecruitment,archiveRecruitment} from '../src/recruitment.js';import {RECRUIT_CANDIDATE} from '../src/recruitmentCatalog.js';
+export function proof(context){const id=randomUUID();return{source:'hermes',model:'deepseek-flash',parent:{id:'hd-parent-'+id,status:'completed',tools:['recruitment_delegate']},child:{id:'hd-child-'+id,parentId:'hd-parent-'+id,status:'completed',tools:['recruitment_take_step'],acceptedSteps:context.steps.filter(s=>s.item==='wood').slice(0,1).map(s=>s.id)},events:[{actor:'parent',tool:'recruitment_delegate',status:'done'},{actor:'child',tool:'recruitment_take_step',status:'done'}]};}
+export async function finishVisit(store,doc,contract){
+ const {state,theme}=doc;setWorldTheme(theme);assert(bindRecruitment(state,contract,theme).ok);
+ const npcs=RESIDENTS.map((_,npcId)=>({npcId,x:780,y:465,path:[],walkMix:0})),profile=i=>i===16?{...RECRUIT_CANDIDATE,...state.recruitment.active.profile}:RESIDENTS[i];
+ const resident=createResidentRuntime({npcs,getState:()=>state,profile,followPath,onChange(){},onEvent(){}}),runtime=createRecruitmentRuntime({state:()=>state,npcs,followPath,resident:()=>resident,visitors:()=>({boats:[],guests:[]}),onChange(){},onEvent(){}});
+ runtime.reset();for(const n of npcs.slice(0,16))n.manualUntil=1e6;for(let i=1;i<9000&&state.recruitment.active.phase!=='departed';i++){runtime.update(.1);resident.update(.1,i*.1);}
+ assert.equal(state.recruitment.active.phase,'departed');assert(state.recruitment.active.hasArrived);await store.cancel(theme,doc,contract.id);const result=await store.departed(theme,doc,contract.id);assert.equal(result.contract.phase,'departed');assert(archiveRecruitment(state,contract.id));return result.contract;
+}

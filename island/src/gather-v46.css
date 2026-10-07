@@ -1,0 +1,36 @@
+.gather-v46{position:fixed;z-index:10000;left:50%;bottom:28px;transform:translateX(-50%);width:min(600px,calc(100vw - 24px));display:grid;grid-template-columns:64px 1fr;gap:12px;padding:18px;color:#493c2d;background:#fff5da;border:3px solid #826548;box-shadow:5px 6px 0 #3c302955;box-sizing:border-box;font-size:17px}.gather-v46.hidden{display:none}.gather-v46 strong{font-size:20px}.gather-v46 p{margin:6px 0;line-height:1.6;overflow-wrap:anywhere}.gather-art svg{width:64px;height:64px}.gather-buttons{grid-column:1/-1;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}.gather-buttons button{min-height:44px;font:inherit}.gather-buttons [hidden]{display:none}body[data-theme=origami] .gather-v46{border:1px solid #b89d7b;border-radius:3px 16px 4px 12px;background:linear-gradient(125deg,#fffaf0 0 70%,#eee1c9 70%);box-shadow:0 10px 26px #55472e40}body[data-theme=pixel] .gather-v46{border-radius:0;image-rendering:pixelated}@media(max-width:600px){.gather-v46{bottom:14px;padding:12px;gap:8px}.gather-v46 strong{font-size:18px}.gather-v46 p{font-size:16px}}
+
+#serverCraft{grid-template-columns:1fr}#serverCraft strong{display:block}#serverCraft .gather-buttons{grid-column:auto}
+
+.field-mining-object{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;font-size:21px}.field-mining-object .item-art{width:84px;height:84px;flex:none}.field-mining-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.field-mining .meter{max-width:720px;margin:24px auto}.field-mining p{font-size:18px;line-height:1.65}.field-mining{padding:24px;max-width:850px;margin:auto}.field-mining button{font-size:19px;min-height:48px}@media(max-width:600px){.field-mining{padding:12px}.field-mining p{font-size:17px}.field-mining-object .item-art{width:64px;height:64px}}
+
+#serverField,#serverFieldNpc,#serverResident{grid-template-columns:1fr}#serverField strong,#serverFieldNpc strong,#serverResident strong{display:block}#serverField .gather-buttons,#serverFieldNpc .gather-buttons,#serverResident .gather-buttons{grid-column:auto}
+
+#serverVisitor{grid-template-columns:1fr}
+#serverVisitor strong{display:block}
+#serverVisitor .gather-buttons{grid-column:auto}
+
+#serverCommerce{grid-template-columns:minmax(0,1fr);max-width:min(520px,calc(100vw - 24px))}#serverCommerce>div{min-width:0}#serverCommerce p{overflow-wrap:anywhere}#serverCommerce .gather-buttons{flex-wrap:wrap;justify-content:flex-end}
+
+.night-party-modal{max-width:580px}.night-party-track{position:relative;height:28px;margin:24px 4px;border:2px solid var(--ink,#648d77);border-radius:12px;background:linear-gradient(90deg,#bad5c8 0 var(--light-start,35%),#f9d889 var(--light-start,35%) var(--light-end,65%),#bad5c8 var(--light-end,65%) 100%)}.night-party-track i{position:absolute;top:-9px;width:15px;height:42px;background:#fff7dc;box-shadow:0 0 12px #fff;border:1px solid #957b50}.night-party-score{text-align:center;font-size:18px}.night-party-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.night-party-actions .primary{grid-column:1/-1}[data-theme=pixel] .night-party-track{border-radius:0;border-width:3px;box-shadow:3px 3px #725740}[data-theme=origami] .night-party-track i{clip-path:polygon(15% 0,100% 0,100% 86%,72% 100%,0 100%,0 13%)}#serverParty{width:min(520px,calc(100vw - 24px));grid-template-columns:1fr}#serverParty .gather-buttons{display:flex;flex-wrap:wrap}#serverParty strong,#serverParty p{white-space:normal;overflow-wrap:anywhere}
+
+#serverFishing{width:min(520px,calc(100vw - 24px));grid-template-columns:minmax(0,1fr)}#serverFishing>div{min-width:0}#serverFishing strong{display:block}#serverFishing p{white-space:normal;overflow-wrap:anywhere}#serverFishing .gather-buttons{grid-column:auto;flex-wrap:wrap}
+
+#serverFacility{width:min(520px,calc(100vw - 24px));grid-template-columns:minmax(0,1fr)}#serverFacility>div{min-width:0}#serverFacility strong{display:block}#serverFacility p{white-space:normal;overflow-wrap:anywhere}#serverFacility .gather-buttons{grid-column:auto;flex-wrap:wrap}
+
+/* V61: recovery panels share a scrollable dock instead of overlapping/inert-locking one another. */
+#actionRecoveryDock{position:fixed;z-index:10000;left:50%;bottom:18px;transform:translateX(-50%);width:min(600px,calc(100vw - 24px));max-height:55vh;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:6px;box-sizing:border-box;scrollbar-color:#987a4f #f8efd9;scrollbar-width:thin}#actionRecoveryDock:empty{display:none}#actionRecoveryDock>.gather-v46{position:relative;inset:auto;transform:none;width:100%;max-width:100%;flex:0 0 auto;box-shadow:none}.recovery-dialog-open #actionRecoveryDock{display:none}#actionRecoveryDock::-webkit-scrollbar{width:10px}#actionRecoveryDock::-webkit-scrollbar-track{background:#f8efd9}#actionRecoveryDock::-webkit-scrollbar-thumb{background:#987a4f;border:2px solid #f8efd9}@media(max-width:600px){#actionRecoveryDock{bottom:8px;max-height:58vh}}
+
+#actionRecoveryDock[hidden]{display:none}.recovery-all{position:sticky;top:-6px;z-index:2;padding:14px;background:#fff5da;border:2px solid #826548;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#493c2d;flex-shrink:0}.recovery-all p{margin:5px 0;font-size:14px;line-height:1.5}.recovery-all button{flex-shrink:0;min-height:44px}.recovery-all strong{font-size:18px}@media(max-width:600px){.recovery-all{flex-wrap:wrap;padding:10px}.recovery-all button{width:100%}}
+
+#islandBootNotice{position:fixed;z-index:9000;top:18px;left:50%;transform:translateX(-50%);padding:14px 24px;background:#fff4d8;color:#53452c;border:2px solid #987b4b;box-shadow:0 4px 0 #293b4240;pointer-events:none;font-size:16px;max-width:85vw;text-align:center}
+
+/* Recovery stays reachable for every interrupted operation. */
+.recovery-read{flex-basis:100%;white-space:normal}#actionRecoveryDock[aria-busy=true]{cursor:progress}body[data-theme=origami] .recovery-all{border:1px solid #b89d7b;border-radius:3px 12px 3px 8px;background:linear-gradient(125deg,#fffaf0 70%,#eee1c9 70%)}body[data-theme=pixel] .recovery-all{border-width:3px;box-shadow:3px 3px 0 #493c2d44}
+
+/* Cards must not paint above the sticky recovery toolbar when scrolling. */
+#actionRecoveryDock>.gather-v46{z-index:0}#actionRecoveryDock{scroll-padding-top:120px}@media(max-width:600px){#actionRecoveryDock{scroll-padding-top:190px}}
+
+
+/* Text-only operation cards have no leading illustration column. */
+.gather-v46.recovery-text{grid-template-columns:minmax(0,1fr)}.gather-v46.recovery-text>div{min-width:0}.gather-v46.recovery-text strong{display:block}.gather-v46.recovery-text p{white-space:normal;overflow-wrap:anywhere}.gather-v46.recovery-text .gather-buttons{grid-column:auto}

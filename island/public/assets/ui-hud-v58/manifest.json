@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "themeAssets": {
+    "pixel": [
+      {
+        "name": "role",
+        "file": "pixel-role.svg"
+      },
+      {
+        "name": "steward",
+        "file": "pixel-steward.svg"
+      },
+      {
+        "name": "residents",
+        "file": "pixel-residents.svg"
+      },
+      {
+        "name": "gather",
+        "file": "pixel-gather.svg"
+      },
+      {
+        "name": "recipes",
+        "file": "pixel-recipes.svg"
+      },
+      {
+        "name": "business",
+        "file": "pixel-business.svg"
+      },
+      {
+        "name": "admin",
+        "file": "pixel-admin.svg"
+      },
+      {
+        "name": "help",
+        "file": "pixel-help.svg"
+      },
+      {
+        "name": "bag",
+        "file": "pixel-bag.svg"
+      },
+      {
+        "name": "build",
+        "file": "pixel-build.svg"
+      },
+      {
+        "name": "workshop",
+        "file": "pixel-workshop.svg"
+      },
+      {
+        "name": "lan",
+        "file": "pixel-lan.svg"
+      }
+    ],
+    "origami": [
+      {
+        "name": "role",
+        "file": "origami-role.svg"
+      },
+      {
+        "name": "steward",
+        "file": "origami-steward.svg"
+      },
+      {
+        "name": "residents",
+        "file": "origami-residents.svg"
+      },
+      {
+        "name": "gather",
+        "file": "origami-gather.svg"
+      },
+      {
+        "name": "recipes",
+        "file": "origami-recipes.svg"
+      },
+      {
+        "name": "business",
+        "file": "origami-business.svg"
+      },
+      {
+        "name": "admin",
+        "file": "origami-admin.svg"
+      },
+      {
+        "name": "help",
+        "file": "origami-help.svg"
+      },
+      {
+        "name": "bag",
+        "file": "origami-bag.svg"
+      },
+      {
+        "name": "build",
+        "file": "origami-build.svg"
+      },
+      {
+        "name": "workshop",
+        "file": "origami-workshop.svg"
+      },
+      {
+        "name": "lan",
+        "file": "origami-lan.svg"
+      }
+    ]
+  },
+  "kind": "Repository-native illustrated SVG assets. No remote assets."
+}

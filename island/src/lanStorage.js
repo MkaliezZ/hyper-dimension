@@ -1,0 +1,5 @@
+// LAN identities share an origin, but never share browser recovery/editor slots.
+// Server authentication and the independent island directory remain authoritative.
+export function scopedLanStorage(storage,accountId){if(!/^[a-f0-9-]{36}$/.test(accountId))throw Error('Invalid island identity');const prefix='hd-lan:'+accountId+':',keys=()=>Array.from({length:storage.length},(_,i)=>storage.key(i)).filter(k=>k?.startsWith(prefix));
+return{get namespace(){return prefix},get length(){return keys().length},key(i){return keys()[i]?.slice(prefix.length)??null},getItem(k){return storage.getItem(prefix+String(k))},setItem(k,v){storage.setItem(prefix+String(k),String(v))},removeItem(k){storage.removeItem(prefix+String(k))},clear(){for(const k of keys())storage.removeItem(k)}};}
+export function installLanStorage(window,accountId){const local=scopedLanStorage(window.localStorage,accountId),session=scopedLanStorage(window.sessionStorage,accountId);Object.defineProperty(window,'localStorage',{configurable:true,get:()=>local});Object.defineProperty(window,'sessionStorage',{configurable:true,get:()=>session});return{local,session};}

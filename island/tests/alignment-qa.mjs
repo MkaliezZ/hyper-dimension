@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';import {chromium} from 'playwright-core';
+const b=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args:['--no-sandbox']});
+for(const [theme,port] of [['pixel',4173],['origami',4174]]){const p=await b.newPage({viewport:{width:1440,height:900}});const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(`http://127.0.0.1:${port}/?qa=1`);await p.waitForTimeout(2000);for(let i=0;i<6;i++)await p.locator('#zoomOut').click();assert.deepEqual(errors,[]);assert.deepEqual(await p.evaluate(()=>window.islandInspect().mapExtent),{width:1536,height:1024});await p.screenshot({path:`v4-${theme}-alignment-screen.png`});console.log(theme,JSON.stringify({errors,report:await p.evaluate(()=>{const x=window.islandInspect();return {slots:x.slots.length,npcs:x.npcs.length,zoom:x.zoom,health:x.health}})}));await p.close();}await b.close();
+

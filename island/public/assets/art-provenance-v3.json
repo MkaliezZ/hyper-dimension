@@ -1,0 +1,38 @@
+{
+  "created": "2026-09-30",
+  "generator": "OpenAI image_gen",
+  "assets": [
+    {
+      "theme": "pixel",
+      "source": "source-artifact:exec-da8697bd-eb20-4ac4-877d-46b06a47457a.png",
+      "prompts": [
+        "Redesign this beautiful island game map. First reference is the existing artistic style; second reference is a STRICT GEOMETRY MAP: every pale green rectangle is one EMPTY building parcel. Preserve EXACTLY all 25 rectangle CENTERS from the second guide at original 1536x1024 geometry. Rows: y155 centers x600,750,900 (3 plots); y275 x500,650,800,950,1100 (5); y400 x350,500,1050,1200 (4); y530 x350,500,1050,1200 (4); y670 x470,650,830,1010,1200 (5); y800 x500,680,860,1040 (4). Total25, no extras and no missing. Each parcel is clean FLAT square lawn roughly114x94, with thin attractive stone border; empty center reserved for a front-elevated house. Every parcel lies on land with pedestrian paths around edges and continuous circulation. Large EMPTY party plaza center780,480 radius150. Keep lush forest upper left, farm lower left (x150-355,y620-825), mine upper right (x1170-1390,y110-320), sea and dock southeast. Expand land to accommodate bottom row. No buildings on the empty lawns. Do not fill any parcel with trees, flowers or buildings. No labels, symbols, text or characters. Maintain exquisite fine PIXEL ART, warm jewel-colored greenery and crisp pixel details. Straight front-aligned square parcel perspective like guide, consistent elevated camera. Output full landscape3:2 map.",
+        "Precise game-map correction: this map has24 green empty building lawns. ADD exactly ONE additional rectangular empty green lawn with stone border at LEFT OF THE CENTER PARTY CIRCLE, BELOW the two upper-left lawns and ABOVE the farm, centered approximately(350,500) on the1536x1024image. Replace the rightmost portion of fruit orchard there to make room; retain smaller orchard furtherleft. Match lawn size about110x85. Keep all24existing empty plots, no removing, shifting or merging existingplots. Total25. Beautiful pixel-art style and paths. No houses, text or people."
+      ],
+      "file": "public/assets/island-pixel-v3.png"
+    },
+    {
+      "theme": "origami",
+      "source": "source-artifact:exec-c5a6101d-307d-42c5-94c3-94e90ee4cbf7.png",
+      "prompts": [
+        "Redesign this beautiful island game map. First reference is the existing artistic style; second reference is a STRICT GEOMETRY MAP: every pale green rectangle is one EMPTY building parcel. Preserve EXACTLY all 25 rectangle CENTERS from the second guide at original 1536x1024 geometry. Rows: y155 centers x600,750,900 (3 plots); y275 x500,650,800,950,1100 (5); y400 x350,500,1050,1200 (4); y530 x350,500,1050,1200 (4); y670 x470,650,830,1010,1200 (5); y800 x500,680,860,1040 (4). Total25, no extras and no missing. Each parcel is clean FLAT square lawn roughly114x94, with thin attractive stone border; empty center reserved for a front-elevated house. Every parcel lies on land with pedestrian paths around edges and continuous circulation. Large EMPTY party plaza center780,480 radius150. Keep lush forest upper left, farm lower left (x150-355,y620-825), mine upper right (x1170-1390,y110-320), sea and dock southeast. Expand land to accommodate bottom row. No buildings on the empty lawns. Do not fill any parcel with trees, flowers or buildings. No labels, symbols, text or characters. Maintain HANDCRAFTED ORIGAMI paper diorama, faceted folded paper trees, cardstock paths and lawn layers, beautiful soft contact shadows. Straight front-aligned square parcel perspective like guide, consistent elevated camera. Output full landscape3:2 map.",
+        "Precise game-map correction: this map has22 empty rectangular building lawns. ADD exactly THREE new rectangular empty green lawns with matching thin stone border: ONE at(350,485) to LEFT of centerpartyplaza, below upper-leftplots and abovefarm (replace rightmostorchardportion); TWO at(650,625) and(830,625), BETWEEN the left lawn and right lawns directlybelowthepartyplaza. Keep all22existing lawns intact. Reduce central circularplaza slightly if necessary (stilllarge) and rework surrounding paths to fitthese two lower-middleplots. Eachnewlawn approximately110x80. Total25empty buildingplots! Noextra lawns. Beautiful handcrafted origamistyle, nohouses, text or people.",
+        "ONE LOCAL EDIT ONLY. Add ONE empty green building plot with a rectangular stone border in the TOP ROW, immediately to the RIGHT of the third existing top-row lawn, LEFT of the mine. Center approximatelyx1070,y165 on1536x1024image, size100x75. Replace bushes in that precise spot with flatgreenlawn. So the TOP ROW now hasFOUR lawns; currentlyitonlyhas3. Keep ALL24existinglawns and ALLtheirexactpositions untouched. Total25emptybuildinglawns. Preservebeautifulfoldedpaperorigamiart andpaths. No buildings, labels or people.",
+        "Edit this game map locally: REMOVE the entire fenced FRUIT ORCHARD immediately to the LEFT of central circular plaza and ABOVE the farm (the six round fruit trees, grass, and fence in rectangle x150 to400,y420 to590). Replace that orchard with exactly ONE attractive EMPTY RECTANGULAR BUILDING LAWN with stone border, centered at(285,500), width200,height105. This new lawn is a reserved residential plot, no fruit trees and no furniture inside it. Keep the farm BELOW it unchanged, and all24 existing square lawns elsewhere unchanged. So nowthereare25lawns. Strictly REMOVE THE ORCHARD there. Foldedpaperart style unchanged. No buildings, text or people."
+      ],
+      "file": "public/assets/island-origami-v3.png"
+    }
+  ],
+  "calibration": "src/layouts.js is calibrated to actual lawn centers, 25 per style; 24 detected origami parcels plus the single wide replacement lawn at (263,489).",
+  "uiIcons": {
+    "pixel": "public/assets/hud-items-pixel.svg",
+    "origami": "public/assets/hud-items-origami.svg",
+    "method": "18 distinct hand-authored SVG icons per theme; no raster edits"
+  },
+  "font": {
+    "file": "public/assets/fusion-pixel-12px.woff2",
+    "source": "https://fusion-pixel-font.takwolf.com/fusion-pixel-12px-proportional-zh_hans.otf.woff2",
+    "license": "SIL OFL 1.1",
+    "licenseFile": "public/assets/FusionPixel-OFL.txt"
+  }
+}

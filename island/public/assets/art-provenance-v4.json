@@ -1,0 +1,47 @@
+{
+  "version": 4,
+  "date": "2026-09-30",
+  "method": "image_gen: new transparent boat and tourist raster assets. Original raster files retained; alpha-aware frame rectangles read using Pillow and numpy. Canvas animates body, hands, feet and boats with interpolation.",
+  "assets": [
+    {
+      "theme": "pixel",
+      "kind": "boats",
+      "source": "source-artifact:exec-ed583e69-58c6-4fa6-b468-a3fb16536c5d.png",
+      "prompt": "Game sprite atlas, EXACTLY2columns x2rows, four equal cells, transparent background, no text no people no background ocean. TOP LEFT: attractive small island passenger ferry facingLEFT, teal hull, warm timber deck, cream sunshade cabin, ropes fenders, little copper lamps and luggage benches, elegant tall mast pennant, side elevated view facing left and slightly downward. TOP RIGHT: exactsame ferry facingRIGHT. BOTTOM LEFT: small charming wooden sailboat facingLEFT, cream folded sail, red pennant, mooring rope. BOTTOM RIGHT: exactsame sailboat facingRIGHT. Entireboatwithno croppedbow or mast, each boat centered with10percentpadding in its cell. Scene scale consistent islandfront elevated camera. Intricate readable details and beautiful cozy lighting. Exquisite cozy fine pixel art, visible precise square pixels, jewel greenery and warm amber wood, chibi RPG proportions.",
+      "file": "public/assets/boats-pixel-v4.png"
+    },
+    {
+      "theme": "pixel",
+      "kind": "visitors",
+      "source": "source-artifact:exec-52e66236-5523-4cae-bbd4-65070bf9e366.png",
+      "prompt": "Game character sprite atlas, EXACTLY 4 columns x4rows, sixteen equal square cells, transparent background, no text, no grid borders. Row1/2: EIGHT DISTINCT tourist characters front view, full body centered feet near bottom: 1 teal-haired female botanist strawhat green coat backpack; 2 silver-haired male collector ivory jacket suitcase; 3 pink-haired female gourmet coral apron travelbag; 4 black-haired male musiclover navycoat headphones; 5 brown-haired female sailor teal cap stripedshirt; 6 purple-haired male craftlover beigevest glasses; 7 orange-haired female camper greenhat yellowbackpack; 8 blue-haired male photographer scarf camera. Row3/4: SAME eight characters in the SAME order but BACK VIEW, matching clothes, hats, hairstyles and bags. Each cell only one person, small elegant chibi full body from head to feet, adult traveler identity with no weapons. Comfortable natural neutral standing pose ready for articulated limbs, consistent elevated front camera like island sim. No shadows beyond small contact shadow. Each body fills 75 percent of cellheight. Exquisite cozy fine pixel art, visible precise square pixels, jewel greenery and warm amber wood, chibi RPG proportions.",
+      "file": "public/assets/visitors-pixel-v4.png"
+    },
+    {
+      "theme": "origami",
+      "kind": "boats",
+      "source": "source-artifact:exec-8e9aa46c-faa2-4f4c-bb4f-e3f4e4f57a26.png",
+      "prompt": "Game sprite atlas, EXACTLY2columns x2rows, four equal cells, transparent background, no text no people no background ocean. TOP LEFT: attractive small island passenger ferry facingLEFT, teal hull, warm timber deck, cream sunshade cabin, ropes fenders, little copper lamps and luggage benches, elegant tall mast pennant, side elevated view facing left and slightly downward. TOP RIGHT: exactsame ferry facingRIGHT. BOTTOM LEFT: small charming wooden sailboat facingLEFT, cream folded sail, red pennant, mooring rope. BOTTOM RIGHT: exactsame sailboat facingRIGHT. Entireboatwithno croppedbow or mast, each boat centered with10percentpadding in its cell. Scene scale consistent islandfront elevated camera. Intricate readable details and beautiful cozy lighting. Beautiful handcrafted origami paper diorama, faceted cardstock planes, delicate fold edges, warm muted cream, teal and coral with soft contact shadows.",
+      "file": "public/assets/boats-origami-v4.png"
+    },
+    {
+      "theme": "origami",
+      "kind": "visitors",
+      "source": "source-artifact:exec-615faa8c-be10-4f8c-b75e-144dbb1e8a11.png",
+      "prompt": "Game character sprite atlas, EXACTLY 4 columns x4rows, sixteen equal square cells, transparent background, no text, no grid borders. Row1/2: EIGHT DISTINCT tourist characters front view, full body centered feet near bottom: 1 teal-haired female botanist strawhat green coat backpack; 2 silver-haired male collector ivory jacket suitcase; 3 pink-haired female gourmet coral apron travelbag; 4 black-haired male musiclover navycoat headphones; 5 brown-haired female sailor teal cap stripedshirt; 6 purple-haired male craftlover beigevest glasses; 7 orange-haired female camper greenhat yellowbackpack; 8 blue-haired male photographer scarf camera. Row3/4: SAME eight characters in the SAME order but BACK VIEW, matching clothes, hats, hairstyles and bags. Each cell only one person, small elegant chibi full body from head to feet, adult traveler identity with no weapons. Comfortable natural neutral standing pose ready for articulated limbs, consistent elevated front camera like island sim. No shadows beyond small contact shadow. Each body fills 75 percent of cellheight. Beautiful handcrafted origami paper diorama, faceted cardstock planes, delicate fold edges, warm muted cream, teal and coral with soft contact shadows.",
+      "file": "public/assets/visitors-origami-v4.png"
+    }
+  ],
+  "frames": "visitor-frames-v4.json",
+  "map": {
+    "originalExtent": {
+      "width": 1536,
+      "height": 1024
+    },
+    "worldExtent": {
+      "width": 1856,
+      "height": 1248
+    },
+    "alignment": "Keep source map at original extent; extend sea and pier separately. Both themes retain calibrated parcel center anchors."
+  }
+}

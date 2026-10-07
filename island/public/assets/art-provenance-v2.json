@@ -1,0 +1,187 @@
+{
+  "created": "2026-09-30",
+  "generator": "OpenAI image_gen",
+  "roomCellSize": "768x512 source; independently cropped without neighboring room borders",
+  "assets": [
+    {
+      "id": "pixel-room-pack-0",
+      "file": "public/assets/interiors-pixel-pack-0-v2.png",
+      "source": "source-artifact:exec-423a0bbd-d985-4d4f-a077-55e33221825b.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: carpenter workshop with tool wall and central timber workbench. Top-right: green tea house with kettle low tea table and garden. Bottom-left: seaside seafood diner with kitchen and tables. Bottom-right: florist studio with central flower arranging table. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "pixel-room-pack-1",
+      "file": "public/assets/interiors-pixel-pack-1-v2.png",
+      "source": "source-artifact:exec-3886bbbe-4514-45f7-83ad-2157606b8f7c.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: couture boutique sewing table mannequins fabric. Top-right: observatory telescope star map domed ceiling. Bottom-left: aquarium blue coral tanks and central touch pool. Bottom-right: library bookshelves individual reading desks. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "pixel-room-pack-2",
+      "file": "public/assets/interiors-pixel-pack-2-v2.png",
+      "source": "source-artifact:exec-aa79ade1-6953-4e96-86e1-41a381de982a.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: lighthouse lantern chamber nautical chart table. Top-right: covered market produce baskets counters. Bottom-left: herbal clinic medicine table white treatment bed. Bottom-right: postal office sorting counter letters parcels. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "pixel-room-pack-3",
+      "file": "public/assets/interiors-pixel-pack-3-v2.png",
+      "source": "source-artifact:exec-15471950-4e08-4edf-be43-cbc47e1d4ba5.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: music studio piano guitar drum instruments. Top-right: photo studio camera tripod backdrop softboxes. Bottom-left: greenhouse seedling worktable glass plants. Bottom-right: pottery workshop clay wheel kiln ceramic shelves. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "pixel-room-pack-4",
+      "file": "public/assets/interiors-pixel-pack-4-v2.png",
+      "source": "source-artifact:exec-2975263c-9b62-40d6-ad84-6106310f2edd.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: fishing tackle shop rod workbench nets. Top-right: bakery ovens central pastry workbench. Bottom-left: museum cabinet fossil and artifact examination desk. Bottom-right: cozy resident cottage bed fireplace coffee table. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "pixel-room-pack-5",
+      "file": "public/assets/interiors-pixel-pack-5-v2.png",
+      "source": "source-artifact:exec-07ff6bb3-f0fd-48e9-b5b8-91c71723e5c8.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: firework workshop brass assembly table rocket shells. Top-right: theater wood stage velvet curtains backstage. Bottom-left: camping lodge canvas chairs camping preparation table. Bottom-right: boatyard repair station hull rope rigging. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "id": "pixel-room-pack-6",
+      "file": "public/assets/interiors-pixel-pack-6-v2.png",
+      "source": "source-artifact:exec-b5a516cc-05df-4b13-9afe-2875979cfbbd.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: art academy easels sculpting table paints. Top-right: art academy easels sculpting table paints. Bottom-left: art academy easels sculpting table paints. Bottom-right: art academy easels sculpting table paints. Crisp refined pixel art cozy RPG, rich warm palette, readable small square pixels, harmonious light. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        24
+      ]
+    },
+    {
+      "id": "origami-room-pack-0",
+      "file": "public/assets/interiors-origami-pack-0-v2.png",
+      "source": "source-artifact:exec-02c93a9a-6856-467b-9faf-5fe3d1b9d1d5.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: carpenter workshop with tool wall and central timber workbench. Top-right: green tea house with kettle low tea table and garden. Bottom-left: seaside seafood diner with kitchen and tables. Bottom-right: florist studio with central flower arranging table. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "origami-room-pack-1",
+      "file": "public/assets/interiors-origami-pack-1-v2.png",
+      "source": "source-artifact:exec-c4213bca-8a8e-4db0-8beb-b34f0d771610.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: couture boutique sewing table mannequins fabric. Top-right: observatory telescope star map domed ceiling. Bottom-left: aquarium blue coral tanks and central touch pool. Bottom-right: library bookshelves individual reading desks. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "origami-room-pack-2",
+      "file": "public/assets/interiors-origami-pack-2-v2.png",
+      "source": "source-artifact:exec-dc2c00bc-fc73-4821-8672-100d8cf662ee.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: lighthouse lantern chamber nautical chart table. Top-right: covered market produce baskets counters. Bottom-left: herbal clinic medicine table white treatment bed. Bottom-right: postal office sorting counter letters parcels. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "origami-room-pack-3",
+      "file": "public/assets/interiors-origami-pack-3-v2.png",
+      "source": "source-artifact:exec-a506d4a5-6ee3-45f1-92fd-77e2466de7c4.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: music studio piano guitar drum instruments. Top-right: photo studio camera tripod backdrop softboxes. Bottom-left: greenhouse seedling worktable glass plants. Bottom-right: pottery workshop clay wheel kiln ceramic shelves. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "origami-room-pack-4",
+      "file": "public/assets/interiors-origami-pack-4-v2.png",
+      "source": "source-artifact:exec-944d6895-e741-4cf8-8165-95332c144bfc.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: fishing tackle shop rod workbench nets. Top-right: bakery ovens central pastry workbench. Bottom-left: museum cabinet fossil and artifact examination desk. Bottom-right: cozy resident cottage bed fireplace coffee table. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "origami-room-pack-5",
+      "file": "public/assets/interiors-origami-pack-5-v2.png",
+      "source": "source-artifact:exec-a8ad0b45-88f3-4ec2-9d41-ac17f5618e85.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: firework workshop brass assembly table rocket shells. Top-right: theater wood stage velvet curtains backstage. Bottom-left: camping lodge canvas chairs camping preparation table. Bottom-right: boatyard repair station hull rope rigging. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "id": "origami-room-pack-6",
+      "file": "public/assets/interiors-origami-pack-6-v2.png",
+      "source": "source-artifact:exec-b31952e2-5060-4531-b132-e78fe862a806.png",
+      "prompt": "Production game room background atlas: EXACTLY 2 columns and 2 rows, FOUR separate wide 3:2 interiors, regular grid, no gutters, no margins, no labels, no text, no people. Overall 3:2 landscape PNG. Highest possible detail resolution. Each room fills its entire cell. Top-left: art academy easels sculpting table paints. Top-right: art academy easels sculpting table paints. Bottom-left: art academy easels sculpting table paints. Bottom-right: art academy easels sculpting table paints. Beautiful handcrafted origami diorama, all objects visibly folded from matte paper cardstock, facets fold lines soft papery grain, sculpted layered paper, sophisticated warm pastels. Absolutely not photoreal wood textures. Consistent elevated frontal cutaway camera. Back wall in upper quarter, functional furniture near middle, ample walkable floor below, exit bottom-center. Furniture scaled for a chibi villager ~15% scene height. Main interactive table or equipment must be near center, readable distinct layout in each room. Clean coherent perspective. No decorative black border around cells.",
+      "roomIds": [
+        24
+      ]
+    },
+    {
+      "id": "pixel-characters-back",
+      "file": "public/assets/characters-pixel-back-v2.png",
+      "source": "source-artifact:exec-37a8f5c8-2749-48ec-ab8b-74cc57ea4cae.png",
+      "prompt": "Create a matching BACK VIEW counterpart of this exact 4-column 4-row game character atlas. Preserve all 16 identities, clothing, hat, hair, accessories, scale and equal cell positions. Every character now faces away from camera, seen from elevated overhead 3/4 rear. Arms separated slightly, feet same baseline. Preserve crisp fine pixel art style. Transparent alpha background. No text, no grid lines. This is a directional sprite asset for walking north; do not show eyes or front-face features.",
+      "reference": "public/assets/characters-pixel-v2.png"
+    },
+    {
+      "id": "origami-characters-back",
+      "file": "public/assets/characters-origami-back-v2.png",
+      "source": "source-artifact:exec-49bbfbe0-b23a-4ac0-b4c0-95929f69c381.png",
+      "prompt": "Create a matching BACK VIEW counterpart of this exact 4-column 4-row game character atlas. Preserve all 16 identities, clothing, hat, hair, accessories, scale and equal cell positions. Every character now faces away from camera, seen from elevated overhead 3/4 rear. Arms separated slightly, feet same baseline. Preserve handmade folded paper origami style. Transparent alpha background. No text, no grid lines. This is a directional sprite asset for walking north; do not show eyes or front-face features.",
+      "reference": "public/assets/characters-origami-v2.png"
+    }
+  ],
+  "uiReference": {
+    "project": "source-artifact:pixel-island-replica",
+    "scope": "wood-frame hotbar, handjournal palette and HUD grouping; camera and locomotion rebuilt"
+  }
+}

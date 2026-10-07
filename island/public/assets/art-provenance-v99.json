@@ -1,0 +1,33 @@
+{
+  "version": 99,
+  "assets": [
+    {
+      "asset": "cooperation-tree-pixel-v99.png",
+      "source": "source-artifact:exec-d933c747-ad12-47f3-b2bf-3ffb243dcc68.png",
+      "prompt": "Create ONE standalone premium pixel-art collectible trophy sprite for Hyper Dimension island life simulation: the SSR 'Island Cooperation Tree'. A small sculpted sea-green tree with ONE continuous central golden-brown trunk, THREE clearly connected main boughs and a lush balanced folded-leaf canopy; two interwoven root shapes joining into ONE oval wooden-and-brass display plinth. Tiny coral/gold leaf details imply shared effort, no text or numbers and no unrelated objects. Stable physically intelligible model, all roots connect to trunk and base. Three-quarter front view seen from approximately 30 degrees above, compatible with an island building yard. Elegant true pixel art using crisp deliberate square pixel clusters and restrained teal, cream, amber, coral palette, no blurry painterly edges, no thin disconnected parts, not chibi. Entire single tree model fits centrally with broad clear margins, feet/base fully visible, transparent background, no environment, no duplicate objects, no grid, no sheet, no captions. Premium rare collectible with readable silhouette at 80 pixels high; gentle material highlights, not enormous visual effects.",
+      "method": "built-in image_gen; transparent_background=true; individual original PNG; no image edits",
+      "sha256": "4670ed16cea296e00324fcee728ea8bcb1b470de51c6bf4862c0a1e1261fdd03"
+    },
+    {
+      "asset": "cooperation-tree-origami-v99.png",
+      "source": "source-artifact:exec-d4bd16e3-bd01-4874-8851-41a979ba301b.png",
+      "prompt": "Create ONE standalone premium folded-paper collectible model sprite for Hyper Dimension island life simulation: the SSR 'Island Cooperation Tree'. A small sea-green tree with ONE continuous warm ochre paper trunk, THREE clearly connected main boughs and a balanced lush faceted leaf canopy; TWO interwoven paper root shapes join into ONE oval layered cream/wood-colour and gold-edge display plinth. Subtle coral/gold leaf details imply shared effort, no text or numbers and no unrelated objects. Every branch and root connects physically, one coherent paper model. Three-quarter front view seen from approximately 30 degrees above, compatible with an island yard. Beautiful refined origami art with visible paper folds, crisp clean silhouette, coherent upper-left lighting, teal/cream/ochre/coral palette, normal object proportions, not a toy character. Entire tree and its whole base centered with broad empty margins, transparent background, no environment, duplicate objects, grid, sheet or captions. Legible and elegant when displayed at 80 pixels high.",
+      "method": "built-in image_gen; transparent_background=true; individual original PNG; no image edits",
+      "sha256": "9df999777b4b1c07cd218964391d2c75f460c4063590c6e958a1f16f48659ab6"
+    },
+    {
+      "asset": "archipelago-lighthouse-pixel-v99.png",
+      "source": "source-artifact:exec-274a4aad-3580-4c9b-9fa0-3edbdba44e2c.png",
+      "prompt": "Generate ONE premium transparent pixel-art trophy sprite for the UR 'Archipelago Lighthouse Model', Hyper Dimension island life simulation. ONE physically coherent miniature lighthouse on ONE shallow oval wooden-and-brass display base. A single cream stone tapered tower with a coral-red band, EXACTLY TWO small visible front windows stacked above EXACTLY ONE front doorway; side wall has no extra windows. ONE octagonal glass lantern room on top, ONE connected circular balcony with plausible railing and ONE teal roof cap. Lantern-room glass panes are clearly different from the two tower windows. A short path on the single base reaches the front doorway; no water, boats, extra towers, people, flags or lettering. Three-quarter front view from about30 degrees above, crisp intentional square pixel clusters, teal/cream/ochre/coral/gold palette, beautiful premium rare collectible; all stairs, door, balcony, lantern and roof connect correctly. Whole object and base fully visible, centered with broad transparent margins, no sheet/grid/captions, no cropping or disconnected parts. Clear silhouette at90 pixels high, subdued warm lantern light, no blurry glow or effects extending off the object.",
+      "method": "built-in image_gen; transparent_background=true; individual original PNG; no image edits",
+      "sha256": "59f31832c34cd2a4daead9e28e662da09d5e6bb3026c8fb04a05d1616650db83"
+    },
+    {
+      "asset": "archipelago-lighthouse-origami-v99.png",
+      "source": "source-artifact:exec-76e32dc9-c29c-4498-a0e0-c17e1f2da999.png",
+      "prompt": "Generate ONE premium transparent folded-paper trophy sprite for the UR 'Archipelago Lighthouse Model', Hyper Dimension island life simulation. ONE coherent miniature lighthouse on ONE shallow oval cream layered-paper and gold-edged display plinth. A single cream tapered paper tower with one coral-red horizontal band, EXACTLY TWO visible rectangular front tower windows stacked above EXACTLY ONE front doorway, blank side wall. ONE octagonal faceted glass/paper lantern room on top, ONE attached circular balcony with neatly connected railing, ONE teal folded roof cap. Lantern-room facets are distinct from the two tower windows. A short folded-paper path on the same single base connects to the doorway. All geometry is physically plausible: balcony supports roof/lantern, no floating roofs or doors. Three-quarter front view from about30 degrees above, matching elegant island origami scenery; refined paper grain, crisp folds, upper-left illumination, restrained teal/cream/ochre/coral/gold palette. No water, boats, extra towers, characters, lettering or flag. Entire model and whole base centered with broad transparent margin, no cropping, sheet or grid; beautiful silhouette readable at90 pixels high, warm interior lantern only.",
+      "method": "built-in image_gen; transparent_background=true; individual original PNG; no image edits",
+      "sha256": "a25b8a01b01e819d76c9a7c0e570ed4eecc38ade5357f6daff22f24fe14a9648"
+    }
+  ]
+}

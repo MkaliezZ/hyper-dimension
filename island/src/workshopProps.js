@@ -1,0 +1,8 @@
+export const WORKSHOP_PROP_FRAMES={"origami":[{"x":28,"y":62,"w":344,"h":266},{"x":402,"y":78,"w":323,"h":256},{"x":736,"y":32,"w":376,"h":340},{"x":1116,"y":40,"w":304,"h":302},{"x":28,"y":451,"w":382,"h":214},{"x":470,"y":337,"w":172,"h":371},{"x":748,"y":433,"w":302,"h":259},{"x":1106,"y":401,"w":305,"h":300},{"x":28,"y":741,"w":360,"h":283},{"x":419,"y":767,"w":306,"h":263},{"x":725,"y":719,"w":379,"h":330},{"x":1105,"y":790,"w":312,"h":213}],"pixel":[{"x":26,"y":67,"w":336,"h":266},{"x":403,"y":71,"w":328,"h":259},{"x":745,"y":32,"w":366,"h":344},{"x":1126,"y":41,"w":301,"h":317},{"x":26,"y":441,"w":388,"h":237},{"x":443,"y":347,"w":253,"h":377},{"x":767,"y":438,"w":301,"h":266},{"x":1090,"y":410,"w":333,"h":325},{"x":25,"y":757,"w":357,"h":270},{"x":420,"y":791,"w":300,"h":242},{"x":727,"y":714,"w":377,"h":337},{"x":1109,"y":798,"w":314,"h":228}]};
+const frames=WORKSHOP_PROP_FRAMES;
+const images=new Map();
+export function propImage(theme){if(!images.has(theme)){const im=new Image();im.src='/assets/minigame-props-'+theme+'-v19.png';images.set(theme,im)}return images.get(theme)}
+export function drawProp(c,index,theme,x,y,width,angle=0,height=null,anchor={x:.5,y:.5}){
+ const im=propImage(theme),f=frames[theme]?.[index];if(!f||!im.complete||!im.naturalWidth)return false;
+ const h=height??width*f.h/f.w;c.save();c.translate(x,y);c.rotate(angle);c.imageSmoothingEnabled=theme!=='pixel';c.drawImage(im,f.x,f.y,f.w,f.h,-width*anchor.x,-h*anchor.y,width,h);c.restore();return true;
+}

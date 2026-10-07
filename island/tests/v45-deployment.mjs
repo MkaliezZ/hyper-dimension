@@ -1,0 +1,14 @@
+import {readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';import {NPC_CADENCE} from '../src/npcCadence.js';
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const files=['src/facilityCatalog.js','src/functionalFacilities.js','src/functionalUI.js','src/functionalArt.js','src/facilityArtModel.js','src/facilityArtFrames.js','src/functional-v45.css','src/artStore.js','src/placementUI.js','src/placements.js','src/itemPurpose.js','src/residentRuntime.js','src/townSimulation.js','src/contentUI.js','src/contentCatalog.js','src/app.js','src/placementArt.js','src/npcCadence.js','public/assets/facilities-pixel-components-v45.png','public/assets/facilities-origami-components-v45.png','public/assets/facility-cup-pixel-v45.png','public/assets/facility-cup-origami-v45.png','public/assets/art-provenance-v45.json'];
+const restarts=JSON.parse(await readFile('qa/v45/restart.json','utf8'));
+const report={at:new Date().toISOString(),scope:'Read-only production status and exact static source/asset bytes. No save-open/write/import/reset or model POST.',services:[],cadence:NPC_CADENCE};try{
+ assert.equal(NPC_CADENCE.planSeconds,300);assert.equal(NPC_CADENCE.conversationSeconds,600);assert.equal(NPC_CADENCE.stewardSeconds,950);
+ for(const spec of restarts){const base='http://127.0.0.1:'+spec.port,before=await(await fetch(base+'/api/status')).json();assert.equal(before.theme,spec.theme);assert.equal(before.agents.deepseek.model,'deepseek-flash');assert.equal(before.agents.hermes.model,'deepseek-flash');const results=[];
+  for(const file of files){const r=await fetch(base+'/'+file.replace(/^public\//,''));assert.equal(r.status,200,file);const bytes=Buffer.from(await r.arrayBuffer()),local=await readFile(file);assert.equal(hash(bytes),hash(local),file);results.push({file,sha256:hash(bytes),bytes:bytes.length});}
+  const after=await(await fetch(base+'/api/status')).json();assert.equal(after.agents.deepseek.calls,before.agents.deepseek.calls);assert.equal(after.agents.hermes.calls,before.agents.hermes.calls);
+  report.services.push({theme:spec.theme,port:spec.port,pid:spec.pid,model:'deepseek-flash',hermesModel:'deepseek-flash',files:results,saveExisted:spec.saveExisted,saveHashAtRestart:spec.afterHash,saveUnchangedAtRestart:spec.unchanged,modelPostsMadeByProbe:0});
+ }
+ report.passed=true;
+}catch(e){report.failure=e.stack;process.exitCode=1;}
+await writeFile('qa/v45/deployment.json',JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,services:report.services.map(x=>({theme:x.theme,port:x.port,files:x.files.length,model:x.model,saveUnchangedAtRestart:x.saveUnchangedAtRestart})),failure:report.failure}));

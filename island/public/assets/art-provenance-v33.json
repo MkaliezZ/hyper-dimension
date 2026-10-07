@@ -1,0 +1,64 @@
+{
+  "version": 33,
+  "created": "2026-10-04",
+  "tool": "built-in image_gen",
+  "assetType": "transparent game wonder sprite and precise color variants",
+  "assets": [
+    {
+      "source": "source-artifact:exec-3d5665be-02a8-47ce-ace7-afa00e3d1251.png",
+      "target": "public\\assets\\cooperation-monument-pixel-v33.png"
+    },
+    {
+      "source": "source-artifact:exec-2fbd4460-e492-4674-b223-0482161da764.png",
+      "target": "public\\assets\\seashell-cup-pixel-violet-v33.png"
+    },
+    {
+      "source": "source-artifact:exec-9c190c54-1981-41df-8e7b-84660e4f90d5.png",
+      "target": "public\\assets\\seashell-cup-pixel-coral-v33.png"
+    },
+    {
+      "source": "source-artifact:exec-30ba5acd-1bc4-4cb1-a2d7-d9e94fff5a70.png",
+      "target": "public\\assets\\cooperation-monument-origami-v33.png"
+    },
+    {
+      "source": "source-artifact:exec-160e2475-e247-47ac-be68-f2c50ceaeeec.png",
+      "target": "public\\assets\\seashell-cup-origami-violet-v33.png"
+    },
+    {
+      "source": "source-artifact:exec-1f7f958b-4c34-4195-a552-e7b77eae88b4.png",
+      "target": "public\\assets\\seashell-cup-origami-coral-v33.png"
+    }
+  ],
+  "prompts": [
+    {
+      "asset": "cooperation-monument-pixel",
+      "prompt": "Use case: stylized-concept. Asset type: transparent game wonder sprite for Hyper Dimension cozy island management. Create one complete collectible cooperation monument, front three-quarter view from slightly above, standing on a compact warm wood and cream stone stepped pedestal. Two elegant interlocking branches hold two small sail-shaped gold and silver emblems; a luminous sea-green star links them, expressing a steward and helper working together. A small blank brass plaque on the front, delicate seashell and leaf accents, dignified miniature sculpture, readable silhouette at 80 pixels high, no characters, no text, no UI. Premium crisp pixel art, stepped pixel contours, restrained small color clusters, cozy teal/cream/gold/coral palette, consistent top-left light, no painterly blur or smooth 3D render. Center the whole monument with generous transparent padding, include the entire base, no cropped parts, genuinely transparent background."
+    },
+    {
+      "asset": "cooperation-monument-origami",
+      "prompt": "Use case: stylized-concept. Asset type: transparent game wonder sprite for Hyper Dimension cozy island management. Create one complete collectible cooperation monument, front three-quarter view from slightly above, standing on a compact warm wood and cream stone stepped pedestal. Two elegant interlocking branches hold two small sail-shaped gold and silver emblems; a luminous sea-green star links them, expressing a steward and helper working together. A small blank brass plaque on the front, delicate seashell and leaf accents, dignified miniature sculpture, readable silhouette at 80 pixels high, no characters, no text, no UI. Beautiful folded-paper miniature, visible clean paper facets and subtle fibers, warm cream/teal/gold/coral palette, soft top-left light, coherent paper thickness and edges. Center the whole monument with generous transparent padding, include the entire base, no cropped parts, genuinely transparent background."
+    },
+    {
+      "asset": "seashell-cup-pixel-violet",
+      "prompt": "Use case: precise-object-edit. Edit target: the provided Hyper Dimension seashell trophy. Produce its twilight amethyst collectible colorway. Change ONLY teal ribbons and teal water curls into soft lavender, deep amethyst and moonlit blue-violet with existing material shading. Preserve the golden fish, cream shell, gold outline, wood base, blank plaque, silhouette, proportions, camera, all objects and crisp stepped pixel clusters EXACTLY. Single whole transparent sprite, no extra items, no text, no background, no crop. Keep coherent light from top left and real transparency.",
+      "editTarget": "public/assets/seashell-cup-pixel-v30.png"
+    },
+    {
+      "asset": "seashell-cup-pixel-coral",
+      "prompt": "Use case: precise-object-edit. Edit target: the provided Hyper Dimension seashell trophy. Produce its sunset coral collectible colorway. Change ONLY teal ribbons and teal water curls into warm coral, peach and sunset rose with existing material shading. Preserve the golden fish, cream shell, gold outline, wood base, blank plaque, silhouette, proportions, camera, all objects and crisp stepped pixel clusters EXACTLY. Single whole transparent sprite, no extra items, no text, no background, no crop. Keep coherent light from top left and real transparency.",
+      "editTarget": "public/assets/seashell-cup-pixel-v30.png"
+    },
+    {
+      "asset": "seashell-cup-origami-violet",
+      "prompt": "Use case: precise-object-edit. Edit target: the provided Hyper Dimension seashell trophy. Produce its twilight amethyst collectible colorway. Change ONLY teal ribbons and teal water curls into soft lavender, deep amethyst and moonlit blue-violet with existing material shading. Preserve the golden fish, cream shell, gold outline, wood base, blank plaque, silhouette, proportions, camera, all objects and folded paper facets and fibers EXACTLY. Single whole transparent sprite, no extra items, no text, no background, no crop. Keep coherent light from top left and real transparency.",
+      "editTarget": "public/assets/seashell-cup-origami-v30.png"
+    },
+    {
+      "asset": "seashell-cup-origami-coral",
+      "prompt": "Use case: precise-object-edit. Edit target: the provided Hyper Dimension seashell trophy. Produce its sunset coral collectible colorway. Change ONLY teal ribbons and teal water curls into warm coral, peach and sunset rose with existing material shading. Preserve the golden fish, cream shell, gold outline, wood base, blank plaque, silhouette, proportions, camera, all objects and folded paper facets and fibers EXACTLY. Single whole transparent sprite, no extra items, no text, no background, no crop. Keep coherent light from top left and real transparency.",
+      "editTarget": "public/assets/seashell-cup-origami-v30.png"
+    }
+  ],
+  "animation": "Whole sprites at stable bottom anchors; floor shadow and bounded procedural glints. Y sorting with actors/buildings; fixed display footprints reroute paths. No Python image modification.",
+  "limitations": "Two current R wonders; other template wonders remain planned. Generated assets are visually checked; full human animation acceptance remains R13/R18."
+}

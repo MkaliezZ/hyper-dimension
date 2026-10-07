@@ -1,0 +1,19 @@
+
+import {chromium} from 'playwright-core';import assert from 'node:assert/strict';import {writeFile} from 'node:fs/promises';import {fixture} from './v74-travel-fixture.mjs';
+const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true}),report={checks:[],errors:[],scope:'Isolated LAN owners, actual dual-theme renewal UI, lost transaction response and reload recovery; deterministic model output. Initial funds preloaded.'};
+try{for(const theme of ['pixel','origami']){const f=await fixture(theme),base='http://127.0.0.1:'+f.service.port;let ctx;try{
+ ctx=await browser.newContext({viewport:{width:1280,height:900}});await ctx.addCookies([{name:'hd_lan_session',value:f.accounts[1].token,url:base,httpOnly:true,sameSite:'Strict'}]);let lose=true;const commands=[],proposals=[];
+ await ctx.route('**/api/**',async r=>{const p=new URL(r.request().url()).pathname;
+ if(p.endsWith('/renew')){proposals.push(r.request().postDataJSON());return r.continue();}
+ if(p.startsWith('/api/saves/')&&p.endsWith('/action')){const b=r.request().postDataJSON();if(b.operation==='hire_renew'){commands.push(b);if(lose){lose=false;await r.fetch();return r.abort('failed');}}return r.continue();}
+ if(p.startsWith('/api/saves/')||p.startsWith('/api/recruitment/')||p==='/api/lan/me')return r.continue();return r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated UI verification"}'});
+ });
+ const page=await ctx.newPage();page.on('pageerror',e=>report.errors.push(e.message));await page.goto(base+'/play?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&window.islandInspect?.().serverFacility?.ready);await page.locator('#stewardBtn').click();await page.locator('#stewardRecruit').click();await page.waitForFunction(()=>document.getElementById('recruitRenew')&&!document.getElementById('recruitRenew').disabled);
+ const before=await page.evaluate(()=>window.islandInspect().recruitment.active);assert.equal(before.id,f.contract.id);await page.locator('#recruitRenew').click();await page.waitForSelector('#serverCommerce:not(.hidden)',{timeout:20000});assert.equal(commands.length,1);const newId=commands[0].renewalId;
+ await page.reload();await page.waitForFunction(id=>window.islandInspect?.().recruitment.active?.id===id,newId,{timeout:20000});await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready);
+ const after=await page.evaluate(()=>window.islandInspect().recruitment.active);assert.equal(after.phase,'working');assert(after.hasArrived);assert.equal(after.profile.name,before.profile.name);assert.equal(after.visitId,before.id);assert.equal(commands.length,2);assert.equal(commands[0].requestId,commands[1].requestId);assert.equal(proposals.length,1);
+ const registry=await f.service.homeServices.recruitment(f.accounts[1].token,theme,'status');assert.equal(registry.active.id,newId);assert.equal(registry.renewal,null);assert.equal(registry.history.find(c=>c.id===before.id).phase,'renewed');
+ await page.locator('#stewardBtn').click();await page.locator('#stewardRecruit').click();await page.waitForSelector('#recruitRenew');await page.setViewportSize({width:860,height:780});await page.locator('.recruit-renewal').scrollIntoViewIfNeeded();await page.screenshot({path:'qa/v75/'+theme+'-renewal-compact.png'});
+ report.checks.push({theme,buttonEnabled:true,proposalSentOnce:true,lostAtomicResponseRecovered:true,sameRequestId:true,workingWithoutFerry:true,samePerson:true,oldRecordRetained:true,compact:true});
+ }finally{await ctx?.close();await f.service.close();}
+}assert.deepEqual(report.errors,[]);report.passed=true;}catch(e){report.failure=e.stack;process.exitCode=1;}finally{await browser.close();await writeFile('qa/v75/browser-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));}

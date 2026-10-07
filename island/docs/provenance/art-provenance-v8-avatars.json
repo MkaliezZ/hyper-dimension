@@ -1,0 +1,38 @@
+[
+  {
+    "theme": "origami",
+    "gender": "male",
+    "prompt": "Use case: stylized-concept. Production RPG AVATAR sprite atlas, EXACTLY 5 COLUMNS and 6 ROWS, 30 complete full-body standing characters on TRUE transparent alpha, regular square cells, same foot baseline within a row, at least15% empty gutters, no labels, no ground shadow. Beautiful faceted folded-paper origami, paper grain and soft self shading matching the reference world sprites. Keep world sprite proportions and scale similar to reference. SIX very distinctive adult MEN, no duplicate outfits, no children. Each ROW is ONE character rotated through five geometric directions in this EXACT order: column1 S straight FRONT, nose points toward viewer; column2 SE front three-quarter to screen LOWER RIGHT, chest front and both eyes visible with nose and feet toward RIGHT; column3 E strict RIGHT PROFILE, nose visibly projects right, exactly ONE eye visible, side torso; column4 NE BACK three-quarter toward screen UPPER RIGHT, back of garment dominates and a tiny RIGHT-facing cheek/nose visible at right edge; column5 N straight BACK, no face visible. Head torso feet always agree. Game mirrors cols2/3/4 to get left directions, so NEVER face left. Each character must have distinct hair silhouette, outfit silhouette and colors. Row identities:\nRow1: navy short-haired adult man, teal explorer coat, cream shirt, brown boots, small satchel.\nRow2: golden curly-haired adult man, tan craft vest, rolled white sleeves, dark trousers, goggles on forehead.\nRow3: silver straight-haired adult man, violet scholarly long coat, round glasses, cream waistcoat.\nRow4: brown short-haired adult man, straw hat, sage green overalls, yellow scarf.\nRow5: long black-haired adult man in low ponytail, burgundy scarf, slate blue jacket, headphones at neck.\nRow6: mature red-haired adult man with neat short beard, navy captain coat, white cap, brass buttons.\nReference is style/proportions only; create ONLY these six new identities. All 30 figures full and uncropped, including hats and boots. Gaps around each figure, not touching adjacent cells.",
+    "file": "avatars-origami-male-v8.png",
+    "columns": 5,
+    "rows": 6,
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-e134cbe3-74cb-477f-88fd-d653c3f1bed1.png"
+  },
+  {
+    "theme": "origami",
+    "gender": "female",
+    "prompt": "Use case: stylized-concept. Production RPG AVATAR sprite atlas, EXACTLY 5 COLUMNS and 6 ROWS, 30 complete full-body standing characters on TRUE transparent alpha, regular square cells, same foot baseline within a row, at least15% empty gutters, no labels, no ground shadow. Beautiful faceted folded-paper origami, paper grain and soft self shading matching the reference world sprites. Keep world sprite proportions and scale similar to reference. SIX very distinctive adult WOMEN, no duplicate outfits, no children. Each ROW is ONE character rotated through five geometric directions in this EXACT order: column1 S straight FRONT, nose points toward viewer; column2 SE front three-quarter to screen LOWER RIGHT, chest front and both eyes visible with nose and feet toward RIGHT; column3 E strict RIGHT PROFILE, nose visibly projects right, exactly ONE eye visible, side torso; column4 NE BACK three-quarter toward screen UPPER RIGHT, back of garment dominates and a tiny RIGHT-facing cheek/nose visible at right edge; column5 N straight BACK, no face visible. Head torso feet always agree. Game mirrors cols2/3/4 to get left directions, so NEVER face left. Each character must have distinct hair silhouette, outfit silhouette and colors. Row identities:\nRow1: black bob-haired adult woman, ivory coatdress, pale blue scarf, brown ankle boots.\nRow2: pink high-ponytail adult woman, sunflower yellow overalls, white shirt, green apron pocket.\nRow3: lavender braided-haired adult woman, mauve artist apron, cream blouse, purple beret.\nRow4: silver pixie-haired adult woman, burgundy mechanic coveralls, brass belt, work boots.\nRow5: red curly-haired adult woman, ocean blue coat, striped blouse, tan trousers.\nRow6: warm brown-skinned curly brown-haired adult woman, orange dress, cream baking apron, cloth hairband.\nReference is style/proportions only; create ONLY these six new identities. All 30 figures full and uncropped, including hats and boots. Gaps around each figure, not touching adjacent cells.",
+    "file": "avatars-origami-female-v8.png",
+    "columns": 5,
+    "rows": 6,
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-c18782cc-02aa-47a3-9a6e-6436e998b125.png"
+  },
+  {
+    "theme": "origami",
+    "gender": "portrait",
+    "prompt": "Use case: stylized-concept. Exactly4 columns by3 rows,12 different WAIST-UP portraits on truly transparent alpha with generous20px gutters. Beautiful faceted folded-paper origami, paper grain and soft self shading matching the reference world sprites. IMPORTANT: these portraits have NORMAL ADULT ANATOMY, normal adult shoulders, arms and torso, head only one third of visible waist-up height; NO chibi, no giant head, no doll body. Natural adult body proportions replace the chibi world reference proportions. Attractive adults ages20–40 except mature captain50. Row-major identities:\n1) navy short-haired adult man, teal explorer coat, cream shirt, brown boots, small satchel; 2) golden curly-haired adult man, tan craft vest, rolled white sleeves, dark trousers, goggles on forehead; 3) silver straight-haired adult man, violet scholarly long coat, round glasses, cream waistcoat; 4) brown short-haired adult man, straw hat, sage green overalls, yellow scarf; 5) long black-haired adult man in low ponytail, burgundy scarf, slate blue jacket, headphones at neck; 6) mature red-haired adult man with neat short beard, navy captain coat, white cap, brass buttons; 7) black bob-haired adult woman, ivory coatdress, pale blue scarf, brown ankle boots; 8) pink high-ponytail adult woman, sunflower yellow overalls, white shirt, green apron pocket; 9) lavender braided-haired adult woman, mauve artist apron, cream blouse, purple beret; 10) silver pixie-haired adult woman, burgundy mechanic coveralls, brass belt, work boots; 11) red curly-haired adult woman, ocean blue coat, striped blouse, tan trousers; 12) warm brown-skinned curly brown-haired adult woman, orange dress, cream baking apron, cloth hairband\nAll torsos and hands fully inside own cell, individual expressive adult faces, relaxed natural gestures, stylish differentiated identities. No text, no frames, no scenery. The reference is ONLY paper/pixel style, not anatomy. Exactly12 waist-up portraits.",
+    "file": "avatar-portraits-origami-v8.png",
+    "columns": 4,
+    "rows": 3,
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-f4b720f2-570c-43e9-a7f6-faf9abb8f916.png"
+  }
+]

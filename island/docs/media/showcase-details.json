@@ -1,0 +1,17 @@
+{
+  "width": 3840,
+  "height": 2160,
+  "duration": 30,
+  "frames": "900",
+  "fps": "30/1",
+  "audio": "aac",
+  "audioChannels": 2,
+  "bytes": 112210799,
+  "bgm": "Island Hours - original procedural composition",
+  "source": "4K JPEG screencast frames; actual game controls, real-time simulation, edited waits; continuous editorial lens moves and frame blending",
+  "minigames": "Explicitly labeled placeholder demonstration",
+  "actualNpcModel": "deepseek",
+  "actualStewardModel": "deepseek-flash",
+  "actualArtifact": "新品上线行动清单.docx",
+  "privateUserData": false
+}

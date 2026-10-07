@@ -1,0 +1,1142 @@
+{
+  "avatar-heads-origami-v35.png": {
+    "width": 1619,
+    "height": 971,
+    "transparentRatio": 0.5098,
+    "sha256": "2b774409d93fb32d3853ab0d5457730064ce3a0a409332f9c102b8f0076db191",
+    "excludedDetachedPixels": 35603,
+    "frames": [
+      {
+        "x": 24,
+        "y": 47,
+        "w": 291,
+        "h": 266,
+        "ownedComponents": 1
+      },
+      {
+        "x": 344,
+        "y": 42,
+        "w": 288,
+        "h": 269,
+        "ownedComponents": 1
+      },
+      {
+        "x": 671,
+        "y": 33,
+        "w": 279,
+        "h": 276,
+        "ownedComponents": 1
+      },
+      {
+        "x": 996,
+        "y": 40,
+        "w": 282,
+        "h": 271,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1323,
+        "y": 45,
+        "w": 277,
+        "h": 266,
+        "ownedComponents": 1
+      },
+      {
+        "x": 25,
+        "y": 365,
+        "w": 288,
+        "h": 257,
+        "ownedComponents": 1
+      },
+      {
+        "x": 349,
+        "y": 363,
+        "w": 291,
+        "h": 255,
+        "ownedComponents": 1
+      },
+      {
+        "x": 680,
+        "y": 363,
+        "w": 277,
+        "h": 267,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1005,
+        "y": 363,
+        "w": 277,
+        "h": 268,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1325,
+        "y": 362,
+        "w": 267,
+        "h": 270,
+        "ownedComponents": 1
+      },
+      {
+        "x": 27,
+        "y": 644,
+        "w": 281,
+        "h": 269,
+        "ownedComponents": 1
+      },
+      {
+        "x": 349,
+        "y": 645,
+        "w": 285,
+        "h": 265,
+        "ownedComponents": 1
+      },
+      {
+        "x": 672,
+        "y": 646,
+        "w": 272,
+        "h": 259,
+        "ownedComponents": 1
+      },
+      {
+        "x": 996,
+        "y": 644,
+        "w": 281,
+        "h": 264,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1327,
+        "y": 645,
+        "w": 271,
+        "h": 264,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "avatar-heads-pixel-v35.png": {
+    "width": 1619,
+    "height": 971,
+    "transparentRatio": 0.5726,
+    "sha256": "74b6590fa53bf846a502669e79b66326ea36ee366fa6d78eb63d173c9fb89b8c",
+    "excludedDetachedPixels": 52101,
+    "frames": [
+      {
+        "x": 49,
+        "y": 98,
+        "w": 270,
+        "h": 246,
+        "ownedComponents": 1
+      },
+      {
+        "x": 361,
+        "y": 103,
+        "w": 270,
+        "h": 241,
+        "ownedComponents": 1
+      },
+      {
+        "x": 681,
+        "y": 103,
+        "w": 262,
+        "h": 241,
+        "ownedComponents": 1
+      },
+      {
+        "x": 998,
+        "y": 100,
+        "w": 264,
+        "h": 244,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1313,
+        "y": 100,
+        "w": 260,
+        "h": 244,
+        "ownedComponents": 1
+      },
+      {
+        "x": 50,
+        "y": 375,
+        "w": 272,
+        "h": 261,
+        "ownedComponents": 1
+      },
+      {
+        "x": 360,
+        "y": 375,
+        "w": 272,
+        "h": 261,
+        "ownedComponents": 1
+      },
+      {
+        "x": 678,
+        "y": 381,
+        "w": 265,
+        "h": 255,
+        "ownedComponents": 1
+      },
+      {
+        "x": 993,
+        "y": 375,
+        "w": 267,
+        "h": 261,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1307,
+        "y": 375,
+        "w": 257,
+        "h": 261,
+        "ownedComponents": 1
+      },
+      {
+        "x": 49,
+        "y": 651,
+        "w": 270,
+        "h": 235,
+        "ownedComponents": 1
+      },
+      {
+        "x": 362,
+        "y": 654,
+        "w": 272,
+        "h": 232,
+        "ownedComponents": 1
+      },
+      {
+        "x": 681,
+        "y": 653,
+        "w": 263,
+        "h": 230,
+        "ownedComponents": 1
+      },
+      {
+        "x": 991,
+        "y": 653,
+        "w": 268,
+        "h": 231,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1313,
+        "y": 651,
+        "w": 257,
+        "h": 233,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-origami-pack-0-v35.png": {
+    "width": 1536,
+    "height": 1024,
+    "transparentRatio": 0.5535,
+    "sha256": "1ab55b4f7b14728cbe08e9f0a2fcd3e96aa0c3d0a1e2445265e0eda0722b4ad1",
+    "excludedDetachedPixels": 89899,
+    "frames": [
+      {
+        "x": 28,
+        "y": 42,
+        "w": 293,
+        "h": 326,
+        "ownedComponents": 1
+      },
+      {
+        "x": 360,
+        "y": 42,
+        "w": 283,
+        "h": 326,
+        "ownedComponents": 1
+      },
+      {
+        "x": 675,
+        "y": 42,
+        "w": 219,
+        "h": 325,
+        "ownedComponents": 1
+      },
+      {
+        "x": 938,
+        "y": 44,
+        "w": 265,
+        "h": 323,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1232,
+        "y": 44,
+        "w": 275,
+        "h": 323,
+        "ownedComponents": 1
+      },
+      {
+        "x": 47,
+        "y": 389,
+        "w": 257,
+        "h": 319,
+        "ownedComponents": 1
+      },
+      {
+        "x": 382,
+        "y": 388,
+        "w": 235,
+        "h": 321,
+        "ownedComponents": 1
+      },
+      {
+        "x": 729,
+        "y": 389,
+        "w": 131,
+        "h": 319,
+        "ownedComponents": 1
+      },
+      {
+        "x": 957,
+        "y": 391,
+        "w": 223,
+        "h": 315,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1245,
+        "y": 390,
+        "w": 246,
+        "h": 316,
+        "ownedComponents": 1
+      },
+      {
+        "x": 53,
+        "y": 737,
+        "w": 239,
+        "h": 253,
+        "ownedComponents": 1
+      },
+      {
+        "x": 388,
+        "y": 738,
+        "w": 230,
+        "h": 251,
+        "ownedComponents": 1
+      },
+      {
+        "x": 698,
+        "y": 737,
+        "w": 196,
+        "h": 250,
+        "ownedComponents": 1
+      },
+      {
+        "x": 964,
+        "y": 739,
+        "w": 215,
+        "h": 250,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1247,
+        "y": 737,
+        "w": 239,
+        "h": 254,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-origami-pack-1-v35.png": {
+    "width": 1620,
+    "height": 971,
+    "transparentRatio": 0.6412,
+    "sha256": "0dadef5edf07ebe4fc3424c2ffcea5f6dad5c6e5e4975807e42d4d869d6e1abc",
+    "excludedDetachedPixels": 32165,
+    "frames": [
+      {
+        "x": 33,
+        "y": 84,
+        "w": 308,
+        "h": 179,
+        "ownedComponents": 1
+      },
+      {
+        "x": 351,
+        "y": 84,
+        "w": 311,
+        "h": 183,
+        "ownedComponents": 1
+      },
+      {
+        "x": 662,
+        "y": 86,
+        "w": 284,
+        "h": 186,
+        "ownedComponents": 1
+      },
+      {
+        "x": 981,
+        "y": 86,
+        "w": 292,
+        "h": 210,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1285,
+        "y": 84,
+        "w": 307,
+        "h": 212,
+        "ownedComponents": 1
+      },
+      {
+        "x": 28,
+        "y": 376,
+        "w": 297,
+        "h": 205,
+        "ownedComponents": 2
+      },
+      {
+        "x": 285,
+        "y": 374,
+        "w": 376,
+        "h": 205,
+        "ownedComponents": 3
+      },
+      {
+        "x": 609,
+        "y": 377,
+        "w": 402,
+        "h": 201,
+        "ownedComponents": 4
+      },
+      {
+        "x": 974,
+        "y": 370,
+        "w": 302,
+        "h": 212,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1306,
+        "y": 375,
+        "w": 284,
+        "h": 207,
+        "ownedComponents": 2
+      },
+      {
+        "x": 32,
+        "y": 649,
+        "w": 292,
+        "h": 238,
+        "ownedComponents": 1
+      },
+      {
+        "x": 390,
+        "y": 648,
+        "w": 240,
+        "h": 244,
+        "ownedComponents": 1
+      },
+      {
+        "x": 748,
+        "y": 648,
+        "w": 135,
+        "h": 241,
+        "ownedComponents": 1
+      },
+      {
+        "x": 987,
+        "y": 653,
+        "w": 254,
+        "h": 237,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1310,
+        "y": 649,
+        "w": 280,
+        "h": 231,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-origami-pack-2-v35.png": {
+    "width": 1536,
+    "height": 1024,
+    "transparentRatio": 0.5674,
+    "sha256": "6e168967df2050269eadafbfd84568e57eb4bb97e6b4a8d67640fce73fe72b0b",
+    "excludedDetachedPixels": 47886,
+    "frames": [
+      {
+        "x": 20,
+        "y": 109,
+        "w": 309,
+        "h": 226,
+        "ownedComponents": 1
+      },
+      {
+        "x": 355,
+        "y": 108,
+        "w": 268,
+        "h": 227,
+        "ownedComponents": 1
+      },
+      {
+        "x": 661,
+        "y": 107,
+        "w": 222,
+        "h": 228,
+        "ownedComponents": 1
+      },
+      {
+        "x": 929,
+        "y": 109,
+        "w": 278,
+        "h": 241,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1225,
+        "y": 110,
+        "w": 295,
+        "h": 240,
+        "ownedComponents": 1
+      },
+      {
+        "x": 12,
+        "y": 405,
+        "w": 319,
+        "h": 246,
+        "ownedComponents": 1
+      },
+      {
+        "x": 345,
+        "y": 399,
+        "w": 291,
+        "h": 257,
+        "ownedComponents": 1
+      },
+      {
+        "x": 644,
+        "y": 396,
+        "w": 256,
+        "h": 259,
+        "ownedComponents": 1
+      },
+      {
+        "x": 921,
+        "y": 401,
+        "w": 286,
+        "h": 255,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1219,
+        "y": 400,
+        "w": 303,
+        "h": 268,
+        "ownedComponents": 1
+      },
+      {
+        "x": 17,
+        "y": 721,
+        "w": 301,
+        "h": 210,
+        "ownedComponents": 1
+      },
+      {
+        "x": 344,
+        "y": 717,
+        "w": 287,
+        "h": 214,
+        "ownedComponents": 1
+      },
+      {
+        "x": 651,
+        "y": 713,
+        "w": 248,
+        "h": 225,
+        "ownedComponents": 1
+      },
+      {
+        "x": 926,
+        "y": 716,
+        "w": 286,
+        "h": 216,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1226,
+        "y": 718,
+        "w": 295,
+        "h": 225,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-origami-pack-3-v35.png": {
+    "width": 1619,
+    "height": 971,
+    "transparentRatio": 0.5373,
+    "sha256": "d146ca413bf5ecffd631a7ecb124de75826359498f0e83ef95ab5e2cf348d52c",
+    "excludedDetachedPixels": 54658,
+    "frames": [
+      {
+        "x": 57,
+        "y": 25,
+        "w": 277,
+        "h": 325,
+        "ownedComponents": 2
+      },
+      {
+        "x": 387,
+        "y": 25,
+        "w": 258,
+        "h": 325,
+        "ownedComponents": 2
+      },
+      {
+        "x": 694,
+        "y": 24,
+        "w": 231,
+        "h": 326,
+        "ownedComponents": 2
+      },
+      {
+        "x": 979,
+        "y": 24,
+        "w": 261,
+        "h": 326,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1288,
+        "y": 25,
+        "w": 267,
+        "h": 325,
+        "ownedComponents": 2
+      },
+      {
+        "x": 73,
+        "y": 340,
+        "w": 251,
+        "h": 333,
+        "ownedComponents": 2
+      },
+      {
+        "x": 409,
+        "y": 339,
+        "w": 230,
+        "h": 334,
+        "ownedComponents": 2
+      },
+      {
+        "x": 742,
+        "y": 339,
+        "w": 140,
+        "h": 334,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1004,
+        "y": 340,
+        "w": 231,
+        "h": 333,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1301,
+        "y": 340,
+        "w": 251,
+        "h": 333,
+        "ownedComponents": 2
+      },
+      {
+        "x": 49,
+        "y": 633,
+        "w": 294,
+        "h": 309,
+        "ownedComponents": 1
+      },
+      {
+        "x": 378,
+        "y": 636,
+        "w": 273,
+        "h": 308,
+        "ownedComponents": 1
+      },
+      {
+        "x": 681,
+        "y": 638,
+        "w": 241,
+        "h": 305,
+        "ownedComponents": 1
+      },
+      {
+        "x": 968,
+        "y": 635,
+        "w": 279,
+        "h": 308,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1278,
+        "y": 638,
+        "w": 293,
+        "h": 305,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-pixel-pack-0-v35.png": {
+    "width": 1619,
+    "height": 972,
+    "transparentRatio": 0.5976,
+    "sha256": "9f96c2cbd0f1503b3460adb7c8b54446d58fb537fb32d353a05268d6a23e64cf",
+    "excludedDetachedPixels": 41195,
+    "frames": [
+      {
+        "x": 42,
+        "y": 45,
+        "w": 253,
+        "h": 297,
+        "ownedComponents": 1
+      },
+      {
+        "x": 376,
+        "y": 45,
+        "w": 257,
+        "h": 300,
+        "ownedComponents": 1
+      },
+      {
+        "x": 699,
+        "y": 45,
+        "w": 227,
+        "h": 298,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1004,
+        "y": 46,
+        "w": 252,
+        "h": 297,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1317,
+        "y": 45,
+        "w": 260,
+        "h": 297,
+        "ownedComponents": 1
+      },
+      {
+        "x": 44,
+        "y": 364,
+        "w": 249,
+        "h": 276,
+        "ownedComponents": 1
+      },
+      {
+        "x": 393,
+        "y": 364,
+        "w": 239,
+        "h": 310,
+        "ownedComponents": 2
+      },
+      {
+        "x": 764,
+        "y": 364,
+        "w": 108,
+        "h": 310,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1007,
+        "y": 367,
+        "w": 233,
+        "h": 307,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1320,
+        "y": 367,
+        "w": 254,
+        "h": 274,
+        "ownedComponents": 1
+      },
+      {
+        "x": 54,
+        "y": 667,
+        "w": 227,
+        "h": 255,
+        "ownedComponents": 1
+      },
+      {
+        "x": 417,
+        "y": 667,
+        "w": 211,
+        "h": 255,
+        "ownedComponents": 1
+      },
+      {
+        "x": 736,
+        "y": 667,
+        "w": 177,
+        "h": 255,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1025,
+        "y": 668,
+        "w": 201,
+        "h": 254,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1333,
+        "y": 668,
+        "w": 231,
+        "h": 254,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-pixel-pack-1-v35.png": {
+    "width": 1619,
+    "height": 972,
+    "transparentRatio": 0.7056,
+    "sha256": "9bc9944acde69343d77ac9b10dc5325ad2955b305db4643eea06d371d9b535c2",
+    "excludedDetachedPixels": 28149,
+    "frames": [
+      {
+        "x": 34,
+        "y": 146,
+        "w": 289,
+        "h": 183,
+        "ownedComponents": 1
+      },
+      {
+        "x": 350,
+        "y": 147,
+        "w": 287,
+        "h": 196,
+        "ownedComponents": 1
+      },
+      {
+        "x": 667,
+        "y": 148,
+        "w": 278,
+        "h": 193,
+        "ownedComponents": 1
+      },
+      {
+        "x": 990,
+        "y": 147,
+        "w": 287,
+        "h": 198,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1304,
+        "y": 143,
+        "w": 287,
+        "h": 207,
+        "ownedComponents": 1
+      },
+      {
+        "x": 32,
+        "y": 444,
+        "w": 282,
+        "h": 177,
+        "ownedComponents": 2
+      },
+      {
+        "x": 352,
+        "y": 438,
+        "w": 266,
+        "h": 186,
+        "ownedComponents": 2
+      },
+      {
+        "x": 699,
+        "y": 438,
+        "w": 199,
+        "h": 200,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1002,
+        "y": 444,
+        "w": 272,
+        "h": 184,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1316,
+        "y": 448,
+        "w": 264,
+        "h": 181,
+        "ownedComponents": 2
+      },
+      {
+        "x": 50,
+        "y": 683,
+        "w": 239,
+        "h": 194,
+        "ownedComponents": 1
+      },
+      {
+        "x": 385,
+        "y": 679,
+        "w": 229,
+        "h": 210,
+        "ownedComponents": 1
+      },
+      {
+        "x": 760,
+        "y": 674,
+        "w": 111,
+        "h": 208,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1028,
+        "y": 679,
+        "w": 196,
+        "h": 212,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1322,
+        "y": 677,
+        "w": 252,
+        "h": 198,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-pixel-pack-2-v35.png": {
+    "width": 1619,
+    "height": 971,
+    "transparentRatio": 0.5802,
+    "sha256": "d23dabbe0b6e17cc541b64a5a967c63b217ade2e9d18cc9717cbc1ba6bae07d5",
+    "excludedDetachedPixels": 47813,
+    "frames": [
+      {
+        "x": 18,
+        "y": 109,
+        "w": 315,
+        "h": 233,
+        "ownedComponents": 1
+      },
+      {
+        "x": 367,
+        "y": 107,
+        "w": 275,
+        "h": 230,
+        "ownedComponents": 1
+      },
+      {
+        "x": 718,
+        "y": 107,
+        "w": 186,
+        "h": 227,
+        "ownedComponents": 1
+      },
+      {
+        "x": 985,
+        "y": 110,
+        "w": 255,
+        "h": 236,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1286,
+        "y": 107,
+        "w": 298,
+        "h": 239,
+        "ownedComponents": 1
+      },
+      {
+        "x": 19,
+        "y": 381,
+        "w": 315,
+        "h": 231,
+        "ownedComponents": 1
+      },
+      {
+        "x": 358,
+        "y": 381,
+        "w": 298,
+        "h": 233,
+        "ownedComponents": 1
+      },
+      {
+        "x": 692,
+        "y": 379,
+        "w": 219,
+        "h": 232,
+        "ownedComponents": 1
+      },
+      {
+        "x": 973,
+        "y": 384,
+        "w": 274,
+        "h": 233,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1285,
+        "y": 385,
+        "w": 299,
+        "h": 233,
+        "ownedComponents": 1
+      },
+      {
+        "x": 16,
+        "y": 667,
+        "w": 316,
+        "h": 239,
+        "ownedComponents": 1
+      },
+      {
+        "x": 349,
+        "y": 666,
+        "w": 306,
+        "h": 238,
+        "ownedComponents": 1
+      },
+      {
+        "x": 678,
+        "y": 666,
+        "w": 257,
+        "h": 240,
+        "ownedComponents": 1
+      },
+      {
+        "x": 968,
+        "y": 666,
+        "w": 295,
+        "h": 240,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1282,
+        "y": 671,
+        "w": 313,
+        "h": 235,
+        "ownedComponents": 1
+      }
+    ]
+  },
+  "garments-pixel-pack-3-v35.png": {
+    "width": 1536,
+    "height": 1024,
+    "transparentRatio": 0.5458,
+    "sha256": "a1769f5e2d8dd1f020ad39e930e302260f31eb0c2d4245784f14d50649e00f2d",
+    "excludedDetachedPixels": 27295,
+    "frames": [
+      {
+        "x": 29,
+        "y": 42,
+        "w": 267,
+        "h": 292,
+        "ownedComponents": 1
+      },
+      {
+        "x": 348,
+        "y": 41,
+        "w": 247,
+        "h": 293,
+        "ownedComponents": 1
+      },
+      {
+        "x": 649,
+        "y": 43,
+        "w": 225,
+        "h": 325,
+        "ownedComponents": 2
+      },
+      {
+        "x": 940,
+        "y": 42,
+        "w": 253,
+        "h": 290,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1239,
+        "y": 42,
+        "w": 269,
+        "h": 292,
+        "ownedComponents": 1
+      },
+      {
+        "x": 38,
+        "y": 366,
+        "w": 249,
+        "h": 344,
+        "ownedComponents": 2
+      },
+      {
+        "x": 374,
+        "y": 364,
+        "w": 216,
+        "h": 346,
+        "ownedComponents": 2
+      },
+      {
+        "x": 700,
+        "y": 364,
+        "w": 134,
+        "h": 346,
+        "ownedComponents": 2
+      },
+      {
+        "x": 944,
+        "y": 365,
+        "w": 229,
+        "h": 345,
+        "ownedComponents": 2
+      },
+      {
+        "x": 1248,
+        "y": 365,
+        "w": 253,
+        "h": 345,
+        "ownedComponents": 3
+      },
+      {
+        "x": 23,
+        "y": 694,
+        "w": 282,
+        "h": 290,
+        "ownedComponents": 1
+      },
+      {
+        "x": 344,
+        "y": 694,
+        "w": 261,
+        "h": 290,
+        "ownedComponents": 1
+      },
+      {
+        "x": 648,
+        "y": 695,
+        "w": 229,
+        "h": 286,
+        "ownedComponents": 1
+      },
+      {
+        "x": 929,
+        "y": 694,
+        "w": 258,
+        "h": 290,
+        "ownedComponents": 1
+      },
+      {
+        "x": 1232,
+        "y": 694,
+        "w": 281,
+        "h": 290,
+        "ownedComponents": 1
+      }
+    ]
+  }
+}

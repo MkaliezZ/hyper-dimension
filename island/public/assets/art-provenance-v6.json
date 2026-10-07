@@ -1,0 +1,106 @@
+{
+  "method": "built-in image_gen",
+  "portraitJobs": [
+    {
+      "theme": "pixel",
+      "prompt": "Use case: stylized-concept. NEW portrait atlas for an island game. IMPORTANT USER REQUIREMENT: realistic NORMAL ADULT HUMAN BODY PROPORTIONS. No chibi, no huge heads, no doll or child proportions. Each WAIST-UP portrait has a normal adult head approximately one third of visible waist-up height, anatomically natural shoulders, long neck and torso, normal adult arms and hands. Heads should occupy about85px of the384px high cell, not half the cell. Adults aged20-40 except sailor aged55-65. Reference provided is ONLY for hairstyle, outfit COLOR, props and character identity; explicitly REPLACE its chibi anatomy with attractive natural adult human anatomy. Atlas exactly4x4, equal384x384 cells on1536x1536 square, true transparent background,15px transparent gutters, every torso and hand fully inside cell, no cell crossing, waist-up not legs. Beautiful polished hand-painted pixel-art illustration with crisp tiny pixels, nuanced adult faces, warm highlights. Row-major16 identities: row1 brown-braided straw-hat woman farmer with wheat; brown-haired goggle male carpenter in tan workwear with wood tool; lavender-haired beret woman party planner in lilac with ribbon; navy-haired male astronomer with blue star cloak and telescope. Row2 pink-haired flower-crowned female florist with bouquet; gray-bearded mature sea captain with white cap and blue vest holding rope; orange-haired woman baker in cream chef hat holding bread; dark-haired blue-beret male photographer with camera. Row3 teal-capped dark-haired fisherman holding lure; short green-haired female doctor in white coat holding herb sprig; purple-haired glasses woman librarian holding book; dark-haired male miner in yellow hardhat with small pickaxe. Row4 red-haired male musician wearing headphones holding guitar neck; pink-haired woman designer holding fabric and small scissors; pale blue-haired male curator with round spectacles and magnifying glass; elegant dark-haired male Hermes butler with white/teal coat and gold trim holding notebook. Hands at natural waist or chest height. Varied individualized welcoming and thoughtful expressions. Preserve distinctive identity/colors without childlike rendering. No text, no background, no frames. Normal adult head-to-body ratio is mandatory.",
+      "source": "source-artifact:exec-945cec12-8693-46e0-a815-bb73ffd0be60.png",
+      "file": "public/assets/resident-portraits-pixel-v6.png"
+    },
+    {
+      "theme": "origami",
+      "prompt": "Use case: stylized-concept. NEW portrait atlas for an island game. IMPORTANT USER REQUIREMENT: realistic NORMAL ADULT HUMAN BODY PROPORTIONS. No chibi, no huge heads, no doll or child proportions. Each WAIST-UP portrait has a normal adult head approximately one third of visible waist-up height, anatomically natural shoulders, long neck and torso, normal adult arms and hands. Heads should occupy about85px of the384px high cell, not half the cell. Adults aged20-40 except sailor aged55-65. Reference provided is ONLY for hairstyle, outfit COLOR, props and character identity; explicitly REPLACE its chibi anatomy with attractive natural adult human anatomy. Atlas exactly4x4, equal384x384 cells on1536x1536 square, true transparent background,15px transparent gutters, every torso and hand fully inside cell, no cell crossing, waist-up not legs. Beautiful folded-paper origami adult characters with faceted paper clothing, graceful natural adult faces, paper-grain and expressive paper-fold hair. Row-major16 identities: row1 brown-braided straw-hat woman farmer with wheat; brown-haired goggle male carpenter in tan workwear with wood tool; lavender-haired beret woman party planner in lilac with ribbon; navy-haired male astronomer with blue star cloak and telescope. Row2 pink-haired flower-crowned female florist with bouquet; gray-bearded mature sea captain with white cap and blue vest holding rope; orange-haired woman baker in cream chef hat holding bread; dark-haired blue-beret male photographer with camera. Row3 teal-capped dark-haired fisherman holding lure; short green-haired female doctor in white coat holding herb sprig; purple-haired glasses woman librarian holding book; dark-haired male miner in yellow hardhat with small pickaxe. Row4 red-haired male musician wearing headphones holding guitar neck; pink-haired woman designer holding fabric and small scissors; pale blue-haired male curator with round spectacles and magnifying glass; elegant dark-haired male Hermes butler with white/teal coat and gold trim holding notebook. Hands at natural waist or chest height. Varied individualized welcoming and thoughtful expressions. Preserve distinctive identity/colors without childlike rendering. No text, no background, no frames. Normal adult head-to-body ratio is mandatory.",
+      "source": "source-artifact:exec-26b3e12c-ee76-4f0e-a440-a02b94acfd2e.png",
+      "file": "public/assets/resident-portraits-origami-v6.png"
+    }
+  ],
+  "directionJobs": [
+    {
+      "theme": "pixel",
+      "pack": 0,
+      "prompt": "Production transparent RPG direction atlas derived from the supplied existing pixel front/back character references. Preserve exact individual hair, clothing, colors, props, identity and world sprite body proportions. Elegant detailed pixel art with consistent crisp pixel edges, warm cozy palette. ONE perfectly regular grid: EXACTLY 8 columns × 8 rows, every cell same square size with comfortable transparent gutters. Each ROW is ONE single character rotated in place through EXACTLY EIGHT directions. Column order LEFT TO RIGHT: SOUTH full FRONT toward viewer; SOUTHWEST three-quarter front facing bottom-left; WEST true LEFT profile; NORTHWEST three-quarter BACK facing upper-left; NORTH full BACK away viewer; NORTHEAST three-quarter BACK facing upper-right; EAST true RIGHT profile; SOUTHEAST three-quarter FRONT facing bottom-right. Profile must have real side anatomy, shoulder and body depth, not a horizontally squashed front. All 64 figures FULL BODY including shoes, aligned head and foot baseline in each cell, identical perceived height and scale across all directions. Neutral symmetrical standing animation base pose, arms resting slightly separated from torso, legs slightly separated, no ground shadows, no scenery, no labels, no grid lines. Rows 1–8 respectively: braided brown haired green overalls straw-hat farmer; brown goggle carpenter tan apron; lavender beret purple dress planner; navy-haired astronomer star cape; pink-haired florist flower crown pink dress; elderly white beard sailor navy vest white cap; orange-haired baker white toque peach apron; brown-haired photographer navy beret blue vest camera. Reference front/back sheets are identity reference; use only requested eight identities for this atlas. Real alpha transparency throughout blank pixels.",
+      "refs": [
+        "source-artifact:characters-pixel-v2.png",
+        "source-artifact:characters-pixel-back-v2.png"
+      ],
+      "source": "source-artifact:exec-6c1d3c59-2e03-4488-b89b-d48b534a62d1.png",
+      "file": "public/assets/characters-pixel-8way-pack-0-v6.png"
+    },
+    {
+      "theme": "pixel",
+      "pack": 1,
+      "prompt": "Production transparent RPG direction atlas derived from the supplied existing pixel front/back character references. Preserve exact individual hair, clothing, colors, props, identity and world sprite body proportions. Elegant detailed pixel art with consistent crisp pixel edges, warm cozy palette. ONE perfectly regular grid: EXACTLY 8 columns × 8 rows, every cell same square size with comfortable transparent gutters. Each ROW is ONE single character rotated in place through EXACTLY EIGHT directions. Column order LEFT TO RIGHT: SOUTH full FRONT toward viewer; SOUTHWEST three-quarter front facing bottom-left; WEST true LEFT profile; NORTHWEST three-quarter BACK facing upper-left; NORTH full BACK away viewer; NORTHEAST three-quarter BACK facing upper-right; EAST true RIGHT profile; SOUTHEAST three-quarter FRONT facing bottom-right. Profile must have real side anatomy, shoulder and body depth, not a horizontally squashed front. All 64 figures FULL BODY including shoes, aligned head and foot baseline in each cell, identical perceived height and scale across all directions. Neutral symmetrical standing animation base pose, arms resting slightly separated from torso, legs slightly separated, no ground shadows, no scenery, no labels, no grid lines. Rows 1–8 respectively: navy-haired fisherman teal cap teal overalls; green-haired doctor white coat green shirt; purple-haired librarian glasses purple dress book; brown-haired miner mustard hardhat backpack; red-haired musician headphones red jacket guitar backpack; pink-haired fashion designer pink outfit scissors; pale-blue-haired curator round glasses blue white coat; dark-haired Hermes butler white coat teal vest gold trim. Reference front/back sheets are identity reference; use only requested eight identities for this atlas. Real alpha transparency throughout blank pixels.",
+      "refs": [
+        "source-artifact:characters-pixel-v2.png",
+        "source-artifact:characters-pixel-back-v2.png"
+      ],
+      "source": "source-artifact:exec-4d486964-6084-497b-8705-159297db2d37.png",
+      "file": "public/assets/characters-pixel-8way-pack-1-v6.png"
+    },
+    {
+      "theme": "pixel",
+      "pack": 2,
+      "prompt": "Production transparent RPG direction atlas derived from the supplied existing pixel front/back character references. Preserve exact individual hair, clothing, colors, props, identity and world sprite body proportions. Elegant detailed pixel art with consistent crisp pixel edges, warm cozy palette. ONE perfectly regular grid: EXACTLY 8 columns × 8 rows, every cell same square size with comfortable transparent gutters. Each ROW is ONE single character rotated in place through EXACTLY EIGHT directions. Column order LEFT TO RIGHT: SOUTH full FRONT toward viewer; SOUTHWEST three-quarter front facing bottom-left; WEST true LEFT profile; NORTHWEST three-quarter BACK facing upper-left; NORTH full BACK away viewer; NORTHEAST three-quarter BACK facing upper-right; EAST true RIGHT profile; SOUTHEAST three-quarter FRONT facing bottom-right. Profile must have real side anatomy, shoulder and body depth, not a horizontally squashed front. All 64 figures FULL BODY including shoes, aligned head and foot baseline in each cell, identical perceived height and scale across all directions. Neutral symmetrical standing animation base pose, arms resting slightly separated from torso, legs slightly separated, no ground shadows, no scenery, no labels, no grid lines. Rows 1–8 respectively: teal long-haired botanical tourist straw hat green coat backpack; silver-haired traveler beige coat navy tie brown suitcase; pink-haired baker tourist peach apron bun suitcase; black-haired music tourist navy coat headphones record bag; brown braided sailor tourist teal cap striped blue shirt white overalls; purple-haired scholar glasses tan vest green trousers satchel; orange-haired hiker olive hat mustard backpack; navy-haired photographer red scarf beige shirt brown pants camera backpack. Reference front/back sheets are identity reference; use only requested eight identities for this atlas. Real alpha transparency throughout blank pixels.",
+      "refs": [
+        "source-artifact:visitors-pixel-v4.png"
+      ],
+      "source": "source-artifact:exec-5d6bb2bf-764a-4256-8a2d-046db8ba3f09.png",
+      "file": "public/assets/characters-pixel-8way-pack-2-v6.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 0,
+      "prompt": "Production transparent RPG direction atlas derived from the supplied existing origami front/back character references. Preserve exact individual hair, clothing, colors, props, identity and world sprite body proportions. Elegant handmade folded-paper origami facets, pastel cozy palette, clear folds. ONE perfectly regular grid: EXACTLY 8 columns × 8 rows, every cell same square size with comfortable transparent gutters. Each ROW is ONE single character rotated in place through EXACTLY EIGHT directions. Column order LEFT TO RIGHT: SOUTH full FRONT toward viewer; SOUTHWEST three-quarter front facing bottom-left; WEST true LEFT profile; NORTHWEST three-quarter BACK facing upper-left; NORTH full BACK away viewer; NORTHEAST three-quarter BACK facing upper-right; EAST true RIGHT profile; SOUTHEAST three-quarter FRONT facing bottom-right. Profile must have real side anatomy, shoulder and body depth, not a horizontally squashed front. All 64 figures FULL BODY including shoes, aligned head and foot baseline in each cell, identical perceived height and scale across all directions. Neutral symmetrical standing animation base pose, arms resting slightly separated from torso, legs slightly separated, no ground shadows, no scenery, no labels, no grid lines. Rows 1–8 respectively: braided brown haired green overalls straw-hat farmer; brown goggle carpenter tan apron; lavender beret purple dress planner; navy-haired astronomer star cape; pink-haired florist flower crown pink dress; elderly white beard sailor navy vest white cap; orange-haired baker white toque peach apron; brown-haired photographer navy beret blue vest camera. Reference front/back sheets are identity reference; use only requested eight identities for this atlas. Real alpha transparency throughout blank pixels.",
+      "refs": [
+        "source-artifact:characters-origami-v2.png",
+        "source-artifact:characters-origami-back-v2.png"
+      ],
+      "source": "source-artifact:exec-45f326cd-9433-4811-a82f-bf52b2e57621.png",
+      "file": "public/assets/characters-origami-8way-pack-0-v6.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 1,
+      "prompt": "Production transparent RPG direction atlas derived from the supplied existing origami front/back character references. Preserve exact individual hair, clothing, colors, props, identity and world sprite body proportions. Elegant handmade folded-paper origami facets, pastel cozy palette, clear folds. ONE perfectly regular grid: EXACTLY 8 columns × 8 rows, every cell same square size with comfortable transparent gutters. Each ROW is ONE single character rotated in place through EXACTLY EIGHT directions. Column order LEFT TO RIGHT: SOUTH full FRONT toward viewer; SOUTHWEST three-quarter front facing bottom-left; WEST true LEFT profile; NORTHWEST three-quarter BACK facing upper-left; NORTH full BACK away viewer; NORTHEAST three-quarter BACK facing upper-right; EAST true RIGHT profile; SOUTHEAST three-quarter FRONT facing bottom-right. Profile must have real side anatomy, shoulder and body depth, not a horizontally squashed front. All 64 figures FULL BODY including shoes, aligned head and foot baseline in each cell, identical perceived height and scale across all directions. Neutral symmetrical standing animation base pose, arms resting slightly separated from torso, legs slightly separated, no ground shadows, no scenery, no labels, no grid lines. Rows 1–8 respectively: navy-haired fisherman teal cap teal overalls; green-haired doctor white coat green shirt; purple-haired librarian glasses purple dress book; brown-haired miner mustard hardhat backpack; red-haired musician headphones red jacket guitar backpack; pink-haired fashion designer pink outfit scissors; pale-blue-haired curator round glasses blue white coat; dark-haired Hermes butler white coat teal vest gold trim. Reference front/back sheets are identity reference; use only requested eight identities for this atlas. Real alpha transparency throughout blank pixels.",
+      "refs": [
+        "source-artifact:characters-origami-v2.png",
+        "source-artifact:characters-origami-back-v2.png"
+      ],
+      "source": "source-artifact:exec-18adc6b4-2b80-4685-bf9b-04b7a4304607.png",
+      "file": "public/assets/characters-origami-8way-pack-1-v6.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 2,
+      "prompt": "Production transparent RPG direction atlas derived from the supplied existing origami front/back character references. Preserve exact individual hair, clothing, colors, props, identity and world sprite body proportions. Elegant handmade folded-paper origami facets, pastel cozy palette, clear folds. ONE perfectly regular grid: EXACTLY 8 columns × 8 rows, every cell same square size with comfortable transparent gutters. Each ROW is ONE single character rotated in place through EXACTLY EIGHT directions. Column order LEFT TO RIGHT: SOUTH full FRONT toward viewer; SOUTHWEST three-quarter front facing bottom-left; WEST true LEFT profile; NORTHWEST three-quarter BACK facing upper-left; NORTH full BACK away viewer; NORTHEAST three-quarter BACK facing upper-right; EAST true RIGHT profile; SOUTHEAST three-quarter FRONT facing bottom-right. Profile must have real side anatomy, shoulder and body depth, not a horizontally squashed front. All 64 figures FULL BODY including shoes, aligned head and foot baseline in each cell, identical perceived height and scale across all directions. Neutral symmetrical standing animation base pose, arms resting slightly separated from torso, legs slightly separated, no ground shadows, no scenery, no labels, no grid lines. Rows 1–8 respectively: teal long-haired botanical tourist straw hat green coat backpack; silver-haired traveler beige coat navy tie brown suitcase; pink-haired baker tourist peach apron bun suitcase; black-haired music tourist navy coat headphones record bag; brown braided sailor tourist teal cap striped blue shirt white overalls; purple-haired scholar glasses tan vest green trousers satchel; orange-haired hiker olive hat mustard backpack; navy-haired photographer red scarf beige shirt brown pants camera backpack. Reference front/back sheets are identity reference; use only requested eight identities for this atlas. Real alpha transparency throughout blank pixels.",
+      "refs": [
+        "source-artifact:visitors-origami-v4.png"
+      ],
+      "source": "source-artifact:exec-7083d01e-7b7d-4550-a751-ccc26503970e.png",
+      "file": "public/assets/characters-origami-8way-pack-2-v6.png"
+    }
+  ],
+  "repair": {
+    "prompt": "Transparent game sprite direction sheet, EXACTLY 8 COLUMNS by TWO ROWS. Same elegant folded-paper origami style as provided identity references. Full body, neutral standing, true rotated anatomy in eight directions, equal scale, feet fully visible, comfortable clear transparent gutters. Row1 ONLY the reference bottom-row column3 pale BLUE-haired curator with round glasses, blue-white long coat and brown book/magnifying glass. Row2 ONLY the reference bottom-row column4 Hermes butler: DARK NAVY BLACK hair on FRONT AND BACK, no white hair, no glasses, WHITE coat with TEAL waistcoat and GOLD trim, gloves. Distinct identities do not blend. Every row repeats its SAME ONE PERSON eight times: columns SOUTH/front, SOUTHWEST/front-left, WEST/left profile, NORTHWEST/back-left, NORTH/fullback, NORTHEAST/back-right, EAST/right profile, SOUTHEAST/front-right. Sideviews show natural full-depth body silhouette, never squashed. All 16 cells identical square size, hard alpha transparency no shadows no labels no background. Strict TWO ROWS EIGHT COLUMNS. Preserve existing world chibi sprite proportions but fully sculpted directional anatomy.",
+    "source": "source-artifact:exec-fe33c8b2-2649-48b6-95c2-57cf8d86f02c.png",
+    "file": "public/assets/characters-origami-8way-repair-v6.png"
+  },
+  "legacyUI": "Hyper Dimension/生活村庄MVP/game/assets/ui_journal.png",
+  "runtimeAnimation": {
+    "directions": "S SW W NW N NE E SE",
+    "method": "Actual directional raster frames with normalized alpha bounds; 80 ms adjacent-sector pose crossfade, immediate sharp turns; full face preserved within one slice; independently interpolated feet, torso, arms, head and tool contact. No angle-based horizontal compression.",
+    "frameMetadata": "character-frames-v6.json",
+    "profileCorrections": "Superseded by audited src/characterFacing.js and public/assets/art-provenance-v7.json; prior guessed W/E corrections for IDs 9/13 replaced.",
+    "scope": "16 residents (player uses farmer skin) + 8 tourists per theme; half-body portraits use normal adult anatomy."
+  },
+  "farming": {
+    "seconds": {
+      "wheat": 180,
+      "herb": 240,
+      "tomato": 300,
+      "pumpkin": 480
+    },
+    "layout": "src/farming.js: calibrated painted soil quads per theme",
+    "commit": "resource/plot changes committed on tool contact, not on opening a UI"
+  }
+}

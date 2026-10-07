@@ -1,0 +1,6 @@
+{
+  "apiModel": "deepseek-flash",
+  "label": "DeepSeek V4.1 Flash",
+  "allowAutomaticModelFallback": false,
+  "reference": "https://api-docs.deepseek.com/updates/"
+}

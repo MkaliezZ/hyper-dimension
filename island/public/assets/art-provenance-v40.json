@@ -1,0 +1,38 @@
+{
+  "version": 40,
+  "kind": "Code-native room planning and animation using existing project artwork; no new raster generation",
+  "assets": {
+    "items": [
+      "c19_9",
+      "c19_7",
+      "c19_8",
+      "c19_5",
+      "c19_10",
+      "c19_11"
+    ],
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "source": "artStore itemFrame and existing items-*-products-*-v8.png with art-frames-v8.json",
+    "avatar": "Existing avatarFrame and player-selected sprite"
+  },
+  "createdInCode": [
+    "room floor",
+    "wall pillars",
+    "window and door",
+    "route dots",
+    "placement ghost",
+    "lamp glow",
+    "title paper tag"
+  ],
+  "animation": {
+    "placementEaseSeconds": 0.25,
+    "movementSecondsPerCell": 0.3,
+    "inspectionDwellSeconds": 0.6,
+    "sourceOfRoute": "Shortest legal floor paths to actual furniture sides, window and door"
+  },
+  "noExternalAssets": true,
+  "noArtworkOwnershipChange": true,
+  "remaining": "Full asset/action contact and license inventory R13/R17 remain"
+}

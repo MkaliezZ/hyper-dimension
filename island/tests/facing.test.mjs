@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {followPath} from '../src/movement.js';import {facingIndex,directionIndex} from '../src/directions.js';
+test('all eight directions update on both normal and short final steps',()=>{for(let h=0;h<8;h++)for(const distance of [.5,30]){const angle=Math.PI/2+h*Math.PI/4;let called=0;const a={x:0,y:0,path:[{x:Math.cos(angle)*distance,y:Math.sin(angle)*distance}],direction:0,phase:0,after:()=>called++};followPath(a,1/60,60);assert.equal(directionIndex(a.direction),h);assert.equal(facingIndex(a),h);assert.equal(called,distance<1?1:0);assert.equal(a.walking,distance>1)}});
+test('turns at successive path nodes retain the actual movement heading',()=>{const a={x:0,y:0,path:[{x:1,y:0},{x:1,y:1},{x:0,y:1},{x:0,y:0}],phase:0};for(const h of [6,0,2,4]){followPath(a,.02,100);assert.equal(facingIndex(a),h)}assert.equal(a.path.length,0);assert.equal(a.walking,false)});

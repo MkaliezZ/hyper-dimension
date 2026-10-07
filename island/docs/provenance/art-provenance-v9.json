@@ -1,0 +1,22 @@
+{
+  "version": 9,
+  "tool": "built-in image_gen",
+  "use_case": "precise-object-edit",
+  "assets": [
+    {
+      "theme": "pixel",
+      "input": "public/assets/island-pixel-v3.png",
+      "output": "public/assets/island-pixel-v9.png",
+      "generated_source": "source-artifact:exec-54d8e7d4-817e-4483-b2ce-7d047d1e264b.png",
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied 1536 by 1024 pixel-art island base map. Remove ONLY the small old wooden pier at the bottom right, approximately x=1148..1332 y=800..975, including every plank, post, rope, underside, dock shadow and wood-coloured remnants. It is an obsolete non-walkable painted pier; no replacement pier or building. Reconstruct just its footprint: preserve the adjacent pale sandy shoreline at the landward end, and continue the existing turquoise reef water, small underwater rocks, and delicate shoreline foam seamlessly where the old pier stood. Match the same detailed pixel-art palette, pixel scale, shore lighting and overhead elevated perspective. Exact 1536x1024 composition and framing. All 25 empty green parcels, their anchors, paths, farming plots, mine, plaza, forest, coastline outside that small area, every other object and every pixel outside the edit area must remain unchanged. No new objects, labels, grid or border. Produce a complete edited base map."
+    },
+    {
+      "theme": "origami",
+      "input": "public/assets/island-origami-v3.png",
+      "output": "public/assets/island-origami-v9.png",
+      "generated_source": "source-artifact:exec-1aceb074-1f82-4bd8-80d6-909b54c162b8.png",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied 1536 by 1024 origami/papercraft island base map. Remove ONLY the obsolete small wooden pier at bottom right, approximately x=1148..1332 y=800..975: remove all its planks, posts, ropes, underside, shadows and remnants. No replacement pier. Rebuild the footprint with the adjacent folded-paper pale sandy beach at the landward end and the same turquoise faceted reef water and white foam at the seaward end, seamless continuation in precisely the same papercraft art, facet size, lighting, palette and elevated camera. Preserve exact 1536x1024 framing. Every one of the 25 empty green building parcels, their positions, pathways, farm plots, mine, plaza, forest, coastline outside this small edited area and every other object must remain in exactly the same position and shape as the original; do not regenerate other parts. No new structure, text, grid or border. Produce complete edited base map."
+    }
+  ],
+  "validation": "Both harbor screenshots inspected at 155% zoom; old pier removed, independent ferry pier retained, parcel coordinates unchanged."
+}

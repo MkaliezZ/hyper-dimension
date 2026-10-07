@@ -1,0 +1,124 @@
+{
+  "version": 87,
+  "created": "2026-10-06",
+  "generator": "built-in image_gen",
+  "prompts": {
+    "mode": "built-in image_gen",
+    "collectibles": [
+      {
+        "theme": "pixel",
+        "prompt": "Create ONE premium collectible game asset, a miniature island market lantern sign, transparent alpha background, isolated centered, entire silhouette and pedestal visible with generous empty margin, no scenery, no letters, no numbers, no UI, no people. Exactly one freestanding blank rectangular wooden signboard, supported by exactly two upright legs attached to one broad stepped pedestal. One small hanging warm glowing lantern centered above the signboard. A simple teal and coral ribbon trim, a small carved star emblem on the otherwise blank sign. Elevated front view with a slight view of the top surfaces, compatible with a cozy island management game. Solid plausible construction, the supports connect correctly, no duplicate signboards or floating parts. Beautiful polished pixel-art sprite, hand-placed visible pixel clusters and crisp stair-step edges, warm honey oak with rich gold highlights, ivory sign face, teal ribbon, coral accent, soft luminous amber lantern. Match the quality of a collectible carved wooden trophy in a lush highly detailed pixel island. Avoid vector flatness and blurry painting. The asset itself should occupy about 78% of the canvas height."
+      },
+      {
+        "theme": "origami",
+        "prompt": "Create ONE premium collectible game asset, a miniature island market lantern sign, transparent alpha background, isolated centered, entire silhouette and pedestal visible with generous empty margin, no scenery, no letters, no numbers, no UI, no people. Exactly one freestanding blank rectangular wooden signboard, supported by exactly two upright legs attached to one broad stepped pedestal. One small hanging warm glowing lantern centered above the signboard. A simple teal and coral ribbon trim, a small carved star emblem on the otherwise blank sign. Elevated front view with a slight view of the top surfaces, compatible with a cozy island management game. Solid plausible construction, the supports connect correctly, no duplicate signboards or floating parts. Beautiful premium folded-paper sculpture, warm ivory textured cardstock sign face, honey amber folded-paper wood base, mint teal paper ribbon and coral paper accent. Clear coherent paper folds, precise angular facets, softly shaded layered cardstock and gold foil star accent. Match a sophisticated cozy origami island trophy. No pixelation, no photoreal wood. The asset itself should occupy about 78% of the canvas height."
+      }
+    ],
+    "stalls": [
+      {
+        "theme": "pixel",
+        "prompt": "A single elegant miniature island market stall game sprite, isolated on a truly transparent alpha background. One compact wooden counter with EMPTY clear tabletop to overlay actual game inventory icons, exactly two vertical corner posts supporting one small striped teal and warm ivory canvas canopy. A coral cloth runner folded over the front, empty lower shelf. Elevated front view with visible top surfaces, symmetrical structurally sound joinery, no text, no people, no merchandise, no repeated stall, no additional scenery, no shadows outside the object. Whole asset visible with margin. Cozy premium pixel art with crisp hand-placed pixel clusters, honey oak shading, golden trim and delicate teal/coral details. Match lush detailed pixel island buildings, avoid vector simplicity and blur."
+      },
+      {
+        "theme": "origami",
+        "prompt": "A single elegant miniature island market stall game sprite, isolated on a truly transparent alpha background. One compact wooden counter with EMPTY clear tabletop to overlay actual game inventory icons, exactly two vertical corner posts supporting one small striped teal and warm ivory canvas canopy. A coral cloth runner folded over the front, empty lower shelf. Elevated front view with visible top surfaces, symmetrical structurally sound joinery, no text, no people, no merchandise, no repeated stall, no additional scenery, no shadows outside the object. Whole asset visible with margin. Sophisticated folded-paper sculpture, layered textured cardstock, folded honey amber paper wood, origami triangular folds in mint teal and cream paper canopy, coral folded paper cloth. Clear facets, coherent paper construction, no pixelation."
+      }
+    ],
+    "files": {
+      "pixel": "public/assets/market-lantern-pixel-v87.png",
+      "origami": "public/assets/market-lantern-origami-v87.png"
+    },
+    "stallFiles": {
+      "pixel": "public/assets/market-stall-pixel-v87.png",
+      "origami": "public/assets/market-stall-origami-v87.png"
+    }
+  },
+  "assets": [
+    {
+      "file": "public/assets/market-stall-pixel-v87.png",
+      "size": [
+        1246,
+        1263
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bounds": [
+        66,
+        61,
+        1179,
+        1185
+      ],
+      "visibleRatio": 0.5089235672918184,
+      "marginPass": true,
+      "sha256": "6185179693ca65759061fe89480e65528d2594f67ba5668e03994a43aea4e519"
+    },
+    {
+      "file": "public/assets/market-stall-origami-v87.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bounds": [
+        128,
+        39,
+        1127,
+        1195
+      ],
+      "visibleRatio": 0.4847276593688077,
+      "marginPass": true,
+      "sha256": "0e9e425f25698842d2d05a62dde3d114254713e501c2a9d0a395bf681aec7fe7"
+    },
+    {
+      "file": "public/assets/market-lantern-pixel-v87.png",
+      "size": [
+        1106,
+        1422
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bounds": [
+        75,
+        107,
+        1031,
+        1330
+      ],
+      "visibleRatio": 0.44737247032552274,
+      "marginPass": true,
+      "sha256": "1ea76997406cf08f7e04e8dc40896e9bd0e5e8db74b0fe5b3f825074cf4e6847"
+    },
+    {
+      "file": "public/assets/market-lantern-origami-v87.png",
+      "size": [
+        1106,
+        1422
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bounds": [
+        50,
+        84,
+        1055,
+        1216
+      ],
+      "visibleRatio": 0.405641902116826,
+      "marginPass": true,
+      "sha256": "3d219779ba623d8bf86247f201c683fb9c9bfad1d70fb577a372963b40964b23"
+    }
+  ],
+  "usage": "Empty market stalls with actual inventory overlays; R market lantern display. Two style variants share geometry and rules.",
+  "qa": "Viewed generated art and actual in-game desktop/mobile screenshots; no pixel editing. Transparency checks alone do not prove object counts."
+}

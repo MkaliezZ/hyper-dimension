@@ -1,0 +1,17 @@
+/* V40 room planner: spatial conditions and per-piece actions. */
+.workshop-game .wk-room-checks{display:grid;gap:5px;margin:12px 0}
+.workshop-game .wk-room-checks p{display:flex;gap:8px;margin:0;padding:6px 8px;font-size:15px;line-height:1.45;border-bottom:1px solid #afa27b33;overflow-wrap:anywhere}
+.workshop-game .wk-room-checks i{flex:none;font-style:normal;width:17px;color:#a98465}
+.workshop-game .wk-room-checks .is-met{color:#4f7961;background:#d6e5cb3b}
+.workshop-game .wk-room-checks .is-met i{color:#4f7961}
+.workshop-game .wk-room-checks .is-unmet{color:#837157}
+.workshop-game .wk-room-route,.workshop-game .wk-room-selection{font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+.workshop-game .wk-room-piece{display:grid;grid-template-columns:42px 1fr;gap:3px 8px;align-items:center;text-align:left;padding:7px 9px!important}
+.workshop-game .wk-room-piece .wk-item-art{grid-row:1/3;width:40px;height:40px}
+.workshop-game .wk-room-piece small{font-size:13px;line-height:1.4;color:#8c785d}
+.workshop-game .wk-room-piece span{font-size:15px}
+.workshop-game [data-kind="interior"] .wk-furniture{grid-template-columns:1fr}
+.workshop-game[data-kind="interior"] .wk-furniture{display:grid;grid-template-columns:1fr;gap:7px}
+body[data-theme="pixel"] .workshop-game .wk-room-checks .is-met{background:#d3dfb943}
+body[data-theme="origami"] .workshop-game .wk-room-checks p{border-left:2px solid #b4a18144;background:#fff9ed48}
+@media(max-width:760px){.workshop-game[data-kind="interior"] .wk-furniture{grid-template-columns:1fr 1fr}.workshop-game .wk-room-piece{grid-template-columns:34px 1fr}.workshop-game .wk-room-piece .wk-item-art{width:32px;height:32px}.workshop-game .wk-room-checks p{font-size:15px}}

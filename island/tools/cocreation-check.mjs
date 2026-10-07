@@ -1,0 +1,6 @@
+import {readFile,stat} from 'node:fs/promises';import {resolve} from 'node:path';import {CO_CREATION_EXAMPLES,validateCoCreationPack} from '../src/cocreation.js';
+const checks=[],[major,minor]=process.versions.node.split('.').map(Number);checks.push({name:'Node.js 22.13+ or 23.4+',passed:major===22&&minor>=13||major===23&&minor>=4||major>=24,actual:process.versions.node});
+for(const file of ['server.mjs','src/cocreationUI.js','src/cocreation-v56.css','public/assets/cocreation/course-v1.md','public/assets/cocreation/student-workbook-v1.md','public/assets/island-pixel-v9.png','public/assets/island-origami-v9.png']){try{const s=await stat(resolve(file));checks.push({name:file,passed:s.isFile()&&s.size>0})}catch{checks.push({name:file,passed:false})}}
+for(const p of CO_CREATION_EXAMPLES){try{validateCoCreationPack(p);checks.push({name:p.id,passed:true})}catch(e){checks.push({name:p.id,passed:false,error:e.message})}}
+const report={kind:'Read-only course environment check; no AI call, secret read, save overwrite or service start.',checks,passed:checks.every(c=>c.passed),commands:['npm run dev:pixel','npm run dev:origami'],entry:'后台 → 共创工坊'};
+console.log(JSON.stringify(report,null,2));if(!report.passed)process.exitCode=1;

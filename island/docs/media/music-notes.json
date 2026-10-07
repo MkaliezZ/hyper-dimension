@@ -1,0 +1,16 @@
+{
+  "title": "Island Hours",
+  "composer": "Original procedural composition for Hyper Dimension",
+  "duration": 30,
+  "bpm": 96,
+  "meter": "4/4",
+  "bars": 12,
+  "instruments": [
+    "soft tine piano",
+    "mallet melody",
+    "rounded bass",
+    "brushed percussion"
+  ],
+  "samples": "All sounds synthesized here; no third-party recording, melody quotation or voice",
+  "license": "MIT, as first-party project media"
+}

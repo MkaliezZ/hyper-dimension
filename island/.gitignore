@@ -1,0 +1,7 @@
+data/
+.env.local
+.runtime/
+node_modules/
+qa/
+__pycache__/
+*.pyc

@@ -1,0 +1,62 @@
+{
+  "version": 41,
+  "date": "2026-10-04",
+  "scope": "Dedicated pottery workbench scenes and game-native kiln/glaze animation, not a claim that all action assets are complete.",
+  "tool": "Built-in image_gen (no CLI fallback)",
+  "assetPolicy": "New versioned original PNGs copied into project; original generated files and prior six-panel stage atlas preserved unchanged.",
+  "assets": [
+    {
+      "theme": "pixel",
+      "path": "public/assets/pottery-stage-pixel-v41.png",
+      "sourceFile": "exec-f9f9c02e-5a30-4cce-a861-d13f1b956afc.png",
+      "sha256": "79256b1b3d02465e156c4706be142f95c521fc5bc0599d785c88fdf14b31d518",
+      "prompt": "Use case: stylized-concept. Asset type: production-ready 16:9 landscape background for an interactive island pottery mini-game, 1920x1080 composition. Input image is STYLE REFERENCE ONLY: use its art quality and theme colors, do not reproduce any UI, lettering, game pottery vessel or controls. Create a dedicated beautiful ceramic atelier. Slight elevated frontal camera, warm coastal daylight. Ceramic tiles and a warm clay work surface, shelves of finished hand-made bowls and vases, three small glaze jars in muted sea teal, cream and rose, damp sponges, shaping ribbons and brushes at the outer edges. Main center from 25% to 75% width and 15% to 94% height is a calm clean EMPTY work surface for code-rendered pottery wheel and kiln animations. Edges have carefully composed authentic pottery details. No woodworking chisels, saws, wood chips, carpenter tools. No baked-in pottery wheel, no large central pot, no kiln (these animate in code), no characters, text, numbers, interface, border, watermark or logo. Entire image is one continuous room background, NOT a screenshot or asset sheet. Style/medium: elegant handcrafted pixel art matching the reference game: deliberate sharp pixel clusters, limited natural amber/terracotta/teal palette, crisp pixel texture, richly lit but readable. No blur, no photo, no smooth rendered 3D. Keep an orderly cozy working atmosphere.",
+      "inputRole": "style reference only; not an edit target",
+      "inputAtGeneration": "source-artifact:pixel-pottery-glaze-desktop.png",
+      "preservedReference": "qa/v41/initial-art-review/pixel-pottery-glaze-desktop.png",
+      "transparent": false
+    },
+    {
+      "theme": "origami",
+      "path": "public/assets/pottery-stage-origami-v41.png",
+      "sourceFile": "exec-b99a3059-c677-43e3-9da4-d3464c86ec23.png",
+      "sha256": "26f651ddfc6d3a3f23cd021564be76e2ce249422f0d41bf80498d439ac671fe7",
+      "prompt": "Use case: stylized-concept. Asset type: production-ready 16:9 landscape background for an interactive island pottery mini-game, 1920x1080 composition. Input image is STYLE REFERENCE ONLY: use its art quality and theme colors, do not reproduce any UI, lettering, game pottery vessel or controls. Create a dedicated beautiful ceramic atelier. Slight elevated frontal camera, warm coastal daylight. Ceramic tiles and a warm clay work surface, shelves of finished hand-made bowls and vases, three small glaze jars in muted sea teal, cream and rose, damp sponges, shaping ribbons and brushes at the outer edges. Main center from 25% to 75% width and 15% to 94% height is a calm clean EMPTY work surface for code-rendered pottery wheel and kiln animations. Edges have carefully composed authentic pottery details. No woodworking chisels, saws, wood chips, carpenter tools. No baked-in pottery wheel, no large central pot, no kiln (these animate in code), no characters, text, numbers, interface, border, watermark or logo. Entire image is one continuous room background, NOT a screenshot or asset sheet. Style/medium: elegant folded-paper origami diorama matching the reference game: softly faceted folded forms, tactile paper grain, cream/terracotta/sage palette, layered paper tiles and crisp folds. Soft directional shadow, beautiful coherent handcraft scene. Avoid photographic realism, plastic shine, pixel art, or a flat vector placeholder.",
+      "inputRole": "style reference only; not an edit target",
+      "inputAtGeneration": "source-artifact:origami-pottery-glaze-desktop.png",
+      "preservedReference": "qa/v41/initial-art-review/origami-pottery-glaze-desktop.png",
+      "transparent": false
+    }
+  ],
+  "codeNative": [
+    "continuous wheel/hand contact and silhouette shaping",
+    "three glaze colors applied only to their actual contacted bands",
+    "kiln brickwork, vent, fire, simulated temperature trace and translucent acceptable band",
+    "3.4-second vessel reveal and failure crack"
+  ],
+  "mechanics": {
+    "forms": 5,
+    "glazeBands": [
+      2,
+      3,
+      4
+    ],
+    "kilnStages": [
+      "heat",
+      "hold",
+      "anneal"
+    ],
+    "kilnSeconds": [
+      31,
+      38,
+      45
+    ],
+    "minimumQuality": [
+      "local shape check",
+      "assigned glaze purity",
+      "actual inertial thermal fidelity"
+    ],
+    "reward": "one original recipe after final claim and player craft; no interim coin or product"
+  },
+  "remaining": "All-action inventory, other venues' final visuals/sound, human game time, full license inventory and target-PC endurance remain under R12/R13/R17/R18."
+}

@@ -1,0 +1,33 @@
+{
+  "version": "V89",
+  "mode": "builtin-imagegen",
+  "at": "2026-10-06T14:30:35.179Z",
+  "assets": [
+    {
+      "file": "public/assets/couture-ribbon-pixel-v89.png",
+      "sha256": "27adb7f1bc86e0a59283159b73567e8163a2fce2eb96a004d9280804b34a9758",
+      "usage": "Earned R star-woven display, collection and garment shop courtyard"
+    },
+    {
+      "file": "public/assets/couture-ribbon-origami-v89.png",
+      "sha256": "1d26c65d0248ed3640b07e2e3bf952ffd9ee32a40446d8e141faa010093f5cf2",
+      "usage": "Earned R star-woven display, collection and garment shop courtyard"
+    },
+    {
+      "file": "public/assets/couture-stage-origami-v89.png",
+      "sha256": "e3f9809b70b08c1b7207f3f80c689f70828ba2c02f77716587841ab7fff166a1",
+      "usage": "Empty connected arch, actual dressed NPCs rendered independently"
+    },
+    {
+      "file": "public/assets/couture-stage-pixel-v89b.png",
+      "sha256": "8c5979d8fa6efb3c3c08276de8b485d5a094366ef23bf01a8be81fdf912a965d",
+      "usage": "Empty connected arch, actual dressed NPCs rendered independently"
+    }
+  ],
+  "superseded": {
+    "file": "public/assets/couture-stage-pixel-v89.png",
+    "reason": "Top finials touched canvas edge; regenerated with transparent safety margin."
+  },
+  "prompts": "qa/v89/art-prompts.json",
+  "notes": "Alpha preserved, no image cropping/resampling/recoloring; generated collectible torso and arch are separate from real NPC garment layers."
+}

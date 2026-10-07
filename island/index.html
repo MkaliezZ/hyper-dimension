@@ -1,0 +1,38 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Hyper Dimension · 晨光岛</title><link rel="stylesheet" href="/src/style.css"/><link rel="stylesheet" href="/src/hud.css"/><link rel="stylesheet" href="/src/content-ui.css"/><link rel="stylesheet" href="/src/life-v10.css"/><link rel="stylesheet" href="/src/ui-v16.css"/><link rel="stylesheet" href="/src/games-v18.css"/><link rel="stylesheet" href="/src/games-v19.css">
+<link rel="stylesheet" href="/src/games-v20.css">
+<link rel="stylesheet" href="/src/journey-v21.css">
+<link rel="stylesheet" href="/src/projects-v27.css">
+<link rel="stylesheet" href="/src/recruitment-v29.css">
+<link rel="stylesheet" href="/src/fishing-v30.css">
+<link rel="stylesheet" href="/src/collections-v33.css">
+<link rel="stylesheet" href="/src/placement-v34.css">
+<link rel="stylesheet" href="/src/equipment-v35.css">
+<link rel="stylesheet" href="/src/resident-stories-v36.css">
+<link rel="stylesheet" href="/src/specialization-v37.css">
+<link rel="stylesheet" href="/src/sound-v38.css">
+<link rel="stylesheet" href="/src/games-v39.css">
+<link rel="stylesheet" href="/src/games-v40.css">
+  <link rel="stylesheet" href="/src/games-v41.css">
+<link rel="stylesheet" href="/src/admin-v42.css">
+<link rel="stylesheet" href="/src/runtime-v43.css">
+<link rel="stylesheet" href="/src/workbench-v44.css">
+<link rel="stylesheet" href="/src/functional-v45.css">
+<link rel="stylesheet" href="/src/gather-v46.css">
+<link rel="stylesheet" href="/src/cocreation-v56.css">
+<link rel="stylesheet" href="/src/market-v87.css"/>
+<link rel="stylesheet" href="/src/couture-v89.css"/>
+<link rel="stylesheet" href="/src/fireworks-v90.css">
+<link rel="stylesheet" href="/src/party-guide-v91.css">
+<link rel="stylesheet" href="/src/cooperation-v92.css">
+<link rel="stylesheet" href="/src/party-hosting-v93.css">
+<link rel="stylesheet" href="/src/save-import-v95.css">
+</head>
+<body data-theme="__DEFAULT_THEME__"><div id="app"><main class="game-column"><div class="viewport" id="viewport"><canvas id="game" aria-label="可交互的小岛游戏画面"></canvas><div class="map-badge" id="mapBadge">拖拽地图 · 滚轮缩放 · 点击目的地寻路</div><div id="toast" class="toast hidden"></div></div></main>
+<header class="topbar hud-panel"><div class="brand"><span class="brand-mark">✦</span><div><b>晨光岛</b><small>HYPER DIMENSION</small><button class="scene-button hidden" id="sceneBack">← 返回小岛</button></div></div><div class="top-center"><span class="weather">☀ 第 <b id="day">1</b> 天</span><span class="money">✦ <b id="coins">120</b></span></div></header>
+<nav class="game-toolbar hud-panel" aria-label="岛屿功能入口"><strong id="placeName">晨光岛</strong><div class="toolbar-actions"><button id="playerBtn">角色</button><button id="stewardBtn" title="岛屿管家 · 委托、档案与形象" aria-label="管家">管家</button><button id="residentsBtn">居民</button><button id="gatherBtn">采集</button><button id="recipesBtn">配方</button><button id="businessBtn">经营</button><button id="adminBtn">后台</button><button id="helpBtn" aria-label="帮助">？</button></div></nav>
+<nav class="theme-switch hud-panel" aria-label="画风切换"><button id="themePixel" aria-pressed="false">像素</button><button id="themeOrigami" aria-pressed="false">折纸</button></nav>
+<button id="mobileJournal" aria-label="打开岛屿手账">岛屿手账</button><aside class="quest-panel hud-panel"><div class="section-title">岛屿手账 <span id="sceneLabel">小岛</span><button id="questToggle" aria-label="收起手账">−</button></div><div id="questList" class="quest-list"></div><div class="side-footer"><span id="saveStatus">正在读取存档</span><span>建筑 <b id="builtCount">2</b>/25 · 活动 <b id="activityCount">0</b></span></div></aside>
+<aside id="businessPanel" class="business-panel hud-panel"><div class="section-title">海岛营业 <span>25 座开放</span><button id="businessToggle" aria-label="收起营业概览" aria-expanded="true">−</button></div><div class="business-stats"><span>今日预计净入账<b id="businessIncome">0</b></span><span>旅人<b id="visitorCount">0</b></span><span>品质<b id="islandQuality">45</b></span><span>评价<b id="businessRating">3.4</b></span></div><small id="visitorSummary">渡船定时靠泊</small><button id="portBtn">前往客运码头</button></aside><aside id="residentPanel" class="resident-panel hud-panel hidden"><div class="section-title">岛上居民 <button id="residentClose" aria-label="关闭居民">×</button></div><div id="residentList" class="residents"></div></aside>
+<aside class="event-panel hud-panel"><div class="section-title">岛上的声音</div><div id="eventFeed" class="event-feed"></div></aside>
+<div class="zoom-panel hud-panel"><button id="soundBtn" aria-label="声音设置" title="声音设置"></button><button id="mapBtn" title="回到岛屿" aria-label="回到岛屿">⌂</button><button id="zoomOut" aria-label="缩小地图">−</button><span id="zoomLabel">100%</span><button id="zoomIn" aria-label="放大地图">+</button><button id="cameraHome" title="居中地图">◎</button></div>
+<footer class="bottom-bar hud-panel"><div class="quick-actions"><button data-go="forest">林地</button><button data-go="farm">农田</button><button data-go="mine">矿洞</button><button data-go="plaza">广场</button><button data-go="workshop">工坊</button></div><div id="inventory" class="inventory"></div><div class="hud-main-actions"><button id="bagBtn">背包</button><button id="buildBtn">建造</button><button id="partyBtn">派对</button></div></footer><div id="modalRoot"></div></div><script type="module" src="/src/app.js"></script></body></html>

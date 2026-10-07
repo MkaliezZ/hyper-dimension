@@ -1,0 +1,72 @@
+import {applyCoutureEvent,currentCoutureBrief,coutureReview,coutureSummary,COUTURE_CLOTHES,COUTURE_SLOTS} from './coutureRules.js';
+import {ITEM_BY_ID} from './contentCatalog.js';
+import {itemMarkup} from './artStore.js';
+import {drawAnimatedCharacter} from './characters.js';
+import {coutureStageImage} from './coutureArt.js';
+import {esc} from './journeyUI.js';
+const slots={body:'主服',head:'头饰',outer:'披肩 / 斗篷',hands:'手套',apron:'围裙',bottom:'下装'},poses={wave:'挥手',turn:'转身',bow:'致意'};
+export function mountCouture(root,ticket,controls,{theme,profile,portrait,ready,arrived,model,layout,sound=()=>{},burst=()=>{}}){
+ const game=structuredClone(ticket.game);let ended=false,transport=false,paused=false,last=0,frame=0,lastEffect=0,roundKey='',outfitKey='',reportsKey='',quitting=false,poseAt=-99,poseName=null;
+ root.innerHTML='<section class="couture-play" data-theme="'+theme+'"><header class="couture-scoreboard"><div><small>ISLAND ATELIER / A SHOW TO REMEMBER</small><h3>把海岛的颜色，穿成自己的故事</h3><p id="coutureStatus" role="status"></p></div><div class="couture-badges"><span>展示 <b id="coutureRound">1</b> / 3</span><span>亮拍 <b id="coutureHits">0</b> / 12</span><span>本轮 <b id="coutureTime">—</b></span></div></header>'+
+ '<div class="couture-main"><section class="couture-scenery"><canvas id="coutureCanvas" aria-label="实际居民穿着本轮服装登台展示"></canvas><div class="couture-model-caption" id="coutureCaption"></div><div class="couture-cues" id="coutureCues" aria-label="四个姿态亮拍"></div><div class="couture-pose-controls">'+['wave','turn','bow'].map(p=>'<button class="secondary couture-pose" data-couture-pose="'+p+'"><i class="couture-pose-art pose-'+p+'" aria-hidden="true"></i><span>'+poses[p]+'</span><kbd>'+{wave:'1',turn:'2',bow:'3'}[p]+'</kbd></button>').join('')+'</div><p class="couture-feedback" id="coutureFeedback" role="status">每位居民都有不同的场合要求。先看主题，再搭配，登台后跟随亮拍做姿态。</p></section>'+
+ '<section class="couture-styling"><div id="coutureBrief"></div><div class="couture-criteria"><span>额度 <b id="coutureBudget">0</b></span><span>舒适 <b id="coutureComfort">0</b></span><span>主题 <b id="coutureStyle">0</b></span></div><p class="couture-unmet" id="coutureUnmet"></p><div class="couture-wardrobe" aria-label="本场真实服装">'+COUTURE_SLOTS.map(slot=>'<fieldset><legend>'+slots[slot]+(['body','head','outer'].includes(slot)?' · 必选':' · 可选')+'</legend><div class="couture-clothes">'+game.wardrobe.filter(id=>COUTURE_CLOTHES.find(i=>i.id===id).slot===slot).map(id=>{const i=COUTURE_CLOTHES.find(i=>i.id===id);return '<button class="couture-garment" data-couture-wear="'+id+'" aria-pressed="false">'+itemMarkup(id,theme,'couture-item-art')+'<span>'+esc(ITEM_BY_ID[id].name)+'</span><small>额度 '+i.cost+' · 舒适 '+i.comfort+'</small><em data-couture-tag="'+id+'"></em></button>';}).join('')+'</div><button class="couture-remove" data-couture-remove="'+slot+'">取下'+slots[slot]+'</button></fieldset>').join('')+'</div><div class="couture-advance"><button class="primary" id="coutureStart">等大家到齐</button><button class="primary hidden" id="coutureSubmit">造型完成 · 沿秀道登台</button></div></section></div>'+
+ '<section id="coutureReports" class="couture-reports"></section><section id="coutureResults" class="couture-results hidden"></section><footer class="couture-controls"><button class="primary hidden" id="coutureClaim">领取收益 · 收好服装</button><button class="secondary" id="couturePause">暂停本场</button><button class="secondary" id="coutureCancel">结束本场 · 归还服装</button></footer></section>';
+ const q=id=>root.querySelector('#'+id),text=(el,value)=>{if(el.textContent!==value)el.textContent=value;},locked=()=>transport||paused,emit=e=>{applyCoutureEvent(game,e);controls.trace(e);};
+ const canvas=q('coutureCanvas'),ctx=canvas.getContext('2d');canvas.width=720*Math.min(2,devicePixelRatio||1);canvas.height=430*Math.min(2,devicePixelRatio||1);
+ const drawActor={x:360,y:380,phase:0,walkMix:0,facing8:null};const judgeActors=[13,7,2].map((id,i)=>({x:155+i*205,y:422,npcId:id,direction:Math.PI/2,phase:0}));
+ function draw(ts){
+  const d=canvas.width/720;ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,720,430);ctx.imageSmoothingEnabled=theme!=='pixel';
+  const sky=ctx.createLinearGradient(0,0,0,430);sky.addColorStop(0,theme==='pixel'?'#254e58':'#b2c2b6');sky.addColorStop(.78,theme==='pixel'?'#488675':'#d9d3bd');sky.addColorStop(1,theme==='pixel'?'#1e514c':'#b3bdae');ctx.fillStyle=sky;ctx.fillRect(0,0,720,430);
+  const im=coutureStageImage(theme);if(im.complete&&im.naturalWidth){const h=365,w=h*im.naturalWidth/im.naturalHeight;ctx.drawImage(im,360-w/2,15,w,h);}
+  ctx.fillStyle='#ffffff20';for(let i=0;i<10;i++){const x=55+i*69,y=40+Math.sin(ts*.0006+i*1.7)*11;ctx.fillRect(x,y,theme==='pixel'?3:2,3);}
+  const brief=currentCoutureBrief(game),live=model(brief.npcId),walking=game.phase==='walking',showing=['showing','review'].includes(game.phase),age=ts/1000-poseAt;
+  Object.assign(drawActor,{npcId:brief.npcId,garments:Object.values(game.outfit).filter(Boolean),appearance:null,phase:live?.phase??ts/110,direction:showing&&age<.85&&poseName==='turn'?Math.PI/2+Math.PI*2*age/.85:walking?(live?.direction??Math.PI/2):Math.PI/2,walkMix:walking?(live?.walkMix||.7):0,walking,action:age<.85&&game.phase==='showing'?{type:poseName==='wave'?'celebrate':'couture',couturePose:poseName,t:age,duration:.85}:null});
+  const from=live&&walking?Math.min(1,Math.hypot(live.x-layout.buyers[3].x,live.y-layout.buyers[3].y)/100):0;drawActor.x=360-from*190;drawActor.y=362+from*12;
+  drawAnimatedCharacter(ctx,drawActor,theme,profile(brief.npcId).color,true,ts/1000,2.05);
+  for(const a of judgeActors){a.action={type:game.phase==='review'?'celebrate':'observe',t:(ts/1000+a.npcId*.1)%1.8,duration:1.8};drawAnimatedCharacter(ctx,a,theme,profile(a.npcId).color,true,ts/1000,.60);}
+  const lit=game.phase==='showing'&&Math.abs(game.clock%1.8-.9)<=(game.difficulty==='easy'?.7:.42);ctx.strokeStyle=lit?'#fff0a4':'#cf9b7460';ctx.lineWidth=lit?4:2;ctx.beginPath();ctx.ellipse(360,365,85,18,0,0,Math.PI*2);ctx.stroke();
+ }
+ function effects(ts){
+  if(!game.effect||game.effect.id===lastEffect)return;lastEffect=game.effect.id;const e=game.effect;
+  const feedback={start:'先满足居民的场合要求；选同一套完整造型重复上场，会降低创意得分。',wear:'真实服装已穿到本轮居民身上。单件连体主服不能再搭下装。',walk:'造型已确认。模特沿真实道路登台，走路不消耗姿态时间。',show:'四个姿态已经预告。光环亮起时，点击对应动作或按 1 / 2 / 3。',pose:'亮拍命中！这个自信的姿态，会记入本轮评分。',early:'还没到亮拍。先观察光环，过早操作会影响舞台表现。',miss:'动作和提示不符。看清下一拍的姿态再操作。',review:'展示完成。三位评审分别看主题、镜头表现与舒适度。',round:'本轮评审完成。模特回到等候位后，再开始下一位。',result:'三位居民已完成本场。收益按实际品质结算，服装归还背包。',invalid:game.status};
+  if(feedback[e.type])text(q('coutureFeedback'),feedback[e.type]);
+  if(e.type==='pose'){poseAt=ts/1000;poseName=e.pose;sound('star');burst();}
+  else if(e.type==='wear')sound('collect');else if(['early','miss','invalid'].includes(e.type))sound('error');else if(e.type==='round'||e.type==='result')sound('star');
+ }
+ function paint(ts=performance.now()){
+  if(ended)return;const brief=currentCoutureBrief(game),review=coutureReview(game.outfit,brief),summary=coutureSummary(game),starting=['checkin','intermission'].includes(game.phase),styling=game.phase==='styling',finished=game.phase==='results',key=game.round+'|'+game.phase;
+  text(q('coutureRound'),String(game.round+1));text(q('coutureHits'),String(summary.poseHits+(game.show&&game.phase!=='intermission'&&game.phase!=='results'?game.show.hits.filter(Boolean).length:0)));
+  text(q('coutureTime'),styling?Math.max(0,brief.seconds-game.clock).toFixed(1)+'秒':game.phase==='showing'?Math.max(0,7.2-game.clock).toFixed(1)+'秒':'—');
+  text(q('coutureStatus'),transport?'正在确认本场进度…':paused?'已暂停；计时和亮拍暂停。':starting?(ready()?'居民与岛主已在各自位置，可以开始。':'居民收尾工作后沿道路赴约；所有人到自己的席位才能开始。'):game.phase==='walking'?'真实居民正在沿秀道登台。':game.phase==='review'?'三位评审正在给本轮造型打分。':finished?'三轮结束，确认结算后领取收益和归还服装。':styling?'按场合要求搭配实际服装；造型额度不消耗岛币。':'跟随四拍提示，光环亮起时做对应姿态。');
+  if(roundKey!==key){
+   roundKey=key;q('coutureBrief').innerHTML='<div class="couture-client"><div class="couture-client-portrait">'+portrait(brief.npcId)+'</div><div><small>第 '+(game.round+1)+' 位 / '+esc(brief.themeName)+'</small><h4>'+esc(profile(brief.npcId).name)+'</h4><p>'+esc(brief.request)+'</p></div></div><p class="couture-accent">重点：'+(brief.accent?slots[brief.accent.slot]+'的主题属性至少 '+brief.accent.minimum:'完整协调的三件造型')+'；虚拟造型额度 '+brief.budget+'，舒适至少 '+brief.comfort+'，主题至少 '+brief.style+'。</p>';
+   q('coutureCues').innerHTML=brief.cues.map((p,i)=>'<span class="couture-cue" data-couture-beat="'+i+'"><small>'+(i+1)+'</small><i class="couture-pose-art pose-'+p+'" aria-hidden="true"></i><b>'+poses[p]+'</b><em></em></span>').join('');
+   root.querySelectorAll('[data-couture-tag]').forEach(el=>{const i=COUTURE_CLOTHES.find(i=>i.id===el.dataset.coutureTag);text(el,'本轮主题 +'+i.tags[brief.theme]);});
+  }
+  text(q('coutureCaption'),profile(brief.npcId).name+' / '+brief.themeName+' / '+({checkin:'赴约中',styling:'造型准备',walking:'沿秀道登台',showing:'四拍展示',review:'评审时刻',intermission:'下一位即将上场',results:'本场已完成'})[game.phase]);
+  text(q('coutureBudget'),review.cost+' / '+brief.budget);text(q('coutureComfort'),review.comfort+' / '+brief.comfort);text(q('coutureStyle'),review.style+' / '+brief.style);q('coutureUnmet').classList.toggle('met',review.complete);text(q('coutureUnmet'),review.complete?'造型符合全部约定。':review.unmet.join(' · '));
+  const outfit=JSON.stringify(game.outfit);if(outfit!==outfitKey){outfitKey=outfit;root.querySelectorAll('[data-couture-wear]').forEach(b=>{const selected=Object.values(game.outfit).includes(b.dataset.coutureWear);b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});}
+  root.querySelectorAll('[data-couture-wear]').forEach(b=>b.disabled=locked()||!styling);root.querySelectorAll('[data-couture-remove]').forEach(b=>b.disabled=locked()||!styling||!game.outfit[b.dataset.coutureRemove]);
+  q('coutureStart').classList.toggle('hidden',!starting);q('coutureStart').disabled=locked()||!ready();text(q('coutureStart'),game.phase==='checkin'?'大家已到齐 · 第一位开始':'模特已归位 · 下一位开始');q('coutureSubmit').classList.toggle('hidden',!styling);q('coutureSubmit').disabled=locked()||!review.complete;
+  for(let i=0;i<4;i++){const el=root.querySelector('[data-couture-beat="'+i+'"]'),beat=Math.min(3,Math.floor(game.clock/1.8)),lit=game.phase==='showing'&&beat===i&&Math.abs(game.clock-(i*1.8+.9))<=(game.difficulty==='easy'?.7:.42);el.classList.toggle('lit',lit);el.classList.toggle('hit',!!game.show?.hits[i]);el.classList.toggle('missed',!!game.show?.attempts[i]&&!game.show.hits[i]);el.style.setProperty('--beat-progress',String(game.phase==='showing'?Math.min(1,Math.max(0,(game.clock-i*1.8)/1.8)):0));}
+  root.querySelectorAll('[data-couture-pose]').forEach(b=>b.disabled=locked()||game.phase!=='showing');
+  const reportKey=JSON.stringify(game.reports);if(reportKey!==reportsKey){reportsKey=reportKey;q('coutureReports').innerHTML=game.reports.map(r=>'<article><small>第 '+(r.index+1)+' 位 · '+esc(profile(r.npcId).name)+'</small><strong>'+r.quality+'<em> / 100</em></strong><p>'+ (r.outcome==='timeout'?'造型未在限时内完成':r.judges.map(j=>profile(j.npcId).name+' '+j.score+'分').join(' · '))+'</p><span>主题 '+r.style+' · 舞台 '+r.stage+' · 舒适 '+r.comfort+(r.repeat?' · 重复造型 −'+r.repeat*8:'')+'</span></article>').join('');}
+  q('coutureResults').classList.toggle('hidden',!finished);if(finished&&!q('coutureResults').childElementCount)q('coutureResults').innerHTML='<div><small>THE CURTAIN CALL</small><h3>'+ (summary.passed?'这一场，每个人都闪闪发光':'收好这一场的造型经验')+'</h3><p>平均品质 '+summary.quality+' / 100 · 亮拍 '+summary.poseHits+' / 12 · 收益 '+summary.reward+' 岛币</p><p>'+ (summary.passed?'首次合格穿搭大会可得 R 星织展示台，到「收藏」陈列于服装店庭院。':'需三位完成展示、平均品质65分、亮拍至少6次才获得纪念品；实际品质收益仍会结算。')+'</p></div><ol>'+summary.rank.map(r=>'<li>'+esc(profile(r.npcId).name)+' <b>'+r.quality+'分</b></li>').join('')+'</ol>';
+  q('coutureClaim').classList.toggle('hidden',!finished);q('coutureClaim').disabled=transport;q('coutureCancel').disabled=transport;q('couturePause').classList.toggle('hidden',finished);text(q('couturePause'),paused?'继续本场':'暂停本场');effects(ts);
+ }
+ function pose(p){if(locked()||game.phase!=='showing')return;emit({action:{type:'pose',item:p}});paint();}
+ root.querySelectorAll('[data-couture-wear]').forEach(b=>b.onclick=()=>{if(locked()||game.phase!=='styling')return;emit({action:{type:'wear',item:b.dataset.coutureWear}});paint();});
+ root.querySelectorAll('[data-couture-remove]').forEach(b=>b.onclick=()=>{if(locked()||game.phase!=='styling')return;emit({action:{type:'remove',item:b.dataset.coutureRemove}});paint();});
+ root.querySelectorAll('[data-couture-pose]').forEach(b=>b.onclick=()=>pose(b.dataset.couturePose));
+ q('coutureStart').onclick=()=>{if(locked()||!ready())return;emit({action:{type:'start'}});controls.saveOutcome();paint();};
+ q('coutureSubmit').onclick=()=>{if(locked()||game.phase!=='styling')return;emit({action:{type:'submit'}});controls.saveOutcome();paint();};
+ q('couturePause').onclick=()=>{paused=!paused;last=0;controls.saveOutcome();paint();};
+ q('coutureClaim').onclick=()=>{if(!transport&&game.phase==='results')controls.claim();};
+ q('coutureCancel').onclick=()=>{if(transport)return;if(!quitting){quitting=true;paused=true;controls.saveOutcome();text(q('coutureCancel'),'确认结束 · 场地费不退');paint();return;}controls.exit();};
+ function pause(){paused=true;last=0;controls.saveOutcome();paint();}
+ const visibility=()=>{if(document.hidden)pause();},key=e=>{if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)||e.repeat)return;const p={'1':'wave','2':'turn','3':'bow'}[e.key];if(p){e.preventDefault();pose(p);}};
+ window.addEventListener('blur',pause);document.addEventListener('visibilitychange',visibility);window.addEventListener('keydown',key);
+ function tick(ts){if(ended)return;const dt=last?Math.min(.05,Math.max(0,(ts-last)/1000)):0;last=ts;if(!paused&&!transport){if(game.phase==='walking'&&arrived(currentCoutureBrief(game).npcId)){emit({action:{type:'arrive',index:currentCoutureBrief(game).npcId}});controls.saveOutcome();}if(!transport&&dt&&['styling','showing','review'].includes(game.phase))emit({dt});}paint(ts);draw(ts);frame=requestAnimationFrame(tick);}
+ paint();frame=requestAnimationFrame(tick);
+ return{inspect:()=>({kind:'couture-party',game,paused,transport}),setTransportPaused(v){transport=v;last=0;paint();},destroy(){if(ended)return;ended=true;cancelAnimationFrame(frame);window.removeEventListener('blur',pause);document.removeEventListener('visibilitychange',visibility);window.removeEventListener('keydown',key);controls.saveOutcome();}};
+}

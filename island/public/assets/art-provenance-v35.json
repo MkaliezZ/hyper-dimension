@@ -1,0 +1,221 @@
+{
+  "version": 35,
+  "tool": "built-in image_gen",
+  "purpose": "12 actual modular garments, dual-theme, 5 canonical headings mirrored to 8, preserve avatar identity",
+  "prompts": [
+    {
+      "theme": "pixel",
+      "pack": 0,
+      "items": [
+        "outfit",
+        "c4_1",
+        "c4_2"
+      ],
+      "prompt": "Use case: stylized-concept. Production asset: a TRANSPARENT modular clothing sprite atlas for Hyper Dimension. Reference image 1 shows the existing world character proportions and 5 directions; reference image 2 shows the actual item icons to match. Create garments only, never a new character. Exactly 5 equal columns x 3 equal rows, 15 separate sprites, generous transparent gutters; no text, grid lines, shadows, labels, floor or background. Every row repeats one garment consistently. Columns in EXACT order: facing viewer/front; front-right three-quarter (looking toward RIGHT edge); right profile; back-right three-quarter; full back. Left-side views are mirrored in code. Match reference world-sprite short torso/legs and relaxed arms, made for smooth articulated animation. Detailed cozy pixel game art with crisp stepped edges, tiny embroidered accents, warm restrained shading, precisely match the reference game's palette. Row 1: Full body replacement: festive lavender-purple dress, cream layered ruffle hem, purple bow at collar and waist, short puff sleeves, brown ankle boots. Neck down only; sleeves end in empty open cuffs, no hands. Row 2: Full body replacement: cream linen lace-up shirt with leaf embroidery, rolled sleeves, navy trousers and brown work boots. Neck down only; empty cuffs, no hands. Row 3: Overlay only: moss-green cotton apron with cream flower embroidery and two large cream pockets, shoulder straps and tied bow at the back. No underlying shirt, trousers, limbs, boots or mannequin. Keep full-body replacements compact neck-to-feet (the lower half of a reference sprite); apron is fitted to exactly the same torso. All cells same scale and perspective. Actual transparent alpha. No face, head, hair, skin, arms, invisible mannequin, hanger, mannequin stand, screenshot or UI."
+    },
+    {
+      "theme": "origami",
+      "pack": 0,
+      "items": [
+        "outfit",
+        "c4_1",
+        "c4_2"
+      ],
+      "prompt": "Use case: stylized-concept. Production asset: a TRANSPARENT modular clothing sprite atlas for Hyper Dimension. Reference image 1 shows the existing world character proportions and 5 directions; reference image 2 shows the actual item icons to match. Create garments only, never a new character. Exactly 5 equal columns x 3 equal rows, 15 separate sprites, generous transparent gutters; no text, grid lines, shadows, labels, floor or background. Every row repeats one garment consistently. Columns in EXACT order: facing viewer/front; front-right three-quarter (looking toward RIGHT edge); right profile; back-right three-quarter; full back. Left-side views are mirrored in code. Match reference world-sprite short torso/legs and relaxed arms, made for smooth articulated animation. Elegant folded-paper origami art, crisp paper facets, paper thickness and visible fold planes, soft left-top light, precisely match the reference game's palette. Row 1: Full body replacement: festive lavender-purple dress, cream layered ruffle hem, purple bow at collar and waist, short puff sleeves, brown ankle boots. Neck down only; sleeves end in empty open cuffs, no hands. Row 2: Full body replacement: cream linen lace-up shirt with leaf embroidery, rolled sleeves, navy trousers and brown work boots. Neck down only; empty cuffs, no hands. Row 3: Overlay only: moss-green cotton apron with cream flower embroidery and two large cream pockets, shoulder straps and tied bow at the back. No underlying shirt, trousers, limbs, boots or mannequin. Keep full-body replacements compact neck-to-feet (the lower half of a reference sprite); apron is fitted to exactly the same torso. All cells same scale and perspective. Actual transparent alpha. No face, head, hair, skin, arms, invisible mannequin, hanger, mannequin stand, screenshot or UI."
+    },
+    {
+      "theme": "pixel",
+      "pack": 1,
+      "items": [
+        "c4_3",
+        "c4_4",
+        "c4_10"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent modular clothing sprite atlas for Hyper Dimension. Image 1: style and world character body/proportions reference. Image 2: item icons, keep the SAME garment motifs. Exactly FIVE equal columns and THREE equal rows, 15 sprites, generous empty gutters. Columns in order: front; FRONT-RIGHT three-quarter (face to the RIGHT edge); right profile; BACK-RIGHT three-quarter; full back. Each row one consistent garment/accessory. Left views are mirrored in game. Crisp cozy pixel game art, warm palette, stepped edges and tiny embroidery to match the existing sprites. Row 1: Accessory only: wide natural straw hat, sea-blue ribbon tied in a bow, small cream daisy. Five viewing directions as if worn on the reference character's head, no head or hair. Row 2: Accessory only: a PAIR of brown leather work gloves, wrists down, fingers relaxed and curved inward. Left glove on left, right glove on right, sufficient transparent separation. Five matching viewing directions, no arms or person. Row 3: Accessory only: pearl-and-cream-shell hair comb with tiny cream daisies, golden teeth. Five views as worn at the right temple, no head or hair. Fit the short neck-to-feet body proportions of the reference, relaxed neutral pose. NO head, face, hair, skin, mannequin, clothes hanger, people, typography, grid lines, UI, floor, cast shadow or visible background. Preserve front/back/right direction faithfully. The WHOLE canvas outside the garments must be completely transparent alpha, not a colored gradient, studio backdrop, black/white rectangle, checkerboard graphic or scenery. All 15 cells separated and centered consistently. Transparent PNG for direct sprite compositing."
+    },
+    {
+      "theme": "pixel",
+      "pack": 2,
+      "items": [
+        "c4_5",
+        "c4_6",
+        "c4_7"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent modular clothing sprite atlas for Hyper Dimension. Image 1: style and world character body/proportions reference. Image 2: item icons, keep the SAME garment motifs. Exactly FIVE equal columns and THREE equal rows, 15 sprites, generous empty gutters. Columns in order: front; FRONT-RIGHT three-quarter (face to the RIGHT edge); right profile; BACK-RIGHT three-quarter; full back. Each row one consistent garment/accessory. Left views are mirrored in game. Crisp cozy pixel game art, warm palette, stepped edges and tiny embroidery to match the existing sprites. Row 1: Overlay only: pale pink floral shawl with cream scalloped fringe, draped over shoulders and upper arms, front opening and triangle at the back. No person, no inner clothes or limbs. Row 2: Overlay only: midnight navy cape with small golden stars and fine gold border, clasp below neck, front open, triangular flowing back. No head or person, no underlying clothes or limbs. Row 3: Overlay only: ocean-blue and cream vertical striped pleated skirt, cream frill at hem, blue waistband and golden buttons. Empty waist opening, no legs, shoes or person. Fit the short neck-to-feet body proportions of the reference, relaxed neutral pose. NO head, face, hair, skin, mannequin, clothes hanger, people, typography, grid lines, UI, floor, cast shadow or visible background. Preserve front/back/right direction faithfully. The WHOLE canvas outside the garments must be completely transparent alpha, not a colored gradient, studio backdrop, black/white rectangle, checkerboard graphic or scenery. All 15 cells separated and centered consistently. Transparent PNG for direct sprite compositing."
+    },
+    {
+      "theme": "pixel",
+      "pack": 3,
+      "items": [
+        "c4_8",
+        "c4_9",
+        "c4_11"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent modular clothing sprite atlas for Hyper Dimension. Image 1: style and world character body/proportions reference. Image 2: item icons, keep the SAME garment motifs. Exactly FIVE equal columns and THREE equal rows, 15 sprites, generous empty gutters. Columns in order: front; FRONT-RIGHT three-quarter (face to the RIGHT edge); right profile; BACK-RIGHT three-quarter; full back. Each row one consistent garment/accessory. Left views are mirrored in game. Crisp cozy pixel game art, warm palette, stepped edges and tiny embroidery to match the existing sprites. Row 1: Full body replacement: deep rose-red formal dress, layered cream lace hem, rose fabric flower at hip and bodice, puff sleeves, cream ankle boots. Neck down only, empty cuffs and no hands. Row 2: Full body replacement: navy sailor uniform, cream blouse and striped sailor collar, navy ribbon, golden anchor buttons, navy trousers and tan ankle boots. Neck down only, empty cuffs and no hands. Row 3: Full body replacement: pearlescent iridescent dance dress, lilac and aqua panels, delicate gold lines, airy layered skirt, silver ankle boots. Neck down only, empty sleeve cuffs, no hands. Fit the short neck-to-feet body proportions of the reference, relaxed neutral pose. NO head, face, hair, skin, mannequin, clothes hanger, people, typography, grid lines, UI, floor, cast shadow or visible background. Preserve front/back/right direction faithfully. The WHOLE canvas outside the garments must be completely transparent alpha, not a colored gradient, studio backdrop, black/white rectangle, checkerboard graphic or scenery. All 15 cells separated and centered consistently. Transparent PNG for direct sprite compositing."
+    },
+    {
+      "theme": "origami",
+      "pack": 1,
+      "items": [
+        "c4_3",
+        "c4_4",
+        "c4_10"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent modular clothing sprite atlas for Hyper Dimension. Image 1: style and world character body/proportions reference. Image 2: item icons, keep the SAME garment motifs. Exactly FIVE equal columns and THREE equal rows, 15 sprites, generous empty gutters. Columns in order: front; FRONT-RIGHT three-quarter (face to the RIGHT edge); right profile; BACK-RIGHT three-quarter; full back. Each row one consistent garment/accessory. Left views are mirrored in game. Beautiful folded-paper origami art, crisp low-poly paper planes and folds, warm restrained left-top lighting. Row 1: Accessory only: wide natural straw hat, sea-blue ribbon tied in a bow, small cream daisy. Five viewing directions as if worn on the reference character's head, no head or hair. Row 2: Accessory only: a PAIR of brown leather work gloves, wrists down, fingers relaxed and curved inward. Left glove on left, right glove on right, sufficient transparent separation. Five matching viewing directions, no arms or person. Row 3: Accessory only: pearl-and-cream-shell hair comb with tiny cream daisies, golden teeth. Five views as worn at the right temple, no head or hair. Fit the short neck-to-feet body proportions of the reference, relaxed neutral pose. NO head, face, hair, skin, mannequin, clothes hanger, people, typography, grid lines, UI, floor, cast shadow or visible background. Preserve front/back/right direction faithfully. The WHOLE canvas outside the garments must be completely transparent alpha, not a colored gradient, studio backdrop, black/white rectangle, checkerboard graphic or scenery. All 15 cells separated and centered consistently. Transparent PNG for direct sprite compositing."
+    },
+    {
+      "theme": "origami",
+      "pack": 2,
+      "items": [
+        "c4_5",
+        "c4_6",
+        "c4_7"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent modular clothing sprite atlas for Hyper Dimension. Image 1: style and world character body/proportions reference. Image 2: item icons, keep the SAME garment motifs. Exactly FIVE equal columns and THREE equal rows, 15 sprites, generous empty gutters. Columns in order: front; FRONT-RIGHT three-quarter (face to the RIGHT edge); right profile; BACK-RIGHT three-quarter; full back. Each row one consistent garment/accessory. Left views are mirrored in game. Beautiful folded-paper origami art, crisp low-poly paper planes and folds, warm restrained left-top lighting. Row 1: Overlay only: pale pink floral shawl with cream scalloped fringe, draped over shoulders and upper arms, front opening and triangle at the back. No person, no inner clothes or limbs. Row 2: Overlay only: midnight navy cape with small golden stars and fine gold border, clasp below neck, front open, triangular flowing back. No head or person, no underlying clothes or limbs. Row 3: Overlay only: ocean-blue and cream vertical striped pleated skirt, cream frill at hem, blue waistband and golden buttons. Empty waist opening, no legs, shoes or person. Fit the short neck-to-feet body proportions of the reference, relaxed neutral pose. NO head, face, hair, skin, mannequin, clothes hanger, people, typography, grid lines, UI, floor, cast shadow or visible background. Preserve front/back/right direction faithfully. The WHOLE canvas outside the garments must be completely transparent alpha, not a colored gradient, studio backdrop, black/white rectangle, checkerboard graphic or scenery. All 15 cells separated and centered consistently. Transparent PNG for direct sprite compositing."
+    },
+    {
+      "theme": "origami",
+      "pack": 3,
+      "items": [
+        "c4_8",
+        "c4_9",
+        "c4_11"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent modular clothing sprite atlas for Hyper Dimension. Image 1: style and world character body/proportions reference. Image 2: item icons, keep the SAME garment motifs. Exactly FIVE equal columns and THREE equal rows, 15 sprites, generous empty gutters. Columns in order: front; FRONT-RIGHT three-quarter (face to the RIGHT edge); right profile; BACK-RIGHT three-quarter; full back. Each row one consistent garment/accessory. Left views are mirrored in game. Beautiful folded-paper origami art, crisp low-poly paper planes and folds, warm restrained left-top lighting. Row 1: Full body replacement: deep rose-red formal dress, layered cream lace hem, rose fabric flower at hip and bodice, puff sleeves, cream ankle boots. Neck down only, empty cuffs and no hands. Row 2: Full body replacement: navy sailor uniform, cream blouse and striped sailor collar, navy ribbon, golden anchor buttons, navy trousers and tan ankle boots. Neck down only, empty cuffs and no hands. Row 3: Full body replacement: pearlescent iridescent dance dress, lilac and aqua panels, delicate gold lines, airy layered skirt, silver ankle boots. Neck down only, empty sleeve cuffs, no hands. Fit the short neck-to-feet body proportions of the reference, relaxed neutral pose. NO head, face, hair, skin, mannequin, clothes hanger, people, typography, grid lines, UI, floor, cast shadow or visible background. Preserve front/back/right direction faithfully. The WHOLE canvas outside the garments must be completely transparent alpha, not a colored gradient, studio backdrop, black/white rectangle, checkerboard graphic or scenery. All 15 cells separated and centered consistently. Transparent PNG for direct sprite compositing."
+    }
+  ],
+  "transparencyRepair": "Edit target: the provided 5-column, 3-row folded-paper garment atlas. Remove ONLY the entire colored gradient/studio background and all floor/shadow patches to genuine transparent alpha. Keep ALL fifteen garments, exact grid positions, perspectives, paper facets, colors, folds, embroidery, boots and every original garment detail unchanged. Keep the open neckline/cuffs and space between legs transparent. Do not crop, move or resize sprites. No new characters, no checkerboard graphic, no background or shadows. Output genuinely transparent PNG with complete alpha outside all garment silhouettes.",
+  "assets": [
+    {
+      "theme": "pixel",
+      "pack": 0,
+      "source": "source-artifact:exec-d861fbf8-c06e-46f8-a160-2aeb61c99aed.png",
+      "destination": "qa/v35/generated/garments-pixel-pack-0-v35.png"
+    },
+    {
+      "theme": "pixel",
+      "pack": 1,
+      "source": "source-artifact:exec-db6aa061-dbf4-446b-a505-b3b03266e510.png",
+      "destination": "qa/v35/generated/garments-pixel-pack-1-v35.png"
+    },
+    {
+      "theme": "pixel",
+      "pack": 2,
+      "source": "source-artifact:exec-72e5e4bc-c3c2-4489-ad87-da679f95cdcc.png",
+      "destination": "qa/v35/generated/garments-pixel-pack-2-v35.png"
+    },
+    {
+      "theme": "pixel",
+      "pack": 3,
+      "source": "source-artifact:exec-095745c6-f411-4e3c-b18d-29977a530348.png",
+      "destination": "qa/v35/generated/garments-pixel-pack-3-v35.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 0,
+      "source": "source-artifact:exec-bcac6e4c-5461-40c1-be34-4ffde32114d3.png",
+      "destination": "qa/v35/generated/garments-origami-pack-0-v35.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 1,
+      "source": "source-artifact:exec-b32b65ba-5711-4e53-be2a-07b4e695770b.png",
+      "destination": "qa/v35/generated/garments-origami-pack-1-v35.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 2,
+      "source": "source-artifact:exec-59bed69a-eea1-4768-820e-2f5b4ae7831c.png",
+      "destination": "qa/v35/generated/garments-origami-pack-2-v35.png"
+    },
+    {
+      "theme": "origami",
+      "pack": 3,
+      "source": "source-artifact:exec-466a15d0-b7b9-44c8-95e3-1b5ca8319440.png",
+      "destination": "qa/v35/generated/garments-origami-pack-3-v35.png"
+    }
+  ],
+  "corrections": [
+    {
+      "pack": 1,
+      "file": "garments-origami-pack-1-v35.png",
+      "prompt": "Precise production sprite-atlas repair. Edit the supplied transparent origami 5-column x 3-row accessory sheet. KEEP rows 2 (brown leather gloves) and 3 (pearl shell combs), their item identity, colors, lighting, paper facets and order. REPAIR ONLY the first row hats and spacing: one consistent golden straw-paper hat with a navy-blue ribbon bow and cream daisy FIXED on the BACK-RIGHT of the hat, short ribbon tails falling behind the head. Exactly five canonical views LEFT TO RIGHT: FRONT (brim visible, bow mostly hidden on far side; absolutely no bow or tails hanging over the face), FRONT-RIGHT three-quarter (small side flower at far right), RIGHT PROFILE (small bow behind crown; nothing below front brim), BACK-RIGHT three-quarter (bow visible behind), FULL BACK (bow centered visibly behind). These hats overlay playable characters whose eyes must remain visible. Keep a broad shallow brim, compact crown. Same scale, 5 equal columns and 3 equal rows, generous fully transparent gutters all around each complete sprite, especially no neighbor-cell fragments. No skin, face, model, head, hair, shadows, text, labels, grid or background. Preserve actual transparent alpha. Elegant folded-paper origami, crisp folds, warm restrained palette, left-top light matching reference.",
+      "source": "source-artifact:exec-e396f1c0-610e-4280-b6d0-ea5d28b10a53.png"
+    },
+    {
+      "pack": 3,
+      "file": "garments-origami-pack-3-v35.png",
+      "prompt": "Precise production sprite-atlas repair. Edit the supplied transparent origami 5-column x 3-row neck-down garment sheet. Preserve row1 rose dress and row2 sailor uniform, original cream/rose/navy colors, empty cuffs, boots, paper facets and garment proportions. Correct ONLY row3 iridescent dance dress REAR views: columns are FRONT, FRONT-RIGHT, RIGHT PROFILE, BACK-RIGHT, FULL BACK. The shell brooch, heart neckline and dangling front jewelry belong ONLY on front/front-right/right profile. Back-right and full-back must show a closed lavender folded-paper upper back, rear waist bow with trailing paper ribbon and simple back skirt layers; NO shell brooch or front heart neckline on the back. Five coherent views of the same garment, never a different dress. Keep compact neck-to-feet body, boots and no hands/head/face/mannequin. Repair gutters for all rows: each sprite entirely inside its equal cell, generous transparent space, no clipped neighbor fragments, no dust, white halos or background. Exactly5equal columns by3equal rows, actual transparent alpha; elegant luminous folded-paper origami, same perspective and left-top light as reference. No text or grid.",
+      "source": "source-artifact:exec-9010f5a0-c931-46e4-b1c2-302ea84e8071.png"
+    }
+  ],
+  "hatlessHeads": [
+    {
+      "theme": "pixel",
+      "file": "avatar-heads-pixel-v35.png",
+      "prompt": "Production modular HEAD sprite atlas for Hyper Dimension. Use the two referenced avatar sheets to preserve EXACT three existing playable identities, face, hair color, eyes and friendly world-sprite proportions, detailed crisp cozy pixel sprite art matching the reference precisely. Output HEADS ONLY including hair, ears and a short neck, all three characters bareheaded with NO hats, headwear, scarves, collars, torsos, limbs, shoulders, stands or background. Exactly5equal columns by3equal rows, 15heads total, generous fully transparent gutters. Columns LEFT TO RIGHT: FRONT; FRONT-RIGHT three-quarter (look toward RIGHT edge); RIGHT PROFILE; BACK-RIGHT three-quarter; FULL BACK (no eyes or face). Row1: male reference row4, the brown short-haired green-eyed friendly field owner, REMOVE straw hat entirely and show natural brown tousled hair crown. Row2: female reference row3, the lavender braided-haired purple-eyed artist, REMOVE beret and flowers/head jewelry; retain lavender side braid and hair identity, compact head-only braid ends at neck. Row3: male reference row6, the mature red-haired captain with neat red beard and amber/brown eyes, REMOVE white/navy captain cap and show natural short wavy red hair crown. These heads replace only old built-in hats when a player equips another head item; they must align to existing character bodies. All heads same head-scale and baseline, compact hair to neck. No new identities, no facial redesign, no text/grid, no floor, no colored background or shadows. Actual transparent alpha, generous gutters, avoid clipped neighbor fragments.",
+      "source": "source-artifact:exec-58ae5fc5-ea52-4940-9bc4-8906ab01102b.png"
+    },
+    {
+      "theme": "origami",
+      "file": "avatar-heads-origami-v35.png",
+      "prompt": "Production modular HEAD sprite atlas for Hyper Dimension. Use the two referenced avatar sheets to preserve EXACT three existing playable identities, face, hair color, eyes and friendly world-sprite proportions, elegant folded-paper origami facets and warm top-left light matching the reference precisely. Output HEADS ONLY including hair, ears and a short neck, all three characters bareheaded with NO hats, headwear, scarves, collars, torsos, limbs, shoulders, stands or background. Exactly5equal columns by3equal rows, 15heads total, generous fully transparent gutters. Columns LEFT TO RIGHT: FRONT; FRONT-RIGHT three-quarter (look toward RIGHT edge); RIGHT PROFILE; BACK-RIGHT three-quarter; FULL BACK (no eyes or face). Row1: male reference row4, the brown short-haired green-eyed friendly field owner, REMOVE straw hat entirely and show natural brown tousled hair crown. Row2: female reference row3, the lavender braided-haired purple-eyed artist, REMOVE beret and flowers/head jewelry; retain lavender side braid and hair identity, compact head-only braid ends at neck. Row3: male reference row6, the mature red-haired captain with neat red beard and amber/brown eyes, REMOVE white/navy captain cap and show natural short wavy red hair crown. These heads replace only old built-in hats when a player equips another head item; they must align to existing character bodies. All heads same head-scale and baseline, compact hair to neck. No new identities, no facial redesign, no text/grid, no floor, no colored background or shadows. Actual transparent alpha, generous gutters, avoid clipped neighbor fragments.",
+      "source": "source-artifact:exec-fd215598-a123-46ca-adcc-b1bb5aadea27.png"
+    }
+  ],
+  "finalAssets": [
+    {
+      "sha256": "1AB55B4F7B14728CBE08E9F0A2FCD3E96AA0C3D0A1E2445265E0EDA0722B4AD1",
+      "file": "garments-origami-pack-0-v35.png"
+    },
+    {
+      "sha256": "0DADEF5EDF07EBE4FC3424C2FFCEA5F6DAD5C6E5E4975807E42D4D869D6E1ABC",
+      "file": "garments-origami-pack-1-v35.png"
+    },
+    {
+      "sha256": "6E168967DF2050269EADAFBFD84568E57EB4BB97E6B4A8D67640FCE73FE72B0B",
+      "file": "garments-origami-pack-2-v35.png"
+    },
+    {
+      "sha256": "D146CA413BF5ECFFD631A7ECB124DE75826359498F0E83EF95AB5E2CF348D52C",
+      "file": "garments-origami-pack-3-v35.png"
+    },
+    {
+      "sha256": "9F96C2CBD0F1503B3460ADB7C8B54446D58FB537FB32D353A05268D6A23E64CF",
+      "file": "garments-pixel-pack-0-v35.png"
+    },
+    {
+      "sha256": "9BC9944ACDE69343D77AC9B10DC5325AD2955B305DB4643EEA06D371D9B535C2",
+      "file": "garments-pixel-pack-1-v35.png"
+    },
+    {
+      "sha256": "D23DABBE0B6E17CC541B64A5A967C63B217ADE2E9D18CC9717CBC1BA6BAE07D5",
+      "file": "garments-pixel-pack-2-v35.png"
+    },
+    {
+      "sha256": "A1769F5E2D8DD1F020AD39E930E302260F31EB0C2D4245784F14D50649E00F2D",
+      "file": "garments-pixel-pack-3-v35.png"
+    },
+    {
+      "sha256": "2B774409D93FB32D3853AB0D5457730064CE3A0A409332F9C102B8F0076DB191",
+      "file": "avatar-heads-origami-v35.png"
+    },
+    {
+      "sha256": "74B6590FA53BF846A502669E79B66326EA36EE366FA6D78EB63D173C9FB89B8C",
+      "file": "avatar-heads-pixel-v35.png"
+    }
+  ],
+  "renderReview": {
+    "at": "2026-10-04",
+    "sourcePngUnchanged": true,
+    "crop": "read-only primary-component ownership with overscan; glove pair and appropriate shoe pieces",
+    "toolAnchors": "src/toolArt.js",
+    "sourcePointCount": 28,
+    "sourcePointReport": "qa/v35/tool-anchor-report.json",
+    "actualBrowserReport": "qa/v35/browser-report.json",
+    "finalVisualReport": "qa/v35/visual-review-report.json",
+    "wardrobePosesPerTheme": 1152,
+    "toolPosesPerTheme": 2016,
+    "remaining": "Full world contact states, all environment animation and world audio continue under R13."
+  }
+}

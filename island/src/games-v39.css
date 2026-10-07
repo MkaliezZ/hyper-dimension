@@ -1,0 +1,14 @@
+/* V39: each client brief is a readable themed lookbook, with separate review receipts. */
+.workshop-game .wk-client-heading{display:flex;flex-direction:column;gap:5px;padding:10px 12px;border-left:3px solid #ae8b4f;background:#f5ebd9;color:#526a61}
+.workshop-game .wk-client-heading span{font-size:14px;letter-spacing:.04em;color:#8a7152}
+.workshop-game .wk-client-heading strong{font-size:19px;line-height:1.35;overflow-wrap:anywhere}
+.workshop-game .wk-client-quote{font-size:15px;line-height:1.6;margin:10px 0;overflow-wrap:anywhere}
+.workshop-game .wk-client-reports{display:grid;gap:6px;margin-top:12px}
+.workshop-game .wk-client-reports>span{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;background:#e7eee2;color:#526b54;border:1px solid #96aa8880}
+.workshop-game .wk-client-reports b{font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.workshop-game .wk-client-reports small{font-size:14px;white-space:nowrap}
+body[data-theme="pixel"] .workshop-game .wk-client-heading{border:2px solid #846b41;border-left-width:5px;background:#e8dcaa;box-shadow:inset -2px -2px #cbb980,inset 2px 2px #fff0c4}
+body[data-theme="pixel"] .workshop-game .wk-client-reports>span{border-radius:0;box-shadow:2px 2px #5f795c}
+body[data-theme="origami"] .workshop-game .wk-client-heading{background:linear-gradient(135deg,#fff9ee 0 92%,#e8dac0 92%);box-shadow:0 2px 4px #6f62441a}
+body[data-theme="origami"] .workshop-game .wk-client-reports>span{border-radius:3px 0 3px 3px;box-shadow:0 2px 3px #65715c18}
+@media(max-width:760px){.workshop-game .wk-client-heading strong{font-size:18px}.workshop-game .wk-client-quote{font-size:15px}.workshop-game .wk-constraints{grid-template-columns:1fr}.workshop-game .wk-client-reports>span{flex-wrap:wrap}}

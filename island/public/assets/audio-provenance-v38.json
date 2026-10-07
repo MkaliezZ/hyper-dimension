@@ -1,0 +1,36 @@
+{
+  "version": 38,
+  "created": "2026-10-04",
+  "kind": "Original procedural audio and native themed UI",
+  "sources": [
+    "src/soundMixer.js",
+    "src/worldSound.js",
+    "src/workshopAudio.js",
+    "src/soundUI.js",
+    "src/sound-v38.css"
+  ],
+  "remoteAudioAssets": [],
+  "voiceDesign": "Locally generated oscillators and reusable filtered noise, attack/release envelope; muted or blocked signals allocate no voices.",
+  "sharedContext": true,
+  "buses": [
+    "master",
+    "music",
+    "effects",
+    "ambience"
+  ],
+  "polyphonyLimit": 48,
+  "style": {
+    "pixel": "Warm short stepped-paper surfaces and triangle plucks",
+    "origami": "Folded paper surfaces and soft sine plucks"
+  },
+  "world": "Ocean/wind/birds, indoor light room beds, walking steps and actual player tool contact; original eight-note island motif.",
+  "legacy": "Reuses this project's original workshop rhythm arrangement and cue semantics; no external recording.",
+  "evidence": [
+    "qa/v38/browser-report.json",
+    "qa/v38/visual-review-report.json"
+  ],
+  "limits": [
+    "Human listening and room-specific final sound mix not yet accepted",
+    "NPC spatial sound and exact footfall/full animation coverage remain R13"
+  ]
+}

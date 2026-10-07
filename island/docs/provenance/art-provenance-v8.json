@@ -1,0 +1,3742 @@
+[
+  {
+    "theme": "pixel",
+    "pack": -1,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 5 columns by 10 rows, 50 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Exquisite hand-drawn pixel art game inventory sprites. Crisp visible pixels, carefully stepped silhouette edges, warm highlights and coherent restrained island palette. NOT flat SVG icons, NOT emojis. Cozy premium pixel RPG objects with nuanced shading. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 5 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) stack of cut logs; 2) green bamboo stalks; 3) dark hardwood log; 4) bundle of thin twigs; 5) golden resin in a little cup\nRow 2: 1) curled brown bark; 2) bundle of pale plant fibers; 3) fresh green leaves; 4) three brown mushrooms; 5) honey jar with dipper\nRow 3: 1) gray rocks; 2) turquoise star crystal ore; 3) orange copper ore; 4) dark silver iron ore; 5) clear white quartz cluster\nRow 4: 1) purple amethyst cluster; 2) reddish clay lumps; 3) small beige sand pile; 4) black coal chunks; 5) pink rock salt chunks\nRow 5: 1) cloth pouch of mixed seeds; 2) golden wheat sheaf; 3) red tomato pair; 4) orange ribbed pumpkin; 5) orange carrots with green tops\nRow 6: 1) golden corn cob; 2) three brown potatoes; 3) rice panicles and bowl of rice; 4) red strawberries with leaves; 5) fluffy white cotton branch\nRow 7: 1) blue flowering flax stalks; 2) green medicinal herb sprig; 3) mint leaves; 4) violet lavender sprigs; 5) red rose blossoms\nRow 8: 1) golden sunflower bloom; 2) indigo blue flowering plant; 3) serrated mulberry leaves; 4) yellow beeswax honeycomb; 5) warm amber nugget\nRow 9: 1) silver blue fish; 2) pink shrimp; 3) red crab; 4) squid with dark ink droplet; 5) green seaweed fronds\nRow 10: 1) pink scallop shell; 2) open oyster with pearl; 3) pink washed-up coral fragments; 4) pale twisted driftwood; 5) white sea salt in shell dish\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "wood",
+        "木材",
+        "stack of cut logs"
+      ],
+      [
+        "bamboo",
+        "竹材",
+        "green bamboo stalks"
+      ],
+      [
+        "hardwood",
+        "硬木",
+        "dark hardwood log"
+      ],
+      [
+        "twig",
+        "树枝",
+        "bundle of thin twigs"
+      ],
+      [
+        "resin",
+        "树脂",
+        "golden resin in a little cup"
+      ],
+      [
+        "bark",
+        "树皮",
+        "curled brown bark"
+      ],
+      [
+        "fiber",
+        "植物纤维",
+        "bundle of pale plant fibers"
+      ],
+      [
+        "leaves",
+        "嫩叶",
+        "fresh green leaves"
+      ],
+      [
+        "mushroom",
+        "蘑菇",
+        "three brown mushrooms"
+      ],
+      [
+        "honey",
+        "蜂蜜",
+        "honey jar with dipper"
+      ],
+      [
+        "stone",
+        "石材",
+        "gray rocks"
+      ],
+      [
+        "ore",
+        "星晶矿石",
+        "turquoise star crystal ore"
+      ],
+      [
+        "copper",
+        "铜矿",
+        "orange copper ore"
+      ],
+      [
+        "iron",
+        "铁矿",
+        "dark silver iron ore"
+      ],
+      [
+        "quartz",
+        "石英",
+        "clear white quartz cluster"
+      ],
+      [
+        "crystal",
+        "紫晶",
+        "purple amethyst cluster"
+      ],
+      [
+        "clay",
+        "陶土",
+        "reddish clay lumps"
+      ],
+      [
+        "sand",
+        "细沙",
+        "small beige sand pile"
+      ],
+      [
+        "coal",
+        "煤块",
+        "black coal chunks"
+      ],
+      [
+        "salt",
+        "岩盐",
+        "pink rock salt chunks"
+      ],
+      [
+        "seed",
+        "通用种子",
+        "cloth pouch of mixed seeds"
+      ],
+      [
+        "wheat",
+        "小麦",
+        "golden wheat sheaf"
+      ],
+      [
+        "tomato",
+        "番茄",
+        "red tomato pair"
+      ],
+      [
+        "pumpkin",
+        "南瓜",
+        "orange ribbed pumpkin"
+      ],
+      [
+        "carrot",
+        "胡萝卜",
+        "orange carrots with green tops"
+      ],
+      [
+        "corn",
+        "玉米",
+        "golden corn cob"
+      ],
+      [
+        "potato",
+        "土豆",
+        "three brown potatoes"
+      ],
+      [
+        "rice",
+        "稻米",
+        "rice panicles and bowl of rice"
+      ],
+      [
+        "strawberry",
+        "草莓",
+        "red strawberries with leaves"
+      ],
+      [
+        "cotton",
+        "棉花",
+        "fluffy white cotton branch"
+      ],
+      [
+        "flax",
+        "亚麻",
+        "blue flowering flax stalks"
+      ],
+      [
+        "herb",
+        "草药",
+        "green medicinal herb sprig"
+      ],
+      [
+        "mint",
+        "薄荷",
+        "mint leaves"
+      ],
+      [
+        "lavender",
+        "薰衣草",
+        "violet lavender sprigs"
+      ],
+      [
+        "rose",
+        "玫瑰",
+        "red rose blossoms"
+      ],
+      [
+        "sunflower",
+        "向日葵",
+        "golden sunflower bloom"
+      ],
+      [
+        "bluegrass",
+        "蓝草",
+        "indigo blue flowering plant"
+      ],
+      [
+        "mulberry",
+        "桑叶",
+        "serrated mulberry leaves"
+      ],
+      [
+        "wax",
+        "蜂蜡",
+        "yellow beeswax honeycomb"
+      ],
+      [
+        "amber",
+        "琥珀",
+        "warm amber nugget"
+      ],
+      [
+        "fish",
+        "海鱼",
+        "silver blue fish"
+      ],
+      [
+        "shrimp",
+        "海虾",
+        "pink shrimp"
+      ],
+      [
+        "crab",
+        "螃蟹",
+        "red crab"
+      ],
+      [
+        "ink",
+        "乌贼墨",
+        "squid with dark ink droplet"
+      ],
+      [
+        "seaweed",
+        "海藻",
+        "green seaweed fronds"
+      ],
+      [
+        "shell",
+        "贝壳",
+        "pink scallop shell"
+      ],
+      [
+        "pearl",
+        "珍珠",
+        "open oyster with pearl"
+      ],
+      [
+        "coral",
+        "珊瑚碎片",
+        "pink washed-up coral fragments"
+      ],
+      [
+        "driftwood",
+        "漂流木",
+        "pale twisted driftwood"
+      ],
+      [
+        "seasalt",
+        "海盐",
+        "white sea salt in shell dish"
+      ]
+    ],
+    "columns": 5,
+    "rows": 10,
+    "file": "items-pixel-materials-v8.png",
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-01a71ea7-4b29-4767-a974-c4d921b7d97b.png"
+  },
+  {
+    "theme": "pixel",
+    "pack": 0,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Exquisite hand-drawn pixel art game inventory sprites. Crisp visible pixels, carefully stepped silhouette edges, warm highlights and coherent restrained island palette. NOT flat SVG icons, NOT emojis. Cozy premium pixel RPG objects with nuanced shading. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) wooden lantern with warm candle; 2) wood handled iron hoe; 3) iron pickaxe with wooden handle; 4) turquoise watering can; 5) wood handled axe; 6) curved harvesting sickle\nRow 2: 1) carved wooden chair; 2) stack of milled planks; 3) little roofed birdhouse; 4) bamboo room divider; 5) wooden bookshelf; 6) amber resin wind chime\nRow 3: 1) cup of flower tea; 2) glass of mint iced tea; 3) golden honey tea with mint; 4) pink rose teabags; 5) lavender tea in purple cup; 6) blue fizzy drink\nRow 4: 1) pumpkin orange tea; 2) strawberry red drink; 3) green tea in bamboo cup; 4) little ceramic tea stove; 5) six colorful tea tins in gift box; 6) iridescent pearl teacup\nRow 5: 1) fish stew in bowl; 2) tomato red rice plate; 3) grilled corn on wooden platter; 4) creamy potato soup; 5) roasted herb fish; 6) shrimp rice bowl\nRow 6: 1) mushroom rice triangle; 2) baked rice in pumpkin; 3) crab feast platter; 4) bamboo rice bowl; 5) large mixed seafood feast tray; 6) star decorated bento box\nRow 7: 1) pink mixed flower bouquet; 2) mint plant in clay pot; 3) rose boutonniere; 4) sunflower wreath; 5) lavender embroidered sachet; 6) flower basket\nRow 8: 1) green leaf table arrangement; 2) flower vase covered in seashells; 3) hanging flower curtain; 4) arched floral doorway; 5) pink coral flower sculpture; 6) floral lamp with four colors\nRow 9: 1) festive purple dress; 2) cream linen shirt; 3) green cotton apron; 4) wide straw hat with blue ribbon; 5) brown leatherlike work gloves; 6) pink floral shawl\nRow 10: 1) navy star cape; 2) blue striped skirt; 3) red rose formal dress; 4) navy sailor uniform; 5) pearl hair comb; 6) iridescent dance costume\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "lantern",
+        "灯笼",
+        "wooden lantern with warm candle"
+      ],
+      [
+        "hoe",
+        "田间锄头",
+        "wood handled iron hoe"
+      ],
+      [
+        "pickaxe",
+        "矿工镐",
+        "iron pickaxe with wooden handle"
+      ],
+      [
+        "watering_can",
+        "浇水壶",
+        "turquoise watering can"
+      ],
+      [
+        "axe",
+        "伐木斧",
+        "wood handled axe"
+      ],
+      [
+        "sickle",
+        "收割镰",
+        "curved harvesting sickle"
+      ],
+      [
+        "c0_6",
+        "海风木椅",
+        "carved wooden chair"
+      ],
+      [
+        "c0_7",
+        "木板",
+        "stack of milled planks"
+      ],
+      [
+        "c0_8",
+        "鸟屋",
+        "little roofed birdhouse"
+      ],
+      [
+        "c0_9",
+        "竹编屏风",
+        "bamboo room divider"
+      ],
+      [
+        "c0_10",
+        "林间书柜",
+        "wooden bookshelf"
+      ],
+      [
+        "c0_11",
+        "树脂风铃",
+        "amber resin wind chime"
+      ],
+      [
+        "tea",
+        "花茶",
+        "cup of flower tea"
+      ],
+      [
+        "c1_1",
+        "薄荷凉饮",
+        "glass of mint iced tea"
+      ],
+      [
+        "c1_2",
+        "蜂蜜柠香饮",
+        "golden honey tea with mint"
+      ],
+      [
+        "c1_3",
+        "玫瑰茶包",
+        "pink rose teabags"
+      ],
+      [
+        "c1_4",
+        "薰衣草奶茶",
+        "lavender tea in purple cup"
+      ],
+      [
+        "c1_5",
+        "海盐气泡饮",
+        "blue fizzy drink"
+      ],
+      [
+        "c1_6",
+        "南瓜香茶",
+        "pumpkin orange tea"
+      ],
+      [
+        "c1_7",
+        "草莓果饮",
+        "strawberry red drink"
+      ],
+      [
+        "c1_8",
+        "竹筒清茶",
+        "green tea in bamboo cup"
+      ],
+      [
+        "c1_9",
+        "暖手茶炉",
+        "little ceramic tea stove"
+      ],
+      [
+        "c1_10",
+        "六味茶礼盒",
+        "six colorful tea tins in gift box"
+      ],
+      [
+        "c1_11",
+        "珍珠茶盏",
+        "iridescent pearl teacup"
+      ],
+      [
+        "meal",
+        "海岛料理",
+        "fish stew in bowl"
+      ],
+      [
+        "c2_1",
+        "番茄烩饭",
+        "tomato red rice plate"
+      ],
+      [
+        "c2_2",
+        "烤玉米",
+        "grilled corn on wooden platter"
+      ],
+      [
+        "c2_3",
+        "土豆浓汤",
+        "creamy potato soup"
+      ],
+      [
+        "c2_4",
+        "香草烤鱼",
+        "roasted herb fish"
+      ],
+      [
+        "c2_5",
+        "海虾米饭",
+        "shrimp rice bowl"
+      ],
+      [
+        "c2_6",
+        "蘑菇饭团",
+        "mushroom rice triangle"
+      ],
+      [
+        "c2_7",
+        "南瓜焗饭",
+        "baked rice in pumpkin"
+      ],
+      [
+        "c2_8",
+        "蟹肉拼盘",
+        "crab feast platter"
+      ],
+      [
+        "c2_9",
+        "竹筒野炊饭",
+        "bamboo rice bowl"
+      ],
+      [
+        "c2_10",
+        "海岛宴席",
+        "large mixed seafood feast tray"
+      ],
+      [
+        "c2_11",
+        "星夜便当",
+        "star decorated bento box"
+      ],
+      [
+        "bouquet",
+        "花束",
+        "pink mixed flower bouquet"
+      ],
+      [
+        "c3_1",
+        "薄荷盆栽",
+        "mint plant in clay pot"
+      ],
+      [
+        "c3_2",
+        "玫瑰胸花",
+        "rose boutonniere"
+      ],
+      [
+        "c3_3",
+        "向日葵花环",
+        "sunflower wreath"
+      ],
+      [
+        "c3_4",
+        "薰衣草香囊",
+        "lavender embroidered sachet"
+      ],
+      [
+        "c3_5",
+        "竹篮花饰",
+        "flower basket"
+      ],
+      [
+        "c3_6",
+        "叶片桌花",
+        "green leaf table arrangement"
+      ],
+      [
+        "c3_7",
+        "海贝花瓶",
+        "flower vase covered in seashells"
+      ],
+      [
+        "c3_8",
+        "流苏花帘",
+        "hanging flower curtain"
+      ],
+      [
+        "c3_9",
+        "节庆花门",
+        "arched floral doorway"
+      ],
+      [
+        "c3_10",
+        "珊瑚花雕",
+        "pink coral flower sculpture"
+      ],
+      [
+        "c3_11",
+        "四季花灯",
+        "floral lamp with four colors"
+      ],
+      [
+        "outfit",
+        "主题服装",
+        "festive purple dress"
+      ],
+      [
+        "c4_1",
+        "亚麻衬衫",
+        "cream linen shirt"
+      ],
+      [
+        "c4_2",
+        "棉布围裙",
+        "green cotton apron"
+      ],
+      [
+        "c4_3",
+        "海风草帽",
+        "wide straw hat with blue ribbon"
+      ],
+      [
+        "c4_4",
+        "矿工手套",
+        "brown leatherlike work gloves"
+      ],
+      [
+        "c4_5",
+        "花园披肩",
+        "pink floral shawl"
+      ],
+      [
+        "c4_6",
+        "星空斗篷",
+        "navy star cape"
+      ],
+      [
+        "c4_7",
+        "海盐条纹裙",
+        "blue striped skirt"
+      ],
+      [
+        "c4_8",
+        "玫瑰礼服",
+        "red rose formal dress"
+      ],
+      [
+        "c4_9",
+        "航海制服",
+        "navy sailor uniform"
+      ],
+      [
+        "c4_10",
+        "珍珠发饰",
+        "pearl hair comb"
+      ],
+      [
+        "c4_11",
+        "折光舞衣",
+        "iridescent dance costume"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-pixel-products-0-v8.png",
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-9ba493c0-28b4-46c1-b279-3304074d2fe4.png"
+  },
+  {
+    "theme": "pixel",
+    "pack": 1,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Exquisite hand-drawn pixel art game inventory sprites. Crisp visible pixels, carefully stepped silhouette edges, warm highlights and coherent restrained island palette. NOT flat SVG icons, NOT emojis. Cozy premium pixel RPG objects with nuanced shading. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) blue star chart scroll; 2) astronomy book; 3) brass telescope on tripod; 4) moon phase wall disc; 5) bottle filled with star shapes; 6) gold constellation brooch\nRow 2: 1) brass binoculars; 2) glowing sand vial; 3) celestial blue globe; 4) star navigation compass; 5) crescent moon table lamp; 6) glass comet display sculpture\nRow 3: 1) seaweed fish food jar; 2) bag of aquarium pebbles; 3) shell aquarium shelter; 4) aquatic plant basket; 5) small round fish bowl; 6) simple aquarium filter\nRow 4: 1) coral aquarium stand; 2) decorative tidal water tank; 3) shrimp nursery tank; 4) jellyfish-shaped glowing lamp; 5) large reef aquarium; 6) marine observation album\nRow 5: 1) old nautical journal; 2) botanical field book; 3) mineral book with crystal; 4) craft notebook; 5) set of colored bookmarks; 6) stack of cream handmade paper\nRow 6: 1) island atlas; 2) star themed poetry book; 3) green reading lamp; 4) book restoration kit; 5) ornate co-creation handbook; 6) box of story scrolls\nRow 7: 1) red maritime signal lamp; 2) red white navigation buoy; 3) triangular blue flag; 4) brass lighthouse oil lamp; 5) brass fog horn; 6) nautical route map\nRow 8: 1) wooden tide gauge; 2) circular glass lighthouse lens; 3) reflective signpost; 4) harbor pilot sign; 5) tall glowing beacon; 6) miniature lighthouse lamp\nRow 9: 1) basket of island groceries; 2) bundle of dried flowers; 3) colorful vegetable gift hamper; 4) wooden mineral sample crate; 5) tea and pastry gift set; 6) wooden market price tags\nRow 10: 1) woven tote bag; 2) portable market display shelf; 3) island specialty gift box; 4) festive market sign; 5) pearl souvenir charm; 6) decorated artisan booth\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "c5_0",
+        "星图",
+        "blue star chart scroll"
+      ],
+      [
+        "c5_1",
+        "观星手册",
+        "astronomy book"
+      ],
+      [
+        "c5_2",
+        "简易望远镜",
+        "brass telescope on tripod"
+      ],
+      [
+        "c5_3",
+        "月相挂盘",
+        "moon phase wall disc"
+      ],
+      [
+        "c5_4",
+        "流星许愿瓶",
+        "bottle filled with star shapes"
+      ],
+      [
+        "c5_5",
+        "星座徽章",
+        "gold constellation brooch"
+      ],
+      [
+        "c5_6",
+        "双筒望远镜",
+        "brass binoculars"
+      ],
+      [
+        "c5_7",
+        "星砂标本",
+        "glowing sand vial"
+      ],
+      [
+        "c5_8",
+        "银河天球仪",
+        "celestial blue globe"
+      ],
+      [
+        "c5_9",
+        "航星罗盘",
+        "star navigation compass"
+      ],
+      [
+        "c5_10",
+        "月影台灯",
+        "crescent moon table lamp"
+      ],
+      [
+        "c5_11",
+        "彗星奇观",
+        "glass comet display sculpture"
+      ],
+      [
+        "c6_0",
+        "海藻饲料",
+        "seaweed fish food jar"
+      ],
+      [
+        "c6_1",
+        "卵石底砂",
+        "bag of aquarium pebbles"
+      ],
+      [
+        "c6_2",
+        "贝壳躲藏屋",
+        "shell aquarium shelter"
+      ],
+      [
+        "c6_3",
+        "水草栽培篮",
+        "aquatic plant basket"
+      ],
+      [
+        "c6_4",
+        "小鱼缸",
+        "small round fish bowl"
+      ],
+      [
+        "c6_5",
+        "过滤器",
+        "simple aquarium filter"
+      ],
+      [
+        "c6_6",
+        "珊瑚展台",
+        "coral aquarium stand"
+      ],
+      [
+        "c6_7",
+        "潮汐水景",
+        "decorative tidal water tank"
+      ],
+      [
+        "c6_8",
+        "海虾育养盒",
+        "shrimp nursery tank"
+      ],
+      [
+        "c6_9",
+        "夜光水母灯",
+        "jellyfish-shaped glowing lamp"
+      ],
+      [
+        "c6_10",
+        "环礁水族箱",
+        "large reef aquarium"
+      ],
+      [
+        "c6_11",
+        "海洋观察档案",
+        "marine observation album"
+      ],
+      [
+        "c7_0",
+        "航海日志",
+        "old nautical journal"
+      ],
+      [
+        "c7_1",
+        "植物图鉴",
+        "botanical field book"
+      ],
+      [
+        "c7_2",
+        "矿物图鉴",
+        "mineral book with crystal"
+      ],
+      [
+        "c7_3",
+        "手工笔记",
+        "craft notebook"
+      ],
+      [
+        "c7_4",
+        "书签套装",
+        "set of colored bookmarks"
+      ],
+      [
+        "c7_5",
+        "纸张",
+        "stack of cream handmade paper"
+      ],
+      [
+        "c7_6",
+        "岛屿地图册",
+        "island atlas"
+      ],
+      [
+        "c7_7",
+        "星空诗集",
+        "star themed poetry book"
+      ],
+      [
+        "c7_8",
+        "读书灯",
+        "green reading lamp"
+      ],
+      [
+        "c7_9",
+        "书籍修复包",
+        "book restoration kit"
+      ],
+      [
+        "c7_10",
+        "精装共创手册",
+        "ornate co-creation handbook"
+      ],
+      [
+        "c7_11",
+        "故事收藏箱",
+        "box of story scrolls"
+      ],
+      [
+        "c8_0",
+        "信号灯",
+        "red maritime signal lamp"
+      ],
+      [
+        "c8_1",
+        "航标浮筒",
+        "red white navigation buoy"
+      ],
+      [
+        "c8_2",
+        "海风旗",
+        "triangular blue flag"
+      ],
+      [
+        "c8_3",
+        "灯塔油灯",
+        "brass lighthouse oil lamp"
+      ],
+      [
+        "c8_4",
+        "雾号",
+        "brass fog horn"
+      ],
+      [
+        "c8_5",
+        "航线图",
+        "nautical route map"
+      ],
+      [
+        "c8_6",
+        "潮汐计",
+        "wooden tide gauge"
+      ],
+      [
+        "c8_7",
+        "航灯透镜",
+        "circular glass lighthouse lens"
+      ],
+      [
+        "c8_8",
+        "反光路标",
+        "reflective signpost"
+      ],
+      [
+        "c8_9",
+        "码头引航牌",
+        "harbor pilot sign"
+      ],
+      [
+        "c8_10",
+        "远航信标",
+        "tall glowing beacon"
+      ],
+      [
+        "c8_11",
+        "晨光纪念灯",
+        "miniature lighthouse lamp"
+      ],
+      [
+        "c9_0",
+        "海岛货篮",
+        "basket of island groceries"
+      ],
+      [
+        "c9_1",
+        "干花货包",
+        "bundle of dried flowers"
+      ],
+      [
+        "c9_2",
+        "蔬果礼包",
+        "colorful vegetable gift hamper"
+      ],
+      [
+        "c9_3",
+        "矿石样品箱",
+        "wooden mineral sample crate"
+      ],
+      [
+        "c9_4",
+        "茶点礼包",
+        "tea and pastry gift set"
+      ],
+      [
+        "c9_5",
+        "摊位价签",
+        "wooden market price tags"
+      ],
+      [
+        "c9_6",
+        "编织购物袋",
+        "woven tote bag"
+      ],
+      [
+        "c9_7",
+        "便携展示架",
+        "portable market display shelf"
+      ],
+      [
+        "c9_8",
+        "岛屿特产盒",
+        "island specialty gift box"
+      ],
+      [
+        "c9_9",
+        "主题市集招牌",
+        "festive market sign"
+      ],
+      [
+        "c9_10",
+        "珍珠纪念品",
+        "pearl souvenir charm"
+      ],
+      [
+        "c9_11",
+        "共创展销台",
+        "decorated artisan booth"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-pixel-products-1-v8.png",
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-b697bf2c-008a-413b-8b68-0216a6757f56.png"
+  },
+  {
+    "theme": "pixel",
+    "pack": 2,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Exquisite hand-drawn pixel art game inventory sprites. Crisp visible pixels, carefully stepped silhouette edges, warm highlights and coherent restrained island palette. NOT flat SVG icons, NOT emojis. Cozy premium pixel RPG objects with nuanced shading. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) green game potion bottle; 2) mint comfort sachet; 3) rolled cotton bandages; 4) herbal warming pouch; 5) clean water cup; 6) herbal compartment box\nRow 2: 1) beeswax hand cream tin; 2) lavender pillow; 3) neat clinic tool tray; 4) red white first aid bag; 5) recovery flower basket; 6) health journal\nRow 3: 1) letter in bottle; 2) illustrated island postcard; 3) pressed flower envelope; 4) bamboo paper letter sheets; 5) wax sealing stamp; 6) colorful stamp album\nRow 4: 1) wooden mail sorting rack; 2) nautical invitation card; 3) festive party invitation; 4) artisan commission scroll; 5) pearl envelope fastener; 6) bundle of travel letters\nRow 5: 1) green bamboo flute; 2) wooden shaker pair; 3) wooden castanets; 4) shell whistle; 5) small frame drum; 6) linen instrument bag\nRow 6: 1) wooden acoustic guitar; 2) carved wind-up music box; 3) blue musical score; 4) wooden metronome; 5) vinyl record in island cover; 6) shell shaped harp\nRow 7: 1) island photo in frame; 2) wooden photo frame; 3) flower themed photo album; 4) aerial island photograph; 5) folding silver reflector; 6) bamboo camera tripod\nRow 8: 1) photo developing tray; 2) camera lens with blue trim; 3) party photo guestbook; 4) night camera tracking mount; 5) pearl ornate picture frame; 6) deluxe island photo album\nRow 9: 1) green seedling tray; 2) mint seedlings in pots; 3) rose seedlings; 4) lavender seedlings; 5) cotton seedlings; 6) flax seedlings\nRow 10: 1) coiled garden irrigation tube; 2) bamboo seedling shelf; 3) herbal compost bag; 4) greenhouse shade curtain; 5) seed specimen box; 6) miniature four-season flower bed\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "remedy",
+        "草药药剂",
+        "green game potion bottle"
+      ],
+      [
+        "c10_1",
+        "薄荷舒缓包",
+        "mint comfort sachet"
+      ],
+      [
+        "c10_2",
+        "棉布绷带",
+        "rolled cotton bandages"
+      ],
+      [
+        "c10_3",
+        "草本热敷袋",
+        "herbal warming pouch"
+      ],
+      [
+        "c10_4",
+        "净水杯",
+        "clean water cup"
+      ],
+      [
+        "c10_5",
+        "药草分装盒",
+        "herbal compartment box"
+      ],
+      [
+        "c10_6",
+        "蜂蜡护手膏",
+        "beeswax hand cream tin"
+      ],
+      [
+        "c10_7",
+        "薰香休息枕",
+        "lavender pillow"
+      ],
+      [
+        "c10_8",
+        "诊所工具托盘",
+        "neat clinic tool tray"
+      ],
+      [
+        "c10_9",
+        "应急护理包",
+        "red white first aid bag"
+      ],
+      [
+        "c10_10",
+        "康复花篮",
+        "recovery flower basket"
+      ],
+      [
+        "c10_11",
+        "居民健康手账",
+        "health journal"
+      ],
+      [
+        "c11_0",
+        "漂流信",
+        "letter in bottle"
+      ],
+      [
+        "c11_1",
+        "岛屿明信片",
+        "illustrated island postcard"
+      ],
+      [
+        "c11_2",
+        "压花信封",
+        "pressed flower envelope"
+      ],
+      [
+        "c11_3",
+        "竹纸信笺",
+        "bamboo paper letter sheets"
+      ],
+      [
+        "c11_4",
+        "蜂蜡封印",
+        "wax sealing stamp"
+      ],
+      [
+        "c11_5",
+        "邮票册",
+        "colorful stamp album"
+      ],
+      [
+        "c11_6",
+        "木质邮袋架",
+        "wooden mail sorting rack"
+      ],
+      [
+        "c11_7",
+        "航海邀请函",
+        "nautical invitation card"
+      ],
+      [
+        "c11_8",
+        "派对请柬",
+        "festive party invitation"
+      ],
+      [
+        "c11_9",
+        "共创委托书",
+        "artisan commission scroll"
+      ],
+      [
+        "c11_10",
+        "珍珠信封扣",
+        "pearl envelope fastener"
+      ],
+      [
+        "c11_11",
+        "远方故事包",
+        "bundle of travel letters"
+      ],
+      [
+        "c12_0",
+        "竹笛",
+        "green bamboo flute"
+      ],
+      [
+        "c12_1",
+        "沙锤",
+        "wooden shaker pair"
+      ],
+      [
+        "c12_2",
+        "木制响板",
+        "wooden castanets"
+      ],
+      [
+        "c12_3",
+        "海贝口哨",
+        "shell whistle"
+      ],
+      [
+        "c12_4",
+        "手鼓",
+        "small frame drum"
+      ],
+      [
+        "c12_5",
+        "亚麻琴套",
+        "linen instrument bag"
+      ],
+      [
+        "c12_6",
+        "海风吉他",
+        "wooden acoustic guitar"
+      ],
+      [
+        "c12_7",
+        "音乐盒",
+        "carved wind-up music box"
+      ],
+      [
+        "c12_8",
+        "星夜乐谱",
+        "blue musical score"
+      ],
+      [
+        "c12_9",
+        "舞台节拍器",
+        "wooden metronome"
+      ],
+      [
+        "c12_10",
+        "岛屿唱片",
+        "vinyl record in island cover"
+      ],
+      [
+        "c12_11",
+        "潮声竖琴",
+        "shell shaped harp"
+      ],
+      [
+        "c13_0",
+        "海岛相片",
+        "island photo in frame"
+      ],
+      [
+        "c13_1",
+        "木质相框",
+        "wooden photo frame"
+      ],
+      [
+        "c13_2",
+        "花园相册",
+        "flower themed photo album"
+      ],
+      [
+        "c13_3",
+        "航拍地图",
+        "aerial island photograph"
+      ],
+      [
+        "c13_4",
+        "摄影反光板",
+        "folding silver reflector"
+      ],
+      [
+        "c13_5",
+        "竹木三脚架",
+        "bamboo camera tripod"
+      ],
+      [
+        "c13_6",
+        "暗房显影盒",
+        "photo developing tray"
+      ],
+      [
+        "c13_7",
+        "海风镜头",
+        "camera lens with blue trim"
+      ],
+      [
+        "c13_8",
+        "派对留影册",
+        "party photo guestbook"
+      ],
+      [
+        "c13_9",
+        "星空摄影架",
+        "night camera tracking mount"
+      ],
+      [
+        "c13_10",
+        "珍珠纪念相框",
+        "pearl ornate picture frame"
+      ],
+      [
+        "c13_11",
+        "晨光影集",
+        "deluxe island photo album"
+      ],
+      [
+        "c14_0",
+        "育苗盘",
+        "green seedling tray"
+      ],
+      [
+        "c14_1",
+        "薄荷种苗",
+        "mint seedlings in pots"
+      ],
+      [
+        "c14_2",
+        "玫瑰种苗",
+        "rose seedlings"
+      ],
+      [
+        "c14_3",
+        "薰衣草种苗",
+        "lavender seedlings"
+      ],
+      [
+        "c14_4",
+        "棉花种苗",
+        "cotton seedlings"
+      ],
+      [
+        "c14_5",
+        "亚麻种苗",
+        "flax seedlings"
+      ],
+      [
+        "c14_6",
+        "滴灌管",
+        "coiled garden irrigation tube"
+      ],
+      [
+        "c14_7",
+        "竹制苗架",
+        "bamboo seedling shelf"
+      ],
+      [
+        "c14_8",
+        "温室肥料",
+        "herbal compost bag"
+      ],
+      [
+        "c14_9",
+        "遮光帘",
+        "greenhouse shade curtain"
+      ],
+      [
+        "c14_10",
+        "种子收藏盒",
+        "seed specimen box"
+      ],
+      [
+        "c14_11",
+        "四季花圃",
+        "miniature four-season flower bed"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-pixel-products-2-v8.png",
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-df6b51ee-aaed-4139-aca1-31de25df02dd.png"
+  },
+  {
+    "theme": "pixel",
+    "pack": 3,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Exquisite hand-drawn pixel art game inventory sprites. Crisp visible pixels, carefully stepped silhouette edges, warm highlights and coherent restrained island palette. NOT flat SVG icons, NOT emojis. Cozy premium pixel RPG objects with nuanced shading. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) brown clay pot; 2) cream ceramic teacup; 3) tall blue ceramic vase; 4) shallow ceramic dish; 5) ceramic incense burner; 6) ceramic artist palette\nRow 2: 1) floral teapot; 2) shell glazed bowl; 3) perforated clay lamp shade; 4) aquarium ceramic cave; 5) navy star glazed vase; 6) island landscape ceramic sculpture\nRow 3: 1) wooden fishing rod and reel; 2) bamboo fishing creel; 3) shell fishing float; 4) small bait box; 5) shrimp bait pouch; 6) spool of fishing line\nRow 4: 1) three silver fishing hooks; 2) woven fishing net; 3) nautical fishing tackle bag; 4) long graphite blue fishing rod; 5) pearl fishing bobber; 6) ornate champion tackle chest\nRow 5: 1) golden crust bread loaf; 2) honey rolls; 3) strawberry pastry; 4) corn muffin; 5) orange pumpkin pie; 6) herb crackers\nRow 6: 1) white rice cookie; 2) lavender cookies; 3) salt palmier pastry; 4) braided flower crown bread; 5) star lantern decorated cake; 6) three tier pastry stand\nRow 7: 1) mineral specimen under glass; 2) pressed leaf specimen; 3) seashell specimen box; 4) nautical knots board; 5) restored ceramic plate; 6) old map exhibition scroll\nRow 8: 1) museum information plaque; 2) coral specimen cabinet; 3) pearl display stand; 4) amber insect display; 5) meteor crystal showcase; 6) miniature island diorama\nRow 9: 1) linen sofa cushion; 2) folded cotton blanket; 3) bamboo woven floor mat; 4) herbal sleep sachet; 5) blue curtains; 6) floral rug\nRow 10: 1) firewood box; 2) bedside organizer; 3) shell night lamp; 4) wooden rocking chair; 5) pearl vanity mirror; 6) ornate island host table\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "pottery",
+        "陶器",
+        "brown clay pot"
+      ],
+      [
+        "c15_1",
+        "茶杯",
+        "cream ceramic teacup"
+      ],
+      [
+        "c15_2",
+        "花瓶",
+        "tall blue ceramic vase"
+      ],
+      [
+        "c15_3",
+        "小碟",
+        "shallow ceramic dish"
+      ],
+      [
+        "c15_4",
+        "香薰炉",
+        "ceramic incense burner"
+      ],
+      [
+        "c15_5",
+        "调色盘",
+        "ceramic artist palette"
+      ],
+      [
+        "c15_6",
+        "花纹茶壶",
+        "floral teapot"
+      ],
+      [
+        "c15_7",
+        "海贝陶碗",
+        "shell glazed bowl"
+      ],
+      [
+        "c15_8",
+        "陶制灯罩",
+        "perforated clay lamp shade"
+      ],
+      [
+        "c15_9",
+        "水族陶洞",
+        "aquarium ceramic cave"
+      ],
+      [
+        "c15_10",
+        "星空瓷瓶",
+        "navy star glazed vase"
+      ],
+      [
+        "c15_11",
+        "岛屿陶雕",
+        "island landscape ceramic sculpture"
+      ],
+      [
+        "rod",
+        "渔竿",
+        "wooden fishing rod and reel"
+      ],
+      [
+        "c16_1",
+        "竹制鱼篓",
+        "bamboo fishing creel"
+      ],
+      [
+        "c16_2",
+        "贝壳浮漂",
+        "shell fishing float"
+      ],
+      [
+        "c16_3",
+        "鱼饵盒",
+        "small bait box"
+      ],
+      [
+        "c16_4",
+        "海虾鱼饵",
+        "shrimp bait pouch"
+      ],
+      [
+        "c16_5",
+        "备用钓线",
+        "spool of fishing line"
+      ],
+      [
+        "c16_6",
+        "精制鱼钩",
+        "three silver fishing hooks"
+      ],
+      [
+        "c16_7",
+        "海风渔网",
+        "woven fishing net"
+      ],
+      [
+        "c16_8",
+        "潮汐钓具包",
+        "nautical fishing tackle bag"
+      ],
+      [
+        "c16_9",
+        "远投钓竿",
+        "long graphite blue fishing rod"
+      ],
+      [
+        "c16_10",
+        "珍珠鱼漂",
+        "pearl fishing bobber"
+      ],
+      [
+        "c16_11",
+        "冠军钓具箱",
+        "ornate champion tackle chest"
+      ],
+      [
+        "bread",
+        "面包",
+        "golden crust bread loaf"
+      ],
+      [
+        "c17_1",
+        "蜂蜜小面包",
+        "honey rolls"
+      ],
+      [
+        "c17_2",
+        "草莓饼",
+        "strawberry pastry"
+      ],
+      [
+        "c17_3",
+        "玉米松饼",
+        "corn muffin"
+      ],
+      [
+        "c17_4",
+        "南瓜派",
+        "orange pumpkin pie"
+      ],
+      [
+        "c17_5",
+        "香草薄脆",
+        "herb crackers"
+      ],
+      [
+        "c17_6",
+        "奶香米饼",
+        "white rice cookie"
+      ],
+      [
+        "c17_7",
+        "薰衣草曲奇",
+        "lavender cookies"
+      ],
+      [
+        "c17_8",
+        "海盐蝴蝶酥",
+        "salt palmier pastry"
+      ],
+      [
+        "c17_9",
+        "庆典花冠面包",
+        "braided flower crown bread"
+      ],
+      [
+        "c17_10",
+        "星灯蛋糕",
+        "star lantern decorated cake"
+      ],
+      [
+        "c17_11",
+        "共创茶点塔",
+        "three tier pastry stand"
+      ],
+      [
+        "c18_0",
+        "矿物标本",
+        "mineral specimen under glass"
+      ],
+      [
+        "c18_1",
+        "压叶标本",
+        "pressed leaf specimen"
+      ],
+      [
+        "c18_2",
+        "海贝标本",
+        "seashell specimen box"
+      ],
+      [
+        "c18_3",
+        "航海绳结板",
+        "nautical knots board"
+      ],
+      [
+        "c18_4",
+        "陶片复原盘",
+        "restored ceramic plate"
+      ],
+      [
+        "c18_5",
+        "旧地图展卷",
+        "old map exhibition scroll"
+      ],
+      [
+        "c18_6",
+        "岛史展签",
+        "museum information plaque"
+      ],
+      [
+        "c18_7",
+        "珊瑚收藏柜",
+        "coral specimen cabinet"
+      ],
+      [
+        "c18_8",
+        "珍珠展架",
+        "pearl display stand"
+      ],
+      [
+        "c18_9",
+        "琥珀奇观",
+        "amber insect display"
+      ],
+      [
+        "c18_10",
+        "流星展柜",
+        "meteor crystal showcase"
+      ],
+      [
+        "c18_11",
+        "晨光岛沙盘",
+        "miniature island diorama"
+      ],
+      [
+        "c19_0",
+        "亚麻靠垫",
+        "linen sofa cushion"
+      ],
+      [
+        "c19_1",
+        "棉布毛毯",
+        "folded cotton blanket"
+      ],
+      [
+        "c19_2",
+        "竹编坐垫",
+        "bamboo woven floor mat"
+      ],
+      [
+        "c19_3",
+        "香草安睡袋",
+        "herbal sleep sachet"
+      ],
+      [
+        "c19_4",
+        "海风窗帘",
+        "blue curtains"
+      ],
+      [
+        "c19_5",
+        "花园地毯",
+        "floral rug"
+      ],
+      [
+        "c19_6",
+        "壁炉木箱",
+        "firewood box"
+      ],
+      [
+        "c19_7",
+        "床头收纳架",
+        "bedside organizer"
+      ],
+      [
+        "c19_8",
+        "海贝夜灯",
+        "shell night lamp"
+      ],
+      [
+        "c19_9",
+        "温暖摇椅",
+        "wooden rocking chair"
+      ],
+      [
+        "c19_10",
+        "珍珠镜台",
+        "pearl vanity mirror"
+      ],
+      [
+        "c19_11",
+        "岛主会客桌",
+        "ornate island host table"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-pixel-products-3-v8.png",
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-f306d599-3dad-4c8f-a0ed-0c130594f117.png"
+  },
+  {
+    "theme": "pixel",
+    "pack": 4,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Exquisite hand-drawn pixel art game inventory sprites. Crisp visible pixels, carefully stepped silhouette edges, warm highlights and coherent restrained island palette. NOT flat SVG icons, NOT emojis. Cozy premium pixel RPG objects with nuanced shading. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) festive firework rocket; 2) flower shaped fireworks rocket; 3) blue fireworks tube; 4) golden fountain firework; 5) star decorated paper tube; 6) colorful fantasy firework cores\nRow 2: 1) festive fuse spool box; 2) fireworks gift box; 3) comet firework rocket; 4) music coordinated firework set; 5) fantasy fireworks backdrop; 6) grand star fireworks launcher\nRow 3: 1) illustrated concert poster; 2) velvet stage curtain; 3) bamboo microphone stand; 4) colored stage lighting gels; 5) performer badge; 6) rehearsal sign\nRow 4: 1) stage cue timer; 2) star blue spotlight; 3) festive backdrop wall; 4) costume rack; 5) decorative light rig; 6) miniature concert stage\nRow 5: 1) camp tinder box; 2) bamboo camp utensils; 3) linen hammock; 4) portable camp lantern; 5) blue camping tent; 6) insulated camp food box\nRow 6: 1) folding wind shield; 2) camp kettle; 3) navy star sleeping bag; 4) camp path lantern; 5) large festival tent; 6) campground miniature model\nRow 7: 1) curved wooden boat plank; 2) waterproof resin tin; 3) long bamboo boat pole; 4) coil of nautical rope; 5) wooden oar; 6) shipwright tool chest\nRow 8: 1) red white life ring; 2) blue sail; 3) wooden rowboat model; 4) wooden mooring bollard; 5) festive boat model; 6) deluxe passenger ferry model\nRow 9: 1) framed island painting; 2) pigment jars; 3) bamboo paintbrushes; 4) canvas panel; 5) colored origami paper kit; 6) indigo dye bottle\nRow 10: 1) leaf and shell print; 2) painted ceramic palette; 3) artisan workshop badge; 4) four panel painted screen; 5) star woven tapestry; 6) elaborate collaborative island sculpture\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "firework",
+        "烟花",
+        "festive firework rocket"
+      ],
+      [
+        "c20_1",
+        "花雨烟花",
+        "flower shaped fireworks rocket"
+      ],
+      [
+        "c20_2",
+        "海蓝礼花",
+        "blue fireworks tube"
+      ],
+      [
+        "c20_3",
+        "金色喷泉",
+        "golden fountain firework"
+      ],
+      [
+        "c20_4",
+        "星光纸筒",
+        "star decorated paper tube"
+      ],
+      [
+        "c20_5",
+        "彩芯套装",
+        "colorful fantasy firework cores"
+      ],
+      [
+        "c20_6",
+        "庆典引线盒",
+        "festive fuse spool box"
+      ],
+      [
+        "c20_7",
+        "花火礼盒",
+        "fireworks gift box"
+      ],
+      [
+        "c20_8",
+        "流星花火",
+        "comet firework rocket"
+      ],
+      [
+        "c20_9",
+        "音乐花火组",
+        "music coordinated firework set"
+      ],
+      [
+        "c20_10",
+        "海岛花火屏",
+        "fantasy fireworks backdrop"
+      ],
+      [
+        "c20_11",
+        "晨光天幕",
+        "grand star fireworks launcher"
+      ],
+      [
+        "c21_0",
+        "演出海报",
+        "illustrated concert poster"
+      ],
+      [
+        "c21_1",
+        "布景幕布",
+        "velvet stage curtain"
+      ],
+      [
+        "c21_2",
+        "竹木麦架",
+        "bamboo microphone stand"
+      ],
+      [
+        "c21_3",
+        "灯光滤片",
+        "colored stage lighting gels"
+      ],
+      [
+        "c21_4",
+        "演出胸牌",
+        "performer badge"
+      ],
+      [
+        "c21_5",
+        "彩排指示牌",
+        "rehearsal sign"
+      ],
+      [
+        "c21_6",
+        "节拍提示器",
+        "stage cue timer"
+      ],
+      [
+        "c21_7",
+        "星空聚光灯",
+        "star blue spotlight"
+      ],
+      [
+        "c21_8",
+        "派对背景墙",
+        "festive backdrop wall"
+      ],
+      [
+        "c21_9",
+        "服装快换架",
+        "costume rack"
+      ],
+      [
+        "c21_10",
+        "庆典灯阵",
+        "decorative light rig"
+      ],
+      [
+        "c21_11",
+        "海风音乐舞台",
+        "miniature concert stage"
+      ],
+      [
+        "c22_0",
+        "营地火种盒",
+        "camp tinder box"
+      ],
+      [
+        "c22_1",
+        "竹制餐具",
+        "bamboo camp utensils"
+      ],
+      [
+        "c22_2",
+        "亚麻吊床",
+        "linen hammock"
+      ],
+      [
+        "c22_3",
+        "轻便营灯",
+        "portable camp lantern"
+      ],
+      [
+        "c22_4",
+        "海风帐篷",
+        "blue camping tent"
+      ],
+      [
+        "c22_5",
+        "保温食盒",
+        "insulated camp food box"
+      ],
+      [
+        "c22_6",
+        "防风屏",
+        "folding wind shield"
+      ],
+      [
+        "c22_7",
+        "露营茶壶",
+        "camp kettle"
+      ],
+      [
+        "c22_8",
+        "观星睡袋",
+        "navy star sleeping bag"
+      ],
+      [
+        "c22_9",
+        "营地路灯",
+        "camp path lantern"
+      ],
+      [
+        "c22_10",
+        "派对大篷",
+        "large festival tent"
+      ],
+      [
+        "c22_11",
+        "海岛露营沙盘",
+        "campground miniature model"
+      ],
+      [
+        "c23_0",
+        "船板",
+        "curved wooden boat plank"
+      ],
+      [
+        "c23_1",
+        "防水树脂",
+        "waterproof resin tin"
+      ],
+      [
+        "c23_2",
+        "竹篙",
+        "long bamboo boat pole"
+      ],
+      [
+        "c23_3",
+        "船绳",
+        "coil of nautical rope"
+      ],
+      [
+        "c23_4",
+        "船桨",
+        "wooden oar"
+      ],
+      [
+        "c23_5",
+        "航海工具箱",
+        "shipwright tool chest"
+      ],
+      [
+        "c23_6",
+        "救生浮环",
+        "red white life ring"
+      ],
+      [
+        "c23_7",
+        "海风船帆",
+        "blue sail"
+      ],
+      [
+        "c23_8",
+        "小舟模型",
+        "wooden rowboat model"
+      ],
+      [
+        "c23_9",
+        "码头缆桩",
+        "wooden mooring bollard"
+      ],
+      [
+        "c23_10",
+        "庆典游船",
+        "festive boat model"
+      ],
+      [
+        "c23_11",
+        "晨光渡船",
+        "deluxe passenger ferry model"
+      ],
+      [
+        "painting",
+        "画作",
+        "framed island painting"
+      ],
+      [
+        "c24_1",
+        "矿物颜料",
+        "pigment jars"
+      ],
+      [
+        "c24_2",
+        "竹木画笔",
+        "bamboo paintbrushes"
+      ],
+      [
+        "c24_3",
+        "棉布画板",
+        "canvas panel"
+      ],
+      [
+        "c24_4",
+        "折纸套件",
+        "colored origami paper kit"
+      ],
+      [
+        "c24_5",
+        "蓝草染料",
+        "indigo dye bottle"
+      ],
+      [
+        "c24_6",
+        "海岛拓印",
+        "leaf and shell print"
+      ],
+      [
+        "c24_7",
+        "陶瓷画盘",
+        "painted ceramic palette"
+      ],
+      [
+        "c24_8",
+        "共创工坊徽章",
+        "artisan workshop badge"
+      ],
+      [
+        "c24_9",
+        "四季画屏",
+        "four panel painted screen"
+      ],
+      [
+        "c24_10",
+        "星光挂毯",
+        "star woven tapestry"
+      ],
+      [
+        "c24_11",
+        "海岛共创奇观",
+        "elaborate collaborative island sculpture"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-pixel-products-4-v8.png",
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-40e46f2c-b9c8-4fbf-ad39-d2c0f7e14e94.png"
+  },
+  {
+    "theme": "origami",
+    "pack": -1,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 5 columns by 10 rows, 50 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Beautiful handcrafted folded-paper origami game inventory objects. Faceted paper folds, tactile paper grain, warm pastel highlights, subtle self shading. NOT flat SVG icons, NOT emojis. Matching a refined origami island simulation. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 5 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) stack of cut logs; 2) green bamboo stalks; 3) dark hardwood log; 4) bundle of thin twigs; 5) golden resin in a little cup\nRow 2: 1) curled brown bark; 2) bundle of pale plant fibers; 3) fresh green leaves; 4) three brown mushrooms; 5) honey jar with dipper\nRow 3: 1) gray rocks; 2) turquoise star crystal ore; 3) orange copper ore; 4) dark silver iron ore; 5) clear white quartz cluster\nRow 4: 1) purple amethyst cluster; 2) reddish clay lumps; 3) small beige sand pile; 4) black coal chunks; 5) pink rock salt chunks\nRow 5: 1) cloth pouch of mixed seeds; 2) golden wheat sheaf; 3) red tomato pair; 4) orange ribbed pumpkin; 5) orange carrots with green tops\nRow 6: 1) golden corn cob; 2) three brown potatoes; 3) rice panicles and bowl of rice; 4) red strawberries with leaves; 5) fluffy white cotton branch\nRow 7: 1) blue flowering flax stalks; 2) green medicinal herb sprig; 3) mint leaves; 4) violet lavender sprigs; 5) red rose blossoms\nRow 8: 1) golden sunflower bloom; 2) indigo blue flowering plant; 3) serrated mulberry leaves; 4) yellow beeswax honeycomb; 5) warm amber nugget\nRow 9: 1) silver blue fish; 2) pink shrimp; 3) red crab; 4) squid with dark ink droplet; 5) green seaweed fronds\nRow 10: 1) pink scallop shell; 2) open oyster with pearl; 3) pink washed-up coral fragments; 4) pale twisted driftwood; 5) white sea salt in shell dish\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "wood",
+        "木材",
+        "stack of cut logs"
+      ],
+      [
+        "bamboo",
+        "竹材",
+        "green bamboo stalks"
+      ],
+      [
+        "hardwood",
+        "硬木",
+        "dark hardwood log"
+      ],
+      [
+        "twig",
+        "树枝",
+        "bundle of thin twigs"
+      ],
+      [
+        "resin",
+        "树脂",
+        "golden resin in a little cup"
+      ],
+      [
+        "bark",
+        "树皮",
+        "curled brown bark"
+      ],
+      [
+        "fiber",
+        "植物纤维",
+        "bundle of pale plant fibers"
+      ],
+      [
+        "leaves",
+        "嫩叶",
+        "fresh green leaves"
+      ],
+      [
+        "mushroom",
+        "蘑菇",
+        "three brown mushrooms"
+      ],
+      [
+        "honey",
+        "蜂蜜",
+        "honey jar with dipper"
+      ],
+      [
+        "stone",
+        "石材",
+        "gray rocks"
+      ],
+      [
+        "ore",
+        "星晶矿石",
+        "turquoise star crystal ore"
+      ],
+      [
+        "copper",
+        "铜矿",
+        "orange copper ore"
+      ],
+      [
+        "iron",
+        "铁矿",
+        "dark silver iron ore"
+      ],
+      [
+        "quartz",
+        "石英",
+        "clear white quartz cluster"
+      ],
+      [
+        "crystal",
+        "紫晶",
+        "purple amethyst cluster"
+      ],
+      [
+        "clay",
+        "陶土",
+        "reddish clay lumps"
+      ],
+      [
+        "sand",
+        "细沙",
+        "small beige sand pile"
+      ],
+      [
+        "coal",
+        "煤块",
+        "black coal chunks"
+      ],
+      [
+        "salt",
+        "岩盐",
+        "pink rock salt chunks"
+      ],
+      [
+        "seed",
+        "通用种子",
+        "cloth pouch of mixed seeds"
+      ],
+      [
+        "wheat",
+        "小麦",
+        "golden wheat sheaf"
+      ],
+      [
+        "tomato",
+        "番茄",
+        "red tomato pair"
+      ],
+      [
+        "pumpkin",
+        "南瓜",
+        "orange ribbed pumpkin"
+      ],
+      [
+        "carrot",
+        "胡萝卜",
+        "orange carrots with green tops"
+      ],
+      [
+        "corn",
+        "玉米",
+        "golden corn cob"
+      ],
+      [
+        "potato",
+        "土豆",
+        "three brown potatoes"
+      ],
+      [
+        "rice",
+        "稻米",
+        "rice panicles and bowl of rice"
+      ],
+      [
+        "strawberry",
+        "草莓",
+        "red strawberries with leaves"
+      ],
+      [
+        "cotton",
+        "棉花",
+        "fluffy white cotton branch"
+      ],
+      [
+        "flax",
+        "亚麻",
+        "blue flowering flax stalks"
+      ],
+      [
+        "herb",
+        "草药",
+        "green medicinal herb sprig"
+      ],
+      [
+        "mint",
+        "薄荷",
+        "mint leaves"
+      ],
+      [
+        "lavender",
+        "薰衣草",
+        "violet lavender sprigs"
+      ],
+      [
+        "rose",
+        "玫瑰",
+        "red rose blossoms"
+      ],
+      [
+        "sunflower",
+        "向日葵",
+        "golden sunflower bloom"
+      ],
+      [
+        "bluegrass",
+        "蓝草",
+        "indigo blue flowering plant"
+      ],
+      [
+        "mulberry",
+        "桑叶",
+        "serrated mulberry leaves"
+      ],
+      [
+        "wax",
+        "蜂蜡",
+        "yellow beeswax honeycomb"
+      ],
+      [
+        "amber",
+        "琥珀",
+        "warm amber nugget"
+      ],
+      [
+        "fish",
+        "海鱼",
+        "silver blue fish"
+      ],
+      [
+        "shrimp",
+        "海虾",
+        "pink shrimp"
+      ],
+      [
+        "crab",
+        "螃蟹",
+        "red crab"
+      ],
+      [
+        "ink",
+        "乌贼墨",
+        "squid with dark ink droplet"
+      ],
+      [
+        "seaweed",
+        "海藻",
+        "green seaweed fronds"
+      ],
+      [
+        "shell",
+        "贝壳",
+        "pink scallop shell"
+      ],
+      [
+        "pearl",
+        "珍珠",
+        "open oyster with pearl"
+      ],
+      [
+        "coral",
+        "珊瑚碎片",
+        "pink washed-up coral fragments"
+      ],
+      [
+        "driftwood",
+        "漂流木",
+        "pale twisted driftwood"
+      ],
+      [
+        "seasalt",
+        "海盐",
+        "white sea salt in shell dish"
+      ]
+    ],
+    "columns": 5,
+    "rows": 10,
+    "file": "items-origami-materials-v8.png",
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-810d293c-9191-404c-af70-22330286cf4e.png"
+  },
+  {
+    "theme": "origami",
+    "pack": 0,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Beautiful handcrafted folded-paper origami game inventory objects. Faceted paper folds, tactile paper grain, warm pastel highlights, subtle self shading. NOT flat SVG icons, NOT emojis. Matching a refined origami island simulation. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) wooden lantern with warm candle; 2) wood handled iron hoe; 3) iron pickaxe with wooden handle; 4) turquoise watering can; 5) wood handled axe; 6) curved harvesting sickle\nRow 2: 1) carved wooden chair; 2) stack of milled planks; 3) little roofed birdhouse; 4) bamboo room divider; 5) wooden bookshelf; 6) amber resin wind chime\nRow 3: 1) cup of flower tea; 2) glass of mint iced tea; 3) golden honey tea with mint; 4) pink rose teabags; 5) lavender tea in purple cup; 6) blue fizzy drink\nRow 4: 1) pumpkin orange tea; 2) strawberry red drink; 3) green tea in bamboo cup; 4) little ceramic tea stove; 5) six colorful tea tins in gift box; 6) iridescent pearl teacup\nRow 5: 1) fish stew in bowl; 2) tomato red rice plate; 3) grilled corn on wooden platter; 4) creamy potato soup; 5) roasted herb fish; 6) shrimp rice bowl\nRow 6: 1) mushroom rice triangle; 2) baked rice in pumpkin; 3) crab feast platter; 4) bamboo rice bowl; 5) large mixed seafood feast tray; 6) star decorated bento box\nRow 7: 1) pink mixed flower bouquet; 2) mint plant in clay pot; 3) rose boutonniere; 4) sunflower wreath; 5) lavender embroidered sachet; 6) flower basket\nRow 8: 1) green leaf table arrangement; 2) flower vase covered in seashells; 3) hanging flower curtain; 4) arched floral doorway; 5) pink coral flower sculpture; 6) floral lamp with four colors\nRow 9: 1) festive purple dress; 2) cream linen shirt; 3) green cotton apron; 4) wide straw hat with blue ribbon; 5) brown leatherlike work gloves; 6) pink floral shawl\nRow 10: 1) navy star cape; 2) blue striped skirt; 3) red rose formal dress; 4) navy sailor uniform; 5) pearl hair comb; 6) iridescent dance costume\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "lantern",
+        "灯笼",
+        "wooden lantern with warm candle"
+      ],
+      [
+        "hoe",
+        "田间锄头",
+        "wood handled iron hoe"
+      ],
+      [
+        "pickaxe",
+        "矿工镐",
+        "iron pickaxe with wooden handle"
+      ],
+      [
+        "watering_can",
+        "浇水壶",
+        "turquoise watering can"
+      ],
+      [
+        "axe",
+        "伐木斧",
+        "wood handled axe"
+      ],
+      [
+        "sickle",
+        "收割镰",
+        "curved harvesting sickle"
+      ],
+      [
+        "c0_6",
+        "海风木椅",
+        "carved wooden chair"
+      ],
+      [
+        "c0_7",
+        "木板",
+        "stack of milled planks"
+      ],
+      [
+        "c0_8",
+        "鸟屋",
+        "little roofed birdhouse"
+      ],
+      [
+        "c0_9",
+        "竹编屏风",
+        "bamboo room divider"
+      ],
+      [
+        "c0_10",
+        "林间书柜",
+        "wooden bookshelf"
+      ],
+      [
+        "c0_11",
+        "树脂风铃",
+        "amber resin wind chime"
+      ],
+      [
+        "tea",
+        "花茶",
+        "cup of flower tea"
+      ],
+      [
+        "c1_1",
+        "薄荷凉饮",
+        "glass of mint iced tea"
+      ],
+      [
+        "c1_2",
+        "蜂蜜柠香饮",
+        "golden honey tea with mint"
+      ],
+      [
+        "c1_3",
+        "玫瑰茶包",
+        "pink rose teabags"
+      ],
+      [
+        "c1_4",
+        "薰衣草奶茶",
+        "lavender tea in purple cup"
+      ],
+      [
+        "c1_5",
+        "海盐气泡饮",
+        "blue fizzy drink"
+      ],
+      [
+        "c1_6",
+        "南瓜香茶",
+        "pumpkin orange tea"
+      ],
+      [
+        "c1_7",
+        "草莓果饮",
+        "strawberry red drink"
+      ],
+      [
+        "c1_8",
+        "竹筒清茶",
+        "green tea in bamboo cup"
+      ],
+      [
+        "c1_9",
+        "暖手茶炉",
+        "little ceramic tea stove"
+      ],
+      [
+        "c1_10",
+        "六味茶礼盒",
+        "six colorful tea tins in gift box"
+      ],
+      [
+        "c1_11",
+        "珍珠茶盏",
+        "iridescent pearl teacup"
+      ],
+      [
+        "meal",
+        "海岛料理",
+        "fish stew in bowl"
+      ],
+      [
+        "c2_1",
+        "番茄烩饭",
+        "tomato red rice plate"
+      ],
+      [
+        "c2_2",
+        "烤玉米",
+        "grilled corn on wooden platter"
+      ],
+      [
+        "c2_3",
+        "土豆浓汤",
+        "creamy potato soup"
+      ],
+      [
+        "c2_4",
+        "香草烤鱼",
+        "roasted herb fish"
+      ],
+      [
+        "c2_5",
+        "海虾米饭",
+        "shrimp rice bowl"
+      ],
+      [
+        "c2_6",
+        "蘑菇饭团",
+        "mushroom rice triangle"
+      ],
+      [
+        "c2_7",
+        "南瓜焗饭",
+        "baked rice in pumpkin"
+      ],
+      [
+        "c2_8",
+        "蟹肉拼盘",
+        "crab feast platter"
+      ],
+      [
+        "c2_9",
+        "竹筒野炊饭",
+        "bamboo rice bowl"
+      ],
+      [
+        "c2_10",
+        "海岛宴席",
+        "large mixed seafood feast tray"
+      ],
+      [
+        "c2_11",
+        "星夜便当",
+        "star decorated bento box"
+      ],
+      [
+        "bouquet",
+        "花束",
+        "pink mixed flower bouquet"
+      ],
+      [
+        "c3_1",
+        "薄荷盆栽",
+        "mint plant in clay pot"
+      ],
+      [
+        "c3_2",
+        "玫瑰胸花",
+        "rose boutonniere"
+      ],
+      [
+        "c3_3",
+        "向日葵花环",
+        "sunflower wreath"
+      ],
+      [
+        "c3_4",
+        "薰衣草香囊",
+        "lavender embroidered sachet"
+      ],
+      [
+        "c3_5",
+        "竹篮花饰",
+        "flower basket"
+      ],
+      [
+        "c3_6",
+        "叶片桌花",
+        "green leaf table arrangement"
+      ],
+      [
+        "c3_7",
+        "海贝花瓶",
+        "flower vase covered in seashells"
+      ],
+      [
+        "c3_8",
+        "流苏花帘",
+        "hanging flower curtain"
+      ],
+      [
+        "c3_9",
+        "节庆花门",
+        "arched floral doorway"
+      ],
+      [
+        "c3_10",
+        "珊瑚花雕",
+        "pink coral flower sculpture"
+      ],
+      [
+        "c3_11",
+        "四季花灯",
+        "floral lamp with four colors"
+      ],
+      [
+        "outfit",
+        "主题服装",
+        "festive purple dress"
+      ],
+      [
+        "c4_1",
+        "亚麻衬衫",
+        "cream linen shirt"
+      ],
+      [
+        "c4_2",
+        "棉布围裙",
+        "green cotton apron"
+      ],
+      [
+        "c4_3",
+        "海风草帽",
+        "wide straw hat with blue ribbon"
+      ],
+      [
+        "c4_4",
+        "矿工手套",
+        "brown leatherlike work gloves"
+      ],
+      [
+        "c4_5",
+        "花园披肩",
+        "pink floral shawl"
+      ],
+      [
+        "c4_6",
+        "星空斗篷",
+        "navy star cape"
+      ],
+      [
+        "c4_7",
+        "海盐条纹裙",
+        "blue striped skirt"
+      ],
+      [
+        "c4_8",
+        "玫瑰礼服",
+        "red rose formal dress"
+      ],
+      [
+        "c4_9",
+        "航海制服",
+        "navy sailor uniform"
+      ],
+      [
+        "c4_10",
+        "珍珠发饰",
+        "pearl hair comb"
+      ],
+      [
+        "c4_11",
+        "折光舞衣",
+        "iridescent dance costume"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-origami-products-0-v8.png",
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-0579e625-bb6c-4424-ae57-3ca9bbd95e2d.png"
+  },
+  {
+    "theme": "origami",
+    "pack": 1,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Beautiful handcrafted folded-paper origami game inventory objects. Faceted paper folds, tactile paper grain, warm pastel highlights, subtle self shading. NOT flat SVG icons, NOT emojis. Matching a refined origami island simulation. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) blue star chart scroll; 2) astronomy book; 3) brass telescope on tripod; 4) moon phase wall disc; 5) bottle filled with star shapes; 6) gold constellation brooch\nRow 2: 1) brass binoculars; 2) glowing sand vial; 3) celestial blue globe; 4) star navigation compass; 5) crescent moon table lamp; 6) glass comet display sculpture\nRow 3: 1) seaweed fish food jar; 2) bag of aquarium pebbles; 3) shell aquarium shelter; 4) aquatic plant basket; 5) small round fish bowl; 6) simple aquarium filter\nRow 4: 1) coral aquarium stand; 2) decorative tidal water tank; 3) shrimp nursery tank; 4) jellyfish-shaped glowing lamp; 5) large reef aquarium; 6) marine observation album\nRow 5: 1) old nautical journal; 2) botanical field book; 3) mineral book with crystal; 4) craft notebook; 5) set of colored bookmarks; 6) stack of cream handmade paper\nRow 6: 1) island atlas; 2) star themed poetry book; 3) green reading lamp; 4) book restoration kit; 5) ornate co-creation handbook; 6) box of story scrolls\nRow 7: 1) red maritime signal lamp; 2) red white navigation buoy; 3) triangular blue flag; 4) brass lighthouse oil lamp; 5) brass fog horn; 6) nautical route map\nRow 8: 1) wooden tide gauge; 2) circular glass lighthouse lens; 3) reflective signpost; 4) harbor pilot sign; 5) tall glowing beacon; 6) miniature lighthouse lamp\nRow 9: 1) basket of island groceries; 2) bundle of dried flowers; 3) colorful vegetable gift hamper; 4) wooden mineral sample crate; 5) tea and pastry gift set; 6) wooden market price tags\nRow 10: 1) woven tote bag; 2) portable market display shelf; 3) island specialty gift box; 4) festive market sign; 5) pearl souvenir charm; 6) decorated artisan booth\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "c5_0",
+        "星图",
+        "blue star chart scroll"
+      ],
+      [
+        "c5_1",
+        "观星手册",
+        "astronomy book"
+      ],
+      [
+        "c5_2",
+        "简易望远镜",
+        "brass telescope on tripod"
+      ],
+      [
+        "c5_3",
+        "月相挂盘",
+        "moon phase wall disc"
+      ],
+      [
+        "c5_4",
+        "流星许愿瓶",
+        "bottle filled with star shapes"
+      ],
+      [
+        "c5_5",
+        "星座徽章",
+        "gold constellation brooch"
+      ],
+      [
+        "c5_6",
+        "双筒望远镜",
+        "brass binoculars"
+      ],
+      [
+        "c5_7",
+        "星砂标本",
+        "glowing sand vial"
+      ],
+      [
+        "c5_8",
+        "银河天球仪",
+        "celestial blue globe"
+      ],
+      [
+        "c5_9",
+        "航星罗盘",
+        "star navigation compass"
+      ],
+      [
+        "c5_10",
+        "月影台灯",
+        "crescent moon table lamp"
+      ],
+      [
+        "c5_11",
+        "彗星奇观",
+        "glass comet display sculpture"
+      ],
+      [
+        "c6_0",
+        "海藻饲料",
+        "seaweed fish food jar"
+      ],
+      [
+        "c6_1",
+        "卵石底砂",
+        "bag of aquarium pebbles"
+      ],
+      [
+        "c6_2",
+        "贝壳躲藏屋",
+        "shell aquarium shelter"
+      ],
+      [
+        "c6_3",
+        "水草栽培篮",
+        "aquatic plant basket"
+      ],
+      [
+        "c6_4",
+        "小鱼缸",
+        "small round fish bowl"
+      ],
+      [
+        "c6_5",
+        "过滤器",
+        "simple aquarium filter"
+      ],
+      [
+        "c6_6",
+        "珊瑚展台",
+        "coral aquarium stand"
+      ],
+      [
+        "c6_7",
+        "潮汐水景",
+        "decorative tidal water tank"
+      ],
+      [
+        "c6_8",
+        "海虾育养盒",
+        "shrimp nursery tank"
+      ],
+      [
+        "c6_9",
+        "夜光水母灯",
+        "jellyfish-shaped glowing lamp"
+      ],
+      [
+        "c6_10",
+        "环礁水族箱",
+        "large reef aquarium"
+      ],
+      [
+        "c6_11",
+        "海洋观察档案",
+        "marine observation album"
+      ],
+      [
+        "c7_0",
+        "航海日志",
+        "old nautical journal"
+      ],
+      [
+        "c7_1",
+        "植物图鉴",
+        "botanical field book"
+      ],
+      [
+        "c7_2",
+        "矿物图鉴",
+        "mineral book with crystal"
+      ],
+      [
+        "c7_3",
+        "手工笔记",
+        "craft notebook"
+      ],
+      [
+        "c7_4",
+        "书签套装",
+        "set of colored bookmarks"
+      ],
+      [
+        "c7_5",
+        "纸张",
+        "stack of cream handmade paper"
+      ],
+      [
+        "c7_6",
+        "岛屿地图册",
+        "island atlas"
+      ],
+      [
+        "c7_7",
+        "星空诗集",
+        "star themed poetry book"
+      ],
+      [
+        "c7_8",
+        "读书灯",
+        "green reading lamp"
+      ],
+      [
+        "c7_9",
+        "书籍修复包",
+        "book restoration kit"
+      ],
+      [
+        "c7_10",
+        "精装共创手册",
+        "ornate co-creation handbook"
+      ],
+      [
+        "c7_11",
+        "故事收藏箱",
+        "box of story scrolls"
+      ],
+      [
+        "c8_0",
+        "信号灯",
+        "red maritime signal lamp"
+      ],
+      [
+        "c8_1",
+        "航标浮筒",
+        "red white navigation buoy"
+      ],
+      [
+        "c8_2",
+        "海风旗",
+        "triangular blue flag"
+      ],
+      [
+        "c8_3",
+        "灯塔油灯",
+        "brass lighthouse oil lamp"
+      ],
+      [
+        "c8_4",
+        "雾号",
+        "brass fog horn"
+      ],
+      [
+        "c8_5",
+        "航线图",
+        "nautical route map"
+      ],
+      [
+        "c8_6",
+        "潮汐计",
+        "wooden tide gauge"
+      ],
+      [
+        "c8_7",
+        "航灯透镜",
+        "circular glass lighthouse lens"
+      ],
+      [
+        "c8_8",
+        "反光路标",
+        "reflective signpost"
+      ],
+      [
+        "c8_9",
+        "码头引航牌",
+        "harbor pilot sign"
+      ],
+      [
+        "c8_10",
+        "远航信标",
+        "tall glowing beacon"
+      ],
+      [
+        "c8_11",
+        "晨光纪念灯",
+        "miniature lighthouse lamp"
+      ],
+      [
+        "c9_0",
+        "海岛货篮",
+        "basket of island groceries"
+      ],
+      [
+        "c9_1",
+        "干花货包",
+        "bundle of dried flowers"
+      ],
+      [
+        "c9_2",
+        "蔬果礼包",
+        "colorful vegetable gift hamper"
+      ],
+      [
+        "c9_3",
+        "矿石样品箱",
+        "wooden mineral sample crate"
+      ],
+      [
+        "c9_4",
+        "茶点礼包",
+        "tea and pastry gift set"
+      ],
+      [
+        "c9_5",
+        "摊位价签",
+        "wooden market price tags"
+      ],
+      [
+        "c9_6",
+        "编织购物袋",
+        "woven tote bag"
+      ],
+      [
+        "c9_7",
+        "便携展示架",
+        "portable market display shelf"
+      ],
+      [
+        "c9_8",
+        "岛屿特产盒",
+        "island specialty gift box"
+      ],
+      [
+        "c9_9",
+        "主题市集招牌",
+        "festive market sign"
+      ],
+      [
+        "c9_10",
+        "珍珠纪念品",
+        "pearl souvenir charm"
+      ],
+      [
+        "c9_11",
+        "共创展销台",
+        "decorated artisan booth"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-origami-products-1-v8.png",
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-fc3ba8df-a56d-4238-84d0-51ca08fdcee7.png"
+  },
+  {
+    "theme": "origami",
+    "pack": 2,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Beautiful handcrafted folded-paper origami game inventory objects. Faceted paper folds, tactile paper grain, warm pastel highlights, subtle self shading. NOT flat SVG icons, NOT emojis. Matching a refined origami island simulation. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) green game potion bottle; 2) mint comfort sachet; 3) rolled cotton bandages; 4) herbal warming pouch; 5) clean water cup; 6) herbal compartment box\nRow 2: 1) beeswax hand cream tin; 2) lavender pillow; 3) neat clinic tool tray; 4) red white first aid bag; 5) recovery flower basket; 6) health journal\nRow 3: 1) letter in bottle; 2) illustrated island postcard; 3) pressed flower envelope; 4) bamboo paper letter sheets; 5) wax sealing stamp; 6) colorful stamp album\nRow 4: 1) wooden mail sorting rack; 2) nautical invitation card; 3) festive party invitation; 4) artisan commission scroll; 5) pearl envelope fastener; 6) bundle of travel letters\nRow 5: 1) green bamboo flute; 2) wooden shaker pair; 3) wooden castanets; 4) shell whistle; 5) small frame drum; 6) linen instrument bag\nRow 6: 1) wooden acoustic guitar; 2) carved wind-up music box; 3) blue musical score; 4) wooden metronome; 5) vinyl record in island cover; 6) shell shaped harp\nRow 7: 1) island photo in frame; 2) wooden photo frame; 3) flower themed photo album; 4) aerial island photograph; 5) folding silver reflector; 6) bamboo camera tripod\nRow 8: 1) photo developing tray; 2) camera lens with blue trim; 3) party photo guestbook; 4) night camera tracking mount; 5) pearl ornate picture frame; 6) deluxe island photo album\nRow 9: 1) green seedling tray; 2) mint seedlings in pots; 3) rose seedlings; 4) lavender seedlings; 5) cotton seedlings; 6) flax seedlings\nRow 10: 1) coiled garden irrigation tube; 2) bamboo seedling shelf; 3) herbal compost bag; 4) greenhouse shade curtain; 5) seed specimen box; 6) miniature four-season flower bed\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "remedy",
+        "草药药剂",
+        "green game potion bottle"
+      ],
+      [
+        "c10_1",
+        "薄荷舒缓包",
+        "mint comfort sachet"
+      ],
+      [
+        "c10_2",
+        "棉布绷带",
+        "rolled cotton bandages"
+      ],
+      [
+        "c10_3",
+        "草本热敷袋",
+        "herbal warming pouch"
+      ],
+      [
+        "c10_4",
+        "净水杯",
+        "clean water cup"
+      ],
+      [
+        "c10_5",
+        "药草分装盒",
+        "herbal compartment box"
+      ],
+      [
+        "c10_6",
+        "蜂蜡护手膏",
+        "beeswax hand cream tin"
+      ],
+      [
+        "c10_7",
+        "薰香休息枕",
+        "lavender pillow"
+      ],
+      [
+        "c10_8",
+        "诊所工具托盘",
+        "neat clinic tool tray"
+      ],
+      [
+        "c10_9",
+        "应急护理包",
+        "red white first aid bag"
+      ],
+      [
+        "c10_10",
+        "康复花篮",
+        "recovery flower basket"
+      ],
+      [
+        "c10_11",
+        "居民健康手账",
+        "health journal"
+      ],
+      [
+        "c11_0",
+        "漂流信",
+        "letter in bottle"
+      ],
+      [
+        "c11_1",
+        "岛屿明信片",
+        "illustrated island postcard"
+      ],
+      [
+        "c11_2",
+        "压花信封",
+        "pressed flower envelope"
+      ],
+      [
+        "c11_3",
+        "竹纸信笺",
+        "bamboo paper letter sheets"
+      ],
+      [
+        "c11_4",
+        "蜂蜡封印",
+        "wax sealing stamp"
+      ],
+      [
+        "c11_5",
+        "邮票册",
+        "colorful stamp album"
+      ],
+      [
+        "c11_6",
+        "木质邮袋架",
+        "wooden mail sorting rack"
+      ],
+      [
+        "c11_7",
+        "航海邀请函",
+        "nautical invitation card"
+      ],
+      [
+        "c11_8",
+        "派对请柬",
+        "festive party invitation"
+      ],
+      [
+        "c11_9",
+        "共创委托书",
+        "artisan commission scroll"
+      ],
+      [
+        "c11_10",
+        "珍珠信封扣",
+        "pearl envelope fastener"
+      ],
+      [
+        "c11_11",
+        "远方故事包",
+        "bundle of travel letters"
+      ],
+      [
+        "c12_0",
+        "竹笛",
+        "green bamboo flute"
+      ],
+      [
+        "c12_1",
+        "沙锤",
+        "wooden shaker pair"
+      ],
+      [
+        "c12_2",
+        "木制响板",
+        "wooden castanets"
+      ],
+      [
+        "c12_3",
+        "海贝口哨",
+        "shell whistle"
+      ],
+      [
+        "c12_4",
+        "手鼓",
+        "small frame drum"
+      ],
+      [
+        "c12_5",
+        "亚麻琴套",
+        "linen instrument bag"
+      ],
+      [
+        "c12_6",
+        "海风吉他",
+        "wooden acoustic guitar"
+      ],
+      [
+        "c12_7",
+        "音乐盒",
+        "carved wind-up music box"
+      ],
+      [
+        "c12_8",
+        "星夜乐谱",
+        "blue musical score"
+      ],
+      [
+        "c12_9",
+        "舞台节拍器",
+        "wooden metronome"
+      ],
+      [
+        "c12_10",
+        "岛屿唱片",
+        "vinyl record in island cover"
+      ],
+      [
+        "c12_11",
+        "潮声竖琴",
+        "shell shaped harp"
+      ],
+      [
+        "c13_0",
+        "海岛相片",
+        "island photo in frame"
+      ],
+      [
+        "c13_1",
+        "木质相框",
+        "wooden photo frame"
+      ],
+      [
+        "c13_2",
+        "花园相册",
+        "flower themed photo album"
+      ],
+      [
+        "c13_3",
+        "航拍地图",
+        "aerial island photograph"
+      ],
+      [
+        "c13_4",
+        "摄影反光板",
+        "folding silver reflector"
+      ],
+      [
+        "c13_5",
+        "竹木三脚架",
+        "bamboo camera tripod"
+      ],
+      [
+        "c13_6",
+        "暗房显影盒",
+        "photo developing tray"
+      ],
+      [
+        "c13_7",
+        "海风镜头",
+        "camera lens with blue trim"
+      ],
+      [
+        "c13_8",
+        "派对留影册",
+        "party photo guestbook"
+      ],
+      [
+        "c13_9",
+        "星空摄影架",
+        "night camera tracking mount"
+      ],
+      [
+        "c13_10",
+        "珍珠纪念相框",
+        "pearl ornate picture frame"
+      ],
+      [
+        "c13_11",
+        "晨光影集",
+        "deluxe island photo album"
+      ],
+      [
+        "c14_0",
+        "育苗盘",
+        "green seedling tray"
+      ],
+      [
+        "c14_1",
+        "薄荷种苗",
+        "mint seedlings in pots"
+      ],
+      [
+        "c14_2",
+        "玫瑰种苗",
+        "rose seedlings"
+      ],
+      [
+        "c14_3",
+        "薰衣草种苗",
+        "lavender seedlings"
+      ],
+      [
+        "c14_4",
+        "棉花种苗",
+        "cotton seedlings"
+      ],
+      [
+        "c14_5",
+        "亚麻种苗",
+        "flax seedlings"
+      ],
+      [
+        "c14_6",
+        "滴灌管",
+        "coiled garden irrigation tube"
+      ],
+      [
+        "c14_7",
+        "竹制苗架",
+        "bamboo seedling shelf"
+      ],
+      [
+        "c14_8",
+        "温室肥料",
+        "herbal compost bag"
+      ],
+      [
+        "c14_9",
+        "遮光帘",
+        "greenhouse shade curtain"
+      ],
+      [
+        "c14_10",
+        "种子收藏盒",
+        "seed specimen box"
+      ],
+      [
+        "c14_11",
+        "四季花圃",
+        "miniature four-season flower bed"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-origami-products-2-v8.png",
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-fdf4f098-791d-4063-8d0e-83ec248f132d.png"
+  },
+  {
+    "theme": "origami",
+    "pack": 3,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Beautiful handcrafted folded-paper origami game inventory objects. Faceted paper folds, tactile paper grain, warm pastel highlights, subtle self shading. NOT flat SVG icons, NOT emojis. Matching a refined origami island simulation. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) brown clay pot; 2) cream ceramic teacup; 3) tall blue ceramic vase; 4) shallow ceramic dish; 5) ceramic incense burner; 6) ceramic artist palette\nRow 2: 1) floral teapot; 2) shell glazed bowl; 3) perforated clay lamp shade; 4) aquarium ceramic cave; 5) navy star glazed vase; 6) island landscape ceramic sculpture\nRow 3: 1) wooden fishing rod and reel; 2) bamboo fishing creel; 3) shell fishing float; 4) small bait box; 5) shrimp bait pouch; 6) spool of fishing line\nRow 4: 1) three silver fishing hooks; 2) woven fishing net; 3) nautical fishing tackle bag; 4) long graphite blue fishing rod; 5) pearl fishing bobber; 6) ornate champion tackle chest\nRow 5: 1) golden crust bread loaf; 2) honey rolls; 3) strawberry pastry; 4) corn muffin; 5) orange pumpkin pie; 6) herb crackers\nRow 6: 1) white rice cookie; 2) lavender cookies; 3) salt palmier pastry; 4) braided flower crown bread; 5) star lantern decorated cake; 6) three tier pastry stand\nRow 7: 1) mineral specimen under glass; 2) pressed leaf specimen; 3) seashell specimen box; 4) nautical knots board; 5) restored ceramic plate; 6) old map exhibition scroll\nRow 8: 1) museum information plaque; 2) coral specimen cabinet; 3) pearl display stand; 4) amber insect display; 5) meteor crystal showcase; 6) miniature island diorama\nRow 9: 1) linen sofa cushion; 2) folded cotton blanket; 3) bamboo woven floor mat; 4) herbal sleep sachet; 5) blue curtains; 6) floral rug\nRow 10: 1) firewood box; 2) bedside organizer; 3) shell night lamp; 4) wooden rocking chair; 5) pearl vanity mirror; 6) ornate island host table\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "pottery",
+        "陶器",
+        "brown clay pot"
+      ],
+      [
+        "c15_1",
+        "茶杯",
+        "cream ceramic teacup"
+      ],
+      [
+        "c15_2",
+        "花瓶",
+        "tall blue ceramic vase"
+      ],
+      [
+        "c15_3",
+        "小碟",
+        "shallow ceramic dish"
+      ],
+      [
+        "c15_4",
+        "香薰炉",
+        "ceramic incense burner"
+      ],
+      [
+        "c15_5",
+        "调色盘",
+        "ceramic artist palette"
+      ],
+      [
+        "c15_6",
+        "花纹茶壶",
+        "floral teapot"
+      ],
+      [
+        "c15_7",
+        "海贝陶碗",
+        "shell glazed bowl"
+      ],
+      [
+        "c15_8",
+        "陶制灯罩",
+        "perforated clay lamp shade"
+      ],
+      [
+        "c15_9",
+        "水族陶洞",
+        "aquarium ceramic cave"
+      ],
+      [
+        "c15_10",
+        "星空瓷瓶",
+        "navy star glazed vase"
+      ],
+      [
+        "c15_11",
+        "岛屿陶雕",
+        "island landscape ceramic sculpture"
+      ],
+      [
+        "rod",
+        "渔竿",
+        "wooden fishing rod and reel"
+      ],
+      [
+        "c16_1",
+        "竹制鱼篓",
+        "bamboo fishing creel"
+      ],
+      [
+        "c16_2",
+        "贝壳浮漂",
+        "shell fishing float"
+      ],
+      [
+        "c16_3",
+        "鱼饵盒",
+        "small bait box"
+      ],
+      [
+        "c16_4",
+        "海虾鱼饵",
+        "shrimp bait pouch"
+      ],
+      [
+        "c16_5",
+        "备用钓线",
+        "spool of fishing line"
+      ],
+      [
+        "c16_6",
+        "精制鱼钩",
+        "three silver fishing hooks"
+      ],
+      [
+        "c16_7",
+        "海风渔网",
+        "woven fishing net"
+      ],
+      [
+        "c16_8",
+        "潮汐钓具包",
+        "nautical fishing tackle bag"
+      ],
+      [
+        "c16_9",
+        "远投钓竿",
+        "long graphite blue fishing rod"
+      ],
+      [
+        "c16_10",
+        "珍珠鱼漂",
+        "pearl fishing bobber"
+      ],
+      [
+        "c16_11",
+        "冠军钓具箱",
+        "ornate champion tackle chest"
+      ],
+      [
+        "bread",
+        "面包",
+        "golden crust bread loaf"
+      ],
+      [
+        "c17_1",
+        "蜂蜜小面包",
+        "honey rolls"
+      ],
+      [
+        "c17_2",
+        "草莓饼",
+        "strawberry pastry"
+      ],
+      [
+        "c17_3",
+        "玉米松饼",
+        "corn muffin"
+      ],
+      [
+        "c17_4",
+        "南瓜派",
+        "orange pumpkin pie"
+      ],
+      [
+        "c17_5",
+        "香草薄脆",
+        "herb crackers"
+      ],
+      [
+        "c17_6",
+        "奶香米饼",
+        "white rice cookie"
+      ],
+      [
+        "c17_7",
+        "薰衣草曲奇",
+        "lavender cookies"
+      ],
+      [
+        "c17_8",
+        "海盐蝴蝶酥",
+        "salt palmier pastry"
+      ],
+      [
+        "c17_9",
+        "庆典花冠面包",
+        "braided flower crown bread"
+      ],
+      [
+        "c17_10",
+        "星灯蛋糕",
+        "star lantern decorated cake"
+      ],
+      [
+        "c17_11",
+        "共创茶点塔",
+        "three tier pastry stand"
+      ],
+      [
+        "c18_0",
+        "矿物标本",
+        "mineral specimen under glass"
+      ],
+      [
+        "c18_1",
+        "压叶标本",
+        "pressed leaf specimen"
+      ],
+      [
+        "c18_2",
+        "海贝标本",
+        "seashell specimen box"
+      ],
+      [
+        "c18_3",
+        "航海绳结板",
+        "nautical knots board"
+      ],
+      [
+        "c18_4",
+        "陶片复原盘",
+        "restored ceramic plate"
+      ],
+      [
+        "c18_5",
+        "旧地图展卷",
+        "old map exhibition scroll"
+      ],
+      [
+        "c18_6",
+        "岛史展签",
+        "museum information plaque"
+      ],
+      [
+        "c18_7",
+        "珊瑚收藏柜",
+        "coral specimen cabinet"
+      ],
+      [
+        "c18_8",
+        "珍珠展架",
+        "pearl display stand"
+      ],
+      [
+        "c18_9",
+        "琥珀奇观",
+        "amber insect display"
+      ],
+      [
+        "c18_10",
+        "流星展柜",
+        "meteor crystal showcase"
+      ],
+      [
+        "c18_11",
+        "晨光岛沙盘",
+        "miniature island diorama"
+      ],
+      [
+        "c19_0",
+        "亚麻靠垫",
+        "linen sofa cushion"
+      ],
+      [
+        "c19_1",
+        "棉布毛毯",
+        "folded cotton blanket"
+      ],
+      [
+        "c19_2",
+        "竹编坐垫",
+        "bamboo woven floor mat"
+      ],
+      [
+        "c19_3",
+        "香草安睡袋",
+        "herbal sleep sachet"
+      ],
+      [
+        "c19_4",
+        "海风窗帘",
+        "blue curtains"
+      ],
+      [
+        "c19_5",
+        "花园地毯",
+        "floral rug"
+      ],
+      [
+        "c19_6",
+        "壁炉木箱",
+        "firewood box"
+      ],
+      [
+        "c19_7",
+        "床头收纳架",
+        "bedside organizer"
+      ],
+      [
+        "c19_8",
+        "海贝夜灯",
+        "shell night lamp"
+      ],
+      [
+        "c19_9",
+        "温暖摇椅",
+        "wooden rocking chair"
+      ],
+      [
+        "c19_10",
+        "珍珠镜台",
+        "pearl vanity mirror"
+      ],
+      [
+        "c19_11",
+        "岛主会客桌",
+        "ornate island host table"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-origami-products-3-v8.png",
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-a4d14d23-83c1-4f41-8f8f-37c5b6eeb391.png"
+  },
+  {
+    "theme": "origami",
+    "pack": 4,
+    "prompt": "Use case: stylized-concept. Create one PRODUCTION INVENTORY ATLAS: exactly 6 columns by 10 rows, 60 DIFFERENT beautiful isolated objects on TRUE transparent alpha. Beautiful handcrafted folded-paper origami game inventory objects. Faceted paper folds, tactile paper grain, warm pastel highlights, subtle self shading. NOT flat SVG icons, NOT emojis. Matching a refined origami island simulation. Perfectly regular square cells, centered single complete object inside each cell, scale each to similar perceived size, at least 18% transparent gutters, no cell crossing, no labels, no words, no numbers, no frames, no checkerboard, no ground shadows. Every row contains exactly 6 objects. Each object must distinctly represent its named type with recognizable shape and details, not recolors of one generic object. Style reference is material and palette only; do NOT draw people. EXACT objects in row-major order:\nRow 1: 1) festive firework rocket; 2) flower shaped fireworks rocket; 3) blue fireworks tube; 4) golden fountain firework; 5) star decorated paper tube; 6) colorful fantasy firework cores\nRow 2: 1) festive fuse spool box; 2) fireworks gift box; 3) comet firework rocket; 4) music coordinated firework set; 5) fantasy fireworks backdrop; 6) grand star fireworks launcher\nRow 3: 1) illustrated concert poster; 2) velvet stage curtain; 3) bamboo microphone stand; 4) colored stage lighting gels; 5) performer badge; 6) rehearsal sign\nRow 4: 1) stage cue timer; 2) star blue spotlight; 3) festive backdrop wall; 4) costume rack; 5) decorative light rig; 6) miniature concert stage\nRow 5: 1) camp tinder box; 2) bamboo camp utensils; 3) linen hammock; 4) portable camp lantern; 5) blue camping tent; 6) insulated camp food box\nRow 6: 1) folding wind shield; 2) camp kettle; 3) navy star sleeping bag; 4) camp path lantern; 5) large festival tent; 6) campground miniature model\nRow 7: 1) curved wooden boat plank; 2) waterproof resin tin; 3) long bamboo boat pole; 4) coil of nautical rope; 5) wooden oar; 6) shipwright tool chest\nRow 8: 1) red white life ring; 2) blue sail; 3) wooden rowboat model; 4) wooden mooring bollard; 5) festive boat model; 6) deluxe passenger ferry model\nRow 9: 1) framed island painting; 2) pigment jars; 3) bamboo paintbrushes; 4) canvas panel; 5) colored origami paper kit; 6) indigo dye bottle\nRow 10: 1) leaf and shell print; 2) painted ceramic palette; 3) artisan workshop badge; 4) four panel painted screen; 5) star woven tapestry; 6) elaborate collaborative island sculpture\nThe columns and row-major order are mandatory because the game crops each item. Tools must have real handles, appropriate heads and complete silhouettes. All objects full and uncropped.",
+    "entries": [
+      [
+        "firework",
+        "烟花",
+        "festive firework rocket"
+      ],
+      [
+        "c20_1",
+        "花雨烟花",
+        "flower shaped fireworks rocket"
+      ],
+      [
+        "c20_2",
+        "海蓝礼花",
+        "blue fireworks tube"
+      ],
+      [
+        "c20_3",
+        "金色喷泉",
+        "golden fountain firework"
+      ],
+      [
+        "c20_4",
+        "星光纸筒",
+        "star decorated paper tube"
+      ],
+      [
+        "c20_5",
+        "彩芯套装",
+        "colorful fantasy firework cores"
+      ],
+      [
+        "c20_6",
+        "庆典引线盒",
+        "festive fuse spool box"
+      ],
+      [
+        "c20_7",
+        "花火礼盒",
+        "fireworks gift box"
+      ],
+      [
+        "c20_8",
+        "流星花火",
+        "comet firework rocket"
+      ],
+      [
+        "c20_9",
+        "音乐花火组",
+        "music coordinated firework set"
+      ],
+      [
+        "c20_10",
+        "海岛花火屏",
+        "fantasy fireworks backdrop"
+      ],
+      [
+        "c20_11",
+        "晨光天幕",
+        "grand star fireworks launcher"
+      ],
+      [
+        "c21_0",
+        "演出海报",
+        "illustrated concert poster"
+      ],
+      [
+        "c21_1",
+        "布景幕布",
+        "velvet stage curtain"
+      ],
+      [
+        "c21_2",
+        "竹木麦架",
+        "bamboo microphone stand"
+      ],
+      [
+        "c21_3",
+        "灯光滤片",
+        "colored stage lighting gels"
+      ],
+      [
+        "c21_4",
+        "演出胸牌",
+        "performer badge"
+      ],
+      [
+        "c21_5",
+        "彩排指示牌",
+        "rehearsal sign"
+      ],
+      [
+        "c21_6",
+        "节拍提示器",
+        "stage cue timer"
+      ],
+      [
+        "c21_7",
+        "星空聚光灯",
+        "star blue spotlight"
+      ],
+      [
+        "c21_8",
+        "派对背景墙",
+        "festive backdrop wall"
+      ],
+      [
+        "c21_9",
+        "服装快换架",
+        "costume rack"
+      ],
+      [
+        "c21_10",
+        "庆典灯阵",
+        "decorative light rig"
+      ],
+      [
+        "c21_11",
+        "海风音乐舞台",
+        "miniature concert stage"
+      ],
+      [
+        "c22_0",
+        "营地火种盒",
+        "camp tinder box"
+      ],
+      [
+        "c22_1",
+        "竹制餐具",
+        "bamboo camp utensils"
+      ],
+      [
+        "c22_2",
+        "亚麻吊床",
+        "linen hammock"
+      ],
+      [
+        "c22_3",
+        "轻便营灯",
+        "portable camp lantern"
+      ],
+      [
+        "c22_4",
+        "海风帐篷",
+        "blue camping tent"
+      ],
+      [
+        "c22_5",
+        "保温食盒",
+        "insulated camp food box"
+      ],
+      [
+        "c22_6",
+        "防风屏",
+        "folding wind shield"
+      ],
+      [
+        "c22_7",
+        "露营茶壶",
+        "camp kettle"
+      ],
+      [
+        "c22_8",
+        "观星睡袋",
+        "navy star sleeping bag"
+      ],
+      [
+        "c22_9",
+        "营地路灯",
+        "camp path lantern"
+      ],
+      [
+        "c22_10",
+        "派对大篷",
+        "large festival tent"
+      ],
+      [
+        "c22_11",
+        "海岛露营沙盘",
+        "campground miniature model"
+      ],
+      [
+        "c23_0",
+        "船板",
+        "curved wooden boat plank"
+      ],
+      [
+        "c23_1",
+        "防水树脂",
+        "waterproof resin tin"
+      ],
+      [
+        "c23_2",
+        "竹篙",
+        "long bamboo boat pole"
+      ],
+      [
+        "c23_3",
+        "船绳",
+        "coil of nautical rope"
+      ],
+      [
+        "c23_4",
+        "船桨",
+        "wooden oar"
+      ],
+      [
+        "c23_5",
+        "航海工具箱",
+        "shipwright tool chest"
+      ],
+      [
+        "c23_6",
+        "救生浮环",
+        "red white life ring"
+      ],
+      [
+        "c23_7",
+        "海风船帆",
+        "blue sail"
+      ],
+      [
+        "c23_8",
+        "小舟模型",
+        "wooden rowboat model"
+      ],
+      [
+        "c23_9",
+        "码头缆桩",
+        "wooden mooring bollard"
+      ],
+      [
+        "c23_10",
+        "庆典游船",
+        "festive boat model"
+      ],
+      [
+        "c23_11",
+        "晨光渡船",
+        "deluxe passenger ferry model"
+      ],
+      [
+        "painting",
+        "画作",
+        "framed island painting"
+      ],
+      [
+        "c24_1",
+        "矿物颜料",
+        "pigment jars"
+      ],
+      [
+        "c24_2",
+        "竹木画笔",
+        "bamboo paintbrushes"
+      ],
+      [
+        "c24_3",
+        "棉布画板",
+        "canvas panel"
+      ],
+      [
+        "c24_4",
+        "折纸套件",
+        "colored origami paper kit"
+      ],
+      [
+        "c24_5",
+        "蓝草染料",
+        "indigo dye bottle"
+      ],
+      [
+        "c24_6",
+        "海岛拓印",
+        "leaf and shell print"
+      ],
+      [
+        "c24_7",
+        "陶瓷画盘",
+        "painted ceramic palette"
+      ],
+      [
+        "c24_8",
+        "共创工坊徽章",
+        "artisan workshop badge"
+      ],
+      [
+        "c24_9",
+        "四季画屏",
+        "four panel painted screen"
+      ],
+      [
+        "c24_10",
+        "星光挂毯",
+        "star woven tapestry"
+      ],
+      [
+        "c24_11",
+        "海岛共创奇观",
+        "elaborate collaborative island sculpture"
+      ]
+    ],
+    "columns": 6,
+    "rows": 10,
+    "file": "items-origami-products-4-v8.png",
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-45b4f56a-c24c-4665-92c9-809055ab3c9a.png"
+  },
+  {
+    "theme": "pixel",
+    "gender": "male",
+    "prompt": "Use case: stylized-concept. Production RPG AVATAR sprite atlas, EXACTLY 5 COLUMNS and 6 ROWS, 30 complete full-body standing characters on TRUE transparent alpha, regular square cells, same foot baseline within a row, at least15% empty gutters, no labels, no ground shadow. Beautiful crisp pixel art, warm premium cozy RPG shading, visibly pixel stepped edges matching the reference world sprites. Keep world sprite proportions and scale similar to reference. SIX very distinctive adult MEN, no duplicate outfits, no children. Each ROW is ONE character rotated through five geometric directions in this EXACT order: column1 S straight FRONT, nose points toward viewer; column2 SE front three-quarter to screen LOWER RIGHT, chest front and both eyes visible with nose and feet toward RIGHT; column3 E strict RIGHT PROFILE, nose visibly projects right, exactly ONE eye visible, side torso; column4 NE BACK three-quarter toward screen UPPER RIGHT, back of garment dominates and a tiny RIGHT-facing cheek/nose visible at right edge; column5 N straight BACK, no face visible. Head torso feet always agree. Game mirrors cols2/3/4 to get left directions, so NEVER face left. Each character must have distinct hair silhouette, outfit silhouette and colors. Row identities:\nRow1: navy short-haired adult man, teal explorer coat, cream shirt, brown boots, small satchel.\nRow2: golden curly-haired adult man, tan craft vest, rolled white sleeves, dark trousers, goggles on forehead.\nRow3: silver straight-haired adult man, violet scholarly long coat, round glasses, cream waistcoat.\nRow4: brown short-haired adult man, straw hat, sage green overalls, yellow scarf.\nRow5: long black-haired adult man in low ponytail, burgundy scarf, slate blue jacket, headphones at neck.\nRow6: mature red-haired adult man with neat short beard, navy captain coat, white cap, brass buttons.\nReference is style/proportions only; create ONLY these six new identities. All 30 figures full and uncropped, including hats and boots. Gaps around each figure, not touching adjacent cells.",
+    "file": "avatars-pixel-male-v8.png",
+    "columns": 5,
+    "rows": 6,
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-7852748b-9e78-4331-8fbe-ca8bdb667fc5.png"
+  },
+  {
+    "theme": "pixel",
+    "gender": "female",
+    "prompt": "Use case: stylized-concept. Production RPG AVATAR sprite atlas, EXACTLY 5 COLUMNS and 6 ROWS, 30 complete full-body standing characters on TRUE transparent alpha, regular square cells, same foot baseline within a row, at least15% empty gutters, no labels, no ground shadow. Beautiful crisp pixel art, warm premium cozy RPG shading, visibly pixel stepped edges matching the reference world sprites. Keep world sprite proportions and scale similar to reference. SIX very distinctive adult WOMEN, no duplicate outfits, no children. Each ROW is ONE character rotated through five geometric directions in this EXACT order: column1 S straight FRONT, nose points toward viewer; column2 SE front three-quarter to screen LOWER RIGHT, chest front and both eyes visible with nose and feet toward RIGHT; column3 E strict RIGHT PROFILE, nose visibly projects right, exactly ONE eye visible, side torso; column4 NE BACK three-quarter toward screen UPPER RIGHT, back of garment dominates and a tiny RIGHT-facing cheek/nose visible at right edge; column5 N straight BACK, no face visible. Head torso feet always agree. Game mirrors cols2/3/4 to get left directions, so NEVER face left. Each character must have distinct hair silhouette, outfit silhouette and colors. Row identities:\nRow1: black bob-haired adult woman, ivory coatdress, pale blue scarf, brown ankle boots.\nRow2: pink high-ponytail adult woman, sunflower yellow overalls, white shirt, green apron pocket.\nRow3: lavender braided-haired adult woman, mauve artist apron, cream blouse, purple beret.\nRow4: silver pixie-haired adult woman, burgundy mechanic coveralls, brass belt, work boots.\nRow5: red curly-haired adult woman, ocean blue coat, striped blouse, tan trousers.\nRow6: warm brown-skinned curly brown-haired adult woman, orange dress, cream baking apron, cloth hairband.\nReference is style/proportions only; create ONLY these six new identities. All 30 figures full and uncropped, including hats and boots. Gaps around each figure, not touching adjacent cells.",
+    "file": "avatars-pixel-female-v8.png",
+    "columns": 5,
+    "rows": 6,
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-9f26bfbe-0ef2-4de1-b345-2d38cb95a95e.png"
+  },
+  {
+    "theme": "pixel",
+    "gender": "portrait",
+    "prompt": "Use case: stylized-concept. Exactly4 columns by3 rows,12 different WAIST-UP portraits on truly transparent alpha with generous20px gutters. Beautiful crisp pixel art, warm premium cozy RPG shading, visibly pixel stepped edges matching the reference world sprites. IMPORTANT: these portraits have NORMAL ADULT ANATOMY, normal adult shoulders, arms and torso, head only one third of visible waist-up height; NO chibi, no giant head, no doll body. Natural adult body proportions replace the chibi world reference proportions. Attractive adults ages20–40 except mature captain50. Row-major identities:\n1) navy short-haired adult man, teal explorer coat, cream shirt, brown boots, small satchel; 2) golden curly-haired adult man, tan craft vest, rolled white sleeves, dark trousers, goggles on forehead; 3) silver straight-haired adult man, violet scholarly long coat, round glasses, cream waistcoat; 4) brown short-haired adult man, straw hat, sage green overalls, yellow scarf; 5) long black-haired adult man in low ponytail, burgundy scarf, slate blue jacket, headphones at neck; 6) mature red-haired adult man with neat short beard, navy captain coat, white cap, brass buttons; 7) black bob-haired adult woman, ivory coatdress, pale blue scarf, brown ankle boots; 8) pink high-ponytail adult woman, sunflower yellow overalls, white shirt, green apron pocket; 9) lavender braided-haired adult woman, mauve artist apron, cream blouse, purple beret; 10) silver pixie-haired adult woman, burgundy mechanic coveralls, brass belt, work boots; 11) red curly-haired adult woman, ocean blue coat, striped blouse, tan trousers; 12) warm brown-skinned curly brown-haired adult woman, orange dress, cream baking apron, cloth hairband\nAll torsos and hands fully inside own cell, individual expressive adult faces, relaxed natural gestures, stylish differentiated identities. No text, no frames, no scenery. The reference is ONLY paper/pixel style, not anatomy. Exactly12 waist-up portraits.",
+    "file": "avatar-portraits-pixel-v8.png",
+    "columns": 4,
+    "rows": 3,
+    "refs": [
+      "source-artifact:characters-pixel-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-0ac18a6b-ac17-4064-bea1-a02d19b7ae00.png"
+  },
+  {
+    "theme": "origami",
+    "gender": "male",
+    "prompt": "Use case: stylized-concept. Production RPG AVATAR sprite atlas, EXACTLY 5 COLUMNS and 6 ROWS, 30 complete full-body standing characters on TRUE transparent alpha, regular square cells, same foot baseline within a row, at least15% empty gutters, no labels, no ground shadow. Beautiful faceted folded-paper origami, paper grain and soft self shading matching the reference world sprites. Keep world sprite proportions and scale similar to reference. SIX very distinctive adult MEN, no duplicate outfits, no children. Each ROW is ONE character rotated through five geometric directions in this EXACT order: column1 S straight FRONT, nose points toward viewer; column2 SE front three-quarter to screen LOWER RIGHT, chest front and both eyes visible with nose and feet toward RIGHT; column3 E strict RIGHT PROFILE, nose visibly projects right, exactly ONE eye visible, side torso; column4 NE BACK three-quarter toward screen UPPER RIGHT, back of garment dominates and a tiny RIGHT-facing cheek/nose visible at right edge; column5 N straight BACK, no face visible. Head torso feet always agree. Game mirrors cols2/3/4 to get left directions, so NEVER face left. Each character must have distinct hair silhouette, outfit silhouette and colors. Row identities:\nRow1: navy short-haired adult man, teal explorer coat, cream shirt, brown boots, small satchel.\nRow2: golden curly-haired adult man, tan craft vest, rolled white sleeves, dark trousers, goggles on forehead.\nRow3: silver straight-haired adult man, violet scholarly long coat, round glasses, cream waistcoat.\nRow4: brown short-haired adult man, straw hat, sage green overalls, yellow scarf.\nRow5: long black-haired adult man in low ponytail, burgundy scarf, slate blue jacket, headphones at neck.\nRow6: mature red-haired adult man with neat short beard, navy captain coat, white cap, brass buttons.\nReference is style/proportions only; create ONLY these six new identities. All 30 figures full and uncropped, including hats and boots. Gaps around each figure, not touching adjacent cells.",
+    "file": "avatars-origami-male-v8.png",
+    "columns": 5,
+    "rows": 6,
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-e134cbe3-74cb-477f-88fd-d653c3f1bed1.png"
+  },
+  {
+    "theme": "origami",
+    "gender": "female",
+    "prompt": "Use case: stylized-concept. Production RPG AVATAR sprite atlas, EXACTLY 5 COLUMNS and 6 ROWS, 30 complete full-body standing characters on TRUE transparent alpha, regular square cells, same foot baseline within a row, at least15% empty gutters, no labels, no ground shadow. Beautiful faceted folded-paper origami, paper grain and soft self shading matching the reference world sprites. Keep world sprite proportions and scale similar to reference. SIX very distinctive adult WOMEN, no duplicate outfits, no children. Each ROW is ONE character rotated through five geometric directions in this EXACT order: column1 S straight FRONT, nose points toward viewer; column2 SE front three-quarter to screen LOWER RIGHT, chest front and both eyes visible with nose and feet toward RIGHT; column3 E strict RIGHT PROFILE, nose visibly projects right, exactly ONE eye visible, side torso; column4 NE BACK three-quarter toward screen UPPER RIGHT, back of garment dominates and a tiny RIGHT-facing cheek/nose visible at right edge; column5 N straight BACK, no face visible. Head torso feet always agree. Game mirrors cols2/3/4 to get left directions, so NEVER face left. Each character must have distinct hair silhouette, outfit silhouette and colors. Row identities:\nRow1: black bob-haired adult woman, ivory coatdress, pale blue scarf, brown ankle boots.\nRow2: pink high-ponytail adult woman, sunflower yellow overalls, white shirt, green apron pocket.\nRow3: lavender braided-haired adult woman, mauve artist apron, cream blouse, purple beret.\nRow4: silver pixie-haired adult woman, burgundy mechanic coveralls, brass belt, work boots.\nRow5: red curly-haired adult woman, ocean blue coat, striped blouse, tan trousers.\nRow6: warm brown-skinned curly brown-haired adult woman, orange dress, cream baking apron, cloth hairband.\nReference is style/proportions only; create ONLY these six new identities. All 30 figures full and uncropped, including hats and boots. Gaps around each figure, not touching adjacent cells.",
+    "file": "avatars-origami-female-v8.png",
+    "columns": 5,
+    "rows": 6,
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-c18782cc-02aa-47a3-9a6e-6436e998b125.png"
+  },
+  {
+    "theme": "origami",
+    "gender": "portrait",
+    "prompt": "Use case: stylized-concept. Exactly4 columns by3 rows,12 different WAIST-UP portraits on truly transparent alpha with generous20px gutters. Beautiful faceted folded-paper origami, paper grain and soft self shading matching the reference world sprites. IMPORTANT: these portraits have NORMAL ADULT ANATOMY, normal adult shoulders, arms and torso, head only one third of visible waist-up height; NO chibi, no giant head, no doll body. Natural adult body proportions replace the chibi world reference proportions. Attractive adults ages20–40 except mature captain50. Row-major identities:\n1) navy short-haired adult man, teal explorer coat, cream shirt, brown boots, small satchel; 2) golden curly-haired adult man, tan craft vest, rolled white sleeves, dark trousers, goggles on forehead; 3) silver straight-haired adult man, violet scholarly long coat, round glasses, cream waistcoat; 4) brown short-haired adult man, straw hat, sage green overalls, yellow scarf; 5) long black-haired adult man in low ponytail, burgundy scarf, slate blue jacket, headphones at neck; 6) mature red-haired adult man with neat short beard, navy captain coat, white cap, brass buttons; 7) black bob-haired adult woman, ivory coatdress, pale blue scarf, brown ankle boots; 8) pink high-ponytail adult woman, sunflower yellow overalls, white shirt, green apron pocket; 9) lavender braided-haired adult woman, mauve artist apron, cream blouse, purple beret; 10) silver pixie-haired adult woman, burgundy mechanic coveralls, brass belt, work boots; 11) red curly-haired adult woman, ocean blue coat, striped blouse, tan trousers; 12) warm brown-skinned curly brown-haired adult woman, orange dress, cream baking apron, cloth hairband\nAll torsos and hands fully inside own cell, individual expressive adult faces, relaxed natural gestures, stylish differentiated identities. No text, no frames, no scenery. The reference is ONLY paper/pixel style, not anatomy. Exactly12 waist-up portraits.",
+    "file": "avatar-portraits-origami-v8.png",
+    "columns": 4,
+    "rows": 3,
+    "refs": [
+      "source-artifact:characters-origami-8way-pack-0-v6.png"
+    ],
+    "source": "source-artifact:exec-f4b720f2-570c-43e9-a7f6-faf9abb8f916.png"
+  }
+]

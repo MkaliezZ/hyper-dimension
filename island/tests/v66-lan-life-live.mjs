@@ -1,0 +1,21 @@
+import {chromium} from 'playwright-core';import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';import {resolve} from 'node:path';import {createLanHttpServer} from '../server/lanServer.mjs';import assert from 'node:assert/strict';
+await mkdir('qa/v66',{recursive:true});const directory=await mkdtemp(resolve('qa/v66/live-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'LIVE-LIFE-FIXTURE'}),base='http://127.0.0.1:'+service.port,report={directory,scope:'Isolated synthetic accounts; actual game frontend and actual DeepSeek Flash/Hermes; no user save mutations',themes:[],errors:[]};let browser,page;
+try{
+browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
+for(const theme of ['pixel','origami']){
+ const a=await service.identities.register({login:'live_life_'+theme,password:'fixture-password',name:'生活验证岛主',islandName:'生活验证小岛',avatar:'male_0',theme});await service.tenants.open(a.token,theme,{});const c=await service.tenants.get(a.token),doc=await c.saves.current(theme),state=structuredClone(doc.state);state.freshStartPending=false;await c.saves.save(theme,{state,expectedVersion:doc.version});
+ const ctx=await browser.newContext({viewport:{width:1280,height:820}});await ctx.addCookies([{name:'hd_lan_session',value:a.token,url:base,httpOnly:true,sameSite:'Strict'}]);page=await ctx.newPage();page.on('pageerror',e=>report.errors.push(e.message));const calls=[],requests=[];
+ page.on('request',r=>{if(r.url().endsWith('/api/npc/tick'))requests.push(r.postDataJSON());});
+ page.on('response',async r=>{if(['/api/npc/tick','/api/npc/interact','/api/hermes/plan'].some(p=>r.url().endsWith(p))){try{calls.push({path:new URL(r.url()).pathname,status:r.status(),data:await r.json()});}catch{}}});
+ await page.goto(base+'/play?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverFacility?.ready&&!document.getElementById('islandBootNotice'));
+ const start=Date.now();while(!calls.some(r=>r.path==='/api/npc/tick')||!calls.some(r=>r.path==='/api/hermes/plan')){if(Date.now()-start>115000)throw Error('live model response deadline exceeded');await page.waitForTimeout(500);}
+ const plans=calls.find(r=>r.path==='/api/npc/tick'),butler=calls.find(r=>r.path==='/api/hermes/plan');
+ assert.equal(plans.status,200,JSON.stringify(plans.data));assert.equal(plans.data.source,'deepseek');assert.equal(plans.data.model,'deepseek-flash');assert.equal(plans.data.decisions.length,15,'all fifteen resident decisions');
+ assert.equal(butler.status,200,JSON.stringify(butler.data));assert.equal(butler.data.source,'hermes',JSON.stringify(butler.data));assert.equal(butler.data.model,'deepseek-flash');assert(!butler.data.tools.some(t=>t.startsWith('document_')||t==='host_info'));
+ for(const d of plans.data.decisions){const person=requests[0].residents.find(p=>p.id===d.id);assert(person.options.some(o=>o.purposeId===d.purposeId),'decision must come from current feasible options');}
+ const before=await page.evaluate(()=>window.islandInspect().npcs.map(n=>({x:n.x,y:n.y})));await page.waitForTimeout(2500);const after=await page.evaluate(()=>window.islandInspect().npcs.map(n=>({x:n.x,y:n.y})));assert(after.some((p,i)=>Math.hypot(p.x-before[i].x,p.y-before[i].y)>2),'NPC movement continues');
+ const ledger=await service.agents.work(a.token,'ledger',{});assert.equal(ledger.channels.plans.accepted,1);assert.equal(ledger.channels.steward.accepted,1);
+ await page.screenshot({path:'qa/v66/'+theme+'-live-life.png'});report.themes.push({theme,residents:plans.data.decisions.length,selectedFeasiblePurposes:true,movementContinues:true,model:plans.data.model,hermesAutomatic:true,documentToolsAbsent:true,automaticPlanCalls:ledger.channels.plans.accepted,automaticStewardCalls:ledger.channels.steward.accepted,ledgerRunId:plans.data.ledgerRunId});console.log(theme.toUpperCase()+'_LIVE_AUTOMATIC_VERIFIED');await ctx.close();
+}
+assert.deepEqual(report.errors,[]);report.passed=true;
+}catch(e){report.failure=e.stack;process.exitCode=1;await page?.screenshot({path:'qa/v66/live-failure.png'}).catch(()=>{});}finally{await browser?.close();await service.close();await writeFile('qa/v66/live-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));}

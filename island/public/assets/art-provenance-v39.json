@@ -1,0 +1,38 @@
+{
+  "version": 39,
+  "kind": "Existing atlas crop metadata correction, no new generated or edited bitmap",
+  "asset": "items-pixel-products-0-v8.png",
+  "item": "c4_2",
+  "frame": 50,
+  "before": {
+    "x": 339,
+    "y": 1303,
+    "w": 147,
+    "h": 145
+  },
+  "after": {
+    "x": 339,
+    "y": 1303,
+    "w": 134,
+    "h": 145
+  },
+  "analysis": {
+    "alphaThreshold": 32,
+    "mainPixels": 12026,
+    "mainBounds": [
+      339,
+      1303,
+      465,
+      1447
+    ],
+    "neighborPixels": 152,
+    "neighborBounds": [
+      479,
+      1358,
+      485,
+      1391
+    ]
+  },
+  "originalBitmapPreserved": true,
+  "origamiFramePreserved": true
+}

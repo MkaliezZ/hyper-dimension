@@ -1,0 +1,16 @@
+export const CROPS={wheat:{name:'小麦',seconds:180,item:'wheat',yield:2,color:'#e3bf55'},herb:{name:'药草',seconds:240,item:'herb',yield:2,color:'#85b784'},tomato:{name:'番茄',seconds:300,item:'tomato',yield:3,color:'#df745e'},pumpkin:{name:'南瓜',seconds:480,item:'pumpkin',yield:1,color:'#da9a4e'}};
+for(const [id,name,seconds,color] of [['carrot','胡萝卜',240,'#d38b45'],['corn','玉米',360,'#e4c056'],['potato','土豆',300,'#c3a06f'],['rice','稻米',420,'#ccb95e'],['strawberry','草莓',360,'#d86b81'],['cotton','棉花',480,'#eee4ce'],['flax','亚麻',420,'#9a9bbc']])CROPS[id]={name,seconds,item:id,yield:2,color};
+const soil={
+ pixel:[[[323,310],[482,310],[462,397],[302,397]],[[570,310],[726,310],[724,397],[552,397]],[[815,310],[966,310],[981,397],[808,397]],[[1065,310],[1203,310],[1236,397],[1067,397]],[[263,478],[443,478],[417,602],[223,602]],[[543,478],[727,478],[717,602],[518,602]],[[817,478],[997,478],[1016,602],[812,602]],[[1098,478],[1269,478],[1307,602],[1105,602]]],
+ origami:[[[328,309],[484,309],[471,395],[307,395]],[[574,309],[723,309],[727,395],[554,395]],[[822,309],[969,309],[981,395],[810,395]],[[1065,311],[1198,311],[1230,395],[1071,395]],[[280,480],[439,480],[424,601],[240,601]],[[551,480],[728,480],[724,601],[524,601]],[[826,480],[991,480],[1014,601],[818,601]],[[1100,480],[1264,480],[1304,601],[1110,601]]]
+};
+export const FARM_LAYOUTS=Object.fromEntries(Object.entries(soil).map(([t,quads])=>[t,quads.map((points,id)=>{const corners=points.map(([x,y])=>({x:x*1000/1536,y:y*660/1024})),xs=corners.map(p=>p.x),ys=corners.map(p=>p.y);return {id,corners,x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys),entry:{x:(corners[2].x+corners[3].x)/2,y:Math.max(...ys)+(id<4?27:38)}}})]));
+export function plotPoint(q,u,v){const [a,b,c,d]=q.corners;return {x:(a.x*(1-u)+b.x*u)*(1-v)+(d.x*(1-u)+c.x*u)*v,y:(a.y*(1-u)+b.y*u)*(1-v)+(d.y*(1-u)+c.y*u)*v}}
+export function insidePlot(q,p){let sign=0;for(let i=0;i<4;i++){const a=q.corners[i],b=q.corners[(i+1)%4],v=(b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x);if(Math.abs(v)<.01)continue;const n=Math.sign(v);if(sign&&sign!==n)return false;sign=n}return true}
+export function farmWalkable(theme,x,y){return x>=115&&x<=895&&y>=170&&y<=610&&!FARM_LAYOUTS[theme].some(q=>insidePlot(q,{x,y}))}
+export function cropInfo(p){return CROPS[p.crop]||CROPS.wheat}
+export function remaining(p){return Math.max(0,cropInfo(p).seconds-(p.growth||0))}
+export function cropTime(seconds){return Math.ceil(seconds/60)+' 分钟'}
+export function hydrateCrops(s){for(const p of s.plots){p.crop??='wheat';p.growth??=0}for(const id of ['tomato','pumpkin'])s.inventory[id]??=0}
+export function tickCrops(s,dt){const grown=[];for(const [i,p] of s.plots.entries())if(p.stage===3){p.growth=(p.growth||0)+dt;if(p.growth>=cropInfo(p).seconds){p.stage=4;p.growth=cropInfo(p).seconds;grown.push({index:i,name:cropInfo(p).name})}}return grown}
+export function harvestPlot(s,index){const p=s.plots[index];if(p.stage!==4)return null;const c=cropInfo(p);s.inventory[c.item]=(s.inventory[c.item]||0)+c.yield;s.inventory.seed++;s.discovered??={};s.discovered[c.item]=true;s.tasks.farm=true;delete p.playerTended;p.stage=0;p.growth=0;return {name:c.name,item:c.item,amount:c.yield}}

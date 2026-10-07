@@ -1,0 +1,7 @@
+import {createState,RESIDENTS,BUILDINGS} from '../src/world.js';import {hydrateTown,purposeOptions,needs,career} from '../src/townSimulation.js';import {ALL_RECIPES,recipeGate} from '../src/contentCatalog.js';import {writeFile} from 'node:fs/promises';
+const s=hydrateTown(createState());s.inventory.meal=4;s.inventory.bread=4;s.inventory.tea=0;
+const residents=RESIDENTS.slice(0,15).map((r,i)=>{needs(i,s).social=35;return {...r,needs:needs(i,s),career:{...career(i,s),title:r.job},options:purposeOptions(i,s,r,100),availableForConversation:true};});
+const body={day:s.day,built:BUILDINGS.map(b=>({...b,...s.facilities[b.id],occupancy:0})),inventory:s.inventory,recipes:ALL_RECIPES.filter(r=>recipeGate(r,s).ready).map(r=>r.id),tasks:s.tasks,events:s.events,executions:[],economy:s.economy,residents};
+const response=await fetch('http://127.0.0.1:4173/api/npc/tick',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(65000)}),result=await response.json();let report;
+if(!response.ok)report={status:'blocked',http:response.status,error:result.error,liveVerified:false};else{const invalid=(result.decisions||[]).filter(d=>!residents[d.id]?.options.some(o=>o.purposeId===d.purposeId&&o.goal===d.goal&&o.buildingId===d.buildingId));if(invalid.length)throw Error('Invalid live purpose selection');report={status:'passed',decisions:result.decisions,missingIds:result.missingIds,liveVerified:true};}
+await writeFile('qa/v9-live-plan.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

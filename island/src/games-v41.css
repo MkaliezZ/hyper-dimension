@@ -1,0 +1,22 @@
+/* Pottery workbench: the same theme materials, readable live briefs and kiln controls. */
+.workshop-game[data-kind="pottery"] .wk-pottery-brief{display:grid;gap:5px;padding:14px;background:var(--paper,#f6e8cb);border:1px solid #bba27a;margin-bottom:12px;color:#574c39}
+.workshop-game[data-kind="pottery"] .wk-pottery-brief span,.workshop-game[data-kind="pottery"] .wk-pottery-brief small{font-size:14px;line-height:1.5}
+.workshop-game[data-kind="pottery"] .wk-pottery-brief strong{font-size:21px}
+.workshop-game[data-kind="pottery"] .wk-glaze-swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;width:100%}
+.workshop-game[data-kind="pottery"] .wk-glaze-swatches button{display:grid;justify-items:center;gap:8px;padding:11px 4px;min-width:0;font-size:15px}
+.workshop-game[data-kind="pottery"] .wk-glaze-swatches i,.workshop-game[data-kind="pottery"] .wk-glaze-bands i{display:block;background:var(--glaze-color);border:2px solid #faf0d2;box-shadow:0 0 0 1px #b29b78;width:25px;height:25px}
+.workshop-game[data-kind="pottery"] .wk-glaze-swatches [aria-pressed="true"]{outline:2px solid #71988d;outline-offset:1px}
+.workshop-game[data-kind="pottery"] .wk-glaze-bands{display:grid;gap:8px;margin:12px 0}
+.workshop-game[data-kind="pottery"] .wk-glaze-bands>div{display:grid;grid-template-columns:28px 1fr 20px;align-items:center;gap:9px;padding:9px;background:#fff4df;border:1px solid #b8a07c;line-height:1.6;font-size:15px}
+.workshop-game[data-kind="pottery"] .wk-glaze-bands small{display:block;font-size:14px}
+.workshop-game[data-kind="pottery"] .wk-glaze-bands .is-met{border-color:#779991;background:#edf0dc}
+.workshop-game[data-kind="pottery"] .wk-kiln-controls{display:grid;gap:12px;width:100%}
+.workshop-game[data-kind="pottery"] .wk-kiln-controls>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.workshop-game[data-kind="pottery"] .wk-kiln-controls b{grid-column:1/-1;font-size:17px;color:#66513b}
+.workshop-game[data-kind="pottery"] .wk-kiln-controls button{font-size:16px;min-width:0;padding:12px 5px}
+.workshop-game[data-kind="pottery"] .wk-kiln-phase{display:flex;justify-content:space-between;gap:8px;font-size:17px;padding:10px 0}
+.workshop-game[data-kind="pottery"] .wk-pottery-check,.workshop-game[data-kind="pottery"] .wk-control-note{font-size:15px;line-height:1.75}
+.workshop-game[data-kind="pottery"] .wk-pottery-check.is-met{color:#52796b}
+body[data-theme="pixel"] .workshop-game[data-kind="pottery"] :is(.wk-pottery-brief,.wk-glaze-bands>div,.wk-glaze-swatches i){border-radius:1px;box-shadow:2px 3px 0 #9a82513a}
+body[data-theme="origami"] .workshop-game[data-kind="pottery"] .wk-pottery-brief{border-radius:3px 16px 4px 4px;background:linear-gradient(135deg,#fdf5e4 92%,#d2be99 92%)}
+body[data-theme="origami"] .workshop-game[data-kind="pottery"] .wk-glaze-bands>div{border-radius:4px}

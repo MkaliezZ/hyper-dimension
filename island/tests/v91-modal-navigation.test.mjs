@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {advanceModalNavigation,modalNavigationToken} from '../src/modalNavigation.js';
+test('a newer open or close invalidates an old async view, even after another view closes',()=>{const old=modalNavigationToken();assert(old.current());advanceModalNavigation();assert(!old.current());const next=modalNavigationToken();advanceModalNavigation();assert(!next.current());assert(!old.current());});
+test('same-view completion remains current without invalidating model or save results',async()=>{const token=modalNavigationToken();const value=await Promise.resolve({committed:true});assert(token.current());assert(value.committed);advanceModalNavigation();assert(!token.current());assert(value.committed);});

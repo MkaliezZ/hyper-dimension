@@ -1,0 +1,29 @@
+/* Sound controls use the same paper surfaces, ink and fixed close conventions as the island. */
+#soundBtn svg{width:21px;height:21px;fill:currentColor;display:block;margin:auto}
+#soundBtn[data-muted="true"] .sound-wave{opacity:.25}
+.sound-sheet{width:min(660px,calc(100vw - 28px));max-width:none;max-height:min(780px,calc(100dvh - 28px));box-sizing:border-box;padding:0;overflow:hidden;color:var(--hud-ink);background:var(--hud-paper);border:3px solid var(--hud-edge);box-shadow:6px 8px #2d31267a;border-radius:3px}
+.sound-sheet[open]{display:flex;flex-direction:column}
+.sound-sheet::backdrop{background:#233c356b;backdrop-filter:blur(2px)}
+.sound-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:22px 24px 16px;border-bottom:1px solid #a28a6959;flex-shrink:0;background:linear-gradient(120deg,var(--hud-highlight),var(--hud-paper))}
+.sound-head small{font-size:13px;letter-spacing:.08em}.sound-head h2{font-size:26px;margin:7px 0 6px}.sound-head p{font-size:15px;line-height:1.6;margin:0}
+.sound-head .close{position:static;flex-shrink:0;width:38px;height:38px;font-size:25px;line-height:30px}
+.sound-body{padding:18px 24px;overflow:auto;overscroll-behavior:contain;min-height:0;font-size:16px}
+#soundState{margin:0 0 18px;padding:12px 14px;background:#82a18925;border:1px solid #91a57b75;line-height:1.6}
+.sound-sliders{display:grid;gap:19px}.sound-sliders label{display:block}.sound-sliders label>span{display:flex;justify-content:space-between;margin-bottom:10px;font-weight:700}.sound-sliders b{font-variant-numeric:tabular-nums}
+.sound-sliders input{display:block;width:100%;margin:0;height:24px;appearance:none;background:transparent;cursor:pointer}
+.sound-sliders input::-webkit-slider-runnable-track{height:9px;background:#b7a176;border:1px solid var(--hud-edge);box-shadow:inset 0 2px #70553744}
+.sound-sliders input::-webkit-slider-thumb{appearance:none;width:20px;height:25px;border:2px solid var(--hud-edge);background:var(--hud-highlight);margin-top:-9px;box-shadow:2px 2px #664d3544}
+.sound-sliders input::-moz-range-track{height:9px;background:#b7a176;border:1px solid var(--hud-edge)}.sound-sliders input::-moz-range-thumb{width:16px;height:21px;border:2px solid var(--hud-edge);border-radius:0;background:var(--hud-highlight)}
+.sound-sliders input:focus-visible{outline:2px solid var(--hud-accent);outline-offset:4px}
+.sound-body h3{font-size:18px;margin:25px 0 12px}
+.sound-previews{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.sound-previews button{background:var(--hud-highlight);border:2px solid var(--hud-edge);color:var(--hud-ink);font-size:15px;padding:12px 8px;font-weight:700;box-shadow:2px 2px #78604744}
+.sound-previews button:hover{background:#d1dfae}.sound-previews button:active{transform:translateY(1px)}
+.sound-note{font-size:14px;line-height:1.8;margin:17px 0 0;opacity:.8}
+.sound-footer{display:flex;justify-content:space-between;gap:12px;padding:15px 24px;border-top:1px solid #a28a6959;flex-shrink:0;background:var(--hud-paper)}.sound-footer button{font-size:16px;padding:11px 15px}
+body[data-theme="pixel"] .sound-sheet{font-family:FusionPixel,sans-serif;border-radius:0}
+body[data-theme="origami"] .sound-sheet{border-radius:7px;background:linear-gradient(135deg,#fbefdf,#ebd7c5)}
+body[data-theme="origami"] .sound-head{background:linear-gradient(145deg,#fff6e9,#e9cdb8);position:relative}
+body[data-theme="origami"] .sound-head:after{content:"";position:absolute;bottom:0;right:0;width:20px;height:20px;background:linear-gradient(135deg,transparent 50%,#c9a58b 51%);pointer-events:none}
+body[data-theme="origami"] .sound-previews button{border-radius:5px;background:#f9e7d6}
+body[data-theme="origami"] .sound-sliders input::-webkit-slider-thumb{border-radius:4px;transform:rotate(-5deg);background:#fbeee2}
+@media(max-width:600px){.sound-head{padding:16px}.sound-head h2{font-size:23px}.sound-body{padding:15px 16px}.sound-previews{grid-template-columns:repeat(2,1fr)}.sound-footer{padding:12px 16px}.sound-footer button{font-size:15px;padding:10px}.sound-head p{font-size:14px}}

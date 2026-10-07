@@ -1,0 +1,34 @@
+{
+  "version": 37,
+  "created": "2026-10-04",
+  "tool": "Native SVG and Canvas code",
+  "source": [
+    "src/specializationArt.js",
+    "src/specialization-v37.css"
+  ],
+  "purpose": "Three growth paths, permanent five-rank landmarks and nine-second celebrations",
+  "newRasterAssets": false,
+  "themes": {
+    "pixel": "Crisp edged stepped shapes, hard paper UI and existing palette",
+    "origami": "Layered paper surfaces, folds and existing palette"
+  },
+  "seals": [
+    "garden sprout",
+    "artisan hammer",
+    "host star crown"
+  ],
+  "worldAnchors": {
+    "garden": 14,
+    "artisan": 0,
+    "host": 21
+  },
+  "animation": {
+    "ceremonySeconds": 9,
+    "particles": 24
+  },
+  "itemArt": "Existing theme-specific itemMarkup/artStore atlases, no new generic icon substitution",
+  "evidence": [
+    "qa/v37/browser-report.json",
+    "qa/v37/visual-review-report.json"
+  ]
+}

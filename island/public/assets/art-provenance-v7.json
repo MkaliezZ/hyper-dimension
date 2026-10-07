@@ -1,0 +1,30 @@
+{
+  "method": "built-in image_gen",
+  "prompt": "Use case: stylized-concept. Generate a precise game sprite repair sheet referencing the attached existing folded-paper atlas. Reference is identity and material style only. Exactly TWO ROWS and FIVE COLUMNS, 10 isolated full-body characters, completely transparent background, generous gutters. Every cell evenly spaced with shoes on the same baseline. Row1 is ONLY the red-haired male musician with large black headphones, coral pink jacket, beige trousers and a brown guitar case on his back (row5 of reference). Row2 is ONLY the pink-bob-haired female clothing designer, rose pink folded-paper coat/dress, white puff sleeves, gold scissors accessory (row6 of reference). Keep the same beautiful origami faceted paper surfaces, proportions and individual identity of the reference. CRITICAL: five geometrically DISTINCT camera-relative body orientations, in this exact order: column1 FRONT straight toward the viewer; column2 FRONT THREE-QUARTER facing toward the screen LOWER RIGHT, both eyes visible but nose and torso point RIGHT, nearer left eye larger, front of chest visible, feet point diagonally toward viewer's RIGHT; column3 strict RIGHT SIDE PROFILE, nose visibly projects to the screen RIGHT, only one eye visible, side chest visible, NEVER back three-quarter; column4 BACK THREE-QUARTER toward screen UPPER RIGHT, back of head and garment visible, a tiny right-facing cheek/nose visible at far RIGHT edge, toes point away and RIGHT; column5 strict BACK straight away, no face at all, rear outfit and case or scissors visible. All heads and torsos must face same direction. These are neutral full-body standing sprites for walking animation. No poses facing left are needed: game mirrors right poses to get left directions. Same height and scale within each row. No labels, no drawn grid, no scenery, no ground shadow, no face hidden in column3. Do NOT repeat the same front sprite in column1 and2 or same back sprite in column4 and5. The two characters are recognizable from reference. True alpha transparent.",
+  "references": [
+    "source-artifact:characters-origami-8way-pack-1-v6.png"
+  ],
+  "source": "source-artifact:exec-03390be4-c36d-4c13-a2f7-ad86b4453528.png",
+  "file": "public/assets/characters-origami-facing-repair-v7.png",
+  "identities": [
+    "黎音 (12)",
+    "桐桐 (13)"
+  ],
+  "columns": [
+    "S",
+    "SE",
+    "E",
+    "NE",
+    "N"
+  ],
+  "directions": "Eight runtime poses use five canonical source angles with whole-body horizontal mirroring for SW/W/NW. Native Canvas mirror uses full width; no angle-driven compression or raster editing.",
+  "mapping": "src/characterFacing.js: all residents and visitors use verified SE mirrored for SW except Hermes origami's correct original SW; origami 8/10/11 swap mislabeled W/E cells; origami 9 uses verified E mirrored for W; origami 12/13 use new canonical repair, origami 14/15 retain v6 identity repair.",
+  "animation": "Short final path steps update direction before callbacks. 80ms transitions for adjacent sectors; sharp turns immediately switch silhouette. Complete face remains one slice, neck overlap prevents horizontal face seams.",
+  "frameMetadata": "public/assets/character-frames-v6.json reads alpha bounding components for old/new atlas cells; source PNGs unchanged.",
+  "verification": [
+    "tests/facing.test.mjs",
+    "tests/v7-facing-qa.mjs",
+    "v7-facing-qa.json",
+    "v7-facing-art-qa.json"
+  ]
+}

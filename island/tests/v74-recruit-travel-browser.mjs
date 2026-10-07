@@ -1,0 +1,18 @@
+
+import {chromium} from 'playwright-core';import assert from 'node:assert/strict';import {writeFile} from 'node:fs/promises';import {fixture,meet} from './v74-travel-fixture.mjs';
+const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true}),report={checks:[],errors:[],scope:'Isolated live LAN pages, actual invitation buttons, room and recruitment history; deterministic provider; no user accounts.'};
+try{for(const theme of ['pixel','origami']){const f=await fixture(theme),base='http://127.0.0.1:'+f.service.port;let ctx;
+ try{ctx=await browser.newContext({viewport:{width:1440,height:1000}});await ctx.addCookies([{name:'hd_lan_session',value:f.accounts[1].token,url:base,httpOnly:true,sameSite:'Strict'}]);
+ await ctx.route('**/api/**',r=>{const p=new URL(r.request().url()).pathname;return p.startsWith('/api/lan/')||p.startsWith('/api/saves/')||p.startsWith('/api/recruitment/')?r.continue():r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated browser fixture"}'});});
+ const page=await ctx.newPage();page.on('pageerror',e=>report.errors.push(e.message));await page.goto(base+'/');await page.locator('#lanTravelChoices summary').click();const button=page.locator('[data-travel-npc="16"]');assert(await button.isEnabled());assert((await button.locator('..').textContent()).includes(f.contract.profile.name));await button.click();await page.waitForSelector('[data-travel-npc="16"][data-travel-operation="travel_remove"]');
+ await page.locator('[data-travel-npc="16"]').scrollIntoViewIfNeeded();await page.screenshot({path:'qa/v74/'+theme+'-travel-choice.png'});
+ const room=await f.action(0,'room_create',{title:'随行伙伴的小岛',maxPlayers:2});await f.action(1,'room_join',{code:room.view.room.code});await page.reload();await page.waitForSelector('#lanMapCanvas');const event=await meet(f);await page.reload();await page.waitForSelector('.lan-social-event');
+ assert((await page.locator('.lan-social-event').first().textContent()).includes(f.contract.profile.name));assert.equal(await page.locator('.lan-social-event [data-cooperate="propose"]').count(),1);
+ const images=await page.locator('.lan-social-people .avatar-half').count();assert(images>0);await page.locator('.lan-social-event').first().scrollIntoViewIfNeeded();await page.screenshot({path:'qa/v74/'+theme+'-travel-social.png'});
+ await page.locator('#lanLeaveRoom').click();await page.waitForSelector('#lanTravelChoices');await page.goto(base+'/play?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&window.islandInspect?.().serverFacility?.ready);
+ await page.locator('#stewardBtn').click();await page.locator('#stewardRecruit').click();await page.locator('[data-history="active"] summary').click();await page.locator('[data-recruit-travel]').first().click();await page.waitForSelector('#residentTravelHistory .lan-social-event');
+ assert((await page.locator('#residentTravelHistory').textContent()).includes(event.summary));
+ await page.setViewportSize({width:820,height:760});await page.screenshot({path:'qa/v74/'+theme+'-history-compact.png'});
+ await page.locator('#travelHistoryBack').click();await page.waitForSelector('#recruitmentPanel');report.checks.push({theme,inviteClickable:true,actualRoomAvatar:true,socialEvent:true,contractHistory:true,backToRecruitment:true});
+ }finally{await ctx?.close();await f.service.close();}
+}assert.deepEqual(report.errors,[]);report.passed=true;}catch(e){report.failure=e.stack;process.exitCode=1;}finally{await browser.close();await writeFile('qa/v74/browser-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));}

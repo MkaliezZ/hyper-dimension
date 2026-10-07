@@ -1,0 +1,33 @@
+import {ITEM_BY_ID} from './contentCatalog.js';import {GARMENTS} from './equipmentRules.js';import {residentPortraitMarkup} from './residentPortraits.js';import {avatarThumbnail} from './avatars.js';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const labels={thinking:'管家正在核对',offered:'等待来访管家审阅',accepted:'等待来访岛主确认执行',needs_information:'需要补齐准备',executing:'正在核对执行结果',execution_failed:'执行结果待核对',executed:'准备已核对，等待主岛确认',completed:'双方已确认准备',declined:'对方婉拒',cancelled:'协作已停止',expired:'约定已到期',retry:'答复尚待核对'};
+const cost=c=>Object.entries(c||{}).filter(([,n])=>n>0).map(([id,n])=>(id==='coins'?'岛币':ITEM_BY_ID[id]?.name||id)+' ×'+n).join('、')||'无需预留物资';
+const portrait=(p,t)=>p.appearance?avatarThumbnail(p.appearance,t):residentPortraitMarkup(15,t,p.name);
+export function createCollaborationUI({root,context,storage,toast=()=>{}}){
+ let state=null,timer=null,busy=false,closed=false,signature='',error='';
+ const key=()=> 'hd-a2a-pending:'+context().id;
+ const pending=()=>{try{return JSON.parse(storage.getItem(key())||'null')}catch{return null;}};
+ async function api(data){const r=await fetch('/api/lan/collaboration'+(data?'/action':''),{method:data?'POST':'GET',cache:'no-store',headers:{'X-HD-Island':context().id,...(data?{'Content-Type':'application/json'}:{})},body:data?JSON.stringify(data):undefined,signal:AbortSignal.timeout(15000)}),v=await r.json();if(!r.ok)throw Object.assign(Error(v.error||'协作手账暂不可用'),{status:r.status,code:v.code});return v;}
+ async function command(args){if(busy)return;const request=pending()||{...args,requestId:crypto.randomUUID()};const requestKey=key();storage.setItem(requestKey,JSON.stringify(request));busy=true;error='';render(true);try{await api(request);storage.removeItem(requestKey);await refresh();}catch(e){if(e.status&&e.status<500)storage.removeItem(requestKey);error=e.message;if(!closed){root.querySelector('#a2aError').textContent=e.message;toast(e.message);}}finally{busy=false;render(true);}}
+ function render(force=false){
+  if(closed||!state)return;const sig=JSON.stringify({state,busy,pending:pending()});if(!force&&signature===sig)return;signature=sig;
+  const selected=root.querySelector('#a2aEvent')?.value,recipient=root.querySelector('#a2aRecipient')?.value,scroll=root.scrollTop,owner=context().id,theme=context().profile.theme;
+  const events=state.events.filter(e=>e.owner===owner&&e.participants.some(p=>p.id!==owner&&!p.checkedIn)),event=events.find(e=>e.eventId===selected)||events[0],peers=event?.participants.filter(p=>p.id!==owner&&!p.checkedIn)||[];
+  root.innerHTML='<div class="a2a-intro"><h3>一起把聚会准备好</h3><p>管家协商分工，岛主确认物资操作。双方确认的是入场准备，实际交付按活动结束后的结算执行。</p><label><input id="a2aEnabled" type="checkbox" '+(state.enabled?'checked':'')+' '+(busy?'disabled':'')+'> 允许接收管家活动协作</label></div><p id="a2aError" role="status">'+esc(error)+'</p>'+(pending()?'<button id="a2aRetryPending">核对上次协作操作</button>':'')+
+  (events.length?'<section class="a2a-compose"><h4>让我的管家提出分工</h4><label>当前活动<select id="a2aEvent">'+events.map(e=>'<option value="'+e.eventId+'" '+(e.eventId===event?.eventId?'selected':'')+'>'+esc(e.title)+'</option>').join('')+'</select></label><label>来访岛主<select id="a2aRecipient">'+peers.map(p=>'<option value="'+p.id+'" '+(p.id===recipient?'selected':'')+'>'+esc(p.name)+(state.preferences[p.id]?'':' · 尚未开启协作')+'</option>').join('')+'</select></label><button id="a2aOffer" class="primary" '+(!state.enabled||busy?'disabled':'')+'>提出入场准备分工</button></section>':'<p class="a2a-empty">主办岛主发布活动、邀请朋友并进入同一会客房后，即可提出准备分工。</p>')+
+  '<div class="a2a-tasks">'+(state.tasks.length?state.tasks.map(t=>{
+   const sender=t.sender.ownerAccountId===owner,receiver=t.recipient.ownerAccountId===owner;
+   const button=(op,text)=>'<button data-a2a-op="'+op+'" data-a2a-task="'+t.id+'" '+(busy?'disabled':'')+'>'+text+'</button>';
+   return '<article class="a2a-task" data-task-status="'+t.status+'"><div class="a2a-task-title"><div><small>活动准备 · '+esc(labels[t.status])+'</small><h4>'+esc(t.contract.title)+'</h4></div></div><div class="a2a-people">'+[t.sender,t.recipient].map(p=>'<div>'+portrait(p,theme)+'<span><b>'+esc(p.name)+'</b><small>'+(p.ownerAccountId===owner?'我的管家':'协作管家')+'</small></span></div>').join('')+'</div><p class="a2a-terms">携带：'+esc(t.contract.requirements.items.map(i=>(ITEM_BY_ID[i.item]?.name||i.item)+' ×'+i.quantity).join('、')||'无额外携物')+' · 入场费 '+t.contract.economy.entryFee+' 岛币'+(t.contract.requirements.garment?' · 穿着 '+esc(GARMENTS[t.contract.requirements.garment].name):'')+'</p><div class="a2a-messages">'+t.messages.map(m=>'<p><b>'+esc(m.senderActorId===t.sender.actorId?t.sender.name:t.recipient.name)+'</b>'+esc(m.text)+'</p>').join('')+'</div>'+(t.error?'<p class="a2a-warning">'+esc(t.error)+'</p>':'')+
+   (t.receipt?'<details class="a2a-receipt" open><summary>实际准备回执</summary><p>已核对入场条件。预留：'+esc(cost(t.receipt.reserved))+'</p><p>'+esc(t.receipt.note)+'</p></details>':'')+
+   '<div class="a2a-actions">'+(receiver&&['offered','needs_information'].includes(t.status)?button('review','让管家核对准备'):'')+(receiver&&['accepted','executing','execution_failed'].includes(t.status)?button('execute',t.status==='accepted'?'同意并核对／预留':'核对上次执行结果'):'')+(sender&&t.receipt&&['executed','needs_information'].includes(t.status)?button('confirm','让管家确认回执'):'')+(t.status==='retry'&&((t.stage==='review'&&receiver)||(t.stage!=='review'&&sender))?button('retry','重新核对管家答复'):'')+(!['completed','declined','cancelled','expired','executing'].includes(t.status)?button('cancel','停止这项协作'):'')+'</div></article>';
+  }).join(''):'<p class="a2a-empty">还没有协作记录。对方管家发来的分工也会出现在这里。</p>')+'</div>';
+  root.querySelector('#a2aEnabled').onchange=e=>command({operation:'preference',receive:e.target.checked});
+  root.querySelector('#a2aRetryPending')?.addEventListener('click',()=>command(pending()));
+  root.querySelector('#a2aEvent')?.addEventListener('change',()=>render(true));
+  root.querySelector('#a2aOffer')?.addEventListener('click',()=>command({operation:'offer',eventId:root.querySelector('#a2aEvent').value,recipientId:root.querySelector('#a2aRecipient').value}));
+  root.querySelectorAll('[data-a2a-op]').forEach(b=>b.onclick=()=>command({operation:b.dataset.a2aOp,taskId:b.dataset.a2aTask}));root.scrollTop=scroll;
+ }
+ async function refresh(){if(closed)return;try{const next=await api();if(closed)return;state=next;render();}catch(e){if(!closed){const el=root.querySelector('#a2aError');if(el)el.textContent=e.message;else root.textContent=e.message;}}}
+ return{async start(){root.textContent='正在翻开管家协作手账…';await refresh();if(!closed)timer=setInterval(refresh,2500);},busy:()=>busy,close(){closed=true;clearInterval(timer);}};
+}
