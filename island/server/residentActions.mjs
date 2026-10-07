@@ -1,3 +1,4 @@
+import {routineFor} from '../src/residentLife.js';
 import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID} from 'node:crypto';
@@ -56,7 +57,7 @@ function plan(s,i,task){
   }else if(d.goal==='plaza'){mode='observe';}else throw fail('居民工作地点无效');
  }
  d.source=task?'hermes':d.source==='deepseek'?'deepseek':'local';d.resourceOwner=null;
- let action=d.action==='rest'?'rest':d.action==='eat'?'eat':d.action==='visit'||mode==='observe'?'observe':d.buildingId!==null?ROOMS[d.buildingId].action:d.goal==='forest'?'axe':d.goal==='dock'?'fish':'gather';
+ let action=d.action==='rest'?'rest':d.action==='eat'?'eat':d.action==='visit'?(routineFor(i.actorId,d)?.animation||'observe'):mode==='observe'?'observe':d.buildingId!==null?ROOMS[d.buildingId].action:d.goal==='forest'?'axe':d.goal==='dock'?'fish':'gather';
  if(d.action==='work'&&mode==='gather'){const source=ITEM_BY_ID[d.resource]?.source;if(source==='shore'||source==='greenhouse'||d.resource==='seed'||source==='forest'&&!['wood','bamboo','hardwood','twig','bark'].includes(d.resource))action='gather';}
  return {d,cost,item,name,mode,duration,sourceOwner,tool:resolveTool(s,action,{npc:true}),action};
 }

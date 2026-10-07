@@ -1,3 +1,4 @@
+import {validResidentLife} from '../src/residentLife.js';
 import {assertResourceState,assertResourceJournal,syncResourceState,enableResourceState} from './resourceAuthority.mjs';
 import {createLanWonderJournal} from './lanWonderJournal.mjs';
 import {assertWonderState,enableWonderState,syncWonderState,recordLanWonder} from './wonderAuthority.mjs';
@@ -73,6 +74,7 @@ export function validateState(state,theme=null){
  if(!validWardrobe(state))throw fail('服装装备记录无效，未覆盖现有进度');
  if(!validToolbelt(state))throw fail('工具装备记录无效，未覆盖现有进度');
  if(!validSpecialization(state))throw fail('经营专精记录无效，未覆盖现有进度');
+ if(!validResidentLife(state))throw fail('居民相处记录无效，未覆盖现有进度');
  if(!validResidentStories(state))throw fail('居民约定记录无效，未覆盖现有进度');
  if(!validResourceLedger(state))throw fail('物资预留记录无效，未覆盖现有进度');
  return state;

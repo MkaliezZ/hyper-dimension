@@ -1,3 +1,4 @@
+import {socialCandidates,socialBoundary,leisureOptions,routineFor,temperament} from './residentLife.js';
 import {chooseResidentCooperation,activityCooperationNeeds} from './residentCooperation.js';
 import {teaFacilityOptions,functionalCommand} from './functionalFacilities.js';
 import {hydrateResidentStories,residentStoryOptions,pendingResidentStory,STORY_LIMITS} from './residentStories.js';
@@ -59,11 +60,13 @@ export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),ma
  if(n.energy<38)options.push({...target(19),action:'rest',activity:'rest',duration:14,purposeId:'need:energy',score:110-crowdPenalty(s,19,i)*.25,reason:'体力不足，回居民之家坐下休息'});
  if(n.hunger<42)options.push(...mealOptions(i,s,r,time),...teaFacilityOptions(s,i,time));
  main.score=(main.waiting?8:62)-crowdPenalty(s,main.buildingId,i)*.4;if(time<(c.retryAfter||0)&&main.buildingId===c.retryBuilding)main.score=5;options.push(main);
- const relations=Object.entries(s.npcRelations[i]||{}).filter(([,x])=>x.interactions>0).sort((a,b)=>(b[1].tension||0)-(a[1].tension||0)||(b[1].affinity||0)-(a[1].affinity||0));const known=relations.length?Number(relations[0][0]):r.relationships?.[0]?.target;
- const partner=(s.npcPresence||[]).find(x=>x.id===known),partnerNeeds=Number.isInteger(known)?needs(known,s):null,available=(!partner||!partner.meeting&&!partner.assignment&&!partner.partyControlled&&!partner.recruitControlled)&&partnerNeeds?.energy>30&&partnerNeeds?.hunger>30;
- if(Number.isInteger(known)&&known!==i&&available&&!pendingResidentStory(s,i,known)&&time>(c.socialAfter||0)&&(n.social<58||relations[0]?.[1]?.tension>12)){
-  const rel=relationship(s,i,known),issue=rel.tension>12?'reconcile':rel.affection>12&&rel.trust>8?'confession':rel.affinity<-6?'dispute':main.reason.includes('先取得')&&rel.interactions>0&&(rel.affinity>5||rel.tension>5)?'negotiate':'friendship',bid=socialVenue(i,known,s,issue,time);
-  options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:known,socialType:issue,purposeId:'relationship:'+known,score:(rel.tension>12?82:n.social<42?76:40)-crowdPenalty(s,bid,i),reason:'在'+BUILDINGS[bid].name+'与同伴'+(issue==='reconcile'?'谈清上次分歧，尝试修复关系':issue==='confession'?'表达更亲近的心意':issue==='negotiate'?'讨论物资分配与工作互助':'分享工作和生活，交换不同看法')});
+ const traits=temperament(r),socialLow=traits.quiet?36:traits.outgoing?50:42;
+ if(time>(c.socialAfter||0))for(const candidate of socialCandidates(s,i,r)){
+  const known=candidate.id,rel=candidate.rel;
+  if(pendingResidentStory(s,i,known)||time<=(career(known,s).socialAfter||0))continue;
+  if(n.social>=58&&!(rel.tension>12))break;
+  const issue=rel.tension>12?'reconcile':rel.affection>12&&rel.trust>8&&candidate.romanceAllowed?'confession':rel.affinity<-6?'dispute':main.reason.includes('先取得')&&rel.interactions>0&&rel.affinity>5?'negotiate':'friendship',bid=socialVenue(i,known,s,issue,time);
+  options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:known,socialType:issue,purposeId:'relationship:'+known,score:(rel.tension>12?82:n.social<socialLow?76:40)-crowdPenalty(s,bid,i),reason:'在'+BUILDINGS[bid].name+'与'+(s.npcProfiles?.[known]?.name||'同伴')+(issue==='reconcile'?'谈清上次分歧，尝试修复关系':issue==='confession'?'表达更亲近的心意':issue==='dispute'?'说明工作安排中仍有不同意见':issue==='negotiate'?'讨论物资分配与工作互助':candidate.familiar?'分享近期工作和生活':'聊聊彼此的工作，认识新的邻居')});break;
  }
  // Activity work is offered at normal decision boundaries, without extra model calls.
  const stories=s.residentStories,open=stories.episodes.filter(e=>['scheduled','meeting','working'].includes(e.status));
@@ -71,14 +74,14 @@ export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),ma
   const groups=activityCooperationNeeds(s),partners=Array.from({length:15},(_,j)=>j).filter(j=>j!==i).sort((a,b)=>(relationship(s,i,b).trust||0)-(relationship(s,i,a).trust||0)||a-b);
   for(const j of partners){
    const p=s.npcPresence?.find(p=>p.id===j),nn=needs(j,s),rel=relationship(s,i,j),key=[i,j].sort((a,b)=>a-b).join('-');
-   if(p&&(p.meeting||p.assignment||p.partyControlled||p.recruitControlled)||nn.energy<=38||nn.hunger<=42||time<=(career(j,s).socialAfter||0)||rel.tension>12||rel.affinity< -6||open.some(e=>e.people.includes(j))||stories.lastPairDay[key]!==undefined&&s.day-stories.lastPairDay[key]<STORY_LIMITS.pairDays)continue;
+   if(p&&(p.meeting||p.assignment||p.partyControlled||p.recruitControlled)||nn.energy<=38||nn.hunger<=42||time<=(career(j,s).socialAfter||0)||rel.tension>12||rel.affinity< -6||socialBoundary(s,i,j)||open.some(e=>e.people.includes(j))||stories.lastPairDay[key]!==undefined&&s.day-stories.lastPairDay[key]<STORY_LIMITS.pairDays)continue;
    const proposal=chooseResidentCooperation(s,[i,j],{careers:CAREERS,groups,activityOnly:true});if(!proposal)continue;
    const bid=socialVenue(i,j,s,'negotiate',time),a=proposal.plans[i],b=proposal.plans[j];
    options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:j,socialType:'negotiate',purposeId:'activity-cooperation:'+j,score:73-crowdPenalty(s,bid,i),reason:'为「'+proposal.demand.name+'」与'+(s.npcProfiles?.[j]?.name||'同伴')+'商量分工：我准备'+ITEM_BY_ID[a.resource].name+'，对方准备'+ITEM_BY_ID[b.resource].name});break;
   }
  }
- const bid=LEISURE_VENUES[i],breakDue=(c.workSinceBreak||0)>=3||main.waiting||main.score<10;
- if(time>(c.personalAfter||0))options.push({...target(bid),action:'visit',activity:'leisure',duration:12,purposeId:'life:'+bid,score:(breakDue?70:28)-crowdPenalty(s,bid,i)-repeatPenalty(c,bid,time),reason:'完成一段工作后，去'+BUILDINGS[bid].name+'做自己感兴趣的事'});
+ const breakDue=(c.workSinceBreak||0)>=3||main.waiting||main.score<10;
+ if(time>(c.personalAfter||0))options.push(...leisureOptions(s,i,r,{breakDue,mainWaiting:main.waiting,crowd:bid=>residentCrowd(s,bid,i)}));
  options.sort((a,b)=>b.score-a.score);
  if(n.energy<20)return options.filter(o=>o.action==='rest');if(n.hunger<30)return options.filter(o=>o.action==='eat'||o.purposeId==='need:food-supply');return options;
 }
@@ -91,11 +94,11 @@ export function commitWork(i,d,s,time){
  return result;
 }
 function executeWork(i,d,s,time){const n=needs(i,s),c=career(i,s);let result='',advance=true;
- function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){c.retryAfter=time+30;c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({time,goal:d.goal,buildingId:d.buildingId,result,source:d.source});c.history=c.history.slice(-16);return result;}
+ function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){c.retryAfter=time+30;c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({day:s.day,daySeconds:s.economy?.daySeconds||0,time,goal:d.goal,buildingId:d.buildingId,action:d.action,purposeId:d.purposeId,result,source:d.source});c.history=c.history.slice(-16);return result;}
  if(d.facilityId){const b=s.functionalFacilities,r=functionalCommand(s,{commandId:d.operationId||('npc-tea:'+i+':'+time),displayId:d.facilityId,action:'sip',expectedRevision:b?.revision});if(!r.ok)return complete(r.reason,false);if(!r.replayed){n.hunger=Math.min(100,n.hunger+22);n.energy=Math.min(100,n.energy+7);n.social=Math.min(100,n.social+2);n.mood='温暖';}return complete('在岛上的暖手茶炉享用花茶 · 余量实际减少一杯');}
  if(d.action==='rest'){n.energy=Math.min(100,n.energy+42);n.mood='放松';return complete('在居民之家休息，恢复体力')}
  if(d.action==='eat'){let item=d.foodId;if(!item)item=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';if(item==='rations'){if(n.rations<1)return complete('自备简餐已用完，需要准备食物',false);n.rations--;n.hunger=Math.min(100,n.hunger+40);result='吃一份自备简餐（剩余 '+n.rations+' 份）';}else{const info=ITEM_BY_ID[item],valid=info&&(info.category==='food'&&[1,2,17].includes(info.building)||['wheat','mushroom','strawberry'].includes(item));if(!valid||!commitResources(s,{owner:d.resourceOwner||null,cost:{[item]:1},category:'resident_meal',note:'居民 '+i}).ok)return complete('选定餐点已售罄或预留，重新选择食物',false);n.hunger=Math.min(100,n.hunger+(info.building===1?22:38));result='享用'+ITEMS[item][0];}n.energy=Math.min(100,n.energy+7);n.mood='满足';return complete(result)}
- if(d.action==='visit'){n.energy=Math.min(100,n.energy+12);n.social=Math.min(100,n.social+6);n.mood='放松';c.workSinceBreak=0;c.personalAfter=time+65;return complete('在'+(d.buildingId!=null?BUILDINGS[d.buildingId].name:TITLES[d.goal])+'体验个人兴趣与生活')}
+ if(d.action==='visit'){const routine=routineFor(i,d);n.energy=Math.min(100,n.energy+12);n.social=Math.min(100,n.social+6);n.mood='放松';c.workSinceBreak=0;c.personalAfter=time+65;return complete(routine?'在'+BUILDINGS[d.buildingId].name+routine.title:'在'+(d.buildingId!=null?BUILDINGS[d.buildingId].name:TITLES[d.goal])+'体验个人兴趣与生活')}
  n.energy=Math.max(0,n.energy-5);n.hunger=Math.max(0,n.hunger-4);
  if(d.goal==='farm'){const p=d.noFarmTask?null:d.farmIndex!=null?s.plots[d.farmIndex]:s.plots.find(p=>p.stage===4)||s.plots.find(p=>p.stage===2)||s.plots.find(p=>p.stage===1&&s.inventory.seed>0)||s.plots.find(p=>p.stage===0);if(p){if(p.stage===0){p.stage=1;result='为田垄松土';advance=false}else if(p.stage===1){if(commitResources(s,{owner:d.resourceOwner||null,cost:{seed:1},category:'resident_sow'}).ok){p.stage=2;result='播种'+cropInfo(p).name}else result='种苗已经用完，先补充种苗';advance=false}else if(p.stage===2){p.stage=3;p.growth=0;result='给'+cropInfo(p).name+'浇水，等待成熟';advance=false}else if(p.stage===4){const index=s.plots.indexOf(p),crop=harvestPlot(s,index);result='收获'+crop.name+' ×'+crop.amount}}else{result='检查作物长势';advance=false}}
  else if(d.goal==='mine'){const node=d.mineIndex!=null?s.oreNodes[d.mineIndex]:s.oreNodes.find(p=>p.hp>0);if(node&&node.hp>0){node.hp--;s.inventory.stone++;if(d.resource&&d.resource!=='stone'&&d.resource!=='ore')resourceLoot('mine',s,1,d.resource);result='开采石材 ×1'+(d.resource&&d.resource!=='stone'&&d.resource!=='ore'?'、'+ITEMS[d.resource][0]+' ×1':'');if(!node.hp){node.regen=20;s.inventory.ore+=2;s.tasks.mine=true;result='开采石材 ×1、矿石 ×2'}}else{result='检修矿镐，等待矿脉恢复';advance=false}}

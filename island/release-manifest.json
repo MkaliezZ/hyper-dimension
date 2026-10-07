@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v111-agent-source",
+  "release": "hyper-dimension-v112-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 13236,
-      "sha256": "3b8f366de20ff9b827af659b1c59e0525a1af42b535b6309cfcc79786b9305fe"
+      "bytes": 13689,
+      "sha256": "a3f383efa3b9406a21de4c583dfb6a38e6f91df920559bf6a2d7b6e8f2eb2bab"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9607,
-      "sha256": "27912749b5fd88283c761cda6cc571f94b24be20cccb8246f5d57cfc484de9d2"
+      "bytes": 9838,
+      "sha256": "25483ecfc1348c9a0c32adadfd21a1937ebca47fcaf84cf3735325eecbd54900"
     },
     {
       "path": "README.md",
-      "bytes": 8766,
-      "sha256": "b334853edea68e274240696fd89492edb82a979adc9aeba648014debb7a725ff"
+      "bytes": 8985,
+      "sha256": "4f7cbad64874c6a04f3ec30f1fff5f7b66252bb9b149dc9cc1203e236d993559"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -161,6 +161,16 @@
       "sha256": "2b3290ca8c3197377502784156cab4aace1e7002d12ec75dae3a27fc8856a71e"
     },
     {
+      "path": "docs/media/resident-life-origami-v112.png",
+      "bytes": 329766,
+      "sha256": "31c374ab73af283769c5e4cbd765bface2bb45006d64ca5f996a38517ebe8ae2"
+    },
+    {
+      "path": "docs/media/resident-life-pixel-v112.png",
+      "bytes": 250623,
+      "sha256": "aa1cae06cb852f864c6b19c62b6f9d16425ed567390f7792c76bbd3e764709bc"
+    },
+    {
       "path": "docs/media/showcase-details.json",
       "bytes": 678,
       "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
@@ -184,6 +194,11 @@
       "path": "docs/resident-cooperation-v111.md",
       "bytes": 3218,
       "sha256": "eff92237337a69bd39e4118ae11ac0475c5246aa85a3a3346ea6d705b1568642"
+    },
+    {
+      "path": "docs/resident-life-v112.md",
+      "bytes": 3429,
+      "sha256": "5bddd8fae9b878db3ae63886b13eedcff06f92c67f2d3b8d194fb4bde3036e20"
     },
     {
       "path": "index.html",
@@ -697,8 +712,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 5297,
-      "sha256": "39abd50aeeda2d1ca5abf67e5e9fe4ec55a44d6cf4526ed6b2c1cad53249ca6c"
+      "bytes": 5487,
+      "sha256": "77114af531b15e81862eb9cd022af2988e0e57fd7b324ca1b933e3d72048e51c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1842,8 +1857,8 @@
     },
     {
       "path": "server/agentService.mjs",
-      "bytes": 25476,
-      "sha256": "4d31920712981721f3293682926eadf37313cf54bb748c684ab3155cf4ede67b"
+      "bytes": 26048,
+      "sha256": "14c018afa8a1b152ebc84c6b9c0925b6c1178c7206c77bc7a6e7a10c3ee39cf7"
     },
     {
       "path": "server/automaticBudget.mjs",
@@ -2147,8 +2162,8 @@
     },
     {
       "path": "server/residentActions.mjs",
-      "bytes": 15655,
-      "sha256": "2b4189bd866eba010965ba35e88d409d9e356dc372c1b338d978f1fe26bc5484"
+      "bytes": 15753,
+      "sha256": "23111326136c4c2bf6cdab5f99271b4284856a773b948a52fe889c14196d5f11"
     },
     {
       "path": "server/resourceAuthority.mjs",
@@ -2177,8 +2192,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 32979,
-      "sha256": "cac9c1358e6eb1ad7fda78f9a2764a92cff31898657ad9a7e845c7c06ee7729e"
+      "bytes": 33131,
+      "sha256": "e4430d6e7103bcdce4f3ea2e3278d64208b34dc32cc494a98dfb2f5f15757a4e"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -2257,8 +2272,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 129528,
-      "sha256": "829226206bd2933428d3254f687927e1925fc32581d5f65fdb1d4c7be4bf1a5a"
+      "bytes": 129870,
+      "sha256": "e285b1086c4fb46c6971a1f67b84eb1dcae1003e91eabde8aa3c826cb594c333"
     },
     {
       "path": "src/arcade.css",
@@ -2312,8 +2327,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 14767,
-      "sha256": "eca8fc6b9eb3f59847a3288175acedfaff292b6525752425f8c2c05216c4c639"
+      "bytes": 15564,
+      "sha256": "bf8744c77acefbd48dcd4f773bdf94c6c295f22d25dbdd5bbc8aa8c0179ff6b8"
     },
     {
       "path": "src/classicGames.js",
@@ -3101,14 +3116,19 @@
       "sha256": "3755841d9a76b2ce05e0aec08aeac71962825e3204399d98e1fd267e336a6731"
     },
     {
+      "path": "src/residentLife.js",
+      "bytes": 10032,
+      "sha256": "aa8e571f392d2f5fbf102297e5d5a6f3a83b1cae0e84dea08628f9d6f2abdbf6"
+    },
+    {
       "path": "src/residentPortraits.js",
       "bytes": 1027,
       "sha256": "6e218a3a718a2dceb02cd159facefb5317a1ba7773288af55f78188da6a08bd9"
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 35028,
-      "sha256": "4e78c5e530037acbf58c6ee303062acc711a581cba334170db74294b94b84569"
+      "bytes": 35305,
+      "sha256": "57a23d4a3b1cfb65b91377725ca4bac3d707fb0782b5b9c937768d5f17283c3c"
     },
     {
       "path": "src/residentStories.js",
@@ -3322,8 +3342,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 23022,
-      "sha256": "fec12271be11253582455c726d4b563ca0615fac334939123f09327362bb5f11"
+      "bytes": 22929,
+      "sha256": "34e7a03946c799b4f1bdeac08acc45c67ee6b007fa9411f78d12bdf06a289fdf"
     },
     {
       "path": "src/ui-v16.css",
@@ -3774,6 +3794,16 @@
       "path": "tests/v111-cooperation.test.mjs",
       "bytes": 13756,
       "sha256": "d323b05d3fcc5e32c51f549fa260dadb1428e72f29adf824b9177bf1d17a8047"
+    },
+    {
+      "path": "tests/v112-resident-life-browser.mjs",
+      "bytes": 6830,
+      "sha256": "7e84f14a0598f109a093e4c3c27d514349ca777c1c7e0555ff0c4db9bd351542"
+    },
+    {
+      "path": "tests/v112-resident-life.test.mjs",
+      "bytes": 7595,
+      "sha256": "269d4d1b925be4b5c12461cc6f057d983c15c62a14f0dccfd2aa8baf07fdbbb2"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -5257,8 +5287,8 @@
     },
     {
       "path": "tests/v9-routines.test.mjs",
-      "bytes": 4473,
-      "sha256": "9744892915e01fdde52abd06ab7003478403b4087232248e72b50c3638bb179f"
+      "bytes": 4509,
+      "sha256": "e490bfedde6d9099f4dcd1329924482de5f0fe0bfec7468c26eb6f44e978c908"
     },
     {
       "path": "tests/v9-runtime-simulation.mjs",
@@ -5322,8 +5352,8 @@
     },
     {
       "path": "tests/v92-cooperation-fixture.mjs",
-      "bytes": 10733,
-      "sha256": "d550d9127c33e5358abc7cf1b1bd9f23bb2234040a40aa2b315e13b3428ec097"
+      "bytes": 10924,
+      "sha256": "1efa377ecb71fff98df3f0b1b5acae5bab74197b32c1490405989817c8c13a64"
     },
     {
       "path": "tests/v92-cooperation-hermes.mjs",
@@ -6076,5 +6106,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v111-github"
+  "publicRevision": "v112-github"
 }
