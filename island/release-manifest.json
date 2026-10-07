@@ -5372,8 +5372,8 @@
     },
     {
       "path": "tests/v99-cooperation-tree.test.mjs",
-      "bytes": 8233,
-      "sha256": "55c1873aa0921a7b8f5e5549c171dc830b25fe3640d1f5740b7fba08d89b52ee"
+      "bytes": 8567,
+      "sha256": "798e1fd43103bbcee944396e4dce1970d54eeda70fc4d361229d2c8250b9d770"
     },
     {
       "path": "tests/v99-lan-wonders-browser.mjs",
