@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8284,
-      "sha256": "998a5f6e29d250a9135bfcb582226a9ddcced3829268a3332bc2d914379c1182"
+      "bytes": 8298,
+      "sha256": "aad24beb2573b39840af9453a58020673837f8afcbb9a1b75bddd3ff2678c018"
     },
     {
       "path": "README.md",
-      "bytes": 7538,
-      "sha256": "4a50db592aa77a6f30661222961c7f68d5f5775630bdf9d996f8c97a01d94459"
+      "bytes": 7552,
+      "sha256": "1d9e12be2c70b37101928458f6280f3f9f940bb6aa8e95c92254e9f91c1ec0e8"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -67,8 +67,8 @@
     },
     {
       "path": "docs/ASSETS.md",
-      "bytes": 3148,
-      "sha256": "d4bdfeb957b56a21acdfe81e7a2eb9117784c98fc8a3f342d34bf0db8e072dfc"
+      "bytes": 3326,
+      "sha256": "8a66afa1410dcb4203dd2cc0a7b6501350a126c50489cc170d2f57435fa1daf9"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -97,8 +97,8 @@
     },
     {
       "path": "docs/media/hyper-dimension-preview.gif",
-      "bytes": 5511328,
-      "sha256": "dc12e1ab32c9411b596976cb90b29e3bd397ed6b8c94985c1b058c563edad590"
+      "bytes": 6600878,
+      "sha256": "532480919e2991240e98735cfb747cedc2c0dcc230a345c311a79ac87e13bd09"
     },
     {
       "path": "docs/media/music-notes.json",
@@ -127,8 +127,8 @@
     },
     {
       "path": "docs/media/showcase-details.json",
-      "bytes": 582,
-      "sha256": "8880207af0e132ba4fa55697f66512c50df67330af5999cc4238a7f42871b85b"
+      "bytes": 678,
+      "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
     },
     {
       "path": "docs/provenance/art-provenance-v8-avatars.json",
@@ -3632,8 +3632,8 @@
     },
     {
       "path": "tests/v103-runtime-scope.test.mjs",
-      "bytes": 10656,
-      "sha256": "332e2bfbaecfb253e3c0930424142accf6159fd4cd43fc4a2d37b0b4601de674"
+      "bytes": 10713,
+      "sha256": "2e608d919645e9cf2a086b935e38e9bd93296f3da5035af6639602c7c8627ff1"
     },
     {
       "path": "tests/v103-visible-clock-browser.mjs",
@@ -4652,8 +4652,8 @@
     },
     {
       "path": "tests/v57-lan-http.test.mjs",
-      "bytes": 6281,
-      "sha256": "08460ce2e8839b696486cc0c85964d9352884423a91b1ae3b3456c44cb637a02"
+      "bytes": 6306,
+      "sha256": "4652882c320a3f9e39c3e8a19f2390a9c107c6aa776d21d19c4cd4b53b26292d"
     },
     {
       "path": "tests/v57-lan-identity.test.mjs",

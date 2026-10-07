@@ -10,9 +10,9 @@
 
 ## 30 秒实机演示
 
-[![Hyper Dimension 实机预览：折纸与像素海岛](docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s.mp4)
+[![Hyper Dimension 实机预览：折纸与像素海岛](docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)
 
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
 
 3840 × 2160 / 30 秒，原创器乐 BGM、中英字幕与镜头推进。包含真实 DeepSeek 居民决策、海风双灶完整结算，以及 Hermes 读取虚构周会资料、生成 Word 并回读确认的过程。实机素材经过剪辑，省略等待；本机路径已遮罩，没有真实用户资料。
 

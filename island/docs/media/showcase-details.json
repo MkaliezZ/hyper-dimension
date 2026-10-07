@@ -1,17 +1,18 @@
 {
+  "revision": "stable-v3",
   "width": 3840,
   "height": 2160,
   "duration": 30,
-  "frames": "900",
-  "fps": "30/1",
+  "frames": 900,
+  "fps": 30,
   "audio": "aac",
   "audioChannels": 2,
-  "bytes": 112210799,
+  "bytes": 35581559,
   "bgm": "Island Hours - original procedural composition",
-  "source": "4K JPEG screencast frames; actual game controls, real-time simulation, edited waits; continuous editorial lens moves and frame blending",
+  "source": "Actual 4K game captures; opening still with subpixel cubic eased camera move, then fixed framing of live recordings. Waiting edited. No temporal frame blending or zoompan.",
   "minigames": "Explicitly labeled placeholder demonstration",
   "actualNpcModel": "deepseek",
   "actualStewardModel": "deepseek-flash",
-  "actualArtifact": "新品上线行动清单.docx",
+  "actualArtifact": "\u65b0\u54c1\u4e0a\u7ebf\u884c\u52a8\u6e05\u5355.docx",
   "privateUserData": false
 }

@@ -8,9 +8,9 @@ Play, gather, craft and build a life alongside AI residents in a pixel or origam
 
 ## 30-second gameplay video
 
-[![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s.mp4)
+[![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
 
 A 30-second 4K film with an original instrumental score, bilingual captions and camera moves. It shows real DeepSeek resident decisions, a completed Coastal Kitchen challenge, and native Hermes reading a fictional work brief, saving a Word document and verifying its contents. The footage is edited to omit waiting; local paths are masked and no real user data appears.
 
