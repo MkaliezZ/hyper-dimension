@@ -1,20 +1,20 @@
 # Hyper Dimension
 
-> 当前目录就是海岛源码包。若已在此目录，以下命令省略 cd island。仓库布局章节描述 GitHub 完整仓库；Release 源码包仅含海岛模块。
-
 [中文](README.md) · [English](README.en.md) · [部署指南](DEPLOYMENT.md) · [教培模块](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V107 开发快照**，可本地部署；完整产品验收仍在进行。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V108 开发快照**，可本地部署；完整产品验收仍在进行。
 
-## 30 秒实机演示
+## 实机演示：30 秒预览与 45 秒功能展示
 
-[![Hyper Dimension 实机预览：折纸与像素海岛](docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)
+[![Hyper Dimension 实机预览：折纸与像素海岛](docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v108)
 
-3840 × 2160 / 30 秒，原创器乐 BGM、中英字幕与镜头推进。包含真实 DeepSeek 居民决策、海风双灶完整结算，以及 Hermes 读取虚构周会资料、生成 Word 并回读确认的过程。实机素材经过剪辑，省略等待；本机路径已遮罩，没有真实用户资料。
+2560 × 1440 / 60 FPS，原创器乐 BGM 与中英字幕。展示真实 AI 居民对话、管家多形象选择、Hermes 主子 Agent 分工、房屋弹窗内的海风双灶与通关结果，以及管家处理虚构工作资料、保存并回读 Word 文件。实机片段省略等待，没有真实用户资料。
+
+[观看 45 秒功能展示](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-45s.mp4)，可看到男女形象选择、不同职业候选和主子 Agent 的实际协商。
 
 **当前小游戏仅为占位演示，玩法、美术和动画将持续优化，不代表最终品质。** 视频是产品方向展示，不代表全部验收通过。
 
@@ -27,6 +27,8 @@
 - **Hermes 管家**：对话、配方分工、物资筹备、招聘，以及用户主动委托的本机文档工作；保留真实执行记录。
 - **服务端存档**：文件存档、受保护的物资 / 作业回执、备份恢复与空浏览器重开；不只依赖浏览器缓存。
 - **本地会客 / 联机基础**：独立账号与岛屿、携带管家和邀请同行居民、会客交流及受限 A2A。跨设备管家桥接等仍在完善。
+
+V108 增加带立绘的主子 Agent 协商记录；小游戏完成提交暂未接受时保留结果与重试入口。Intel Mac 的 20 轮长测试改为按工作量设置时间预算，未减少断言。[三平台 CI 状态](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml)。
 
 ### AI 生活与现实工作
 

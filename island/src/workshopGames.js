@@ -198,7 +198,13 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   if(type==='restart'){restart(options.mode);return}
   if(type==='claim'){
    if(transportPaused)return;
-   if(claimed||!s.result?.passed||s.phase!=='result')return;claimed=true;b.disabled=true;const result={...s.result};destroy();onFinish(result);return
+   if(claimed||!s.result?.passed||s.phase!=='result')return;claimed=true;b.disabled=true;const result={...s.result};
+   // Keep the result and its retry button until the controller accepts completion.
+   // A concurrent save may reject a claim before it has sent any transaction.
+   Promise.resolve().then(()=>onFinish(result)).then(accepted=>{
+    if(accepted!==false){destroy();return}
+    if(alive){claimed=false;b.disabled=transportPaused;feedback.textContent='进度尚在核对，请稍后再次确认完成。';}
+   }).catch(()=>{if(alive){claimed=false;b.disabled=transportPaused;feedback.textContent='这次提交未完成，请重试；当前结果已保留。';}});return
   }
   if(type==='mark'){markMode=!markMode;ui(true);return}
   if(b.dataset.hold)return;

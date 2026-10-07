@@ -1,3 +1,4 @@
+import {recruitmentExchange} from './recruitmentExchange.js';
 import {renewalReadiness} from './recruitmentRenewal.js';
 import {openResidentTravelHistory} from './lanSocialUI.js';
 import {createCandidateLibrary} from './recruitCandidateLibrary.js';
@@ -147,7 +148,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
    '<div class="recruit-empty"><b>先写一份筹备清单</b><p>确定要准备的物资，管家才能与伙伴商量具体分工。</p><button class="primary" id="recruitCreatePlan">去写清单</button></div>')+
    (error?'<p class="recruit-error" role="status">'+esc(error)+'</p><button class="secondary" id="recruitRefresh">重新查询</button>':'')+'</section>'+
 
-   autonomyMarkup(registry,candidates,busy)+(a?.autonomousDecision?'<section class="recruit-autonomy"><h4>管家自主邀请的伙伴</h4><p>'+esc(a.autonomousDecision.reason)+'</p><details data-history="autonomy-source"><summary>本次决策来源</summary><p>巡查运行 <code>'+esc(a.autonomousDecision.runId)+'</code></p><p>用量记录 <code>'+esc(a.autonomousDecision.ledgerRunId)+'</code></p><p>招聘政策第 '+a.autonomousDecision.policyVersion+' 版</p></details></section>':'')+
+   (here().world===contract?.world?recruitmentExchange(contract,state(),theme()):'')+autonomyMarkup(registry,candidates,busy)+(a?.autonomousDecision?'<section class="recruit-autonomy"><h4>管家自主邀请的伙伴</h4><p>'+esc(a.autonomousDecision.reason)+'</p><details data-history="autonomy-source"><summary>本次决策来源</summary><p>巡查运行 <code>'+esc(a.autonomousDecision.runId)+'</code></p><p>用量记录 <code>'+esc(a.autonomousDecision.ledgerRunId)+'</code></p><p>招聘政策第 '+a.autonomousDecision.policyVersion+' 版</p></details></section>':'')+
    (a?'<section class="recruit-renewal"><h4>继续留岛协作</h4><p>每段续约 2 个游戏日，另预留 8 岛币；旧聘约按实际交付单独结算。最多连续续约三次。</p>'+
     (state().recruitment.renewal?'<p role="status">'+esc(registry?.renewal?labels[registry.renewal.phase]:'续约草稿已保存，等待确认')+'</p><button class="secondary" id="recruitRenewRetry" '+(busy?'disabled':'')+'>确认同一份续约</button><button class="secondary" id="recruitRenewCancel" '+(busy?'disabled':'')+'>取消这份续约</button>':
     '<label class="recruit-plan-label">续约继续准备哪份清单？<select id="recruitRenewPlan">'+renewPlans.map(p=>'<option value="'+p.id+'">'+esc(p.title)+'</option>').join('')+'</select></label><p>'+esc(renewReady.ok?renewPlans.length?'管家将与伙伴重新商量职业匹配的剩余工作。':'还没有可继续的筹备任务，请先建立清单。':renewReady.reason)+'</p><button class="primary" id="recruitRenew" '+(busy||!renewReady.ok||!renewPlans.length?'disabled':'')+'>与'+esc(a.profile.name)+'商量续约</button>')+'</section>':'')+

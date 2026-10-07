@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v107-agent-source",
+  "release": "hyper-dimension-v108-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 11417,
-      "sha256": "eeafd015375a054f444712bf91682481c6578209e2605dfeb71cdd9aaa551e81"
+      "bytes": 11806,
+      "sha256": "2a306ad6d0edf6b0245f4e3423113d286e19b31712afdab7ea67476ed2e9647c"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8298,
-      "sha256": "aad24beb2573b39840af9453a58020673837f8afcbb9a1b75bddd3ff2678c018"
+      "bytes": 8776,
+      "sha256": "248f504b60bc7a351ae99952c452c7ff0ab2aaed1ddf03dd6278300762d6c791"
     },
     {
       "path": "README.md",
-      "bytes": 7552,
-      "sha256": "1d9e12be2c70b37101928458f6280f3f9f940bb6aa8e95c92254e9f91c1ec0e8"
+      "bytes": 8024,
+      "sha256": "4781116725ec6eca73289c38cf423e0058adbc07ca27138dac8d07446bc5e95d"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -96,6 +96,11 @@
       "sha256": "edf184e72fb793c1a19802fefe61889f2c1835a879064094feb4cdb5eef1a308"
     },
     {
+      "path": "docs/media/hyper-dimension-poster.png",
+      "bytes": 9929817,
+      "sha256": "f52b1cb86061ef50364f3b88fd678dfa2f0d300b28ffcf8942fb95f51d8ab0a6"
+    },
+    {
       "path": "docs/media/hyper-dimension-preview.gif",
       "bytes": 6600878,
       "sha256": "532480919e2991240e98735cfb747cedc2c0dcc230a345c311a79ac87e13bd09"
@@ -112,8 +117,8 @@
     },
     {
       "path": "docs/media/origami-kitchen.png",
-      "bytes": 2722506,
-      "sha256": "309bb4d63d540876bbf06096ad87197c410809704f798a5aab7dbe0cb1ae3bc2"
+      "bytes": 5576007,
+      "sha256": "9300085a7e65cd38cbe2bbf76fab8335d829fc195bb43b51313dd7f6789f154a"
     },
     {
       "path": "docs/media/pixel-island.png",
@@ -657,8 +662,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 4854,
-      "sha256": "9287975b6adcae783f77cfbdf81302495bbc01118663524872b8a5679ad5d76c"
+      "bytes": 4938,
+      "sha256": "1c981cb5295a97efd648d05005347c24f54228b9d5181d6e0b55357316a234ce"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2082,8 +2087,8 @@
     },
     {
       "path": "server/recruited_agent.py",
-      "bytes": 10251,
-      "sha256": "42515e152765830ef43289a14b0cb7162e6d328dbe58a57e0081e85d7ba7d0d9"
+      "bytes": 10506,
+      "sha256": "b5cad2238c5eb881bde68b6f8187ab59680c04f46f060ab142b334afca78598f"
     },
     {
       "path": "server/recruitmentService.mjs",
@@ -3002,8 +3007,8 @@
     },
     {
       "path": "src/recruitment-v29.css",
-      "bytes": 11801,
-      "sha256": "f0e8a33a58e9c46dd58b2da8d55aec266f5d9865881f693f15efa9d5f017ab02"
+      "bytes": 13470,
+      "sha256": "178c9d57b1e58ead759dddda039d30232a0e897ff45fe3d1c6862da26264ec79"
     },
     {
       "path": "src/recruitment.js",
@@ -3014,6 +3019,11 @@
       "path": "src/recruitmentCatalog.js",
       "bytes": 4291,
       "sha256": "54341dcb16baba793c5989900ea12948375848de39bcc9dc7f552dbe13150f19"
+    },
+    {
+      "path": "src/recruitmentExchange.js",
+      "bytes": 1907,
+      "sha256": "4d3d31080dab6aeb10c43870f90c4734fc4e511455e07fbf1c2b09b8752674d5"
     },
     {
       "path": "src/recruitmentRenewal.js",
@@ -3027,8 +3037,8 @@
     },
     {
       "path": "src/recruitmentUI.js",
-      "bytes": 25343,
-      "sha256": "a855fd9fb8885ec1624225a3ffe8533143ba30964456ca845ea4274a89ee2017"
+      "bytes": 25665,
+      "sha256": "8c8051de70d33437ef12504fdc5a41429e089c9bed6ed1f92d489f542d51f140"
     },
     {
       "path": "src/resident-stories-v36.css",
@@ -3137,8 +3147,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 7214,
-      "sha256": "67f2ecf9817caf74076506789f4d12a1a576cff8ffdd33c89018bbf32ca28436"
+      "bytes": 7336,
+      "sha256": "7c57145cf3875debd8ec0045acd296804e6c8364aae21e04d62960b8d1c56f5d"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -3302,8 +3312,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 40773,
-      "sha256": "2baed94de18e47b933181b61a7ec76fbdb2017b83274d60b9e849b4cca0c75e8"
+      "bytes": 41574,
+      "sha256": "a49662320d1af64f968aaff258427eb0c2efb086492114be9f19417773d430be"
     },
     {
       "path": "src/workshopProps.js",
@@ -3669,6 +3679,11 @@
       "path": "tests/v107-assignment-routing.test.mjs",
       "bytes": 3774,
       "sha256": "b0b97f22365921af115bf5e975bcfe87a82224ca56daf8355d0a23c10fa22e7a"
+    },
+    {
+      "path": "tests/v108-recruitment-exchange.test.mjs",
+      "bytes": 1655,
+      "sha256": "4d6ddeb1829c8223a9173387013c72373c03c043ae743def262b215fa0a387ca"
     },
     {
       "path": "tests/v11-cadence-baseline.mjs",
@@ -5981,5 +5996,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v107-github"
+  "publicRevision": "v108-github"
 }

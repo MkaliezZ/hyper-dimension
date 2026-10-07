@@ -4,15 +4,17 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V107 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V108 is a playable development snapshot**, with full product acceptance still in progress.
 
-## 30-second gameplay video
+## Gameplay video: 30 seconds + 45-second feature tour
 
-[![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-preview.gif)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)
+[![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v107/hyper-dimension-30s-stable.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v107)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v108)
 
-A 30-second 4K film with an original instrumental score, bilingual captions and camera moves. It shows real DeepSeek resident decisions, a completed Coastal Kitchen challenge, and native Hermes reading a fictional work brief, saving a Word document and verifying its contents. The footage is edited to omit waiting; local paths are masked and no real user data appears.
+2560 × 1440 at 60 FPS, with an original instrumental score and bilingual captions. The footage shows an actual AI resident conversation, selectable steward appearances, native Hermes delegation, a Coastal Kitchen challenge inside its building window, and a real Word document made from a fictional brief. Waiting is edited out; no real user data appears.
+
+[Watch the 45-second feature tour](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-45s.mp4) for both avatar galleries, candidate professions and the main/sub-agent exchange.
 
 **The current minigames are placeholder demonstrations. Gameplay, art and animation will continue to be refined; this is not final quality.** The film illustrates the product direction, not full product acceptance.
 
@@ -25,6 +27,8 @@ A 30-second 4K film with an original instrumental score, bilingual captions and 
 - **A Hermes steward:** conversation, recipe assignments, material preparation, recruitment and explicitly requested local document work, with execution records.
 - **Server-managed saves:** file-backed state, protected resource and work receipts, backup / restore and fresh-browser recovery.
 - **Local visiting and multiplayer foundations:** separate accounts and islands, traveling stewards and invited residents, social encounters and limited A2A. Cross-device steward bridging remains in development.
+
+V108 adds portrait-led parent/child Agent exchanges and retains a minigame result when completion is temporarily refused, so the player can retry. The full 20-cycle Intel Mac test now has a workload-based timeout; no assertions were removed. [Cross-platform CI](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml).
 
 ### AI life and real-world work
 
