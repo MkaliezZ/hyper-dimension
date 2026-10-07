@@ -1,3 +1,4 @@
+import {validShopfronts} from '../src/shopfronts.js';
 import {validResidentLife} from '../src/residentLife.js';
 import {assertResourceState,assertResourceJournal,syncResourceState,enableResourceState} from './resourceAuthority.mjs';
 import {createLanWonderJournal} from './lanWonderJournal.mjs';
@@ -62,6 +63,7 @@ export function validateState(state,theme=null){
  if(!validPartyHosting(state))throw fail('主持委托记录无效，未覆盖现有进度');
  if(!validEventWonders(state))throw fail('奇观记录无效，未覆盖现有进度');
  if(!validAchievements(state))throw fail('成就记录无效，未覆盖现有进度');
+ if(!validShopfronts(state))throw fail('货架记录无效，未覆盖现有进度');
  if(!validFunctionalFacilities(state))throw fail('功能设施记录无效，未覆盖现有进度');
  if(!validPlacements(state,{connectivity:true}))throw fail('岛上布置或通路无效，未覆盖现有进度');
  if(!validNightParty(state))throw fail('夜集方案记录无效，未覆盖现有进度');

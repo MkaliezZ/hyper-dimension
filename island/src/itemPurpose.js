@@ -1,3 +1,4 @@
+import {shopItemOffer} from './shopfronts.js';
 import {FUNCTIONAL_FACILITIES,functionalDefinition} from './facilityCatalog.js';
 import {ALL_RECIPES,ITEM_BY_ID,RECIPE_BY_ID,recipeGate} from './contentCatalog.js';
 import {GARMENTS,WEAR_SLOTS,toolPurpose} from './equipmentRules.js';
@@ -25,5 +26,5 @@ export function itemPurpose(id,s){
  const order=townOrders(s).find(o=>o.item===id),party=id==='lantern'?'星灯夜集必需灯笼 ×1':id==='wheat'?'星灯夜集必需小麦 ×2':id==='firework'?'星海烟花大会：预留 ×6，只消耗实际发射者；也可用于夜集单枚助兴':item.category==='wear'?'先设为主题穿着，再承办派对；着装奖励 +2 岛币':null;
  const inputs=recipe?Object.entries(recipe.cost).filter(([input])=>ITEM_BY_ID[input]?.recipeId).map(([input,quantity])=>({id:input,name:ITEM_BY_ID[input].name,quantity,building:ITEM_BY_ID[input].building,crossWorkshop:ITEM_BY_ID[input].building!==recipe.building})):[];
  const facilityUses=Object.entries(FUNCTIONAL_FACILITIES).filter(([,d])=>d.cost[id]).map(([display,d])=>({item:display,name:d.name,quantity:d.cost[id],description:d.description}));
- return {item,recipe,inputs,facilityUses,primary:equipment||(id==='c16_4'?{action:'派对筹备',text:'留作钓鱼大会六竿的消耗品，开场时统一使用；不作为庭院摆件。'}:direct[item.category]||{action:'制作材料',text:'选择下列真实配方，采集后按材料数量投入制作。'}),next,buyers,building:recipe?BUILDINGS[recipe.building].name:null,marketPrice:recipe?visitorPrice(id,recipe):null,order,fishing:!!fishing[id],party:[party,fishing[id]].filter(Boolean).join('；')||null};
+ return {item,recipe,inputs,facilityUses,shop:recipe?shopItemOffer(s,id):null,primary:equipment||(id==='c16_4'?{action:'派对筹备',text:'留作钓鱼大会六竿的消耗品，开场时统一使用；不作为庭院摆件。'}:direct[item.category]||{action:'制作材料',text:'选择下列真实配方，采集后按材料数量投入制作。'}),next,buyers,building:recipe?BUILDINGS[recipe.building].name:null,marketPrice:recipe?visitorPrice(id,recipe):null,order,fishing:!!fishing[id],party:[party,fishing[id]].filter(Boolean).join('；')||null};
 }

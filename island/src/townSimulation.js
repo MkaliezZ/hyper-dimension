@@ -1,3 +1,4 @@
+import {shopItemOffer} from './shopfronts.js';
 import {socialCandidates,socialBoundary,leisureOptions,routineFor,temperament} from './residentLife.js';
 import {chooseResidentCooperation,activityCooperationNeeds} from './residentCooperation.js';
 import {teaFacilityOptions,functionalCommand} from './functionalFacilities.js';
@@ -121,10 +122,10 @@ export const TOURISTS=[
  {name:'枫铃',taste:'自然与露营',likes:[22,14,5],budget:22,minScore:44},
  {name:'澈川',taste:'摄影与精品展览',likes:[13,18,5],budget:34,minScore:67}
 ];
-export function assessIsland(s,tourist){const open=Object.values(s.buildings),quality=open.length?open.reduce((v,id)=>v+effectiveQuality(s.facilities[id]),0)/open.length:0;const candidates=tourist.likes.filter(id=>open.includes(id)).map(id=>({id,quality:effectiveQuality(s.facilities[id]),available:!!venueService(id,effectiveQuality(s.facilities[id]))||!RECIPES[id]||ALL_RECIPES.some(r=>r.building===id&&s.inventory[r.item]>0)}));const count=candidates.length;const crowd=s.economy.active||0;const score=Math.round(Math.min(100,open.length*.5+quality*.6+s.economy.rating*3+count*6-crowd*1.5));const itinerary=candidates.filter(c=>c.quality>=25&&c.available).sort((a,b)=>b.quality-a.quality).slice(0,3).map(c=>c.id);const accepted=score>=tourist.minScore&&itinerary.length>=2;return {score,accepted,itinerary,reason:accepted?'有 '+count+' 处符合'+tourist.taste+'的设施，愿意上岛':itinerary.length<2?'想体验的设施或商品不足，暂不上岛':'设施品质与口碑未达到这次出游的期待'};}
+export function assessIsland(s,tourist){const open=Object.values(s.buildings),quality=open.length?open.reduce((v,id)=>v+effectiveQuality(s.facilities[id]),0)/open.length:0;const candidates=tourist.likes.filter(id=>open.includes(id)).map(id=>({id,quality:effectiveQuality(s.facilities[id]),available:!!venueService(id,effectiveQuality(s.facilities[id]))||!RECIPES[id]||ALL_RECIPES.some(r=>r.building===id&&shopItemOffer(s,r.item).available>0&&visitorPrice(r.item,r)<=tourist.budget)}));const count=candidates.length;const crowd=s.economy.active||0;const score=Math.round(Math.min(100,open.length*.5+quality*.6+s.economy.rating*3+count*6-crowd*1.5));const itinerary=candidates.filter(c=>c.quality>=25&&c.available).sort((a,b)=>b.quality-a.quality).slice(0,3).map(c=>c.id);const accepted=score>=tourist.minScore&&itinerary.length>=2;return {score,accepted,itinerary,reason:accepted?'有 '+count+' 处符合'+tourist.taste+'的设施，愿意上岛':itinerary.length<2?'想体验的设施或商品不足，暂不上岛':'设施品质与口碑未达到这次出游的期待'};}
 export function visitQuote(s,guest,buildingId){
  const f=s.facilities[buildingId];if(!f)return {paid:0,reason:'设施不存在'};
- const stocked=ALL_RECIPES.filter(r=>r.building===buildingId&&availableQuantity(s,r.item)>=1&&visitorPrice(r.item,r)<=guest.budget).sort((a,b)=>b.tier-a.tier||a.index-b.index);
+ const stocked=ALL_RECIPES.filter(r=>r.building===buildingId&&shopItemOffer(s,r.item).available>=1&&visitorPrice(r.item,r)<=guest.budget).sort((a,b)=>b.tier-a.tier||a.index-b.index);
  const recipe=stocked[0]||RECIPES[buildingId],service=venueService(buildingId,effectiveQuality(f)),selling=!!stocked[0];
  const price=selling?visitorPrice(recipe.item,recipe):service?service.price:recipe?visitorPrice(recipe.item,recipe):3+Math.floor(effectiveQuality(f)/25),cost=operatingCost(price);
  if(guest.budget<price)return {paid:0,reason:'预算不足'};

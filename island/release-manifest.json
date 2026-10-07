@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v112-agent-source",
+  "release": "hyper-dimension-v113-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 13689,
-      "sha256": "a3f383efa3b9406a21de4c583dfb6a38e6f91df920559bf6a2d7b6e8f2eb2bab"
+      "bytes": 14095,
+      "sha256": "a201f54aa93b7aa74c7f9b31434cd5c948339d0af0262174b53277cd05ab1523"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9838,
-      "sha256": "25483ecfc1348c9a0c32adadfd21a1937ebca47fcaf84cf3735325eecbd54900"
+      "bytes": 10087,
+      "sha256": "337cb169342203a54a47ccb613c65593b0e7d113879a91677c26d71642f5cc81"
     },
     {
       "path": "README.md",
-      "bytes": 8985,
-      "sha256": "4f7cbad64874c6a04f3ec30f1fff5f7b66252bb9b149dc9cc1203e236d993559"
+      "bytes": 9188,
+      "sha256": "ea0deed32357baab7a265bd8d17c0555c65b3b2302e9e5f768212c2160680b9d"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -171,6 +171,16 @@
       "sha256": "aa1cae06cb852f864c6b19c62b6f9d16425ed567390f7792c76bbd3e764709bc"
     },
     {
+      "path": "docs/media/shopfront-origami-v113.png",
+      "bytes": 890806,
+      "sha256": "1cc03c987536ce8d35a8abc290acf15d86394068aea6d70015fd730b40fd00b1"
+    },
+    {
+      "path": "docs/media/shopfront-pixel-v113.png",
+      "bytes": 773322,
+      "sha256": "ca98034b84cd1f8cfff1d344f14f96d222e8cbbb39976512f9f9d16a60248a9f"
+    },
+    {
       "path": "docs/media/showcase-details.json",
       "bytes": 678,
       "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
@@ -201,9 +211,14 @@
       "sha256": "5bddd8fae9b878db3ae63886b13eedcff06f92c67f2d3b8d194fb4bde3036e20"
     },
     {
+      "path": "docs/shopfronts-v113.md",
+      "bytes": 3370,
+      "sha256": "7d6a86c91244d05a697ec60c39156b36fb68869a883dc8c5d104a109ee7a4b6d"
+    },
+    {
       "path": "index.html",
-      "bytes": 5799,
-      "sha256": "d453c945d31112cd306a7c9ee570542c21cf6f256e651b2233589156b2429e0e"
+      "bytes": 5854,
+      "sha256": "30a320810dbeebf2658610a49c18f2cbe4ab2c531c6425ee045c0469bb310cfa"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -712,8 +727,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 5487,
-      "sha256": "77114af531b15e81862eb9cd022af2988e0e57fd7b324ca1b933e3d72048e51c"
+      "bytes": 5662,
+      "sha256": "864e89b378873e97ab02ba8ed62f8c03720e27ab27979bf8086279f97e29c4e1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1872,8 +1887,8 @@
     },
     {
       "path": "server/commerceActions.mjs",
-      "bytes": 13377,
-      "sha256": "dc68bfaeabb405cd87b50c9cd581069635fb12827ab120834633b8f9504cea48"
+      "bytes": 13799,
+      "sha256": "11a63eed83ab89a69342ac17dda24c67077076a9a2475d16fa359b84dfe94de1"
     },
     {
       "path": "server/coutureActions.mjs",
@@ -2192,8 +2207,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 33131,
-      "sha256": "e4430d6e7103bcdce4f3ea2e3278d64208b34dc32cc494a98dfb2f5f15757a4e"
+      "bytes": 33271,
+      "sha256": "868782119b3d054fa6d982d73d110137a19ede98bd2beb27ea21c872daa52931"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -2272,8 +2287,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 129870,
-      "sha256": "e285b1086c4fb46c6971a1f67b84eb1dcae1003e91eabde8aa3c826cb594c333"
+      "bytes": 130400,
+      "sha256": "009e4998f0906a778dcf6500f899802b9ee42e71406d1e75050bd21b2182b233"
     },
     {
       "path": "src/arcade.css",
@@ -2377,8 +2392,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 16483,
-      "sha256": "389bf5727f856d0110af285351ffc5cb0f43977ebaab45c15f5553496eb63e9a"
+      "bytes": 16864,
+      "sha256": "8b59af097c727f79c9de4605b930f554ff3a6508b4510cd72b33ac88e5149339"
     },
     {
       "path": "src/conversationFallback.js",
@@ -2732,8 +2747,8 @@
     },
     {
       "path": "src/itemPurpose.js",
-      "bytes": 4234,
-      "sha256": "5d9e320ed25cc74ee53890183f320012531cfb0e730a19ce67525f634704a15a"
+      "bytes": 4318,
+      "sha256": "e1f7806aa2ffdf666c26890871c3571094fcc92b62375887742160392c7d7e76"
     },
     {
       "path": "src/journey-v21.css",
@@ -3261,6 +3276,21 @@
       "sha256": "643fc9a379e3ccaba618eb0bfa90181a354c0ab8bba9657f37c568691724e156"
     },
     {
+      "path": "src/shopfront-v113.css",
+      "bytes": 3017,
+      "sha256": "bb43b30715b4c56701c02678a5ad4626196b0759c6eb207635d1507bde51a1c9"
+    },
+    {
+      "path": "src/shopfrontUI.js",
+      "bytes": 6524,
+      "sha256": "63137026e01dc731e5f275fb0e7dce959ed44005204719434e337b795779d97a"
+    },
+    {
+      "path": "src/shopfronts.js",
+      "bytes": 2712,
+      "sha256": "2b51412b66bacba874b85bd900c74aa1dfde924b426efa0a9c071ed8d59d5079"
+    },
+    {
       "path": "src/sound-v38.css",
       "bytes": 4075,
       "sha256": "d4a9e3a61a1b17fae040ee2dcbc42d0c6d73f7bafbb5dabefa5be71a8ccb9c7a"
@@ -3342,8 +3372,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 22929,
-      "sha256": "34e7a03946c799b4f1bdeac08acc45c67ee6b007fa9411f78d12bdf06a289fdf"
+      "bytes": 23036,
+      "sha256": "5f92ef581f2f21545902cdbe549e17cbca938c61aa68b8d452c6d001ad71ac2a"
     },
     {
       "path": "src/ui-v16.css",
@@ -3804,6 +3834,16 @@
       "path": "tests/v112-resident-life.test.mjs",
       "bytes": 7595,
       "sha256": "269d4d1b925be4b5c12461cc6f057d983c15c62a14f0dccfd2aa8baf07fdbbb2"
+    },
+    {
+      "path": "tests/v113-shopfronts-browser.mjs",
+      "bytes": 6103,
+      "sha256": "4264744bf3c9f84e758e5326538350c926366ca5bf9e8a5944c8d80d81116ee8"
+    },
+    {
+      "path": "tests/v113-shopfronts.test.mjs",
+      "bytes": 8715,
+      "sha256": "0089044a07d56d6afa5e2b29ca78b9dad9a76e65a14555c42f864c3d7e9a1be3"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -6106,5 +6146,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v112-github"
+  "publicRevision": "v113-github"
 }
