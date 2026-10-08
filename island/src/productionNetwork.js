@@ -1,5 +1,6 @@
+import {CRAFT_SPECIFICATIONS} from './craftSpecifications.js';
 // Declarative workshop dependencies. IDs and artwork stay stable across catalog revisions.
-export const PRODUCTION_VERSION=32;
+export const PRODUCTION_VERSION=117;
 export const COMMON_COMPONENTS={
  c0_7:{tier:0,category:'component',cost:{wood:3},role:'木作构件'},
  c7_5:{tier:0,category:'component',cost:{bark:2,leaves:1,fiber:1},role:'纸品'},
@@ -40,6 +41,8 @@ export function connectWorkshops(rows){
  for(const id of [...Object.keys(COMMON_COMPONENTS),...Object.keys(WORKSHOP_LINKS)])if(!ids.has(id))throw Error('Unknown production output '+id);
  return rows.map(r=>{
   const shared=COMMON_COMPONENTS[r.item],links=WORKSHOP_LINKS[r.item];
+  const specification=CRAFT_SPECIFICATIONS[r.item];
+  if(specification)return {...r,...shared,cost:{...specification[0]},construction:specification[1],definitionVersion:3,previousCost:{...(shared?.cost||r.cost),...links},productionVersion:PRODUCTION_VERSION};
   if(!shared&&!links)return {...r,definitionVersion:1};
   const cost={...(shared?.cost||r.cost),...links};
   for(const [id,n] of Object.entries(cost))if(!Number.isSafeInteger(n)||n<1)throw Error('Invalid production quantity '+id);

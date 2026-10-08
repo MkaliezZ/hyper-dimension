@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v116-agent-source",
+  "release": "hyper-dimension-v117-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10710,
-      "sha256": "17561550e18c7791e9f4f6ab0c7c9926743c3b4c4c7872926502cf6f7096da1b"
+      "bytes": 10922,
+      "sha256": "a62f3de00d09b3935918662000d93ec8b32be14556ca62d74dff6a048d4e9a31"
     },
     {
       "path": "README.md",
-      "bytes": 9774,
-      "sha256": "b4871a007175963f38836629319c67080dfbf51772ae1e9798ffae9fad940dd4"
+      "bytes": 9960,
+      "sha256": "dd5759adb054be5b4b242b6745b227ac9c6f5a4c54f6f5968793c90a37347fe1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -84,6 +84,11 @@
       "path": "docs/classic-settlement-v110.md",
       "bytes": 2783,
       "sha256": "9b0680a87c4740f8221b671fdcee49916966dcc96c413245f823d2867d45eb56"
+    },
+    {
+      "path": "docs/craft-materials-v117.md",
+      "bytes": 3857,
+      "sha256": "d2aeed20eda993b294867f32a1e0d21b246ddddbad1eea6b04b3c900c1db1c21"
     },
     {
       "path": "docs/harbor-art-v109.md",
@@ -742,8 +747,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 6312,
-      "sha256": "a60e091bb16b7ff75693ab9d195fa309dd23e009f0f47d71de76b99ce62c07e1"
+      "bytes": 6650,
+      "sha256": "587d3bf93f7d83ccebe8d07bbabf669bc66b0ddbb5455408e158645995a3f0f5"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2412,8 +2417,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 16864,
-      "sha256": "8b59af097c727f79c9de4605b930f554ff3a6508b4510cd72b33ac88e5149339"
+      "bytes": 16942,
+      "sha256": "bcf34e16b2d60c46829f922803eb25e653f631bb80729c13f0c5ccf49db1365e"
     },
     {
       "path": "src/conversationFallback.js",
@@ -2484,6 +2489,11 @@
       "path": "src/craftPlanning.js",
       "bytes": 2243,
       "sha256": "f686f6ff721737dd58ff7af7d5f20d942652077ad1be1e8e9a48b2d1465c0dfd"
+    },
+    {
+      "path": "src/craftSpecifications.js",
+      "bytes": 6237,
+      "sha256": "7886958b7e8db00bb22cac9e5eb3cd8bece17200fb7bac1a4cd2d1ada69d95ce"
     },
     {
       "path": "src/directions.js",
@@ -3067,8 +3077,8 @@
     },
     {
       "path": "src/productionNetwork.js",
-      "bytes": 4710,
-      "sha256": "f7ff08ad7b1be69ef7387c70deaae30c43777404ddb82471c7810588df3d23c1"
+      "bytes": 5034,
+      "sha256": "08d7a555bb800a7b2310b899f1707f7f84fbf19225601c3ebcb019d07af0a959"
     },
     {
       "path": "src/projectPlans.js",
@@ -3882,8 +3892,8 @@
     },
     {
       "path": "tests/v114-recipe-contracts.test.mjs",
-      "bytes": 10154,
-      "sha256": "9e87f0e6e0deaf62e5ac719410aa2efd021cf56ce86fe90d1f5c7b65898ac6a7"
+      "bytes": 10481,
+      "sha256": "6188f748c8b460d6fa88e81896e7d43b0ac8b378afea8ee97c6f62f9a2e3d7c6"
     },
     {
       "path": "tests/v114-resident-dispatch.test.mjs",
@@ -3914,6 +3924,21 @@
       "path": "tests/v116-model-response.test.py",
       "bytes": 3253,
       "sha256": "0a92b56cb5e0ad0f321067b92f018aa0fef06c45b662e6eeb899b06aec7a02f7"
+    },
+    {
+      "path": "tests/v117-craft-browser.mjs",
+      "bytes": 7012,
+      "sha256": "cce97d91fe8bae04b3073e0ca9c942682b7eb2e598927536d631605de87c059e"
+    },
+    {
+      "path": "tests/v117-craft-materials.test.mjs",
+      "bytes": 3621,
+      "sha256": "39bff12e120e9a28f65eb74c1a83459e2ebb37abd4e02afbf12e8b75b58f5583"
+    },
+    {
+      "path": "tests/v117-materials-browser.mjs",
+      "bytes": 4006,
+      "sha256": "8cf78d3e148b46c3a974f18f27abdef14f8eca8b62c1f5bd1549e3067ec3d66d"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -4282,8 +4307,8 @@
     },
     {
       "path": "tests/v32-production.test.mjs",
-      "bytes": 6745,
-      "sha256": "d421e51577dcf1f120d1248b5b07ea804e37ce149f780c06b57802bf50f44766"
+      "bytes": 6780,
+      "sha256": "d05733771ecd8f9007ee1ae187d5f7f1fbe4f1ad976b27021e1f6656bef4c9d2"
     },
     {
       "path": "tests/v33-collections-browser.mjs",
@@ -6216,5 +6241,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v116-github"
+  "publicRevision": "v117-github"
 }

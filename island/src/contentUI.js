@@ -54,7 +54,7 @@ export function createContentUI(api){
   const p=itemPurpose(id,s),r=p.recipe,gate=r?recipeGate(r,s):null,o=p.order,worn=i.category==='wear'&&isWorn(s,id);
   const next=p.next.map(n=>'<button class="secondary" data-next-recipe="'+n.id+'">'+icon(n.id)+esc(n.name)+' · '+esc(BUILDINGS[n.building].name)+' · 需要 '+n.quantity+' 份'+(!n.ready?'（查看解锁条件）':'')+'</button>').join('');
   const actions=r?'<div class="purpose-actions"><button class="primary" id="itemUse" '+(worn||availableQuantity(s,id)<1?'disabled':'')+'>'+(worn?'正在穿着':p.primary.action)+'</button>'+(worn?'<button class="secondary" id="itemUnequip">换下并放回背包</button>':'')+(i.category!=='gift'?'<button class="secondary" id="itemGift" '+(availableQuantity(s,id)<1?'disabled':'')+'>赠送居民</button>':'')+'</div>':'';
-  const purpose='<div class="item-purpose"><h3>怎么使用这件物品</h3><p>'+esc(p.primary.text)+'</p>'+actions+
+  const purpose='<div class="item-purpose">'+(r?.construction?'<h3>制作构造</h3><p>'+esc(r.construction)+'</p>':'')+'<h3>怎么使用这件物品</h3><p>'+esc(p.primary.text)+'</p>'+actions+
    (p.facilityUses?.length?'<div class="purpose-row workshop-route"><b>功能设施投入</b><div class="next-recipes">'+p.facilityUses.map(f=>'<button class="secondary" data-detail="'+f.item+'">'+icon(f.item)+esc(f.name)+' · 每批使用 '+f.quantity+' 份</button>').join('')+'</div><p>制作并布置设施后，在设施页投料。已预留物资不会被取用。</p></div>':'')+
    (p.shop?'<div class="purpose-row"><b>本馆货架 · '+(p.shop.listed?'正在陈列':'已下架')+'</b><p>保留 '+p.shop.keep+' 份，可供游客购买 '+p.shop.available+' 份。保留品仍可用于下一道制作或派对。</p><button class="secondary" id="itemShelf">设置本馆货架</button></div>':'')+
    (p.buyers.length?'<div class="purpose-row"><b>游客购买 · '+p.marketPrice+' 岛币</b><p>'+esc(p.buyers.join('、'))+'等旅人会在'+esc(p.building)+'按货架设置购买真实库存；访客买走后从背包扣除一份，入账时扣运营费。</p></div>':'')+

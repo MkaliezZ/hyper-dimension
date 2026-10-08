@@ -4,7 +4,7 @@ import {createState,RESIDENTS,setWorldTheme} from '../src/world.js';
 import {createZeroState} from '../src/freshStart.js';
 import {hydrateTown,purposeOptions,commitWork} from '../src/townSimulation.js';
 import {ALL_RECIPES,RAW_MATERIALS,RECIPE_BY_ID,PRODUCTION_GRAPH} from '../src/contentCatalog.js';
-import {checkWorkshopGraph} from '../src/productionNetwork.js';
+import {checkWorkshopGraph,PRODUCTION_VERSION} from '../src/productionNetwork.js';
 import {itemPurpose} from '../src/itemPurpose.js';
 import {createProject,syncProjects,projectSteps,projectOwner} from '../src/projectPlans.js';
 import {availableQuantity,reserveResources,commitResources,validResourceLedger} from '../src/resourceLedger.js';
@@ -30,7 +30,7 @@ test('all 25 workshops supply and consume real products; full graph is bounded a
 test('zero-start party tools and first rewards retain their actual accessible costs',()=>{
  const protectedItems=['lantern','rod','c16_2','c16_4','c8_2','bread','firework','outfit','pottery','painting'];
  for(const id of protectedItems){const r=RECIPE_BY_ID['recipe_'+id];assert.equal(r.definitionVersion,1,id);assert.equal(r.tier,0,id);}
- const s=fresh();assert.equal(s.coins,0);assert(Object.values(s.inventory).every(n=>n===0));assert.equal(s.contentVersion,9);assert.equal(s.productionVersion,32);
+ const s=fresh();assert.equal(s.coins,0);assert(Object.values(s.inventory).every(n=>n===0));assert.equal(s.contentVersion,9);assert.equal(s.productionVersion,PRODUCTION_VERSION);
 });
 test('ordinary resident sources paper in the library then actually consumes it at the stage',()=>{
  const s=fresh();for(const m of RAW_MATERIALS)s.inventory[m.id]=20;

@@ -1,3 +1,4 @@
+import {LEGACY_RECIPE_DEFINITIONS} from '../src/legacyRecipeDefinitions-v32.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdir,mkdtemp} from 'node:fs/promises';
@@ -65,7 +66,8 @@ test('all 300 definitions produce detached, valid contracts and recover legacy a
  for(const r of ALL_RECIPES){
   const c=recipeContract(r),t={kind:'craft',recipeId:r.id,item:r.item,building:r.building,reservedItems:{...r.cost},recipeContract:c};
   assert(validRecipeContract(c));assert(validAcceptedRecipe(t));assert.notEqual(c.cost,r.cost);assert.deepEqual(acceptedRecipe(t).cost,r.cost);
-  const old={...t};delete old.recipeContract;assert(validAcceptedRecipe(old));assert.deepEqual(acceptedRecipe(old).cost,r.cost);
+  const legacy=LEGACY_RECIPE_DEFINITIONS[r.id],old={...t,reservedItems:{...legacy.cost}};delete old.recipeContract;assert(validAcceptedRecipe(old));assert.deepEqual(acceptedRecipe(old).cost,legacy.cost);
+  if(JSON.stringify(r.cost)!==JSON.stringify(legacy.cost)){assert.notDeepEqual(acceptedRecipe(old).cost,r.cost);assert.equal(acceptedRecipe(old).productionVersion,32);}
  }
 });
 
