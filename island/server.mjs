@@ -1,5 +1,6 @@
 import {createPortfolioStore} from './server/portfolioStore.mjs';
 import {servePortfolio} from './server/portfolioHttp.mjs';
+import {createEnvironmentService} from './server/environmentService.mjs';
 import {createWorldSession,bindWorldStore} from './server/worldSession.mjs';
 import {createResidentChatStore} from './server/residentChatStore.mjs';
 import {manualPartyContext} from './server/manualPartyContext.mjs';
@@ -20,6 +21,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 const root=resolve(import.meta.dirname);
 const dataLease=await acquireDataLease({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),mode:'runtime',sharedRuntime:true});
+const environmentService=await createEnvironmentService({directory:process.env.HD_ENVIRONMENT_DIR||(process.env.HD_SAVE_DIR?resolve(process.env.HD_SAVE_DIR,'environment'):resolve(root,'data/environment'))});
 const rawSaves=createSaveStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
 const worldSession=createWorldSession({directory:rawSaves.directory,saves:rawSaves}),saves=bindWorldStore(rawSaves,worldSession);
 const portfolio=createPortfolioStore({directory:rawSaves.directory});
@@ -52,6 +54,7 @@ const server=createServer(async(req,res)=>{
   if(pathname==='/api/status'&&req.method==='GET'){try{const runs=await runLedger.snapshot(),agents=agentStatus();agents.automaticRequests=runs.channels;return sendJSON(res,200,{deepseek:!!key,hermes:agents.hermes.configured,theme,agents,saveProtocol:{initialAuthority:1,importPreview:1,signedExport:1,personal:1,planningTransactions:1,planningAuthority:1,inventoryAuthoritative:true,gather:1,craft:1,craftInputReplay:true,craftCheckpointSeconds:5,farm:1,farmActiveClock:true,field:1,fieldInputReplay:true,resident:1,visitor:1,commerce:1,dayActiveClock:true,party:1,nightPlanning:1,stewardPartyTemplates:['fishing','night','market','couture','fireworks'],festival:1,marketInputReplay:true,couture:1,fireworks:1,coutureInputReplay:true,partyInputReplay:true,hire:1,fishing:1,fishingInputReplay:true,facility:1,facilityActiveClock:true,placement:1,cocreation:1,cocreationInputReplay:true}})}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/admin/runtime'&&req.method==='GET'){try{return sendJSON(res,200,await runLedger.snapshot())}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/admin/policy'&&req.method==='POST'){try{return sendJSON(res,200,await runLedger.setPolicy(await readJSON(req,4096)))}catch(e){return sendAgentError(res,e)}}
+  if(pathname==='/api/world/environment')return sendJSON(res,req.method==='GET'?200:405,req.method==='GET'?environmentService.view():{error:'世界时钟为只读接口'});
   const workRoute=pathname.match(/^\/api\/workbench\/(pixel|origami)(?:\/(project|artifact\/capture-[a-f0-9]{32}(?:\/(preview|download))?))?$/);
   if(workRoute){
    const style=workRoute[1],part=workRoute[2];
@@ -117,6 +120,6 @@ const server=createServer(async(req,res)=>{
 
 
 
-let shutdown;const stop=()=>shutdown??=(async()=>{try{await new Promise(r=>{server.close(r);server.closeIdleConnections();});await recruitment.close();await stopAgentWorkers();}finally{await dataLease.release();}})();
+let shutdown;const stop=()=>shutdown??=(async()=>{try{await new Promise(r=>{server.close(r);server.closeIdleConnections();});await environmentService.close();await recruitment.close();await stopAgentWorkers();}finally{await dataLease.release();}})();
 for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>{stop().then(()=>{process.exitCode=0;},()=>{process.exitCode=1;});});
 server.once('error',()=>{stop().finally(()=>{process.exitCode=1;});});

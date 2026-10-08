@@ -6,7 +6,11 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V130 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V131 is a playable development snapshot**, with full product acceptance still in progress.
+
+V131 adds animated shoreline waves, continuous day/night and four seasons shared by home islands and visits, plus a central-clock interface. The collapsible journal and east-court Islander Gallery remain available. [Visuals, configuration and verification scope](docs/environment-v131.md).
+
+V131 also aligns the east-coast gallery, adds an optional fictional portfolio (eight milestones, three projects and three images), and repairs Windows deployment process discovery. [Details and verification](docs/gallery-seam-v131.md).
 
 Since V128, bounded save capacity is raised to 16 MiB and signed backup/import capacity to 64 MiB, preserving transaction receipts and progress. Both themes passed large-save and fresh-browser recovery checks. [Fix and validation scope](docs/save-capacity-v128.md).
 
@@ -44,7 +48,7 @@ V109 updates both boarding gangways, ferry alignment and passenger occlusion. [S
 
 [![Hyper Dimension gameplay preview: origami and pixel islands](docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v130)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v131)
 
 2560 × 1440 at 60 FPS, with an original instrumental score and bilingual captions. The footage shows an actual AI resident conversation, selectable steward appearances, native Hermes delegation, a Coastal Kitchen challenge inside its building window, and a real Word document made from a fictional brief. Waiting is edited out; no real user data appears.
 
@@ -153,3 +157,18 @@ First-party code and documentation follow the existing [MIT License](LICENSE). H
 新增东岸会客馆、个人经历与项目、附件上传、私有草稿与主动发布、访客留言及岛主回复。
 
 New east-coast gallery with biographies, experiences, projects, persistent uploads, explicit publication and authenticated guestbook moderation. [功能与边界 / Scope and limits](docs/portfolio-v130.md).
+
+
+## Sea breeze and four seasons · V131
+
+Pixel water uses stepped highlights; origami water uses softer arcs. Shoreline crests follow the actual coast, including the gallery garden. The visual clock is independent of economic settlement: offline time creates no income or operating charges.
+
+| Origami autumn night | Pixel winter day |
+| --- | --- |
+| ![Origami autumn night](docs/screenshots/v131-origami-autumn-night.png) | ![Pixel winter day](docs/screenshots/v131-pixel-winter-day.png) |
+
+Default: a 15-minute visual day and a new season every seven visual days. Click the season badge below the island name for the calendar. A private configuration can connect a shared central clock. [Clock protocol](docs/environment-v131.md). Screenshots use an isolated test island. The V108 video above is a historical demo and has not yet been refreshed to V131.
+
+### Fictional gallery portfolio
+
+![Fictional gallery portfolio](docs/screenshots/v131-origami-gallery.png)

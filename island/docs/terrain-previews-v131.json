@@ -1,0 +1,21 @@
+{
+  "version": 131,
+  "method": "Native Canvas composition of all 12 generated terrain tiles and the complete plaza, using runtime weights and shoreline masking; no buildings or characters baked into terrain.",
+  "source": "terrain-art-v119.json + east-coast corridor V131",
+  "files": [
+    {
+      "file": "public/assets/map-tiles-v131/pixel-overview.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 4378661,
+      "sha256": "0c980514a28ff8b56ebd67096bc728aa93fd127d22250001484b5ec188221241"
+    },
+    {
+      "file": "public/assets/map-tiles-v131/origami-overview.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3915146,
+      "sha256": "a2ce6640dcb56dfa5585c7fb53fab2e067b85847bac34ee42b13c949b8da68b5"
+    }
+  ]
+}

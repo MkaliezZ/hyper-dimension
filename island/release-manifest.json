@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v130-agent-source",
+  "release": "hyper-dimension-v131-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -22,8 +22,8 @@
   "files": [
     {
       "path": ".env.example",
-      "bytes": 219,
-      "sha256": "d23a77806ecfe575fb056853fefe85cc8ce480c93500a26188fd82a6395f58c5"
+      "bytes": 464,
+      "sha256": "f8e1e1a83728e8378f0ed78d2e3826ee60621241cb68fa400e0db6f05ee1b9bc"
     },
     {
       "path": ".gitignore",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 15326,
-      "sha256": "b0bbafb35a1c8178c3c2ff191ce2bf7b67c510baa4933e0102ab5b7395c450c3"
+      "bytes": 15683,
+      "sha256": "b542fad6f5c85292b38a8575b7fe0bee754cae41c786143fea84651543e4bab2"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12875,
-      "sha256": "ce188265669201e51e20b7d89c4e92656242ce802efeeda322343ac83ae5475d"
+      "bytes": 14388,
+      "sha256": "198c56c76fdfcd13bfe467c2f764728faaf1fc2cd8c049b9d557927be02bdf40"
     },
     {
       "path": "README.md",
-      "bytes": 11770,
-      "sha256": "36af572c8097b73c193aa2f1769aa6dbfa822e786a1b2fcf87c5fc651c4e9fd8"
+      "bytes": 13070,
+      "sha256": "62c7ef86abf39d2bf9edaf2d54a1d59eea9cade1e5ff181c1c298ea09f1146eb"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -94,6 +94,26 @@
       "path": "docs/craft-materials-v123.md",
       "bytes": 5581,
       "sha256": "836980fa18413326ed251c8d5bd315829f617a04c98c41338115261132bcd9f9"
+    },
+    {
+      "path": "docs/environment-v131-evidence.json",
+      "bytes": 8242,
+      "sha256": "ad16c4476477e8abe03db883fbb932d32af69d1b9c19a92647bbbe5ed36d4d23"
+    },
+    {
+      "path": "docs/environment-v131.md",
+      "bytes": 4609,
+      "sha256": "864a4719954236fb88cde0a43b1cff38a79d89d34ead2a7de78828416b71b0de"
+    },
+    {
+      "path": "docs/gallery-seam-v131.md",
+      "bytes": 3630,
+      "sha256": "e8a8dcf44088f79637855e270507de377a6ac6eadd36d55b247cfeeb068e41f2"
+    },
+    {
+      "path": "docs/gallery-v131-evidence.json",
+      "bytes": 461,
+      "sha256": "78b1810c6a15f22c52850f5f268368a2032ba79f07d42b8c1a1fc17bb43e04f6"
     },
     {
       "path": "docs/harbor-art-v109.md",
@@ -371,6 +391,41 @@
       "sha256": "948a622a3b08ed68d8053abff7a726416c43e61b37c8d8814da6c853259d34de"
     },
     {
+      "path": "docs/screenshots/v131-origami-autumn-night.png",
+      "bytes": 5829479,
+      "sha256": "63fc30bbe57b30e6183e92c5e6a1f0feb490c90b848eecdc3ada3c4928617316"
+    },
+    {
+      "path": "docs/screenshots/v131-origami-connector-zoom.png",
+      "bytes": 5146288,
+      "sha256": "f4f947cbe035570ce7c50c89ffc52a0a3383815a998db6d0e5a20cd7933294fb"
+    },
+    {
+      "path": "docs/screenshots/v131-origami-gallery.png",
+      "bytes": 2171957,
+      "sha256": "8f4e153dc3fe2857676ab4ff00dfa42446e27dad1bc93094df94302a451aa7ea"
+    },
+    {
+      "path": "docs/screenshots/v131-origami-spring-day.png",
+      "bytes": 6667944,
+      "sha256": "72106a1e6bfe5fb9c5a4dba57df97234811b8135723a5979eb8f6f159abada81"
+    },
+    {
+      "path": "docs/screenshots/v131-pixel-connector-zoom.png",
+      "bytes": 5400460,
+      "sha256": "473d7fb7effb678c8b4833fe656481528e82cdc15a37200aba57cc575c9d89bb"
+    },
+    {
+      "path": "docs/screenshots/v131-pixel-winter-day.png",
+      "bytes": 7537844,
+      "sha256": "19eaf8580adcaa08826a05d5c27d785927939312bd5fed4fb4467f7a95e3ff61"
+    },
+    {
+      "path": "docs/screenshots/v131-pixel-winter-night.png",
+      "bytes": 6718775,
+      "sha256": "de229b2617ad42d64a6c2395645cde0f7940d0f6a699aeee4a3aa5dae6741ba1"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -401,6 +456,11 @@
       "sha256": "7cbeb7902111f72f6c19591c1a9231cda57257b1ff2336af609cc27737fdc71d"
     },
     {
+      "path": "docs/terrain-previews-v131.json",
+      "bytes": 751,
+      "sha256": "c497e31def6b39adf6a346509215060f264e088a8ed211ba6b3b02a1f7cbf632"
+    },
+    {
       "path": "docs/terrain-v119.md",
       "bytes": 3426,
       "sha256": "486818610b2b7482e8dcd581d7ea1a304d67e2e1c4b555d0791f02ce95beef28"
@@ -422,8 +482,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 5967,
-      "sha256": "bb11aa987d0eb70e406e83b3f5f7a84139953eb148748253bbe8baeee5e06bf9"
+      "bytes": 6150,
+      "sha256": "e1e394fefd2742b7c18a0b1722f167e27a873a34196f2ba4cd02cc5a56a6eb9e"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -932,8 +992,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 7886,
-      "sha256": "bf4c5131733fc2096a8268dd88a1698638fbc6eeaad85246bc2c1b6d5787f61e"
+      "bytes": 8216,
+      "sha256": "d00c3dc7e8e7f3ba5553c2dc18e22452a5e2eb7b7c4aaae2f88f837ccaf0b211"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1751,6 +1811,26 @@
       "sha256": "4838093916d9447361c6366f585ba45a36d491bcb4d5e89697ab5346789c7341"
     },
     {
+      "path": "public/assets/map-tiles-v131/origami-3-1.png",
+      "bytes": 2413039,
+      "sha256": "666993b1437454a6a05bccedb6eb9575e3695fb4658f52f567ef342c6bab3781"
+    },
+    {
+      "path": "public/assets/map-tiles-v131/origami-overview.png",
+      "bytes": 3915146,
+      "sha256": "a2ce6640dcb56dfa5585c7fb53fab2e067b85847bac34ee42b13c949b8da68b5"
+    },
+    {
+      "path": "public/assets/map-tiles-v131/pixel-3-1.png",
+      "bytes": 2609252,
+      "sha256": "437131d0148893faec30beae53011ea08937d264e683ff4496577cd15ecb31d0"
+    },
+    {
+      "path": "public/assets/map-tiles-v131/pixel-overview.png",
+      "bytes": 4378661,
+      "sha256": "0c980514a28ff8b56ebd67096bc728aa93fd127d22250001484b5ec188221241"
+    },
+    {
       "path": "public/assets/market-lantern-origami-v87.png",
       "bytes": 1429172,
       "sha256": "3d219779ba623d8bf86247f201c683fb9c9bfad1d70fb577a372963b40964b23"
@@ -1826,6 +1906,26 @@
       "sha256": "142c3b08d2076d27f9f7f5f5e2e910be2b4ac1dddb774dea1c6001e76393fcb2"
     },
     {
+      "path": "public/assets/portfolio-demo-v131/community.png",
+      "bytes": 2608620,
+      "sha256": "5aac096dd692b649357b8d45bf23aab1813e8da4d7d04d96b3e967e1e4ff064c"
+    },
+    {
+      "path": "public/assets/portfolio-demo-v131/fieldnotes.png",
+      "bytes": 2653008,
+      "sha256": "a326d40d1cafbb2da175d6e4c6e6938ac7fd66358e83b684f258e3fc924d64c4"
+    },
+    {
+      "path": "public/assets/portfolio-demo-v131/profile.json",
+      "bytes": 6675,
+      "sha256": "750fd76997a9217d5860161228358fed22b4698b58f9ac1cc9004b9faaee874d"
+    },
+    {
+      "path": "public/assets/portfolio-demo-v131/studio.png",
+      "bytes": 2073713,
+      "sha256": "6f1ed5418f9e8b7aa908888af25440d3311407a8b68161b4ddf5326d4ecadce5"
+    },
+    {
       "path": "public/assets/portfolio-v130/hall-land-origami.png",
       "bytes": 2000081,
       "sha256": "532c7dbac9d061edfed017893d1738d4d39cc218be0f8d47c709b7562ba931d7"
@@ -1844,6 +1944,21 @@
       "path": "public/assets/portfolio-v130/hall-pixel.png",
       "bytes": 2281802,
       "sha256": "8a874dd291e35f52677b8880cff45f29657ff14e6187284db9c637dd11cc581b"
+    },
+    {
+      "path": "public/assets/portfolio-v131/hall-land-origami.png",
+      "bytes": 1941434,
+      "sha256": "f92af2f4e67a75ac1435ba7c392ff74a42adbdfad548660a256a6101c14dc153"
+    },
+    {
+      "path": "public/assets/portfolio-v131/hall-land-pixel-entry.png",
+      "bytes": 2353740,
+      "sha256": "8480dba2da5c97f4f7ab1ce2d887c28506648c1f52d9b51ba1a2d0dc5cc6abef"
+    },
+    {
+      "path": "public/assets/portfolio-v131/hall-land-pixel.png",
+      "bytes": 2341018,
+      "sha256": "5f11ad70c5b62bfa5f369efff71ff31f4d78cac86193857b2640bb4a13eeaeb8"
     },
     {
       "path": "public/assets/pottery-stage-origami-v41.png",
@@ -2247,8 +2362,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 14319,
-      "sha256": "5dfdf682810cbb7a9c11e7142160ac133fe229aa10d3458a31e5629f060e997e"
+      "bytes": 14807,
+      "sha256": "bbe282730620c61f4eb0638dc8fc63ee92eba0754b2417bf2a525f56b2250ddb"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -2302,8 +2417,8 @@
     },
     {
       "path": "server/dataLease.mjs",
-      "bytes": 12277,
-      "sha256": "6024183615886d39f18ca12a01a4a8a1de375b80ff8b8682deee6ed49d6e8160"
+      "bytes": 12846,
+      "sha256": "a250ef9ddf0ecfb4c1b39a6dbaac413ea484ef1005ccf6dd4fd00be2c9504d3c"
     },
     {
       "path": "server/document_artifacts.py",
@@ -2314,6 +2429,11 @@
       "path": "server/document_worker.py",
       "bytes": 10891,
       "sha256": "e6dced890c05ef059ed1e15aff091ca9a45fafaba1e162b34a2631d10c7dd70f"
+    },
+    {
+      "path": "server/environmentService.mjs",
+      "bytes": 3966,
+      "sha256": "bd1433a92b8ece6879a375773846afa4b1add16a556aaae102e6d6749b0db5fd"
     },
     {
       "path": "server/facilityActions.mjs",
@@ -2412,8 +2532,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 21820,
-      "sha256": "4c5a511a2171015466823107ea2515189bac1e5563bf6aece67a1ed483c9571c"
+      "bytes": 22451,
+      "sha256": "c1106724e3d7971e9560bee2f352c9d981b77a9334633fe739ae3251af9576de"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -2597,8 +2717,8 @@
     },
     {
       "path": "server/runtimeConfig.mjs",
-      "bytes": 3812,
-      "sha256": "5cf08f97369bc96f94e98cf4eac4d2a63f7f42a88702caa95d734faf531cb890"
+      "bytes": 3898,
+      "sha256": "db0ab0b5d8dd4974aa41aa8d0475c43e57ab723a44deaf006bfd80ee4c201f15"
     },
     {
       "path": "server/saveBootstrap.mjs",
@@ -2702,8 +2822,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 133178,
-      "sha256": "e4bae0241d32c21660fb8c520aea4da7da6aadef199c5cca8cf597913c782cf2"
+      "bytes": 134084,
+      "sha256": "82f8c48c5089484c01291b2bcf018e8fca87717a14fcf2f4873332d6ca8c3cb5"
     },
     {
       "path": "src/arcade.css",
@@ -2899,6 +3019,36 @@
       "path": "src/economy.js",
       "bytes": 10808,
       "sha256": "5c4758dfac3a664c3ca1ee449521efe264cf273857200c2d9bc81a80fff34027"
+    },
+    {
+      "path": "src/environment-v127.css",
+      "bytes": 1554,
+      "sha256": "4e7dbebfac5c576edff64fcab30d98b309bbd54f25a066c9c652e1bf24a6f5f3"
+    },
+    {
+      "path": "src/environmentClient.js",
+      "bytes": 2242,
+      "sha256": "c135a2c8981e2a5511f174f80444429130655c1554ee9b13e4a80b3592c1e788"
+    },
+    {
+      "path": "src/environmentClock.js",
+      "bytes": 2281,
+      "sha256": "994cc4f6e9fda79d0a42f22639b54d4f0fcd9f65c71e048a2a1ea0137af18ca5"
+    },
+    {
+      "path": "src/environmentGeometry.js",
+      "bytes": 2305,
+      "sha256": "3c2715874483b2a5b23b3b588592906b8503bb8cbfc12c6c4bcfab4394684d20"
+    },
+    {
+      "path": "src/environmentRenderer.js",
+      "bytes": 12585,
+      "sha256": "f9050e9f8499cec1e3edc27788cee082bf2a0a04c848a1815e7adfdc9bbae97f"
+    },
+    {
+      "path": "src/environmentUI.js",
+      "bytes": 979,
+      "sha256": "df9b7d92d761cbb88712f4a3f219d806afa1aba6668860c49425fd7777721e3e"
     },
     {
       "path": "src/equipment-v35.css",
@@ -3137,8 +3287,8 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 4501,
-      "sha256": "595ae5279408a4cba1ed16450782e0b077176971038be78d36e3dfb2aa118f39"
+      "bytes": 4110,
+      "sha256": "9950627adc20310d93b4e7e09358d1fed840ce92676e96664b0cd92f97891b87"
     },
     {
       "path": "src/harborArtwork.js",
@@ -3232,8 +3382,8 @@
     },
     {
       "path": "src/lan.html",
-      "bytes": 1490,
-      "sha256": "6ece5826dcb2782010c71dc4f34843fdf6d9057cd67bc02a459b10df194ea412"
+      "bytes": 1546,
+      "sha256": "2555eef3cbafb859ca3c386bd9033fa4709e73581bfdf35fa979401602d21c99"
     },
     {
       "path": "src/lanActivitiesUI.js",
@@ -3257,8 +3407,8 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 11009,
-      "sha256": "26e5cc7b32b558f4c58223d45a1013a5190a338bfd736a6a342b108dae880e12"
+      "bytes": 11739,
+      "sha256": "da76ba939e81627b1f242c72adba2f167a93a74714d8bad285ca1746c35841d6"
     },
     {
       "path": "src/lanSocialUI.js",
@@ -3282,8 +3432,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 17584,
-      "sha256": "3792fb10e4c07aefb88b9859c16fe0b67079ac16495c56ab7b0f5bf868cde134"
+      "bytes": 18050,
+      "sha256": "7e6d4e1e8414d300caa0d092f51745396a5abed8581c078ea7f4b3673aaabb30"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -3312,8 +3462,8 @@
     },
     {
       "path": "src/mapTileLayout.js",
-      "bytes": 2953,
-      "sha256": "6fcf0f5d6b7ca5b5f8fd2ad490ce1dc1e01dcbd4461349a01b3db4240b1611a2"
+      "bytes": 2982,
+      "sha256": "e08d8325b3d66fdcafee9b482aa5dbfb14f02a4caaa03e5f60ddf9df45e27314"
     },
     {
       "path": "src/mapTileLoader.js",
@@ -3416,6 +3566,11 @@
       "sha256": "37c871a5e085687706b32b48cfe8e1855add97dfad1024674f05053f7f589900"
     },
     {
+      "path": "src/oceanShader.js",
+      "bytes": 5921,
+      "sha256": "294f56293f8ca559a067b6359a2850d4c786f7b18deb80ea267c26b81e496a4e"
+    },
+    {
       "path": "src/outdoorOccupancy.js",
       "bytes": 1129,
       "sha256": "0e3b4a3b243cea4ef9358fe14a518f98ff66e685e8bc6139c12249d4b0c849c5"
@@ -3497,13 +3652,13 @@
     },
     {
       "path": "src/portfolioArt.js",
-      "bytes": 1623,
-      "sha256": "285ff898ad191ec579955c2ad0b3b2a279c4eac6511ca22f7392005e71d698e9"
+      "bytes": 3439,
+      "sha256": "91f0dd57432f5bf5cdacff9a365929ff05ca2654ceda0055bdd94b7faada3af9"
     },
     {
       "path": "src/portfolioLandmark.js",
-      "bytes": 908,
-      "sha256": "7f6d5d47280f19bd41a1001a113949afdf87327b3373612269f900fdabe08108"
+      "bytes": 1321,
+      "sha256": "5baa7ca1626fa284240a0021459fbf9a3e2738efe1d8442200e4f369e20eed35"
     },
     {
       "path": "src/portfolioUI.js",
@@ -3952,8 +4107,8 @@
     },
     {
       "path": "src/world.js",
-      "bytes": 13101,
-      "sha256": "693cd77f019f36487575f5e623339cc126351fe6aa76c3954dbd30c281a81926"
+      "bytes": 13107,
+      "sha256": "607307a6e77f7a6b728d0633a1f872bdfb883e6b6471081e4d29d899c9a89262"
     },
     {
       "path": "src/worldSession.js",
@@ -4267,8 +4422,8 @@
     },
     {
       "path": "tests/v103-runtime-scope.test.mjs",
-      "bytes": 10712,
-      "sha256": "d7df1f1b97fdeabba5d1889faa494d3809b5030d04e10ada2f635cf300786b37"
+      "bytes": 11683,
+      "sha256": "947ed4babb9b769fa753e7c079ed0931e529eda97ccb0c9f36460c9168ab63a6"
     },
     {
       "path": "tests/v103-visible-clock-browser.mjs",
@@ -4533,7 +4688,32 @@
     {
       "path": "tests/v125-terrain-preview.test.mjs",
       "bytes": 1717,
-      "sha256": "7358c2ca29e790ea94560be07bb0be8c9ca717566d98e6f86b58a236eaed0f63"
+      "sha256": "8c9b81225dd453d8d9ed68228bcf2bbe48346cb4b98c369a37a5852b8c3d88cb"
+    },
+    {
+      "path": "tests/v127-environment-browser.mjs",
+      "bytes": 5100,
+      "sha256": "6039d0f7e096a1f16aec4bb734618b604d1c1369a22e70a9206e3d7ac8bb0443"
+    },
+    {
+      "path": "tests/v127-environment-compatible-browser.mjs",
+      "bytes": 6793,
+      "sha256": "250326965e77e18c7058111631b934124e534efe9f86b3a367206009a26ff68d"
+    },
+    {
+      "path": "tests/v127-environment-components.mjs",
+      "bytes": 3658,
+      "sha256": "bd51229ec7d1720b1e12d368afff50c700ea14cd984a5008f4dcb7c194dbfe8a"
+    },
+    {
+      "path": "tests/v127-environment-performance.mjs",
+      "bytes": 3489,
+      "sha256": "a4b113eb9d87e2e7de2e020d468645e01e15554066cab7bdb28ec177bf6b9fff"
+    },
+    {
+      "path": "tests/v127-environment.test.mjs",
+      "bytes": 7432,
+      "sha256": "4a8e4d3a2724027b42188d83fc30b314e2655ddfcbc381cfc8f092e5c0d60776"
     },
     {
       "path": "tests/v128-save-capacity-browser.mjs",
@@ -4559,6 +4739,16 @@
       "path": "tests/v130-portfolio.test.mjs",
       "bytes": 7555,
       "sha256": "4ba0c32242b0277b5bcd50ed7b706e1d41ab103a6624675d6e5d0a9596ba9ba1"
+    },
+    {
+      "path": "tests/v131-gallery-browser.mjs",
+      "bytes": 4998,
+      "sha256": "7fc61adfdcd79e44e625c6dcf9d902dd31c09383df573c8bb05a137a1052fb0b"
+    },
+    {
+      "path": "tests/v131-gallery.test.mjs",
+      "bytes": 2493,
+      "sha256": "830d590401f1e4bcb45f1212aca5b9952e70b5924a49871d81ed7ba0f3663922"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -6272,8 +6462,8 @@
     },
     {
       "path": "tools/build-terrain-overviews.mjs",
-      "bytes": 3097,
-      "sha256": "3e7158c4c852d0dd4406126775be0f63a4e0d202ab41dace369d5b0cc05916e0"
+      "bytes": 3124,
+      "sha256": "6c70331ec539e34a5990042a96575590fe1dbfab1416732a463ad233a516239b"
     },
     {
       "path": "tools/cocreation-check.mjs",
@@ -6284,6 +6474,11 @@
       "path": "tools/data-backup.mjs",
       "bytes": 1894,
       "sha256": "e4289a90374e141302b540e21e129ab1965a61aeb06d716ebb531cdb2d5bd9e3"
+    },
+    {
+      "path": "tools/gallery-demo.mjs",
+      "bytes": 2548,
+      "sha256": "3bb15af8d40d7ef7ad0db1da11bbcbd8fec49d44533f4c9bf875e4e10729aae5"
     },
     {
       "path": "tools/island-play-guide.md",
@@ -6846,5 +7041,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v130-github"
+  "publicRevision": "v131-github"
 }

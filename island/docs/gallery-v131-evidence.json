@@ -1,0 +1,23 @@
+{
+  "scope": "Isolated fictional native-browser gallery, dual appearances and coastal connection",
+  "themes": [
+    {
+      "theme": "pixel",
+      "images": 3,
+      "experiences": 8,
+      "projects": 3,
+      "routePoints": 33,
+      "journalFolded": true
+    },
+    {
+      "theme": "origami",
+      "images": 3,
+      "experiences": 8,
+      "projects": 3,
+      "routePoints": 33,
+      "journalFolded": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

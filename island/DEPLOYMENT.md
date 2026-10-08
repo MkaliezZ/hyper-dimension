@@ -1,4 +1,4 @@
-# Hyper Dimension · Agent 部署交付 V118
+# Hyper Dimension · Agent 部署交付 V131
 
 V118：部署时选择 pixel 或 origami 作为默认外观，两个外观共用同一个存档，不需要部署两套游戏。首次进入通过 world-session.json 固定存档身份；旧的另一份主题存档保留，不能擅自合并或删除。完整 data 备份同时保留居民私聊、身份绑定和原档。
 
@@ -136,3 +136,7 @@ V105最终源码包的双风格从零实际一小时已完成，三次900秒结�
 ## V115 Windows 保存恢复
 
 新增 server/atomicJson.mjs 并由 saveStore.mjs 调用；必须一起更新并重启服务。Windows 原子替换遇临时占用时最多等待 680 毫秒再试，持续失败保留旧文件并报告原错误。720 项本地默认检查与真实 Windows 短/长占用边界通过。先备份存档，无需重置岛屿；详见 docs/save-recovery-v115.md。
+
+## Shared day/night and season clock / 共享昼夜与四季
+
+The clock is local by default and shared across appearances and visits. Optional central-server settings are read from private `.env.local`; no save or portfolio payload is uploaded. See [environment-v131.md](docs/environment-v131.md) for configuration, protocol and verification scope.

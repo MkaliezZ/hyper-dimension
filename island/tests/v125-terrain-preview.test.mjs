@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';
 import {terrainOverviewURL,terrainTiles,maskTerrain} from '../src/mapTileLayout.js';
 test('both previews are current tile compositions with verified dimensions and provenance',()=>{
- const book=JSON.parse(readFileSync('docs/terrain-previews-v125.json','utf8'));
+ const book=JSON.parse(readFileSync('docs/terrain-previews-v131.json','utf8'));
  for(const theme of ['pixel','origami']){
   const name='public'+terrainOverviewURL(theme),row=book.files.find(f=>f.file===name),bytes=readFileSync(name);assert(row);
   assert.equal(bytes.readUInt32BE(16),1536);assert.equal(bytes.readUInt32BE(20),1024);

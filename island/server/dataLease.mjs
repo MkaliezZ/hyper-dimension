@@ -59,8 +59,12 @@ export async function acquireDataLease({directory,mode='runtime',allowRestore=fa
 // Identify old Windows writers by their exact entry file. A nested QA checkout
 // owns different data and must not be mistaken for this deployment.
 export async function windowsLegacyProcesses(project,{execute=exec,loadSources=files=>Promise.all(files.map(p=>readFile(p))),request=fetch}={}){
-  const script='$listeners=@(Get-NetTCPConnection -State Listen); @(Get-CimInstance Win32_Process | Where-Object { $_.Name -match "^node(?:\\.exe)?$" -and $_.CommandLine -match "(?:lanServer|lanAgentWorker|server)\\.mjs" } | ForEach-Object { $p=$_; $s=[regex]::Match($p.CommandLine,\'"[^"\\r\\n]*(?:lanServer|lanAgentWorker|server)\\.mjs"|\\S*(?:lanServer|lanAgentWorker|server)\\.mjs\').Value; [PSCustomObject]@{pid=$p.ProcessId;script=$s;ports=@($listeners | Where-Object OwningProcess -eq $p.ProcessId | ForEach-Object LocalPort)} }) | ConvertTo-Json -Depth 4 -Compress';
-  const {stdout}=await execute('powershell.exe',['-NoProfile','-NonInteractive','-Command',script],{windowsHide:true,timeout:15000,maxBuffer:65536});
+  // Cold Windows hosts can spend more than 15 seconds starting CIM/TCP providers.
+  // Inventory only Node processes; listener discovery is needed only for relative game entries.
+  const script=`$ErrorActionPreference='Stop'; $candidates=@(Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" | Where-Object { $_.CommandLine -match '(?:lanServer|lanAgentWorker|server)\\.mjs' }); $rows=@($candidates | ForEach-Object { $entry=[regex]::Match($_.CommandLine,'"[^"\\r\\n]*(?:lanServer|lanAgentWorker|server)\\.mjs"|\\S*(?:lanServer|lanAgentWorker|server)\\.mjs').Value; [PSCustomObject]@{pid=$_.ProcessId;script=$entry;ports=@()} }); $relative=@($rows | Where-Object { ![IO.Path]::IsPathRooted($_.script.Trim('"')) }); if($relative.Count -gt 0){ $listeners=@(Get-NetTCPConnection -State Listen -ErrorAction Stop); foreach($row in $relative){$row.ports=@($listeners | Where-Object OwningProcess -eq $row.pid | ForEach-Object LocalPort)} }; ConvertTo-Json -InputObject $rows -Depth 4 -Compress`;
+  let stdout;
+  try{({stdout}=await execute('powershell.exe',['-NoProfile','-NonInteractive','-Command',script],{windowsHide:true,timeout:60000,maxBuffer:65536}));}
+  catch{throw fail('无法核对本机运行进程，现有环境与数据已保留，请稍后重试','data_process_unverified');}
   const value=JSON.parse(stdout.trim()||'[]'),items=Array.isArray(value)?value:[value];
   const rows=[],expectedScripts=new Set(['server.mjs','server/lanServer.mjs','server/lanAgentWorker.mjs'].map(p=>win32.resolve(project,p).toLowerCase()));let expected;
   for(const item of items){if(item.pid===process.pid)continue;const file=String(item.script||'').replace(/^"|"$/g,'');

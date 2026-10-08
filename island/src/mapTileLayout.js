@@ -2,14 +2,14 @@
 export const TILE_MAP = Object.freeze({width:1536,height:1024,cell:384,overlap:32,columns:4,rows:3,version:119});
 export function terrainOverviewURL(theme){
  if(!['pixel','origami'].includes(theme))throw Error('invalid_terrain_theme');
- return `/assets/map-tiles-v125/${theme}-overview.png`;
+ return `/assets/map-tiles-v131/${theme}-overview.png`;
 }
 export function terrainTiles(theme){
  if(!['pixel','origami'].includes(theme))throw Error('invalid_terrain_theme');
  return Array.from({length:12},(_,i)=>{
   const col=i%4,row=Math.floor(i/4),x=col*384,y=row*384,w=384,h=Math.min(384,1024-y);
   const left=Math.max(0,x-32),top=Math.max(0,y-32),right=Math.min(1536,x+w+32),bottom=Math.min(1024,y+h+32);
-  return {id:`${theme}-${col}-${row}`,theme,col,row,core:{x,y,w,h},bounds:{x:left,y:top,w:right-left,h:bottom-top},url:`/assets/map-tiles-v119/${theme}-${col}-${row}.png`};
+  return {id:`${theme}-${col}-${row}`,theme,col,row,core:{x,y,w,h},bounds:{x:left,y:top,w:right-left,h:bottom-top},url:`/assets/map-tiles-${col===3&&row===1?'v131':'v119'}/${theme}-${col}-${row}.png`};
  });
 }
 export function terrainLandmarks(theme){return [{id:`${theme}-plaza`,theme,patch:true,bounds:{x:576,y:288,w:432,h:336},core:{x:600,y:312,w:384,h:288},url:`/assets/map-tiles-v119/${theme}-plaza.png`}];}

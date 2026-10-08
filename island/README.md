@@ -6,7 +6,11 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V130 开发快照**，可本地部署；完整产品验收仍在进行。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V131 开发快照**，可本地部署；完整产品验收仍在进行。
+
+V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](docs/environment-v131.md)。
+
+V131 同时调整东岸会客馆与主岛的接缝，提供可选的虚构档案示例（8 段经历、3 个项目、3 张图片），并修复 Windows 部署进程探测。[说明与验证](docs/gallery-seam-v131.md)。
 
 自 V128 起，存档容量调整为 16 MiB、签名备份与导入调整为 64 MiB，保留全部回执与原进度；双画风大存档及空浏览器恢复通过。[修复与验证范围](docs/save-capacity-v128.md)。
 
@@ -44,7 +48,7 @@ V109 已更新双画风登船舷梯、船体靠泊位置与人物遮挡。[查�
 
 [![Hyper Dimension 实机预览：折纸与像素海岛](docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v130)
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v131)
 
 2560 × 1440 / 60 FPS，原创器乐 BGM 与中英字幕。展示真实 AI 居民对话、管家多形象选择、Hermes 主子 Agent 分工、房屋弹窗内的海风双灶与通关结果，以及管家处理虚构工作资料、保存并回读 Word 文件。实机片段省略等待，没有真实用户资料。
 
@@ -153,3 +157,17 @@ V107 修复居民途中材料变化后仍去旧工位的问题。双画风真实
 新增东岸会客馆、个人经历与项目、附件上传、私有草稿与主动发布、访客留言及岛主回复。
 
 New east-coast gallery with biographies, experiences, projects, persistent uploads, explicit publication and authenticated guestbook moderation. [功能与边界 / Scope and limits](docs/portfolio-v130.md).
+
+## 海风与四季 · V131
+
+像素海面采用离散水纹，折纸海面采用柔和弧线；近岸浪沿真实海岸推进，夜景和季节与会客馆庭院一致。时令独立于经营结算，离线不会产生收益或岛务扣款。
+
+| 折纸秋夜 | 像素冬日 |
+| --- | --- |
+| ![折纸秋季夜景](docs/screenshots/v131-origami-autumn-night.png) | ![像素冬季日景](docs/screenshots/v131-pixel-winter-day.png) |
+
+默认 15 分钟一个视觉昼夜、7 个视觉日换季；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V131。
+
+### 会客馆示例档案
+
+![Fictional gallery portfolio](docs/screenshots/v131-origami-gallery.png)

@@ -22,7 +22,7 @@ test('self inspection is ignored and duplicate CIM entries do not produce duplic
  const file=win32.join(project,'server.mjs');assert.deepEqual(await windowsLegacyProcesses(project,{execute:list([row(process.pid,file),row(998950,file),row(998950,file)])}),[998950]);
 });
 test('failure to enumerate actual Windows processes blocks maintenance rather than pretending no writers exist',async()=>{
- await assert.rejects(windowsLegacyProcesses(project,{execute:async()=>{throw Object.assign(Error('Access denied'),{code:'EACCES'});}}),e=>e.code==='EACCES');
+ await assert.rejects(windowsLegacyProcesses(project,{execute:async()=>{throw Object.assign(Error('Access denied'),{code:'EACCES'});}}),e=>e.code==='data_process_unverified');
 });
 test('data-directory lease still prevents backup when a different checkout uses that data',async()=>{
  const root=await mkdtemp(join(await realpath(tmpdir()),'hd-shared-data-')),directory=join(root,'data');await mkdir(directory);await writeFile(join(directory,'value.txt'),'retained');const owner=await acquireDataLease({directory,mode:'runtime',sharedRuntime:true});
@@ -52,3 +52,17 @@ async function modernServer(){const projectRoot=resolve(import.meta.dirname,'..'
 test('actual modern server with independent leased data allows unrelated backup but rejects backing up its live data',{skip:process.platform!=='win32'},async()=>{const s=await modernServer();try{assert((await registeredRuntimePids(s.projectRoot)).has(s.child.pid));await assertNoLegacyRuntime();const quiet=join(s.dir,'quiet');await mkdir(quiet);await writeFile(join(quiet,'value.txt'),'quiet while another island runs');await createDataBackup({directory:quiet,output:join(s.dir,'quiet-backup')});assert.equal((await verifyDataBackup(join(s.dir,'quiet-backup'))).manifest.files.length,1);await assert.rejects(createDataBackup({directory:join(s.dir,'busy'),output:join(s.dir,'busy-backup')}),e=>e.code==='data_busy');}finally{await s.close();}});
 test('missing live lease never lets a registry entry hide an unprotected writer',{skip:process.platform!=='win32'},async()=>{const s=await modernServer();let leaseFile,bytes;try{for(const f of await readdir(join(s.projectRoot,'.runtime/data-lease-registry'))){if(!f.endsWith('.json'))continue;const row=JSON.parse(await readFile(join(s.projectRoot,'.runtime/data-lease-registry',f),'utf8'));if(row.pid===s.child.pid){leaseFile=row.leaseFile;break;}}assert(leaseFile);bytes=await readFile(leaseFile);await unlink(leaseFile);assert(!(await registeredRuntimePids(s.projectRoot)).has(s.child.pid));await assert.rejects(assertNoLegacyRuntime(),e=>e.code==='data_busy');await writeFile(leaseFile,bytes);bytes=null;assert((await registeredRuntimePids(s.projectRoot)).has(s.child.pid));}finally{if(bytes)await writeFile(leaseFile,bytes);await s.close();}});
 test('corrupted live registry to lease binding blocks maintenance and preserves the original lock',{skip:process.platform!=='win32'},async()=>{const s=await modernServer();let registryFile,bytes;try{for(const f of await readdir(join(s.projectRoot,'.runtime/data-lease-registry'))){if(!f.endsWith('.json'))continue;const file=join(s.projectRoot,'.runtime/data-lease-registry',f),value=await readFile(file),row=JSON.parse(value);if(row.pid===s.child.pid){registryFile=file;bytes=value;row.leaseFile=join(s.dir,'foreign-lease.json');await writeFile(file,JSON.stringify(row));break;}}assert(registryFile);await assert.rejects(assertNoLegacyRuntime(),e=>e.code==='data_process_unverified');await writeFile(registryFile,bytes);bytes=null;assert((await registeredRuntimePids(s.projectRoot)).has(s.child.pid));}finally{if(bytes)await writeFile(registryFile,bytes);await s.close();}});
+
+// Exercise the actual PowerShell branch on an empty and an absolute-only inventory.
+// A cold Windows machine must not initialize the TCP provider when it is unnecessary.
+test('Windows empty or absolute-only inventory never needs TCP enumeration',{skip:process.platform!=='win32'},async()=>{
+ const {execFile}=await import('node:child_process'),{promisify}=await import('node:util'),run=promisify(execFile);
+ for(const absolute of [false,true]){
+  const execute=async(executable,args,options)=>{
+   const inventory=absolute?`[PSCustomObject]@{Name='node.exe';ProcessId=998971;CommandLine='node "C:\\Other Island\\server.mjs"'}`:'@()';
+   const setup=`function Get-CimInstance { param($ClassName,$Filter) ${inventory} }; function Get-NetTCPConnection { throw 'unexpected TCP enumeration' }; `;
+   return run(executable,[...args.slice(0,-1),setup+args.at(-1)],options);
+  };
+  assert.deepEqual(await windowsLegacyProcesses(project,{execute}),[]);
+ }
+});

@@ -93,7 +93,7 @@ export function worldWalkableForTheme(theme,x,y,colliders=[]){
  if(!harborGeometry[theme]||!Number.isFinite(x)||!Number.isFinite(y))return false;
  if(portfolioBlocked(x,y))return false;
  if(colliders.some(p=>Math.abs(x-p.x)<p.rx+9&&Math.abs(y-p.y)<p.ry+9))return false;
- if(portfolioWalkable(x,y))return true;
+ if(portfolioWalkable(x,y,theme))return true;
  const h=harborGeometry[theme];if(pointInPolygon(x,y,h.apron)||nearPolyline(x,y,h.path,25))return true;
  if(!onIsland(x,y)||x>1122&&y>805||x>1190&&x<1420&&y<270||x<405&&y>590&&y<812)return false;
  for(const s of slotsByTheme[theme])if(Math.abs(x-s.x)<s.w/2+4&&Math.abs(y-s.y)<s.h/2+4)return false;

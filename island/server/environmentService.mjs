@@ -1,0 +1,20 @@
+import {mkdir,readFile,link,unlink,open,stat} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
+import {atomicJSON} from './atomicJson.mjs';
+import {DEFAULT_CLOCK,copyEnvironmentClock} from '../src/environmentClock.js';
+export function centralClockProviderFromEnvironment(env=process.env){
+ if(!env.HD_WORLD_CLOCK_URL)return null;const url=new URL(env.HD_WORLD_CLOCK_URL);
+ if(!['https:','http:'].includes(url.protocol)||url.username||url.password||url.hash)throw Error('Invalid HD_WORLD_CLOCK_URL');
+ return async()=>{const response=await fetch(url,{headers:{Accept:'application/json',...(env.HD_WORLD_CLOCK_TOKEN?{Authorization:'Bearer '+env.HD_WORLD_CLOCK_TOKEN}:{})},signal:AbortSignal.timeout(2500),redirect:'error'});if(!response.ok)throw Error('central_clock_unavailable');const reader=response.body.getReader();let text='',size=0;const decoder=new TextDecoder();try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>16384)throw Error('central_clock_too_large');text+=decoder.decode(value,{stream:true});}}finally{await reader.cancel().catch(()=>{});}return JSON.parse(text+decoder.decode());};
+}
+export async function createEnvironmentService({directory,now=()=>Date.now(),centralClockProvider=centralClockProviderFromEnvironment()}={}){
+ const file=resolve(directory,'environment-clock.json');await mkdir(directory,{recursive:true});let clock;
+ try{clock=copyEnvironmentClock(JSON.parse(await readFile(file,'utf8')));}catch(e){if(e.code!=='ENOENT')throw Error('Environment clock is invalid; existing file preserved');const initial={...DEFAULT_CLOCK,clockId:randomUUID(),epochMs:now()};const temporary=file+'.'+randomUUID()+'.init';try{await atomicJSON(temporary,initial);try{await link(temporary,file)}catch(x){if(x.code!=='EEXIST')throw x;}}finally{await unlink(temporary).catch(()=>{});}clock=copyEnvironmentClock(JSON.parse(await readFile(file,'utf8')));}
+ async function withClockLock(fn){const path=file+'.lock',token=randomUUID(),start=Date.now();let acquired=false;while(!acquired){let h;try{h=await open(path,'wx',0o600);await h.writeFile(JSON.stringify({pid:process.pid,token}));acquired=true;}catch(e){if(e.code!=='EEXIST')throw e;try{const owner=JSON.parse(await readFile(path,'utf8'));try{process.kill(owner.pid,0)}catch(e){if(e.code!=='EPERM'){await unlink(path);continue}}}catch(e){if(e.code==='ENOENT')continue;try{if(Date.now()-(await stat(path)).mtimeMs>30000){await unlink(path);continue}}catch{}}if(Date.now()-start>5000)throw Error('environment_clock_busy');await new Promise(r=>setTimeout(r,35));}finally{await h?.close();}}try{return await fn()}finally{try{if(JSON.parse(await readFile(path,'utf8')).token===token)await unlink(path)}catch{}}}
+ let pending=null,lastAttempt=-Infinity,lastSyncMs=null,synchronization=centralClockProvider?'connecting':'local';
+ async function synchronize(input){const next=copyEnvironmentClock({...input,source:'central'});return withClockLock(async()=>{clock=copyEnvironmentClock(JSON.parse(await readFile(file,'utf8')));if(next.clockId===clock.clockId&&next.revision<clock.revision)throw Error('stale_environment_clock');if(next.clockId===clock.clockId&&next.revision===clock.revision&&JSON.stringify(next)!==JSON.stringify(clock))throw Error('environment_revision_conflict');await atomicJSON(file,next);clock=next;lastSyncMs=now();synchronization='synced';return {...clock};});}
+ async function refresh(){if(!centralClockProvider||pending)return pending;lastAttempt=now();pending=(async()=>{try{const result=await centralClockProvider();await synchronize(result.clock||result);}catch{synchronization='unavailable';}finally{pending=null;}})();return pending;}
+ function view(){if(centralClockProvider&&now()-lastAttempt>=60000)void refresh();return {clock:{...clock},serverNowMs:now(),synchronization,lastSyncMs,clockProtocol:1};}
+ return {view,refresh,synchronize,file,close:async()=>{await pending;}};
+}

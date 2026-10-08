@@ -1,0 +1,334 @@
+{
+  "version": "V131",
+  "scope": "Isolated native browser on development Windows PC; fictional users; models disabled. Not physical Mac or full human acceptance.",
+  "home": {
+    "scope": "Native Edge; isolated empty island; central-clock fixture drives actual home renderer, two styles and four seasons, 100–300% zoom and pan. Models blocked. Preview clock does not advance economic receipts.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "season": "spring",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "spring",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "summer",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "summer",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "autumn",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "autumn",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "winter",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "season": "winter",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "pixel",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 22,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "spring",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "spring",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "summer",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "summer",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "autumn",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "autumn",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "winter",
+        "hour": 12,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "season": "winter",
+        "hour": 22,
+        "art": {
+          "ready": true,
+          "theme": "origami",
+          "ripples": 230,
+          "waveLoops": 3,
+          "coastLoops": 12,
+          "maskVersion": 127,
+          "backend": "webgl2"
+        },
+        "clock": "environment-preview-127",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "performance": [
+      {
+        "theme": "pixel",
+        "frames": 360,
+        "meanMs": 6.043055555588661,
+        "p95Ms": 6.100000000005821,
+        "p99Ms": 6.19999999999709,
+        "gapsOver50": 0
+      },
+      {
+        "theme": "origami",
+        "frames": 360,
+        "meanMs": 6.054444444510672,
+        "p95Ms": 6.19999999999709,
+        "p99Ms": 6.2000000000116415,
+        "gapsOver50": 0
+      }
+    ],
+    "passed": true
+  },
+  "compatibility": {
+    "scope": "Native browser on this Windows PC, isolated identities, actual shared-room renderer, genuine WebGL loss/restoration and no-WebGL 2D fallback; no model calls.",
+    "checks": [
+      {
+        "theme": "pixel",
+        "sharedRoom": true,
+        "clockId": "shared-environment-compat",
+        "revision": 1,
+        "season": "winter",
+        "hourDifference": 2.9329427086111082e-05,
+        "calendar": true
+      },
+      {
+        "theme": "origami",
+        "sharedRoom": true,
+        "clockId": "shared-environment-compat",
+        "revision": 1,
+        "season": "winter",
+        "hourDifference": 2.3997395832253687e-05,
+        "calendar": true
+      },
+      {
+        "contextLoss": true,
+        "fallbackRendered": true,
+        "recoveredToWebGL": true
+      },
+      {
+        "webglUnavailable": true,
+        "canvasFallback": true,
+        "viewport": [
+          960,
+          680
+        ],
+        "performance": {
+          "meanMs": 6.122916666616997,
+          "p95Ms": 6.199999999999818,
+          "gapsOver50": 0
+        }
+      }
+    ],
+    "errors": [],
+    "passed": true
+  },
+  "rules": {
+    "environment": 11,
+    "runtimeConfig": 8,
+    "integrationTotal": 41,
+    "failed": 0
+  }
+}
