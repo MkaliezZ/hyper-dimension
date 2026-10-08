@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v128-agent-source",
+  "release": "hyper-dimension-v130-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12467,
-      "sha256": "8a0d68d64debcb247206ac52f93b78bae720e459a2a704a0de75708b6a49e8cb"
+      "bytes": 12875,
+      "sha256": "ce188265669201e51e20b7d89c4e92656242ce802efeeda322343ac83ae5475d"
     },
     {
       "path": "README.md",
-      "bytes": 11361,
-      "sha256": "f72263c8be2cf783ffbdb62cf9351543432db99cfba4e9691b8df73e6f100297"
+      "bytes": 11770,
+      "sha256": "36af572c8097b73c193aa2f1769aa6dbfa822e786a1b2fcf87c5fc651c4e9fd8"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -271,6 +271,16 @@
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
     },
     {
+      "path": "docs/portfolio-v130-art.json",
+      "bytes": 1016,
+      "sha256": "13564366a71a1d6cae3d249f17f304623ebde705a073db78c21832c103726bbb"
+    },
+    {
+      "path": "docs/portfolio-v130.md",
+      "bytes": 3271,
+      "sha256": "f7ffb463e781b04a173574d0ea1a15129907f4001f11be9b6c88acad75e80acb"
+    },
+    {
       "path": "docs/production-contracts-v114.md",
       "bytes": 4237,
       "sha256": "bbdbb8c2e8bf56e76efe20dc9f3ab4f5817082f4588eb72037445bbe02148193"
@@ -412,8 +422,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 5913,
-      "sha256": "2a1ea74e718f9fb95201ff7d9fd5d885e22f199bb9b17f49b05bedb3adaa6d29"
+      "bytes": 5967,
+      "sha256": "bb11aa987d0eb70e406e83b3f5f7a84139953eb148748253bbe8baeee5e06bf9"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -922,8 +932,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 7742,
-      "sha256": "4a052f2e12e1aaef33c6a405de178e84d18fcb08249228cef19024fc4a89a06c"
+      "bytes": 7886,
+      "sha256": "bf4c5131733fc2096a8268dd88a1698638fbc6eeaad85246bc2c1b6d5787f61e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1816,6 +1826,26 @@
       "sha256": "142c3b08d2076d27f9f7f5f5e2e910be2b4ac1dddb774dea1c6001e76393fcb2"
     },
     {
+      "path": "public/assets/portfolio-v130/hall-land-origami.png",
+      "bytes": 2000081,
+      "sha256": "532c7dbac9d061edfed017893d1738d4d39cc218be0f8d47c709b7562ba931d7"
+    },
+    {
+      "path": "public/assets/portfolio-v130/hall-land-pixel.png",
+      "bytes": 2501243,
+      "sha256": "28167ecbc03eccfad41c964fa683b76ae01821835349a2439f34a49876bbdc75"
+    },
+    {
+      "path": "public/assets/portfolio-v130/hall-origami.png",
+      "bytes": 2140824,
+      "sha256": "c0685d7494154a0b9fba28254736f25c423603d147788f85dd861b30f1241f90"
+    },
+    {
+      "path": "public/assets/portfolio-v130/hall-pixel.png",
+      "bytes": 2281802,
+      "sha256": "8a874dd291e35f52677b8880cff45f29657ff14e6187284db9c637dd11cc581b"
+    },
+    {
       "path": "public/assets/pottery-stage-origami-v41.png",
       "bytes": 2358265,
       "sha256": "26f651ddfc6d3a3f23cd021564be76e2ce249422f0d41bf80498d439ac671fe7"
@@ -2217,8 +2247,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 13976,
-      "sha256": "880f7b6f3a90da89f9add4cddaad2613c18d30ff51448afae91b642b0bce7232"
+      "bytes": 14319,
+      "sha256": "5dfdf682810cbb7a9c11e7142160ac133fe229aa10d3458a31e5629f060e997e"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -2382,8 +2412,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 21131,
-      "sha256": "a73a4e89a6e87bc7d5a358572d09cb65bf8673642ac1a32ee7761771bbcd165f"
+      "bytes": 21820,
+      "sha256": "4c5a511a2171015466823107ea2515189bac1e5563bf6aece67a1ed483c9571c"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -2509,6 +2539,16 @@
       "path": "server/playerActions.mjs",
       "bytes": 14924,
       "sha256": "17c03bddaa4533f59b46b7518f35c6fd83dd60f4337fdc2777ceae5cbf0e7013"
+    },
+    {
+      "path": "server/portfolioHttp.mjs",
+      "bytes": 1264,
+      "sha256": "2fecf892001b666f40808c97c25450197c4d4c3bb73cbf587b898f4c7a1d3721"
+    },
+    {
+      "path": "server/portfolioStore.mjs",
+      "bytes": 9143,
+      "sha256": "112b5a6ca10bc16c423755cce669ef35bbd9fe79b86dee3afdf5648c14d9eedc"
     },
     {
       "path": "server/project_protocol.py",
@@ -2662,8 +2702,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 131937,
-      "sha256": "7b91c25fd58ba719fae3486d27444f6252b7a409d532f7f697f932bac9eb74ad"
+      "bytes": 133178,
+      "sha256": "e4bae0241d32c21660fb8c520aea4da7da6aadef199c5cca8cf597913c782cf2"
     },
     {
       "path": "src/arcade.css",
@@ -3192,8 +3232,8 @@
     },
     {
       "path": "src/lan.html",
-      "bytes": 1436,
-      "sha256": "76ecea5e20ea89aa79bbab346263b9e190119eb9c23cfffa81b127422b4e5b9c"
+      "bytes": 1490,
+      "sha256": "6ece5826dcb2782010c71dc4f34843fdf6d9057cd67bc02a459b10df194ea412"
     },
     {
       "path": "src/lanActivitiesUI.js",
@@ -3217,8 +3257,8 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 10537,
-      "sha256": "3337912cbb4d5f2cf70e3e7b2ca34545f9edf60defc06b45179d72348f10ebf6"
+      "bytes": 11009,
+      "sha256": "26e5cc7b32b558f4c58223d45a1013a5190a338bfd736a6a342b108dae880e12"
     },
     {
       "path": "src/lanSocialUI.js",
@@ -3242,8 +3282,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 16332,
-      "sha256": "6a63b7e2d5ca49c2be5a81837ee0be7eda8d5b561617e3f874a1f6f70653168f"
+      "bytes": 17552,
+      "sha256": "4d7c7e5e07768397053ce8c2794a4db90cd4b10fc9c75a9bf0c87f62a9beb141"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -3449,6 +3489,26 @@
       "path": "src/placements.js",
       "bytes": 13058,
       "sha256": "9ae8ee5c604602c87b1b7826d2038501b425b49fbbdf27a90aa7705eeaef4d77"
+    },
+    {
+      "path": "src/portfolio-v130.css",
+      "bytes": 7949,
+      "sha256": "72e438a02c71221f8b9538a41c77ef55a0dd3a9dbe94827eb8ade8d7790f9c0b"
+    },
+    {
+      "path": "src/portfolioArt.js",
+      "bytes": 1623,
+      "sha256": "285ff898ad191ec579955c2ad0b3b2a279c4eac6511ca22f7392005e71d698e9"
+    },
+    {
+      "path": "src/portfolioLandmark.js",
+      "bytes": 908,
+      "sha256": "7f6d5d47280f19bd41a1001a113949afdf87327b3373612269f900fdabe08108"
+    },
+    {
+      "path": "src/portfolioUI.js",
+      "bytes": 14460,
+      "sha256": "d40e7421e1717e5737075baeee587205c1c5a40a74353eb3529bdc9b6b786bc3"
     },
     {
       "path": "src/potteryStudio.js",
@@ -3892,8 +3952,8 @@
     },
     {
       "path": "src/world.js",
-      "bytes": 12946,
-      "sha256": "1f3d0bd77548438a586296d4f96ea0c022c3027bf4c1dd2e8bed19ab9b50f74e"
+      "bytes": 13101,
+      "sha256": "693cd77f019f36487575f5e623339cc126351fe6aa76c3954dbd30c281a81926"
     },
     {
       "path": "src/worldSession.js",
@@ -4489,6 +4549,16 @@
       "path": "tests/v129-journal-browser.mjs",
       "bytes": 3530,
       "sha256": "2d4df53eb1f85ba5f79589c2eb9993efff5920cae4d14c5c9fe9a73ade9e9a13"
+    },
+    {
+      "path": "tests/v130-portfolio-browser.mjs",
+      "bytes": 8047,
+      "sha256": "7f86094cf2ac16533cfebf467783f5b3c264a4b2599af786d2bdf87a8eabf999"
+    },
+    {
+      "path": "tests/v130-portfolio.test.mjs",
+      "bytes": 7555,
+      "sha256": "4ba0c32242b0277b5bcd50ed7b706e1d41ab103a6624675d6e5d0a9596ba9ba1"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -6776,5 +6846,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v128-github"
+  "publicRevision": "v130-github"
 }

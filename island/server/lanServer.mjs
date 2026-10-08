@@ -1,3 +1,5 @@
+import {createPortfolioStore} from './portfolioStore.mjs';
+import {servePortfolio} from './portfolioHttp.mjs';
 import {acquireDataLease} from './dataLease.mjs';
 import {resolveTravelRecruitment} from './lanTravelParty.mjs';
 import {createLanHomeServices} from './lanHomeServices.mjs';
@@ -40,6 +42,7 @@ export async function createLanHttpServer({directory=resolve(root,'data'),host='
  if(pathname==='/api/lan/register'&&req.method==='POST'){throttle(req,'auth');const data=await body(req),key=String(data.enrollmentKey||''),left=Buffer.from(key),right=Buffer.from(enrollmentKey);if(left.length!==right.length||!timingSafeEqual(left,right))throw err('加入码错误，请向主办岛主获取当前加入码','lan_enrollment',403);delete data.enrollmentKey;const result=await identities.register(data);return json(res,200,{view:result.view},{'Set-Cookie':cookie(result.token)});}
  if(pathname==='/api/lan/login'&&req.method==='POST'){throttle(req,'auth');const result=await identities.login(await body(req));return json(res,200,{view:result.view},{'Set-Cookie':cookie(result.token)});}
  if(pathname.startsWith('/api/')&& !['/api/lan/register','/api/lan/login','/api/lan/status'].includes(pathname)){const a=await identities.authorize(token(req)),scope=req.headers['x-hd-island'];if(scope&&scope!==a.id||!pathname.startsWith('/api/lan/')&&scope!==a.id)throw err('岛主身份已变化，请重新打开自己的小岛','lan_scope_changed',409);}
+ if(/^\/api\/lan\/portfolio(?:\/|$)/.test(pathname)){throttle(req,'normal');const account=await identities.authorize(token(req)),presence=await identities.presence(token(req)),ownerId=presence?.owner||account.id;if(!/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(ownerId))throw err('岛主身份无效','portfolio_owner',403);const store=createPortfolioStore({directory:resolve(tenants.root,ownerId),now});if(await servePortfolio({req,res,pathname,store,owner:ownerId===account.id,authorId:account.id,authorName:account.profile.name,readJSON:body,sendJSON:json}))return;}
  if(pathname==='/api/lan/logout'&&req.method==='POST'){await body(req);await identities.logout(token(req));await social.reconcileRooms();return json(res,200,{ok:true},{'Set-Cookie':forgetCookie});}
  if(pathname==='/api/lan/collaboration'&&req.method==='GET'){throttle(req,'normal');return json(res,200,await collaboration.view(token(req)));}
  if(pathname==='/api/lan/collaboration/action'&&req.method==='POST'){throttle(req,'normal');return json(res,200,await collaboration.action(token(req),await body(req,16000)));}

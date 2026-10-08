@@ -4,9 +4,9 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V128 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V130 is a playable development snapshot**, with full product acceptance still in progress.
 
-V128 raises the bounded save capacity to 16 MiB and signed backup/import capacity to 64 MiB, preserving transaction receipts and progress. Both themes passed large-save and fresh-browser recovery checks. [Fix and validation scope](island/docs/save-capacity-v128.md).
+Since V128, bounded save capacity is raised to 16 MiB and signed backup/import capacity to 64 MiB, preserving transaction receipts and progress. Both themes passed large-save and fresh-browser recovery checks. [Fix and validation scope](island/docs/save-capacity-v128.md).
 
 V125 completes tiled terrain integration: the initial overview, zoomed tiles and missing-tile fallback use the same painted terrain in both appearances and co-op rooms. [Terrain details and actual screenshots](island/docs/terrain-v125.md).
 
@@ -42,7 +42,7 @@ V109 updates both boarding gangways, ferry alignment and passenger occlusion. [S
 
 [![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v128)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v130)
 
 2560 × 1440 at 60 FPS, with an original instrumental score and bilingual captions. The footage shows an actual AI resident conversation, selectable steward appearances, native Hermes delegation, a Coastal Kitchen challenge inside its building window, and a real Word document made from a fictional brief. Waiting is edited out; no real user data appears.
 
@@ -144,3 +144,16 @@ This public repository excludes credentials, real account saves, conversation hi
 ## License and credits
 
 First-party code and documentation follow the existing [MIT License](LICENSE). Hermes Agent, Playwright, Fusion Pixel Font and Python dependencies retain their own licenses; see [third-party notices](island/THIRD_PARTY_NOTICES.md). Artwork provenance is described in [asset notes](island/docs/ASSETS.md). The project's MIT license does not replace third-party terms.
+
+
+## V130 · 岛主会客馆 / Islander Gallery
+
+东岸会客馆已接入个人介绍、经历与项目、真实文件上传、私有草稿 / 主动发布，以及登录访客留言、岛主回复与隐藏。两种画风共享资料；左上手账支持收起并记住状态。
+
+The east-coast gallery supports biographies, experiences, projects, persistent uploads, private drafts, explicit publication and authenticated guest messages with owner replies/moderation. Both art styles share one gallery; the journal collapse state survives reload.
+
+[功能与边界 / Features and limits](island/docs/portfolio-v130.md)
+
+![Pixel gallery map — fictional demo](docs/screenshots/v130-pixel-map.png)
+![Origami gallery map — fictional demo](docs/screenshots/v130-origami-map.png)
+![Published gallery — fictional content](docs/screenshots/v130-origami-gallery.png)

@@ -1,0 +1,29 @@
+{
+  "version": 130,
+  "generator": "Built-in imagegen",
+  "visualReferences": [
+    "buildings-pixel-front-v2.png",
+    "buildings-origami-front-v2.png",
+    "pixel-overview.png",
+    "origami-overview.png"
+  ],
+  "assets": [
+    {
+      "path": "public/assets/portfolio-v130/hall-land-origami.png",
+      "sha256": "532c7dbac9d061edfed017893d1738d4d39cc218be0f8d47c709b7562ba931d7"
+    },
+    {
+      "path": "public/assets/portfolio-v130/hall-land-pixel.png",
+      "sha256": "28167ecbc03eccfad41c964fa683b76ae01821835349a2439f34a49876bbdc75"
+    },
+    {
+      "path": "public/assets/portfolio-v130/hall-origami.png",
+      "sha256": "c0685d7494154a0b9fba28254736f25c423603d147788f85dd861b30f1241f90"
+    },
+    {
+      "path": "public/assets/portfolio-v130/hall-pixel.png",
+      "sha256": "8a874dd291e35f52677b8880cff45f29657ff14e6187284db9c637dd11cc581b"
+    }
+  ],
+  "copyright": "New project artwork generated for Hyper Dimension; reference artwork is existing project content."
+}
