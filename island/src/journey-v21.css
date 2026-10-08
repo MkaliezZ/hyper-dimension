@@ -79,3 +79,9 @@ body[data-theme] .steward-conversation-modal .modal-body{padding:0!important;ove
 .steward-thread-top,.steward-suggestions{flex-shrink:0}.steward-messages{min-height:64px}.steward-composer{display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:130px;max-height:52%;flex-shrink:0}.steward-composer>.steward-compose-fields{display:block;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--ui-line) var(--ui-paper-soft)}.steward-composer>.steward-compose-actions{margin-top:10px;min-height:42px}.steward-compose-fields #stewardResumeContext{display:block}.steward-compose-fields .steward-project-consent{display:flex;flex-wrap:wrap}body[data-theme=pixel] .steward-resume-note{border-radius:0}
 
 .steward-messages{min-height:0}@media(max-width:620px){.steward-thread-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px}.steward-thread-top button{min-width:0!important;width:100%;font-size:12px!important;padding:7px 8px!important}.steward-suggestions{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior:contain}.steward-suggestions button{flex:none;white-space:nowrap}}
+
+/* Layout controls remain readable when progress recovery locks game actions. */
+.quest-panel.folded #questList,.quest-panel.folded .side-footer{display:none!important}
+.quest-panel.folded{height:auto;min-height:0}
+#questToggle{cursor:pointer;position:relative;z-index:1;flex:none;touch-action:manipulation}
+#questToggle:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}

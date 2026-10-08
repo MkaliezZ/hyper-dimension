@@ -4,7 +4,7 @@ function remember(el,value){if(!original.has(el))original.set(el,el.inert);el.in
 function restore(){for(const[el,value]of original)if(el.isConnected)el.inert=value;original.clear();}
 function sync(){
  restore();if(dock)dock.hidden=!active.size;if(!active.size){observer?.disconnect();observer=null;return;}
- const allowed=[dock,document.getElementById('saveStatus'),...(recoveryDialog?[document.getElementById('modalRoot')]:[])].filter(Boolean);
+ const allowed=[dock,document.getElementById('saveStatus'),document.getElementById('questToggle'),document.getElementById('businessToggle'),...(recoveryDialog?[document.getElementById('modalRoot')]:[])].filter(Boolean);
  function visit(el){if(['SCRIPT','STYLE','LINK'].includes(el.tagName))return;if(allowed.includes(el)){remember(el,false);return;}if(allowed.some(a=>el.contains(a))){remember(el,false);for(const child of el.children)visit(child);}else remember(el,true);}
  for(const el of document.body.children)visit(el);
 }
@@ -24,7 +24,7 @@ export function lockActionUI(bar){
 export function unlockActionUI(bar){active.delete(bar);sync();}
 export function setRecoveryDialog(value){recoveryDialog=!!value;document.body.classList.toggle('recovery-dialog-open',recoveryDialog);sync();}
 
-export function isRecoveryTarget(target){return target instanceof Element&&!!target.closest('#actionRecoveryDock,#saveStatus'+(recoveryDialog?',#modalRoot':''));}
+export function isRecoveryTarget(target){return target instanceof Element&&!!target.closest('#actionRecoveryDock,#saveStatus,#questToggle,#businessToggle'+(recoveryDialog?',#modalRoot':''));}
 let reading=false;
 export async function readRecoveryProgress(bar,read,toast){
  if(reading)return;reading=true;

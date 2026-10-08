@@ -2647,8 +2647,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 3637,
-      "sha256": "5fbf508c76d622173be460954c5913dd7e4c3632d856382591d78a1c15dc284d"
+      "bytes": 3747,
+      "sha256": "a3a328e8fc5d632ef9e3bcf713d9782d37eadac70b4c398423935ee60c8e7f74"
     },
     {
       "path": "src/activityGames.js",
@@ -2662,8 +2662,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 131958,
-      "sha256": "bf48280a5c68991c82f949aed9168bd8ef679eba85321293942925f0f885779f"
+      "bytes": 131937,
+      "sha256": "7b91c25fd58ba719fae3486d27444f6252b7a409d532f7f697f932bac9eb74ad"
     },
     {
       "path": "src/arcade.css",
@@ -3136,9 +3136,14 @@
       "sha256": "e1f7806aa2ffdf666c26890871c3571094fcc92b62375887742160392c7d7e76"
     },
     {
+      "path": "src/journalFold.js",
+      "bytes": 1188,
+      "sha256": "b35cadac14abbca12208af00351b9d82b8741b9117b638e0da54e9d268f2b416"
+    },
+    {
       "path": "src/journey-v21.css",
-      "bytes": 17448,
-      "sha256": "0af626f347a1919b6ebec8d72a12fe682d91c9fe6f09f499dfff769930d022c5"
+      "bytes": 17839,
+      "sha256": "5d9cbdab392a446c2928925079a39b2442f2cd794455af1ecd4b90ea1b8e198b"
     },
     {
       "path": "src/journey.js",
@@ -4477,8 +4482,13 @@
     },
     {
       "path": "tests/v128-save-capacity.test.mjs",
-      "bytes": 4341,
-      "sha256": "7b091500f6ead3c18e31838e2d3c085786a3413651d167e13bda64bb0cf2c421"
+      "bytes": 4382,
+      "sha256": "7bafc15c85c097cc06096838f4731feb7f8db879d8ebbc7bcdc3ee1470a17dd8"
+    },
+    {
+      "path": "tests/v129-journal-browser.mjs",
+      "bytes": 3530,
+      "sha256": "2d4df53eb1f85ba5f79589c2eb9993efff5920cae4d14c5c9fe9a73ade9e9a13"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
