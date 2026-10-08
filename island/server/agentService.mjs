@@ -33,7 +33,7 @@ async function worker(type){
   const record=audit.get(r.id);if(!record)return;const wait=pending.get(r.id);pending.delete(r.id);if(wait)clearTimeout(wait.timer);
   try{
    await runLedger.finish(record.runId,{phase:r.error?'failed':'completed',usage:r.usage,providerRunId:r.answer?.runId||r.answer?.parent?.id||null,
-    children:r.lineage||[],resultCode:r.error?'worker_error':wait?'provider_response':'late_response'});
+    children:r.lineage||[],resultCode:r.error?(r.code||'worker_error'):wait?'provider_response':'late_response'});
    if(!r.error&&type==='hermes'&&record.kind==='steward_manual'&&record.worldKey&&(r.answer?.parties||[]).length)await partyProof.record({theme:record.theme,worldKey:record.worldKey,runId:r.answer.runId,parties:r.answer.parties});
    const operations=r.answer?.operations||r.operations||[];
    let outcome={artifacts:[],warning:null};

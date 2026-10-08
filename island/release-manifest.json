@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v115-agent-source",
+  "release": "hyper-dimension-v116-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10485,
-      "sha256": "4803479a797f307c6a2c32da28d4959abfc3c90dfbf94487e50490f13305a202"
+      "bytes": 10710,
+      "sha256": "17561550e18c7791e9f4f6ab0c7c9926743c3b4c4c7872926502cf6f7096da1b"
     },
     {
       "path": "README.md",
-      "bytes": 9573,
-      "sha256": "dd9544239d2b8eeafbb89e4c891e81ac2c217747d27d71ca69349819e5c72380"
+      "bytes": 9774,
+      "sha256": "b4871a007175963f38836629319c67080dfbf51772ae1e9798ffae9fad940dd4"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -184,6 +184,11 @@
       "path": "docs/media/showcase-details.json",
       "bytes": 678,
       "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
+    },
+    {
+      "path": "docs/npc-recovery-v116.md",
+      "bytes": 2882,
+      "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
     },
     {
       "path": "docs/production-contracts-v114.md",
@@ -737,8 +742,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 6065,
-      "sha256": "460e06d7f28f61961ddbb56930a418b0c63c31e2778217ce361a904f0f1b72f5"
+      "bytes": 6312,
+      "sha256": "a60e091bb16b7ff75693ab9d195fa309dd23e009f0f47d71de76b99ce62c07e1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1882,8 +1887,8 @@
     },
     {
       "path": "server/agentService.mjs",
-      "bytes": 26048,
-      "sha256": "14c018afa8a1b152ebc84c6b9c0925b6c1178c7206c77bc7a6e7a10c3ee39cf7"
+      "bytes": 26058,
+      "sha256": "ecc11a1fcc6e5f3b0a9f80e5660b00c425af4e883e6c71197c23135b640ff39c"
     },
     {
       "path": "server/atomicJson.mjs",
@@ -2102,8 +2107,8 @@
     },
     {
       "path": "server/model_worker.py",
-      "bytes": 712,
-      "sha256": "0d36717e2ce90b615ac38f06892b3e029edde27e4596dcb31b94f6f388c042d8"
+      "bytes": 751,
+      "sha256": "138d83824996af954642ccbc07db68cedafab5389371a50fdbcb2fcceb907a1b"
     },
     {
       "path": "server/native_sessions.py",
@@ -2117,8 +2122,8 @@
     },
     {
       "path": "server/npc_model.py",
-      "bytes": 2412,
-      "sha256": "3a9c918b9728fff5e77f189c239781bf5c51f1a647af4e19734d1e3f9354e822"
+      "bytes": 4109,
+      "sha256": "6192a6e0d196d36dda370ebed03c32892f12eea108e1eca160ff7692d0a4eb57"
     },
     {
       "path": "server/partyActions.mjs",
@@ -3167,8 +3172,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 35285,
-      "sha256": "60e30b148e7f5712508c0eee8533cd33e7506bd7b1c7b40fe9df2e35f182f0b6"
+      "bytes": 36263,
+      "sha256": "2bff61c3e8a46fef476b376c02b22fbb89efebc57ee55d42385adec7923122d5"
     },
     {
       "path": "src/residentStories.js",
@@ -3397,8 +3402,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 23162,
-      "sha256": "46e3cf7b7f07a679061b93fd33bed2ed818c071e2c57d5eb01c9748dfc76c6ec"
+      "bytes": 23826,
+      "sha256": "7a066f0dd38d33377ca38f7c406d763cc2298b904d90a18b9724c891e8b52c59"
     },
     {
       "path": "src/ui-v16.css",
@@ -3889,6 +3894,26 @@
       "path": "tests/v115-atomic-json.test.mjs",
       "bytes": 2257,
       "sha256": "608711260d2d89bf41c0cb31bc19346ec6ec1a317a0e3b8e51b88ca9dc92631c"
+    },
+    {
+      "path": "tests/v116-meal-planning.test.mjs",
+      "bytes": 3893,
+      "sha256": "00bcbf10ff61224b0b715eacd0f0eb6b1eba198ad629480f6c32732d51fce245"
+    },
+    {
+      "path": "tests/v116-meals-browser.mjs",
+      "bytes": 4923,
+      "sha256": "b3b6022a1756e9ba26b0a9f669e2e32e958a0c8f6e61930eb71080d3554b7832"
+    },
+    {
+      "path": "tests/v116-model-response.test.mjs",
+      "bytes": 638,
+      "sha256": "5c54c9b9d28ccfd71c9c2611baf399b25917902944eab355ed5edfe28c558e98"
+    },
+    {
+      "path": "tests/v116-model-response.test.py",
+      "bytes": 3253,
+      "sha256": "0a92b56cb5e0ad0f321067b92f018aa0fef06c45b662e6eeb899b06aec7a02f7"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -6191,5 +6216,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v115-github"
+  "publicRevision": "v116-github"
 }

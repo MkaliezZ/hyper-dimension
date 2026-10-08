@@ -50,8 +50,16 @@ function stepOption(i,s,r){
  const farmWaiting=t.goal==='farm'&&s.plots.every(p=>p.stage===3),waiting=farmWaiting||!!blocked,action=t.buildingId===19?'rest':'work';
  return {...t,action,activity,reason:CAREERS[i].title+'：'+(blocked||(farmWaiting?'作物还在生长，稍后再来照料':title)),purposeId:'career:'+c.phase,duration:10,item:recipe?.item||null,careerStep:step,waiting};
 }
-function mealOptions(i,s,r,time){const c=career(i,s),food=Object.values(ITEM_BY_ID).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableQuantity(s,x.id)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
- for(const [id,bid] of [['wheat',2],['mushroom',22],['strawberry',22]])if(availableQuantity(s,id)>0)food.push({...target(bid),action:'eat',activity:'eat',duration:10,foodId:id,purposeId:'need:food:'+id,score:94-crowdPenalty(s,bid,i),reason:bid===2?'用现有小麦煮粥，补充饱足':'去营地准备'+ITEMS[id][0]+'简餐'});
+// Walking plans are advisory demand, never authoritative inventory reservations.
+// An accepted server lease already reduces availableQuantity and must not be counted twice.
+export function availableMealQuantity(s,foodId,actorId){
+ const own=s.npcPresence?.find(p=>p.id===actorId),order=own?.mealFood===foodId?(own.mealOrder??Infinity):Infinity;
+ const leased=new Set((s.residentControl?.leases||[]).map(t=>t.actorId));
+ const earlier=(s.npcPresence||[]).filter(p=>p.id!==actorId&&p.mealFood===foodId&&!leased.has(p.id)&&(p.mealOrder<order||p.mealOrder===order&&p.id<actorId)).length;
+ return Math.max(0,availableQuantity(s,foodId)-earlier);
+}
+export function mealOptions(i,s,r,time){const c=career(i,s),food=Object.values(ITEM_BY_ID).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableMealQuantity(s,x.id,i)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
+ for(const [id,bid] of [['wheat',2],['mushroom',22],['strawberry',22]])if(availableMealQuantity(s,id,i)>0)food.push({...target(bid),action:'eat',activity:'eat',duration:10,foodId:id,purposeId:'need:food:'+id,score:94-crowdPenalty(s,bid,i),reason:bid===2?'用现有小麦煮粥，补充饱足':'去营地准备'+ITEMS[id][0]+'简餐'});
  if(needs(i,s).rations>0){const bid=[19,22,2].sort((a,b)=>crowdPenalty(s,a,i)-crowdPenalty(s,b,i)||Math.abs((LEISURE_VENUES[i]||0)-a)-Math.abs((LEISURE_VENUES[i]||0)-b))[0];food.push({...target(bid),action:'eat',activity:'eat',duration:9,foodId:'rations',purposeId:'need:rations',score:92-crowdPenalty(s,bid,i),reason:'找个空闲的休息位吃自备简餐'});}
  if(!food.length)food.push({goal:'forest',buildingId:null,resource:'mushroom',action:'work',activity:'gather',duration:8,purposeId:'need:food-supply',score:104,reason:'食物库存不足，先采集可做简餐的蘑菇'});
  return food.sort((a,b)=>b.score-a.score).slice(0,2);
