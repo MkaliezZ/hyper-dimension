@@ -4,11 +4,13 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V132 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V134 is a playable development snapshot**, with full product acceptance still in progress.
 
-V132 places the gallery on its own bridged island and adds newly painted blossom, autumn and snowy forest terrain, with falling petals, leaves and snow crystals. [Native visuals and verification scope](island/docs/gallery-seasons-v132.md).
+V134 redraws 30 original high-resolution terrain tiles around the existing building layout. The gallery is now on continuous mainland terrain, reached by a paved garden boulevard. Day/night visual effects are paused; each season lasts 30 visual days (120 days per cycle). [Current native visuals and verification](island/docs/continuous-terrain-v134.md).
 
-V131 adds animated shoreline waves, continuous day/night and four seasons shared by home islands and visits, plus a central-clock interface. The collapsible journal and east-court Islander Gallery remain available. [Visuals, configuration and verification scope](island/docs/environment-v131.md).
+Historical V132 placed the gallery on its own bridged island and adds newly painted blossom, autumn and snowy forest terrain, with falling petals, leaves and snow crystals. [Native visuals and verification scope](island/docs/gallery-seasons-v132.md).
+
+Historical V131 added animated shoreline waves, continuous day/night and four seasons shared by home islands and visits, plus a central-clock interface. The collapsible journal and east-court Islander Gallery remain available. [Visuals, configuration and verification scope](island/docs/environment-v131.md).
 
 V131 also aligns the east-coast gallery, adds an optional fictional portfolio (eight milestones, three projects and three images), and repairs Windows deployment process discovery. [Details and verification](island/docs/gallery-seam-v131.md).
 
@@ -80,7 +82,7 @@ The work brief is fictional. Hermes actually reads it, calculates a 12-carton re
 
 | Origami island | Pixel island |
 | --- | --- |
-| ![Origami island](island/docs/media/origami-island.png) | ![Pixel island](island/docs/media/pixel-island.png) |
+| ![Origami island](island/docs/screenshots/v134-origami-island.png) | ![Pixel island](island/docs/screenshots/v134-pixel-island.png) |
 
 | Coastal kitchen | The patient potter |
 | --- | --- |
@@ -160,12 +162,12 @@ The east-coast gallery supports biographies, experiences, projects, persistent u
 
 [功能与边界 / Features and limits](island/docs/portfolio-v130.md)
 
-![Pixel gallery map — fictional demo](docs/screenshots/v130-pixel-map.png)
-![Origami gallery map — fictional demo](docs/screenshots/v130-origami-map.png)
-![Published gallery — fictional content](docs/screenshots/v130-origami-gallery.png)
+![Pixel gallery map — fictional demo](island/docs/screenshots/v130-pixel-map.png)
+![Origami gallery map — fictional demo](island/docs/screenshots/v130-origami-map.png)
+![Published gallery — fictional content](island/docs/screenshots/v130-origami-gallery.png)
 
 
-## Sea breeze and four seasons · V131
+## Historical visuals: sea breeze and seasons · V131
 
 Pixel water uses stepped highlights; origami water uses softer arcs. Shoreline crests follow the actual coast, including the gallery garden. The visual clock is independent of economic settlement: offline time creates no income or operating charges.
 
@@ -173,17 +175,26 @@ Pixel water uses stepped highlights; origami water uses softer arcs. Shoreline c
 | --- | --- |
 | ![Origami autumn night](island/docs/screenshots/v131-origami-autumn-night.png) | ![Pixel winter day](island/docs/screenshots/v131-pixel-winter-day.png) |
 
-Default: a 15-minute visual day and a new season every seven visual days. Click the season badge below the island name for the calendar. A private configuration can connect a shared central clock. [Clock protocol](island/docs/environment-v131.md). Screenshots use an isolated test island. The V108 video above is a historical demo and has not yet been refreshed to V132.
+Default: a 15-minute visual day and a new season every 30 visual days (120 per complete cycle); day/night visual effects are paused. Click the season badge below the island name for the calendar. A private configuration can connect a shared central clock. [Clock protocol](island/docs/environment-v131.md). Screenshots use an isolated test island. The V108 video above is a historical demo and has not yet been refreshed to V134.
 
 ### Fictional gallery portfolio
 
 ![Fictional gallery portfolio](island/docs/screenshots/v131-origami-gallery.png)
 
 
-## V132 · 会客小岛与四季林地 / Gallery island and seasonal forest
+## 历史 V132 / Historical V132 · 会客小岛与四季林地
 
 [实景与验证 / Native visuals and verification](island/docs/gallery-seasons-v132.md)
 
 ![Gallery bridge](island/docs/screenshots/v132-origami-gallery-bridge.png)
 
 ![Autumn forest](island/docs/screenshots/v132-pixel-autumn-forest.png)
+
+
+## V134 · 连续地形 / Continuous terrain
+
+[当前实景与验证 / Current native visuals and verification](island/docs/continuous-terrain-v134.md)
+
+| 折纸 / Origami | 像素 / Pixel |
+| --- | --- |
+| ![Continuous origami gallery road](island/docs/screenshots/v134-origami-gallery-connector.png) | ![Continuous pixel gallery road](island/docs/screenshots/v134-pixel-gallery-connector.png) |

@@ -6,9 +6,13 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V131 开发快照**，可本地部署；完整产品验收仍在进行。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V134 开发快照**，可本地部署；完整产品验收仍在进行。
 
-V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](docs/environment-v131.md)。
+V134 按现有建筑布局重绘双画风共 30 张原生高清地形分块；会客馆与主岛通过连续庭院道路相连。昼夜视觉效果已暂停，每季 30 个视觉日，完整四季循环 120 日。[当前实景与验证范围](docs/continuous-terrain-v134.md)。
+
+历史版本 V132 将会客馆改为独立小岛与桥梁，并重绘樱花、秋林、积雪林地，配合花瓣、落叶与雪晶动画。[双画风实景与验证范围](docs/gallery-seasons-v132.md)。
+
+历史版本 V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](docs/environment-v131.md)。
 
 V131 同时调整东岸会客馆与主岛的接缝，提供可选的虚构档案示例（8 段经历、3 个项目、3 张图片），并修复 Windows 部署进程探测。[说明与验证](docs/gallery-seam-v131.md)。
 
@@ -48,7 +52,7 @@ V109 已更新双画风登船舷梯、船体靠泊位置与人物遮挡。[查�
 
 [![Hyper Dimension 实机预览：折纸与像素海岛](docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v131)
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/latest)
 
 2560 × 1440 / 60 FPS，原创器乐 BGM 与中英字幕。展示真实 AI 居民对话、管家多形象选择、Hermes 主子 Agent 分工、房屋弹窗内的海风双灶与通关结果，以及管家处理虚构工作资料、保存并回读 Word 文件。实机片段省略等待，没有真实用户资料。
 
@@ -80,7 +84,7 @@ V108 增加带立绘的主子 Agent 协商记录；小游戏完成提交暂未�
 
 | 折纸海岛 | 像素海岛 |
 | --- | --- |
-| ![折纸海岛实机截图](docs/media/origami-island.png) | ![像素海岛实机截图](docs/media/pixel-island.png) |
+| ![折纸海岛实机截图](docs/screenshots/v134-origami-island.png) | ![像素海岛实机截图](docs/screenshots/v134-pixel-island.png) |
 
 | 海风双灶 | 一器一形 |
 | --- | --- |
@@ -149,25 +153,49 @@ V107 修复居民途中材料变化后仍去旧工位的问题。双画风真实
 
 ## 许可与致谢
 
-原创代码与文档沿用仓库 [MIT License](LICENSE)。Hermes Agent、Playwright、Fusion Pixel Font 及 Python 依赖保留各自许可证，见[第三方说明](THIRD_PARTY_NOTICES.md)。双画风美术的来源记录见[素材说明](docs/ASSETS.md)，第三方许可不能由项目 MIT 声明替代。
+原创代码与文档沿用仓库 [MIT License](LICENSE)。Hermes Agent、Playwright、Fusion Pixel Font 及 Python 依赖保留各自许可证，见[第三方说明](island/THIRD_PARTY_NOTICES.md)。双画风美术的来源记录见[素材说明](docs/ASSETS.md)，第三方许可不能由项目 MIT 声明替代。
 
 
-## V130 · Islander Gallery / 岛主会客馆
+## V130 · 岛主会客馆 / Islander Gallery
 
-新增东岸会客馆、个人经历与项目、附件上传、私有草稿与主动发布、访客留言及岛主回复。
+东岸会客馆已接入个人介绍、经历与项目、真实文件上传、私有草稿 / 主动发布，以及登录访客留言、岛主回复与隐藏。两种画风共享资料；左上手账支持收起并记住状态。
 
-New east-coast gallery with biographies, experiences, projects, persistent uploads, explicit publication and authenticated guestbook moderation. [功能与边界 / Scope and limits](docs/portfolio-v130.md).
+The east-coast gallery supports biographies, experiences, projects, persistent uploads, private drafts, explicit publication and authenticated guest messages with owner replies/moderation. Both art styles share one gallery; the journal collapse state survives reload.
 
-## 海风与四季 · V131
+[功能与边界 / Features and limits](docs/portfolio-v130.md)
 
-像素海面采用离散水纹，折纸海面采用柔和弧线；近岸浪沿真实海岸推进，夜景和季节与会客馆庭院一致。时令独立于经营结算，离线不会产生收益或岛务扣款。
+![Pixel gallery map — fictional demo](docs/screenshots/v130-pixel-map.png)
+![Origami gallery map — fictional demo](docs/screenshots/v130-origami-map.png)
+![Published gallery — fictional content](docs/screenshots/v130-origami-gallery.png)
+
+## 历史画面：海风与四季 · V131
+
+像素海面采用离散水纹，折纸海面采用柔和弧线；近岸浪沿真实海岸推进，以下夜景为旧版本记录，V134 昼夜视觉已暂停。时令独立于经营结算，离线不会产生收益或岛务扣款。
 
 | 折纸秋夜 | 像素冬日 |
 | --- | --- |
 | ![折纸秋季夜景](docs/screenshots/v131-origami-autumn-night.png) | ![像素冬季日景](docs/screenshots/v131-pixel-winter-day.png) |
 
-默认 15 分钟一个视觉昼夜、7 个视觉日换季；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V131。
+默认 15 分钟一个视觉昼夜、30 个视觉日换季（完整四季 120 日），昼夜视觉效果已暂停；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V134。
 
 ### 会客馆示例档案
 
 ![Fictional gallery portfolio](docs/screenshots/v131-origami-gallery.png)
+
+
+## 历史 V132 / Historical V132 · 会客小岛与四季林地
+
+[实景与验证 / Native visuals and verification](docs/gallery-seasons-v132.md)
+
+![Gallery bridge](docs/screenshots/v132-origami-gallery-bridge.png)
+
+![Autumn forest](docs/screenshots/v132-pixel-autumn-forest.png)
+
+
+## V134 · 连续地形 / Continuous terrain
+
+[当前实景与验证 / Current native visuals and verification](docs/continuous-terrain-v134.md)
+
+| 折纸 / Origami | 像素 / Pixel |
+| --- | --- |
+| ![Continuous origami gallery road](docs/screenshots/v134-origami-gallery-connector.png) | ![Continuous pixel gallery road](docs/screenshots/v134-pixel-gallery-connector.png) |

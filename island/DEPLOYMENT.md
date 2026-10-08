@@ -137,6 +137,9 @@ V105最终源码包的双风格从零实际一小时已完成，三次900秒结�
 
 新增 server/atomicJson.mjs 并由 saveStore.mjs 调用；必须一起更新并重启服务。Windows 原子替换遇临时占用时最多等待 680 毫秒再试，持续失败保留旧文件并报告原错误。720 项本地默认检查与真实 Windows 短/长占用边界通过。先备份存档，无需重置岛屿；详见 docs/save-recovery-v115.md。
 
-## Shared day/night and season clock / 共享昼夜与四季
+## Shared season clock / 共享四季时钟
 
 The clock is local by default and shared across appearances and visits. Optional central-server settings are read from private `.env.local`; no save or portfolio payload is uploaded. See [environment-v131.md](docs/environment-v131.md) for configuration, protocol and verification scope.
+
+
+V134: one visual day is 15 minutes, each season lasts 30 visual days. Day/night scene lighting is paused. Legacy local seven-day clocks migrate once while retaining their current season and hour; central-provider settings remain authoritative. / V134 每季 30 个视觉日，昼夜视觉效果暂停；旧本地时钟保留当前季节与小时并迁移，总服务器配置保持权威。

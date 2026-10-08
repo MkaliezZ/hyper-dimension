@@ -6,7 +6,7 @@ import {farmWalkable} from './farming.js';
 import {PARCELS,BUILDING_ORDER} from './layouts.js';
 import {PERSONAS} from './personas.js';
 // Keep island art and parcel anchors in one immutable coordinate space.
-export const MAP_EXTENT=Object.freeze({width:1536,height:1024});
+export const MAP_EXTENT=Object.freeze({width:1856,height:1024});
 export const WORLD = { width:1856, height:1248 };
 export const BUILDINGS = [
   ['木作工坊','🛠','workshop','木材与工具制作'],['风铃茶屋','🍵','tea','招待居民与调饮'],['海边食堂','🍲','tea','料理与聚餐'],['花艺小屋','💐','workshop','花束和装饰制作'],['服装店','👗','workshop','派对服装制作'],['观星台','🔭','gallery','夜间观星活动'],['水族馆','🐠','gallery','展示海洋发现'],['图书馆','📚','gallery','知识与居民故事'],['灯塔','🗼','gallery','岛屿航标'],['集市摊位','🛍','tea','交易与集市派对'],['诊所','🏥','tea','照顾居民状态'],['邮局','✉️','gallery','信件与任务'],['音乐馆','🎼','gallery','音乐派对'],['摄影屋','📷','gallery','拍摄岛屿记忆'],['植物温室','🌿','workshop','培育珍稀植物'],['陶艺坊','🏺','workshop','摆件制作'],['渔具铺','🎣','workshop','钓鱼工具制作'],['烘焙屋','🥐','tea','食物制作'],['博物馆','🏛','gallery','奇观收藏'],['居民之家','🏠','tea','居民生活空间'],['烟花工坊','🎆','workshop','烟花大会准备'],['舞台','🎭','gallery','演出与聚会'],['露营站','⛺','gallery','户外活动'],['船坞','⛵','workshop','海上探索'],['工艺学院','🎨','gallery','居民共创与教学']

@@ -1,0 +1,758 @@
+{
+  "version": 134,
+  "method": "Built-in image_gen; two continuous atlas references and 30 original regional paintings. Original complete plaza retained. Overview uses runtime feather weights.",
+  "promptTemplate": "Use case: precise-object-edit. Production terrain tile for Hyper Dimension. The attached {bounds.w}x{bounds.h} crop is the exact composition target for tile ({col},{row}) of a unified island map. Repaint at high native resolution, ideally {bounds.w*3}x{bounds.h*3}, EXACT aspect {bounds.w}:{bounds.h}. {themeStyle}: crisp pixel clusters for pixel, layered paper folds for origami. Preserve the reference's exact geometry and palette: every green building parcel, plaza ring/star, farm bed, road, waterfall, mine, coast, rock, tree silhouette and all edge intersections stay fixed. Increase fine detail without changing layout. ALL four edges must continue at the precise original coordinates and angles because neighboring crops share the same master. No zoom/reframe/shift, no perspective change, no extra features, no additional clearings. Neutral daylight only. Terrain only: NO houses (the existing farm utility shed and mine structure may remain exactly where shown), no people, UI, text, watermarks or borders. The gallery district and mainland are continuous solid land, no added bridge, dock or isolated island. Roads stay open and meet logically. Full bleed, no seam lines or darkened perimeter. For the plaza, the complete star and paving keep their geometry even where cropped; do not invent a new star center. High-quality original fine painting, not blurred or merely scaled reference.",
+  "files": [
+    {
+      "theme": "origami",
+      "col": 0,
+      "row": 0,
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 416,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/origami-0-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-5f750fe7-7be7-472b-a46d-b62cc33f891b.png",
+      "core": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 2678487,
+      "sha256": "e0fb6eea412205455189e4d3f7cf467c0750c5717f6923036d465108f63b0f54"
+    },
+    {
+      "theme": "origami",
+      "col": 1,
+      "row": 0,
+      "bounds": {
+        "x": 352,
+        "y": 0,
+        "w": 448,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/origami-1-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-fe5ce117-71ae-4ed4-a10c-e7bcaf90c756.png",
+      "core": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1302,
+      "nativeHeight": 1208,
+      "bytes": 2748461,
+      "sha256": "fca268f1b5a0f4eba14df9b094ef74854456b8c2842f8d99c2d466c0e81d17c9"
+    },
+    {
+      "theme": "origami",
+      "col": 2,
+      "row": 0,
+      "bounds": {
+        "x": 736,
+        "y": 0,
+        "w": 448,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/origami-2-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-1856ca80-56af-468c-af9e-fdc53a18820d.png",
+      "core": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1301,
+      "nativeHeight": 1209,
+      "bytes": 2625847,
+      "sha256": "8170520e30cb8fe5c5e08c25501581aa47a845ab6b09e33e5dca511dc56bdd7b"
+    },
+    {
+      "theme": "origami",
+      "col": 3,
+      "row": 0,
+      "bounds": {
+        "x": 1120,
+        "y": 0,
+        "w": 448,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/origami-3-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-a9367c42-46b8-4cb3-963b-272627c1da45.png",
+      "core": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1302,
+      "nativeHeight": 1208,
+      "bytes": 2643859,
+      "sha256": "c0e08437e9138b60fa345bf3e9a7180098e6384a0323db108bec259e0a7ff1a3"
+    },
+    {
+      "theme": "origami",
+      "col": 4,
+      "row": 0,
+      "bounds": {
+        "x": 1504,
+        "y": 0,
+        "w": 352,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/origami-4-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-2089dee8-682f-4bd9-8758-d6903f0cac55.png",
+      "core": {
+        "x": 1536,
+        "y": 0,
+        "w": 320,
+        "h": 384
+      },
+      "nativeWidth": 1154,
+      "nativeHeight": 1363,
+      "bytes": 2332709,
+      "sha256": "1927e3d654638836aa2ca76fc8f8c3d6f1cb69edc4266caf19de4f668a140658"
+    },
+    {
+      "theme": "origami",
+      "col": 0,
+      "row": 1,
+      "bounds": {
+        "x": 0,
+        "y": 352,
+        "w": 416,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/origami-0-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-abda7130-7fc9-4c43-b9cb-ab8051365c19.png",
+      "core": {
+        "x": 0,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1208,
+      "nativeHeight": 1302,
+      "bytes": 2446507,
+      "sha256": "fa1e1ec157c78a9a78201e281eb825608e177150e4c3d8372971fd9305c172cb"
+    },
+    {
+      "theme": "origami",
+      "col": 1,
+      "row": 1,
+      "bounds": {
+        "x": 352,
+        "y": 352,
+        "w": 448,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/origami-1-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-450f373b-14cd-4c33-ba72-05fa1e4d1cce.png",
+      "core": {
+        "x": 384,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 2827855,
+      "sha256": "5d0293dec2d59e9131b2dbfccb28e470b3f92c404024a710301578b415745517"
+    },
+    {
+      "theme": "origami",
+      "col": 2,
+      "row": 1,
+      "bounds": {
+        "x": 736,
+        "y": 352,
+        "w": 448,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/origami-2-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-161b410d-f9b6-4548-ad9d-6bed4e72d67c.png",
+      "core": {
+        "x": 768,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 2841683,
+      "sha256": "9fcef746170dd0799fc60fb92968994d53960db1b9b0ba97ae4a9a32ed07e812"
+    },
+    {
+      "theme": "origami",
+      "col": 3,
+      "row": 1,
+      "bounds": {
+        "x": 1120,
+        "y": 352,
+        "w": 448,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/origami-3-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-9bea4dc2-c762-4714-8458-53b346a4700b.png",
+      "core": {
+        "x": 1152,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 2504730,
+      "sha256": "34c87acec7e5c0dde86536f3210c4f2fd4a23cbcab054bba203bfdabdabe2f68"
+    },
+    {
+      "theme": "origami",
+      "col": 4,
+      "row": 1,
+      "bounds": {
+        "x": 1504,
+        "y": 352,
+        "w": 352,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/origami-4-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-6d16e54b-021c-4ea3-a63d-ab5718a4cfbc.png",
+      "core": {
+        "x": 1536,
+        "y": 384,
+        "w": 320,
+        "h": 384
+      },
+      "nativeWidth": 1112,
+      "nativeHeight": 1415,
+      "bytes": 2404423,
+      "sha256": "b53887c7eb252376328327da21ce492ec6c2b357a69a80424b1eb2a6c059e4d3"
+    },
+    {
+      "theme": "origami",
+      "col": 0,
+      "row": 2,
+      "bounds": {
+        "x": 0,
+        "y": 736,
+        "w": 416,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/origami-0-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-30d11d86-0587-492b-b67d-a1b987079f2f.png",
+      "core": {
+        "x": 0,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1507,
+      "nativeHeight": 1044,
+      "bytes": 2366564,
+      "sha256": "e27f4ed607a312a604f9d84f4d402357a04b81a3301950cceb605e9933a66dd8"
+    },
+    {
+      "theme": "origami",
+      "col": 1,
+      "row": 2,
+      "bounds": {
+        "x": 352,
+        "y": 736,
+        "w": 448,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/origami-1-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-897e8275-f8ca-48bd-a19c-db5efa21ffa9.png",
+      "core": {
+        "x": 384,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1564,
+      "nativeHeight": 1006,
+      "bytes": 2209997,
+      "sha256": "323db73c4b184e60fab8e063d9e217291eac8ba6d9b621aaf47de4257a443ce3"
+    },
+    {
+      "theme": "origami",
+      "col": 2,
+      "row": 2,
+      "bounds": {
+        "x": 736,
+        "y": 736,
+        "w": 448,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/origami-2-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-4e3906b5-dfa4-467d-9eb7-ec2fb62ce282.png",
+      "core": {
+        "x": 768,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1564,
+      "nativeHeight": 1006,
+      "bytes": 2202169,
+      "sha256": "c410382c8f422b7495a2f8a508b8a613eefb96e3b7588139938385a1200a325d"
+    },
+    {
+      "theme": "origami",
+      "col": 3,
+      "row": 2,
+      "bounds": {
+        "x": 1120,
+        "y": 736,
+        "w": 448,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/origami-3-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-b09bd384-7d3d-4fae-8f4f-ef2f661604b9.png",
+      "core": {
+        "x": 1152,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1565,
+      "nativeHeight": 1005,
+      "bytes": 2147139,
+      "sha256": "44ca06d3b4822c76013e469e9bd3ce6def9aeb73d6b5aecd4a7d6653f803ed26"
+    },
+    {
+      "theme": "origami",
+      "col": 4,
+      "row": 2,
+      "bounds": {
+        "x": 1504,
+        "y": 736,
+        "w": 352,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/origami-4-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-15ee26e0-f127-4754-af17-5ada9f3a55e6.png",
+      "core": {
+        "x": 1536,
+        "y": 768,
+        "w": 320,
+        "h": 256
+      },
+      "nativeWidth": 1387,
+      "nativeHeight": 1134,
+      "bytes": 2385765,
+      "sha256": "b5c40a920ca601f38d1e8596672c42b452589302d306196327ebc14b1b1645f5"
+    },
+    {
+      "theme": "pixel",
+      "col": 0,
+      "row": 0,
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 416,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/pixel-0-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-21461a4a-9dd8-43fc-ad77-e3ab1e1a8b35.png",
+      "core": {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 2765239,
+      "sha256": "66461f4a9ef25fb987e98209ac90e9f990d9490a0c895ae8ac732758fedea9a3"
+    },
+    {
+      "theme": "pixel",
+      "col": 1,
+      "row": 0,
+      "bounds": {
+        "x": 352,
+        "y": 0,
+        "w": 448,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/pixel-1-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-43030e3a-f60e-4f8d-b215-b74ba11ee2ab.png",
+      "core": {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1302,
+      "nativeHeight": 1208,
+      "bytes": 2970859,
+      "sha256": "ecb1d6af31054b37a2baf3f0e438271145b98586612b8bd5a891879c40bbd5f5"
+    },
+    {
+      "theme": "pixel",
+      "col": 2,
+      "row": 0,
+      "bounds": {
+        "x": 736,
+        "y": 0,
+        "w": 448,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/pixel-2-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-534e2c96-b3e2-44fe-94bf-a25e964f467a.png",
+      "core": {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1302,
+      "nativeHeight": 1208,
+      "bytes": 2847996,
+      "sha256": "b991dda285b0aa38c2a554526aa0e812512f134f65cd605c29ed16736be5faf7"
+    },
+    {
+      "theme": "pixel",
+      "col": 3,
+      "row": 0,
+      "bounds": {
+        "x": 1120,
+        "y": 0,
+        "w": 448,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/pixel-3-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-bfa70973-a612-4a03-aee2-365cd90f787c.png",
+      "core": {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1302,
+      "nativeHeight": 1208,
+      "bytes": 2814240,
+      "sha256": "fc7c0524a94adba308c3dc00d2f8dcceabb12a60abaa30d0e64c76fd00ffc90b"
+    },
+    {
+      "theme": "pixel",
+      "col": 4,
+      "row": 0,
+      "bounds": {
+        "x": 1504,
+        "y": 0,
+        "w": 352,
+        "h": 416
+      },
+      "file": "public/assets/map-tiles-v134/pixel-4-0.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-803ef695-750a-408c-af64-dae2e17c19fc.png",
+      "core": {
+        "x": 1536,
+        "y": 0,
+        "w": 320,
+        "h": 384
+      },
+      "nativeWidth": 1154,
+      "nativeHeight": 1363,
+      "bytes": 2513883,
+      "sha256": "3671366988e70c9973c15f0cc040fdc12346cbac4e17b2c5e807ed1a0fc36eaa"
+    },
+    {
+      "theme": "pixel",
+      "col": 0,
+      "row": 1,
+      "bounds": {
+        "x": 0,
+        "y": 352,
+        "w": 416,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/pixel-0-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-d9c53d4c-817c-4731-bb3a-c6dbb499f3d4.png",
+      "core": {
+        "x": 0,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1209,
+      "nativeHeight": 1301,
+      "bytes": 2798955,
+      "sha256": "89c38e597e323ad60a0e45b20674e65548fbf2ee62dbce0dbb581cea1f61f5ee"
+    },
+    {
+      "theme": "pixel",
+      "col": 1,
+      "row": 1,
+      "bounds": {
+        "x": 352,
+        "y": 352,
+        "w": 448,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/pixel-1-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-d79a7b87-67fe-4f4b-8a86-7fa2c39c7000.png",
+      "core": {
+        "x": 384,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 3010130,
+      "sha256": "9f554be3634556b121531c80af952aca71bb30d312128ccb85b1ac4bf70666be"
+    },
+    {
+      "theme": "pixel",
+      "col": 2,
+      "row": 1,
+      "bounds": {
+        "x": 736,
+        "y": 352,
+        "w": 448,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/pixel-2-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-b2fd344e-3e12-4929-9b08-fc54d50c4b2e.png",
+      "core": {
+        "x": 768,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 3075337,
+      "sha256": "b58f3225644f7cf2d3f0dab78628ba2c15cbdf5117535c1430217dbc9b9560bf"
+    },
+    {
+      "theme": "pixel",
+      "col": 3,
+      "row": 1,
+      "bounds": {
+        "x": 1120,
+        "y": 352,
+        "w": 448,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/pixel-3-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-07c830a5-bdd8-488a-9d63-df31d33af0d7.png",
+      "core": {
+        "x": 1152,
+        "y": 384,
+        "w": 384,
+        "h": 384
+      },
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "bytes": 2772086,
+      "sha256": "cd8d8488d3dbeed9b376d46961c06b770fb21ba4b7455119bd96d0adb39f9d24"
+    },
+    {
+      "theme": "pixel",
+      "col": 4,
+      "row": 1,
+      "bounds": {
+        "x": 1504,
+        "y": 352,
+        "w": 352,
+        "h": 448
+      },
+      "file": "public/assets/map-tiles-v134/pixel-4-1.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-0e782685-8983-42a2-8399-e4f399126c3f.png",
+      "core": {
+        "x": 1536,
+        "y": 384,
+        "w": 320,
+        "h": 384
+      },
+      "nativeWidth": 1112,
+      "nativeHeight": 1415,
+      "bytes": 2414065,
+      "sha256": "2151970a856ad06d4774c0dfd6877b033985da79b936809b577480646b99e501"
+    },
+    {
+      "theme": "pixel",
+      "col": 0,
+      "row": 2,
+      "bounds": {
+        "x": 0,
+        "y": 736,
+        "w": 416,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/pixel-0-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-d2914bb8-3ef3-4560-8da1-198ea005d820.png",
+      "core": {
+        "x": 0,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1508,
+      "nativeHeight": 1043,
+      "bytes": 2647638,
+      "sha256": "dc8e0b03851e529edb32c8ab8fc9ee03d39c6950d4ccb4cdcfb8dbfbf9507d07"
+    },
+    {
+      "theme": "pixel",
+      "col": 1,
+      "row": 2,
+      "bounds": {
+        "x": 352,
+        "y": 736,
+        "w": 448,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/pixel-1-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-f9a87a2d-4d70-4535-9ae9-5927f394751f.png",
+      "core": {
+        "x": 384,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1564,
+      "nativeHeight": 1006,
+      "bytes": 2771646,
+      "sha256": "1ab4546433a34c998ef2bfc71cff1fd8d9c8c6e672faa4b11e118ee5dea5f9a2"
+    },
+    {
+      "theme": "pixel",
+      "col": 2,
+      "row": 2,
+      "bounds": {
+        "x": 736,
+        "y": 736,
+        "w": 448,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/pixel-2-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-6caeb484-8643-4054-be54-3c2df7b3c363.png",
+      "core": {
+        "x": 768,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1564,
+      "nativeHeight": 1006,
+      "bytes": 2670418,
+      "sha256": "dd0fa5cfdca04d4455cc7157fb880fbb67008efd7c756ffae49f2ef84883ca4a"
+    },
+    {
+      "theme": "pixel",
+      "col": 3,
+      "row": 2,
+      "bounds": {
+        "x": 1120,
+        "y": 736,
+        "w": 448,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/pixel-3-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-0bb47926-b39f-49ea-bfe8-f98eb3a9a0ed.png",
+      "core": {
+        "x": 1152,
+        "y": 768,
+        "w": 384,
+        "h": 256
+      },
+      "nativeWidth": 1564,
+      "nativeHeight": 1006,
+      "bytes": 2233099,
+      "sha256": "e8d481aa35355c7e59911d96d1ab36507edd59f5f12d132a2af47fedac4c1aa2"
+    },
+    {
+      "theme": "pixel",
+      "col": 4,
+      "row": 2,
+      "bounds": {
+        "x": 1504,
+        "y": 736,
+        "w": 352,
+        "h": 288
+      },
+      "file": "public/assets/map-tiles-v134/pixel-4-2.png",
+      "saved": true,
+      "generator": "built-in image_gen",
+      "original": "exec-55024665-23a3-4ce0-b4cc-21ed95831eea.png",
+      "core": {
+        "x": 1536,
+        "y": 768,
+        "w": 320,
+        "h": 256
+      },
+      "nativeWidth": 1387,
+      "nativeHeight": 1134,
+      "bytes": 2145913,
+      "sha256": "2dcfdb2200a161dcd122fd81f332bf44a749bf46f6db12f4101302c6125f0f6c"
+    }
+  ],
+  "notes": "Template documents the shared regional brief; the first four gallery connection crops used a more detailed road-continuity brief. Original outputs are copied without upscaling. Continuous layout master is a guide, not a runtime image."
+}

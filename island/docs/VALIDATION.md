@@ -42,3 +42,10 @@ The prior V106 one-hour runs apply to V106. V107 has not repeated a complete one
 双画风独立会客小岛与桥梁、桥旁海水约束、8 段经历／3 项项目／3 张持久化图片、16 组昼夜季节实景、8 组林地近景及六组飘落动画移动验证通过。当前季节地形覆盖北部林地，沿海棕榈与建筑屋顶保留原稿。账号与已有展馆资料经备份及更新前后核对保留。新增美术和实景见 [gallery-seasons-v132.md](gallery-seasons-v132.md)。
 
 The default local release suite passes 804 / 804 checks: 790 domain checks followed by 14 maintenance checks. The initial concurrent run hit two maintenance collisions; running those checks after concurrent writers exit retains every assertion and passes the complete suite. Live unverified writers still block backup. Native evidence covers both bridged gallery islands, adjacent-water restrictions, fictional persistent portfolio content, sixteen environment combinations, eight forest close-ups and six falling-animation motion checks. Seasonal terrain currently covers the northern forest. Accounts and existing gallery content are preserved. These are focused checks, not full-product or physical-Mac acceptance; original outstanding scope and the refreshed showcase video remain open.
+
+
+## V134 · 连续底图与时令 / Continuous terrain and seasons
+
+807 / 807 默认发布检查通过（793 项领域检查，随后 14 项维护检查）；原断言完整保留。另有 30 项直接相关检查、双画风实际会客馆、18 项四季／暂停昼夜渲染场景、11 组高清地形加载兼容场景、4 项联机与 WebGL 回退／恢复验证通过。本机 4173 / 4174 / 4175 已核对新源码和美术文件一致，账号及会客馆文档摘要保持一致。新连续庭院与通行路径见 [continuous-terrain-v134.md](continuous-terrain-v134.md)。冷启动兼容加载仍存在最大 103–139 ms 帧间隔，稳态限定场景采样不能代替完整性能验收。
+
+The local default release suite passes 807 / 807 checks (793 domain checks, then 14 maintenance checks). Focused domain, native gallery, environment, terrain-loading and shared-room/WebGL checks are recorded separately. All three local deployments serve matching current source/art; identity and gallery document hashes are preserved. See the current feature document for evidence and loading limitations. Physical Mac, refreshed showcase video and complete product acceptance remain open.

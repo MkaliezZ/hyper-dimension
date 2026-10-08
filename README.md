@@ -4,11 +4,13 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V132 开发快照**，可本地部署；完整产品验收仍在进行。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V134 开发快照**，可本地部署；完整产品验收仍在进行。
 
-V132 将会客馆改为独立小岛与桥梁，并重绘樱花、秋林、积雪林地，配合花瓣、落叶与雪晶动画。[双画风实景与验证范围](island/docs/gallery-seasons-v132.md)。
+V134 按现有建筑布局重绘双画风共 30 张原生高清地形分块；会客馆与主岛通过连续庭院道路相连。昼夜视觉效果已暂停，每季 30 个视觉日，完整四季循环 120 日。[当前实景与验证范围](island/docs/continuous-terrain-v134.md)。
 
-V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](island/docs/environment-v131.md)。
+历史版本 V132 将会客馆改为独立小岛与桥梁，并重绘樱花、秋林、积雪林地，配合花瓣、落叶与雪晶动画。[双画风实景与验证范围](island/docs/gallery-seasons-v132.md)。
+
+历史版本 V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](island/docs/environment-v131.md)。
 
 V131 同时调整东岸会客馆与主岛的接缝，提供可选的虚构档案示例（8 段经历、3 个项目、3 张图片），并修复 Windows 部署进程探测。[说明与验证](island/docs/gallery-seam-v131.md)。
 
@@ -80,7 +82,7 @@ V108 增加带立绘的主子 Agent 协商记录；小游戏完成提交暂未�
 
 | 折纸海岛 | 像素海岛 |
 | --- | --- |
-| ![折纸海岛实机截图](island/docs/media/origami-island.png) | ![像素海岛实机截图](island/docs/media/pixel-island.png) |
+| ![折纸海岛实机截图](island/docs/screenshots/v134-origami-island.png) | ![像素海岛实机截图](island/docs/screenshots/v134-pixel-island.png) |
 
 | 海风双灶 | 一器一形 |
 | --- | --- |
@@ -160,29 +162,38 @@ The east-coast gallery supports biographies, experiences, projects, persistent u
 
 [功能与边界 / Features and limits](island/docs/portfolio-v130.md)
 
-![Pixel gallery map — fictional demo](docs/screenshots/v130-pixel-map.png)
-![Origami gallery map — fictional demo](docs/screenshots/v130-origami-map.png)
-![Published gallery — fictional content](docs/screenshots/v130-origami-gallery.png)
+![Pixel gallery map — fictional demo](island/docs/screenshots/v130-pixel-map.png)
+![Origami gallery map — fictional demo](island/docs/screenshots/v130-origami-map.png)
+![Published gallery — fictional content](island/docs/screenshots/v130-origami-gallery.png)
 
-## 海风与四季 · V131
+## 历史画面：海风与四季 · V131
 
-像素海面采用离散水纹，折纸海面采用柔和弧线；近岸浪沿真实海岸推进，夜景和季节与会客馆庭院一致。时令独立于经营结算，离线不会产生收益或岛务扣款。
+像素海面采用离散水纹，折纸海面采用柔和弧线；近岸浪沿真实海岸推进，以下夜景为旧版本记录，V134 昼夜视觉已暂停。时令独立于经营结算，离线不会产生收益或岛务扣款。
 
 | 折纸秋夜 | 像素冬日 |
 | --- | --- |
 | ![折纸秋季夜景](island/docs/screenshots/v131-origami-autumn-night.png) | ![像素冬季日景](island/docs/screenshots/v131-pixel-winter-day.png) |
 
-默认 15 分钟一个视觉昼夜、7 个视觉日换季；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](island/docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V132。
+默认 15 分钟一个视觉昼夜、30 个视觉日换季（完整四季 120 日），昼夜视觉效果已暂停；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](island/docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V134。
 
 ### 会客馆示例档案
 
 ![Fictional gallery portfolio](island/docs/screenshots/v131-origami-gallery.png)
 
 
-## V132 · 会客小岛与四季林地 / Gallery island and seasonal forest
+## 历史 V132 / Historical V132 · 会客小岛与四季林地
 
 [实景与验证 / Native visuals and verification](island/docs/gallery-seasons-v132.md)
 
 ![Gallery bridge](island/docs/screenshots/v132-origami-gallery-bridge.png)
 
 ![Autumn forest](island/docs/screenshots/v132-pixel-autumn-forest.png)
+
+
+## V134 · 连续地形 / Continuous terrain
+
+[当前实景与验证 / Current native visuals and verification](island/docs/continuous-terrain-v134.md)
+
+| 折纸 / Origami | 像素 / Pixel |
+| --- | --- |
+| ![Continuous origami gallery road](island/docs/screenshots/v134-origami-gallery-connector.png) | ![Continuous pixel gallery road](island/docs/screenshots/v134-pixel-gallery-connector.png) |

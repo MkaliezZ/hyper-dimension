@@ -1,0 +1,21 @@
+{
+  "version": 134,
+  "method": "Native Canvas composition of all 15 generated terrain tiles and the complete plaza, using runtime weights and shoreline masking; no buildings or characters baked into terrain.",
+  "source": "continuous mainland and gallery atlas V134: two whole-map guides, 30 original high-resolution regional paintings; original complete plaza retained",
+  "files": [
+    {
+      "file": "public/assets/map-tiles-v134/pixel-overview.png",
+      "width": 1856,
+      "height": 1024,
+      "bytes": 5287255,
+      "sha256": "cea74bab303e904ea1e3d98762efc04d24b7fe549b6ce808a364c9bef99ba67c"
+    },
+    {
+      "file": "public/assets/map-tiles-v134/origami-overview.png",
+      "width": 1856,
+      "height": 1024,
+      "bytes": 4699236,
+      "sha256": "7172f019f7f542c8467685066b3dd71cf17af825b2314b936fd49639566c3960"
+    }
+  ]
+}

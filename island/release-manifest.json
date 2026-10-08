@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v132-agent-source",
+  "release": "hyper-dimension-v134-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 15683,
-      "sha256": "b542fad6f5c85292b38a8575b7fe0bee754cae41c786143fea84651543e4bab2"
+      "bytes": 16062,
+      "sha256": "cd99d07b4f15afe296037f474de221c276aaf4b6b3fda3d237c25a1f35cca39b"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 14388,
-      "sha256": "198c56c76fdfcd13bfe467c2f764728faaf1fc2cd8c049b9d557927be02bdf40"
+      "bytes": 16260,
+      "sha256": "884b9c6cd84952e24af29185ebab68e26b3c283dfe53a852b75ddf6a4d9387b3"
     },
     {
       "path": "README.md",
-      "bytes": 13070,
-      "sha256": "62c7ef86abf39d2bf9edaf2d54a1d59eea9cade1e5ff181c1c298ea09f1146eb"
+      "bytes": 14855,
+      "sha256": "af08d491736784b28a80e26d71ebcce5b8d6a5ea81d29b8f2131e088ba96e6f8"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -67,8 +67,8 @@
     },
     {
       "path": "docs/ASSETS.md",
-      "bytes": 4029,
-      "sha256": "bb1e7457a0a36afed91e3af570a8883079481484ad6aee97253a0f2a96e3d023"
+      "bytes": 4631,
+      "sha256": "3ca1b484cd3f0a9d1e48fe3abdf5bb8cb50f89b573e72c1a6bd1187bae57901a"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -77,13 +77,18 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 5702,
-      "sha256": "7d6443dd4ada4dda52c63506a530a69670a45baa11a774c72a43470c02e3aa9f"
+      "bytes": 6895,
+      "sha256": "c2c622726b12bed9cba7c8dff6c5552acaa8c751ddc721f1f2d1c9d542ff4338"
     },
     {
       "path": "docs/classic-settlement-v110.md",
       "bytes": 2783,
       "sha256": "9b0680a87c4740f8221b671fdcee49916966dcc96c413245f823d2867d45eb56"
+    },
+    {
+      "path": "docs/continuous-terrain-v134.md",
+      "bytes": 5316,
+      "sha256": "e2efa43646af914b1a51543da4a3af221da38a6bbca01606e71438f5f8c4c83b"
     },
     {
       "path": "docs/craft-materials-v117.md",
@@ -102,8 +107,8 @@
     },
     {
       "path": "docs/environment-v131.md",
-      "bytes": 4827,
-      "sha256": "f7aae7ebc425e6e68498f326cba3d0833c1b338c1f30b4755dd2e01e9fe0ad7b"
+      "bytes": 5140,
+      "sha256": "e88bb518ce97ab6a41787719a1dc52ea19ef3e1494f78b5f414e2f0d1ac9f48f"
     },
     {
       "path": "docs/gallery-seam-v131.md",
@@ -481,6 +486,36 @@
       "sha256": "34c64dbc14e779a0ce60e3a35549c89d98b953f3239668bd9afccb8579525190"
     },
     {
+      "path": "docs/screenshots/v134-origami-gallery-connector.png",
+      "bytes": 5223417,
+      "sha256": "0ad05f704bd70adb50982ccb3ebd902149cc05e4386955bb9e9b0fd64180009e"
+    },
+    {
+      "path": "docs/screenshots/v134-origami-gallery.png",
+      "bytes": 2193183,
+      "sha256": "7c7622ff64cec40a0e431edf7695da8ea2eb31c81cac41655c93078cbe3384a5"
+    },
+    {
+      "path": "docs/screenshots/v134-origami-island.png",
+      "bytes": 6104715,
+      "sha256": "5e7df58fae0e42cd3c0afd2494c7f6fb5dfe17266ff8e1864b71d613ee629501"
+    },
+    {
+      "path": "docs/screenshots/v134-pixel-gallery-connector.png",
+      "bytes": 5510021,
+      "sha256": "1f1ab8bccba397f9c20d4b371cfa25725d8090525830894d820edee7756bc68a"
+    },
+    {
+      "path": "docs/screenshots/v134-pixel-gallery.png",
+      "bytes": 2036536,
+      "sha256": "1f2ddbf62ecfb5f21a5306e77089f02fd0a67cadd9aa4d766dcebf7a93744036"
+    },
+    {
+      "path": "docs/screenshots/v134-pixel-island.png",
+      "bytes": 6996689,
+      "sha256": "a301a8783c812c3a74550e717ec1fc74ff486610f7bea086f466061e16d2170d"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -511,6 +546,11 @@
       "sha256": "cbc6fdcda4db387e071f835af063052ffc5a294fd1defedf5a0cb72facca1ee2"
     },
     {
+      "path": "docs/terrain-art-v134.json",
+      "bytes": 20325,
+      "sha256": "3cfc8b80cc35ce966c57442e9b443b22f1dab35e156c34e36c964b3179633486"
+    },
+    {
       "path": "docs/terrain-previews-v125.json",
       "bytes": 724,
       "sha256": "7cbeb7902111f72f6c19591c1a9231cda57257b1ff2336af609cc27737fdc71d"
@@ -524,6 +564,11 @@
       "path": "docs/terrain-previews-v132.json",
       "bytes": 754,
       "sha256": "2dabfc4deeaec69aab5f81436153ec592c83a70fda5846fa64d3c47cc6899c8c"
+    },
+    {
+      "path": "docs/terrain-previews-v134.json",
+      "bytes": 849,
+      "sha256": "6803b088f634c9ed2a9ddbdde734926f7c5808f51b3773fc5515aeb9b4873fe8"
     },
     {
       "path": "docs/terrain-v119.md",
@@ -1916,6 +1961,166 @@
       "sha256": "1032713b35f5e9ff3e5ba00f4b36c416268c9918e14e552ff0d73b0c1f6294dc"
     },
     {
+      "path": "public/assets/map-tiles-v134/origami-0-0.png",
+      "bytes": 2678487,
+      "sha256": "e0fb6eea412205455189e4d3f7cf467c0750c5717f6923036d465108f63b0f54"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-0-1.png",
+      "bytes": 2446507,
+      "sha256": "fa1e1ec157c78a9a78201e281eb825608e177150e4c3d8372971fd9305c172cb"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-0-2.png",
+      "bytes": 2366564,
+      "sha256": "e27f4ed607a312a604f9d84f4d402357a04b81a3301950cceb605e9933a66dd8"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-1-0.png",
+      "bytes": 2748461,
+      "sha256": "fca268f1b5a0f4eba14df9b094ef74854456b8c2842f8d99c2d466c0e81d17c9"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-1-1.png",
+      "bytes": 2827855,
+      "sha256": "5d0293dec2d59e9131b2dbfccb28e470b3f92c404024a710301578b415745517"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-1-2.png",
+      "bytes": 2209997,
+      "sha256": "323db73c4b184e60fab8e063d9e217291eac8ba6d9b621aaf47de4257a443ce3"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-2-0.png",
+      "bytes": 2625847,
+      "sha256": "8170520e30cb8fe5c5e08c25501581aa47a845ab6b09e33e5dca511dc56bdd7b"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-2-1.png",
+      "bytes": 2841683,
+      "sha256": "9fcef746170dd0799fc60fb92968994d53960db1b9b0ba97ae4a9a32ed07e812"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-2-2.png",
+      "bytes": 2202169,
+      "sha256": "c410382c8f422b7495a2f8a508b8a613eefb96e3b7588139938385a1200a325d"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-3-0.png",
+      "bytes": 2643859,
+      "sha256": "c0e08437e9138b60fa345bf3e9a7180098e6384a0323db108bec259e0a7ff1a3"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-3-1.png",
+      "bytes": 2504730,
+      "sha256": "34c87acec7e5c0dde86536f3210c4f2fd4a23cbcab054bba203bfdabdabe2f68"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-3-2.png",
+      "bytes": 2147139,
+      "sha256": "44ca06d3b4822c76013e469e9bd3ce6def9aeb73d6b5aecd4a7d6653f803ed26"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-4-0.png",
+      "bytes": 2332709,
+      "sha256": "1927e3d654638836aa2ca76fc8f8c3d6f1cb69edc4266caf19de4f668a140658"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-4-1.png",
+      "bytes": 2404423,
+      "sha256": "b53887c7eb252376328327da21ce492ec6c2b357a69a80424b1eb2a6c059e4d3"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-4-2.png",
+      "bytes": 2385765,
+      "sha256": "b5c40a920ca601f38d1e8596672c42b452589302d306196327ebc14b1b1645f5"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/origami-overview.png",
+      "bytes": 4699236,
+      "sha256": "7172f019f7f542c8467685066b3dd71cf17af825b2314b936fd49639566c3960"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-0-0.png",
+      "bytes": 2765239,
+      "sha256": "66461f4a9ef25fb987e98209ac90e9f990d9490a0c895ae8ac732758fedea9a3"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-0-1.png",
+      "bytes": 2798955,
+      "sha256": "89c38e597e323ad60a0e45b20674e65548fbf2ee62dbce0dbb581cea1f61f5ee"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-0-2.png",
+      "bytes": 2647638,
+      "sha256": "dc8e0b03851e529edb32c8ab8fc9ee03d39c6950d4ccb4cdcfb8dbfbf9507d07"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-1-0.png",
+      "bytes": 2970859,
+      "sha256": "ecb1d6af31054b37a2baf3f0e438271145b98586612b8bd5a891879c40bbd5f5"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-1-1.png",
+      "bytes": 3010130,
+      "sha256": "9f554be3634556b121531c80af952aca71bb30d312128ccb85b1ac4bf70666be"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-1-2.png",
+      "bytes": 2771646,
+      "sha256": "1ab4546433a34c998ef2bfc71cff1fd8d9c8c6e672faa4b11e118ee5dea5f9a2"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-2-0.png",
+      "bytes": 2847996,
+      "sha256": "b991dda285b0aa38c2a554526aa0e812512f134f65cd605c29ed16736be5faf7"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-2-1.png",
+      "bytes": 3075337,
+      "sha256": "b58f3225644f7cf2d3f0dab78628ba2c15cbdf5117535c1430217dbc9b9560bf"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-2-2.png",
+      "bytes": 2670418,
+      "sha256": "dd0fa5cfdca04d4455cc7157fb880fbb67008efd7c756ffae49f2ef84883ca4a"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-3-0.png",
+      "bytes": 2814240,
+      "sha256": "fc7c0524a94adba308c3dc00d2f8dcceabb12a60abaa30d0e64c76fd00ffc90b"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-3-1.png",
+      "bytes": 2772086,
+      "sha256": "cd8d8488d3dbeed9b376d46961c06b770fb21ba4b7455119bd96d0adb39f9d24"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-3-2.png",
+      "bytes": 2233099,
+      "sha256": "e8d481aa35355c7e59911d96d1ab36507edd59f5f12d132a2af47fedac4c1aa2"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-4-0.png",
+      "bytes": 2513883,
+      "sha256": "3671366988e70c9973c15f0cc040fdc12346cbac4e17b2c5e807ed1a0fc36eaa"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-4-1.png",
+      "bytes": 2414065,
+      "sha256": "2151970a856ad06d4774c0dfd6877b033985da79b936809b577480646b99e501"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-4-2.png",
+      "bytes": 2145913,
+      "sha256": "2dcfdb2200a161dcd122fd81f332bf44a749bf46f6db12f4101302c6125f0f6c"
+    },
+    {
+      "path": "public/assets/map-tiles-v134/pixel-overview.png",
+      "bytes": 5287255,
+      "sha256": "cea74bab303e904ea1e3d98762efc04d24b7fe549b6ce808a364c9bef99ba67c"
+    },
+    {
       "path": "public/assets/market-lantern-origami-v87.png",
       "bytes": 1429172,
       "sha256": "3d219779ba623d8bf86247f201c683fb9c9bfad1d70fb577a372963b40964b23"
@@ -2567,8 +2772,8 @@
     },
     {
       "path": "server/environmentService.mjs",
-      "bytes": 3966,
-      "sha256": "bd1433a92b8ece6879a375773846afa4b1add16a556aaae102e6d6749b0db5fd"
+      "bytes": 4513,
+      "sha256": "f77e9782918b7e500f5cb1c6cffe260c775c96c19e109d1325681bdb5d7d622c"
     },
     {
       "path": "server/facilityActions.mjs",
@@ -3157,8 +3362,8 @@
     },
     {
       "path": "src/environment-v127.css",
-      "bytes": 1554,
-      "sha256": "4e7dbebfac5c576edff64fcab30d98b309bbd54f25a066c9c652e1bf24a6f5f3"
+      "bytes": 1445,
+      "sha256": "dfa4abc9387c4732f6682aca4f863322c37a2639c16b9241a2c391177209add6"
     },
     {
       "path": "src/environmentClient.js",
@@ -3167,8 +3372,8 @@
     },
     {
       "path": "src/environmentClock.js",
-      "bytes": 2281,
-      "sha256": "994cc4f6e9fda79d0a42f22639b54d4f0fcd9f65c71e048a2a1ea0137af18ca5"
+      "bytes": 2282,
+      "sha256": "7279604f366d6cb3e9f5652259d6cf664a6b5ecbb0d92c987249b49bb86955fc"
     },
     {
       "path": "src/environmentGeometry.js",
@@ -3177,13 +3382,13 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 10856,
-      "sha256": "a03e88c26c9d2557f6a0faa54c8f789a0753521774b44f6ee20368095c4bb512"
+      "bytes": 8655,
+      "sha256": "31b2c423cbf4897e253ae4e782916e472971f976711bb116b10fd0e40254e4cc"
     },
     {
       "path": "src/environmentUI.js",
-      "bytes": 979,
-      "sha256": "df9b7d92d761cbb88712f4a3f219d806afa1aba6668860c49425fd7777721e3e"
+      "bytes": 1061,
+      "sha256": "5897817e3c4681a8876a83528cf0196ffc3c9923c24b44960ec25f525634c25d"
     },
     {
       "path": "src/equipment-v35.css",
@@ -3597,8 +3802,8 @@
     },
     {
       "path": "src/mapTileLayout.js",
-      "bytes": 2982,
-      "sha256": "88321bfed794ba62cec9ffa9b6a70f90450fe88115db5b00d56572e5c2f4c047"
+      "bytes": 2970,
+      "sha256": "0da581d077e4108d12d431d4b30e109a284da1b7550d29dfc86615882a4ab9d3"
     },
     {
       "path": "src/mapTileLoader.js",
@@ -3702,8 +3907,8 @@
     },
     {
       "path": "src/oceanShader.js",
-      "bytes": 5921,
-      "sha256": "294f56293f8ca559a067b6359a2850d4c786f7b18deb80ea267c26b81e496a4e"
+      "bytes": 5818,
+      "sha256": "bc6370e1acb7807a371df792ce7f4757094946ee9c56b18b1d2832e86bea200d"
     },
     {
       "path": "src/outdoorOccupancy.js",
@@ -3787,13 +3992,13 @@
     },
     {
       "path": "src/portfolioArt.js",
-      "bytes": 3106,
-      "sha256": "6e092d63a19204eaea45cc85d9207095f1e2a986e43a3ac321064d7ff2e3d960"
+      "bytes": 1515,
+      "sha256": "ef70195f0b65fad8ac6b23c0c35422ef66478de930d54a235222cf357e006848"
     },
     {
       "path": "src/portfolioLandmark.js",
-      "bytes": 1577,
-      "sha256": "341f68548e3554c6449aa24d8e98502192f4b96736e654b03cd5836725d8c943"
+      "bytes": 1344,
+      "sha256": "4abf4cabab09603e120b390759a354a31953aa42c2374600458ca65fbac2c6dc"
     },
     {
       "path": "src/portfolioUI.js",
@@ -4248,7 +4453,7 @@
     {
       "path": "src/world.js",
       "bytes": 13180,
-      "sha256": "7f50df6ac34974da636fd3788fbfb405e1e0108a244801b1b7ab3b874e234a3a"
+      "sha256": "fdea7293ab8bd6a6b136294fc6464c4e41900d3197e221ab29201bfe27426fe6"
     },
     {
       "path": "src/worldSession.js",
@@ -4747,8 +4952,8 @@
     },
     {
       "path": "tests/v119-map-browser.mjs",
-      "bytes": 6008,
-      "sha256": "7cb6c961051ad3f9cd7c93da5d03b72ab20907ecf38c16fd55103d1205604597"
+      "bytes": 6050,
+      "sha256": "f293d588e83481d1556ba9395f2ff40a846581dd50c2ecf608d8fadc79239d4c"
     },
     {
       "path": "tests/v119-map-game-browser.mjs",
@@ -4757,8 +4962,8 @@
     },
     {
       "path": "tests/v119-map-tiles.test.mjs",
-      "bytes": 2149,
-      "sha256": "609f969be35dfac1d95e76598fb035dbe151fbda0f99a330b19378cb5db5395a"
+      "bytes": 2163,
+      "sha256": "71e5026fe04a5d9358be100644d0ecaa346859f1960041fb7e6ae2d653ee9481"
     },
     {
       "path": "tests/v119-tool-motion.test.mjs",
@@ -4798,7 +5003,7 @@
     {
       "path": "tests/v122-map-loading-browser.mjs",
       "bytes": 6352,
-      "sha256": "cba5344248bd982a6506605607765da17312b6335081049601f54acb52a56125"
+      "sha256": "2b628bc8c736f1c4a74701685d415eabf6b67b2753018cd063a5eb73abe74ef6"
     },
     {
       "path": "tests/v122-map-loading.test.mjs",
@@ -4827,33 +5032,33 @@
     },
     {
       "path": "tests/v125-terrain-preview.test.mjs",
-      "bytes": 1717,
-      "sha256": "fcdfb375289bc01d1404e4300c476c7b15bfce731237fe6996fa3993f2d4fc44"
+      "bytes": 1720,
+      "sha256": "bafdd1ce34fe3776ad418ef0dcdbd6a1c5f459354230bedae338e6e39d0790ab"
     },
     {
       "path": "tests/v127-environment-browser.mjs",
-      "bytes": 5185,
-      "sha256": "cb39e8f31cbfec46e83f52984940fd86c86ecd39b8f0661ae33bf6f7c417c5f0"
+      "bytes": 6757,
+      "sha256": "207b9f48e05aa84dfcdb72f8bd1a4fd56fe19f99af5f508498529ca4a84bc58c"
     },
     {
       "path": "tests/v127-environment-compatible-browser.mjs",
-      "bytes": 6793,
-      "sha256": "250326965e77e18c7058111631b934124e534efe9f86b3a367206009a26ff68d"
+      "bytes": 6817,
+      "sha256": "7f16394efd5dc61bc19e72b8afac6bbfef95b7450349843dc89d1d70806980f5"
     },
     {
       "path": "tests/v127-environment-components.mjs",
       "bytes": 3658,
-      "sha256": "bd51229ec7d1720b1e12d368afff50c700ea14cd984a5008f4dcb7c194dbfe8a"
+      "sha256": "89495609e9966436559354490f79eb495cd6ce8068d76faee67ea0907614b97e"
     },
     {
       "path": "tests/v127-environment-performance.mjs",
       "bytes": 3489,
-      "sha256": "a4b113eb9d87e2e7de2e020d468645e01e15554066cab7bdb28ec177bf6b9fff"
+      "sha256": "0300d4eb3bece700e84240bf6be8599eafd628f8a23d37d473f6e39f10320b65"
     },
     {
       "path": "tests/v127-environment.test.mjs",
-      "bytes": 7457,
-      "sha256": "5e843cb4f5d710bdfb944aa66650ac06540746cd397945993e2672c7c514ef40"
+      "bytes": 9528,
+      "sha256": "bf79499d25befd184927a13115efa2c78577c55a0b7643c35a59503b9744f3aa"
     },
     {
       "path": "tests/v128-save-capacity-browser.mjs",
@@ -4882,13 +5087,13 @@
     },
     {
       "path": "tests/v131-gallery-browser.mjs",
-      "bytes": 5030,
-      "sha256": "351713f4b0be2029f9a7f773f66afe9946122886a1350e3d2b8a9f319a3e5240"
+      "bytes": 5397,
+      "sha256": "7518a53a03d37d4fd9b2cf34fe4e36c2b57f290e4d00b9dbb89d7ef61d51e4aa"
     },
     {
       "path": "tests/v131-gallery.test.mjs",
-      "bytes": 3078,
-      "sha256": "736408fa9088604012475764a479cf808c4654b14d1346e4c17470b95c7deee0"
+      "bytes": 3070,
+      "sha256": "efedb80fa4a6db4a2b37efd8bf4f0ba5a9bb523f38557151a91c000423c55636"
     },
     {
       "path": "tests/v132-season-closeup.mjs",
@@ -6607,8 +6812,8 @@
     },
     {
       "path": "tools/build-terrain-overviews.mjs",
-      "bytes": 3127,
-      "sha256": "11b370b4725bf7a15f451b082bc70b3864f62a2bdc679f047db44f104c785381"
+      "bytes": 3222,
+      "sha256": "1b64d94a0d23727e1028ba31ef7b8a1b884e85a8ac434739342df2af847bc6a6"
     },
     {
       "path": "tools/cocreation-check.mjs",
@@ -7186,5 +7391,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v132-github"
+  "publicRevision": "v134-github"
 }

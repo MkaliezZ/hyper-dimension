@@ -30,3 +30,8 @@ The optional compose-original-score.py in docs/media/ reproduces the score with 
 ## V132 · Gallery bridge and seasonal terrain / 桥梁与季节地形
 
 Twelve built-in imagegen outputs edit the inspected existing artwork: two gallery islands, two mainland landings, two transparent bridge sprites, and six seasonal northern forest tiles. The two overview images are native Canvas compositions of runtime tiles. Selected file sizes, PNG dimensions, hashes and reference identifiers are in [terrain-art-v132.json](terrain-art-v132.json). Runtime images retain real coast alpha; the bridge and walking corridor are aligned separately for each appearance. / 本轮十二张原创生成素材与两张程序合成总览均有来源、尺寸和摘要记录；不含真实用户资料。
+
+
+## V134 - Continuous terrain
+
+Thirty original built-in image_gen regional paintings replace the active mainland and gallery terrain in both appearances. Layout guides were edited from inspected existing art; every region retains fixed coordinates and overlapping reference edges. Runtime overviews are Canvas compositions of the original regions and retained complete plaza. Native dimensions, provenance and hashes are recorded in [terrain-art-v134.json](terrain-art-v134.json). V132 gallery-island and bridge images are historical, no longer rendered. No personal photos or user data are included.

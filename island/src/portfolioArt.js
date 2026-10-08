@@ -1,14 +1,11 @@
-import {PORTFOLIO_SITE,portfolioBridge} from './portfolioLandmark.js';
+import {PORTFOLIO_SITE} from './portfolioLandmark.js';
 import {registerThemeArtwork} from './themeArtwork.js';
 import {drawRaster} from './rasterQuality.js';
 const art={};
-for(const theme of ['pixel','origami']){const hall=new Image(),land=new Image(),bridge=new Image();registerThemeArtwork(hall,'/assets/portfolio-v130/hall-'+theme+'.png',theme);registerThemeArtwork(land,'/assets/portfolio-v132/hall-land-'+theme+'.png',theme);registerThemeArtwork(bridge,'/assets/portfolio-v132/bridge-'+theme+'.png',theme);art[theme]={hall,land,bridge};}
-export function portfolioLandImage(theme){const i=art[theme]?.land;return i?.complete&&i.naturalWidth?i:null;}
-const bridgeCrops=new WeakMap();
-async function prepareBridge(image){if(bridgeCrops.has(image))return;const row={ready:false};bridgeCrops.set(image,row);const c=document.createElement('canvas');c.width=image.naturalWidth;c.height=image.naturalHeight;const paint=c.getContext('2d',{willReadFrequently:true});paint.drawImage(image,0,0);const pixels=paint.getImageData(0,0,c.width,c.height).data;let left=c.width,right=0,top=c.height,bottom=0;for(let y=0;y<c.height;y++){for(let x=0;x<c.width;x++)if(pixels[(y*c.width+x)*4+3]>32){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}if(y%64===63)await new Promise(r=>setTimeout(r,0));}Object.assign(row,{ready:true,x:left,y:top,w:right-left+1,h:bottom-top+1});c.width=c.height=1;}
-export function drawPortfolioLand(ctx,theme){const i=portfolioLandImage(theme),p=PORTFOLIO_SITE.land;if(i)drawRaster(ctx,i,theme,p.x,p.y,p.w,p.h);const bridge=art[theme]?.bridge;if(!bridge?.complete||!bridge.naturalWidth)return;prepareBridge(bridge);const crop=bridgeCrops.get(bridge);if(!crop?.ready)return;const b=portfolioBridge(theme),dx=b.to.x-b.from.x,dy=b.to.y-b.from.y,length=Math.hypot(dx,dy);ctx.save();ctx.translate(b.from.x,b.from.y);ctx.rotate(Math.atan2(dy,dx));drawRaster(ctx,bridge,theme,crop.x,crop.y,crop.w,crop.h,-9,-25,length+18,58);ctx.restore();}
-
+for(const theme of ['pixel','origami']){const hall=new Image();registerThemeArtwork(hall,'/assets/portfolio-v130/hall-'+theme+'.png',theme);art[theme]={hall};}
+// The courtyard and connection now belong to the same terrain tiles as the mainland.
+export function drawPortfolioLand(){}
 export function drawPortfolioHall(ctx,theme,time){const i=art[theme]?.hall,p=PORTFOLIO_SITE.building;if(!i?.complete||!i.naturalWidth)return;ctx.save();ctx.fillStyle='#203e362c';ctx.beginPath();ctx.ellipse(p.x,p.y-3,p.w*.44,10,0,0,Math.PI*2);ctx.fill();drawRaster(ctx,i,theme,p.x-p.w/2,p.y-p.h,p.w,p.h);
  const board=PORTFOLIO_SITE.board;ctx.font=theme==='pixel'?'12px FusionPixel,monospace':'600 12px Microsoft YaHei,sans-serif';ctx.textAlign='center';ctx.fillStyle='#fff2c7';ctx.strokeStyle='#4d6b5b';ctx.lineWidth=theme==='pixel'?2:1;ctx.fillRect(board.x-34,board.y+19,68,23);ctx.strokeRect(board.x-34,board.y+19,68,23);ctx.fillStyle='#305245';ctx.fillText('访客留言',board.x,board.y+35);ctx.fillStyle='#e8c575';ctx.globalAlpha=.4+.2*Math.sin(time*2);ctx.beginPath();ctx.arc(board.x+28,board.y+24,2,0,Math.PI*2);ctx.fill();ctx.restore();
 }
-export function portfolioArtStatus(theme){return{site:PORTFOLIO_SITE,separateIsland:true,bridgeLoaded:!!bridgeCrops.get(art[theme]?.bridge)?.ready,loaded:!!art[theme]?.hall.complete&&!!art[theme]?.hall.naturalWidth&&!!art[theme]?.land.naturalWidth};}
+export function portfolioArtStatus(theme){return{site:PORTFOLIO_SITE,separateIsland:false,bridgeLoaded:false,connection:'continuous-terrain',loaded:!!art[theme]?.hall.complete&&!!art[theme]?.hall.naturalWidth};}
