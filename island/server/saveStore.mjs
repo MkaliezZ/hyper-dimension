@@ -50,8 +50,8 @@ import {resolve,join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
 import {createZeroState} from '../src/freshStart.js';
 
-export const MAX_SAVE_BYTES=2*1024*1024;
-export const MAX_IMPORT_BYTES=8*1024*1024;
+import {MAX_SAVE_BYTES,MAX_IMPORT_BYTES} from '../src/saveLimits.js';
+export {MAX_SAVE_BYTES,MAX_IMPORT_BYTES};
 const digest=state=>createHash('sha256').update(JSON.stringify(state)).digest('hex');
 const fail=(message,status=400,code='invalid_save')=>Object.assign(Error(message),{status,code});
 const exists=async path=>{try{await stat(path);return true}catch(e){if(e.code==='ENOENT')return false;throw e}};
@@ -62,7 +62,7 @@ export function validateState(state,theme=null){
  !Number.isFinite(state.coins)||state.coins<0||!state.inventory||Array.isArray(state.inventory)||
  !state.player||!Number.isFinite(state.player.x)||!Number.isFinite(state.player.y))throw fail('存档结构无效，未覆盖现有进度');
  for(const [key,value] of Object.entries(state.inventory))if(!/^[a-zA-Z0-9_-]{1,80}$/.test(key)||!Number.isSafeInteger(value)||value<0)throw fail('背包数据无效，未覆盖现有进度');
- if(Buffer.byteLength(JSON.stringify(state))>MAX_SAVE_BYTES)throw fail('存档超出 2 MB 限制',413);
+ if(Buffer.byteLength(JSON.stringify(state))>MAX_SAVE_BYTES)throw fail('存档超过 16 MiB 容量上限；上次成功保存的进度仍保留，请导出暂存并更新游戏',413,'save_too_large');
  if(!validPartyHosting(state))throw fail('主持委托记录无效，未覆盖现有进度');
  if(!validEventWonders(state))throw fail('奇观记录无效，未覆盖现有进度');
  if(!validAchievements(state))throw fail('成就记录无效，未覆盖现有进度');
@@ -247,7 +247,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     let old;try{old=await readCurrent(p,theme);}catch(e){if(e.code!=='save_corrupt'||expectedVersion!=='corrupt')throw e;}
     if(old)compare(old,expectedVersion);else if(expectedVersion&&expectedVersion!=='corrupt')throw fail('主存档版本已变化',409,'save_conflict');
     let source='file';if(migrationId){data=(await imports.migrationSource(p,migrationId)).data;source='legacy-browser';}
-    if(Buffer.byteLength(JSON.stringify(data)||'')>MAX_IMPORT_BYTES)throw fail('备份文件超出8 MB限制',413,'import_too_large');
+    if(Buffer.byteLength(JSON.stringify(data)||'')>MAX_IMPORT_BYTES)throw fail('备份文件超过 64 MiB 容量上限，当前进度未改动',413,'import_too_large');
     data=structuredClone(data);const origin=await imports.classify(data),state=data?.schema?validateDocument(data,theme).state:validateState(data,theme);
     let allowed=true,blockReason=null;
     if(externalEconomy&&origin.signature!=='local'){allowed=false;blockReason='联机岛屿只接受本账户的本机签名备份；旧档和其他安装的存档保留供独立版使用';}

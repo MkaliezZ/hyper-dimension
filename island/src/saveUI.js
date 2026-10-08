@@ -1,3 +1,4 @@
+import {MAX_IMPORT_BYTES} from './saveLimits.js';
 import {setRecoveryDialog} from './actionRecoveryUI.js';
 import {modalNavigationToken} from './modalNavigation.js';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -36,7 +37,7 @@ export function createSaveUI({saves,theme,openModal,toast}){
   const root=document.querySelector('#modalRoot'),token=modalNavigationToken();
   root.querySelector('#importSaveFile').onchange=async event=>{
    const file=event.target.files?.[0];if(!file)return;
-   try{if(file.size>8*1024*1024)throw Error('备份文件过大');const data=JSON.parse(await file.text());if(token.current())await previewFile(style,data,file.name,null,token);}
+   try{if(file.size>MAX_IMPORT_BYTES)throw Error('备份文件超过 64 MiB 容量上限');const data=JSON.parse(await file.text());if(token.current())await previewFile(style,data,file.name,null,token);}
    catch(error){toast(error.message);}
   };
   const act=(id,fn)=>{const b=root.querySelector('#'+id);if(b)b.onclick=async()=>{b.disabled=true;try{await fn()}catch(error){toast(error.message)}finally{if(b.isConnected)b.disabled=false}}};

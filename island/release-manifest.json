@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v125-agent-source",
+  "release": "hyper-dimension-v128-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12204,
-      "sha256": "2e25b04671cafe68d7142d80e9c2ab2de5b618402dd11ffa158cc73d477d7bb5"
+      "bytes": 12467,
+      "sha256": "8a0d68d64debcb247206ac52f93b78bae720e459a2a704a0de75708b6a49e8cb"
     },
     {
       "path": "README.md",
-      "bytes": 11143,
-      "sha256": "6a53b7ce431ed512ffafa828dac07e09e725ab399da55fd90f73dafb5e79bfda"
+      "bytes": 11361,
+      "sha256": "f72263c8be2cf783ffbdb62cf9351543432db99cfba4e9691b8df73e6f100297"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -299,6 +299,11 @@
       "path": "docs/resident-life-v112.md",
       "bytes": 3429,
       "sha256": "5bddd8fae9b878db3ae63886b13eedcff06f92c67f2d3b8d194fb4bde3036e20"
+    },
+    {
+      "path": "docs/save-capacity-v128.md",
+      "bytes": 3582,
+      "sha256": "a624459411c28fb397451eb9307827d79a3de152a12071aa86774292dc1daba5"
     },
     {
       "path": "docs/save-recovery-v115.md",
@@ -917,8 +922,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 7585,
-      "sha256": "d3d0402e605b6644e1dcd54cea6f55f5b45ebba9065a5bd3938dea4fe1515e57"
+      "bytes": 7742,
+      "sha256": "4a052f2e12e1aaef33c6a405de178e84d18fcb08249228cef19024fc4a89a06c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2567,8 +2572,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 34233,
-      "sha256": "a97d06d171b21f6358c9047acc7621dddca6c35d809e1f50032671f6dd9bbb8f"
+      "bytes": 34392,
+      "sha256": "b74ea990a15b330e970559804056a1fa93f41488774ca05e5719099a3097f723"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -3612,8 +3617,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 26783,
-      "sha256": "17c6b0194d005a33d9854b51ca0e700a2eefc80b9689bcc96895779307d17aff"
+      "bytes": 27001,
+      "sha256": "c9a7b5fa0d4d514010448625bf4d0f1714c52f3739a30dad64bef0dd5201b862"
     },
     {
       "path": "src/saveDelta.js",
@@ -3624,6 +3629,11 @@
       "path": "src/saveJournal.js",
       "bytes": 6720,
       "sha256": "35c170e3ff1f29a0b497ec7b8bac65d0c1e3f888e24c6afa9486724ca84bc74a"
+    },
+    {
+      "path": "src/saveLimits.js",
+      "bytes": 330,
+      "sha256": "8a7ae78d17e65019087eaa55dcdf471b0f89d4bc114fce8a769fac6834552c9b"
     },
     {
       "path": "src/saveResponse.js",
@@ -3642,8 +3652,8 @@
     },
     {
       "path": "src/saveUI.js",
-      "bytes": 8477,
-      "sha256": "e9c19e458a6b4bed7f914d321ba0de9536cf83986677bf783edf3615415ad579"
+      "bytes": 8552,
+      "sha256": "2ccd8b4d79a11b44688bbaddcd3b013f5e871696ea3860b29ddb36e60fd1fb87"
     },
     {
       "path": "src/saveWorker.js",
@@ -4459,6 +4469,16 @@
       "path": "tests/v125-terrain-preview.test.mjs",
       "bytes": 1717,
       "sha256": "7358c2ca29e790ea94560be07bb0be8c9ca717566d98e6f86b58a236eaed0f63"
+    },
+    {
+      "path": "tests/v128-save-capacity-browser.mjs",
+      "bytes": 6884,
+      "sha256": "38f1f0bdd080101dd5821fc4a8e0c1d0c3fbdc48b770ff71ff840abb79e1c90f"
+    },
+    {
+      "path": "tests/v128-save-capacity.test.mjs",
+      "bytes": 4341,
+      "sha256": "7b091500f6ead3c18e31838e2d3c085786a3413651d167e13bda64bb0cf2c421"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -5832,8 +5852,8 @@
     },
     {
       "path": "tests/v85-planning-authority.test.mjs",
-      "bytes": 14263,
-      "sha256": "8750e30f57d2aea8f6ddea2be4b2903d9d0609b512c25337e576808c5cd50e52"
+      "bytes": 14353,
+      "sha256": "84b91cf3f95b7ed4e82ad16f921739205306ddcec7d1cfe49434e26e964e7a15"
     },
     {
       "path": "tests/v85-planning-browser.mjs",
@@ -6746,5 +6766,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v125-github"
+  "publicRevision": "v128-github"
 }

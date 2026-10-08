@@ -1,3 +1,4 @@
+import {isSaveCapacityError} from './saveLimits.js';
 import {applySaveResponseActions} from './saveResponse.js';
 import {yieldForSave} from "./saveScheduler.js";
 import {mergeActionState,sameState} from './actionMerge.js';
@@ -162,8 +163,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     if(r.dirty)schedule(r);
    }catch(error){
     r.activeSeconds=0;
-    const name=['save_conflict','resource_state_conflict','planning_state_conflict','personal_state_conflict','farm_state_conflict','field_state_conflict','resident_state_conflict','visitor_state_conflict','commerce_state_conflict','party_state_conflict','night_state_conflict','hire_state_conflict','fishing_state_conflict','festival_state_conflict','couture_state_conflict','fireworks_state_conflict','facility_state_conflict','action_hold_conflict','lan_wallet_state','lan_wallet_cash'].includes(error.code)?'conflict':['save_corrupt','save_version','lan_travel_active'].includes(error.code)?'blocked':'offline';
-    status(r,name,error.code==='lan_travel_active'?error.message:name==='conflict'?(error.code==='resource_state_conflict'?'物资记录与服务端不一致 · 点击核对进度':'存档冲突 · 点击选择进度'):name==='blocked'?'存档异常 · 游戏已暂停':'服务未连接 · 浏览器暂存');
+    const name=isSaveCapacityError(error)?'blocked':['save_conflict','resource_state_conflict','planning_state_conflict','personal_state_conflict','farm_state_conflict','field_state_conflict','resident_state_conflict','visitor_state_conflict','commerce_state_conflict','party_state_conflict','night_state_conflict','hire_state_conflict','fishing_state_conflict','festival_state_conflict','couture_state_conflict','fireworks_state_conflict','facility_state_conflict','action_hold_conflict','lan_wallet_state','lan_wallet_cash'].includes(error.code)?'conflict':['save_corrupt','save_version','lan_travel_active'].includes(error.code)?'blocked':'offline';
+    status(r,name,isSaveCapacityError(error)?'存档容量不足 · 暂存已保留，请导出暂存并更新游戏':error.code==='lan_travel_active'?error.message:name==='conflict'?(error.code==='resource_state_conflict'?'物资记录与服务端不一致 · 点击核对进度':'存档冲突 · 点击选择进度'):name==='blocked'?'存档异常 · 游戏已暂停':'服务未连接 · 浏览器暂存');
     if(name==='offline')schedule(r,15000);
     throw error;
    }
@@ -196,7 +197,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   }catch(error){
    const uncertain=!Number.isInteger(error.status)||!error.code||error.status>=500||[401,403,408,429].includes(error.status)||error.code==='save_unavailable'||error.code==='save_busy';
    if(!uncertain)await forget(commandKey(theme));
-   status(r,error.code==='lan_travel_active'?'blocked':['save_conflict','resource_state_conflict'].includes(error.code)?'conflict':uncertain?'action_pending':'saved',uncertain?'作业结算待核对 · 请重试':error.message);
+   status(r,isSaveCapacityError(error)||error.code==='lan_travel_active'?'blocked':['save_conflict','resource_state_conflict'].includes(error.code)?'conflict':uncertain?'action_pending':'saved',uncertain?'作业结算待核对 · 请重试':error.message);
    await cache(r);throw error;
   }finally{r.commandSending=false;r.reconciling=false;if(r.dirty&&!read(commandKey(theme)))schedule(r);}
  }
