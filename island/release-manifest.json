@@ -232,8 +232,8 @@
     },
     {
       "path": "docs/shared-island-v118.md",
-      "bytes": 3861,
-      "sha256": "f54034bfcccf4f1f1598c2a01539f66823d00fb5a5c28d633e69820a25d46c13"
+      "bytes": 3840,
+      "sha256": "68562a2fc3bfb5bc602d62f137aa6f51d4732b22f40b89b66efc5ea37be0e568"
     },
     {
       "path": "docs/shopfronts-v113.md",
@@ -3982,8 +3982,8 @@
     },
     {
       "path": "tests/v118-chat-theme-browser.mjs",
-      "bytes": 8027,
-      "sha256": "a81bcf3aa160ea47c57c653db071196c3e6cb99b9e361190874acc889ac3b9e9"
+      "bytes": 8013,
+      "sha256": "d6a09ce50724abe333702007d7411370b373b892f80114b4e6b394f88523e2d3"
     },
     {
       "path": "tests/v118-resident-chat.test.mjs",
