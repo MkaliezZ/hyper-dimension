@@ -24,13 +24,15 @@ export function terrainViewport(matrix,width,height){
  return {x,y,w:Math.max(...points.map(p=>p.x))-x,h:Math.max(...points.map(p=>p.y))-y};
 }
 // Apply feather weights once in the worker; never read terrain pixels in the game loop.
-export function maskTerrain(data,width,height,tile){
+export function maskTerrainRows(data,width,height,tile,firstRow=0,rowCount=height){
  const b=tile.bounds;
- for(let py=0;py<height;py++)for(let px=0;px<width;px++){
-  const x=b.x+(px+.5)*b.w/width,y=b.y+(py+.5)*b.h/height,i=(py*width+px)*4;
+ for(let py=firstRow;py<Math.min(height,firstRow+rowCount);py++)for(let px=0;px<width;px++){
+  const x=b.x+(px+.5)*b.w/width,y=b.y+(py+.5)*b.h/height,i=((py-firstRow)*width+px)*4;
   let alpha=tileWeight(tile,x,y),distance=Math.min(TILE_MAP.width-x,TILE_MAP.height-y);
   const r=data[i],g=data[i+1],blue=data[i+2];
   if(distance<128&&g>r*1.45&&blue>r*1.65&&blue>g*.87)alpha*=smooth(distance/128);
   data[i+3]=Math.round(data[i+3]*alpha);
  }
 }
+
+export function maskTerrain(data,width,height,tile){maskTerrainRows(data,width,height,tile);}

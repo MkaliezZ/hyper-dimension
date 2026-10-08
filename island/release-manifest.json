@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v120-agent-source",
+  "release": "hyper-dimension-v122-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11456,
-      "sha256": "e21198d91ae16a456174802076ea9205505d0073b57cf78060a823ff43324d25"
+      "bytes": 11629,
+      "sha256": "125781ee9c9ef88030228c7bfad05e9b8067a9b3f1df96bf25540a5ffa98114e"
     },
     {
       "path": "README.md",
-      "bytes": 10458,
-      "sha256": "1e511e4b7aec045efac785e0ffd9e9936a25b96db29ae07985309fb59d205336"
+      "bytes": 10630,
+      "sha256": "d81003d631ea01113c2acac57a32d0d3afa6a666ad674da5301e0b93c7a0182c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -231,6 +231,26 @@
       "sha256": "8d96227074ca4e725e8c06b4ad07d2a7cd7529a0e03f61ad0b47aa20d41e26ac"
     },
     {
+      "path": "docs/media/v122/origami-overview.png",
+      "bytes": 3945683,
+      "sha256": "d6362a7397ee9a513e1f50e2159949cdd1c8ec82417a4abe02ce986288e9b77d"
+    },
+    {
+      "path": "docs/media/v122/origami-zoom3.png",
+      "bytes": 3506819,
+      "sha256": "e34ab96651f97d66c1e3a9359d97b4845562afeb6d312b68f6d36cd3b38c04fc"
+    },
+    {
+      "path": "docs/media/v122/pixel-overview.png",
+      "bytes": 4125553,
+      "sha256": "775ec77681ab5f337778d0053f7f61e1cb3f281fc58175ba69db19259e3789e9"
+    },
+    {
+      "path": "docs/media/v122/pixel-zoom3.png",
+      "bytes": 3487471,
+      "sha256": "a75dc69319bae8977d27971536eb5c6f4ae06a785b5b7bf753a091d6cf6933bf"
+    },
+    {
       "path": "docs/npc-recovery-v116.md",
       "bytes": 2882,
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
@@ -294,6 +314,11 @@
       "path": "docs/terrain-v120.md",
       "bytes": 2781,
       "sha256": "cc05bd19f4e05bc49bd5712826e76cc9c3ad626473213f5c4d83bd80e3934c14"
+    },
+    {
+      "path": "docs/terrain-v122.md",
+      "bytes": 3346,
+      "sha256": "58e3043e6c50b8e32c60c0ed180c1191cc8294d1115f64f864f7194553b5ab5f"
     },
     {
       "path": "index.html",
@@ -807,8 +832,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 7216,
-      "sha256": "dc089516308c21164814140d30b44d501df0c19ab3d94114706431bd860abd54"
+      "bytes": 7291,
+      "sha256": "149c401012b805dd8bbdd102ff2787cd3cd05a55326660de0671861b1399f72c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3127,8 +3152,13 @@
     },
     {
       "path": "src/mapTileLayout.js",
-      "bytes": 2541,
-      "sha256": "7d89895d0d0eb12a21a9cbbd0a0b90c499ca5d08bd4c880cc5c04de7ebfe0c47"
+      "bytes": 2713,
+      "sha256": "c707c4dd15aef99126a818158f9d5bef739302cd8cf16d59bc8610aa4204df7d"
+    },
+    {
+      "path": "src/mapTileLoader.js",
+      "bytes": 2580,
+      "sha256": "9046a8632c83aeab59be10e2733a9ae0d9787d023f31d03d8699dcece3c8afc5"
     },
     {
       "path": "src/mapTileWorker.js",
@@ -3137,8 +3167,8 @@
     },
     {
       "path": "src/mapTiles.js",
-      "bytes": 5339,
-      "sha256": "f66e74c7d68959e937d83c1fb09db33b9b0760bdfbec18d19bce5a0f74904617"
+      "bytes": 6127,
+      "sha256": "b62d0d6b48c3bb067a5b018c1bc76fc74c737357be3188ca6634868eead88eac"
     },
     {
       "path": "src/market-v87.css",
@@ -4232,8 +4262,8 @@
     },
     {
       "path": "tests/v119-map-game-browser.mjs",
-      "bytes": 4774,
-      "sha256": "c7ed27aee5d7b0d6a84528bc33fe0cec5431ea5b94c22cae4d81c3fae338dc4c"
+      "bytes": 5179,
+      "sha256": "0618fdfe30dff8bcce063bf139097ae603995f7aba3d443c6d660f4c94ef5cca"
     },
     {
       "path": "tests/v119-map-tiles.test.mjs",
@@ -4264,6 +4294,16 @@
       "path": "tests/v12-economy.test.mjs",
       "bytes": 5658,
       "sha256": "f22715a2bbdd9737e8376d0d7116170dcc29e6b6224e2e3b7704d83af7b76331"
+    },
+    {
+      "path": "tests/v122-map-loading-browser.mjs",
+      "bytes": 6380,
+      "sha256": "cfddbf15e3ececdf8ff890eb6464ba86bfd2283eee56edcaa662cf274d37dc27"
+    },
+    {
+      "path": "tests/v122-map-loading.test.mjs",
+      "bytes": 778,
+      "sha256": "e3f51895567ac5115d4848b9c22d45bcca7bf776c0106716ebc41a2740f2672e"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -6546,5 +6586,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v120-github"
+  "publicRevision": "v122-github"
 }

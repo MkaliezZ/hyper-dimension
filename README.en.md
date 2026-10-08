@@ -4,7 +4,9 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V120 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V122 is a playable development snapshot**, with full product acceptance still in progress.
+
+V122 completes high-resolution tile loading without worker support, with bounded retries for transient failures. [Native game checks in both styles](island/docs/terrain-v122.md).
 
 V120 uses the new terrain tiles in both the default overview and close-ups, with complete-view loading. [Changes and actual game checks](island/docs/terrain-v120.md).
 
