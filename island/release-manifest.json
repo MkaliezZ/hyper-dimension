@@ -4712,8 +4712,8 @@
     },
     {
       "path": "tests/v127-environment.test.mjs",
-      "bytes": 7432,
-      "sha256": "4a8e4d3a2724027b42188d83fc30b314e2655ddfcbc381cfc8f092e5c0d60776"
+      "bytes": 7457,
+      "sha256": "5e843cb4f5d710bdfb944aa66650ac06540746cd397945993e2672c7c514ef40"
     },
     {
       "path": "tests/v128-save-capacity-browser.mjs",
