@@ -7,7 +7,7 @@ export function worldRequest(input,init={},base=globalThis.location?.href){
  const url=new URL(String(input),base);if(url.origin!==new URL(base).origin||!url.pathname.startsWith('/api/'))return {input,init};
  const home=/^\/api\/(saves|recruitment|parties|cocreation|workbench|residents)\/(pixel|origami)(?=\/|$)/;
  if(home.test(url.pathname))url.pathname=url.pathname.replace(home,(_,service)=>'/api/'+service+'/'+storageTheme);
- if(url.pathname.startsWith('/api/lan/social/history/'))url.searchParams.set('theme',storageTheme);
+ if(url.pathname.startsWith('/api/lan/social/history/')||url.pathname.startsWith('/api/hermes/requests/'))url.searchParams.set('theme',storageTheme);
  let body=init.body;
  if(typeof body==='string'&&/^\/api\/(npc\/|hermes\/|lan\/steward)/.test(url.pathname)){try{const value=JSON.parse(body);if(value&&typeof value==='object'&&!Array.isArray(value))body=JSON.stringify({...value,theme:storageTheme});}catch{}}
  return {input:url.href,init:body===init.body?init:{...init,body}};

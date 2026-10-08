@@ -6,15 +6,15 @@ export function hydrateChat(s){
  const c=s.stewardChat;c.messages??=[];c.draft??='';c.sequence??=0;return c;
 }
 export function chatHistory(s){return hydrateChat(s).messages.filter(m=>m.status==='sent'&&m.role==='user'||m.status==='done'&&m.role==='assistant').slice(-12).map(m=>({role:m.role,content:((m.source==='local'?'[本地手账，未连接模型] ':'')+m.text).trim().slice(0,1400)}));}
-export function createStewardChat({state,profile,portrait,openModal,persist,request,edit,appearance,guide,health,manageTask,projects,recruit,party,workbench,previewArtifact}){
+export function createStewardChat({state,profile,portrait,openModal,persist,checkpoint,request,recover,edit,appearance,guide,health,manageTask,projects,recruit,party,workbench,previewArtifact}){
  let pending=null,followTail=true,resizeObserver=null;const taskBusy=new Set();let taskMessage='';
  const $=id=>document.getElementById(id);
- function init(){const c=hydrateChat(state());if(!pending)for(const m of c.messages)if(m.status==='pending'){m.status='error';m.text='上一轮对话已中断，尚未确认回复。你可以重试。'}return c}
+ function init(){const c=hydrateChat(state());if(!pending)for(const m of c.messages)if(m.status==='pending'&&(!recover||!/^[-A-Za-z0-9]{8,100}$/.test(m.requestId||''))){m.status='error';m.text='这条旧对话没有可核对的委托编号，请先查看文档成果再决定是否重试。'}return c}
  function open(){
   resizeObserver?.disconnect();
   const c=init(),r=profile(),brief=journeyBrief(state());
   const body='<div class="steward-chat-layout"><aside class="steward-companion">'+portrait()+'<div class="steward-guide"><small>手账里的下一步</small><b>'+esc(brief.step)+'</b><p>'+esc(brief.guidance)+'</p><button class="secondary" id="stewardGuide">打开手账 →</button></div><details class="steward-task-panel" open><summary>正在替你做的事</summary><div id="stewardTasks"></div></details></aside><section class="steward-thread"><div class="steward-thread-top"><span><i></i> 与 '+esc(r.name)+' 的对话</span><small id="hermesHealth">'+esc(health().hermes)+'</small><button class="secondary" id="stewardWorkbench" type="button">文档成果与工作项目 ↗</button></div><div id="stewardMessages" class="steward-messages" role="log" aria-label="与管家的对话记录" aria-live="polite"></div><div class="steward-suggestions"><button data-steward-prompt="我现在最适合做什么？请结合手账告诉我下一步。">下一步做什么</button><button data-steward-prompt="帮我办一场星灯夜集，请观察当前夜集手账，建立活动和实际物资筹备清单，关键邀请由我亲自完成。">一起准备夜集</button><button data-steward-prompt="帮我办一场花园海风主题的钓鱼小聚，请观察当前手账，推荐一位适合的主题嘉宾，并建立活动与物资筹备。关键邀请由我亲自完成。">一起办钓鱼小聚</button><button data-steward-prompt="帮我办一场手作与星空主题的海岛集市，请观察当前集市手账，保留三位必要摊主，推荐合适嘉宾并建立活动和实际物资清单。邀请由我亲自完成。">一起办手作集市</button><button data-steward-prompt="刚才安排的任务进展如何？哪些还没完成？">问问任务进展</button></div><form id="stewardForm" class="steward-composer"><div class="steward-compose-fields"><label for="hermesInput">写给 '+esc(r.name)+'</label><textarea id="hermesInput" rows="2" maxlength="1000" placeholder="聊小岛事务，或写下本机文件路径和需要完成的修改…">'+esc(c.draft)+'</textarea><div id="stewardResumeContext"></div><label class="steward-project-consent"><input id="stewardProjectConsent" type="checkbox" '+(c.includeWorkProject?'checked':'')+'> 手动委托使用当前项目资料<small>将目标、纪要和最近六份文件路径经 Hermes 发送给 DeepSeek Flash。</small></label></div><div class="steward-compose-actions"><small>Enter 寄出 · Shift + Enter 换行</small><button class="primary" id="hermesSend" type="submit">寄出 →</button></div></form></section></div>';
-  openModal(esc(r.name)+' · 你的随行管家','小岛筹备与本机文档，都可以直接交给我。',body,'<button class="primary" id="stewardProjects">协作筹备</button><button class="secondary" id="stewardRecruit">招聘伙伴</button><button class="secondary" id="stewardParty">活动手账</button><button class="secondary" id="stewardProfile">管家档案</button><button class="secondary" id="stewardAppearance">更换形象</button><button class="secondary" id="stewardClear">清空对话</button><span class="steward-storage">记录保存在当前画风的小岛 · 最近对话用于继续交流</span>');
+  openModal(esc(r.name)+' · 你的随行管家','小岛筹备与本机文档，都可以直接交给我。',body,'<button class="primary" id="stewardProjects">协作筹备</button><button class="secondary" id="stewardRecruit">招聘伙伴</button><button class="secondary" id="stewardParty">活动手账</button><button class="secondary" id="stewardProfile">管家档案</button><button class="secondary" id="stewardAppearance">更换形象</button><button class="secondary" id="stewardClear">清空对话</button><span class="steward-storage">对话跟随这座小岛保存 · 切换画风保留记录</span>');
   document.querySelector('#modalRoot .modal').classList.add('steward-conversation-modal');
   if(window.hdPersonalSteward){const link=document.createElement('button');link.className='secondary';link.id='stewardTravelHistory';link.textContent='随行对话与成果 ↗';link.onclick=()=>window.hdPersonalSteward.open();document.querySelector('.steward-thread-top').append(link);}
   $('stewardWorkbench').onclick=workbench;$('stewardProjects').onclick=projects;$('stewardParty').onclick=()=>party();$('stewardRecruit').onclick=recruit;$('stewardProfile').onclick=edit;$('stewardAppearance').onclick=appearance;$('stewardGuide').onclick=guide;
@@ -43,7 +43,7 @@ export function createStewardChat({state,profile,portrait,openModal,persist,requ
  }
  function paint(force=false){
   if(!$('stewardMessages'))return;const c=hydrateChat(state()),root=$('stewardMessages'),bottom=followTail;
-  const html=c.messages.length?c.messages.map(m=>'<article class="steward-message '+m.role+' '+m.status+'" data-message-id="'+m.id+'"><small>'+esc(m.role==='user'?state().playerProfile.name:profile().name)+' · '+(m.status==='pending'?'正在阅读与安排':m.status==='error'?'未收到回复':m.source==='local'?'本地手账':m.role==='assistant'?'Hermes':'第 '+m.day+' 天')+'</small><div class="steward-message-text">'+(m.status==='pending'?'<span class="steward-thinking"><i></i><i></i><i></i></span><span>正在处理你的委托；文档操作与岛内分工会显示实际执行结果。</span>':esc(m.text))+'</div>'+(m.planResults?.length?'<div class="steward-receipts">'+m.planResults.map(p=>'<p>'+esc(p.title)+' · '+(p.ok?'计划已登记，请在「协作筹备」查看进度':esc(p.reason||'未能登记计划'))+'</p>').join('')+'</div>':'')+(m.partyResults?.length?'<div class="steward-receipts">'+m.partyResults.map(p=>'<p>'+esc(p.title||'活动方案')+' · '+(p.ok?'第 '+p.version+' 版已登记；'+esc(p.waiting)+(p.projectId?'。物资清单已展开':'。筹备清单：'+esc(p.preparation)):esc(p.reason||'未登记'))+'</p>'+(p.ok?'<button class="secondary" data-steward-party="'+esc(p.template||'fishing')+'">打开活动手账 →</button>':'')).join('')+'</div>':'')+(m.artifacts?.length?'<div class="steward-document-cards">'+m.artifacts.map(v=>artifactCard(v,true)).join('')+'</div>':'')+(m.artifactWarning?'<p class="document-warning">'+esc(m.artifactWarning)+'</p>':'')+(m.operations?.length?hostReceipts(m):'')+(m.status==='done'&&m.source==='hermes'&&m.nativeSession?.canResume?'<button type="button" class="secondary" data-steward-resume="'+m.id+'">继续这项工作 →</button>':'')+(m.commands?.length?'<div class="steward-receipts">'+taskHTML(m.commands.map(x=>x.id))+'</div>':'')+(m.status==='error'||m.source==='local'?'<button class="steward-retry" data-retry="'+m.id+'" '+(pending?'disabled':'')+'>重试这一条 →</button>':'')+'</article>').join(''):'<article class="steward-welcome"><small>一封写给你的便笺</small><h3>今天想让小岛发生什么？</h3><p>可以聊一件小事，也可以一起准备一场热闹的夜集。也可以给我本机文件路径，让我读取、整理和修改文档。我会记住这段对话，并告诉你实际执行结果。</p><p class="steward-quiet">从下方选一句话，或直接写给我。</p></article>';
+  const html=c.messages.length?c.messages.map(m=>'<article class="steward-message '+m.role+' '+m.status+'" data-message-id="'+m.id+'"><small>'+esc(m.role==='user'?state().playerProfile.name:profile().name)+' · '+(m.status==='pending'?(m.receiptRecovery?'正在核对上次委托':'正在阅读与安排'):m.status==='error'?'未收到回复':m.source==='local'?'本地手账':m.role==='assistant'?'Hermes':'第 '+m.day+' 天')+'</small><div class="steward-message-text">'+(m.status==='pending'?'<span class="steward-thinking"><i></i><i></i><i></i></span><span>'+ (m.receiptRecovery?'正在读取原委托回执，不会重新调用模型或再次操作文档。':'正在处理你的委托；文档操作与岛内分工会显示实际执行结果。')+'</span>':esc(m.text))+'</div>'+(m.planResults?.length?'<div class="steward-receipts">'+m.planResults.map(p=>'<p>'+esc(p.title)+' · '+(p.ok?'计划已登记，请在「协作筹备」查看进度':esc(p.reason||'未能登记计划'))+'</p>').join('')+'</div>':'')+(m.partyResults?.length?'<div class="steward-receipts">'+m.partyResults.map(p=>'<p>'+esc(p.title||'活动方案')+' · '+(p.ok?'第 '+p.version+' 版已登记；'+esc(p.waiting)+(p.projectId?'。物资清单已展开':'。筹备清单：'+esc(p.preparation)):esc(p.reason||'未登记'))+'</p>'+(p.ok?'<button class="secondary" data-steward-party="'+esc(p.template||'fishing')+'">打开活动手账 →</button>':'')).join('')+'</div>':'')+(m.artifacts?.length?'<div class="steward-document-cards">'+m.artifacts.map(v=>artifactCard(v,true)).join('')+'</div>':'')+(m.artifactWarning?'<p class="document-warning">'+esc(m.artifactWarning)+'</p>':'')+(m.operations?.length?hostReceipts(m):'')+(m.status==='done'&&m.source==='hermes'&&m.nativeSession?.canResume?'<button type="button" class="secondary" data-steward-resume="'+m.id+'">继续这项工作 →</button>':'')+(m.commands?.length?'<div class="steward-receipts">'+taskHTML(m.commands.map(x=>x.id))+'</div>':'')+(m.status==='error'||m.source==='local'?'<button class="steward-retry" data-retry="'+m.id+'" '+(pending?'disabled':'')+'>重试这一条 →</button>':'')+'</article>').join(''):'<article class="steward-welcome"><small>一封写给你的便笺</small><h3>今天想让小岛发生什么？</h3><p>可以聊一件小事，也可以一起准备一场热闹的夜集。也可以给我本机文件路径，让我读取、整理和修改文档。我会记住这段对话，并告诉你实际执行结果。</p><p class="steward-quiet">从下方选一句话，或直接写给我。</p></article>';
   if(root.innerHTML!==html){root.innerHTML=html;if(bottom||force)root.scrollTop=root.scrollHeight}
   root.querySelectorAll('[data-host-receipt]').forEach(details=>{details.ontoggle=()=>{const message=hydrateChat(state()).messages.find(m=>m.id===Number(details.dataset.hostReceipt));if(message&&message.operationsOpen!==details.open){message.operationsOpen=details.open;persist();if(details.open&&followTail)root.scrollTop=root.scrollHeight}}});
   root.querySelectorAll('[data-steward-party]').forEach(b=>b.onclick=()=>party(b.dataset.stewardParty));
@@ -56,6 +56,22 @@ export function createStewardChat({state,profile,portrait,openModal,persist,requ
   $('hermesSend').disabled=!!pending;$('hermesSend').textContent=pending?'等候回复…':'寄出 →';
   $('stewardClear').disabled=!!pending;
   if($('hermesHealth'))$('hermesHealth').textContent=health().hermes;
+  if(!pending&&recover&&c.messages.some(m=>m.status==='pending'&&/^[-A-Za-z0-9]{8,100}$/.test(m.requestId||'')))queueMicrotask(recoverPending);
+ }
+ function applyReply(current,data){Object.assign(current,{text:String(data.answer||'本轮没有返回文本，请重试。'),status:data.answer?'done':'error',source:data.source||'local',commands:data.commands||[],planResults:data.planResults||[],partyResults:data.partyResults||[],operations:data.operations||[],artifacts:data.artifacts||[],artifactWarning:data.artifactWarning||null,ledgerRunId:data.ledgerRunId||null,nativeSession:data.session||null});delete current.receiptRecovery;const c=hydrateChat(state());if(current.resumeSessionId&&c.resumeSessionId===current.resumeSessionId&&data.session?.canResume)c.resumeSessionId=data.session.id;}
+ async function recoverPending(){
+  if(pending||!recover)return;const s=state(),m=hydrateChat(s).messages.find(m=>m.status==='pending'&&/^[-A-Za-z0-9]{8,100}$/.test(m.requestId||''));if(!m)return;
+  const owner={state:s,id:m.id,recovery:true};pending=owner;m.receiptRecovery=true;persist();paint();
+  const owns=()=>pending===owner&&state().saveSlot===s.saveSlot;
+  const current=()=>hydrateChat(state()).messages.find(x=>x.id===m.id&&x.userId===m.userId&&x.requestId===m.requestId);
+  try{const until=Date.now()+270000;while(owns()){
+   const receipt=await recover(m.requestId);if(!owns())return;const next=current();if(!next)return;
+   if(receipt?.status==='completed'&&receipt.result){applyReply(next,receipt.result);return;}
+   if(!receipt||receipt.status!=='running')throw Error(receipt?.error||'没有找到这条委托的确认结果。请先检查文档成果，再决定是否发起新的工作。');
+   if(Date.now()>=until)throw Error('原委托仍未确认，请先检查文档成果；恢复没有再次执行工具。');
+   await new Promise(resolve=>setTimeout(resolve,1500));
+  }}catch(e){if(owns()){const next=current();if(next){next.status='error';next.text=e.message;delete next.receiptRecovery;}}}
+  finally{if(owns()){pending=null;persist();paint();}}
  }
  async function send(retryId=null){
   if(pending)return;
@@ -65,16 +81,20 @@ export function createStewardChat({state,profile,portrait,openModal,persist,requ
   let userId=failed?.userId;
   if(!failed){userId=++c.sequence;c.messages.push({id:userId,role:'user',text,status:'sent',day:s.day});c.draft='';if($('hermesInput'))$('hermesInput').value=''}
   if(failed){failed.status='superseded'}
-  const reply={resumeSessionId:failed?.resumeSessionId||(!failed?c.resumeSessionId:undefined),requestId:failed?.source==='local'&&!(failed.operations||[]).some(o=>o.status!=='failed')?crypto.randomUUID():failed?.requestId||crypto.randomUUID(),id:++c.sequence,role:'assistant',text:'',request:text,userId,status:'pending',day:s.day};c.messages.push(reply);c.messages=c.messages.filter(m=>m.status!=='superseded').slice(-60);
+  const freshLocal=failed?.source==='local'&&!(failed.operations||[]).some(o=>o.status!=='failed');
+  const reply={includeWorkProject:failed&&!freshLocal?failed.includeWorkProject===true:c.includeWorkProject===true,resumeSessionId:failed?.resumeSessionId||(!failed?c.resumeSessionId:undefined),requestId:freshLocal?crypto.randomUUID():failed?.requestId||crypto.randomUUID(),id:++c.sequence,role:'assistant',text:'',request:text,userId,status:'pending',day:s.day};c.messages.push(reply);c.messages=c.messages.filter(m=>m.status!=='superseded').slice(-60);
   pending={state:s,id:reply.id};persist();paint(true);
   const ownsReply=()=>pending?.state===s&&pending?.id===reply.id&&state().saveSlot===s.saveSlot;
   const currentReply=()=>hydrateChat(state()).messages.find(m=>m.id===reply.id&&m.userId===userId&&m.request===text);
+  let submitted=false;
   try{
-   const data=await request(text,!!failed,history,{includeWorkProject:!!c.includeWorkProject,requestId:reply.requestId,resumeSessionId:reply.resumeSessionId});
+   if(checkpoint)await checkpoint();
+   if(!ownsReply())return;
+   submitted=true;
+   const data=await request(text,!!failed,history,{includeWorkProject:reply.includeWorkProject,requestId:reply.requestId,resumeSessionId:reply.resumeSessionId});
    if(!ownsReply())return;const current=currentReply();if(!current)return;
-   Object.assign(current,{text:String(data.answer||'本轮没有返回文本，请重试。'),status:data.answer?'done':'error',source:data.source||'local',commands:data.commands||[],planResults:data.planResults||[],partyResults:data.partyResults||[],operations:data.operations||[],artifacts:data.artifacts||[],artifactWarning:data.artifactWarning||null,ledgerRunId:data.ledgerRunId||null,nativeSession:data.session||null});
-   const chat=hydrateChat(state());if(reply.resumeSessionId&&chat.resumeSessionId===reply.resumeSessionId&&data.session?.canResume)chat.resumeSessionId=data.session.id;
-  }catch(e){if(!ownsReply())return;const current=currentReply();if(!current)return;current.status='error';current.text='这一条还没有收到确认：'+e.message+'。已保留你的话，可以重试。'}
+   applyReply(current,data);
+  }catch(e){if(!ownsReply())return;const current=currentReply();if(!current)return;current.status='error';current.text=(submitted?'这一条还没有收到确认：':'进度尚未保存，委托没有寄出：')+e.message+'。已保留你的话。'}
   finally{if(ownsReply()){pending=null;persist();paint();}}
  }
  return {open,paint,reset:()=>{pending=null},busy:()=>!!pending};

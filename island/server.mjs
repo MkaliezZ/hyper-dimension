@@ -1,3 +1,5 @@
+import {createStewardRequestStore} from './server/stewardRequestStore.mjs';
+import {randomUUID} from 'node:crypto';
 import {createPortfolioStore} from './server/portfolioStore.mjs';
 import {servePortfolio} from './server/portfolioHttp.mjs';
 import {createEnvironmentService} from './server/environmentService.mjs';
@@ -25,6 +27,7 @@ const environmentService=await createEnvironmentService({directory:process.env.H
 const rawSaves=createSaveStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
 const worldSession=createWorldSession({directory:rawSaves.directory,saves:rawSaves}),saves=bindWorldStore(rawSaves,worldSession);
 const portfolio=createPortfolioStore({directory:rawSaves.directory});
+const stewardRequests=createStewardRequestStore({directory:rawSaves.directory});
 const residentChat=createResidentChatStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),saves,run:chatWithResident});
 const cocreation=createCoCreationStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),worldExists:async(style,key)=>{const d=await saves.current(style);return !!d&&key===(d.state.saveSlot||'legacy-'+style);}});
 const recruitment=createRecruitmentService({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),saves,run:recruitmentRun,cancel:cancelRecruitmentRun});
@@ -44,12 +47,14 @@ async function askHermes(data){
  // Legacy callers share the isolated, pinned Hermes worker rather than CLI defaults.
  return manualSteward({...data,message});
 }
-async function manualSteward(data){const style=['pixel','origami'].includes(data.theme)?data.theme:theme;const doc=await saves.current(style);return steward({...data,...manualPartyContext(doc?.state,style,{saveSlot:data.saveSlot}),theme:style,automatic:false});}
+async function manualSteward(data){const style=['pixel','origami'].includes(data.theme)?data.theme:theme;const doc=await saves.current(style),context=manualPartyContext(doc?.state,style,{saveSlot:data.saveSlot}),requestId=data.requestId||randomUUID(),worldKey=context.saveSlot||'legacy-'+style;return stewardRequests.run({...data,requestId,worldKey},()=>steward({...data,...context,requestId,theme:style,automatic:false}));}
 const server=createServer(async(req,res)=>{
  try{
   const pathname=decodeURIComponent(new URL(req.url,`http://${req.headers.host}`).pathname);
   if(pathname.startsWith('/api/')&&!allowLocalAgentRequest(req,port))return sendJSON(res,403,{error:'本机代理接口只接受当前小岛页面的 JSON 请求'});
   if(await servePortfolio({req,res,pathname,store:portfolio,owner:true,authorId:'local-owner',authorName:'本岛岛主',readJSON,sendJSON}))return;
+  const stewardReceipt=pathname.match(/^\/api\/hermes\/requests\/([-A-Za-z0-9]{8,100})$/);
+  if(stewardReceipt){if(req.method!=='GET')return sendJSON(res,405,{error:'委托回执只支持读取'});const style=new URL(req.url,'http://local').searchParams.get('theme')||theme;if(!['pixel','origami'].includes(style))return sendJSON(res,400,{error:'画风无效'});const doc=await saves.current(style);return sendJSON(res,200,{request:await stewardRequests.get(doc?.state?.saveSlot||'legacy-'+style,stewardReceipt[1])});}
   if(pathname==='/api/world/session'&&req.method==='GET')return sendJSON(res,200,await worldSession.open(theme));
   if(pathname==='/api/status'&&req.method==='GET'){try{const runs=await runLedger.snapshot(),agents=agentStatus();agents.automaticRequests=runs.channels;return sendJSON(res,200,{deepseek:!!key,hermes:agents.hermes.configured,theme,agents,saveProtocol:{initialAuthority:1,importPreview:1,signedExport:1,personal:1,planningTransactions:1,planningAuthority:1,inventoryAuthoritative:true,gather:1,craft:1,craftInputReplay:true,craftCheckpointSeconds:5,farm:1,farmActiveClock:true,field:1,fieldInputReplay:true,resident:1,visitor:1,commerce:1,dayActiveClock:true,party:1,nightPlanning:1,stewardPartyTemplates:['fishing','night','market','couture','fireworks'],festival:1,marketInputReplay:true,couture:1,fireworks:1,coutureInputReplay:true,partyInputReplay:true,hire:1,fishing:1,fishingInputReplay:true,facility:1,facilityActiveClock:true,placement:1,cocreation:1,cocreationInputReplay:true}})}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/admin/runtime'&&req.method==='GET'){try{return sendJSON(res,200,await runLedger.snapshot())}catch(e){return sendAgentError(res,e)}}

@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,writeFile,appendFile,readFile} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {chromium} from 'playwright-core';
+import {createLanHttpServer} from '../server/lanServer.mjs';
+import {browserLaunchOptions} from './browserRuntime.mjs';
+const out=resolve(process.env.HD_QA_OUT||'qa/v136/steward-recovery');await mkdir(out,{recursive:true});const directory=await mkdtemp(join(out,'data-')),calls=[],gates=new Map();
+const factory=({directory,ownerId})=>({documents:join(directory,'documents'),async call(method,args={}){
+ if(method==='status')return{hermes:{configured:true,model:'deepseek-flash'},deepseek:{configured:true,model:'deepseek-flash'}};
+ if(method!=='command')throw Error('Automatic model calls disabled in fixture');
+ const file=join(directory,'documents',args.message.replace(/[^a-z0-9-]/g,'-')+'.txt');await mkdir(join(directory,'documents'),{recursive:true});calls.push({ownerId,message:args.message,requestId:args.requestId,includeWorkProject:args.includeWorkProject,file});await appendFile(file,'one execution\n');
+ if(args.message.startsWith('running-'))await new Promise(r=>gates.set(args.message,r));
+ if(args.message.startsWith('unconfirmed-'))throw Error('Fixture interruption after actual file write');
+ return{source:'hermes',answer:'隔离测试文件已保存并核对。',commands:[],plans:[],operations:[{tool:'document_write',status:'done'}]};
+ },async close(){for(const release of gates.values())release();gates.clear();}});
+const service=await createLanHttpServer({directory,port:0,enrollmentKey:'ISOLATED-RECEIPT-TEST',agentRuntimeFactory:factory}),base='http://127.0.0.1:'+service.port;
+const report={scope:'Actual authenticated LAN endpoints, native game UI and durable server saves; fixture agent performs real isolated file writes. No external model, real user data or game-state injection.',checks:[],errors:[]};let browser;
+const waitFor=async(fn,timeout=15000)=>{const until=Date.now()+timeout;while(Date.now()<until){if(await fn())return;await new Promise(r=>setTimeout(r,100));}throw Error('Timed out waiting for fixture condition');};
+async function open(context){const p=await context.newPage();p.on('pageerror',e=>report.errors.push(e.message));await p.goto(base+'/play?qa=1');await p.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!document.getElementById('app').hasAttribute('aria-busy'),null,{timeout:60000});if(await p.locator('#startFirstDay').isVisible())await p.locator('#startFirstDay').click();await p.locator('#stewardBtn').click();await p.locator('#hermesInput').waitFor();return p;}
+async function context(token){const owner=await service.identities.authorize(token);const c=await browser.newContext({viewport:{width:1440,height:1000},extraHTTPHeaders:{'X-HD-Island':owner.id}});await c.addCookies([{name:'hd_lan_session',value:token,url:base,httpOnly:true,sameSite:'Strict'}]);await c.route('**/api/npc/**',r=>r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated automatic requests"}'}));await c.route('**/api/hermes/plan',r=>r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated automatic requests"}'}));return c;}
+async function done(p,message){await p.waitForFunction(m=>window.islandInspect().chat.messages.some(x=>x.request===m&&x.status==='done'),message,{timeout:30000});}
+const bodyMessage=r=>{try{return r.request().postDataJSON()?.message}catch{return null}};
+try{browser=await chromium.launch(browserLaunchOptions());
+ for(const theme of ['pixel','origami']){
+  console.log('Checking',theme);const user=await service.identities.register({login:'recovery_'+theme,password:'isolated-fixture-only',name:'回执测试岛主',islandName:'回执验证岛',theme,avatar:'male_0'}),token=user.token;let c=await context(token),p=await open(c);
+  // A failed preflight save must not reach the agent. A later explicit retry may send it once.
+  const blocked='blocked-'+theme;await c.route('**/api/saves/*/save',r=>r.fulfill({status:503,contentType:'application/json',body:'{"error":"fixture save offline","code":"save_unavailable"}'}));await p.locator('#hermesInput').fill(blocked);await p.locator('#hermesSend').click();await p.waitForFunction(m=>islandInspect().chat.messages.some(x=>x.request===m&&x.status==='error'&&x.text.includes('没有寄出')),blocked);assert.equal(calls.filter(x=>x.message===blocked).length,0);await c.unroute('**/api/saves/*/save');await p.locator('[data-retry]').last().click();await done(p,blocked);assert.equal(calls.filter(x=>x.message===blocked).length,1);await p.locator('#closeModal').click();await p.locator('#saveStatus').click();await p.locator('#saveNow').click();await p.waitForFunction(()=>document.querySelector('#saveStatus').dataset.status==='saved');await p.locator('#closeModal').click();await p.locator('#stewardBtn').click();
+  // Lose only the completed HTTP response. Hold later autosaves so fresh storage must recover the server's pending letter.
+  const lost='lost-'+theme;let lostId,drop=false;
+  await c.route('**/api/hermes/command',async r=>{if(bodyMessage(r)!==lost)return r.continue();lostId=r.request().postDataJSON().requestId;const response=await r.fetch();assert.equal(response.status(),200);drop=true;return r.abort('failed');});
+  await c.route('**/api/saves/*/save',r=>drop?r.fulfill({status:503,contentType:'application/json',body:'{"error":"fixture response lost","code":"save_unavailable"}'}):r.continue());
+  await p.locator('#hermesInput').fill(lost);await p.locator('#hermesSend').click();await waitFor(()=>drop);await p.waitForFunction(m=>islandInspect().chat.messages.some(x=>x.request===m&&x.status==='error'),lost);await c.close();c=await context(token);p=await open(c);await done(p,lost);assert.equal(calls.filter(x=>x.message===lost).length,1);assert.equal((await readFile(calls.find(x=>x.message===lost).file,'utf8')).trim(),'one execution');
+  const receipt=await c.request.get(base+'/api/hermes/requests/'+lostId+'?theme='+theme),receiptBody=await receipt.json();assert.equal(receipt.status(),200,JSON.stringify(receiptBody));assert.equal(receiptBody.request?.status,'completed',JSON.stringify({receiptBody,storage:await p.evaluate(()=>islandInspect().saveTheme),lostId}));
+  const stranger=await service.identities.register({login:'stranger_'+theme,password:'isolated-fixture-only',name:'另一位测试岛主',islandName:'另一座验证岛',theme,avatar:'female_0'});const other=await context(stranger.token);await other.request.post(base+'/api/saves/'+theme+'/open',{data:{}});assert.equal((await(await other.request.get(base+'/api/hermes/requests/'+lostId+'?theme='+theme)).json()).request,null);await other.close();
+  assert.equal((await fetch(base+'/api/hermes/requests/'+lostId+'?theme='+theme)).status,401);
+  // Reload while a job is executing after its file write; only receipt GETs recover it.
+  const running='running-'+theme;await p.locator('#hermesInput').fill(running);await p.locator('#hermesSend').click();await waitFor(()=>gates.has(running));await p.reload();await p.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!document.getElementById('app').hasAttribute('aria-busy'),null,{timeout:60000});await p.locator('#stewardBtn').click();await p.getByText('正在核对上次委托',{exact:false}).first().waitFor();gates.get(running)();gates.delete(running);await done(p,running);assert.equal(calls.filter(x=>x.message===running).length,1);
+  // Completed service task result is durable; stop browser storage writes then reopen from the server.
+  const unconfirmed='unconfirmed-'+theme;let submitted=false;
+  await c.route('**/api/hermes/command',async r=>{if(bodyMessage(r)===unconfirmed)submitted=true;return r.continue()});
+  await c.route('**/api/saves/*/save',r=>submitted?r.fulfill({status:503,contentType:'application/json',body:'{"error":"fixture save unavailable","code":"save_unavailable"}'}):r.continue());
+  await p.locator('#hermesInput').fill(unconfirmed);await p.locator('#hermesSend').click();await p.waitForFunction(m=>islandInspect().chat.messages.some(x=>x.request===m&&x.status==='error'),unconfirmed);await c.close();c=await context(token);p=await open(c);await p.waitForFunction(m=>islandInspect().chat.messages.some(x=>x.request===m&&x.status==='error'&&x.text.includes('Fixture interruption')),unconfirmed);await p.waitForTimeout(1700);assert.equal(calls.filter(x=>x.message===unconfirmed).length,1);assert.equal((await readFile(calls.find(x=>x.message===unconfirmed).file,'utf8')).trim(),'one execution');await p.screenshot({path:join(out,theme+'-unconfirmed.png')});
+  report.checks.push({theme,saveBeforeAgent:true,failedSaveDoesNotCallAgent:true,explicitRetryWritesOnce:true,lostResponseRecoveryFromEmptyBrowser:true,executingReloadWritesOnce:true,unconfirmedNoAutomaticReplay:true,crossOwnerReceiptHidden:true,unauthenticatedReceiptDenied:true});await c.close();
+ }assert.deepEqual(report.errors,[]);report.passed=true;report.fileExecutions=calls.length;
+}catch(e){report.failure=e.stack;process.exitCode=1;console.error(e.stack);}
+finally{await browser?.close();for(const release of gates.values())release();await service.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));}

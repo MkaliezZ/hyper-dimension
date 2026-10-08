@@ -61,6 +61,8 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  if(pathname==='/api/lan/activities'&&req.method==='GET'){throttle(req,'normal');return json(res,200,{view:await activities.view(token(req))});}
  if(pathname==='/api/lan/activities/action'&&req.method==='POST'){throttle(req,'normal');return json(res,200,await activities.action(token(req),await body(req,220000)));}
  if(pathname==='/api/lan/action'&&req.method==='POST'){throttle(req,'normal');const input=await body(req);if(['room_create','room_join','travel_invite','travel_remove'].includes(input.operation)){const a=await identities.authorize(token(req));if(!await tenants.readIslandForServer(a.id,a.profile.theme))await tenants.open(token(req),a.profile.theme,{});}const result=await identities.action(token(req),input);if(['room_leave','room_close'].includes(input.operation))await social.reconcileRooms();return json(res,200,result);}
+ const stewardReceipt=pathname.match(/^\/api\/hermes\/requests\/([-A-Za-z0-9]{8,100})$/);
+ if(stewardReceipt){if(req.method!=='GET')return json(res,405,{error:'委托回执只支持读取'});throttle(req,'normal');return json(res,200,{request:await agents.receipt(token(req),stewardReceipt[1],new URL(req.url,'http://local').searchParams.get('theme'))});}
  if(pathname.startsWith('/api/')){
  const context=await tenants.get(token(req));
  if(pathname==='/api/world/session'&&req.method==='GET')return json(res,200,await context.worldSession.open(context.account.profile.theme));

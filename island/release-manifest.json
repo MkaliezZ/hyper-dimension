@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v135-agent-source",
+  "release": "hyper-dimension-v136-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 7553,
-      "sha256": "ef95cce8c584587f16ef70b1e11fa945816a2c3add67230d54a914be4bf7bde5"
+      "bytes": 7899,
+      "sha256": "5211d2447cc886efffcff28caee5069aa5be869584253ca437fea78a0386fc4e"
     },
     {
       "path": "README.md",
-      "bytes": 6997,
-      "sha256": "d39d861e68cf29c358e81f3616c3426c664079e4768f321155387805ac083fe3"
+      "bytes": 7306,
+      "sha256": "f0f57cca101977a519968f6a602813a72f2e8796d5956ed152647290da4c886a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 2174,
-      "sha256": "f843d165f299bc07808728e8cecc0898121222d5d7275b632950b6185e88402f"
+      "bytes": 2381,
+      "sha256": "45f9f363af3c559d98ba9dbe02c9c4e3d8e3bb234a8939e0a9c1e55fcc2c88fb"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 8431,
-      "sha256": "732bc39b87f25e4c02c982b1a21347f8dad02e8205929c967d153da9a1cd9c09"
+      "bytes": 9609,
+      "sha256": "07ee1b335c7d37d6a0a560285708f624acbbf74aa9fa57c05cc977800343b4f0"
     },
     {
       "path": "docs/classic-settlement-v110.md",
@@ -584,6 +584,11 @@
       "path": "docs/showcase-v135.md",
       "bytes": 4843,
       "sha256": "9920899d7ff2df92c3d62963fa0724216d58555469ea17fd5011b90642c669e9"
+    },
+    {
+      "path": "docs/steward-recovery-v136.md",
+      "bytes": 4351,
+      "sha256": "22e65028f1fa200c91c9a183cf6bc51d2f10f395eaf0493ff00e6d2930458931"
     },
     {
       "path": "docs/terrain-art-v119.json",
@@ -1152,8 +1157,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8265,
-      "sha256": "fd5899e5197d3963fcc108cc7ee7cba8f108564392bff62cc1c43e042d0f80f4"
+      "bytes": 8302,
+      "sha256": "532ba29ae39f60be425bc7c84312a205709dec8743d6be7a56183bbecbe96a9a"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2752,8 +2757,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 14898,
-      "sha256": "2e9da2b35d08b5395dd712f16091091055c2b138a5f1485cfe93a4d2b5fbcc74"
+      "bytes": 15776,
+      "sha256": "4d315b99215f10d888dda6f7b948a7ca295b226fbb3a4007ce850474298e7d22"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -2887,8 +2892,8 @@
     },
     {
       "path": "server/lanAgentService.mjs",
-      "bytes": 15751,
-      "sha256": "a72a6fb1b5975c99a40aa13186318eddb7bbcd8e3cc714facbd4a5d2283b768c"
+      "bytes": 16307,
+      "sha256": "d6cb608a11f25fa4ae3cb9fd23ec7a656cf909a47dabeefcb293d20df1864ed6"
     },
     {
       "path": "server/lanAgentWorker.mjs",
@@ -2922,8 +2927,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 22497,
-      "sha256": "2405673a8beec2beb40a2b7c66e29fea88a409d81ff54508858d9e4f5765fad2"
+      "bytes": 22853,
+      "sha256": "c6cba05ff5b197e7e79a27b60a3ac097a99d3cf42bd579eabd6a1f37740d472d"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -3141,6 +3146,11 @@
       "sha256": "262e1988626c19a1a0cb3348a131e772fff9628f37d63460092c023e95bd971c"
     },
     {
+      "path": "server/stewardRequestStore.mjs",
+      "bytes": 5991,
+      "sha256": "a8c6698351e0f76dd73750edd0221c857abc068762e3217dd2570e2af8223ef0"
+    },
+    {
       "path": "server/steward_host.py",
       "bytes": 7668,
       "sha256": "47295238048f15c512a8a084979598f890e04b0aab305433023c61a5898ff5e9"
@@ -3212,8 +3222,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 134084,
-      "sha256": "5cebaa89343fe56113e5a2dc532f92c7d0bc7298b645c78e5a35d82898a1504a"
+      "bytes": 134304,
+      "sha256": "b178430fde08801a53b4414dae1ce436257fa4604d57b01957ded3d6b1dc586b"
     },
     {
       "path": "src/arcade.css",
@@ -4177,8 +4187,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 36828,
-      "sha256": "086d5efac80d033dd117b977efbdbe12cb3726af0771f65565b7b7a0b5c6cefc"
+      "bytes": 37832,
+      "sha256": "f1e0f73090ee69b6442f437c572ed66e35f61891a0281507ca0146bb49166293"
     },
     {
       "path": "src/residentSocialTopics.js",
@@ -4397,8 +4407,8 @@
     },
     {
       "path": "src/stewardChat.js",
-      "bytes": 16652,
-      "sha256": "3140746ed907791b8569414887ee3ae4b57a45acf530cc26d26cd94843127284"
+      "bytes": 18690,
+      "sha256": "47284512581624521076d87ad62bbb56d0cb6771f7dc880b8dd84a0f55ee165e"
     },
     {
       "path": "src/stewardParties.js",
@@ -4507,8 +4517,8 @@
     },
     {
       "path": "src/worldSession.js",
-      "bytes": 1370,
-      "sha256": "e8757b1afba0ae55dd5a58dfa54f6a04ab284e37fdf5165377d79b9d83e1222a"
+      "bytes": 1420,
+      "sha256": "7ffbbc3f8350e0199c0e493e0cd1b186dacf36ef15e6157aa1eb11cf07c3687c"
     },
     {
       "path": "src/worldSound.js",
@@ -4992,8 +5002,8 @@
     },
     {
       "path": "tests/v118-world-appearance.test.mjs",
-      "bytes": 6905,
-      "sha256": "34f77ea52aeae80f578beda4abb8d464228551bedb9b3c69a67e91d8d120d836"
+      "bytes": 7043,
+      "sha256": "ad2ad67a89e67d14af3d9a14d9280ac7864195b7fc856186af1f50d15e98263c"
     },
     {
       "path": "tests/v119-hoe-browser.mjs",
@@ -5154,6 +5164,21 @@
       "path": "tests/v135-agent-context.test.mjs",
       "bytes": 2574,
       "sha256": "ab4eb581cd9af2d86e78317a2f9a4d2633e38f755c12930944425df9085427f9"
+    },
+    {
+      "path": "tests/v136-steward-receipts.test.mjs",
+      "bytes": 7189,
+      "sha256": "a3755614fb968ca7e39ef52f5039de32902af8bfbf6d0a3f3d473772e88342cf"
+    },
+    {
+      "path": "tests/v136-steward-recovery-browser.mjs",
+      "bytes": 9346,
+      "sha256": "7a8ac3b82c4fba2801e832fcf1263a192f6de198320f1a4ddee21fa12e21ebea"
+    },
+    {
+      "path": "tests/v136-steward-single-browser.mjs",
+      "bytes": 6687,
+      "sha256": "0dd7c27ed3aeaa860f1d4f69514d45c1cdcfacda1ed4b26bdb97893b617fd5a4"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",

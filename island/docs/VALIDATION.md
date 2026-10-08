@@ -1,6 +1,6 @@
 # Validation / 验收说明
 
-以下按版本保留历史证据；当前 V135 结果见本文末尾。 / Historical evidence is retained by version; current V135 results are at the end.
+以下按版本保留历史证据；当前 V136 结果见本文末尾。 / Historical evidence is retained by version; current V136 results are at the end.
 
 ## V107 · 历史基线 / Historical baseline
 
@@ -62,3 +62,10 @@ The local default release suite passes 807 / 807 checks (793 domain checks, then
 本次 30／45 秒宣传片从当前代码重新录制，2560 × 1440、60 fps，含馆内介绍、经历、项目图片和留言，也展示真实 Flash 居民互动、管家形象、Hermes 协商与实际创建／回读的 Word 文件。虚构档案、工作资料和小游戏占位身份在成片中明确标注。[会客馆](gallery-ui-v135.md) · [成片验证](showcase-v135.md)。旧 V107／V108 视频仍属历史记录；完整产品、实体 Mac、真人和商业验收仍待完成。
 
 The current default suite passes 808 / 808 checks (794 domain checks followed by 14 maintenance checks). Both themed gallery flows and six responsive-layout cases passed. Current 1440p60 footage includes the actual gallery interior and real provider/tool evidence, with fictional content and placeholder minigames explicitly labeled. These scoped checks do not close the original full-product acceptance scope.
+
+
+## V136 · 管家异常恢复 / Steward recovery
+
+816 / 816 默认检查通过（802 项领域检查，随后 14 项维护检查），包含八项新的持久化／进程争抢／写入后中断检查。双画风原生联机页面通过四类异常场景及权限验证，执行端为写入真实隔离文件的夹具；双画风单机页面另用真实 Hermes／deepseek-flash 文档工具加一、保存回读，在丢失回复、空浏览器重开及同编号 HTTP 重试后保持文件为 1，每种画风只有一次手动模型委托。[恢复协议与证据](steward-recovery-v136.md)。
+
+The default suite passes 816 / 816 checks (802 domain, then 14 maintenance), including eight new durable-receipt and process/race checks. Both themed native LAN flows cover four interruption cases and owner/authentication boundaries with an isolated file-writing fixture. Separate native standalone runs use real Hermes/deepseek-flash tools: each numeric file remains 1 after a lost reply, empty-browser recovery and an identical HTTP replay, with one manual model request per style. This focused result does not close the original full-game, long-term or human acceptance scope.
