@@ -4,11 +4,11 @@ const server=spawn(process.execPath,['server.mjs','--port='+port,'--theme=pixel'
 const html=`<!doctype html><html><body style="margin:0;background:#1684ae;overflow:hidden"><canvas id="map"></canvas><script type="module">
 import{drawTerrainTiles,terrainTileStatus}from'/src/mapTiles.js';import{drawIslandRaster}from'/src/rasterQuality.js';
 const c=document.getElementById('map'),ctx=c.getContext('2d'),images={},sea={};
-for(const t of ['pixel','origami']){images[t]=new Image();images[t].src='/assets/island-'+t+'-v9.png';sea[t]=new Image();sea[t].src='/assets/sea-'+t+'-v5.png';}
+for(const t of ['pixel','origami']){images[t]=new Image();images[t].src='/assets/map-tiles-v125/'+t+'-overview.png';sea[t]=new Image();sea[t].src='/assets/sea-'+t+'-v5.png';}
 await Promise.all([...Object.values(images),...Object.values(sea)].map(i=>i.decode()));
 let cfg={theme:'pixel',scale:1,x:0,y:0},used=false,frames=0,peakPending=0,maxFrameMs=0,last=0;
 c.width=1536;c.height=1024;window.configure=v=>{cfg={...cfg,...v};};
-function frame(now){if(last)maxFrameMs=Math.max(maxFrameMs,now-last);last=now;frames++;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,c.width,c.height);ctx.setTransform(cfg.scale,0,0,cfg.scale,-cfg.x*cfg.scale,-cfg.y*cfg.scale);ctx.drawImage(sea[cfg.theme],0,0,1856,1248);used=drawTerrainTiles(ctx,cfg.theme);if(!used)drawIslandRaster(ctx,images[cfg.theme],cfg.theme,{width:1536,height:1024},0,0,1536,1024);peakPending=Math.max(peakPending,terrainTileStatus().pending);requestAnimationFrame(frame);}requestAnimationFrame(frame);
+function frame(now){if(last)maxFrameMs=Math.max(maxFrameMs,now-last);last=now;frames++;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,c.width,c.height);ctx.setTransform(cfg.scale,0,0,cfg.scale,-cfg.x*cfg.scale,-cfg.y*cfg.scale);ctx.drawImage(sea[cfg.theme],0,0,1856,1248);used=drawTerrainTiles(ctx,cfg.theme);if(!used)ctx.drawImage(images[cfg.theme],0,0,1536,1024);peakPending=Math.max(peakPending,terrainTileStatus().pending);requestAnimationFrame(frame);}requestAnimationFrame(frame);
 window.review=()=>({status:terrainTileStatus(),used,frames,peakPending,maxFrameMs});
 </script></body></html>`;
 try{

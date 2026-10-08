@@ -1,4 +1,4 @@
-import {maskTerrainRows} from './mapTileLayout.js';
+import {maskTerrainRows,terrainOverviewURL} from './mapTileLayout.js';
 const yieldTask=()=>new Promise(resolve=>setTimeout(resolve,0));
 const check=signal=>signal?.throwIfAborted();
 export function closeTerrainSurface(surface){
@@ -25,7 +25,7 @@ async function prepare(source,tile,preview,signal){
   // A small strip per task preserves the same mask without blocking a whole map frame.
   for(let y=0;y<height;y+=32){
    check(signal);const count=Math.min(32,height-y),pixels=ctx.getImageData(0,y,width,count);
-   maskTerrainRows(pixels.data,width,height,tile,y,count);ctx.putImageData(pixels,0,y);await yieldTask();
+   maskTerrainRows(pixels.data,width,height,tile,y,count,!preview);ctx.putImageData(pixels,0,y);await yieldTask();
   }
   check(signal);
   if(typeof createImageBitmap!=='function')return surface;
@@ -41,7 +41,7 @@ export async function loadTerrainTile(tile,{signal,onPreview=()=>{}}={}){
   // A missing high-resolution asset keeps only its own overview crop as a fallback.
   if(!tile.patch){
    let overview;
-   try{overview=await decode(`/assets/island-${tile.theme}-v9.png`,signal);const preview=await prepare(overview,tile,true,signal);onPreview(preview);}
+   try{overview=await decode(terrainOverviewURL(tile.theme),signal);const preview=await prepare(overview,tile,true,signal);onPreview(preview);}
    catch(previewError){check(signal);}finally{overview?.close?.();}
   }
   throw error;

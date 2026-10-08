@@ -70,6 +70,7 @@ import {createSaveUI} from './saveUI.js';
 import {activeSlotKey} from './saveStorage.js';
 import {drawRaster,canvasResolution,rasterTransform,rasterQualityStatus} from './rasterQuality.js';
 import {terrainTileStatus} from './mapTiles.js';
+import {terrainOverviewURL} from './mapTileLayout.js';
 import {seaTileStatus} from './seaTiles.js';
 import {HOUSE_ATLAS_BOUNDS} from './houseAtlasBounds.js';
 import {registerThemeArtwork,activateThemeArtwork,themeArtworkStatus} from './themeArtwork.js';
@@ -151,7 +152,7 @@ if(scene==='world')Object.assign(actor,nearestWalkable(actor.x,actor.y));
 let runtime=null,visitors=null,roomGame=null,playerFarmClaim=null,playerRoomWait=null;
 const soundMixer=getSoundMixer(),worldSound=createWorldSound(soundMixer),soundUI=getSoundUI();
 let particles=[],ripples=[],mineMeter=null,aiClock=2,aiCursor=0,aiBusy=false,partyGame=state.partySession||null,partySettling=false;
-const images={pixel:new Image(),origami:new Image()};for(const style of ['pixel','origami'])registerThemeArtwork(images[style],'/assets/island-'+style+'-v9.png',style);
+const images={pixel:new Image(),origami:new Image()};for(const style of ['pixel','origami'])registerThemeArtwork(images[style],terrainOverviewURL(style),style);
 const houses={pixel:new Image(),origami:new Image()};for(const style of ['pixel','origami'])registerThemeArtwork(houses[style],HOUSE_ATLAS_BOUNDS[style].src,style);
 const sceneImages={};for(const place of ['farm','mine','workshop','tea','gallery'])for(const style of ['pixel','origami']){const key=place+'-'+style;sceneImages[key]=new Image();registerThemeArtwork(sceneImages[key],'/assets/'+key+'.png',style)}
 const roomAtlases={pixel:new Image(),origami:new Image()};for(const key of ['pixel','origami'])registerThemeArtwork(roomAtlases[key],'/assets/interiors-'+key+'-v2.png',key);

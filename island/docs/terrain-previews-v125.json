@@ -1,0 +1,21 @@
+{
+  "version": 125,
+  "method": "Native Canvas composition of all 12 generated terrain tiles and the complete plaza, using runtime weights and shoreline masking; no buildings or characters baked into terrain.",
+  "source": "terrain-art-v119.json",
+  "files": [
+    {
+      "file": "public/assets/map-tiles-v125/pixel-overview.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 4372174,
+      "sha256": "4838093916d9447361c6366f585ba45a36d491bcb4d5e89697ab5346789c7341"
+    },
+    {
+      "file": "public/assets/map-tiles-v125/origami-overview.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3913442,
+      "sha256": "77e15095bcf7321429c29163dfd06e6addda7d86b9e61c50e79d52d20d386479"
+    }
+  ]
+}

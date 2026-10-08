@@ -7,11 +7,11 @@ try{
  await context.route('**/__terrain_review',r=>r.fulfill({contentType:'text/html',body:`<!doctype html><html><body style="margin:0;background:#1684ae;overflow:hidden"><canvas id="map"></canvas><script type="module">
  import{drawTerrainTiles,terrainTileStatus}from'/src/mapTiles.js';import{drawIslandRaster}from'/src/rasterQuality.js';import{terrainTiles}from'/src/mapTileLayout.js';
  const c=document.getElementById('map'),ctx=c.getContext('2d'),images={},sea={};
- for(const theme of ['pixel','origami']){images[theme]=new Image();images[theme].src='/assets/island-'+theme+'-v9.png';sea[theme]=new Image();sea[theme].src='/assets/sea-'+theme+'-v5.png';}
+ for(const theme of ['pixel','origami']){images[theme]=new Image();images[theme].src='/assets/map-tiles-v125/'+theme+'-overview.png';sea[theme]=new Image();sea[theme].src='/assets/sea-'+theme+'-v5.png';}
  await Promise.all(Object.values({...images,pixelSea:sea.pixel,origamiSea:sea.origami}).map(i=>i.decode()));
  let config={theme:'pixel',scale:1.5,x:0,y:0,w:2304,h:1536,tiles:true},lastUsed=false;
  window.configure=value=>{config={...config,...value};c.width=config.w;c.height=config.h;c.style.width=config.w+'px';c.style.height=config.h+'px';};window.configure({});
- function frame(){const {theme,scale,x,y,tiles}=config;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,c.width,c.height);ctx.setTransform(scale,0,0,scale,-x*scale,-y*scale);ctx.imageSmoothingEnabled=theme!=='pixel';ctx.drawImage(sea[theme],0,0,1856,1248);lastUsed=tiles&&drawTerrainTiles(ctx,theme);if(!lastUsed)drawIslandRaster(ctx,images[theme],theme,{width:1536,height:1024},0,0,1536,1024);requestAnimationFrame(frame);}frame();
+ function frame(){const {theme,scale,x,y,tiles}=config;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,c.width,c.height);ctx.setTransform(scale,0,0,scale,-x*scale,-y*scale);ctx.imageSmoothingEnabled=theme!=='pixel';ctx.drawImage(sea[theme],0,0,1856,1248);lastUsed=tiles&&drawTerrainTiles(ctx,theme);if(!lastUsed)ctx.drawImage(images[theme],0,0,1536,1024);requestAnimationFrame(frame);}frame();
  window.review=()=>({status:terrainTileStatus(),config,lastUsed});window.pixelAt=(x,y)=>[...ctx.getImageData(x,y,1,1).data];
  </script></body></html>`}));
  await page.goto(base+'/__terrain_review');await page.waitForFunction(()=>window.review);
