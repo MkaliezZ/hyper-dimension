@@ -3282,8 +3282,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 17552,
-      "sha256": "4d7c7e5e07768397053ce8c2794a4db90cd4b10fc9c75a9bf0c87f62a9beb141"
+      "bytes": 17584,
+      "sha256": "3792fb10e4c07aefb88b9859c16fe0b67079ac16495c56ab7b0f5bf868cde134"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -4552,8 +4552,8 @@
     },
     {
       "path": "tests/v130-portfolio-browser.mjs",
-      "bytes": 8047,
-      "sha256": "7f86094cf2ac16533cfebf467783f5b3c264a4b2599af786d2bdf87a8eabf999"
+      "bytes": 8229,
+      "sha256": "72bf47700cba314fe7d687ff70fb23a37487a31b86c767cbecb4c3aa7dd83a93"
     },
     {
       "path": "tests/v130-portfolio.test.mjs",
