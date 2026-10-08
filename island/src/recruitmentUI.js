@@ -1,3 +1,4 @@
+import {worldFetch as fetch} from './worldSession.js';
 import {recruitmentExchange} from './recruitmentExchange.js';
 import {renewalReadiness} from './recruitmentRenewal.js';
 import {openResidentTravelHistory} from './lanSocialUI.js';

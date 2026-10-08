@@ -1,6 +1,6 @@
 # Hyper Dimension · 仓库协作约定
 
-## 当前目录边界（V117）
+## 当前目录边界（V118）
 
 - island/ 是当前双画风海岛游戏与本机 Agent 运行时，开发、部署和校验先读 island/AGENTS.md；不要将其运行时、密钥、存档或截图录制原始数据提交仓库。
 - 原有 src/hyper_dimension、web、migrations、skills 和其测试继续属于教培模块，入口见 README.education.md。下文“首期”规则仅约束该教培模块，不禁止维护本次获授权开源的 island/。

@@ -31,7 +31,7 @@ export function facilityReplay(doc,i){
 const watering=(b,id)=>Object.values(b.farm?.leases||{}).filter(t=>t.actor==='facility'&&t.actorId===id);
 const teaBusy=(b,id)=>Object.values(b.resident?.leases||{}).some(t=>t.mode==='tea'&&t.intent.facilityId===id);
 export function applyFacilityCommand(s,b,i,now){
- if(!/^[a-zA-Z0-9-]{8,80}$/.test(i.requestId||''))throw fail('设施请求编号无效');if(i.operation==='enable'){enableFacility(s,b,i.theme,now);return {ticket:null,receipt:null};}
+ if(!/^[a-zA-Z0-9-]{8,80}$/.test(i.requestId||''))throw fail('设施请求编号无效');if(i.operation==='enable'){enableFacility(s,b,(i.appearance||i.theme),now);return {ticket:null,receipt:null};}
  if(!b.facility)throw fail('设施账本尚未启用','facility_not_enabled');assertFacilityState(s,b);if(!operations.includes(i.operation))throw fail('设施操作无效');if(i.day!==undefined&&i.day!==s.day)throw fail('游戏日已变化，请重新打开设施','facility_day');
  const placing=['place','move','store'].includes(i.operation),revision=placing?s.placementBook.revision:s.functionalFacilities.revision;if(i.expectedRevision!==revision)throw fail('布置或设施已变化，请重新打开当前状态','facility_revision');
  if(i.displayId&&teaBusy(b,i.displayId))throw fail('居民正在实际用茶，请等茶歇结束再操作','facility_occupied');
@@ -39,7 +39,7 @@ export function applyFacilityCommand(s,b,i,now){
  if(placing){
   if(i.displayId&&watering(b,i.displayId).length)throw fail('正在灌溉，请先关闭滴灌再移动或收回','facility_occupied');
   const actors=[s.player,...(s.npcPresence||[]).filter(n=>n.inside==null),...(s.visitorPresence||[]).filter(n=>n.inside==null)];
-  details=decorate(s,{commandId:i.requestId,action:i.operation,displayId:i.displayId,item:i.item,x:i.x,y:i.y,rotation:i.rotation??0,expectedRevision:i.expectedRevision},{theme:i.theme,actors});hydrateFunctionalFacilities(s);
+  details=decorate(s,{commandId:i.requestId,action:i.operation,displayId:i.displayId,item:i.item,x:i.x,y:i.y,rotation:i.rotation??0,expectedRevision:i.expectedRevision},{theme:(i.appearance||i.theme),actors});hydrateFunctionalFacilities(s);
  }else{
   if(['configure','clear'].includes(i.operation))for(const t of watering(b,i.displayId))applyFarmCommand(s,b,{kind:'farm',operation:'cancel',requestId:t.requestId,epoch:t.epoch,sequence:t.sequence},now);
   details=functionalCommand(s,{commandId:i.requestId,displayId:i.displayId,action:i.operation,expectedRevision:s.functionalFacilities.revision,targets:i.targets,enabled:i.enabled});

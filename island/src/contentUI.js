@@ -24,7 +24,7 @@ export function createContentUI(api){
    (butler?'<button class="avatar-card '+(selected==='default'?'selected':'')+'" data-avatar="default"><div class="default-butler"></div><b>Hermes 管家</b><p>原始管家形象</p></button>':'')+
    AVATARS.filter(a=>a.gender===gender).map(a=>'<button class="avatar-card '+(selected===a.id?'selected':'')+'" data-avatar="'+a.id+'">'+avatarPortrait(a.id,theme(),'wardrobe-portrait')+'<b>'+a.name+'</b><p>'+a.description+'</p><span>'+(selected===a.id?'正在使用':'选择此形象')+'</span></button>').join('')+'</div>',
    '<button id="backProfile" class="secondary">返回'+(butler?'管家档案':'个人档案')+'</button>');
-  bind('[data-gender]',el=>wardrobe(butler,el.dataset.gender));bind('[data-avatar]',el=>{if(butler)s.butlerAvatar=el.dataset.avatar;else s.playerProfile.avatar=el.dataset.avatar;persist();renderUI();wardrobe(butler,gender);toast('角色形象已更新');});bind('#backProfile',()=>butler?api.butler():player());
+  bind('[data-gender]',el=>wardrobe(butler,el.dataset.gender));bind('[data-avatar]',async el=>{if(managing)return;const page=root().querySelector('.modal'),avatarId=el.dataset.avatar;page.querySelectorAll('[data-avatar]').forEach(b=>b.disabled=true);await manage('avatar',{target:butler?'butler':'player',avatarId},()=>{const current=state();if(butler)current.butlerAvatar=avatarId;else current.playerProfile.avatar=avatarId;return {ok:true,text:'角色形象已更新'};},()=>{if(page.isConnected)wardrobe(butler,gender);});if(page.isConnected)page.querySelectorAll('[data-avatar]').forEach(b=>b.disabled=false);});bind('#backProfile',()=>butler?api.butler():player());
  }
  function player(){
   const s=state(),p=s.playerProfile,unlocked=ALL_RECIPES.filter(r=>recipeGate(r,s).ready).length;

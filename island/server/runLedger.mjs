@@ -79,7 +79,7 @@ export function createRunLedger({directory,now=Date.now,pid=process.pid}){
    const result=view(s);if(changed)await save(s,old);return result;
   })},
   async begin({kind,automatic=false,theme=null,participants=[],projectIds=[],externalId=null,parentRunId=null}={}){
-   if(typeof kind!=='string'||!['plans','conversations','steward','steward_manual','recruitment','party_suggestion','legacy_plan','a2a'].includes(kind))throw fail('运行类型无效','invalid_run',400);
+   if(typeof kind!=='string'||!['plans','conversations','steward','steward_manual','recruitment','party_suggestion','legacy_plan','a2a','resident_chat'].includes(kind))throw fail('运行类型无效','invalid_run',400);
    if(automatic&&!RUN_INTERVALS[kind])throw fail('自动运行类型无效','invalid_run',400);
    let rejection;
    const result=await transact(s=>{

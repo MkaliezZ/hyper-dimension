@@ -1,3 +1,4 @@
+import {applyWorldAppearance,worldAppearance} from './worldAppearance.mjs';
 import {atomicJSON} from './atomicJson.mjs';
 import {validShopfronts} from '../src/shopfronts.js';
 import {validResidentLife} from '../src/residentLife.js';
@@ -55,7 +56,8 @@ const digest=state=>createHash('sha256').update(JSON.stringify(state)).digest('h
 const fail=(message,status=400,code='invalid_save')=>Object.assign(Error(message),{status,code});
 const exists=async path=>{try{await stat(path);return true}catch(e){if(e.code==='ENOENT')return false;throw e}};
 export function validateState(state,theme=null){
- if(theme&&state?.placementBook&&state.placementBook.theme!==theme)throw fail('布置画风与存档不一致');
+ if(state?.worldAppearance!==undefined&&!['pixel','origami'].includes(state.worldAppearance))throw fail('小岛画风无效');
+ if(theme&&state?.placementBook&&state.placementBook.theme!==(state.worldAppearance||theme))throw fail('布置画风与存档不一致');
  if(!state||Array.isArray(state)||typeof state!=='object'||!Number.isSafeInteger(state.day)||state.day<1||
  !Number.isFinite(state.coins)||state.coins<0||!state.inventory||Array.isArray(state.inventory)||
  !state.player||!Number.isFinite(state.player.x)||!Number.isFinite(state.player.y))throw fail('存档结构无效，未覆盖现有进度');
@@ -83,7 +85,7 @@ export function validateState(state,theme=null){
  return state;
 }
 function validateDocument(doc,theme){
- if(doc?.state?.placementBook&&doc.state.placementBook.theme!==theme)throw fail('布置画风与存档不一致');
+ if(doc?.state?.placementBook&&doc.state.placementBook.theme!==(doc.state.worldAppearance||theme))throw fail('布置画风与存档不一致');
  if(doc?.schema!==1||doc.theme!==theme||!Number.isSafeInteger(doc.revision)||doc.revision<1||typeof doc.version!=='string')throw fail('存档格式不受支持',503,'save_corrupt');
  validateState(doc.state,theme);
  if(!validActionBook(doc.actions)||doc.actions&&doc.actionsChecksum!==digest(doc.actions))throw fail('作业记录校验失败',503,'save_corrupt');
@@ -292,6 +294,14 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     return {document:doc,replayed:!changed,ticket:{requestId},receipt:{outcome:'queued',taskId:plan.command.id}};
    });
   },
+  async appearance(theme,{expectedVersion,appearance,requestId,clientId=''}){
+   if(!/^[a-zA-Z0-9-]{8,80}$/.test(requestId||''))throw fail('切换编号无效');
+   return withLock(theme,async p=>{const old=await readCurrent(p,theme);const prior=old?.state.appearanceReceipts?.find(x=>x.id===requestId);if(prior){if(prior.theme!==appearance)throw fail('同一切换编号不能更改画风');return {document:old,replayed:true};}compare(old,expectedVersion);
+    const state=structuredClone(old.state),actions=structuredClone(old.actions||newActionBook());applyWorldAppearance(state,actions,appearance,theme);
+    state.appearanceReceipts=[...(state.appearanceReceipts||[]),{id:requestId,theme:appearance}].slice(-16);await snapshot(p,old,'before-appearance');
+    return {document:await commit(p,theme,state,old,'appearance',clientId,actions)};
+   });
+  },
   async current(theme){return withLock(theme,p=>readCurrent(p,theme))},
   async save(theme,{state,expectedVersion,clientId='',saveId=null,activeSeconds=0}){
    return withLock(theme,async p=>{
@@ -299,7 +309,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     const fingerprint=digest([state,activeSeconds]),prior=saveId&&[...(old?.actions?.farm?.autosaves||[]),...(old?.actions?.visitor?.autosaves||[]),...(old?.actions?.commerce?.autosaves||[]),...(old?.actions?.facility?.autosaves||[])].find(r=>r.id===saveId);
     if(prior){if(prior.fingerprint!==fingerprint||prior.expectedVersion!==expectedVersion)throw fail('同一存档请求不能变更内容',409,'save_id_conflict');return {document:old,replayed:true};}
     if(saveId!==null&&!/^[a-zA-Z0-9-]{8,80}$/.test(saveId))throw fail('存档请求编号无效');
-    compare(old,expectedVersion);if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
+    compare(old,expectedVersion);if(state.worldAppearance!==old.state.worldAppearance)throw fail('画风切换需通过小岛外观入口',409,'appearance_conflict');if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
     state=structuredClone(state);const actions=old.actions?structuredClone(old.actions):undefined;
     const farmSeconds=actions?.farm?.activeSeconds||0;advanceFarmClock(state,actions,activeSeconds,now());advanceFieldClock(state,actions,(actions?.farm?.activeSeconds||0)-farmSeconds);advanceVisitorClock(state,actions,activeSeconds,now());advanceCommerceClock(state,actions,activeSeconds,now());advanceFacilityClock(state,actions,activeSeconds,now());
     if(actions?.farm&&saveId)actions.farm.autosaves=[...(actions.farm.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
@@ -325,7 +335,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     const verifiedContract=input.kind==='commerce'&&['hire_handover','hire_renew','hire_bind','hire_renew_prepare'].includes(input.operation)?await hireRegistry.peek(theme,input.contractId):null;
     const verifiedRenewal=input.kind==='commerce'&&input.operation==='hire_renew'?await hireRegistry.peek(theme,input.renewalId):null;
     const verifiedProposal=input.kind==='commerce'&&['fish_steward','night_steward','festival_steward','couture_steward','fireworks_steward'].includes(input.operation)?await partyProof.peek({theme,worldKey:state.saveSlot||'legacy-'+theme,runId:input.runId,proposalId:input.proposalId}):null;
-    const result=applyGatherCommand(state,actions,{...input,theme,verifiedContract,verifiedRenewal,verifiedProposal},now());recordHostingAction(state,actions,input,result);recordHireDelivery(state,actions,result.receipt);recordCrossTaskReceipt(state,result.receipt);syncFacilityState(state,actions);
+    const result=applyGatherCommand(state,actions,{...input,theme,appearance:worldAppearance(state,theme),verifiedContract,verifiedRenewal,verifiedProposal},now());recordHostingAction(state,actions,input,result);recordHireDelivery(state,actions,result.receipt);recordCrossTaskReceipt(state,result.receipt);syncFacilityState(state,actions);
     const doc=await commit(p,theme,state,old,'action-'+input.operation,String(input.clientId||'').slice(0,80),actions);
     if(input.kind==='commerce'&&input.operation==='hire_renew')await hireRegistry.renewal_commit(theme,doc,input.renewalId);
     return {document:doc,...result,replayed:false};

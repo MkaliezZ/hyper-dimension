@@ -34,7 +34,7 @@ export function bootstrapSaveAuthority(s,theme,now){
   ['commerce','party_enable'],['commerce','night_enable'],['commerce','fish_enable'],
   ['commerce','festival_enable'],['commerce','couture_enable'],['commerce','fireworks_enable'],['commerce','hire_enable'],
  ];
- for(const [kind,operation]of commands)applyGatherCommand(s,b,{kind,operation,theme,day:s.day,requestId:randomUUID()},now);
+ for(const [kind,operation]of commands)applyGatherCommand(s,b,{kind,operation,theme,appearance:s.worldAppearance||theme,day:s.day,requestId:randomUUID()},now);
  enableField(s,b,now);enableResident(s,b);enablePlanningState(s,b);
  applyGatherCommand(s,b,{kind:'personal',operation:'enable',theme,day:s.day,requestId:randomUUID()},now);syncPersonalState(s,b);enableResourceState(s,b);return b;
 }

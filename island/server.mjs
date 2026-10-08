@@ -1,3 +1,5 @@
+import {createWorldSession,bindWorldStore} from './server/worldSession.mjs';
+import {createResidentChatStore} from './server/residentChatStore.mjs';
 import {manualPartyContext} from './server/manualPartyContext.mjs';
 import {acquireDataLease} from './server/dataLease.mjs';
 import {readJsonBody} from './server/httpBody.mjs';
@@ -10,13 +12,15 @@ import {allowLocalAgentRequest} from './server/localAgentAccess.mjs';
 import {runLedger} from './server/runLedger.mjs';
 import {workbench} from './server/workbenchService.mjs';
 import {DEEPSEEK_MODEL} from './server/modelPolicy.mjs';
-import {agentStatus,decideBatch,converse,steward,recruitmentRun,cancelRecruitmentRun,suggestParty,legacyDecision,stopAgentWorkers} from './server/agentService.mjs';
+import {agentStatus,decideBatch,converse,chatWithResident,steward,recruitmentRun,cancelRecruitmentRun,suggestParty,legacyDecision,stopAgentWorkers} from './server/agentService.mjs';
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 const root=resolve(import.meta.dirname);
 const dataLease=await acquireDataLease({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),mode:'runtime',sharedRuntime:true});
-const saves=createSaveStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
+const rawSaves=createSaveStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
+const worldSession=createWorldSession({directory:rawSaves.directory,saves:rawSaves}),saves=bindWorldStore(rawSaves,worldSession);
+const residentChat=createResidentChatStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),saves,run:chatWithResident});
 const cocreation=createCoCreationStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),worldExists:async(style,key)=>{const d=await saves.current(style);return !!d&&key===(d.state.saveSlot||'legacy-'+style);}});
 const recruitment=createRecruitmentService({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),saves,run:recruitmentRun,cancel:cancelRecruitmentRun});
 const partyPlanning=createPartyPlanningService({saves,suggest:suggestParty});
@@ -40,6 +44,7 @@ const server=createServer(async(req,res)=>{
  try{
   const pathname=decodeURIComponent(new URL(req.url,`http://${req.headers.host}`).pathname);
   if(pathname.startsWith('/api/')&&!allowLocalAgentRequest(req,port))return sendJSON(res,403,{error:'本机代理接口只接受当前小岛页面的 JSON 请求'});
+  if(pathname==='/api/world/session'&&req.method==='GET')return sendJSON(res,200,await worldSession.open(theme));
   if(pathname==='/api/status'&&req.method==='GET'){try{const runs=await runLedger.snapshot(),agents=agentStatus();agents.automaticRequests=runs.channels;return sendJSON(res,200,{deepseek:!!key,hermes:agents.hermes.configured,theme,agents,saveProtocol:{initialAuthority:1,importPreview:1,signedExport:1,personal:1,planningTransactions:1,planningAuthority:1,inventoryAuthoritative:true,gather:1,craft:1,craftInputReplay:true,craftCheckpointSeconds:5,farm:1,farmActiveClock:true,field:1,fieldInputReplay:true,resident:1,visitor:1,commerce:1,dayActiveClock:true,party:1,nightPlanning:1,stewardPartyTemplates:['fishing','night','market','couture','fireworks'],festival:1,marketInputReplay:true,couture:1,fireworks:1,coutureInputReplay:true,partyInputReplay:true,hire:1,fishing:1,fishingInputReplay:true,facility:1,facilityActiveClock:true,placement:1,cocreation:1,cocreationInputReplay:true}})}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/admin/runtime'&&req.method==='GET'){try{return sendJSON(res,200,await runLedger.snapshot())}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/admin/policy'&&req.method==='POST'){try{return sendJSON(res,200,await runLedger.setPolicy(await readJSON(req,4096)))}catch(e){return sendAgentError(res,e)}}
@@ -61,7 +66,7 @@ const server=createServer(async(req,res)=>{
   }
   const coRoute=pathname.match(/^\/api\/cocreation\/(pixel|origami)(?:\/(action|examples|export\/opc-[a-z0-9-]+\/\d+))?$/);
   if(coRoute){const [,style,operation]=coRoute;try{if(req.method==='GET'&&operation==='examples')return sendJSON(res,200,{examples:CO_CREATION_EXAMPLES});if(req.method==='GET'&&!operation)return sendJSON(res,200,{document:await cocreation.current(style)});if(req.method==='POST'&&operation==='action')return sendJSON(res,200,await cocreation.action(style,await readJSON(req,220000)));if(req.method==='GET'&&operation?.startsWith('export/')){const[,id,n]=operation.split('/'),data=await cocreation.export(style,id,Number(n));return sendJSON(res,200,data);}return sendJSON(res,405,{error:'不支持此共创操作'});}catch(e){return sendJSON(res,e.status||500,{error:String(e.message).slice(0,400),code:e.code||'cocreation_unavailable'});}}
-  const saveRoute=pathname.match(/^\/api\/saves\/(pixel|origami)(?:\/(open|save|action|backups|backup|restore|restart|import|import-preview|migration-export|export))?$/);
+  const saveRoute=pathname.match(/^\/api\/saves\/(pixel|origami)(?:\/(open|save|action|appearance|backups|backup|restore|restart|import|import-preview|migration-export|export))?$/);
   if(saveRoute){
    const [,style,operation='current']=saveRoute;
    try{
@@ -72,7 +77,7 @@ const server=createServer(async(req,res)=>{
      res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Content-Disposition':'attachment; filename="hyper-dimension-'+style+'-day-'+document.state.day+'.json"','Cache-Control':'no-store'}).end(JSON.stringify(document,null,2));return;
     }
     if(req.method==='GET'&&operation==='migration-export'){const data=await saves.migrationExport(style);res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Content-Disposition':'attachment; filename="hyper-dimension-'+style+'-browser-legacy.json"','Cache-Control':'no-store'}).end(JSON.stringify(data));return;}
-    if(req.method==='POST'&&['open','save','action','backup','restore','restart','import','import-preview'].includes(operation)){const method=({open:'openClient',restore:'restoreClient',restart:'restartClient',import:'importClient','import-preview':'previewImport'})[operation]||operation;return sendJSON(res,200,await saves[method](style,await readJSON(req,operation==='import-preview'?MAX_IMPORT_BYTES+32768:MAX_SAVE_BYTES+32768)));}
+    if(req.method==='POST'&&['open','save','action','appearance','backup','restore','restart','import','import-preview'].includes(operation)){const method=({open:'openClient',restore:'restoreClient',restart:'restartClient',import:'importClient','import-preview':'previewImport'})[operation]||operation;return sendJSON(res,200,await saves[method](style,await readJSON(req,operation==='import-preview'?MAX_IMPORT_BYTES+32768:MAX_SAVE_BYTES+32768)));}
     return sendJSON(res,405,{error:'不支持此存档操作'});
    }catch(error){return sendJSON(res,error.status||503,{error:error.status?error.message:'存档服务暂不可用，现有文件已保留',code:error.code||'save_unavailable'})}
   }
@@ -91,6 +96,8 @@ const server=createServer(async(req,res)=>{
    try{return sendJSON(res,200,await partyPlanning.propose(partyRoute[1],await readJSON(req,4096)));}
    catch(e){return sendJSON(res,e.status||503,{error:e.status?e.message:'主题建议暂不可用，可以先发布基础方案',code:e.code||'party_planning_unavailable'});}
   }
+  const chatRoute=pathname.match(/^\/api\/residents\/(pixel|origami)\/(\d+)\/chat$/);
+  if(chatRoute){const [,style,id]=chatRoute;try{if(req.method==='GET')return sendJSON(res,200,await residentChat.history(style,Number(id),{saveSlot:new URL(req.url,'http://localhost').searchParams.get('saveSlot')}));if(req.method==='POST')return sendJSON(res,200,await residentChat.send(style,Number(id),await readJSON(req,12000)));return sendJSON(res,405,{error:'不支持此聊天操作'});}catch(e){return sendAgentError(res,e)}}
   const actions={'/api/npc/tick':decideBatch,'/api/npc/interact':converse,'/api/hermes/plan':async data=>{const observation=await recruitment.autonomy_observe(data.theme);const result=await steward({...data,recruitment:{eligible:observation.eligible,reason:observation.reason,stats:observation.stats,policy:{enabled:observation.policy.enabled,dailyBudget:observation.policy.dailyBudget,maxContractsPerDay:observation.policy.maxContractsPerDay,coinFloor:observation.policy.coinFloor},opportunities:observation.opportunities.slice(0,12).map(o=>({...o,steps:o.steps.slice(0,6)}))},automatic:true});const decision=await recruitment.autonomy_decide(data.theme,result);return{...result,recruitmentOffers:decision.offers,recruitmentReason:decision.reason||null};},'/api/hermes/command':data=>manualSteward(data)};
   if(req.method==='POST'&&actions[pathname]){try{return sendJSON(res,200,await actions[pathname](await readJSON(req)))}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/npc/decide'&&req.method==='POST'){try{return sendJSON(res,200,await decideNPC(await readJSON(req)))}catch(e){return sendAgentError(res,e)}}

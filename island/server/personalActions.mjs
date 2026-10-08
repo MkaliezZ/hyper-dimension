@@ -1,3 +1,4 @@
+import {AVATAR_BY_ID} from '../src/avatarCatalog.js';
 import {itemUse,ITEM_BY_ID} from '../src/contentCatalog.js';
 import {equipOutfit,unequipOutfit,equipTool,GARMENTS,TOOLS} from '../src/equipmentRules.js';
 import {claimMoment,refreshJourney,hydrateJourney,MOMENTS} from '../src/journey.js';
@@ -5,8 +6,8 @@ import {claimSpecialization,SPECIALIZATIONS} from '../src/specialization.js';
 import {sameState} from '../src/actionMerge.js';
 const fail=(message,code='personal_invalid')=>Object.assign(Error(message),{status:409,code});
 const idOK=id=>typeof id==='string'&&/^[a-zA-Z0-9-]{8,80}$/.test(id);
-const operations=['use','gift','equip','unequip','tool','moment','specialization'];
-const signature=i=>JSON.stringify([i.operation,i.itemId??null,i.npcId??null,i.momentId??null,i.path??null,i.rank??null,i.day??null]);
+const operations=['use','gift','equip','unequip','tool','moment','specialization','avatar'];
+const signature=i=>i.operation==='avatar'?JSON.stringify([i.operation,i.target,i.avatarId,i.day??null]):JSON.stringify([i.operation,i.itemId??null,i.npcId??null,i.momentId??null,i.path??null,i.rank??null,i.day??null]);
 const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
 export function personalSnapshot(s){
  const t=s.journey?.stats||{};
@@ -41,8 +42,10 @@ export function applyPersonalCommand(s,b,i,now){
  if(i.operation==='tool'&&!Object.hasOwn(TOOLS,i.itemId))throw fail('工具编号无效');
  if(i.operation==='moment'&&!MOMENTS.some(m=>m.id===i.momentId))throw fail('纪念编号无效');
  if(i.operation==='specialization'&&(!SPECIALIZATIONS.some(p=>p.id===i.path)||!Number.isInteger(i.rank)||i.rank<1||i.rank>5))throw fail('专精纪念编号无效');
+ if(i.operation==='avatar'&&(!['butler','player'].includes(i.target)||!Object.hasOwn(AVATAR_BY_ID,i.avatarId||'')&&!(i.target==='butler'&&i.avatarId==='default')))throw fail('角色形象无效');
  const before={coins:s.coins,inventory:{...s.inventory}};let details;
- if(i.operation==='use'||i.operation==='gift')details=itemUse(i.itemId,s,{action:i.operation==='gift'?'gift':'use',npcId:i.npcId??15});
+ if(i.operation==='avatar'){if(i.target==='butler')s.butlerAvatar=i.avatarId;else{s.playerProfile??={};s.playerProfile.avatar=i.avatarId;}details={ok:true,target:i.target,avatarId:i.avatarId,text:(i.target==='butler'?'管家':'岛主')+'形象已保存，刷新与切换画风后继续保留。'};}
+ else if(i.operation==='use'||i.operation==='gift')details=itemUse(i.itemId,s,{action:i.operation==='gift'?'gift':'use',npcId:i.npcId??15});
  else if(i.operation==='equip')details=equipOutfit(i.itemId,s);
  else if(i.operation==='unequip')details=unequipOutfit(s,i.itemId??null);
  else if(i.operation==='tool')details=equipTool(i.itemId,s);

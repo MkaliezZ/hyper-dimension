@@ -156,6 +156,7 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
    return {ownerId:c.accountId,worldKey:state.saveSlot,butler:travelPerson(c.account,{state},15),theme,documents:a.runtime.documents,jobs:clone(a.state.jobs.filter(j=>j.worldKey===state.saveSlot).slice(-60)),capabilities:{personalRuntime:true,workspaceDocuments:true,deviceBridge:false,a2a:true,a2aProtocol:'hyper-dimension-v1',a2aCapabilities:['event.checkin']},status:await a.runtime.call('status')};
   },
   async wait(token,input){const job=await submit(token,input),{a}=await account(token);while(a.running===job.id)await new Promise(r=>setTimeout(r,100));const done=a.state.jobs.find(j=>j.id===job.id);if(!done.result)throw fail(done.error||'委托尚待核对','lan_agent_unconfirmed',409);return {...clone(done.result),requestId:done.id};},
+  async residentChat(token,method,args){const {a}=await account(token);if(!['residentChatHistory','residentChatSend'].includes(method))throw fail('不支持此居民对话操作','resident_chat_method',400);return a.runtime.call(method,args);},
   async work(token,method,args){const {a}=await account(token);if(!['list','project','detail','preview','download','ledger','policy'].includes(method))throw fail('不支持此管家操作','lan_agent_method',400);return a.runtime.call(method,args);},
   async close(){closed=true;for(const promise of accounts.values()){try{const a=await promise;await a.runtime.close();await a.tail;}catch{}}accounts.clear();}
  };

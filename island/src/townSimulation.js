@@ -1,3 +1,4 @@
+import {workApproachTopic} from './residentSocialTopics.js';
 import {shopItemOffer} from './shopfronts.js';
 import {socialCandidates,socialBoundary,leisureOptions,routineFor,temperament} from './residentLife.js';
 import {chooseResidentCooperation,activityCooperationNeeds} from './residentCooperation.js';
@@ -7,7 +8,7 @@ import {availableQuantity,commitResources} from './resourceLedger.js';
 import {hydrateEconomy,effectiveQuality,improveQuality,visitorPrice,operatingCost,transact,venueService} from './economy.js';
 import {hydrateContent,ALL_RECIPES,RECIPE_BY_ID,DEFAULT_RECIPES,ITEM_BY_ID,recipeGate,resourceLoot,commitRecipe,consumePlayerCredit} from './contentCatalog.js';
 import {hydrateCrops,harvestPlot,cropInfo} from './farming.js';
-import {BUILDINGS,SLOTS,ITEMS,HARBOR} from './world.js';
+import {BUILDINGS,SLOTS,ITEMS,HARBOR,RESIDENTS} from './world.js';
 import {ROOMS} from './rooms.js';
 export const CAREERS=[
  ['农田照料与种苗培育',['farm',14,9]],['原料采购与木作制作',['mine',0,1]],['活动筹备与招待',[21,12,9]],['星空记录与知识整理',[7,5,22]],['植物采集与花艺',[14,3,9]],['船体维护与航标巡查',['forest',23,8]],['食材采购与烘焙',['farm',17,2]],['拍摄与展陈',[13,'plaza',18]],['捕鱼、整备渔具与售卖',['dock',16,9]],['药草采集与居民照护',[14,10,19]],['整理书籍与通信',[7,11,19]],['开采与工具检修',['mine',0,2]],['创作、排练与演出',[12,21,1]],['设计、共创与服装陈列',[4,24,9]],['藏品研究与布展',[18,7,6]],['岛屿调度与港口巡视',[11,23,'dock']],['临时筹备与手作协助',['forest','mine',0,19]]
@@ -65,17 +66,19 @@ export function mealOptions(i,s,r,time){const c=career(i,s),food=Object.values(I
  return food.sort((a,b)=>b.score-a.score).slice(0,2);
 }
 export function socialVenue(i,partner,s,type,time=0){const a=CAREERS[i].route.filter(x=>typeof x==='number'),b=CAREERS[partner].route.filter(x=>typeof x==='number'),common=a.filter(x=>b.includes(x));const candidates=type==='dispute'?[11,9,22]:type==='negotiate'?[...common,11,9]:type==='reconcile'?[22,19,7,...common]:[...common,LEISURE_VENUES[i],LEISURE_VENUES[partner],21,22];const unique=[...new Set(candidates)].filter(x=>s.buildings[x]!==undefined);return unique.sort((x,y)=>crowdPenalty(s,x,i)+repeatPenalty(career(i,s),x,time)-crowdPenalty(s,y,i)-repeatPenalty(career(i,s),y,time)||candidates.indexOf(x)-candidates.indexOf(y))[0]??22;}
-export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),main=stepOption(i,s,r),options=residentStoryOptions(s,i).filter(o=>o.action!=='social'||time>(c.socialAfter||0));
+export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),main=stepOption(i,s,r),options=residentStoryOptions(s,i).filter(o=>o.action!=='social'||time>(c.socialAfter||0)&&!socialBoundary(s,i,o.partnerId));
  if(n.energy<38)options.push({...target(19),action:'rest',activity:'rest',duration:14,purposeId:'need:energy',score:110-crowdPenalty(s,19,i)*.25,reason:'体力不足，回居民之家坐下休息'});
  if(n.hunger<42)options.push(...mealOptions(i,s,r,time),...teaFacilityOptions(s,i,time));
  main.score=(main.waiting?8:62)-crowdPenalty(s,main.buildingId,i)*.4;if(time<(c.retryAfter||0)&&main.buildingId===c.retryBuilding)main.score=5;options.push(main);
  const traits=temperament(r),socialLow=traits.quiet?36:traits.outgoing?50:42;
- if(time>(c.socialAfter||0))for(const candidate of socialCandidates(s,i,r)){
+ const candidates=socialCandidates(s,i,r).map(candidate=>({...candidate,topic:workApproachTopic(s,i,candidate.id,r,{...RESIDENTS[candidate.id],...s.npcProfiles?.[candidate.id]})}));
+ candidates.sort((a,b)=>(b.rel.tension>12?2:b.topic?1:0)-(a.rel.tension>12?2:a.topic?1:0));
+ if(time>(c.socialAfter||0))for(const candidate of candidates){
   const known=candidate.id,rel=candidate.rel;
   if(pendingResidentStory(s,i,known)||time<=(career(known,s).socialAfter||0))continue;
   if(n.social>=58&&!(rel.tension>12))break;
-  const issue=rel.tension>12?'reconcile':rel.affection>12&&rel.trust>8&&candidate.romanceAllowed?'confession':rel.affinity<-6?'dispute':main.reason.includes('先取得')&&rel.interactions>0&&rel.affinity>5?'negotiate':'friendship',bid=socialVenue(i,known,s,issue,time);
-  options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:known,socialType:issue,purposeId:'relationship:'+known,score:(rel.tension>12?82:n.social<socialLow?76:40)-crowdPenalty(s,bid,i),reason:'在'+BUILDINGS[bid].name+'与'+(s.npcProfiles?.[known]?.name||'同伴')+(issue==='reconcile'?'谈清上次分歧，尝试修复关系':issue==='confession'?'表达更亲近的心意':issue==='dispute'?'说明工作安排中仍有不同意见':issue==='negotiate'?'讨论物资分配与工作互助':candidate.familiar?'分享近期工作和生活':'聊聊彼此的工作，认识新的邻居')});break;
+  const issue=rel.tension>12?'reconcile':rel.affection>12&&rel.trust>8&&candidate.romanceAllowed?'confession':rel.affinity<-6||candidate.topic?'dispute':main.reason.includes('先取得')&&rel.interactions>0&&rel.affinity>5?'negotiate':'friendship',bid=socialVenue(i,known,s,issue,time);
+  options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:known,socialType:issue,socialTopic:issue==='dispute'?candidate.topic:null,purposeId:'relationship:'+known,score:(rel.tension>12?82:n.social<socialLow?76:40)-crowdPenalty(s,bid,i),reason:candidate.topic&&issue==='dispute'?candidate.topic.reason:'在'+BUILDINGS[bid].name+'与'+(s.npcProfiles?.[known]?.name||'同伴')+(issue==='reconcile'?'谈清上次分歧，尝试修复关系':issue==='confession'?'表达更亲近的心意':issue==='dispute'?'说明工作安排中仍有不同意见':issue==='negotiate'?'讨论物资分配与工作互助':candidate.familiar?'分享近期工作和生活':'聊聊彼此的工作，认识新的邻居')});break;
  }
  // Activity work is offered at normal decision boundaries, without extra model calls.
  const stories=s.residentStories,open=stories.episodes.filter(e=>['scheduled','meeting','working'].includes(e.status));

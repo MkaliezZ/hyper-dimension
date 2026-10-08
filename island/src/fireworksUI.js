@@ -1,3 +1,4 @@
+import {worldFetch as fetch} from './worldSession.js';
 import {cooperationMarkup} from './cooperationUI.js';
 import {modalNavigationToken} from './modalNavigation.js';
 import {hydrateFireworks,fireworksNeeds,fireworksReadiness} from './fireworksParty.js';

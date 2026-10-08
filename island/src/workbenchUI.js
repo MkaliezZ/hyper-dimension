@@ -1,3 +1,4 @@
+import {worldFetch as fetch} from './worldSession.js';
 import {esc} from './journeyUI.js';
 const validId=/^capture-[a-f0-9]{32}$/;
 const date=v=>new Date(v).toLocaleString('zh-CN',{timeZone:'Asia/Singapore',hour12:false});

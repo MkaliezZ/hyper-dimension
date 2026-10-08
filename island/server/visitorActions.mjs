@@ -54,7 +54,7 @@ function ticket(s,b,i,now,extra={}){
 function append(s,b,t,result={},outcome='finished',now){const receipt={ticket:t,outcome,at:now,day:s.day,...result};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);sync(s,b);return {ticket:t,receipt};}
 function guest(v,id){const g=v.guests[id];if(!Number.isSafeInteger(id)||!g)throw fail('游客已经离岛或行程不存在','visitor_stale');return g;}
 export function applyVisitorCommand(s,b,i,now){
- if(!idOK(i.requestId))throw fail('游客命令编号无效');if(i.operation==='enable'){enable(s,b,now,i.theme);return {ticket:null,receipt:null};}
+ if(!idOK(i.requestId))throw fail('游客命令编号无效');if(i.operation==='enable'){enable(s,b,now,(i.appearance||i.theme));return {ticket:null,receipt:null};}
  if(!b.visitor)throw fail('游客运营尚未启动','visitor_not_enabled');assertVisitorState(s,b);const v=b.visitor;
  if(i.operation==='arrive'){
   if(v.activeSeconds+1e-7<v.nextTripAt)throw fail('渡船尚未到达本次靠泊时刻','visitor_early');

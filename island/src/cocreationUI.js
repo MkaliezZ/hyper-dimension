@@ -1,3 +1,4 @@
+import {worldFetch as fetch} from './worldSession.js';
 import {neutralCraftGame} from './craftGameReplay.js';
 import {CO_CREATION_EXAMPLES,validateCoCreationPack,coCreationChallenge} from './cocreation.js';
 import {RECIPE_BY_ID,ALL_RECIPES} from './contentCatalog.js';import {BUILDINGS} from './world.js';import {itemMarkup} from './artStore.js';import {mountRoomGame} from './roomGames.js';

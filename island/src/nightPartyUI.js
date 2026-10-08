@@ -1,3 +1,4 @@
+import {worldFetch as fetch} from './worldSession.js';
 import {wonderRewardMarkup} from './wonderRewardUI.js';
 import {cooperationMarkup} from './cooperationUI.js';
 import {modalNavigationToken} from './modalNavigation.js';

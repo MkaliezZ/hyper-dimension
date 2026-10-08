@@ -1,8 +1,12 @@
+import {createResidentChatStore} from './residentChatStore.mjs';
+import {createSaveStore} from './saveStore.mjs';
 // One process per authenticated island owner; singleton services stay inside it.
-import {agentStatus,steward,decideBatch,converse,collaborate,recruitmentRun,cancelRecruitmentRun,suggestParty,stopAgentWorkers} from './agentService.mjs';
+import {agentStatus,steward,chatWithResident,decideBatch,converse,collaborate,recruitmentRun,cancelRecruitmentRun,suggestParty,stopAgentWorkers} from './agentService.mjs';
 import {workbench} from './workbenchService.mjs';
 import {runLedger} from './runLedger.mjs';
+const residentChat=createResidentChatStore({directory:process.env.HD_SAVE_DIR,saves:createSaveStore({directory:process.env.HD_SAVE_DIR}),run:chatWithResident});
 const methods={
+ residentChatHistory:a=>residentChat.history(a.theme,a.npcId,a.input), residentChatSend:a=>residentChat.send(a.theme,a.npcId,a.input),
  status:async()=>({...agentStatus(),automaticRequests:(await runLedger.snapshot()).channels}), command:args=>steward({...args,automatic:false}),
  recruit:args=>recruitmentRun(args.context,args.id),cancelRecruit:args=>cancelRecruitmentRun(args.id),suggestParty:args=>suggestParty(args),
  a2a:args=>collaborate(args),plans:args=>decideBatch(args),conversations:args=>converse(args),steward:args=>steward({...args,automatic:true}),policy:args=>runLedger.setPolicy(args),

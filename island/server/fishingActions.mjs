@@ -38,7 +38,7 @@ export function applyFishingManagement(s,b,i){
  else if(i.operation==='fish_checkin'){
   const g=s.fishingParty.session,t=b.active;if(!g||g.id!==i.eventId||t?.kind!=='fishing'||t.eventId!==g.id||g.phase!=='checkin')throw fail('签到活动已改变','fishing_checkin');
   const attendance=s.fishingAttendance;if(attendance?.id!==g.id)throw fail('请沿栈桥走到本场钓位','fishing_arrival');
-  const spots=fishingSpots(i.theme),checks=[{id:-1,target:spots[2]},...g.participants.map((p,k)=>({id:p.id,target:spots[k<2?k:3]}))];
+  const spots=fishingSpots((i.appearance||i.theme)),checks=[{id:-1,target:spots[2]},...g.participants.map((p,k)=>({id:p.id,target:spots[k<2?k:3]}))];
   for(const c of checks){const p=attendance.people?.[c.id],live=c.id===-1?s.player:s.npcPresence?.find(n=>n.id===c.id);if(!p||p.inside!==null||live?.inside!=null||!live||Math.hypot(p.x-c.target.x,p.y-c.target.y)>8||Math.hypot(live.x-c.target.x,live.y-c.target.y)>8)throw fail('仍有人在收尾或沿栈桥赴约，等大家实际到齐再签到','fishing_arrival');}
   for(const c of checks)fishingCheckin(s,c.id);for(const p of g.participants)p.position={...attendance.people[p.id]};r={ok:true};
  }else throw fail('不支持的钓鱼活动管理');

@@ -4,7 +4,9 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V117 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V118 is a playable development snapshot**, with full product acceptance still in progress.
+
+V118 shares one island save across pixel/origami appearances, adds free-text chat with all 15 residents, and persists butler/player avatar selections. [Behavior and verification scope](island/docs/shared-island-v118.md).
 
 V117 gives 55 tools and objects explicit material bills and construction notes while preserving accepted work contracts. [See the material changes and native verification scope](island/docs/craft-materials-v117.md).
 

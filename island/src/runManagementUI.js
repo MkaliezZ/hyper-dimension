@@ -1,5 +1,6 @@
+import {worldFetch as fetch} from './worldSession.js';
 import {esc} from './journeyUI.js';
-const names={plans:'居民生活规划',conversations:'居民交谈',steward:'管家自动巡查',steward_manual:'管家手动委托',recruitment:'管家与伙伴招聘',party_suggestion:'派对主题建议',legacy_plan:'居民规划'};
+const names={resident_chat:'与居民自由聊天',plans:'居民生活规划',conversations:'居民交谈',steward:'管家自动巡查',steward_manual:'管家手动委托',recruitment:'管家与伙伴招聘',party_suggestion:'派对主题建议',legacy_plan:'居民规划'};
 const phases={running:'正在运行',completed:'模型运行结束',late_completed:'迟到结果 · 未应用',failed:'运行失败',timed_out:'请求超时',interrupted:'运行中断',local_fallback:'本地备援 · 未调用模型'};
 const fmt=v=>v===null||v===undefined?'未知':Number(v).toLocaleString('zh-CN');
 const date=v=>new Date(v).toLocaleString('zh-CN',{timeZone:'Asia/Singapore',hour12:false});

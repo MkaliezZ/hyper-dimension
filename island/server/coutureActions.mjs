@@ -84,7 +84,7 @@ export function applyCoutureCommand(s,b,i,now){
   if(b.active)throw fail('先完成或取消当前作业','action_active');
   if(i.expectedSequence!==b.sequence||(i.epoch??b.epoch)!==b.epoch&&i.epoch!==null)throw fail('当前作业版本已变化','action_sequence');
   if(s.day<=b.couture.lastDay)throw fail('今日已经承办派对','couture_not_ready');
-  const r=startCoutureParty(s,{seed:randomInt(1,0x100000000),theme:i.theme});if(!r.ok)throw fail(r.reason,'couture_not_ready');
+  const r=startCoutureParty(s,{seed:randomInt(1,0x100000000),theme:(i.appearance||i.theme)});if(!r.ok)throw fail(r.reason,'couture_not_ready');
   markFishingPartyDay(s,b,s.day);
   const t={kind:'couture',item:'couture',name:d.name,eventId:d.id,eventVersion:d.version,eventStamp:i.eventStamp,requestId:i.requestId,epoch:b.epoch,sequence:++b.sequence,duration:2.4,day:s.day,startedAt:now,readyAt:now+2400,expiresAt:now+24*3600000,nextBatch:1,game:structuredClone(r.session.game)};
   b.active=t;b.couture.hold=structuredClone(s.resourceLedger.reservations[coutureOwner(d.id)]);sync(s,b);return{ticket:t,receipt:null};

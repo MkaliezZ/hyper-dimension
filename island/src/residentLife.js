@@ -1,3 +1,4 @@
+import {SOCIAL_TOPIC_KEYS,SOCIAL_TOPIC_COOLDOWN} from './residentSocialTopics.js';
 // Personal routines and social boundaries use completed actions, never invented memories.
 import {BUILDINGS} from './world.js';
 const rows=[
@@ -34,6 +35,7 @@ export function recordSocialOutcome(s,row){
  const book=s.residentLife??={version:1,boundaries:[],receipts:[]};if(book.receipts.includes(row.id))return false;
  book.receipts.push(row.id);book.receipts=book.receipts.slice(-80);const now=residentLifeClock(s),people=[...row.participants].sort((a,b)=>a-b),same=b=>b.people[0]===people[0]&&b.people[1]===people[1];
  book.boundaries=book.boundaries.filter(b=>b.until>now);
+ if(SOCIAL_TOPIC_KEYS.has(row.socialTopicKey)){book.topics=(book.topics||[]).filter(t=>t.until>now&&!(t.key===row.socialTopicKey&&t.people.join('-')===people.join('-')));book.topics.push({people,key:row.socialTopicKey,until:now+SOCIAL_TOPIC_COOLDOWN,sourceId:row.id});book.topics=book.topics.slice(-80);}
  const changes=row.changes.filter(c=>people.includes(c.from)&&people.includes(c.to)&&c.from!==c.to);
  const tension=changes.reduce((n,c)=>n+(Number(c.tension)||0),0);
  const put=(kind,seconds,reason)=>{book.boundaries=book.boundaries.filter(b=>!same(b)||b.kind!==kind);book.boundaries.push({people,kind,until:now+seconds,sourceId:row.id,reason});};
@@ -48,6 +50,7 @@ export function recordSocialOutcome(s,row){
 }
 export function validResidentLife(s){
  const b=s.residentLife;if(b===undefined)return true;
+ if(b?.topics!==undefined&&(!Array.isArray(b.topics)||b.topics.length>80||!b.topics.every(t=>t&&SOCIAL_TOPIC_KEYS.has(t.key)&&Array.isArray(t.people)&&t.people.length===2&&t.people.every(i=>Number.isInteger(i)&&i>=0&&i<15)&&t.people[0]<t.people[1]&&Number.isFinite(t.until)&&t.until>=0&&typeof t.sourceId==='string'&&t.sourceId.length<=160)))return false;
  return !!b&&b.version===1&&Array.isArray(b.receipts)&&b.receipts.length<=80&&b.receipts.every(id=>typeof id==='string'&&id.length<=160)&&new Set(b.receipts).size===b.receipts.length&&Array.isArray(b.boundaries)&&b.boundaries.length<=60&&b.boundaries.every(x=>x&&Array.isArray(x.people)&&x.people.length===2&&x.people.every(i=>Number.isInteger(i)&&i>=0&&i<15)&&x.people[0]<x.people[1]&&['space','romance'].includes(x.kind)&&Number.isFinite(x.until)&&x.until>=0&&typeof x.sourceId==='string'&&x.sourceId.length<=160&&typeof x.reason==='string'&&x.reason.length<=160);
 }
 export function socialCandidates(s,id,profile={}){
