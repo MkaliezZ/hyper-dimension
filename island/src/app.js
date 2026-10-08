@@ -28,6 +28,7 @@ import {createServerResident} from './serverResidentUI.js';
 import {createServerFieldNpc} from './serverFieldNpcUI.js';
 import {mountMiningGame} from './miningGameUI.js';
 import {mountWorkshopGame} from './workshopGames.js';
+import {acceptedRecipe} from './recipeContracts.js';
 import {createServerCraft} from './serverCraftUI.js';
 import {createServerFarm} from './serverFarmUI.js';
 import {createServerGather} from './serverGatherUI.js';
@@ -332,9 +333,9 @@ function showInteriorAction(){
 function mountServerCraft(ticket,session){
  // The controller has disposed the previous engine; rebuilding the panel is not an exit.
  roomGame=null;
- const id=ticket.building,b=BUILDINGS[id],room=ROOMS[id],recipe=RECIPE_BY_ID[ticket.recipeId];
+ const id=ticket.building,b=BUILDINGS[id],room=ROOMS[id],recipe=acceptedRecipe(ticket)||RECIPE_BY_ID[ticket.recipeId];
  if(scene==='world'||sceneBuilding!==id)setScene(b.kind,id);
- const materialPanel=WORKSHOP_GAMES[id]?'':'<section class="game-materials">'+itemIcon(recipe.item)+' 制作：'+escapeHTML(recipe.name)+'<button class="secondary recipe-switch" id="switchRecipe">切换配方</button><div class="material-costs">'+Object.entries(recipe.cost).map(([k,n])=>'<span>'+itemIcon(k)+' '+escapeHTML(ITEMS[k][0])+' '+availableQuantity(state,k,ticket.owner)+'/'+n+'</span>').join('')+'</div><p>'+escapeHTML(itemPurpose(recipe.item,state).primary.text)+(ticket.practice?' · 本局为练习，不消耗材料。':' · 材料已为本局预留，通关领取后扣除。')+'</p></section>';
+ const materialPanel=WORKSHOP_GAMES[id]?'':'<section class="game-materials">'+itemIcon(recipe.item)+' 制作：'+escapeHTML(recipe.name)+'<button class="secondary recipe-switch" id="switchRecipe">切换配方</button><div class="material-costs">'+Object.entries(recipe.cost).map(([k,n])=>'<span>'+itemIcon(k)+' '+escapeHTML(ITEMS[k][0])+' '+availableQuantity(state,k,ticket.owner)+'/'+n+'</span>').join('')+'</div><p>'+escapeHTML(itemPurpose(recipe.item,state).primary.text)+(ticket.practice?' · 本局为练习，不消耗材料。':' · 按本局开工材料单预留，通关领取后扣除。')+'</p></section>';
  openModal(b.name+' · '+ROOM_GAMES[id].title,room.station,materialPanel+'<div id="roomGameRoot"></div>');
  const panel=$('modalRoot').querySelector('.modal');panel.classList.add('game-modal');if(WORKSHOP_GAMES[id])panel.classList.add('workbench-modal');
  panel.querySelector('.modal-head small').textContent='晨光岛 / 室内工作台';

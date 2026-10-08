@@ -1,3 +1,4 @@
+import {recipeContract,acceptedRecipe,validAcceptedRecipe} from '../src/recipeContracts.js';
 import {randomInt,createHash} from 'node:crypto';
 import {RECIPE_BY_ID,canCraft,recipeGate,hydrateContent,takeCraftNutrition} from '../src/contentCatalog.js';
 import {reserveResources,releaseResources,commitResources,nextOperationId} from '../src/resourceLedger.js';
@@ -14,10 +15,10 @@ const fail=(text,code='craft_invalid')=>Object.assign(Error(text),{status:409,co
 const digest=events=>createHash('sha256').update(JSON.stringify(events)).digest('hex');
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export function validCraftTicket(t,receipt=false){
- if(!RECIPE_BY_ID[t.recipeId]||t.item!==RECIPE_BY_ID[t.recipeId].item||t.building!==RECIPE_BY_ID[t.recipeId].building||!Number.isInteger(t.seed)||t.seed<0||t.seed>0xffffffff||![1,2,3].includes(t.difficulty)||typeof t.practice!=='boolean'||!Number.isFinite(t.duration)||t.duration<.85||t.duration>2.1)return false;
+ if(!validAcceptedRecipe(t)||!RECIPE_BY_ID[t.recipeId]||t.item!==RECIPE_BY_ID[t.recipeId].item||t.building!==RECIPE_BY_ID[t.recipeId].building||!Number.isInteger(t.seed)||t.seed<0||t.seed>0xffffffff||![1,2,3].includes(t.difficulty)||typeof t.practice!=='boolean'||!Number.isFinite(t.duration)||t.duration<.85||t.duration>2.1)return false;
  return receipt||!!t.game&&['workshop','link','match'].includes(t.game.engine)&&Number.isFinite(t.game.elapsed)&&t.game.elapsed>=0&&Number.isSafeInteger(t.nextBatch)&&t.nextBatch>=1;
 }
-export function craftHold(t){return t.practice?{}:{[t.owner]:{items:Object.fromEntries(Object.entries(t.reservedItems||RECIPE_BY_ID[t.recipeId].cost).sort(([a],[b])=>a.localeCompare(b))),purpose:'服务端制作 '+t.name,day:t.day,...(t.projectTaskId?{projectTaskId:t.projectTaskId,taskOperation:t.taskOperation,assignmentVersion:t.assignmentVersion}:{})}}}
+export function craftHold(t){return t.practice?{}:{[t.owner]:{items:Object.fromEntries(Object.entries(t.reservedItems||acceptedRecipe(t)?.cost||{}).sort(([a],[b])=>a.localeCompare(b))),purpose:'服务端制作 '+t.name,day:t.day,...(t.projectTaskId?{projectTaskId:t.projectTaskId,taskOperation:t.taskOperation,assignmentVersion:t.assignmentVersion}:{})}}}
 export function craftReplay(doc,input){
  const b=doc?.actions;if(!b||input.kind!=='craft')return null;
  if(input.operation==='begin'){
@@ -47,7 +48,7 @@ function returnProjectHold(s,t){
  if(task?.npcId===-1&&task.operationId===t.taskOperation&&task.status==='running'){task.status='queued';delete task.operationId}
  if(task?.resourceOwner&&['queued','running','paused','waiting'].includes(task.status)){
   const held={...(s.resourceLedger?.reservations[task.resourceOwner]?.items||{})};
-  for(const [id,n] of Object.entries(RECIPE_BY_ID[t.recipeId].cost))held[id]=(held[id]||0)+n;
+  for(const [id,n] of Object.entries(acceptedRecipe(t).cost))held[id]=(held[id]||0)+n;
   reserveResources(s,task.resourceOwner,held,{partial:true,purpose:task.intent||t.name});
  }
 }
@@ -75,7 +76,7 @@ export function applyCraftCommand(s,b,input,now){
    if(project)taskOperation=beginTaskStep(s,project.id);
   }
   history.attempts++;history.recentSeeds=[...history.recentSeeds,seed].slice(-12);history.lastDifficulty=difficulty;history.lastMode=mode;
-  const ticket={kind:'craft',requestId:input.requestId,epoch:b.epoch,sequence,recipeId:recipe.id,item:recipe.item,name:recipe.name,building:recipe.building,amount:1,action:ROOMS[recipe.building].action,mode,difficulty,seed,practice,duration,tool,reservedItems,owner,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+24*60*60*1000,projectTaskId:project&&!practice?project.id:null,taskOperation,assignmentVersion:project?.assignmentVersion||0,nextBatch:1,game:createCraftGame(recipe.building,seed,difficulty,tool)};
+  const ticket={kind:'craft',requestId:input.requestId,epoch:b.epoch,sequence,recipeId:recipe.id,recipeContract:recipeContract(recipe),item:recipe.item,name:recipe.name,building:recipe.building,amount:1,action:ROOMS[recipe.building].action,mode,difficulty,seed,practice,duration,tool,reservedItems,owner,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+24*60*60*1000,projectTaskId:project&&!practice?project.id:null,taskOperation,assignmentVersion:project?.assignmentVersion||0,nextBatch:1,game:createCraftGame(recipe.building,seed,difficulty,tool)};
   if(ticket.projectTaskId)Object.assign(s.resourceLedger.reservations[owner],{projectTaskId:ticket.projectTaskId,taskOperation:ticket.taskOperation,assignmentVersion:ticket.assignmentVersion});
   b.sequence=sequence;b.active=ticket;return {ticket,receipt:null};
  }
@@ -98,7 +99,7 @@ export function applyCraftCommand(s,b,input,now){
   if(!t.practice){
    const task=t.projectTaskId&&s.agentTaskLedger?.find(x=>x.id===t.projectTaskId);
    if(t.projectTaskId&&(!task||task.npcId!==-1||task.status!=='running'||task.operationId!==t.taskOperation||(task.assignmentVersion||0)!==t.assignmentVersion))throw fail('筹备步骤已暂停、完成或改派，可以取消归还材料','craft_task_changed');
-   const recipe=RECIPE_BY_ID[t.recipeId],id=nextOperationId(s,'player:craft')+':result';
+   const recipe=acceptedRecipe(t);if(!recipe)throw fail('本次制作材料单无法核对，请保留进度并恢复有效存档','craft_contract');const id=nextOperationId(s,'player:craft')+':result';
    const paid=commitResources(s,{id,owner:t.owner,cost:recipe.cost,gain:{[recipe.item]:1},category:'craft',note:recipe.name});
    if(!paid.ok||paid.replayed)throw fail('物资账本与制作作业不一致','action_ledger_conflict');
    resourceReceiptId=id;
@@ -111,6 +112,6 @@ export function applyCraftCommand(s,b,input,now){
  }
  releaseResources(s,t.owner);if(outcome==='cancelled')returnProjectHold(s,t);
  const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;
- const receipt={ticket,outcome,gain,cost:outcome==='finished'?RECIPE_BY_ID[t.recipeId].cost:{},quality,resourceReceiptId,at:now,day:s.day};
+ const receipt={ticket,outcome,gain,cost:outcome==='finished'?{...acceptedRecipe(t).cost}:{},quality,resourceReceiptId,at:now,day:s.day};
  b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;return {ticket,receipt};
 }

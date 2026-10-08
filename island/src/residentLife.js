@@ -51,6 +51,8 @@ export function validResidentLife(s){
  return !!b&&b.version===1&&Array.isArray(b.receipts)&&b.receipts.length<=80&&b.receipts.every(id=>typeof id==='string'&&id.length<=160)&&new Set(b.receipts).size===b.receipts.length&&Array.isArray(b.boundaries)&&b.boundaries.length<=60&&b.boundaries.every(x=>x&&Array.isArray(x.people)&&x.people.length===2&&x.people.every(i=>Number.isInteger(i)&&i>=0&&i<15)&&x.people[0]<x.people[1]&&['space','romance'].includes(x.kind)&&Number.isFinite(x.until)&&x.until>=0&&typeof x.sourceId==='string'&&x.sourceId.length<=160&&typeof x.reason==='string'&&x.reason.length<=160);
 }
 export function socialCandidates(s,id,profile={}){
+ // Agent conversations use their own runtime; ordinary resident pair meetings support ids 0–14.
+ if(!Number.isInteger(id)||id<0||id>=15)return [];
  const traits=temperament(profile),preferred=(profile.relationships||[]).map(r=>r.target),recent=(s.npcConversations||[]).filter(c=>c.participants?.includes(id)).slice(-3);
  return Array.from({length:15},(_,j)=>j).filter(j=>j!==id).map(j=>{
   const rel=s.npcRelations?.[id]?.[j]||{},back=s.npcRelations?.[j]?.[id]||{},p=s.npcPresence?.find(p=>p.id===j),n=s.npcNeeds?.[j]||{energy:78,hunger:76};

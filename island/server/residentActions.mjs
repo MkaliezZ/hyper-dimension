@@ -1,3 +1,4 @@
+import {recipeContract,acceptedRecipe,validAcceptedRecipe} from '../src/recipeContracts.js';
 import {routineFor} from '../src/residentLife.js';
 import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
@@ -23,7 +24,7 @@ export const residentTickets=b=>Object.values(b?.resident?.leases||{});
 export const residentActorOccupied=(b,i)=>[b?.active,...Object.values(b?.farm?.leases||{}),...Object.values(b?.field?.leases||{}),...residentTickets(b)].some(t=>t&&t.actor==='npc'&&t.actorId===i);
 const publicTicket=t=>({requestId:t.requestId,actorId:t.actorId,assignmentId:t.assignmentId,operationId:t.operationId,sequence:t.sequence,sourceOwner:t.sourceOwner,sourceTransfer:t.sourceTransfer});
 const control=b=>({version:1,leases:residentTickets(b).map(publicTicket)});
-export function validResidentTicket(t){return !!t&&t.kind==='resident'&&t.actor==='npc'&&Number.isInteger(t.actorId)&&t.actorId>=0&&t.actorId<=16&&id(t.requestId)&&id(t.epoch)&&Number.isSafeInteger(t.sequence)&&t.sequence>0&&typeof t.item==='string'&&key(t.operationId)&&key(t.owner)&&t.owner.startsWith(RESIDENT_LEASE_PREFIX)&&Number.isFinite(t.duration)&&t.duration>=9&&t.duration<=NPC_CADENCE.workSeconds&&Number.isFinite(t.startedAt)&&t.readyAt>=t.startedAt+t.duration*1000&&Number.isFinite(t.expiresAt)&&t.expiresAt>t.readyAt&&t.intent&&['work','eat','rest','visit'].includes(t.intent.action)&&typeof t.beginSignature==='string';}
+export function validResidentTicket(t){return !!t&&t.kind==='resident'&&(t.mode!=='craft'||validAcceptedRecipe(t))&&t.actor==='npc'&&Number.isInteger(t.actorId)&&t.actorId>=0&&t.actorId<=16&&id(t.requestId)&&id(t.epoch)&&Number.isSafeInteger(t.sequence)&&t.sequence>0&&typeof t.item==='string'&&key(t.operationId)&&key(t.owner)&&t.owner.startsWith(RESIDENT_LEASE_PREFIX)&&Number.isFinite(t.duration)&&t.duration>=9&&t.duration<=NPC_CADENCE.workSeconds&&Number.isFinite(t.startedAt)&&t.readyAt>=t.startedAt+t.duration*1000&&Number.isFinite(t.expiresAt)&&t.expiresAt>t.readyAt&&t.intent&&['work','eat','rest','visit'].includes(t.intent.action)&&typeof t.beginSignature==='string';}
 export function validResidentBook(r,b){return r===undefined||!!r&&r.version===1&&r.leases&&typeof r.leases==='object'&&!Array.isArray(r.leases)&&Object.keys(r.leases).length<=17&&Object.entries(r.leases).every(([k,t])=>validResidentTicket(t)&&k===t.requestId&&t.epoch===b.epoch&&t.sequence<=b.sequence)&&new Set(Object.values(r.leases).map(t=>t.actorId)).size===Object.keys(r.leases).length;}
 export function residentHolds(b){const out={};for(const t of residentTickets(b))if(Object.keys(t.reservedItems).length)out[t.owner]={items:Object.fromEntries(Object.entries(t.reservedItems).sort(([a],[b])=>a.localeCompare(b))),purpose:'居民作业 '+t.name,day:t.day,...(t.projectReservation?{projectTaskId:t.assignmentId,taskOperation:t.operationId,productionItem:t.item}:{})};return out;}
 export function assertResidentState(s,b){if(b?.resident&&!same(s.residentControl,control(b)))throw fail('居民作业由服务器核对，请读取已确认的进度','resident_state_conflict');}
@@ -80,7 +81,7 @@ export function applyResidentCommand(s,b,i,now){
   if(held)for(const [id,n]of Object.entries(p.cost)){const moved=Math.min(held.items[id]||0,n);if(moved){sourceTransfer[id]=moved;held.items[id]-=moved;if(!held.items[id])delete held.items[id];}}if(held&&!Object.keys(held.items).length)delete s.resourceLedger.reservations[p.sourceOwner];
   const reservedItems={...p.cost};if(p.tool?.source==='owned')reservedItems[p.tool.id]=Math.max(reservedItems[p.tool.id]||0,1);
   if(Object.keys(reservedItems).length&&!reserveResources(s,owner,reservedItems,{purpose:'居民作业 '+p.name}).ok)throw fail('工作材料被其他作业占用','resident_materials');
-  const t={kind:'resident',actor:'npc',actorId:i.actorId,requestId:i.requestId,epoch:b.epoch,sequence,item:p.item,name:p.name,mode:p.mode,action:p.action,tool:p.tool,duration:p.duration,gameTime:Number.isFinite(i.gameTime)&&i.gameTime>=0?Math.min(i.gameTime,1e9):0,cost:p.cost,reservedItems,owner,sourceOwner:p.sourceOwner,sourceTransfer,operationId,assignmentId,assignmentVersion:task?.assignmentVersion||0,projectReservation:!!(task?.projectId&&p.mode==='craft'),storyId,day:s.day,startedAt:now,readyAt:now+p.duration*1000,expiresAt:now+30*60*1000,intent:{...p.d,operationId,resourceOwner:owner,storyId},beginSignature:signature(i)};
+  const t={kind:'resident',actor:'npc',actorId:i.actorId,requestId:i.requestId,epoch:b.epoch,sequence,item:p.item,name:p.name,mode:p.mode,action:p.action,tool:p.tool,duration:p.duration,gameTime:Number.isFinite(i.gameTime)&&i.gameTime>=0?Math.min(i.gameTime,1e9):0,cost:p.cost,...(p.mode==='craft'?{recipeContract:recipeContract(RECIPE_BY_ID[p.d.recipeId])}:{}),reservedItems,owner,sourceOwner:p.sourceOwner,sourceTransfer,operationId,assignmentId,assignmentVersion:task?.assignmentVersion||0,projectReservation:!!(task?.projectId&&p.mode==='craft'),storyId,day:s.day,startedAt:now,readyAt:now+p.duration*1000,expiresAt:now+30*60*1000,intent:{...p.d,operationId,resourceOwner:owner,storyId},beginSignature:signature(i)};
   if(t.projectReservation)Object.assign(s.resourceLedger.reservations[owner],{projectTaskId:t.assignmentId,taskOperation:t.operationId,productionItem:t.item});
   b.sequence=sequence;b.resident.leases[t.requestId]=t;sync(s,b);return {ticket:t,receipt:null};
  }
@@ -91,10 +92,11 @@ export function applyResidentCommand(s,b,i,now){
   if(now<t.readyAt)throw fail('居民动作尚未完成','action_early');if(now>t.expiresAt)throw fail('居民作业已过期，可以取消','action_expired');
   if(t.actorId===16&&(s.recruitment?.active?.phase!=='working'||s.recruitment.active.leaveRequested))throw fail('招聘伙伴已结束工作','resident_task_changed');
   if(!taskValid(s,t)||!storyValid(s,t))throw fail('居民分工或约定已暂停或变化','resident_task_changed');
-  if(t.mode==='craft'&&(!recipeGate(RECIPE_BY_ID[t.intent.recipeId],s).ready||!canCraft(RECIPE_BY_ID[t.intent.recipeId],s,{owner:t.owner})))throw fail('本次制作条件已变化，请取消后重新安排','resident_plan_changed');
+  const frozenRecipe=t.mode==='craft'?acceptedRecipe(t):null;
+  if(t.mode==='craft'&&(!frozenRecipe||!canCraft(frozenRecipe,s,{owner:t.owner})))throw fail('本次制作条件已变化，请取消后重新安排','resident_plan_changed');
   if(t.mode==='tea'){const u=functionalUnit(s,t.intent.facilityId);if(u?.phase!=='ready'||u.servings<1)throw fail('茶炉余量已变化','resident_facility_changed');}
   if(t.intent.foodId==='rations'&&needs(t.actorId,s).rations<1)throw fail('自备简餐余量已变化','resident_food');
-  text=commitWork(t.actorId,t.intent,s,t.gameTime+t.duration);delta=s.taskActionReceipts[t.operationId].delta;
+  text=commitWork(t.actorId,t.intent,s,t.gameTime+t.duration,{acceptedRecipe:frozenRecipe});delta=s.taskActionReceipts[t.operationId].delta;
   if(t.intent.action==='eat'&&t.cost[t.item]&&delta[t.item]!==-1)throw fail('餐点尚未实际消费','resident_delivery');
   if(t.mode==='craft'&&(delta[t.item]||0)!==1)throw fail('制作尚未实际交付','resident_delivery');
   if(t.assignmentId&&!recordTaskStep(s,t.assignmentId,{operationId:t.operationId,result:text,delta,preparing:!!t.intent.preparing||t.mode==='maintenance'||t.mode==='observe'}).ok)throw fail('分工成果尚未确认','resident_task_changed');

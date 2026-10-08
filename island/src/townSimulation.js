@@ -86,15 +86,15 @@ export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),ma
  options.sort((a,b)=>b.score-a.score);
  if(n.energy<20)return options.filter(o=>o.action==='rest');if(n.hunger<30)return options.filter(o=>o.action==='eat'||o.purposeId==='need:food-supply');return options;
 }
-export function choosePurpose(i,s,r,time=0){const options=purposeOptions(i,s,r,time);return {...options[0],source:'local',speech:''}}
-export function commitWork(i,d,s,time){
+export function choosePurpose(i,s,r,time=0,{allowSocial=true}={}){const options=purposeOptions(i,s,r,time).filter(o=>allowSocial||o.action!=='social');return {...options[0],source:'local',speech:''}}
+export function commitWork(i,d,s,time,options={}){
  const receipts=s.taskActionReceipts??={};
  if(d.operationId&&receipts[d.operationId])return receipts[d.operationId].result;
- const before=d.operationId?{...s.inventory}:null,result=executeWork(i,d,s,time);
+ const before=d.operationId?{...s.inventory}:null,result=executeWork(i,d,s,time,options);
  if(d.operationId)receipts[d.operationId]={day:s.day,npcId:i,storyId:d.storyId||null,goal:d.goal,result,delta:Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before[id]||0)]).filter(([,n])=>n))};
  return result;
 }
-function executeWork(i,d,s,time){const n=needs(i,s),c=career(i,s);let result='',advance=true;
+function executeWork(i,d,s,time,{acceptedRecipe=null}={}){const n=needs(i,s),c=career(i,s);let result='',advance=true;
  function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){c.retryAfter=time+30;c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({day:s.day,daySeconds:s.economy?.daySeconds||0,time,goal:d.goal,buildingId:d.buildingId,action:d.action,purposeId:d.purposeId,result,source:d.source});c.history=c.history.slice(-16);return result;}
  if(d.facilityId){const b=s.functionalFacilities,r=functionalCommand(s,{commandId:d.operationId||('npc-tea:'+i+':'+time),displayId:d.facilityId,action:'sip',expectedRevision:b?.revision});if(!r.ok)return complete(r.reason,false);if(!r.replayed){n.hunger=Math.min(100,n.hunger+22);n.energy=Math.min(100,n.energy+7);n.social=Math.min(100,n.social+2);n.mood='温暖';}return complete('在岛上的暖手茶炉享用花茶 · 余量实际减少一杯');}
  if(d.action==='rest'){n.energy=Math.min(100,n.energy+42);n.mood='放松';return complete('在居民之家休息，恢复体力')}
@@ -107,7 +107,7 @@ function executeWork(i,d,s,time){const n=needs(i,s),c=career(i,s);let result='',
  else if(d.goal==='dock'){const item=d.resource||'fish';resourceLoot(ITEM_BY_ID[item]?.source||'fishing',s,1,item);result='在码头取得'+ITEMS[item][0]+' ×1'}
  else if(d.buildingId===14&&d.resource==='seed'&&!d.recipeId){commitResources(s,{gain:{seed:1},category:'nursery_collect'});result='从温室苗床收取种子 ×1'}
  else if(d.buildingId===14&&!d.recipeId&&(d.activity==='herbs'||d.resource)){const item=d.resource||'herb';resourceLoot('greenhouse',s,1,item);if(s.inventory.seed<4)s.inventory.seed++;result='从温室采收'+ITEMS[item][0]+' ×1'+(s.inventory.seed<5?'，补充种苗':'')}
- else if(d.buildingId!=null){const recipe=RECIPE_BY_ID[d.recipeId]||RECIPES[d.buildingId];if(d.productionMode!=='maintenance'&&recipe&&recipe.building===d.buildingId&&commitRecipe(recipe,s,{owner:d.resourceOwner||null,commandId:d.operationId?d.operationId+':craft':null})){if(recipe.item==='lantern')s.tasks.craft=true;improveQuality(s.facilities[d.buildingId],.1);result='在'+BUILDINGS[d.buildingId].name+'制作'+ITEMS[recipe.item][0]+' ×1'}else{result='完成'+ROOMS[d.buildingId].station+'的整理、维护与服务准备';if(recipe)advance=false;}const f=s.facilities[d.buildingId];f.condition=Math.min(100,f.condition+.5);f.lastWork=time;}
+ else if(d.buildingId!=null){const recipe=acceptedRecipe||RECIPE_BY_ID[d.recipeId]||RECIPES[d.buildingId];if(d.productionMode!=='maintenance'&&recipe&&recipe.building===d.buildingId&&commitRecipe(recipe,s,{owner:d.resourceOwner||null,commandId:d.operationId?d.operationId+':craft':null})){if(recipe.item==='lantern')s.tasks.craft=true;improveQuality(s.facilities[d.buildingId],.1);result='在'+BUILDINGS[d.buildingId].name+'制作'+ITEMS[recipe.item][0]+' ×1'}else{result='完成'+ROOMS[d.buildingId].station+'的整理、维护与服务准备';if(recipe)advance=false;}const f=s.facilities[d.buildingId];f.condition=Math.min(100,f.condition+.5);f.lastWork=time;}
  else result='观察广场人流，整理活动信息';
  return complete(result,advance);
 }

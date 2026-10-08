@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v113-agent-source",
+  "release": "hyper-dimension-v114-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 14095,
-      "sha256": "a201f54aa93b7aa74c7f9b31434cd5c948339d0af0262174b53277cd05ab1523"
+      "bytes": 14608,
+      "sha256": "ddbec6cd7afe4dd509ac6d8e28d8bf4c1f21dcf46f09d5c065b2920dcd749b0d"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10087,
-      "sha256": "337cb169342203a54a47ccb613c65593b0e7d113879a91677c26d71642f5cc81"
+      "bytes": 10270,
+      "sha256": "b1613901399d36d9bb627fb39568449cf8efa433147614813a17c994f5202597"
     },
     {
       "path": "README.md",
-      "bytes": 9188,
-      "sha256": "ea0deed32357baab7a265bd8d17c0555c65b3b2302e9e5f768212c2160680b9d"
+      "bytes": 9402,
+      "sha256": "b3f8a518e72f539145646641e03a68301f0cf067d1ac7caad4094eeb64b3d518"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -184,6 +184,11 @@
       "path": "docs/media/showcase-details.json",
       "bytes": 678,
       "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
+    },
+    {
+      "path": "docs/production-contracts-v114.md",
+      "bytes": 4237,
+      "sha256": "bbdbb8c2e8bf56e76efe20dc9f3ab4f5817082f4588eb72037445bbe02148193"
     },
     {
       "path": "docs/provenance/art-provenance-v8-avatars.json",
@@ -727,8 +732,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 5662,
-      "sha256": "864e89b378873e97ab02ba8ed62f8c03720e27ab27979bf8086279f97e29c4e1"
+      "bytes": 5936,
+      "sha256": "b511b4778550f4c73efb80bafe7b0041320e26a0d9411f506de2b7b22eaf3d16"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1897,8 +1902,8 @@
     },
     {
       "path": "server/craftActions.mjs",
-      "bytes": 10722,
-      "sha256": "3a6cd83eea44d5ac5c3832533aa12452bd513452f84b92b61ca1a68c3f71b27e"
+      "bytes": 10981,
+      "sha256": "cfcf1eddb6370b7f5fc9568127198eb664f22b6cba23f2a7c29eec9409488005"
     },
     {
       "path": "server/crossIslandTasks.mjs",
@@ -2177,8 +2182,8 @@
     },
     {
       "path": "server/residentActions.mjs",
-      "bytes": 15753,
-      "sha256": "23111326136c4c2bf6cdab5f99271b4284856a773b948a52fe889c14196d5f11"
+      "bytes": 16009,
+      "sha256": "d3502c26a92104608f5212f2ebba4e2cba8eb5bbfe32abcfd1a680cac54999dc"
     },
     {
       "path": "server/resourceAuthority.mjs",
@@ -2287,8 +2292,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 130400,
-      "sha256": "009e4998f0906a778dcf6500f899802b9ee42e71406d1e75050bd21b2182b233"
+      "bytes": 130483,
+      "sha256": "9013eda0b25215eeb108b96ec9c5949e6ac0611ec3f42ca9e356ee2223a4f294"
     },
     {
       "path": "src/arcade.css",
@@ -2871,6 +2876,11 @@
       "sha256": "9aee20ef53fbbc54ef6e5f935589bede927a59b8d461d38c881a8d481480983b"
     },
     {
+      "path": "src/legacyRecipeDefinitions-v32.js",
+      "bytes": 58677,
+      "sha256": "a0765723920d2526491711140c8b55fb8969a43099ac14120c24c4a4b8d30b20"
+    },
+    {
       "path": "src/life-v10.css",
       "bytes": 9838,
       "sha256": "4109553b2819b97d26d599ce430e4e2553b99b669d9564ebbea0f8fbab9ee8dc"
@@ -3076,6 +3086,11 @@
       "sha256": "36e251c424628a23b50179636c3f7f54ee1d4d69560acc98a672f41b857fb74b"
     },
     {
+      "path": "src/recipeContracts.js",
+      "bytes": 2587,
+      "sha256": "454d54e2d7df6f172ad8c1843926abc2d703686df7577ee8976968380db51c78"
+    },
+    {
       "path": "src/recruitCandidateLibrary.js",
       "bytes": 6059,
       "sha256": "50ebe481ce407248d764ad8b1f611fdb911c9c71e22fdefac5271fc9d4b1b4dc"
@@ -3132,8 +3147,8 @@
     },
     {
       "path": "src/residentLife.js",
-      "bytes": 10032,
-      "sha256": "aa8e571f392d2f5fbf102297e5d5a6f3a83b1cae0e84dea08628f9d6f2abdbf6"
+      "bytes": 10184,
+      "sha256": "cbeb78e344d426e6673ca49825c14da2b194a77c1432cf414c4e048db8cb8c33"
     },
     {
       "path": "src/residentPortraits.js",
@@ -3142,8 +3157,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 35305,
-      "sha256": "57a23d4a3b1cfb65b91377725ca4bac3d707fb0782b5b9c937768d5f17283c3c"
+      "bytes": 35285,
+      "sha256": "60e30b148e7f5712508c0eee8533cd33e7506bd7b1c7b40fe9df2e35f182f0b6"
     },
     {
       "path": "src/residentStories.js",
@@ -3372,8 +3387,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 23036,
-      "sha256": "5f92ef581f2f21545902cdbe549e17cbca938c61aa68b8d452c6d001ad71ac2a"
+      "bytes": 23162,
+      "sha256": "46e3cf7b7f07a679061b93fd33bed2ed818c071e2c57d5eb01c9748dfc76c6ec"
     },
     {
       "path": "src/ui-v16.css",
@@ -3844,6 +3859,21 @@
       "path": "tests/v113-shopfronts.test.mjs",
       "bytes": 8715,
       "sha256": "0089044a07d56d6afa5e2b29ca78b9dad9a76e65a14555c42f864c3d7e9a1be3"
+    },
+    {
+      "path": "tests/v114-contracts-browser.mjs",
+      "bytes": 7426,
+      "sha256": "cd48b0125d4669ac35637dc1856dc3fc6c2c804914b6967e7b9d549c26bc5cea"
+    },
+    {
+      "path": "tests/v114-recipe-contracts.test.mjs",
+      "bytes": 10154,
+      "sha256": "9e87f0e6e0deaf62e5ac719410aa2efd021cf56ce86fe90d1f5c7b65898ac6a7"
+    },
+    {
+      "path": "tests/v114-resident-dispatch.test.mjs",
+      "bytes": 2503,
+      "sha256": "350f2493e9899736921895a5954fb4bf7c1cd7f9275c5a4bf0a201a0e41e96a2"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -6146,5 +6176,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v113-github"
+  "publicRevision": "v114-github"
 }
