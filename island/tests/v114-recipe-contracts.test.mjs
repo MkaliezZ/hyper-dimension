@@ -80,15 +80,21 @@ test('contract validation rejects malformed costs, wrong outputs and tool-inclus
 });
 
 for(const legacy of [false,true])test((legacy?'legacy':'new')+' player finishes a real replayed game after catalog change and store reopen at the accepted cost exactly once',async()=>{
+ const recipe=RECIPE_BY_ID.recipe_lantern,latestCost=recipe.cost;
+ // A genuine pre-contract ticket was created under the old frozen bill. Do not erase
+ // a new ticket's contract and then mislabel its different reservation as V32.
+ if(legacy)recipe.cost={...LEGACY_RECIPE_DEFINITIONS.recipe_lantern.cost};
+ try{
  const f=await fixture(),start=await f.store.action('pixel',begin(f.document,'recipe_lantern',{recipeContract:{cost:{}}}));
  assert.deepEqual(start.ticket.recipeContract.cost,RECIPE_BY_ID.recipe_lantern.cost);const {r}=await play(f,start);f.advance(2200);
  const loaded=legacy?await legacyDisk(f,r):r;
  await changedRecipe('recipe_lantern',async cost=>{
   const restored=await f.other().current('pixel');assert(validActionBook(restored.actions));assert.deepEqual(acceptedRecipe(restored.actions.active).cost,cost);
   const done=await f.other().action('pixel',command({...loaded,document:restored},'finish'));
-  assert.deepEqual(done.receipt.cost,cost);assert.equal(done.document.state.inventory.wood,997);assert.equal(done.document.state.inventory.ore,998);assert.equal(done.document.state.inventory.clay,999);assert.equal(done.document.state.inventory.lantern,1000);
+  assert.deepEqual(done.receipt.cost,cost);for(const [id,n] of Object.entries(cost))assert.equal(done.document.state.inventory[id],999-n,id+' accepted debit');assert.equal(done.document.state.inventory.ore,999-(cost.ore||0));assert.equal(done.document.state.inventory.clay,999);assert.equal(done.document.state.inventory.lantern,1000);
   const again=await f.other().action('pixel',command(r,'finish'));assert(again.replayed);assert.equal(again.document.version,done.document.version);
  });
+ }finally{recipe.cost=latestCost}
 });
 
 test('project cancellation returns the original transferred ingredients after catalog change',async()=>{
@@ -116,8 +122,8 @@ for(const legacy of [false,true])test((legacy?'legacy':'new')+' resident resumes
 
 test('caller supplied material contracts and autosave changes cannot rewrite accepted deductions',async()=>{
  const f=await fixture(),r=await f.store.action('pixel',begin(f.document,'recipe_lantern',{recipeContract:{version:1,cost:{wood:1}}}));
- assert.deepEqual(r.ticket.recipeContract.cost,{wood:2,ore:1});
+ assert.deepEqual(r.ticket.recipeContract.cost,RECIPE_BY_ID.recipe_lantern.cost);
  const state=structuredClone(r.document.state);state.resourceLedger.reservations[r.ticket.owner].items={wood:1};
  await assert.rejects(f.store.save('pixel',{state,expectedVersion:r.document.version}),e=>e.code==='action_hold_conflict');
- const loaded=await f.other().current('pixel');assert.deepEqual(loaded.actions.active.recipeContract.cost,{wood:2,ore:1});
+ const loaded=await f.other().current('pixel');assert.deepEqual(loaded.actions.active.recipeContract.cost,RECIPE_BY_ID.recipe_lantern.cost);
 });

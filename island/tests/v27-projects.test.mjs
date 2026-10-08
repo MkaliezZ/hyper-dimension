@@ -11,7 +11,7 @@ import {followPath} from '../src/movement.js';
 import {validateState} from '../server/saveStore.mjs';
 const fresh=()=>{const s=hydrateTown(createState());for(const id of Object.keys(s.inventory))s.inventory[id]=0;return s};
 test('explicit targets and intermediate ingredients never count the same stock twice',()=>{
- const s=fresh();s.inventory.wood=2;s.inventory.ore=1;
+ const s=fresh();Object.assign(s.inventory,RECIPE_BY_ID.recipe_lantern.cost);
  const {project:p}=createProject(s,{id:'nested',title:'桌边灯',targets:{wood:2,lantern:1}});
  assert.equal(p.status,'preparing');assert.equal(availableQuantity(s,'wood'),0);
  const craft=projectSteps(s,p.id).find(t=>t.targetItem==='lantern');
@@ -104,7 +104,7 @@ test('farm preparation waits for actual growth and harvests the requested crop',
   const {project:p}=createProject(s,{id:'farm-plan',targets:{wheat:2}});
   for(const n of npcs)if(![0,4].includes(n.npcId))n.manualUntil=1e6;
   let sawGrowing=false;
-  for(let i=1;i<=7000&&p.status!=='ready';i++){runtime.update(.2,i*.2);tickCrops(s,.2);if(s.plots.some(x=>x.stage===3)){sawGrowing=true;assert.equal(p.status,'preparing')}}
+  for(let i=1;i<=7000&&p.status!=='ready';i++){runtime.update(.2,i*.2);tickCrops(s,.2);if(s.plots.some(x=>x.stage===3)){sawGrowing=true;if(s.inventory.wheat<2)assert.equal(p.status,'preparing')}}
   assert(sawGrowing);assert.equal(p.status,'ready',JSON.stringify(projectSteps(s,p.id)));assert(s.inventory.wheat>=2);
   assert(projectSteps(s,p.id).find(t=>t.targetItem==='wheat').evidence.some(e=>e.delta.wheat>0));
  }finally{globalThis.fetch=original}

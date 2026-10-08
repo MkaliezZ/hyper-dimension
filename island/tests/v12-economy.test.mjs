@@ -26,7 +26,7 @@ test('automatic and purchased goods cannot fill personal orders; a real manual d
  assert.ok(buySupplies(s,'timber'));assert.equal(townOrders(s)[0].personal,0);assert.equal(deliverTownOrder(s,0),false);
 });
 test('real crafting consumes ingredient credits and cannot reuse the same output in gift and order',()=>{
- const s=fresh();s.inventory.wood=2;s.inventory.ore=1;recordPlayerGoods(s,'wood',2);recordPlayerGoods(s,'ore');
+ const s=fresh();Object.assign(s.inventory,RECIPE_BY_ID.recipe_lantern.cost);for(const [id,n]of Object.entries(RECIPE_BY_ID.recipe_lantern.cost))recordPlayerGoods(s,id,n);
  assert.ok(commitRecipe(RECIPE_BY_ID.recipe_lantern,s));recordPlayerGoods(s,'lantern');
  assert.equal(s.economy.playerGoods.wood,0);assert.ok(itemUse('lantern',s,{action:'gift',npcId:1}).ok);
  s.inventory.lantern++;assert.equal(deliverTownOrder(s,1),false);

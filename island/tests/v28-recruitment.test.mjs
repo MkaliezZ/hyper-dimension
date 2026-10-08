@@ -92,7 +92,7 @@ test('activation rechecks saved work, excludes player steps and closes already f
  await store.complete('pixel',c.id,1,proof(c.context));assignProjectStep(doc.state,'welcome:wood',-1);
  assert.equal((await store.activate('pixel',doc,c.id)).contract.phase,'cancelled');
  const again=(await store.start('pixel',doc,request('hire-request-2'))).contract;
- const run=proof(again.context);run.child.acceptedSteps=['welcome:ore'];await store.complete('pixel',again.id,1,run);
+ const run=proof(again.context);assert(again.context.steps.length);run.child.acceptedSteps=[again.context.steps[0].id];await store.complete('pixel',again.id,1,run);
  doc.state.inventory.lantern=1;
  assert.equal((await store.activate('pixel',doc,again.id)).contract.phase,'cancelled');assert.equal(doc.state.coins,20);
 });

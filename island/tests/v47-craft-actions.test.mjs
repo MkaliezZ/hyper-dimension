@@ -54,7 +54,7 @@ test('server chooses the seeded game, reserves exact recipe and never accepts a 
  f.advance(10000);await assert.rejects(f.store.action('pixel',command(start,'finish',{result:{passed:true,quality:100}})),e=>e.code==='craft_unfinished');
  assert.deepEqual((await f.store.current('pixel')).state.inventory,before);
  const {r,game}=await play(f,start);f.advance(2100);const finish=await f.store.action('pixel',command(r,'finish',{quality:999,amount:100,gain:{coins:99999}}));
- assert.equal(finish.receipt.quality,craftResult(game).quality);assert.equal(finish.document.state.inventory.lantern,before.lantern+1);assert.equal(finish.document.state.inventory.wood,before.wood-2);assert.equal(finish.document.state.inventory.ore,before.ore-1);
+ assert.equal(finish.receipt.quality,craftResult(game).quality);assert.equal(finish.document.state.inventory.lantern,before.lantern+1);assert.equal(finish.document.state.inventory.wood,before.wood-2);for(const [id,n]of Object.entries(RECIPE_BY_ID.recipe_lantern.cost))assert.equal(finish.document.state.inventory[id],before[id]-n);assert.equal(finish.document.state.inventory.ore,before.ore);
  assert.equal(finish.document.state.craftHistory.recipe_lantern,1);assert.equal(finish.document.state.roomGames[0].plays,1);assert.equal(finish.document.state.economy.playerGoods.lantern,1);assert(!finish.ticket.game);
  const again=await f.other().action('pixel',command(r,'finish'));assert(again.replayed);assert.equal(again.document.version,finish.document.version);
 });

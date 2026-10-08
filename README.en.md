@@ -4,7 +4,9 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V122 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V123 is a playable development snapshot**, with full product acceptance still in progress.
+
+V123 gives all 300 products explicit material bills and construction notes, corrects cross-workshop inputs and durable-item uses, and preserves accepted task costs, with reliable recipe selection and isolated recovery receipts. [See production changes and verification scope](island/docs/craft-materials-v123.md).
 
 V122 adds high-resolution expanded-ocean tiles and completes terrain loading without worker support, with bounded retries for transient failures. [Native game checks in both styles](island/docs/terrain-v122.md).
 
@@ -36,7 +38,7 @@ V109 updates both boarding gangways, ferry alignment and passenger occlusion. [S
 
 [![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v120)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v123)
 
 2560 × 1440 at 60 FPS, with an original instrumental score and bilingual captions. The footage shows an actual AI resident conversation, selectable steward appearances, native Hermes delegation, a Coastal Kitchen challenge inside its building window, and a real Word document made from a fictional brief. Waiting is edited out; no real user data appears.
 

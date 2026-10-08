@@ -1,3 +1,4 @@
+import {assertCraftResponse} from './craftResponseIdentity.js';
 import {lockActionUI,unlockActionUI,readRecoveryProgress} from './actionRecoveryUI.js';
 import {neutralCraftGame} from './craftGameReplay.js';
 export function createServerCraft({saves,theme,persist,applyState,mount,closeGame,animate,onComplete,toast,kind='craft',idPrefix='craft',noun='制作',beginInput=(recipeId,taskId,mode)=>({recipeId,taskId,mode}),restartInput=t=>t.recipeId,shouldRecover=()=>true,exitMessage='材料会解除预留，不消耗材料也不发放成品。',recoveryMessage='服务器保留关卡与材料预留；继续时不会重新生成关卡。'}){
@@ -15,8 +16,9 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
  }
  function failure(e){settling=false;halt();lock();status('制作进度尚待确认',e.message);}
  async function send(input){
+  if(input.kind!==kind)throw Object.assign(Error('请先核对另一项待确认作业，再继续当前制作。'),{code:'action_foreign_pending'});
   lastInput=input;settling=true;halt();
-  try{if(!saves.pendingAction(theme()))persist();const response=await saves.action(theme(),input);applyState(response.state);ticket=response.ticket;return response}
+  try{if(!saves.pendingAction(theme()))persist();const response=assertCraftResponse(input,await saves.action(theme(),input),kind);applyState(response.state);ticket=response.ticket;return response}
   finally{settling=false;if(exitRequested&&!saves.pendingAction(theme()))queueMicrotask(exit)}
  }
  function identity(operation){return {kind,operation,requestId:ticket.requestId,epoch:ticket.epoch,sequence:ticket.sequence}}
@@ -61,7 +63,13 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
  retry.onclick=async()=>{
   if(settling)return;
   if(saves.status(theme()).status==='conflict'){await readRecoveryProgress(bar,()=>saves.acceptServer(theme()),toast);return}
-  const pending=saves.pendingAction(theme());
+  let pending=saves.pendingAction(theme());
+  if(pending&&pending.body.kind!==kind){
+   settling=true;retry.disabled=true;
+   try{await saves.idle(theme())}catch(e){failure(e);return}finally{settling=false;retry.disabled=false}
+   pending=saves.pendingAction(theme());
+   if(pending&&pending.body.kind!==kind){status('另一项作业尚待确认','先核对对应作业，当前制作和材料仍会保留。');return}
+  }
   if(!pending&&ticket){if(claiming){try{done(await send(identity('finish')))}catch(e){failure(e)}}else mountTicket();return}
   if(!pending&&!ticket){active=false;unlock();bar.classList.add('hidden');return}
   try{

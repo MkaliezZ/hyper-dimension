@@ -8,27 +8,15 @@ export const RAW_MATERIALS=RAW_ROWS.map(([id,name,art,source],index)=>({id,name,
 const categories=['decor','food','food','decor','wear','study','decor','study','decor','gift','food','gift','decor','study','seedling','decor','tool','food','collection','decor','decor','decor','decor','decor','study'];
 const legacy={0:'lantern',1:'tea',2:'meal',3:'bouquet',4:'outfit',10:'remedy',15:'pottery',16:'rod',17:'bread',20:'firework',24:'painting'};
 const tools={1:'hoe',2:'pickaxe',3:'watering_can',4:'axe',5:'sickle'};
-const palettes=[['wood','ore','bamboo','resin'],['herb','mint','honey','lavender'],['wheat','rice','fish','tomato'],['rose','fiber','lavender','sunflower'],['cotton','flax','fiber','bluegrass'],['quartz','ore','ink','crystal'],['seaweed','shell','sand','coral'],['bark','fiber','ink','wax'],['wood','copper','quartz','resin'],['twig','fiber','wheat','shell'],['herb','mint','cotton','wax'],['fiber','bark','ink','wax'],['bamboo','wood','fiber','shell'],['wood','quartz','ink','pearl'],['seed','clay','bamboo','herb'],['clay','sand','bluegrass','quartz'],['wood','fiber','copper','shell'],['wheat','honey','strawberry','pumpkin'],['stone','quartz','amber','shell'],['cotton','flax','wood','wax'],['bark','ore','bluegrass','wax'],['wood','cotton','copper','crystal'],['bamboo','flax','resin','wood'],['wood','fiber','resin','copper'],['bluegrass','clay','cotton','ink']];
-const exactFirst={0:{wood:2,ore:1},1:{wheat:1,herb:1},2:{wheat:1,fish:1},3:{herb:2},4:{cotton:2,flax:1,fiber:1},10:{herb:2},15:{clay:2,sand:1},16:{wood:1,fiber:2,ore:1},17:{wheat:1},20:{wood:1,ore:2},24:{wood:1,cotton:1,bluegrass:1}};
 export const ALL_RECIPES=connectWorkshops(PRODUCT_ROWS.flatMap((rows,building)=>rows.map((row,index)=>{
- let tier=Math.floor(index/4);const [name,art]=row.split('|'),id=building===0&&tools[index]?tools[index]:index===0&&legacy[building]?legacy[building]:`c${building}_${index}`;
- const palette=palettes[building],cost=index===0&&exactFirst[building]?{...exactFirst[building]}:{[palette[index%4]]:1+tier,[palette[(index+1)%4]]:1};
- if(tier>0){const previous=tier===2?4:0;const dependency=building===0&&tools[previous]?tools[previous]:previous===0&&legacy[building]?legacy[building]:`c${building}_${previous}`;cost[dependency]=1;}
- const semantic=[['薄荷','mint'],['蜂蜜','honey'],['玫瑰','rose'],['薰','lavender'],['向日葵','sunflower'],['草莓','strawberry'],['南瓜','pumpkin'],['玉米','corn'],['土豆','potato'],['蘑菇','mushroom'],['海虾','shrimp'],['蟹','crab'],['海盐','seasalt'],['海藻','seaweed'],['贝','shell'],['珍珠','pearl'],['珊瑚','coral'],['琥珀','amber'],['亚麻','flax'],['棉','cotton'],['蜂蜡','wax'],['竹','bamboo']];
- if(index>0)for(const [word,raw] of semantic)if(name.includes(word))cost[raw]=1;
- if(building===0&&[1,2,4,5].includes(index))cost.iron=1;
- if(building===4&&index===11)cost.mulberry=2;
- if(building===7&&index===1)cost.leaves=2;
- if(building===17&&[1,4,9].includes(index))cost.coal=1;
- if(building===2&&index===7)cost.carrot=1;
- if(building===23&&index===8)cost.driftwood=2;
- if(building===10&&index===4)cost.salt=1;
- // Woodshop first item has a legacy ID and tool intermediates have explicit names.
- if(building===0){for(const key of Object.keys(cost))if(!RAW_ROWS.some(x=>x[0]===key))delete cost[key];if(tier===2)cost.c0_7=2;if(index===6)cost.hardwood=2;if(index===7){for(const key of Object.keys(cost))delete cost[key];cost.wood=3;}}
- if(building===16&&index===4){for(const k of Object.keys(cost))delete cost[k];Object.assign(cost,{shrimp:1,seaweed:1,fiber:1});tier=0;}
+ const tier=Math.floor(index/4),[name,art]=row.split('|'),id=building===0&&tools[index]?tools[index]:index===0&&legacy[building]?legacy[building]:`c${building}_${index}`;
  let category=building===0&&tools[index]?'tool':categories[building];
- if(building===16&&index>0)category=index===4?'component':index===9?'tool':'decor';if(building===0&&index===7)category='component';if(building===1&&index>=9)category=index===10?'gift':'decor';if(building===10&&index>0)category=index===11?'study':index===10||index===9?'gift':'decor';if(building===11&&[5,6].includes(index))category=index===5?'study':'decor';
- return {id:'recipe_'+id,item:id,name,art,building,index,tier,cost,category,price:6+tier*7+index%4,use:category==='food'?'补充体力与饱足，也可送给居民':category==='tool'?'装备到工具栏，在对应作业中显示工具动画':category==='wear'?'作为派对穿着与居民礼物，记录服装收藏':category==='study'?'阅读研究，提升对应建筑的制作熟练度':category==='seedling'?'拆分为种苗或温室研究材料':category==='component'?'继续制作进阶配方，也可陈列或赠送':category==='gift'?'赠送居民、寄送与派对筹备':category==='collection'?'收藏并在建筑庭院陈列，完善奇观图鉴':'在所属建筑庭院陈列，提升设施品质与访客吸引力'};
+ if(building===16&&index>0)category=index===4?'component':index===9?'tool':'decor';
+ if(building===0&&index===7)category='component';
+ if(building===1&&index>=9)category=index===10?'gift':'decor';
+ if(building===10&&index>0)category=index===11?'study':index===10||index===9?'gift':'decor';
+ if(building===11&&[5,6].includes(index))category=index===5?'study':'decor';
+ return {id:'recipe_'+id,item:id,name,art,building,index,tier,category,price:6+tier*7+index%4};
 })));
 export const PRODUCTION_GRAPH=checkWorkshopGraph(ALL_RECIPES,RAW_MATERIALS);
 export const RECIPE_BY_ID=Object.fromEntries(ALL_RECIPES.map(r=>[r.id,r]));

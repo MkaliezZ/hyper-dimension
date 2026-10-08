@@ -32,7 +32,7 @@ test('both styles have 700 concrete item drawings and 12 selectable avatar ident
 
 
 test('advanced agent preparation walks dependencies down to native sources',async()=>{
- const {planRecipeAssignment}=await import('../src/craftPlanning.js'),s=fresh(),r=ALL_RECIPES.find(r=>r.building===2&&r.tier===2),task={goal:'workshop',buildingId:2,recipeId:r.id,assignmentId:'test'};
+ const {planRecipeAssignment}=await import('../src/craftPlanning.js'),s=fresh(),r=ALL_RECIPES.find(r=>r.building===2&&r.tier===2&&Object.keys(r.cost).some(id=>ITEM_BY_ID[id].source==='recipe')),task={goal:'workshop',buildingId:2,recipeId:r.id,assignmentId:'test'};
  const first=planRecipeAssignment(r,s,task);assert.equal(first.preparing,true);assert.ok(first.resource||first.recipeId!==r.id);
  for(const m of RAW_MATERIALS)s.inventory[m.id]=100;
  const second=planRecipeAssignment(r,s,task);assert.ok(second.recipeId!==r.id);assert.equal(second.preparing,true);

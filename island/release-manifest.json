@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v122-agent-source",
+  "release": "hyper-dimension-v123-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11662,
-      "sha256": "9caad16dfd996dbf7f27c840561a58c273f253b2801f665ff9e31c6937982ab9"
+      "bytes": 11970,
+      "sha256": "6344e90790bdfafbceb01b4a0bba1fe1cfac2ceea162b232e0e2b55e9cb34e6b"
     },
     {
       "path": "README.md",
-      "bytes": 10660,
-      "sha256": "5bd6aab5d8f18e53d6aa80511e1aa8c5a73c4a0bc0f4b90e9ba82b73ffe8f6f8"
+      "bytes": 10926,
+      "sha256": "c948520c4206867c9b3166e333439a33798fb85680034300227e9701e8c8f2f7"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -89,6 +89,11 @@
       "path": "docs/craft-materials-v117.md",
       "bytes": 3857,
       "sha256": "d2aeed20eda993b294867f32a1e0d21b246ddddbad1eea6b04b3c900c1db1c21"
+    },
+    {
+      "path": "docs/craft-materials-v123.md",
+      "bytes": 5581,
+      "sha256": "836980fa18413326ed251c8d5bd315829f617a04c98c41338115261132bcd9f9"
     },
     {
       "path": "docs/harbor-art-v109.md",
@@ -299,6 +304,36 @@
       "path": "docs/save-recovery-v115.md",
       "bytes": 3202,
       "sha256": "46f091bfd995018271fa1ae87c47e1bd58a0e59cb02a7ac4ae948ed65c0b46ce"
+    },
+    {
+      "path": "docs/screenshots/v123/origami-before-resume.png",
+      "bytes": 1505623,
+      "sha256": "288f0a3b46be29ef1b4ab8cc7de026f592329b214bbf91e185b9ebd9ddf17b1c"
+    },
+    {
+      "path": "docs/screenshots/v123/origami-finished.png",
+      "bytes": 1087756,
+      "sha256": "e17989a821f12ec090a74817f9e4445e3dcfa066bca893b255002d251b94ad1b"
+    },
+    {
+      "path": "docs/screenshots/v123/origami-materials.png",
+      "bytes": 1192102,
+      "sha256": "ac89e067a4e72702084964ded7e5300f17304fc60b882ac025a43e07e0781a4c"
+    },
+    {
+      "path": "docs/screenshots/v123/pixel-before-resume.png",
+      "bytes": 1214304,
+      "sha256": "3a617852795544e862707c1eccb448ca752cf9ae7f963578e0c970d6034fd97d"
+    },
+    {
+      "path": "docs/screenshots/v123/pixel-finished.png",
+      "bytes": 865283,
+      "sha256": "68f8ac794fa2b81421824c81e7d7a4d1dea8fa943f0d54611ae4cbfb9a02bc6a"
+    },
+    {
+      "path": "docs/screenshots/v123/pixel-materials.png",
+      "bytes": 895046,
+      "sha256": "05a681ed984dc003cc847d8fda0a278672e21c4050a6c8cbcf0b9fd00c5daff7"
     },
     {
       "path": "docs/sea-art-prompts-v122.json",
@@ -852,8 +887,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 7291,
-      "sha256": "149c401012b805dd8bbdd102ff2787cd3cd05a55326660de0671861b1399f72c"
+      "bytes": 7502,
+      "sha256": "0abf57d7c5a3bf11397ffe5fb92b865a03f248771a9fff2c9ad92f24935fceaa"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2582,8 +2617,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 131512,
-      "sha256": "349f0c8b9ef07bcbce6ceb738f3fe8cea12147c92d41f6239a64e2f12cce59a9"
+      "bytes": 131911,
+      "sha256": "a9dbbf2c90502d23c4582728a77d9049fea4ad7a222d45d6c9fcf540571b4bb2"
     },
     {
       "path": "src/arcade.css",
@@ -2628,7 +2663,7 @@
     {
       "path": "src/catalog-data.js",
       "bytes": 14199,
-      "sha256": "a096bc6faa8bb0b2dd41922767fa4d8d50939167ab79c5abac683347ee78d7e7"
+      "sha256": "36b9e4bd276f4b3e481cc4e80b3c37afb0dc902e754123b0c048b3840816c2be"
     },
     {
       "path": "src/characterFacing.js",
@@ -2682,8 +2717,8 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 12377,
-      "sha256": "de073c6d8e808f3fd1ade9a36649f82efa9bca5ebbd69604e418ad0eb7081267"
+      "bytes": 8974,
+      "sha256": "21670bc62b85807263455c35b9223751e94cfdeec5b7971ff260c397854085a3"
     },
     {
       "path": "src/contentUI.js",
@@ -2761,9 +2796,14 @@
       "sha256": "f686f6ff721737dd58ff7af7d5f20d942652077ad1be1e8e9a48b2d1465c0dfd"
     },
     {
+      "path": "src/craftResponseIdentity.js",
+      "bytes": 478,
+      "sha256": "f5e4d55ba2a2d71b7c36852d2caea61f0711ddfd10a841bd9ca2a341efb6621e"
+    },
+    {
       "path": "src/craftSpecifications.js",
-      "bytes": 6237,
-      "sha256": "7886958b7e8db00bb22cac9e5eb3cd8bece17200fb7bac1a4cd2d1ada69d95ce"
+      "bytes": 6342,
+      "sha256": "13a425bbc546f1bbc5caad96a759442b4241a04d2acaf49b094489d5d80e1ecc"
     },
     {
       "path": "src/directions.js",
@@ -3367,8 +3407,8 @@
     },
     {
       "path": "src/productionNetwork.js",
-      "bytes": 5034,
-      "sha256": "08d7a555bb800a7b2310b899f1707f7f84fbf19225601c3ebcb019d07af0a959"
+      "bytes": 3544,
+      "sha256": "abcdd309dd20ef1480a7635493ca94803ddfa87c49cde9a67ead797005323ea3"
     },
     {
       "path": "src/projectPlans.js",
@@ -3572,8 +3612,8 @@
     },
     {
       "path": "src/sceneOccupancy.js",
-      "bytes": 1722,
-      "sha256": "889662318eb99860d752723d218acaed09c86ad95c0172230636eee4d4990098"
+      "bytes": 1916,
+      "sha256": "6d3b7ad42a6c37b7ead01f6b4f32c06e071dc77f54dab26e7e4676dde7d9f9bc"
     },
     {
       "path": "src/seaTiles.js",
@@ -3587,8 +3627,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 7342,
-      "sha256": "7c17578049b1ca6160119f2d598a98343b836d36924a640486c258f2eac71fd5"
+      "bytes": 7963,
+      "sha256": "2795badfa2b4af6cf9e28f2e1ee395fc3c4d056533d7b52d00338b74263c9697"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -3786,6 +3826,11 @@
       "sha256": "db343ffa9b2a2d3035bb531e768a8aa9cf605527b88a8671dcca18d6bfb0c2f0"
     },
     {
+      "path": "src/workshopSpecifications.js",
+      "bytes": 32437,
+      "sha256": "0305a782c4bc9a6130586528bf170325336b2abfee27ca5cc92952762b519699"
+    },
+    {
       "path": "src/workshopView.js",
       "bytes": 47139,
       "sha256": "f0e23f8ad1d8e0942cad49764b087712c894fae130af3a13a978abc2671c10a4"
@@ -3847,8 +3892,8 @@
     },
     {
       "path": "tests/economy.test.mjs",
-      "bytes": 4386,
-      "sha256": "6111fc3e8bae9b4002a4f1f11e4284d4368cddd5d693545a0d33a4e58ce6d89e"
+      "bytes": 4482,
+      "sha256": "d8170618e45e97d1814c253e2049a360cb56aa02843fcec90582ef74c5009aa6"
     },
     {
       "path": "tests/experience-qa.mjs",
@@ -4022,8 +4067,8 @@
     },
     {
       "path": "tests/steward.test.mjs",
-      "bytes": 1086,
-      "sha256": "677ba9de6f644437a0252912fc4a5e338f3af97b913c14383086dfdb24cdb28f"
+      "bytes": 1169,
+      "sha256": "cdf68867555c971912bd4a52df74d4ec50be70ff2804dd0a2472bd5f480bf5c8"
     },
     {
       "path": "tests/theme-ui-qa.mjs",
@@ -4032,8 +4077,8 @@
     },
     {
       "path": "tests/town-simulation.test.mjs",
-      "bytes": 3123,
-      "sha256": "da7164536ffb4cdfebdfc95b746f7e8f82baa8818077884f8d85018493f4a906"
+      "bytes": 3144,
+      "sha256": "8ec2e4da022859ee3575110676e74eb93242498a4aed60caf9742be78a804e96"
     },
     {
       "path": "tests/v10-animation-qa.mjs",
@@ -4142,8 +4187,8 @@
     },
     {
       "path": "tests/v107-assignment-routing.test.mjs",
-      "bytes": 3774,
-      "sha256": "b0b97f22365921af115bf5e975bcfe87a82224ca56daf8355d0a23c10fa22e7a"
+      "bytes": 3807,
+      "sha256": "f797dda796b870b6a1224614ac5432a82d270e3ebe10d7c871a1de52814b6ac0"
     },
     {
       "path": "tests/v108-recruitment-exchange.test.mjs",
@@ -4182,8 +4227,8 @@
     },
     {
       "path": "tests/v111-cooperation.test.mjs",
-      "bytes": 13756,
-      "sha256": "d323b05d3fcc5e32c51f549fa260dadb1428e72f29adf824b9177bf1d17a8047"
+      "bytes": 13751,
+      "sha256": "c08b91cfa96072bfad4ae45027feee9ce6d1809e8aedae254fa895f3f3d5d584"
     },
     {
       "path": "tests/v112-resident-life-browser.mjs",
@@ -4212,8 +4257,8 @@
     },
     {
       "path": "tests/v114-recipe-contracts.test.mjs",
-      "bytes": 10481,
-      "sha256": "6188f748c8b460d6fa88e81896e7d43b0ac8b378afea8ee97c6f62f9a2e3d7c6"
+      "bytes": 10938,
+      "sha256": "d21952145de3b3581d98cb8c8bd0386f2f0fc7f3a1990f2a19284c40d7ead32a"
     },
     {
       "path": "tests/v114-resident-dispatch.test.mjs",
@@ -4252,8 +4297,8 @@
     },
     {
       "path": "tests/v117-craft-materials.test.mjs",
-      "bytes": 3621,
-      "sha256": "39bff12e120e9a28f65eb74c1a83459e2ebb37abd4e02afbf12e8b75b58f5583"
+      "bytes": 3632,
+      "sha256": "987fe01ca4bb094266beb9de3c489cff9daccfc8e7c09dd828ea288bb44cfe8a"
     },
     {
       "path": "tests/v117-materials-browser.mjs",
@@ -4327,8 +4372,18 @@
     },
     {
       "path": "tests/v12-economy.test.mjs",
-      "bytes": 5658,
-      "sha256": "f22715a2bbdd9737e8376d0d7116170dcc29e6b6224e2e3b7704d83af7b76331"
+      "bytes": 5718,
+      "sha256": "15da55849d4b2eb2f75038ebd3f45f201b8e4bcc73ae7d0b504fe09a29057860"
+    },
+    {
+      "path": "tests/v121-craft-definitions.test.mjs",
+      "bytes": 6668,
+      "sha256": "213e9197f1c5f0ba06982020150f06159af608257bfa25630159ad1f232bcdc1"
+    },
+    {
+      "path": "tests/v121-materials-browser.mjs",
+      "bytes": 5349,
+      "sha256": "3c73c6ad6af29d5340db8d8ac8e6ad1a968e7ebebe6bd952c9de425dadd47eed"
     },
     {
       "path": "tests/v122-map-loading-browser.mjs",
@@ -4339,6 +4394,21 @@
       "path": "tests/v122-map-loading.test.mjs",
       "bytes": 2035,
       "sha256": "f2fc7db79d201addad9b29ff14da7493d63adf76c4a59bd7cccb0ea79101ad34"
+    },
+    {
+      "path": "tests/v123-craft-response.test.mjs",
+      "bytes": 896,
+      "sha256": "0cf39e8fe0dbad83a1a8516844aa7dda643d70080f8a44baa92d94f0866cc491"
+    },
+    {
+      "path": "tests/v123-production-browser.mjs",
+      "bytes": 12174,
+      "sha256": "1963de5a690b1929122790ed0319362d33074c1b78382192773d616cc298e932"
+    },
+    {
+      "path": "tests/v123-room-queue.test.mjs",
+      "bytes": 2010,
+      "sha256": "fa070edb20310b1916170680f9d0165becf3cb3dc69a7bf73f29e8d5cebf9eed"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -4537,8 +4607,8 @@
     },
     {
       "path": "tests/v24-saves.test.mjs",
-      "bytes": 8830,
-      "sha256": "f38bd0305f315c9debfcc8cf58bb37dafd209ab230c2893ed30d7a127a924599"
+      "bytes": 9115,
+      "sha256": "9f39d068d32b52788f1af225d96e6fc84a72b851ccf395fe66e58f56a9a46560"
     },
     {
       "path": "tests/v25-browser.mjs",
@@ -4547,8 +4617,8 @@
     },
     {
       "path": "tests/v25-resources-tasks.test.mjs",
-      "bytes": 9414,
-      "sha256": "567d09f0e89319e46585a96837d12bf199fb5c1cc3a28b6e828074a1d5610282"
+      "bytes": 9446,
+      "sha256": "548c99a83a0e967726226682811fb48f1b1fac63896d5113cdf5e543934f5df6"
     },
     {
       "path": "tests/v26-browser.mjs",
@@ -4582,8 +4652,8 @@
     },
     {
       "path": "tests/v27-projects.test.mjs",
-      "bytes": 8980,
-      "sha256": "ef2be11d3f98d26de3c480c1f2e7a4039b709bd6078eacff2d954b20e0cabc42"
+      "bytes": 9026,
+      "sha256": "b6dd5f81830421b57c79477896c6f329bc89a91e93d36198e3ad86db9e0564d3"
     },
     {
       "path": "tests/v28-hermes-live.mjs",
@@ -4607,8 +4677,8 @@
     },
     {
       "path": "tests/v28-recruitment.test.mjs",
-      "bytes": 13904,
-      "sha256": "b5b07c7408b4072b6af18bb21f337037b3d595bb326a0a1624a7c1bd0fcd462f"
+      "bytes": 13951,
+      "sha256": "93d40c48501ec53e9d7dc8361b1e1cace38d31b42f8fa699016f2131400fa1af"
     },
     {
       "path": "tests/v29-browser.mjs",
@@ -4687,8 +4757,8 @@
     },
     {
       "path": "tests/v32-production.test.mjs",
-      "bytes": 6780,
-      "sha256": "d05733771ecd8f9007ee1ae187d5f7f1fbe4f1ad976b27021e1f6656bef4c9d2"
+      "bytes": 6949,
+      "sha256": "557c01c98a2fa541fc35f43ce67c833e9a86592ace1dbd6c6cc6f6423023d237"
     },
     {
       "path": "tests/v33-collections-browser.mjs",
@@ -4967,8 +5037,8 @@
     },
     {
       "path": "tests/v47-craft-actions.test.mjs",
-      "bytes": 14281,
-      "sha256": "0552a2c4b9c7a52368f129860dc689c30910ecaac7a7e707479f62e511b9f527"
+      "bytes": 14410,
+      "sha256": "8bd5b26d339b4f9cbac8725b96fa98a6b1ac6e8e4ab765ba3d9ec7b84f2d6dc7"
     },
     {
       "path": "tests/v47-craft-browser.mjs",
@@ -5327,13 +5397,13 @@
     },
     {
       "path": "tests/v58-lan-economy.test.mjs",
-      "bytes": 10420,
-      "sha256": "a3e8830342fb84fac68a9d5aa35ccf6d8f8603a85012c3ca0608e9e141f551f2"
+      "bytes": 10535,
+      "sha256": "c47cd1f106bec6050b7db2a2c7c97930bea8846d9aa504b90d5825fd017f10c1"
     },
     {
       "path": "tests/v58-lan-fixtures.mjs",
-      "bytes": 3769,
-      "sha256": "488f3a14c5bfdaf37b972c243b4be0a657fc41faef15377c4315139d7773fde0"
+      "bytes": 3777,
+      "sha256": "493f7f3bc59285e2b15eda7e1657dc895809c0b92b598da29920074e444ea26c"
     },
     {
       "path": "tests/v59-hud-browser.mjs",
@@ -5637,8 +5707,8 @@
     },
     {
       "path": "tests/v8-content.test.mjs",
-      "bytes": 4853,
-      "sha256": "5df8f324677c0c5e7251a8c2af64a6f6d4477d5bdf89e63aff92824a5e443384"
+      "bytes": 4917,
+      "sha256": "ccf5a1227694dc48d988691df2ece982321e0d32d201cfc9d03fb7bdb6022290"
     },
     {
       "path": "tests/v8-flow-qa.mjs",
@@ -5868,7 +5938,7 @@
     {
       "path": "tests/v92-cooperation-fixture.mjs",
       "bytes": 10924,
-      "sha256": "1efa377ecb71fff98df3f0b1b5acae5bab74197b32c1490405989817c8c13a64"
+      "sha256": "dcff8f96cfd367fd2915df73cb02053f74e65650501eff355ea9f388617b076c"
     },
     {
       "path": "tests/v92-cooperation-hermes.mjs",
@@ -5877,8 +5947,8 @@
     },
     {
       "path": "tests/v92-party-cooperation.test.mjs",
-      "bytes": 6196,
-      "sha256": "72730c5ab8b4341ebd04772d70cfadd6197eb409448180781972fc028df6e9cc"
+      "bytes": 6204,
+      "sha256": "245aa346d8afe7985f0c1a7b54fdddf21477fe3ae3e3d01ce15e0bc2f33bea86"
     },
     {
       "path": "tests/v92-save-continuity.mjs",
@@ -6621,5 +6691,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v122-github"
+  "publicRevision": "v123-github"
 }

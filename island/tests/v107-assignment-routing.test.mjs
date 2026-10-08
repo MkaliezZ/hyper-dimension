@@ -8,8 +8,8 @@ import {commitResources} from '../src/resourceLedger.js';
 import {beginAssignedStep,syncPlanningState} from '../server/planningAuthority.mjs';
 
 for(const theme of ['pixel','origami'])for(const scenario of [
- {id:'wood-delivered-enroute',initial:{},supply:{wood:2},from:'forest',to:'mine',kind:'field'},
- {id:'ore-delivered-enroute',initial:{wood:2},supply:{ore:1},from:'mine',to:'workshop',kind:'resident'}
+ {id:'wood-delivered-enroute',initial:{wax:1,fiber:1},supply:{wood:2},from:'forest',to:'mine',kind:'field'},
+ {id:'quartz-delivered-enroute',initial:{wood:2,wax:1,fiber:1},supply:{quartz:1},from:'mine',to:'workshop',kind:'resident'}
 ])test(theme+' '+scenario.id+' physically reroutes before beginning obsolete work',async()=>{
  setWorldTheme(theme);const s=hydrateTown(createState());for(const k of Object.keys(s.inventory))s.inventory[k]=0;Object.assign(s.inventory,scenario.initial);
  s.planningControl={version:1,enabled:true};const id=scenario.id+'-'+theme;

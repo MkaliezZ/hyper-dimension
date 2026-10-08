@@ -7,6 +7,7 @@ import {createState} from '../src/world.js';
 import {hydrateTown} from '../src/townSimulation.js';
 import {hydrateJourney,journeyView,trackJourney,claimMoment} from '../src/journey.js';
 import {resourceLoot,commitRecipe,DEFAULT_RECIPES} from '../src/contentCatalog.js';
+import {RAW_MATERIALS} from '../src/contentCatalog.js';
 import {recordPlayerGoods,deliverTownOrder} from '../src/economy.js';
 await mkdir('qa/v24',{recursive:true});
 const fixture=async()=>{const directory=await mkdtemp(resolve('qa/v24/storage-'));return {directory,store:createSaveStore({directory})}};
@@ -29,6 +30,7 @@ test('zero-start route can gather, craft the first light, claim seeds and earn f
  assert.equal(journeyView(s).step.id,'gather');
  resourceLoot('forest',s,6,'wood');recordPlayerGoods(s,'wood',6);trackJourney(s,'gather',{item:'wood',amount:6});
  resourceLoot('mine',s,1,'ore');recordPlayerGoods(s,'ore',1);trackJourney(s,'gather',{item:'ore',amount:1});
+ for(const [id,n]of Object.entries(DEFAULT_RECIPES[0].cost))if(id!=='wood'){const source=RAW_MATERIALS.find(r=>r.id===id).source;resourceLoot(source,s,n,id);recordPlayerGoods(s,id,n);trackJourney(s,'gather',{item:id,amount:n});}
  assert(commitRecipe(DEFAULT_RECIPES[0],s));trackJourney(s,'craft',{item:'lantern',building:0});
  assert(claimMoment(s,'light'));assert.equal(s.inventory.seed,2);assert.equal(journeyView(s).step.id,'plant');
  assert(deliverTownOrder(s,0));assert(s.coins>0);

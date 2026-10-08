@@ -11,8 +11,8 @@ import {createResidentRuntime} from '../src/residentRuntime.js';
 import {followPath} from '../src/movement.js';
 const fresh=()=>hydrateTown(createState());
 test('last ingredients have one owner across player, autonomous crafts, gifts, upgrades and orders',()=>{
- const s=fresh();s.inventory.ore=1;s.inventory.wood=3;s.inventory.lantern=1;recordPlayerGoods(s,'wood',3);
- assert(reserveResources(s,'task:party',{wood:3,ore:1,lantern:1}).ok);
+ const s=fresh();Object.assign(s.inventory,DEFAULT_RECIPES[0].cost,{wood:3,lantern:1});recordPlayerGoods(s,'wood',3);
+ assert(reserveResources(s,'task:party',{...DEFAULT_RECIPES[0].cost,wood:3,lantern:1}).ok);
  assert.equal(availableQuantity(s,'wood'),0);assert.equal(reservedQuantity(s,'wood'),3);
  assert.equal(reserveResources(s,'player:craft',{wood:1}).ok,false);
  assert.equal(commitRecipe(DEFAULT_RECIPES[0],s),false);

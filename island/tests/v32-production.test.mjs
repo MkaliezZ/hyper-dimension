@@ -27,9 +27,9 @@ test('all 25 workshops supply and consume real products; full graph is bounded a
  assert(cross.length>=100);assert.equal(new Set(cross.map(e=>e.from)).size,25);assert.equal(new Set(cross.map(e=>e.to)).size,25);assert(PRODUCTION_GRAPH.maxDepth<=8);
  const bad=ALL_RECIPES.map(r=>({...r,cost:{...r.cost}}));bad[0].cost[bad[0].item]=1;assert.throws(()=>checkWorkshopGraph(bad,RAW_MATERIALS),/cycle/);
 });
-test('zero-start party tools and first rewards retain their actual accessible costs',()=>{
+test('zero-start party recipes retain accessible tiers after explicit bill revisions',()=>{
  const protectedItems=['lantern','rod','c16_2','c16_4','c8_2','bread','firework','outfit','pottery','painting'];
- for(const id of protectedItems){const r=RECIPE_BY_ID['recipe_'+id];assert.equal(r.definitionVersion,1,id);assert.equal(r.tier,0,id);}
+ for(const id of protectedItems){const r=RECIPE_BY_ID['recipe_'+id];assert.equal(r.definitionVersion,4,id);assert.equal(r.tier,0,id);}
  const s=fresh();assert.equal(s.coins,0);assert(Object.values(s.inventory).every(n=>n===0));assert.equal(s.contentVersion,9);assert.equal(s.productionVersion,PRODUCTION_VERSION);
 });
 test('ordinary resident sources paper in the library then actually consumes it at the stage',()=>{
@@ -37,6 +37,7 @@ test('ordinary resident sources paper in the library then actually consumes it a
  s.npcCareers[2]={phase:0,completed:0,history:[]};const initial=work(s,2);assert.equal(initial.buildingId,7);assert.equal(initial.recipeId,'recipe_c7_5');
  commitWork(2,initial,s,1);assert.equal(s.inventory.c7_5,1);assert.equal(s.npcCareers[2].phase,0);
  commitWork(2,work(s,2),s,2);assert.equal(s.inventory.c7_5,2);
+ const pigment=work(s,2);assert.equal(pigment.buildingId,24);assert.equal(pigment.recipeId,'recipe_c24_1');commitWork(2,pigment,s,3);assert.equal(s.inventory.c24_1,1);
  const final=work(s,2);assert.equal(final.buildingId,21);commitWork(2,final,s,3);assert.equal(s.inventory.c21_0,1);assert.equal(s.inventory.c7_5,0);assert.equal(s.npcCareers[2].phase,1);
 });
 test('ordinary missing intermediate resolves a native raw source instead of illegal farm product',()=>{

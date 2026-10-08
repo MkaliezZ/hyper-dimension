@@ -37,7 +37,7 @@ test('a tea station is built with its three cups and replans separate consumable
  const result=createProject(s,{id:'new-tea-station',targets:{c1_9:1}});assert(result.ok);syncProjects(s);
  const steps=projectSteps(s,result.project.id);assert(steps.some(t=>t.targetItem==='c15_1'&&t.quantity===3));assert(steps.some(t=>t.targetItem==='clay'));assert(!steps.some(t=>t.targetItem==='tea'),'manufacturing does not schedule a tea refill');
 });
-test('first party recipes retain their initial costs and unlock gates; historical material definitions stay byte-frozen',()=>{
+test('first party recipes retain initial unlock gates after material corrections; historical material definitions stay byte-frozen',()=>{
  const s=hydrateTown(createZeroState());
  for(const id of ['lantern','rod','c16_2','c16_4','c8_2','bread','firework','outfit','pottery','painting'])assert(recipeGate(RECIPE_BY_ID['recipe_'+id],s).ready,id);
  const bytes=readFileSync(new URL('../src/legacyRecipeDefinitions-v32.js',import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),'a0765723920d2526491711140c8b55fb8969a43099ac14120c24c4a4b8d30b20');

@@ -1,6 +1,8 @@
-// Explicit bills of materials for tools and durable objects. Quantities are game units.
+import {ADDITIONAL_CRAFT_SPECIFICATIONS} from './workshopSpecifications.js';
+// Explicit bills of materials for all 300 products. Quantities are game units.
 // Venue benches supply shared heat/water; the bill contains the parts consumed in this object.
 export const CRAFT_SPECIFICATIONS={
+ ...ADDITIONAL_CRAFT_SPECIFICATIONS,
  hoe:[{wood:1,iron:1},'铁质锄刃装在木柄上；锄头是耐用工具，装备后用于松土。'],
  pickaxe:[{hardwood:1,iron:2,resin:1},'铁镐头配硬木柄，树脂固定接榫。'],
  watering_can:[{copper:2,iron:1,wood:1},'铜质壶身与壶嘴、铁质提梁、木质握把；加水不需要重新制作水壶。'],

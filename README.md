@@ -4,7 +4,9 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V122 开发快照**，可本地部署；完整产品验收仍在进行。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V123 开发快照**，可本地部署；完整产品验收仍在进行。
+
+V123 为全部 300 项制品定义实际材料与制作构造，校正跨工坊加工、茶食名称及耐用品用途，保留旧作业材料契约，并修复排队配方与跨作业回执恢复。[查看制作链与验证范围](island/docs/craft-materials-v123.md)。
 
 V122 新增扩展海域高清分块，并补齐地形兼容加载：工作线程不可用时仍加载新分块，临时失败自动重试。[查看双画风实际游戏验证](island/docs/terrain-v122.md)。
 
@@ -36,7 +38,7 @@ V109 已更新双画风登船舷梯、船体靠泊位置与人物遮挡。[查�
 
 [![Hyper Dimension 实机预览：折纸与像素海岛](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v120)
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v123)
 
 2560 × 1440 / 60 FPS，原创器乐 BGM 与中英字幕。展示真实 AI 居民对话、管家多形象选择、Hermes 主子 Agent 分工、房屋弹窗内的海风双灶与通关结果，以及管家处理虚构工作资料、保存并回读 Word 文件。实机片段省略等待，没有真实用户资料。
 

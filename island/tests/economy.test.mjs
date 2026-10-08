@@ -24,7 +24,7 @@ test('four facility upgrades raise caps and grow investment costs',()=>{
 test('local work cannot bypass quality cap or mint quality on missing inputs',()=>{
  const s=fresh(),f=s.facilities[0];f.quality=55;s.inventory.wood=s.inventory.ore=0;
  commitWork(1,{goal:'workshop',buildingId:0,action:'work'},s,1);assert.equal(f.quality,55);
- f.quality=45;s.inventory.wood=2;s.inventory.ore=1;commitWork(1,{goal:'workshop',buildingId:0,action:'work'},s,2);
+ f.quality=45;Object.assign(s.inventory,DEFAULT_RECIPES[0].cost);commitWork(1,{goal:'workshop',buildingId:0,action:'work'},s,2);
  assert.equal(f.quality,45.1);assert.equal(s.inventory.lantern,1);
 });
 test('save migration preserves earned money, stored quality, inventory and party escrow',()=>{
@@ -45,7 +45,7 @@ test('party insufficiency cannot create negative inventory or cash',()=>{
 });
 test('purchased seeds and timber cannot generate instant cash resale arbitrage',()=>{
  const s=fresh();s.inventory.wood=s.inventory.ore=0;const before=s.coins;assert.equal(buySupplies(s,'timber'),true);
- // Three starter lanterns consume six purchased timber; ore must additionally be gathered.
- s.inventory.ore=3;for(let i=0;i<3;i++){assert.equal(commitRecipe(DEFAULT_RECIPES[0],s),true);settleVisit(s,{name:'测试',budget:24},0,'lantern-'+i,i);}
+ // Three lanterns consume all six purchased timber; glass, candles and wicks must also be gathered.
+ for(const [id,n]of Object.entries(DEFAULT_RECIPES[0].cost))if(id!=='wood')s.inventory[id]=n*3;for(let i=0;i<3;i++){assert.equal(commitRecipe(DEFAULT_RECIPES[0],s),true);settleVisit(s,{name:'测试',budget:24},0,'lantern-'+i,i);}
  assert.ok(s.coins<before);assert.equal(SUPPLY_PACKS[0].coins,18);
 });

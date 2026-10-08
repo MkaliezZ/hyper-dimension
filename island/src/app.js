@@ -119,7 +119,7 @@ function patchHUD(id,html){const el=$(id),signature=html.replace(/art-clip-\d+/g
 const residentOrder=RESIDENTS.map((r,i)=>({r,i})).filter(({r})=>r.kind!=='hermes').map(({i})=>i);
 let coCreationUI=null,workbenchUI=null,runManagementUI=null,npcAuditUI=null,recruitmentUI=null,recruitmentRuntime=null,fishingUI=null,fishingRuntime=null,nightRuntime=null,festivalRuntime=null,festivalUI=null,coutureRuntime=null,coutureUI=null,fireworksRuntime=null,fireworksUI=null;
 let partyGuideUI=null,partyHosting=null;
-let contentUI,placementUI=null,collectionsUI=null,journeyUI=null,stewardChat=null,projectUI=null,celebration=null,playerCraftOwner=null,playerPlanStep=null;
+let contentUI,placementUI=null,collectionsUI=null,journeyUI=null,stewardChat=null,projectUI=null,celebration=null,playerCraftOwner=null,playerPlanStep=null,playerCraftIntent=null;
 function hydrateIslandSave(s,forTheme=theme){hydrateTown(s);clearToolLeases(s);syncWonders(s);refreshAchievements(s);hydrateJourney(s);hydrateSpecialization(s);hydratePlacements(s,forTheme);hydrateFunctionalFacilities(s);hydrateNpcProfileAudit(s);return s;}
 const canvas=$('game'),ctx=canvas.getContext('2d');
 const query=new URLSearchParams(location.search);
@@ -220,7 +220,7 @@ async function setTheme(next){
 
 function updateThemeButtons(){applyHUDArt(theme);for(const [id,style] of [['themePixel','pixel'],['themeOrigami','origami']]){$(id).classList.toggle('active',theme===style);$(id).setAttribute('aria-pressed',String(theme===style))}}
 function updateSceneUI(){const world=scene==='world';$('mapBadge').classList.toggle('hidden',!world);$('sceneBack').classList.toggle('hidden',world);$('placeName').textContent=world?'晨光岛':scene==='farm'?'沃土农田':scene==='mine'?'星晶矿洞':BUILDINGS[sceneBuilding]?.name||'室内';$('zoomLabel').textContent=`${Math.round(zoom*100)}%`;renderUI()}
-function releasePlayerStations(){endToolUse(state,actor.action?.equipment);endToolUse(state,gatheringToolUse);gatheringToolUse=null;releasePlayerCraft();playerRoomWait=null;releaseRoomSpot('player');if(playerFarmClaim!=null)runtime?.releaseFarm(playerFarmClaim);playerFarmClaim=null}
+function releasePlayerStations(){endToolUse(state,actor.action?.equipment);endToolUse(state,gatheringToolUse);gatheringToolUse=null;releasePlayerCraft();playerCraftIntent=null;playerRoomWait=null;releaseRoomSpot('player');if(playerFarmClaim!=null)runtime?.releaseFarm(playerFarmClaim);playerFarmClaim=null}
 function setScene(next,bid=0){placementUI?.cancel(false);closeModal();releasePlayerStations();if(scene==='world')persist();scene=next;sceneBuilding=bid;actor.path=[];actor.after=null;actor.action=null;if(next==='world'){actor.x=state.player.x;actor.y=state.player.y;camera.x=768;camera.y=512}else{actor.x=500;actor.y=545;camera.x=SCENE.width/2;camera.y=SCENE.height/2}zoom=next==='world'?1.55:1;clampCamera();updateSceneUI();toast(next==='farm'?'锄地 → 播种 → 浇水 → 收获':next==='mine'?'点击矿脉，把握挥镐时机':next==='world'?'已返回小岛':`进入${BUILDINGS[bid]?.name||'室内'}`)}
 function planMove(target,after=null){if(actor.action)releasePlayerStations();const walk=scene==='world'?worldWalkable:(x,y)=>scene==='farm'||scene==='mine'?sceneWalkable(scene,x,y):roomWalkable(sceneBuilding,x,y);const path=findPath(point(actor.x,actor.y),target,walk,scene==='world'?24:20);if(path.length===0){if(distance(actor,target)<35&&after)after();else toast('暂时无法走到那里');return}actor.path=path;actor.after=after;actor.action=null}
 function startAction(type,duration,onContact,onDone,toolUse=null){endToolUse(state,actor.action?.equipment);const equipment=toolUse||beginToolUse(state,type,duration);actor.direction=scene==='world'?(actor.face<0?Math.PI:0):-Math.PI/2;actor.path=[];actor.walking=false;actor.action={type,equipment,roomId:scene==='world'||scene==='farm'||scene==='mine'?null:sceneBuilding,t:0,duration:equipment.duration,contact:false,onContact,onDone:()=>{endToolUse(state,equipment);onDone?.()}};}
@@ -341,9 +341,11 @@ function showInteriorAction(){
  if(serverCraft?.busy()){serverCraft.recover();return}
  const id=sceneBuilding,claim=acquireRoomSpot(id,'player','work');
  if(!claim||claim.role!=='work'){playerRoomWait=id;toast('正在等候工作台');return}
- const selected=RECIPE_BY_ID[state.craftSelection[id]],recipe=selected&&selected.building===id&&recipeGate(selected,state).ready?selected:DEFAULT_RECIPES[id];
- const task=playerProjectTask(state,recipe.item,playerPlanStep);
- closeModal();serverCraft.begin(recipe.id,task?.id||null);
+ // Walking and queuing outlive save responses. Keep the explicit choice local until it is accepted.
+ const intent=playerCraftIntent?.building===id?playerCraftIntent:null;
+ const selected=RECIPE_BY_ID[intent?.recipeId||state.craftSelection[id]],recipe=intent&&selected?selected:selected&&selected.building===id&&recipeGate(selected,state).ready?selected:DEFAULT_RECIPES[id];
+ const task=playerProjectTask(state,recipe.item,intent?.planTask||playerPlanStep);
+ playerCraftIntent=null;closeModal();serverCraft.begin(recipe.id,task?.id||null);
 }
 function mountServerCraft(ticket,session){
  // The controller has disposed the previous engine; rebuilding the panel is not an exit.
@@ -566,7 +568,7 @@ function gatherItem(item){
  serverField.begin({field:'fishing',itemId:item.id});
  });camera.x=hotspot.x;camera.y=hotspot.y;clampCamera();
 }
-function chooseRecipe(recipe,planTask=null){if(!recipeGate(recipe,state).ready){toast(recipeGate(recipe,state).text);return}state.craftSelection[recipe.building]=recipe.id;persist();closeModal();setScene(BUILDINGS[recipe.building].kind,recipe.building);playerPlanStep=planTask;const claim=acquireRoomSpot(recipe.building,'player','work');if(!claim){toast('工作台正在使用，请稍后再来');return}planMove(claim.point,()=>{if(claim.role==='queue'){playerRoomWait=recipe.building;toast('已排队，等候工作台')}else showInteriorAction()});}
+function chooseRecipe(recipe,planTask=null){if(!recipeGate(recipe,state).ready){toast(recipeGate(recipe,state).text);return}state.craftSelection[recipe.building]=recipe.id;persist();closeModal();setScene(BUILDINGS[recipe.building].kind,recipe.building);playerPlanStep=planTask;playerCraftIntent={building:recipe.building,recipeId:recipe.id,planTask};const claim=acquireRoomSpot(recipe.building,'player','work');if(!claim){playerCraftIntent=null;toast('工作台正在使用，请稍后再来');return}planMove(claim.point,()=>{if(claim.role==='queue'){playerRoomWait=recipe.building;toast('已排队，等候工作台')}else showInteriorAction()});}
 projectUI=createProjectUI({state:()=>state,theme:()=>theme,openModal,persist,create:input=>runtime.createPreparation(input),manage:(...args)=>runtime.manageProject(...args),refresh:()=>runtime.syncProjects(),toast,craft:chooseRecipe,gather:gatherItem,back:showHermes});
 serverPersonal=createServerPersonal({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI()}});
 const shopfrontUI=createShopfrontUI({state:()=>state,theme:()=>theme,openModal,toast,command:(op,args)=>serverCommerce.command(op,{day:state.day,...args}),back:showBusiness,detail:id=>contentUI.detail(id)});
