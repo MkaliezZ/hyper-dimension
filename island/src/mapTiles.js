@@ -23,7 +23,13 @@ function pump(){
   worker.onmessage=({data})=>{
    const job=jobs.get(data.requestId);if(!job||job.generation!==generation){data.bitmap?.close();return;}
    const entry=job.entry;
-   if(data.bitmap){const key=data.phase==='ready'?'bitmap':'preview';entry[key]?.close();entry[key]=data.bitmap;stats.bytes+=data.bitmap.width*data.bitmap.height*4;revision++;}
+   if(data.bitmap){
+    const key=data.phase==='ready'?'bitmap':'preview';
+    if(entry[key]){stats.bytes-=entry[key].width*entry[key].height*4;entry[key].close();}
+    entry[key]=data.bitmap;stats.bytes+=data.bitmap.width*data.bitmap.height*4;
+    if(key==='bitmap'&&entry.preview){stats.bytes-=entry.preview.width*entry.preview.height*4;entry.preview.close();entry.preview=null;}
+    revision++;
+   }
    if(data.phase!=='preview'){
     clearTimeout(job.timer);jobs.delete(data.requestId);entry.pending=false;
     if(data.phase==='error'){entry.failed=true;stats.failures++;}else stats.loads++;
@@ -41,16 +47,15 @@ function pump(){
 export function drawTerrainTiles(ctx,theme){
  select(theme);if(unsupported)return false;
  const matrix=ctx.getTransform(),view=terrainViewport(matrix,ctx.canvas.width,ctx.canvas.height);if(!view)return false;
- // Below native map resolution the overview is cheaper and already sufficiently detailed.
- const magnification=Math.max(Math.hypot(matrix.a,matrix.b),Math.hypot(matrix.c,matrix.d));
- if(magnification<1.12){wanted=[];return false;}
+ // Every zoom uses the same painted terrain, including the default overview.
  const cx=view.x+view.w/2,cy=view.y+view.h/2;
  wanted=[...terrainTiles(theme),...terrainLandmarks(theme)].filter(t=>tileIntersects(t,view)).sort((a,b)=>Math.hypot(a.core.x+192-cx,a.core.y+192-cy)-Math.hypot(b.core.x+192-cx,b.core.y+192-cy));
  if(!wanted.length)return false;
  for(const tile of wanted){const e=entries.get(tile.id);if(e)e.used=performance.now();}
  pump();evict();
- // Keep the complete overview until each visible support has at least its masked preview.
- if(wanted.some(t=>{const e=entries.get(t.id);return !t.patch&&!e?.bitmap&&!e?.preview;}))return false;
+ // Reveal a complete painted viewport together; old previews are only failure fallbacks.
+ // This avoids a mixed old/new map while roads and landmarks are still loading.
+ if(wanted.some(t=>{const e=entries.get(t.id);return !e?.bitmap&&!(e?.failed&&(t.patch||e.preview));}))return false;
  if(!layer)layer=document.createElement('canvas');
  const width=ctx.canvas.width,height=ctx.canvas.height;
  if(layer.width!==width||layer.height!==height){layer.width=width;layer.height=height;layerKey='';}

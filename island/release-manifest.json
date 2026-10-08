@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v119-agent-source",
+  "release": "hyper-dimension-v120-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11295,
-      "sha256": "279d361749085b1319f2bb0eff8448cb514dc29647adf68e44ce1085919f8d95"
+      "bytes": 11456,
+      "sha256": "e21198d91ae16a456174802076ea9205505d0073b57cf78060a823ff43324d25"
     },
     {
       "path": "README.md",
-      "bytes": 10301,
-      "sha256": "fcf9ffea3b258301344d661d02523ac37d36ec11902665fdf57d375f2edad114"
+      "bytes": 10458,
+      "sha256": "1e511e4b7aec045efac785e0ffd9e9936a25b96db29ae07985309fb59d205336"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -211,6 +211,26 @@
       "sha256": "9ae67677be6e9d7b4a12156dcade2aaf0b119e37737bcbdc2497021a528d1cb0"
     },
     {
+      "path": "docs/media/v120/origami-overview.png",
+      "bytes": 3924134,
+      "sha256": "091cad904398f934c0cace32199311a247a7e6d9d2b898ddcb763a040740359d"
+    },
+    {
+      "path": "docs/media/v120/origami-zoom3.png",
+      "bytes": 3506809,
+      "sha256": "feab65ce4a7227db8308fcde669d983623201b0134a5067040970183d0dc366d"
+    },
+    {
+      "path": "docs/media/v120/pixel-overview.png",
+      "bytes": 4125420,
+      "sha256": "6726ca7e12da754799760a30814cc75a03c3357119128d9d59c97f6e52dafbc3"
+    },
+    {
+      "path": "docs/media/v120/pixel-zoom3.png",
+      "bytes": 3467609,
+      "sha256": "8d96227074ca4e725e8c06b4ad07d2a7cd7529a0e03f61ad0b47aa20d41e26ac"
+    },
+    {
       "path": "docs/npc-recovery-v116.md",
       "bytes": 2882,
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
@@ -267,8 +287,13 @@
     },
     {
       "path": "docs/terrain-v119.md",
-      "bytes": 3187,
-      "sha256": "19508ad06900bcbbd7e6d506cfc0fbccfbe1726354a2cbb25bd1f29514c7ec45"
+      "bytes": 3318,
+      "sha256": "412b8d860ddad6a9c95e52a14029c9d248f574d981f2a2d172eb72dace0f1965"
+    },
+    {
+      "path": "docs/terrain-v120.md",
+      "bytes": 2781,
+      "sha256": "cc05bd19f4e05bc49bd5712826e76cc9c3ad626473213f5c4d83bd80e3934c14"
     },
     {
       "path": "index.html",
@@ -3112,8 +3137,8 @@
     },
     {
       "path": "src/mapTiles.js",
-      "bytes": 5174,
-      "sha256": "082be445737052bb7cea021c5d713c602a96969f8f5e2770726690deee240934"
+      "bytes": 5339,
+      "sha256": "f66e74c7d68959e937d83c1fb09db33b9b0760bdfbec18d19bce5a0f74904617"
     },
     {
       "path": "src/market-v87.css",
@@ -4202,13 +4227,13 @@
     },
     {
       "path": "tests/v119-map-browser.mjs",
-      "bytes": 5791,
-      "sha256": "e7f7588364da4d2b68d8530597c198f1724b614c8f9b2afa4ed9d23397397542"
+      "bytes": 6032,
+      "sha256": "89d3526fd1a5e1a85b53cc19080669bcab35f8866c13788ba42d56bff448a33b"
     },
     {
       "path": "tests/v119-map-game-browser.mjs",
-      "bytes": 3967,
-      "sha256": "482a35dbedd9f47d9b4db9494bfc3f530b5d1322749f6528cbc243507758318d"
+      "bytes": 4774,
+      "sha256": "c7ed27aee5d7b0d6a84528bc33fe0cec5431ea5b94c22cae4d81c3fae338dc4c"
     },
     {
       "path": "tests/v119-map-tiles.test.mjs",
@@ -6521,5 +6546,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v119-github"
+  "publicRevision": "v120-github"
 }
