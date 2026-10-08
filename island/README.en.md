@@ -79,6 +79,8 @@ Default entry: `http://127.0.0.1:4175/play`; local logs contain first-registrati
 
 ## Status and verification boundaries
 
+Customize the steward name under Steward → Profile → Display name → Save. The name persists in the server save, across art styles and in visiting parties.
+
 V137 adds cross-island steward correspondence: after both owners enable reception, their own Hermes agents exchange island information and continue the conversation, with attributed letters retained after reload. First-lantern onboarding follows the current material bill. [Exchange notes](docs/a2a-information-v137.md).
 
 V136 adds durable steward requests and recovery: save before sending, read the original result after a lost response or reload, and prevent repeated file operations. Both styles were checked with real Hermes/Flash document tools. [Recovery notes](docs/steward-recovery-v136.md). Current footage is labeled V135; visuals and art are unchanged.

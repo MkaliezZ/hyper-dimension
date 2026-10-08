@@ -284,7 +284,7 @@ function showAdmin(){
  $('adminCoCreation').onclick=()=>coCreationUI.open();$('adminRuntime').onclick=()=>runManagementUI.open();$('adminRecruit').onclick=()=>recruitmentUI.open();$('adminAudit').onclick=()=>npcAuditUI.open();
 }
 function editNpc(i,options={}){
- const r=profile(i),draft={...r,...(options.fields||{})},capturedState=state,capturedTheme=theme;
+ const r=profile(i),draft={...r,...(options.fields||{})},capturedWorld=state.saveSlot,capturedTheme=theme;
  let expectedVersion=npcAuditProfile(state,i).version,busy=false,pendingSaved=false;
  const memories=(state.npcMemory[i]||[]).slice(-5).map(x=>'<li>'+escapeHTML(x.text)+'</li>').join('')||'<li>暂无岛上经历</li>';
  const fields=[['Name','展示姓名','name',16],['Personality','性格','personality',160],['Goal','生活目标','lifeGoal',120],['Speech','说话风格','speechStyle',100]].map(([key,title,field,max])=>'<label>'+title+(key==='Name'?'<input id="editNpc'+key+'" maxlength="'+max+'" value="'+escapeHTML(draft[field]||'')+'"/>':'<textarea rows="3" id="editNpc'+key+'" maxlength="'+max+'">'+escapeHTML(draft[field]||'')+'</textarea>')+'</label>').join('');
@@ -295,7 +295,7 @@ function editNpc(i,options={}){
  if(i===15){const b=document.createElement('button');b.className='secondary';b.textContent='选择管家形象';b.onclick=()=>contentUI.wardrobe(true);$('modalRoot').querySelector('.modal-footer').prepend(b)}
  const saveButton=$('saveNpc');
  saveButton.onclick=async()=>{
-  if(busy||state!==capturedState||theme!==capturedTheme)return;
+  if(busy||state.saveSlot!==capturedWorld||theme!==capturedTheme)return;
   const input={name:$('editNpcName').value,personality:$('editNpcPersonality').value,lifeGoal:$('editNpcGoal').value,speechStyle:$('editNpcSpeech').value};
   const result=editNpcProfile(state,i,input,{expectedVersion,requestId:crypto.randomUUID(),restoreFrom:options.restoreFrom||null});
   if(!result.ok){toast(result.reason);return}
@@ -304,11 +304,11 @@ function editNpc(i,options={}){
   if(result.changed){pendingSaved=true;npcs[i].queuedDecision=null;runtime.refresh();log('后台更新了 '+r.name+' 的'+(i===15?'管家':'居民')+'档案，版本 '+expectedVersion+'。')}else persist();
   try{
    await saves.flush(capturedTheme);
-   if(state!==capturedState||theme!==capturedTheme||!saveButton.isConnected)return;
+   if(state.saveSlot!==capturedWorld||theme!==capturedTheme||!saveButton.isConnected)return;
    (i===15?showHermes:showAdmin)();
    toast(pendingSaved?'档案与修改记录已写入本地存档':'内容未变化，没有新增修改记录');
   }catch(e){
-   if(state===capturedState&&theme===capturedTheme&&saveButton.isConnected)toast('修改保留在当前小岛，磁盘保存尚未完成：'+e.message);
+   if(state.saveSlot===capturedWorld&&theme===capturedTheme&&saveButton.isConnected)toast('修改保留在当前小岛，磁盘保存尚未完成：'+e.message);
   }finally{
    busy=false;if(saveButton.isConnected){saveButton.disabled=false;saveButton.textContent='保存档案'}
   }

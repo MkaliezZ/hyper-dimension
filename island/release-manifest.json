@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8637,
-      "sha256": "59328a9f2004d2a84846907851ffea10fffcb27e49d1d18fcbc14daab61ce9a8"
+      "bytes": 8801,
+      "sha256": "cfe88b98876875f2f9b9893ffc1b6c4285edadc652a1bf0c7ee5fca5eea684c6"
     },
     {
       "path": "README.md",
-      "bytes": 7991,
-      "sha256": "813352b32d012cabade9b30165f9ab02b3666d0c8ad2b27eae6f7e93d9631faa"
+      "bytes": 8166,
+      "sha256": "13053c2fbf357c5868acbb2db666112ce6ca9f524b38fcec7b050f0acdc3b581"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 2576,
-      "sha256": "4f77e649bb09bd80b1fba2f9e6f609485fe6251a7b80155823efb7c972009624"
+      "bytes": 2654,
+      "sha256": "7029e1822de8d6afccd6798a1adb385facf1e21ff8dc47f1fc1b2956c96c26e1"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 11773,
-      "sha256": "f185095032b96e1cd6d4ddc59fe39376f0aaced0323dae7d337ea77f60722eae"
+      "bytes": 12899,
+      "sha256": "02d1444094e8de976a57064f1569f7121d19a12ec470d62f219a39f97a684438"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -3242,8 +3242,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 134431,
-      "sha256": "6ee486ac56c8295c3050f74b1676288b9c55eec6ef2859db87ac3dceffe1fe18"
+      "bytes": 134467,
+      "sha256": "5496dbe972d8ba37436c836b91666cc9691f45a61485f9c6a70f90a10a050b9b"
     },
     {
       "path": "src/arcade.css",
@@ -5217,8 +5217,8 @@
     },
     {
       "path": "tests/v137-a2a-information.test.mjs",
-      "bytes": 9197,
-      "sha256": "575bac6120059d181a744b0c52b08880a1d0b72b74e7c75716ac7195f4fe15b9"
+      "bytes": 9222,
+      "sha256": "a0675069e7cffb413ccd87a747265edd02f889bb437216cad8cf3178415fa38e"
     },
     {
       "path": "tests/v137-first-craft-guide.test.mjs",

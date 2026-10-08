@@ -81,3 +81,10 @@ Both native themes pass two-owner real Hermes/deepseek-flash correspondence with
 首日新档在两种画风均完成实际砍木、订单交付、通过手账导航开采石英与采集蜂蜡／纤维、正式拼合制作星灯、里程碑领种、锄地／播种／浇水、真实等待成熟收获、成品订单收益及空浏览器重开。种植等待实际约184和186秒。全程未注入库存、金币、时间或小游戏品质；本项隔离 UI 测试阻断外部模型。验证首日这条操作链，不代替全部小游戏、完整多人或真人验收。
 
 Both fresh-island flows pass actual resource gathering using the updated journal buttons, production (not practice), order payment, milestone seeds, hoe/sow/water, actual crop waiting (about 184/186 seconds), harvest and empty-browser recovery. No stock, currency, clock or quality injection is used; provider calls are blocked in this focused journey check. Full workshop, multiplayer and human acceptance remain separate. [Implementation and player flow](a2a-information-v137.md).
+### V137 补验 · 管家姓名与 macOS 临时目录
+
+现有自定义姓名功能保留，并修复保存成功后档案界面无法返回的问题：服务端回填会替换状态对象，编辑保护现在核对稳定的存档身份和画风。隔离浏览器实测改名写入本机服务端、刷新保留、折纸／像素切换保留、空浏览器恢复与随行角色读取均通过；未改动用户存档。
+
+macOS ARM 的新增通信检查曾被系统临时目录 `/var` 的符号链接拦截。仅将测试临时目录解析为真实路径；产品数据目录的符号链接保护继续保留。Windows 及 macOS 的最终发布检查以修复后同一提交为准，旧失败记录仍保留。
+
+Existing name customization is preserved. Successful saves now return from the editor after server state replacement, using stable world identity checks. Actual isolated browser checks cover disk persistence, reload, both art styles, empty-browser restore and visiting actor projection. The macOS information-test fixture resolves the system temporary directory without weakening production data-path checks.

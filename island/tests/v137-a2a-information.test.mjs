@@ -1,8 +1,8 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {mkdtemp} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import {randomUUID} from 'node:crypto';
+import {mkdtemp,realpath} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import {randomUUID} from 'node:crypto';
 import {createLanHttpServer} from '../server/lanServer.mjs';import {createLanCollaborationStore} from '../server/lanCollaborationStore.mjs';import {islandExchangeContext} from '../server/islandExchangeContext.mjs';
 async function fixture({gate=async()=>{},decision='share'}={}){
- const directory=await mkdtemp(join(tmpdir(),'hd-v137-info-')),calls=[];let clock=1800000000000;
+ const directory=await mkdtemp(join(await realpath(tmpdir()),'hd-v137-info-')),calls=[];let clock=1800000000000;
  const runtime=({ownerId})=>({documents:'fictional-private-workspace',async call(method,p){if(method==='status')return {hermes:{configured:true}};assert.equal(method,'a2a');assert.equal(p.stage,'exchange');calls.push({ownerId,p});await gate();return {source:'hermes',ledgerRunId:'run-'+randomUUID(),runId:'provider-'+randomUUID(),reply:{decision,message:p.sharedContext.islandName+'的管家向对方介绍了岛上的真实设施。'}};},async close(){}});
  let service=await createLanHttpServer({directory,port:0,enrollmentKey:'INFORMATION-FIXTURE',agentRuntimeFactory:runtime,now:()=>clock});const users=[];
  try{for(let n=0;n<3;n++){const theme=n===1?'origami':'pixel',a=await service.identities.register({login:'exchange_'+n,password:'fixture-password',name:'虚构岛主'+n,islandName:'虚构岛屿'+n,avatar:n===1?'female_2':'male_1',theme});await service.tenants.open(a.token,theme,{});users.push({...a,id:a.view.me.id,theme});}
