@@ -1,3 +1,4 @@
+import {atomicJSON} from './atomicJson.mjs';
 import {validShopfronts} from '../src/shopfronts.js';
 import {validResidentLife} from '../src/residentLife.js';
 import {assertResourceState,assertResourceJournal,syncResourceState,enableResourceState} from './resourceAuthority.mjs';
@@ -43,7 +44,7 @@ import {validRecruitment} from '../src/recruitment.js';
 import {validResourceLedger} from '../src/resourceLedger.js';
 import {validWardrobe} from '../src/contentCatalog.js';
 import {validToolbelt} from '../src/equipmentRules.js';
-import {mkdir,readFile,writeFile,rename,unlink,readdir,stat,open} from 'node:fs/promises';
+import {mkdir,readFile,writeFile,unlink,readdir,stat,open} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
 import {createZeroState} from '../src/freshStart.js';
@@ -80,18 +81,6 @@ export function validateState(state,theme=null){
  if(!validResidentStories(state))throw fail('居民约定记录无效，未覆盖现有进度');
  if(!validResourceLedger(state))throw fail('物资预留记录无效，未覆盖现有进度');
  return state;
-}
-async function atomicJSON(path,value){
- const temporary=path+'.'+randomUUID()+'.tmp';
- let file;
- try{
-  file=await open(temporary,'wx',0o600);
-  await file.writeFile(JSON.stringify(value));await file.sync();await file.close();file=null;
-  await rename(temporary,path);
- }finally{
-  await file?.close().catch(()=>{});
-  await unlink(temporary).catch(()=>{});
- }
 }
 function validateDocument(doc,theme){
  if(doc?.state?.placementBook&&doc.state.placementBook.theme!==theme)throw fail('布置画风与存档不一致');

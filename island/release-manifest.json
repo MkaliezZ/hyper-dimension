@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v114-agent-source",
+  "release": "hyper-dimension-v115-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 14608,
-      "sha256": "ddbec6cd7afe4dd509ac6d8e28d8bf4c1f21dcf46f09d5c065b2920dcd749b0d"
+      "bytes": 15003,
+      "sha256": "f19d4e975e6b36594acd41bb9ffe6babbc3ad7fb0c07e189afbed191564ff579"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10270,
-      "sha256": "b1613901399d36d9bb627fb39568449cf8efa433147614813a17c994f5202597"
+      "bytes": 10485,
+      "sha256": "4803479a797f307c6a2c32da28d4959abfc3c90dfbf94487e50490f13305a202"
     },
     {
       "path": "README.md",
-      "bytes": 9402,
-      "sha256": "b3f8a518e72f539145646641e03a68301f0cf067d1ac7caad4094eeb64b3d518"
+      "bytes": 9573,
+      "sha256": "dd9544239d2b8eeafbb89e4c891e81ac2c217747d27d71ca69349819e5c72380"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -214,6 +214,11 @@
       "path": "docs/resident-life-v112.md",
       "bytes": 3429,
       "sha256": "5bddd8fae9b878db3ae63886b13eedcff06f92c67f2d3b8d194fb4bde3036e20"
+    },
+    {
+      "path": "docs/save-recovery-v115.md",
+      "bytes": 3202,
+      "sha256": "46f091bfd995018271fa1ae87c47e1bd58a0e59cb02a7ac4ae948ed65c0b46ce"
     },
     {
       "path": "docs/shopfronts-v113.md",
@@ -732,8 +737,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 5936,
-      "sha256": "b511b4778550f4c73efb80bafe7b0041320e26a0d9411f506de2b7b22eaf3d16"
+      "bytes": 6065,
+      "sha256": "460e06d7f28f61961ddbb56930a418b0c63c31e2778217ce361a904f0f1b72f5"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1881,6 +1886,11 @@
       "sha256": "14c018afa8a1b152ebc84c6b9c0925b6c1178c7206c77bc7a6e7a10c3ee39cf7"
     },
     {
+      "path": "server/atomicJson.mjs",
+      "bytes": 1222,
+      "sha256": "438596187a7033744d76d552f1dcfd1a36eb37994ce6932561dd46521cea53fa"
+    },
+    {
       "path": "server/automaticBudget.mjs",
       "bytes": 1566,
       "sha256": "a3a72e005e4bb311acf4212ab11477b80cec0208b70674eb24ded2241a0494ee"
@@ -2212,8 +2222,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 33271,
-      "sha256": "868782119b3d054fa6d982d73d110137a19ede98bd2beb27ea21c872daa52931"
+      "bytes": 32945,
+      "sha256": "e91e9c97949353791ae55c5ac17f87712bd8890d112c1e7ae8e2fc848caa4095"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -3874,6 +3884,11 @@
       "path": "tests/v114-resident-dispatch.test.mjs",
       "bytes": 2503,
       "sha256": "350f2493e9899736921895a5954fb4bf7c1cd7f9275c5a4bf0a201a0e41e96a2"
+    },
+    {
+      "path": "tests/v115-atomic-json.test.mjs",
+      "bytes": 2257,
+      "sha256": "608711260d2d89bf41c0cb31bc19346ec6ec1a317a0e3b8e51b88ca9dc92631c"
     },
     {
       "path": "tests/v12-commerce-ui.mjs",
@@ -6176,5 +6191,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v114-github"
+  "publicRevision": "v115-github"
 }
