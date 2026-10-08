@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v131-agent-source",
+  "release": "hyper-dimension-v132-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -67,8 +67,8 @@
     },
     {
       "path": "docs/ASSETS.md",
-      "bytes": 3326,
-      "sha256": "8a66afa1410dcb4203dd2cc0a7b6501350a126c50489cc170d2f57435fa1daf9"
+      "bytes": 4029,
+      "sha256": "bb1e7457a0a36afed91e3af570a8883079481484ad6aee97253a0f2a96e3d023"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -77,8 +77,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 4097,
-      "sha256": "d7ea1b5aa4dafed61680e024de20b2c46a0cc9c878cf883ede7bbeef75a4d488"
+      "bytes": 5702,
+      "sha256": "7d6443dd4ada4dda52c63506a530a69670a45baa11a774c72a43470c02e3aa9f"
     },
     {
       "path": "docs/classic-settlement-v110.md",
@@ -102,13 +102,18 @@
     },
     {
       "path": "docs/environment-v131.md",
-      "bytes": 4609,
-      "sha256": "864a4719954236fb88cde0a43b1cff38a79d89d34ead2a7de78828416b71b0de"
+      "bytes": 4827,
+      "sha256": "f7aae7ebc425e6e68498f326cba3d0833c1b338c1f30b4755dd2e01e9fe0ad7b"
     },
     {
       "path": "docs/gallery-seam-v131.md",
-      "bytes": 3630,
-      "sha256": "e8a8dcf44088f79637855e270507de377a6ac6eadd36d55b247cfeeb068e41f2"
+      "bytes": 3836,
+      "sha256": "02cf451d825bb8fdda3377caddd90b8bf0f18f1e115c4e0b89cbc487fbf8ed12"
+    },
+    {
+      "path": "docs/gallery-seasons-v132.md",
+      "bytes": 4843,
+      "sha256": "49442ee96d8e3c2ccdab906bc66569c0a50f3436d98ae1355a505edd075b68bb"
     },
     {
       "path": "docs/gallery-v131-evidence.json",
@@ -426,6 +431,56 @@
       "sha256": "de229b2617ad42d64a6c2395645cde0f7940d0f6a699aeee4a3aa5dae6741ba1"
     },
     {
+      "path": "docs/screenshots/v132-origami-autumn-forest.png",
+      "bytes": 5785319,
+      "sha256": "9761d54ec0d2c0e754552c1509344f2d2dec5ebdf68b0830125f95aa5b3fd53d"
+    },
+    {
+      "path": "docs/screenshots/v132-origami-gallery-bridge.png",
+      "bytes": 5171967,
+      "sha256": "d17daaf4250444af8721a1ea9986aca386fe9fe86140dee78d6ab3bc3d9930ea"
+    },
+    {
+      "path": "docs/screenshots/v132-origami-spring-forest.png",
+      "bytes": 5764321,
+      "sha256": "c2c184308ff96cf78084d10ed6745db623fc972210056e70bd678302afc604e8"
+    },
+    {
+      "path": "docs/screenshots/v132-origami-summer-forest.png",
+      "bytes": 5732332,
+      "sha256": "8f06869af450ba7a05f593511482ec4609ae97456c94275b0989cd83dff2028e"
+    },
+    {
+      "path": "docs/screenshots/v132-origami-winter-forest.png",
+      "bytes": 5748510,
+      "sha256": "1afe3b1a35c51425fec4febb056b482f63003957b6423e9f5222b76675343cd1"
+    },
+    {
+      "path": "docs/screenshots/v132-pixel-autumn-forest.png",
+      "bytes": 6265636,
+      "sha256": "fbaa6e1ec582c6ea0ab27dbf334b99dec7270dea57423c73d348f57330f04c64"
+    },
+    {
+      "path": "docs/screenshots/v132-pixel-gallery-bridge.png",
+      "bytes": 5657711,
+      "sha256": "c0b18b9b76c4ba62742fe9f7e3751af8422c8a5a47e74c34d470bb2aaf8e8835"
+    },
+    {
+      "path": "docs/screenshots/v132-pixel-spring-forest.png",
+      "bytes": 6271703,
+      "sha256": "8cb700fb82cc90cb5ce29dde4169dffbe35a228fa7d1fd593de5398edae7143b"
+    },
+    {
+      "path": "docs/screenshots/v132-pixel-summer-forest.png",
+      "bytes": 6200279,
+      "sha256": "4322d2c7f72fcb907b90fbc5ad853be652432d652cb546947482c0bb65e7a574"
+    },
+    {
+      "path": "docs/screenshots/v132-pixel-winter-forest.png",
+      "bytes": 6274935,
+      "sha256": "34c64dbc14e779a0ce60e3a35549c89d98b953f3239668bd9afccb8579525190"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -451,6 +506,11 @@
       "sha256": "1f6e6c7d2a132b540095160d7e7a52af83a6654d533cf89157ebcd65a07d50ff"
     },
     {
+      "path": "docs/terrain-art-v132.json",
+      "bytes": 3930,
+      "sha256": "cbc6fdcda4db387e071f835af063052ffc5a294fd1defedf5a0cb72facca1ee2"
+    },
+    {
       "path": "docs/terrain-previews-v125.json",
       "bytes": 724,
       "sha256": "7cbeb7902111f72f6c19591c1a9231cda57257b1ff2336af609cc27737fdc71d"
@@ -459,6 +519,11 @@
       "path": "docs/terrain-previews-v131.json",
       "bytes": 751,
       "sha256": "c497e31def6b39adf6a346509215060f264e088a8ed211ba6b3b02a1f7cbf632"
+    },
+    {
+      "path": "docs/terrain-previews-v132.json",
+      "bytes": 754,
+      "sha256": "2dabfc4deeaec69aab5f81436153ec592c83a70fda5846fa64d3c47cc6899c8c"
     },
     {
       "path": "docs/terrain-v119.md",
@@ -992,8 +1057,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8216,
-      "sha256": "d00c3dc7e8e7f3ba5553c2dc18e22452a5e2eb7b7c4aaae2f88f837ccaf0b211"
+      "bytes": 8231,
+      "sha256": "06f511e26037ebef0ec66f095f256d8f61a5749a47ac7a3ef97f7ad160145835"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1831,6 +1896,26 @@
       "sha256": "0c980514a28ff8b56ebd67096bc728aa93fd127d22250001484b5ec188221241"
     },
     {
+      "path": "public/assets/map-tiles-v132/origami-3-1.png",
+      "bytes": 2347198,
+      "sha256": "9949bded1094db5c703c8a698e66dd26eecfcf940923f6b7c91af2d36edbccef"
+    },
+    {
+      "path": "public/assets/map-tiles-v132/origami-overview.png",
+      "bytes": 3907597,
+      "sha256": "fbae2ec821945247c56c5172fd31539544f1422c1f60b96210fac4188f0f5ee5"
+    },
+    {
+      "path": "public/assets/map-tiles-v132/pixel-3-1.png",
+      "bytes": 2526092,
+      "sha256": "993799b2ca55c657305da8ce8923b27e7d11b80adf78d343a06478d9571f76cb"
+    },
+    {
+      "path": "public/assets/map-tiles-v132/pixel-overview.png",
+      "bytes": 4366630,
+      "sha256": "1032713b35f5e9ff3e5ba00f4b36c416268c9918e14e552ff0d73b0c1f6294dc"
+    },
+    {
       "path": "public/assets/market-lantern-origami-v87.png",
       "bytes": 1429172,
       "sha256": "3d219779ba623d8bf86247f201c683fb9c9bfad1d70fb577a372963b40964b23"
@@ -1961,6 +2046,26 @@
       "sha256": "5f11ad70c5b62bfa5f369efff71ff31f4d78cac86193857b2640bb4a13eeaeb8"
     },
     {
+      "path": "public/assets/portfolio-v132/bridge-origami.png",
+      "bytes": 1371433,
+      "sha256": "0298249add8567861a8259935489c093f232182e704c329e4614dbc5d47a6eb4"
+    },
+    {
+      "path": "public/assets/portfolio-v132/bridge-pixel.png",
+      "bytes": 1322427,
+      "sha256": "6ba2af611d8735f923d8930beb8e6b069a534c3053bcfe12c1f3ba3f42dff315"
+    },
+    {
+      "path": "public/assets/portfolio-v132/hall-land-origami.png",
+      "bytes": 1820287,
+      "sha256": "962f7ff99466879c9c6075fabaa62f26dee8c377929fe92adcf3ba9c9f65499e"
+    },
+    {
+      "path": "public/assets/portfolio-v132/hall-land-pixel.png",
+      "bytes": 2162458,
+      "sha256": "258ddfccba13f3013ff321ccc783ee725a1da05ecc700970e300b88bae99fbfe"
+    },
+    {
       "path": "public/assets/pottery-stage-origami-v41.png",
       "bytes": 2358265,
       "sha256": "26f651ddfc6d3a3f23cd021564be76e2ce249422f0d41bf80498d439ac671fe7"
@@ -2019,6 +2124,36 @@
       "path": "public/assets/seashell-cup-pixel-violet-v33.png",
       "bytes": 1335821,
       "sha256": "7c84f2bd0834b52bd0014ef7ca98eb638721ebd4281d5a1ff47a841d65ffa288"
+    },
+    {
+      "path": "public/assets/seasons-v132/origami-autumn-0-0.png",
+      "bytes": 2745892,
+      "sha256": "49f91fc6e382651ad0613fb1b699ff9a4d805f21fcba14df5a42055b9eff3037"
+    },
+    {
+      "path": "public/assets/seasons-v132/origami-spring-0-0.png",
+      "bytes": 2691525,
+      "sha256": "e000107199e68369668d7d32b0d1dca6bfe641fb9f5ed3f893006822b0bfe4e9"
+    },
+    {
+      "path": "public/assets/seasons-v132/origami-winter-0-0.png",
+      "bytes": 2670743,
+      "sha256": "aceda9f002c0c10360aa8a29750f07ae2b6ea12699f853f0cf28aa81c324b677"
+    },
+    {
+      "path": "public/assets/seasons-v132/pixel-autumn-0-0.png",
+      "bytes": 2983990,
+      "sha256": "b695a450eda720322b8cb8c4d4d3165b00fc03a5160cefdc1a391ece162ef33d"
+    },
+    {
+      "path": "public/assets/seasons-v132/pixel-spring-0-0.png",
+      "bytes": 2969907,
+      "sha256": "dcccb6271b48dcd68d48897eb38727afb051175802ff5404f13f107df9b81b1c"
+    },
+    {
+      "path": "public/assets/seasons-v132/pixel-winter-0-0.png",
+      "bytes": 3082903,
+      "sha256": "7a4ece94d8f8b68a73326d2ee638ebc2c69b310f3edad6a538d6095e8ea839a1"
     },
     {
       "path": "public/assets/starlit-diorama-origami-v98.png",
@@ -2823,7 +2958,7 @@
     {
       "path": "src/app.js",
       "bytes": 134084,
-      "sha256": "82f8c48c5089484c01291b2bcf018e8fca87717a14fcf2f4873332d6ca8c3cb5"
+      "sha256": "5cebaa89343fe56113e5a2dc532f92c7d0bc7298b645c78e5a35d82898a1504a"
     },
     {
       "path": "src/arcade.css",
@@ -3042,8 +3177,8 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 12585,
-      "sha256": "f9050e9f8499cec1e3edc27788cee082bf2a0a04c848a1815e7adfdc9bbae97f"
+      "bytes": 10856,
+      "sha256": "a03e88c26c9d2557f6a0faa54c8f789a0753521774b44f6ee20368095c4bb512"
     },
     {
       "path": "src/environmentUI.js",
@@ -3408,7 +3543,7 @@
     {
       "path": "src/lanMap.js",
       "bytes": 11739,
-      "sha256": "da76ba939e81627b1f242c72adba2f167a93a74714d8bad285ca1746c35841d6"
+      "sha256": "d98d0cdd59c102348288a638022d8e29117f6de1d5eedac1b36946e7b98936bf"
     },
     {
       "path": "src/lanSocialUI.js",
@@ -3463,7 +3598,7 @@
     {
       "path": "src/mapTileLayout.js",
       "bytes": 2982,
-      "sha256": "e08d8325b3d66fdcafee9b482aa5dbfb14f02a4caaa03e5f60ddf9df45e27314"
+      "sha256": "88321bfed794ba62cec9ffa9b6a70f90450fe88115db5b00d56572e5c2f4c047"
     },
     {
       "path": "src/mapTileLoader.js",
@@ -3652,13 +3787,13 @@
     },
     {
       "path": "src/portfolioArt.js",
-      "bytes": 3439,
-      "sha256": "91f0dd57432f5bf5cdacff9a365929ff05ca2654ceda0055bdd94b7faada3af9"
+      "bytes": 3106,
+      "sha256": "6e092d63a19204eaea45cc85d9207095f1e2a986e43a3ac321064d7ff2e3d960"
     },
     {
       "path": "src/portfolioLandmark.js",
-      "bytes": 1321,
-      "sha256": "5baa7ca1626fa284240a0021459fbf9a3e2738efe1d8442200e4f369e20eed35"
+      "bytes": 1577,
+      "sha256": "341f68548e3554c6449aa24d8e98502192f4b96736e654b03cd5836725d8c943"
     },
     {
       "path": "src/portfolioUI.js",
@@ -3891,6 +4026,11 @@
       "sha256": "5a9ec238bc062e112ea70313efcc0242ceaaa435347f51aea113db3aa62d9305"
     },
     {
+      "path": "src/seasonArtwork.js",
+      "bytes": 1878,
+      "sha256": "d64557dd2b749095aa0a2c0daf3ed7bb4f2d0134df0e0c45674a052779f37446"
+    },
+    {
       "path": "src/serverCommerceUI.js",
       "bytes": 3028,
       "sha256": "aa5471d7f4191890024e545a193a56b1dd2029ec0dee977cf2b8904b2db668be"
@@ -4107,8 +4247,8 @@
     },
     {
       "path": "src/world.js",
-      "bytes": 13107,
-      "sha256": "607307a6e77f7a6b728d0633a1f872bdfb883e6b6471081e4d29d899c9a89262"
+      "bytes": 13180,
+      "sha256": "7f50df6ac34974da636fd3788fbfb405e1e0108a244801b1b7ab3b874e234a3a"
     },
     {
       "path": "src/worldSession.js",
@@ -4688,12 +4828,12 @@
     {
       "path": "tests/v125-terrain-preview.test.mjs",
       "bytes": 1717,
-      "sha256": "8c9b81225dd453d8d9ed68228bcf2bbe48346cb4b98c369a37a5852b8c3d88cb"
+      "sha256": "fcdfb375289bc01d1404e4300c476c7b15bfce731237fe6996fa3993f2d4fc44"
     },
     {
       "path": "tests/v127-environment-browser.mjs",
-      "bytes": 5100,
-      "sha256": "6039d0f7e096a1f16aec4bb734618b604d1c1369a22e70a9206e3d7ac8bb0443"
+      "bytes": 5185,
+      "sha256": "cb39e8f31cbfec46e83f52984940fd86c86ecd39b8f0661ae33bf6f7c417c5f0"
     },
     {
       "path": "tests/v127-environment-compatible-browser.mjs",
@@ -4742,13 +4882,18 @@
     },
     {
       "path": "tests/v131-gallery-browser.mjs",
-      "bytes": 4998,
-      "sha256": "7fc61adfdcd79e44e625c6dcf9d902dd31c09383df573c8bb05a137a1052fb0b"
+      "bytes": 5030,
+      "sha256": "351713f4b0be2029f9a7f773f66afe9946122886a1350e3d2b8a9f319a3e5240"
     },
     {
       "path": "tests/v131-gallery.test.mjs",
-      "bytes": 2493,
-      "sha256": "830d590401f1e4bcb45f1212aca5b9952e70b5924a49871d81ed7ba0f3663922"
+      "bytes": 3078,
+      "sha256": "736408fa9088604012475764a479cf808c4654b14d1346e4c17470b95c7deee0"
+    },
+    {
+      "path": "tests/v132-season-closeup.mjs",
+      "bytes": 4318,
+      "sha256": "708a14a7d5dfc5a5015d338030d4b79b1ac3f0262b5d365fa90fd217c5e48ec3"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -6462,8 +6607,8 @@
     },
     {
       "path": "tools/build-terrain-overviews.mjs",
-      "bytes": 3124,
-      "sha256": "6c70331ec539e34a5990042a96575590fe1dbfab1416732a463ad233a516239b"
+      "bytes": 3127,
+      "sha256": "11b370b4725bf7a15f451b082bc70b3864f62a2bdc679f047db44f104c785381"
     },
     {
       "path": "tools/cocreation-check.mjs",
@@ -7041,5 +7186,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v131-github"
+  "publicRevision": "v132-github"
 }

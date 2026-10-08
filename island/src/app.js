@@ -395,7 +395,7 @@ function label(text,x,y,color='#fff',size=13,align='center'){ctx.fillStyle=color
 const environment=worldEnvironment();environment.start();let environmentHUDAt=-1;
 function updateEnvironmentHUD(){if(animationNow-environmentHUDAt<.5)return;environmentHUDAt=animationNow;const env=environment.sample(),button=$('worldEnvironmentStatus');if(button){button.textContent=env.seasonName+' · '+env.clockText;button.dataset.period=env.period;button.title='世界时令 · '+env.seasonName+'季 · '+env.clockText;}}
 $('worldEnvironmentStatus').onclick=()=>openModal('小岛时令','海风与四季，沿同一个世界时钟流动。',environmentCalendarMarkup(environment.sample()));
-function drawWorld(){const img=images[theme],env=environment.sample();drawOuterSea(ctx,img,theme,animationNow);drawIsland(ctx,img,theme);drawPortfolioLand(ctx,theme);drawSeasonTerrain(ctx,img,theme,env);drawOceanMotion(ctx,img,theme,animationNow,env);
+function drawWorld(){const img=images[theme],env=environment.sample();drawOuterSea(ctx,img,theme,animationNow);drawIsland(ctx,img,theme);drawSeasonTerrain(ctx,img,theme,env);drawOceanMotion(ctx,img,theme,animationNow,env);drawPortfolioLand(ctx,theme);
  // Shoreline foam uses connected-ocean geometry, never walkability or plot coordinates.
  // Entry markers remain tied to tangible locations.
  const marks=[['沃土农田',320,588],['星晶矿洞',1271,291],['星灯派对广场',786,411]];for(const [t,x,y] of marks)nameplate(t,x,y,12,'place');

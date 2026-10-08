@@ -1,5 +1,7 @@
 # V131 · 会客馆接缝与虚构展示档案 / Gallery seam and fictional portfolio
 
+> 后续复核：V131 拼接仍被用户指出痕迹，V132 已改为独立会客小岛与桥梁。 / User review found remaining V131 seams; [V132 supersedes the terrain layout](gallery-seasons-v132.md).
+
 ## 中文
 
 东岸会客馆作为主岛的一部分绘制。更新主岛东侧分块的道路开口、两画风庭院入口与边缘遮罩；对应寻路走廊同步调整，保留原有 25 个生产建筑地块及会客馆坐标。初始总览、高清分块及海浪遮罩读取同一套地形。

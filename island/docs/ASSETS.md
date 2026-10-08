@@ -25,3 +25,8 @@ Provenance does not create third-party rights, and the project's MIT license doe
 ## Original score source / 原创配乐源码
 
 The optional compose-original-score.py in docs/media/ reproduces the score with Python, NumPy and FFmpeg (not required to run the game). All instrument sounds are synthesized. / 配乐源码需要 Python、NumPy 与 FFmpeg；仅媒体制作使用，游戏部署无需这些工具。
+
+
+## V132 · Gallery bridge and seasonal terrain / 桥梁与季节地形
+
+Twelve built-in imagegen outputs edit the inspected existing artwork: two gallery islands, two mainland landings, two transparent bridge sprites, and six seasonal northern forest tiles. The two overview images are native Canvas compositions of runtime tiles. Selected file sizes, PNG dimensions, hashes and reference identifiers are in [terrain-art-v132.json](terrain-art-v132.json). Runtime images retain real coast alpha; the bridge and walking corridor are aligned separately for each appearance. / 本轮十二张原创生成素材与两张程序合成总览均有来源、尺寸和摘要记录；不含真实用户资料。

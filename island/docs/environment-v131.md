@@ -1,5 +1,7 @@
 # Shared world time and animated ocean / 共享时令与动态海面
 
+> V132 replaces the initial foliage recoloring with original seasonal forest paintings and richer falling animations. / V132 季节素材已改为重绘林地，详见 [实景](gallery-seasons-v132.md)。
+
 ## Player experience
 
 Both pixel and origami appearances have world-anchored sea ripples, three overlapping shoreline crests and subtle sunlight/moonlight reflections. The coastline mask includes the Islander Gallery extension; waves cannot paint over its garden. Day/dawn/dusk/night blend continuously, with seasonal foliage, drifting petals/leaves/snow, readable night lighting and lighthouse beams. Home islands and shared-room visits use the same server clock. Click the season/time badge to see the calendar.
@@ -45,7 +47,7 @@ Providers poll at most once per minute per runtime, asynchronously, with a 2.5-s
 
 ## Rendering and verification
 
-WebGL2 uses one cached distance-field shader pass. Missing or lost WebGL uses the 2D renderer; restoration rebuilds the shader. The terrain uses existing high-resolution tiles and a cached seasonal foliage mask, avoiding a fresh per-pixel scan on every frame. Pixel appearance quantizes wave detail; origami uses softer curved highlights.
+WebGL2 uses one cached distance-field shader pass. Missing or lost WebGL uses the 2D renderer; restoration rebuilds the shader. The terrain uses existing high-resolution tiles and newly painted seasonal forest tiles (V132), avoiding a fresh per-pixel scan on every frame. Pixel appearance quantizes wave detail; origami uses softer curved highlights.
 
 Evidence is scoped to native browser runs on the development Windows PC. Sixteen home-scene combinations (two appearances × four seasons × day/night), zoom/pan and p95 frame checks have passed; shared-room and fallback verification reports document their own outcomes. Domain checks cover clock phases, season boundaries, provider failures, shared first-boot creation and stale revisions. This does not claim physical Mac, full-product or human acceptance.
 

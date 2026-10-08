@@ -33,3 +33,12 @@ This is a development snapshot. Automated checks and deployability do not consti
 - **The 30-second 4K video** includes an original score, actual DeepSeek decisions, a three-star kitchen practice completion (53 seconds of real play), and native Hermes producing a verified DOCX from a fictional brief. Editing omits waiting; local paths are masked. The minigames are explicitly labeled placeholder demonstrations whose gameplay, art and animation remain in development.
 
 The prior V106 one-hour runs apply to V106. V107 has not repeated a complete one-hour run. Human quality review, physical multi-device and Mac testing, broader cooperative events, cross-device steward bridging and OPC newcomer courses remain open.
+
+
+## V132 · 本轮局部验收 / Focused update
+
+本机默认发布回归 804 / 804 通过。第一次并发运行有两项维护检查受到运行端干扰；备份／停机检查现移到并发领域测试结束后，全部原断言保留，修正后的完整执行为 790 项领域检查及 14 项维护检查全部通过。实际存档运行锁仍保守拒绝未确认写入进程。
+
+双画风独立会客小岛与桥梁、桥旁海水约束、8 段经历／3 项项目／3 张持久化图片、16 组昼夜季节实景、8 组林地近景及六组飘落动画移动验证通过。当前季节地形覆盖北部林地，沿海棕榈与建筑屋顶保留原稿。账号与已有展馆资料经备份及更新前后核对保留。新增美术和实景见 [gallery-seasons-v132.md](gallery-seasons-v132.md)。
+
+The default local release suite passes 804 / 804 checks: 790 domain checks followed by 14 maintenance checks. The initial concurrent run hit two maintenance collisions; running those checks after concurrent writers exit retains every assertion and passes the complete suite. Live unverified writers still block backup. Native evidence covers both bridged gallery islands, adjacent-water restrictions, fictional persistent portfolio content, sixteen environment combinations, eight forest close-ups and six falling-animation motion checks. Seasonal terrain currently covers the northern forest. Accounts and existing gallery content are preserved. These are focused checks, not full-product or physical-Mac acceptance; original outstanding scope and the refreshed showcase video remain open.

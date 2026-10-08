@@ -1,0 +1,21 @@
+{
+  "version": 132,
+  "method": "Native Canvas composition of all 12 generated terrain tiles and the complete plaza, using runtime weights and shoreline masking; no buildings or characters baked into terrain.",
+  "source": "terrain-art-v119.json + coastal bridge landing V132",
+  "files": [
+    {
+      "file": "public/assets/map-tiles-v132/pixel-overview.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 4366630,
+      "sha256": "1032713b35f5e9ff3e5ba00f4b36c416268c9918e14e552ff0d73b0c1f6294dc"
+    },
+    {
+      "file": "public/assets/map-tiles-v132/origami-overview.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3907597,
+      "sha256": "fbae2ec821945247c56c5172fd31539544f1422c1f60b96210fac4188f0f5ee5"
+    }
+  ]
+}

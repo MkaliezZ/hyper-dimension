@@ -4,7 +4,9 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V131 开发快照**，可本地部署；完整产品验收仍在进行。
+在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V132 开发快照**，可本地部署；完整产品验收仍在进行。
+
+V132 将会客馆改为独立小岛与桥梁，并重绘樱花、秋林、积雪林地，配合花瓣、落叶与雪晶动画。[双画风实景与验证范围](island/docs/gallery-seasons-v132.md)。
 
 V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](island/docs/environment-v131.md)。
 
@@ -46,7 +48,7 @@ V109 已更新双画风登船舷梯、船体靠泊位置与人物遮挡。[查�
 
 [![Hyper Dimension 实机预览：折纸与像素海岛](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v131)
+**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/latest)
 
 2560 × 1440 / 60 FPS，原创器乐 BGM 与中英字幕。展示真实 AI 居民对话、管家多形象选择、Hermes 主子 Agent 分工、房屋弹窗内的海风双灶与通关结果，以及管家处理虚构工作资料、保存并回读 Word 文件。实机片段省略等待，没有真实用户资料。
 
@@ -170,8 +172,17 @@ The east-coast gallery supports biographies, experiences, projects, persistent u
 | --- | --- |
 | ![折纸秋季夜景](island/docs/screenshots/v131-origami-autumn-night.png) | ![像素冬季日景](island/docs/screenshots/v131-pixel-winter-day.png) |
 
-默认 15 分钟一个视觉昼夜、7 个视觉日换季；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](island/docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V131。
+默认 15 分钟一个视觉昼夜、7 个视觉日换季；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](island/docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V132。
 
 ### 会客馆示例档案
 
 ![Fictional gallery portfolio](island/docs/screenshots/v131-origami-gallery.png)
+
+
+## V132 · 会客小岛与四季林地 / Gallery island and seasonal forest
+
+[实景与验证 / Native visuals and verification](island/docs/gallery-seasons-v132.md)
+
+![Gallery bridge](island/docs/screenshots/v132-origami-gallery-bridge.png)
+
+![Autumn forest](island/docs/screenshots/v132-pixel-autumn-forest.png)

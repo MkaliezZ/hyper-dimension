@@ -1,0 +1,113 @@
+{
+  "version": 132,
+  "method": "Built-in imagegen edits of inspected original artwork; no generated buildings or characters in terrain. Native Canvas composes overview from the same runtime tiles.",
+  "references": [
+    "public/assets/map-tiles-v119/pixel-0-0.png",
+    "public/assets/map-tiles-v119/origami-0-0.png",
+    "public/assets/map-tiles-v131/pixel-3-1.png",
+    "public/assets/map-tiles-v131/origami-3-1.png",
+    "public/assets/portfolio-v131/hall-land-pixel.png",
+    "public/assets/portfolio-v131/hall-land-origami.png"
+  ],
+  "seasonalScope": "Northern deciduous forest and falling petals/leaves/snow; coastal palms and building roofs retain original artwork. Summer retains original terrain.",
+  "selectedAssets": [
+    {
+      "file": "public/assets/portfolio-v132/bridge-origami.png",
+      "bytes": 1371433,
+      "sha256": "0298249add8567861a8259935489c093f232182e704c329e4614dbc5d47a6eb4",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "public/assets/portfolio-v132/bridge-pixel.png",
+      "bytes": 1322427,
+      "sha256": "6ba2af611d8735f923d8930beb8e6b069a534c3053bcfe12c1f3ba3f42dff315",
+      "width": 2056,
+      "height": 765
+    },
+    {
+      "file": "public/assets/portfolio-v132/hall-land-origami.png",
+      "bytes": 1820287,
+      "sha256": "962f7ff99466879c9c6075fabaa62f26dee8c377929fe92adcf3ba9c9f65499e",
+      "width": 1447,
+      "height": 1087
+    },
+    {
+      "file": "public/assets/portfolio-v132/hall-land-pixel.png",
+      "bytes": 2162458,
+      "sha256": "258ddfccba13f3013ff321ccc783ee725a1da05ecc700970e300b88bae99fbfe",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "public/assets/map-tiles-v132/origami-3-1.png",
+      "bytes": 2347198,
+      "sha256": "9949bded1094db5c703c8a698e66dd26eecfcf940923f6b7c91af2d36edbccef",
+      "width": 1208,
+      "height": 1302
+    },
+    {
+      "file": "public/assets/map-tiles-v132/origami-overview.png",
+      "bytes": 3907597,
+      "sha256": "fbae2ec821945247c56c5172fd31539544f1422c1f60b96210fac4188f0f5ee5",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "public/assets/map-tiles-v132/pixel-3-1.png",
+      "bytes": 2526092,
+      "sha256": "993799b2ca55c657305da8ce8923b27e7d11b80adf78d343a06478d9571f76cb",
+      "width": 1208,
+      "height": 1302
+    },
+    {
+      "file": "public/assets/map-tiles-v132/pixel-overview.png",
+      "bytes": 4366630,
+      "sha256": "1032713b35f5e9ff3e5ba00f4b36c416268c9918e14e552ff0d73b0c1f6294dc",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "public/assets/seasons-v132/origami-autumn-0-0.png",
+      "bytes": 2745892,
+      "sha256": "49f91fc6e382651ad0613fb1b699ff9a4d805f21fcba14df5a42055b9eff3037",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "public/assets/seasons-v132/origami-spring-0-0.png",
+      "bytes": 2691525,
+      "sha256": "e000107199e68369668d7d32b0d1dca6bfe641fb9f5ed3f893006822b0bfe4e9",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "public/assets/seasons-v132/origami-winter-0-0.png",
+      "bytes": 2670743,
+      "sha256": "aceda9f002c0c10360aa8a29750f07ae2b6ea12699f853f0cf28aa81c324b677",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "public/assets/seasons-v132/pixel-autumn-0-0.png",
+      "bytes": 2983990,
+      "sha256": "b695a450eda720322b8cb8c4d4d3165b00fc03a5160cefdc1a391ece162ef33d",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "public/assets/seasons-v132/pixel-spring-0-0.png",
+      "bytes": 2969907,
+      "sha256": "dcccb6271b48dcd68d48897eb38727afb051175802ff5404f13f107df9b81b1c",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "public/assets/seasons-v132/pixel-winter-0-0.png",
+      "bytes": 3082903,
+      "sha256": "7a4ece94d8f8b68a73326d2ee638ebc2c69b310f3edad6a538d6095e8ea839a1",
+      "width": 1254,
+      "height": 1254
+    }
+  ]
+}

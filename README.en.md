@@ -4,7 +4,9 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V131 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V132 is a playable development snapshot**, with full product acceptance still in progress.
+
+V132 places the gallery on its own bridged island and adds newly painted blossom, autumn and snowy forest terrain, with falling petals, leaves and snow crystals. [Native visuals and verification scope](island/docs/gallery-seasons-v132.md).
 
 V131 adds animated shoreline waves, continuous day/night and four seasons shared by home islands and visits, plus a central-clock interface. The collapsible journal and east-court Islander Gallery remain available. [Visuals, configuration and verification scope](island/docs/environment-v131.md).
 
@@ -46,7 +48,7 @@ V109 updates both boarding gangways, ferry alignment and passenger occlusion. [S
 
 [![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v131)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/latest)
 
 2560 × 1440 at 60 FPS, with an original instrumental score and bilingual captions. The footage shows an actual AI resident conversation, selectable steward appearances, native Hermes delegation, a Coastal Kitchen challenge inside its building window, and a real Word document made from a fictional brief. Waiting is edited out; no real user data appears.
 
@@ -171,8 +173,17 @@ Pixel water uses stepped highlights; origami water uses softer arcs. Shoreline c
 | --- | --- |
 | ![Origami autumn night](island/docs/screenshots/v131-origami-autumn-night.png) | ![Pixel winter day](island/docs/screenshots/v131-pixel-winter-day.png) |
 
-Default: a 15-minute visual day and a new season every seven visual days. Click the season badge below the island name for the calendar. A private configuration can connect a shared central clock. [Clock protocol](island/docs/environment-v131.md). Screenshots use an isolated test island. The V108 video above is a historical demo and has not yet been refreshed to V131.
+Default: a 15-minute visual day and a new season every seven visual days. Click the season badge below the island name for the calendar. A private configuration can connect a shared central clock. [Clock protocol](island/docs/environment-v131.md). Screenshots use an isolated test island. The V108 video above is a historical demo and has not yet been refreshed to V132.
 
 ### Fictional gallery portfolio
 
 ![Fictional gallery portfolio](island/docs/screenshots/v131-origami-gallery.png)
+
+
+## V132 · 会客小岛与四季林地 / Gallery island and seasonal forest
+
+[实景与验证 / Native visuals and verification](island/docs/gallery-seasons-v132.md)
+
+![Gallery bridge](island/docs/screenshots/v132-origami-gallery-bridge.png)
+
+![Autumn forest](island/docs/screenshots/v132-pixel-autumn-forest.png)
