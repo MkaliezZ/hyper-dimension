@@ -1,0 +1,26 @@
+{
+  "version": 122,
+  "generator": "built-in imagegen",
+  "world": [
+    1856,
+    1248
+  ],
+  "worldCell": 384,
+  "method": "original high-resolution sea textures with mirrored tile repetition",
+  "files": [
+    {
+      "file": "public/assets/map-tiles-v122/pixel-sea.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2628066,
+      "sha256": "3c286f31c3812138985479d718ef9e2c66da7be645bbd39a298ad28e4bf86b5e"
+    },
+    {
+      "file": "public/assets/map-tiles-v122/origami-sea.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2282128,
+      "sha256": "e1b7951afda792ef9d170d66cfd5c000105854367fd2d3a0a61cd27c7425f77f"
+    }
+  ]
+}

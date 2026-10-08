@@ -8,7 +8,7 @@
 
 Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V122 is a playable development snapshot**, with full product acceptance still in progress.
 
-V122 completes high-resolution tile loading without worker support, with bounded retries for transient failures. [Native game checks in both styles](docs/terrain-v122.md).
+V122 adds high-resolution expanded-ocean tiles and completes terrain loading without worker support, with bounded retries for transient failures. [Native game checks in both styles](docs/terrain-v122.md).
 
 V120 uses the new terrain tiles in both the default overview and close-ups, with complete-view loading. [Changes and actual game checks](docs/terrain-v120.md).
 

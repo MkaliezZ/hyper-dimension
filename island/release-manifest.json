@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11629,
-      "sha256": "125781ee9c9ef88030228c7bfad05e9b8067a9b3f1df96bf25540a5ffa98114e"
+      "bytes": 11662,
+      "sha256": "9caad16dfd996dbf7f27c840561a58c273f253b2801f665ff9e31c6937982ab9"
     },
     {
       "path": "README.md",
-      "bytes": 10630,
-      "sha256": "d81003d631ea01113c2acac57a32d0d3afa6a666ad674da5301e0b93c7a0182c"
+      "bytes": 10660,
+      "sha256": "5bd6aab5d8f18e53d6aa80511e1aa8c5a73c4a0bc0f4b90e9ba82b73ffe8f6f8"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -231,24 +231,34 @@
       "sha256": "8d96227074ca4e725e8c06b4ad07d2a7cd7529a0e03f61ad0b47aa20d41e26ac"
     },
     {
+      "path": "docs/media/v122/origami-expanded-sea.png",
+      "bytes": 3448291,
+      "sha256": "ed861c7c99db132189c11c626da1646f8b99fcda4977828a16ed5ef06dba597a"
+    },
+    {
       "path": "docs/media/v122/origami-overview.png",
-      "bytes": 3945683,
-      "sha256": "d6362a7397ee9a513e1f50e2159949cdd1c8ec82417a4abe02ce986288e9b77d"
+      "bytes": 4122585,
+      "sha256": "795b9a3d2e4edcbebdafbaff6159772902b5b70ae3eaf88609a2047891ca2a72"
     },
     {
       "path": "docs/media/v122/origami-zoom3.png",
-      "bytes": 3506819,
-      "sha256": "e34ab96651f97d66c1e3a9359d97b4845562afeb6d312b68f6d36cd3b38c04fc"
+      "bytes": 3506650,
+      "sha256": "05d7890b1eb261e51cc5d50a16631686334ee8332dcad6eea013ad379f2d4f9b"
+    },
+    {
+      "path": "docs/media/v122/pixel-expanded-sea.png",
+      "bytes": 3639242,
+      "sha256": "734f4c1bcff1a8dc2444d06dbd37b0c1d211555e4db25c9498b8c285848b2ae6"
     },
     {
       "path": "docs/media/v122/pixel-overview.png",
-      "bytes": 4125553,
-      "sha256": "775ec77681ab5f337778d0053f7f61e1cb3f281fc58175ba69db19259e3789e9"
+      "bytes": 4558936,
+      "sha256": "77db080ce39234d281ffdc932184b15916f7a2b3a31528dbb507674d6bf21a09"
     },
     {
       "path": "docs/media/v122/pixel-zoom3.png",
-      "bytes": 3487471,
-      "sha256": "a75dc69319bae8977d27971536eb5c6f4ae06a785b5b7bf753a091d6cf6933bf"
+      "bytes": 3487904,
+      "sha256": "b9189380f71ff14faaf38662d6ce8d54cd9f370589a6fda4858d5198e8404d6a"
     },
     {
       "path": "docs/npc-recovery-v116.md",
@@ -291,6 +301,16 @@
       "sha256": "46f091bfd995018271fa1ae87c47e1bd58a0e59cb02a7ac4ae948ed65c0b46ce"
     },
     {
+      "path": "docs/sea-art-prompts-v122.json",
+      "bytes": 2108,
+      "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
+    },
+    {
+      "path": "docs/sea-art-v122.json",
+      "bytes": 662,
+      "sha256": "ed2b936bd1d261ad646af958ceda48e2cb69b693d2cf103b7bab0a845b388ac8"
+    },
+    {
       "path": "docs/shared-island-v118.md",
       "bytes": 3840,
       "sha256": "68562a2fc3bfb5bc602d62f137aa6f51d4732b22f40b89b66efc5ea37be0e568"
@@ -317,8 +337,8 @@
     },
     {
       "path": "docs/terrain-v122.md",
-      "bytes": 3346,
-      "sha256": "58e3043e6c50b8e32c60c0ed180c1191cc8294d1115f64f864f7194553b5ab5f"
+      "bytes": 4384,
+      "sha256": "5a5582d14dbd333e56fc9da05802c12058362bbede31fc0f2260a5497d1349dd"
     },
     {
       "path": "index.html",
@@ -1631,6 +1651,16 @@
       "sha256": "1fcb3840235c39596d6922541cbf4d96053562b08c835dd367e65bad2eedf7b0"
     },
     {
+      "path": "public/assets/map-tiles-v122/origami-sea.png",
+      "bytes": 2282128,
+      "sha256": "e1b7951afda792ef9d170d66cfd5c000105854367fd2d3a0a61cd27c7425f77f"
+    },
+    {
+      "path": "public/assets/map-tiles-v122/pixel-sea.png",
+      "bytes": 2628066,
+      "sha256": "3c286f31c3812138985479d718ef9e2c66da7be645bbd39a298ad28e4bf86b5e"
+    },
+    {
       "path": "public/assets/market-lantern-origami-v87.png",
       "bytes": 1429172,
       "sha256": "3d219779ba623d8bf86247f201c683fb9c9bfad1d70fb577a372963b40964b23"
@@ -2552,8 +2582,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 131445,
-      "sha256": "2b2617e7ddfdb2c6505f0c9f291628bf00ad2d74a447cf44ff865a9ecbefc037"
+      "bytes": 131512,
+      "sha256": "349f0c8b9ef07bcbce6ceb738f3fe8cea12147c92d41f6239a64e2f12cce59a9"
     },
     {
       "path": "src/arcade.css",
@@ -2982,8 +3012,8 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 4176,
-      "sha256": "83649763aa8606d8829464f93ac28006730fd3e728623b3198d1bacfeda0fb04"
+      "bytes": 4437,
+      "sha256": "2b79ce18737d6f993df879e15fb66ba68188dec381f348aa3897b0a4710461f7"
     },
     {
       "path": "src/harborArtwork.js",
@@ -3544,6 +3574,11 @@
       "path": "src/sceneOccupancy.js",
       "bytes": 1722,
       "sha256": "889662318eb99860d752723d218acaed09c86ad95c0172230636eee4d4990098"
+    },
+    {
+      "path": "src/seaTiles.js",
+      "bytes": 1511,
+      "sha256": "5a9ec238bc062e112ea70313efcc0242ceaaa435347f51aea113db3aa62d9305"
     },
     {
       "path": "src/serverCommerceUI.js",
@@ -4262,8 +4297,8 @@
     },
     {
       "path": "tests/v119-map-game-browser.mjs",
-      "bytes": 5179,
-      "sha256": "0618fdfe30dff8bcce063bf139097ae603995f7aba3d443c6d660f4c94ef5cca"
+      "bytes": 6370,
+      "sha256": "bc020c15816831c6e7c0373d18b8e0d298c5feeed60a317d18b6609d1a841788"
     },
     {
       "path": "tests/v119-map-tiles.test.mjs",
@@ -4302,8 +4337,8 @@
     },
     {
       "path": "tests/v122-map-loading.test.mjs",
-      "bytes": 778,
-      "sha256": "e3f51895567ac5115d4848b9c22d45bcca7bf776c0106716ebc41a2740f2672e"
+      "bytes": 2035,
+      "sha256": "f2fc7db79d201addad9b29ff14da7493d63adf76c4a59bd7cccb0ea79101ad34"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",

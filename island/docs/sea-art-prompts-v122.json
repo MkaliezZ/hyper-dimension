@@ -1,0 +1,17 @@
+{
+  "generator": "built-in imagegen",
+  "referenceAssets": [
+    "sea-pixel-v5.png",
+    "sea-origami-v5.png"
+  ],
+  "prompts": [
+    {
+      "theme": "pixel",
+      "prompt": "Use case: precise-object-edit. Edit the supplied ocean texture into one high-resolution SQUARE seamless repeatable game terrain tile, ideally 1536x1536. Preserve this reference's vivid turquoise and sapphire blue palette, elevated top-down perspective, calm sunny mood. Pixel-art style matching an elegant island simulation: sharp discrete pixel clusters, tiny angular wavelets and thin white glints, subtle submerged azure pebble-like caustics, beautifully controlled clear detail. It will occupy only 384x384 game world units, not the whole island. Make all four edges tile seamlessly; uniform even water across the whole frame with small non-directional detail, no large repeating diagonals, no big bright central patch, no vignette or directional gradient. Only open sea: absolutely no shoreline, land, islands, rocks above water, dock, boats, characters, text, grid, frame, interface, blur or depth of field. Output only the crisp seamless water tile."
+    },
+    {
+      "theme": "origami",
+      "prompt": "Use case: precise-object-edit. Edit the supplied ocean texture into one high-resolution SQUARE seamless repeatable game terrain tile, ideally 1536x1536. Preserve this reference's vivid turquoise and sapphire palette, elevated top-down perspective and elegant origami island simulation aesthetic. Fine folded paper planes and small layered cut-paper ripple facets, restrained paper grain, clean crisp edges, delicate cyan reflections, calm sunny open water. It will occupy only 384x384 game world units, not the whole map: keep folds and facets small and plentiful. Seamless all four edges; even balanced detail, no large broad diagonal bands, no large central bright patch, no vignette or directional gradient. Only open sea: no shoreline, land, islands, exposed rocks, dock, boats, characters, text, grid, frames, interface, blur, depth of field or pixel art. Output only the seamless paper ocean tile."
+    }
+  ]
+}
