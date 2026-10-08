@@ -1,3 +1,5 @@
+// Manual commands also carry bounded conversation history and all party templates.
+export const MANUAL_STEWARD_BODY_BYTES=256*1024;
 // Decode only after collecting bytes; a TCP chunk can end inside a Chinese character.
 export async function readJsonBody(stream,limit=90000){
  const chunks=[];let bytes=0;

@@ -4,196 +4,102 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在折纸与像素双画风的小岛上采集、制作、经营，与 AI 居民共同生活；也能让基于 Hermes 的 Agent 管家读取工作资料、整理计划、保存文档，处理你主动委托的现实任务。当前公开版本为 **V134 开发快照**，可本地部署；完整产品验收仍在进行。
+在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V135 开发快照**，完整产品验收仍在进行。
 
-V134 按现有建筑布局重绘双画风共 30 张原生高清地形分块；会客馆与主岛通过连续庭院道路相连。昼夜视觉效果已暂停，每季 30 个视觉日，完整四季循环 120 日。[当前实景与验证范围](island/docs/continuous-terrain-v134.md)。
+## 看一眼这座岛
 
-历史版本 V132 将会客馆改为独立小岛与桥梁，并重绘樱花、秋林、积雪林地，配合花瓣、落叶与雪晶动画。[双画风实景与验证范围](island/docs/gallery-seasons-v132.md)。
+[![Hyper Dimension · 当前版本 30 秒演示](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4)
 
-历史版本 V131 新增双画风海浪、连续昼夜与四季，主岛和会客共享时令，并预留总服务器时钟接口；保留手账收起和东岸会客馆功能。[效果、配置与验证范围](island/docs/environment-v131.md)。
+[30 秒宣传片](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4) · [45 秒完整演示](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-45s.mp4) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v135)
 
-V131 同时调整东岸会客馆与主岛的接缝，提供可选的虚构档案示例（8 段经历、3 个项目、3 张图片），并修复 Windows 部署进程探测。[说明与验证](island/docs/gallery-seam-v131.md)。
+本版视频为 2560 × 1440、60 fps 的实际页面录制，包含会客馆内部档案、项目图片与留言。工作资料、个人经历和图片均为虚构示例；管家文件任务实际调用 Hermes 工具执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [录制与验证说明](island/docs/showcase-v135.md)。
 
-自 V128 起，存档容量调整为 16 MiB、签名备份与导入调整为 64 MiB，保留全部回执与原进度；双画风大存档及空浏览器恢复通过。[修复与验证范围](island/docs/save-capacity-v128.md)。
+## 你能做什么
 
-V125 补齐分块底图的运行入口：初始总览、高清缩放与缺图回退使用同一套新地形，两画风及联机会客均不再请求旧整图。[查看底图和实际截图](island/docs/terrain-v125.md)。
-
-V123 为全部 300 项制品定义实际材料与制作构造，校正跨工坊加工、茶食名称及耐用品用途，保留旧作业材料契约，并修复排队配方与跨作业回执恢复。[查看制作链与验证范围](island/docs/craft-materials-v123.md)。
-
-V122 新增扩展海域高清分块，并补齐地形兼容加载：工作线程不可用时仍加载新分块，临时失败自动重试。[查看双画风实际游戏验证](island/docs/terrain-v122.md)。
-
-V120 让默认总览与放大视野统一使用新分块，避免加载时混用新旧地形。[查看改动与实际页面验证](island/docs/terrain-v120.md)。
-
-V119 接入双画风共 26 张重绘地形／广场素材、按视野加载和清晰缩放。[查看底图改动与实机验证](island/docs/terrain-v119.md)。
-
-V118 让像素／折纸共用同一存档，开放 15 位居民自由交流，并修复管家与玩家形象刷新后丢失。[查看改动与验证边界](island/docs/shared-island-v118.md)。
-
-V117 校正 55 项工具与设施材料单，新增制作构造说明，并保留旧任务原材料契约。[查看材料修订与实机验证范围](island/docs/craft-materials-v117.md)。
-
-V116 改进居民用餐规划和到店缺货后的重新安排，并完善模型回复解析与错误记录；保持低频 Flash 调用。[查看改动与验证范围](island/docs/npc-recovery-v116.md)。
-
-V115 加入 Windows 存档文件临时占用恢复：有界异步重试，持续失败时保留旧文件。[查看修复与验证范围](island/docs/save-recovery-v115.md)。
-
-V114 固定在制任务的开工材料单，避免更新配方后多扣材料；修复管家和居民社交分流导致的无效活动请求。[查看改动与验证范围](island/docs/production-contracts-v114.md)。
-
-V113 加入 25 座建筑、300 种制品的货架管理：选择售卖商品、保留制作原料，并按实际库存和游客预算成交。[查看玩法与验证范围](island/docs/shopfronts-v113.md)。
-
-V112 让性格、近期活动与实际关系影响居民生活；补充阅读、旋律与配色练习，以及可持续到重载后的相处边界。[查看生活节奏与验证范围](island/docs/resident-life-v112.md)。
-
-V111 将居民合作接到实际活动缺料：按职业分工、真实制作与收获、合作田垄保护，并修复到场等待和连续农活中断。[查看协作说明与手账](island/docs/resident-cooperation-v111.md)。
-
-V110 修复连连看与三消结果未确认时提前关闭的问题，保留成绩与重试入口。[查看结算恢复说明](island/docs/classic-settlement-v110.md)。
-
-V109 已更新双画风登船舷梯、船体靠泊位置与人物遮挡。[查看码头改动与实机画面](island/docs/harbor-art-v109.md)。下方视频录制于 V108。
-
-## 实机演示：30 秒预览与 45 秒功能展示
-
-[![Hyper Dimension 实机预览：折纸与像素海岛](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
-
-**[▶ 播放 / 下载 30 秒 MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [下载 Agent 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/latest)
-
-2560 × 1440 / 60 FPS，原创器乐 BGM 与中英字幕。展示真实 AI 居民对话、管家多形象选择、Hermes 主子 Agent 分工、房屋弹窗内的海风双灶与通关结果，以及管家处理虚构工作资料、保存并回读 Word 文件。实机片段省略等待，没有真实用户资料。
-
-[观看 45 秒功能展示](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-45s.mp4)，可看到男女形象选择、不同职业候选和主子 Agent 的实际协商。
-
-**当前小游戏仅为占位演示，玩法、美术和动画将持续优化，不代表最终品质。** 视频是产品方向展示，不代表全部验收通过。
-
-## 小岛里有什么
-
-- **双画风、同一套逻辑**：折纸 / 像素地图、建筑、角色、物品与主题 UI。
-- **经营循环**：采集 → 制作 → 使用 / 陈列 / 接待 → 收入 → 改善设施。每个有效游戏日为 900 秒。
-- **25 座建筑、15 名 AI 居民和 1 位管家**：包含农田、矿洞、工坊、码头与活动广场；角色自动寻路，按工作与需求生活。
-- **小游戏与派对**：烹饪、陶艺、钓鱼、搭配、拼图等建筑玩法；夜集、钓鱼聚会、集市、秀场与烟花活动。
-- **Hermes 管家**：对话、配方分工、物资筹备、招聘，以及用户主动委托的本机文档工作；保留真实执行记录。
-- **服务端存档**：文件存档、受保护的物资 / 作业回执、备份恢复与空浏览器重开；不只依赖浏览器缓存。
-- **本地会客 / 联机基础**：独立账号与岛屿、携带管家和邀请同行居民、会客交流及受限 A2A。跨设备管家桥接等仍在完善。
-
-V108 增加带立绘的主子 Agent 协商记录；小游戏完成提交暂未接受时保留结果与重试入口。Intel Mac 的 20 轮长测试改为按工作量设置时间预算，未减少断言。[三平台 CI 状态](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml)。
-
-### AI 生活与现实工作
-
-| AI 居民自己的目标 | 管家交付真实文件 |
+| 体验 | 当前内容 |
 | --- | --- |
-| ![真实 AI 居民决策](island/docs/media/ai-resident.png) | ![Hermes 保存并回读 Word 文件](island/docs/media/agent-document.png) |
+| 经营小岛 | 25 种生产建筑、50 种基础素材、300 个配方，采集、制作、游客消费与岛务开支。每经营日为 900 秒有效游戏时间。 |
+| 与 AI 居民生活 | 15 位 AI 居民根据职业、性格和关系行动；支持自由交流、居民之间的对话与共同工作。模型固定 DeepSeek V4.1 Flash。 |
+| 委托 Agent 管家 | 独立对话入口、12 种可选形象；可读取主动委托的本机资料、创建文档，并通过可追踪的任务协议招募临时 Agent 伙伴。 |
+| 展示自己、接待访客 | 岛主会客馆展示介绍、人生／教育／就业经历、项目与图片；支持文件上传、私有草稿、主动发布、登录访客留言与岛主回复。 |
+| 切换两种美术 | 同一小岛切换像素／折纸外观；连续高清分块地形、主题房间和 UI、海面水纹与近岸浪。 |
+| 看四季变化 | 季节树木、花瓣、落叶和雪晶；每季 30 个视觉日，完整四季 120 日。昼夜视觉效果暂时关闭，统一服务器时钟接口保留。 |
 
-视频中的工作资料全部为虚构示例；管家实际调用工具，计算补货 12 盒、预算 216 元，并保存可打开的 Word 文档。没有用对话文字冒充文件。
-
-### 运行截图
+### 实际运行画面
 
 | 折纸海岛 | 像素海岛 |
 | --- | --- |
-| ![折纸海岛实机截图](island/docs/screenshots/v134-origami-island.png) | ![像素海岛实机截图](island/docs/screenshots/v134-pixel-island.png) |
+| ![折纸海岛](island/docs/screenshots/v134-origami-island.png) | ![像素海岛](island/docs/screenshots/v134-pixel-island.png) |
 
-| 海风双灶 | 一器一形 |
+| 折纸会客馆内部 | 像素会客馆内部 |
 | --- | --- |
-| ![折纸烹饪小游戏](island/docs/media/origami-kitchen.png) | ![像素陶艺小游戏](island/docs/media/pixel-pottery.png) |
+| ![折纸档案展厅 · 虚构示例](island/docs/screenshots/v135-origami-gallery.png) | ![像素档案展厅 · 虚构示例](island/docs/screenshots/v135-pixel-gallery.png) |
 
-## 交给 Agent 部署
+| 人生与教育经历 | 项目和图片 |
+| --- | --- |
+| ![经历展陈 · 虚构示例](island/docs/screenshots/v135-origami-experiences.png) | ![项目展陈 · 虚构示例](island/docs/screenshots/v135-origami-projects.png) |
 
-仓库与 Release 都包含游戏源码、资源、固定依赖及部署协议，**不需要安装器，也不绑定某一家 Agent**。开发 Agent 需要有终端和文件权限。
+## 交给任意开发 Agent 部署
 
-1. 克隆仓库后进入 island/，或解压 Release 中的 Agent 源码包。
-2. 让 Agent 先读 AGENTS.md、deploy.json 和 DEPLOYMENT.md。
-3. 使用 Node.js 24（建议版本）与 Python 3.11。在目标机器重建运行环境。
+交付形态是**源码、资源、固定依赖和机器可读部署协议**。Agent 需要有终端和文件权限。克隆仓库后进入 `island/`；若解压 Release 源码包，直接在解压目录操作。
+
+先让 Agent 阅读 [AGENTS.md](island/AGENTS.md)、[deploy.json](island/deploy.json) 和 [DEPLOYMENT.md](island/DEPLOYMENT.md)。推荐 Node.js 24、Python 3.11；支持 Windows x64 与 macOS 14+ 的 Apple Silicon／Intel。
 
 Windows PowerShell：
 
-    cd island
-    node tools/agent-deploy.mjs plan
-    node tools/agent-deploy.mjs doctor --python=python
-    node tools/agent-deploy.mjs setup --python=python --offline
-    node tools/agent-deploy.mjs verify
-    node tools/agent-deploy.mjs run --mode=lan
+```powershell
+cd island
+node tools/agent-deploy.mjs plan
+node tools/agent-deploy.mjs doctor --python=python
+node tools/agent-deploy.mjs setup --python=python --offline
+node tools/agent-deploy.mjs verify
+node tools/agent-deploy.mjs run --mode=lan
+```
 
 macOS Terminal：
 
-    cd island
-    node tools/agent-deploy.mjs plan
-    node tools/agent-deploy.mjs doctor --python=python3.11
-    node tools/agent-deploy.mjs setup --python=python3.11 --offline
-    node tools/agent-deploy.mjs verify
-    node tools/agent-deploy.mjs run --mode=lan
+```sh
+cd island
+node tools/agent-deploy.mjs plan
+node tools/agent-deploy.mjs doctor --python=python3.11
+node tools/agent-deploy.mjs setup --python=python3.11 --offline
+node tools/agent-deploy.mjs verify
+node tools/agent-deploy.mjs run --mode=lan
+```
 
-默认会客入口为 http://127.0.0.1:4175/play，本机日志提供首次注册所需信息。直接玩单机可使用 run --mode=pixel（4173）或 run --mode=origami（4174）。独立小游戏在 /src/arcade.html。需要局域网访问时，按部署指南显式设置监听地址。
+默认入口为 `http://127.0.0.1:4175/play`，本机日志提供首次注册信息。单机入口使用 `run --mode=pixel`（4173）或 `run --mode=origami`（4174）。局域网监听需按部署指南显式配置。
 
-setup 会创建空的私有 .env.local；按需填入自己的 DEEPSEEK_API_KEY，不要提交。未配置密钥时可先运行画面与本地规则，不能视为 AI 已接通。模型配置为 deepseek-flash，不回退到 Pro。
+`setup` 创建私有 `.env.local`。按需填写自己的 `DEEPSEEK_API_KEY`，模型使用 `deepseek-flash`，无 Pro 回退。未配置密钥可运行画面和本地规则，AI 对话与 Agent 工具执行需要正确配置后才能使用。
 
-## 平台与验收边界
+## 当前状态与验证范围
 
-| 平台 | 当前证据 |
-| --- | --- |
-| Windows x64 | V107 独立解压、离线安装、659 项规则检查及双画风单机 / LAN 采集与存档重开通过。 |
-| macOS 14+ Apple Silicon / Intel | 部署协议、两架构条件依赖和随包文件校验通过；实体 Mac 运行尚待验证。 |
+V135 调整会客馆的双风格展厅、档案排版、经历时间线、项目照片与留言页。双画风实际编辑、上传、发布、刷新恢复和访客留言流程通过。[会客馆说明](island/docs/gallery-ui-v135.md)。
 
-V107 修复居民途中材料变化后仍去旧工位的问题。双画风真实 Hermes / Flash 的从零配方任务、实体行走、制作交付与空浏览器恢复已通过自动化验证。30 个游戏日 × 12 场景的领域经济模拟通过；它不等于全部真实 AI、活动与招聘联合经营验收。
+V134 完成连续地形、30 日换季和昼夜视觉暂停，807 项领域／维护检查、相关原生浏览器场景及 Windows／两架构 macOS CI 通过。[地形验证](island/docs/continuous-terrain-v134.md) · [部署 CI](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml)。CI 与开发 Windows 机器的限定场景检查，不等于实体 Mac 和完整真人游戏验收。
 
-完整产品仍有待办，包括跨设备管家桥接、更多真人与多设备测试、全部小游戏的体验打磨、十场真实主子 Agent 合作活动和 OPC 新人课程验证。**可运行开发快照，不宣称商业完成版。** 详见[验收说明](island/docs/VALIDATION.md)。
+仍需完成跨设备管家桥接、长期多岛与真人测试、小游戏体验打磨、真实主子 Agent 联合活动及 OPC 新人课程验证。**这是可运行的开发快照，尚未宣称商业完成。** [完整验收边界](island/docs/VALIDATION.md)。
 
-## 仓库结构
+## 文档与仓库
 
-    island/                  当前海岛游戏、Agent 运行时、资源与测试
-      AGENTS.md              Agent 部署入口
-      deploy.json            机器可读部署协议
-      src/ · server/         前端与本机服务
-      public/ · vendor/      双画风资源与固定依赖
-      docs/                  运行截图、来源及验收说明
-    src/hyper_dimension/      原有教培业务模块
-    web/ · migrations/       教培前端基线与数据库迁移
-    README.education.md      原有教培说明与运行方式
+- [部署与数据迁移](island/DEPLOYMENT.md) · [隐私边界](island/docs/PRIVACY.md) · [素材来源](island/docs/ASSETS.md)
+- [会客馆发布与留言](island/docs/portfolio-v130.md) · [共享时令接口](island/docs/environment-v131.md) · [版本记录](island/docs/CHANGELOG.md)
+- [教培模块](README.education.md)：海岛与原有教培业务的完整整合仍在进行。
 
-海岛游戏与教培模块的完整业务整合仍在进行。原有教培代码与历史保留，没有被演示页面替代。
+```text
+island/                 Game, Agent runtime, assets and tests
+  AGENTS.md · deploy.json · DEPLOYMENT.md
+  src/ · server/        Frontend and local services
+  public/ · vendor/     Dual-style assets and pinned dependencies
+  docs/                 Guides, screenshots and verification
+src/hyper_dimension/    Existing education business module
+web/ · migrations/      Education frontend and database baseline
+README.education.md     Education setup and documentation
+```
 
-## 开发与数据
+开发检查在海岛源码目录执行 `npm test`，部署校验执行 `node tools/agent-deploy.mjs verify`。更新前停止本项目写入进程，并创建、验证私有备份；运行时应在各目标平台重建。
 
-在 island/ 中运行 npm test，或用 node tools/agent-deploy.mjs verify 执行部署校验。带浏览器的专项验收见部署指南。更新前停止本项目写入进程，创建并验证私有备份；不要把 Windows 虚拟环境直接拷到 macOS。
-
-公开仓库不包含密钥、真实账号存档、聊天历史、学生资料、生产日志或已安装运行时。管家处理主动委托的文件或模型对话时，会使用你配置的服务；请只授予你愿意提供的上下文。详见[隐私与发布边界](island/docs/PRIVACY.md)。
+公库不包含密钥、真实用户存档、聊天历史、现实工作文档或已安装运行时。模型与文件任务使用你配置的服务；详见[隐私说明](island/docs/PRIVACY.md)。
 
 ## 许可与致谢
 
-原创代码与文档沿用仓库 [MIT License](LICENSE)。Hermes Agent、Playwright、Fusion Pixel Font 及 Python 依赖保留各自许可证，见[第三方说明](island/THIRD_PARTY_NOTICES.md)。双画风美术的来源记录见[素材说明](island/docs/ASSETS.md)，第三方许可不能由项目 MIT 声明替代。
-
-
-## V130 · 岛主会客馆 / Islander Gallery
-
-东岸会客馆已接入个人介绍、经历与项目、真实文件上传、私有草稿 / 主动发布，以及登录访客留言、岛主回复与隐藏。两种画风共享资料；左上手账支持收起并记住状态。
-
-The east-coast gallery supports biographies, experiences, projects, persistent uploads, private drafts, explicit publication and authenticated guest messages with owner replies/moderation. Both art styles share one gallery; the journal collapse state survives reload.
-
-[功能与边界 / Features and limits](island/docs/portfolio-v130.md)
-
-![Pixel gallery map — fictional demo](island/docs/screenshots/v130-pixel-map.png)
-![Origami gallery map — fictional demo](island/docs/screenshots/v130-origami-map.png)
-![Published gallery — fictional content](island/docs/screenshots/v130-origami-gallery.png)
-
-## 历史画面：海风与四季 · V131
-
-像素海面采用离散水纹，折纸海面采用柔和弧线；近岸浪沿真实海岸推进，以下夜景为旧版本记录，V134 昼夜视觉已暂停。时令独立于经营结算，离线不会产生收益或岛务扣款。
-
-| 折纸秋夜 | 像素冬日 |
-| --- | --- |
-| ![折纸秋季夜景](island/docs/screenshots/v131-origami-autumn-night.png) | ![像素冬季日景](island/docs/screenshots/v131-pixel-winter-day.png) |
-
-默认 15 分钟一个视觉昼夜、30 个视觉日换季（完整四季 120 日），昼夜视觉效果已暂停；点击岛名下方的时令查看日历。可通过私有配置接入统一服务器时钟。[共享时钟文档](island/docs/environment-v131.md)。本轮截图来自隔离测试岛；上方 V108 视频是历史演示，尚未刷新为 V134。
-
-### 会客馆示例档案
-
-![Fictional gallery portfolio](island/docs/screenshots/v131-origami-gallery.png)
-
-
-## 历史 V132 / Historical V132 · 会客小岛与四季林地
-
-[实景与验证 / Native visuals and verification](island/docs/gallery-seasons-v132.md)
-
-![Gallery bridge](island/docs/screenshots/v132-origami-gallery-bridge.png)
-
-![Autumn forest](island/docs/screenshots/v132-pixel-autumn-forest.png)
-
-
-## V134 · 连续地形 / Continuous terrain
-
-[当前实景与验证 / Current native visuals and verification](island/docs/continuous-terrain-v134.md)
-
-| 折纸 / Origami | 像素 / Pixel |
-| --- | --- |
-| ![Continuous origami gallery road](island/docs/screenshots/v134-origami-gallery-connector.png) | ![Continuous pixel gallery road](island/docs/screenshots/v134-pixel-gallery-connector.png) |
+原创代码与文档沿用仓库 [MIT License](LICENSE)；Hermes Agent、Playwright、Fusion Pixel Font 与各依赖保留自身许可证，见[第三方说明](island/THIRD_PARTY_NOTICES.md)。美术来源与许可另见[素材说明](island/docs/ASSETS.md)。

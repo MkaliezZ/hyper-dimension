@@ -5,7 +5,7 @@ export function hydrateChat(s){
  s.stewardChat??={messages:[],draft:'',sequence:0};
  const c=s.stewardChat;c.messages??=[];c.draft??='';c.sequence??=0;return c;
 }
-export function chatHistory(s){return hydrateChat(s).messages.filter(m=>m.status==='sent'&&m.role==='user'||m.status==='done'&&m.role==='assistant').slice(-12).map(m=>({role:m.role,content:(m.source==='local'?'[本地手账，未连接模型] ':'')+m.text}));}
+export function chatHistory(s){return hydrateChat(s).messages.filter(m=>m.status==='sent'&&m.role==='user'||m.status==='done'&&m.role==='assistant').slice(-12).map(m=>({role:m.role,content:((m.source==='local'?'[本地手账，未连接模型] ':'')+m.text).trim().slice(0,1400)}));}
 export function createStewardChat({state,profile,portrait,openModal,persist,request,edit,appearance,guide,health,manageTask,projects,recruit,party,workbench,previewArtifact}){
  let pending=null,followTail=true,resizeObserver=null;const taskBusy=new Set();let taskMessage='';
  const $=id=>document.getElementById(id);

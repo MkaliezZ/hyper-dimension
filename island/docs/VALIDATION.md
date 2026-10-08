@@ -1,4 +1,8 @@
-# Validation / 验收说明 · V107
+# Validation / 验收说明
+
+以下按版本保留历史证据；当前 V135 结果见本文末尾。 / Historical evidence is retained by version; current V135 results are at the end.
+
+## V107 · 历史基线 / Historical baseline
 
 ## 中文
 
@@ -49,3 +53,12 @@ The default local release suite passes 804 / 804 checks: 790 domain checks follo
 807 / 807 默认发布检查通过（793 项领域检查，随后 14 项维护检查）；原断言完整保留。另有 30 项直接相关检查、双画风实际会客馆、18 项四季／暂停昼夜渲染场景、11 组高清地形加载兼容场景、4 项联机与 WebGL 回退／恢复验证通过。本机 4173 / 4174 / 4175 已核对新源码和美术文件一致，账号及会客馆文档摘要保持一致。新连续庭院与通行路径见 [continuous-terrain-v134.md](continuous-terrain-v134.md)。冷启动兼容加载仍存在最大 103–139 ms 帧间隔，稳态限定场景采样不能代替完整性能验收。
 
 The local default release suite passes 807 / 807 checks (793 domain checks, then 14 maintenance checks). Focused domain, native gallery, environment, terrain-loading and shared-room/WebGL checks are recorded separately. All three local deployments serve matching current source/art; identity and gallery document hashes are preserved. See the current feature document for evidence and loading limitations. Physical Mac, refreshed showcase video and complete product acceptance remain open.
+
+
+## V135 · 会客馆内部与新视频 / Gallery interior and refreshed video
+
+808 / 808 默认发布检查通过（794 项领域检查，随后 14 项维护检查），原断言保留并纳入长中文管家请求回归。双风格会客馆原生展示和实际编辑／上传／发布／刷新／访客留言通过；1280 × 720、680 × 860、390 × 844 各两套风格均无横向溢出，滚动后关闭按钮保持固定。
+
+本次 30／45 秒宣传片从当前代码重新录制，2560 × 1440、60 fps，含馆内介绍、经历、项目图片和留言，也展示真实 Flash 居民互动、管家形象、Hermes 协商与实际创建／回读的 Word 文件。虚构档案、工作资料和小游戏占位身份在成片中明确标注。[会客馆](gallery-ui-v135.md) · [成片验证](showcase-v135.md)。旧 V107／V108 视频仍属历史记录；完整产品、实体 Mac、真人和商业验收仍待完成。
+
+The current default suite passes 808 / 808 checks (794 domain checks followed by 14 maintenance checks). Both themed gallery flows and six responsive-layout cases passed. Current 1440p60 footage includes the actual gallery interior and real provider/tool evidence, with fictional content and placeholder minigames explicitly labeled. These scoped checks do not close the original full-product acceptance scope.

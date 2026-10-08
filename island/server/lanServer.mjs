@@ -5,7 +5,7 @@ import {acquireDataLease} from './dataLease.mjs';
 import {resolveTravelRecruitment} from './lanTravelParty.mjs';
 import {createLanHomeServices} from './lanHomeServices.mjs';
 import {createLanSocialStore} from './lanSocialStore.mjs';
-import {readJsonBody} from './httpBody.mjs';
+import {readJsonBody,MANUAL_STEWARD_BODY_BYTES} from './httpBody.mjs';
 import {createLanCollaborationStore} from './lanCollaborationStore.mjs';
 import {NPC_CADENCE} from '../src/npcCadence.js';
 import {createLanAgentService} from './lanAgentService.mjs';
@@ -78,7 +78,7 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  if(automaticRoute&&req.method==='POST'){throttle(req,'normal');return json(res,200,await agents.automatic(token(req),automaticRoute,await body(req,90000)));}
  if(pathname==='/api/admin/runtime'&&req.method==='GET')return json(res,200,await agents.work(token(req),'ledger',{}));
  if(pathname==='/api/admin/policy'&&req.method==='POST'){throttle(req,'normal');return json(res,200,await agents.work(token(req),'policy',await body(req,4096)));}
- if(pathname==='/api/hermes/command'&&req.method==='POST'){throttle(req,'normal');return json(res,200,await agents.wait(token(req),await body(req,90000)));}
+ if(pathname==='/api/hermes/command'&&req.method==='POST'){throttle(req,'normal');return json(res,200,await agents.wait(token(req),await body(req,MANUAL_STEWARD_BODY_BYTES)));}
  const workRoute=pathname.match(/^\/api\/workbench\/(pixel|origami)(?:\/(project|artifact\/capture-[a-f0-9]{32}(?:\/(preview|download))?))?$/);
  if(workRoute){const[,theme,part]=workRoute;let method,args={theme};
   if(!part&&req.method==='GET')method='list';

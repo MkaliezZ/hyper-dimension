@@ -5,7 +5,7 @@ import {createWorldSession,bindWorldStore} from './server/worldSession.mjs';
 import {createResidentChatStore} from './server/residentChatStore.mjs';
 import {manualPartyContext} from './server/manualPartyContext.mjs';
 import {acquireDataLease} from './server/dataLease.mjs';
-import {readJsonBody} from './server/httpBody.mjs';
+import {readJsonBody,MANUAL_STEWARD_BODY_BYTES} from './server/httpBody.mjs';
 import {createCoCreationStore} from './server/cocreationStore.mjs';
 import {CO_CREATION_EXAMPLES} from './src/cocreation.js';
 import {createSaveStore,MAX_SAVE_BYTES,MAX_IMPORT_BYTES} from './server/saveStore.mjs';
@@ -106,7 +106,7 @@ const server=createServer(async(req,res)=>{
   const chatRoute=pathname.match(/^\/api\/residents\/(pixel|origami)\/(\d+)\/chat$/);
   if(chatRoute){const [,style,id]=chatRoute;try{if(req.method==='GET')return sendJSON(res,200,await residentChat.history(style,Number(id),{saveSlot:new URL(req.url,'http://localhost').searchParams.get('saveSlot')}));if(req.method==='POST')return sendJSON(res,200,await residentChat.send(style,Number(id),await readJSON(req,12000)));return sendJSON(res,405,{error:'不支持此聊天操作'});}catch(e){return sendAgentError(res,e)}}
   const actions={'/api/npc/tick':decideBatch,'/api/npc/interact':converse,'/api/hermes/plan':async data=>{const observation=await recruitment.autonomy_observe(data.theme);const result=await steward({...data,recruitment:{eligible:observation.eligible,reason:observation.reason,stats:observation.stats,policy:{enabled:observation.policy.enabled,dailyBudget:observation.policy.dailyBudget,maxContractsPerDay:observation.policy.maxContractsPerDay,coinFloor:observation.policy.coinFloor},opportunities:observation.opportunities.slice(0,12).map(o=>({...o,steps:o.steps.slice(0,6)}))},automatic:true});const decision=await recruitment.autonomy_decide(data.theme,result);return{...result,recruitmentOffers:decision.offers,recruitmentReason:decision.reason||null};},'/api/hermes/command':data=>manualSteward(data)};
-  if(req.method==='POST'&&actions[pathname]){try{return sendJSON(res,200,await actions[pathname](await readJSON(req)))}catch(e){return sendAgentError(res,e)}}
+  if(req.method==='POST'&&actions[pathname]){try{return sendJSON(res,200,await actions[pathname](await readJSON(req,pathname==='/api/hermes/command'?MANUAL_STEWARD_BODY_BYTES:90000)))}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/npc/decide'&&req.method==='POST'){try{return sendJSON(res,200,await decideNPC(await readJSON(req)))}catch(e){return sendAgentError(res,e)}}
   if(pathname==='/api/hermes/ask'&&req.method==='POST'){try{return sendJSON(res,200,await askHermes(await readJSON(req)))}catch(e){return sendAgentError(res,e)}}
   if(req.method!=='GET'||!(pathname==='/'||pathname==='/index.html'||pathname.startsWith('/src/')||pathname.startsWith('/assets/'))){res.writeHead(404).end('Not found');return}

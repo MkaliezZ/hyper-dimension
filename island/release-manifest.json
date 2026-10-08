@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v134-agent-source",
+  "release": "hyper-dimension-v135-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 16260,
-      "sha256": "884b9c6cd84952e24af29185ebab68e26b3c283dfe53a852b75ddf6a4d9387b3"
+      "bytes": 7565,
+      "sha256": "9bf230ccb64341cda6971f3f93356a2421a79c6e980496bc23b2bf8a9acac0ca"
     },
     {
       "path": "README.md",
-      "bytes": 14855,
-      "sha256": "af08d491736784b28a80e26d71ebcce5b8d6a5ea81d29b8f2131e088ba96e6f8"
+      "bytes": 7021,
+      "sha256": "979747d16ccec8c65f42ff6293402f6853881514879aa69c896b8f3908d2d6f0"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -67,8 +67,13 @@
     },
     {
       "path": "docs/ASSETS.md",
-      "bytes": 4631,
-      "sha256": "3ca1b484cd3f0a9d1e48fe3abdf5bb8cb50f89b573e72c1a6bd1187bae57901a"
+      "bytes": 5646,
+      "sha256": "53da661681864d0c67c9be7dad18303436e4e313a51315b64a3b25d0d9ddad4d"
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "bytes": 2174,
+      "sha256": "f843d165f299bc07808728e8cecc0898121222d5d7275b632950b6185e88402f"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -77,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 6895,
-      "sha256": "c2c622726b12bed9cba7c8dff6c5552acaa8c751ddc721f1f2d1c9d542ff4338"
+      "bytes": 8431,
+      "sha256": "732bc39b87f25e4c02c982b1a21347f8dad02e8205929c967d153da9a1cd9c09"
     },
     {
       "path": "docs/classic-settlement-v110.md",
@@ -121,6 +126,11 @@
       "sha256": "49442ee96d8e3c2ccdab906bc66569c0a50f3436d98ae1355a505edd075b68bb"
     },
     {
+      "path": "docs/gallery-ui-v135.md",
+      "bytes": 3715,
+      "sha256": "fafa2f0944eea860018e0e0593c8f99358924a8d82450fdc868cf958c32cba50"
+    },
+    {
       "path": "docs/gallery-v131-evidence.json",
       "bytes": 461,
       "sha256": "78b1810c6a15f22c52850f5f268368a2032ba79f07d42b8c1a1fc17bb43e04f6"
@@ -131,14 +141,19 @@
       "sha256": "a00a3ed4c4f3c514a2707871974a3477c6023639f4baf21f8bda718c836340cc"
     },
     {
+      "path": "docs/media/agent-delegation.png",
+      "bytes": 1122947,
+      "sha256": "4605e752175a1ff80139a4c20329591dabe8eb596391f8a4ff3234c002016e1d"
+    },
+    {
       "path": "docs/media/agent-document.png",
-      "bytes": 3656363,
-      "sha256": "266ac0598416c20530a6c48d7be220db576b29f3d969f3e99fd22d3466ea9042"
+      "bytes": 1138270,
+      "sha256": "2f69fe738cea6cac657ef75fe19e1933d021a0667ee2cc3a4b5eb912bad88a4c"
     },
     {
       "path": "docs/media/ai-resident.png",
-      "bytes": 4607586,
-      "sha256": "321c651f10ac1426e3d476a0a51d8976274ae26aa6317594e1123e755f76d975"
+      "bytes": 2239879,
+      "sha256": "8c614a66e8139abb68e3b7ec2204e516910db25baa91177a85a91fc0527bdae7"
     },
     {
       "path": "docs/media/compose-original-score.py",
@@ -157,8 +172,8 @@
     },
     {
       "path": "docs/media/hyper-dimension-poster.png",
-      "bytes": 9929817,
-      "sha256": "f52b1cb86061ef50364f3b88fd678dfa2f0d300b28ffcf8942fb95f51d8ab0a6"
+      "bytes": 4528297,
+      "sha256": "5bb92759ffd2d30dc750377a09e911065c4c7834326cfe8387ae472225286e19"
     },
     {
       "path": "docs/media/hyper-dimension-preview.gif",
@@ -177,8 +192,8 @@
     },
     {
       "path": "docs/media/origami-kitchen.png",
-      "bytes": 5576007,
-      "sha256": "9300085a7e65cd38cbe2bbf76fab8335d829fc195bb43b51313dd7f6789f154a"
+      "bytes": 1200541,
+      "sha256": "bb99528e039fc3ccd4c71145d7809e75738b31114fafbeccf8041a48d362fc56"
     },
     {
       "path": "docs/media/pixel-island.png",
@@ -516,6 +531,36 @@
       "sha256": "a301a8783c812c3a74550e717ec1fc74ff486610f7bea086f466061e16d2170d"
     },
     {
+      "path": "docs/screenshots/v135-origami-experiences.png",
+      "bytes": 2121618,
+      "sha256": "cafa57ccc942032131562fb4a342c677fbcfd87cf598060875c5e5f74de0ad69"
+    },
+    {
+      "path": "docs/screenshots/v135-origami-gallery.png",
+      "bytes": 2461291,
+      "sha256": "21a2433a4fc13dc665a3c88edcea303c95fb705823cde2952be4e6a12db3d1d3"
+    },
+    {
+      "path": "docs/screenshots/v135-origami-projects.png",
+      "bytes": 2036302,
+      "sha256": "ba5fa8c5d549abec507c12f1c4789952ec5c7566858704a33b6e649891bb7b86"
+    },
+    {
+      "path": "docs/screenshots/v135-pixel-experiences.png",
+      "bytes": 1831002,
+      "sha256": "39957ca3c70339c5612311344e7e2a871dcd8ac6f2f79099a8ec433a7487d258"
+    },
+    {
+      "path": "docs/screenshots/v135-pixel-gallery.png",
+      "bytes": 2302508,
+      "sha256": "79a38574a8a337a244c16f051587e651c36bca85f09bd78d22b4ac3f092e97a2"
+    },
+    {
+      "path": "docs/screenshots/v135-pixel-projects.png",
+      "bytes": 1857906,
+      "sha256": "d7f3a83c669a23515093ba2a457935a31b4a40a5efb703fe5ae6cc756eadb025"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -534,6 +579,11 @@
       "path": "docs/shopfronts-v113.md",
       "bytes": 3370,
       "sha256": "7d6a86c91244d05a697ec60c39156b36fb68869a883dc8c5d104a109ee7a4b6d"
+    },
+    {
+      "path": "docs/showcase-v135.md",
+      "bytes": 4843,
+      "sha256": "9920899d7ff2df92c3d62963fa0724216d58555469ea17fd5011b90642c669e9"
     },
     {
       "path": "docs/terrain-art-v119.json",
@@ -1102,8 +1152,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8231,
-      "sha256": "06f511e26037ebef0ec66f095f256d8f61a5749a47ac7a3ef97f7ad160145835"
+      "bytes": 8265,
+      "sha256": "fd5899e5197d3963fcc108cc7ee7cba8f108564392bff62cc1c43e042d0f80f4"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2702,8 +2752,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 14807,
-      "sha256": "bbe282730620c61f4eb0638dc8fc63ee92eba0754b2417bf2a525f56b2250ddb"
+      "bytes": 14898,
+      "sha256": "2e9da2b35d08b5395dd712f16091091055c2b138a5f1485cfe93a4d2b5fbcc74"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -2822,8 +2872,8 @@
     },
     {
       "path": "server/httpBody.mjs",
-      "bytes": 472,
-      "sha256": "68b008958a1b912678e2ea6f099f9d906ba559b1b90ae3817b06720d518d71f6"
+      "bytes": 605,
+      "sha256": "19c6db54c94f1fad1d8f87d439d986f3c4c0efa7fbd7ddec43f82436bbdd78cf"
     },
     {
       "path": "server/lanActivityEconomy.mjs",
@@ -2872,8 +2922,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 22451,
-      "sha256": "c1106724e3d7971e9560bee2f352c9d981b77a9334633fe739ae3251af9576de"
+      "bytes": 22497,
+      "sha256": "2405673a8beec2beb40a2b7c66e29fea88a409d81ff54508858d9e4f5765fad2"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -3987,8 +4037,8 @@
     },
     {
       "path": "src/portfolio-v130.css",
-      "bytes": 7949,
-      "sha256": "72e438a02c71221f8b9538a41c77ef55a0dd3a9dbe94827eb8ade8d7790f9c0b"
+      "bytes": 16508,
+      "sha256": "17af016987dd6637fc39c42fbad6946d96549c2bf7684c6e297f7b7ecd24c7ee"
     },
     {
       "path": "src/portfolioArt.js",
@@ -4002,8 +4052,8 @@
     },
     {
       "path": "src/portfolioUI.js",
-      "bytes": 14460,
-      "sha256": "d40e7421e1717e5737075baeee587205c1c5a40a74353eb3529bdc9b6b786bc3"
+      "bytes": 16270,
+      "sha256": "bc97654a18dca2070218d9aa1da44bf6bc9b5aa605929977a1db5eec7565ae1c"
     },
     {
       "path": "src/potteryStudio.js",
@@ -4127,8 +4177,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 36390,
-      "sha256": "750dadfca9471262a980bc9003a3e79f6a1cf042edb09b5878f77f019d16d6bc"
+      "bytes": 36828,
+      "sha256": "086d5efac80d033dd117b977efbdbe12cb3726af0771f65565b7b7a0b5c6cefc"
     },
     {
       "path": "src/residentSocialTopics.js",
@@ -4347,8 +4397,8 @@
     },
     {
       "path": "src/stewardChat.js",
-      "bytes": 16629,
-      "sha256": "3743f34efb1190ff4d0dfe6438de571580e65136ef6d33cd006ad4f12ae95e79"
+      "bytes": 16652,
+      "sha256": "3140746ed907791b8569414887ee3ae4b57a45acf530cc26d26cd94843127284"
     },
     {
       "path": "src/stewardParties.js",
@@ -5077,8 +5127,8 @@
     },
     {
       "path": "tests/v130-portfolio-browser.mjs",
-      "bytes": 8229,
-      "sha256": "72bf47700cba314fe7d687ff70fb23a37487a31b86c767cbecb4c3aa7dd83a93"
+      "bytes": 8245,
+      "sha256": "1ad9e9878dfd052157cb0299f891bfa4adf16c82399d79ce91860396fd22cd59"
     },
     {
       "path": "tests/v130-portfolio.test.mjs",
@@ -5087,8 +5137,8 @@
     },
     {
       "path": "tests/v131-gallery-browser.mjs",
-      "bytes": 5397,
-      "sha256": "7518a53a03d37d4fd9b2cf34fe4e36c2b57f290e4d00b9dbb89d7ef61d51e4aa"
+      "bytes": 5421,
+      "sha256": "bda28d6cef24b609a6dc476b8f60d3ab7cfd1af54047ce01f0867c6845134764"
     },
     {
       "path": "tests/v131-gallery.test.mjs",
@@ -5099,6 +5149,11 @@
       "path": "tests/v132-season-closeup.mjs",
       "bytes": 4318,
       "sha256": "708a14a7d5dfc5a5015d338030d4b79b1ac3f0262b5d365fa90fd217c5e48ec3"
+    },
+    {
+      "path": "tests/v135-agent-context.test.mjs",
+      "bytes": 2574,
+      "sha256": "ab4eb581cd9af2d86e78317a2f9a4d2633e38f755c12930944425df9085427f9"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -7391,5 +7446,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v134-github"
+  "publicRevision": "v135-github"
 }

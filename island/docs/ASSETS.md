@@ -35,3 +35,12 @@ Twelve built-in imagegen outputs edit the inspected existing artwork: two galler
 ## V134 - Continuous terrain
 
 Thirty original built-in image_gen regional paintings replace the active mainland and gallery terrain in both appearances. Layout guides were edited from inspected existing art; every region retains fixed coordinates and overlapping reference edges. Runtime overviews are Canvas compositions of the original regions and retained complete plaza. Native dimensions, provenance and hashes are recorded in [terrain-art-v134.json](terrain-art-v134.json). V132 gallery-island and bridge images are historical, no longer rendered. No personal photos or user data are included.
+
+
+## V135 · 会客馆 UI 与新宣传片
+
+会客馆使用既有 `portfolio-v130/gallery-{theme}.png`、`hall-{theme}.png`、`ui-frame-{theme}-v16.png` 和 `ui-hud-v59` 图标；本次未替换用户上传图片。UI 边框、信笺与章节排版由 CSS 构建。截图中的八段经历、三个项目及三张照片来自原有明确标注的虚构示例。
+
+`docs/media/hyper-dimension-poster.png`、居民、文档、协商与烹饪展示图由当前版本的实际录制帧提取；人物／文档／项目均为隔离虚构资料。当前 30／45 秒 MP4 作为 V135 Release 附件，包含项目原创《Island Hours》配乐。录制与验证边界见 [showcase-v135.md](showcase-v135.md)。
+
+The gallery reuses existing themed room/frame/HUD art; new presentation is CSS. Current media stills come from actual current-version footage with synthetic profiles/documents and masked paths. Uploaded user images are preserved. Video provenance, original music and measurement limits are documented separately.
