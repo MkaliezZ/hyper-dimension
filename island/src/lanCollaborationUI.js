@@ -28,6 +28,6 @@ export function createCollaborationUI({root,context,storage,toast=()=>{}}){
   root.querySelector('#a2aOffer')?.addEventListener('click',()=>command({operation:'offer',eventId:root.querySelector('#a2aEvent').value,recipientId:root.querySelector('#a2aRecipient').value}));
   root.querySelectorAll('[data-a2a-op]').forEach(b=>b.onclick=()=>command({operation:b.dataset.a2aOp,taskId:b.dataset.a2aTask}));root.scrollTop=scroll;
  }
- async function refresh(){if(closed)return;try{const next=await api();if(closed)return;state=next;render();}catch(e){if(!closed){const el=root.querySelector('#a2aError');if(el)el.textContent=e.message;else root.textContent=e.message;}}}
+ async function refresh(){if(closed)return;try{const next=await api();if(closed)return;state={...next,tasks:next.tasks.filter(t=>t.capability!=='island.information')};render();}catch(e){if(!closed){const el=root.querySelector('#a2aError');if(el)el.textContent=e.message;else root.textContent=e.message;}}}
  return{async start(){root.textContent='正在翻开管家协作手账…';await refresh();if(!closed)timer=setInterval(refresh,2500);},busy:()=>busy,close(){closed=true;clearInterval(timer);}};
 }

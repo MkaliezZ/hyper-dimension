@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v136-agent-source",
+  "release": "hyper-dimension-v137-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 7899,
-      "sha256": "5211d2447cc886efffcff28caee5069aa5be869584253ca437fea78a0386fc4e"
+      "bytes": 8637,
+      "sha256": "59328a9f2004d2a84846907851ffea10fffcb27e49d1d18fcbc14daab61ce9a8"
     },
     {
       "path": "README.md",
-      "bytes": 7306,
-      "sha256": "f0f57cca101977a519968f6a602813a72f2e8796d5956ed152647290da4c886a"
+      "bytes": 7991,
+      "sha256": "813352b32d012cabade9b30165f9ab02b3666d0c8ad2b27eae6f7e93d9631faa"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 2381,
-      "sha256": "45f9f363af3c559d98ba9dbe02c9c4e3d8e3bb234a8939e0a9c1e55fcc2c88fb"
+      "bytes": 2576,
+      "sha256": "4f77e649bb09bd80b1fba2f9e6f609485fe6251a7b80155823efb7c972009624"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,13 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 9609,
-      "sha256": "07ee1b335c7d37d6a0a560285708f624acbbf74aa9fa57c05cc977800343b4f0"
+      "bytes": 11773,
+      "sha256": "f185095032b96e1cd6d4ddc59fe39376f0aaced0323dae7d337ea77f60722eae"
+    },
+    {
+      "path": "docs/a2a-information-v137.md",
+      "bytes": 3859,
+      "sha256": "fe2ec902f1781349740ed3c1e9e6086f99000a4847161fedec8581da9c2a88e4"
     },
     {
       "path": "docs/classic-settlement-v110.md",
@@ -559,6 +564,16 @@
       "path": "docs/screenshots/v135-pixel-projects.png",
       "bytes": 1857906,
       "sha256": "d7f3a83c669a23515093ba2a457935a31b4a40a5efb703fe5ae6cc756eadb025"
+    },
+    {
+      "path": "docs/screenshots/v137-origami-a2a.png",
+      "bytes": 433417,
+      "sha256": "5c0b632d61d8b5d45fd74127daaae1a6d86e1db99067df70d18b8db410699d3c"
+    },
+    {
+      "path": "docs/screenshots/v137-pixel-a2a.png",
+      "bytes": 400348,
+      "sha256": "0be518c376e40a1ea8df970077c7ce9aba5983a7576c2a7e66f7a9cf3ddc7474"
     },
     {
       "path": "docs/sea-art-prompts-v122.json",
@@ -1157,8 +1172,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8302,
-      "sha256": "532ba29ae39f60be425bc7c84312a205709dec8743d6be7a56183bbecbe96a9a"
+      "bytes": 8399,
+      "sha256": "80d8b3471686260667a34e7b4d336c63664056395ba10e18b74e054fabf54c32"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2762,8 +2777,8 @@
     },
     {
       "path": "server/a2a_runtime.py",
-      "bytes": 4834,
-      "sha256": "973291536ccbd5cfa787ed4f190f9c29358ef823cb4889eb3629fce32fff870f"
+      "bytes": 6061,
+      "sha256": "ff74af183ee4bca78c57eda3658eac0f843a58c40acbcd39fe1c1f230f057c77"
     },
     {
       "path": "server/agentService.mjs",
@@ -2881,6 +2896,11 @@
       "sha256": "19c6db54c94f1fad1d8f87d439d986f3c4c0efa7fbd7ddec43f82436bbdd78cf"
     },
     {
+      "path": "server/islandExchangeContext.mjs",
+      "bytes": 1002,
+      "sha256": "439461c067b40a06b36c25da567b9f13606e340dee8c6b4e776932845954339a"
+    },
+    {
       "path": "server/lanActivityEconomy.mjs",
       "bytes": 7340,
       "sha256": "c5fa246175504bcbcb412f37001a527be0242549ccdeb53d49abd85827fb5092"
@@ -2892,8 +2912,8 @@
     },
     {
       "path": "server/lanAgentService.mjs",
-      "bytes": 16307,
-      "sha256": "d6cb608a11f25fa4ae3cb9fd23ec7a656cf909a47dabeefcb293d20df1864ed6"
+      "bytes": 16349,
+      "sha256": "3d8a9c6da12a50185716b23bc456f16914fc70ca7b90ca02e774848151821d8f"
     },
     {
       "path": "server/lanAgentWorker.mjs",
@@ -2902,8 +2922,8 @@
     },
     {
       "path": "server/lanCollaborationStore.mjs",
-      "bytes": 14448,
-      "sha256": "35e459cdbb0fb57bafda98ee2293fd0fba839c25673a1a417149a38cc870dc8b"
+      "bytes": 18799,
+      "sha256": "4fcd073968e3b8f803adb972b8e08fa777f3e76ef30cd56852129586edd0ee3e"
     },
     {
       "path": "server/lanEconomyJournal.mjs",
@@ -2927,8 +2947,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 22853,
-      "sha256": "c6cba05ff5b197e7e79a27b60a3ac097a99d3cf42bd579eabd6a1f37740d472d"
+      "bytes": 22874,
+      "sha256": "816b2e6676c8c6d9df4b3fa4475dcb37d2cda426f9277892ef0671415885b9c0"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -3222,8 +3242,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 134304,
-      "sha256": "b178430fde08801a53b4414dae1ce436257fa4604d57b01957ded3d6b1dc586b"
+      "bytes": 134431,
+      "sha256": "6ee486ac56c8295c3050f74b1676288b9c55eec6ef2859db87ac3dceffe1fe18"
     },
     {
       "path": "src/arcade.css",
@@ -3551,6 +3571,11 @@
       "sha256": "78007aa2c4e9344e6012ce45e6f7803437b896a66ddcff9a8d28b795ca6178df"
     },
     {
+      "path": "src/firstCraftGuide.js",
+      "bytes": 1068,
+      "sha256": "f836d3a37aabbfca3aa66957196e4d06d17eb1438faa2ad95c8cfc18fd38f26f"
+    },
+    {
       "path": "src/fishing-v30.css",
       "bytes": 15019,
       "sha256": "bc8d7fe67e3dfdb740e7e8fbf6ce1167859a2554966ca95dce5de92f600b2b68"
@@ -3737,8 +3762,8 @@
     },
     {
       "path": "src/journey.js",
-      "bytes": 9130,
-      "sha256": "907d448aba447450a78139442c90291610d8287fad67e7d43932eca291d15656"
+      "bytes": 9754,
+      "sha256": "b4de10412e2c8098f19eb767d41838ab65cd8f28f2cc85c0208bf30e5e40670c"
     },
     {
       "path": "src/journeyArt.js",
@@ -3747,8 +3772,8 @@
     },
     {
       "path": "src/journeyUI.js",
-      "bytes": 5440,
-      "sha256": "cbe186e115df11ed320dc4baf6fec9ca3bfd377b25c88373ba5fcb6d5ddc870b"
+      "bytes": 5479,
+      "sha256": "980ec28b67820a606150584a9e6a79d7022d0a9260445b0b49d3d046089cfc9e"
     },
     {
       "path": "src/lan-activities-v57.css",
@@ -3772,8 +3797,8 @@
     },
     {
       "path": "src/lan-steward-v65.css",
-      "bytes": 6094,
-      "sha256": "9c6c9beac98910197c2731d87aa4876558c7add8b5c35903b69b8fcb1095dc69"
+      "bytes": 8858,
+      "sha256": "1bc7d0dc1e1146b33c8c73e69e849029b4624174a6a62d79c7a1dc40bb040490"
     },
     {
       "path": "src/lan-v57.css",
@@ -3791,9 +3816,14 @@
       "sha256": "d99082ad2cdbcfa5c5153aba1fca5c4261399af383cc76bab9e826b554466bb3"
     },
     {
+      "path": "src/lanAgentExchangeUI.js",
+      "bytes": 8464,
+      "sha256": "12e358e961d4c2571f5744b86d2857d97a6e282e03732836f8ba92f33ccc0473"
+    },
+    {
       "path": "src/lanCollaborationUI.js",
-      "bytes": 7405,
-      "sha256": "798bb28209df3b1ae3aae2f99d773e0f5d13c2394927b13a4fb864bb3949293f"
+      "bytes": 7474,
+      "sha256": "a7c21fc42c323287167e51331b6226d2a981fa2f8c49b024c01fc4762f84b554"
     },
     {
       "path": "src/lanEconomyUI.js",
@@ -3817,8 +3847,8 @@
     },
     {
       "path": "src/lanStewardUI.js",
-      "bytes": 10337,
-      "sha256": "bd4959919c00e74075186c5abbf669e670d2c58788c684571f0e66e6e5cb700f"
+      "bytes": 11056,
+      "sha256": "80b43e0eefbfe78c31cb3a7426d408d8123af50e484d8f7a92d4e200f2f4ddb7"
     },
     {
       "path": "src/lanStorage.js",
@@ -5181,6 +5211,21 @@
       "sha256": "0dd7c27ed3aeaa860f1d4f69514d45c1cdcfacda1ed4b26bdb97893b617fd5a4"
     },
     {
+      "path": "tests/v137-a2a-information-live.mjs",
+      "bytes": 7682,
+      "sha256": "a45a6d89f50107a7f4cdb99850c57c9b6a0368539f5d7d2b4be24435646012a6"
+    },
+    {
+      "path": "tests/v137-a2a-information.test.mjs",
+      "bytes": 9197,
+      "sha256": "575bac6120059d181a744b0c52b08880a1d0b72b74e7c75716ac7195f4fe15b9"
+    },
+    {
+      "path": "tests/v137-first-craft-guide.test.mjs",
+      "bytes": 2543,
+      "sha256": "213fd330b94cec87903a59069cc9ed92167701da762934743ade7bcea8dacebb"
+    },
+    {
       "path": "tests/v16-v17-ui-qa.mjs",
       "bytes": 5407,
       "sha256": "b0b0953ebda1e041eacf700ff1e71be8dc1243e5cea2622c10e03aa5cc81e271"
@@ -6302,8 +6347,8 @@
     },
     {
       "path": "tests/v67-a2a.test.mjs",
-      "bytes": 11402,
-      "sha256": "a9061d43c2ef321f1eddb22fc77919ee9f5ce1d2b516d372ab2b10a5d2ba4e79"
+      "bytes": 11533,
+      "sha256": "6f09c323cb671160fd1af5da3b16215b2b104adb5dc7afab96b92fa90933af65"
     },
     {
       "path": "tests/v68-social-browser.mjs",
@@ -7471,5 +7516,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v135-github"
+  "publicRevision": "v137-github"
 }

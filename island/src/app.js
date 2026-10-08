@@ -698,6 +698,7 @@ function journeyAction(action){
  closeModal();
  if(action==='steward'){showHermes();return}
  if(action==='farm'){setScene('farm');state.selectedCrop='wheat';toast('点击田地：松土、播种小麦、浇水；生长时可以去做别的事。');return}
+ if(action.startsWith('material:')){const item=RAW_MATERIALS.find(x=>x.id===action.slice(9));if(item)gatherItem(item);return}
  if(action==='wood'){gatherItem(RAW_MATERIALS.find(x=>x.id==='wood'));return}
  if(action==='mine'){state.mineResource='ore';setScene('mine');return}
  if(action==='lantern'){contentUI.detail('lantern');return}

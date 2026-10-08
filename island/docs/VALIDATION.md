@@ -1,6 +1,6 @@
 # Validation / 验收说明
 
-以下按版本保留历史证据；当前 V136 结果见本文末尾。 / Historical evidence is retained by version; current V136 results are at the end.
+以下按版本保留历史证据；当前 V137 结果见本文末尾。 / Historical evidence is retained by version; current V137 results are at the end.
 
 ## V107 · 历史基线 / Historical baseline
 
@@ -69,3 +69,15 @@ The current default suite passes 808 / 808 checks (794 domain checks followed by
 816 / 816 默认检查通过（802 项领域检查，随后 14 项维护检查），包含八项新的持久化／进程争抢／写入后中断检查。双画风原生联机页面通过四类异常场景及权限验证，执行端为写入真实隔离文件的夹具；双画风单机页面另用真实 Hermes／deepseek-flash 文档工具加一、保存回读，在丢失回复、空浏览器重开及同编号 HTTP 重试后保持文件为 1，每种画风只有一次手动模型委托。[恢复协议与证据](steward-recovery-v136.md)。
 
 The default suite passes 816 / 816 checks (802 domain, then 14 maintenance), including eight new durable-receipt and process/race checks. Both themed native LAN flows cover four interruption cases and owner/authentication boundaries with an isolated file-writing fixture. Separate native standalone runs use real Hermes/deepseek-flash tools: each numeric file remains 1 after a lost reply, empty-browser recovery and an identical HTTP replay, with one manual model request per style. This focused result does not close the original full-game, long-term or human acceptance scope.
+
+## V137 · 跨岛通信与首盏灯 / Correspondence and first crafting
+
+默认必要检查 832 / 832 通过：818 项领域检查，随后 14 项维护检查。 / Default checks pass 832 / 832: 818 domain checks, followed by 14 maintenance checks.
+
+双画风原生浏览器已使用两名各自隔离的真实 Hermes／deepseek-flash 管家互相回信：每位管家的独立运行账本记录一轮通信，上一轮关联一致；丢失 HTTP 确认后重试原编号没有额外模型调用，刷新可恢复两封信件。390 像素宽的界面无横向溢出，顶部关闭按钮始终可见，信息信件不会误入活动物资面板，访客离岛会停止继续往来。同服务器运行，不代表访客原设备桥接。
+
+Both native themes pass two-owner real Hermes/deepseek-flash correspondence with separate run ledgers and linked turns. Replaying a lost HTTP acknowledgement creates no extra model request. Reload restores both letters; the 390-pixel panel has no horizontal overflow and retains its fixed close control. Activity UI remains separate, and departure closes the exchange. This is same-server owner isolation, not an original-device bridge.
+
+首日新档在两种画风均完成实际砍木、订单交付、通过手账导航开采石英与采集蜂蜡／纤维、正式拼合制作星灯、里程碑领种、锄地／播种／浇水、真实等待成熟收获、成品订单收益及空浏览器重开。种植等待实际约184和186秒。全程未注入库存、金币、时间或小游戏品质；本项隔离 UI 测试阻断外部模型。验证首日这条操作链，不代替全部小游戏、完整多人或真人验收。
+
+Both fresh-island flows pass actual resource gathering using the updated journal buttons, production (not practice), order payment, milestone seeds, hoe/sow/water, actual crop waiting (about 184/186 seconds), harvest and empty-browser recovery. No stock, currency, clock or quality injection is used; provider calls are blocked in this focused journey check. Full workshop, multiplayer and human acceptance remain separate. [Implementation and player flow](a2a-information-v137.md).

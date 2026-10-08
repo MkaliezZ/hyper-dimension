@@ -1,3 +1,4 @@
+import {firstCraftPreparation} from './firstCraftGuide.js';
 import {trackSpecialization,specializationBrief} from './specialization.js';
 import {trackPlayerAchievement,trackHostedAchievement} from './achievements.js';
 // V21: player-authored milestones. Automatic NPC production never advances these counters.
@@ -5,8 +6,8 @@ export const JOURNEY_STEPS=[
  {id:'meet',title:'认识你的管家',detail:'打开管家，看看当前目标。之后随时可以回来追问。',action:'steward',button:'去见管家'},
  {id:'plant',title:'种下第一片希望',detail:'去农田选一块空田：松土 → 播种小麦 → 浇水。生长期间先去采集。',action:'farm',button:'前往农田'},
  {id:'gather',title:'带回三份木材',detail:'去林地亲手采集木材 ×3。初始库存和居民产出不计入这一页。',action:'wood',button:'去采集木材'},
- {id:'mine',title:'敲开一条矿脉',detail:'去矿洞挥镐，矿脉碎开后亲手取得矿石。',action:'mine',button:'前往矿洞'},
- {id:'craft',title:'做出第一盏星灯',detail:'进入木作工坊，用木材与矿石制作灯笼。完成后可点亮广场。',action:'lantern',button:'查看灯笼图纸'},
+ {id:'mine',title:'为星灯找一块石英',detail:'去矿洞选石英矿脉，走近后挥镐，让清透石英成为灯罩。过去亲手收集的矿石也保留本页完成记录。',action:'material:quartz',button:'前往石英矿脉'},
+ {id:'craft',title:'做出第一盏星灯',detail:'备齐木框、石英灯罩、蜂蜡蜡烛和纤维灯芯，在木作工坊制作灯笼。完成后可点亮广场。',action:'lantern',button:'查看灯笼图纸'},
  {id:'order',title:'让手艺变成收入',detail:'在经营手账完成一笔岛主订单；不足的物资可从订单直接查看来源。',action:'business',button:'查看今日订单'},
  {id:'harvest',title:'收获亲手种的小麦',detail:'回农田查看生长进度，成熟后挥动镰刀收获。收获物可以用于派对。',action:'farm',button:'照看农田'},
  {id:'invite',title:'把好消息告诉邻居',detail:'备好小麦与灯笼，亲自邀请阿岚、露露参加星灯夜集。',action:'invite',button:'邀请居民'},
@@ -46,14 +47,16 @@ export function trackJourney(s,event,data={}){
 }
 export function refreshJourney(s){
  const j=hydrateJourney(s),t=j.stats;
- const flags={meet:t.met,plant:t.watered>0,gather:t.gathered.wood>=3,mine:t.gathered.ore>0,craft:t.crafted.lantern>0,order:t.orders>0,harvest:t.harvested>0,invite:t.invited,party:t.nightParties>0};
+ const flags={meet:t.met,plant:t.watered>0,gather:t.gathered.wood>=3,mine:t.gathered.ore>0||t.gathered.quartz>0,craft:t.crafted.lantern>0,order:t.orders>0,harvest:t.harvested>0,invite:t.invited,party:t.nightParties>0};
  for(const [id,yes] of Object.entries(flags))if(yes)j.completed[id]=true;
  const unlocked={light:t.crafted.lantern>0,trade:t.orders>0,festival:t.nightParties>0,signature:Object.keys(t.buildings).length>=5&&Object.values(s.facilities||{}).filter(f=>Math.min(f.quality||0,55+Math.min(4,Math.max(0,f.upgrades||0))*10)*(.7+.3*Math.max(0,Math.min(100,f.condition??100))/100)>=55).length>=3&&(s.economy?.arrivals||0)>=12&&t.parties>0};
  for(const m of MOMENTS)if(unlocked[m.id]&&!j.ready[m.id]&&!j.claimed[m.id])j.ready[m.id]={day:s.day};
  return j;
 }
 export function journeyView(s){
- const steps=s.startMode==='zero'?['meet','gather','mine','craft','plant','order','harvest','invite','party'].map(id=>JOURNEY_STEPS.find(x=>x.id===id)):JOURNEY_STEPS;
+ const preparation=firstCraftPreparation(s);
+ const order=s.startMode==='zero'?['meet','gather','mine','craft','plant','order','harvest','invite','party']:JOURNEY_STEPS.map(x=>x.id);
+ const steps=order.map(id=>{const step=JOURNEY_STEPS.find(x=>x.id===id);if(id!=='craft'||s.journey?.completed?.craft||(s.journey?.stats?.crafted?.lantern||0)>0)return step;const next=preparation.missing[0];return {...step,title:next?'备齐第一盏星灯的材料':step.title,detail:preparation.detail,action:next?next.action:step.action,button:next?'去找'+next.name:step.button};});
  const j=refreshJourney(s),index=steps.findIndex(x=>!j.completed[x.id]);
  const step=index<0?null:steps[index];
  const ready=MOMENTS.find(m=>j.ready[m.id]&&!j.claimed[m.id]);
