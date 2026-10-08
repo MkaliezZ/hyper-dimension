@@ -4,7 +4,9 @@
 
 **An island that lives, with an agent that gets things done.**
 
-Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V118 is a playable development snapshot**, with full product acceptance still in progress.
+Play, gather, craft and build a life alongside AI residents in a pixel or origami island. Your Hermes-powered steward also handles real-world tasks you delegate: reading work materials, organizing plans and saving documents. **V119 is a playable development snapshot**, with full product acceptance still in progress.
+
+V119 adds 26 newly painted terrain tiles/landmarks, viewport loading and crisp zoom in both styles. [Terrain changes and native checks](island/docs/terrain-v119.md).
 
 V118 shares one island save across pixel/origami appearances, adds free-text chat with all 15 residents, and persists butler/player avatar selections. [Behavior and verification scope](island/docs/shared-island-v118.md).
 
@@ -30,7 +32,7 @@ V109 updates both boarding gangways, ferry alignment and passenger occlusion. [S
 
 [![Hyper Dimension gameplay preview: origami and pixel islands](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)
 
-**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v117)
+**[▶ Watch / download the 30-second MP4](https://github.com/MkaliezZ/hyper-dimension/releases/download/v108/hyper-dimension-30s.mp4)** · [Get the agent deployment bundle](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v119)
 
 2560 × 1440 at 60 FPS, with an original instrumental score and bilingual captions. The footage shows an actual AI resident conversation, selectable steward appearances, native Hermes delegation, a Coastal Kitchen challenge inside its building window, and a real Word document made from a fictional brief. Waiting is edited out; no real user data appears.
 

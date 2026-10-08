@@ -1,3 +1,5 @@
+import {hoeToolPose} from './toolMotion.js';
+import {heldToolGeometry,TOOL_ART} from './toolArt.js';
 import {registerThemeArtwork} from './themeArtwork.js';
 import {createSpriteRasterCache} from './spriteRaster.js';
 import {createSpriteRefiner} from './spriteRefiner.js';
@@ -67,13 +69,16 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  }
  drawGarmentLayers(ctx,a.garments||[],theme,poseHeading,W,gait,work,action,t,now);
  ctx.restore();}else{ctx.fillStyle=color;ctx.fillRect(-14,-55,28,36);ctx.fillStyle='#e8bf9a';ctx.fillRect(-12,-76,24,22)}}
+ const propBehind=action==='hoe'&&rear;if(propBehind)drawActionProp();
  if(blend<1&&a.previousHeading!=null){const previous=avatarFrame(a.appearance,theme,a.previousHeading)||characterFrame(id,theme,!!a.isVisitor,a.previousHeading);drawPose(previous.img,previous.frame,1-blend,previous.flip,a.previousHeading)}drawPose(img,directionFrame,a.previousHeading==null?1:blend,flip);
- if(act){
+ if(!propBehind)drawActionProp();
+ function drawActionProp(){if(act){
  ctx.save();const left=[1,2,3].includes(heading),body=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='body'),hands=sleeveHands(garmentFrame(body,theme,heading),heading,gait,work,action,t),hand=hands.find(p=>left?p.x<=0:p.x>=0)||hands[0];ctx.translate(hand.x,hand.y);ctx.scale(left?-1:1,1);
  const tools={hoe:'hoe',pickaxe:'pickaxe',axe:'axe',water:'watering_can',harvest:'sickle',sow:'seed',fish:'rod'},prop=act.guestWork?null:act.equipment?.tool?.id||act.toolId||a.toolbelt?.[action]||tools[action]||act.output||(act.leisure||['rest','talk'].includes(action)?null:DEFAULT_RECIPES[room]?.item);
  if(prop){
- const angle=['hoe','pickaxe','axe','harvest'].includes(action)?-1.9+Math.sin(t*Math.PI)*2.05:action==='water'?.2+Math.sin(t*Math.PI)*.3:action==='fish'?-.75:Math.sin(t*Math.PI)*.12;
- const size=action==='fish'?64:action==='pickaxe'||action==='hoe'?54:39,held=drawHeldTool(ctx,prop,theme,0,0,size,angle);
+ const stroke=action==='hoe'?hoeToolPose(t,heading,hand,bob,heldToolGeometry('hoe',theme,TOOL_ART[theme].hoe.frame,54).shaftLength):null;
+ const angle=stroke?.angle??(['pickaxe','axe','harvest'].includes(action)?-1.9+Math.sin(t*Math.PI)*2.05:action==='water'?.2+Math.sin(t*Math.PI)*.3:action==='fish'?-.75:Math.sin(t*Math.PI)*.12);
+ const size=action==='fish'?64:action==='hoe'?stroke.size:action==='pickaxe'?54:39,held=drawHeldTool(ctx,prop,theme,0,0,size,angle);
  if(!held)drawItem(ctx,prop,theme,4,-5,size,angle);
  // The palm is in front of the handle, using this avatar or its actual glove artwork.
  if(held){
@@ -83,6 +88,7 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
   else if(directionFrame&&img.complete){const r=directionFrame,region=hand.column===2?[.45,.63,.43,.2]:hand.side<0?[.04,.65,.24,.19]:[.73,.65,.24,.19];ctx.drawImage(img,r.x+region[0]*r.w,r.y+region[1]*r.h,region[2]*r.w,region[3]*r.h,-4,-4,8,8);}
   ctx.restore();
  }
+ if(stroke?.soil!=null&&held){const p=stroke.soil,ground=stroke.ground.y,contactX=stroke.ground.x;ctx.save();ctx.globalAlpha*=1-p;for(let i=0;i<7;i++){const drift=(i-3)*2.2*p,lift=(5+(i%3)*3)*Math.sin(p*Math.PI);ctx.fillStyle=(theme==='pixel'?['#765034','#aa7646','#cf9b60']:['#95704f','#ba936a','#d7b48a'])[i%3];ctx.fillRect(contactX+drift,ground-lift+(i%2),theme==='pixel'?2:2.5,2);}ctx.restore();}
  if(action==='water'&&t>.35&&t<.8){const tip=held?.tip||{x:17,y:8};ctx.fillStyle='#a4e3ef';for(let i=0;i<5;i++)ctx.fillRect(tip.x+i*2,tip.y+3+i*5,2,4);}
  if(action==='sow'&&t>.35&&t<.75){ctx.fillStyle='#c8ab63';for(let i=0;i<5;i++)ctx.fillRect(11+i*3,7+i*4,2,2);}
  if(action==='fish'){const tip=held?.tip||{x:20,y:-24};ctx.strokeStyle='#dce7dc';ctx.beginPath();ctx.moveTo(tip.x,tip.y);ctx.quadraticCurveTo(tip.x+16,tip.y+20,44,24);ctx.stroke();}
@@ -108,6 +114,6 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  }else if(action==='observe'){ctx.fillStyle='#e4ca82';ctx.beginPath();ctx.arc(1,-8,9,0,Math.PI*2);ctx.fill();ctx.fillStyle='#97ccdc';ctx.beginPath();ctx.arc(1,-8,6,0,Math.PI*2);ctx.fill()}
  else if(action==='perform'){ctx.fillStyle='#ffe4a5';ctx.font='18px serif';ctx.fillText('♪',Math.sin(now*3)*8,-15)}
  ctx.restore();
- }
+ }}
  ctx.restore();
 }

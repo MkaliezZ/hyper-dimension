@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v118-agent-source",
+  "release": "hyper-dimension-v119-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11136,
-      "sha256": "0bc0ee3271f35292179f3ab3dba89ed5d304e40c69931b6ea6c50a3f250ccf4f"
+      "bytes": 11295,
+      "sha256": "279d361749085b1319f2bb0eff8448cb514dc29647adf68e44ce1085919f8d95"
     },
     {
       "path": "README.md",
-      "bytes": 10147,
-      "sha256": "a005af1278b2a603d1ed503407838d4b54cd71562e47de0f87f575781692a760"
+      "bytes": 10301,
+      "sha256": "fcf9ffea3b258301344d661d02523ac37d36ec11902665fdf57d375f2edad114"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -191,6 +191,26 @@
       "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
     },
     {
+      "path": "docs/media/v119/origami-game.png",
+      "bytes": 3519360,
+      "sha256": "590fa60dbb615f99a66ca7cd9d5e57227b0cfebae417021dbe74d85d46950077"
+    },
+    {
+      "path": "docs/media/v119/origami-terrain-detail.png",
+      "bytes": 2331651,
+      "sha256": "2b7de09b99123db6578b9e0b94837b5781fb69df6df50be9bfbbfafe5f302d87"
+    },
+    {
+      "path": "docs/media/v119/pixel-game.png",
+      "bytes": 3484676,
+      "sha256": "811a0cf5ed019522e0f249c2c5017f1b0213c4148145c6fe31b71aa79a117602"
+    },
+    {
+      "path": "docs/media/v119/pixel-terrain-detail.png",
+      "bytes": 2598316,
+      "sha256": "9ae67677be6e9d7b4a12156dcade2aaf0b119e37737bcbdc2497021a528d1cb0"
+    },
+    {
       "path": "docs/npc-recovery-v116.md",
       "bytes": 2882,
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
@@ -239,6 +259,16 @@
       "path": "docs/shopfronts-v113.md",
       "bytes": 3370,
       "sha256": "7d6a86c91244d05a697ec60c39156b36fb68869a883dc8c5d104a109ee7a4b6d"
+    },
+    {
+      "path": "docs/terrain-art-v119.json",
+      "bytes": 5334,
+      "sha256": "1f6e6c7d2a132b540095160d7e7a52af83a6654d533cf89157ebcd65a07d50ff"
+    },
+    {
+      "path": "docs/terrain-v119.md",
+      "bytes": 3187,
+      "sha256": "19508ad06900bcbbd7e6d506cfc0fbccfbe1726354a2cbb25bd1f29514c7ec45"
     },
     {
       "path": "index.html",
@@ -752,8 +782,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 7051,
-      "sha256": "88d9040e896f7418186ce516151b8baf7cd3752bca524738221bd52b18144236"
+      "bytes": 7216,
+      "sha256": "dc089516308c21164814140d30b44d501df0c19ab3d94114706431bd860abd54"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -1421,6 +1451,136 @@
       "sha256": "ba5de7fee61a9bc53ed5744e6a78f8be30edacb4c027ac990d056fa1d6a0de65"
     },
     {
+      "path": "public/assets/map-tiles-v119/origami-0-0.png",
+      "bytes": 2676436,
+      "sha256": "7412966ac0a7170638a8b705086e095af6cfebef803a86f05c879014f9290a68"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-0-1.png",
+      "bytes": 2736712,
+      "sha256": "7d8655a9a6838b3d810189513d197723c259c1b6ea920d2fc13fd1380cfd8991"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-0-2.png",
+      "bytes": 2531869,
+      "sha256": "e1f992120d567b75a2e55d774d91853340cb6dc0e307cc01efceb929da291ef0"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-1-0.png",
+      "bytes": 2863170,
+      "sha256": "fb3f32d3cd2a78a3d5fcaef8a89c80c15dba156ede337a0ee8d4b67cdce08a37"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-1-1.png",
+      "bytes": 2537219,
+      "sha256": "79ecbd8528728ad3cd031457eb49bba4f4e555a87de5b4baa028d2d3d7caee45"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-1-2.png",
+      "bytes": 2539522,
+      "sha256": "dd3e87a6d836159c7d4406db52e767d7dae5de1de9bfc246cefd7786e9c85a23"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-2-0.png",
+      "bytes": 2644966,
+      "sha256": "e38d3ed9cf9835f2794897c1853ce54d7818a05bf6914bb3c375db0e475f0a32"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-2-1.png",
+      "bytes": 2634014,
+      "sha256": "aecf312beb1a77ddf960325e50ec4dc62505ff04284e27ded4cdeb0196fcaf3e"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-2-2.png",
+      "bytes": 2545099,
+      "sha256": "8a0f0969c1845ccd04c06822793514b5481f5a78534df36cec784dc11198ac21"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-3-0.png",
+      "bytes": 2662849,
+      "sha256": "7e05877d15dce6e6c44149f8f7de14dcca1262fce660f924bfe949e041158aac"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-3-1.png",
+      "bytes": 2511226,
+      "sha256": "d8368c74934f15d95380f5323929fbffc7dccc2998e435a155e1f8d938cf77da"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-3-2.png",
+      "bytes": 2508950,
+      "sha256": "fc6404f0861c419b81e16638c9b6397d1dbba76cc6ae86e67cc598c76c27eafd"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/origami-plaza.png",
+      "bytes": 2613222,
+      "sha256": "c639fd8254dce1f2cb2682539391dce6ed37934a88eb16269a6bbb4440259dbd"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-0-0.png",
+      "bytes": 2772584,
+      "sha256": "6b5e6fbb6fc60b78bb39d918663f87737b6662f58cb9bc28f2fc922f005dbd2a"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-0-1.png",
+      "bytes": 2794816,
+      "sha256": "ccb50144ab710ba3d5ef8271d2c89d27002a8217c1b552781960c0598c6cb11d"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-0-2.png",
+      "bytes": 2314549,
+      "sha256": "79de6bd43529374a621f9ec9b660ca5d18648b422430852063e5064810d502b0"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-1-0.png",
+      "bytes": 2703856,
+      "sha256": "dfcb13aba9ab3bfb59d709472b75630114470fd13d8e6003a0d5e9340a74ff35"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-1-1.png",
+      "bytes": 2858700,
+      "sha256": "ec18c7b233e1e3827af6f8c8309ba0bc514b0440e0085e1b2a8ab95700f12aee"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-1-2.png",
+      "bytes": 2607298,
+      "sha256": "aa2edd492b28b27a4c3e2ae8f91984114acebf5504bc5407b6ad1fc5c2d9e617"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-2-0.png",
+      "bytes": 2652200,
+      "sha256": "a357745fe01ff4661b5750c2270e1173587bb7255b2ac72596e051323b2fa025"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-2-1.png",
+      "bytes": 2920161,
+      "sha256": "a1c1e62c0fb0c3adfd38aefc3586e47b2296d8e4feae2d1e810d2eddcbf74ceb"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-2-2.png",
+      "bytes": 2389955,
+      "sha256": "b689e3a852d065d0ab119e6d7af4b2f41d7540269c61c1ef72790fb967c0e02d"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-3-0.png",
+      "bytes": 2886006,
+      "sha256": "e588e4d789ea0697775d48b410ed5f0dc264573dbe1dfa255008ecb7ea77adf6"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-3-1.png",
+      "bytes": 2610458,
+      "sha256": "a26b63067e1c05a2f77621056493eb371b2e0788f9c9808289bf1b69aa0cf74f"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-3-2.png",
+      "bytes": 2165617,
+      "sha256": "71d6d8359ae495bbbeb8856d38ebc5a33c04fd0cc4c1925b6545fbdafa427c54"
+    },
+    {
+      "path": "public/assets/map-tiles-v119/pixel-plaza.png",
+      "bytes": 2881698,
+      "sha256": "1fcb3840235c39596d6922541cbf4d96053562b08c835dd367e65bad2eedf7b0"
+    },
+    {
       "path": "public/assets/market-lantern-origami-v87.png",
       "bytes": 1429172,
       "sha256": "3d219779ba623d8bf86247f201c683fb9c9bfad1d70fb577a372963b40964b23"
@@ -1574,6 +1734,16 @@
       "path": "public/assets/tea-pixel.png",
       "bytes": 2880592,
       "sha256": "e506bf565cf57b8d49be093d186cea2730004e0d7b7d0cb8f23f577803072df2"
+    },
+    {
+      "path": "public/assets/tool-hoe-origami-v119.png",
+      "bytes": 458056,
+      "sha256": "6264411db5645d2acce670f2eb9fabc4d2bcc382ad94d1e8f6c423d375767df5"
+    },
+    {
+      "path": "public/assets/tool-hoe-pixel-v119.png",
+      "bytes": 345185,
+      "sha256": "3056c09d704a7514e97269e3de9ae830b3752a1f021a7738e1974d0923e462fe"
     },
     {
       "path": "public/assets/ui-frame-origami-v16.png",
@@ -2332,8 +2502,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 131368,
-      "sha256": "a9c454548ad5ae92a408917d7c4359cbc7ada394a0806b79a2f45cecc0a9daaf"
+      "bytes": 131445,
+      "sha256": "2b2617e7ddfdb2c6505f0c9f291628bf00ad2d74a447cf44ff865a9ecbefc037"
     },
     {
       "path": "src/arcade.css",
@@ -2352,8 +2522,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 6008,
-      "sha256": "9169253f3c027c431325061c8e2e4e2b71128ebe57299a723ee33f5d3febc8e6"
+      "bytes": 6217,
+      "sha256": "9adb0553f2377f8a319564449425d8d5af9993877731ec322e461f4c99d92b36"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -2387,8 +2557,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 15564,
-      "sha256": "bf8744c77acefbd48dcd4f773bdf94c6c295f22d25dbdd5bbc8aa8c0179ff6b8"
+      "bytes": 16358,
+      "sha256": "d92e466a359b7a719ac4a0400c930495ca02723a5f0f9bfba08bf1613ce4b02b"
     },
     {
       "path": "src/classicGames.js",
@@ -2762,8 +2932,8 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 4099,
-      "sha256": "d66527935dc36f1e553f3aa73ec168dc4202896d4095448a566d92a97ab8b636"
+      "bytes": 4176,
+      "sha256": "83649763aa8606d8829464f93ac28006730fd3e728623b3198d1bacfeda0fb04"
     },
     {
       "path": "src/harborArtwork.js",
@@ -2929,6 +3099,21 @@
       "path": "src/life-v10.css",
       "bytes": 9838,
       "sha256": "4109553b2819b97d26d599ce430e4e2553b99b669d9564ebbea0f8fbab9ee8dc"
+    },
+    {
+      "path": "src/mapTileLayout.js",
+      "bytes": 2541,
+      "sha256": "7d89895d0d0eb12a21a9cbbd0a0b90c499ca5d08bd4c880cc5c04de7ebfe0c47"
+    },
+    {
+      "path": "src/mapTileWorker.js",
+      "bytes": 1728,
+      "sha256": "498f06545a538453f68e5f7d117014f9745dd230d9fbdb50aa876a03eb2c4eed"
+    },
+    {
+      "path": "src/mapTiles.js",
+      "bytes": 5174,
+      "sha256": "082be445737052bb7cea021c5d713c602a96969f8f5e2770726690deee240934"
     },
     {
       "path": "src/market-v87.css",
@@ -3442,8 +3627,13 @@
     },
     {
       "path": "src/toolArt.js",
-      "bytes": 1373,
-      "sha256": "0bd0b5b3f64118b6300c30e60eef8458442e57a49d02b6cb10431f82c10aeaa5"
+      "bytes": 1584,
+      "sha256": "bab05b7455a7684721955de4146f0915f363f77bdef43cbc77ad98a45d5dc2ee"
+    },
+    {
+      "path": "src/toolMotion.js",
+      "bytes": 1429,
+      "sha256": "6f1b4577ac01a7bce3e58f42c23b31f9a94e00787dbbbd8f65b239a9f79fcb4c"
     },
     {
       "path": "src/townSimulation.js",
@@ -4006,6 +4196,31 @@
       "sha256": "34f77ea52aeae80f578beda4abb8d464228551bedb9b3c69a67e91d8d120d836"
     },
     {
+      "path": "tests/v119-hoe-browser.mjs",
+      "bytes": 7031,
+      "sha256": "a63625135e38e6725dc54c1ea2adcc2ae785915dde93f86c2e44c8d86a94a1dd"
+    },
+    {
+      "path": "tests/v119-map-browser.mjs",
+      "bytes": 5791,
+      "sha256": "e7f7588364da4d2b68d8530597c198f1724b614c8f9b2afa4ed9d23397397542"
+    },
+    {
+      "path": "tests/v119-map-game-browser.mjs",
+      "bytes": 3967,
+      "sha256": "482a35dbedd9f47d9b4db9494bfc3f530b5d1322749f6528cbc243507758318d"
+    },
+    {
+      "path": "tests/v119-map-tiles.test.mjs",
+      "bytes": 2149,
+      "sha256": "609f969be35dfac1d95e76598fb035dbe151fbda0f99a330b19378cb5db5395a"
+    },
+    {
+      "path": "tests/v119-tool-motion.test.mjs",
+      "bytes": 1782,
+      "sha256": "d4d39683931e513e28fc3daa85cc95f2debcc602c4cf403bedec6381c359e92b"
+    },
+    {
       "path": "tests/v12-commerce-ui.mjs",
       "bytes": 6633,
       "sha256": "6cbcb20ce8d4c7baab6b57adfe1a0d3679a8b33660464682e1d73fa71cc906c8"
@@ -4417,8 +4632,8 @@
     },
     {
       "path": "tests/v35-tool-art-source.mjs",
-      "bytes": 601,
-      "sha256": "32d26708f5132d908c536f545b9246570c391413a95a18f5394dc20c488ebeb4"
+      "bytes": 654,
+      "sha256": "3d05add5d524a2a4c3e90a61aed30575bb3402f84f9202c5e5018cde834f030c"
     },
     {
       "path": "tests/v35-tool-art.test.mjs",
@@ -6306,5 +6521,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v118-github"
+  "publicRevision": "v119-github"
 }

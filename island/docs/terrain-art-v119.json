@@ -1,0 +1,204 @@
+{
+  "version": 119,
+  "generator": "built-in imagegen",
+  "originalWorld": [
+    1536,
+    1024
+  ],
+  "core": [
+    384,
+    384
+  ],
+  "cropOverlap": 32,
+  "blendHalfWidth": 12,
+  "landmarkBounds": [
+    576,
+    288,
+    432,
+    336
+  ],
+  "files": [
+    {
+      "file": "origami-0-0.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2676436,
+      "sha256": "7412966ac0a7170638a8b705086e095af6cfebef803a86f05c879014f9290a68"
+    },
+    {
+      "file": "origami-0-1.png",
+      "width": 1208,
+      "height": 1302,
+      "bytes": 2736712,
+      "sha256": "7d8655a9a6838b3d810189513d197723c259c1b6ea920d2fc13fd1380cfd8991"
+    },
+    {
+      "file": "origami-0-2.png",
+      "width": 1507,
+      "height": 1044,
+      "bytes": 2531869,
+      "sha256": "e1f992120d567b75a2e55d774d91853340cb6dc0e307cc01efceb929da291ef0"
+    },
+    {
+      "file": "origami-1-0.png",
+      "width": 1302,
+      "height": 1208,
+      "bytes": 2863170,
+      "sha256": "fb3f32d3cd2a78a3d5fcaef8a89c80c15dba156ede337a0ee8d4b67cdce08a37"
+    },
+    {
+      "file": "origami-1-1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2537219,
+      "sha256": "79ecbd8528728ad3cd031457eb49bba4f4e555a87de5b4baa028d2d3d7caee45"
+    },
+    {
+      "file": "origami-1-2.png",
+      "width": 1565,
+      "height": 1005,
+      "bytes": 2539522,
+      "sha256": "dd3e87a6d836159c7d4406db52e767d7dae5de1de9bfc246cefd7786e9c85a23"
+    },
+    {
+      "file": "origami-2-0.png",
+      "width": 1302,
+      "height": 1208,
+      "bytes": 2644966,
+      "sha256": "e38d3ed9cf9835f2794897c1853ce54d7818a05bf6914bb3c375db0e475f0a32"
+    },
+    {
+      "file": "origami-2-1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2634014,
+      "sha256": "aecf312beb1a77ddf960325e50ec4dc62505ff04284e27ded4cdeb0196fcaf3e"
+    },
+    {
+      "file": "origami-2-2.png",
+      "width": 1565,
+      "height": 1005,
+      "bytes": 2545099,
+      "sha256": "8a0f0969c1845ccd04c06822793514b5481f5a78534df36cec784dc11198ac21"
+    },
+    {
+      "file": "origami-3-0.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2662849,
+      "sha256": "7e05877d15dce6e6c44149f8f7de14dcca1262fce660f924bfe949e041158aac"
+    },
+    {
+      "file": "origami-3-1.png",
+      "width": 1208,
+      "height": 1302,
+      "bytes": 2511226,
+      "sha256": "d8368c74934f15d95380f5323929fbffc7dccc2998e435a155e1f8d938cf77da"
+    },
+    {
+      "file": "origami-3-2.png",
+      "width": 1507,
+      "height": 1044,
+      "bytes": 2508950,
+      "sha256": "fc6404f0861c419b81e16638c9b6397d1dbba76cc6ae86e67cc598c76c27eafd"
+    },
+    {
+      "file": "origami-plaza.png",
+      "width": 1422,
+      "height": 1106,
+      "bytes": 2613222,
+      "sha256": "c639fd8254dce1f2cb2682539391dce6ed37934a88eb16269a6bbb4440259dbd"
+    },
+    {
+      "file": "pixel-0-0.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2772584,
+      "sha256": "6b5e6fbb6fc60b78bb39d918663f87737b6662f58cb9bc28f2fc922f005dbd2a"
+    },
+    {
+      "file": "pixel-0-1.png",
+      "width": 1208,
+      "height": 1302,
+      "bytes": 2794816,
+      "sha256": "ccb50144ab710ba3d5ef8271d2c89d27002a8217c1b552781960c0598c6cb11d"
+    },
+    {
+      "file": "pixel-0-2.png",
+      "width": 1507,
+      "height": 1044,
+      "bytes": 2314549,
+      "sha256": "79de6bd43529374a621f9ec9b660ca5d18648b422430852063e5064810d502b0"
+    },
+    {
+      "file": "pixel-1-0.png",
+      "width": 1302,
+      "height": 1208,
+      "bytes": 2703856,
+      "sha256": "dfcb13aba9ab3bfb59d709472b75630114470fd13d8e6003a0d5e9340a74ff35"
+    },
+    {
+      "file": "pixel-1-1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2858700,
+      "sha256": "ec18c7b233e1e3827af6f8c8309ba0bc514b0440e0085e1b2a8ab95700f12aee"
+    },
+    {
+      "file": "pixel-1-2.png",
+      "width": 1564,
+      "height": 1006,
+      "bytes": 2607298,
+      "sha256": "aa2edd492b28b27a4c3e2ae8f91984114acebf5504bc5407b6ad1fc5c2d9e617"
+    },
+    {
+      "file": "pixel-2-0.png",
+      "width": 1302,
+      "height": 1208,
+      "bytes": 2652200,
+      "sha256": "a357745fe01ff4661b5750c2270e1173587bb7255b2ac72596e051323b2fa025"
+    },
+    {
+      "file": "pixel-2-1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2920161,
+      "sha256": "a1c1e62c0fb0c3adfd38aefc3586e47b2296d8e4feae2d1e810d2eddcbf74ceb"
+    },
+    {
+      "file": "pixel-2-2.png",
+      "width": 1564,
+      "height": 1006,
+      "bytes": 2389955,
+      "sha256": "b689e3a852d065d0ab119e6d7af4b2f41d7540269c61c1ef72790fb967c0e02d"
+    },
+    {
+      "file": "pixel-3-0.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2886006,
+      "sha256": "e588e4d789ea0697775d48b410ed5f0dc264573dbe1dfa255008ecb7ea77adf6"
+    },
+    {
+      "file": "pixel-3-1.png",
+      "width": 1208,
+      "height": 1302,
+      "bytes": 2610458,
+      "sha256": "a26b63067e1c05a2f77621056493eb371b2e0788f9c9808289bf1b69aa0cf74f"
+    },
+    {
+      "file": "pixel-3-2.png",
+      "width": 1507,
+      "height": 1044,
+      "bytes": 2165617,
+      "sha256": "71d6d8359ae495bbbeb8856d38ebc5a33c04fd0cc4c1925b6545fbdafa427c54"
+    },
+    {
+      "file": "pixel-plaza.png",
+      "width": 1422,
+      "height": 1106,
+      "bytes": 2881698,
+      "sha256": "1fcb3840235c39596d6922541cbf4d96053562b08c835dd367e65bad2eedf7b0"
+    }
+  ]
+}

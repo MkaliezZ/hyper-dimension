@@ -1,6 +1,7 @@
 import {registerThemeArtwork} from './themeArtwork.js';
 import {createBoatVisualMotion} from './boatVisualMotion.js';
 import {drawRaster,drawIslandRaster} from './rasterQuality.js';
+import {drawTerrainTiles} from './mapTiles.js';
 import {HARBOR,WORLD,MAP_EXTENT} from './world.js';
 import {FERRY_ART,ferryBob,gangwayPlacement} from './harborArtwork.js';
 const boatVisualMotion=createBoatVisualMotion(HARBOR);
@@ -10,7 +11,7 @@ for(const t of ['pixel','origami']){registerThemeArtwork(seaSheets[t],'/assets/s
 const gangwaySheets={pixel:new Image(),origami:new Image()};
 for(const theme of ['pixel','origami'])registerThemeArtwork(gangwaySheets[theme],'/assets/gangway-'+theme+'-v109.png',theme);
 // Preserve the original island anchors; the artwork worker feathers only the ocean rim.
-export function drawIsland(ctx,map,theme){if(map.complete&&map.naturalWidth)drawIslandRaster(ctx,map,theme,MAP_EXTENT,0,0,MAP_EXTENT.width,MAP_EXTENT.height);}
+export function drawIsland(ctx,map,theme){if(!drawTerrainTiles(ctx,theme)&&map.complete&&map.naturalWidth)drawIslandRaster(ctx,map,theme,MAP_EXTENT,0,0,MAP_EXTENT.width,MAP_EXTENT.height);}
 export function drawOuterSea(ctx,map,theme,time){const im=seaSheets[theme];if(im.complete&&im.naturalWidth)drawRaster(ctx,im,theme,0,0,WORLD.width,WORLD.height);else{ctx.fillStyle='#0c94c3';ctx.fillRect(0,0,WORLD.width,WORLD.height)}ctx.save();ctx.globalAlpha=.16;ctx.strokeStyle='#d9f8ec';ctx.lineWidth=theme==='pixel'?2:1;for(let i=0;i<40;i++){const x=1538+(i*43)%310,y=18+(i*79)%WORLD.height+Math.sin(time+i)*2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+12,y-1);ctx.stroke()}for(let i=0;i<18;i++){const x=i*109,y=1070+(i*53)%162;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+14,y-1+Math.sin(time+i));ctx.stroke()}ctx.restore();}
 export function drawHarbor(ctx,theme,time){const im=dockSheets[theme];if(im.complete&&im.naturalWidth){drawRaster(ctx,im,theme,1100,750,510,340)}ctx.save();ctx.globalAlpha=.20;ctx.fillStyle='#fce2a1';for(const [x,y] of [[1195,828],[1417,909],[1557,933]]){ctx.beginPath();ctx.ellipse(x,y,3+Math.sin(time*2+x)*.6,4,0,0,Math.PI*2);ctx.fill()}ctx.restore();}
 export function drawBoats(ctx,boats,theme,time){
