@@ -1,0 +1,7 @@
+import {readFile,mkdir,writeFile,cp,stat} from 'node:fs/promises';import{resolve,join}from'node:path';import{createHash}from'node:crypto';
+const source=resolve(import.meta.dirname),target=resolve(process.argv[2]||'_showcase-site');
+if(target===source||target.startsWith(source+'/')||target.startsWith(source+'\\'))throw Error('Build outside the source folder');
+const manifest=JSON.parse(await readFile(join(source,'films.json'),'utf8'));await mkdir(target,{recursive:true});
+for(const f of ['index.html','player.css','player.js','films.json','.nojekyll'])await cp(join(source,f),join(target,f));await cp(join(source,'assets'),join(target,'assets'),{recursive:true});await mkdir(join(target,'media'),{recursive:true});
+for(const film of manifest.films){if(!/^[a-z0-9-]+\.mp4$/.test(film.filename)||!/^https:\/\/github\.com\/MkaliezZ\/hyper-dimension\/releases\/download\/v135\//.test(film.download)||!/^[a-f0-9]{64}$/.test(film.sha256))throw Error('Invalid public film manifest');const r=await fetch(film.download);if(!r.ok)throw Error(`Video download failed: ${r.status}`);const b=Buffer.from(await r.arrayBuffer());const sha=createHash('sha256').update(b).digest('hex');if(sha!==film.sha256)throw Error(`Video hash mismatch: ${film.id}`);await writeFile(join(target,'media',film.filename),b);console.log(JSON.stringify({film:film.id,bytes:b.length,sha256:sha,verified:true}));}
+console.log(JSON.stringify({site:target,films:manifest.films.length,publicMediaOnly:true}));

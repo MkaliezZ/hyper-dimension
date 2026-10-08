@@ -58,3 +58,6 @@ island/qa/
 island/.env.local
 island/node_modules/
 *.log
+
+# Generated public video player artifact
+_showcase-site/

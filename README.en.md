@@ -8,9 +8,11 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 ## See the island
 
-[![Hyper Dimension · current 30-second showcase](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4)
+[![Hyper Dimension · current 30-second showcase](island/docs/media/hyper-dimension-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview)
 
-[30-second showcase](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4) · [45-second tour](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-45s.mp4) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v135)
+[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v135)
+
+Click a cover or video title to open the online player. MP4 downloads are available separately inside the player. A dedicated 45-second gallery tour shows the biography, eight life/education/work chapters, three projects with images, a visitor message and the owner’s reply, plus both visual styles.
 
 Native 2560 × 1440, 60 fps footage includes the gallery's biography, experience timeline, project images and guestbook. Profiles, images and work briefs are fictional; the document task actually executes Hermes tools. **Minigames are placeholder demonstrations; their gameplay, art and animation will continue to improve.** [Recording and verification](island/docs/showcase-v135.md).
 
@@ -76,8 +78,6 @@ Default entry: `http://127.0.0.1:4175/play`; local logs contain first-registrati
 V135 restyles the gallery's two themed interiors, biography, experience timeline, project photos and guestbook. Actual editing, uploading, publishing, reload persistence and guest-message flows passed in both appearances. [Gallery notes](island/docs/gallery-ui-v135.md).
 
 V134 completed continuous terrain, 30-day season changes and paused day/night visuals. Its 807 domain/maintenance checks, focused native-browser scenes and Windows/two-architecture macOS CI passed. [Terrain evidence](island/docs/continuous-terrain-v134.md) · [Deployment CI](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml). CI and bounded development-Windows checks do not establish physical Mac or full human-play acceptance.
-
-Remaining work includes cross-device steward bridging, sustained multi-island/human testing, minigame refinement, real parent/child Agent activity acceptance and OPC newcomer course validation. **Runnable development snapshot; commercial completion is not claimed.** [Acceptance boundaries](island/docs/VALIDATION.md).
 
 ## Documentation and repository
 

@@ -8,9 +8,11 @@
 
 ## 看一眼这座岛
 
-[![Hyper Dimension · 当前版本 30 秒演示](island/docs/media/hyper-dimension-poster.png)](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4)
+[![Hyper Dimension · 当前版本 30 秒演示](island/docs/media/hyper-dimension-poster.png)](https://mkaliezz.github.io/hyper-dimension/#overview)
 
-[30 秒宣传片](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4) · [45 秒完整演示](https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-45s.mp4) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v135)
+[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v135)
+
+点击封面或视频标题即可打开在线播放页；MP4 下载在播放器内单独提供。新增 45 秒会客馆内部导览，展示介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复，以及双画风展厅。
 
 本版视频为 2560 × 1440、60 fps 的实际页面录制，包含会客馆内部档案、项目图片与留言。工作资料、个人经历和图片均为虚构示例；管家文件任务实际调用 Hermes 工具执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [录制与验证说明](island/docs/showcase-v135.md)。
 
@@ -76,8 +78,6 @@ node tools/agent-deploy.mjs run --mode=lan
 V135 调整会客馆的双风格展厅、档案排版、经历时间线、项目照片与留言页。双画风实际编辑、上传、发布、刷新恢复和访客留言流程通过。[会客馆说明](island/docs/gallery-ui-v135.md)。
 
 V134 完成连续地形、30 日换季和昼夜视觉暂停，807 项领域／维护检查、相关原生浏览器场景及 Windows／两架构 macOS CI 通过。[地形验证](island/docs/continuous-terrain-v134.md) · [部署 CI](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml)。CI 与开发 Windows 机器的限定场景检查，不等于实体 Mac 和完整真人游戏验收。
-
-仍需完成跨设备管家桥接、长期多岛与真人测试、小游戏体验打磨、真实主子 Agent 联合活动及 OPC 新人课程验证。**这是可运行的开发快照，尚未宣称商业完成。** [完整验收边界](island/docs/VALIDATION.md)。
 
 ## 文档与仓库
 

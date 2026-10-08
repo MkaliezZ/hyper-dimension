@@ -1,0 +1,65 @@
+{
+  "version": "V135",
+  "films": [
+    {
+      "id": "overview",
+      "filename": "hyper-dimension-30s.mp4",
+      "duration": 30,
+      "sha256": "1d02b657da71c4fade46efc2eee0a7d4fa821416873830c0d5033dc5e46ef508",
+      "poster": "assets/island-poster.png",
+      "title": {
+        "zh": "30 秒 · 小岛与管家",
+        "en": "30 seconds · Play and get things done"
+      },
+      "caption": {
+        "zh": "双画风 · AI 居民 · Agent 管家",
+        "en": "Two styles · AI residents · Agent steward"
+      },
+      "description": {
+        "zh": "从小岛生活到现实工作：AI 居民交谈、管家协作、房屋内小游戏和真实文档成果。",
+        "en": "Island life and real work: AI residents, Agent collaboration, in-room minigames and a real document result."
+      },
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4"
+    },
+    {
+      "id": "tour",
+      "filename": "hyper-dimension-45s.mp4",
+      "duration": 45,
+      "sha256": "e676575ee59a149f12e4d741dd536abe78d51f833f98e36ac17bfa80c5fcbeb1",
+      "poster": "assets/island-poster.png",
+      "title": {
+        "zh": "45 秒 · 一次完整相遇",
+        "en": "45 seconds · A fuller island showcase"
+      },
+      "caption": {
+        "zh": "形象选择 · 主子 Agent · 工具执行",
+        "en": "Avatar choices · Agent teamwork · Real tools"
+      },
+      "description": {
+        "zh": "看不同管家形象、实际 Agent 分工记录、海边食堂的练习通关、Word 文件结果，以及会客馆。",
+        "en": "Explore steward appearances, actual Agent delegation records, a kitchen practice completion, Word document results and the gallery."
+      },
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-45s.mp4"
+    },
+    {
+      "id": "gallery",
+      "filename": "hyper-dimension-gallery-tour-v135.mp4",
+      "duration": 45,
+      "sha256": "732135b5457eca10232ea259cff5383d28a78c939a328be8edb466d6093640ba",
+      "poster": "assets/gallery-poster.jpg",
+      "title": {
+        "zh": "45 秒 · 岛主会客馆内部",
+        "en": "45 seconds · Inside the Islander’s Gallery"
+      },
+      "caption": {
+        "zh": "介绍 · 经历 · 项目图片 · 留言",
+        "en": "Biography · Experiences · Projects · Guestbook"
+      },
+      "description": {
+        "zh": "走进双画风展厅：岛主介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复。",
+        "en": "Tour both gallery styles: a biography, eight life/education/work chapters, three illustrated projects, a visitor message and the owner’s reply."
+      },
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-gallery-tour-v135.mp4"
+    }
+  ]
+}
