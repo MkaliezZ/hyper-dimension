@@ -44,3 +44,10 @@
 ## V144 · 2026-10-09 · 居民空间声音
 
 附近四名居民按距离及左右声道发声，实际步态／工具触碰／说话跟随现有动作；暂停和场景切换不补播。16声音专项与双画风原生声道路由、静音、偏好恢复通过。真人试听、完整动画声音与全部原范围继续。[规则与证据](spatial-sound-v144.md)。另附V143真实零起点Flash/Hermes父子活动证据，保持实际版本标记。
+
+
+## V145 · 管家发送顺序 / Steward submission order
+
+居民作业正在结算时，管家会等待回执再保存并寄出，减少短暂结算导致的发送失败。双画风原生UI验证：延迟期间零发送，恢复后唯一发送；离线和未确认作业仍保留恢复流程。[说明与证据](docs/steward-preflight-v145.md)。
+
+The steward waits for in-flight game receipts before saving and submitting. Native dual-theme delayed-receipt checks confirm zero early calls and one eventual submission; unresolved failures retain explicit recovery.

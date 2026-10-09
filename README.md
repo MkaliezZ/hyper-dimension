@@ -6,6 +6,12 @@
 
 在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V144 开发快照**，完整产品验收仍在进行。
 
+## V145 · 管家发送顺序 / Steward submission order
+
+居民作业正在结算时，管家会等待回执再保存并寄出，减少短暂结算导致的发送失败。双画风原生UI验证：延迟期间零发送，恢复后唯一发送；离线和未确认作业仍保留恢复流程。[说明与证据](island/docs/steward-preflight-v145.md)。
+
+The steward waits for in-flight game receipts before saving and submitting. Native dual-theme delayed-receipt checks confirm zero early calls and one eventual submission; unresolved failures retain explicit recovery.
+
 ## 看一眼这座岛
 
 [![Hyper Dimension · V138 原机管家 30 秒演示](island/docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png)](https://mkaliezz.github.io/hyper-dimension/#bridge)

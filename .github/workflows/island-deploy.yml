@@ -40,3 +40,5 @@ jobs:
         run: node tools/agent-deploy.mjs setup --python=python --offline
       - name: Verify source and default rules
         run: node tools/agent-deploy.mjs verify
+      - name: Verify native steward submission ordering
+        run: node tests/v145-steward-preflight-browser.mjs

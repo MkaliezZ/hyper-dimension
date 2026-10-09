@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v144-agent-source",
+  "release": "hyper-dimension-v145-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11648,
-      "sha256": "df54faf5fdedb90485106dab20b225bba90f57a4acabb7882af2bd31617faed3"
+      "bytes": 11977,
+      "sha256": "95e73118d104248cd9171c6bc03aa3680835ad625065ea76844a0a2a6dc4ec9c"
     },
     {
       "path": "README.md",
-      "bytes": 11382,
-      "sha256": "0cef44a9ea34bd2731c52eb37c45f01067c954db1467bbc0765e628fbb6a1688"
+      "bytes": 11954,
+      "sha256": "524af8ba04579e3a31f36709bb9b9cdb3462508833fbf36491823ac4ac83e06d"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 4734,
-      "sha256": "cb66020711c6e30007127958423e43cca230b7b55c54ea49a962e6d4a8fbdbde"
+      "bytes": 5307,
+      "sha256": "c33fa3b6cf9953139d68b2586837b36cda1a559ed72c36cf50b132e799748c67"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 19477,
-      "sha256": "c1cf02b9876ced9a4bce41006fa7873ad7b46cbb1fc77d616fd59b9332bfdd9e"
+      "bytes": 20050,
+      "sha256": "8d51c3f0a73141bf1ab731c89c5b8b0bd2251bb4f9904bc3cdfb036e95adba66"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -816,6 +816,11 @@
       "sha256": "6ce552e48a967381f980b0a5ea74f62ef283697d3966a77d0060234b66dcd83d"
     },
     {
+      "path": "docs/steward-preflight-v145.md",
+      "bytes": 1327,
+      "sha256": "43a777363e64f006f960e83a0be078c0a3005bd6bd1b72d803a39633f787acfc"
+    },
+    {
       "path": "docs/steward-recovery-v136.md",
       "bytes": 4351,
       "sha256": "22e65028f1fa200c91c9a183cf6bc51d2f10f395eaf0493ff00e6d2930458931"
@@ -939,6 +944,21 @@
       "path": "docs/verification/v144/verification.json",
       "bytes": 2628,
       "sha256": "2123c99c83197efd17673aab32a3709d653a44fe8d2157a62b520f07e3678a71"
+    },
+    {
+      "path": "docs/verification/v145/origami-settled.png",
+      "bytes": 669477,
+      "sha256": "02836c3dc3af13dbad1281fb8134ab0ddf2a567ff8c94551ea9581a83ec2c52d"
+    },
+    {
+      "path": "docs/verification/v145/pixel-settled.png",
+      "bytes": 646711,
+      "sha256": "ae71074b52fdbc62b839f50fe7b75df66366bffc3e285669c78dd15967489771"
+    },
+    {
+      "path": "docs/verification/v145/preflight.json",
+      "bytes": 1075,
+      "sha256": "6ea361bd67cdf267fc209d053857e8152cb91103ef9d5fb0a64a749599bf14f5"
     },
     {
       "path": "index.html",
@@ -3537,8 +3557,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 136995,
-      "sha256": "c214490a4047ef2d2c205b77297d66721b7d039d800d2841885a25141d8d8741"
+      "bytes": 137015,
+      "sha256": "b3a5aa0155df38351b139459c561848b7eaddd58f9dd4684eb761f4d4c357eb9"
     },
     {
       "path": "src/arcade.css",
@@ -5684,6 +5704,11 @@
       "path": "tests/v144-spatial-sound.test.mjs",
       "bytes": 4984,
       "sha256": "a2b6588658c3f95f0a196ba8078a3aa73ad4f2f12356e2f3eb69a5c7226e1baf"
+    },
+    {
+      "path": "tests/v145-steward-preflight-browser.mjs",
+      "bytes": 4965,
+      "sha256": "0a7d5f034c7546f5062f893d12b8ad2ef4c640e88cdf60f98ea8b42de26c8518"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -7986,5 +8011,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v144-github"
+  "publicRevision": "v145-github"
 }

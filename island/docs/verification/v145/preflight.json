@@ -1,0 +1,38 @@
+{
+  "version": "V145",
+  "scope": "Native dual-theme steward submission while an actual server resident action receipt is deliberately delayed. Isolated zero-resource LAN saves; the command runtime is a clearly labelled fixture, no external model or real documents. Actual save/action endpoints remain authoritative. Not real Hermes acceptance.",
+  "passed": true,
+  "failedOnPreviousSource": true,
+  "cases": [
+    {
+      "theme": "pixel",
+      "actionHeld": true,
+      "actionOperation": "begin",
+      "beforeReceipt": {
+        "calls": 0,
+        "status": "pending"
+      },
+      "afterReceipt": {
+        "calls": 1,
+        "source": "local"
+      },
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "actionHeld": true,
+      "actionOperation": "begin",
+      "beforeReceipt": {
+        "calls": 0,
+        "status": "pending"
+      },
+      "afterReceipt": {
+        "calls": 1,
+        "source": "local"
+      },
+      "passed": true
+    }
+  ],
+  "externalModelCalled": false,
+  "userDataTouched": false
+}

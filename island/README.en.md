@@ -6,6 +6,10 @@
 
 Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V144 development snapshot**; full product acceptance is still in progress.
 
+## V145 - Steward submission order
+
+The steward waits for in-flight game receipts before saving and submitting. Native dual-theme delayed-receipt checks confirm zero early calls and exactly one eventual submission; unresolved failures retain explicit recovery. [Implementation and evidence](docs/steward-preflight-v145.md).
+
 ## See the island
 
 [![Hyper Dimension · current 30-second showcase](docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
