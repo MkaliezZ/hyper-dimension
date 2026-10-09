@@ -48,4 +48,4 @@ jobs:
         run: node tests/v146-map-save-conflict-browser.mjs
 
       - name: Native lobby appearance and NPC motion
-        run: node --test tests/v148-identity.test.mjs tests/v148-motion.test.mjs tests/v148-travel-schema.test.mjs && node tests/v148-lobby-browser.mjs
+        run: node --test tests/v148-identity.test.mjs tests/v148-motion.test.mjs tests/v148-travel-schema.test.mjs && node tests/v148-lobby-browser.mjs && node tests/v151-lobby-navigation-browser.mjs

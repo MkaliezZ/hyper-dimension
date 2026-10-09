@@ -1,0 +1,23 @@
+{
+  "scope": "Actual native browser clicks and loopback room operations; fictional accounts, deliberately delayed polling and dropped move responses. No user saves or model calls.",
+  "checks": [
+    {
+      "theme": "pixel",
+      "stalePollDuringMoveIgnored": true,
+      "noTransientRecoveryCard": true,
+      "mapLayoutStable": true,
+      "lostResponseRecoveryAvailable": true,
+      "sameRequestReplay": true
+    },
+    {
+      "theme": "origami",
+      "stalePollDuringMoveIgnored": true,
+      "noTransientRecoveryCard": true,
+      "mapLayoutStable": true,
+      "lostResponseRecoveryAvailable": true,
+      "sameRequestReplay": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

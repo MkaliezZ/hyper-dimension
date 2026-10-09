@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v150-agent-source",
+  "release": "hyper-dimension-v151-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11585,
-      "sha256": "b9320c6d92fd0cfd714b107f529482c7086c4cd7a7e33e2a2a218f880f65e8fd"
+      "bytes": 11740,
+      "sha256": "da949917f0ae0de255f56a851c222e0bd3c4f00d8032b29eab4cdebc289fb359"
     },
     {
       "path": "README.md",
-      "bytes": 12498,
-      "sha256": "71f276fca5ce97b808eda83066488e43bacaef5d30f06d4d4b768bf517caf4e6"
+      "bytes": 12647,
+      "sha256": "fe423ddd954e669ad984e079a26a2514c23b09ab6c9adc3cad1c78de3697522e"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 6670,
-      "sha256": "f2b90ea8e9d32001a84c7791fe829f0306d71df240408b841f890c6e4696dd69"
+      "bytes": 7016,
+      "sha256": "8f4167befb077f7897b6ee207ce1b47950ce9f531154bf73be40651848ac5d95"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 21413,
-      "sha256": "f76ce20ee57b224d197f437a9a4d38ed88e5dfd7d9a2f1b39d3aaebe959883e9"
+      "bytes": 21759,
+      "sha256": "9f6e6bc65b8467220abd9641ead6fff4250ef0fd7b92034034577a55d8be1654"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -189,6 +189,11 @@
       "path": "docs/kitchen-v142.md",
       "bytes": 3145,
       "sha256": "d77a031507e27f8351138effdded54dc8a94ffdfe92722d89d5f1e0cebab84b4"
+    },
+    {
+      "path": "docs/lobby-navigation-v151.md",
+      "bytes": 1857,
+      "sha256": "e393e0990729a2ec987d3f9d6daa5c0ee2bb14759fa0c48c863ce936c870915a"
     },
     {
       "path": "docs/map-navigation-v141-verification.json",
@@ -1054,6 +1059,16 @@
       "path": "docs/verification/v150/native-recovery.json",
       "bytes": 1624,
       "sha256": "fc3a1434ac6d359a9890356ffb5d6a3a78501a4184514cda1eb7c516dc9e6bc0"
+    },
+    {
+      "path": "docs/verification/v151/native-lobby.json",
+      "bytes": 1749,
+      "sha256": "e1d902d66eba1fe01f91bde1d104e42a5f7272a2737bdbe3169e3f3049c93f6e"
+    },
+    {
+      "path": "docs/verification/v151/native-navigation.json",
+      "bytes": 712,
+      "sha256": "4331d7c9645c7caef899424db529126a88c3952fecb58c220f6f98d76e986cef"
     },
     {
       "path": "index.html",
@@ -4442,8 +4457,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 19179,
-      "sha256": "08624700a1749b5d58f165c10b94e9976c7f232cc835bea7ddd3a3862bbceb90"
+      "bytes": 19359,
+      "sha256": "b256efe9a04d2859fc8909f18c6bd9383d88f58f9cec705581b31ff10c83176e"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -5957,8 +5972,8 @@
     },
     {
       "path": "tests/v148-lobby-browser.mjs",
-      "bytes": 7132,
-      "sha256": "a450ada1fc48a560e05bab0f8225055d8f497c60b040caa2f526bce0bd304f4b"
+      "bytes": 7924,
+      "sha256": "1ab743b43591abfbd71917e59f90d5e4e14cf904fe6449a99491c25182341eb8"
     },
     {
       "path": "tests/v148-motion.test.mjs",
@@ -5969,6 +5984,11 @@
       "path": "tests/v148-travel-schema.test.mjs",
       "bytes": 1040,
       "sha256": "0cbb2bec6526603c9f9ac8b71a9c130eeb18923694224dbaf629a9241e93460f"
+    },
+    {
+      "path": "tests/v151-lobby-navigation-browser.mjs",
+      "bytes": 5309,
+      "sha256": "fd7fd35a47dee414fd5e6c2babe3e26923d3159ac9db39c144d970a979ac282e"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8271,5 +8291,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v150-github"
+  "publicRevision": "v151-github"
 }
