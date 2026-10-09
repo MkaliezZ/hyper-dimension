@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v151-agent-source",
+  "release": "hyper-dimension-v152-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -48,12 +48,12 @@
     {
       "path": "README.en.md",
       "bytes": 11740,
-      "sha256": "da949917f0ae0de255f56a851c222e0bd3c4f00d8032b29eab4cdebc289fb359"
+      "sha256": "1ce04842ca80c5c3034cc80c4f4d128ff83fee68b7031359c3d1c728f6afdacf"
     },
     {
       "path": "README.md",
       "bytes": 12647,
-      "sha256": "fe423ddd954e669ad984e079a26a2514c23b09ab6c9adc3cad1c78de3697522e"
+      "sha256": "439858bedf39297e0c59bed2b459337821096648edc8de6369e39ff208c1f42a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 7016,
-      "sha256": "8f4167befb077f7897b6ee207ce1b47950ce9f531154bf73be40651848ac5d95"
+      "bytes": 7267,
+      "sha256": "9221503b7540c52481b7a25dad393d79a992baefc6511acd74318c8aba17014b"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 21759,
-      "sha256": "9f6e6bc65b8467220abd9641ead6fff4250ef0fd7b92034034577a55d8be1654"
+      "bytes": 22010,
+      "sha256": "89134dd7fb9a01aa80e990ea6ef911644657fec80ab580994f2b72eb4b8ba43a"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -189,6 +189,11 @@
       "path": "docs/kitchen-v142.md",
       "bytes": 3145,
       "sha256": "d77a031507e27f8351138effdded54dc8a94ffdfe92722d89d5f1e0cebab84b4"
+    },
+    {
+      "path": "docs/lobby-motion-v152.md",
+      "bytes": 1321,
+      "sha256": "615a41c650a33042a85cc83e44367ace367ce4365bad77cbbcb1e57bde7e61c5"
     },
     {
       "path": "docs/lobby-navigation-v151.md",
@@ -1069,6 +1074,11 @@
       "path": "docs/verification/v151/native-navigation.json",
       "bytes": 712,
       "sha256": "4331d7c9645c7caef899424db529126a88c3952fecb58c220f6f98d76e986cef"
+    },
+    {
+      "path": "docs/verification/v152/native-lobby.json",
+      "bytes": 1747,
+      "sha256": "b6a1403477655bf54a37e4f5f1543d630005c67c6f12ffcc3b6e2eec72f647a9"
     },
     {
       "path": "index.html",
@@ -3487,8 +3497,8 @@
     },
     {
       "path": "server/lanRoomResidents.mjs",
-      "bytes": 8634,
-      "sha256": "06424033eed1a2ef02fa5bff19894fd9ca175852fd6a36117a3e3aaf3da0ccc5"
+      "bytes": 8677,
+      "sha256": "50fa828ba823a2673250fefdcdcdb21c07f77b08dd6cb933fe355cbd8ac36cce"
     },
     {
       "path": "server/lanServer.mjs",
@@ -4427,13 +4437,13 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 11271,
-      "sha256": "e7dbe57dc3cccada25d6fedc598518fa4343216a951859dd8a809f7d4a1470c5"
+      "bytes": 11780,
+      "sha256": "93fb48177b6a2e98385f993f6641b2bd5395be39ffb3e87f9e043b659d07af07"
     },
     {
       "path": "src/lanMotion.js",
-      "bytes": 1115,
-      "sha256": "536f27ca088e1c2a603bd39339d288c2034e87e701258eeaaef6f369052cda4a"
+      "bytes": 1375,
+      "sha256": "6e4d2b2a928a9ca135dd52b6059dc72da4dc26144d7e7c4d9dd434ccd3eab6c0"
     },
     {
       "path": "src/lanSocialUI.js",
@@ -5977,8 +5987,8 @@
     },
     {
       "path": "tests/v148-motion.test.mjs",
-      "bytes": 1110,
-      "sha256": "6ecb5c3868328be73199460b3e5c5793d0308efb2fa88fb25f95403630ff930c"
+      "bytes": 1113,
+      "sha256": "74c8d9d2e4216c804a11049c0e9d03c0fd3ecc4ec0ef540a15039c49beb4ae5e"
     },
     {
       "path": "tests/v148-travel-schema.test.mjs",
@@ -5989,6 +5999,11 @@
       "path": "tests/v151-lobby-navigation-browser.mjs",
       "bytes": 5309,
       "sha256": "fd7fd35a47dee414fd5e6c2babe3e26923d3159ac9db39c144d970a979ac282e"
+    },
+    {
+      "path": "tests/v152-motion.test.mjs",
+      "bytes": 2008,
+      "sha256": "4c6820815e234fed2d9f62dfee2941bdbf07d80cdcf6ba00c83c39f5edc8e468"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8291,5 +8306,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v151-github"
+  "publicRevision": "v152-github"
 }

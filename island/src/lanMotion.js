@@ -1,13 +1,20 @@
-// Presentation follows server intent. Correction vectors must never rotate a
-// character, and a queued route does not mean a blocked character is walking.
+// Interpolate only confirmed server positions. Predicting down a queued route
+// overshoots a resident who stops for another actor, then pulls it backwards.
 export function sampleLanMotion(a,p,dt,at,passable){
- if(a.snapshotAt!==p.updatedAt){a.snapshotAt=p.updatedAt;a.snapshotReceived=at;}
- const moving=!!p.online&&p.walking===true;
- let target={x:p.x,y:p.y},travel=moving?Math.min(.55,Math.max(0,(at-(a.snapshotReceived??at))/1000))*(p.speed||80):0;
- for(const next of p.route||[]){if(travel<=0)break;const dx=next.x-target.x,dy=next.y-target.y,len=Math.hypot(dx,dy);if(!len)continue;const step=Math.min(travel,len),dest={x:target.x+dx/len*step,y:target.y+dy/len*step};if(!passable(target,dest))break;target=dest;travel-=step;}
- const d=Math.hypot(target.x-a.x,target.y-a.y),t=1-Math.exp(-Math.min(.05,Math.max(0,dt))*12);
- if(d>80||!passable(a,target)){a.x=p.x;a.y=p.y;}else{a.x+=(target.x-a.x)*t;a.y+=(target.y-a.y)*t;}
+ const safeDt=Math.min(.05,Math.max(0,dt));
+ if(a.snapshotAt!==p.updatedAt||!a.motionSample){
+  const interval=a.snapshotAt==null?.12:Math.max(.12,Math.min(.7,(p.updatedAt-a.snapshotAt)/1000));
+  a.motionSample={from:{x:a.x,y:a.y},to:{x:p.x,y:p.y},at,duration:interval};
+  a.snapshotAt=p.updatedAt;
+ }
+ const sample=a.motionSample,progress=Math.max(0,Math.min(1,(at-sample.at)/(sample.duration*1000))),target={x:sample.from.x+(sample.to.x-sample.from.x)*progress,y:sample.from.y+(sample.to.y-sample.from.y)*progress};
+ const before={x:a.x,y:a.y},jump=Math.hypot(p.x-a.x,p.y-a.y)>80;
+ if(jump||!passable(before,target)){a.x=p.x;a.y=p.y;sample.from={x:p.x,y:p.y};sample.to={...sample.from};}
+ else{a.x=target.x;a.y=target.y;}
  if(Number.isFinite(p.direction))a.direction=p.direction;
- a.walking=moving;a.walkMix=(a.walkMix||0)+((moving?1:0)-(a.walkMix||0))*Math.min(1,dt*12);a.phase=(a.phase||0)+dt*12;
+ const moving=!!p.online&&p.walking===true&&!jump&&Math.hypot(a.x-before.x,a.y-before.y)>.001;
+ a.walking=moving;a.walkMix=(a.walkMix||0)+((moving?1:0)-(a.walkMix||0))*Math.min(1,safeDt*12);
+ a.phase=a.walkMix>.001?((a.phase||0)+safeDt*12)%(Math.PI*2):0;
  return a;
 }
+export function resetLanMotion(a){a.motionSample=null;a.walking=false;a.walkMix=0;a.phase=0;}

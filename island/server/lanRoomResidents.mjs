@@ -23,7 +23,7 @@ export function seedRoomResidents(r,account,doc,route,at){
 }
 export function stepPerson(r,c,dt,route,occupied=[]){
  let left=Math.min(2,Math.max(0,dt))*62;c.walking=false;
- while(left>0&&c.path.length){const p=c.path[0],dx=p.x-c.x,dy=p.y-c.y,len=Math.hypot(dx,dy),step=Math.min(left,len,4),next=len?{x:c.x+dx/len*step,y:c.y+dy/len*step}:p;
+ while(left>0&&c.path.length){const p=c.path[0],dx=p.x-c.x,dy=p.y-c.y,len=Math.hypot(dx,dy);if(len<.05){c.path.shift();continue;}const step=Math.min(left,len,4),next=len?{x:c.x+dx/len*step,y:c.y+dy/len*step}:p;
   if(!worldWalkableForTheme(r.theme,next.x,next.y)){c.path=[];break}
   if(occupied.some(q=>q!==c&&distance(next,q)<15)){
    c.blockedFor=(c.blockedFor||0)+Math.min(2,Math.max(0,dt));

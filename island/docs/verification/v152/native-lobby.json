@@ -1,0 +1,61 @@
+{
+  "scope": "Native Edge, real LAN save transactions, fictional fixture identities; no user data or model calls.",
+  "checks": [
+    {
+      "theme": "pixel",
+      "bootstrap503Retried": true,
+      "periodic503NoRedirect": true,
+      "appearancePersisted": true,
+      "sameSaveSlot": true,
+      "cachedOpenMs": 38.60000002384186,
+      "cachedOpenWallMs": 109,
+      "noSystemHands": true,
+      "unsavedDraftPreserved": true,
+      "desktopMap": {
+        "width": 1518,
+        "height": 844
+      },
+      "compactNoOverflow": true,
+      "motionSamples": 600,
+      "idleSamples": 581,
+      "movingSamples": 19,
+      "serverFacingPreserved": true
+    },
+    {
+      "theme": "origami",
+      "bootstrap503Retried": true,
+      "periodic503NoRedirect": true,
+      "appearancePersisted": true,
+      "sameSaveSlot": true,
+      "cachedOpenMs": 118.39999997615814,
+      "cachedOpenWallMs": 152,
+      "noSystemHands": true,
+      "unsavedDraftPreserved": true,
+      "desktopMap": {
+        "width": 1520,
+        "height": 844
+      },
+      "compactNoOverflow": true,
+      "motionSamples": 600,
+      "idleSamples": 581,
+      "movingSamples": 19,
+      "serverFacingPreserved": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "cachedOpenSamples": [
+    {
+      "theme": "pixel",
+      "cachedOpenMs": 38.60000002384186,
+      "cachedOpenWallMs": 109,
+      "metric": "native click timestamp through two animation frames with visible gallery tabs"
+    },
+    {
+      "theme": "origami",
+      "cachedOpenMs": 118.39999997615814,
+      "cachedOpenWallMs": 152,
+      "metric": "native click timestamp through two animation frames with visible gallery tabs"
+    }
+  ]
+}
