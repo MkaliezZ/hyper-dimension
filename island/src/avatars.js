@@ -1,4 +1,4 @@
-import {AVATAR_BY_ID} from './avatarCatalog.js';import {artFrame,rasterMarkup} from './artStore.js';
+import {AVATAR_BY_ID} from './avatarCatalog.js';import {artFrame,rasterMarkup} from './artStore.js';import {AVATAR_PORTRAIT_REGIONS} from './avatarPortraitFrames.js';
 export function avatarFrame(key,theme,heading){const a=AVATAR_BY_ID[key];if(!a)return null;const gender=a.index<6?'male':'female',row=a.index%6,column=[0,1,2,3,4,3,2,1][heading],leftSource=column===1&&(gender==='male'||theme==='pixel'&&row===1)||column===3&&theme==='pixel'&&gender==='female'&&[2,3].includes(row);return {...artFrame(`avatars-${theme}-${gender}-v8.png`,row*5+column,5,6),flip:[1,2,3].includes(heading)!==leftSource,heading,name:a.name}}
-export function avatarPortrait(key,theme,cls='half-portrait avatar-half'){const a=AVATAR_BY_ID[key];return a?rasterMarkup(`avatar-portraits-${theme}-v8.png`,a.index,4,3,a.name+'的成人比例半身立绘',cls):''}
+export function avatarPortrait(key,theme,cls='half-portrait avatar-half'){const a=AVATAR_BY_ID[key];return a?rasterMarkup(`avatar-portraits-${theme}-v8.png`,a.index,4,3,a.name+'的成人比例半身立绘',cls,AVATAR_PORTRAIT_REGIONS[theme]?.[a.index]):''}
 export function avatarThumbnail(key,theme){const a=AVATAR_BY_ID[key];return a?rasterMarkup(`avatars-${theme}-${a.index<6?'male':'female'}-v8.png`,a.index%6*5,5,6,a.name,'avatar-choice-art'):''}

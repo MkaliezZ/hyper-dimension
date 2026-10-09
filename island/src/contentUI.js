@@ -5,6 +5,7 @@ import {momentSeal} from './journeyUI.js';
 import {itemPurpose} from './itemPurpose.js';
 import {AVATARS} from './avatarCatalog.js';
 import {avatarPortrait} from './avatars.js';
+import {residentPortraitMarkup} from './residentPortraits.js';
 import {itemMarkup} from './artStore.js';
 import {RAW_MATERIALS,ALL_RECIPES,ITEM_BY_ID,RECIPE_BY_ID,recipeGate,itemUse,giftPreview,unequipOutfit} from './contentCatalog.js';
 import {BUILDINGS,RESIDENTS} from './world.js';
@@ -21,7 +22,7 @@ export function createContentUI(api){
   const s=state(),selected=butler?s.butlerAvatar:s.playerProfile.avatar;
   openModal(butler?'管家形象衣橱':'岛主形象衣橱','不同发型、服饰与身份气质 · 八向行走与作业动作',
    '<div class="content-tabs"><button data-gender="男" class="'+(gender==='男'?'active':'')+'">男性 · 6 套</button><button data-gender="女" class="'+(gender==='女'?'active':'')+'">女性 · 6 套</button></div><div class="avatar-gallery">'+
-   (butler?'<button class="avatar-card '+(selected==='default'?'selected':'')+'" data-avatar="default"><div class="default-butler"></div><b>Hermes 管家</b><p>原始管家形象</p></button>':'')+
+   (butler?'<button class="avatar-card '+(selected==='default'?'selected':'')+'" data-avatar="default">'+residentPortraitMarkup(15,theme(),'Hermes 管家','wardrobe-portrait resident-atlas-portrait default-butler')+'<b>Hermes 管家</b><p>原始管家形象</p></button>':'')+
    AVATARS.filter(a=>a.gender===gender).map(a=>'<button class="avatar-card '+(selected===a.id?'selected':'')+'" data-avatar="'+a.id+'">'+avatarPortrait(a.id,theme(),'wardrobe-portrait')+'<b>'+a.name+'</b><p>'+a.description+'</p><span>'+(selected===a.id?'正在使用':'选择此形象')+'</span></button>').join('')+'</div>',
    '<button id="backProfile" class="secondary">返回'+(butler?'管家档案':'个人档案')+'</button>');
   bind('[data-gender]',el=>wardrobe(butler,el.dataset.gender));bind('[data-avatar]',async el=>{if(managing)return;const page=root().querySelector('.modal'),avatarId=el.dataset.avatar;page.querySelectorAll('[data-avatar]').forEach(b=>b.disabled=true);await manage('avatar',{target:butler?'butler':'player',avatarId},()=>{const current=state();if(butler)current.butlerAvatar=avatarId;else current.playerProfile.avatar=avatarId;return {ok:true,text:'角色形象已更新'};},()=>{if(page.isConnected)wardrobe(butler,gender);});if(page.isConnected)page.querySelectorAll('[data-avatar]').forEach(b=>b.disabled=false);});bind('#backProfile',()=>butler?api.butler():player());

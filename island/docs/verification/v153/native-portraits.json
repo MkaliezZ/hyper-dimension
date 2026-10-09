@@ -1,0 +1,110 @@
+{
+  "scope": "Real native LAN /play chooser; fictional accounts and isolated saves, no models or user data.",
+  "passed": true,
+  "checks": [
+    {
+      "theme": "pixel",
+      "all13ChoicesConfirmed": true,
+      "refreshPreservedAppearance": true,
+      "sameSaveSlot": true,
+      "narrowWidths": [
+        390,
+        768
+      ],
+      "portraitAspectPreserved": true
+    },
+    {
+      "theme": "origami",
+      "all13ChoicesConfirmed": true,
+      "refreshPreservedAppearance": true,
+      "sameSaveSlot": true,
+      "narrowWidths": [
+        390,
+        768
+      ],
+      "portraitAspectPreserved": true
+    }
+  ],
+  "pixelChecks": {
+    "foreignArtProbes": [
+      {
+        "id": "male_1",
+        "source": [
+          365,
+          350
+        ],
+        "backgroundDifference": 0
+      },
+      {
+        "id": "male_1",
+        "source": [
+          720,
+          350
+        ],
+        "backgroundDifference": 0
+      },
+      {
+        "id": "male_2",
+        "source": [
+          1083,
+          350
+        ],
+        "backgroundDifference": 0
+      },
+      {
+        "id": "male_4",
+        "source": [
+          360,
+          693
+        ],
+        "backgroundDifference": 0
+      },
+      {
+        "id": "male_5",
+        "source": [
+          375,
+          513
+        ],
+        "backgroundDifference": 0
+      },
+      {
+        "id": "female_0",
+        "source": [
+          737,
+          563
+        ],
+        "backgroundDifference": 0
+      }
+    ],
+    "defaultTopStripAbsent": true
+  },
+  "uniquePortraitChoicesPerTheme": 13,
+  "visualReviews": {
+    "pixel": 13,
+    "origami": 13
+  },
+  "existingAtlasPngsUnchanged": true,
+  "knownForeignPixelDifferencesBefore": [
+    37,
+    171,
+    92,
+    167,
+    133,
+    159
+  ],
+  "knownForeignPixelDifferencesAfter": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "failedAttemptsPreservedPrivately": 2,
+  "failedAttemptCauses": [
+    "Default portrait has nested SVG; test must select the outer viewport explicitly",
+    "CSS hover filter alters painted RGB; compare with the same screenshot background, retaining the 3-RGB tolerance"
+  ],
+  "visualReviewBy": "development agent",
+  "humanAcceptance": false
+}

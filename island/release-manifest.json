@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v152-agent-source",
+  "release": "hyper-dimension-v153-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11740,
-      "sha256": "1ce04842ca80c5c3034cc80c4f4d128ff83fee68b7031359c3d1c728f6afdacf"
+      "bytes": 11977,
+      "sha256": "f367de31862ddf5760767074859958a14d20c51f258b1303c92eaaf46e9d1b58"
     },
     {
       "path": "README.md",
-      "bytes": 12647,
-      "sha256": "439858bedf39297e0c59bed2b459337821096648edc8de6369e39ff208c1f42a"
+      "bytes": 12848,
+      "sha256": "fc44036dd1c7aaa1104e280a96e1d77d4bfb9f378fff4224d6d5b2ba7e3da212"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 7267,
-      "sha256": "9221503b7540c52481b7a25dad393d79a992baefc6511acd74318c8aba17014b"
+      "bytes": 7559,
+      "sha256": "6d44c522f97e34ba35e5bea349790ae750a8ed75b51943a62671fdad0a913cae"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 22010,
-      "sha256": "89134dd7fb9a01aa80e990ea6ef911644657fec80ab580994f2b72eb4b8ba43a"
+      "bytes": 22352,
+      "sha256": "b7e5aefdb310dea1280cb5d1d66490921db1c7494a1a03ae6bd170df81a60a1b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -449,6 +449,16 @@
       "path": "docs/media/v141-video-verification.json",
       "bytes": 2987,
       "sha256": "6281a9f683c792f00ae139d36e059eb35328159fb5cbd96e8fe76226e8de0cbf"
+    },
+    {
+      "path": "docs/media/v153-portrait-origami.png",
+      "bytes": 101426,
+      "sha256": "68c79ba7b792699c5acaf57ef1b6ef943a43452b90568fc23702ca596c6466b1"
+    },
+    {
+      "path": "docs/media/v153-portrait-pixel.png",
+      "bytes": 93603,
+      "sha256": "8e2b483d8fd42109723fabe31ca26f6d8c0d332b37814e2c4be36d37d856da95"
     },
     {
       "path": "docs/night-sky-v141-verification.json",
@@ -846,6 +856,11 @@
       "sha256": "6ce552e48a967381f980b0a5ea74f62ef283697d3966a77d0060234b66dcd83d"
     },
     {
+      "path": "docs/steward-portraits-v153.md",
+      "bytes": 2088,
+      "sha256": "5520062a8ea195aa1f8ee5c076454657b0a679f5760493b049134368f0301309"
+    },
+    {
       "path": "docs/steward-preflight-v145.md",
       "bytes": 1327,
       "sha256": "43a777363e64f006f960e83a0be078c0a3005bd6bd1b72d803a39633f787acfc"
@@ -1079,6 +1094,11 @@
       "path": "docs/verification/v152/native-lobby.json",
       "bytes": 1747,
       "sha256": "b6a1403477655bf54a37e4f5f1543d630005c67c6f12ffcc3b6e2eec72f647a9"
+    },
+    {
+      "path": "docs/verification/v153/native-portraits.json",
+      "bytes": 2312,
+      "sha256": "0e55a53e524d7b6db5aebf3f46633b2485486455a0e2a28f6a8ad2f2c6f2497d"
     },
     {
       "path": "index.html",
@@ -3817,8 +3837,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 6217,
-      "sha256": "9adb0553f2377f8a319564449425d8d5af9993877731ec322e461f4c99d92b36"
+      "bytes": 6415,
+      "sha256": "91a54d642b6cdfaf64549080a5dac5d45a30db1d389dffc2e37574471d7d66cb"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -3826,9 +3846,14 @@
       "sha256": "3337e1687385d6677f362ebe21036323b888ac2513aa124624210111f54207d3"
     },
     {
+      "path": "src/avatarPortraitFrames.js",
+      "bytes": 17389,
+      "sha256": "1bb2a091c34b642e31cdb79e7ba1a92be83ad67ffcc1626b76bec032c8a7ca01"
+    },
+    {
       "path": "src/avatars.js",
-      "bytes": 968,
-      "sha256": "1d4aff12ec81b7f6bf89c0fffa25ebdc6bd189082d90dd1f9591cf2deb9c9b68"
+      "bytes": 1076,
+      "sha256": "f0e92cb8224374d2fd5efb203a23c0d7f938fe3125e5dfff794989776d2bc8b8"
     },
     {
       "path": "src/boatMotion.js",
@@ -3902,8 +3927,8 @@
     },
     {
       "path": "src/content-ui.css",
-      "bytes": 10478,
-      "sha256": "08f2297fe22be1081a5c4df0882398c02c00290c526f2edc1c2c8bee37010d3f"
+      "bytes": 10273,
+      "sha256": "90ff8830b3e64575bd3953e60299e2b4c3fc3a0b2e595a609e701bc6fcc012d8"
     },
     {
       "path": "src/contentCatalog.js",
@@ -3912,8 +3937,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 17301,
-      "sha256": "916fd1035a995c4a319d654c7592170145bd72a5aa6074dde917ad1877e6a94b"
+      "bytes": 17444,
+      "sha256": "f0f6a668df8f4f843c6a496844edd72abe50ca97aa2d53caca1afeada6bb07c2"
     },
     {
       "path": "src/conversationFallback.js",
@@ -4842,8 +4867,8 @@
     },
     {
       "path": "src/residentPortraits.js",
-      "bytes": 1027,
-      "sha256": "6e218a3a718a2dceb02cd159facefb5317a1ba7773288af55f78188da6a08bd9"
+      "bytes": 1080,
+      "sha256": "fb2c66ed76c87b185f432689ef360149f8a90a500caf701bb9834d6a8dd62a14"
     },
     {
       "path": "src/residentRuntime.js",
@@ -6004,6 +6029,11 @@
       "path": "tests/v152-motion.test.mjs",
       "bytes": 2008,
       "sha256": "4c6820815e234fed2d9f62dfee2941bdbf07d80cdcf6ba00c83c39f5edc8e468"
+    },
+    {
+      "path": "tests/v153-portraits-browser.mjs",
+      "bytes": 7310,
+      "sha256": "d14a8e8193d6a0e83ef0c4fd188a4d4b25bbc7aa5f2677c2f9754406fcbd6422"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8306,5 +8336,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v152-github"
+  "publicRevision": "v153-github"
 }

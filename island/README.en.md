@@ -4,9 +4,11 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V152 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V153 development snapshot**; full product acceptance is still in progress.
 
-## Current update · V152
+## Current update · V153
+
+Steward and player portraits are individually clipped to keep neighboring sleeves and stray atlas fragments out of the chooser, preserving adult proportions in both themes. [Portraits and native checks](docs/steward-portraits-v153.md).
 
 Theme cursors cover legacy controls. Both appearances persist in one island save. The lobby gives the island more space and groups hospitality controls in a side rail. NPC walking and facing follow server intent. Gallery data is preloaded. [Implementation and regression evidence](docs/ui-reliability-v148.md).
 
@@ -20,7 +22,7 @@ Normal lobby map clicks no longer flash a recovery card; failed responses remain
 
 The cover opens an online player; downloads have a separate control. The new 30-second native recording shows both island styles, AI resident dialogue, selectable steward appearances, an actual Word document task, parent/child Agent cooperation, a minigame inside its building dialog and the completed reward.
 
-2560 × 1440 / 60 fps with original BGM. Footage was captured from V145; current source is V152. Profiles, project images and work briefs are fictional; the Hermes task actually executes tools. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json).
+2560 × 1440 / 60 fps with original BGM. Footage was captured from V145; current source is V153. Profiles, project images and work briefs are fictional; the Hermes task actually executes tools. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json).
 
 ### V144 nearby resident sound
 
