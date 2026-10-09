@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v148-agent-source",
+  "release": "hyper-dimension-v149-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -48,12 +48,12 @@
     {
       "path": "README.en.md",
       "bytes": 11585,
-      "sha256": "d9de6f60da9d14f8223780f861c1ea51c8dacc9cf9435dcd4c8140f89359095a"
+      "sha256": "02e774ccb2a41cef2dfb3a76f91b53c2002cd803455a22a562acf8122f0996fa"
     },
     {
       "path": "README.md",
       "bytes": 12498,
-      "sha256": "18029143c91db7a5516d7f2f3b1e01142a1507ae5f9d1962ce7e976d33619013"
+      "sha256": "f446ad5e9a49fea6707fd2374138ea44c8b8766eff0d89fbc6ffa171d16ff1ba"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 6279,
-      "sha256": "36670cb55cd7977ed5a864685b2a92646ce36e063532ff29961c85877ec30913"
+      "bytes": 6458,
+      "sha256": "9d856c2d52fd4228b006a237e881444e1d7c6961bba5959cd7b484de30867386"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,13 +82,18 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 21022,
-      "sha256": "ead63e6865714e932d61febf977b4d80366a600e743ec19d5d5a409c2f67de8f"
+      "bytes": 21201,
+      "sha256": "50f6c651304fc09739711c19b602250c7689e60c74a91099693a69a9686cd2b9"
     },
     {
       "path": "docs/a2a-information-v137.md",
       "bytes": 3859,
       "sha256": "fe2ec902f1781349740ed3c1e9e6086f99000a4847161fedec8581da9c2a88e4"
+    },
+    {
+      "path": "docs/browser-snapshot-v149.md",
+      "bytes": 1226,
+      "sha256": "0450fd01fdc4a2f4a2a029a72152e5d341016c28b322f16820517918a2e3035b"
     },
     {
       "path": "docs/brush-studio-v139.md",
@@ -1029,6 +1034,16 @@
       "path": "docs/verification/v148/unit-regression.txt",
       "bytes": 2089,
       "sha256": "90e71750977020ab31b0fa2c6d16b6c3acafbd7b1ca082a17bae58267fd3ae6b"
+    },
+    {
+      "path": "docs/verification/v149/public-player.json",
+      "bytes": 869,
+      "sha256": "0c851dfe7e8b704fd5e5e49edcf1c6b69d6073a94a82939ba8aa69e9aebb970d"
+    },
+    {
+      "path": "docs/verification/v149/rendered-snapshot-native.json",
+      "bytes": 1198,
+      "sha256": "9a36b7793e3e153691421624bccebb75342ecad1806d28a7f6577ea694879b66"
     },
     {
       "path": "index.html",
@@ -4387,8 +4402,8 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 11247,
-      "sha256": "88f8c0c644429980c9a8390ad6f85e2404e130f2fd6214b1cfdd53b40cdde9ec"
+      "bytes": 11271,
+      "sha256": "e7dbe57dc3cccada25d6fedc598518fa4343216a951859dd8a809f7d4a1470c5"
     },
     {
       "path": "src/lanMotion.js",
@@ -5932,8 +5947,8 @@
     },
     {
       "path": "tests/v148-lobby-browser.mjs",
-      "bytes": 6962,
-      "sha256": "4c56d1f092e9c16a3278e6b9687f2f23d91bf4421b82e1ca5ea9068dafcc128f"
+      "bytes": 7132,
+      "sha256": "a450ada1fc48a560e05bab0f8225055d8f497c60b040caa2f526bce0bd304f4b"
     },
     {
       "path": "tests/v148-motion.test.mjs",
@@ -8246,5 +8261,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v148-github"
+  "publicRevision": "v149-github"
 }

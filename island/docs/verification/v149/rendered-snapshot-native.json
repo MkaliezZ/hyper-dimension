@@ -1,0 +1,45 @@
+{
+  "scope": "Native Edge, real LAN save transactions, fictional fixture identities; no user data or model calls.",
+  "checks": [
+    {
+      "theme": "pixel",
+      "bootstrap503Retried": true,
+      "periodic503NoRedirect": true,
+      "appearancePersisted": true,
+      "sameSaveSlot": true,
+      "cachedOpenMs": 220,
+      "noSystemHands": true,
+      "unsavedDraftPreserved": true,
+      "desktopMap": {
+        "width": 1518,
+        "height": 844
+      },
+      "compactNoOverflow": true,
+      "motionSamples": 600,
+      "idleSamples": 577,
+      "movingSamples": 23,
+      "serverFacingPreserved": true
+    },
+    {
+      "theme": "origami",
+      "bootstrap503Retried": true,
+      "periodic503NoRedirect": true,
+      "appearancePersisted": true,
+      "sameSaveSlot": true,
+      "cachedOpenMs": 189,
+      "noSystemHands": true,
+      "unsavedDraftPreserved": true,
+      "desktopMap": {
+        "width": 1520,
+        "height": 844
+      },
+      "compactNoOverflow": true,
+      "motionSamples": 600,
+      "idleSamples": 584,
+      "movingSamples": 16,
+      "serverFacingPreserved": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

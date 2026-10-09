@@ -169,3 +169,8 @@ Original cursors follow the active appearance across navigation, interactions, d
 ## V148 · UI 与联机显示修复
 
 主题鼠标、身份重试、同档画风切换、放大会客地图、NPC 动画同步及会客馆预加载。[说明与证据](ui-reliability-v148.md)。
+
+
+## V149 · 渲染快照检查
+
+NPC 原生回归等待实际帧，并核对同一服务器时间戳后执行严格朝向断言。[CI原因与重跑](browser-snapshot-v149.md)。

@@ -1,0 +1,36 @@
+{
+  "base": "https://mkaliezz.github.io/hyper-dimension/",
+  "film": "living",
+  "footageVersion": 145,
+  "currentSourceVersion": 148,
+  "clockOrSeekInjected": false,
+  "checks": [
+    {
+      "viewport": "desktop",
+      "width": 2560,
+      "height": 1440,
+      "duration": 30,
+      "currentTime": 30,
+      "ended": true,
+      "muted": false,
+      "volume": 1,
+      "quality": {
+        "totalVideoFrames": 1800,
+        "droppedVideoFrames": 0
+      },
+      "source": "https://mkaliezz.github.io/hyper-dimension/media/hyper-dimension-v145-living-agents-30s.mp4",
+      "overflow": false,
+      "wallMs": 33777
+    },
+    {
+      "viewport": "mobile",
+      "width": 2560,
+      "height": 1440,
+      "overflow": false,
+      "ratio": 1.7777777777777777,
+      "language": "en"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
