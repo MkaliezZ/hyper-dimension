@@ -1,0 +1,43 @@
+{
+  "candidate": "V143",
+  "cashPolicyVersion": 105,
+  "ratesChanged": false,
+  "economicSimulation": {
+    "daysPerCase": 60,
+    "cases": 12,
+    "passed": true,
+    "normalRules": true,
+    "timeAccelerated": true,
+    "modelCalls": false,
+    "playerInputsSynthetic": true,
+    "maxUpgradeInitialStateSynthetic": true,
+    "skipFirstDaysForMeans": 5,
+    "source": "economy-900s.json"
+  },
+  "nativeUi": {
+    "styles": [
+      "pixel",
+      "origami"
+    ],
+    "desktop": [
+      1440,
+      1000
+    ],
+    "compact": [
+      390,
+      844
+    ],
+    "errors": 0,
+    "missingAssets": 0,
+    "refreshPersistent": true,
+    "fixtureHistory": true
+  },
+  "tests": {
+    "defaultBeforeLastHistoryGuard": 889,
+    "finalTrendFocused": 6,
+    "setsOverlap": true
+  },
+  "fullAcceptance": false,
+  "physicalMac": false,
+  "humanPlaytest": false
+}

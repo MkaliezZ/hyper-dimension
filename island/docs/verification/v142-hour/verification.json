@@ -1,0 +1,192 @@
+{
+  "version": "V142",
+  "sourceCommit": "21f4f430833417a117532f42094e9e3532ac868e",
+  "archiveSha256": "47ea6afb452ce3588308fd34675f9f9f93d980bcaf7cad40c50159f36943bcb1",
+  "startedAt": "2026-10-09T13:28:05.861Z",
+  "finishedAt": "2026-10-09T14:28:28.809Z",
+  "completed": true,
+  "passed": true,
+  "sourceUnchanged": true,
+  "sourceFiles": 1569,
+  "sourceManifestSha256": "740407c0ebd1b2ea135e0800c33abb847cba42b0b8d72a55e7c3400f0f5010a9",
+  "clockInjected": false,
+  "userDataTouched": false,
+  "exclusiveLoad": false,
+  "hardware": {
+    "cpu": "AMD Ryzen 5 5600 6-Core Processor",
+    "memoryBytes": 34282184704,
+    "gpu": "NVIDIA GeForce RTX 5060",
+    "platform": "Windows",
+    "queriedThisTurn": true
+  },
+  "cases": [
+    {
+      "theme": "pixel",
+      "zeroStart": true,
+      "finalMinute": {
+        "index": 60,
+        "wallSeconds": 3603.8425,
+        "fps": 164.2874237706004,
+        "frameP95": 6.25,
+        "frameP99": 6.25,
+        "frameMax": 115.09999999999991,
+        "longTasks": 1,
+        "longTaskMax": 119,
+        "pathSamples": 305,
+        "pathP95": 3.300000011920929,
+        "heap": 43124570,
+        "gameDay": 4,
+        "activeDaySeconds": 894.6507999999975,
+        "coins": 101,
+        "arrivals": 51,
+        "departures": 50
+      },
+      "pageErrors": 0,
+      "missingAssets": 0,
+      "apiErrors": 2,
+      "verifiedResponses": [
+        {
+          "source": "deepseek",
+          "model": "deepseek-flash",
+          "count": 17
+        },
+        {
+          "source": "hermes",
+          "model": "deepseek-flash",
+          "count": 3
+        }
+      ],
+      "settledDays": [
+        {
+          "day": 1,
+          "budget": 84,
+          "paid": 68,
+          "deferred": 16,
+          "visitorIncome": 163,
+          "visitorCost": 75,
+          "income": 163,
+          "cost": 143,
+          "net": 20,
+          "operatingNet": 4,
+          "policyVersion": 105
+        },
+        {
+          "day": 2,
+          "budget": 84,
+          "paid": 77,
+          "deferred": 7,
+          "visitorIncome": 142,
+          "visitorCost": 65,
+          "income": 142,
+          "cost": 142,
+          "net": 0,
+          "operatingNet": -7,
+          "policyVersion": 105
+        },
+        {
+          "day": 3,
+          "budget": 84,
+          "paid": 81,
+          "deferred": 3,
+          "visitorIncome": 150,
+          "visitorCost": 69,
+          "income": 150,
+          "cost": 150,
+          "net": 0,
+          "operatingNet": -3,
+          "policyVersion": 105
+        }
+      ],
+      "emptyBrowserReopen": {
+        "coins": 101,
+        "townDays": 3,
+        "arrivals": 51,
+        "preserved": true
+      }
+    },
+    {
+      "theme": "origami",
+      "zeroStart": true,
+      "finalMinute": {
+        "index": 60,
+        "wallSeconds": 3600.470199999988,
+        "fps": 164.12995169353212,
+        "frameP95": 6.25,
+        "frameP99": 6.25,
+        "frameMax": 230.30000000000018,
+        "longTasks": 3,
+        "longTaskMax": 224,
+        "pathSamples": 305,
+        "pathP95": 3.199999988079071,
+        "heap": 36026066,
+        "gameDay": 4,
+        "activeDaySeconds": 889.384299999999,
+        "coins": 129,
+        "arrivals": 51,
+        "departures": 50
+      },
+      "pageErrors": 0,
+      "missingAssets": 0,
+      "apiErrors": 0,
+      "verifiedResponses": [
+        {
+          "source": "deepseek",
+          "model": "deepseek-flash",
+          "count": 18
+        },
+        {
+          "source": "hermes",
+          "model": "deepseek-flash",
+          "count": 4
+        }
+      ],
+      "settledDays": [
+        {
+          "day": 1,
+          "budget": 84,
+          "paid": 63,
+          "deferred": 21,
+          "visitorIncome": 157,
+          "visitorCost": 74,
+          "income": 157,
+          "cost": 137,
+          "net": 20,
+          "operatingNet": -1,
+          "policyVersion": 105
+        },
+        {
+          "day": 2,
+          "budget": 84,
+          "paid": 63,
+          "deferred": 21,
+          "visitorIncome": 122,
+          "visitorCost": 59,
+          "income": 122,
+          "cost": 122,
+          "net": 0,
+          "operatingNet": -21,
+          "policyVersion": 105
+        },
+        {
+          "day": 3,
+          "budget": 84,
+          "paid": 84,
+          "deferred": 0,
+          "visitorIncome": 178,
+          "visitorCost": 79,
+          "income": 178,
+          "cost": 163,
+          "net": 15,
+          "operatingNet": 15,
+          "policyVersion": 105
+        }
+      ],
+      "emptyBrowserReopen": {
+        "coins": 129,
+        "townDays": 3,
+        "arrivals": 51,
+        "preserved": true
+      }
+    }
+  ]
+}

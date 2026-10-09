@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v142-agent-source",
+  "release": "hyper-dimension-v143-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11086,
-      "sha256": "091ffb64a8d2943e5f002c2df9f9e46f6ef195cbb116f2dcdf4683342cd8f176"
+      "bytes": 11363,
+      "sha256": "d97db417aad9834468f5f78fbae385b5bc23d699827f7fae103b2bec74e05da2"
     },
     {
       "path": "README.md",
-      "bytes": 10890,
-      "sha256": "b170000152904aae7e39d79a38d9db00b962e39985335ca75cb7eec1da0f8b43"
+      "bytes": 11124,
+      "sha256": "7173f3fb3eba7e62d4f2c9d4bca41e10f8b9c40244b9c2209d041dfe8565c2ee"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 4011,
-      "sha256": "f413f4ed3697490c1657639756b3359024902bfd96bacedb2f645d340f4ae0ef"
+      "bytes": 4280,
+      "sha256": "8fa4cb0caad7317eee3cd3200a64ab84e1f935586b8785c191f0900b2a8a62ec"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 18219,
-      "sha256": "c8b13cd388a33aadfba62c99ff90c79075231a03d4a77ed74f5ab47d73c10191"
+      "bytes": 19023,
+      "sha256": "e5e06ff58c53d8fce55c98e6466094c58c6e09bb02cdad868ff0b134c0610ec0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -131,6 +131,11 @@
       "sha256": "d4077b036002b47ce496f93aa31972a89443432b8d5df371e01e95abd1cf8aeb"
     },
     {
+      "path": "docs/economy-v143.md",
+      "bytes": 4918,
+      "sha256": "fcc5dabcef63559d81f2fc59803fab7e7a1e9fed3fcdb177403be9a021465589"
+    },
+    {
       "path": "docs/environment-v131-evidence.json",
       "bytes": 8242,
       "sha256": "ad16c4476477e8abe03db883fbb932d32af69d1b9c19a92647bbbe5ed36d4d23"
@@ -139,6 +144,11 @@
       "path": "docs/environment-v131.md",
       "bytes": 5140,
       "sha256": "e88bb518ce97ab6a41787719a1dc52ea19ef3e1494f78b5f414e2f0d1ac9f48f"
+    },
+    {
+      "path": "docs/frozen-hour-v142.md",
+      "bytes": 2605,
+      "sha256": "7b751a6a0ce1c2b8d7ba5c1ad37d7b5470a1803f66dcb2b0e2266efd77a9faf5"
     },
     {
       "path": "docs/gallery-seam-v131.md",
@@ -861,6 +871,51 @@
       "sha256": "03ae784269ed3c7e52c38b6294ebe21cc3d897c0226668843507ba08ba56e928"
     },
     {
+      "path": "docs/verification/v142-hour/origami-minute-60.png",
+      "bytes": 2288421,
+      "sha256": "e8eb2b557fe10077b22e6681e7936eb6ecb279202d9d5903d0d367e2ee963fba"
+    },
+    {
+      "path": "docs/verification/v142-hour/pixel-minute-60.png",
+      "bytes": 2484110,
+      "sha256": "d06efe47b6afb313ecbf20bdfa59fa56fb5dd41f0b31b18893f0346282155d81"
+    },
+    {
+      "path": "docs/verification/v142-hour/verification.json",
+      "bytes": 4666,
+      "sha256": "987ca0d6b3bc019dc68b99430ff7170f0a6bff657aed2eb2b6a3839908f51baa"
+    },
+    {
+      "path": "docs/verification/v143/economy-900s.json",
+      "bytes": 229090,
+      "sha256": "170d6c466aa114146d512b2c110251c84e7853771e8ba3c949d65efd99e88963"
+    },
+    {
+      "path": "docs/verification/v143/origami-desktop.png",
+      "bytes": 995415,
+      "sha256": "46984b28909874159a1e15bc8f33a7e31a07b1f2c1d6022860f1bc0b031901b1"
+    },
+    {
+      "path": "docs/verification/v143/origami-mobile.png",
+      "bytes": 176919,
+      "sha256": "f6bcde97d739a88f812e17cae0411f47899affec47bdbdaf5bb4f38cbd2c48c8"
+    },
+    {
+      "path": "docs/verification/v143/pixel-desktop.png",
+      "bytes": 937479,
+      "sha256": "627aab5ad7ac3adbccb21f4e2d273bbafbc2fbd591f6313e7b1b53fac6b2b70a"
+    },
+    {
+      "path": "docs/verification/v143/pixel-mobile.png",
+      "bytes": 150808,
+      "sha256": "5f7308004227dc72757c066cfe51683f6eaff743384d425ea4481b8f9ec29933"
+    },
+    {
+      "path": "docs/verification/v143/verification.json",
+      "bytes": 850,
+      "sha256": "627cb52605ae69f2ee3505a851599574fec55bfb57a7dd053a8fc59e20268164"
+    },
+    {
       "path": "index.html",
       "bytes": 6204,
       "sha256": "8c41f4b4b5d1b3c671ee3d0cc7814fbb0460af6586da8f2bbc9dcd0d48359934"
@@ -1372,8 +1427,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8591,
-      "sha256": "771db5e250089a678667e8899d838cc9d3c5e9ec258372697fa97a57399f5607"
+      "bytes": 8625,
+      "sha256": "c41c3ade105c24ac5622e61a56938554588cdf1e7ae2209996bc065a6a49fd5d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3457,8 +3512,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 135754,
-      "sha256": "2fcbd57534e0dcf0bc1f8cc03bfdbf33c300fc689ad69356de1a3027d4252e04"
+      "bytes": 136990,
+      "sha256": "54e7b38fe48070d3fa065e9a0873702c4d81e2c8bfa80713423d098a6ab38d56"
     },
     {
       "path": "src/arcade.css",
@@ -3674,6 +3729,11 @@
       "path": "src/economy.js",
       "bytes": 10808,
       "sha256": "5c4758dfac3a664c3ca1ee449521efe264cf273857200c2d9bc81a80fff34027"
+    },
+    {
+      "path": "src/economyTrend.js",
+      "bytes": 1380,
+      "sha256": "063f3159c6af1aa4181cc7ad4d1a19e19d797524acf6c259ad4212f0a83ab779"
     },
     {
       "path": "src/environment-v127.css",
@@ -5571,6 +5631,21 @@
       "sha256": "f3f891a670d83eb2e9eb080c8273fbd5ee403381805d5591e3efe0903f3c1198"
     },
     {
+      "path": "tests/v143-economy-browser.mjs",
+      "bytes": 4634,
+      "sha256": "c3d2f62e770875aa761220d0f0ec07493064e8ed812e2c1651960dcbda3e71c2"
+    },
+    {
+      "path": "tests/v143-economy-trend.test.mjs",
+      "bytes": 2320,
+      "sha256": "67ece2b9602530485a66bff4b2e3a142285d7613b5b4c7df19f5f711ff6ac86d"
+    },
+    {
+      "path": "tests/v143-zero-agent-journey-browser.mjs",
+      "bytes": 11039,
+      "sha256": "943bcd733dc0e6ccb603d4ba3826e030f929a4f40411a347529c9f31fb3af974"
+    },
+    {
       "path": "tests/v16-v17-ui-qa.mjs",
       "bytes": 5407,
       "sha256": "b0b0953ebda1e041eacf700ff1e71be8dc1243e5cea2622c10e03aa5cc81e271"
@@ -5787,8 +5862,8 @@
     },
     {
       "path": "tests/v26-economy-simulation.mjs",
-      "bytes": 5193,
-      "sha256": "a3327f86c7963e5ce55ad3a502882e70e189c1335abb91f997dfc7fe51b33db6"
+      "bytes": 6318,
+      "sha256": "31b2f4112b7487a4571a927bd8064286796e615585d69c901953dd1c41522465"
     },
     {
       "path": "tests/v26-economy-wardrobe.test.mjs",
@@ -7271,6 +7346,11 @@
       "sha256": "c4acd50364e7356102e0ccf337200a9a5774bd6d78c58f7a2a4dd9c7b6226066"
     },
     {
+      "path": "tests/zero-basics-browser.mjs",
+      "bytes": 6017,
+      "sha256": "8cdf7b7b00ede4e6c5178e3531887fcae94235ebabf0aef267e2e99724a1f108"
+    },
+    {
       "path": "tools/agent-deploy.mjs",
       "bytes": 8517,
       "sha256": "c8e3589c06c80fd04bfa49de903392c902fab0e0a0ab0c9dd9930e771967edb6"
@@ -7866,5 +7946,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v142-github"
+  "publicRevision": "v143-github"
 }
