@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v138-agent-source",
+  "release": "hyper-dimension-v139-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -52,8 +52,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8844,
-      "sha256": "d07a4aec58603e66fded9b05c78b976ae037c79fe521c2b8f703e95d4aa7ef1f"
+      "bytes": 9476,
+      "sha256": "fd7885498daddb617f6afdd10401686a27977f1d4bc3a8784b21b97ca6229a53"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 2869,
-      "sha256": "5a25789837657209b2acc3b34380203925943d557027d779e67fbe719a2f1cf5"
+      "bytes": 3071,
+      "sha256": "0513c860ad372c7717c64991ad7d139c8c1c807cfc9b0d9a02e7da628a6d8e15"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,13 +82,23 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 14321,
-      "sha256": "c961fb184a89b3bda8bcd75e4242268996d4ce7d123ca4f22a4957586fe821d2"
+      "bytes": 15080,
+      "sha256": "6de708b88dedf3b2a723b959f764bbd62e14f285ca244e112464908496ffdbac"
     },
     {
       "path": "docs/a2a-information-v137.md",
       "bytes": 3859,
       "sha256": "fe2ec902f1781349740ed3c1e9e6086f99000a4847161fedec8581da9c2a88e4"
+    },
+    {
+      "path": "docs/brush-studio-v139.md",
+      "bytes": 3633,
+      "sha256": "591870c15e8bbabafb7655b109f6c4c1d603934a9e0b749b479de66dcf5bcfe5"
+    },
+    {
+      "path": "docs/brush-v139-verification.json",
+      "bytes": 708,
+      "sha256": "bdfecf00504866d70557aa2cccb1b3014b1895e9337e530116a45191a2e244b8"
     },
     {
       "path": "docs/classic-settlement-v110.md",
@@ -204,6 +214,16 @@
       "path": "docs/media/hyper-dimension-v138-bridge-poster.png",
       "bytes": 1339427,
       "sha256": "3fc5a403d0e078c4d35c019c2dc7ced4d5f378862d75f9e584a7971fb87ec072"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v139-brush-12s.mp4",
+      "bytes": 5236252,
+      "sha256": "4438849b9b31b83ee33b7ab14aa59bb22cbc86c11e67e596c617b0ecd2c9078c"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v139-brush-poster.png",
+      "bytes": 1943803,
+      "sha256": "85c94184e7d3a83088823eac8281b7b38e925ee1404da010435886e574ffeba1"
     },
     {
       "path": "docs/media/music-notes.json",
@@ -339,6 +359,11 @@
       "path": "docs/media/v138-video-verification.json",
       "bytes": 1419,
       "sha256": "fed4950f5b2fd52171930e3d0161ff783b5398181d16946f933782d1c78368f4"
+    },
+    {
+      "path": "docs/media/v139-video-verification.json",
+      "bytes": 1643,
+      "sha256": "aebede421fa0272ddc97d960361006bf922732bdc90188cccb2460821832a13e"
     },
     {
       "path": "docs/npc-recovery-v116.md",
@@ -616,6 +641,16 @@
       "sha256": "811ed8ddab2cb72bec445d25beec234aec7c59afac5c80385e9d62d6b8a60e11"
     },
     {
+      "path": "docs/screenshots/v139-origami-drawing.png",
+      "bytes": 1300832,
+      "sha256": "914f63e3eec61760466e31be5b688e68038024bf44722f4f741f66a3d45faaf6"
+    },
+    {
+      "path": "docs/screenshots/v139-pixel-drawing.png",
+      "bytes": 1066954,
+      "sha256": "6698eaa721ae7c28c271bea533994bce6c0576bc804fca73c5487aa8f154b5c6"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -644,6 +679,11 @@
       "path": "docs/showcase-v138.md",
       "bytes": 1558,
       "sha256": "faa5dc4c364f28520f3721721bbfbaa7e0ad33de7d1f0a7f781bd4b83e57a2fc"
+    },
+    {
+      "path": "docs/showcase-v139.md",
+      "bytes": 1730,
+      "sha256": "8e16d4e3b64533bcca98113f83129a17cbed85518d536d5cbe91020ed8f3a5f0"
     },
     {
       "path": "docs/steward-recovery-v136.md",
@@ -1217,8 +1257,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8433,
-      "sha256": "a88df559280f7f57a61543bb23722ec33663f513b906987f4cb073b405d2c708"
+      "bytes": 8459,
+      "sha256": "08fb872d88e3af94b78bd8f84ba232161679f8cb6db479ba70dd5493bc0e2512"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3346,6 +3386,16 @@
       "sha256": "98bb001f41d75252121dacc88bd17d1c0b8de735d0adef9caa02b8a9824bb1e1"
     },
     {
+      "path": "src/brushPainter.js",
+      "bytes": 5393,
+      "sha256": "b15f26e1de8cf82c74e82bdfcef63b2e286c050b55db7c78bc34e0aa5aca2c35"
+    },
+    {
+      "path": "src/brushStudio.js",
+      "bytes": 11945,
+      "sha256": "dbd368aa69985bd5164a19c95c503dc3ed468344baca00ea5bc2cfd04e5efbbc"
+    },
+    {
       "path": "src/catalog-data.js",
       "bytes": 14199,
       "sha256": "36b9e4bd276f4b3e481cc4e80b3c37afb0dc902e754123b0c048b3840816c2be"
@@ -3472,8 +3522,8 @@
     },
     {
       "path": "src/craftGameReplay.js",
-      "bytes": 5307,
-      "sha256": "153aa5c5fba2fe418c8f5edba06099082532f808de1b8c1ede0eea143169f112"
+      "bytes": 5441,
+      "sha256": "d1f5ce1a9c67bef71cfc312f80531799a87367f5dab52a837249d567f64898e8"
     },
     {
       "path": "src/craftPlanning.js",
@@ -3747,8 +3797,8 @@
     },
     {
       "path": "src/games-v20.css",
-      "bytes": 14126,
-      "sha256": "b833927a1e2a0f317361f038934b14aa8f72d099a1d9b3ceda1febda07658c75"
+      "bytes": 15175,
+      "sha256": "2fc283a362608278ec08edd240926edee93adc66f2b2fb2c9c855a187e41de71"
     },
     {
       "path": "src/games-v39.css",
@@ -4577,18 +4627,18 @@
     },
     {
       "path": "src/workshopAudio.js",
-      "bytes": 1260,
-      "sha256": "e98b31140c7aa691ab7d1eff98fb0daca4f79530e2ec436845150a94747c057b"
+      "bytes": 1473,
+      "sha256": "c11716a1e54420e526d9e8d159d71531dbaf9711acc696285358b9c9ae76cf9f"
     },
     {
       "path": "src/workshopCatalog.js",
-      "bytes": 5440,
-      "sha256": "7ba456a971ab6ed1f4f87921397fbfce0a2fd29b90a5d401c71c228d82d48d00"
+      "bytes": 5536,
+      "sha256": "0942dc9c51ecb378f0a840db205f079b56f6334bccc6a19549b512adcc3e6ed2"
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 41574,
-      "sha256": "a49662320d1af64f968aaff258427eb0c2efb086492114be9f19417773d430be"
+      "bytes": 42675,
+      "sha256": "091cae3db7801ca6a779cc9d2bd345b6658e9a57e6087bfd1ae5aaeb944379c4"
     },
     {
       "path": "src/workshopProps.js",
@@ -4597,8 +4647,8 @@
     },
     {
       "path": "src/workshopRules.js",
-      "bytes": 47351,
-      "sha256": "db343ffa9b2a2d3035bb531e768a8aa9cf605527b88a8671dcca18d6bfb0c2f0"
+      "bytes": 47595,
+      "sha256": "d7944fa70041acc0e56acae96454bfab5e18773e0cf085abf4d3cdf00bcb966c"
     },
     {
       "path": "src/workshopSpecifications.js",
@@ -4607,8 +4657,8 @@
     },
     {
       "path": "src/workshopView.js",
-      "bytes": 47139,
-      "sha256": "f0e23f8ad1d8e0942cad49764b087712c894fae130af3a13a978abc2671c10a4"
+      "bytes": 47350,
+      "sha256": "2ecab374db6810e98ffe03fe58240c23c519e5a3e35f26cddd80546d08486007"
     },
     {
       "path": "src/world.js",
@@ -5306,6 +5356,16 @@
       "sha256": "359b59e2419a297ac417a278c0d5f7e13d5dfb65d9862a46949896e5b64f368c"
     },
     {
+      "path": "tests/v139-brush-browser.mjs",
+      "bytes": 8332,
+      "sha256": "85d15430ba667c094a1c1b448e602db405eaf03c90df2455bbd60b2f95f113c5"
+    },
+    {
+      "path": "tests/v139-brush.test.mjs",
+      "bytes": 5141,
+      "sha256": "ae1659f64da030db7f0992e2d85eb626fb5ace20d018c423cf83d57bd0440614"
+    },
+    {
       "path": "tests/v16-v17-ui-qa.mjs",
       "bytes": 5407,
       "sha256": "b0b0953ebda1e041eacf700ff1e71be8dc1243e5cea2622c10e03aa5cc81e271"
@@ -5372,8 +5432,8 @@
     },
     {
       "path": "tests/v19-play-helpers.mjs",
-      "bytes": 8647,
-      "sha256": "b43c4b85040fef274a1fa77a16cdb6028a5b7c19b3d4b3ec5553c2cf30671701"
+      "bytes": 9096,
+      "sha256": "4d57af9e217c1d64187065ae09a1579ffa51ce1713f6be8edeb10a73db7338bc"
     },
     {
       "path": "tests/v19-play.test.mjs",
@@ -7601,5 +7661,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v138-github"
+  "publicRevision": "v139-github"
 }

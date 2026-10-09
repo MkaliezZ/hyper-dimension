@@ -1,0 +1,61 @@
+{
+  "version": "V139",
+  "filename": "hyper-dimension-v139-brush-12s.mp4",
+  "sha256": "4438849b9b31b83ee33b7ab14aa59bb22cbc86c11e67e596c617b0ecd2c9078c",
+  "bytes": 5236252,
+  "duration": 12,
+  "width": 2560,
+  "height": 1440,
+  "fps": 60,
+  "frames": 720,
+  "audio": "Original Hyper Dimension BGM, AAC",
+  "nativeBuildingModal": true,
+  "temporalInterpolation": false,
+  "gameSpeedChanged": false,
+  "fixture": "Isolated pre-unlocked raw-material fixtures; no game progress injection after startup, no model requests or user data.",
+  "selectedSourceWindows": [
+    {
+      "theme": "pixel",
+      "start": 18.9971719,
+      "duration": 3.15,
+      "maxSourceGapMs": 24.252000000000606,
+      "sourceFps": 60.31988689223325
+    },
+    {
+      "theme": "pixel",
+      "start": 48.874035,
+      "duration": 3.15,
+      "maxSourceGapMs": 36.512000000001876,
+      "sourceFps": 59.47323975997113
+    },
+    {
+      "theme": "origami",
+      "start": 19.645879320000002,
+      "duration": 3.15,
+      "maxSourceGapMs": 34.72100000000111,
+      "sourceFps": 60.23376467757477
+    },
+    {
+      "theme": "origami",
+      "start": 51.631998,
+      "duration": 3.15,
+      "maxSourceGapMs": 38.33500000000356,
+      "sourceFps": 60.52639288776253
+    }
+  ],
+  "fullCaptureDiagnostics": [
+    {
+      "theme": "pixel",
+      "fps": 59.4372681335794,
+      "p99GapMs": 30.45399999999887,
+      "maxGapMs": 381.869
+    },
+    {
+      "theme": "origami",
+      "fps": 59.44758088842826,
+      "p99GapMs": 34.428999999995824,
+      "maxGapMs": 111.39299999999999
+    }
+  ],
+  "passed": true
+}

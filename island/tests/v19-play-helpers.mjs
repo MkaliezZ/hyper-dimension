@@ -1,3 +1,4 @@
+import {BRUSH_SCHEMA,brushGuide} from '../src/brushStudio.js';
 import {potteryShapeReview,potteryGlazeReview,potteryKilnTarget,potteryKilnLoss} from '../src/potteryStudio.js';
 import {makeWorkshopLevel,createWorkshopState,workshopAction,stepWorkshop,neighbors,rotateMask,photoSubject,potteryAccuracy,firePosition,coutureBrief} from '../src/workshopRules.js';
 export function chooseAction(s){
@@ -103,7 +104,9 @@ export function chooseAction(s){
   if(!s.holding)return {type:'down',...p};return {type:'point',...p};
  }
  if(k==='brush'){
-  const stroke=l.strokes[s.stroke];if(!stroke)return null;if(s.color!==stroke.color)return {type:'color',index:stroke.color};if(s.ink<.08)return {type:'dip'};const p=stroke.points[s.node];return {type:s.holding?'point':'down',...p};
+  const stroke=l.strokes[s.stroke];if(!stroke)return null;
+  if(l.schemaVersion===BRUSH_SCHEMA){if(s.mode!=='drawing'||s.dryRemaining>0)return null;if(s.color!==stroke.color)return {type:'color',index:stroke.color};if(s.ink<.06)return {type:'dip'};if(!s.holding||!s.brushAnchored)return {type:'down',x:brushGuide(s).x,y:brushGuide(s).y};const p=stroke.points.find(p=>p.arc>s.arc+.15)||stroke.points.at(-1);return {type:'point',x:p.x,y:p.y};}
+  if(s.color!==stroke.color)return {type:'color',index:stroke.color};if(s.ink<.08)return {type:'dip'};const p=stroke.points[s.node];return {type:s.holding?'point':'down',...p};
  }
  return null;
 }

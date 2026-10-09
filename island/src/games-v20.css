@@ -150,3 +150,14 @@ body[data-theme] .workbench-modal .modal-body{padding:0 18px 14px;scrollbar-gutt
  .wk-embedded .wk-stage{width:100%}
  .wk-embedded .wk-guide{max-height:420px}
 }
+
+.wk-live-objectives .wk-brush-brief{margin:0 0 14px;padding:12px 14px;background:var(--wk-paper);border:1px solid var(--wk-line);box-shadow:2px 3px 0 #35433416}
+.wk-brush-brief>small{display:block;letter-spacing:1px;color:var(--wk-muted);font-size:13px;margin-bottom:5px}
+.wk-brush-brief>strong{display:block;font-size:21px;line-height:1.5;color:var(--wk-ink)}
+.wk-brush-brief>p{margin:5px 0 0;font-size:14px}
+.workshop-game[data-kind=brush] .wk-swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.workshop-game[data-kind=brush] .wk-swatches .wk-control{padding:8px 6px;font-size:15px;gap:6px}
+.workshop-game[data-kind=brush] .wk-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.workshop-game[data-kind=brush] .wk-tools .wk-control{min-height:42px;white-space:normal}
+.workshop-game[data-theme=origami] .wk-brush-brief{background:linear-gradient(135deg,var(--wk-paper) 93%,#dfcfb0 93%)}
+.workshop-game[data-theme=pixel] .wk-brush-brief{border-width:2px;box-shadow:3px 3px 0 #35433426}

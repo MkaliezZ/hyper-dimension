@@ -1,3 +1,4 @@
+import {makeBrushLevel,initBrush,brushAction,stepBrush,BRUSH_SCHEMA} from './brushStudio.js';
 import {makePotteryLevel,initPottery,potteryAction,stepPottery,potteryShapeReview} from './potteryStudio.js';
 import {seededRandom,shuffle,rotatePiece,pieceOffsets} from './gameLevels.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
@@ -165,7 +166,7 @@ export function makeWorkshopLevel(id,seed,d=1){
  case 'fireworks':l.wind=between(-25,25);l.targets=Array.from({length:2+d},(_,i)=>{const angle=-Math.PI/2+between(-.75,.75),power=between(.58,.83),fuse=between(.8,1.15),v=300+power*270;return {x:480+Math.cos(angle)*v*fuse+l.wind*fuse*fuse/2,y:475+Math.sin(angle)*v*fuse+210*fuse*fuse/2,angle,power,fuse,color:['#efb363','#83d6cc','#e8a6c2'][i%3]}});l.shots=l.targets.length+3;l.time=130;break;
  case 'expedition':Object.assign(l,expeditionLevel(r,d));l.time=300;break;
  case 'regatta':{const path=[{x:100,y:430},{x:170+between(-30,35),y:150+between(-35,35)},{x:440+between(-35,40),y:125+between(-35,35)},{x:720+between(-30,35),y:285+between(-30,30)},{x:820,y:440}];l.path=path;l.reefs=[{x:400,y:340,r:66},{x:635,y:105,r:50},{x:125,y:290,r:24}].filter(p=>!path.some(x=>Math.hypot(x.x-p.x,x.y-p.y)<100));l.current={x:between(-5,5)*d,y:between(-3,3)*d};l.time=110;break;}
- case 'brush':{const phase=between(-.2,.2);l.strokes=Array.from({length:3},(_,k)=>({color:k,points:Array.from({length:36},(_,i)=>{const a=i/35;return k===0?{x:235+a*475,y:300+Math.sin(a*Math.PI*2+phase)*65}:k===1?{x:285+a*355,y:330-Math.sin(a*Math.PI)*145}:{x:385+a*230,y:350-Math.sin(a*Math.PI)*115}})}));l.radius=[24,19,15][d-1];l.time=180;break;}
+ case 'brush':Object.assign(l,makeBrushLevel(r,d));break;
  }
  return l;
 }
@@ -195,7 +196,7 @@ export function createWorkshopState(level,equipment=null){
  case 'fireworks':s.lit=[];s.shots=0;s.charge=0;s.projectile=null;s.aim=-Math.PI/2;break;
  case 'expedition':s.player=level.start;s.collected=[];s.stamina=level.budget;s.seen=[];s.lastPlayer=s.player;s.walkAt=0;break;
  case 'regatta':s.boat={x:100,y:430,angle:-Math.PI/2,speed:0};s.gate=1;s.hull=100;s.bumpAt=-5;s.wake=[];break;
- case 'brush':s.stroke=0;s.node=0;s.color=0;s.ink=1;s.painted=[];s.startedStroke=false;s.offPath=0;break;
+ case 'brush':if(level.schemaVersion===BRUSH_SCHEMA)Object.assign(s,initBrush());else{s.stroke=0;s.node=0;s.color=0;s.ink=1;s.painted=[];s.startedStroke=false;s.offPath=0;}break;
  }
  return s;
 }
@@ -294,6 +295,7 @@ export function workshopAction(s,a){
  const l=s.level;
  if(a.type==='start'&&s.phase==='intro'){s.phase='playing';s.status='';emit(s,'start');return}
  if(s.phase!=='playing'||(s.kind==='couture'&&s.runway)||(s.kind==='interior'&&s.walkthrough&&!s.walkthrough.done))return;
+ if(s.kind==='brush'&&brushAction(s,a,emit))return;
  if(s.kind==='pottery'&&potteryAction(s,a,emit))return;
  if(s.kind==='interior'&&a.type==='pickup'){if(pickupInteriorFurniture(s,a.value))emit(s,'snap',480,270);return;}
  if(s.kind==='interior'&&a.type==='inspectRoute'){s.routeVisible=!s.routeVisible;s.status=s.routeVisible?'绿线显示门到窗的当前最短路线；地毯可通行。':'动线预览已收起';return;}
@@ -524,7 +526,8 @@ export function stepWorkshop(s,dt){
   }
   if(s.hull<=0)finishWorkshop(s,false);
  }
- if(s.kind==='brush'){
+ if(s.kind==='brush'&&l.schemaVersion===BRUSH_SCHEMA){const result=stepBrush(s,dt,emit);if(result){s.status=result.passed?'作品已装裱 · 风物绘卷评审通过':'评审未通过 · 下一局注意配色、轮廓与连续运笔';finishWorkshop(s,result.passed,result.quality);}}
+ if(s.kind==='brush'&&l.schemaVersion!==BRUSH_SCHEMA){
   const stroke=l.strokes[s.stroke];
   if(stroke&&s.holding&&s.color===stroke.color&&s.ink>.01){
    const next=stroke.points[s.node],distance=Math.hypot(s.pointer.x-next.x,s.pointer.y-next.y);

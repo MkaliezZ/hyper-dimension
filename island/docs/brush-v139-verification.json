@@ -1,0 +1,25 @@
+{
+  "version": "V139",
+  "scope": "Isolated, pre-unlocked raw-material fixtures; actual building-modal mouse input, normal game clock, authoritative production and refresh. No models or user data. Not human/whole-product acceptance.",
+  "passed": true,
+  "cases": [
+    {
+      "theme": "pixel",
+      "activeSeconds": 45.64330000004773,
+      "quality": 100,
+      "oneReceipt": true,
+      "refreshPreserved": true,
+      "nativeErrors": 0,
+      "badAssets": 0
+    },
+    {
+      "theme": "origami",
+      "activeSeconds": 39.23640000014395,
+      "quality": 100,
+      "oneReceipt": true,
+      "refreshPreserved": true,
+      "nativeErrors": 0,
+      "badAssets": 0
+    }
+  ]
+}

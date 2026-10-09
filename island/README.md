@@ -4,17 +4,28 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V138 开发快照**，完整产品验收仍在进行。
+在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V139 开发快照**，完整产品验收仍在进行。
 
 ## 看一眼这座岛
 
-[![Hyper Dimension · 当前版本 30 秒演示](docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/#bridge)
+[![Hyper Dimension · V138 原机管家 30 秒演示](docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/#bridge)
 
-[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v138)
+[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v139)
 
 点击封面或视频标题即可打开在线播放页；MP4 下载在播放器内单独提供。新增 45 秒会客馆内部导览，展示介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复，以及双画风展厅。
 
 本版视频为 2560 × 1440、60 fps 的实际页面录制，包含会客馆内部档案、项目图片与留言。工作资料、个人经历和图片均为虚构示例；管家文件任务实际调用 Hermes 工具执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [录制与验证说明](docs/showcase-v135.md)。
+
+
+### V139 绘画玩法更新
+
+[观看 12 秒房屋内绘画片段](https://mkaliezz.github.io/hyper-dimension/#brush)：四类随机风物、连续运笔、配色与墨量、晾干与装裱评审。小游戏仍在房屋弹窗内进行。[玩法与验证](docs/brush-studio-v139.md)。
+
+| 像素绘画 | 折纸绘画 |
+| --- | --- |
+| ![像素绘画](docs/screenshots/v139-pixel-drawing.png) | ![折纸绘画](docs/screenshots/v139-origami-drawing.png) |
+
+管家主宣传片保留 V138 标记，新绘画片段标记 V139，小岛／会客馆导览保留 V135 标记。小游戏的玩法、美术与动画仍在继续优化。
 
 ## 你能做什么
 

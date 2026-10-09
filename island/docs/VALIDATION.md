@@ -96,3 +96,9 @@ Existing name customization is preserved. Successful saves now return from the e
 Focused bridge/information/activity regressions pass 21/21. Both native themes pass pairing, owner confirmation, refresh, compact layout and fixed close controls. Two original-device CLI processes use real Hermes/deepseek-flash for fictional file read/edit/read-back and linked, attributed island correspondence. Transport and restart tests retain completed results without repeating tools. The real provider test used separate processes on one Windows machine; physical cross-device/Mac and whole-project acceptance remain distinct. [部署、数据范围与边界](device-bridge-v138.md)。
 
 V138 默认领域检查827项通过；首次维护检查有两项被同时运行的真实录制 Agent 阻挡。停止录制后单独重跑14项维护检查全部通过，保护规则未放宽。 / All827 domain checks pass; concurrent real recording agents initially block two maintenance checks. After recording stops, all14 maintenance checks pass with existing data protection unchanged.
+
+## V139 · 绘画委托升级 / Drawing commissions
+
+工艺学院绘画改为四类随机风物，5／7／9 笔难度，连续轨迹、配色、墨量、晾干和最终装裱评审；旧三笔作业仍可恢复。相关92项回归与双画风真实鼠标制作／刷新／窄屏结算通过。小游戏集合的真人手感、完整动画素材与全产品验收继续保留原有未完成项。[玩法与证据](brush-studio-v139.md)。
+
+Four seeded painting motifs use progressive stroke counts, continuous path checks, palette/ink/drying decisions and framing review. Legacy sessions remain compatible. Focused92-case regressions and native dual-theme production/reload/compact-result checks pass. Human feel and whole-product acceptance remain separate.

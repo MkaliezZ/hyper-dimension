@@ -4,17 +4,28 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V138 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V139 development snapshot**; full product acceptance is still in progress.
 
 ## See the island
 
-[![Hyper Dimension · current 30-second showcase](island/docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
+[![Hyper Dimension · V138 original-device showcase](island/docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
 
-[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v138)
+[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v139)
 
 Click a cover or video title to open the online player. MP4 downloads are available separately inside the player. A dedicated 45-second gallery tour shows the biography, eight life/education/work chapters, three projects with images, a visitor message and the owner’s reply, plus both visual styles.
 
 Native 2560 × 1440, 60 fps footage includes the gallery's biography, experience timeline, project images and guestbook. Profiles, images and work briefs are fictional; the document task actually executes Hermes tools. **Minigames are placeholder demonstrations; their gameplay, art and animation will continue to improve.** [Recording and verification](island/docs/showcase-v135.md).
+
+
+### V139 drawing update
+
+[Watch the 12-second in-room drawing clip](https://mkaliezz.github.io/hyper-dimension/?lang=en#brush): four seeded motifs, continuous brush movement, ink and palette choices, drying layers and framing review. The game stays inside the building modal. [Mechanics and evidence](island/docs/brush-studio-v139.md).
+
+| Pixel drawing | Origami drawing |
+| --- | --- |
+| ![Pixel drawing](island/docs/screenshots/v139-pixel-drawing.png) | ![Origami drawing](island/docs/screenshots/v139-origami-drawing.png) |
+
+The main steward film is labeled V138, the new drawing clip V139, and the island/gallery tours V135. Minigame improvements are ongoing.
 
 ## What you can do
 

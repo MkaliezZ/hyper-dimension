@@ -1,3 +1,4 @@
+import {paintBrushStudio} from './brushPainter.js';
 import {POTTERY_COLORS,potteryGlazeReview,potteryKilnTarget} from './potteryStudio.js';
 import {propImage,drawProp} from './workshopProps.js';
 import {drawItem,itemFrame,artReady} from './artStore.js';
@@ -46,6 +47,7 @@ export function boardGeometry(s){
  if(!cols)return null;return {cols,rows,cell,x:(W-cols*cell)/2,y:(H-rows*cell)/2+(k==='interior'?24:0)};
 }
 export function viewBounds(s,narrow){
+ if(narrow&&s.kind==='brush'&&s.level.schemaVersion===139)return {x:186,y:56,w:590,h:426};
  if(narrow&&s.kind==='pottery')return {x:235,y:15,w:490,h:510};
  const g=boardGeometry(s);if(!narrow||!g)return {x:0,y:0,w:W,h:H};
  if(s.kind==='nonogram')return {x:g.x-102,y:g.y-115,w:g.cols*g.cell+126,h:g.rows*g.cell+138};
@@ -385,10 +387,11 @@ export function makeWorkshopPainter(canvas,theme,avatar,catchItem=null){
   }else text(c,'主题 '+review.style+' / '+brief.styleGoal+'     舒适 '+review.comfort+' / '+brief.comfortGoal,480,459,22,'#60786b');
  }
  function brush(s){
+  if(paintBrushStudio(c,s,theme,clock))return;
   panel(c,182,65,588,416,false,theme==='pixel');line(c,[[204,84],[744,84]],'#c2b493',2);
   const colors=['#4e817a','#7d995f','#b78490'];
   for(let k=0;k<s.level.strokes.length;k++)line(c,s.level.strokes[k].points,'#acae9745',2,[4,7]);
-  for(let k=0;k<3;k++){const pts=s.painted.filter(p=>p.stroke===k);if(pts.length>1){line(c,pts,colors[k]+'40',19);line(c,pts,colors[k],11);line(c,pts.map(p=>({x:p.x-2,y:p.y-1})), '#f8eaca33',2);}}
+  for(let k=0;k<s.level.strokes.length;k++){const pts=s.painted.filter(p=>p.stroke===k);if(pts.length>1){line(c,pts,colors[k]+'40',19);line(c,pts,colors[k],11);line(c,pts.map(p=>({x:p.x-2,y:p.y-1})), '#f8eaca33',2);}}
   const current=s.level.strokes[s.stroke],target=current?.points[s.node];if(target){circle(c,target.x,target.y,s.level.radius,null,colors[current.color]+'6f',2);circle(c,target.x,target.y,5+Math.sin(clock*4)*1.5,colors[current.color]);}
   const p=s.pointer;if(s.phase==='playing'&&!drawProp(c,3,theme,p.x+36,p.y-49,103,-.04)){c.save();c.translate(p.x,p.y);c.rotate(.65);polygon(c,[[-3,4],[-7,-18],[6,-18]],colors[s.color]);rect(c,-5,-99,10,84,'#ad8859','#d6b87f',3);c.restore();}
   for(let i=0;i<3;i++){ellipse(c,822,164+i*99,32,15,'#d0c0a1','#826e55');ellipse(c,822,161+i*99,26,10,colors[i]);}text(c,'蘸墨',822,462,23,'#7f7b61');

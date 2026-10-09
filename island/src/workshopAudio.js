@@ -3,7 +3,7 @@ import {getSoundMixer} from './soundMixer.js';
 export function createWorkshopAudio(){
  const mixer=getSoundMixer(),scope=mixer.createScope('workshop'),midi=n=>440*2**((n-69)/12);let lastBeat=-1,closed=false;
  function unlock(){if(!closed){scope.resume();void mixer.unlock();}}
- function event(e){if(!closed)scope.play(e.kind,{lane:e.lane??0});}
+ function event(e){if(closed)return;if(e.kind==='ink'){scope.noise({category:'effects',duration:.09,volume:.028,frequency:1700,filterType:'bandpass'});return}scope.play(({'brush-complete':'ribbon','brush-warning':'warning','brush-rework':'ui'})[e.kind]||e.kind,{lane:e.lane??0});}
  function tick(s){
   if(closed||s.kind!=='rhythm'||s.phase!=='playing')return;
   const beat=Math.floor(s.t/s.level.beat);if(beat===lastBeat)return;lastBeat=beat;

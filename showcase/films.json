@@ -1,5 +1,5 @@
 {
-  "version": "V138",
+  "version": "V139",
   "films": [
     {
       "id": "bridge",
@@ -20,6 +20,27 @@
       "description": {
         "zh": "当前双风格小岛，原机连接入口，真实 Hermes 的虚构文档读取、修改、回读，以及两位原机管家的署名通信记录。",
         "en": "Current dual-style island, original-device pairing, real Hermes read/edit/read-back on fictional documents, and attributed original-device correspondence."
+      }
+    },
+    {
+      "id": "brush",
+      "version": "V139",
+      "filename": "hyper-dimension-v139-brush-12s.mp4",
+      "sha256": "4438849b9b31b83ee33b7ab14aa59bb22cbc86c11e67e596c617b0ecd2c9078c",
+      "duration": 12,
+      "poster": "assets/hyper-dimension-v139-brush-poster.png",
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v139/hyper-dimension-v139-brush-12s.mp4",
+      "title": {
+        "zh": "12 秒 · 房屋内风物绘画",
+        "en": "12 seconds · In-room drawing"
+      },
+      "caption": {
+        "zh": "V139 · 连续运笔／墨量／装裱",
+        "en": "V139 · Brush paths / Ink / Framing"
+      },
+      "description": {
+        "zh": "像素与折纸房屋工作台中的真实绘画、完成画作与装裱评审。小游戏仍为演示，玩法和美术继续优化。",
+        "en": "Real drawing gestures, finished paintings and framing review inside pixel and origami building workbenches. Minigames remain prototypes and are being improved."
       }
     },
     {

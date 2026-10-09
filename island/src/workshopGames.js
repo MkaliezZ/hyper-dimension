@@ -1,3 +1,4 @@
+import {BRUSH_COLORS,BRUSH_SCHEMA,neutralBrush} from './brushStudio.js';
 import {POTTERY_COLORS,potteryShapeReview,potteryGlazeReview,potteryKilnTarget} from './potteryStudio.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
 import {makeWorkshopLevel,createWorkshopState,workshopAction,stepWorkshop,progressWorkshop,potteryAccuracy,outfitScore,coutureBrief,formatWorkshopTime,photoSubject,interiorReview,anglingEquipment} from './workshopRules.js';
@@ -13,7 +14,7 @@ const formatTime=formatWorkshopTime;
 const DIFFICULTIES=['','轻松','标准','挑战'];
 const command=(label,type,extra='',cls='')=>'<button type="button" class="wk-control '+cls+'" data-action="'+type+'" '+extra+'>'+label+'</button>';
 export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
- const options=gameLevelOptions(id,baseOptions),theme=options.theme||document.body.dataset.theme||'pixel',g=WORKSHOP_GAMES[id],level=makeWorkshopLevel(id,options.level.seed,options.level.difficulty);
+ const options=gameLevelOptions(id,baseOptions),theme=options.theme||document.body.dataset.theme||'pixel',g=WORKSHOP_GAMES[id],level=options.resumeGame?.engine==='workshop'&&options.resumeGame.state?.level?.id===id?structuredClone(options.resumeGame.state.level):makeWorkshopLevel(id,options.level.seed,options.level.difficulty);
  const s=options.resumeGame?.engine==='workshop'?structuredClone(options.resumeGame.state):createWorkshopState(level,options.equipment),art=id=>itemMarkup(id,theme,'wk-item-art'),recipe=options.recipe||(options.catchItem?{item:options.catchItem,name:itemName(options.catchItem)}:DEFAULT_RECIPES[id]),audio=createWorkshopAudio();
  let alive=true,frame=0,last=performance.now(),replacement=null,paused=false,reported=false,claimed=false,uiAt=-1,uiPhase='',controlsKey='',outcomeShown=false,autoPauseReason='',loaded=false,markMode=false,entryTime=0;
  s.events=[];let transportPaused=false;
@@ -45,7 +46,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  function send(action){if(!alive||paused)return;options.onGameEvent?.({action});workshopAction(s,action);flushEvents();ui(action.type!=='point');}
  function flushEvents(){for(const e of s.events.splice(0)){painter.event(e);audio.event(e);}}
  function pause(reason=''){
-  if(s.phase!=='playing'||paused)return;paused=true;autoPauseReason=reason;s.holding=false;s.keys={};options.onGameEvent?.({neutral:true});audio.pause();renderOverlay();ui(true);
+  if(s.phase!=='playing'||paused)return;paused=true;autoPauseReason=reason;s.holding=false;s.keys={};if(s.kind==='brush'&&level.schemaVersion===BRUSH_SCHEMA)neutralBrush(s);options.onGameEvent?.({neutral:true});audio.pause();renderOverlay();ui(true);
  }
  function resume(){paused=false;autoPauseReason='';last=performance.now();audio.resume();renderOverlay();ui(true);stage.focus({preventScroll:true});}
  function restart(mode){if(options.onRestart){options.onRestart(mode);return}destroy();replacement=mountWorkshopGame(root,id,onFinish,nextGameOptions(options,mode));}
@@ -105,7 +106,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   if(k==='interior')return '<div class="wk-furniture">'+l.items.map((i,value)=>{const placed=s.furniture.some(f=>f.id===i.id);return command(art(i.id)+'<span>'+esc(itemName(i.id))+'</span><small>'+INTERIOR_ROLES[i.role]+' · '+i.w+'×'+i.h+(i.floor?' · 可铺在家具下':'')+(placed?' · 移位':'')+'</small>',placed?'pickup':'select','data-value="'+value+'" aria-pressed="'+(s.selected===value&&!placed)+'"','wk-room-piece');}).join('')+'</div><div class="wk-tools">'+command('旋转 · R','rotate')+command('撤回 · Z','undo',s.furnitureHistory.length?'':'disabled')+command(s.routeVisible?'收起动线':'查看动线','inspectRoute','aria-pressed="'+s.routeVisible+'"')+'</div>'+command(s.walkthrough?'动线验收中…':'提交房间并验收','submit',s.furniture.length===l.items.length&&!s.walkthrough?'':'disabled','wk-primary')+'<p class="wk-control-note">点已安放的家具可移位；地毯可以铺在坐具下，不阻挡通路。</p>';
   if(k==='fireworks')return command(s.projectile?'空中引爆 · 空格':'按住蓄力 · 松开发射','hold','data-hold="pointer"','wk-primary')+'<span class="wk-control-note">先移动指针瞄准，再长按发射。第二次点击引爆。</span>';
   if(k==='regatta')return command('左转','steer','data-key="left" data-hold="steer"')+command('前进','steer','data-key="forward" data-hold="steer"')+command('右转','steer','data-key="right" data-hold="steer"')+command('减速靠泊 · 空格','brake','data-hold="brake"','wk-primary');
-  if(k==='brush')return '<div class="wk-swatches">'+['海蓝','叶绿','花粉'].map((name,index)=>command('<i style="background:'+['#4e817a','#7d995f','#b78490'][index]+'"></i>'+name,'color','data-index="'+index+'" aria-pressed="'+(s.color===index)+'"')).join('')+'</div>'+command('蘸墨 · 空格','dip','','wk-primary');
+  if(k==='brush')return '<div class="wk-swatches" role="group" aria-label="绘画颜色">'+BRUSH_COLORS.map((v,index)=>command('<i style="background:'+v.color+'"></i>'+v.name,'color','data-index="'+index+'" aria-pressed="'+(s.color===index)+'"')).join('')+'</div><div class="wk-tools">'+command(s.mode==='dipping'?'润笔蘸墨中…':'蘸墨 · 空格','dip',s.mode&&s.mode!=='drawing'?'disabled':'','wk-primary')+(level.schemaVersion===BRUSH_SCHEMA?command('重绘当前笔触','reworkStroke',s.mode==='drawing'&&s.dryRemaining<=0?'':'disabled'):'')+'</div>';
   return '';
  }
  function controlSignature(){
@@ -118,7 +119,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
    case 'interior':return [s.selected,s.interiorRevision,s.rotation,s.routeVisible,!!s.walkthrough].join();
    case 'angling':return s.mode;
    case 'fireworks':return !!s.projectile;
-   case 'brush':return s.color;
+   case 'brush':return [s.color,s.mode,s.brushRevision].join();
    case 'pipes':return !!s.running;
    default:return s.help;
   }
@@ -158,7 +159,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   if(k==='fireworks')return meter('剩余烟花',l.shots-s.shots,l.shots)+meter('当前蓄力',Math.round(s.charge*100),100)+'<p>目标圈越小，需要越准确的角度与引爆时机。</p>';
   if(k==='expedition')return meter('剩余体力',s.stamina,l.budget)+'<p>已找到 '+s.collected.length+' / '+l.targets.length+' 个印记</p><p>阴影遮住未探索的路径。地图预览可以重新查看两次。</p>';
   if(k==='regatta')return meter('船体状态',s.hull,100)+'<p>航速 '+Math.round(s.boat.speed)+' · 入港低于 34</p><p>海流 '+(l.current.x>0?'向右':'向左')+'偏移。最后从左向右驶入泊位。</p>';
-  if(k==='brush')return meter('笔尖墨量',Math.round(s.ink*100),100)+'<p>当前笔触 '+Math.min(3,s.stroke+1)+' / 3</p><p>指定颜色：'+['海蓝','叶绿','花粉'][Math.min(2,s.stroke)]+'</p>';
+  if(k==='brush'){const stroke=l.strokes[s.stroke];return (l.commission?'<div class="wk-brush-brief"><small>今日风物委托</small><strong>'+esc(l.commission)+'</strong><p>'+esc(l.caption)+'</p></div>':'')+meter('笔尖墨量',Math.round(s.ink*100),100)+'<p>当前笔触 '+Math.min(l.strokes.length,s.stroke+1)+' / '+l.strokes.length+'</p>'+(stroke?'<p>'+esc(stroke.name)+' · '+BRUSH_COLORS[stroke.color].name+'</p>':'<p>作品正在装裱与评审</p>')+(l.schemaVersion===BRUSH_SCHEMA?'<p>连续运笔 · '+(s.dryRemaining>0?'色层晾干 '+s.dryRemaining.toFixed(1)+' 秒':s.mode==='dipping'?'润笔蘸墨中':'从光点落笔，松开可断笔续画')+'</p><small>评审达标 ≥ '+l.minQuality+' 分；走偏可重绘当前笔触。</small>':'');}
   return '';
  }
  function ui(force=false){
