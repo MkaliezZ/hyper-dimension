@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:17
+        # Docker Official Image mirror avoids Docker Hub shared-runner pull limits.
+        image: public.ecr.aws/docker/library/postgres:17
         env:
           POSTGRES_USER: hd_test
           POSTGRES_PASSWORD: hd_test_only
