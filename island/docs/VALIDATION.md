@@ -108,3 +108,9 @@ Four seeded painting motifs use progressive stroke counts, continuous path check
 双画风隔离演示岛完成实际 Hermes／deepseek-flash 招聘、正常时钟乘船／栈桥／工位制作、亲自邀请、夜集领取、贡献回执、工资与离岛归档、刷新保留。修复同步存档重复取消和迟到回调打断新行动。53项最终直接回归与10项招聘协议通过；76项协作／收藏相关回归另记，存在重叠。测试为有生活物资的单机演示岛，不代替零起点、物理设备、真人与全产品验收。[完整范围](recruitment-v140.md)。
 
 Both native styles pass a continuous real-provider delegation journey with normal movement/production, authoritative results, wages, departure and reload. Fixture scope and acceptance limits remain explicit.
+
+## V140 修订 · 地图居民身份 / Map picking revision
+
+修复姓名牌与脚底命中范围不一致、重叠居民按数组顺序误选的问题；地图身体、姓名与气泡共用稳定身份。8项直接回归、两种画风各18次真实鼠标点击通过，包含全部15名AI居民、管家与缩放拖拽后的黎音姓名。[说明与证据](npc-map-identity.md)。
+
+Rendered nameplates and bodies now select the same stable resident identity. Eight focused tests and36 native clicks across both art styles pass.

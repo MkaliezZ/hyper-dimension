@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9537,
-      "sha256": "69bf8ea33081d60e1f3f2907b2dc1891129aae573fb16190863115c4ff5d277b"
+      "bytes": 9839,
+      "sha256": "df30ba3680341061de691042eed815c43419351257db97e2e4262cacba76c6f4"
     },
     {
       "path": "README.md",
-      "bytes": 9502,
-      "sha256": "e1f59329e5415a2f7a85131a1660b0a9f3573da143db4f2e9939e362caac79d6"
+      "bytes": 9780,
+      "sha256": "d77b32ed1e0819741ce69937a027454e6e2011e1f490ea79833ef5793c84eb62"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 3288,
-      "sha256": "43f5dff33665d0c87cca9aab92f67dff81d3f28111d8ebd705926f4eb5a51e02"
+      "bytes": 3570,
+      "sha256": "9e23ecb2064126cc1e087301122f2cd073112e3d7dc9bf558bed30bd68064bb7"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 15893,
-      "sha256": "61001dbe6dfc797a691f69e9f30eaf9e6b8bf538f7a46eabd3b3f68d0fde2532"
+      "bytes": 16424,
+      "sha256": "bb4ed3ae51fe502bb2c62f411ae3aa1efc94fbe2ad084b2785a67f6c1aaaef60"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -379,6 +379,16 @@
       "path": "docs/media/v139-video-verification.json",
       "bytes": 1643,
       "sha256": "aebede421fa0272ddc97d960361006bf922732bdc90188cccb2460821832a13e"
+    },
+    {
+      "path": "docs/npc-map-identity-verification.json",
+      "bytes": 5786,
+      "sha256": "2140a2fb9d98020c50f78200d066d88b36ef7ae099c1a872e1fd3fe3c0eb84a4"
+    },
+    {
+      "path": "docs/npc-map-identity.md",
+      "bytes": 2331,
+      "sha256": "3ac6d05070c6e13797994f1d8915b12886ea66a97b995ccf678c3973ab8d0884"
     },
     {
       "path": "docs/npc-recovery-v116.md",
@@ -1282,8 +1292,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8497,
-      "sha256": "7e48772dba95692e710446fd3d88009358261c3f03e1ca0bbc93c93aabe93f73"
+      "bytes": 8533,
+      "sha256": "5e128b389765b262c5f6b5584fb70d7913239fa74e06cb1d196023cbb0d9a094"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3367,8 +3377,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 134467,
-      "sha256": "5496dbe972d8ba37436c836b91666cc9691f45a61485f9c6a70f90a10a050b9b"
+      "bytes": 135418,
+      "sha256": "0c881568548e10124fb8c96f4ba5437e2209825d20d06b8060017f8e7226a242"
     },
     {
       "path": "src/arcade.css",
@@ -3432,8 +3442,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 16358,
-      "sha256": "d92e466a359b7a719ac4a0400c930495ca02723a5f0f9bfba08bf1613ce4b02b"
+      "bytes": 16582,
+      "sha256": "4f701a376e9ce3528e4474a3bfad121d3833f63d85eb73ac0f388a6e21947ae2"
     },
     {
       "path": "src/classicGames.js",
@@ -4034,6 +4044,11 @@
       "path": "src/life-v10.css",
       "bytes": 9838,
       "sha256": "4109553b2819b97d26d599ce430e4e2553b99b669d9564ebbea0f8fbab9ee8dc"
+    },
+    {
+      "path": "src/mapCharacterPicker.js",
+      "bytes": 663,
+      "sha256": "60e3ef3bd9792102163572b188efd741d1ef8899e659a41eace9a94ee12f293a"
     },
     {
       "path": "src/mapTileLayout.js",
@@ -4789,6 +4804,16 @@
       "path": "tests/layout-validation.mjs",
       "bytes": 716,
       "sha256": "678958964a9352f74ebabf662511f1a836d5c88a9c11cd482c54f990fe87d9bd"
+    },
+    {
+      "path": "tests/map-character-identity-browser.mjs",
+      "bytes": 7593,
+      "sha256": "fec5fddbf46358843be5db216d7f18029ee1b2f6bbacd20ae97a8e59c3d66534"
+    },
+    {
+      "path": "tests/map-character-picker.test.mjs",
+      "bytes": 2594,
+      "sha256": "672618b3a27a614ee2a126b4d479b382080d754620ab08260f7dce0e9b03d989"
     },
     {
       "path": "tests/mine-workshop-smoke.mjs",

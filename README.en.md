@@ -17,6 +17,10 @@ Click a cover or video title to open the online player. MP4 downloads are availa
 Native 2560 × 1440, 60 fps footage includes the gallery's biography, experience timeline, project images and guestbook. Profiles, images and work briefs are fictional; the document task actually executes Hermes tools. **Minigames are placeholder demonstrations; their gameplay, art and animation will continue to improve.** [Recording and verification](island/docs/showcase-v135.md).
 
 
+### Map resident selection fix
+
+Rendered names, bodies and detail cards now share a stable resident identity; overlapping targets follow paint order and hover reveals names. All 15 AI residents and the steward pass native map-click checks in both art styles. [Verification](island/docs/npc-map-identity.md).
+
 ### V140 continuous parent/child Agent activity
 
 Real Hermes confirms dependent production; a partner arrives by ferry, walks to the workshop and delivers lanterns. Personal invitations, rewards, contribution, wages, departure and reload pass in both styles. Reentrant cancellation and stale callbacks are fixed. [Flow and scope](island/docs/recruitment-v140.md).

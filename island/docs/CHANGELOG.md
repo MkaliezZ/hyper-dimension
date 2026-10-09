@@ -24,3 +24,7 @@
 | V108 | 主子 Agent 协商展示、小游戏结果重试、历史 30／45 秒视频。其视频不代表当前画面。 |
 
 历史完整说明保留在 Git 版本记录和 docs/ 中。 / Full historical notes remain in Git history and docs/.
+
+### V140 地图点击修订 / Map identity revision
+
+姓名、身体与气泡按实际绘制边界和顺序选择稳定身份，修复点击黎音显示小墨；悬停显示姓名。两种画风共36次原生地图点击及8项直接回归通过。[详情](npc-map-identity.md)。

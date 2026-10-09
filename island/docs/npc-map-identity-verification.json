@@ -1,0 +1,279 @@
+{
+  "at": "2026-10-09T10:00:33.602Z",
+  "scope": "Native mouse clicks on actual rendered map bodies and visible nameplates in pixel and origami, 15 residents and steward, stable card/portrait identity. Isolated fictional saves; no production data or model calls. No game-state/time injection.",
+  "passed": true,
+  "unitTests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "clicks": [
+        {
+          "id": 12,
+          "name": "黎音",
+          "part": "label",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 1,
+          "name": "小墨",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 0,
+          "name": "阿岚",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 2,
+          "name": "露露",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 3,
+          "name": "星野",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 4,
+          "name": "莉安",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 5,
+          "name": "祁舟",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 6,
+          "name": "桃子",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 7,
+          "name": "南风",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 8,
+          "name": "小满",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 9,
+          "name": "洛白",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 10,
+          "name": "青禾",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 11,
+          "name": "岩岩",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 13,
+          "name": "桐桐",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 14,
+          "name": "知夏",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 12,
+          "name": "黎音",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 15,
+          "name": "赫尔墨斯",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 12,
+          "name": "黎音",
+          "part": "label-after-zoom-drag",
+          "zoom": 1.2999999999999998,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "badAssets": []
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "clicks": [
+        {
+          "id": 12,
+          "name": "黎音",
+          "part": "label",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 1,
+          "name": "小墨",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 0,
+          "name": "阿岚",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 2,
+          "name": "露露",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 3,
+          "name": "星野",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 4,
+          "name": "莉安",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 5,
+          "name": "祁舟",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 6,
+          "name": "桃子",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 7,
+          "name": "南风",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 8,
+          "name": "小满",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 9,
+          "name": "洛白",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 10,
+          "name": "青禾",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 11,
+          "name": "岩岩",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 13,
+          "name": "桐桐",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 14,
+          "name": "知夏",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 12,
+          "name": "黎音",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 15,
+          "name": "赫尔墨斯",
+          "part": "body",
+          "zoom": 1,
+          "passed": true
+        },
+        {
+          "id": 12,
+          "name": "黎音",
+          "part": "label-after-zoom-drag",
+          "zoom": 1.2999999999999998,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "badAssets": []
+    }
+  ]
+}

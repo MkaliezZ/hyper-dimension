@@ -36,7 +36,7 @@ export function characterAssetStatus(){return Object.fromEntries(['pixel','origa
 export function portraitStyle(id,theme){return 'background-image:url(/assets/characters-'+theme+'-v2.png);background-size:400% 400%;background-position:'+((id%4)*100/3)+'% '+(Math.floor(id/4)*100/3)+'%'}
 export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  const oldHeading=a.facing8,heading=facingIndex(a);if(oldHeading!=null&&oldHeading!==heading){const turn=Math.min((heading-oldHeading+8)%8,(oldHeading-heading+8)%8);a.previousHeading=turn===1?oldHeading:null;a.facingChangedAt=now}const blend=Math.min(1,Math.max(0,(now-(a.facingChangedAt??-1))/.08)),rear=[3,4,5].includes(heading),id=isNpc?a.npcId??0:0,{img,frame:directionFrame,flip}=(avatarFrame(a.appearance,theme,heading)||characterFrame(id,theme,!!a.isVisitor,heading));
- const walk=a.walkMix??(a.walking?1:0),gait=Math.sin(a.phase||0)*walk,act=a.action,t=act?(act.leisure&&act.type==='arrange'?(act.t%4)/4:isNpc&&act.duration>3&&['craft','pickaxe','axe','hoe','water','harvest','cook','brew','paint','arrange'].includes(act.type)?((act.t+(act.visualWait||0))%1.4)/1.4:Math.min(1,(act.t+(act.visualWait||0))/act.duration)):0;
+ let bodyHalfWidth=14,bodyHeight=76;const walk=a.walkMix??(a.walking?1:0),gait=Math.sin(a.phase||0)*walk,act=a.action,t=act?(act.leisure&&act.type==='arrange'?(act.t%4)/4:isNpc&&act.duration>3&&['craft','pickaxe','axe','hoe','water','harvest','cook','brew','paint','arrange'].includes(act.type)?((act.t+(act.visualWait||0))%1.4)/1.4:Math.min(1,(act.t+(act.visualWait||0))/act.duration)):0;
  const action=act?.type,room=act?.roomId,work=act?Math.sin(t*Math.PI*2):0;
  ctx.save();ctx.translate(a.x,a.y);ctx.scale(mult,mult);ctx.imageSmoothingEnabled=theme!=='pixel';
  ctx.fillStyle=isNpc?'#19372740':'#eecb6566';ctx.beginPath();ctx.ellipse(0,1,18,6,0,0,Math.PI*2);ctx.fill();
@@ -44,7 +44,7 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  ctx.translate(0,-bob);if(act?.couturePose==='bow'){const bend=Math.sin(t*Math.PI);ctx.translate(0,-35);ctx.rotate(.16*bend);ctx.translate(0,35+5*bend);} // Rotate via actual eight-direction drawings, never compress the silhouette.
  function drawPose(img,directionFrame,opacity,flipped=false,poseHeading=heading){if(img.complete&&img.naturalWidth){ctx.save();ctx.globalAlpha*=opacity;
  const prepared=theme==='origami'?spriteRaster.prepare(ctx,img,directionFrame):null;if(prepared){img=prepared.image;directionFrame=prepared.frame;}
- const vf=directionFrame,cw=vf?.w||img.naturalWidth/4,ch=vf?.h||img.naturalHeight/4,sx=vf?.x||0,sy=vf?.y||0,W=96*(vf?.aspectRatio??cw/ch),H=96;
+ const vf=directionFrame,cw=vf?.w||img.naturalWidth/4,ch=vf?.h||img.naturalHeight/4,sx=vf?.x||0,sy=vf?.y||0,W=96*(vf?.aspectRatio??cw/ch),H=96;bodyHalfWidth=Math.max(bodyHalfWidth,W/2+2);bodyHeight=Math.max(bodyHeight,H+2);
  const body=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='body');
  const dressed=!!garmentFrame(body,theme,poseHeading);
  const garmentHands=dressed?drawGarmentBody(ctx,body,theme,poseHeading,gait,work,action,t):null;
@@ -116,4 +116,5 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  ctx.restore();
  }}
  ctx.restore();
+ return {x:a.x-bodyHalfWidth*mult,y:a.y-(bodyHeight+bob)*mult,w:bodyHalfWidth*2*mult,h:(bodyHeight+4)*mult};
 }
