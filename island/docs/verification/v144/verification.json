@@ -1,0 +1,113 @@
+{
+  "sourceVersion": "V144 candidate",
+  "passed": true,
+  "scope": "Native Edge WebAudio stereo sample rendering, normal-clock fresh-island resident sound integration, no provider calls or real user data. Not human listening or full audio/animation acceptance.",
+  "focusedSoundRules": 16,
+  "humanListeningComplete": false,
+  "cases": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "actualResidentCues": 1,
+      "nearestAudible": 4,
+      "channels": {
+        "left": {
+          "rms": [
+            0.0024101616988328085,
+            0.0008004825818123413
+          ],
+          "pan": -0.591715976331361,
+          "volume": 0.45963803504740014
+        },
+        "right": {
+          "rms": [
+            0.0008004825818123413,
+            0.0024101616988328085
+          ],
+          "pan": 0.591715976331361,
+          "volume": 0.45963803504740014
+        },
+        "center": {
+          "rms": [
+            0.00511353918199055,
+            0.00511353918199055
+          ],
+          "pan": 0,
+          "volume": 1
+        },
+        "far": {
+          "rms": [
+            0,
+            0
+          ],
+          "pan": 0.85,
+          "volume": 0
+        },
+        "muted": {
+          "rms": [
+            0,
+            0
+          ],
+          "pan": 0.591715976331361,
+          "volume": 0.45963803504740014
+        }
+      },
+      "muteStoppedAllVoices": true,
+      "persistedMute": true,
+      "pageErrors": 0,
+      "assetErrors": 0
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "actualResidentCues": 1,
+      "nearestAudible": 3,
+      "channels": {
+        "left": {
+          "rms": [
+            0.0024101616988328085,
+            0.0008004825818123413
+          ],
+          "pan": -0.591715976331361,
+          "volume": 0.45963803504740014
+        },
+        "right": {
+          "rms": [
+            0.0008004825818123413,
+            0.0024101616988328085
+          ],
+          "pan": 0.591715976331361,
+          "volume": 0.45963803504740014
+        },
+        "center": {
+          "rms": [
+            0.00511353918199055,
+            0.00511353918199055
+          ],
+          "pan": 0,
+          "volume": 1
+        },
+        "far": {
+          "rms": [
+            0,
+            0
+          ],
+          "pan": 0.85,
+          "volume": 0
+        },
+        "muted": {
+          "rms": [
+            0,
+            0
+          ],
+          "pan": 0.591715976331361,
+          "volume": 0.45963803504740014
+        }
+      },
+      "muteStoppedAllVoices": true,
+      "persistedMute": true,
+      "pageErrors": 0,
+      "assetErrors": 0
+    }
+  ]
+}

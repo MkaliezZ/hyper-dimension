@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "sourceCommit": "d2b6d04e1f45fafb2e6fe5ba3f15d8a69eb9062f",
+  "sourceBytesUnchanged": true,
+  "gameFiles": 374,
+  "scope": "Server-created zero-coin/zero-inventory first day. Native axe/mining/joinery, two earned orders and milestone seeds, normal three-minute crop growth and harvest, then real Hermes parent/child recruitment, normal ferry/roads/production, personal invitations, four aimed night flights, unique cooperation/wage/departure and reload. No state/time/stock/quality/contract/position/result injection. Automatic provider requests blocked; requested recruitment uses real deepseek-flash. Automated inputs are not human, physical-device or all-five-template acceptance.",
+  "at": "2026-10-09T14:27:56.997Z",
+  "modelsReal": true,
+  "noInjectedCoinsOrStockOrClock": true,
+  "cases": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "elapsedSeconds": 528.616,
+      "actualSupplySeconds": 176.555,
+      "pageErrors": 0,
+      "badAssets": 0,
+      "childReceipts": 3,
+      "modelsResponded": 1,
+      "actualCropSeconds": 183.172,
+      "realHermesSource": "hermes",
+      "model": "deepseek-flash",
+      "acceptedStepCount": 3,
+      "completedPartyScore": 4,
+      "cooperationProofCount": 3,
+      "departurePhase": "departed"
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "elapsedSeconds": 536.028,
+      "actualSupplySeconds": 179.948,
+      "pageErrors": 0,
+      "badAssets": 0,
+      "childReceipts": 3,
+      "modelsResponded": 1,
+      "actualCropSeconds": 184.742,
+      "realHermesSource": "hermes",
+      "model": "deepseek-flash",
+      "acceptedStepCount": 3,
+      "completedPartyScore": 4,
+      "cooperationProofCount": 3,
+      "departurePhase": "departed"
+    }
+  ]
+}

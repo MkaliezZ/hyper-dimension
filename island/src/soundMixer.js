@@ -13,19 +13,19 @@ const midi=n=>440*2**((n-69)/12),categories=['music','effects','ambience'];
 const cueNotes={flip:67,join:60,snap:62,ingredient:65,cook:55,serve:72,collect:76,push:48,shutter:85,guide:74,bite:79,catch:72,rotate:57,buoy:69,turn:57,star:77,ribbon:71,order:72,dip:62,glaze:65,brush:59};
 const cues=new Set([...Object.keys(cueNotes),'note','victory','failure','firework','footstep','wood','stone','hoe','sow','water','harvest','talk','boat','ui','ocean','wind','bird','fire','retry','shake','warning','burn','miss','cut','splash','pour','steam','trail','leak']);
 export const SOUND_CUES=Object.freeze([...cues]);
-export function soundForAction(type){return ({chop:'wood',axe:'wood',gather:'harvest',collect:'harvest',mine:'stone',hoe:'hoe',sow:'sow',water:'water',harvest:'harvest',craft:'wood',brew:'pour',cook:'cook',celebrate:'victory',arrange:'ribbon',observe:'star',perform:'note',paint:'brush',fish:'splash',rest:'wind',talk:'talk',listen:'talk'})[type]||null;}
+export function soundForAction(type){return ({chop:'wood',axe:'wood',gather:'harvest',collect:'harvest',mine:'stone',pickaxe:'stone',hoe:'hoe',sow:'sow',water:'water',harvest:'harvest',craft:'wood',brew:'pour',cook:'cook',celebrate:'victory',arrange:'ribbon',observe:'star',perform:'note',paint:'brush',fish:'splash',rest:'wind',talk:'talk',listen:'talk'})[type]||null;}
 export function createSoundMixer({storage=safeStorage(),contextFactory=()=>new (globalThis.AudioContext||globalThis.webkitAudioContext)(),clock=()=>globalThis.performance?.now?.()/1000||Date.now()/1000}={}){
  let preferences={...SOUND_DEFAULTS},ctx=null,master=null,noise=null,unlocked=false,blocked=false,closed=false;
  try{const saved=storage?.getItem(SOUND_KEY);preferences=normalizeSoundPreferences(saved?JSON.parse(saved):{muted:storage?.getItem('hd-workshop-muted')==='1'});}catch{}
  const buses={},scopes=new Set(),voices=new Set(),listeners=new Set(),recent=new Map(),cueCounts=Object.create(null);let produced=0,suppressed=0,error=null;
- function inspect(){return {supported:!!ctx||typeof globalThis.AudioContext==='function'||typeof globalThis.webkitAudioContext==='function',unlocked,blocked,closed,state:ctx?.state||'locked',preferences:{...preferences},voices:voices.size,scopes:scopes.size,produced,suppressed,cueCounts:{...cueCounts},error};}
+ function inspect(){return {supported:!!ctx||typeof globalThis.AudioContext==='function'||typeof globalThis.webkitAudioContext==='function',unlocked,blocked,closed,state:ctx?.state||'locked',preferences:{...preferences},voices:voices.size,spatialVoices:[...voices].filter(v=>v.panner).length,scopes:scopes.size,produced,suppressed,cueCounts:{...cueCounts},error};}
  function notify(){for(const f of listeners)try{f(inspect())}catch{}}
  function gain(node,value){if(!node)return;const time=ctx.currentTime;node.gain.cancelScheduledValues?.(time);node.gain.setValueAtTime(node.gain.value,time);node.gain.linearRampToValueAtTime(value,time+.035);}
  function apply(){if(!master)return;gain(master,blocked||preferences.muted?0:preferences.master*.62);for(const key of categories)gain(buses[key],preferences[key]);}
  function disposeVoice(v,stop=false){
   if(!voices.delete(v))return;
   if(stop)try{v.source.stop()}catch{}
-  try{v.source.disconnect();v.amp.disconnect();v.filter?.disconnect()}catch{}
+  try{v.source.disconnect();v.amp.disconnect();v.filter?.disconnect();v.panner?.disconnect()}catch{}
  }
  function stopScope(scope){for(const v of [...voices])if(!scope||v.scope===scope)disposeVoice(v,true);}
  async function unlock(){
@@ -56,24 +56,28 @@ export function createSoundMixer({storage=safeStorage(),contextFactory=()=>new (
   while(voices.size>=48)disposeVoice(voices.values().next().value,true);
   return {at:ctx.currentTime+Math.max(0,Math.min(1.5,delay)),duration:Math.max(.018,Math.min(4,duration)),volume:Math.max(.0001,Math.min(.28,volume))};
  }
- function launch(source,amp,filter,scope,p){
-  const v={source,amp,filter,scope};voices.add(v);produced++;source.onended=()=>disposeVoice(v);source.start(p.at);source.stop(p.at+p.duration+.025);return true;
+ function output(amp,category,pan){
+  if(Number.isFinite(pan)&&pan!==0&&typeof ctx.createStereoPanner==='function'){const node=ctx.createStereoPanner();node.pan.setValueAtTime(Math.max(-1,Math.min(1,pan)),ctx.currentTime);amp.connect(node);node.connect(buses[category]);return node;}
+  amp.connect(buses[category]);return null;
+ }
+ function launch(source,amp,filter,scope,p,panner=null){
+  const v={source,amp,filter,scope,panner};voices.add(v);produced++;source.onended=()=>disposeVoice(v);source.start(p.at);source.stop(p.at+p.duration+.025);return true;
  }
  function envelope(amp,p){amp.gain.setValueAtTime(.0001,p.at);amp.gain.linearRampToValueAtTime(p.volume,p.at+.008);amp.gain.exponentialRampToValueAtTime(.0001,p.at+p.duration);}
- function tone(frequency,{category='effects',volume=.11,duration=.2,delay=0,type='sine',scope,bend=0}={}){
+ function tone(frequency,{category='effects',volume=.11,duration=.2,delay=0,type='sine',scope,bend=0,pan=0}={}){
   if(!Number.isFinite(frequency)||frequency<20||frequency>16000)return false;
   const p=prepare(category,scope,volume,delay,duration);if(!p)return false;
-  const source=ctx.createOscillator(),amp=ctx.createGain();source.type=['sine','triangle','square','sawtooth'].includes(type)?type:'sine';source.frequency.setValueAtTime(frequency,p.at);if(Number.isFinite(bend)&&bend)source.frequency.exponentialRampToValueAtTime(Math.max(20,Math.min(16000,frequency*2**(bend/12))),p.at+p.duration);envelope(amp,p);source.connect(amp);amp.connect(buses[category]);return launch(source,amp,null,scope,p);
+  const source=ctx.createOscillator(),amp=ctx.createGain();source.type=['sine','triangle','square','sawtooth'].includes(type)?type:'sine';source.frequency.setValueAtTime(frequency,p.at);if(Number.isFinite(bend)&&bend)source.frequency.exponentialRampToValueAtTime(Math.max(20,Math.min(16000,frequency*2**(bend/12))),p.at+p.duration);envelope(amp,p);source.connect(amp);return launch(source,amp,null,scope,p,output(amp,category,pan));
  }
- function hiss({category='effects',volume=.1,duration=.15,delay=0,filterType='lowpass',frequency=1600,scope}={}){
+ function hiss({category='effects',volume=.1,duration=.15,delay=0,filterType='lowpass',frequency=1600,scope,pan=0}={}){
   const p=prepare(category,scope,volume,delay,duration);if(!p)return false;
   if(!noise){noise=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const data=noise.getChannelData(0);let last=0;for(let i=0;i<data.length;i++){last=(last+.025*(Math.random()*2-1))/1.02;last=Math.max(-.8,Math.min(.8,last));data[i]=last*.5+(Math.random()*2-1)*.13;}}
-  const source=ctx.createBufferSource(),amp=ctx.createGain(),filter=ctx.createBiquadFilter();source.buffer=noise;source.loop=true;filter.type=['lowpass','highpass','bandpass'].includes(filterType)?filterType:'lowpass';filter.frequency.value=Math.max(50,Math.min(12000,Number(frequency)||1600));filter.Q.value=.6;envelope(amp,p);source.connect(filter);filter.connect(amp);amp.connect(buses[category]);return launch(source,amp,filter,scope,p);
+  const source=ctx.createBufferSource(),amp=ctx.createGain(),filter=ctx.createBiquadFilter();source.buffer=noise;source.loop=true;filter.type=['lowpass','highpass','bandpass'].includes(filterType)?filterType:'lowpass';filter.frequency.value=Math.max(50,Math.min(12000,Number(frequency)||1600));filter.Q.value=.6;envelope(amp,p);source.connect(filter);filter.connect(amp);return launch(source,amp,filter,scope,p,output(amp,category,pan));
  }
- function play(kind,{volume=1,lane=0,category='effects',scope}={}){
+ function play(kind,{volume=1,lane=0,category='effects',scope,pan=0,sourceId=''}={}){
   if(!cues.has(kind)||!Number.isFinite(volume)||volume<=0)return false;
-  const time=clock(),key=(scope?.label||'global')+':'+kind,prior=recent.get(key);if(prior!=null&&time-prior<.045){suppressed++;return false;}recent.set(key,time);if(recent.size>160)recent.delete(recent.keys().next().value);
-  const count=produced,v=Math.min(1,volume),t=(f,d=.2,a=.11,delay=0,type='sine',bend=0)=>tone(f,{category,scope,volume:a*v,duration:d,delay,type,bend}),n=(d=.15,a=.1,f=1600)=>hiss({category,scope,volume:a*v,duration:d,frequency:f});
+  const time=clock(),key=(scope?.label||'global')+':'+kind+':'+String(sourceId).slice(0,60),prior=recent.get(key);if(prior!=null&&time-prior<.045){suppressed++;return false;}recent.set(key,time);if(recent.size>160)recent.delete(recent.keys().next().value);
+  const count=produced,v=Math.min(1,volume),t=(f,d=.2,a=.11,delay=0,type='sine',bend=0)=>tone(f,{category,scope,volume:a*v,duration:d,delay,type,bend,pan}),n=(d=.15,a=.1,f=1600)=>hiss({category,scope,volume:a*v,duration:d,frequency:f,pan});
   if(kind==='note')t(midi(60+[0,4,7,11][Math.abs(Math.floor(lane))%4]),.3,.22);
   else if(kind==='victory')for(const [i,k] of [60,64,67,72,76].entries())t(midi(k),.65,.16,i*.105);
   else if(['failure','retry','shake','warning','burn','miss','leak'].includes(kind)){t(midi(50),.22,.09);t(midi(45),.35,.07,.12);}

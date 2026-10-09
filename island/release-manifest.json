@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v143-agent-source",
+  "release": "hyper-dimension-v144-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11363,
-      "sha256": "d97db417aad9834468f5f78fbae385b5bc23d699827f7fae103b2bec74e05da2"
+      "bytes": 11648,
+      "sha256": "df54faf5fdedb90485106dab20b225bba90f57a4acabb7882af2bd31617faed3"
     },
     {
       "path": "README.md",
-      "bytes": 11124,
-      "sha256": "7173f3fb3eba7e62d4f2c9d4bca41e10f8b9c40244b9c2209d041dfe8565c2ee"
+      "bytes": 11382,
+      "sha256": "0cef44a9ea34bd2731c52eb37c45f01067c954db1467bbc0765e628fbb6a1688"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 4280,
-      "sha256": "8fa4cb0caad7317eee3cd3200a64ab84e1f935586b8785c191f0900b2a8a62ec"
+      "bytes": 4734,
+      "sha256": "cb66020711c6e30007127958423e43cca230b7b55c54ea49a962e6d4a8fbdbde"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 19023,
-      "sha256": "e5e06ff58c53d8fce55c98e6466094c58c6e09bb02cdad868ff0b134c0610ec0"
+      "bytes": 19477,
+      "sha256": "c1cf02b9876ced9a4bce41006fa7873ad7b46cbb1fc77d616fd59b9332bfdd9e"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -811,6 +811,11 @@
       "sha256": "2b8cf125063ac3abe80dee5d1892a3edf4ae86125e0d01c773c94c31e22fb09e"
     },
     {
+      "path": "docs/spatial-sound-v144.md",
+      "bytes": 2990,
+      "sha256": "6ce552e48a967381f980b0a5ea74f62ef283697d3966a77d0060234b66dcd83d"
+    },
+    {
       "path": "docs/steward-recovery-v136.md",
       "bytes": 4351,
       "sha256": "22e65028f1fa200c91c9a183cf6bc51d2f10f395eaf0493ff00e6d2930458931"
@@ -914,6 +919,26 @@
       "path": "docs/verification/v143/verification.json",
       "bytes": 850,
       "sha256": "627cb52605ae69f2ee3505a851599574fec55bfb57a7dd053a8fc59e20268164"
+    },
+    {
+      "path": "docs/verification/v143/zero-agent-real.json",
+      "bytes": 1801,
+      "sha256": "ea220462c147834bbed47b7f93520a7ab5656634c4fa8c1560ce68dc64e859fe"
+    },
+    {
+      "path": "docs/verification/v144/origami-sound-settings.png",
+      "bytes": 1125265,
+      "sha256": "93516fb279629caa9ecfb1be4f01950990bb91b5a51fa3d910f273b028448e3a"
+    },
+    {
+      "path": "docs/verification/v144/pixel-sound-settings.png",
+      "bytes": 1027476,
+      "sha256": "e733c94ed8766ad38b76f6ddd42e26170d32d86a747e53df0fecf927be412913"
+    },
+    {
+      "path": "docs/verification/v144/verification.json",
+      "bytes": 2628,
+      "sha256": "2123c99c83197efd17673aab32a3709d653a44fe8d2157a62b520f07e3678a71"
     },
     {
       "path": "index.html",
@@ -1427,8 +1452,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8625,
-      "sha256": "c41c3ade105c24ac5622e61a56938554588cdf1e7ae2209996bc065a6a49fd5d"
+      "bytes": 8659,
+      "sha256": "961583c3ebe5a5cb76673145fdb0665a67ca739bd54b96bcc4de513046da8d0e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3512,8 +3537,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 136990,
-      "sha256": "54e7b38fe48070d3fa065e9a0873702c4d81e2c8bfa80713423d098a6ab38d56"
+      "bytes": 136995,
+      "sha256": "c214490a4047ef2d2c205b77297d66721b7d039d800d2841885a25141d8d8741"
     },
     {
       "path": "src/arcade.css",
@@ -4717,8 +4742,13 @@
     },
     {
       "path": "src/soundMixer.js",
-      "bytes": 11623,
-      "sha256": "4748bb322b1861506353d671e2a8f1087d71c78c6f396ffc374813028fe143d7"
+      "bytes": 12128,
+      "sha256": "e26d5ea451e75366e4a4f7639ae3cff0f67e142103ca02a9a783f4794944ff59"
+    },
+    {
+      "path": "src/soundSpatial.js",
+      "bytes": 1464,
+      "sha256": "73ff504c30d2b6ed9dec6b1cdeb50210265b0a7926c17ede44ae4c6084894bac"
     },
     {
       "path": "src/soundUI.js",
@@ -4877,8 +4907,8 @@
     },
     {
       "path": "src/worldSound.js",
-      "bytes": 2012,
-      "sha256": "2dbbbaee9df337375c398518ccf496542eb88bbbdbc16715c41003dd096b5647"
+      "bytes": 3570,
+      "sha256": "3a155f002678893b4078fdc0e08e772b03eb5200c43c8b6e6af81f148b0da6af"
     },
     {
       "path": "tests/admin-smoke.mjs",
@@ -5644,6 +5674,16 @@
       "path": "tests/v143-zero-agent-journey-browser.mjs",
       "bytes": 11039,
       "sha256": "943bcd733dc0e6ccb603d4ba3826e030f929a4f40411a347529c9f31fb3af974"
+    },
+    {
+      "path": "tests/v144-spatial-sound-browser.mjs",
+      "bytes": 5150,
+      "sha256": "5441b3b264008a2da382a7509a5165d199b9f0e89047ef5f3c6e059175d0a14c"
+    },
+    {
+      "path": "tests/v144-spatial-sound.test.mjs",
+      "bytes": 4984,
+      "sha256": "a2b6588658c3f95f0a196ba8078a3aa73ad4f2f12356e2f3eb69a5c7226e1baf"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -7946,5 +7986,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v143-github"
+  "publicRevision": "v144-github"
 }
