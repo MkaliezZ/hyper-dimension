@@ -174,3 +174,8 @@ Original cursors follow the active appearance across navigation, interactions, d
 ## V149 · 渲染快照检查
 
 NPC 原生回归等待实际帧，并核对同一服务器时间戳后执行严格朝向断言。[CI原因与重跑](browser-snapshot-v149.md)。
+
+
+## V150 · 存档恢复导航检查
+
+恢复回归从点击前监听实际刷新并确认新页面上下文，再读取备份；保留全部业务断言。[失败记录与修正](recovery-navigation-v150.md)。

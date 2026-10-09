@@ -1,0 +1,59 @@
+{
+  "scope": "Real save client and authoritative HTTP store in isolated fictional accounts. Independent edits use three-way merge; overlapping edits retain a backup and expose native clickable recovery. No user saves or model calls.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "overlap": false,
+      "outcome": {
+        "ok": true,
+        "status": "pending",
+        "name": "本页岛主",
+        "islandName": "远端改名岛",
+        "pending": null
+      },
+      "autoMergePreservesBothEdits": true,
+      "passed": true
+    },
+    {
+      "theme": "pixel",
+      "overlap": true,
+      "outcome": {
+        "ok": false,
+        "status": "conflict",
+        "code": "save_conflict"
+      },
+      "completedRecoveryNavigationObserved": true,
+      "recoveryClickableAndBackupPreserved": true,
+      "pendingCommandAfterRecovery": false,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "overlap": false,
+      "outcome": {
+        "ok": true,
+        "status": "pending",
+        "name": "本页岛主",
+        "islandName": "远端改名岛",
+        "pending": null
+      },
+      "autoMergePreservesBothEdits": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "overlap": true,
+      "outcome": {
+        "ok": false,
+        "status": "conflict",
+        "code": "save_conflict"
+      },
+      "completedRecoveryNavigationObserved": true,
+      "recoveryClickableAndBackupPreserved": true,
+      "pendingCommandAfterRecovery": false,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
