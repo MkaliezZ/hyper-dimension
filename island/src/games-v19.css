@@ -9,7 +9,7 @@
 .workshop-game h3{font-size:25px;line-height:1.3;letter-spacing:2px;font-weight:650;margin:0;font-family:"STSong","SimSun",serif}
 .workshop-game[data-theme="pixel"] h3{font-family:"Microsoft YaHei",sans-serif;font-weight:750;letter-spacing:1px}
 .wk-toolbar{display:flex;gap:7px}
-.workshop-game .wk-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 14px;border:1px solid var(--wk-line);border-radius:7px;background:#fffaf0;color:var(--wk-ink);box-shadow:0 2px 0 #a28c6122;font:600 15px/1.35 "Microsoft YaHei",sans-serif;text-shadow:none;letter-spacing:0;cursor:pointer;white-space:normal;transition:background .12s,box-shadow .12s,transform .12s;touch-action:manipulation}
+.workshop-game .wk-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 14px;border:1px solid var(--wk-line);border-radius:7px;background:#fffaf0;color:var(--wk-ink);box-shadow:0 2px 0 #a28c6122;font:600 15px/1.35 "Microsoft YaHei",sans-serif;text-shadow:none;letter-spacing:0;cursor:var(--hd-cursor-action,default);white-space:normal;transition:background .12s,box-shadow .12s,transform .12s;touch-action:manipulation}
 .workshop-game[data-theme="pixel"] .wk-control{border-radius:1px;border-width:2px;box-shadow:2px 2px 0 #9f8c6055;background:#fff5d8}
 .workshop-game .wk-control:hover:not(:disabled){background:#edf1df;box-shadow:0 3px 0 #8aa18366;transform:translateY(-1px)}
 .workshop-game .wk-control:active:not(:disabled){transform:translateY(1px);box-shadow:none}
@@ -37,7 +37,7 @@
 .workshop-game[data-theme="pixel"] .wk-stage{border-radius:1px;border:3px solid #9b8862;box-shadow:3px 4px 0 #a18b664f,0 0 0 2px #faefd2}
 .wk-canvas{display:block;width:100%;height:100%;object-fit:fill}
 .wk-hit-layer{position:absolute;inset:0;pointer-events:none}
-.workshop-game .wk-hit{position:absolute;display:block!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:2px;pointer-events:auto;cursor:pointer;color:transparent;transform:none!important;touch-action:manipulation}
+.workshop-game .wk-hit{position:absolute;display:block!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:2px;pointer-events:auto;cursor:var(--hd-cursor-action,default);color:transparent;transform:none!important;touch-action:manipulation}
 .workshop-game .wk-hit:hover{background:#fff8dd13!important}
 .workshop-game .wk-hit:focus-visible{background:#fff8dd18!important;outline-offset:-4px}
 .wk-stage-overlay{position:absolute;inset:0;pointer-events:none;z-index:4}

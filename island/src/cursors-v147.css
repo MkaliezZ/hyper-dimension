@@ -1,24 +1,27 @@
 /* Original theme cursors, with semantic hotspots and system fallbacks. */
 body[data-theme="pixel"]{
- --hd-cursor-default:url("/assets/cursors/pixel-default.svg") 4 2,default;
- --hd-cursor-action:url("/assets/cursors/pixel-action.svg") 4 2,pointer;
- --hd-cursor-drag:url("/assets/cursors/pixel-drag.svg") 17 16,grabbing;
- --hd-cursor-text:url("/assets/cursors/pixel-text.svg") 17 18,text;
- --hd-cursor-disabled:url("/assets/cursors/pixel-disabled.svg") 17 17,not-allowed;
- --hd-cursor-busy:url("/assets/cursors/pixel-busy.svg") 17 18,wait;
+ --hd-cursor-default:url("/assets/cursors/pixel-default.png") 4 2,default;
+ --hd-cursor-action:url("/assets/cursors/pixel-action.png") 4 2,default;
+ --hd-cursor-drag:url("/assets/cursors/pixel-drag.png") 17 16,default;
+ --hd-cursor-text:url("/assets/cursors/pixel-text.png") 17 18,text;
+ --hd-cursor-disabled:url("/assets/cursors/pixel-disabled.png") 17 17,not-allowed;
+ --hd-cursor-busy:url("/assets/cursors/pixel-busy.png") 17 18,wait;
 }
 body[data-theme="origami"]{
- --hd-cursor-default:url("/assets/cursors/origami-default.svg") 3 2,default;
- --hd-cursor-action:url("/assets/cursors/origami-action.svg") 3 2,pointer;
- --hd-cursor-drag:url("/assets/cursors/origami-drag.svg") 17 16,grabbing;
- --hd-cursor-text:url("/assets/cursors/origami-text.svg") 17 18,text;
- --hd-cursor-disabled:url("/assets/cursors/origami-disabled.svg") 17 17,not-allowed;
- --hd-cursor-busy:url("/assets/cursors/origami-busy.svg") 17 18,wait;
+ --hd-cursor-default:url("/assets/cursors/origami-default.png") 3 2,default;
+ --hd-cursor-action:url("/assets/cursors/origami-action.png") 3 2,default;
+ --hd-cursor-drag:url("/assets/cursors/origami-drag.png") 17 16,default;
+ --hd-cursor-text:url("/assets/cursors/origami-text.png") 17 18,text;
+ --hd-cursor-disabled:url("/assets/cursors/origami-disabled.png") 17 17,not-allowed;
+ --hd-cursor-busy:url("/assets/cursors/origami-busy.png") 17 18,wait;
 }
 html,body{cursor:var(--hd-cursor-default,default)}
 body *{cursor:inherit}
-body button,body a,body select,body label[for],body [role="button"],body input[type="button"],body input[type="submit"],body input[type="checkbox"],body input[type="radio"],body input[type="file"],body input[type="range"],body summary,body [data-npc],body .avatar-card,body .recipe-card{cursor:var(--hd-cursor-action,pointer)!important}
+body button,body a,body select,body label[for],body [role="button"],body input[type="button"],body input[type="submit"],body input[type="checkbox"],body input[type="radio"],body input[type="file"],body input[type="range"],body summary,body [data-npc],body .avatar-card,body .recipe-card{cursor:var(--hd-cursor-action,default)!important}
 body input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]),body textarea,body [contenteditable="true"]{cursor:var(--hd-cursor-text,text)!important}
 body button:disabled,body input:disabled,body select:disabled,body [aria-disabled="true"]{cursor:var(--hd-cursor-disabled,not-allowed)!important}
 body [aria-busy="true"] button:disabled,body #saveStatus[data-status="saving"],body #saveStatus[data-status="recovering"]{cursor:var(--hd-cursor-busy,wait)!important}
 #game,#lanMapCanvas{cursor:var(--hd-cursor-default,default)}
+
+/* Nested icon and text nodes must use the button cursor, not a legacy hand. */
+body button *,body a *,body [role="button"] *,body summary *,body label[for] *{cursor:inherit!important}

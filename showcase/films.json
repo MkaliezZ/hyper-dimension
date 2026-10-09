@@ -1,6 +1,27 @@
 {
-  "version": "V141",
+  "version": "V145",
   "films": [
+    {
+      "id": "living",
+      "version": "V145",
+      "filename": "hyper-dimension-v145-living-agents-30s.mp4",
+      "duration": 30,
+      "sha256": "80075243ca0b5fd231a71999f89aa9029a24bfa20315623debe40c80ce81f1fb",
+      "poster": "assets/hyper-dimension-v145-living-agents-poster.png",
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v145/hyper-dimension-v145-living-agents-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 会生活的岛与能办事的管家",
+        "en": "30 seconds · Living residents and working Agents"
+      },
+      "caption": {
+        "zh": "双画风 · AI 交谈 · 真实文档 · 主子 Agent · 奇观奖励",
+        "en": "Dual styles · AI dialogue · Real documents · Agent cooperation · Rewards"
+      },
+      "description": {
+        "zh": "实际 V145 页面录制，1440p / 60 fps 与原创 BGM。展示管家多形象、真实 Hermes 文档任务、主子 Agent 协作及房屋内小游戏的完成奖励。小游戏为占位演示；所有资料为虚构样例。",
+        "en": "Native V145 footage at 1440p / 60 fps with original BGM: steward appearance choices, an actual Hermes document task, parent/child Agent cooperation, and a completed in-dialog minigame reward. Minigames are prototypes; all briefs and profiles are fictional."
+      }
+    },
     {
       "id": "bridge",
       "version": "V138",

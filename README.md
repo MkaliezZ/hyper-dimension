@@ -4,24 +4,21 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V144 开发快照**，完整产品验收仍在进行。
+在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V148 开发快照**，完整产品验收仍在进行。
 
-## V145 · 管家发送顺序 / Steward submission order
+## 当前更新 · V148
 
-居民作业正在结算时，管家会等待回执再保存并寄出，减少短暂结算导致的发送失败。双画风原生UI验证：延迟期间零发送，恢复后唯一发送；离线和未确认作业仍保留恢复流程。[说明与证据](island/docs/steward-preflight-v145.md)。
-
-The steward waits for in-flight game receipts before saving and submitting. Native dual-theme delayed-receipt checks confirm zero early calls and one eventual submission; unresolved failures retain explicit recovery.
+主题鼠标全面覆盖；双画风在同一小岛内切换并持久化；会客厅扩大地图、重排侧栏；联机 NPC 停步与转向按服务器真实状态展示。会客馆加入预加载。[实现与回归证据](island/docs/ui-reliability-v148.md)。
 
 ## 看一眼这座岛
 
-[![Hyper Dimension · V138 原机管家 30 秒演示](island/docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png)](https://mkaliezz.github.io/hyper-dimension/#bridge)
+[![Hyper Dimension · AI 居民与 Agent 管家 30 秒演示](island/docs/media/hyper-dimension-v145-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码包与版本记录](https://github.com/MkaliezZ/hyper-dimension/releases)
+[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#living) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码包与版本记录](https://github.com/MkaliezZ/hyper-dimension/releases)
 
-点击封面或视频标题即可打开在线播放页；MP4 下载在播放器内单独提供。新增 45 秒会客馆内部导览，展示介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复，以及双画风展厅。
+点击封面直接在线播放；下载入口在播放器中单独提供。最新 30 秒影片为实际页面录制：双画风地图、AI 居民交谈、管家多形象、真实 Word 文档任务、主子 Agent 协作、房屋内小游戏及完成后的奖励。
 
-本版视频为 2560 × 1440、60 fps 的实际页面录制，包含会客馆内部档案、项目图片与留言。工作资料、个人经历和图片均为虚构示例；管家文件任务实际调用 Hermes 工具执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [录制与验证说明](island/docs/showcase-v135.md)。
-
+影片采用 2560 × 1440 / 60 fps 与原创 BGM；录制源码为 V145，当前源码为 V148。个人经历、项目图片与工作资料均为虚构示例，Hermes 文档任务实际执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [视频验证记录](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json)。
 
 ### V144 附近居民的声音
 

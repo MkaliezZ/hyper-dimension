@@ -33,7 +33,7 @@ body[data-theme=origami] .night-sky-controls{background:linear-gradient(105deg,#
 .night-sky-stage-note{position:static;display:block;transform:none;max-width:none;padding:7px 12px;margin:0;border:0;border-top:1px solid #a4b9c14d;background:#24354a;color:#fff2cf}
 @media(max-width:600px){.night-sky-stage-note{position:static;transform:none;max-width:none;padding:6px 8px;font-size:12px}.night-sky-top h3{font-size:17px;line-height:1.4}.night-sky-top{gap:10px}.night-sky-roster{gap:5px 12px}.night-sky-roster small{display:none}}
 
-.night-sky-controls input[type=range]{appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer;padding:0}
+.night-sky-controls input[type=range]{appearance:none;-webkit-appearance:none;background:transparent;cursor:var(--hd-cursor-action,default);padding:0}
 .night-sky-controls input[type=range]::-webkit-slider-runnable-track{height:9px;border:1px solid var(--sky-line);background:#ded0b9;border-radius:0}
 .night-sky-controls input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:17px;height:19px;margin-top:-6px;border:2px solid var(--sky-ink);background:var(--sky-accent);box-shadow:2px 2px #ac9274}
 .night-sky-controls input[type=range]::-moz-range-track{height:7px;border:1px solid var(--sky-line);background:#ded0b9;border-radius:0}

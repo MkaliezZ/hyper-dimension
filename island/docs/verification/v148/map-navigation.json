@@ -1,0 +1,88 @@
+{
+  "scope": "Native ground clicks and building entrance with actual simulation and fictional LAN saves, before and after resident dialog and camera drag. Both appearances. No state, time or movement injection after initial fixture.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "steps": [
+        {
+          "ground": {
+            "x": 870,
+            "y": 470
+          },
+          "actor": {
+            "x": 864,
+            "y": 480,
+            "path": 0
+          }
+        },
+        {
+          "ground": {
+            "x": 938.8322651072291,
+            "y": 530.0013209717642
+          },
+          "actor": {
+            "x": 936,
+            "y": 528,
+            "path": 0
+          }
+        },
+        {
+          "afterResidentDialog": true,
+          "actor": {
+            "x": 1032,
+            "y": 552,
+            "path": 0
+          }
+        },
+        {
+          "building": 0,
+          "scene": "workshop"
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "steps": [
+        {
+          "ground": {
+            "x": 870,
+            "y": 470
+          },
+          "actor": {
+            "x": 864,
+            "y": 480,
+            "path": 0
+          }
+        },
+        {
+          "ground": {
+            "x": 954,
+            "y": 480
+          },
+          "actor": {
+            "x": 960,
+            "y": 480,
+            "path": 0
+          }
+        },
+        {
+          "afterResidentDialog": true,
+          "actor": {
+            "x": 1032,
+            "y": 528,
+            "path": 0
+          }
+        },
+        {
+          "building": 0,
+          "scene": "workshop"
+        }
+      ],
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

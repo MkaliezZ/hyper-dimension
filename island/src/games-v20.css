@@ -19,7 +19,7 @@ body[data-theme] .workbench-modal .modal-body{padding:0 18px 14px;scrollbar-gutt
 .wk-material-list small{font-size:12px;color:var(--wk-muted)}
 .wk-material-list .is-missing{color:var(--ui-negative,#a66c5c)}
 .wk-production-info{position:relative;font-size:13px;flex:none}
-.wk-production-info summary{cursor:pointer;color:var(--wk-accent);padding:8px 0}
+.wk-production-info summary{cursor:var(--hd-cursor-action,default);color:var(--wk-accent);padding:8px 0}
 .wk-production-info>div{position:absolute;top:100%;right:0;width:290px;max-width:75vw;background:var(--wk-paper);border:1px solid var(--wk-line);padding:16px;box-shadow:0 8px 28px #2b473233;z-index:8}
 .wk-production-info p{margin:7px 0;line-height:1.75}
 .wk-production>.wk-control{font-size:14px;min-height:36px;padding:7px 11px;flex:none}
@@ -56,7 +56,7 @@ body[data-theme] .workbench-modal .modal-body{padding:0 18px 14px;scrollbar-gutt
 .wk-embedded .wk-tools>.wk-control{flex:1;padding:6px;white-space:nowrap;font-size:13px}
 .wk-stoves>.wk-control{flex:1}
 .wk-instructions{border-top:1px solid var(--wk-line);padding:9px 0;font-size:14px}
-.wk-instructions summary{cursor:pointer;color:var(--wk-accent);font-size:14px;min-height:28px}
+.wk-instructions summary{cursor:var(--hd-cursor-action,default);color:var(--wk-accent);font-size:14px;min-height:28px}
 .wk-guide .wk-instructions ol{border:0;margin:7px 0 0;padding:0}
 .wk-guide .wk-instructions li{font-size:14px;line-height:1.65;margin-bottom:8px}
 .wk-workbench-intro{display:grid;place-items:end center;grid-template-columns:1fr;background:linear-gradient(transparent 25%,#344e383d);padding:24px}

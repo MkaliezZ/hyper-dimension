@@ -382,9 +382,9 @@ function canvasPoint(e){const rect=canvas.getBoundingClientRect();return point((
 function sceneTransform(){const w=scene==='world'?WORLD.width:SCENE.width,h=scene==='world'?WORLD.height:SCENE.height;return rasterTransform(canvasW,canvasH,w,h,zoom,camera,densityX,densityY)}
 function screenToWorld(p){const t=sceneTransform();return point((p.x-t.ox)/t.scale,(p.y-t.oy)/t.scale)}
 let pointer={down:false,drag:false,x:0,y:0,lastX:0,lastY:0};
-canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);canvas.style.cursor='var(--hd-cursor-drag,grabbing)';const p=canvasPoint(e);pointer={down:true,drag:false,x:p.x,y:p.y,lastX:p.x,lastY:p.y}});
-canvas.addEventListener('pointermove',e=>{if(!pointer.down){const p=screenToWorld(canvasPoint(e));placementUI?.hover(p);hoveredMapCharacter=scene==='world'?mapCharacters.pick(p):null;canvas.style.cursor=hoveredMapCharacter?'var(--hd-cursor-action,pointer)':'var(--hd-cursor-default,default)';return;}hoveredMapCharacter=null;const p=canvasPoint(e);if(Math.hypot(p.x-pointer.x,p.y-pointer.y)>6)pointer.drag=true;if(pointer.drag){const t=sceneTransform();camera.x-=(p.x-pointer.lastX)/t.scale;camera.y-=(p.y-pointer.lastY)/t.scale;clampCamera()}pointer.lastX=p.x;pointer.lastY=p.y});
-canvas.addEventListener('pointerleave',()=>{hoveredMapCharacter=null;canvas.style.cursor=pointer.down?'var(--hd-cursor-drag,grabbing)':'var(--hd-cursor-default,default)';});
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);const p=canvasPoint(e);pointer={down:true,drag:false,x:p.x,y:p.y,lastX:p.x,lastY:p.y}});
+canvas.addEventListener('pointermove',e=>{if(!pointer.down){const p=screenToWorld(canvasPoint(e));placementUI?.hover(p);hoveredMapCharacter=scene==='world'?mapCharacters.pick(p):null;canvas.style.cursor=hoveredMapCharacter?'var(--hd-cursor-action,default)':'var(--hd-cursor-default,default)';return;}hoveredMapCharacter=null;const p=canvasPoint(e);if(Math.hypot(p.x-pointer.x,p.y-pointer.y)>6)pointer.drag=true;if(pointer.drag){canvas.style.cursor='var(--hd-cursor-drag,default)';const t=sceneTransform();camera.x-=(p.x-pointer.lastX)/t.scale;camera.y-=(p.y-pointer.lastY)/t.scale;clampCamera()}pointer.lastX=p.x;pointer.lastY=p.y});
+canvas.addEventListener('pointerleave',()=>{hoveredMapCharacter=null;canvas.style.cursor=pointer.down?'var(--hd-cursor-drag,default)':'var(--hd-cursor-default,default)';});
 canvas.addEventListener('pointerup',e=>{if(!pointer.down)return;const dragged=pointer.drag;pointer.down=false;canvas.style.cursor='var(--hd-cursor-default,default)';if(dragged||modal)return;const p=screenToWorld(canvasPoint(e));if(placementUI?.active()){placementUI.hover(p);return;}if(scene==='world')clickWorld(p);else if(scene==='farm')clickFarm(p);else if(scene==='mine')clickMine(p);else clickInterior(p)});
 canvas.addEventListener('pointercancel',()=>{pointer.down=false;pointer.drag=false;canvas.style.cursor='var(--hd-cursor-default,default)';});
 function clampCamera(){const w=scene==='world'?WORLD.width:SCENE.width,h=scene==='world'?WORLD.height:SCENE.height,t=sceneTransform(),hw=canvasW/(2*t.scale),hh=canvasH/(2*t.scale);camera.x=Math.max(hw,Math.min(w-hw,camera.x));camera.y=Math.max(hh,Math.min(h-hh,camera.y))}
@@ -778,6 +778,7 @@ showFirstDay();
 async function recoverStartup(){try{for(const controller of [serverGather,serverCraft,serverFarm,serverField,serverFieldNpc,serverResident,serverVisitor,serverCommerce,serverParty,serverFishing,serverFestival,serverCouture,serverFireworks,serverFacility,serverPersonal])await controller.recover();}finally{recoveryBoot=false;bootNotice.remove();$('app').removeAttribute('aria-busy');}}
 await activateThemeArtwork(theme);
 const startupRecovery=recoverStartup();
+startupRecovery.finally(()=>setTimeout(()=>{if(window.requestIdleCallback)requestIdleCallback(()=>portfolioUI.preload(),{timeout:5000});else portfolioUI.preload();},1500));
 $('saveStatus').setAttribute('role','button');$('saveStatus').tabIndex=0;
 $('saveStatus').onclick=()=>saveUI.show();
 $('saveStatus').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();saveUI.show()}};

@@ -3,11 +3,12 @@ import {resolve} from 'node:path';
 import {createRecruitmentStore} from './recruitmentStore.mjs';
 import {AVATAR_BY_ID} from '../src/avatarCatalog.js';
 const fail=(message,code='lan_travel_invalid')=>Object.assign(Error(message),{code,status:409});
+const worldKey=doc=>doc?.state?.saveSlot;
 const safe=(v,fallback,max=100)=>typeof v==='string'?v.slice(0,max):fallback;
 // The transient travel document is enriched from the owner's contract registry, never client input.
 export async function readTravelContract(directory,account,doc,id){
- if(!doc?.state?.saveSlot||typeof id!=='string')return null;
- try{const c=await createRecruitmentStore({directory:resolve(directory,'_lan','islands',account.id)}).peek(account.profile.theme,id);return c.world===doc.state.saveSlot?c:null;}
+ if(!worldKey(doc)||typeof id!=='string')return null;
+ try{const c=await createRecruitmentStore({directory:resolve(directory,'_lan','islands',account.id)}).peek(account.profile.theme,id);return c.world===worldKey(doc)?c:null;}
  catch(e){if(e.code==='recruitment_missing')return null;throw e;}
 }
 export async function resolveTravelRecruitment(directory,account,doc){
@@ -41,9 +42,9 @@ export function invitation(account,doc,npcId){
  return {...p,accepted,reason,needs:{energy,hunger},day:s.day};
 }
 export function travelPreparation(account,doc,stored){
- if(!doc?.state)return {available:false,reason:'先进入自己的小岛建立档案',residents:[],selected:[]};
- const valid=stored?.homeWorldKey===doc.state.saveSlot,selected=valid?stored.selected||[]:[];
- return {available:true,homeWorldKey:doc.state.saveSlot,homeTheme:account.profile.theme,butler:travelPerson(account,doc,15),selected:[...selected],recruitedContractId:valid?stored.recruitedContractId||null:null,staleRecruitSelection:selected.includes(16)&&(!doc.travelRecruit||stored.recruitedContractId!==doc.travelRecruit.id),residents:[...Array.from({length:15},(_,i)=>invitation(account,doc,i)),...(doc.travelRecruit?[invitation(account,doc,16)]:[])],maxResidents:2};
+ if(!doc?.state||!worldKey(doc))return {available:false,reason:'先进入自己的小岛建立档案',residents:[],selected:[]};
+ const valid=!!stored&&stored.homeWorldKey===worldKey(doc),selected=valid?stored.selected||[]:[];
+ return {available:true,homeWorldKey:worldKey(doc),homeTheme:account.profile.theme,butler:travelPerson(account,doc,15),selected:[...selected],recruitedContractId:valid?stored.recruitedContractId||null:null,staleRecruitSelection:selected.includes(16)&&(!doc.travelRecruit||stored.recruitedContractId!==doc.travelRecruit.id),residents:[...Array.from({length:15},(_,i)=>invitation(account,doc,i)),...(doc.travelRecruit?[invitation(account,doc,16)]:[])],maxResidents:2};
 }
 export function freezeTravelParty(account,doc,stored,at){
  const p=travelPreparation(account,doc,stored);if(!p.available)throw fail(p.reason,'lan_travel_home');

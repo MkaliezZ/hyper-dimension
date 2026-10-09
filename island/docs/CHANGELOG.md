@@ -65,3 +65,8 @@ Definite version rejections preserve independent edits. Overlapping edits expose
 双画风原创鼠标覆盖地图、按钮、拖拽、输入、禁用和保存等待。素材与原生地图交互检查通过。[说明](theme-cursors-v147.md)。
 
 Original cursors follow the active appearance across navigation, interactions, dragging, text input and save status.
+
+
+## V148 · UI 与联机显示修复
+
+主题鼠标、身份重试、同档画风切换、放大会客地图、NPC 动画同步及会客馆预加载。[说明与证据](ui-reliability-v148.md)。

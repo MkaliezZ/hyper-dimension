@@ -10,7 +10,7 @@
 .sound-body{padding:18px 24px;overflow:auto;overscroll-behavior:contain;min-height:0;font-size:16px}
 #soundState{margin:0 0 18px;padding:12px 14px;background:#82a18925;border:1px solid #91a57b75;line-height:1.6}
 .sound-sliders{display:grid;gap:19px}.sound-sliders label{display:block}.sound-sliders label>span{display:flex;justify-content:space-between;margin-bottom:10px;font-weight:700}.sound-sliders b{font-variant-numeric:tabular-nums}
-.sound-sliders input{display:block;width:100%;margin:0;height:24px;appearance:none;background:transparent;cursor:pointer}
+.sound-sliders input{display:block;width:100%;margin:0;height:24px;appearance:none;background:transparent;cursor:var(--hd-cursor-action,default)}
 .sound-sliders input::-webkit-slider-runnable-track{height:9px;background:#b7a176;border:1px solid var(--hud-edge);box-shadow:inset 0 2px #70553744}
 .sound-sliders input::-webkit-slider-thumb{appearance:none;width:20px;height:25px;border:2px solid var(--hud-edge);background:var(--hud-highlight);margin-top:-9px;box-shadow:2px 2px #664d3544}
 .sound-sliders input::-moz-range-track{height:9px;background:#b7a176;border:1px solid var(--hud-edge)}.sound-sliders input::-moz-range-thumb{width:16px;height:21px;border:2px solid var(--hud-edge);border-radius:0;background:var(--hud-highlight)}

@@ -1,0 +1,25 @@
+✔ transient failures retain identity (1.5478ms)
+✔ blocked route stays idle with stable direction (3.2434ms)
+✔ duplicate snapshots do not reset prediction; correction never flips facing (2.4343ms)
+✔ pixel unselected and missing-world travel projections are safe (3.8115ms)
+✔ origami unselected and missing-world travel projections are safe (0.7105ms)
+✔ pixel private salted identities and independent sessions never expose credentials in public lobby projections (393.1533ms)
+✔ pixel two-seat room upgrades to four, unauthorized mutations fail, closed rooms revoke membership without identity loss (335.4038ms)
+✔ pixel movement uses server path, speed and road/bridge constraints; offline never grants long-distance teleport (265.1488ms)
+✔ origami private salted identities and independent sessions never expose credentials in public lobby projections (326.0246ms)
+✔ origami two-seat room upgrades to four, unauthorized mutations fail, closed rooms revoke membership without identity loss (293.6874ms)
+✔ origami movement uses server path, speed and road/bridge constraints; offline never grants long-distance teleport (288.6312ms)
+✔ commands are scoped to authenticated account; retries settle once and stale room revisions fail (271.4414ms)
+✔ expired sessions, invalid profiles, duplicate login and corruption preserve existing identity storage (263.9901ms)
+✔ pixel invitations use owner save, unmet needs and obligations; retries, two-resident cap and frozen parties survive reconnect (1332.8625ms)
+✔ pixel four teams have unique source identities, separate walkable positions, bounded movement and companion progress (27433.1791ms)
+✔ origami invitations use owner save, unmet needs and obligations; retries, two-resident cap and frozen parties survive reconnect (1049.8843ms)
+✔ origami four teams have unique source identities, separate walkable positions, bounded movement and companion progress (5827.2811ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36235.7655
