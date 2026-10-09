@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v154-agent-source",
+  "release": "hyper-dimension-v155-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12628,
-      "sha256": "8a4c5f7e861e54e74bce00be1634faa2efd0c09b385e9799bf1d630651209b3a"
+      "bytes": 12916,
+      "sha256": "6f73c0dfc1faec062ac5a8f37062ae99b43ff21f58e5e7d6a448e5f5ee251e7e"
     },
     {
       "path": "README.md",
-      "bytes": 13427,
-      "sha256": "5a0e099deb5a9d74268a1a70097316352f7e87111d7c743205669834a23d8fe9"
+      "bytes": 13670,
+      "sha256": "09fd10743aac9071b187f0386bb8b7d67bf8d690b3bc54df8ef2debb3bcbcf78"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -499,6 +499,11 @@
       "path": "docs/portfolio-v130.md",
       "bytes": 3271,
       "sha256": "f7ffb463e781b04a173574d0ea1a15129907f4001f11be9b6c88acad75e80acb"
+    },
+    {
+      "path": "docs/product-art-v155.md",
+      "bytes": 2827,
+      "sha256": "6e32302dce1d594bfe9d94fa525b01fd75b713d6a32965def77a36ee3bc5bbda"
     },
     {
       "path": "docs/production-contracts-v114.md",
@@ -1114,6 +1119,16 @@
       "path": "docs/verification/v154/native-material-clips.json",
       "bytes": 1621,
       "sha256": "4d2d5119eb335faae03dce8e00e9e93af517c96face3c5edfc610482dfbab77e"
+    },
+    {
+      "path": "docs/verification/v155/native-checkpoint-restart.json",
+      "bytes": 1152,
+      "sha256": "e14397d8cadbbcf1e74cc9fe0ff8f98327c3baf2417d830172f9af6f664689a4"
+    },
+    {
+      "path": "docs/verification/v155/native-product-clips.json",
+      "bytes": 101655,
+      "sha256": "548eae095d48d2e0b7fd138e060ffc049fbff4fff678c9038532608de823218c"
     },
     {
       "path": "index.html",
@@ -3852,8 +3867,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 7488,
-      "sha256": "a828e5d0fb6502639183d75a341214d81e7c6544a2d105148a395471ee9406f0"
+      "bytes": 7587,
+      "sha256": "9a922bac443ff3cfcd25a417456b957e1856e763757577c919483c9f94b0c3de"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -4776,6 +4791,11 @@
       "sha256": "fa2d49066b4aab9538f2118c63cb1405490c89b085e2fc3f047c7247f33a036e"
     },
     {
+      "path": "src/productArtClips.js",
+      "bytes": 427681,
+      "sha256": "83259f4b7452137daabe23970b70aa1c841b0bf77d1984ce32ced5f35cce9c01"
+    },
+    {
       "path": "src/productionNetwork.js",
       "bytes": 3544,
       "sha256": "abcdd309dd20ef1480a7635493ca94803ddfa87c49cde9a67ead797005323ea3"
@@ -5197,8 +5217,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 43374,
-      "sha256": "b5992097e0f4c591c074a5ff168a20c4f10e35ba513c0b13a31a276efe20bf2a"
+      "bytes": 43685,
+      "sha256": "3efc73c9835b79cfbf480faab0cfc1903c5bdac9d0413932350e58c213c1644c"
     },
     {
       "path": "src/workshopProps.js",
@@ -6059,6 +6079,16 @@
       "path": "tests/v154-material-art-browser.mjs",
       "bytes": 6923,
       "sha256": "c6138985e3cc2351a1b7d88fd6d1d2fe0d1c2b7e786ecbf8f59e5fb329d0bb20"
+    },
+    {
+      "path": "tests/v155-checkpoint-restart-browser.mjs",
+      "bytes": 6888,
+      "sha256": "c82b5521f935c6b1130b4d67cb36e2eb61a94b09d0df2c309b191f117f63d019"
+    },
+    {
+      "path": "tests/v155-product-art-browser.mjs",
+      "bytes": 7280,
+      "sha256": "b7e2cfdd154099b1da628c6d442d4def4201618dcb655ea121e3e09da8a6d5f5"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8361,5 +8391,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v154-github"
+  "publicRevision": "v155-github"
 }

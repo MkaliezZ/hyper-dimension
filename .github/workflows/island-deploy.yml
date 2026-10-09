@@ -55,3 +55,9 @@ jobs:
 
       - name: Native material item art
         run: node tests/v154-material-art-browser.mjs
+
+      - name: Native recipe product art
+        run: node tests/v155-product-art-browser.mjs
+
+      - name: Native protected checkpoint restart
+        run: node tests/v155-checkpoint-restart-browser.mjs

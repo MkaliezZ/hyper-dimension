@@ -1,0 +1,4347 @@
+{
+  "passed": true,
+  "scope": "Native rendering of all 300 real recipe-product icons in both themes through inventory SVG, scene canvas and held-item canvas. Six known neighboring-art probes and SVG letterbox margins are checked; real source PNGs are unchanged. Isolated renderer, no game/user data/model calls; visual inspection is by the development agent, not human acceptance.",
+  "productsPerTheme": 300,
+  "themes": 2,
+  "nativeSurfaces": 1800,
+  "humanAcceptance": false,
+  "physicalMacAcceptance": false,
+  "fullProductAcceptance": false,
+  "sourcePngsChanged": false,
+  "knownNeighborProbes": [
+    {
+      "theme": "pixel",
+      "id": "c6_9",
+      "x": 645,
+      "y": 615,
+      "canvasRGB": [
+        248,
+        242,
+        219
+      ],
+      "heldRGB": [
+        248,
+        242,
+        219
+      ]
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_4",
+      "x": 1017,
+      "y": 1118,
+      "canvasRGB": [
+        248,
+        242,
+        219
+      ],
+      "heldRGB": [
+        248,
+        242,
+        219
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c6_9",
+      "x": 641,
+      "y": 591,
+      "canvasRGB": [
+        248,
+        242,
+        219
+      ],
+      "heldRGB": [
+        248,
+        242,
+        219
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c16_10",
+      "x": 806,
+      "y": 570,
+      "canvasRGB": [
+        248,
+        242,
+        219
+      ],
+      "heldRGB": [
+        248,
+        242,
+        219
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c19_4",
+      "x": 802,
+      "y": 1376,
+      "canvasRGB": [
+        248,
+        242,
+        219
+      ],
+      "heldRGB": [
+        248,
+        242,
+        219
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c24_3",
+      "x": 642,
+      "y": 1375,
+      "canvasRGB": [
+        248,
+        242,
+        219
+      ],
+      "heldRGB": [
+        248,
+        242,
+        219
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "theme": "pixel",
+      "id": "lantern",
+      "foregroundPixels": 20215,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "hoe",
+      "foregroundPixels": 5398,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "pickaxe",
+      "foregroundPixels": 13973,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "watering_can",
+      "foregroundPixels": 19642,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "axe",
+      "foregroundPixels": 14957,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "sickle",
+      "foregroundPixels": 12620,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c0_6",
+      "foregroundPixels": 20411,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c0_7",
+      "foregroundPixels": 20738,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c0_8",
+      "foregroundPixels": 21132,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c0_9",
+      "foregroundPixels": 33725,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c0_10",
+      "foregroundPixels": 30301,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c0_11",
+      "foregroundPixels": 11485,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "tea",
+      "foregroundPixels": 24910,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_1",
+      "foregroundPixels": 18851,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_2",
+      "foregroundPixels": 24712,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_3",
+      "foregroundPixels": 23036,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_4",
+      "foregroundPixels": 24450,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_5",
+      "foregroundPixels": 21177,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_6",
+      "foregroundPixels": 28476,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_7",
+      "foregroundPixels": 22892,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_8",
+      "foregroundPixels": 27572,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_9",
+      "foregroundPixels": 23865,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_10",
+      "foregroundPixels": 32781,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c1_11",
+      "foregroundPixels": 25251,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "meal",
+      "foregroundPixels": 26335,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_1",
+      "foregroundPixels": 23610,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_2",
+      "foregroundPixels": 23154,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_3",
+      "foregroundPixels": 22241,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_4",
+      "foregroundPixels": 22982,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_5",
+      "foregroundPixels": 23815,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_6",
+      "foregroundPixels": 27800,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_7",
+      "foregroundPixels": 27703,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_8",
+      "foregroundPixels": 26567,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_9",
+      "foregroundPixels": 21637,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_10",
+      "foregroundPixels": 30090,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c2_11",
+      "foregroundPixels": 23329,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "bouquet",
+      "foregroundPixels": 23641,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_1",
+      "foregroundPixels": 24781,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_2",
+      "foregroundPixels": 20274,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_3",
+      "foregroundPixels": 27368,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_4",
+      "foregroundPixels": 24400,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_5",
+      "foregroundPixels": 30011,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_6",
+      "foregroundPixels": 25174,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_7",
+      "foregroundPixels": 19537,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_8",
+      "foregroundPixels": 21542,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_9",
+      "foregroundPixels": 27666,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_10",
+      "foregroundPixels": 23029,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c3_11",
+      "foregroundPixels": 16685,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "outfit",
+      "foregroundPixels": 24589,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_1",
+      "foregroundPixels": 23744,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_2",
+      "foregroundPixels": 22880,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_3",
+      "foregroundPixels": 21264,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_4",
+      "foregroundPixels": 23272,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_5",
+      "foregroundPixels": 25306,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_6",
+      "foregroundPixels": 26278,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_7",
+      "foregroundPixels": 22310,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_8",
+      "foregroundPixels": 25079,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_9",
+      "foregroundPixels": 26560,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_10",
+      "foregroundPixels": 25251,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c4_11",
+      "foregroundPixels": 27817,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_0",
+      "foregroundPixels": 21028,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_1",
+      "foregroundPixels": 19473,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_2",
+      "foregroundPixels": 15982,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_3",
+      "foregroundPixels": 18874,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_4",
+      "foregroundPixels": 20846,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_5",
+      "foregroundPixels": 20906,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_6",
+      "foregroundPixels": 22245,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_7",
+      "foregroundPixels": 21030,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_8",
+      "foregroundPixels": 23303,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_9",
+      "foregroundPixels": 28262,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_10",
+      "foregroundPixels": 15992,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c5_11",
+      "foregroundPixels": 27037,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_0",
+      "foregroundPixels": 29346,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_1",
+      "foregroundPixels": 26658,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_2",
+      "foregroundPixels": 24101,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_3",
+      "foregroundPixels": 28774,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_4",
+      "foregroundPixels": 31547,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_5",
+      "foregroundPixels": 23937,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_6",
+      "foregroundPixels": 28159,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_7",
+      "foregroundPixels": 28886,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_8",
+      "foregroundPixels": 26732,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_9",
+      "foregroundPixels": 22968,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": [
+        {
+          "sourceX": 645,
+          "sourceY": 615,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_10",
+      "foregroundPixels": 32815,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c6_11",
+      "foregroundPixels": 28039,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_0",
+      "foregroundPixels": 29837,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_1",
+      "foregroundPixels": 27664,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_2",
+      "foregroundPixels": 27090,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_3",
+      "foregroundPixels": 31164,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_4",
+      "foregroundPixels": 26966,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_5",
+      "foregroundPixels": 24785,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_6",
+      "foregroundPixels": 29984,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_7",
+      "foregroundPixels": 26064,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_8",
+      "foregroundPixels": 16822,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_9",
+      "foregroundPixels": 28890,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_10",
+      "foregroundPixels": 25638,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c7_11",
+      "foregroundPixels": 27004,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_0",
+      "foregroundPixels": 18772,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_1",
+      "foregroundPixels": 18685,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_2",
+      "foregroundPixels": 15792,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_3",
+      "foregroundPixels": 18091,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_4",
+      "foregroundPixels": 21082,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_5",
+      "foregroundPixels": 28623,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_6",
+      "foregroundPixels": 21378,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_7",
+      "foregroundPixels": 26302,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_8",
+      "foregroundPixels": 17609,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_9",
+      "foregroundPixels": 27901,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_10",
+      "foregroundPixels": 15039,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c8_11",
+      "foregroundPixels": 18040,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_0",
+      "foregroundPixels": 27958,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_1",
+      "foregroundPixels": 23463,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_2",
+      "foregroundPixels": 28633,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_3",
+      "foregroundPixels": 27280,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_4",
+      "foregroundPixels": 30855,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_5",
+      "foregroundPixels": 24757,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_6",
+      "foregroundPixels": 27629,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_7",
+      "foregroundPixels": 25148,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_8",
+      "foregroundPixels": 23130,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_9",
+      "foregroundPixels": 29747,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_10",
+      "foregroundPixels": 22236,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c9_11",
+      "foregroundPixels": 30889,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "remedy",
+      "foregroundPixels": 24068,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_1",
+      "foregroundPixels": 22061,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_2",
+      "foregroundPixels": 17964,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_3",
+      "foregroundPixels": 26333,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_4",
+      "foregroundPixels": 27995,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_5",
+      "foregroundPixels": 19236,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_6",
+      "foregroundPixels": 20695,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_7",
+      "foregroundPixels": 13991,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_8",
+      "foregroundPixels": 15977,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_9",
+      "foregroundPixels": 21350,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_10",
+      "foregroundPixels": 22359,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c10_11",
+      "foregroundPixels": 24134,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_0",
+      "foregroundPixels": 17540,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_1",
+      "foregroundPixels": 20545,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_2",
+      "foregroundPixels": 15376,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_3",
+      "foregroundPixels": 20675,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_4",
+      "foregroundPixels": 15658,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_5",
+      "foregroundPixels": 23793,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_6",
+      "foregroundPixels": 22972,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_7",
+      "foregroundPixels": 15850,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_8",
+      "foregroundPixels": 15661,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_9",
+      "foregroundPixels": 15429,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_10",
+      "foregroundPixels": 24050,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c11_11",
+      "foregroundPixels": 19294,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_0",
+      "foregroundPixels": 9750,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_1",
+      "foregroundPixels": 13242,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_2",
+      "foregroundPixels": 18377,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_3",
+      "foregroundPixels": 14201,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_4",
+      "foregroundPixels": 16688,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_5",
+      "foregroundPixels": 17649,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_6",
+      "foregroundPixels": 15245,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_7",
+      "foregroundPixels": 14988,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_8",
+      "foregroundPixels": 24216,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_9",
+      "foregroundPixels": 26386,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_10",
+      "foregroundPixels": 22138,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c12_11",
+      "foregroundPixels": 26974,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_0",
+      "foregroundPixels": 24472,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_1",
+      "foregroundPixels": 29458,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_2",
+      "foregroundPixels": 29156,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_3",
+      "foregroundPixels": 20279,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_4",
+      "foregroundPixels": 20599,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_5",
+      "foregroundPixels": 16598,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_6",
+      "foregroundPixels": 18794,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_7",
+      "foregroundPixels": 15045,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_8",
+      "foregroundPixels": 20365,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_9",
+      "foregroundPixels": 21393,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_10",
+      "foregroundPixels": 25437,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c13_11",
+      "foregroundPixels": 22688,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_0",
+      "foregroundPixels": 16467,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_1",
+      "foregroundPixels": 11924,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_2",
+      "foregroundPixels": 15683,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_3",
+      "foregroundPixels": 18883,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_4",
+      "foregroundPixels": 16364,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_5",
+      "foregroundPixels": 16278,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_6",
+      "foregroundPixels": 22552,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_7",
+      "foregroundPixels": 18222,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_8",
+      "foregroundPixels": 16213,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_9",
+      "foregroundPixels": 15638,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_10",
+      "foregroundPixels": 18668,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c14_11",
+      "foregroundPixels": 16484,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "pottery",
+      "foregroundPixels": 24733,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_1",
+      "foregroundPixels": 19703,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_2",
+      "foregroundPixels": 20614,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_3",
+      "foregroundPixels": 14870,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_4",
+      "foregroundPixels": 17999,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_5",
+      "foregroundPixels": 20584,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_6",
+      "foregroundPixels": 16329,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_7",
+      "foregroundPixels": 13347,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_8",
+      "foregroundPixels": 27132,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_9",
+      "foregroundPixels": 19261,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_10",
+      "foregroundPixels": 23250,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c15_11",
+      "foregroundPixels": 23458,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "rod",
+      "foregroundPixels": 8015,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_1",
+      "foregroundPixels": 15351,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_2",
+      "foregroundPixels": 23555,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_3",
+      "foregroundPixels": 23563,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_4",
+      "foregroundPixels": 24853,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_5",
+      "foregroundPixels": 18098,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_6",
+      "foregroundPixels": 10108,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_7",
+      "foregroundPixels": 17880,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_8",
+      "foregroundPixels": 18572,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_9",
+      "foregroundPixels": 5912,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_10",
+      "foregroundPixels": 5519,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c16_11",
+      "foregroundPixels": 24962,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "bread",
+      "foregroundPixels": 19405,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_1",
+      "foregroundPixels": 21437,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_2",
+      "foregroundPixels": 20051,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_3",
+      "foregroundPixels": 28889,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_4",
+      "foregroundPixels": 20883,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_5",
+      "foregroundPixels": 19964,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_6",
+      "foregroundPixels": 21218,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_7",
+      "foregroundPixels": 19288,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_8",
+      "foregroundPixels": 23084,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_9",
+      "foregroundPixels": 22299,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_10",
+      "foregroundPixels": 25677,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c17_11",
+      "foregroundPixels": 20656,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_0",
+      "foregroundPixels": 28187,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_1",
+      "foregroundPixels": 39253,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_2",
+      "foregroundPixels": 27948,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_3",
+      "foregroundPixels": 28598,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_4",
+      "foregroundPixels": 15572,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_5",
+      "foregroundPixels": 19154,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_6",
+      "foregroundPixels": 20436,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_7",
+      "foregroundPixels": 26295,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_8",
+      "foregroundPixels": 28792,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_9",
+      "foregroundPixels": 31977,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_10",
+      "foregroundPixels": 25034,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c18_11",
+      "foregroundPixels": 21465,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_0",
+      "foregroundPixels": 15193,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_1",
+      "foregroundPixels": 13364,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_2",
+      "foregroundPixels": 13602,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_3",
+      "foregroundPixels": 8523,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_4",
+      "foregroundPixels": 11166,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": [
+        {
+          "sourceX": 1017,
+          "sourceY": 1118,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_5",
+      "foregroundPixels": 15994,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_6",
+      "foregroundPixels": 20459,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_7",
+      "foregroundPixels": 24621,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_8",
+      "foregroundPixels": 27095,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_9",
+      "foregroundPixels": 19666,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_10",
+      "foregroundPixels": 30935,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c19_11",
+      "foregroundPixels": 17830,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "firework",
+      "foregroundPixels": 15473,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_1",
+      "foregroundPixels": 20276,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_2",
+      "foregroundPixels": 17892,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_3",
+      "foregroundPixels": 18695,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_4",
+      "foregroundPixels": 20945,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_5",
+      "foregroundPixels": 21828,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_6",
+      "foregroundPixels": 20730,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_7",
+      "foregroundPixels": 24542,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_8",
+      "foregroundPixels": 16768,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_9",
+      "foregroundPixels": 23300,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_10",
+      "foregroundPixels": 23096,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c20_11",
+      "foregroundPixels": 24945,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_0",
+      "foregroundPixels": 29387,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_1",
+      "foregroundPixels": 24197,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_2",
+      "foregroundPixels": 13752,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_3",
+      "foregroundPixels": 16159,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_4",
+      "foregroundPixels": 20380,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_5",
+      "foregroundPixels": 27984,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_6",
+      "foregroundPixels": 21790,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_7",
+      "foregroundPixels": 25096,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_8",
+      "foregroundPixels": 19951,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_9",
+      "foregroundPixels": 21427,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_10",
+      "foregroundPixels": 19972,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c21_11",
+      "foregroundPixels": 19550,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_0",
+      "foregroundPixels": 20201,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_1",
+      "foregroundPixels": 18995,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_2",
+      "foregroundPixels": 14197,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_3",
+      "foregroundPixels": 14603,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_4",
+      "foregroundPixels": 14860,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_5",
+      "foregroundPixels": 26877,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_6",
+      "foregroundPixels": 21923,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_7",
+      "foregroundPixels": 27003,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_8",
+      "foregroundPixels": 16485,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_9",
+      "foregroundPixels": 16796,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_10",
+      "foregroundPixels": 16423,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c22_11",
+      "foregroundPixels": 15772,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_0",
+      "foregroundPixels": 11033,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_1",
+      "foregroundPixels": 14923,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_2",
+      "foregroundPixels": 4955,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_3",
+      "foregroundPixels": 20416,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_4",
+      "foregroundPixels": 6783,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_5",
+      "foregroundPixels": 18920,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_6",
+      "foregroundPixels": 18757,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_7",
+      "foregroundPixels": 11833,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_8",
+      "foregroundPixels": 14665,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_9",
+      "foregroundPixels": 13071,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_10",
+      "foregroundPixels": 15845,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c23_11",
+      "foregroundPixels": 15115,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "painting",
+      "foregroundPixels": 23204,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_1",
+      "foregroundPixels": 18583,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_2",
+      "foregroundPixels": 13377,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_3",
+      "foregroundPixels": 20860,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_4",
+      "foregroundPixels": 15673,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_5",
+      "foregroundPixels": 27482,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_6",
+      "foregroundPixels": 23440,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_7",
+      "foregroundPixels": 21407,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_8",
+      "foregroundPixels": 22383,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_9",
+      "foregroundPixels": 24214,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_10",
+      "foregroundPixels": 23380,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "pixel",
+      "id": "c24_11",
+      "foregroundPixels": 19707,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "lantern",
+      "foregroundPixels": 22894,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "hoe",
+      "foregroundPixels": 5372,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "pickaxe",
+      "foregroundPixels": 11466,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "watering_can",
+      "foregroundPixels": 20058,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "axe",
+      "foregroundPixels": 15454,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "sickle",
+      "foregroundPixels": 11059,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c0_6",
+      "foregroundPixels": 19736,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c0_7",
+      "foregroundPixels": 22157,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c0_8",
+      "foregroundPixels": 22281,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c0_9",
+      "foregroundPixels": 31614,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c0_10",
+      "foregroundPixels": 30228,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c0_11",
+      "foregroundPixels": 11135,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "tea",
+      "foregroundPixels": 22455,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_1",
+      "foregroundPixels": 22115,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_2",
+      "foregroundPixels": 24423,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_3",
+      "foregroundPixels": 22567,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_4",
+      "foregroundPixels": 20699,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_5",
+      "foregroundPixels": 22545,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_6",
+      "foregroundPixels": 28519,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_7",
+      "foregroundPixels": 21965,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_8",
+      "foregroundPixels": 26062,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_9",
+      "foregroundPixels": 23378,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_10",
+      "foregroundPixels": 32654,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c1_11",
+      "foregroundPixels": 20259,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "meal",
+      "foregroundPixels": 26369,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_1",
+      "foregroundPixels": 20184,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_2",
+      "foregroundPixels": 21135,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_3",
+      "foregroundPixels": 20732,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_4",
+      "foregroundPixels": 21203,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_5",
+      "foregroundPixels": 23002,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_6",
+      "foregroundPixels": 22055,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_7",
+      "foregroundPixels": 28301,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_8",
+      "foregroundPixels": 26368,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_9",
+      "foregroundPixels": 27868,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_10",
+      "foregroundPixels": 26427,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c2_11",
+      "foregroundPixels": 25781,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "bouquet",
+      "foregroundPixels": 23880,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_1",
+      "foregroundPixels": 21716,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_2",
+      "foregroundPixels": 17720,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_3",
+      "foregroundPixels": 25729,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_4",
+      "foregroundPixels": 22918,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_5",
+      "foregroundPixels": 27108,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_6",
+      "foregroundPixels": 24899,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_7",
+      "foregroundPixels": 21404,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_8",
+      "foregroundPixels": 19372,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_9",
+      "foregroundPixels": 21173,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_10",
+      "foregroundPixels": 20934,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c3_11",
+      "foregroundPixels": 19200,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "outfit",
+      "foregroundPixels": 27555,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_1",
+      "foregroundPixels": 24728,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_2",
+      "foregroundPixels": 25044,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_3",
+      "foregroundPixels": 21624,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_4",
+      "foregroundPixels": 20299,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_5",
+      "foregroundPixels": 26598,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_6",
+      "foregroundPixels": 25815,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_7",
+      "foregroundPixels": 22500,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_8",
+      "foregroundPixels": 25570,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_9",
+      "foregroundPixels": 27392,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_10",
+      "foregroundPixels": 23943,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c4_11",
+      "foregroundPixels": 23942,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_0",
+      "foregroundPixels": 24657,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_1",
+      "foregroundPixels": 20820,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_2",
+      "foregroundPixels": 12983,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_3",
+      "foregroundPixels": 17891,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_4",
+      "foregroundPixels": 19319,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_5",
+      "foregroundPixels": 10884,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_6",
+      "foregroundPixels": 21073,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_7",
+      "foregroundPixels": 17372,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_8",
+      "foregroundPixels": 21708,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_9",
+      "foregroundPixels": 21997,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_10",
+      "foregroundPixels": 16965,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c5_11",
+      "foregroundPixels": 24682,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_0",
+      "foregroundPixels": 26284,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_1",
+      "foregroundPixels": 27210,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_2",
+      "foregroundPixels": 23931,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_3",
+      "foregroundPixels": 28788,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_4",
+      "foregroundPixels": 30596,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_5",
+      "foregroundPixels": 27996,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_6",
+      "foregroundPixels": 29016,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_7",
+      "foregroundPixels": 30334,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_8",
+      "foregroundPixels": 31844,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_9",
+      "foregroundPixels": 19565,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": [
+        {
+          "sourceX": 641,
+          "sourceY": 591,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c6_10",
+      "foregroundPixels": 35393,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c6_11",
+      "foregroundPixels": 29840,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_0",
+      "foregroundPixels": 29727,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_1",
+      "foregroundPixels": 26037,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_2",
+      "foregroundPixels": 26288,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_3",
+      "foregroundPixels": 26053,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_4",
+      "foregroundPixels": 25401,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_5",
+      "foregroundPixels": 26209,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_6",
+      "foregroundPixels": 30964,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_7",
+      "foregroundPixels": 25388,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_8",
+      "foregroundPixels": 18041,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_9",
+      "foregroundPixels": 26492,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_10",
+      "foregroundPixels": 28816,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c7_11",
+      "foregroundPixels": 28991,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_0",
+      "foregroundPixels": 18725,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_1",
+      "foregroundPixels": 15925,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_2",
+      "foregroundPixels": 17354,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_3",
+      "foregroundPixels": 14951,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_4",
+      "foregroundPixels": 15333,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_5",
+      "foregroundPixels": 29433,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_6",
+      "foregroundPixels": 18415,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_7",
+      "foregroundPixels": 25822,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_8",
+      "foregroundPixels": 13528,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_9",
+      "foregroundPixels": 19945,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_10",
+      "foregroundPixels": 14460,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c8_11",
+      "foregroundPixels": 18419,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_0",
+      "foregroundPixels": 27446,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_1",
+      "foregroundPixels": 20974,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_2",
+      "foregroundPixels": 29458,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_3",
+      "foregroundPixels": 26781,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_4",
+      "foregroundPixels": 24394,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_5",
+      "foregroundPixels": 24387,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_6",
+      "foregroundPixels": 26106,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_7",
+      "foregroundPixels": 28857,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_8",
+      "foregroundPixels": 24061,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_9",
+      "foregroundPixels": 23485,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_10",
+      "foregroundPixels": 17917,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c9_11",
+      "foregroundPixels": 32906,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "remedy",
+      "foregroundPixels": 21526,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_1",
+      "foregroundPixels": 26196,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_2",
+      "foregroundPixels": 22299,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_3",
+      "foregroundPixels": 23434,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_4",
+      "foregroundPixels": 28590,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_5",
+      "foregroundPixels": 24700,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_6",
+      "foregroundPixels": 22170,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_7",
+      "foregroundPixels": 21055,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_8",
+      "foregroundPixels": 20345,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_9",
+      "foregroundPixels": 24892,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_10",
+      "foregroundPixels": 22607,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c10_11",
+      "foregroundPixels": 26625,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_0",
+      "foregroundPixels": 19483,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_1",
+      "foregroundPixels": 22298,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_2",
+      "foregroundPixels": 24126,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_3",
+      "foregroundPixels": 25201,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_4",
+      "foregroundPixels": 15757,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_5",
+      "foregroundPixels": 28424,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_6",
+      "foregroundPixels": 26165,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_7",
+      "foregroundPixels": 26000,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_8",
+      "foregroundPixels": 23326,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_9",
+      "foregroundPixels": 18129,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_10",
+      "foregroundPixels": 17746,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c11_11",
+      "foregroundPixels": 22787,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_0",
+      "foregroundPixels": 11551,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_1",
+      "foregroundPixels": 15226,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_2",
+      "foregroundPixels": 20803,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_3",
+      "foregroundPixels": 15556,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_4",
+      "foregroundPixels": 21936,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_5",
+      "foregroundPixels": 22501,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_6",
+      "foregroundPixels": 17326,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_7",
+      "foregroundPixels": 22481,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_8",
+      "foregroundPixels": 22731,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_9",
+      "foregroundPixels": 19885,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_10",
+      "foregroundPixels": 28111,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c12_11",
+      "foregroundPixels": 20006,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_0",
+      "foregroundPixels": 33110,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_1",
+      "foregroundPixels": 29116,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_2",
+      "foregroundPixels": 28081,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_3",
+      "foregroundPixels": 24317,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_4",
+      "foregroundPixels": 26246,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_5",
+      "foregroundPixels": 15744,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_6",
+      "foregroundPixels": 22074,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_7",
+      "foregroundPixels": 23900,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_8",
+      "foregroundPixels": 21771,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_9",
+      "foregroundPixels": 20467,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_10",
+      "foregroundPixels": 27619,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c13_11",
+      "foregroundPixels": 26200,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_0",
+      "foregroundPixels": 22452,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_1",
+      "foregroundPixels": 29988,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_2",
+      "foregroundPixels": 28306,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_3",
+      "foregroundPixels": 25507,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_4",
+      "foregroundPixels": 27056,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_5",
+      "foregroundPixels": 28807,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_6",
+      "foregroundPixels": 19073,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_7",
+      "foregroundPixels": 25430,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_8",
+      "foregroundPixels": 27031,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_9",
+      "foregroundPixels": 29188,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_10",
+      "foregroundPixels": 25881,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c14_11",
+      "foregroundPixels": 26748,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "pottery",
+      "foregroundPixels": 28351,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_1",
+      "foregroundPixels": 19195,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_2",
+      "foregroundPixels": 16698,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_3",
+      "foregroundPixels": 15931,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_4",
+      "foregroundPixels": 21243,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_5",
+      "foregroundPixels": 24081,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_6",
+      "foregroundPixels": 20404,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_7",
+      "foregroundPixels": 24757,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_8",
+      "foregroundPixels": 25462,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_9",
+      "foregroundPixels": 27328,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_10",
+      "foregroundPixels": 20695,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c15_11",
+      "foregroundPixels": 26751,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "rod",
+      "foregroundPixels": 11291,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_1",
+      "foregroundPixels": 29724,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_2",
+      "foregroundPixels": 20928,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_3",
+      "foregroundPixels": 27960,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_4",
+      "foregroundPixels": 27125,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_5",
+      "foregroundPixels": 27123,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_6",
+      "foregroundPixels": 10685,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_7",
+      "foregroundPixels": 33111,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_8",
+      "foregroundPixels": 28751,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_9",
+      "foregroundPixels": 9885,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c16_10",
+      "foregroundPixels": 11077,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": [
+        {
+          "sourceX": 806,
+          "sourceY": 570,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c16_11",
+      "foregroundPixels": 30365,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "bread",
+      "foregroundPixels": 27359,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_1",
+      "foregroundPixels": 24983,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_2",
+      "foregroundPixels": 26798,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_3",
+      "foregroundPixels": 21805,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_4",
+      "foregroundPixels": 22373,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_5",
+      "foregroundPixels": 21706,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_6",
+      "foregroundPixels": 25760,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_7",
+      "foregroundPixels": 26459,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_8",
+      "foregroundPixels": 22152,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_9",
+      "foregroundPixels": 28555,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_10",
+      "foregroundPixels": 23998,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c17_11",
+      "foregroundPixels": 16558,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_0",
+      "foregroundPixels": 25904,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_1",
+      "foregroundPixels": 32166,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_2",
+      "foregroundPixels": 32497,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_3",
+      "foregroundPixels": 35695,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_4",
+      "foregroundPixels": 25925,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_5",
+      "foregroundPixels": 29100,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_6",
+      "foregroundPixels": 28525,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_7",
+      "foregroundPixels": 36127,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_8",
+      "foregroundPixels": 29809,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_9",
+      "foregroundPixels": 26775,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_10",
+      "foregroundPixels": 31841,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c18_11",
+      "foregroundPixels": 32743,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_0",
+      "foregroundPixels": 23264,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_1",
+      "foregroundPixels": 22172,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_2",
+      "foregroundPixels": 19024,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_3",
+      "foregroundPixels": 20019,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_4",
+      "foregroundPixels": 19919,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": [
+        {
+          "sourceX": 802,
+          "sourceY": 1376,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c19_5",
+      "foregroundPixels": 17015,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_6",
+      "foregroundPixels": 30664,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_7",
+      "foregroundPixels": 26902,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_8",
+      "foregroundPixels": 26284,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_9",
+      "foregroundPixels": 25403,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_10",
+      "foregroundPixels": 21215,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c19_11",
+      "foregroundPixels": 25616,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "firework",
+      "foregroundPixels": 15759,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_1",
+      "foregroundPixels": 20297,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_2",
+      "foregroundPixels": 14711,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_3",
+      "foregroundPixels": 18963,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_4",
+      "foregroundPixels": 15393,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_5",
+      "foregroundPixels": 25084,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_6",
+      "foregroundPixels": 29351,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_7",
+      "foregroundPixels": 29637,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_8",
+      "foregroundPixels": 16159,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_9",
+      "foregroundPixels": 20754,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_10",
+      "foregroundPixels": 29371,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c20_11",
+      "foregroundPixels": 29622,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_0",
+      "foregroundPixels": 24723,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_1",
+      "foregroundPixels": 33074,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_2",
+      "foregroundPixels": 7033,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_3",
+      "foregroundPixels": 21176,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_4",
+      "foregroundPixels": 21938,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_5",
+      "foregroundPixels": 26925,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_6",
+      "foregroundPixels": 25739,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_7",
+      "foregroundPixels": 23376,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_8",
+      "foregroundPixels": 26781,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_9",
+      "foregroundPixels": 31100,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_10",
+      "foregroundPixels": 19063,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c21_11",
+      "foregroundPixels": 28960,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_0",
+      "foregroundPixels": 25643,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_1",
+      "foregroundPixels": 16640,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_2",
+      "foregroundPixels": 16716,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_3",
+      "foregroundPixels": 14592,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_4",
+      "foregroundPixels": 22663,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_5",
+      "foregroundPixels": 28310,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_6",
+      "foregroundPixels": 30796,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_7",
+      "foregroundPixels": 20636,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_8",
+      "foregroundPixels": 21935,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_9",
+      "foregroundPixels": 19275,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_10",
+      "foregroundPixels": 22995,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c22_11",
+      "foregroundPixels": 26697,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_0",
+      "foregroundPixels": 15967,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_1",
+      "foregroundPixels": 22297,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_2",
+      "foregroundPixels": 6488,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_3",
+      "foregroundPixels": 23445,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_4",
+      "foregroundPixels": 8563,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_5",
+      "foregroundPixels": 29243,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_6",
+      "foregroundPixels": 23642,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_7",
+      "foregroundPixels": 20147,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_8",
+      "foregroundPixels": 20914,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_9",
+      "foregroundPixels": 20527,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_10",
+      "foregroundPixels": 24539,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c23_11",
+      "foregroundPixels": 22281,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "painting",
+      "foregroundPixels": 31924,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_1",
+      "foregroundPixels": 21525,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_2",
+      "foregroundPixels": 18341,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_3",
+      "foregroundPixels": 24421,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": [
+        {
+          "sourceX": 642,
+          "sourceY": 1375,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "c24_4",
+      "foregroundPixels": 26089,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_5",
+      "foregroundPixels": 23445,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_6",
+      "foregroundPixels": 25685,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_7",
+      "foregroundPixels": 27912,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_8",
+      "foregroundPixels": 28531,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_9",
+      "foregroundPixels": 36433,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_10",
+      "foregroundPixels": 23986,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    },
+    {
+      "theme": "origami",
+      "id": "c24_11",
+      "foregroundPixels": 25686,
+      "letterboxMaxDifference": 0,
+      "knownForeignProbes": []
+    }
+  ]
+}

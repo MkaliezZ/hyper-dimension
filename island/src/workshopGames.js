@@ -44,6 +44,8 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  const dialog=q('.wk-session-dialog');
  const painter=makeWorkshopPainter(canvas,theme,options.avatar,options.catchItem);
  const listen=(el,type,fn,opt)=>{el.addEventListener(type,fn,opt);cleanup.push(()=>el.removeEventListener(type,fn,opt))};
+ function transportButtons(){const busy=checkpointPending||transportPaused||claimed;for(const b of root.querySelectorAll('[data-action="claim"],[data-action="restart"],[data-action="difficulty"]')){b.disabled=busy;if(b.dataset.action==='restart'){b.textContent=busy?'正在保存本局…':'新关卡 · 再来一局';b.setAttribute('aria-busy',String(busy));b.title=busy?'本局进度确认后即可开启新关卡':'';}}}
+
  function send(action){if(!alive||paused)return;options.onGameEvent?.({action});workshopAction(s,action);flushEvents();ui(action.type!=='point');}
  function flushEvents(){for(const e of s.events.splice(0)){painter.event(e);audio.event(e);}}
  function pause(reason=''){
@@ -66,7 +68,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
     (r.passed&&embedded?'<div class="wk-result-product">'+art(recipe.item)+'<div><small>'+(options.catchItem?'本次钓获':craftReady?'本次制作':'本局练习')+'</small><b>'+esc(recipe.name)+'</b><span>'+(options.catchItem?'确认后收取本次钓获。':craftReady?'领取后制作 1 件，材料仅扣除一次。':'材料或解锁条件不足，不扣材料，不发放成品。')+'</span></div></div>':'')+
     '<div class="wk-result-stats"><div><small>得分</small><b>'+r.score+'</b></div><div><small>用时</small><b>'+formatTime(r.seconds)+'</b></div><div><small>历史最佳</small><b>'+best.score+'</b></div></div><div class="wk-result-actions">'+
     (r.passed?command(options.standalone?'保存成绩 · 完成挑战':options.catchItem?'收下钓获':craftReady?'领取制作成果':'完成练习','claim',(checkpointPending||transportPaused||claimed)?'disabled':'','wk-primary'):'')+
-    command('新关卡 · 再来一局','restart','','wk-secondary')+'</div><small>'+(r.passed?(options.standalone?'成绩已保存到此浏览器。':options.catchItem?'关闭将放弃本次钓获。':craftReady?'关闭此窗口将返回房间，不扣材料，也不发放成品。':'补齐材料与解锁条件后，再来制作。'):'本次未扣除制作材料。')+'</small></div>');return
+    command('新关卡 · 再来一局','restart','','wk-secondary')+'</div><small>'+(r.passed?(options.standalone?'成绩已保存到此浏览器。':options.catchItem?'关闭将放弃本次钓获。':craftReady?'关闭此窗口将返回房间，不扣材料，也不发放成品。':'补齐材料与解锁条件后，再来制作。'):'本次未扣除制作材料。')+'</small></div>');transportButtons();return
   }
   overlay.innerHTML='';if(dialog.open)dialog.close();
  }
@@ -173,7 +175,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   const inspecting=s.kind==='couture'&&!!s.runway||s.kind==='interior'&&!!s.walkthrough&&!s.walkthrough.done;controls.inert=transportPaused||paused||s.phase!=='playing'||inspecting;hits.inert=transportPaused||paused||s.phase!=='playing'||inspecting;
   q('[data-action="sound"]').textContent=audio.muted?'声音关':'声音开';q('[data-action="sound"]').setAttribute('aria-pressed',String(!audio.muted));
   q('[data-action="pause"]').textContent=paused?'继续':'暂停';q('[data-action="pause"]').disabled=s.phase!=='playing';
-  section.dataset.phase=s.phase;section.classList.toggle('is-paused',paused);
+  transportButtons();section.dataset.phase=s.phase;section.classList.toggle('is-paused',paused);
   for(const el of hits.children){const i=+el.dataset.cell;let label;
    if(s.kind==='tea')label=s.found.includes(i)?'已配对 '+itemName(level.ids[level.values[i]]):(s.t<level.preview||s.opened.includes(i)?itemName(level.ids[level.values[i]]):'未翻开的茶材 '+(i+1));
    if(s.kind==='nonogram')label='第 '+(Math.floor(i/level.n)+1)+' 行第 '+(i%level.n+1)+' 列，'+(s.cells[i]===1?'亮星':s.cells[i]===-1?'标空':'未标记');
@@ -267,5 +269,5 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  }
  frame=requestAnimationFrame(tick);
  function destroy(){if(!alive){replacement?.destroy();return}alive=false;if(dialog.open)dialog.close();cancelAnimationFrame(frame);cleanup.forEach(fn=>fn());audio.destroy();painter.destroy();held.clear();if(document.fullscreenElement===section)document.exitFullscreen().catch(()=>{});}
- return {destroy,setCheckpointPending(value){checkpointPending=value;const claim=q('[data-action="claim"]');if(claim)claim.disabled=value||transportPaused||claimed},setTransportPaused(value){transportPaused=value;last=performance.now();ui(true);const claim=q('[data-action="claim"]');if(claim)claim.disabled=value||checkpointPending||claimed},config:g,inspect(){if(replacement)return replacement.inspect();const data=structuredClone(s);delete data.events;return {...data,premium:true,paused,alive,claimed,reported,loaded,activeMillis:performance.now()-entryTime}},get level(){return replacement?.level||level}};
+ return {destroy,setCheckpointPending(value){checkpointPending=value;transportButtons()},setTransportPaused(value){transportPaused=value;last=performance.now();ui(true);transportButtons()},config:g,inspect(){if(replacement)return replacement.inspect();const data=structuredClone(s);delete data.events;return {...data,premium:true,paused,alive,claimed,reported,loaded,activeMillis:performance.now()-entryTime}},get level(){return replacement?.level||level}};
 }

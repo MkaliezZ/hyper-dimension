@@ -1,0 +1,29 @@
+{
+  "scope": "Native building-modal crafting with a real protected save and delayed delivery of a real outcome checkpoint response. The result restart and difficulty controls must visibly wait, then recover and open a fresh server ticket. Granted-resource fixture, solution-assisted native mouse input, no model calls or clock/game-state injection after startup; not human acceptance.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "delayedCheckpoints": 2,
+      "errors": [],
+      "passed": true,
+      "pendingControlsDisabled": true,
+      "sameTicketWhilePending": true,
+      "controlsRecoveredAfterAcknowledgement": true,
+      "freshTicketAfterNativeRestart": true,
+      "oldTicketCancelledWithoutCostOrGain": true
+    },
+    {
+      "theme": "origami",
+      "delayedCheckpoints": 2,
+      "errors": [],
+      "passed": true,
+      "pendingControlsDisabled": true,
+      "sameTicketWhilePending": true,
+      "controlsRecoveredAfterAcknowledgement": true,
+      "freshTicketAfterNativeRestart": true,
+      "oldTicketCancelledWithoutCostOrGain": true
+    }
+  ],
+  "humanAcceptance": false,
+  "passed": true
+}
