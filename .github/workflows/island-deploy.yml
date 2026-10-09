@@ -52,3 +52,6 @@ jobs:
 
       - name: Native steward portraits
         run: node tests/v153-portraits-browser.mjs
+
+      - name: Native material item art
+        run: node tests/v154-material-art-browser.mjs

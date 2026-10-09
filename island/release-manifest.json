@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v153-agent-source",
+  "release": "hyper-dimension-v154-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11977,
-      "sha256": "f367de31862ddf5760767074859958a14d20c51f258b1303c92eaaf46e9d1b58"
+      "bytes": 12628,
+      "sha256": "8a4c5f7e861e54e74bce00be1634faa2efd0c09b385e9799bf1d630651209b3a"
     },
     {
       "path": "README.md",
-      "bytes": 12848,
-      "sha256": "fc44036dd1c7aaa1104e280a96e1d77d4bfb9f378fff4224d6d5b2ba7e3da212"
+      "bytes": 13427,
+      "sha256": "5a0e099deb5a9d74268a1a70097316352f7e87111d7c743205669834a23d8fe9"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 7559,
-      "sha256": "6d44c522f97e34ba35e5bea349790ae750a8ed75b51943a62671fdad0a913cae"
+      "bytes": 7851,
+      "sha256": "9f1d4c4e3b0ea574f3417fcbe0fe18a19f914cd54bd2a6f8176b3193ac07843d"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 22352,
-      "sha256": "b7e5aefdb310dea1280cb5d1d66490921db1c7494a1a03ae6bd170df81a60a1b"
+      "bytes": 22698,
+      "sha256": "f006b5dafccde37981b60e0f4d167bea70c010b2ff8c7bb9d665b95a6ea8a7ef"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -214,6 +214,11 @@
       "path": "docs/map-save-conflict-v146.md",
       "bytes": 1812,
       "sha256": "66b1af726e804a7feaf7604355a950a1b670cc69ede0229c03ac6bdc3c0c1211"
+    },
+    {
+      "path": "docs/material-art-v154.md",
+      "bytes": 2490,
+      "sha256": "6ffab22cde4565df998ab493cc554397aa03507ac8ee52ebb6d2ed5e40a7e390"
     },
     {
       "path": "docs/media/agent-delegation.png",
@@ -1099,6 +1104,16 @@
       "path": "docs/verification/v153/native-portraits.json",
       "bytes": 2312,
       "sha256": "0e55a53e524d7b6db5aebf3f46633b2485486455a0e2a28f6a8ad2f2c6f2497d"
+    },
+    {
+      "path": "docs/verification/v154/native-all-rooms-v153.json",
+      "bytes": 37593,
+      "sha256": "2aa2fd0655833c47af112ef6d5a26354ae74b0e2fff3e88d0eae6400125c1a10"
+    },
+    {
+      "path": "docs/verification/v154/native-material-clips.json",
+      "bytes": 1621,
+      "sha256": "4d2d5119eb335faae03dce8e00e9e93af517c96face3c5edfc610482dfbab77e"
     },
     {
       "path": "index.html",
@@ -3837,8 +3852,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 6415,
-      "sha256": "91a54d642b6cdfaf64549080a5dac5d45a30db1d389dffc2e37574471d7d66cb"
+      "bytes": 7488,
+      "sha256": "a828e5d0fb6502639183d75a341214d81e7c6544a2d105148a395471ee9406f0"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -4564,6 +4579,11 @@
       "path": "src/marketView.js",
       "bytes": 11475,
       "sha256": "983ce316d515c591c3f50058d9a326adb58281353146a6dbf716160b0f680d72"
+    },
+    {
+      "path": "src/materialArtClips.js",
+      "bytes": 58256,
+      "sha256": "9c24b75715775d54a2d0841a8083b981e01012129eef02fc7e70dc318313fecb"
     },
     {
       "path": "src/miningGame.js",
@@ -6034,6 +6054,11 @@
       "path": "tests/v153-portraits-browser.mjs",
       "bytes": 7310,
       "sha256": "d14a8e8193d6a0e83ef0c4fd188a4d4b25bbc7aa5f2677c2f9754406fcbd6422"
+    },
+    {
+      "path": "tests/v154-material-art-browser.mjs",
+      "bytes": 6923,
+      "sha256": "c6138985e3cc2351a1b7d88fd6d1d2fe0d1c2b7e786ecbf8f59e5fb329d0bb20"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8336,5 +8361,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v153-github"
+  "publicRevision": "v154-github"
 }

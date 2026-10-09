@@ -1,0 +1,1417 @@
+{
+  "passed": true,
+  "finishedAt": "2026-10-09T21:59:18.747345+00:00",
+  "sourceVersion": "V153",
+  "sourceCommit": "76e8ec0d31e419633793bba566424ac355b02d86",
+  "sourceBefore": {
+    "files": 1663,
+    "manifestSha256": "92507d7a4c47cc681ea32103d805b0851ed1cbcae99d4011199720c379463ff1"
+  },
+  "sourceAfter": {
+    "files": 1663,
+    "manifestSha256": "92507d7a4c47cc681ea32103d805b0851ed1cbcae99d4011199720c379463ff1"
+  },
+  "scope": "Actual native building-modal input, normal wall-clock animation, protected server craft receipts and refresh persistence on an immutable independently installed source. Fixtures grant all materials/products, unlock all buildings and set quality; NPC/model calls are blocked. The operator reads solution/state data to perform native inputs. Does not prove zero-start gathering, hidden-solution-independent learnability, human difficulty, full sound/art quality, independently publishable minigames or physical Mac/multiplayer acceptance.",
+  "clockInjected": false,
+  "gameStateInjectedAfterStartup": false,
+  "userDataTouched": false,
+  "humanAcceptance": false,
+  "fixtureGrantedMaterials": true,
+  "operatorReadsSolutions": true,
+  "cases": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "rooms": [
+        {
+          "building": 0,
+          "recipe": "recipe_lantern",
+          "item": "lantern",
+          "seconds": 2.6131999999761595,
+          "nativeInputs": 15,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 720,
+            "total": 100,
+            "stars": 3,
+            "seconds": 2.6131999999761595,
+            "seed": 2105482635
+          },
+          "receipt": {
+            "gain": {
+              "lantern": 1
+            },
+            "cost": {
+              "wood": 2,
+              "quartz": 1,
+              "wax": 1,
+              "fiber": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 1,
+          "recipe": "recipe_tea",
+          "item": "tea",
+          "seconds": 5.46789999997616,
+          "nativeInputs": 12,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1035,
+            "total": 100,
+            "stars": 3,
+            "seconds": 5.46789999997616,
+            "seed": 1899205981
+          },
+          "receipt": {
+            "gain": {
+              "tea": 1
+            },
+            "cost": {
+              "herb": 1,
+              "rose": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 2,
+          "recipe": "recipe_meal",
+          "item": "meal",
+          "seconds": 65.94680000024069,
+          "nativeInputs": 136,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 2086,
+            "total": 100,
+            "stars": 3,
+            "seconds": 65.94680000024069,
+            "seed": 3039151175
+          },
+          "receipt": {
+            "gain": {
+              "meal": 1
+            },
+            "cost": {
+              "fish": 1,
+              "wheat": 1,
+              "tomato": 1,
+              "seasalt": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 3,
+          "recipe": "recipe_bouquet",
+          "item": "bouquet",
+          "seconds": 13.034200000071436,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "bouquet": 1
+            },
+            "cost": {
+              "rose": 2,
+              "lavender": 1,
+              "fiber": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 4,
+          "recipe": "recipe_outfit",
+          "item": "outfit",
+          "seconds": 7.583400000071521,
+          "nativeInputs": 3,
+          "result": {
+            "passed": true,
+            "quality": 92,
+            "score": 920,
+            "total": 100,
+            "stars": 3,
+            "seconds": 7.583400000071521,
+            "seed": 3340661820
+          },
+          "receipt": {
+            "gain": {
+              "outfit": 1
+            },
+            "cost": {
+              "cotton": 2,
+              "flax": 1,
+              "fiber": 1,
+              "c24_5": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 5,
+          "recipe": "recipe_c5_0",
+          "item": "c5_0",
+          "seconds": 1.6810999999523168,
+          "nativeInputs": 14,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1172,
+            "total": 100,
+            "stars": 3,
+            "seconds": 1.6810999999523168,
+            "seed": 804187191
+          },
+          "receipt": {
+            "gain": {
+              "c5_0": 1
+            },
+            "cost": {
+              "c7_5": 2,
+              "ink": 1,
+              "c24_5": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 6,
+          "recipe": "recipe_c6_0",
+          "item": "c6_0",
+          "seconds": 4.4929000000238375,
+          "nativeInputs": 19,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 928,
+            "total": 100,
+            "stars": 3,
+            "seconds": 4.4929000000238375,
+            "seed": 3360060150
+          },
+          "receipt": {
+            "gain": {
+              "c6_0": 1
+            },
+            "cost": {
+              "seaweed": 3,
+              "mushroom": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 7,
+          "recipe": "recipe_c7_0",
+          "item": "c7_0",
+          "seconds": 4.316500000023839,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "c7_0": 1
+            },
+            "cost": {
+              "c7_5": 3,
+              "ink": 1,
+              "flax": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 8,
+          "recipe": "recipe_c8_0",
+          "item": "c8_0",
+          "seconds": 36.84169999969063,
+          "nativeInputs": 250,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 2497,
+            "total": 100,
+            "stars": 3,
+            "seconds": 36.84169999969063,
+            "seed": 706657147
+          },
+          "receipt": {
+            "gain": {
+              "c8_0": 1
+            },
+            "cost": {
+              "copper": 1,
+              "quartz": 1,
+              "wax": 1,
+              "fiber": 1,
+              "c24_1": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 9,
+          "recipe": "recipe_c9_0",
+          "item": "c9_0",
+          "seconds": 5.625199999928468,
+          "nativeInputs": 10,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "c9_0": 1
+            },
+            "cost": {
+              "bamboo": 2,
+              "fiber": 1,
+              "tomato": 1,
+              "wheat": 1,
+              "mushroom": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 10,
+          "recipe": "recipe_remedy",
+          "item": "remedy",
+          "seconds": 65.23829999969263,
+          "nativeInputs": 127,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 2085,
+            "total": 100,
+            "stars": 3,
+            "seconds": 65.23829999969263,
+            "seed": 605321
+          },
+          "receipt": {
+            "gain": {
+              "remedy": 1
+            },
+            "cost": {
+              "herb": 2,
+              "mint": 1,
+              "honey": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 11,
+          "recipe": "recipe_c11_0",
+          "item": "c11_0",
+          "seconds": 4.325800000023841,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "c11_0": 1
+            },
+            "cost": {
+              "quartz": 2,
+              "c7_5": 1,
+              "ink": 1,
+              "wax": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 12,
+          "recipe": "recipe_c12_0",
+          "item": "c12_0",
+          "seconds": 34.089800000357684,
+          "nativeInputs": 117,
+          "result": {
+            "passed": true,
+            "quality": 98,
+            "score": 13319,
+            "total": 100,
+            "stars": 3,
+            "seconds": 34.089800000357684,
+            "seed": 502640068
+          },
+          "receipt": {
+            "gain": {
+              "c12_0": 1
+            },
+            "cost": {
+              "bamboo": 2,
+              "wax": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 13,
+          "recipe": "recipe_c13_0",
+          "item": "c13_0",
+          "seconds": 14.8210999997614,
+          "nativeInputs": 141,
+          "result": {
+            "passed": true,
+            "quality": 94,
+            "score": 1132,
+            "total": 100,
+            "stars": 3,
+            "seconds": 14.8210999997614,
+            "seed": 1080188140
+          },
+          "receipt": {
+            "gain": {
+              "c13_0": 1
+            },
+            "cost": {
+              "c7_5": 1,
+              "ink": 1,
+              "c24_1": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 14,
+          "recipe": "recipe_c14_0",
+          "item": "c14_0",
+          "seconds": 12.160200000047551,
+          "nativeInputs": 126,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 748,
+            "total": 100,
+            "stars": 3,
+            "seconds": 12.160200000047551,
+            "seed": 3106102071
+          },
+          "receipt": {
+            "gain": {
+              "c14_0": 1
+            },
+            "cost": {
+              "seed": 2,
+              "clay": 1,
+              "bamboo": 1,
+              "c14_8": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 15,
+          "recipe": "recipe_pottery",
+          "item": "pottery",
+          "seconds": 53.60580000059795,
+          "nativeInputs": 195,
+          "result": {
+            "passed": true,
+            "quality": 85,
+            "score": 1020,
+            "total": 100,
+            "stars": 2,
+            "seconds": 53.60580000059795,
+            "seed": 4074973340
+          },
+          "receipt": {
+            "gain": {
+              "pottery": 1
+            },
+            "cost": {
+              "clay": 2,
+              "sand": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 16,
+          "recipe": "recipe_rod",
+          "item": "rod",
+          "seconds": 16.886799999952153,
+          "nativeInputs": 66,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 464,
+            "total": 100,
+            "stars": 3,
+            "seconds": 16.886799999952153,
+            "seed": 3423132443
+          },
+          "receipt": {
+            "gain": {
+              "rod": 1
+            },
+            "cost": {
+              "hardwood": 1,
+              "c16_5": 1,
+              "c16_6": 1,
+              "copper": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 17,
+          "recipe": "recipe_bread",
+          "item": "bread",
+          "seconds": 2.274899999904634,
+          "nativeInputs": 11,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 720,
+            "total": 100,
+            "stars": 3,
+            "seconds": 2.274899999904634,
+            "seed": 1309838562
+          },
+          "receipt": {
+            "gain": {
+              "bread": 1
+            },
+            "cost": {
+              "wheat": 2
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 18,
+          "recipe": "recipe_c18_0",
+          "item": "c18_0",
+          "seconds": 1.7047000000715258,
+          "nativeInputs": 14,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1444,
+            "total": 100,
+            "stars": 3,
+            "seconds": 1.7047000000715258,
+            "seed": 332706182
+          },
+          "receipt": {
+            "gain": {
+              "c18_0": 1
+            },
+            "cost": {
+              "ore": 1,
+              "quartz": 2,
+              "stone": 1,
+              "c0_7": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 19,
+          "recipe": "recipe_c19_0",
+          "item": "c19_0",
+          "seconds": 10.202500000071465,
+          "nativeInputs": 8,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1000,
+            "total": 100,
+            "stars": 3,
+            "seconds": 10.202500000071465,
+            "seed": 50744773
+          },
+          "receipt": {
+            "gain": {
+              "c19_0": 1
+            },
+            "cost": {
+              "flax": 2,
+              "cotton": 2,
+              "fiber": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 20,
+          "recipe": "recipe_firework",
+          "item": "firework",
+          "seconds": 10.346100000071456,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true,
+            "quality": 94,
+            "score": 813,
+            "total": 100,
+            "stars": 3,
+            "seconds": 10.346100000071456,
+            "seed": 4123269519
+          },
+          "receipt": {
+            "gain": {
+              "firework": 1
+            },
+            "cost": {
+              "c20_4": 1,
+              "c20_5": 1,
+              "c20_6": 1,
+              "wood": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 21,
+          "recipe": "recipe_c21_0",
+          "item": "c21_0",
+          "seconds": 34.10039999990471,
+          "nativeInputs": 158,
+          "result": {
+            "passed": true,
+            "quality": 85,
+            "score": 9370,
+            "total": 100,
+            "stars": 2,
+            "seconds": 34.10039999990471,
+            "seed": 1267133429
+          },
+          "receipt": {
+            "gain": {
+              "c21_0": 1
+            },
+            "cost": {
+              "c7_5": 2,
+              "ink": 1,
+              "c24_1": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 22,
+          "recipe": "recipe_c22_0",
+          "item": "c22_0",
+          "seconds": 1.6462999999761578,
+          "nativeInputs": 18,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 740,
+            "total": 100,
+            "stars": 3,
+            "seconds": 1.6462999999761578,
+            "seed": 2873600092
+          },
+          "receipt": {
+            "gain": {
+              "c22_0": 1
+            },
+            "cost": {
+              "bamboo": 1,
+              "stone": 1,
+              "fiber": 1,
+              "resin": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 23,
+          "recipe": "recipe_c23_0",
+          "item": "c23_0",
+          "seconds": 14.45969999988061,
+          "nativeInputs": 157,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1482,
+            "total": 100,
+            "stars": 3,
+            "seconds": 14.45969999988061,
+            "seed": 3061831544
+          },
+          "receipt": {
+            "gain": {
+              "c23_0": 1
+            },
+            "cost": {
+              "c0_7": 2,
+              "resin": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 24,
+          "recipe": "recipe_painting",
+          "item": "painting",
+          "seconds": 85.33789999992446,
+          "nativeInputs": 763,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 4960,
+            "total": 100,
+            "stars": 3,
+            "seconds": 85.33789999992446,
+            "seed": 3315500278
+          },
+          "receipt": {
+            "gain": {
+              "painting": 1
+            },
+            "cost": {
+              "c0_7": 1,
+              "cotton": 2,
+              "c24_1": 1,
+              "c24_5": 1,
+              "ink": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "rooms": [
+        {
+          "building": 0,
+          "recipe": "recipe_lantern",
+          "item": "lantern",
+          "seconds": 0.7374,
+          "nativeInputs": 4,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 720,
+            "total": 100,
+            "stars": 3,
+            "seconds": 0.7374,
+            "seed": 1598981761
+          },
+          "receipt": {
+            "gain": {
+              "lantern": 1
+            },
+            "cost": {
+              "wood": 2,
+              "quartz": 1,
+              "wax": 1,
+              "fiber": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 1,
+          "recipe": "recipe_tea",
+          "item": "tea",
+          "seconds": 5.607399999999994,
+          "nativeInputs": 12,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1035,
+            "total": 100,
+            "stars": 3,
+            "seconds": 5.607399999999994,
+            "seed": 250965123
+          },
+          "receipt": {
+            "gain": {
+              "tea": 1
+            },
+            "cost": {
+              "herb": 1,
+              "rose": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 2,
+          "recipe": "recipe_meal",
+          "item": "meal",
+          "seconds": 67.46069999942948,
+          "nativeInputs": 136,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 2082,
+            "total": 100,
+            "stars": 3,
+            "seconds": 67.46069999942948,
+            "seed": 3445897204
+          },
+          "receipt": {
+            "gain": {
+              "meal": 1
+            },
+            "cost": {
+              "fish": 1,
+              "wheat": 1,
+              "tomato": 1,
+              "seasalt": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 3,
+          "recipe": "recipe_bouquet",
+          "item": "bouquet",
+          "seconds": 11.08389999985688,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "bouquet": 1
+            },
+            "cost": {
+              "rose": 2,
+              "lavender": 1,
+              "fiber": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 4,
+          "recipe": "recipe_outfit",
+          "item": "outfit",
+          "seconds": 8.227200000023833,
+          "nativeInputs": 3,
+          "result": {
+            "passed": true,
+            "quality": 94,
+            "score": 940,
+            "total": 100,
+            "stars": 3,
+            "seconds": 8.227200000023833,
+            "seed": 1423786421
+          },
+          "receipt": {
+            "gain": {
+              "outfit": 1
+            },
+            "cost": {
+              "cotton": 2,
+              "flax": 1,
+              "fiber": 1,
+              "c24_5": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 5,
+          "recipe": "recipe_c5_0",
+          "item": "c5_0",
+          "seconds": 1.8926000000715255,
+          "nativeInputs": 14,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1172,
+            "total": 100,
+            "stars": 3,
+            "seconds": 1.8926000000715255,
+            "seed": 4019890403
+          },
+          "receipt": {
+            "gain": {
+              "c5_0": 1
+            },
+            "cost": {
+              "c7_5": 2,
+              "ink": 1,
+              "c24_5": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 6,
+          "recipe": "recipe_c6_0",
+          "item": "c6_0",
+          "seconds": 4.196899999999992,
+          "nativeInputs": 17,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 936,
+            "total": 100,
+            "stars": 3,
+            "seconds": 4.196899999999992,
+            "seed": 3991866466
+          },
+          "receipt": {
+            "gain": {
+              "c6_0": 1
+            },
+            "cost": {
+              "seaweed": 3,
+              "mushroom": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 7,
+          "recipe": "recipe_c7_0",
+          "item": "c7_0",
+          "seconds": 4.3506999999999945,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "c7_0": 1
+            },
+            "cost": {
+              "c7_5": 3,
+              "ink": 1,
+              "flax": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 8,
+          "recipe": "recipe_c8_0",
+          "item": "c8_0",
+          "seconds": 36.45470000047729,
+          "nativeInputs": 256,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 2498,
+            "total": 100,
+            "stars": 3,
+            "seconds": 36.45470000047729,
+            "seed": 1342872309
+          },
+          "receipt": {
+            "gain": {
+              "c8_0": 1
+            },
+            "cost": {
+              "copper": 1,
+              "quartz": 1,
+              "wax": 1,
+              "fiber": 1,
+              "c24_1": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 9,
+          "recipe": "recipe_c9_0",
+          "item": "c9_0",
+          "seconds": 8.52009999992845,
+          "nativeInputs": 10,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "c9_0": 1
+            },
+            "cost": {
+              "bamboo": 2,
+              "fiber": 1,
+              "tomato": 1,
+              "wheat": 1,
+              "mushroom": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 10,
+          "recipe": "recipe_remedy",
+          "item": "remedy",
+          "seconds": 65.88290000012142,
+          "nativeInputs": 128,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 2086,
+            "total": 100,
+            "stars": 3,
+            "seconds": 65.88290000012142,
+            "seed": 2432561077
+          },
+          "receipt": {
+            "gain": {
+              "remedy": 1
+            },
+            "cost": {
+              "herb": 2,
+              "mint": 1,
+              "honey": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 11,
+          "recipe": "recipe_c11_0",
+          "item": "c11_0",
+          "seconds": 4.276099999976162,
+          "nativeInputs": 16,
+          "result": {
+            "passed": true
+          },
+          "receipt": {
+            "gain": {
+              "c11_0": 1
+            },
+            "cost": {
+              "quartz": 2,
+              "c7_5": 1,
+              "ink": 1,
+              "wax": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 12,
+          "recipe": "recipe_c12_0",
+          "item": "c12_0",
+          "seconds": 34.10160000004785,
+          "nativeInputs": 119,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 14129,
+            "total": 100,
+            "stars": 3,
+            "seconds": 34.10160000004785,
+            "seed": 1429786705
+          },
+          "receipt": {
+            "gain": {
+              "c12_0": 1
+            },
+            "cost": {
+              "bamboo": 2,
+              "wax": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 13,
+          "recipe": "recipe_c13_0",
+          "item": "c13_0",
+          "seconds": 12.495600000071414,
+          "nativeInputs": 121,
+          "result": {
+            "passed": true,
+            "quality": 96,
+            "score": 1148,
+            "total": 100,
+            "stars": 3,
+            "seconds": 12.495600000071414,
+            "seed": 4181567942
+          },
+          "receipt": {
+            "gain": {
+              "c13_0": 1
+            },
+            "cost": {
+              "c7_5": 1,
+              "ink": 1,
+              "c24_1": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 14,
+          "recipe": "recipe_c14_0",
+          "item": "c14_0",
+          "seconds": 12.70289999985682,
+          "nativeInputs": 131,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 738,
+            "total": 100,
+            "stars": 3,
+            "seconds": 12.70289999985682,
+            "seed": 3123718491
+          },
+          "receipt": {
+            "gain": {
+              "c14_0": 1
+            },
+            "cost": {
+              "seed": 2,
+              "clay": 1,
+              "bamboo": 1,
+              "c14_8": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 15,
+          "recipe": "recipe_pottery",
+          "item": "pottery",
+          "seconds": 51.05119999985875,
+          "nativeInputs": 180,
+          "result": {
+            "passed": true,
+            "quality": 86,
+            "score": 1032,
+            "total": 100,
+            "stars": 2,
+            "seconds": 51.05119999985875,
+            "seed": 1057159811
+          },
+          "receipt": {
+            "gain": {
+              "pottery": 1
+            },
+            "cost": {
+              "clay": 2,
+              "sand": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 16,
+          "recipe": "recipe_rod",
+          "item": "rod",
+          "seconds": 17.19639999983285,
+          "nativeInputs": 71,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 451,
+            "total": 100,
+            "stars": 3,
+            "seconds": 17.19639999983285,
+            "seed": 3063973315
+          },
+          "receipt": {
+            "gain": {
+              "rod": 1
+            },
+            "cost": {
+              "hardwood": 1,
+              "c16_5": 1,
+              "c16_6": 1,
+              "copper": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 17,
+          "recipe": "recipe_bread",
+          "item": "bread",
+          "seconds": 2.1776999999999975,
+          "nativeInputs": 10,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 720,
+            "total": 100,
+            "stars": 3,
+            "seconds": 2.1776999999999975,
+            "seed": 2558830018
+          },
+          "receipt": {
+            "gain": {
+              "bread": 1
+            },
+            "cost": {
+              "wheat": 2
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 18,
+          "recipe": "recipe_c18_0",
+          "item": "c18_0",
+          "seconds": 1.4770999999523153,
+          "nativeInputs": 10,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1460,
+            "total": 100,
+            "stars": 3,
+            "seconds": 1.4770999999523153,
+            "seed": 2361697919
+          },
+          "receipt": {
+            "gain": {
+              "c18_0": 1
+            },
+            "cost": {
+              "ore": 1,
+              "quartz": 2,
+              "stone": 1,
+              "c0_7": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 19,
+          "recipe": "recipe_c19_0",
+          "item": "c19_0",
+          "seconds": 7.248800000143055,
+          "nativeInputs": 6,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1000,
+            "total": 100,
+            "stars": 3,
+            "seconds": 7.248800000143055,
+            "seed": 4124006888
+          },
+          "receipt": {
+            "gain": {
+              "c19_0": 1
+            },
+            "cost": {
+              "flax": 2,
+              "cotton": 2,
+              "fiber": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 20,
+          "recipe": "recipe_firework",
+          "item": "firework",
+          "seconds": 7.613099999928467,
+          "nativeInputs": 12,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 748,
+            "total": 100,
+            "stars": 3,
+            "seconds": 7.613099999928467,
+            "seed": 674522849
+          },
+          "receipt": {
+            "gain": {
+              "firework": 1
+            },
+            "cost": {
+              "c20_4": 1,
+              "c20_5": 1,
+              "c20_6": 1,
+              "wood": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 21,
+          "recipe": "recipe_c21_0",
+          "item": "c21_0",
+          "seconds": 34.114200000381594,
+          "nativeInputs": 119,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 14176,
+            "total": 100,
+            "stars": 3,
+            "seconds": 34.114200000381594,
+            "seed": 368708510
+          },
+          "receipt": {
+            "gain": {
+              "c21_0": 1
+            },
+            "cost": {
+              "c7_5": 2,
+              "ink": 1,
+              "c24_1": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 22,
+          "recipe": "recipe_c22_0",
+          "item": "c22_0",
+          "seconds": 1.778700000023844,
+          "nativeInputs": 22,
+          "result": {
+            "passed": true,
+            "quality": 99,
+            "score": 740,
+            "total": 100,
+            "stars": 3,
+            "seconds": 1.778700000023844,
+            "seed": 1887940955
+          },
+          "receipt": {
+            "gain": {
+              "c22_0": 1
+            },
+            "cost": {
+              "bamboo": 1,
+              "stone": 1,
+              "fiber": 1,
+              "resin": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 23,
+          "recipe": "recipe_c23_0",
+          "item": "c23_0",
+          "seconds": 13.732299999713748,
+          "nativeInputs": 147,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 1485,
+            "total": 100,
+            "stars": 3,
+            "seconds": 13.732299999713748,
+            "seed": 3903925384
+          },
+          "receipt": {
+            "gain": {
+              "c23_0": 1
+            },
+            "cost": {
+              "c0_7": 2,
+              "resin": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        },
+        {
+          "building": 24,
+          "recipe": "recipe_painting",
+          "item": "painting",
+          "seconds": 56.11640000069344,
+          "nativeInputs": 563,
+          "result": {
+            "passed": true,
+            "quality": 100,
+            "score": 4980,
+            "total": 100,
+            "stars": 3,
+            "seconds": 56.11640000069344,
+            "seed": 3181846490
+          },
+          "receipt": {
+            "gain": {
+              "painting": 1
+            },
+            "cost": {
+              "c0_7": 1,
+              "cotton": 2,
+              "c24_1": 1,
+              "c24_5": 1,
+              "ink": 1
+            }
+          },
+          "refreshPreserved": true,
+          "mobileNoOverflow": true
+        }
+      ]
+    }
+  ],
+  "attemptHistory": [
+    "first-attempt-report.json",
+    "report-second-attempt.json",
+    "report-third-attempt.json",
+    "report-fourth-attempt.json",
+    "report.json"
+  ],
+  "failedAttemptCauses": [
+    "Wardrobe category tab was not selected by the operator",
+    "Native KeyA remained held from an earlier room and was repeated in the later rhythm level",
+    "Recovery restart was read before its asynchronous server completion",
+    "Restart click was ignored while an outcome checkpoint was settling; operator waited for confirmation"
+  ],
+  "remainingUXFinding": "Restart is clickable while the outcome checkpoint is settling, but its handler silently returns. Needs an explicit busy/disabled or queued restart UX."
+}

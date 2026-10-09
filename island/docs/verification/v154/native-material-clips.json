@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "scope": "Native rendering of all 50 real material icons in both themes through inventory SVG, scene canvas and held-item canvas. Four known neighboring-art probes and SVG letterbox margins are checked; real source PNGs are unchanged. Isolated renderer, no game/user data/model calls; visual inspection is by the development agent, not human acceptance.",
+  "sourceVersion": "V154 candidate",
+  "materialsPerTheme": 50,
+  "themes": [
+    "pixel",
+    "origami"
+  ],
+  "nativeSurfaces": [
+    "inventory SVG",
+    "scene canvas",
+    "held-item canvas"
+  ],
+  "totalSurfaces": 300,
+  "nonblankChecks": 100,
+  "svgLetterboxChecks": 100,
+  "knownForeignArtProbes": [
+    {
+      "theme": "pixel",
+      "id": "wheat",
+      "svgProbes": [
+        {
+          "sourceX": 179,
+          "sourceY": 857,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "pixel",
+      "id": "shrimp",
+      "svgProbes": [
+        {
+          "sourceX": 180,
+          "sourceY": 1520,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "bamboo",
+      "svgProbes": [
+        {
+          "sourceX": 177,
+          "sourceY": 144,
+          "difference": 0
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "id": "shrimp",
+      "svgProbes": [
+        {
+          "sourceX": 177,
+          "sourceY": 1453,
+          "difference": 0
+        }
+      ]
+    }
+  ],
+  "sourcePngsUnchanged": true,
+  "humanAcceptance": false,
+  "failedCalibrationAttemptsPreservedPrivately": true
+}
