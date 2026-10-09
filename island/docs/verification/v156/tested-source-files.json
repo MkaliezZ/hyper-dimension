@@ -1,0 +1,35 @@
+{
+  "candidate": "V156",
+  "passed": true,
+  "files": [
+    {
+      "path": "src/artStore.js",
+      "sha256": "b4bb4d6b0aaea144e7f88a01af21498d627fc72a226bf6fe92a07f446a5df6f7"
+    },
+    {
+      "path": "src/individualItemArt.js",
+      "sha256": "55be9edcaddafc44d15a176bb27e14b7d29d2909ee099d11a8c4508f0cd21576"
+    },
+    {
+      "path": "tests/v155-product-art-browser.mjs",
+      "sha256": "df9730f4c01739d8d1e04721015d76cfaa1a71a6b084482677f9c741927e0640"
+    },
+    {
+      "path": "tests/v156-pearl-cup-craft-browser.mjs",
+      "sha256": "97cd61fd153e0cd7bbf322794a2f13e49bdb0bfccf1959c2210a13995b0dddb3"
+    },
+    {
+      "path": "tests/v156-checkpoint-restart-browser.mjs",
+      "sha256": "f30136a5e772fb01ea0064d2b03e565c5d521174ae0191afadcf7d059832dd2b"
+    },
+    {
+      "path": "public/assets/item-pearl-cup-pixel-v156.png",
+      "sha256": "bc95a0b41a61d92c8653c59a5b40a1d78952737ea011ba5b0762724a96dad216"
+    },
+    {
+      "path": "public/assets/item-pearl-cup-origami-v156.png",
+      "sha256": "26c97ff035ef9b23b0392a7ba02516f98b93051e8dfb56e4c27e6ce90c847ba6"
+    }
+  ],
+  "scope": "Exact application and test bytes for the recorded pre-commit native runs; manifest and documentation are sealed afterwards. No claim of testing a future commit or physical Mac."
+}

@@ -1,0 +1,45 @@
+{
+  "tool": "Built-in imagegen",
+  "method": "Edit references, copied entire generated PNGs byte-identically; no bitmap cropping, recoloring or alpha editing",
+  "recipe": "recipe_c1_11",
+  "cost": {
+    "c15_1": 1,
+    "pearl": 2,
+    "quartz": 1
+  },
+  "semanticTarget": "One tea cup with two pearls embedded in the front cup wall; one right-side handle, one foot, no saucer and no loose pearls",
+  "themes": [
+    {
+      "theme": "pixel",
+      "file": "item-pearl-cup-pixel-v156.png",
+      "sha256": "bc95a0b41a61d92c8653c59a5b40a1d78952737ea011ba5b0762724a96dad216",
+      "size": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "oneEnclosedHandleHole": true,
+      "prompt": "Use case: precise-object-edit. Asset type: ONE transparent pixel-art inventory sprite for Hyper Dimension. Image 1 is the edit target, the existing fired pixel teacup: retain that cup's readable shape, raised foot, open rim, slightly elevated frontal perspective, and ONE hollow ring handle on the RIGHT attached at two points. Image 2 is only the old pearl-glaze COLOR reference, not an object or ornament count reference. Upgrade the cup to the recipe's pearl teacup: EXACTLY TWO round ivory pearl inlays embedded IN THE FRONT OUTER CUP WALL, clearly separated left and right. Replace the flower painting with softly iridescent pink/lavender/seafoam glaze represented using discrete pixel color clusters. Retain the thin warm rim accent. Style: polished hand-drawn pixel game sprite, a clear 128-pixel logical grid with crisp square clusters enlarged without smoothing, clean stepped outlines, controlled limited palette, three-to-five shade clusters per region. No smooth painting, photorealism, paper facets, blur, gradients, or antialiased outlines. Composition: entire centered cup with generous true-transparent margin, isolated sprite, not a sheet. EXACTLY ONE CUP, ONE RIGHT-SIDE HANDLE, TWO PEARLS EMBEDDED ON CUP WALL, NO SAUCER, NO LOOSE PEARLS, NO EXTRA CUP, no second handle, no other objects, no glitter particles outside the silhouette, no text, labels, borders or watermarks. The recipe uses one fired cup, two pearls and quartz glaze, so the two pearl inlays are the only added physical ornaments. Make it beautiful and very readable as a small game icon."
+    },
+    {
+      "theme": "origami",
+      "file": "item-pearl-cup-origami-v156.png",
+      "sha256": "26c97ff035ef9b23b0392a7ba02516f98b93051e8dfb56e4c27e6ce90c847ba6",
+      "size": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "oneEnclosedHandleHole": true,
+      "prompt": "Use case: precise-object-edit. Asset type: a single transparent inventory/game decoration sprite for Hyper Dimension, origami theme. Image 1 is the edit target: the existing origami fired teacup; preserve its silhouette, proportions, raised foot, open cup and one ring handle on the RIGHT, and its slightly elevated frontal perspective. Image 2 is only a color reference for the soft iridescent pearl glaze, NOT an object-count reference. Primary request: upgrade that ONE fired cup into the recipe's pearl teacup by embedding EXACTLY TWO ivory pearls in the outside FRONT CUP WALL, clearly separated, one on either side of the front center. The pearls are small rounded inlays seated in the cup wall, not loose spheres or dots on the table. Cover the old flower motif with softly pearlescent pink/lavender/seafoam quartz glaze. Style: elegant folded paper game art, visible planar paper creases and refined faceted matte shading matching Image 1, warm restrained highlights, no pixel texture, no photorealism. Physically coherent hollow handle attached to the cup at two points; one open cup rim, one foot. Composition: complete centered isolated object with comfortable transparent margin all around. Scene/backdrop: actual transparent alpha background, no colored or checkerboard backdrop. Constraints: EXACTLY ONE CUP, EXACTLY ONE RIGHT-SIDE HANDLE, EXACTLY TWO PEARL INLAYS ON CUP WALL, NO SAUCER, NO LOOSE PEARLS, NO SECOND HANDLE, NO EXTRA VESSELS, NO text, symbols, borders, labels, diagrams or watermark. Preserve the refined pearl palette, readable at small inventory size. No detached decorations. This is one sprite, not a sheet."
+    }
+  ],
+  "inspectionBy": "development agent",
+  "humanAcceptance": false
+}

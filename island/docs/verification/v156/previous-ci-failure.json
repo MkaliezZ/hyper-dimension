@@ -1,0 +1,27 @@
+{
+  "runId": 38002157802,
+  "sourceCommit": "9f420507077c6bb1e513c430ad8a693ea06d029d",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "macos-15-intel / Python 3.11",
+      "conclusion": "success"
+    },
+    {
+      "name": "macos-14 / Python 3.11",
+      "conclusion": "failure"
+    },
+    {
+      "name": "windows-2022 / Python 3.11",
+      "conclusion": "success"
+    }
+  ],
+  "failedStep": "Native protected checkpoint restart",
+  "failure": "Origami control recovery wait exceeded 15000 ms",
+  "underlyingCauseConfirmed": false,
+  "upstreamStatusCapturedByOriginalTest": false,
+  "oldReleaseStillDraft": true,
+  "localSameFixtureFastAndSlowBothThemesPass": true,
+  "replacementTestChangesFixtureToHoldOneActualResultPhaseResponse": true,
+  "runtimeRecoveryChangeClaimed": false
+}

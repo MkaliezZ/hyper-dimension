@@ -60,4 +60,12 @@ jobs:
         run: node tests/v155-product-art-browser.mjs
 
       - name: Native protected checkpoint restart
-        run: node tests/v155-checkpoint-restart-browser.mjs
+        run: node tests/v156-checkpoint-restart-browser.mjs
+
+      - name: Native pearl cup crafting and refresh
+        run: node tests/v156-pearl-cup-craft-browser.mjs
+
+      - name: Print protected checkpoint diagnostics
+        if: always()
+        run: |
+          node --input-type=module -e "import {existsSync,readFileSync} from 'node:fs'; const f='qa/v156/checkpoint-restart/report.json'; if(existsSync(f)) console.log(readFileSync(f,'utf8')); else console.log('Checkpoint report unavailable: step did not finish');"

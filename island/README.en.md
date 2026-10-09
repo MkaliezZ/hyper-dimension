@@ -4,9 +4,11 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V155 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V156 development snapshot**; full product acceptance is still in progress.
 
-## Current update · V155
+## Current update · V156
+
+Pearl cups now match their recipe: one cup, two embedded pearls, one right handle, with separate complete PNGs for both themes. Native crafting/refresh and all 600 product icons pass; CI now holds one real result checkpoint response and retains failure diagnostics. [Art and test scope](docs/pearl-cup-v156.md).
 
 Both recipe-product atlases now share calibrated inventory, scene and held-item clipping: 600 icons / 1,800 native surfaces checked. Result restart and difficulty controls visibly wait for save acknowledgement, then recover. [Product art and restart checks](docs/product-art-v155.md).
 
@@ -28,7 +30,7 @@ Normal lobby map clicks no longer flash a recovery card; failed responses remain
 
 The cover opens an online player; downloads have a separate control. The new 30-second native recording shows both island styles, AI resident dialogue, selectable steward appearances, an actual Word document task, parent/child Agent cooperation, a minigame inside its building dialog and the completed reward.
 
-2560 × 1440 / 60 fps with original BGM. Footage was captured from V145; current source is V155. Profiles, project images and work briefs are fictional; the Hermes task actually executes tools. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json).
+2560 × 1440 / 60 fps with original BGM. Footage was captured from V145; current source is V156. Profiles, project images and work briefs are fictional; the Hermes task actually executes tools. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json).
 
 ### V144 nearby resident sound
 

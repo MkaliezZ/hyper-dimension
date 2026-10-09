@@ -1,0 +1,51 @@
+{
+  "scope": "Actual native building-1 pearl-cup craft and inventory refresh on a protected server save; fixture grants exactly one base tea cup, two pearls and one quartz, 200 coins and research 10. Actual installed individual generated PNGs and artStore renderer, no static overrides. Normal clock, solution-assisted native memory-game input, no injected outcome or post-start game state; no user data or model calls, not zero-start or human acceptance.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "errors": [],
+      "badAssets": [],
+      "result": {
+        "passed": true,
+        "quality": 100,
+        "elapsed": 5.435600000095368
+      },
+      "receipt": {
+        "cost": {
+          "c15_1": 1,
+          "pearl": 2,
+          "quartz": 1
+        },
+        "gain": {
+          "c1_11": 1
+        }
+      },
+      "refreshPreserved": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "errors": [],
+      "badAssets": [],
+      "result": {
+        "passed": true,
+        "quality": 100,
+        "elapsed": 5.454099999976156
+      },
+      "receipt": {
+        "cost": {
+          "c15_1": 1,
+          "pearl": 2,
+          "quartz": 1
+        },
+        "gain": {
+          "c1_11": 1
+        }
+      },
+      "refreshPreserved": true,
+      "passed": true
+    }
+  ],
+  "humanAcceptance": false,
+  "passed": true
+}

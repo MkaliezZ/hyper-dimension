@@ -1,0 +1,77 @@
+{
+  "scope": "Native building-modal crafting with a real protected save. Only one actual checkpoint response fetched while the native result panel is visible is held behind a test-host release barrier. Result restart, difficulty and claim must wait; the host releases that same server response after native assertions, then controls recover and restart creates a fresh ticket. Earlier checkpoints pass normally. Granted-resource fixture, solution-assisted native input, normal clock and no injected game state or outcome; not human acceptance.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "checkpointResponses": [
+        {
+          "status": 200,
+          "code": null,
+          "error": null,
+          "phaseAtServerResponse": "celebrating",
+          "held": false
+        },
+        {
+          "status": 200,
+          "code": null,
+          "error": null,
+          "phaseAtServerResponse": "celebrating",
+          "held": false
+        },
+        {
+          "status": 200,
+          "code": null,
+          "error": null,
+          "phaseAtServerResponse": "result",
+          "held": true,
+          "released": true
+        }
+      ],
+      "heldResultResponses": 1,
+      "errors": [],
+      "passed": true,
+      "pendingControlsDisabled": true,
+      "sameTicketWhilePending": true,
+      "controlsRecoveredAfterSameResponseRelease": true,
+      "freshTicketAfterNativeRestart": true,
+      "oldTicketCancelledWithoutCostOrGain": true
+    },
+    {
+      "theme": "origami",
+      "checkpointResponses": [
+        {
+          "status": 200,
+          "code": null,
+          "error": null,
+          "phaseAtServerResponse": "celebrating",
+          "held": false
+        },
+        {
+          "status": 200,
+          "code": null,
+          "error": null,
+          "phaseAtServerResponse": "celebrating",
+          "held": false
+        },
+        {
+          "status": 200,
+          "code": null,
+          "error": null,
+          "phaseAtServerResponse": "result",
+          "held": true,
+          "released": true
+        }
+      ],
+      "heldResultResponses": 1,
+      "errors": [],
+      "passed": true,
+      "pendingControlsDisabled": true,
+      "sameTicketWhilePending": true,
+      "controlsRecoveredAfterSameResponseRelease": true,
+      "freshTicketAfterNativeRestart": true,
+      "oldTicketCancelledWithoutCostOrGain": true
+    }
+  ],
+  "humanAcceptance": false,
+  "passed": true
+}

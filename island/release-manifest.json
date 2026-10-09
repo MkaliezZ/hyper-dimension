@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v155-agent-source",
+  "release": "hyper-dimension-v156-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12916,
-      "sha256": "6f73c0dfc1faec062ac5a8f37062ae99b43ff21f58e5e7d6a448e5f5ee251e7e"
+      "bytes": 13231,
+      "sha256": "f540f3664e931b56aeeab98432cba64bc329aa9e674bb1a0d01dba3551a7971f"
     },
     {
       "path": "README.md",
-      "bytes": 13670,
-      "sha256": "09fd10743aac9071b187f0386bb8b7d67bf8d690b3bc54df8ef2debb3bcbcf78"
+      "bytes": 13972,
+      "sha256": "bb091668d6e37d2051ecfc41751f6dcee43fb42d434098e9611bee15096fb182"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -491,6 +491,11 @@
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
     },
     {
+      "path": "docs/pearl-cup-v156.md",
+      "bytes": 4724,
+      "sha256": "a4d692747d041b1fc5e67ae2604904431c5643388465ca41a27b2528742f3335"
+    },
+    {
       "path": "docs/portfolio-v130-art.json",
       "bytes": 1016,
       "sha256": "13564366a71a1d6cae3d249f17f304623ebde705a073db78c21832c103726bbb"
@@ -502,8 +507,8 @@
     },
     {
       "path": "docs/product-art-v155.md",
-      "bytes": 2827,
-      "sha256": "6e32302dce1d594bfe9d94fa525b01fd75b713d6a32965def77a36ee3bc5bbda"
+      "bytes": 2944,
+      "sha256": "25cba13a6a2c474f72a3067e124cc214b7823fd2c031805a88d8dc4d8de067fd"
     },
     {
       "path": "docs/production-contracts-v114.md",
@@ -1129,6 +1134,36 @@
       "path": "docs/verification/v155/native-product-clips.json",
       "bytes": 101655,
       "sha256": "548eae095d48d2e0b7fd138e060ffc049fbff4fff678c9038532608de823218c"
+    },
+    {
+      "path": "docs/verification/v156/native-checkpoint-release.json",
+      "bytes": 2505,
+      "sha256": "965ac1bb531099588572e4324205d65a726b9c3e9676de5a3f2c545b6d1eda25"
+    },
+    {
+      "path": "docs/verification/v156/native-pearl-cup-craft.json",
+      "bytes": 1409,
+      "sha256": "3f008b16153082713d952d1bd4d5a68724b350ac895ff1123be1f3d47c18327d"
+    },
+    {
+      "path": "docs/verification/v156/native-product-renders.json",
+      "bytes": 100214,
+      "sha256": "90d80fa79b7ad81ff6cff004de6d2f26789c677cdc0db0bd552c3dc5c067d039"
+    },
+    {
+      "path": "docs/verification/v156/pearl-cup-provenance.json",
+      "bytes": 4408,
+      "sha256": "f1572df6f16485ea450b1fe5a8405e3f99c5130a25e203d798cf0e7c571b5437"
+    },
+    {
+      "path": "docs/verification/v156/previous-ci-failure.json",
+      "bytes": 824,
+      "sha256": "05ad0d3368b775324f8c74bf2800f2b7ce115120566dfa762b2ad5a4cf7a87e9"
+    },
+    {
+      "path": "docs/verification/v156/tested-source-files.json",
+      "bytes": 1325,
+      "sha256": "6b62722d0def429184a1092f3e2629f3d8f4c7089eccf8524288e58f58e597ca"
     },
     {
       "path": "index.html",
@@ -2369,6 +2404,16 @@
       "path": "public/assets/item-manifest-v8.json",
       "bytes": 103209,
       "sha256": "5e3ac3c18f64b6f5bcafd8fc5c2c3b78d24801704af97000eb2880e6432a77eb"
+    },
+    {
+      "path": "public/assets/item-pearl-cup-origami-v156.png",
+      "bytes": 1186535,
+      "sha256": "26c97ff035ef9b23b0392a7ba02516f98b93051e8dfb56e4c27e6ce90c847ba6"
+    },
+    {
+      "path": "public/assets/item-pearl-cup-pixel-v156.png",
+      "bytes": 969039,
+      "sha256": "bc95a0b41a61d92c8653c59a5b40a1d78952737ea011ba5b0762724a96dad216"
     },
     {
       "path": "public/assets/items-origami-materials-v8.png",
@@ -3867,8 +3912,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 7587,
-      "sha256": "9a922bac443ff3cfcd25a417456b957e1856e763757577c919483c9f94b0c3de"
+      "bytes": 7979,
+      "sha256": "b4bb4d6b0aaea144e7f88a01af21498d627fc72a226bf6fe92a07f446a5df6f7"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -4379,6 +4424,11 @@
       "path": "src/hud.css",
       "bytes": 28632,
       "sha256": "d8a57feb1d94d9503a906355bd6fdbc6762d5ddbf4716ac3e1962bf462e6e72d"
+    },
+    {
+      "path": "src/individualItemArt.js",
+      "bytes": 596,
+      "sha256": "55be9edcaddafc44d15a176bb27e14b7d29d2909ee099d11a8c4508f0cd21576"
     },
     {
       "path": "src/interiorDesign.js",
@@ -6087,8 +6137,18 @@
     },
     {
       "path": "tests/v155-product-art-browser.mjs",
-      "bytes": 7280,
-      "sha256": "b7e2cfdd154099b1da628c6d442d4def4201618dcb655ea121e3e09da8a6d5f5"
+      "bytes": 7564,
+      "sha256": "df9730f4c01739d8d1e04721015d76cfaa1a71a6b084482677f9c741927e0640"
+    },
+    {
+      "path": "tests/v156-checkpoint-restart-browser.mjs",
+      "bytes": 8753,
+      "sha256": "f30136a5e772fb01ea0064d2b03e565c5d521174ae0191afadcf7d059832dd2b"
+    },
+    {
+      "path": "tests/v156-pearl-cup-craft-browser.mjs",
+      "bytes": 6446,
+      "sha256": "97cd61fd153e0cd7bbf322794a2f13e49bdb0bfccf1959c2210a13995b0dddb3"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8391,5 +8451,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v155-github"
+  "publicRevision": "v156-github"
 }
