@@ -10,7 +10,7 @@ try{
   await page.locator('[data-action="start"]:enabled').click();await page.waitForTimeout(150);
   if(id===2){
    const s=await page.evaluate(()=>arcadeInspect());for(const index of s.level.orders[0].ingredients)await page.locator('[data-action="ingredient"][data-index="'+index+'"]').click();
-   for(let n=0;n<4;n++)await page.locator('[data-action="cut"]').click();await page.locator('[data-action="cook"]').click();await page.waitForTimeout(700);
+   for(let n=0;n<4;n++){await page.locator('[data-action="cut"]').click();await page.waitForTimeout(400);}await page.locator('[data-action="cook"]').click();await page.waitForTimeout(700);
   }
   if(id===20){
    const s=await page.evaluate(()=>arcadeInspect()),p=s.level.targets[0],box=await page.locator('.wk-canvas').boundingBox(),x=480+Math.cos(p.angle)*250,y=475+Math.sin(p.angle)*250;

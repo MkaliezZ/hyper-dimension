@@ -1,0 +1,83 @@
+{
+  "version": "V142",
+  "passed": true,
+  "scope": "Isolated, pre-unlocked 75-quality fixtures with 100 of each raw material, zero manufactured products and suspended retail shelves before startup. NPCs retain normal local work/life; model endpoints are blocked. Actual kitchen catalog navigation and walking, mouse slicing, mobile touch slicing, space cutting, normal animation, accepted server costs, one receipt per craft and mid-game disk refresh/resume. Does not establish zero-start gathering/unlocks, human puzzle difficulty or long-duration economy.",
+  "cases": [
+    {
+      "theme": "origami",
+      "passed": true,
+      "inputs": {
+        "mouseCuts": 2,
+        "touchUsed": true,
+        "keyboardCuts": 25
+      },
+      "resume": {
+        "passed": true,
+        "cuts": 2,
+        "sameRequest": true
+      },
+      "result": {
+        "passed": true,
+        "quality": 99,
+        "score": 2077,
+        "total": 100,
+        "stars": 3,
+        "seconds": 65.69489999990188,
+        "seed": 94258001
+      },
+      "receipt": {
+        "cost": {
+          "fish": 1,
+          "wheat": 1,
+          "tomato": 1,
+          "seasalt": 1
+        },
+        "gain": {
+          "meal": 1
+        },
+        "oneAfterReopen": true
+      },
+      "errors": [],
+      "badAssets": []
+    },
+    {
+      "theme": "pixel",
+      "passed": true,
+      "inputs": {
+        "mouseCuts": 2,
+        "touchUsed": true,
+        "keyboardCuts": 25
+      },
+      "resume": {
+        "passed": true,
+        "cuts": 2,
+        "sameRequest": true
+      },
+      "result": {
+        "passed": true,
+        "quality": 99,
+        "score": 2081,
+        "total": 100,
+        "stars": 3,
+        "seconds": 67.19880000012803,
+        "seed": 4068946166
+      },
+      "receipt": {
+        "cost": {
+          "fish": 1,
+          "wheat": 1,
+          "tomato": 1,
+          "seasalt": 1
+        },
+        "gain": {
+          "meal": 1
+        },
+        "oneAfterReopen": true
+      },
+      "errors": [],
+      "badAssets": []
+    }
+  ],
+  "ruleTests": 6,
+  "wholeGoalComplete": false
+}

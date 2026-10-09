@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v141-agent-source",
+  "release": "hyper-dimension-v142-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10796,
-      "sha256": "f62c8c5b88cf3ee2858a71af013a67e89786ed1a506014e8468d0480b43572a5"
+      "bytes": 11086,
+      "sha256": "091ffb64a8d2943e5f002c2df9f9e46f6ef195cbb116f2dcdf4683342cd8f176"
     },
     {
       "path": "README.md",
-      "bytes": 10628,
-      "sha256": "df367038b3465d9b13ba63e6925786be19bb409884adea3a846fb490c48c9d0f"
+      "bytes": 10890,
+      "sha256": "b170000152904aae7e39d79a38d9db00b962e39985335ca75cb7eec1da0f8b43"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 3811,
-      "sha256": "fb9df9551cb4ffd4e3578c0824fd2c7359d17ccf8093fade06bfffc6132be209"
+      "bytes": 4011,
+      "sha256": "f413f4ed3697490c1657639756b3359024902bfd96bacedb2f645d340f4ae0ef"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 18004,
-      "sha256": "0d7362604bbbe6e13fd50fe1ffc2a08679f3db5aacbd63aeaa23d3b7aa2a6552"
+      "bytes": 18219,
+      "sha256": "c8b13cd388a33aadfba62c99ff90c79075231a03d4a77ed74f5ab47d73c10191"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -164,6 +164,16 @@
       "path": "docs/harbor-art-v109.md",
       "bytes": 4957,
       "sha256": "a00a3ed4c4f3c514a2707871974a3477c6023639f4baf21f8bda718c836340cc"
+    },
+    {
+      "path": "docs/kitchen-v142-verification.json",
+      "bytes": 2095,
+      "sha256": "0aa680083b71bd1415b768491207ef9f60c537b1cefab7fbbacf3ffef4454c80"
+    },
+    {
+      "path": "docs/kitchen-v142.md",
+      "bytes": 3145,
+      "sha256": "d77a031507e27f8351138effdded54dc8a94ffdfe92722d89d5f1e0cebab84b4"
     },
     {
       "path": "docs/map-navigation-v141-verification.json",
@@ -729,6 +739,26 @@
       "path": "docs/screenshots/v141-pixel-night-sky.png",
       "bytes": 1321945,
       "sha256": "2f37ab4708f5a081ca878a755c32e2622dcb3d5f55da6f393bb4eca47aae9e8c"
+    },
+    {
+      "path": "docs/screenshots/v142-origami-kitchen-result.png",
+      "bytes": 611608,
+      "sha256": "956fc1e8269a36c07e0cfd909e94816d49c371314670b3076520afc83522ff23"
+    },
+    {
+      "path": "docs/screenshots/v142-origami-kitchen-touch.png",
+      "bytes": 401709,
+      "sha256": "90c834870b2b9a2f6011bea5cf85dfac655bd8560635826b667c26be6ffcfd65"
+    },
+    {
+      "path": "docs/screenshots/v142-pixel-kitchen-result.png",
+      "bytes": 621679,
+      "sha256": "77f98c31ea448e39d110edf3f27e83a52922e1b1fe9ac4ab1aa59a1fcce16c6d"
+    },
+    {
+      "path": "docs/screenshots/v142-pixel-kitchen-touch.png",
+      "bytes": 326591,
+      "sha256": "87c5e4d3f3927964513189f722e887a05115d25820680690218e7e69a4c31793"
     },
     {
       "path": "docs/sea-art-prompts-v122.json",
@@ -1342,8 +1372,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8563,
-      "sha256": "10002e090fb7fcdbeb57a9e9511335e3627dd5dc0e91ff36f2198a63105f006d"
+      "bytes": 8591,
+      "sha256": "771db5e250089a678667e8899d838cc9d3c5e9ec258372697fa97a57399f5607"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3427,8 +3457,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 135656,
-      "sha256": "4278be1b7f2957d8dce1abee7cbf699aec06cf1ed356a932fefd612f88effd5b"
+      "bytes": 135754,
+      "sha256": "2fcbd57534e0dcf0bc1f8cc03bfdbf33c300fc689ad69356de1a3027d4252e04"
     },
     {
       "path": "src/arcade.css",
@@ -3607,8 +3637,8 @@
     },
     {
       "path": "src/craftGameReplay.js",
-      "bytes": 5441,
-      "sha256": "d1f5ce1a9c67bef71cfc312f80531799a87367f5dab52a837249d567f64898e8"
+      "bytes": 5533,
+      "sha256": "b001d2ad89969bc3d0aa3a12954a72cbcc0fa80a83aa851dc3438bba01e2a314"
     },
     {
       "path": "src/craftPlanning.js",
@@ -3979,6 +4009,11 @@
       "path": "src/journeyUI.js",
       "bytes": 5479,
       "sha256": "980ec28b67820a606150584a9e6a79d7022d0a9260445b0b49d3d046089cfc9e"
+    },
+    {
+      "path": "src/kitchenCutting.js",
+      "bytes": 2930,
+      "sha256": "264091517462a6399a29acc99b16ffc9ac9e14db04ac7ca9479225ed8ea44c35"
     },
     {
       "path": "src/lan-activities-v57.css",
@@ -4742,13 +4777,13 @@
     },
     {
       "path": "src/workshopCatalog.js",
-      "bytes": 5536,
-      "sha256": "0942dc9c51ecb378f0a840db205f079b56f6334bccc6a19549b512adcc3e6ed2"
+      "bytes": 5563,
+      "sha256": "88bf6b42f8a7b8226896bb1a11673cc9e3c87bfc80ec3758b4194b8b2e9cd1cb"
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 42675,
-      "sha256": "091cae3db7801ca6a779cc9d2bd345b6658e9a57e6087bfd1ae5aaeb944379c4"
+      "bytes": 43374,
+      "sha256": "b5992097e0f4c591c074a5ff168a20c4f10e35ba513c0b13a31a276efe20bf2a"
     },
     {
       "path": "src/workshopProps.js",
@@ -4757,8 +4792,8 @@
     },
     {
       "path": "src/workshopRules.js",
-      "bytes": 47595,
-      "sha256": "d7944fa70041acc0e56acae96454bfab5e18773e0cf085abf4d3cdf00bcb966c"
+      "bytes": 48184,
+      "sha256": "5c73536bde7d9426b5dd7e29ab4230f1ec812785d085ca7074586ffb95b80f6e"
     },
     {
       "path": "src/workshopSpecifications.js",
@@ -4767,8 +4802,8 @@
     },
     {
       "path": "src/workshopView.js",
-      "bytes": 47350,
-      "sha256": "2ecab374db6810e98ffe03fe58240c23c519e5a3e35f26cddd80546d08486007"
+      "bytes": 48422,
+      "sha256": "67d62c7ae335230f3dd595de4fa027f6db0d3c60f1604f0f2f5439983c42068c"
     },
     {
       "path": "src/world.js",
@@ -5526,6 +5561,16 @@
       "sha256": "5d457fc440af7a06c4fad593b82dd37cf6efb0b3f14ad8dfd94abb402cda9a26"
     },
     {
+      "path": "tests/v142-kitchen-browser.mjs",
+      "bytes": 10770,
+      "sha256": "1aafad2582028c7b56fa6e844a677b1dba44dcfbac7550105bc9e3e1d9e85558"
+    },
+    {
+      "path": "tests/v142-kitchen.test.mjs",
+      "bytes": 3956,
+      "sha256": "f3f891a670d83eb2e9eb080c8273fbd5ee403381805d5591e3efe0903f3c1198"
+    },
+    {
       "path": "tests/v16-v17-ui-qa.mjs",
       "bytes": 5407,
       "sha256": "b0b0953ebda1e041eacf700ff1e71be8dc1243e5cea2622c10e03aa5cc81e271"
@@ -5597,13 +5642,13 @@
     },
     {
       "path": "tests/v19-play.test.mjs",
-      "bytes": 2669,
-      "sha256": "18a44fe794c07723ea6af3034d6be5ab9cad36fca435ac5c84f60a8224a5ff5a"
+      "bytes": 2711,
+      "sha256": "edecc2b53838543185bcde19ead10ff2ce2dbc1f516c678cb79682d9a1f3d4ee"
     },
     {
       "path": "tests/v19-polish-qa.mjs",
-      "bytes": 2589,
-      "sha256": "3ae8e461868fde74a1b5495d41dae7bbba510c9493046e40f45f7ac44a63f901"
+      "bytes": 2622,
+      "sha256": "0369a6e7d762304d0a639ff93b64f9bba5349942e447b07fb87eca1fe2e1b580"
     },
     {
       "path": "tests/v19-visual-qa.mjs",
@@ -5612,13 +5657,13 @@
     },
     {
       "path": "tests/v20-regressions.test.mjs",
-      "bytes": 4516,
-      "sha256": "b948a4c43a6889797ce7cef72869b110697e19cf9a683dbb040524c91a46172a"
+      "bytes": 4532,
+      "sha256": "290a83804b93e1ac1b9d1670242eb35ca2e2058c2a01365b0d69b567c78e2008"
     },
     {
       "path": "tests/v20-workbench-qa.mjs",
-      "bytes": 7722,
-      "sha256": "182f4cd1de7770758ce100f5adc1b3976667371624ebe179ec20953c4116ddf4"
+      "bytes": 7755,
+      "sha256": "3911893036668735acb0c7e48c9958de8f1d63483ca09d8ac1d6eb4cfa11dc96"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
@@ -7821,5 +7866,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v141-github"
+  "publicRevision": "v142-github"
 }

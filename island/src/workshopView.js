@@ -1,3 +1,4 @@
+import {KITCHEN_SCHEMA,kitchenTarget} from './kitchenCutting.js';
 import {paintBrushStudio} from './brushPainter.js';
 import {POTTERY_COLORS,potteryGlazeReview,potteryKilnTarget} from './potteryStudio.js';
 import {propImage,drawProp} from './workshopProps.js';
@@ -48,6 +49,7 @@ export function boardGeometry(s){
 }
 export function viewBounds(s,narrow){
  if(narrow&&s.kind==='brush'&&s.level.schemaVersion===139)return {x:186,y:56,w:590,h:426};
+ if(narrow&&s.kind==='kitchen'&&s.level.schemaVersion===KITCHEN_SCHEMA)return {x:337,y:200,w:290,h:245};
  if(narrow&&s.kind==='pottery')return {x:235,y:15,w:490,h:510};
  const g=boardGeometry(s);if(!narrow||!g)return {x:0,y:0,w:W,h:H};
  if(s.kind==='nonogram')return {x:g.x-102,y:g.y-115,w:g.cols*g.cell+126,h:g.rows*g.cell+138};
@@ -179,16 +181,21 @@ export function makeWorkshopPainter(canvas,theme,avatar,catchItem=null){
  function kitchen(s,dt){
   panel(c,350,205,260,205,false,theme==='pixel');wood(c,372,253,216,125,'#c8a375',theme==='pixel');
   const j=s.jobs[s.ticket];
-  if(j&&['prep','available'].includes(j.state)){j.ingredients.forEach((v,i)=>{const arrival=effects.findLast(e=>e.kind==='ingredient'&&e.ticket===j.id&&e.index===i),u=arrival?clamp((clock-arrival.born)/.24,0,1):1;c.save();c.globalAlpha=.55+.45*u;drawItem(c,s.level.ids[v],theme,421+i*69,322-(1-u)*22,55);c.restore();});if(j.cuts){for(let i=0;i<j.cuts;i++){const x=402+i*26;rect(c,x,353,11,6,palette[i%6],null,1);}}}
+  if(j&&['prep','available'].includes(j.state)){j.ingredients.forEach((v,i)=>{const arrival=effects.findLast(e=>e.kind==='ingredient'&&e.ticket===j.id&&e.index===i),u=arrival?clamp((clock-arrival.born)/.24,0,1):1;c.save();c.globalAlpha=.55+.45*u;const cx=421+i*69,cy=322-(1-u)*22,parts=s.level.schemaVersion===KITCHEN_SCHEMA?Math.min(2,Math.max(0,j.cuts-i*2)):0;
+    if(parts){const count=parts+1;for(let part=0;part<count;part++){c.save();c.beginPath();c.rect(cx-28+part*56/count+(part-(count-1)/2)*4,cy-30,56/count,60);c.clip();drawItem(c,s.level.ids[v],theme,cx+(part-(count-1)/2)*4,cy,55);c.restore();}}
+    else drawItem(c,s.level.ids[v],theme,cx,cy,55);c.restore();});if(j.cuts&&s.level.schemaVersion!==KITCHEN_SCHEMA){for(let i=0;i<j.cuts;i++){const x=402+i*26;rect(c,x,353,11,6,palette[i%6],null,1);}}}
   // Grip anchor is on the wooden handle. Lift, contact and recovery share the same board coordinates.
   const cut=s.cutFlash>0,phase=cut?clamp(1-s.cutFlash/.36,0,1):0,stroke=cut?Math.sin(Math.min(1,phase/.58)*Math.PI):0;
-  const targetX=cut&&j?.ingredients.length?487+((j.cuts-1)%j.ingredients.length)*69:560;knifeX+=(targetX-knifeX)*(1-Math.exp(-dt*18));
+  const guide=kitchenTarget(s);
+  const targetX=s.level.schemaVersion===KITCHEN_SCHEMA?(cut?s.cutX+66:guide?guide.x+66:560):(cut&&j?.ingredients.length?487+((j.cuts-1)%j.ingredients.length)*69:560);knifeX+=(targetX-knifeX)*(1-Math.exp(-dt*18));
   const grip={x:knifeX,y:267-stroke*36},angle=-.05-stroke*.28;
   ellipse(c,494,346,43,7,'#58422d20');
   if(!drawProp(c,2,theme,grip.x,grip.y,151,angle,null,{x:.78,y:.26})){
    c.save();c.translate(grip.x,grip.y);c.rotate(angle);polygon(c,[[-80,28],[-18,-9],[-2,30],[-66,68]],'#d7dfda','#8b9e99');line(c,[[-18,-9],[16,-38]],'#795c45',14);c.restore();
   }
-  if(cut&&phase>.5&&phase<.7)line(c,[[459,346],[486,349],[516,346]],'#fff7dc',2);
+  if(guide){const x=guide.x;c.save();line(c,[[x,281],[x,352]],'#477c6990',2,[4,5]);circle(c,x,328,26,null,'#ebc77e',2);text(c,'↓ '+guide.remaining+' 刀',x,242,17,'#446b5a');c.restore();}
+  if(s.level.schemaVersion===KITCHEN_SCHEMA&&s.kitchenStroke){const p=s.kitchenStroke;line(c,[[p.x,p.y],[s.pointer.x,s.pointer.y]],'#fff8d8',3);}
+  if(cut&&phase>.5&&phase<.7){const x=s.level.schemaVersion===KITCHEN_SCHEMA?s.cutX:486;line(c,[[x-18,335],[x,338],[x+20,335]],'#fff7dc',2);}
   for(let station=0;station<2;station++){
    const x=station?735:225,y=335,job=s.jobs.find(j=>j.state==='cooking'&&j.station===station),ready=job&&job.cooked>=job.cook,over=job?clamp((job.cooked-job.cook)/job.window,0,1):0;
    ellipse(c,x,y+71,107,22,'#233b4028');rect(c,x-95,y+30,190,57,'#354b49','#b2bbad',10);rect(c,x-92,y+67,184,18,'#213e40',null,6);circle(c,x-55,y+75,5,'#c8b891');circle(c,x+55,y+75,5,'#c8b891');ellipse(c,x,y+29,76,20,'#e1bb75');if(job)for(let i=0;i<5;i++){const xx=x-52+i*26,yy=y+35;polygon(c,[[xx-9,yy+3],[xx-4,yy-15-Math.sin(clock*12+i)*8],[xx+3,yy-7],[xx+10,yy+3]],'#f4bb68');}

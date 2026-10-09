@@ -1,3 +1,4 @@
+import {neutralKitchen} from './kitchenCutting.js';
 import {neutralBrush,BRUSH_SCHEMA} from './brushStudio.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
 import {makeWorkshopLevel,createWorkshopState,workshopAction,stepWorkshop} from './workshopRules.js';
@@ -16,7 +17,7 @@ export function createCraftGame(id,seed,difficulty,equipment=null){
 }
 export function craftResult(game){return game.engine==='workshop'?game.state.result:game.result}
 export function neutralCraftGame(game){
- if(game.engine==='workshop'){const s=game.state;s.holding=false;s.keys={};if(s.kind==='brush'&&s.level.schemaVersion===BRUSH_SCHEMA)neutralBrush(s);}
+ if(game.engine==='workshop'){const s=game.state;s.holding=false;s.keys={};if(s.kind==='kitchen')neutralKitchen(s);if(s.kind==='brush'&&s.level.schemaVersion===BRUSH_SCHEMA)neutralBrush(s);}
  return game;
 }
 const allowedKeys=new Set(['type','x','y','value','index','delta','lane','key','down','dir','item','mark','station','a','b']);

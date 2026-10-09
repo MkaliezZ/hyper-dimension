@@ -123,3 +123,8 @@ Rendered nameplates and bodies now select the same stable resident identity. Eig
 Both themes pass native input/recovery, three-resident consent and gifts, classic-game recovery and a genuinely zero-stock first-day journey through farming, resident deliveries, attendance, a four-flight gathering, authoritative rewards and empty-browser restore. The default gate passes878 checks. These focused isolated tests use the normal clock and no provider calls; they do not replace human, physical Mac or whole-product acceptance.
 
 V141 追加地图交互复核：双画风原生空地点击、居民弹窗关闭、建筑到达及进入；叠加恢复锁释放和会客准备／关闭均通过。[记录](map-navigation-v141.md)。
+
+
+## V142 — 双灶空间切配（2026-10-09）
+
+已取得双画风的原生鼠标、手机触摸、空格、正常时间双灶、磁盘刷新续玩和单次料理结算证据；旧厨房规则保持兼容。[玩法与验收](kitchen-v142.md)。本项不覆盖真人体验、真实模型或长期经济；原全目标验收范围保持。

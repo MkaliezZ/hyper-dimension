@@ -1,3 +1,4 @@
+import {KITCHEN_SCHEMA,neutralKitchen} from './kitchenCutting.js';
 import {BRUSH_COLORS,BRUSH_SCHEMA,neutralBrush} from './brushStudio.js';
 import {POTTERY_COLORS,potteryShapeReview,potteryGlazeReview,potteryKilnTarget} from './potteryStudio.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
@@ -17,7 +18,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  const options=gameLevelOptions(id,baseOptions),theme=options.theme||document.body.dataset.theme||'pixel',g=WORKSHOP_GAMES[id],level=options.resumeGame?.engine==='workshop'&&options.resumeGame.state?.level?.id===id?structuredClone(options.resumeGame.state.level):makeWorkshopLevel(id,options.level.seed,options.level.difficulty);
  const s=options.resumeGame?.engine==='workshop'?structuredClone(options.resumeGame.state):createWorkshopState(level,options.equipment),art=id=>itemMarkup(id,theme,'wk-item-art'),recipe=options.recipe||(options.catchItem?{item:options.catchItem,name:itemName(options.catchItem)}:DEFAULT_RECIPES[id]),audio=createWorkshopAudio();
  let alive=true,frame=0,last=performance.now(),replacement=null,paused=false,reported=false,claimed=false,uiAt=-1,uiPhase='',controlsKey='',outcomeShown=false,autoPauseReason='',loaded=false,markMode=false,entryTime=0;
- s.events=[];let transportPaused=false;
+ s.events=[];let transportPaused=false,checkpointPending=false;
  let wardrobeTab=0;
  const embedded=!options.standalone,workbench=options.workbench;
  const cleanup=[];
@@ -46,7 +47,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  function send(action){if(!alive||paused)return;options.onGameEvent?.({action});workshopAction(s,action);flushEvents();ui(action.type!=='point');}
  function flushEvents(){for(const e of s.events.splice(0)){painter.event(e);audio.event(e);}}
  function pause(reason=''){
-  if(s.phase!=='playing'||paused)return;paused=true;autoPauseReason=reason;s.holding=false;s.keys={};if(s.kind==='brush'&&level.schemaVersion===BRUSH_SCHEMA)neutralBrush(s);options.onGameEvent?.({neutral:true});audio.pause();renderOverlay();ui(true);
+  if(s.phase!=='playing'||paused)return;paused=true;autoPauseReason=reason;s.holding=false;s.keys={};if(s.kind==='brush'&&level.schemaVersion===BRUSH_SCHEMA)neutralBrush(s);if(s.kind==='kitchen')neutralKitchen(s);options.onGameEvent?.({neutral:true});audio.pause();renderOverlay();ui(true);
  }
  function resume(){paused=false;autoPauseReason='';last=performance.now();audio.resume();renderOverlay();ui(true);stage.focus({preventScroll:true});}
  function restart(mode){if(options.onRestart){options.onRestart(mode);return}destroy();replacement=mountWorkshopGame(root,id,onFinish,nextGameOptions(options,mode));}
@@ -64,7 +65,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
     '<p class="wk-eyebrow">'+(r.passed?'晨光岛 · 作业完成':'晨光岛 · 练习手记')+'</p><div class="wk-stars" aria-label="'+r.stars+' 星">'+[1,2,3].map(i=>'<span class="'+(i<=r.stars?'lit':'')+'">✦</span>').join('')+'</div><h2 id="wk-dialog-title">'+(r.passed?['','初露身手','佳作完成','匠心之作'][r.stars]:'再试一局')+'</h2><p>'+(r.passed?'你完成了「'+g.title+'」':'这次尚未完成目标。'+failureHint())+'</p>'+
     (r.passed&&embedded?'<div class="wk-result-product">'+art(recipe.item)+'<div><small>'+(options.catchItem?'本次钓获':craftReady?'本次制作':'本局练习')+'</small><b>'+esc(recipe.name)+'</b><span>'+(options.catchItem?'确认后收取本次钓获。':craftReady?'领取后制作 1 件，材料仅扣除一次。':'材料或解锁条件不足，不扣材料，不发放成品。')+'</span></div></div>':'')+
     '<div class="wk-result-stats"><div><small>得分</small><b>'+r.score+'</b></div><div><small>用时</small><b>'+formatTime(r.seconds)+'</b></div><div><small>历史最佳</small><b>'+best.score+'</b></div></div><div class="wk-result-actions">'+
-    (r.passed?command(options.standalone?'保存成绩 · 完成挑战':options.catchItem?'收下钓获':craftReady?'领取制作成果':'完成练习','claim','','wk-primary'):'')+
+    (r.passed?command(options.standalone?'保存成绩 · 完成挑战':options.catchItem?'收下钓获':craftReady?'领取制作成果':'完成练习','claim',(checkpointPending||transportPaused||claimed)?'disabled':'','wk-primary'):'')+
     command('新关卡 · 再来一局','restart','','wk-secondary')+'</div><small>'+(r.passed?(options.standalone?'成绩已保存到此浏览器。':options.catchItem?'关闭将放弃本次钓获。':craftReady?'关闭此窗口将返回房间，不扣材料，也不发放成品。':'补齐材料与解锁条件后，再来制作。'):'本次未扣除制作材料。')+'</small></div>');return
   }
   overlay.innerHTML='';if(dialog.open)dialog.close();
@@ -85,7 +86,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   if(k==='pipes')return command(s.running?'水流循环中…':'开启水循环','submit',s.running?'disabled':'','wk-primary')+'<span class="wk-control-note">金色端点不能旋转，橙色亮点是漏口。</span>';
   if(k==='kitchen'){
    const j=s.jobs[s.ticket],active=s.jobs.filter(j=>['available','prep'].includes(j.state)),prepping=j&&['available','prep'].includes(j.state),needed=j?l.orders[j.id].ingredients.length:0,cutReady=prepping&&j.ingredients.length===needed&&j.cuts<needed*2,cookReady=prepping&&j.ingredients.length===needed&&j.cuts>=needed*2&&s.jobs.filter(j=>j.state==='cooking').length<2;
-   return '<div class="wk-orders">'+active.map(j=>command('客单 '+(j.id+1)+' · '+l.orders[j.id].ingredients.map(v=>art(l.ids[v])).join(''),'ticket','data-index="'+j.id+'" aria-pressed="'+(s.ticket===j.id)+'"')).join('')+'</div><div class="wk-pantry">'+l.ids.map((v,index)=>command(art(v)+'<span>'+esc(itemName(v))+'</span>','ingredient','data-index="'+index+'" '+(!prepping||j.ingredients.length>=needed?'disabled':''),'wk-ingredient')).join('')+'</div><div class="wk-tools">'+command('切配 '+(prepping?j.cuts:0)+'/'+needed*2,'cut',cutReady?'':'disabled')+command('放入空灶','cook',cookReady?'':'disabled','wk-primary')+command('清空备料','clearPrep',prepping&&j.ingredients.length?'':'disabled')+'</div><div class="wk-stoves">'+[0,1].map(station=>{const pot=s.jobs.find(j=>j.state==='cooking'&&j.station===station),ready=pot&&pot.cooked>=pot.cook;return command((station?'右灶':'左灶')+' · '+(ready?'装盘':pot?'烹调中':'空闲'),'serve','data-station="'+station+'" '+(ready?'':'disabled'),ready?'wk-primary':'')}).join('')+'</div>';
+   return '<div class="wk-orders">'+active.map(j=>command('客单 '+(j.id+1)+' · '+l.orders[j.id].ingredients.map(v=>art(l.ids[v])).join(''),'ticket','data-index="'+j.id+'" aria-pressed="'+(s.ticket===j.id)+'"')).join('')+'</div><div class="wk-pantry">'+l.ids.map((v,index)=>command(art(v)+'<span>'+esc(itemName(v))+'</span>','ingredient','data-index="'+index+'" '+(!prepping||j.ingredients.length>=needed?'disabled':''),'wk-ingredient')).join('')+'</div><div class="wk-tools">'+command((l.schemaVersion===KITCHEN_SCHEMA?'切一刀 · 空格 ':'切配 ')+(prepping?j.cuts:0)+'/'+needed*2,'cut',cutReady?'':'disabled')+command('放入空灶','cook',cookReady?'':'disabled','wk-primary')+command('清空备料','clearPrep',prepping&&j.ingredients.length?'':'disabled')+'</div><div class="wk-stoves">'+[0,1].map(station=>{const pot=s.jobs.find(j=>j.state==='cooking'&&j.station===station),ready=pot&&pot.cooked>=pot.cook;return command((station?'右灶':'左灶')+' · '+(ready?'装盘':pot?'烹调中':'空闲'),'serve','data-station="'+station+'" '+(ready?'':'disabled'),ready?'wk-primary':'')}).join('')+'</div>';
   }
   if(k==='couture'){
    const brief=coutureBrief(s);
@@ -130,7 +131,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   if(k==='joinery')return meter('安放零件',s.placed.length,l.pieces.length)+'<p>旋转 '+s.rotation*90+'° · 撤回后可重新安放</p>';
   if(k==='tea')return meter('配对次数剩余',s.turns,l.turns)+'<p>连续配对 '+s.combo+' 次</p>';
   if(k==='nonogram')return '<p>数字表示相连星点的段长；两段之间至少一格空白。答案唯一。</p><p>标空模式不会扣分，可自由修正。</p>';
-  if(k==='kitchen'){const j=s.jobs[s.ticket],order=j?l.orders[j.id]:null;return '<p class="wk-service-summary">还可失误 '+Math.max(0,s.jobs.length-l.quota-s.failed)+' 单 · 两口灶可同时烹调</p>'+(j&&['prep','available'].includes(j.state)?'<div class="wk-current-order"><strong>当前客单 '+(j.id+1)+'</strong><p>'+order.ingredients.map(i=>itemName(l.ids[i])).join(' + ')+'</p><small>已备：'+(j.ingredients.map(i=>itemName(l.ids[i])).join('、')||'还没有食材')+'</small></div>':'<p>留意双灶火候，等待下一张订单。</p>');}
+  if(k==='kitchen'){const j=s.jobs[s.ticket],order=j?l.orders[j.id]:null;return '<p class="wk-control-note">'+(l.schemaVersion===KITCHEN_SCHEMA?'在高亮食材上按住向下切，每份两刀；也可用空格。切配、双灶和客单需要同时照顾。':'两口灶可同时烹调。')+'</p><p class="wk-service-summary">还可失误 '+Math.max(0,s.jobs.length-l.quota-s.failed)+' 单 · 两口灶可同时烹调</p>'+(j&&['prep','available'].includes(j.state)?'<div class="wk-current-order"><strong>当前客单 '+(j.id+1)+'</strong><p>'+order.ingredients.map(i=>itemName(l.ids[i])).join(' + ')+'</p><small>已备：'+(j.ingredients.map(i=>itemName(l.ids[i])).join('、')||'还没有食材')+'</small></div>':'<p>留意双灶火候，等待下一张订单。</p>');}
   if(k==='couture'){
    const brief=coutureBrief(s),r=outfitScore(s.outfit.map(id=>l.items.find(i=>i.id===id)),brief),conditions=[['预算 ≤',r.cost,brief.budget,r.budget],['风格 ≥',r.style,brief.styleGoal,r.styled],['舒适 ≥',r.comfort,brief.comfortGoal,r.comfortable]];
    if(brief.accent)conditions.push([['主服','配饰','叠搭'][brief.accent.slot]+'风格 ≥',r.accentValue,brief.accent.minimum,r.accented]);
@@ -241,7 +242,8 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   else if(s.kind==='pottery'&&s.mode==='firing'&&arrows.includes(e.code)){if(down)send({type:['ArrowUp','ArrowDown'].includes(e.code)?'kilnFire':'kilnVent',delta:['ArrowUp','ArrowRight'].includes(e.code)?10:-10});}
   else if(['regatta','beacon'].includes(s.kind)&&['ArrowLeft','ArrowRight','ArrowUp'].includes(e.code))send({type:'steer',key:e.code==='ArrowLeft'?'left':e.code==='ArrowRight'?'right':'forward',down});
   else if(e.code==='Space'){
-   if(s.kind==='photo'&&down&&!e.repeat)send({type:'shutter'});
+   if(s.kind==='kitchen'&&down&&!e.repeat)send({type:'cut'});
+    else if(s.kind==='photo'&&down&&!e.repeat)send({type:'shutter'});
    else if(s.kind==='regatta')send({type:'brake',down});
    else if(s.kind==='brush'&&down&&!e.repeat)send({type:'dip'});
    else if(['angling','fireworks'].includes(s.kind)&&!e.repeat)send(down?{type:'down',...s.pointer}:{type:'up'});
@@ -265,5 +267,5 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  }
  frame=requestAnimationFrame(tick);
  function destroy(){if(!alive){replacement?.destroy();return}alive=false;if(dialog.open)dialog.close();cancelAnimationFrame(frame);cleanup.forEach(fn=>fn());audio.destroy();painter.destroy();held.clear();if(document.fullscreenElement===section)document.exitFullscreen().catch(()=>{});}
- return {destroy,setTransportPaused(value){transportPaused=value;last=performance.now();ui(true);const claim=q('[data-action="claim"]');if(claim)claim.disabled=value||claimed},config:g,inspect(){if(replacement)return replacement.inspect();const data=structuredClone(s);delete data.events;return {...data,premium:true,paused,alive,claimed,reported,loaded,activeMillis:performance.now()-entryTime}},get level(){return replacement?.level||level}};
+ return {destroy,setCheckpointPending(value){checkpointPending=value;const claim=q('[data-action="claim"]');if(claim)claim.disabled=value||transportPaused||claimed},setTransportPaused(value){transportPaused=value;last=performance.now();ui(true);const claim=q('[data-action="claim"]');if(claim)claim.disabled=value||checkpointPending||claimed},config:g,inspect(){if(replacement)return replacement.inspect();const data=structuredClone(s);delete data.events;return {...data,premium:true,paused,alive,claimed,reported,loaded,activeMillis:performance.now()-entryTime}},get level(){return replacement?.level||level}};
 }

@@ -30,7 +30,7 @@ test('expired kitchen ticket hands off, prep requires complete ingredients and c
  advance(s,.4);assert.equal(s.jobs[0].state,'failed');assert.equal(s.ticket,1);
  const j=s.jobs[1];act(s,{type:'ingredient',index:999});assert.equal(j.ingredients.length,0);
  for(const index of l.orders[1].ingredients)act(s,{type:'ingredient',index});
- for(let i=0;i<4;i++)act(s,{type:'cut'});
+ for(let i=0;i<4;i++){act(s,{type:'cut'});advance(s,.4);}
  const events=s.events.length;act(s,{type:'cut'});assert.equal(j.cuts,4);assert.equal(s.events.length,events);
  act(s,{type:'cook'});assert.equal(j.state,'cooking');assert.equal(s.ticket,2);
  act(s,{type:'serve',station:0});assert.equal(s.served,0);

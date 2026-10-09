@@ -75,7 +75,7 @@ for(const port of [4174,4173]){
  assert(await visibleInside(page,'[data-action="serve"][data-station="0"]','.wk-guide'),'both stove controls fit beside the kitchen');
  await page.locator('[data-action="cut"]').click();await page.waitForTimeout(100);
  await page.screenshot({path:'qa/v20/'+theme+'-kitchen-cut.png'});
- for(let i=1;i<4;i++)await page.locator('[data-action="cut"]').click();
+ for(let i=1;i<4;i++){await page.waitForTimeout(400);await page.locator('[data-action="cut"]').click();}
  assert(await page.locator('[data-action="cut"]').isDisabled(),'finished cut cannot be spammed');
  await page.locator('[data-action="cook"]').click();
  assert(await page.locator('[data-action="serve"][data-station="0"]').isDisabled());

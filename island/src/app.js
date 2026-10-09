@@ -597,7 +597,7 @@ serverGather=createServerGather({saves,theme:()=>theme,persist,toast,
  onGain:receipt=>{const t=receipt.ticket;spawnItem(t.item);spawnText(actor.x,actor.y-45,'+'+t.amount+' '+t.name);log('采集'+t.name+' ×'+t.amount+'。');},
  onRelease:()=>releaseRoomSpot('player')
 });
-serverCraft=createServerCraft({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI();},mount:mountServerCraft,
+serverCraft=createServerCraft({saves,theme:()=>theme,persist,toast,continuousCheckpoint:t=>t?.game?.state?.kind==='kitchen'&&t.game.state.level?.schemaVersion===142,applyState:next=>{state=next;renderUI();},mount:mountServerCraft,
  closeGame:()=>{roomGame=null;closeModal();releaseRoomSpot('player');},
  animate:ticket=>new Promise(resolve=>{roomGame=null;closeModal();acquireRoomSpot(ticket.building,'player','work');const room=ROOMS[ticket.building];startAction(room.action,ticket.duration,()=>burst(actor.x,actor.y-45,room.color,20),resolve,{tool:ticket.tool,owner:ticket.owner,duration:ticket.duration});actor.action.output=ticket.item;}),
  onComplete:receipt=>{const t=receipt.ticket;if(receipt.outcome==='finished'){spawnItem(t.item);spawnText(actor.x,actor.y-44,'+1 '+t.name);log('在'+BUILDINGS[t.building].name+'制作'+t.name+'，品质 '+receipt.quality+'。');toast('制作完成 · '+t.name+' ×1');contentUI.detail(t.item,{crafted:true})}else toast(receipt.outcome==='practiced'?'练习已完成，本局未消耗材料':'已取消制作，材料已解除预留');renderUI();}

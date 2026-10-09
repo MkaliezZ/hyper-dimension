@@ -1,3 +1,4 @@
+import {KITCHEN_SCHEMA,initKitchenCutting,kitchenCutAction,resetKitchenPrep,kitchenDishQuality,kitchenRunQuality} from './kitchenCutting.js';
 import {makeBrushLevel,initBrush,brushAction,stepBrush,BRUSH_SCHEMA} from './brushStudio.js';
 import {makePotteryLevel,initPottery,potteryAction,stepPottery,potteryShapeReview} from './potteryStudio.js';
 import {seededRandom,shuffle,rotatePiece,pieceOffsets} from './gameLevels.js';
@@ -151,7 +152,7 @@ export function makeWorkshopLevel(id,seed,d=1){
  switch(l.kind){
  case 'joinery':Object.assign(l,joineryLevel(r,d));l.time=[210,210,200][d-1];break;
  case 'tea':{const count=4+d*2,ids=shuffle(['herb','mint','lavender','rose','sunflower','honey','wheat','tea','corn','c1_2'],r).slice(0,count);l.ids=ids;l.values=shuffle(ids.flatMap((_,i)=>[i,i]),r);l.cols=d===3?5:4;l.turns=count+[8,6,4][d-1];l.preview=[4,3,2][d-1];l.time=[150,150,150][d-1];break;}
- case 'kitchen':l.ids=id===2?['fish','wheat','tomato','rice','corn']:['herb','mint','lavender','wax','honey'];l.orders=Array.from({length:6+d},(_,i)=>({ingredients:shuffle([0,1,2,3,4],r).slice(0,2+(d===3&&i%2)),cook:between(5,8),window:7-d,arrival:i*[9,5.8,4.5][d-1]+Math.floor(i/3)*(d===1?2:1.5),patience:45-d*4}));l.quota=Math.ceil(l.orders.length*.75);l.time=l.orders.at(-1).arrival+50;break;
+ case 'kitchen':l.schemaVersion=KITCHEN_SCHEMA;l.ids=id===2?['fish','wheat','tomato','rice','corn']:['herb','mint','lavender','wax','honey'];l.orders=Array.from({length:6+d},(_,i)=>({ingredients:shuffle([0,1,2,3,4],r).slice(0,2+(d===3&&i%2)),cook:between(5,8),window:7-d,arrival:i*[9,5.8,4.5][d-1]+Math.floor(i/3)*(d===1?2:1.5),patience:45-d*4}));l.quota=Math.ceil(l.orders.length*.75);l.time=l.orders.at(-1).arrival+50;break;
  case 'couture':Object.assign(l,coutureLevel(r,d));break;
  case 'nonogram':Object.assign(l,nonogramLevel(r,d));l.time=[300,420,540][d-1];break;
  case 'pipes':Object.assign(l,pipeLevel(r,d));l.time=[180,210,240][d-1];break;
@@ -181,7 +182,7 @@ export function createWorkshopState(level,equipment=null){
  switch(s.kind){
  case 'joinery':s.placed=[];s.occupied=[];break;
  case 'tea':s.opened=[];s.found=[];s.turns=level.turns;s.preview=level.preview;s.flipAt=0;break;
- case 'kitchen':s.jobs=level.orders.map((o,i)=>({...o,id:i,state:'waiting',ingredients:[],cuts:0,cooked:0,station:null}));s.ticket=0;s.served=0;s.failed=0;s.cutFlash=0;break;
+ case 'kitchen':s.jobs=level.orders.map((o,i)=>({...o,id:i,state:'waiting',ingredients:[],cuts:0,cooked:0,station:null}));s.ticket=0;s.served=0;s.failed=0;s.cutFlash=0;if(level.schemaVersion===KITCHEN_SCHEMA)initKitchenCutting(s);break;
  case 'couture':s.outfit=[null,null,null];s.lastReview=null;s.clientIndex=0;s.clientReports=[];s.runway=null;break;
  case 'nonogram':s.cells=Array(level.n*level.n).fill(0);break;
  case 'pipes':s.masks=[...level.initial];s.flow=flowPipes(s.masks,level);s.running=0;break;
@@ -295,7 +296,8 @@ export function workshopAction(s,a){
  const l=s.level;
  if(a.type==='start'&&s.phase==='intro'){s.phase='playing';s.status='';emit(s,'start');return}
  if(s.phase!=='playing'||(s.kind==='couture'&&s.runway)||(s.kind==='interior'&&s.walkthrough&&!s.walkthrough.done))return;
- if(s.kind==='brush'&&brushAction(s,a,emit))return;
+ if(s.kind==='kitchen'&&kitchenCutAction(s,a,emit))return;
+  if(s.kind==='brush'&&brushAction(s,a,emit))return;
  if(s.kind==='pottery'&&potteryAction(s,a,emit))return;
  if(s.kind==='interior'&&a.type==='pickup'){if(pickupInteriorFurniture(s,a.value))emit(s,'snap',480,270);return;}
  if(s.kind==='interior'&&a.type==='inspectRoute'){s.routeVisible=!s.routeVisible;s.status=s.routeVisible?'绿线显示门到窗的当前最短路线；地毯可通行。':'动线预览已收起';return;}
@@ -387,14 +389,14 @@ export function workshopAction(s,a){
   if(j.ingredients.length<l.orders[s.ticket].ingredients.length){j.ingredients.push(a.index);s.status='按客单备料：'+j.ingredients.length+' / '+l.orders[s.ticket].ingredients.length;emit(s,'ingredient',421+(j.ingredients.length-1)*69,310,{art:l.ids[a.index],ticket:j.id,index:j.ingredients.length-1});}
   return;
  }
- if(a.type==='clearPrep'){const j=s.jobs[s.ticket];if(j&&['available','prep'].includes(j.state)){j.ingredients=[];j.cuts=0;s.status='备料台已清空，请按客单重新选择。'}return}
+ if(a.type==='clearPrep'){const j=s.jobs[s.ticket];if(j&&['available','prep'].includes(j.state)){j.ingredients=[];j.cuts=0;if(l.schemaVersion===KITCHEN_SCHEMA)resetKitchenPrep(j);s.status='备料台已清空，请按客单重新选择。'}return}
  if(a.type==='cut'){
   const j=s.jobs[s.ticket];if(!j||j.state!=='prep'||j.ingredients.length!==l.orders[s.ticket].ingredients.length||j.cuts>=j.ingredients.length*2)return;
   j.cuts=Math.min(j.ingredients.length*2,j.cuts+1);s.cutFlash=.36;s.status=j.cuts===j.ingredients.length*2?'切配完成，放入空灶开始烹调。':'切配中 '+j.cuts+' / '+j.ingredients.length*2;emit(s,'cut',390+j.cuts*17,330,{art:l.ids[j.ingredients[(j.cuts-1)%j.ingredients.length]]});return;
  }
  if(a.type==='cook'){
   const j=s.jobs[s.ticket];if(!j||j.state!=='prep'||j.ingredients.length!==l.orders[s.ticket].ingredients.length||j.cuts<j.ingredients.length*2){s.status='备齐食材并完成切配，才能开火';return}
-  if([...j.ingredients].sort().join()!==[...l.orders[s.ticket].ingredients].sort().join()){j.ingredients=[];j.cuts=0;s.strikes++;s.status='配料与订单不同，重新核对一下';emit(s,'shake');return}
+  if([...j.ingredients].sort().join()!==[...l.orders[s.ticket].ingredients].sort().join()){j.ingredients=[];j.cuts=0;if(l.schemaVersion===KITCHEN_SCHEMA)resetKitchenPrep(j);s.strikes++;s.status='配料与订单不同，重新核对一下';emit(s,'shake');return}
   const occupied=s.jobs.filter(j=>j.state==='cooking').map(j=>j.station),station=[0,1].find(i=>!occupied.includes(i));
   if(station==null){s.status='双灶都在使用，先留意即将煮好的那锅';return}
   j.state='cooking';j.station=station;j.cooked=0;emit(s,'cook',station?730:250,330);s.status='已放入'+(station?'右':'左')+'灶，可继续准备下一单。';const next=s.jobs.find(j=>['available','prep'].includes(j.state));if(next)s.ticket=next.id;return;
@@ -402,8 +404,8 @@ export function workshopAction(s,a){
  if(a.type==='serve'){
   const j=s.jobs.find(j=>j.state==='cooking'&&j.station===a.station);if(!j)return;
   if(j.cooked<j.cook){s.status='火候还不到，稍候再装盘';return}
-  const q=clamp(100-(j.cooked-j.cook)*6,60,100);j.state='served';s.served++;s.score+=Math.round(q*3);s.combo++;s.bestCombo=Math.max(s.combo,s.bestCombo);emit(s,'serve',a.station?730:250,300,{art:s.id===2?'meal':'c10_1'});s.status='交付完成 · 品质 '+Math.round(q);
-  if(s.served+s.failed===s.jobs.length)finishWorkshop(s,s.served>=l.quota,75+s.served/s.jobs.length*20-s.strikes*2);return;
+  let q=clamp(100-(j.cooked-j.cook)*6,60,100);if(l.schemaVersion===KITCHEN_SCHEMA){q=kitchenDishQuality(j,q);j.quality=q;}j.state='served';s.served++;s.score+=Math.round(q*3);s.combo++;s.bestCombo=Math.max(s.combo,s.bestCombo);emit(s,'serve',a.station?730:250,300,{art:s.id===2?'meal':'c10_1'});s.status='交付完成 · 品质 '+Math.round(q);
+  if(s.served+s.failed===s.jobs.length)finishWorkshop(s,s.served>=l.quota,l.schemaVersion===KITCHEN_SCHEMA?kitchenRunQuality(s):75+s.served/s.jobs.length*20-s.strikes*2);return;
  }
  if(a.type==='wear'){const item=l.items.find(i=>i.id===a.item);if(item){s.outfit[item.slot]=item.id;s.lastReview=null;const review=outfitScore(s.outfit.map(id=>l.items.find(i=>i.id===id)),coutureBrief(s));s.status=review.complete?'搭配符合委托，可以提交评审。':review.unmet.join(' · ');emit(s,'ribbon',480,270,{art:item.id})}return}
  if(a.type==='submit'){
@@ -455,7 +457,7 @@ export function stepWorkshop(s,dt){
    else if(['available','prep'].includes(j.state)&&s.t-j.arrival>j.patience){j.state='failed';s.failed++;s.combo=0;s.status='顾客等得太久，先照顾最紧急的订单';}
   }
   if(!['available','prep'].includes(s.jobs[s.ticket]?.state)){const next=s.jobs.find(j=>['available','prep'].includes(j.state));if(next)s.ticket=next.id;}
-  if(s.served+s.failed===s.jobs.length)finishWorkshop(s,s.served>=l.quota,75+s.served/s.jobs.length*20-s.strikes*2);
+  if(s.served+s.failed===s.jobs.length)finishWorkshop(s,s.served>=l.quota,l.schemaVersion===KITCHEN_SCHEMA?kitchenRunQuality(s):75+s.served/s.jobs.length*20-s.strikes*2);
  }
  if(s.kind==='pipes'&&s.running){s.running+=dt;if(s.running>=2.2){s.score=1000-s.moves*4;finishWorkshop(s,true,100-s.strikes*6-Math.max(0,s.moves-l.solved.filter(Boolean).length*2)*.5)}}
  if(s.kind==='beacon'){

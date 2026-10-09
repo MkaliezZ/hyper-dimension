@@ -27,7 +27,7 @@ test('constant rhythm spam cannot pass and early long-note release is penalized'
 test('wrong ingredients, overcooking, and tight lines have actual consequences',()=>{
  const s=createWorkshopState(makeWorkshopLevel(2,731,2));workshopAction(s,{type:'start'});stepWorkshop(s,.05);
  for(let i=0;i<2;i++)workshopAction(s,{type:'ingredient',index:(s.level.orders[0].ingredients[0]+1)%5});
- for(let i=0;i<4;i++)workshopAction(s,{type:'cut'});workshopAction(s,{type:'cook'});assert.equal(s.jobs[0].state,'prep');assert.equal(s.strikes,1);
+ for(let i=0;i<4;i++){workshopAction(s,{type:'cut'});for(let n=0;n<8;n++)stepWorkshop(s,.05);}workshopAction(s,{type:'cook'});assert.equal(s.jobs[0].state,'prep');assert.equal(s.strikes,1);
  const a=createWorkshopState(makeWorkshopLevel(16,731,2));workshopAction(a,{type:'start'});
  const spot=a.level.spots[0];workshopAction(a,{type:'down',x:spot.x-a.level.wind,y:spot.y});workshopAction(a,{type:'up'});
  while(a.mode!=='bite')stepWorkshop(a,.05);workshopAction(a,{type:'down',x:spot.x,y:spot.y});

@@ -4,7 +4,7 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V141 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V142 development snapshot**; full product acceptance is still in progress.
 
 ## See the island
 
@@ -16,6 +16,10 @@ Click a cover or video title to open the online player. MP4 downloads are availa
 
 Native 2560 × 1440, 60 fps footage includes the gallery's biography, experience timeline, project images and guestbook. Profiles, images and work briefs are fictional; the document task actually executes Hermes tools. **Minigames are placeholder demonstrations; their gameplay, art and animation will continue to improve.** [Recording and verification](island/docs/showcase-v135.md).
 
+
+### V142 kitchen preparation
+
+Slice ingredients on the cutting board and manage both stoves. Preparation precision contributes to dish quality. Both styles pass native mouse, mobile touch, Space, disk resume and one exact recipe receipt. [Gameplay and verification](island/docs/kitchen-v142.md).
 
 ### V141 starlight gathering
 
