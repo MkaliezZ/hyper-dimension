@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {
+      "theme": "pixel",
+      "allSixSvgDecoded": true,
+      "semanticCursorUrlsAndChildInheritance": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "allSixSvgDecoded": true,
+      "semanticCursorUrlsAndChildInheritance": true,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

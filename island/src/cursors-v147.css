@@ -1,0 +1,24 @@
+/* Original theme cursors, with semantic hotspots and system fallbacks. */
+body[data-theme="pixel"]{
+ --hd-cursor-default:url("/assets/cursors/pixel-default.svg") 4 2,default;
+ --hd-cursor-action:url("/assets/cursors/pixel-action.svg") 4 2,pointer;
+ --hd-cursor-drag:url("/assets/cursors/pixel-drag.svg") 17 16,grabbing;
+ --hd-cursor-text:url("/assets/cursors/pixel-text.svg") 17 18,text;
+ --hd-cursor-disabled:url("/assets/cursors/pixel-disabled.svg") 17 17,not-allowed;
+ --hd-cursor-busy:url("/assets/cursors/pixel-busy.svg") 17 18,wait;
+}
+body[data-theme="origami"]{
+ --hd-cursor-default:url("/assets/cursors/origami-default.svg") 3 2,default;
+ --hd-cursor-action:url("/assets/cursors/origami-action.svg") 3 2,pointer;
+ --hd-cursor-drag:url("/assets/cursors/origami-drag.svg") 17 16,grabbing;
+ --hd-cursor-text:url("/assets/cursors/origami-text.svg") 17 18,text;
+ --hd-cursor-disabled:url("/assets/cursors/origami-disabled.svg") 17 17,not-allowed;
+ --hd-cursor-busy:url("/assets/cursors/origami-busy.svg") 17 18,wait;
+}
+html,body{cursor:var(--hd-cursor-default,default)}
+body *{cursor:inherit}
+body button,body a,body select,body label[for],body [role="button"],body input[type="button"],body input[type="submit"],body input[type="checkbox"],body input[type="radio"],body input[type="file"],body input[type="range"],body summary,body [data-npc],body .avatar-card,body .recipe-card{cursor:var(--hd-cursor-action,pointer)!important}
+body input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]),body textarea,body [contenteditable="true"]{cursor:var(--hd-cursor-text,text)!important}
+body button:disabled,body input:disabled,body select:disabled,body [aria-disabled="true"]{cursor:var(--hd-cursor-disabled,not-allowed)!important}
+body [aria-busy="true"] button:disabled,body #saveStatus[data-status="saving"],body #saveStatus[data-status="recovering"]{cursor:var(--hd-cursor-busy,wait)!important}
+#game,#lanMapCanvas{cursor:var(--hd-cursor-default,default)}

@@ -58,3 +58,10 @@ The steward waits for in-flight game receipts before saving and submitting. Nati
 明确的版本拒绝会安全合并独立修改；无法合并时显示可点击的恢复入口。双画风地图移动、房屋进入及恢复回归通过。[说明](map-save-conflict-v146.md)。
 
 Definite version rejections preserve independent edits. Overlapping edits expose a clickable recovery flow with a retained backup. Native map movement and building entry passed in both appearances.
+
+
+## V147 · 主题鼠标 / Theme cursors
+
+双画风原创鼠标覆盖地图、按钮、拖拽、输入、禁用和保存等待。素材与原生地图交互检查通过。[说明](theme-cursors-v147.md)。
+
+Original cursors follow the active appearance across navigation, interactions, dragging, text input and save status.

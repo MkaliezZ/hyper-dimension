@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v146-agent-source",
+  "release": "hyper-dimension-v147-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12433,
-      "sha256": "e22a6b8ebc860936b9f9530ca5ae60dcc5fb916f800cb09d682030125e2e390c"
+      "bytes": 12763,
+      "sha256": "a8219c1cb3c01ba2fc43d17b0582e9cc1ab89b4d1bee173b8ce1e7db8e9a02ea"
     },
     {
       "path": "README.md",
-      "bytes": 12410,
-      "sha256": "edeea936e7af98bd9ab7d6cf92f346e84f11bdb2ca8fa5f77a15726aa31ea65a"
+      "bytes": 12740,
+      "sha256": "ac0cbb0974b99bf5e2031ef7381e6fe6c50e529f80c0859fd325c032f9452f6b"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 5758,
-      "sha256": "fecbbd9df8f4d1af3cea0d11b0f2fd3152e7c0107f9b7ac5bd7cf2bae0558caf"
+      "bytes": 6083,
+      "sha256": "c25434a2deeda1dd7731a1f85670695683aa9c0e2459804d0a56fd1411d2d843"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 20501,
-      "sha256": "39a5f270759261b1e64634dcedb26cfebf361670182dc14fb4a6c821fe58d6d3"
+      "bytes": 20826,
+      "sha256": "13b509254414ff0590d512838e6f4f6b198dbaf86e72a23e6b772f11343b7808"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -886,6 +886,11 @@
       "sha256": "03ae784269ed3c7e52c38b6294ebe21cc3d897c0226668843507ba08ba56e928"
     },
     {
+      "path": "docs/theme-cursors-v147.md",
+      "bytes": 1292,
+      "sha256": "ca33305c180a3733553260fe734a92d04038938c00e8b72f74501b5cd7ffa44b"
+    },
+    {
       "path": "docs/verification/v142-hour/origami-minute-60.png",
       "bytes": 2288421,
       "sha256": "e8eb2b557fe10077b22e6681e7936eb6ecb279202d9d5903d0d367e2ee963fba"
@@ -986,9 +991,24 @@
       "sha256": "5a7a330a7217c1a7d86475ba488339c4dcaf38b41de3bcc330526f3a5fe0c0cf"
     },
     {
+      "path": "docs/verification/v147/cursor-visuals.json",
+      "bytes": 343,
+      "sha256": "fea0647ce67236c40ac64043fb82c53a60191e3f0bb4650ca195e92922972549"
+    },
+    {
+      "path": "docs/verification/v147/origami-cursors.png",
+      "bytes": 29715,
+      "sha256": "5cea8f443d1e6b2c697da95b2c73f8bb3c78e670a7773daf01f5dfade13f1db6"
+    },
+    {
+      "path": "docs/verification/v147/pixel-cursors.png",
+      "bytes": 19880,
+      "sha256": "c89632a0942773be6d99603b0ffa8378b61e21573c62477862c5131fcfe76475"
+    },
+    {
       "path": "index.html",
-      "bytes": 6204,
-      "sha256": "8c41f4b4b5d1b3c671ee3d0cc7814fbb0460af6586da8f2bbc9dcd0d48359934"
+      "bytes": 6257,
+      "sha256": "3b035e385c77da92502141c559ce47f720ef9bf8d32df52ce1dc784c4e3024dc"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -1814,6 +1834,66 @@
       "path": "public/assets/couture-stage-pixel-v89b.png",
       "bytes": 1197723,
       "sha256": "8c5979d8fa6efb3c3c08276de8b485d5a094366ef23bf01a8be81fdf912a965d"
+    },
+    {
+      "path": "public/assets/cursors/origami-action.svg",
+      "bytes": 560,
+      "sha256": "2c713c479e9c8fef47e012576930925c793152826e619dbb9155acd046a23d4b"
+    },
+    {
+      "path": "public/assets/cursors/origami-busy.svg",
+      "bytes": 345,
+      "sha256": "26b20af2796bd2524c5373c76075906138cd12b7370701300a45035d0f3726d2"
+    },
+    {
+      "path": "public/assets/cursors/origami-default.svg",
+      "bytes": 466,
+      "sha256": "0512bb4299586db43ded07e17fba6d90ffe61a9c029e986deb051bc96d117b64"
+    },
+    {
+      "path": "public/assets/cursors/origami-disabled.svg",
+      "bytes": 338,
+      "sha256": "fa002402be3cc5c4aab08dd8024a1e9ea6de5aa8e0b61b9184d54634772490bb"
+    },
+    {
+      "path": "public/assets/cursors/origami-drag.svg",
+      "bytes": 374,
+      "sha256": "8ab2dd242adda8f1827c2555e7b59ab83d9e4439b84ecf093bcfc40d800ef3ed"
+    },
+    {
+      "path": "public/assets/cursors/origami-text.svg",
+      "bytes": 313,
+      "sha256": "6b1cb85718be700d969d2cc3a12fbde5c3da3421fc32c8d11c38cb8f0dcbd4e9"
+    },
+    {
+      "path": "public/assets/cursors/pixel-action.svg",
+      "bytes": 419,
+      "sha256": "f93d2ebd9bb605c54371451ae7f8d04b633c32c926cbe8f5b9888e850eea99c2"
+    },
+    {
+      "path": "public/assets/cursors/pixel-busy.svg",
+      "bytes": 356,
+      "sha256": "b15f7351f074ef229e152baa904f4b3bf664cc65a759bca2d41a5ae363a44bbf"
+    },
+    {
+      "path": "public/assets/cursors/pixel-default.svg",
+      "bytes": 322,
+      "sha256": "241f0d1fbf71f0defc4e074ed16c7784e3db50ef7d4cd00c0d6e7f995a387db2"
+    },
+    {
+      "path": "public/assets/cursors/pixel-disabled.svg",
+      "bytes": 343,
+      "sha256": "ef5f69c2a09754a3254b1cca49661f95994c28d75335253b522c51c5ff72576a"
+    },
+    {
+      "path": "public/assets/cursors/pixel-drag.svg",
+      "bytes": 389,
+      "sha256": "fa5c5e4ba145b283774c5fd672763f03b399926e59e0648572329c605b985895"
+    },
+    {
+      "path": "public/assets/cursors/pixel-text.svg",
+      "bytes": 279,
+      "sha256": "a55191150305f27c6f6ae65244c657dde561d05851bdcfa919c250392ffbcca4"
     },
     {
       "path": "public/assets/dock-origami-v17.png",
@@ -3582,8 +3662,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 137065,
-      "sha256": "d5a469e6262878de4b35b5942e03e4f569f40a7d2c6dc1d076b2c9164b82b74d"
+      "bytes": 137441,
+      "sha256": "4b4aa283940d1d9ba70d5ac3a163e8f14c3d1e5b69fddc84b412bb389492dfc9"
     },
     {
       "path": "src/arcade.css",
@@ -3779,6 +3859,11 @@
       "path": "src/craftSpecifications.js",
       "bytes": 6342,
       "sha256": "13a425bbc546f1bbc5caad96a759442b4241a04d2acaf49b094489d5d80e1ecc"
+    },
+    {
+      "path": "src/cursors-v147.css",
+      "bytes": 2056,
+      "sha256": "9fb6eb95a663a25141a3db3b8aa84af2b072f2338d1c681cf2f0243fbafda29d"
     },
     {
       "path": "src/device-bridge.css",
@@ -4177,8 +4262,8 @@
     },
     {
       "path": "src/lan.html",
-      "bytes": 1546,
-      "sha256": "2555eef3cbafb859ca3c386bd9033fa4709e73581bfdf35fa979401602d21c99"
+      "bytes": 1599,
+      "sha256": "03d3ec462944b227dce947af6dd16a835bbc9b129af15b369e0ec3beb76db3d9"
     },
     {
       "path": "src/lanActivitiesUI.js",
@@ -8041,5 +8126,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v146-github"
+  "publicRevision": "v147-github"
 }
