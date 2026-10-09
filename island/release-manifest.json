@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9523,
-      "sha256": "c6e4f18d32c4963c5cfbaedaefd1739652e6f6430841362c104dbdc402ecc6d3"
+      "bytes": 9537,
+      "sha256": "69bf8ea33081d60e1f3f2907b2dc1891129aae573fb16190863115c4ff5d277b"
     },
     {
       "path": "README.md",
-      "bytes": 9476,
-      "sha256": "fd7885498daddb617f6afdd10401686a27977f1d4bc3a8784b21b97ca6229a53"
+      "bytes": 9502,
+      "sha256": "e1f59329e5415a2f7a85131a1660b0a9f3573da143db4f2e9939e362caac79d6"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -206,9 +206,19 @@
       "sha256": "532480919e2991240e98735cfb747cedc2c0dcc230a345c311a79ac87e13bd09"
     },
     {
+      "path": "docs/media/hyper-dimension-v138-bridge-30s-framing-v2.mp4",
+      "bytes": 24744303,
+      "sha256": "aee40a657dd01f4e40e23f699e5615444daf494218492c6950e617c322f461b6"
+    },
+    {
       "path": "docs/media/hyper-dimension-v138-bridge-30s.mp4",
       "bytes": 23392348,
       "sha256": "7998b570cce95614ea799fb0798f944d88cf135dfb95dc7603f4712f63db1269"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png",
+      "bytes": 1840135,
+      "sha256": "670998bf7a9c27dcc0d4a12182831b5fde61754c64051a40a90ac81e2208afa9"
     },
     {
       "path": "docs/media/hyper-dimension-v138-bridge-poster.png",
@@ -354,6 +364,11 @@
       "path": "docs/media/v122/pixel-zoom3.png",
       "bytes": 3487904,
       "sha256": "b9189380f71ff14faaf38662d6ce8d54cd9f370589a6fda4858d5198e8404d6a"
+    },
+    {
+      "path": "docs/media/v138-video-framing-v2-verification.json",
+      "bytes": 1657,
+      "sha256": "78b20214ef5137a3e1b18b4d033224f41cca16700d4025850ee782b37d6270cf"
     },
     {
       "path": "docs/media/v138-video-verification.json",
@@ -687,8 +702,8 @@
     },
     {
       "path": "docs/showcase-v138.md",
-      "bytes": 1558,
-      "sha256": "faa5dc4c364f28520f3721721bbfbaa7e0ad33de7d1f0a7f781bd4b83e57a2fc"
+      "bytes": 3042,
+      "sha256": "5cfe2a08598805c8c847c45cca5ffb31d556df21ac21d830d35bc1ad1e5e5d86"
     },
     {
       "path": "docs/showcase-v139.md",

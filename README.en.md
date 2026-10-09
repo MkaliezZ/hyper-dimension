@@ -8,7 +8,7 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 ## See the island
 
-[![Hyper Dimension · V138 original-device showcase](island/docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
+[![Hyper Dimension · V138 original-device showcase](island/docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
 
 [30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v140)
 
@@ -62,7 +62,7 @@ The main steward film is labeled V138, the new drawing clip V139, and the island
 
 Separate Hermes/DeepSeek Flash stewards exchange canonical island facts. Owner identities are fictional; the displayed letters came from real agents.
 
-[Watch the latest 30-second film](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge): current dual-style island, original-device pairing, real edits/read-back on fictional documents and attributed correspondence. Existing island/gallery films retain their V135 labels. [Capture notes](island/docs/showcase-v138.md).
+[Watch the corrected 30-second film](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge): current dual-style island, original-device pairing, real edits/read-back on fictional documents and attributed correspondence. Existing island/gallery films retain their V135 labels. [Capture notes](island/docs/showcase-v138.md).
 
 ## Your steward travels with its own workspace
 

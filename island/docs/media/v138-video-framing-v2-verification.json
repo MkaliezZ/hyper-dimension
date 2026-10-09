@@ -1,0 +1,64 @@
+{
+  "version": "V138",
+  "mediaRevision": 2,
+  "nativeViewportAllClips": {
+    "width": 2560,
+    "height": 1440,
+    "dpr": 1
+  },
+  "captureReadingScale": 1.3333333333333333,
+  "paddedOrUpscaledFootage": false,
+  "completedActualProviderRecordsReused": true,
+  "newModelTasksDuringFilming": false,
+  "passed": true,
+  "duration": 30,
+  "width": 2560,
+  "height": 1440,
+  "frames": 1800,
+  "videoFPS": 60,
+  "codec": "h264",
+  "audioCodec": "aac",
+  "audioSource": "Original island-hours-master soundtrack; same licensed/generated BGM as V135",
+  "sourceClips": [
+    {
+      "name": "01-current-pixel",
+      "fps": 59.69880445606349,
+      "p99GapMs": 30.279000000000167,
+      "maxGapMs": 36.427999999999905
+    },
+    {
+      "name": "02-current-origami",
+      "fps": 59.8699760279815,
+      "p99GapMs": 28.561999999999976,
+      "maxGapMs": 36.38599999999981
+    },
+    {
+      "name": "03-original-device",
+      "fps": 59.81455480809664,
+      "p99GapMs": 18.369999999999997,
+      "maxGapMs": 33.23300000000007
+    },
+    {
+      "name": "04-original-document",
+      "fps": 60.01485317436423,
+      "p99GapMs": 19.242000000000203,
+      "maxGapMs": 25.431000000000203
+    },
+    {
+      "name": "05-actual-tools",
+      "fps": 59.754009985336204,
+      "p99GapMs": 22.478000000000442,
+      "maxGapMs": 33.91900000000003
+    },
+    {
+      "name": "06-original-a2a",
+      "fps": 60.00582056459476,
+      "p99GapMs": 29.63300000000002,
+      "maxGapMs": 54.546000000000205
+    }
+  ],
+  "privatePathsMasked": true,
+  "timeInterpolation": false,
+  "bytes": 24744303,
+  "sha256": "aee40a657dd01f4e40e23f699e5615444daf494218492c6950e617c322f461b6"
+}

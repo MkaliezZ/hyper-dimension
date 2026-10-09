@@ -33,3 +33,10 @@ The new 45-second gallery tour shows a biography, eight life/education/employmen
 The V135 footage uses native 2560 × 1440 tab capture, a 160% reading scale with a corresponding gallery height limit, actual scrolling, bilingual captions and the original Island Hours soundtrack. No simulation acceleration, optical flow or frame blending is used. All seven selected intervals have capture gaps at or below 50 ms. The movie contains 2700 frames, H.264 video and 48 kHz AAC audio.
 
 The Pages build publishes only static player files, public posters and SHA-256-verified Release videos. No game saves, credentials, work documents or installed runtimes are part of the site.
+
+
+## 原机管家影片画幅修正 / Original-device film framing correction
+
+V138 主影片现使用画幅修正版：六段均重新原生录制为 2560×1440，消除原片后四段右侧／底部的错误留白；管家卡片居中，双语字幕置于卡片下方。文件名、SHA-256 与封面一并更新，播放器链接仍为 #bridge。原版 Release 文件保留，本次新增修正版文件，不覆盖旧源码包。
+
+The default V138 bridge film now uses framing revision 2. All six shots are captured natively at 2560×1440 with centered steward cards and subtitles below them. The film filename, SHA-256 and poster are updated together; the #bridge player link stays the same. Original release files and source archives are retained. [Capture and verification](../island/docs/showcase-v138.md).
