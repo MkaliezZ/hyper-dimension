@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v137-agent-source",
+  "release": "hyper-dimension-v138-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 16062,
-      "sha256": "cd99d07b4f15afe296037f474de221c276aaf4b6b3fda3d237c25a1f35cca39b"
+      "bytes": 16590,
+      "sha256": "3e147c7792f91e996f7634b95bb41a99d7a0c34ec65f2ff601fecfb751d93485"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8801,
-      "sha256": "cfe88b98876875f2f9b9893ffc1b6c4285edadc652a1bf0c7ee5fca5eea684c6"
+      "bytes": 9523,
+      "sha256": "c6e4f18d32c4963c5cfbaedaefd1739652e6f6430841362c104dbdc402ecc6d3"
     },
     {
       "path": "README.md",
-      "bytes": 8166,
-      "sha256": "13053c2fbf357c5868acbb2db666112ce6ca9f524b38fcec7b050f0acdc3b581"
+      "bytes": 8844,
+      "sha256": "d07a4aec58603e66fded9b05c78b976ae037c79fe521c2b8f703e95d4aa7ef1f"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 2654,
-      "sha256": "7029e1822de8d6afccd6798a1adb385facf1e21ff8dc47f1fc1b2956c96c26e1"
+      "bytes": 2869,
+      "sha256": "5a25789837657209b2acc3b34380203925943d557027d779e67fbe719a2f1cf5"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 12899,
-      "sha256": "02d1444094e8de976a57064f1569f7121d19a12ec470d62f219a39f97a684438"
+      "bytes": 14321,
+      "sha256": "c961fb184a89b3bda8bcd75e4242268996d4ce7d123ca4f22a4957586fe821d2"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -109,6 +109,16 @@
       "path": "docs/craft-materials-v123.md",
       "bytes": 5581,
       "sha256": "836980fa18413326ed251c8d5bd315829f617a04c98c41338115261132bcd9f9"
+    },
+    {
+      "path": "docs/device-bridge-v138-evidence.json",
+      "bytes": 3426,
+      "sha256": "a89f8f7f1f54471c5794a114b7d38890697195f3dbf74ce4a1a28fc31551d17f"
+    },
+    {
+      "path": "docs/device-bridge-v138.md",
+      "bytes": 5232,
+      "sha256": "d4077b036002b47ce496f93aa31972a89443432b8d5df371e01e95abd1cf8aeb"
     },
     {
       "path": "docs/environment-v131-evidence.json",
@@ -184,6 +194,16 @@
       "path": "docs/media/hyper-dimension-preview.gif",
       "bytes": 6600878,
       "sha256": "532480919e2991240e98735cfb747cedc2c0dcc230a345c311a79ac87e13bd09"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v138-bridge-30s.mp4",
+      "bytes": 23392348,
+      "sha256": "7998b570cce95614ea799fb0798f944d88cf135dfb95dc7603f4712f63db1269"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v138-bridge-poster.png",
+      "bytes": 1339427,
+      "sha256": "3fc5a403d0e078c4d35c019c2dc7ced4d5f378862d75f9e584a7971fb87ec072"
     },
     {
       "path": "docs/media/music-notes.json",
@@ -314,6 +334,11 @@
       "path": "docs/media/v122/pixel-zoom3.png",
       "bytes": 3487904,
       "sha256": "b9189380f71ff14faaf38662d6ce8d54cd9f370589a6fda4858d5198e8404d6a"
+    },
+    {
+      "path": "docs/media/v138-video-verification.json",
+      "bytes": 1419,
+      "sha256": "fed4950f5b2fd52171930e3d0161ff783b5398181d16946f933782d1c78368f4"
     },
     {
       "path": "docs/npc-recovery-v116.md",
@@ -576,6 +601,21 @@
       "sha256": "0be518c376e40a1ea8df970077c7ce9aba5983a7576c2a7e66f7a9cf3ddc7474"
     },
     {
+      "path": "docs/screenshots/v138-origami-device.png",
+      "bytes": 1170014,
+      "sha256": "7a01ada232e1b7e85261bcb74e5a89e1c781c9d7b6335f8c1fa543480ab2bf9e"
+    },
+    {
+      "path": "docs/screenshots/v138-original-a2a.png",
+      "bytes": 1841165,
+      "sha256": "6b42d3961d3aa8e5781a8afc0a9e8c16c97bc29f45ff16432428427b6646f11a"
+    },
+    {
+      "path": "docs/screenshots/v138-original-document.png",
+      "bytes": 1759465,
+      "sha256": "811ed8ddab2cb72bec445d25beec234aec7c59afac5c80385e9d62d6b8a60e11"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -599,6 +639,11 @@
       "path": "docs/showcase-v135.md",
       "bytes": 4843,
       "sha256": "9920899d7ff2df92c3d62963fa0724216d58555469ea17fd5011b90642c669e9"
+    },
+    {
+      "path": "docs/showcase-v138.md",
+      "bytes": 1558,
+      "sha256": "faa5dc4c364f28520f3721721bbfbaa7e0ad33de7d1f0a7f781bd4b83e57a2fc"
     },
     {
       "path": "docs/steward-recovery-v136.md",
@@ -1172,8 +1217,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8399,
-      "sha256": "80d8b3471686260667a34e7b4d336c63664056395ba10e18b74e054fabf54c32"
+      "bytes": 8433,
+      "sha256": "a88df559280f7f57a61543bb23722ec33663f513b906987f4cb073b405d2c708"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2831,6 +2876,21 @@
       "sha256": "a250ef9ddf0ecfb4c1b39a6dbaac413ea484ef1005ccf6dd4fd00be2c9504d3c"
     },
     {
+      "path": "server/deviceBridgeClient.mjs",
+      "bytes": 8084,
+      "sha256": "d3b83c54df24be0ab67e2ad3ebc40bacf738ed3884614aa7119837493693b459"
+    },
+    {
+      "path": "server/deviceBridgeRuntime.mjs",
+      "bytes": 2086,
+      "sha256": "dc752759f5bcb2bb583b7721d0bb99ca920dd279c92f4ef0023e6c1714c85582"
+    },
+    {
+      "path": "server/deviceBridgeStore.mjs",
+      "bytes": 14104,
+      "sha256": "56f2a51b192cc177b0472cbdc1cddadea9e6993a3002c227daaacf0c2fa219f4"
+    },
+    {
       "path": "server/document_artifacts.py",
       "bytes": 1723,
       "sha256": "eefb76f2da75095712772ea95619021a1ec3f4eb566fe1b01b3f06f9e2ecf5dd"
@@ -2912,8 +2972,8 @@
     },
     {
       "path": "server/lanAgentService.mjs",
-      "bytes": 16349,
-      "sha256": "3d8a9c6da12a50185716b23bc456f16914fc70ca7b90ca02e774848151821d8f"
+      "bytes": 17270,
+      "sha256": "547f1470c5e008c893105a7db07188e2e5cf15b8d78fc95bee36ace549c0a678"
     },
     {
       "path": "server/lanAgentWorker.mjs",
@@ -2947,8 +3007,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 22874,
-      "sha256": "816b2e6676c8c6d9df4b3fa4475dcb37d2cda426f9277892ef0671415885b9c0"
+      "bytes": 24305,
+      "sha256": "4cd5927000c4ef48e8bea7d37dbee244d9ebf75781e72dbdf2a5753c0c14317f"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -3431,6 +3491,16 @@
       "sha256": "13a425bbc546f1bbc5caad96a759442b4241a04d2acaf49b094489d5d80e1ecc"
     },
     {
+      "path": "src/device-bridge.css",
+      "bytes": 2914,
+      "sha256": "728a962d29564d55a53aae7ae963b687527c008a05f5dbd4d2466584e1913ae7"
+    },
+    {
+      "path": "src/deviceBridgeUI.js",
+      "bytes": 7285,
+      "sha256": "5fe18229cf1bb9760df70b083741c50ad7bc3923a48076d8d4a66d1ec2790066"
+    },
+    {
       "path": "src/directions.js",
       "bytes": 613,
       "sha256": "93c183ab47d6b7c338c9112a2311f183ad4e4ff6dbc6af7b84d31b0a241246ad"
@@ -3847,8 +3917,8 @@
     },
     {
       "path": "src/lanStewardUI.js",
-      "bytes": 11056,
-      "sha256": "80b43e0eefbfe78c31cb3a7426d408d8123af50e484d8f7a92d4e200f2f4ddb7"
+      "bytes": 11895,
+      "sha256": "53c5c9acf07c6d451637952da36dd67000f46195abb783e414a8742ef5899c6f"
     },
     {
       "path": "src/lanStorage.js",
@@ -4437,8 +4507,8 @@
     },
     {
       "path": "src/stewardChat.js",
-      "bytes": 18690,
-      "sha256": "47284512581624521076d87ad62bbb56d0cb6771f7dc880b8dd84a0f55ee165e"
+      "bytes": 18892,
+      "sha256": "6927d9ccd670bd11828230c364e15c5f5457ded15eb87817c062952792d1e2e6"
     },
     {
       "path": "src/stewardParties.js",
@@ -5224,6 +5294,16 @@
       "path": "tests/v137-first-craft-guide.test.mjs",
       "bytes": 2543,
       "sha256": "213fd330b94cec87903a59069cc9ed92167701da762934743ade7bcea8dacebb"
+    },
+    {
+      "path": "tests/v138-device-bridge-live.mjs",
+      "bytes": 8819,
+      "sha256": "c3e59ec4e13d33c89578a78aa77495899b82c3ef36b59f19fb5aa396b6d66c87"
+    },
+    {
+      "path": "tests/v138-device-bridge.test.mjs",
+      "bytes": 13147,
+      "sha256": "359b59e2419a297ac417a278c0d5f7e13d5dfb65d9862a46949896e5b64f368c"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -6971,6 +7051,11 @@
       "sha256": "81f783526d7d0f312fdb806ea38f7eb8ef2c201bebe0230a730824ae5d94c379"
     },
     {
+      "path": "tools/steward-bridge.mjs",
+      "bytes": 2221,
+      "sha256": "833b5d722683ca10d490b3ee95b52f0cb42118abdcca4583ad96b2dfd97683ae"
+    },
+    {
       "path": "tools/verify-local-release.mjs",
       "bytes": 359,
       "sha256": "6a0dbf2ef8e6d64c7c390201d405a232e977cefd52447d38cdf6ed57a8979173"
@@ -7516,5 +7601,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v137-github"
+  "publicRevision": "v138-github"
 }

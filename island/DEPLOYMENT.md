@@ -143,3 +143,7 @@ The clock is local by default and shared across appearances and visits. Optional
 
 
 V134: one visual day is 15 minutes, each season lasts 30 visual days. Day/night scene lighting is paused. Legacy local seven-day clocks migrate once while retaining their current season and hour; central-provider settings remain authoritative. / V134 每季 30 个视觉日，昼夜视觉效果暂停；旧本地时钟保留当前季节与小时并迁移，总服务器配置保持权威。
+
+## 原机管家连接 / Connect an original computer
+
+完成运行环境配置后，可运行 `node tools/steward-bridge.mjs --help`。在管家入口生成配对码，填写工作区、保留私有状态目录，核对标记后连接。[双平台命令、重连与回执恢复](docs/device-bridge-v138.md)。原机密钥由原机读取，不放进配对命令。 / Configure the runtime, pair from the steward, select the workspace and preserve the private state directory. The original device reads its own provider key.

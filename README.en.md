@@ -4,13 +4,13 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V137 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V138 development snapshot**; full product acceptance is still in progress.
 
 ## See the island
 
-[![Hyper Dimension · current 30-second showcase](island/docs/media/hyper-dimension-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview)
+[![Hyper Dimension · current 30-second showcase](island/docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
 
-[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v137)
+[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v138)
 
 Click a cover or video title to open the online player. MP4 downloads are available separately inside the player. A dedicated 45-second gallery tour shows the biography, eight life/education/work chapters, three projects with images, a visitor message and the owner’s reply, plus both visual styles.
 
@@ -46,6 +46,12 @@ Native 2560 × 1440, 60 fps footage includes the gallery's biography, experience
 | ![Origami A2A · fictional test owners](island/docs/screenshots/v137-origami-a2a.png) | ![Pixel A2A · fictional test owners](island/docs/screenshots/v137-pixel-a2a.png) |
 
 Separate Hermes/DeepSeek Flash stewards exchange canonical island facts. Owner identities are fictional; the displayed letters came from real agents.
+
+[Watch the latest 30-second film](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge): current dual-style island, original-device pairing, real edits/read-back on fictional documents and attributed correspondence. Existing island/gallery films retain their V135 labels. [Capture notes](island/docs/showcase-v138.md).
+
+## Your steward travels with its own workspace
+
+Choose **Connect original device** from the steward, match the pairing marks, and keep your own Hermes running on that computer. Document work continues while visiting an island, alongside attributed steward correspondence. Offline status is explicit; file work is not silently rerouted. [Pairing and recovery](island/docs/device-bridge-v138.md).
 
 ## Deploy with a development Agent
 

@@ -1,6 +1,27 @@
 {
-  "version": "V135",
+  "version": "V138",
   "films": [
+    {
+      "id": "bridge",
+      "version": "V138",
+      "filename": "hyper-dimension-v138-bridge-30s.mp4",
+      "sha256": "7998b570cce95614ea799fb0798f944d88cf135dfb95dc7603f4712f63db1269",
+      "duration": 30,
+      "poster": "assets/hyper-dimension-v138-bridge-poster.png",
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v138/hyper-dimension-v138-bridge-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 原机管家与真实工作",
+        "en": "30 seconds · Original-device stewards"
+      },
+      "caption": {
+        "zh": "V138 · 双风格／原机文档／管家通信",
+        "en": "V138 · Two styles / Original files / Steward correspondence"
+      },
+      "description": {
+        "zh": "当前双风格小岛，原机连接入口，真实 Hermes 的虚构文档读取、修改、回读，以及两位原机管家的署名通信记录。",
+        "en": "Current dual-style island, original-device pairing, real Hermes read/edit/read-back on fictional documents, and attributed original-device correspondence."
+      }
+    },
     {
       "id": "overview",
       "filename": "hyper-dimension-30s.mp4",
@@ -19,7 +40,8 @@
         "zh": "从小岛生活到现实工作：AI 居民交谈、管家协作、房屋内小游戏和真实文档成果。",
         "en": "Island life and real work: AI residents, Agent collaboration, in-room minigames and a real document result."
       },
-      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4"
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-30s.mp4",
+      "version": "V135"
     },
     {
       "id": "tour",
@@ -39,7 +61,8 @@
         "zh": "看不同管家形象、实际 Agent 分工记录、海边食堂的练习通关、Word 文件结果，以及会客馆。",
         "en": "Explore steward appearances, actual Agent delegation records, a kitchen practice completion, Word document results and the gallery."
       },
-      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-45s.mp4"
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-45s.mp4",
+      "version": "V135"
     },
     {
       "id": "gallery",
@@ -59,7 +82,8 @@
         "zh": "走进双画风展厅：岛主介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复。",
         "en": "Tour both gallery styles: a biography, eight life/education/work chapters, three illustrated projects, a visitor message and the owner’s reply."
       },
-      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-gallery-tour-v135.mp4"
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v135/hyper-dimension-gallery-tour-v135.mp4",
+      "version": "V135"
     }
   ]
 }

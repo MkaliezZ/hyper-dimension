@@ -8,8 +8,8 @@ const root=resolve(import.meta.dirname,'..');
 const liveOwnerProcesses=new Set();
 const fail=(message,code,status=409)=>Object.assign(Error(message),{code,status});
 const clone=structuredClone,hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
-export function createOwnerRuntime({directory,ownerId,islandDirectory=directory}){
- const documents=resolve(directory,'documents'),pending=new Map();let child=null,serial=0,idle=null,closed=false;
+export function createOwnerRuntime({directory,ownerId,islandDirectory=directory,documentRoot}){
+ const documents=documentRoot?resolve(documentRoot):resolve(directory,'documents'),pending=new Map();let child=null,serial=0,idle=null,closed=false;
  async function start(){
   if(closed)throw fail('管家运行端已停止','lan_agent_closed',503);
   if(child)return child;
@@ -52,6 +52,10 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
  }
  async function persist(a){const tmp=a.file+'.'+randomUUID()+'.tmp';let handle;try{handle=await open(tmp,'wx',0o600);await handle.writeFile(JSON.stringify(a.state));await handle.sync();await handle.close();handle=null;await rename(tmp,a.file);}finally{await handle?.close().catch(()=>{});await unlink(tmp).catch(()=>{});}}
  function lock(a,fn){const next=a.tail.then(fn);a.tail=next.catch(()=>{});return next;}
+ async function recoverOriginalRequests(a,worldKey){
+  if(!a.runtime.recoverRequest)return;
+  await lock(a,async()=>{let changed=false;for(const job of a.state.jobs){if(job.worldKey!==worldKey||job.status!=='unconfirmed')continue;const receipt=await a.runtime.recoverRequest(job.id);if(receipt?.worldKey===worldKey&&receipt.phase==='completed'&&receipt.result){job.result=receipt.result;job.status=receipt.result.source==='hermes'?'completed':'failed';job.finishedAt=receipt.finishedAt;job.recoveredFromOriginalDevice=true;changed=true;}}if(changed)await persist(a);});
+ }
  async function world(c,theme){
   if(!['pixel','origami'].includes(theme))throw fail('画风无效','lan_agent_theme',400);
   const d=await tenants.readIslandForServer(c.accountId,theme);if(!d)throw fail('请先进入自己的小岛建立档案','lan_save_missing',404);
@@ -151,11 +155,11 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
    };
   },
 
-  async status(token){const {a}=await account(token);const status=await a.runtime.call('status');return {...status,automaticAvailable:true,personalRuntime:true,deviceBridge:false,a2a:true,a2aProtocol:'hyper-dimension-v1',a2aCapabilities:['event.checkin','island.information']};},
-  async view(token,theme){const {a,c}=await account(token);theme||=c.account.profile.theme;const state=await world(c,theme);
-   return {ownerId:c.accountId,worldKey:state.saveSlot,butler:travelPerson(c.account,{state},15),theme,documents:a.runtime.documents,jobs:clone(a.state.jobs.filter(j=>j.worldKey===state.saveSlot).slice(-60)),capabilities:{personalRuntime:true,workspaceDocuments:true,deviceBridge:false,a2a:true,a2aProtocol:'hyper-dimension-v1',a2aCapabilities:['event.checkin','island.information']},status:await a.runtime.call('status')};
+  async status(token){const {a}=await account(token);const status=await a.runtime.call('status'),originalDevice=await a.runtime.bridge?.();return {...status,automaticAvailable:true,personalRuntime:true,deviceBridge:!!originalDevice?.bound,originalDevice:originalDevice||null,a2a:true,a2aProtocol:'hyper-dimension-v1',a2aCapabilities:['event.checkin','island.information']};},
+  async view(token,theme){const {a,c}=await account(token);theme||=c.account.profile.theme;const state=await world(c,theme);await recoverOriginalRequests(a,state.saveSlot);const originalDevice=await a.runtime.bridge?.();
+   return {ownerId:c.accountId,worldKey:state.saveSlot,butler:travelPerson(c.account,{state},15),theme,documents:a.runtime.documents,jobs:clone(a.state.jobs.filter(j=>j.worldKey===state.saveSlot).slice(-60)),capabilities:{personalRuntime:true,workspaceDocuments:true,deviceBridge:!!originalDevice?.bound,originalDevice:originalDevice||null,a2a:true,a2aProtocol:'hyper-dimension-v1',a2aCapabilities:['event.checkin','island.information']},status:await a.runtime.call('status')};
   },
-  async receipt(token,id,theme){if(typeof id!=='string'||!/^[-A-Za-z0-9]{8,100}$/.test(id))throw fail('委托编号无效','lan_agent_input',400);const {a,c}=await account(token);theme||=c.account.profile.theme;const state=await world(c,theme),job=a.state.jobs.find(j=>j.id===id&&j.worldKey===state.saveSlot);return job?{id:job.id,worldKey:job.worldKey,status:job.status==='running'?'running':job.result?'completed':'unconfirmed',createdAt:job.createdAt,updatedAt:job.finishedAt||job.createdAt,result:clone(job.result||null),error:job.error||null}:null;},
+  async receipt(token,id,theme){if(typeof id!=='string'||!/^[-A-Za-z0-9]{8,100}$/.test(id))throw fail('委托编号无效','lan_agent_input',400);const {a,c}=await account(token);theme||=c.account.profile.theme;const state=await world(c,theme);await recoverOriginalRequests(a,state.saveSlot);const job=a.state.jobs.find(j=>j.id===id&&j.worldKey===state.saveSlot);return job?{id:job.id,worldKey:job.worldKey,status:job.status==='running'?'running':job.result?'completed':'unconfirmed',createdAt:job.createdAt,updatedAt:job.finishedAt||job.createdAt,result:clone(job.result||null),error:job.error||null}:null;},
   async wait(token,input){const job=await submit(token,input),{a}=await account(token);while(a.running===job.id)await new Promise(r=>setTimeout(r,100));const done=a.state.jobs.find(j=>j.id===job.id);if(!done.result)throw fail(done.error||'委托尚待核对','lan_agent_unconfirmed',409);return {...clone(done.result),requestId:done.id};},
   async residentChat(token,method,args){const {a}=await account(token);if(!['residentChatHistory','residentChatSend'].includes(method))throw fail('不支持此居民对话操作','resident_chat_method',400);return a.runtime.call(method,args);},
   async work(token,method,args){const {a}=await account(token);if(!['list','project','detail','preview','download','ledger','policy'].includes(method))throw fail('不支持此管家操作','lan_agent_method',400);return a.runtime.call(method,args);},

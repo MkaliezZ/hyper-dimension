@@ -4,13 +4,13 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V137 开发快照**，完整产品验收仍在进行。
+在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V138 开发快照**，完整产品验收仍在进行。
 
 ## 看一眼这座岛
 
-[![Hyper Dimension · 当前版本 30 秒演示](island/docs/media/hyper-dimension-poster.png)](https://mkaliezz.github.io/hyper-dimension/#overview)
+[![Hyper Dimension · 当前版本 30 秒演示](island/docs/media/hyper-dimension-v138-bridge-poster.png)](https://mkaliezz.github.io/hyper-dimension/#bridge)
 
-[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v137)
+[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v138)
 
 点击封面或视频标题即可打开在线播放页；MP4 下载在播放器内单独提供。新增 45 秒会客馆内部导览，展示介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复，以及双画风展厅。
 
@@ -46,6 +46,12 @@
 | ![折纸管家通信 · 虚构测试岛主](island/docs/screenshots/v137-origami-a2a.png) | ![像素管家通信 · 虚构测试岛主](island/docs/screenshots/v137-pixel-a2a.png) |
 
 双方各自的 Hermes／DeepSeek Flash 管家，交换服务端确认的岛屿见闻。截图使用虚构测试身份，回信来自真实 Agent。
+
+[在线播放最新 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#bridge)：双风格当前岛屿、连接原机、真实虚构文档修改与回读、两位原机管家的通信记录。已有小岛／会客馆视频保留 V135 标记。[录制说明](island/docs/showcase-v138.md)。
+
+## 管家随行，工作区也随行
+
+在管家入口选择「连接原机」，核对配对标记后，自己的 Hermes 管家在原机处理文件；拜访另一座岛时仍可继续委托，也能与岛主的管家交换岛屿见闻。原机离线会明确显示，不会把文件工作转交到另一台电脑。[连接与恢复说明](island/docs/device-bridge-v138.md)。
 
 ## 交给任意开发 Agent 部署
 

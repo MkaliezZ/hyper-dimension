@@ -1,0 +1,90 @@
+{
+  "version": "V138",
+  "passed": true,
+  "scope": "Two real original-device CLI processes and a separate island service on one Windows machine; actual Hermes/DeepSeek Flash file operations and A2A, native pairing in both art styles. Not physical multi-device or macOS verification.",
+  "checks": [
+    {
+      "theme": "pixel",
+      "nativePairing": true,
+      "cliVerificationMatched": true,
+      "refreshPreservesBinding": true,
+      "compactNoOverflow": true,
+      "fixedClose": true,
+      "realFileReadEditReadback": true,
+      "operations": [
+        {
+          "tool": "document_list",
+          "status": "done"
+        },
+        {
+          "tool": "document_read",
+          "status": "done"
+        },
+        {
+          "tool": "document_edit",
+          "status": "done"
+        },
+        {
+          "tool": "document_read",
+          "status": "done"
+        }
+      ],
+      "ledgerRunId": "run-d7ac2d06-7ece-479b-aea1-8382dec35446",
+      "location": "visit",
+      "realOriginalDeviceA2A": true,
+      "a2aRunId": "run-ded895f6-2a3e-4d50-aa79-0df8d3ebe6df"
+    },
+    {
+      "theme": "origami",
+      "nativePairing": true,
+      "cliVerificationMatched": true,
+      "refreshPreservesBinding": true,
+      "compactNoOverflow": true,
+      "fixedClose": true,
+      "realFileReadEditReadback": true,
+      "operations": [
+        {
+          "tool": "host_info",
+          "status": "done"
+        },
+        {
+          "tool": "document_list",
+          "status": "done"
+        },
+        {
+          "tool": "document_read",
+          "status": "done"
+        },
+        {
+          "tool": "document_edit",
+          "status": "done"
+        },
+        {
+          "tool": "document_read",
+          "status": "done"
+        }
+      ],
+      "ledgerRunId": "run-9d652e2e-7dc5-41ab-853a-92c0cda0a163",
+      "location": "visit",
+      "realOriginalDeviceA2A": true,
+      "a2aRunId": "run-321ffd2e-8bdd-40f8-8dfb-7bfded2c4bc3"
+    }
+  ],
+  "errors": [],
+  "badAssets": [],
+  "messages": [
+    {
+      "text": "你好，我是月桂访客岛的管家赫尔墨斯。本岛以折纸为主题，岛上现有木作工坊、陶艺坊、花艺小屋、烘焙屋与工艺学院等设施，品质均为四十五，适合手作类活动。若办一次折纸与花艺结合的手作会，可在工艺学院教学、花艺小屋备料，再到风铃茶屋小聚。入场与物资分工建议请双方岛主通过活动协作入口确认。",
+      "ledgerRunId": "run-321ffd2e-8bdd-40f8-8dfb-7bfded2c4bc3",
+      "parentRunId": null
+    },
+    {
+      "text": "你好，我是松风主岛的管家赫尔墨斯，很高兴收到月桂访客岛的介绍。本岛以像素风为主题，现有木作工坊、陶艺坊、花艺小屋、烘焙屋与工艺学院，品质均为四十五，正好与你说的折纸手作会相配。我建议授课放在工艺学院，花艺备料在花艺小屋，成果展示与茶点可到风铃茶屋，材料清单可先在木作工坊备妥。入场与物资分工请双方岛主经活动协作入口确认，我这里只交流见闻。",
+      "ledgerRunId": "run-ded895f6-2a3e-4d50-aa79-0df8d3ebe6df",
+      "parentRunId": "run-321ffd2e-8bdd-40f8-8dfb-7bfded2c4bc3"
+    }
+  ],
+  "physicalDevicesVerified": false,
+  "physicalMacVerified": false,
+  "wholeProjectAccepted": false
+}

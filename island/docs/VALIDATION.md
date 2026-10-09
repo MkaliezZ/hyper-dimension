@@ -1,6 +1,6 @@
 # Validation / 验收说明
 
-以下按版本保留历史证据；当前 V137 结果见本文末尾。 / Historical evidence is retained by version; current V137 results are at the end.
+以下按版本保留历史证据；当前 V138 结果见本文末尾。 / Historical evidence is retained by version; current V138 results are at the end.
 
 ## V107 · 历史基线 / Historical baseline
 
@@ -88,3 +88,11 @@ Both fresh-island flows pass actual resource gathering using the updated journal
 macOS ARM 的新增通信检查曾被系统临时目录 `/var` 的符号链接拦截。仅将测试临时目录解析为真实路径；产品数据目录的符号链接保护继续保留。Windows 及 macOS 的最终发布检查以修复后同一提交为准，旧失败记录仍保留。
 
 Existing name customization is preserved. Successful saves now return from the editor after server state replacement, using stable world identity checks. Actual isolated browser checks cover disk persistence, reload, both art styles, empty-browser restore and visiting actor projection. The macOS information-test fixture resolves the system temporary directory without weakening production data-path checks.
+
+## V138 · 原机工作区与随行管家 / Original-device workspace
+
+21/21桥接／信息通信／活动通信回归通过。双画风原生 UI 配对、标记确认、刷新保留与窄屏固定关闭通过；两个独立原机 CLI 与真实 Hermes／deepseek-flash 完成虚构文件读取、修改、回读以及有署名和运行关联的岛屿信息交流。原机和服务一起重启后保留结果，不重做文件操作。
+
+Focused bridge/information/activity regressions pass 21/21. Both native themes pass pairing, owner confirmation, refresh, compact layout and fixed close controls. Two original-device CLI processes use real Hermes/deepseek-flash for fictional file read/edit/read-back and linked, attributed island correspondence. Transport and restart tests retain completed results without repeating tools. The real provider test used separate processes on one Windows machine; physical cross-device/Mac and whole-project acceptance remain distinct. [部署、数据范围与边界](device-bridge-v138.md)。
+
+V138 默认领域检查827项通过；首次维护检查有两项被同时运行的真实录制 Agent 阻挡。停止录制后单独重跑14项维护检查全部通过，保护规则未放宽。 / All827 domain checks pass; concurrent real recording agents initially block two maintenance checks. After recording stops, all14 maintenance checks pass with existing data protection unchanged.
