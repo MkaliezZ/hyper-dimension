@@ -1,0 +1,49 @@
+{
+  "version": "V140",
+  "passed": true,
+  "scope": "Isolated progressed fixture:140coins,2fiber,3wheat,8bread,8fruit; no initial lantern/wood/quartz/wax and no seeded contracts, movement, clocks or outcomes. Real Hermes/deepseek-flash for explicit recruitment; automatic models blocked. Normal-clock native plan, ferry, roads, work, personal invitations, party, wage, departure and reload. One Windows computer; not zero-start, physical Mac/multi-device, human or whole-goal acceptance.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "elapsedSeconds": 292.88,
+      "acceptedSteps": 4,
+      "productionReceipts": 2,
+      "produced": {
+        "lantern": 2
+      },
+      "partyScore": 4,
+      "partyIncome": 28,
+      "cooperationEvidenceRows": 2,
+      "delivery": {
+        "fee": 2,
+        "delivered": 2,
+        "quantity": 10
+      },
+      "departure": "departed",
+      "reloadPreserved": true,
+      "model": "deepseek-flash",
+      "realParentChildLineage": true
+    },
+    {
+      "theme": "origami",
+      "elapsedSeconds": 294.37,
+      "acceptedSteps": 4,
+      "productionReceipts": 2,
+      "produced": {
+        "lantern": 2
+      },
+      "partyScore": 4,
+      "partyIncome": 28,
+      "cooperationEvidenceRows": 2,
+      "delivery": {
+        "fee": 2,
+        "delivered": 2,
+        "quantity": 10
+      },
+      "departure": "departed",
+      "reloadPreserved": true,
+      "model": "deepseek-flash",
+      "realParentChildLineage": true
+    }
+  ]
+}

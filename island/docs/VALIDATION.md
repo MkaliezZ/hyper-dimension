@@ -102,3 +102,9 @@ V138 默认领域检查827项通过；首次维护检查有两项被同时运行
 工艺学院绘画改为四类随机风物，5／7／9 笔难度，连续轨迹、配色、墨量、晾干和最终装裱评审；旧三笔作业仍可恢复。相关92项回归与双画风真实鼠标制作／刷新／窄屏结算通过。小游戏集合的真人手感、完整动画素材与全产品验收继续保留原有未完成项。[玩法与证据](brush-studio-v139.md)。
 
 Four seeded painting motifs use progressive stroke counts, continuous path checks, palette/ink/drying decisions and framing review. Legacy sessions remain compatible. Focused92-case regressions and native dual-theme production/reload/compact-result checks pass. Human feel and whole-product acceptance remain separate.
+
+## V140 · 真实主子活动连续验证 / Continuous real delegation journey
+
+双画风隔离演示岛完成实际 Hermes／deepseek-flash 招聘、正常时钟乘船／栈桥／工位制作、亲自邀请、夜集领取、贡献回执、工资与离岛归档、刷新保留。修复同步存档重复取消和迟到回调打断新行动。53项最终直接回归与10项招聘协议通过；76项协作／收藏相关回归另记，存在重叠。测试为有生活物资的单机演示岛，不代替零起点、物理设备、真人与全产品验收。[完整范围](recruitment-v140.md)。
+
+Both native styles pass a continuous real-provider delegation journey with normal movement/production, authoritative results, wages, departure and reload. Fixture scope and acceptance limits remain explicit.

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v139-agent-source",
+  "release": "hyper-dimension-v140-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 3071,
-      "sha256": "0513c860ad372c7717c64991ad7d139c8c1c807cfc9b0d9a02e7da628a6d8e15"
+      "bytes": 3288,
+      "sha256": "43f5dff33665d0c87cca9aab92f67dff81d3f28111d8ebd705926f4eb5a51e02"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 15080,
-      "sha256": "6de708b88dedf3b2a723b959f764bbd62e14f285ca244e112464908496ffdbac"
+      "bytes": 15893,
+      "sha256": "61001dbe6dfc797a691f69e9f30eaf9e6b8bf538f7a46eabd3b3f68d0fde2532"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -399,6 +399,16 @@
       "path": "docs/provenance/art-provenance-v9.json",
       "bytes": 2729,
       "sha256": "0e7b5336b6ccdb9472ec1004a28b9ab8f01bdebf5207ab5760a5671757366e7c"
+    },
+    {
+      "path": "docs/recruitment-v140-verification.json",
+      "bytes": 1531,
+      "sha256": "61b7ab601351ab5d5eddb328fbc111dec8edcfbcd2fe3124c42b0848c809da4b"
+    },
+    {
+      "path": "docs/recruitment-v140.md",
+      "bytes": 3165,
+      "sha256": "92a88519e5a3b9b60045b0ed9a4dec0bebef8f16a7544ca10f5b58f2e04280a0"
     },
     {
       "path": "docs/resident-cooperation-v111.md",
@@ -1257,8 +1267,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8459,
-      "sha256": "08fb872d88e3af94b78bd8f84ba232161679f8cb6db479ba70dd5493bc0e2512"
+      "bytes": 8497,
+      "sha256": "7e48772dba95692e710446fd3d88009358261c3f03e1ca0bbc93c93aabe93f73"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3197,8 +3207,8 @@
     },
     {
       "path": "server/recruited_agent.py",
-      "bytes": 10506,
-      "sha256": "b5cad2238c5eb881bde68b6f8187ab59680c04f46f060ab142b334afca78598f"
+      "bytes": 11704,
+      "sha256": "5091e96044e542f9d495e05f802f4ced36ced71ae01447197c2068182511736d"
     },
     {
       "path": "server/recruitmentService.mjs",
@@ -4337,8 +4347,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 37832,
-      "sha256": "f1e0f73090ee69b6442f437c572ed66e35f61891a0281507ca0146bb49166293"
+      "bytes": 38244,
+      "sha256": "a12b5a2f3480ed59e6c589e139259c13455bc06c0ac8f13f30967d17265794af"
     },
     {
       "path": "src/residentSocialTopics.js",
@@ -5366,6 +5376,16 @@
       "sha256": "ae1659f64da030db7f0992e2d85eb626fb5ace20d018c423cf83d57bd0440614"
     },
     {
+      "path": "tests/v140-recruitment-journey-browser.mjs",
+      "bytes": 11705,
+      "sha256": "4a5ed8929130aeae8eea36c28b298c1af3b43e2ab798aaf256a00850c09e9856"
+    },
+    {
+      "path": "tests/v140-resident-handover.test.mjs",
+      "bytes": 5707,
+      "sha256": "ed8d3504e047b930f18c1fe993de1e7d07e5b839206856ecdd46fec168e8049e"
+    },
+    {
       "path": "tests/v16-v17-ui-qa.mjs",
       "bytes": 5407,
       "sha256": "b0b0953ebda1e041eacf700ff1e71be8dc1243e5cea2622c10e03aa5cc81e271"
@@ -5627,8 +5647,8 @@
     },
     {
       "path": "tests/v28-recruitment-protocol.test.py",
-      "bytes": 4038,
-      "sha256": "18b0baee584fbfc278d09061c625dc0ba9037cdfd3bd8dd89e5be07b3d2ee316"
+      "bytes": 5502,
+      "sha256": "3bd10184acbf275ce299e4aca1afceb884d6a651a9a25a7d96041561fbcaddcb"
     },
     {
       "path": "tests/v28-recruitment.test.mjs",
@@ -7661,5 +7681,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v139-github"
+  "publicRevision": "v140-github"
 }
