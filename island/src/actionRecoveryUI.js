@@ -40,3 +40,14 @@ export async function readRecoveryProgress(bar,read,toast){
 }
 
 export function configureActionRecovery(fn){recoverAll=fn;}
+
+// A rejected autosave may pause movement without any operation-specific card.
+// Always expose the same receipt-preserving recovery path in that case.
+let saveRecoveryBar=null;
+export function reflectSaveRecovery(status){
+ const blocked=['conflict','action_pending','import_pending','blocked'].includes(status.status);
+ if(!blocked){if(status.status==='recovering')return;if(saveRecoveryBar){unlockActionUI(saveRecoveryBar);saveRecoveryBar.remove();saveRecoveryBar=null;}return;}
+ if(!saveRecoveryBar){saveRecoveryBar=document.createElement('section');saveRecoveryBar.id='saveRecoveryPrompt';saveRecoveryBar.className='gather-v46 recovery-text';saveRecoveryBar.innerHTML='<div><strong>小岛进度需要核对</strong><p role="status"></p></div><div class="gather-buttons"><button class="secondary" data-save-recovery-details>查看存档与恢复选项</button></div>';saveRecoveryBar.querySelector('[data-save-recovery-details]').onclick=()=>document.getElementById('saveStatus')?.click();}
+ saveRecoveryBar.querySelector('p').textContent=status.message+'。核对后即可恢复移动和进入房屋，当前暂存会保留副本。';
+ lockActionUI(saveRecoveryBar);
+}

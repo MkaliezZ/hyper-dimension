@@ -26,7 +26,7 @@ import {marketStalls,drawMarketStall} from './marketArt.js';
 import{nightReadiness}from'./nightPartyPlanning.js';
 import{partyDraftStamp}from'./partyPlanning.js';
 import {openResidentTravelHistory} from './lanSocialUI.js';
-import {setBaseUIInert,setRecoveryDialog,configureActionRecovery,isRecoveryTarget} from './actionRecoveryUI.js';
+import {setBaseUIInert,setRecoveryDialog,configureActionRecovery,isRecoveryTarget,reflectSaveRecovery} from './actionRecoveryUI.js';
 import {createServerPersonal} from './serverPersonalUI.js';
 import {createServerFacility} from './serverFacilityUI.js';
 import {createNightPartyRuntime,nightPartyArrived} from './nightPartyRuntime.js';
@@ -144,6 +144,7 @@ const saves=createSaveClient({storageTheme:saveTheme,loadLocal:loadState,storeLo
 function paintSaveStatus(){
  const status=saves.status(theme),el=$('saveStatus');
  if(el.textContent!==status.message)el.textContent=status.message;el.title='点击管理服务端存档、备份与恢复';el.dataset.status=status.status;
+ reflectSaveRecovery(status);
 }
 configureActionRecovery(()=>saves.acceptServer(theme));
 const saveUI=createSaveUI({saves,theme:()=>theme,openModal,toast});

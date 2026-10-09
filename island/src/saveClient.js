@@ -163,6 +163,23 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     if(r.dirty)schedule(r);
    }catch(error){
     r.activeSeconds=0;
+    // A definite version rejection did not advance this autosave's clock.
+    // Merge independent edits against the acknowledged baseline; never guess
+    // the result of a timed-out request or discard overlapping edits.
+    if(error.code==='save_conflict'&&!read(commandKey(theme))&&(r.remoteEncoded||r.remoteState)){
+     try{
+      const {document:doc}=await request(theme,'');
+      if(!doc?.version||doc.state?.saveSlot!==r.state?.saveSlot)throw error;
+      const result=await reconcile(r,r.remoteEncoded||r.remoteState,doc,r.remoteEncoded?'document.state':undefined);
+      const rejected=read(autosaveKey(theme));
+      if(rejected)await journal.set(autosaveKey(theme)+'-previous',{...rejected,rejected:true,reason:'save_conflict',savedAt:new Date().toISOString()});
+      r.state=result.state;onRemoteState(theme,r.state);await remember(r,doc);
+      await forget(autosaveKey(theme));r.dirty=result.dirty||r.generation!==result.generation;
+      if(!r.dirty)await forget(pendingKey(theme));await cache(r);
+      status(r,r.dirty?'pending':'saved','进度版本已同步，本页操作已保留');
+      if(r.dirty)schedule(r,1000);return;
+     }catch(rebaseError){error=rebaseError;}
+    }
     const name=isSaveCapacityError(error)?'blocked':['save_conflict','resource_state_conflict','planning_state_conflict','personal_state_conflict','farm_state_conflict','field_state_conflict','resident_state_conflict','visitor_state_conflict','commerce_state_conflict','party_state_conflict','night_state_conflict','hire_state_conflict','fishing_state_conflict','festival_state_conflict','couture_state_conflict','fireworks_state_conflict','facility_state_conflict','action_hold_conflict','lan_wallet_state','lan_wallet_cash'].includes(error.code)?'conflict':['save_corrupt','save_version','lan_travel_active'].includes(error.code)?'blocked':'offline';
     status(r,name,isSaveCapacityError(error)?'存档容量不足 · 暂存已保留，请导出暂存并更新游戏':error.code==='lan_travel_active'?error.message:name==='conflict'?(error.code==='resource_state_conflict'?'物资记录与服务端不一致 · 点击核对进度':'存档冲突 · 点击选择进度'):name==='blocked'?'存档异常 · 游戏已暂停':'服务未连接 · 浏览器暂存');
     if(name==='offline')schedule(r,15000);

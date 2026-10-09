@@ -146,3 +146,10 @@ The public repository excludes keys, real saves, private conversations, real wor
 ## License and acknowledgements
 
 Original code and documentation retain the repository's [MIT License](LICENSE). Hermes Agent, Playwright, Fusion Pixel Font and dependencies retain their own licenses: [Third-party notices](THIRD_PARTY_NOTICES.md). Art provenance and licensing are documented separately in [Assets](docs/ASSETS.md).
+
+
+## V146 · 地图存档冲突 / Map save conflicts
+
+明确的版本拒绝会安全合并独立修改；无法合并时显示可点击的恢复入口。双画风地图移动、房屋进入及恢复回归通过。[说明](docs/map-save-conflict-v146.md)。
+
+Definite version rejections preserve independent edits. Overlapping edits expose a clickable recovery flow with a retained backup. Native map movement and building entry passed in both appearances.

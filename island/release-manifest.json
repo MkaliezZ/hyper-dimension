@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v145-agent-source",
+  "release": "hyper-dimension-v146-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11977,
-      "sha256": "95e73118d104248cd9171c6bc03aa3680835ad625065ea76844a0a2a6dc4ec9c"
+      "bytes": 12433,
+      "sha256": "e22a6b8ebc860936b9f9530ca5ae60dcc5fb916f800cb09d682030125e2e390c"
     },
     {
       "path": "README.md",
-      "bytes": 11954,
-      "sha256": "524af8ba04579e3a31f36709bb9b9cdb3462508833fbf36491823ac4ac83e06d"
+      "bytes": 12410,
+      "sha256": "edeea936e7af98bd9ab7d6cf92f346e84f11bdb2ca8fa5f77a15726aa31ea65a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 5307,
-      "sha256": "c33fa3b6cf9953139d68b2586837b36cda1a559ed72c36cf50b132e799748c67"
+      "bytes": 5758,
+      "sha256": "fecbbd9df8f4d1af3cea0d11b0f2fd3152e7c0107f9b7ac5bd7cf2bae0558caf"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 20050,
-      "sha256": "8d51c3f0a73141bf1ab731c89c5b8b0bd2251bb4f9904bc3cdfb036e95adba66"
+      "bytes": 20501,
+      "sha256": "39a5f270759261b1e64634dcedb26cfebf361670182dc14fb4a6c821fe58d6d3"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -194,6 +194,11 @@
       "path": "docs/map-navigation-v141.md",
       "bytes": 1383,
       "sha256": "9d2007bbb10d2b8dc51dcad5640fabd99b33f72ec05ce722c91a0b2240e5520d"
+    },
+    {
+      "path": "docs/map-save-conflict-v146.md",
+      "bytes": 1812,
+      "sha256": "66b1af726e804a7feaf7604355a950a1b670cc69ede0229c03ac6bdc3c0c1211"
     },
     {
       "path": "docs/media/agent-delegation.png",
@@ -959,6 +964,26 @@
       "path": "docs/verification/v145/preflight.json",
       "bytes": 1075,
       "sha256": "6ea361bd67cdf267fc209d053857e8152cb91103ef9d5fb0a64a749599bf14f5"
+    },
+    {
+      "path": "docs/verification/v146/map-navigation.json",
+      "bytes": 1859,
+      "sha256": "b650775a2d67f3ca1e9bc6d858915c957088def0950ec957da087aecbc117a13"
+    },
+    {
+      "path": "docs/verification/v146/origami-entered.png",
+      "bytes": 3268880,
+      "sha256": "8550973207a91646b59d1560b1d955022041d389f0942e66ddabaeb33dbe625c"
+    },
+    {
+      "path": "docs/verification/v146/pixel-entered.png",
+      "bytes": 1468991,
+      "sha256": "4a5184c9f6b15a9e893fee23b35d3336fe0e77de2396d15bf21d1ededaa13619"
+    },
+    {
+      "path": "docs/verification/v146/save-conflict.json",
+      "bytes": 1520,
+      "sha256": "5a7a330a7217c1a7d86475ba488339c4dcaf38b41de3bcc330526f3a5fe0c0cf"
     },
     {
       "path": "index.html",
@@ -3542,8 +3567,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 4661,
-      "sha256": "b7c4a737b1281b3879ce920ecc8d26a9184bdb02434d39c2adacefc37197c00c"
+      "bytes": 5835,
+      "sha256": "0564de6f512da316e5d3143e818b502821845690f579f163233c9258f50b3ef6"
     },
     {
       "path": "src/activityGames.js",
@@ -3557,8 +3582,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 137015,
-      "sha256": "b3a5aa0155df38351b139459c561848b7eaddd58f9dd4684eb761f4d4c357eb9"
+      "bytes": 137065,
+      "sha256": "d5a469e6262878de4b35b5942e03e4f569f40a7d2c6dc1d076b2c9164b82b74d"
     },
     {
       "path": "src/arcade.css",
@@ -4637,8 +4662,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 27001,
-      "sha256": "c9a7b5fa0d4d514010448625bf4d0f1714c52f3739a30dad64bef0dd5201b862"
+      "bytes": 28203,
+      "sha256": "56130ac061805ffbaf00c9d3433f6b282d74c928af45fe36b049ed4027315050"
     },
     {
       "path": "src/saveDelta.js",
@@ -5709,6 +5734,11 @@
       "path": "tests/v145-steward-preflight-browser.mjs",
       "bytes": 4965,
       "sha256": "0a7d5f034c7546f5062f893d12b8ad2ef4c640e88cdf60f98ea8b42de26c8518"
+    },
+    {
+      "path": "tests/v146-map-save-conflict-browser.mjs",
+      "bytes": 6050,
+      "sha256": "f5760d2ba8cfb28930acd589a64df19a1960f10a331a49c6ad0af933cba56453"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8011,5 +8041,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v145-github"
+  "publicRevision": "v146-github"
 }

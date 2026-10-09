@@ -159,3 +159,10 @@ docs/                   Guides, screenshots and verification
 ## 许可与致谢
 
 原创代码与文档沿用仓库 [MIT License](LICENSE)；Hermes Agent、Playwright、Fusion Pixel Font 与各依赖保留自身许可证，见[第三方说明](THIRD_PARTY_NOTICES.md)。美术来源与许可另见[素材说明](docs/ASSETS.md)。
+
+
+## V146 · 地图存档冲突 / Map save conflicts
+
+明确的版本拒绝会安全合并独立修改；无法合并时显示可点击的恢复入口。双画风地图移动、房屋进入及恢复回归通过。[说明](docs/map-save-conflict-v146.md)。
+
+Definite version rejections preserve independent edits. Overlapping edits expose a clickable recovery flow with a retained backup. Native map movement and building entry passed in both appearances.

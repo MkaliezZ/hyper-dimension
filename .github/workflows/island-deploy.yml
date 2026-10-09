@@ -42,3 +42,7 @@ jobs:
         run: node tools/agent-deploy.mjs verify
       - name: Verify native steward submission ordering
         run: node tests/v145-steward-preflight-browser.mjs
+
+      - name: Native map save conflict recovery
+        working-directory: island
+        run: node tests/v146-map-save-conflict-browser.mjs

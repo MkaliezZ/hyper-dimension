@@ -51,3 +51,10 @@
 居民作业正在结算时，管家会等待回执再保存并寄出，减少短暂结算导致的发送失败。双画风原生UI验证：延迟期间零发送，恢复后唯一发送；离线和未确认作业仍保留恢复流程。[说明与证据](docs/steward-preflight-v145.md)。
 
 The steward waits for in-flight game receipts before saving and submitting. Native dual-theme delayed-receipt checks confirm zero early calls and one eventual submission; unresolved failures retain explicit recovery.
+
+
+## V146 · 地图存档冲突 / Map save conflicts
+
+明确的版本拒绝会安全合并独立修改；无法合并时显示可点击的恢复入口。双画风地图移动、房屋进入及恢复回归通过。[说明](map-save-conflict-v146.md)。
+
+Definite version rejections preserve independent edits. Overlapping edits expose a clickable recovery flow with a retained backup. Native map movement and building entry passed in both appearances.
