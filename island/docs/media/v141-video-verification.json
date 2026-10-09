@@ -1,0 +1,117 @@
+{
+  "version": "V141",
+  "filename": "hyper-dimension-v141-night-sky-16s.mp4",
+  "bytes": 10617330,
+  "sha256": "c7e3e6af53db12a665c0b736132c549bf806d96b49672103393408333f1768ba",
+  "duration": 16,
+  "width": 2560,
+  "height": 1440,
+  "fps": 60,
+  "frames": 960,
+  "audio": "Original Hyper Dimension Island Hours BGM, AAC",
+  "nativeIslandModal": true,
+  "actualAuthoritativePaidEnd": true,
+  "paidEndReopenedSamePersistedIslands": true,
+  "paidHeaderAndCloseFitViewport": true,
+  "temporalInterpolation": false,
+  "gameSpeedChanged": false,
+  "fixture": "Isolated pre-provided fictional resources and needs; normal clock, native inputs, no model calls, game results or user data injected.",
+  "selectedSourceWindows": [
+    {
+      "theme": "pixel",
+      "phase": "flight",
+      "start": 22.734782000000003,
+      "duration": 2.175,
+      "sourceFps": 59.23699053874192,
+      "maxSourceGapMs": 36.487000000001046
+    },
+    {
+      "theme": "pixel",
+      "phase": "last-flight",
+      "start": 47.410282,
+      "duration": 2.175,
+      "sourceFps": 59.325231113488236,
+      "maxSourceGapMs": 36.6730000000004
+    },
+    {
+      "theme": "pixel",
+      "phase": "constellation",
+      "start": 50.21028200000001,
+      "duration": 2.175,
+      "sourceFps": 60.59041161397018,
+      "maxSourceGapMs": 36.40099999999791
+    },
+    {
+      "theme": "pixel",
+      "phase": "paid-result",
+      "start": 21.0,
+      "duration": 2.175,
+      "sourceFps": 59.49196649300896,
+      "maxSourceGapMs": 30.293999999997823
+    },
+    {
+      "theme": "origami",
+      "phase": "flight",
+      "start": 22.820264,
+      "duration": 2.175,
+      "sourceFps": 59.00401227283449,
+      "maxSourceGapMs": 36.30799999999823
+    },
+    {
+      "theme": "origami",
+      "phase": "last-flight",
+      "start": 46.898764,
+      "duration": 2.175,
+      "sourceFps": 62.25235525282118,
+      "maxSourceGapMs": 32.81299999999732
+    },
+    {
+      "theme": "origami",
+      "phase": "constellation",
+      "start": 49.698764000000004,
+      "duration": 2.175,
+      "sourceFps": 60.71251465674252,
+      "maxSourceGapMs": 36.253999999999564
+    },
+    {
+      "theme": "origami",
+      "phase": "paid-result",
+      "start": 21.0,
+      "duration": 2.175,
+      "sourceFps": 59.62023298108096,
+      "maxSourceGapMs": 30.264999999999986
+    }
+  ],
+  "fullCaptureDiagnostics": [
+    {
+      "theme": "pixel",
+      "sourceFps": 59.07386526733231,
+      "p99GapMs": 30.374999999999375,
+      "maxGapMs": 472.74999999999994
+    },
+    {
+      "theme": "origami",
+      "sourceFps": 59.42716217040136,
+      "p99GapMs": 32.576000000000164,
+      "maxGapMs": 97.64599999999746
+    }
+  ],
+  "passed": true,
+  "playerVerification": {
+    "passed": true,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "nativeAspectRatio": "16:9",
+    "bothPlayedToEnd": true,
+    "overflow": false,
+    "errors": []
+  }
+}

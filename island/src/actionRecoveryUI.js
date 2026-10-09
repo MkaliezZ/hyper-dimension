@@ -1,17 +1,17 @@
 // One owner for interaction locks: independent recovery panels must never make each other inert.
-const active=new Set(),original=new Map();let observer=null,dock=null,recoveryDialog=false,queued=false,recoverAll=null;
+const active=new Set(),contexts=new Map(),original=new Map();let observer=null,dock=null,recoveryDialog=false,queued=false,recoverAll=null;
 function remember(el,value){if(!original.has(el))original.set(el,el.inert);el.inert=value;}
 function restore(){for(const[el,value]of original)if(el.isConnected)el.inert=value;original.clear();}
 function sync(){
- restore();if(dock)dock.hidden=!active.size;if(!active.size){observer?.disconnect();observer=null;return;}
+ restore();if(dock){dock.hidden=!active.size;const work=[...active].map(bar=>contexts.get(bar));const pending=work.length&&work.every(c=>c?.canRecover===false),context=pending?work[0]:null;const title=dock.querySelector('.recovery-all strong'),message=dock.querySelector('.recovery-all p'),button=dock.querySelector('#recoveryAll');const t=context?.title||'恢复小岛进度',m=context?.message||'先核对已提交结果，再继续游玩。当前暂存会保留副本。';if(title.textContent!==t)title.textContent=t;if(message.textContent!==m)message.textContent=m;button.hidden=!!pending;}if(!active.size){observer?.disconnect();observer=null;return;}
  const allowed=[dock,document.getElementById('saveStatus'),document.getElementById('questToggle'),document.getElementById('businessToggle'),...(recoveryDialog?[document.getElementById('modalRoot')]:[])].filter(Boolean);
  function visit(el){if(['SCRIPT','STYLE','LINK'].includes(el.tagName))return;if(allowed.includes(el)){remember(el,false);return;}if(allowed.some(a=>el.contains(a))){remember(el,false);for(const child of el.children)visit(child);}else remember(el,true);}
  for(const el of document.body.children)visit(el);
 }
 function schedule(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;sync();});}
-export function lockActionUI(bar){
+export function lockActionUI(bar,context=null){
  if(!dock){dock=document.createElement('div');dock.id='actionRecoveryDock';dock.setAttribute('aria-label','待确认操作');const header=document.createElement('div');header.className='recovery-all';header.innerHTML='<div><strong>恢复小岛进度</strong><p>先核对已提交结果，再继续游玩。当前暂存会保留副本。</p></div><button class="primary" id="recoveryAll">核对全部并继续</button>';dock.append(header);header.querySelector('button').onclick=()=>readRecoveryProgress(header,()=>recoverAll?.());document.body.append(dock);}
- active.add(bar);if(bar.parentElement!==dock)dock.append(bar);
+ active.add(bar);contexts.set(bar,context);if(bar.parentElement!==dock)dock.append(bar);
  // Recovery must remain available even without a pending command or conflict status.
  if(!bar.querySelector('[data-recovery-read]')){
   const button=document.createElement('button');button.type='button';button.className='secondary recovery-read';button.dataset.recoveryRead='true';button.textContent='核对进度并收起提示';
@@ -21,7 +21,10 @@ export function lockActionUI(bar){
  if(!observer){observer=new MutationObserver(schedule);observer.observe(document.body,{childList:true,subtree:true});}
  sync();
 }
-export function unlockActionUI(bar){active.delete(bar);sync();}
+export function unlockActionUI(bar){active.delete(bar);contexts.delete(bar);sync();}
+// A scene overlay and recovery can overlap. Update the saved base value so
+// releasing recovery cannot restore an already-closed overlay's stale inert flag.
+export function setBaseUIInert(el,value){if(!el)return;if(original.has(el))original.set(el,!!value);el.inert=!!value;sync();}
 export function setRecoveryDialog(value){recoveryDialog=!!value;document.body.classList.toggle('recovery-dialog-open',recoveryDialog);sync();}
 
 export function isRecoveryTarget(target){return target instanceof Element&&!!target.closest('#actionRecoveryDock,#saveStatus,#questToggle,#businessToggle'+(recoveryDialog?',#modalRoot':''));}

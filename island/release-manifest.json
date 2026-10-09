@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v140-agent-source",
+  "release": "hyper-dimension-v141-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9839,
-      "sha256": "df30ba3680341061de691042eed815c43419351257db97e2e4262cacba76c6f4"
+      "bytes": 10796,
+      "sha256": "f62c8c5b88cf3ee2858a71af013a67e89786ed1a506014e8468d0480b43572a5"
     },
     {
       "path": "README.md",
-      "bytes": 9780,
-      "sha256": "d77b32ed1e0819741ce69937a027454e6e2011e1f490ea79833ef5793c84eb62"
+      "bytes": 10628,
+      "sha256": "df367038b3465d9b13ba63e6925786be19bb409884adea3a846fb490c48c9d0f"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -72,8 +72,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 3570,
-      "sha256": "9e23ecb2064126cc1e087301122f2cd073112e3d7dc9bf558bed30bd68064bb7"
+      "bytes": 3811,
+      "sha256": "fb9df9551cb4ffd4e3578c0824fd2c7359d17ccf8093fade06bfffc6132be209"
     },
     {
       "path": "docs/PRIVACY.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 16424,
-      "sha256": "bb4ed3ae51fe502bb2c62f411ae3aa1efc94fbe2ad084b2785a67f6c1aaaef60"
+      "bytes": 18004,
+      "sha256": "0d7362604bbbe6e13fd50fe1ffc2a08679f3db5aacbd63aeaa23d3b7aa2a6552"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -166,6 +166,16 @@
       "sha256": "a00a3ed4c4f3c514a2707871974a3477c6023639f4baf21f8bda718c836340cc"
     },
     {
+      "path": "docs/map-navigation-v141-verification.json",
+      "bytes": 936,
+      "sha256": "7d86d29fd41e31eb9d731facf758274b26123b5242300f5de057327365336b0d"
+    },
+    {
+      "path": "docs/map-navigation-v141.md",
+      "bytes": 1383,
+      "sha256": "9d2007bbb10d2b8dc51dcad5640fabd99b33f72ec05ce722c91a0b2240e5520d"
+    },
+    {
       "path": "docs/media/agent-delegation.png",
       "bytes": 1122947,
       "sha256": "4605e752175a1ff80139a4c20329591dabe8eb596391f8a4ff3234c002016e1d"
@@ -234,6 +244,16 @@
       "path": "docs/media/hyper-dimension-v139-brush-poster.png",
       "bytes": 1943803,
       "sha256": "85c94184e7d3a83088823eac8281b7b38e925ee1404da010435886e574ffeba1"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v141-night-sky-16s.mp4",
+      "bytes": 10617330,
+      "sha256": "c7e3e6af53db12a665c0b736132c549bf806d96b49672103393408333f1768ba"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v141-night-sky-poster.png",
+      "bytes": 1752395,
+      "sha256": "eeea3e301a6fca3e0bb7728259e318324dab6b3ebed3aae36cf3904c02941133"
     },
     {
       "path": "docs/media/music-notes.json",
@@ -379,6 +399,21 @@
       "path": "docs/media/v139-video-verification.json",
       "bytes": 1643,
       "sha256": "aebede421fa0272ddc97d960361006bf922732bdc90188cccb2460821832a13e"
+    },
+    {
+      "path": "docs/media/v141-video-verification.json",
+      "bytes": 2987,
+      "sha256": "6281a9f683c792f00ae139d36e059eb35328159fb5cbd96e8fe76226e8de0cbf"
+    },
+    {
+      "path": "docs/night-sky-v141-verification.json",
+      "bytes": 7325,
+      "sha256": "3bda9148a974cc65c486ac2dd6847e0fe7587232aab1726e15cff03a42f48b26"
+    },
+    {
+      "path": "docs/night-sky-v141.md",
+      "bytes": 4675,
+      "sha256": "74e43492e5b332a20f71b84b7dcc37fe55e4492b570dd7ce0bf6d710cadad00d"
     },
     {
       "path": "docs/npc-map-identity-verification.json",
@@ -686,6 +721,16 @@
       "sha256": "6698eaa721ae7c28c271bea533994bce6c0576bc804fca73c5487aa8f154b5c6"
     },
     {
+      "path": "docs/screenshots/v141-origami-night-sky.png",
+      "bytes": 1552916,
+      "sha256": "a325a5899a8b8cbaca31bc83af11ca113cac23421f050ad04fc64bc3c6311f73"
+    },
+    {
+      "path": "docs/screenshots/v141-pixel-night-sky.png",
+      "bytes": 1321945,
+      "sha256": "2f37ab4708f5a081ca878a755c32e2622dcb3d5f55da6f393bb4eca47aae9e8c"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -719,6 +764,11 @@
       "path": "docs/showcase-v139.md",
       "bytes": 1730,
       "sha256": "8e16d4e3b64533bcca98113f83129a17cbed85518d536d5cbe91020ed8f3a5f0"
+    },
+    {
+      "path": "docs/showcase-v141.md",
+      "bytes": 1437,
+      "sha256": "2b8cf125063ac3abe80dee5d1892a3edf4ae86125e0d01c773c94c31e22fb09e"
     },
     {
       "path": "docs/steward-recovery-v136.md",
@@ -782,8 +832,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 6150,
-      "sha256": "e1e394fefd2742b7c18a0b1722f167e27a873a34196f2ba4cd02cc5a56a6eb9e"
+      "bytes": 6204,
+      "sha256": "8c41f4b4b5d1b3c671ee3d0cc7814fbb0460af6586da8f2bbc9dcd0d48359934"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -1292,8 +1342,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8533,
-      "sha256": "5e128b389765b262c5f6b5584fb70d7913239fa74e06cb1d196023cbb0d9a094"
+      "bytes": 8563,
+      "sha256": "10002e090fb7fcdbeb57a9e9511335e3627dd5dc0e91ff36f2198a63105f006d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3167,8 +3217,8 @@
     },
     {
       "path": "server/partyActions.mjs",
-      "bytes": 8770,
-      "sha256": "b2737dff57a9e4c0d37d463210f03f125e993f0427855dfd235d916fcb9456a6"
+      "bytes": 9433,
+      "sha256": "bcd972c1c4df0fb00d706f142ff03d5f87b78d2c970844358d669c61d8214d7c"
     },
     {
       "path": "server/partyHostingActions.mjs",
@@ -3362,8 +3412,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 3747,
-      "sha256": "a3a328e8fc5d632ef9e3bcf713d9782d37eadac70b4c398423935ee60c8e7f74"
+      "bytes": 4661,
+      "sha256": "b7c4a737b1281b3879ce920ecc8d26a9184bdb02434d39c2adacefc37197c00c"
     },
     {
       "path": "src/activityGames.js",
@@ -3377,8 +3427,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 135418,
-      "sha256": "0c881568548e10124fb8c96f4ba5437e2209825d20d06b8060017f8e7226a242"
+      "bytes": 135656,
+      "sha256": "4278be1b7f2957d8dce1abee7cbf699aec06cf1ed356a932fefd612f88effd5b"
     },
     {
       "path": "src/arcade.css",
@@ -3987,8 +4037,8 @@
     },
     {
       "path": "src/lanGameDock.js",
-      "bytes": 3867,
-      "sha256": "d01a8cbfcdd31864bcd85f720eb06236271f79ff402d4cb7ee90c1794a5d2547"
+      "bytes": 3995,
+      "sha256": "8810f751f0e9a414736a11a611516c00fcc0e75a50f74c40780f91bc0a8d7668"
     },
     {
       "path": "src/lanMap.js",
@@ -4111,14 +4161,19 @@
       "sha256": "5dfaed3211749a644624cfd2080d9af9533d999a37934317f1327bf2cab837e5"
     },
     {
+      "path": "src/night-sky-v141.css",
+      "bytes": 9295,
+      "sha256": "0ce5a23ff0ddcd01ec65c3cb965677fec8c8b97d60a11b2f6f0eabbc0b545844"
+    },
+    {
       "path": "src/nightPartyPlanning.js",
       "bytes": 8738,
       "sha256": "adc94296f6185b2316587d02952377c669996412ca08e7b7c53055e4b1e9f9f6"
     },
     {
       "path": "src/nightPartyReplay.js",
-      "bytes": 1465,
-      "sha256": "715521248a4c4d15009318bd52f8c173d15f5acdb29b223624657c7d1bd7b5b6"
+      "bytes": 1650,
+      "sha256": "b8837207f7a12b843fea607988bde47c5b35f0e4f08ba142f1842222a4327b72"
     },
     {
       "path": "src/nightPartyRuntime.js",
@@ -4127,13 +4182,28 @@
     },
     {
       "path": "src/nightPartyUI.js",
-      "bytes": 9875,
-      "sha256": "926c55b6c02cc4c009ef965699e9eef0c6a12bbbdcfbfa05c14b65b0797fd173"
+      "bytes": 9905,
+      "sha256": "342ea737fd2574563c18284addb83560c11ee756fc2b0810d32520365c5e66f9"
     },
     {
       "path": "src/nightPartyView.js",
-      "bytes": 3295,
-      "sha256": "3e5e2ca055a618e36651205f876a3cbedfc8f3aabd47a02c55da19fe5087a6c3"
+      "bytes": 3559,
+      "sha256": "bd1d8740f096da656ab3b83351c03e44bc1e1425ce799c24143e29738e65e017"
+    },
+    {
+      "path": "src/nightSkyGame.js",
+      "bytes": 5565,
+      "sha256": "a9b0250e15794409fd2898f4eff1ff7ae477d98986344cea62b4154ab4fa1c3d"
+    },
+    {
+      "path": "src/nightSkyRenderer.js",
+      "bytes": 7499,
+      "sha256": "6b16f4fd58bfb59e4fb6c58cff856e5c20d8345513162b35f3412a80eb45ff49"
+    },
+    {
+      "path": "src/nightSkyView.js",
+      "bytes": 10603,
+      "sha256": "283f0e2f20e5dcdd20ee1743e844e247f62470ae407624bf7fceb2d1b1622a87"
     },
     {
       "path": "src/npcBrain.js",
@@ -4177,8 +4247,8 @@
     },
     {
       "path": "src/partyDesigner.js",
-      "bytes": 11291,
-      "sha256": "fba84e2985072178279bed6ac17fa72fe6c336ed9dd4a2d015f059984622ddd4"
+      "bytes": 11294,
+      "sha256": "181e9f30b77db616e5cb17e23674e2ac698c66d982d074126e6e3028270ffaca"
     },
     {
       "path": "src/partyGuide.js",
@@ -4202,8 +4272,8 @@
     },
     {
       "path": "src/partyPlanning.js",
-      "bytes": 17337,
-      "sha256": "4b7d2d863f22ac375e563ffa96b0d0f5952198359b91fdb8ec4d9d2643be3b7d"
+      "bytes": 17424,
+      "sha256": "15f75e4c681923cc276dc4594af167dd5a3395ae0ba8c741b34148ce33a20cd4"
     },
     {
       "path": "src/partyReceipts.js",
@@ -4492,8 +4562,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 7963,
-      "sha256": "2795badfa2b4af6cf9e28f2e1ee395fc3c4d056533d7b52d00338b74263c9697"
+      "bytes": 8808,
+      "sha256": "91f1ff2fd2b09729f0522656310b18baf8258c786cebb1094c178d04d1ab3a41"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -4816,6 +4886,16 @@
       "sha256": "672618b3a27a614ee2a126b4d479b382080d754620ab08260f7dce0e9b03d989"
     },
     {
+      "path": "tests/map-interaction-locks-browser.mjs",
+      "bytes": 5475,
+      "sha256": "37e12df77e9a1c41ea1c1778bfda9a9f209ea41a74b1c61a6e01ea25d5b85874"
+    },
+    {
+      "path": "tests/map-navigation-browser.mjs",
+      "bytes": 7803,
+      "sha256": "d4d6ac60e41b4ce4ba3a29dc23ee683c2709460ec0e4834204572293b2ed7961"
+    },
+    {
       "path": "tests/mine-workshop-smoke.mjs",
       "bytes": 2116,
       "sha256": "264c6ac5e86f62623c6ddf8ae4e6526d565b367f5e682c0e1c349111c72ed73c"
@@ -4824,6 +4904,16 @@
       "path": "tests/model-policy.test.mjs",
       "bytes": 4970,
       "sha256": "7d042ee2071bab9fb7ea490fe7c203144ca6f86a289146394c855085a119a2d0"
+    },
+    {
+      "path": "tests/night-play-browser.mjs",
+      "bytes": 1816,
+      "sha256": "5f8600186b0d29f3aae5cff89b0577b3af57796192d532391789303a9da8393c"
+    },
+    {
+      "path": "tests/night-trace-fixture.mjs",
+      "bytes": 1242,
+      "sha256": "0f046e5891895b01c426d2f22482f7a2200a52d869fda2fe1675196a52b109d3"
     },
     {
       "path": "tests/party-smoke.mjs",
@@ -4992,8 +5082,8 @@
     },
     {
       "path": "tests/v100-zero-first-night-browser.mjs",
-      "bytes": 16586,
-      "sha256": "3d208143935ec434c7a7c11e43dd3a064c7edb177925ec1ac99b09989824a735"
+      "bytes": 17394,
+      "sha256": "3a6a1579d387759d09b55c0f5294b3b838ef090fd87d48be656a0b2fd5baca59"
     },
     {
       "path": "tests/v100-zero-journey-browser.mjs",
@@ -5087,8 +5177,8 @@
     },
     {
       "path": "tests/v110-classic-recovery-browser.mjs",
-      "bytes": 8739,
-      "sha256": "f0f04e6b34ee7874c46224ab73d3cde247156f97b300836cb4c2e0a9f98ef615"
+      "bytes": 9108,
+      "sha256": "f33f0c7492919235faa9bf5080177aa5cd93787c49879f2d53c344e61c6b1365"
     },
     {
       "path": "tests/v110-classic-settlement-browser.mjs",
@@ -5417,13 +5507,23 @@
     },
     {
       "path": "tests/v140-recruitment-journey-browser.mjs",
-      "bytes": 11705,
-      "sha256": "4a5ed8929130aeae8eea36c28b298c1af3b43e2ab798aaf256a00850c09e9856"
+      "bytes": 11296,
+      "sha256": "26aec0bf4b7c3add16f7a955e1661e7cb92608916b8083177ea37d19527d10d8"
     },
     {
       "path": "tests/v140-resident-handover.test.mjs",
       "bytes": 5707,
       "sha256": "ed8d3504e047b930f18c1fe993de1e7d07e5b839206856ecdd46fec168e8049e"
+    },
+    {
+      "path": "tests/v141-night-sky-browser.mjs",
+      "bytes": 11862,
+      "sha256": "91ed1874fee0ea0c3e2d1c1f3ff5f62663484ed29dcd4fcba79266f955c16892"
+    },
+    {
+      "path": "tests/v141-night-sky.test.mjs",
+      "bytes": 5367,
+      "sha256": "5d457fc440af7a06c4fad593b82dd37cf6efb0b3f14ad8dfd94abb402cda9a26"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -6267,8 +6367,8 @@
     },
     {
       "path": "tests/v53-party-hire-actions.test.mjs",
-      "bytes": 14284,
-      "sha256": "fa607ba5d9b4f0c0bc0ccb6fa478e683d710884f820d6a9f67617d1b4300ca37"
+      "bytes": 17533,
+      "sha256": "b2488487db2f6555fb5bf4d8824728c114cddd4f9afff79adf0a98e3fbee3aec"
     },
     {
       "path": "tests/v54-custom-party-browser.mjs",
@@ -6812,13 +6912,13 @@
     },
     {
       "path": "tests/v86-night-planning-browser.mjs",
-      "bytes": 11414,
-      "sha256": "512e9b2acef42834dff831f2716569934b4bb18ebd225116d16abbc383d6a7c5"
+      "bytes": 11809,
+      "sha256": "49297fa455b3e7be576d2155dd10f84b3de3def967845a44c73ad91d904e8f1d"
     },
     {
       "path": "tests/v86-night-planning.test.mjs",
-      "bytes": 11852,
-      "sha256": "9976f0da69c4470574ceb544d12c8be414dedd3ab073f522e7ae7e37a0ce5b64"
+      "bytes": 11760,
+      "sha256": "ec30cb8f6d8497be6de3a641e1ee7bf7ee574cc47fa30eae504c447741519b96"
     },
     {
       "path": "tests/v87-market-browser.mjs",
@@ -6932,8 +7032,8 @@
     },
     {
       "path": "tests/v91-night-regression-browser.mjs",
-      "bytes": 7220,
-      "sha256": "e1049b4c73dea6ef21073a53fd514aa3b56b210031c6ffeb28b60d1a27d82d65"
+      "bytes": 6920,
+      "sha256": "55765752ef3493e3f67d3e0114cfb8cfc2e80a725d1a4119b2177d08926d69a9"
     },
     {
       "path": "tests/v91-party-guide-browser.mjs",
@@ -6952,8 +7052,8 @@
     },
     {
       "path": "tests/v92-cooperation-fixture.mjs",
-      "bytes": 10924,
-      "sha256": "dcff8f96cfd367fd2915df73cb02053f74e65650501eff355ea9f388617b076c"
+      "bytes": 10985,
+      "sha256": "3f77c688c2d8c3602214d6c44198983ce1b7a7ba9e761796e727fe3fc6bc40de"
     },
     {
       "path": "tests/v92-cooperation-hermes.mjs",
@@ -7721,5 +7821,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v140-github"
+  "publicRevision": "v141-github"
 }

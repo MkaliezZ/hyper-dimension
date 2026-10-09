@@ -1,3 +1,4 @@
+import {playNightUI} from './night-play-browser.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
@@ -14,7 +15,7 @@ for(const [key,sub]of Object.entries({HD_SAVE_DIR:'saves',HD_HERMES_HOME:'hermes
 const {createLanHttpServer}=await import('../server/lanServer.mjs');
 const service=await createLanHttpServer({directory:join(directory,'server'),port:0,enrollmentKey:'ISOLATED-REAL-JOURNEY'});
 const base='http://127.0.0.1:'+service.port;
-const report={at:new Date().toISOString(),sourceVersion:'V140 candidate',scope:'Real configured Hermes parent/child delegation, actual UI draft/plan/recruitment, normal-clock ferry/roads/production, personal invitation and native night-party completion, wage/departure and reload. Initial progressed fixture only:140coins,2fiber,3wheat,8bread,8fruit; no lantern/wood/quartz/wax, no seeded contracts/positions/clocks/results. Automatic NPC/model requests blocked; only requested recruitment uses the provider. Not zero-start, physical Mac/multi-device, human or whole-goal acceptance.',directory,cases:[],passed:false};let browser;const activePages=new Map();
+const report={at:new Date().toISOString(),sourceVersion:'V141 candidate',scope:'Real configured Hermes parent/child delegation, actual UI draft/plan/recruitment, normal-clock ferry/roads/production, personal invitation and native night-party completion, wage/departure and reload. Initial progressed fixture only:140coins,2fiber,3wheat,8bread,8fruit; no lantern/wood/quartz/wax, no seeded contracts/positions/clocks/results. Automatic NPC/model requests blocked; only requested recruitment uses the provider. Not zero-start, physical Mac/multi-device, human or whole-goal acceptance.',directory,cases:[],passed:false};let browser;const activePages=new Map();
 const save=()=>writeFile(join(out,'report.json'),JSON.stringify(report,null,2));
 try{
  browser=await chromium.launch(browserLaunchOptions());
@@ -50,7 +51,7 @@ try{
   for(const id of [0,2]){await page.locator('[data-night-invite="'+id+'"]').click();await page.locator('#nightInviteConfirm').click();await page.waitForFunction(n=>window.islandInspect().nightParty.draft.invites[n]?.version===window.islandInspect().nightParty.draft.version,id);}
   await page.locator('#nightStart').click();await page.locator('#launchLantern').waitFor();
   await wait('all-residents-arrived',s=>Object.values(s.attendance?.people||{}).length>0&&Object.values(s.attendance.people).every(p=>p.arrived),150);
-  for(let lantern=0;lantern<4;lantern++){await page.waitForFunction(()=>{const b=document.querySelector('#launchLantern'),marker=document.querySelector('#partyMarker'),track=marker?.parentElement;if(!b||b.disabled||b.classList.contains('hidden')||!track)return false;const m=marker.getBoundingClientRect(),t=track.getBoundingClientRect(),r=(m.x+m.width/2-t.x)/t.width;return r>.44&&r<.56;},null,{timeout:30000});await page.locator('#launchLantern').click();await page.waitForTimeout(350);}
+  await playNightUI(page);
   await page.locator('#nightClaim').click();const finished=await wait('party-result-saved',s=>s.party.history.some(h=>h.id===row.draftId&&h.phase==='finished'),60);row.partyResult=finished.party.history.find(h=>h.id===row.draftId);row.eventId=row.partyResult.eventId;assert(row.partyResult.paid>=20);
   const disk=await tenant.saves.current(theme);const provenance=disk.state.eventWonders.sources[row.eventId];assert(provenance?.proof?.some(p=>p.parentRunId===run.parent.id&&p.childRunId===run.child.id));row.cooperationProof=provenance.proof;row.achievement=disk.state.achievementBook.cooperated[row.eventId];assert(row.achievement);
   await page.screenshot({path:join(out,theme+'-finished.png')});await page.locator('#closeModal').click();

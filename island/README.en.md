@@ -4,13 +4,13 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V140 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V141 development snapshot**; full product acceptance is still in progress.
 
 ## See the island
 
 [![Hyper Dimension · current 30-second showcase](docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge)
 
-[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Current source delivery](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v140)
+[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#overview) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Source packages and release history](https://github.com/MkaliezZ/hyper-dimension/releases)
 
 Click a cover or video title to open the online player. MP4 downloads are available separately inside the player. A dedicated 45-second gallery tour shows the biography, eight life/education/work chapters, three projects with images, a visitor message and the owner’s reply, plus both visual styles.
 
@@ -27,9 +27,20 @@ Native 2560 × 1440, 60 fps footage includes the gallery's biography, experience
 | Switch art styles | One island and save, two appearances; continuous detailed terrain tiles, themed rooms/UI, ocean ripples and shoreline waves. |
 | Watch the seasons | Seasonal forests, petals, leaves and snow crystals; 30 visual days per season, 120 per cycle. Day/night visuals are paused; shared-server clock interfaces remain available. |
 
+### V141 starlight gathering
+
+[![V141 · Dual-style collaborative night sky](docs/media/hyper-dimension-v141-night-sky-poster.png)](https://mkaliezz.github.io/hyper-dimension/#night)
+
+[Watch the new 16-second gameplay clip](https://mkaliezz.github.io/hyper-dimension/#night): 1440p / 60 fps, the actual island modal, resident attendance, four lantern flights and authoritative payout, with original BGM. The minigame prototype continues to be improved.
+
+Aim four lanterns through changing wind and clouds, use one air correction per flight and light a constellation with the residents who actually arrive. Save/reload preserves flight progress; hosting and rewards retain their existing rules. Both styles pass a zero-stock journey through the first gathering and empty-browser restore, plus 878 default checks. [Gameplay and evidence](docs/night-sky-v141.md).
+
 ### Map resident selection fix
 
 Rendered names, bodies and detail cards now share a stable resident identity; overlapping targets follow paint order and hover reveals names. All 15 AI residents and the steward pass native map-click checks in both art styles. [Verification](docs/npc-map-identity.md).
+
+
+Map movement and building entry now recover correctly after overlapping overlays; visitor preparation no longer pauses an island before its dialog opens. [Interaction repair](docs/map-navigation-v141.md).
 
 ### Actual game views
 

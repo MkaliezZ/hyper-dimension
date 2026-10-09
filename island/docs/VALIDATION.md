@@ -114,3 +114,12 @@ Both native styles pass a continuous real-provider delegation journey with norma
 修复姓名牌与脚底命中范围不一致、重叠居民按数组顺序误选的问题；地图身体、姓名与气泡共用稳定身份。8项直接回归、两种画风各18次真实鼠标点击通过，包含全部15名AI居民、管家与缩放拖拽后的黎音姓名。[说明与证据](npc-map-identity.md)。
 
 Rendered nameplates and bodies now select the same stable resident identity. Eight focused tests and36 native clicks across both art styles pass.
+
+
+## V141 · 星图夜集 / Starlight gathering
+
+基础夜集新增四幕随机星点、持续横风与云带、原生瞄准和一次空中修正；保留原费用、奖励、邀请同意、贡献和纪念品规则。旧进行中作业保留节奏玩法版本。默认回归878项通过（864领域、14维护）；双画风原生输入、触控、飞行中刷新、丢失结算回复、三居民方案与礼物／再同意、经典连连看与三消恢复通过。双画风真正零库存／零币、正常时钟完整完成采集、正式制作、约181秒实际成熟等待、订单、居民备料、亲自邀请、实际道路到场、四幕夜集、纪念品及空浏览器恢复。隔离数据未调用模型，真实物理设备、真人手感和完整验收继续保留原有范围。[说明与脱敏证据](night-sky-v141.md)。
+
+Both themes pass native input/recovery, three-resident consent and gifts, classic-game recovery and a genuinely zero-stock first-day journey through farming, resident deliveries, attendance, a four-flight gathering, authoritative rewards and empty-browser restore. The default gate passes878 checks. These focused isolated tests use the normal clock and no provider calls; they do not replace human, physical Mac or whole-product acceptance.
+
+V141 追加地图交互复核：双画风原生空地点击、居民弹窗关闭、建筑到达及进入；叠加恢复锁释放和会客准备／关闭均通过。[记录](map-navigation-v141.md)。

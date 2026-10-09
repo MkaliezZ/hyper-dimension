@@ -4,22 +4,32 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V140 开发快照**，完整产品验收仍在进行。
+在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V141 开发快照**，完整产品验收仍在进行。
 
 ## 看一眼这座岛
 
 [![Hyper Dimension · V138 原机管家 30 秒演示](island/docs/media/hyper-dimension-v138-bridge-framing-v2-poster.png)](https://mkaliezz.github.io/hyper-dimension/#bridge)
 
-[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [当前源码交付包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v140)
+[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#overview) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码包与版本记录](https://github.com/MkaliezZ/hyper-dimension/releases)
 
 点击封面或视频标题即可打开在线播放页；MP4 下载在播放器内单独提供。新增 45 秒会客馆内部导览，展示介绍、八段人生／教育／就业经历、三个项目及配图、访客留言与岛主回复，以及双画风展厅。
 
 本版视频为 2560 × 1440、60 fps 的实际页面录制，包含会客馆内部档案、项目图片与留言。工作资料、个人经历和图片均为虚构示例；管家文件任务实际调用 Hermes 工具执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [录制与验证说明](island/docs/showcase-v135.md)。
 
 
-### 地图居民点击修复
+### V141 共绘星图夜集
+
+[![V141 · 双画风共绘星图夜集](island/docs/media/hyper-dimension-v141-night-sky-poster.png)](https://mkaliezz.github.io/hyper-dimension/#night)
+
+[观看 16 秒新玩法片段](https://mkaliezz.github.io/hyper-dimension/#night)：1440p / 60 fps、原生岛屿弹窗、居民到场、四盏飞行星灯和实际结算，配原创 BGM。小游戏演示仍在继续优化。
+
+观察海风和云带，瞄准并放飞四盏星灯，每盏可空中修正一次；与真实到场的居民一起点亮星图、领取纪念品。飞行进度可保存和刷新恢复，费用与奖励保持原规则。两种画风的真正零起点到首场夜集、空浏览器恢复及878项默认回归已通过。[玩法与验证](island/docs/night-sky-v141.md)。
+
+### 地图点击与居民身份修复
 
 姓名牌、人物与档案按同一居民编号对应；重叠时按显示顺序选择，悬停可查看姓名。像素与折纸两套画风的全部15名AI居民及管家已通过地图点击验证。 [验证说明](island/docs/npc-map-identity.md)。
+
+修复会客准备阶段提前暂停，以及提示叠加后遗留的点击锁；两画风空地移动、建筑到达及进入房间已复核。[交互修复](island/docs/map-navigation-v141.md)。
 
 ### V140 主子 Agent 活动流程
 

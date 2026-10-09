@@ -26,7 +26,7 @@ import {marketStalls,drawMarketStall} from './marketArt.js';
 import{nightReadiness}from'./nightPartyPlanning.js';
 import{partyDraftStamp}from'./partyPlanning.js';
 import {openResidentTravelHistory} from './lanSocialUI.js';
-import {setRecoveryDialog,configureActionRecovery,isRecoveryTarget} from './actionRecoveryUI.js';
+import {setBaseUIInert,setRecoveryDialog,configureActionRecovery,isRecoveryTarget} from './actionRecoveryUI.js';
 import {createServerPersonal} from './serverPersonalUI.js';
 import {createServerFacility} from './serverFacilityUI.js';
 import {createNightPartyRuntime,nightPartyArrived} from './nightPartyRuntime.js';
@@ -621,10 +621,10 @@ serverFieldNpc=createServerFieldNpc({saves,theme:()=>theme,persist,toast,applySt
 serverResident=createServerResident({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI()}});
 serverCommerce=createServerCommerce({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI()}});
 nightUI=createNightPartyUI({state:()=>state,theme:()=>theme,profile,portrait:halfPortrait,openModal,toast,persist,command:(op,args={})=>serverCommerce.command(op,{day:state.day,...args}),back:showParty,start:startLanternGame,collections:()=>collectionsUI.open()});
-serverParty=createServerCraft({saves,theme:()=>theme,persist,toast,kind:'party',idPrefix:'party',noun:'相聚',beginInput:input=>({fireworks:!!input.fireworks,...(input.hostIntentId?{hostIntentId:input.hostIntentId}:{}),...(input.eventId?{eventId:input.eventId,eventVersion:input.eventVersion,eventStamp:input.eventStamp}:{})}),restartInput:t=>({fireworks:t.fireworks,...(t.design?{eventId:t.design.id,eventVersion:t.design.version,eventStamp:t.design.stamp}:{})}),
+serverParty=createServerCraft({saves,theme:()=>theme,persist,toast,kind:'party',idPrefix:'party',noun:'相聚',continuousCheckpoint:t=>t?.game?.engine==='night-sky',beginInput:input=>({gameVersion:2,fireworks:!!input.fireworks,...(input.hostIntentId?{hostIntentId:input.hostIntentId}:{}),...(input.eventId?{eventId:input.eventId,eventVersion:input.eventVersion,eventStamp:input.eventStamp}:{})}),restartInput:t=>({fireworks:t.fireworks,...(t.design?{eventId:t.design.id,eventVersion:t.design.version,eventStamp:t.design.stamp}:{})}),
  applyState:next=>{state=next;partyGame=next.partySession||null;renderUI()},
- mount:(ticket,controls)=>{roomGame=null;openModal(ticket.name+' · 四盏星灯','本场进度已保存在小岛，收起页面后可继续相聚。','<div id="nightPartyRoot"></div>');$('modalRoot').querySelector('.modal').classList.add('night-party-modal');
-  const raw=mountNightParty($('nightPartyRoot'),ticket,controls,{theme,arrived:()=>nightPartyArrived(state),sound:s=>soundMixer.play(s),effect:precise=>burst(actor.x,actor.y-75,precise?'#ffe9a0':'#c2e5d4',20)});roomGame={inspect:raw.inspect,destroy:raw.destroy};return raw;},
+ mount:(ticket,controls)=>{roomGame=null;openModal(ticket.name+' · '+(ticket.game.engine==='night-sky'?'共绘星图':'四盏星灯'),'本场进度已保存在小岛，收起页面后可继续相聚。','<div id="nightPartyRoot"></div>');$('modalRoot').querySelector('.modal').classList.add('night-party-modal');
+  const raw=mountNightParty($('nightPartyRoot'),ticket,controls,{theme,people:(ticket.design?.participants||[0,2]).map(id=>({id,name:profile(id).name})),arrived:()=>nightPartyArrived(state),sound:s=>soundMixer.play(s),effect:precise=>burst(actor.x,actor.y-75,precise?'#ffe9a0':'#c2e5d4',20)});roomGame={inspect:raw.inspect,destroy:raw.destroy};return raw;},
  closeGame:()=>{roomGame=null;closeModal();partyGame=state.partySession||null;partySettling=false;},
  animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>{burst(actor.x,actor.y-65,'#f9d378',35);if(t.fireworks){burst(actor.x-70,actor.y-135,'#ec97aa',28);burst(actor.x+70,actor.y-155,'#94dbe0',28)}},done);}),
  onComplete:r=>{partyGame=null;partySettling=false;log(r.text);toast(r.text);renderUI();nightUI.open();}
@@ -719,7 +719,7 @@ function beginMoment(id){
  soundMixer.play('victory');celebration={id,moment:custom,time:0,savedCamera,center};particles=[];document.body.classList.add('moment-playing');
  const overlay=document.createElement('section');overlay.id='momentOverlay';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label',m.title);
  overlay.innerHTML='<header class="moment-title"><small>'+m.eyebrow+'</small><h2>'+m.title+'</h2></header><article class="moment-letter"><div class="moment-letter-top">'+momentSeal(m.id)+'<p id="momentChapter">'+m.chapters[0]+'</p></div><blockquote>'+m.quote+'</blockquote><div class="moment-prize">留下的纪念 · '+m.reward+'</div><div class="moment-time"><i id="momentTime"></i></div><footer><button class="moment-later" id="momentLater">稍后再看</button><button id="momentClaim">跳过演出并收下纪念</button></footer></article>';
- document.body.append(overlay);$('app').inert=true;$('momentLater').onclick=()=>endMoment(false);$('momentClaim').onclick=()=>endMoment(true);$('momentClaim').focus();
+ document.body.append(overlay);setBaseUIInert($('app'),true);$('momentLater').onclick=()=>endMoment(false);$('momentClaim').onclick=()=>endMoment(true);$('momentClaim').focus();
  overlay.onkeydown=e=>{if(e.key==='Tab'){const buttons=[...overlay.querySelectorAll('button')];const i=buttons.indexOf(document.activeElement);e.preventDefault();buttons[(i+(e.shiftKey?-1:1)+buttons.length)%buttons.length].focus()}};
  persist();
 }
@@ -730,7 +730,7 @@ function updateMoment(dt){
  if(e.time>=9)$('momentClaim').textContent='收下这份纪念 →';
 }
 async function endMoment(claim){
- const e=celebration;if(!e||e.claiming)return;let reward=null;if(claim){e.claiming=true;const button=$('momentClaim');if(button){button.disabled=true;button.textContent='正在收下纪念…';}try{const r=await serverPersonal.command(e.moment?'specialization':'moment',{day:state.day,...e.moment?{path:e.moment.path,rank:e.moment.rank}:{momentId:e.id}});reward=r.receipt.details;}catch(error){e.claiming=false;if(button?.isConnected){button.disabled=false;button.textContent='核对后收下纪念 →';}toast(error.message);return;}}celebration=null;$('momentOverlay')?.remove();$('app').inert=false;document.body.classList.remove('moment-playing');
+ const e=celebration;if(!e||e.claiming)return;let reward=null;if(claim){e.claiming=true;const button=$('momentClaim');if(button){button.disabled=true;button.textContent='正在收下纪念…';}try{const r=await serverPersonal.command(e.moment?'specialization':'moment',{day:state.day,...e.moment?{path:e.moment.path,rank:e.moment.rank}:{momentId:e.id}});reward=r.receipt.details;}catch(error){e.claiming=false;if(button?.isConnected){button.disabled=false;button.textContent='核对后收下纪念 →';}toast(error.message);return;}}celebration=null;$('momentOverlay')?.remove();setBaseUIInert($('app'),false);document.body.classList.remove('moment-playing');
  camera.x=e.savedCamera.x;camera.y=e.savedCamera.y;zoom=e.savedCamera.zoom;clampCamera();updateSceneUI();renderUI();persist();
  if(reward)toast('已铭记 · '+reward.title+'。纪念装饰已留在岛上。');
  $('journalOpen')?.focus();

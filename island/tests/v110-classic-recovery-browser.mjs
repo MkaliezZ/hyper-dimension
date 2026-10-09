@@ -1,27 +1,25 @@
 import {chromium} from 'playwright-core';
-import {spawn} from 'node:child_process';
-import {createServer} from 'node:net';
 import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import {createSaveStore} from '../server/saveStore.mjs';
 import {createZeroState} from '../src/freshStart.js';
 import {hydrateTown} from '../src/townSimulation.js';
 import {CATALOG_ITEMS} from '../src/contentCatalog.js';
 import {suggestMatchMove} from '../src/classicRules.js';
 import {browserLaunchOptions} from './browserRuntime.mjs';
 const out=path.resolve(process.env.HD_QA_OUT||'qa/v110/native-classic');await mkdir(out,{recursive:true});
-const directory=await mkdtemp(path.join(out,'save-')),store=createSaveStore({directory});
-for(const theme of ['pixel','origami']){const state=hydrateTown(createZeroState());state.freshStartPending=false;for(const item of CATALOG_ITEMS)state.inventory[item.id]=99;await store.open(theme,{legacyState:state,protect:true});}
-const socket=createServer();await new Promise(r=>socket.listen(0,'127.0.0.1',r));const port=socket.address().port;await new Promise(r=>socket.close(r));
-const server=spawn(process.execPath,['server.mjs','--port='+port],{windowsHide:true,env:{...process.env,DEEPSEEK_API_KEY:'',HD_SAVE_DIR:directory},stdio:'ignore'}),base='http://127.0.0.1:'+port;
+const directory=await mkdtemp(path.join(out,'save-'));
+for(const[key,sub]of Object.entries({HD_SAVE_DIR:'saves',HD_ENVIRONMENT_DIR:'environment',HD_HERMES_HOME:'hermes',HD_RUN_LEDGER_DIR:'runs',HD_STEWARD_WORKDIR:'documents',HD_ARTIFACT_DIR:'artifacts'}))process.env[key]=path.join(directory,sub);
+const{createLanHttpServer}=await import('../server/lanServer.mjs');
+const service=await createLanHttpServer({directory:path.join(directory,'server'),port:0,enrollmentKey:'ISOLATED-CLASSIC-RECOVERY'}),base='http://127.0.0.1:'+service.port;
 const report={scope:'Actual room UI link/match games, normal game clock, native cell clicks and server disk settlement. Isolated stock fixtures (99 each); no board, seed, result or clock injection; model endpoints blocked. Definite finish rejection and lost committed response are injected transport faults.',checks:[],errors:[]};let browser,page,releaseCheckpoint;
 try{
- for(let i=0;i<100;i++){try{if((await fetch(base+'/src/classicGames.js')).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
  browser=await chromium.launch(browserLaunchOptions());
  for(const theme of ['pixel','origami']){
-  const context=await browser.newContext({viewport:{width:1440,height:1000}});await context.route('**/api/**',r=>(r.request().url().includes('/api/saves/')||r.request().url().endsWith('/api/status'))?r.continue():r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated minigame QA"}'}));
-  page=await context.newPage();page.on('pageerror',e=>report.errors.push(theme+': '+e.message));await page.goto(base+'/?qa=1&theme='+theme);await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!document.querySelector('#app').hasAttribute('aria-busy'),null,{timeout:30000});
+  const account=await service.identities.register({login:'classic_'+theme,password:'fictional-recovery-fixture',name:'测试岛主',islandName:'小游戏恢复岛',avatar:'female_1',theme}),tenant=await service.tenants.get(account.token),store=tenant.saves;
+  const state=hydrateTown(createZeroState());state.freshStartPending=false;for(const item of CATALOG_ITEMS)state.inventory[item.id]=99;await store.open(theme,{legacyState:state,protect:true});
+  const context=await browser.newContext({viewport:{width:1440,height:1000},extraHTTPHeaders:{'X-HD-Island':tenant.accountId}});await context.addCookies([{name:'hd_lan_session',value:account.token,url:base,httpOnly:true,sameSite:'Strict'}]);await context.route('**/api/**',r=>(r.request().url().includes('/api/saves/')||r.request().url().endsWith('/api/status')||r.request().url().includes('/api/world/')||r.request().url().includes('/api/lan/'))?r.continue():r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated minigame QA"}'}));
+  page=await context.newPage();page.on('pageerror',e=>report.errors.push(theme+': '+e.message));await page.goto(base+'/play?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!document.querySelector('#app').hasAttribute('aria-busy'),null,{timeout:30000});assert.equal(await page.evaluate(()=>window.islandInspect().theme),theme);
   for(const id of [7,3]){
    const get=()=>page.evaluate(()=>window.islandInspect().roomGame);let held=false,finishFault=false;const fault=theme==='pixel'&&id===7?'definite-rejection':'lost-committed-response';
    await page.route('**/api/saves/'+theme+'/action',async route=>{
@@ -60,4 +58,4 @@ try{
   await context.close();
  }
  assert.deepEqual(report.errors,[]);report.passed=true;
-}catch(e){report.failure=e.stack;process.exitCode=1;report.ui=await page?.evaluate(()=>({craft:window.islandInspect?.().serverCraft,game:window.islandInspect?.().roomGame,heading:document.querySelector('#craftHeading')?.textContent,message:document.querySelector('#craftMessage')?.textContent})).catch(()=>null);await page?.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});}finally{releaseCheckpoint?.();await browser?.close();server.kill();await writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,checks:report.checks,errors:report.errors,failure:report.failure}));}
+}catch(e){report.failure=e.stack;process.exitCode=1;report.ui=await page?.evaluate(()=>({craft:window.islandInspect?.().serverCraft,game:window.islandInspect?.().roomGame,heading:document.querySelector('#craftHeading')?.textContent,message:document.querySelector('#craftMessage')?.textContent})).catch(()=>null);await page?.screenshot({path:path.join(out,'failure.png')}).catch(()=>{});}finally{releaseCheckpoint?.();await browser?.close();await service.close();await writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,checks:report.checks,errors:report.errors,failure:report.failure}));}

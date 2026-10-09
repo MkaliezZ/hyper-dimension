@@ -1,0 +1,43 @@
+{
+  "version": "V141",
+  "nativeEdge": true,
+  "productionSaveChanged": false,
+  "modelCalls": false,
+  "checks": [
+    {
+      "scope": "map-navigation-after",
+      "passed": true,
+      "cases": [
+        {
+          "theme": "pixel",
+          "passed": true
+        },
+        {
+          "theme": "origami",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "scope": "map-interaction-locks-final",
+      "passed": true,
+      "cases": [
+        {
+          "test": "moment-close-overlapping-recovery",
+          "passed": true,
+          "remainedInert": false
+        },
+        {
+          "test": "slow-visit-preparation-map-remains-playable",
+          "passed": true,
+          "moved": true
+        },
+        {
+          "test": "visible-visit-dialog-pauses-and-close-resumes",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "wholeProductAcceptance": false
+}

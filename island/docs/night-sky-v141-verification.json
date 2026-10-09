@@ -1,0 +1,249 @@
+{
+  "version": "V141",
+  "at": "2026-10-09T10:48:31.595350+00:00",
+  "scope": "Server-seeded night-sky gameplay and recovery in isolated fictional worlds; native browser inputs, normal clock and disk receipts. No external model requests or production saves. Not human, physical Mac, long-term or whole-product acceptance.",
+  "nightInputRecovery": [
+    {
+      "theme": "pixel",
+      "normalBeginIsPendingNotRecovery": true,
+      "actualRoadArrival": true,
+      "mouseAim": true,
+      "controlsAndStageOnScreen": true,
+      "oneActualAirCorrection": true,
+      "inFlightReload": true,
+      "mobileTouchAim": true,
+      "mobileNoOverflow": true,
+      "liveFlightContinuesDuringCheckpoint": true,
+      "score": 3,
+      "normalClaimIsPendingNotRecovery": true,
+      "failureHasRealRecoveryActions": true,
+      "reward": 26,
+      "lostFinishUniquePayout": true,
+      "noResidualRecoveryLock": true,
+      "diskReloadPreserved": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "normalBeginIsPendingNotRecovery": true,
+      "actualRoadArrival": true,
+      "mouseAim": true,
+      "controlsAndStageOnScreen": true,
+      "oneActualAirCorrection": true,
+      "inFlightReload": true,
+      "mobileTouchAim": true,
+      "mobileNoOverflow": true,
+      "liveFlightContinuesDuringCheckpoint": true,
+      "score": 4,
+      "normalClaimIsPendingNotRecovery": true,
+      "failureHasRealRecoveryActions": true,
+      "reward": 28,
+      "lostFinishUniquePayout": true,
+      "noResidualRecoveryLock": true,
+      "diskReloadPreserved": true,
+      "passed": true
+    }
+  ],
+  "customThreeResidents": [
+    {
+      "theme": "pixel",
+      "actualOwnerRoute": true,
+      "designerDesktopAnd390px": true,
+      "threeActualGiftDeliveries": true,
+      "renameKeepsConsent": true,
+      "keyEditRevokesConsent": true,
+      "oldPlanCancelled": true,
+      "reconfirmNoSecondGift": true,
+      "actualThreeSeparateArrivals": true,
+      "pausedClosedReloadedSameId": true,
+      "fourNativeAimedFlights": true,
+      "threeDistinctRenderedStagePositions": true,
+      "lostClaimOriginalIdRetryOnce": true,
+      "score": 4,
+      "reward": 31,
+      "historyReloaded": true,
+      "requests": 79
+    },
+    {
+      "theme": "origami",
+      "actualOwnerRoute": true,
+      "designerDesktopAnd390px": true,
+      "threeActualGiftDeliveries": true,
+      "renameKeepsConsent": true,
+      "keyEditRevokesConsent": true,
+      "oldPlanCancelled": true,
+      "reconfirmNoSecondGift": true,
+      "actualThreeSeparateArrivals": true,
+      "pausedClosedReloadedSameId": true,
+      "fourNativeAimedFlights": true,
+      "threeDistinctRenderedStagePositions": true,
+      "lostClaimOriginalIdRetryOnce": true,
+      "score": 4,
+      "reward": 31,
+      "historyReloaded": true,
+      "requests": 75
+    }
+  ],
+  "classicRecovery": [
+    {
+      "theme": "pixel",
+      "id": 7,
+      "inputs": 8,
+      "attempts": [
+        {
+          "seed": 3438592323,
+          "won": true
+        }
+      ],
+      "seed": 3438592323,
+      "quality": 100,
+      "delayedFinalCheckpointKeepsDisabled": true,
+      "transportFault": "definite-rejection",
+      "receiptCount": 1,
+      "product": {
+        "c7_0": 1
+      },
+      "historyIncrement": 1,
+      "recovery": "retry-button",
+      "compactNoOverflow": true
+    },
+    {
+      "theme": "pixel",
+      "id": 3,
+      "inputs": 3,
+      "attempts": [
+        {
+          "seed": 2112909184,
+          "won": true
+        }
+      ],
+      "seed": 2112909184,
+      "quality": 100,
+      "delayedFinalCheckpointKeepsDisabled": true,
+      "transportFault": "lost-committed-response",
+      "receiptCount": 1,
+      "product": {
+        "bouquet": 1
+      },
+      "historyIncrement": 1,
+      "recovery": "retry-button",
+      "compactNoOverflow": true
+    },
+    {
+      "theme": "origami",
+      "id": 7,
+      "inputs": 8,
+      "attempts": [
+        {
+          "seed": 3220743983,
+          "won": true
+        }
+      ],
+      "seed": 3220743983,
+      "quality": 100,
+      "delayedFinalCheckpointKeepsDisabled": true,
+      "transportFault": "lost-committed-response",
+      "receiptCount": 1,
+      "product": {
+        "c7_0": 1
+      },
+      "historyIncrement": 1,
+      "recovery": "retry-button",
+      "compactNoOverflow": true
+    },
+    {
+      "theme": "origami",
+      "id": 3,
+      "inputs": 8,
+      "attempts": [
+        {
+          "seed": 1161683605,
+          "won": true
+        }
+      ],
+      "seed": 1161683605,
+      "quality": 97,
+      "delayedFinalCheckpointKeepsDisabled": true,
+      "transportFault": "lost-committed-response",
+      "receiptCount": 1,
+      "product": {
+        "bouquet": 1
+      },
+      "historyIncrement": 1,
+      "recovery": "reload",
+      "compactNoOverflow": true
+    }
+  ],
+  "zeroFirstNight": [
+    {
+      "theme": "pixel",
+      "serverZero": true,
+      "realCropWallSeconds": 181.068,
+      "realFirstNightPaid": true,
+      "emptyBrowserRestore": true,
+      "passed": true,
+      "milestones": [
+        "server-zero-first-day",
+        "met-own-Hermes-butler",
+        "two-real-axe-gathers",
+        "item-detail-authoritative-order",
+        "real-timed-mining-and-pickaxe",
+        "actual-targeted-quartz-for-glass",
+        "real-wax-and-fiber-for-current-lantern-recipe",
+        "first-real-native-joinery-lantern",
+        "two-earned-milestones-and-seed-supply",
+        "actual-hoe-sow-and-watering",
+        "three-minute-real-crop-growth-and-sickle-harvest",
+        "handcrafted-lantern-becomes-operating-income",
+        "actual-resident-night-preparation",
+        "residents-delivered-real-night-supplies",
+        "personally-delivered-two-real-invitations",
+        "residents-actually-walked-to-four-lights",
+        "first-night-real-four-acts-and-paid-reward",
+        "earned-first-night-memorial"
+      ],
+      "firstNightGameSeconds": 494.94220000003634
+    },
+    {
+      "theme": "origami",
+      "serverZero": true,
+      "realCropWallSeconds": 181.006,
+      "realFirstNightPaid": true,
+      "emptyBrowserRestore": true,
+      "passed": true,
+      "milestones": [
+        "server-zero-first-day",
+        "met-own-Hermes-butler",
+        "two-real-axe-gathers",
+        "item-detail-authoritative-order",
+        "real-timed-mining-and-pickaxe",
+        "actual-targeted-quartz-for-glass",
+        "real-wax-and-fiber-for-current-lantern-recipe",
+        "first-real-native-joinery-lantern",
+        "two-earned-milestones-and-seed-supply",
+        "actual-hoe-sow-and-watering",
+        "three-minute-real-crop-growth-and-sickle-harvest",
+        "handcrafted-lantern-becomes-operating-income",
+        "actual-resident-night-preparation",
+        "residents-delivered-real-night-supplies",
+        "personally-delivered-two-real-invitations",
+        "residents-actually-walked-to-four-lights",
+        "first-night-real-four-acts-and-paid-reward",
+        "earned-first-night-memorial"
+      ],
+      "firstNightGameSeconds": 473.20790000003194
+    }
+  ],
+  "expectedFieldContentions": 2,
+  "pageErrors": [],
+  "wholeGoalComplete": false,
+  "passed": true,
+  "defaultRegression": {
+    "domainPassed": 864,
+    "maintenancePassed": 14,
+    "totalPassed": 878,
+    "failed": 0,
+    "physicalMacAcceptance": false,
+    "humanAcceptance": false
+  }
+}

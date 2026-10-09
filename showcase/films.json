@@ -1,5 +1,5 @@
 {
-  "version": "V139",
+  "version": "V141",
   "films": [
     {
       "id": "bridge",
@@ -22,6 +22,27 @@
         "en": "Current dual-style island, original-device pairing, real Hermes read/edit/read-back on fictional documents, and attributed original-device correspondence."
       },
       "mediaRevision": 2
+    },
+    {
+      "id": "night",
+      "version": "V141",
+      "filename": "hyper-dimension-v141-night-sky-16s.mp4",
+      "sha256": "c7e3e6af53db12a665c0b736132c549bf806d96b49672103393408333f1768ba",
+      "duration": 16,
+      "poster": "assets/hyper-dimension-v141-night-sky-poster.png",
+      "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v141/hyper-dimension-v141-night-sky-16s.mp4",
+      "title": {
+        "zh": "16 秒 · 与伙伴共绘星图",
+        "en": "16 seconds · Starlight gathering"
+      },
+      "caption": {
+        "zh": "V141 · 随机海风／空中修正／真实领奖",
+        "en": "V141 · Wind / Air correction / Real rewards"
+      },
+      "description": {
+        "zh": "双画风活动弹窗中的实际星灯飞行、四颗星点亮及服务端确认后的领奖结果。小游戏演示仍在打磨。",
+        "en": "Actual lantern flights, a completed constellation and the authoritative paid result inside dual-style island modals. The minigame prototype is still being improved."
+      }
     },
     {
       "id": "brush",
