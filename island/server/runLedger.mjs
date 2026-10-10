@@ -1,3 +1,4 @@
+import {openExclusiveFile} from './atomicJson.mjs';
 import './runtimeConfig.mjs';
 import {mkdir,readFile,writeFile,rename,unlink,stat,open} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
@@ -41,7 +42,7 @@ export function createRunLedger({directory,now=Date.now,pid=process.pid}){
  async function atomic(path,text){const temp=path+'.'+randomUUID()+'.tmp';let f;try{f=await open(temp,'wx',0o600);await f.writeFile(text);await f.sync();await f.close();f=null;await rename(temp,path)}finally{await f?.close().catch(()=>{});await unlink(temp).catch(()=>{})}}
  async function locked(fn){
   await mkdir(root,{recursive:true});const token=randomUUID(),start=Date.now();let obtained=false;
-  while(!obtained){try{const f=await open(lockPath,'wx',0o600);await f.writeFile(JSON.stringify({pid:process.pid,token}));await f.close();obtained=true}
+  while(!obtained){try{const f=await openExclusiveFile(lockPath);await f.writeFile(JSON.stringify({pid:process.pid,token}));await f.close();obtained=true}
    catch(e){if(e.code!=='EEXIST')throw e;
     try{const o=JSON.parse(await readFile(lockPath,'utf8'));let alive=true;try{process.kill(o.pid,0)}catch(x){alive=x.code==='EPERM'}if(!alive){await unlink(lockPath);continue}}
     catch{try{if(Date.now()-(await stat(lockPath)).mtimeMs>30000){await unlink(lockPath);continue}}catch{}}

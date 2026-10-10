@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v161-agent-source",
+  "release": "hyper-dimension-v162-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 15472,
-      "sha256": "7623147569d4a74b5b9cf965ca5af9fd425954c3f98447ae248349866d0dda1a"
+      "bytes": 15878,
+      "sha256": "14b4e456ea148e3a1573491fa8fa01514808463971d9c17a0571d5c03f859ad1"
     },
     {
       "path": "README.md",
-      "bytes": 15930,
-      "sha256": "ef46c93ced1e630b88f06a8fb76325bae55be218ba18694f7db9c0e0bebb2231"
+      "bytes": 16276,
+      "sha256": "c86868feefab22740a9b9c427abbeebf851b2e224c858c663c417efcbbf02502"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -1231,6 +1231,11 @@
       "sha256": "23205d2132a1d11d844aa7bf85e6be16a4af214dc540c10144fd1b6f1e741899"
     },
     {
+      "path": "docs/windows-locks-v162.md",
+      "bytes": 2391,
+      "sha256": "5fc7e0d9be6793d674945d77ed3572b4ee30ce8cac7587c2291b44e8993572c9"
+    },
+    {
       "path": "index.html",
       "bytes": 6312,
       "sha256": "825c4f01a8773ea9cca8c7c6ab4a151cd1413dd971e7c628f594b585d6b0e67e"
@@ -1742,8 +1747,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8836,
-      "sha256": "393c05b90e906fc0726b07a82c0e474cb1394389d0b2f40d09daf123bea5f351"
+      "bytes": 8866,
+      "sha256": "c380a45d368bbefd923c054b0161edbf5531b7203c176ed226b65e9bacfb532e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3492,8 +3497,8 @@
     },
     {
       "path": "server/atomicJson.mjs",
-      "bytes": 1222,
-      "sha256": "438596187a7033744d76d552f1dcfd1a36eb37994ce6932561dd46521cea53fa"
+      "bytes": 1740,
+      "sha256": "e7ea12a7c694540c9ce1795337e95b9dc084ffff1d326a3694424fecfc315193"
     },
     {
       "path": "server/automaticBudget.mjs",
@@ -3657,8 +3662,8 @@
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 23964,
-      "sha256": "c55be20b05263a11336ff209751a5f0252af2411c7d61691bee2a59afeacc240"
+      "bytes": 24018,
+      "sha256": "c6c9f996869d751e8ccbd441eaee73c30eb8e9ba97d68e08454b29b4b830fd8a"
     },
     {
       "path": "server/lanRoomResidents.mjs",
@@ -3847,8 +3852,8 @@
     },
     {
       "path": "server/runLedger.mjs",
-      "bytes": 11937,
-      "sha256": "f6bb1aa5aaff489291278195f1a010d2e82e05e57e6319b6751481ad76b0ff75"
+      "bytes": 11991,
+      "sha256": "6ee2eebcb574087cbb76cd2b6f5f4dae2fe88719a8884028e1fcb81cba88a5f7"
     },
     {
       "path": "server/runtimeConfig.mjs",
@@ -6237,8 +6242,8 @@
     },
     {
       "path": "tests/v156-pearl-cup-craft-browser.mjs",
-      "bytes": 6446,
-      "sha256": "97cd61fd153e0cd7bbf322794a2f13e49bdb0bfccf1959c2210a13995b0dddb3"
+      "bytes": 7317,
+      "sha256": "73825cf79b51acdc406b2ce5e9e3bd069a6de8c71141430c0a81f49f21d5778c"
     },
     {
       "path": "tests/v157-modal-command-navigation-browser.mjs",
@@ -6289,6 +6294,11 @@
       "path": "tests/v160-save-performance-browser.mjs",
       "bytes": 6427,
       "sha256": "9e3c09111d8175401b231a41fab6f9b6f0fa7c2becee4d55f6fc0aa37bea5633"
+    },
+    {
+      "path": "tests/v162-lock-open.test.mjs",
+      "bytes": 2732,
+      "sha256": "d706dbce092841abe7513e12b8ea7532cfcdd645dd3e4d86ce126ffde9bf81e9"
     },
     {
       "path": "tests/v17-harbor.test.mjs",
@@ -6817,8 +6827,8 @@
     },
     {
       "path": "tests/v43-run-ledger.test.mjs",
-      "bytes": 7889,
-      "sha256": "5046d99c933098b3e6c5364f1c8af984f46634397aa5e522bcc7a9bed5ab76ce"
+      "bytes": 7999,
+      "sha256": "d1a3a7e1ca986e8b95230c1756a0a14a0e0565a677c5d0e6cad3e78cfd83f27d"
     },
     {
       "path": "tests/v43-runtime-browser.mjs",
@@ -8586,5 +8596,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v161-github"
+  "publicRevision": "v162-github"
 }

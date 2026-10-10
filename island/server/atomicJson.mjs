@@ -13,6 +13,16 @@ export async function replaceAtomicFile(temporary,destination,{platform=process.
   }
  }
 }
+// Windows may report sharing/delete-pending contention as EPERM rather than
+// EEXIST. Retry only acquisition: never remove the lock or run without ownership.
+export async function openExclusiveFile(path,{platform=process.platform,create=open,wait=delay}={}){
+ for(let attempt=0;;attempt++){
+  try{return await create(path,'wx',0o600)}catch(error){
+   if(platform!=='win32'||!TRANSIENT_WINDOWS_ERRORS.has(error.code)||attempt>=RETRY_DELAYS.length)throw error;
+   await wait(RETRY_DELAYS[attempt]);
+  }
+ }
+}
 export async function atomicJSON(path,value){
  const temporary=path+'.'+randomUUID()+'.tmp';let file;
  try{

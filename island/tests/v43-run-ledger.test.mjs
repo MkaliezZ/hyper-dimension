@@ -14,7 +14,7 @@ test('unknown or inconsistent usage never becomes zero; reported lower bound is 
 test('two store instances and concurrent themes share a single persistent automatic deadline',async()=>{
  const f=await fixture(),other=createRunLedger({directory:f.directory,now:f.now});
  const rows=await Promise.allSettled(Array.from({length:10},(_,i)=>(i%2?f.ledger:other).begin({kind:'plans',automatic:true,theme:i%2?'pixel':'origami'})));
- assert.equal(rows.filter(r=>r.status==='fulfilled').length,1);assert(rows.filter(r=>r.status==='rejected').every(r=>r.reason.code==='automatic_cooldown'));
+ assert.equal(rows.filter(r=>r.status==='fulfilled').length,1);assert(rows.filter(r=>r.status==='rejected').every(r=>r.reason.code==='automatic_cooldown'),JSON.stringify(rows.filter(r=>r.status==='rejected').map(r=>({code:r.reason.code,message:r.reason.message}))));
  let s=await other.snapshot();assert.equal(s.today.automaticRuns,1);assert.equal(s.channels.plans.limited,9);assert.equal(s.channels.plans.retryAfter,300);
  f.set(f.now()+300000);await other.begin({kind:'plans',automatic:true});assert.equal((await f.ledger.snapshot()).today.automaticRuns,2);
 });

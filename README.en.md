@@ -4,11 +4,15 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V161 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V162 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V161
+## Current updates · V162
 
-The refresh fixture now waits for already-started autosaves before checking the journal. Eight native fault cases passed with slowed commits, retaining all balance, time and conflict assertions. V160 finished with two of six platform jobs passing. Farm reload timeouts remain under diagnosis; V161 also exposed Windows identity-lock EPERM and a Mac ARM cup-entry timeout; V159/V160 stay draft and the public package remains V158. V161 changes verification; the running game stays on the independently verified V160 runtime. [Scope](island/docs/reload-checks-v161.md).
+Windows identity and API-call-ledger lock acquisition now retries transient contention while preserving exclusive ownership. Thirty-two focused checks and both native pearl-cup claim/refresh flows passed locally. Farm and platform claim-confirmation failures remain under verification. Local V160 and public V158 remain current. [Scope](island/docs/windows-locks-v162.md).
+
+### V161 · Verification ordering
+
+The refresh fixture now waits for already-started autosaves before checking the journal. Eight native fault cases passed with slowed commits, retaining all balance, time and conflict assertions. V160 finished with two of six platform jobs passing. Farm reload timeouts remain under diagnosis; V161 also exposed Windows identity-lock EPERM and a Mac ARM cup-claim confirmation timeout; V159/V160 stay draft and the public package remains V158. V161 changes verification; the running game stays on the independently verified V160 runtime. [Scope](island/docs/reload-checks-v161.md).
 
 ### V160 · Reload recovery
 

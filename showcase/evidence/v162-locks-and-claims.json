@@ -1,0 +1,19 @@
+{
+  "version": "V162-source",
+  "focusedTests": 32,
+  "passed": true,
+  "scope": "bounded Windows exclusive-open retry; native actual file contention, two-instance automatic cadence, identity and mock A2A ledger checks. Native pearl-cup actual crafting/claim/reload on isolated protected saves in both themes.",
+  "defaultSuiteFullyVerified": false,
+  "sameSourcePlatformCI": "pending",
+  "physicalMacAcceptance": false,
+  "modelsCalled": false,
+  "fullProductAcceptance": false,
+  "nativePearlThemes": 2,
+  "publicRelease": "V158",
+  "liveRuntime": "V160",
+  "unresolved": [
+    "farm reload recovery in platform CI",
+    "pearl-cup claim confirmation in Mac ARM CI",
+    "full remaining 14 requirements"
+  ]
+}
