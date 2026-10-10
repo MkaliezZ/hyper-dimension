@@ -10,6 +10,8 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 A standard A2A 1.0 interface now shares the existing steward ledger: discovery, messages, task queries and cancellation. The official client, three real Hermes replies and native pixel/origami transcripts were verified; resource reservations still require explicit owner confirmation. [Interface and verification scope](island/docs/a2a-standard-v158.md).
 
+The public V158 source archive and all six platform jobs passed for the same commit. An independent offline rebuild passed 903 checks, real steward correspondence ran from the immutable archive, and all 26 portrait choices were rechecked. [Source release](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v158) · [Frozen archive verification scope](showcase/evidence/v158-frozen-a2a.json).
+
 ### V157 · Operations and navigation
 
 - **From zero to real steward cooperation:** both themes complete one normal acquisition/crafting/crop/order/Hermes parent-child/night-event journey, including wages, departure and refresh. [Actual evidence and scope](showcase/evidence/v157-native-zero-journey.json).

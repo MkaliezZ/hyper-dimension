@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "sourceVersion": "V158",
+  "actualTestedCommit": "864c8782c97ff022e3f3be307704c59a57d7bae7",
+  "releaseCommit": "864c8782c97ff022e3f3be307704c59a57d7bae7",
+  "release": "https://github.com/MkaliezZ/hyper-dimension/releases/tag/v158",
+  "archive": {
+    "name": "Hyper-Dimension-Agent-Source-v158-public.zip",
+    "bytes": 1074389167,
+    "sha256": "4b2534117ef4d9c5b8dc46b6baf30b89e1f7556c1aa883bd39451a5edf567194",
+    "entries": 1701,
+    "payloadFiles": 1699,
+    "allArchivedEntriesMatchGitBlobs": true,
+    "remoteAssetDigestVerified": true
+  },
+  "independentOffline": {
+    "passed": true,
+    "testCount": 903,
+    "python": "3.11.15",
+    "hermesSourceVersion": "0.19.1",
+    "modelCalls": false
+  },
+  "frozenRealA2A": {
+    "officialClient": "@a2a-js/sdk 1.3.0",
+    "protocolVersion": "1.0",
+    "sourceFilesVerifiedBefore": 1699,
+    "sourceFilesVerifiedAfter": 1699,
+    "sourceUnchanged": true,
+    "ownerCases": [
+      {
+        "theme": "pixel",
+        "model": "deepseek-flash",
+        "actualHermesRuns": 2,
+        "originalOwnerRuntime": true,
+        "ledgerLinked": true,
+        "inventoryAndCoinsUnchanged": true
+      },
+      {
+        "theme": "origami",
+        "model": "deepseek-flash",
+        "actualHermesRuns": 1,
+        "originalOwnerRuntime": true,
+        "ledgerLinked": true,
+        "inventoryAndCoinsUnchanged": true
+      }
+    ],
+    "nativeTranscriptRefresh": true,
+    "sdkToNativeToSdk": true,
+    "replayDidNotDuplicateRuntime": true,
+    "assetErrors": 0,
+    "pageErrors": 0
+  },
+  "mockProtocolCases": 7,
+  "portraitRecheck": {
+    "bothThemes": true,
+    "allChoices": 26,
+    "refreshPersistence": true,
+    "narrowWidths": [
+      390,
+      768
+    ],
+    "foreignAtlasArtAbsent": true
+  },
+  "sourcePlatformCI": {
+    "run": 38013163934,
+    "sixJobsPassed": true,
+    "operatingSystems": [
+      "windows-2022",
+      "macos-14",
+      "macos-15-intel"
+    ]
+  },
+  "educationPythonPostgresCI": {
+    "run": 38013163900,
+    "passed": true
+  },
+  "scope": "The immutable source archive was independently rebuilt and tested on Windows. Three actual Hermes replies used the official A2A SDK and native pixel/origami UI through two isolated owner runtimes on one Windows machine. Seven additional mock protocol cases are distinguished from those real model runs. Platform CI is cloud automation, not physical Mac/multi-device/human acceptance. Latest one-hour evidence remains V152, all-room crafting V153, native zero-start night-event journey V157 and footage V145.",
+  "noPrivateAccountOrConversationDataIncluded": true,
+  "humanAcceptance": false,
+  "physicalMacAcceptance": false,
+  "physicalMultiDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

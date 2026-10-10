@@ -10,6 +10,8 @@
 
 标准 A2A 1.0 接口接入同一管家协作账本：支持能力发现、消息、任务查询与取消。官方客户端、三次真实 Hermes 回信及双画风原生记录已验证；物资预留仍需本人明确确认。[接口与验证范围](island/docs/a2a-standard-v158.md)。
 
+公开V158源码包与同一提交的六项跨平台检查已通过；独立离线重建通过903项检查，冻结包完成真实管家交流，26项皮肤选择再次复查。[源码包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v158) · [冻结包验证范围](showcase/evidence/v158-frozen-a2a.json)。
+
 ### V157 · 经营与页面修复
 
 - **从零经营到真实管家协作**：两套画风各完成一次正常采集、手作、作物成熟、订单、Hermes 主子分工和夜集，工钱、离岛与刷新留存通过。[实际记录与范围](showcase/evidence/v157-native-zero-journey.json)。
