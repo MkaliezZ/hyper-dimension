@@ -1,0 +1,27 @@
+{
+  "scope": "Official @a2a-js/sdk 1.3.0, actual two isolated owner Hermes/DeepSeek Flash processes, native pixel/origami correspondence UI, no game progress or clock injection. Same Windows host; not a physical multi-device test.",
+  "checks": [
+    {
+      "theme": "pixel",
+      "model": "deepseek-flash",
+      "actualHermesRuns": 2,
+      "originalOwnerRuntime": true,
+      "ledgerLinked": true,
+      "inventoryAndCoinsUnchanged": true
+    },
+    {
+      "theme": "origami",
+      "model": "deepseek-flash",
+      "actualHermesRuns": 1,
+      "originalOwnerRuntime": true,
+      "ledgerLinked": true,
+      "inventoryAndCoinsUnchanged": true
+    }
+  ],
+  "badAssets": [],
+  "errors": [],
+  "nativeTranscriptRefresh": true,
+  "sdkToNativeToSdk": true,
+  "replayDidNotDuplicateRuntime": true,
+  "passed": true
+}

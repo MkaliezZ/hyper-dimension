@@ -1,3 +1,4 @@
+import {createA2AGateway,A2A_VERSION} from './a2aGateway.mjs';
 import {createDeviceBridgeStore,BRIDGE_BODY_BYTES} from './deviceBridgeStore.mjs';
 import {deviceAwareRuntimeFactory} from './deviceBridgeRuntime.mjs';
 import {createPortfolioStore} from './portfolioStore.mjs';
@@ -33,6 +34,7 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  const agents=createLanAgentService({directory,identities,tenants,now,runtimeFactory:deviceAwareRuntimeFactory(bridge,agentRuntimeFactory),socialContext:(...args)=>social.contextForOwner(...args)});
  cleanup.push(()=>agents.close());
  const collaboration=createLanCollaborationStore({directory,identities,tenants,activities,agents,now,fault:collaborationFault});
+ const a2a=createA2AGateway({identities,collaboration,now});cleanup.push(()=>a2a.close());
  cleanup.push(()=>collaboration.close());
  const social=createLanSocialStore({directory,identities,tenants,agents,now,fault:socialFault});
  cleanup.push(()=>social.close());
@@ -54,6 +56,17 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
   const deviceId=await bridge.authenticate(secret,pathname.endsWith('/heartbeat'));throttle(req,'device-'+deviceId);
   const data=await body(req,pathname.endsWith('/complete')?BRIDGE_BODY_BYTES:12000);
   const operation=pathname.split('/').at(-1);return json(res,200,await bridge[operation](secret,data));
+ }
+ if(pathname==='/.well-known/agent-card.json'&&req.method==='GET'){throttle(req,'normal');return json(res,200,a2a.card(new URL('http://'+req.headers.host).origin));}
+ if(pathname==='/api/lan/a2a'){
+  if(req.method!=='POST')return json(res,405,{error:'A2A JSON-RPC requires POST'},{Allow:'POST'});
+  const bearer=req.headers.authorization,session=bearer===undefined?token(req):/^Bearer ([-a-zA-Z0-9_]{43})$/i.exec(String(bearer))?.[1]||'';
+  try{await identities.authorize(session);}catch{return json(res,401,{error:'An authenticated island owner session is required'},{'WWW-Authenticate':'Bearer realm="Hyper Dimension island"'});}
+  throttle(req,'a2a-'+session);
+  if(!/^application\/(?:a2a\+json|json)(?:;|$)/i.test(req.headers['content-type']||''))return json(res,415,{error:'Use application/a2a+json or application/json'});
+  let request;try{request=await readJsonBody(req,16000);}catch(e){if(e.code==='body_too_large')return json(res,413,{error:'A2A request exceeds 16000 bytes'});return json(res,200,{jsonrpc:'2.0',id:null,error:{code:-32700,message:'Parse error'}},{'Content-Type':'application/a2a+json'});}
+  const abort=new AbortController(),onClose=()=>abort.abort();res.once('close',onClose);
+  try{const result=await a2a.handle({token:session,request,version:req.headers['a2a-version']||new URL(req.url,'http://local').searchParams.get('A2A-Version'),origin:new URL('http://'+req.headers.host).origin,signal:abort.signal});if(!res.destroyed)return json(res,200,result,{'Content-Type':'application/a2a+json','A2A-Version':A2A_VERSION});}finally{res.off('close',onClose);}return;
  }
  if(pathname.startsWith('/api/')&& !['/api/lan/register','/api/lan/login','/api/lan/status'].includes(pathname)){const a=await identities.authorize(token(req)),scope=req.headers['x-hd-island'];if(scope&&scope!==a.id||!pathname.startsWith('/api/lan/')&&scope!==a.id)throw err('岛主身份已变化，请重新打开自己的小岛','lan_scope_changed',409);}
  if(/^\/api\/lan\/portfolio(?:\/|$)/.test(pathname)){throttle(req,'normal');const account=await identities.authorize(token(req)),presence=await identities.presence(token(req)),ownerId=presence?.owner||account.id;if(!/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(ownerId))throw err('岛主身份无效','portfolio_owner',403);const store=createPortfolioStore({directory:resolve(tenants.root,ownerId),now});if(await servePortfolio({req,res,pathname,store,owner:ownerId===account.id,authorId:account.id,authorName:account.profile.name,readJSON:body,sendJSON:json}))return;}
@@ -115,8 +128,8 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  }catch(e){json(res,e.status||503,{error:e.status?e.message:'联机服务暂不可用，现有档案已保留',code:e.code||'lan_unavailable',retryAfter:e.retryAfter||0});}});
  await social.reconcileRooms().catch(e=>{socialRecovery.ready=false;socialRecovery.code=e.code||'lan_social_recovery';});
  await new Promise((accept,reject)=>{server.once('error',reject);server.listen(port,host,accept);});
- let closePromise;const close=()=>closePromise??=(async()=>{const errors=[];await bridge.close();await new Promise(r=>{server.close(r);server.closeIdleConnections();});for(const stop of [()=>environmentService.close(),()=>social.close(),()=>collaboration.close(),()=>homeServices.close(),()=>bridge.close(),()=>agents.close()])try{await stop()}catch(e){errors.push(e)}if(errors.length)throw new AggregateError(errors,'运行端未全部停止，数据运行锁保留');await dataLease.release();})();
- return{server,environmentService,identities,tenants,activities,agents,bridge,collaboration,social,homeServices,enrollmentKey,port:server.address().port,host,close};
+ let closePromise;const close=()=>closePromise??=(async()=>{const errors=[];a2a.close();await bridge.close();await new Promise(r=>{server.close(r);server.closeIdleConnections();});for(const stop of [()=>environmentService.close(),()=>social.close(),()=>collaboration.close(),()=>homeServices.close(),()=>bridge.close(),()=>agents.close()])try{await stop()}catch(e){errors.push(e)}if(errors.length)throw new AggregateError(errors,'运行端未全部停止，数据运行锁保留');await dataLease.release();})();
+ return{server,environmentService,identities,tenants,activities,agents,bridge,collaboration,a2a,social,homeServices,enrollmentKey,port:server.address().port,host,close};
  }catch(e){for(const close of cleanup.reverse())await close().catch(()=>{});await dataLease.release();throw e;}
 }
 if(process.argv[1]&&resolve(process.argv[1])===resolve(import.meta.filename)){const host=process.argv.find(x=>x.startsWith('--host='))?.slice(7)||'127.0.0.1',port=Number(process.argv.find(x=>x.startsWith('--port='))?.slice(7)||4175),service=await createLanHttpServer({host,port});console.log('Hyper Dimension LAN preview: http://127.0.0.1:'+service.port+'/');console.log('New-islander enrollment code: '+service.enrollmentKey);for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>{service.close().then(()=>{process.exitCode=0;},()=>{process.exitCode=1;});});}

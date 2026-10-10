@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v157-agent-source",
+  "release": "hyper-dimension-v158-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 13501,
-      "sha256": "ab7c108bec1a14e2c082885465454ac2b923d786cc74acdf43e52c07bada1adc"
+      "bytes": 13894,
+      "sha256": "5ff5101daacc91a347cc06c323170d6c796d560672b8dc38327579c88dd3a6f6"
     },
     {
       "path": "README.md",
-      "bytes": 14254,
-      "sha256": "426ee7679a60cb075676b791e480a99f2d9540fa77f6dc09d9d346d628ffe764"
+      "bytes": 14575,
+      "sha256": "60d1f71e51f5ef1a2b629401606e56179e43d5268551ba17679669250ecc1fe1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -89,6 +89,11 @@
       "path": "docs/a2a-information-v137.md",
       "bytes": 3859,
       "sha256": "fe2ec902f1781349740ed3c1e9e6086f99000a4847161fedec8581da9c2a88e4"
+    },
+    {
+      "path": "docs/a2a-standard-v158.md",
+      "bytes": 10688,
+      "sha256": "94819aec082e6de76dcca7b7a58fad4a6dd1fdb8844a26127945595e714469cb"
     },
     {
       "path": "docs/browser-snapshot-v149.md",
@@ -1186,6 +1191,16 @@
       "sha256": "bf79849256000e6abd6f03c1ae735ee86797fa4bb6ebc26464e8bd12f3c8c299"
     },
     {
+      "path": "docs/verification/v158/official-sdk.json",
+      "bytes": 472,
+      "sha256": "3b84bd316ad7bf2699628534699d61f07aef295f0b8f735882ffad96c4392734"
+    },
+    {
+      "path": "docs/verification/v158/real-standard-a2a.json",
+      "bytes": 845,
+      "sha256": "0803771cf13d8a0a4ed5cffe2bf9e2bfd25afe076d0d4d09c6addabe35cd3581"
+    },
+    {
       "path": "index.html",
       "bytes": 6257,
       "sha256": "3b035e385c77da92502141c559ce47f720ef9bf8d32df52ce1dc784c4e3024dc"
@@ -1697,8 +1712,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8659,
-      "sha256": "961583c3ebe5a5cb76673145fdb0665a67ca739bd54b96bcc4de513046da8d0e"
+      "bytes": 8692,
+      "sha256": "41d79487e863c6d1c37790dbd66eb7e9e0e2426b11b628cc0fd6be9401fe6ecd"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3431,6 +3446,11 @@
       "sha256": "4d315b99215f10d888dda6f7b948a7ca295b226fbb3a4007ce850474298e7d22"
     },
     {
+      "path": "server/a2aGateway.mjs",
+      "bytes": 17060,
+      "sha256": "fa0f96e040e08bdc2612fa597af3a4502b7f25cc0b95253d43293e2f10776d11"
+    },
+    {
       "path": "server/a2a_runtime.py",
       "bytes": 6061,
       "sha256": "ff74af183ee4bca78c57eda3658eac0f843a58c40acbcd39fe1c1f230f057c77"
@@ -3592,8 +3612,8 @@
     },
     {
       "path": "server/lanCollaborationStore.mjs",
-      "bytes": 18799,
-      "sha256": "4fcd073968e3b8f803adb972b8e08fa777f3e76ef30cd56852129586edd0ee3e"
+      "bytes": 20160,
+      "sha256": "61dd6d71eb2ace2c00ab8d417aa6db8586a24bb74e58016fa5f392a5537a6a81"
     },
     {
       "path": "server/lanEconomyJournal.mjs",
@@ -3617,8 +3637,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 24305,
-      "sha256": "4cd5927000c4ef48e8bea7d37dbee244d9ebf75781e72dbdf2a5753c0c14317f"
+      "bytes": 26068,
+      "sha256": "d4b6336838df526f94d035b930476c876a7eaf3339d598f28f20106df85fd7bc"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -5386,6 +5406,11 @@
       "sha256": "96a040ad9ca31fdd773fedfe30d3be4a33d696efc446fe9ec55dce93f7d12327"
     },
     {
+      "path": "tests/fixtures/a2a-standard.mjs",
+      "bytes": 4468,
+      "sha256": "679df8d0ac66fb8f4733c0a762700acd0fee71159e711e8000a39affc5568e9e"
+    },
+    {
       "path": "tests/fixtures/cooperation-v30.json",
       "bytes": 204538,
       "sha256": "dea2abef5e19d39444996a22b741d889a50671153ae640cd5af2d78d13290bee"
@@ -6174,6 +6199,21 @@
       "path": "tests/v157-modal-command-navigation-browser.mjs",
       "bytes": 8001,
       "sha256": "aca49c27681d3eff38b53273d705fa4ee32b4343051c13f1e35586b5109adfe1"
+    },
+    {
+      "path": "tests/v158-a2a-live.mjs",
+      "bytes": 7170,
+      "sha256": "2d30f71b489c01959d845744bef9752df9bad8bae2f1d83223e540694303f585"
+    },
+    {
+      "path": "tests/v158-a2a-sdk.mjs",
+      "bytes": 3221,
+      "sha256": "79892bbd0e24d446d78fb3ac9c983543e5a5994a9686c147975ea22d3bab7a7d"
+    },
+    {
+      "path": "tests/v158-a2a-standard.test.mjs",
+      "bytes": 12206,
+      "sha256": "fe04f863d72d74be0a700de7a7cc577390ca18fb08c00fbe5743bf9699374f41"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8476,5 +8516,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v157-github"
+  "publicRevision": "v158-github"
 }

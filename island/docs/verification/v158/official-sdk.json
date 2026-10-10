@@ -1,0 +1,11 @@
+{
+  "client": "@a2a-js/sdk 1.3.0",
+  "scope": "Actual official client against HTTP service; fictional accounts and mock runtime. No physical-device or real-model claim.",
+  "checks": [
+    "Discovery and plain-text send selected the sole same-room steward",
+    "Both owners replied; replay did not invoke the runtime again",
+    "Get/List, bounded history and third-owner isolation",
+    "Cancel and persisted history survived restart"
+  ],
+  "passed": true
+}
