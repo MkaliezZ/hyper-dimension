@@ -50,6 +50,48 @@ jobs:
       - name: Native lobby appearance and NPC motion
         run: node --test tests/v148-identity.test.mjs tests/v148-motion.test.mjs tests/v148-travel-schema.test.mjs tests/v152-motion.test.mjs && node tests/v148-lobby-browser.mjs && node tests/v151-lobby-navigation-browser.mjs
 
+
+
+
+      - name: Native protected checkpoint restart
+        run: node tests/v156-checkpoint-restart-browser.mjs
+
+
+      - name: Print protected checkpoint diagnostics
+        if: always()
+        run: |
+          node --input-type=module -e "import {existsSync,readFileSync} from 'node:fs'; const f='qa/v156/checkpoint-restart/report.json'; if(existsSync(f)) console.log(readFileSync(f,'utf8')); else console.log('Checkpoint report unavailable: step did not finish');"
+
+      - name: Native late successful modal navigation
+        run: node tests/v157-modal-command-navigation-browser.mjs
+
+  native-art:
+    name: ${{ matrix.os }} / native art
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: island
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - name: Inspect deployment plan
+        run: node tools/agent-deploy.mjs plan
+      - name: Verify target platform
+        run: node tools/agent-deploy.mjs doctor --python=python
+      - name: Rebuild runtime from bundled dependencies
+        run: node tools/agent-deploy.mjs setup --python=python --offline
+
       - name: Native steward portraits
         run: node tests/v153-portraits-browser.mjs
 
@@ -59,16 +101,5 @@ jobs:
       - name: Native recipe product art
         run: node tests/v155-product-art-browser.mjs
 
-      - name: Native protected checkpoint restart
-        run: node tests/v156-checkpoint-restart-browser.mjs
-
       - name: Native pearl cup crafting and refresh
         run: node tests/v156-pearl-cup-craft-browser.mjs
-
-      - name: Print protected checkpoint diagnostics
-        if: always()
-        run: |
-          node --input-type=module -e "import {existsSync,readFileSync} from 'node:fs'; const f='qa/v156/checkpoint-restart/report.json'; if(existsSync(f)) console.log(readFileSync(f,'utf8')); else console.log('Checkpoint report unavailable: step did not finish');"
-
-      - name: Native late successful modal navigation
-        run: node tests/v157-modal-command-navigation-browser.mjs
