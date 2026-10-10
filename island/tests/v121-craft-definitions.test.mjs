@@ -63,7 +63,7 @@ test('tea and bakery names, six-serving gift count, grain and structural materia
 
 test('durable observatory/photo/greenhouse objects route to placement or further manufacture without becoming research meals or seeds',()=>{
  const s=fresh();for(const id of ['c5_2','c5_6','c13_1','c13_5','c13_10','c14_6','c14_7','c14_8','c14_9','painting']){
-  s.inventory[id]=1;const seed=s.inventory.seed,result=itemUse(id,s);assert(result.ok);assert.equal(result.route,'placement',id);assert.equal(s.inventory[id],1);assert.equal(s.inventory.seed,seed);assert.equal(s.research?.[ITEM_BY_ID[id].building]||0,0);
+  s.inventory[id]=1;const seed=s.inventory.seed,result=itemUse(id,s);assert(result.ok);assert.equal(result.route,id==='c14_8'?'farmCare':'placement',id);assert.equal(s.inventory[id],1);assert.equal(s.inventory.seed,seed);assert.equal(s.research?.[ITEM_BY_ID[id].building]||0,0);
   const purpose=itemPurpose(id,s);assert(!/阅读研究|研究种苗/.test(purpose.primary.action));
  }
  const p=itemPurpose('c14_8',s);assert(p.next.some(r=>r.id==='c14_0'));assert(p.next.some(r=>r.id==='c14_1'),'fertilizer has actual nursery consumers');

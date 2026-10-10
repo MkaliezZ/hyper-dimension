@@ -1,10 +1,11 @@
+import {configureShopfront} from '../src/shopfronts.js';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {createState} from '../src/world.js';import {hydrateTown,settleVisit,commitWork} from '../src/townSimulation.js';
 import {qualityCap,effectiveQuality,upgradeCost,upgradeFacility,maintainFacility,buySupplies,canHostParty,reserveParty,completeParty,dayAccounts,SUPPLY_PACKS} from '../src/economy.js';
 import {DEFAULT_RECIPES,commitRecipe} from '../src/contentCatalog.js';
 const fresh=()=>hydrateTown(createState());
 test('visitor sale books gross, variable cost and net exactly once',()=>{
- const s=fresh(),g={name:'客人',budget:24};s.inventory.bouquet=1;const before=s.coins;
+ const s=fresh(),g={name:'客人',budget:24};s.inventory.bouquet=1;assert.ok(configureShopfront(s,{buildingId:3,listing:[{item:'bouquet',keep:0}],expectedShopRevision:0}).ok);const before=s.coins;
  const a=settleVisit(s,g,3,'receipt-1',10);assert.deepEqual([a.paid,a.cost,a.net],[5,2,3]);assert.equal(s.coins,before+3);
  assert.equal(s.economy.gross,5);assert.equal(s.economy.costs,2);assert.equal(s.inventory.bouquet,0);
  assert.equal(settleVisit(s,g,3,'receipt-1',20).paid,0);assert.equal(s.coins,before+3);

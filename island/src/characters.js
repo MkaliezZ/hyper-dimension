@@ -74,7 +74,7 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  if(!propBehind)drawActionProp();
  function drawActionProp(){if(act){
  ctx.save();const left=[1,2,3].includes(heading),body=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='body'),hands=sleeveHands(garmentFrame(body,theme,heading),heading,gait,work,action,t),hand=hands.find(p=>left?p.x<=0:p.x>=0)||hands[0];ctx.translate(hand.x,hand.y);ctx.scale(left?-1:1,1);
- const tools={hoe:'hoe',pickaxe:'pickaxe',axe:'axe',water:'watering_can',harvest:'sickle',sow:'seed',fish:'rod'},prop=act.guestWork?null:act.equipment?.tool?.id||act.toolId||a.toolbelt?.[action]||tools[action]||act.output||(act.leisure||['rest','talk'].includes(action)?null:DEFAULT_RECIPES[room]?.item);
+ const tools={hoe:'hoe',pickaxe:'pickaxe',axe:'axe',water:'watering_can',harvest:'sickle',sow:'seed',fertilize:'c14_8',fish:'rod'},prop=act.guestWork?null:act.equipment?.tool?.id||act.toolId||a.toolbelt?.[action]||tools[action]||act.output||(act.leisure||['rest','talk'].includes(action)?null:DEFAULT_RECIPES[room]?.item);
  if(prop){
  const stroke=action==='hoe'?hoeToolPose(t,heading,hand,bob,heldToolGeometry('hoe',theme,TOOL_ART[theme].hoe.frame,54).shaftLength):null;
  const angle=stroke?.angle??(['pickaxe','axe','harvest'].includes(action)?-1.9+Math.sin(t*Math.PI)*2.05:action==='water'?.2+Math.sin(t*Math.PI)*.3:action==='fish'?-.75:Math.sin(t*Math.PI)*.12);
@@ -90,6 +90,7 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  }
  if(stroke?.soil!=null&&held){const p=stroke.soil,ground=stroke.ground.y,contactX=stroke.ground.x;ctx.save();ctx.globalAlpha*=1-p;for(let i=0;i<7;i++){const drift=(i-3)*2.2*p,lift=(5+(i%3)*3)*Math.sin(p*Math.PI);ctx.fillStyle=(theme==='pixel'?['#765034','#aa7646','#cf9b60']:['#95704f','#ba936a','#d7b48a'])[i%3];ctx.fillRect(contactX+drift,ground-lift+(i%2),theme==='pixel'?2:2.5,2);}ctx.restore();}
  if(action==='water'&&t>.35&&t<.8){const tip=held?.tip||{x:17,y:8};ctx.fillStyle='#a4e3ef';for(let i=0;i<5;i++)ctx.fillRect(tip.x+i*2,tip.y+3+i*5,2,4);}
+ if(action==='fertilize'&&t>.22&&t<.86){ctx.save();for(let i=0;i<11;i++){const fall=((t-.22)*2.8+i/11)%1;ctx.globalAlpha=(1-fall)*.85;ctx.fillStyle=theme==='pixel'?['#765435','#a78b4e','#a1b768'][i%3]:['#8d6e4d','#bd9f72','#8da56d'][i%3];const x=9+Math.sin(i*2.6)*8+fall*16,y=4+fall*fall*34;if(theme==='pixel')ctx.fillRect(x,y,2,2);else{ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+3,y+1);ctx.lineTo(x+1,y+3);ctx.fill();}}ctx.restore();}
  if(action==='sow'&&t>.35&&t<.75){ctx.fillStyle='#c8ab63';for(let i=0;i<5;i++)ctx.fillRect(11+i*3,7+i*4,2,2);}
  if(action==='fish'){const tip=held?.tip||{x:20,y:-24};ctx.strokeStyle='#dce7dc';ctx.beginPath();ctx.moveTo(tip.x,tip.y);ctx.quadraticCurveTo(tip.x+16,tip.y+20,44,24);ctx.stroke();}
  }

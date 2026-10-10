@@ -1,0 +1,42 @@
+{
+  "scope": "Native greenhouse Sokoban crafting, real farm sow/water/fertilize/full 180-second growth/harvest and refresh in both themes. Fixtures grant only recipe raw inputs, seeds, unlock building 14 and funds; no compost or finished crop injected. Native Sokoban input follows its generated legal solution. Automatic models are blocked, and fixture beds are marked player-tended until this first harvest; other local NPC work stays enabled; not zero-start or human/physical-device acceptance.",
+  "humanAcceptance": false,
+  "passed": true,
+  "cases": [
+    {
+      "theme": "pixel",
+      "errors": [],
+      "badAssets": [],
+      "actualCraftedOneBag": true,
+      "craftingMoves": 107,
+      "actualSoilAnimation": true,
+      "fertilizeSeconds": 2.5,
+      "realGrowthWallSeconds": 187.472,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "errors": [],
+      "badAssets": [],
+      "actualCraftedOneBag": true,
+      "craftingMoves": 127,
+      "actualSoilAnimation": true,
+      "fertilizeSeconds": 2.5,
+      "realGrowthWallSeconds": 186.054,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true,
+      "passed": true
+    }
+  ],
+  "sourceStatus": "Native source before freeze; immutable-archive and platform runs recorded separately."
+}

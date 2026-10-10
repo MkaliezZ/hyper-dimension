@@ -9,8 +9,12 @@ export function plotPoint(q,u,v){const [a,b,c,d]=q.corners;return {x:(a.x*(1-u)+
 export function insidePlot(q,p){let sign=0;for(let i=0;i<4;i++){const a=q.corners[i],b=q.corners[(i+1)%4],v=(b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x);if(Math.abs(v)<.01)continue;const n=Math.sign(v);if(sign&&sign!==n)return false;sign=n}return true}
 export function farmWalkable(theme,x,y){return x>=115&&x<=895&&y>=170&&y<=610&&!FARM_LAYOUTS[theme].some(q=>insidePlot(q,{x,y}))}
 export function cropInfo(p){return CROPS[p.crop]||CROPS.wheat}
+export const SOIL_CARE={item:'c14_8',charges:3,bonus:1,seconds:2.5};
+export const soilCharges=p=>Number.isInteger(p.fertility)&&p.fertility>0&&p.fertility<=SOIL_CARE.charges?p.fertility:0;
+export const harvestAmount=p=>cropInfo(p).yield+(soilCharges(p)>0?SOIL_CARE.bonus:0);
+export const canFertilize=p=>!!p&&[2,3].includes(p.stage)&&soilCharges(p)===0;
 export function remaining(p){return Math.max(0,cropInfo(p).seconds-(p.growth||0))}
 export function cropTime(seconds){return Math.ceil(seconds/60)+' 分钟'}
 export function hydrateCrops(s){for(const p of s.plots){p.crop??='wheat';p.growth??=0}for(const id of ['tomato','pumpkin'])s.inventory[id]??=0}
 export function tickCrops(s,dt){const grown=[];for(const [i,p] of s.plots.entries())if(p.stage===3){p.growth=(p.growth||0)+dt;if(p.growth>=cropInfo(p).seconds){p.stage=4;p.growth=cropInfo(p).seconds;grown.push({index:i,name:cropInfo(p).name})}}return grown}
-export function harvestPlot(s,index){const p=s.plots[index];if(p.stage!==4)return null;const c=cropInfo(p);s.inventory[c.item]=(s.inventory[c.item]||0)+c.yield;s.inventory.seed++;s.discovered??={};s.discovered[c.item]=true;s.tasks.farm=true;delete p.playerTended;p.stage=0;p.growth=0;return {name:c.name,item:c.item,amount:c.yield}}
+export function harvestPlot(s,index){const p=s.plots[index];if(p.stage!==4)return null;const c=cropInfo(p);const amount=harvestAmount(p);s.inventory[c.item]=(s.inventory[c.item]||0)+amount;if(soilCharges(p)>0)p.fertility--;s.inventory.seed++;s.discovered??={};s.discovered[c.item]=true;s.tasks.farm=true;delete p.playerTended;p.stage=0;p.growth=0;return {name:c.name,item:c.item,amount}}

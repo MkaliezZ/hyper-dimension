@@ -56,6 +56,7 @@ export function takeCraftNutrition(s){
 export function itemUse(id,s,{npcId=0,action='use'}={}){
  const item=ITEM_BY_ID[id];if(item?.category==='wear'&&action!=='gift')return equipOutfit(id,s);if(!item||availableQuantity(s,id)<1)return {ok:false,text:'可用物品不足，部分库存可能已预留'};
  if(action==='gift'||item.category==='gift')return giftItem(id,s,npcId);
+ if(id==='c14_8')return {ok:true,route:'farmCare',text:'肥料保留在背包，请选择已播种的田垄施肥'};
  if(id==='c16_4')return {ok:true,route:'fishing',text:'海虾鱼饵留在背包，开场时使用；已打开钓鱼派对手账'};
  if(item.category==='material')return {ok:false,text:'基础素材用于制作，选择配方查看需求'};
  if(item.category==='tool')return equipTool(id,s);

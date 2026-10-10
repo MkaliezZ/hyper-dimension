@@ -103,3 +103,6 @@ jobs:
 
       - name: Native pearl cup crafting and refresh
         run: node tests/v156-pearl-cup-craft-browser.mjs
+
+      - name: Native greenhouse soil care
+        run: node tests/v159-soil-care-browser.mjs

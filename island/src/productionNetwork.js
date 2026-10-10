@@ -31,7 +31,7 @@ export function connectWorkshops(rows){
   if(!USES[category]||!Number.isInteger(tier)||tier<0||tier>2||typeof construction!=='string'||construction.length<12)throw Error('Invalid craft definition '+r.item);
   if(!Object.keys(bill).length)throw Error('Empty craft bill '+r.item);
   for(const [id,n] of Object.entries(bill))if(!Number.isSafeInteger(n)||n<1)throw Error('Invalid production quantity '+id);
-  return {...r,...shared,...options,tier,category,cost:{...bill},construction,definitionVersion:4,productionVersion:PRODUCTION_VERSION,use:USES[category]};
+  return {...r,...shared,...options,tier,category,cost:{...bill},construction,definitionVersion:4,productionVersion:PRODUCTION_VERSION,use:r.item==='c14_8'?'在已播种的农田施肥，一袋供三次收获各增加一份作物，不缩短成熟时间；也可用于育苗制作。':USES[category]};
  });
 }
 export function workshopEdges(recipes){

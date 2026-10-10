@@ -1,3 +1,4 @@
+import {configureShopfront} from '../src/shopfronts.js';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {createState} from '../src/world.js';
 import {hydrateTown,settleVisit,needs} from '../src/townSimulation.js';
@@ -38,7 +39,7 @@ test('sold-out experience venues collect genuine admission; shops cannot sell mi
  assert.equal(settleVisit(s,g,3,'empty-shop',11).paid,0);assert.equal(s.inventory.bouquet,0);
 });
 test('tourists buy advanced building products at their real tier price and debit exactly one',()=>{
- const s=fresh(),g={name:'收藏旅人',budget:24};s.inventory.c6_8=1;recordPlayerGoods(s,'c6_8');
+ const s=fresh(),g={name:'收藏旅人',budget:24};s.inventory.c6_8=1;assert.ok(configureShopfront(s,{buildingId:6,listing:[{item:'c6_8',keep:0}],expectedShopRevision:0}).ok);recordPlayerGoods(s,'c6_8');
  const r=settleVisit(s,g,6,'advanced-sale',10);assert.equal(r.paid,20);assert.equal(r.cost,6);assert.equal(s.inventory.c6_8,0);assert.equal(s.economy.playerGoods.c6_8,0);assert.equal(s.economy.ledger.at(-1).item,'c6_8');
  assert.equal(settleVisit(s,g,6,'advanced-sale',11).paid,0);assert.equal(g.budget,4);
 });

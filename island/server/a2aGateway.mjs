@@ -57,7 +57,7 @@ function validateMessage(m){fields(m,['messageId','contextId','taskId','role','p
 export function createA2AGateway({identities,collaboration,now=Date.now}){
  let closing=false;
  function card(origin,extensionParams={}){return {
-  name:'Hyper Dimension · Island Stewards',description:'Authenticated island steward correspondence and confirmed event preparation. Each owner retains their own Hermes runtime.',version:'158.0.0',
+  name:'Hyper Dimension · Island Stewards',description:'Authenticated island steward correspondence and confirmed event preparation. Each owner retains their own Hermes runtime.',version:'159.0.0',
   supportedInterfaces:[{url:origin+'/api/lan/a2a',protocolBinding:'JSONRPC',protocolVersion:A2A_VERSION}],
   provider:{organization:'Hyper Dimension',url:'https://github.com/MkaliezZ/hyper-dimension'},documentationUrl:'https://github.com/MkaliezZ/hyper-dimension/blob/main/island/docs/a2a-standard-v158.md',
   capabilities:{streaming:false,pushNotifications:false,extendedAgentCard:true,extensions:[{uri:A2A_EXTENSION,required:false,description:'Same-room peer selection, consent, owner-confirmed event preparation and traceable correspondence.',params:{protocol:'hyper-dimension-v1',...extensionParams}}]},

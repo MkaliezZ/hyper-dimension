@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v158-agent-source",
+  "release": "hyper-dimension-v159-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 13894,
-      "sha256": "5ff5101daacc91a347cc06c323170d6c796d560672b8dc38327579c88dd3a6f6"
+      "bytes": 14382,
+      "sha256": "382bef0d5a9357665d311a817d85e871079392a76c7c0886eced682a65c1b2c6"
     },
     {
       "path": "README.md",
-      "bytes": 14575,
-      "sha256": "60d1f71e51f5ef1a2b629401606e56179e43d5268551ba17679669250ecc1fe1"
+      "bytes": 15015,
+      "sha256": "3c9f73391f7347c5349d8c371bef2322120ba1e185878ba25027ea8ba6c7bfb5"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -369,6 +369,16 @@
       "path": "docs/media/showcase-details.json",
       "bytes": 678,
       "sha256": "f424efdba1339f34d08ab579adfb6e3491f6970d4508d94716f3f9b4c783f276"
+    },
+    {
+      "path": "docs/media/soil-care-v159-origami-390.png",
+      "bytes": 339868,
+      "sha256": "db4683d0091b2be75199bdcfe67f0974b4167ea542b81d13f83b2627beb1c3f7"
+    },
+    {
+      "path": "docs/media/soil-care-v159-pixel.png",
+      "bytes": 989874,
+      "sha256": "d90b481702286db1c2f98bac7b1f75cebf678fac65b71c7c4a9cfa99677cee67"
     },
     {
       "path": "docs/media/v119/origami-game.png",
@@ -876,6 +886,11 @@
       "sha256": "2b8cf125063ac3abe80dee5d1892a3edf4ae86125e0d01c773c94c31e22fb09e"
     },
     {
+      "path": "docs/soil-care-v159.md",
+      "bytes": 3463,
+      "sha256": "ff4343c863c742283ff8b89557e09217a90f1eec52a054b93170d5662552dff2"
+    },
+    {
       "path": "docs/spatial-sound-v144.md",
       "bytes": 2990,
       "sha256": "6ce552e48a967381f980b0a5ea74f62ef283697d3966a77d0060234b66dcd83d"
@@ -1201,9 +1216,14 @@
       "sha256": "0803771cf13d8a0a4ed5cffe2bf9e2bfd25afe076d0d4d09c6addabe35cd3581"
     },
     {
+      "path": "docs/verification/v159/native-soil-care.json",
+      "bytes": 1525,
+      "sha256": "23205d2132a1d11d844aa7bf85e6be16a4af214dc540c10144fd1b6f1e741899"
+    },
+    {
       "path": "index.html",
-      "bytes": 6257,
-      "sha256": "3b035e385c77da92502141c559ce47f720ef9bf8d32df52ce1dc784c4e3024dc"
+      "bytes": 6312,
+      "sha256": "825c4f01a8773ea9cca8c7c6ab4a151cd1413dd971e7c628f594b585d6b0e67e"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -1712,8 +1732,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8692,
-      "sha256": "41d79487e863c6d1c37790dbd66eb7e9e0e2426b11b628cc0fd6be9401fe6ecd"
+      "bytes": 8794,
+      "sha256": "720ff2f9cd265101ad199f3ecf61de0046b7f869378a8165bb11cfdb6af6ddf7"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3448,7 +3468,7 @@
     {
       "path": "server/a2aGateway.mjs",
       "bytes": 17060,
-      "sha256": "fa0f96e040e08bdc2612fa597af3a4502b7f25cc0b95253d43293e2f10776d11"
+      "sha256": "8faad6434411cc288c0feb87757dc107bdade9bbca5af6bbc872d569cbf63de5"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -3542,8 +3562,8 @@
     },
     {
       "path": "server/farmActions.mjs",
-      "bytes": 16838,
-      "sha256": "c5d637edc620363db3b01a9dfbca737eadcb5578b6b338fe65c06ede77a57e75"
+      "bytes": 17823,
+      "sha256": "64836b8ed0bb2515c9bf1d48394176c62c9c7ea4199a202ec22561fae85b8cbf"
     },
     {
       "path": "server/festivalActions.mjs",
@@ -3932,8 +3952,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 137889,
-      "sha256": "a94604c08f5f3453717976cd2e4ba308d1af5d82f34b5ab160f1adc5f4f8e0e7"
+      "bytes": 138751,
+      "sha256": "b82f18a96584033641cdd470c131d9aea192b1c104624d6a86b9791553abf412"
     },
     {
       "path": "src/arcade.css",
@@ -4002,8 +4022,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 16582,
-      "sha256": "4f701a376e9ce3528e4474a3bfad121d3833f63d85eb73ac0f388a6e21947ae2"
+      "bytes": 17038,
+      "sha256": "0cb0c7b44013e101747e3655a27edf6af1b0588aa8144c2a8e5c67f97ca012df"
     },
     {
       "path": "src/classicGames.js",
@@ -4047,13 +4067,13 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 8974,
-      "sha256": "21670bc62b85807263455c35b9223751e94cfdeec5b7971ff260c397854085a3"
+      "bytes": 9091,
+      "sha256": "0d268c366175ffedfebd0fd2541c92c95042a0f52e4df6788691855fc8dd5274"
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 17626,
-      "sha256": "385b3624bc2a61c0775d77949d855d3934beed74a418ceac2515d24067d200b4"
+      "bytes": 17675,
+      "sha256": "86fe5ba0400e735e541e16ef7025bb9b5f1895423f6eb09dafa3e9f9a0c222fd"
     },
     {
       "path": "src/conversationFallback.js",
@@ -4231,9 +4251,19 @@
       "sha256": "f0bfb7b3413d0c3c4d9fccf043826a32b2c08d1f27d435ec9091369444860e2e"
     },
     {
+      "path": "src/farm-care-v159.css",
+      "bytes": 1757,
+      "sha256": "4c750f634fdf5905ef151d71d5b661707b9ac694891b9285eca488965e4296a8"
+    },
+    {
+      "path": "src/farmCareUI.js",
+      "bytes": 2626,
+      "sha256": "c34362a4f9573dfbe953dd358b6506844e1eeee78b8df2d19991bb4af38ebe00"
+    },
+    {
       "path": "src/farming.js",
-      "bytes": 3296,
-      "sha256": "b01c07464a4410aaedae2c00f93549fc17cb0ae864f9e12632f6cf636904e888"
+      "bytes": 3709,
+      "sha256": "765cb983ad861b42f88856e7dc4d3e3d42b3e4830f33684e4bb337f0d2ba0044"
     },
     {
       "path": "src/festivalLayout.js",
@@ -4477,8 +4507,8 @@
     },
     {
       "path": "src/itemPurpose.js",
-      "bytes": 4318,
-      "sha256": "e1f7806aa2ffdf666c26890871c3571094fcc92b62375887742160392c7d7e76"
+      "bytes": 4549,
+      "sha256": "65568ecfe7f7955ea624afb8095d51c40a83da80c84925b98730de36af422afa"
     },
     {
       "path": "src/journalFold.js",
@@ -4887,8 +4917,8 @@
     },
     {
       "path": "src/productionNetwork.js",
-      "bytes": 3544,
-      "sha256": "abcdd309dd20ef1480a7635493ca94803ddfa87c49cde9a67ead797005323ea3"
+      "bytes": 3690,
+      "sha256": "fb11a22253644c6ac18514b276211709c01a1c3d9c3729c245747de9bfe419b3"
     },
     {
       "path": "src/projectPlans.js",
@@ -5162,13 +5192,13 @@
     },
     {
       "path": "src/shopfrontUI.js",
-      "bytes": 6524,
-      "sha256": "63137026e01dc731e5f275fb0e7dce959ed44005204719434e337b795779d97a"
+      "bytes": 6698,
+      "sha256": "9c3d7bc10c40923162af1fc44627464200038e55ed5ad556229e03c2bef610d3"
     },
     {
       "path": "src/shopfronts.js",
-      "bytes": 2712,
-      "sha256": "2b51412b66bacba874b85bd900c74aa1dfde924b426efa0a9c071ed8d59d5079"
+      "bytes": 2873,
+      "sha256": "16461aba1e1b9c9ccb065b87bd8754a2167e40e518de4271b541ca419843988d"
     },
     {
       "path": "src/sound-v38.css",
@@ -5387,8 +5417,8 @@
     },
     {
       "path": "tests/economy.test.mjs",
-      "bytes": 4482,
-      "sha256": "d8170618e45e97d1814c253e2049a360cb56aa02843fcec90582ef74c5009aa6"
+      "bytes": 4648,
+      "sha256": "3f0532b55fd4a9bfd997c5dc23f6a96d01d6645461af269875c8bf8ccddde581"
     },
     {
       "path": "tests/experience-qa.mjs",
@@ -5607,8 +5637,8 @@
     },
     {
       "path": "tests/town-simulation.test.mjs",
-      "bytes": 3144,
-      "sha256": "8ec2e4da022859ee3575110676e74eb93242498a4aed60caf9742be78a804e96"
+      "bytes": 3310,
+      "sha256": "3aab2a8a6e120d52e3f977e9f8987978596bece2aa484dd9b20338a56e537763"
     },
     {
       "path": "tests/v10-animation-qa.mjs",
@@ -5777,8 +5807,8 @@
     },
     {
       "path": "tests/v113-shopfronts.test.mjs",
-      "bytes": 8715,
-      "sha256": "0089044a07d56d6afa5e2b29ca78b9dad9a76e65a14555c42f864c3d7e9a1be3"
+      "bytes": 8872,
+      "sha256": "d0beae114a91f05eee4dd47d3418fbb529595c1fae259bb3ab0309ece3d5f78f"
     },
     {
       "path": "tests/v114-contracts-browser.mjs",
@@ -5902,13 +5932,13 @@
     },
     {
       "path": "tests/v12-economy.test.mjs",
-      "bytes": 5718,
-      "sha256": "15da55849d4b2eb2f75038ebd3f45f201b8e4bcc73ae7d0b504fe09a29057860"
+      "bytes": 5880,
+      "sha256": "95ed589377e5128384a04cd5be593fffeeef0440b334578fccc8a43660738d57"
     },
     {
       "path": "tests/v121-craft-definitions.test.mjs",
-      "bytes": 6668,
-      "sha256": "213e9197f1c5f0ba06982020150f06159af608257bfa25630159ad1f232bcdc1"
+      "bytes": 6692,
+      "sha256": "16c3495efe947ea7529a83214a5e8b67aaebba9e07e312c2e4790ec4b39d45f5"
     },
     {
       "path": "tests/v121-materials-browser.mjs",
@@ -6214,6 +6244,16 @@
       "path": "tests/v158-a2a-standard.test.mjs",
       "bytes": 12206,
       "sha256": "fe04f863d72d74be0a700de7a7cc577390ca18fb08c00fbe5743bf9699374f41"
+    },
+    {
+      "path": "tests/v159-soil-care-browser.mjs",
+      "bytes": 10139,
+      "sha256": "992e3b599f6e1db7bc2601a39d6370e49c57ccf28fa027fa2d1c4657a33cb6c0"
+    },
+    {
+      "path": "tests/v159-soil-care.test.mjs",
+      "bytes": 8926,
+      "sha256": "abacddbd99ccf7a6ac32c033033ae3b9129c971a054c73a3df827d4ae45838e7"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8516,5 +8556,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v158-github"
+  "publicRevision": "v159-github"
 }

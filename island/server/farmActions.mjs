@@ -2,7 +2,7 @@ import {recordResidentStoryWork,interruptResidentStory} from '../src/residentSto
 import {cooperationWorkAuthorized,cooperationFarmAvailable,bindCooperationPlot,releaseCooperationPlotToPlayer} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID,createHash} from 'node:crypto';
-import {CROPS,hydrateCrops,tickCrops,cropInfo} from '../src/farming.js';
+import {CROPS,hydrateCrops,tickCrops,cropInfo,SOIL_CARE,soilCharges,harvestAmount,canFertilize} from '../src/farming.js';
 import {resolveTool} from '../src/equipmentRules.js';
 import {reserveResources,releaseResources,commitResources} from '../src/resourceLedger.js';
 import {recordPlayerGoods} from '../src/economy.js';
@@ -17,14 +17,14 @@ const fail=(message,code='farm_invalid')=>Object.assign(Error(message),{status:4
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const beginSignature=i=>createHash('sha256').update(JSON.stringify(['index','step','actor','actorId','crop','assignmentId','operationId','purposeId','source'].map(k=>i[k]??null).concat(i.storyId?['story',i.storyId]:[]))).digest('hex');
 const indexOK=i=>Number.isInteger(i)&&i>=0&&i<8;
-const stages={hoe:0,sow:1,water:2,harvest:4};
-const plotValid=p=>p&&[0,1,2,3,4].includes(p.stage)&&Object.hasOwn(CROPS,p.crop)&&Number.isFinite(p.growth)&&p.growth>=0&&p.growth<=cropInfo(p).seconds;
+const stages={hoe:0,sow:1,water:2,harvest:4,fertilize:null};
+const plotValid=p=>p&&[0,1,2,3,4].includes(p.stage)&&Object.hasOwn(CROPS,p.crop)&&Number.isFinite(p.growth)&&p.growth>=0&&p.growth<=cropInfo(p).seconds&&(p.fertility===undefined||Number.isInteger(p.fertility)&&p.fertility>=0&&p.fertility<=SOIL_CARE.charges);
 export function validFarmBook(f,book){
  if(f===undefined)return true;
  return !!f&&f.version===1&&Array.isArray(f.plots)&&f.plots.length===8&&f.plots.every(plotValid)&&Number.isFinite(f.lastActiveAt)&&Number.isFinite(f.activeSeconds)&&f.activeSeconds>=0&&f.leases&&typeof f.leases==='object'&&!Array.isArray(f.leases)&&Object.keys(f.leases).length<=20&&Object.values(f.leases).every(t=>t.kind==='farm'&&t.actor!=='player'&&validFarmTicket(t)&&t.epoch===book.epoch&&Number.isSafeInteger(t.sequence)&&t.sequence>0&&t.sequence<=book.sequence&&typeof t.requestId==='string'&&/^[a-zA-Z0-9-]{8,80}$/.test(t.requestId)&&Number.isFinite(t.readyAt)&&Number.isFinite(t.expiresAt))&&(!f.autosaves||Array.isArray(f.autosaves)&&f.autosaves.length<=64&&f.autosaves.every(r=>typeof r.id==='string'&&typeof r.expectedVersion==='string'&&/^[a-f0-9]{64}$/.test(r.fingerprint)));
 }
 export function validFarmTicket(t){
- return indexOK(t.index)&&['player','npc','facility'].includes(t.actor)&&stages[t.step]===t.expectedStage&&Object.hasOwn(CROPS,t.crop)&&t.item===CROPS[t.crop].item&&Number.isFinite(t.duration)&&t.duration>=.85&&t.duration<=NPC_CADENCE.workSeconds&&typeof t.owner==='string'&&t.owner.startsWith(FARM_LEASE_PREFIX);
+ return Object.hasOwn(stages,t.step)&&indexOK(t.index)&&['player','npc','facility'].includes(t.actor)&&(t.step==='fertilize'?t.actor==='player'&&[2,3].includes(t.expectedStage):stages[t.step]===t.expectedStage)&&Object.hasOwn(CROPS,t.crop)&&t.item===CROPS[t.crop].item&&Number.isFinite(t.duration)&&t.duration>=.85&&t.duration<=NPC_CADENCE.workSeconds&&typeof t.owner==='string'&&t.owner.startsWith(FARM_LEASE_PREFIX);
 }
 export function farmTickets(book){return [book?.active?.kind==='farm'?book.active:null,...Object.values(book?.farm?.leases||{})].filter(Boolean)}
 export function farmHolds(book){
@@ -88,19 +88,20 @@ export function applyFarmCommand(s,b,input,now){
   if(actor==='npc'&&actorId===16&&(!input.assignmentId||s.recruitment?.active?.phase!=='working'||s.recruitment.active.leaveRequested))throw fail('招聘伙伴尚未开始或已结束岛上工作','farm_task_changed');
   if(actor==='player'&&b.active)throw fail('先完成或取消上次岛主作业','action_active');
   if(farmTickets(b).some(t=>t.index===input.index||t.actor===actor&&t.actorId===actorId))throw fail('这块田或负责人正在进行其他农活','farm_occupied');
-  if(p.stage!==stages[input.step])throw fail(p.stage===3?'作物还未成熟':'田地进度已变化，请重新查看','farm_stage');
+  if(input.step==='fertilize'&&(actor!=='player'||!canFertilize(p)))throw fail('只能给已播种且尚无养分的田地施肥，成熟作物先收获','farm_soil');
+  if(input.step!=='fertilize'&&p.stage!==stages[input.step])throw fail(p.stage===3?'作物还未成熟':'田地进度已变化，请重新查看','farm_stage');
   if(actor!=='player'&&protectedPlot(s,input.index))throw fail('这块田正在由岛主亲自照料','farm_protected');
   const crop=input.step==='sow'?input.crop:p.crop;if(!Object.hasOwn(CROPS,crop))throw fail('作物无效');
-  const name=({hoe:'松土',sow:'播种',water:'浇水',harvest:'收获'})[input.step]+' · '+CROPS[crop].name;
+  const name=({hoe:'松土',sow:'播种',water:'浇水',harvest:'收获',fertilize:'施肥'})[input.step]+' · '+CROPS[crop].name;
   const sequence=b.sequence+1,owner=FARM_LEASE_PREFIX+b.epoch+':'+sequence,tool=actor==='facility'?null:resolveTool(s,input.step,{npc:actor==='npc'});
-  const duration=actor==='npc'?NPC_CADENCE.workSeconds:actor==='facility'?3:Math.round(Math.max(.85,(input.step==='harvest'?1.5:1.3)*(tool?.durationScale||1))*1000)/1000;
-  const reservedItems=input.step==='sow'?{seed:1}:{};if(tool?.source==='owned')reservedItems[tool.id]=Math.max(1,reservedItems[tool.id]||0);
+  const duration=actor==='npc'?NPC_CADENCE.workSeconds:actor==='facility'?3:input.step==='fertilize'?SOIL_CARE.seconds:Math.round(Math.max(.85,(input.step==='harvest'?1.5:1.3)*(tool?.durationScale||1))*1000)/1000;
+  const reservedItems=input.step==='sow'?{seed:1}:input.step==='fertilize'?{[SOIL_CARE.item]:1}:{};if(tool?.source==='owned')reservedItems[tool.id]=Math.max(1,reservedItems[tool.id]||0);
   const assigned=actor==='npc'?beginAssignedStep(s,b,{assignmentId:input.assignmentId,actorId,kind:'farm',crop,step:input.step}):null,task=assigned?.task||(actor==='npc'&&input.assignmentId?s.agentTaskLedger?.find(x=>x.id===input.assignmentId):null),assignmentOperation=assigned?.operationId||input.operationId;
   if(input.assignmentId&&(!task||task.npcId!==actorId||task.status!=='running'||task.operationId!==assignmentOperation))throw fail('农田分工已暂停或改派','farm_task_changed');
   const storyId=actor==='npc'&&typeof input.storyId==='string'?input.storyId:null;
   if(storyId&&!cooperationWorkAuthorized(s,{storyId,actorId,operationId:assignmentOperation,intent:{goal:'farm',buildingId:null,action:'work',resource:crop,step:input.step}},true))throw fail('居民农田约定已变化','farm_story_changed');
   if(input.step==='sow'&&task?.resourceOwner){const held=s.resourceLedger?.reservations?.[task.resourceOwner];if(held?.items.seed){held.items.seed--;if(!held.items.seed)delete held.items.seed;if(!Object.keys(held.items).length)delete s.resourceLedger.reservations[task.resourceOwner]}}
-  if(Object.keys(reservedItems).length&&!reserveResources(s,owner,reservedItems,{purpose:'农田作业 '+name,...(task?{projectTaskId:task.id,taskOperation:assignmentOperation,npcId:actorId}:{})}).ok)throw fail('种子或工具不足，或已被其他作业预留','farm_materials');
+  if(Object.keys(reservedItems).length&&!reserveResources(s,owner,reservedItems,{purpose:'农田作业 '+name,...(task?{projectTaskId:task.id,taskOperation:assignmentOperation,npcId:actorId}:{})}).ok)throw fail('种子、肥料或工具不足，或已被其他作业预留','farm_materials');
   if(actor==='facility'){
    const u=s.functionalFacilities?.units?.[actorId],display=s.placedItems?.find(x=>x.id===actorId);
    if(input.step!=='water'||functionalDefinition(display?.item)?.kind!=='irrigation'||!u?.enabled||u.charges<1||!u.targets.includes(input.index)||!irrigationConnected(s,actorId)||u.currentPlot!==null)throw fail('滴灌设置、余料或田地已变化','farm_irrigation');
@@ -129,11 +130,12 @@ export function applyFarmCommand(s,b,input,now){
    gain=Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before[id]||0)]).filter(([,n])=>n>0));cost=t.step==='sow'?{seed:1}:{};
    if(t.assignmentId&&!recordTaskStep(s,t.assignmentId,{operationId:t.operationId,result:text,delta:s.taskActionReceipts[t.operationId]?.delta||{},preparing:t.expectedStage!==4}).ok)throw fail('农田交付未确认','farm_task_changed');
   }else{
-   cost=t.step==='sow'?{seed:1}:{};gain=t.step==='harvest'?{[t.item]:CROPS[t.crop].yield,seed:1}:{};
+   const amount=harvestAmount(p);cost=t.step==='sow'?{seed:1}:t.step==='fertilize'?{[SOIL_CARE.item]:1}:{};gain=t.step==='harvest'?{[t.item]:amount,seed:1}:{};
    const paid=commitResources(s,{id:'farm:'+b.epoch+':'+t.sequence,owner:t.owner,cost,gain,category:'player_farm',note:t.name});
    if(!paid.ok||paid.replayed)throw fail('种子与农田账本不一致','action_ledger_conflict');
    p.crop=t.crop;
-   if(t.step==='harvest'){p.stage=0;p.growth=0;delete p.playerTended;s.tasks.farm=true;recordPlayerGoods(s,t.item,CROPS[t.crop].yield);trackJourney(s,'harvest',{item:t.item,amount:CROPS[t.crop].yield});if(s.journey?.completed.harvest)for(const bed of s.plots)delete bed.playerTended;text='收获'+CROPS[t.crop].name+' ×'+CROPS[t.crop].yield+'，回收种子 ×1';}
+   if(t.step==='harvest'){if(soilCharges(p)>0)p.fertility--;p.stage=0;p.growth=0;delete p.playerTended;s.tasks.farm=true;recordPlayerGoods(s,t.item,amount);trackJourney(s,'harvest',{item:t.item,amount});if(s.journey?.completed.harvest)for(const bed of s.plots)delete bed.playerTended;text='收获'+CROPS[t.crop].name+' ×'+amount+'，回收种子 ×1'+(soilCharges(p)>0?'，养分还可支持 '+soilCharges(p)+' 次收获':'');}
+   else if(t.step==='fertilize'){if(!canFertilize(p))throw fail('田地养分已变化','farm_soil');p.fertility=SOIL_CARE.charges;text='第 '+(t.index+1)+' 块田已施肥，未来 '+SOIL_CARE.charges+' 次收获各增产 '+SOIL_CARE.bonus+' 份，成熟时间保持不变';}
    else{p.stage=t.expectedStage+1;if(!s.journey?.completed.harvest)p.playerTended=true;if(t.step==='water'){p.growth=0;trackJourney(s,'water');}text=t.step==='hoe'?'土已松好，可以选择作物':t.step==='sow'?'已播种'+CROPS[t.crop].name+'，接下来浇水':CROPS[t.crop].name+'开始生长，约需 '+Math.ceil(CROPS[t.crop].seconds/60)+' 分钟';}
   }
  }

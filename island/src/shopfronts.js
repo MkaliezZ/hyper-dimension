@@ -10,12 +10,13 @@ export function validShopfronts(s){
  const v=s.shopfronts;if(v===undefined)return true;
  return object(v)&&v.version===1&&integer(v.revision)&&object(v.venues)&&Object.keys(v.venues).length<=25&&Object.entries(v.venues).every(([id,rows])=>/^(?:[0-9]|1[0-9]|2[0-4])$/.test(id)&&validShopListing(Number(id),rows));
 }
+export const defaultShelfKeep=item=>ITEM_BY_ID[item]?.category==='food'?0:1;
 export function shopListing(s,id){
- return s.shopfronts?.venues?.[id]??ALL_RECIPES.filter(r=>r.building===id).map(r=>({item:r.item,keep:0}));
+ return s.shopfronts?.venues?.[id]??ALL_RECIPES.filter(r=>r.building===id).map(r=>({item:r.item,keep:defaultShelfKeep(r.item)}));
 }
 export function shopItemOffer(s,item){
  const i=ITEM_BY_ID[item];if(i?.source!=='recipe')return {listed:false,keep:0,available:0};
- const list=s.shopfronts?.venues?.[i.building],row=list===undefined?{item,keep:0}:list.find(r=>r.item===item);
+ const list=s.shopfronts?.venues?.[i.building],row=list===undefined?{item,keep:defaultShelfKeep(item)}:list.find(r=>r.item===item);
  return {listed:!!row,keep:row?.keep||0,available:row?Math.max(0,availableQuantity(s,item)-row.keep):0};
 }
 export function shopSummary(s,id){
@@ -29,5 +30,5 @@ export function configureShopfront(s,{buildingId,listing,expectedShopRevision}){
  s.shopfronts??={version:1,revision:0,venues:{}};
  if(listing===null)delete s.shopfronts.venues[buildingId];else s.shopfronts.venues[buildingId]=listing.map(r=>({item:r.item,keep:r.keep}));
  s.shopfronts.revision++;
- return {ok:true,buildingId,text:listing===null?'已恢复自动陈列全部商品':listing.length?'货架已更新，游客只购买超过保留数量的陈列商品':'本馆商品已暂停出售，参观等既有体验照常开放'};
+ return {ok:true,buildingId,text:listing===null?'已恢复自动陈列：非食品留用一件，食品与余量可出售':listing.length?'货架已更新，游客只购买超过保留数量的陈列商品':'本馆商品已暂停出售，参观等既有体验照常开放'};
 }
