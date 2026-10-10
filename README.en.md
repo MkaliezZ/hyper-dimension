@@ -17,7 +17,19 @@ Zero-start checks use two isolated accounts with solution-assisted native joiner
 <details>
 <summary>Earlier fixes and detailed checks</summary>
 
+Pearl cups now match their recipe: one cup, two embedded pearls, one right handle, with separate complete PNGs for both themes. Native crafting/refresh and all 600 product icons pass; CI now holds one real result checkpoint response and retains failure diagnostics. [Art and test scope](island/docs/pearl-cup-v156.md).
 
+Both recipe-product atlases now share calibrated inventory, scene and held-item clipping: 600 icons / 1,800 native surfaces checked. Result restart and difficulty controls visibly wait for save acknowledgement, then recover. [Product art and restart checks](island/docs/product-art-v155.md).
+
+An immutable V153 installation passes native crafting and reload checks for all 25 rooms in both themes, with granted-resource fixtures and solution-assisted input; its scope is stated separately. [Checks](island/docs/verification/v154/native-all-rooms-v153.json).
+
+Material atlas boundaries are calibrated in both themes. Inventory, scene and held-item rendering share the same clipping, removing neighboring fragments and SVG letterbox leaks. [Material art and native checks](island/docs/material-art-v154.md).
+
+Steward and player portraits are individually clipped to keep neighboring sleeves and stray atlas fragments out of the chooser, preserving adult proportions in both themes. [Portraits and native checks](island/docs/steward-portraits-v153.md).
+
+Theme cursors cover legacy controls. Both appearances persist in one island save. The lobby gives the island more space and groups hospitality controls in a side rail. NPC walking and facing follow server intent. Gallery data is preloaded. [Implementation and regression evidence](island/docs/ui-reliability-v148.md).
+
+Normal lobby map clicks no longer flash a recovery card; failed responses remain recoverable. [Details and native checks](island/docs/lobby-navigation-v151.md).
 
 </details>
 
