@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v159-agent-source",
+  "release": "hyper-dimension-v160-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 14382,
-      "sha256": "382bef0d5a9357665d311a817d85e871079392a76c7c0886eced682a65c1b2c6"
+      "bytes": 14992,
+      "sha256": "8769a0f4fe3fe714d89b7ec54f8bce211a34c73b651877b3e665476ad0847118"
     },
     {
       "path": "README.md",
-      "bytes": 15015,
-      "sha256": "3c9f73391f7347c5349d8c371bef2322120ba1e185878ba25027ea8ba6c7bfb5"
+      "bytes": 15541,
+      "sha256": "0ff2354e9f91f0e1ef7a2538900c623c628c43b782659a4416b524ef30fddb78"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -564,6 +564,11 @@
       "path": "docs/recruitment-v140.md",
       "bytes": 3165,
       "sha256": "92a88519e5a3b9b60045b0ed9a4dec0bebef8f16a7544ca10f5b58f2e04280a0"
+    },
+    {
+      "path": "docs/reload-recovery-v160.md",
+      "bytes": 2894,
+      "sha256": "76b18a70129e1ed9a40473bc68649e62a2d620b58fe1f2d0642dc91273baa57d"
     },
     {
       "path": "docs/resident-cooperation-v111.md",
@@ -1732,8 +1737,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8794,
-      "sha256": "720ff2f9cd265101ad199f3ecf61de0046b7f869378a8165bb11cfdb6af6ddf7"
+      "bytes": 8836,
+      "sha256": "393c05b90e906fc0726b07a82c0e474cb1394389d0b2f40d09daf123bea5f351"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3468,7 +3473,7 @@
     {
       "path": "server/a2aGateway.mjs",
       "bytes": 17060,
-      "sha256": "8faad6434411cc288c0feb87757dc107bdade9bbca5af6bbc872d569cbf63de5"
+      "sha256": "0d67e7c62811274e1e493e8d94a852cb7ec183877a55938e5efd45cccba3b884"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -4861,6 +4866,11 @@
       "sha256": "669cbc7daadb1b5a2730a9a1f2b43b32e95eee3b4e26ca8e22fa83041a866c28"
     },
     {
+      "path": "src/pendingSaveRecovery.js",
+      "bytes": 632,
+      "sha256": "3b170070bae9f9d02e48f5893d6f90cbc9b04864252afb71ab53fc0cb069ecf2"
+    },
+    {
       "path": "src/personas.js",
       "bytes": 8461,
       "sha256": "73cc6f9c76b6b2e5c953ed47cc405cc136a8bd81e658327b2bbb4b00961ac1a6"
@@ -5082,8 +5092,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 28203,
-      "sha256": "56130ac061805ffbaf00c9d3433f6b282d74c928af45fe36b049ed4027315050"
+      "bytes": 30124,
+      "sha256": "3d9da3b49ca213d93ecb8f60d6a7b1dc3ce4bb469a1c9f88b60d6a99e4a8319f"
     },
     {
       "path": "src/saveDelta.js",
@@ -6247,8 +6257,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 10139,
-      "sha256": "992e3b599f6e1db7bc2601a39d6370e49c57ccf28fa027fa2d1c4657a33cb6c0"
+      "bytes": 10501,
+      "sha256": "679418533707d0c0a0f37fbca8fb415ba82236afca6e0ae60b963a5ca7d6a860"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -6259,6 +6269,21 @@
       "path": "tests/v16-v17-ui-qa.mjs",
       "bytes": 5407,
       "sha256": "b0b0953ebda1e041eacf700ff1e71be8dc1243e5cea2622c10e03aa5cc81e271"
+    },
+    {
+      "path": "tests/v160-pending-save-recovery.test.mjs",
+      "bytes": 3644,
+      "sha256": "d2cfbf9f016baac1b73b36f2ab35f554c5c4411b2a648be0eb491ea906df3b95"
+    },
+    {
+      "path": "tests/v160-reload-baseline-browser.mjs",
+      "bytes": 6355,
+      "sha256": "3892e781dfb319601eb62e92a1ea6e5e90281350c8087eec9d965dccf2c1519f"
+    },
+    {
+      "path": "tests/v160-save-performance-browser.mjs",
+      "bytes": 6427,
+      "sha256": "9e3c09111d8175401b231a41fab6f9b6f0fa7c2becee4d55f6fc0aa37bea5633"
     },
     {
       "path": "tests/v17-harbor.test.mjs",
@@ -8556,5 +8581,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v159-github"
+  "publicRevision": "v160-github"
 }

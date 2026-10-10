@@ -4,6 +4,7 @@ import {yieldForSave} from "./saveScheduler.js";
 import {mergeActionState,sameState} from './actionMerge.js';
 import {activeSlotKey,activeSaveKey,validSaveSlot} from './saveStorage.js';
 import {createSaveJournal} from './saveJournal.js';
+import {recoverPendingProgress} from './pendingSaveRecovery.js';
 
 export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatus=()=>{},onRemoteState=()=>{}}){
  const sessions=new Map(),journal=createSaveJournal();
@@ -25,6 +26,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    if(generation===r.generation&&current===r.state)return {...result,generation};
   }
  }
+ // Reuse the worker's acknowledged JSON; concatenation adds no full-state
+ // encoding to the frame loop. Version mismatch deliberately omits the baseline.
+ const baselineText=r=>r.remoteVersion===r.version?(r.remoteEncoded||(r.remoteState?JSON.stringify({document:{version:r.version,state:r.remoteState}}):null)):null;
  const read=key=>journal.get(key);
  const forget=key=>journal.remove(key);
  function status(r,name,message){if(r.status===name&&r.message===message)return;if(r.recovering&&name!=='recovering')return;r.status=name;r.message=message;onStatus(r.theme)}
@@ -34,16 +38,16 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    // enqueue marks every progress change; reuse only a journal already committed for
    // this exact state, generation and server version. Receipts invalidate the memo.
    const memo=r.cachedSnapshot;if(memo&&memo.state===r.state&&memo.generation===r.generation&&memo.version===r.version&&memo.dirty===r.dirty)return memo;
-   await yieldFrame();const snapshotState=r.state,savedAt=new Date().toISOString(),generation=r.generation,version=r.version,dirty=r.dirty;
+   await yieldFrame();const snapshotState=r.state,savedAt=new Date().toISOString(),generation=r.generation,version=r.version,dirty=r.dirty,baseDocumentEncoded=baselineText(r);
    let serialized;r.capturing=true;
    try{serialized=await journal.encodeSnapshot(snapshotState,r.theme+':'+snapshotState.saveSlot,{isCurrent:()=>snapshotState===r.state&&generation===r.generation,onCaptured:()=>{r.capturing=false;}});}
    catch(error){if(error.code==='snapshot_retry')return run();throw error;}
    finally{r.capturing=false;}
    if(validSaveSlot(r.theme,r.state.saveSlot)&&localStorage.getItem(activeSlotKey(r.theme))!==r.state.saveSlot)localStorage.setItem(activeSlotKey(r.theme),r.state.saveSlot);
-   const pending='{"baseVersion":'+JSON.stringify(version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(savedAt)+',"clientId":'+JSON.stringify(clientId)+'}';
+   const pending='{"baseVersion":'+JSON.stringify(version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(savedAt)+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+(baseDocumentEncoded||'null')+'}';
    if(journal.enabled())await journal.commit([[activeSaveKey(r.theme),serialized],['hyper-dimension-'+r.theme+'-journal-stamp',JSON.stringify({savedAt,version,clientId})],...(dirty?[[pendingKey(r.theme),pending]]:[])]);
    else{storeLocal(r.theme,JSON.parse(serialized),serialized);if(dirty)await journal.commit([[pendingKey(r.theme),pending]]);}
-   r.cacheError=false;r.cachedSnapshot={state:snapshotState,serialized,generation,version,dirty};return r.cachedSnapshot;
+   r.cacheError=false;r.cachedSnapshot={state:snapshotState,serialized,generation,version,dirty,baseDocumentEncoded};return r.cachedSnapshot;
   };
   const result=(r.cacheTail||Promise.resolve()).then(run,run);r.cacheTail=result.catch(()=>{r.cacheError=true;});return result;
  }
@@ -58,7 +62,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function remember(r,doc){
   await yieldFrame();
-  r.remoteEncoded=doc.encoded||null;r.version=doc.version;r.updatedAt=doc.updatedAt;r.actions=doc.actions||null;r.provenance=doc.provenance||null;r.remoteState=doc.encoded?null:structuredClone(doc.state);
+  r.remoteEncoded=doc.encoded||null;r.remoteVersion=doc.version;r.version=doc.version;r.updatedAt=doc.updatedAt;r.actions=doc.actions||null;r.provenance=doc.provenance||null;r.remoteState=doc.encoded?null:structuredClone(doc.state);
   try{localStorage.setItem(metaKey(r.theme),JSON.stringify({version:r.version,updatedAt:r.updatedAt}))}catch{}
  }
  const hasCommand=theme=>{try{return journal.has(commandKey(theme))}catch{return false}};
@@ -84,7 +88,20 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    const auto=read(autosaveKey(theme));
    if(auto&&!result.restarted){
-    const response=await request(theme,'save',auto.body);doc=response.document;
+    let response;
+    try{response=await request(theme,'save',auto.body)}catch(error){
+     // A 409 version rejection is definite: this clock request was not accepted.
+     // Never guess the outcome of a timeout or bypass an unsettled action.
+     if(error.code!=='save_conflict'||error.status!==409||read(commandKey(theme)))throw error;
+     const current=(await request(theme,'')).document;
+     const merged=recoverPendingProgress({baseDocument:auto.baseDocument,baseVersion:auto.body.expectedVersion,state:pending?.state||auto.body.state},current);
+     if(merged===null)throw error;
+     await journal.set(autosaveKey(theme)+'-previous',{...auto,rejected:true,reason:'save_conflict',savedAt:new Date().toISOString()});
+     r.activeSeconds=0;await remember(r,current);r.state=merged;r.dirty=!sameState(merged,current.state);
+     await forget(autosaveKey(theme));await forget(pendingKey(theme));await cache(r);
+     status(r,r.dirty?'pending':'saved','刷新进度已核对，本页操作已保留');if(r.dirty)schedule(r);return r.state;
+    }
+    doc=response.document;
     const merged=mergeActionState(auto.body.state,pending?.state||auto.body.state,doc.state);
     await remember(r,doc);r.state=merged;r.dirty=!sameState(merged,doc.state);await forget(autosaveKey(theme));await forget(pendingKey(theme));await cache(r);
     status(r,r.dirty?'pending':'saved','上次有效游戏时间已核对');if(r.dirty)schedule(r);return r.state;
@@ -104,7 +121,11 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    await remember(r,doc);r.state=doc.state;r.dirty=false;
    if(!result.restarted&&pending&&!sameState(pending.state,doc.state)){
-    if(pending.baseVersion===doc.version||doc.parentVersion===pending.baseVersion&&doc.clientId===pending.clientId){
+    const merged=recoverPendingProgress(pending,doc);
+    if(merged!==null){
+     r.state=merged;r.dirty=!sameState(merged,doc.state);if(!r.dirty)await forget(pendingKey(theme));
+     status(r,r.dirty?'pending':'saved','刷新进度已核对，本页操作已保留');if(r.dirty)schedule(r,100);
+    }else if(pending.baseVersion===doc.version||doc.parentVersion===pending.baseVersion&&doc.clientId===pending.clientId){
      r.state=pending.state;r.dirty=true;status(r,'pending','暂存进度等待写入服务端');schedule(r,100);
     }else{
      r.state=pending.state;r.version=pending.baseVersion;r.dirty=true;status(r,'conflict','存档冲突 · 点击选择进度');
@@ -152,7 +173,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     }
     await yieldFrame();const farm=cached.state.farmControl?.version===1||cached.state.visitorControl?.version===1||cached.state.commerceControl?.version===1||cached.state.facilityControl?.version===1;
     let auto=farm?read(autosaveKey(theme)):null,newAuto=false;
-    if(farm&&!auto){auto={body:{expectedVersion:r.version,clientId,saveId:crypto.randomUUID(),activeSeconds:Math.min(15,r.activeSeconds||0)}};newAuto=true;r.activeSeconds=0;await journal.commit([[autosaveKey(theme),'{"body":{"state":'+cached.serialized+',"expectedVersion":'+JSON.stringify(r.version)+',"clientId":'+JSON.stringify(clientId)+',"saveId":'+JSON.stringify(auto.body.saveId)+',"activeSeconds":'+auto.body.activeSeconds+'}}']]);}
+    if(farm&&!auto){auto={body:{expectedVersion:r.version,clientId,saveId:crypto.randomUUID(),activeSeconds:Math.min(15,r.activeSeconds||0)}};newAuto=true;r.activeSeconds=0;await journal.commit([[autosaveKey(theme),'{"body":{"state":'+cached.serialized+',"expectedVersion":'+JSON.stringify(r.version)+',"clientId":'+JSON.stringify(clientId)+',"saveId":'+JSON.stringify(auto.body.saveId)+',"activeSeconds":'+auto.body.activeSeconds+'},"baseDocument":'+(cached.baseDocumentEncoded||'null')+'}']]);}
     const body=auto?.body||{expectedVersion:r.version,clientId};
     const encoded=auto&&!newAuto?undefined:'{"state":'+cached.serialized+',"expectedVersion":'+JSON.stringify(r.version)+',"clientId":'+JSON.stringify(clientId)+(auto?',"saveId":'+JSON.stringify(auto.body.saveId)+',"activeSeconds":'+auto.body.activeSeconds:'')+'}';
     const {document:doc}=await request(theme,'save',body,encoded,true);
@@ -304,7 +325,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
 
  function suspend(){for(const r of sessions.values())if(r.dirty&&!r.previewLock&&!r.previewPreparing&&!read(importKey(r.theme))){
   // pagehide can terminate a worker: retain a synchronous emergency journal only here.
-  try{const serialized=JSON.stringify(r.state);if(!journal.enabled())storeLocal(r.theme,r.state,serialized);localStorage.setItem(journal.enabled()?'hyper-dimension-'+r.theme+'-emergency-save':pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(r.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(new Date().toISOString())+',"clientId":'+JSON.stringify(clientId)+'}');}catch{}
+  try{const serialized=JSON.stringify(r.state);if(!journal.enabled())storeLocal(r.theme,r.state,serialized);localStorage.setItem(journal.enabled()?'hyper-dimension-'+r.theme+'-emergency-save':pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(r.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(new Date().toISOString())+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+(baselineText(r)||'null')+'}');}catch{}
   cache(r).catch(()=>{});flush(r.theme).catch(()=>{});
  }}
  document.addEventListener('visibilitychange',()=>{if(document.hidden)suspend()});

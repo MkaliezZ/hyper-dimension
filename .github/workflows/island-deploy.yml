@@ -43,6 +43,9 @@ jobs:
       - name: Verify native steward submission ordering
         run: node tests/v145-steward-preflight-browser.mjs
 
+      - name: Native refresh baseline recovery
+        run: node tests/v160-reload-baseline-browser.mjs
+
       - name: Native map save conflict recovery
         working-directory: island
         run: node tests/v146-map-save-conflict-browser.mjs

@@ -1,0 +1,161 @@
+{
+  "version": "V160",
+  "passed": true,
+  "scope": "Actual browser IndexedDB save journal and isolated LAN save endpoints. Injects two same-client authoritative versions with zero active seconds and delays an unaccepted HTTP save containing seven active seconds. Not a human or zero-start game test.",
+  "nativeReloadCases": [
+    {
+      "theme": "pixel",
+      "kind": "pending",
+      "overlap": false,
+      "status": "pending",
+      "localXPreserved": true,
+      "remoteYPreserved": true,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "persistedThroughSecondReload": true
+    },
+    {
+      "theme": "pixel",
+      "kind": "clock",
+      "overlap": false,
+      "rejectedActiveSeconds": 6.999999999999983,
+      "status": "pending",
+      "localXPreserved": true,
+      "remoteYPreserved": true,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "persistedThroughSecondReload": true
+    },
+    {
+      "theme": "pixel",
+      "kind": "pending-overlap",
+      "overlap": true,
+      "status": "conflict",
+      "localXPreserved": true,
+      "remoteYPreserved": false,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "conflictingJournalRetained": true
+    },
+    {
+      "theme": "pixel",
+      "kind": "clock-overlap",
+      "overlap": true,
+      "rejectedActiveSeconds": 6.999999999999983,
+      "status": "conflict",
+      "localXPreserved": true,
+      "remoteYPreserved": false,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "conflictingJournalRetained": true
+    },
+    {
+      "theme": "origami",
+      "kind": "pending",
+      "overlap": false,
+      "status": "pending",
+      "localXPreserved": true,
+      "remoteYPreserved": true,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "persistedThroughSecondReload": true
+    },
+    {
+      "theme": "origami",
+      "kind": "clock",
+      "overlap": false,
+      "rejectedActiveSeconds": 6.999999999999983,
+      "status": "pending",
+      "localXPreserved": true,
+      "remoteYPreserved": true,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "persistedThroughSecondReload": true
+    },
+    {
+      "theme": "origami",
+      "kind": "pending-overlap",
+      "overlap": true,
+      "status": "conflict",
+      "localXPreserved": true,
+      "remoteYPreserved": false,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "conflictingJournalRetained": true
+    },
+    {
+      "theme": "origami",
+      "kind": "clock-overlap",
+      "overlap": true,
+      "rejectedActiveSeconds": 6.999999999999983,
+      "status": "conflict",
+      "localXPreserved": true,
+      "remoteYPreserved": false,
+      "walletUnchanged": true,
+      "clockUnchanged": true,
+      "passed": true,
+      "conflictingJournalRetained": true
+    }
+  ],
+  "nativeFarming": [
+    {
+      "theme": "pixel",
+      "actualCraftedOneBag": true,
+      "realGrowthWallSeconds": 186.261,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "actualCraftedOneBag": true,
+      "realGrowthWallSeconds": 187.193,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "passed": true
+    }
+  ],
+  "beforeFixAllFourIndependentCasesConflicted": true,
+  "modelsCalled": false,
+  "humanAcceptance": false,
+  "physicalMacAcceptance": false,
+  "fullProductAcceptance": false,
+  "frozenArchiveVerified": false,
+  "platformCIStatus": "pending",
+  "publicRelease": "V158",
+  "priorV159Draft": "held after Intel recovery failure",
+  "maintainedTests": 922,
+  "saveRendering": {
+    "scope": "Isolated fresh accounts, synthetic near-limit save history, Manual animation paths and synthetic near-limit save history; CPU throttling recorded per check, 300ms request latency. Measures rendering during save, not authoritative economy-clock acceptance. No user progress or external model calls.",
+    "checks": [
+      {
+        "theme": "pixel",
+        "saveBytes": 1968840,
+        "maxFrameMs": 18.199999999999818,
+        "cpuRate": 1,
+        "frames": 220
+      },
+      {
+        "theme": "origami",
+        "saveBytes": 1968846,
+        "maxFrameMs": 36.30000000000018,
+        "cpuRate": 1,
+        "frames": 228
+      }
+    ],
+    "legacyProbeFailuresRetainedPrivately": 2
+  }
+}

@@ -4,9 +4,14 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V159 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V160 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V159
+## Current updates · V160
+
+Reload recovery now merges independent changes using a durable acknowledged baseline. Real conflicts retain confirmation; a definitely rejected clock request cannot grant time twice. Ten rules, eight native browser fault cases and both full-length farm flows passed in the working source. The immutable archive and same-source platform CI are verified separately. The public release remains V158 while those checks are pending. [Scope](docs/reload-recovery-v160.md) · [Evidence](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/evidence/v160-reload-baseline.json).
+
+### V159 · Farm care
+
 
 Greenhouse compost now has a real farm use: three bounded harvest bonuses, animated application, unchanged growth clocks and idempotent settlement. Automatic shelves retain the first nonfood item and sell surplus and food. Both native themes passed crafting, fertilizing, full growth, harvest and refresh. V158 offline and platform verification remains a historical baseline; see public Releases for the current delivery status. [Rules and verification scope](docs/soil-care-v159.md).
 
