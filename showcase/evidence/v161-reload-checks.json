@@ -110,5 +110,12 @@
   "runtimeBaseline": "V160",
   "V160PublicRelease": "held",
   "remainingWindowsFarmRecoveryFailure": true,
-  "sameSourcePlatformCI": "pending"
+  "sameSourcePlatformCI": "pending",
+  "sourceCommit": "7749b6be9e9a2b531608db1e00feb17842f6a7ac",
+  "newPlatformFailures": [
+    "Windows identity.lock EPERM",
+    "Mac ARM pearl cup entry timeout"
+  ],
+  "frozenArchiveGenerated": true,
+  "frozenArchiveFullyVerified": false
 }

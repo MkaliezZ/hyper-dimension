@@ -133,8 +133,8 @@
   "humanAcceptance": false,
   "physicalMacAcceptance": false,
   "fullProductAcceptance": false,
-  "frozenArchiveVerified": false,
-  "platformCIStatus": "pending",
+  "frozenArchiveVerified": true,
+  "platformCIStatus": "completed",
   "publicRelease": "V158",
   "priorV159Draft": "held after Intel recovery failure",
   "maintainedTests": 922,
@@ -157,5 +157,29 @@
       }
     ],
     "legacyProbeFailuresRetainedPrivately": 2
+  },
+  "sourceCommit": "a5e82cf06aba4ba89633b4b4ea6cbb6b2d27b390",
+  "independentOfflineTests": 922,
+  "platformCIConclusion": "failure",
+  "passedPlatformJobs": 2,
+  "totalPlatformJobs": 6,
+  "ciRun": 38022395114,
+  "releaseDraftHeld": true,
+  "frozenSaveRendering": {
+    "scope": "Isolated fresh accounts, synthetic near-limit save history, Manual animation paths and synthetic near-limit save history; CPU throttling recorded per check, 300ms request latency. Measures rendering during save, not authoritative economy-clock acceptance. No user progress or external model calls.",
+    "checks": [
+      {
+        "theme": "pixel",
+        "saveBytes": 1968840,
+        "maxFrameMs": 18,
+        "cpuRate": 1
+      },
+      {
+        "theme": "origami",
+        "saveBytes": 1968846,
+        "maxFrameMs": 30.400000000000546,
+        "cpuRate": 1
+      }
+    ]
   }
 }
