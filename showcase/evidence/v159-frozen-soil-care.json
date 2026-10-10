@@ -1,0 +1,52 @@
+{
+  "version": "V159",
+  "sourceCommit": "242ec9edbbf58ad221775913e7183ed7c407663a",
+  "archiveSha256": "7ff820deb10e6b4b692d8df8d57512e5a93768947f76af079f6314a0269065e8",
+  "archiveEntries": 1709,
+  "unchangedFrozenPayloadFiles": 1707,
+  "offlineChecks": 912,
+  "nativeFarming": [
+    {
+      "theme": "pixel",
+      "actualCraftedOneBag": true,
+      "fullGrowthWallSeconds": 185.054,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "actualCraftedOneBag": true,
+      "fullGrowthWallSeconds": 185.147,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true,
+      "passed": true
+    }
+  ],
+  "nativePortraitChoices": 26,
+  "contactSheetsVisuallyReviewed": true,
+  "defaultShelfRetainsFirstNonfood": true,
+  "grantedInputsAndSolutionAssistance": true,
+  "modelsCalled": false,
+  "humanAcceptance": false,
+  "physicalMacAcceptance": false,
+  "fullProductAcceptance": false,
+  "platformCI": {
+    "url": "https://github.com/MkaliezZ/hyper-dimension/actions/runs/38018273778",
+    "passedJobs": 5,
+    "totalJobs": 6,
+    "conclusion": "failure",
+    "failedScope": "Mac Intel native farm return after refresh was blocked by interaction recovery; exact cause remains under investigation."
+  },
+  "publicRelease": "V158 remains public; V159 draft held for repair",
+  "sameSourcePythonCI": true,
+  "showcaseFootage": "V145"
+}

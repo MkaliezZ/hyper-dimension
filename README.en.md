@@ -8,7 +8,7 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 ## Current updates · V159
 
-Greenhouse compost now has a real farm use: three bounded harvest bonuses, animated application, unchanged growth clocks and idempotent settlement. Automatic shelves retain the first nonfood item and sell surplus and food. Both native themes passed crafting, fertilizing, full growth, harvest and refresh. V159 source packaging is in progress; the verified public archive remains V158. [Rules and verification scope](island/docs/soil-care-v159.md).
+Greenhouse compost now has a real farm use: three bounded harvest bonuses, animated application, unchanged growth clocks and idempotent settlement. Automatic shelves retain the first nonfood item and sell surplus and food. Both native themes passed crafting, fertilizing, full growth, harvest and refresh. V159 local and immutable-archive checks passed. The Mac Intel farm return after refresh failed its interaction recovery check, so the release draft is held; the public archive remains V158. [Checks and outstanding repair](showcase/evidence/v159-frozen-soil-care.json). [Rules and verification scope](island/docs/soil-care-v159.md).
 
 A standard A2A 1.0 interface now shares the existing steward ledger: discovery, messages, task queries and cancellation. The official client, three real Hermes replies and native pixel/origami transcripts were verified; resource reservations still require explicit owner confirmation. [Interface and verification scope](island/docs/a2a-standard-v158.md).
 
