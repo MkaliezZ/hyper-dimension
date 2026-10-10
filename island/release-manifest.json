@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v160-agent-source",
+  "release": "hyper-dimension-v161-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 14992,
-      "sha256": "8769a0f4fe3fe714d89b7ec54f8bce211a34c73b651877b3e665476ad0847118"
+      "bytes": 15472,
+      "sha256": "7623147569d4a74b5b9cf965ca5af9fd425954c3f98447ae248349866d0dda1a"
     },
     {
       "path": "README.md",
-      "bytes": 15541,
-      "sha256": "0ff2354e9f91f0e1ef7a2538900c623c628c43b782659a4416b524ef30fddb78"
+      "bytes": 15930,
+      "sha256": "ef46c93ced1e630b88f06a8fb76325bae55be218ba18694f7db9c0e0bebb2231"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -564,6 +564,11 @@
       "path": "docs/recruitment-v140.md",
       "bytes": 3165,
       "sha256": "92a88519e5a3b9b60045b0ed9a4dec0bebef8f16a7544ca10f5b58f2e04280a0"
+    },
+    {
+      "path": "docs/reload-checks-v161.md",
+      "bytes": 1910,
+      "sha256": "82ede7a8689ba92d276f39e5ac707e21b40c5f32d76b2f8103ba9a5408a037eb"
     },
     {
       "path": "docs/reload-recovery-v160.md",
@@ -6257,8 +6262,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 10501,
-      "sha256": "679418533707d0c0a0f37fbca8fb415ba82236afca6e0ae60b963a5ca7d6a860"
+      "bytes": 11597,
+      "sha256": "f956151272ff97fecfba0b863ccb7e8582e95db8d8c6762d82398ceb8e326293"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -6277,8 +6282,8 @@
     },
     {
       "path": "tests/v160-reload-baseline-browser.mjs",
-      "bytes": 6355,
-      "sha256": "3892e781dfb319601eb62e92a1ea6e5e90281350c8087eec9d965dccf2c1519f"
+      "bytes": 6848,
+      "sha256": "68b229ccd727445acec0cc2a212154c593d06398b4411a125fba981b4bad77fd"
     },
     {
       "path": "tests/v160-save-performance-browser.mjs",
@@ -8581,5 +8586,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v160-github"
+  "publicRevision": "v161-github"
 }

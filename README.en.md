@@ -4,9 +4,13 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V160 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V161 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V160
+## Current updates · V161
+
+The refresh fixture now waits for already-started autosaves before checking the journal. Eight native fault cases passed with slowed commits, retaining all balance, time and conflict assertions. The V160 Windows farm reload timeout remains under diagnosis; V159/V160 stay draft and the public package remains V158. V161 changes verification; the running game stays on the independently verified V160 runtime. [Scope](island/docs/reload-checks-v161.md).
+
+### V160 · Reload recovery
 
 Reload recovery now merges independent changes using a durable acknowledged baseline. Real conflicts retain confirmation; a definitely rejected clock request cannot grant time twice. Ten rules, eight native browser fault cases and both full-length farm flows passed in the working source. The immutable archive and same-source platform CI are verified separately. The public release remains V158 while those checks are pending. [Scope](island/docs/reload-recovery-v160.md) · [Evidence](showcase/evidence/v160-reload-baseline.json).
 
