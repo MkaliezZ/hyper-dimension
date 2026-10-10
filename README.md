@@ -8,21 +8,18 @@
 
 ## 当前更新 · V157
 
-经营、补给、设施和物品的迟到成功回包不再重新打开已关闭页面。六种操作 × 双画风的 12 组原生关闭/切换检查通过，当前页面与唯一回执在刷新后保留。[导航修复与检查范围](island/docs/modal-command-navigation-v157.md)。
+- **从零经营到真实管家协作**：两套画风各完成一次正常采集、手作、作物成熟、订单、Hermes 主子分工和夜集，工钱、离岛与刷新留存通过。[实际记录与范围](showcase/evidence/v157-native-zero-journey.json)。
+- **关闭页面后不会被旧回包拉回**：经营、设施和背包共六种操作 × 两套画风，12 组原生导航与唯一回执检查通过。[导航修复](island/docs/modal-command-navigation-v157.md)。
+- **双画风美术校准**：管家与角色立绘、材料与产物裁切修复保留；珍珠茶盏使用与配方对应的独立素材。[立绘](island/docs/steward-portraits-v153.md) · [产物](island/docs/product-art-v155.md) · [茶盏](island/docs/pearl-cup-v156.md)。
 
-珍珠茶盏按配方重绘：一只茶盏、两颗杯壁珍珠、右侧单把手，两套使用独立完整透明素材。实际制作与刷新、全部 600 个产物图标检查通过；结算检查精确拦住真实回包并保留失败状态。[美术与检查范围](island/docs/pearl-cup-v156.md)。
+从零检查使用两个隔离账号，木工采用解法辅助的原生输入，自动 NPC 模型请求被隔离，招募为真实 Hermes/deepseek-flash；仅覆盖夜集一类，不替代全部活动、真人品质或实体 Mac 验收。
 
-双画风配方产物的邻图碎片已修复，600 个图标 / 1,800 个原生显示面通过检查。小游戏结算的重开与难度按钮显示保存等待，确认后恢复。[产物美术与结算检查](island/docs/product-art-v155.md)。
+<details>
+<summary>此前修复与检查细节</summary>
 
-不可变 V153 安装副本已完成双画风 25 馆原生制作与刷新检查，采用全物资夹具和解题辅助，验收范围单独标明。 [Checks](island/docs/verification/v154/native-all-rooms-v153.json).
 
-双画风基础材料的图集边界已校准，背包、场景与手持物品共用同一裁切，避免邻图碎片和留白漏图。[材料美术与原生检查](island/docs/material-art-v154.md)。
 
-管家与角色形象的裁切已逐张校准，默认管家和相邻角色碎片不再串入选择卡片；两套画风保持成人比例。[立绘与实际检查](island/docs/steward-portraits-v153.md)。
-
-主题鼠标全面覆盖；双画风在同一小岛内切换并持久化；会客厅扩大地图、重排侧栏；联机 NPC 停步与转向按服务器真实状态展示。会客馆加入预加载。[实现与回归证据](island/docs/ui-reliability-v148.md)。
-
-会客地图正常点击不再闪现核对卡片；失败回包仍可按原编号恢复。[修复与原生检查](island/docs/lobby-navigation-v151.md)。
+</details>
 
 ## 看一眼这座岛
 

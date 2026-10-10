@@ -8,21 +8,18 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 ## Current update · V157
 
-Late successful order, supply, facility and inventory callbacks now respect closed or changed views. Six native operations across both themes preserve the new page and a single receipt after refresh. [Navigation fix and scope](island/docs/modal-command-navigation-v157.md).
+- **From zero to real steward cooperation:** both themes complete one normal acquisition/crafting/crop/order/Hermes parent-child/night-event journey, including wages, departure and refresh. [Actual evidence and scope](showcase/evidence/v157-native-zero-journey.json).
+- **Late responses respect navigation:** six business/facility/inventory operations across both themes pass 12 native close/view-change/unique-receipt checks. [Navigation fix](island/docs/modal-command-navigation-v157.md).
+- **Both art styles remain calibrated:** steward/player portraits and material/product clips retain their fixes; the pearl cup has dedicated recipe-aligned assets. [Portraits](island/docs/steward-portraits-v153.md) · [Products](island/docs/product-art-v155.md) · [Pearl cup](island/docs/pearl-cup-v156.md).
 
-Pearl cups now match their recipe: one cup, two embedded pearls, one right handle, with separate complete PNGs for both themes. Native crafting/refresh and all 600 product icons pass; CI now holds one real result checkpoint response and retains failure diagnostics. [Art and test scope](island/docs/pearl-cup-v156.md).
+Zero-start checks use two isolated accounts with solution-assisted native joinery. Automatic NPC model calls are blocked; recruitment uses actual Hermes/deepseek-flash. This covers one night-event path, not all activities, human quality or physical Mac acceptance.
 
-Both recipe-product atlases now share calibrated inventory, scene and held-item clipping: 600 icons / 1,800 native surfaces checked. Result restart and difficulty controls visibly wait for save acknowledgement, then recover. [Product art and restart checks](island/docs/product-art-v155.md).
+<details>
+<summary>Earlier fixes and detailed checks</summary>
 
-An immutable V153 installation passes native crafting and reload checks for all 25 rooms in both themes, with granted-resource fixtures and solution-assisted input; its scope is stated separately. [Checks](island/docs/verification/v154/native-all-rooms-v153.json).
 
-Material atlas boundaries are calibrated in both themes. Inventory, scene and held-item rendering share the same clipping, removing neighboring fragments and SVG letterbox leaks. [Material art and native checks](island/docs/material-art-v154.md).
 
-Steward and player portraits are individually clipped to keep neighboring sleeves and stray atlas fragments out of the chooser, preserving adult proportions in both themes. [Portraits and native checks](island/docs/steward-portraits-v153.md).
-
-Theme cursors cover legacy controls. Both appearances persist in one island save. The lobby gives the island more space and groups hospitality controls in a side rail. NPC walking and facing follow server intent. Gallery data is preloaded. [Implementation and regression evidence](island/docs/ui-reliability-v148.md).
-
-Normal lobby map clicks no longer flash a recovery card; failed responses remain recoverable. [Details and native checks](island/docs/lobby-navigation-v151.md).
+</details>
 
 ## See the island
 
