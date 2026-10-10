@@ -1,3 +1,4 @@
+import {modalNavigationToken} from './modalNavigation.js';
 import {availableQuantity,reservedQuantity} from './resourceLedger.js';
 import {isWorn,wornItems} from './equipmentRules.js';
 import {MOMENTS} from './journey.js';
@@ -14,7 +15,7 @@ const sources={forest:'林地',mine:'矿洞',farm:'农田',greenhouse:'育苗温
 export function createContentUI(api){
  const {state,theme,persist,renderUI,toast,craft,gather}=api;
  let selectedGiftRecipient=15,managing=false,ordering=false;
- async function manage(operation,args,local,after){if(managing)return;managing=true;try{const result=api.command?(await api.command(operation,args)).receipt.details:local();api.persist();api.renderUI();after(result);api.toast(result.text||result.reason);}catch(e){api.toast(e.message);}finally{managing=false;}}
+ async function manage(operation,args,local,after){if(managing)return;managing=true;const navigation=modalNavigationToken();try{const result=api.command?(await api.command(operation,args)).receipt.details:local();api.persist();api.renderUI();if(navigation.current())after(result);api.toast(result.text||result.reason);}catch(e){api.toast(e.message);}finally{managing=false;}}
  const openModal=(...args)=>{api.openModal(...args);document.querySelector('#modalRoot .modal').classList.add('content-modal')};
  const root=()=>document.getElementById('modalRoot'),bind=(sel,fn)=>root().querySelectorAll(sel).forEach(el=>el.onclick=()=>fn(el));
  const icon=id=>itemMarkup(id,theme());
@@ -75,9 +76,9 @@ export function createContentUI(api){
   if(r){const recipient=root().querySelector('#giftRecipient'),preview=root().querySelector('#giftPreview');const update=()=>{selectedGiftRecipient=Number(recipient.value);const gift=giftPreview(id,s,selectedGiftRecipient);preview.textContent=gift.text;const btn=root().querySelector(i.category==='gift'?'#itemUse':'#itemGift');if(btn)btn.disabled=availableQuantity(s,id)<1||gift.gain<1};recipient.onchange=update;update();}
   bind('#itemUnequip',()=>{manage('unequip',{itemId:id},()=>unequipOutfit(s,id),()=>detail(id))});bind('#itemUse',()=>use('use'));bind('#itemGift',()=>use('gift'));bind('#itemShelf',()=>api.shopfront(i.building));bind('#itemBusiness',()=>api.business());bind('#itemParty',()=>p.fishing?(api.fishing||api.party)():api.party());
   bind('#itemOrder',async()=>{
-   if(ordering)return;ordering=true;const button=root().querySelector('#itemOrder');if(button){button.disabled=true;button.textContent='正在确认交付…';}
+   if(ordering)return;ordering=true;const navigation=modalNavigationToken(),button=root().querySelector('#itemOrder');if(button){button.disabled=true;button.textContent='正在确认交付…';}
    try{
-    if(api.deliverOrder){const result=await api.deliverOrder(o.slot);detail(id);toast(result.receipt.text);}
+    if(api.deliverOrder){const result=await api.deliverOrder(o.slot);if(navigation.current())detail(id);toast(result.receipt.text);}
     else throw Error('经营服务尚未就绪，请稍后再试');
    }catch(error){toast(error.message);}
    finally{ordering=false;if(button?.isConnected){button.disabled=false;button.textContent='交付订单';}}

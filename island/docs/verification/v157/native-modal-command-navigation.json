@@ -1,0 +1,211 @@
+{
+  "scope": "Real protected commands and native modal controls with an explicit barrier holding one actual successful order/supply/upgrade/maintain/item-use acknowledgement. Close the initiating modal and open the journal before releasing the real response. The new view must remain, while exactly one successful server receipt persists and refresh preserves it. Granted-resource/credit/condition fixtures, no post-start game-state or clock injection and no models/user data; not zero-start or human acceptance.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "name": "order",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "order",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "pixel",
+      "name": "supply",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "supply",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "pixel",
+      "name": "upgrade",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "upgrade",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "pixel",
+      "name": "maintain",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "maintain",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "pixel",
+      "name": "itemOrder",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "order",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "pixel",
+      "name": "itemUse",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "personal",
+        "operation": "use",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "name": "order",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "order",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "name": "supply",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "supply",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "name": "upgrade",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "upgrade",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "name": "maintain",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "maintain",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "name": "itemOrder",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "commerce",
+        "operation": "order",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "name": "itemUse",
+      "errors": [],
+      "realResponse": {
+        "status": 200,
+        "kind": "personal",
+        "operation": "use",
+        "hasReceipt": true,
+        "code": null
+      },
+      "otherModalTitle": "岛屿手账",
+      "confirmedReceiptCount": 1,
+      "currentViewPreserved": true,
+      "uniqueReceiptAfterRefresh": true,
+      "passed": true
+    }
+  ],
+  "humanAcceptance": false,
+  "passed": true
+}

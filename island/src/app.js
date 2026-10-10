@@ -87,7 +87,7 @@ import {createCoCreationUI} from './cocreationUI.js';
 import {createJourneyUI,momentSeal} from './journeyUI.js';
 import {createStewardChat} from './stewardChat.js';
 import {createPartyGuideUI} from './partyGuideUI.js';
-import {advanceModalNavigation} from './modalNavigation.js';
+import {advanceModalNavigation,modalNavigationToken} from './modalNavigation.js';
 import {drawJourneyLandmarks,drawMomentPerformance} from './journeyArt.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
 import {applyHUDArt} from './uiArt.js';
@@ -253,8 +253,8 @@ function showSlot(id){
   const costs=c=>Object.entries(c).map(([k,n])=>k==='coins'?n+' 岛币':itemIcon(k)+' '+ITEMS[k][0]+' ×'+n).join(' · ');
   openModal(buildingIcon(b.id)+' '+b.name,b.desc,'<div class="hint">品质 '+Math.round(effectiveQuality(f))+' / 上限 '+qualityCap(f)+' · 设施等级 '+f.upgrades+'/4<br>状态 '+Math.round(f.condition)+'% · 接待 '+f.visits+' 次 · 营业 '+f.revenue+' / 运营支出 '+f.operatingCosts+' 岛币</div><p class="mini-explain">居民日常作业逐步提升品质并轻度维护。升级增加品质上限；游客消费产生耗损和运营成本。</p><div class="budget-card"><b>改善设施 · 品质 +10 / 上限 +10</b><p>'+costs(cost)+'</p></div><div class="budget-card"><b>维护设施 · 状态恢复至 100%</b><p>'+costs(maintenance)+'</p></div>','<button class="secondary" id="venueShelf">商品陈列</button><button class="secondary" id="maintainFacility" '+(!canPay(state,maintenance)||f.condition>=100?'disabled':'')+'>维护设施</button><button class="secondary" id="upgradeFacility" '+(!canPay(state,cost)||f.upgrades>=4?'disabled':'')+'>改善设施</button><button class="primary" id="enterSlot">进入室内</button>');
   $('venueShelf').onclick=()=>shopfrontUI.open(id);
-  $('upgradeFacility').onclick=async()=>{try{const r=await serverCommerce.command('upgrade',{day:state.day,buildingId:id});log(r.receipt.text);showSlot(id)}catch(e){toast(e.message)}};
-  $('maintainFacility').onclick=async()=>{try{const r=await serverCommerce.command('maintain',{day:state.day,buildingId:id});log(r.receipt.text);showSlot(id)}catch(e){toast(e.message)}};
+  $('upgradeFacility').onclick=async()=>{const navigation=modalNavigationToken();try{const r=await serverCommerce.command('upgrade',{day:state.day,buildingId:id});log(r.receipt.text);if(navigation.current())showSlot(id)}catch(e){toast(e.message)}};
+  $('maintainFacility').onclick=async()=>{const navigation=modalNavigationToken();try{const r=await serverCommerce.command('maintain',{day:state.day,buildingId:id});log(r.receipt.text);if(navigation.current())showSlot(id)}catch(e){toast(e.message)}};
   $('enterSlot').onclick=()=>{closeModal();setScene(b.kind,id)};return
  }
  const cost=b.cost,materials=spend(cost),canOpen=gate.ready&&materials;
@@ -568,9 +568,9 @@ function showBusiness(){
  const rows=BUILDINGS.map(b=>{const f=state.facilities[b.id];return '<button class="facility-row" data-manage="'+b.id+'">'+buildingIcon(b.id)+'<span><b>'+b.name+'</b><small>品质 '+Math.round(effectiveQuality(f))+'/'+qualityCap(f)+' · 状态 '+Math.round(f.condition)+'% · 接待 '+f.visits+'</small></span></button>'}).join('');
  const packs=SUPPLY_PACKS.map(p=>'<button class="secondary supply-pack" data-supply="'+p.id+'" '+(state.coins<p.coins?'disabled':'')+'><b>'+p.name+' · '+p.coins+' 岛币</b><span>'+Object.entries(p.items).map(([id,n])=>itemIcon(id)+' '+ITEMS[id][0]+' ×'+n).join(' · ')+'</span></button>').join('');
  openModal('晨光岛经营手账','生产、接待、成本与设施再投资','<div class="business-stats"><span>今日收入<b>'+accounts.income+'</b></span><span>今日支出<b>'+accounts.cost+'</b></span><span>结余（含待付岛务）<b>'+accounts.projectedNet+'</b></span><span>累计营业 / 支出<b>'+(e.gross+e.orderIncome)+' / '+e.costs+'</b></span></div><div class="budget-card"><b>今日岛务预算 · '+budget.total+' 岛币</b><p>'+budget.rows.filter(r=>r.coins).map(r=>r.name+' '+r.coins).join(' · ')+'</p><p>'+(lastDay?'上一天收入 '+lastDay.income+' / 支出 '+lastDay.cost+' / 净入账 '+lastDay.net:'当前游戏日结束时结算；今日预算尚待支付 '+accounts.due)+'。</p><p>'+ (budget.policyVersion===12?'当前游戏日沿用原预算；第 '+budget.startsDay+' 天启用 15 分钟经营预算。':'预算按开放设施与体验品质核算；亲手订单、商品和派对带来额外经营收入。')+'</p></div>'+recent+'<p class="mini-explain">成熟小岛允许小幅日均挂机盈利；游客数量与设施品质有上限，亲手操作带来额外收益。游客可付费参观观星台、水族馆等体验设施，也会购买真实库存商品。每笔运营或订单交付费为报价的 30%，向上取整。渡船约每 '+ECONOMY_RULES.ferryInterval+' 秒一班，每班两名候选旅人。每个游戏日 '+ECONOMY_RULES.daySeconds+' 秒（'+(ECONOMY_RULES.daySeconds/60)+' 分钟有效游戏时间）；每日岛务、订单与派对次数按游戏日结算。余额紧张时精简运营，保留 '+ECONOMY_RULES.cashReserve+' 币周转，不累积欠费；不扣离线费用。</p><h3>今日岛主订单</h3><p class="mini-explain">每天三项，需使用亲手采集或制作的额度并交付对应库存。居民自动产出、购买补给不增加个人交付额度；每项一天仅结算一次。</p><div class="town-orders">'+orders+'</div><h3>经营补给</h3><div class="supply-grid">'+packs+'</div><h3>收支台账</h3>'+ledger+'<h3>码头见闻</h3><ul class="visitor-events">'+logs+'</ul><h3>设施改善与维护</h3><div class="facility-grid">'+rows+'</div>','<button class="secondary" id="manageShelves">商铺货架</button><button class="primary" id="lookPort">查看码头</button>');
- document.querySelectorAll('[data-town-order]').forEach(b=>b.onclick=async()=>{try{const r=await serverCommerce.command('order',{day:state.day,slot:Number(b.dataset.townOrder)});log(r.receipt.text);showBusiness()}catch(e){toast(e.message)}});
+ document.querySelectorAll('[data-town-order]').forEach(b=>b.onclick=async()=>{const navigation=modalNavigationToken();try{const r=await serverCommerce.command('order',{day:state.day,slot:Number(b.dataset.townOrder)});log(r.receipt.text);if(navigation.current())showBusiness()}catch(e){toast(e.message)}});
  document.querySelectorAll('[data-manage]').forEach(b=>b.onclick=()=>showSlot(Number(b.dataset.manage)));
- document.querySelectorAll('[data-supply]').forEach(b=>b.onclick=async()=>{try{const r=await serverCommerce.command('supply',{day:state.day,supply:b.dataset.supply});log(r.receipt.text);showBusiness()}catch(e){toast(e.message)}});
+ document.querySelectorAll('[data-supply]').forEach(b=>b.onclick=async()=>{const navigation=modalNavigationToken();try{const r=await serverCommerce.command('supply',{day:state.day,supply:b.dataset.supply});log(r.receipt.text);if(navigation.current())showBusiness()}catch(e){toast(e.message)}});
   $('manageShelves').onclick=()=>shopfrontUI.open();
   $('lookPort').onclick=()=>{closeModal();$('portBtn').click()}
 }

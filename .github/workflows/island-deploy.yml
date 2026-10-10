@@ -69,3 +69,6 @@ jobs:
         if: always()
         run: |
           node --input-type=module -e "import {existsSync,readFileSync} from 'node:fs'; const f='qa/v156/checkpoint-restart/report.json'; if(existsSync(f)) console.log(readFileSync(f,'utf8')); else console.log('Checkpoint report unavailable: step did not finish');"
+
+      - name: Native late successful modal navigation
+        run: node tests/v157-modal-command-navigation-browser.mjs

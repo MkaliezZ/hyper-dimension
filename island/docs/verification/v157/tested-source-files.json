@@ -1,0 +1,23 @@
+{
+  "candidate": "V157",
+  "files": [
+    {
+      "path": "src/app.js",
+      "sha256": "a94604c08f5f3453717976cd2e4ba308d1af5d82f34b5ab160f1adc5f4f8e0e7"
+    },
+    {
+      "path": "src/contentUI.js",
+      "sha256": "385b3624bc2a61c0775d77949d855d3934beed74a418ceac2515d24067d200b4"
+    },
+    {
+      "path": "src/modalNavigation.js",
+      "sha256": "4299882bda537b4c73868b262bc83c6de5b9d189fb2b01983a2c01855f34cd5c"
+    },
+    {
+      "path": "tests/v157-modal-command-navigation-browser.mjs",
+      "sha256": "aca49c27681d3eff38b53273d705fa4ee32b4343051c13f1e35586b5109adfe1"
+    }
+  ],
+  "passed": true,
+  "scope": "Exact source/test bytes for the pre-commit native regression; documentation and manifest sealed after the run."
+}

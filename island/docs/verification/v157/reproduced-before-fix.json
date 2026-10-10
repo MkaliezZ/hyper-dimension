@@ -1,0 +1,13 @@
+{
+  "sourceVersion": "V156",
+  "sourceCommit": "7d3e32bc64060d88777c2e7122667f1bddf2f1e7",
+  "reproduced": true,
+  "operation": "order",
+  "serverResponseStatus": 200,
+  "newPageTitle": "岛屿手账",
+  "replacedBy": "晨光岛经营手账",
+  "cause": "Successful command callback called showBusiness after the originating modal had closed",
+  "realResponseHeldAndReleased": true,
+  "modelsCalled": false,
+  "humanAcceptance": false
+}

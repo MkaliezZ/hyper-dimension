@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v156-agent-source",
+  "release": "hyper-dimension-v157-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 13231,
-      "sha256": "f540f3664e931b56aeeab98432cba64bc329aa9e674bb1a0d01dba3551a7971f"
+      "bytes": 13501,
+      "sha256": "ab7c108bec1a14e2c082885465454ac2b923d786cc74acdf43e52c07bada1adc"
     },
     {
       "path": "README.md",
-      "bytes": 13972,
-      "sha256": "bb091668d6e37d2051ecfc41751f6dcee43fb42d434098e9611bee15096fb182"
+      "bytes": 14254,
+      "sha256": "426ee7679a60cb075676b791e480a99f2d9540fa77f6dc09d9d346d628ffe764"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -464,6 +464,11 @@
       "path": "docs/media/v153-portrait-pixel.png",
       "bytes": 93603,
       "sha256": "8e2b483d8fd42109723fabe31ca26f6d8c0d332b37814e2c4be36d37d856da95"
+    },
+    {
+      "path": "docs/modal-command-navigation-v157.md",
+      "bytes": 3290,
+      "sha256": "365e747117d84221b26ec7bd06f85ed4bfa972cdf18c92c99ff9fdbe9c140fad"
     },
     {
       "path": "docs/night-sky-v141-verification.json",
@@ -1164,6 +1169,21 @@
       "path": "docs/verification/v156/tested-source-files.json",
       "bytes": 1325,
       "sha256": "6b62722d0def429184a1092f3e2629f3d8f4c7089eccf8524288e58f58e597ca"
+    },
+    {
+      "path": "docs/verification/v157/native-modal-command-navigation.json",
+      "bytes": 5826,
+      "sha256": "d7c919872152547ef094d2556c85b70c67c4ba8298820c43a208caeb18bee850"
+    },
+    {
+      "path": "docs/verification/v157/reproduced-before-fix.json",
+      "bytes": 450,
+      "sha256": "5c31097536a5848be8d6abe288af6ecc32285b4b7d31d63f3277be8a3d4131c5"
+    },
+    {
+      "path": "docs/verification/v157/tested-source-files.json",
+      "bytes": 760,
+      "sha256": "bf79849256000e6abd6f03c1ae735ee86797fa4bb6ebc26464e8bd12f3c8c299"
     },
     {
       "path": "index.html",
@@ -3892,8 +3912,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 137612,
-      "sha256": "93b52c7543dca90f2a2372e3c15cab3f9b8dc58d47be6a0710a7fb87ae2adf9c"
+      "bytes": 137889,
+      "sha256": "a94604c08f5f3453717976cd2e4ba308d1af5d82f34b5ab160f1adc5f4f8e0e7"
     },
     {
       "path": "src/arcade.css",
@@ -4012,8 +4032,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 17444,
-      "sha256": "f0f6a668df8f4f843c6a496844edd72abe50ca97aa2d53caca1afeada6bb07c2"
+      "bytes": 17626,
+      "sha256": "385b3624bc2a61c0775d77949d855d3934beed74a418ceac2515d24067d200b4"
     },
     {
       "path": "src/conversationFallback.js",
@@ -6149,6 +6169,11 @@
       "path": "tests/v156-pearl-cup-craft-browser.mjs",
       "bytes": 6446,
       "sha256": "97cd61fd153e0cd7bbf322794a2f13e49bdb0bfccf1959c2210a13995b0dddb3"
+    },
+    {
+      "path": "tests/v157-modal-command-navigation-browser.mjs",
+      "bytes": 8001,
+      "sha256": "aca49c27681d3eff38b53273d705fa4ee32b4343051c13f1e35586b5109adfe1"
     },
     {
       "path": "tests/v16-v17-ui-qa.mjs",
@@ -8451,5 +8476,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v156-github"
+  "publicRevision": "v157-github"
 }
