@@ -1,8 +1,29 @@
 {
-  "version": "V145",
+  "version": "V166",
   "films": [
     {
       "id": "living",
+      "version": "V166",
+      "filename": "hyper-dimension-v166-living-agents-30s.mp4",
+      "duration": 30,
+      "sha256": "355358cdd2236bf99637069a68026a0f733842dd8178740ff60fc2c0af6f1669",
+      "poster": "assets/hyper-dimension-v166-living-agents-poster.png",
+      "download": "media/hyper-dimension-v166-living-agents-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 会生活的岛与能办事的管家",
+        "en": "30 seconds · Living residents and working Agents"
+      },
+      "caption": {
+        "zh": "双画风 · 居民交流 · 多形象管家 · 真实成果 · 主子协作",
+        "en": "Dual styles · Resident dialogue · Steward choices · Real work · Agent cooperation"
+      },
+      "description": {
+        "zh": "从独立 V166 源码包重新录制，1440p / 60 fps，原创 BGM，含完整四次点亮与实际奖励页。管家文档与主子协作展示此前真实工具执行结果；资料均为虚构示例。小游戏为占位演示，将继续优化。",
+        "en": "Recaptured from the immutable V166 source at 1440p / 60 fps with original BGM, four successful launches and the actual reward screen. Document and parent/child scenes show saved results of real tool runs using fictional briefs. Minigames are prototypes and will keep improving."
+      }
+    },
+    {
+      "id": "living-v145",
       "version": "V145",
       "filename": "hyper-dimension-v145-living-agents-30s.mp4",
       "duration": 30,
@@ -10,8 +31,8 @@
       "poster": "assets/hyper-dimension-v145-living-agents-poster.png",
       "download": "https://github.com/MkaliezZ/hyper-dimension/releases/download/v145/hyper-dimension-v145-living-agents-30s.mp4",
       "title": {
-        "zh": "30 秒 · 会生活的岛与能办事的管家",
-        "en": "30 seconds · Living residents and working Agents"
+        "zh": "往期 · V145 小岛与管家",
+        "en": "Archive · V145 living island and stewards"
       },
       "caption": {
         "zh": "双画风 · AI 交谈 · 真实文档 · 主子 Agent · 奇观奖励",

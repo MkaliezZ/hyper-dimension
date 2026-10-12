@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v166-agent-source",
+  "release": "hyper-dimension-v167-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -52,8 +52,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 17042,
-      "sha256": "ce81b7b9970d862658e60e2dc55ccaecca7892886c4a9f96f4a87f1a2a904b32"
+      "bytes": 17516,
+      "sha256": "078d4436d1676d645363d5574a7e30ee44dcaf142f8f9a868ffb5f3b3a966c95"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 24209,
-      "sha256": "7303826a719042257b56b972c08f47044be4700c720f05df913b78775adfb41a"
+      "bytes": 24582,
+      "sha256": "3d36eba62db485189a1e075b0d551c765d189ec054efab18a0138e9d6fd378e0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -314,6 +314,11 @@
       "path": "docs/media/hyper-dimension-v145-living-agents-poster.png",
       "bytes": 6060655,
       "sha256": "7af0318561ed50be996f2ea48238c935ee8759478902510f89590c349e1280b8"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v166-living-agents-poster.png",
+      "bytes": 6067583,
+      "sha256": "4dde340fcb60a039f485f4f8e7a4a2825a0dace932b480b03fcb55371331dbaf"
     },
     {
       "path": "docs/media/music-notes.json",
@@ -924,6 +929,11 @@
       "path": "docs/spatial-sound-v144.md",
       "bytes": 2990,
       "sha256": "6ce552e48a967381f980b0a5ea74f62ef283697d3966a77d0060234b66dcd83d"
+    },
+    {
+      "path": "docs/startup-render-v167.md",
+      "bytes": 3702,
+      "sha256": "6968366ab2c3913b6f3f659c8b234635aca85d23a1dedf51f33ae40d6d37c09e"
     },
     {
       "path": "docs/steward-portraits-v153.md",
@@ -1767,8 +1777,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8979,
-      "sha256": "24860b14be4d8e2e3bcedff87090fc2d0844294d6374b1fed2ddfa686b38b20c"
+      "bytes": 9039,
+      "sha256": "8d13d0f6af257f65384da462c356040d57ff16b0bafde56ff51b1e8fa1a44761"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3987,8 +3997,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 138964,
-      "sha256": "9f99d9596efeed5d21cd4254e6d9ee48edbe114b2bb07329d8ea6216fc12b2f8"
+      "bytes": 139041,
+      "sha256": "8bfad9eb3eb080aefc466c9a4fa648675db1c5f465cad82492425813c8ac15de"
     },
     {
       "path": "src/arcade.css",
@@ -6336,6 +6346,11 @@
       "sha256": "536321b67457863b296e4cf0386450e28f116adae645ecb7247664da8ac45058"
     },
     {
+      "path": "tests/v167-startup-browser.mjs",
+      "bytes": 5019,
+      "sha256": "86665454208b4d2580950538e9327d7d09ff6e43d8cb154aaa6f44f5b78eab1d"
+    },
+    {
       "path": "tests/v17-harbor.test.mjs",
       "bytes": 5246,
       "sha256": "950aa8aa986ab4cdf1e93906dbab0ab6f3354bd5edf3728187025967f63f122e"
@@ -8631,5 +8646,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v166-github"
+  "publicRevision": "v167-github"
 }

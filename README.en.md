@@ -4,11 +4,15 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V166 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V167 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V166
+## Current updates · V167
 
-Clock initialization now retries temporary Windows lock-open contention within a fixed bound. All 22 related checks passed; full platform verification remains separate. The independently verified 945-check archive is V165. Local V160 and public V158 stay current. [Scope](island/docs/environment-lock-v166.md).
+World rendering now yields during startup recovery and appearance changes. Both sixteen-ticket throttled checks improved from roughly 32/36 seconds to ten seconds with receipts and clock protections retained. Native reload and lobby checks passed; complete platform results remain separate. The 1440p/60-fps film was freshly recorded. [Scope](island/docs/startup-render-v167.md).
+
+### V166 · Clock lock
+
+Clock initialization now retries temporary Windows lock-open contention within a fixed bound. All 22 related checks passed; full platform verification remains separate. The independently verified 945-check archive is V165. Local V166 was restored after a verified backup; public V158 remains current. [Scope](island/docs/environment-lock-v166.md).
 
 ### V165 · Reload recovery
 
@@ -16,7 +20,7 @@ NPC, mining and visitor reload recovery now avoids redundant saves while retaini
 
 ### V164 · NPC gains
 
-First NPC mining gains now preserve discovery and the protected personal snapshot across reload. Harvests, greenhouse seed bonuses and raw gathering also use the resource ledger, with original quantities and exactly-once receipts retained. All 939 local default checks and both native soil-care/harvest/reload flows passed; this revision ended with four of six CI jobs passing and farm reload recovery failures on Windows and Intel Mac. Local V160 and public V158 stay current. [Scope](island/docs/npc-gain-reload-v164.md).
+First NPC mining gains now preserve discovery and the protected personal snapshot across reload. Harvests, greenhouse seed bonuses and raw gathering also use the resource ledger, with original quantities and exactly-once receipts retained. All 939 local default checks and both native soil-care/harvest/reload flows passed; this revision ended with four of six CI jobs passing and farm reload recovery failures on Windows and Intel Mac. Local V166 was restored after a verified backup; public V158 remains current. [Scope](island/docs/npc-gain-reload-v164.md).
 
 ### V161 · Verification ordering
 
@@ -64,13 +68,13 @@ Normal lobby map clicks no longer flash a recovery card; failed responses remain
 
 ## See the island
 
-[![Hyper Dimension · Living AI residents and Agent stewards](island/docs/media/hyper-dimension-v145-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#living)
+[![Hyper Dimension · Living AI residents and Agent stewards](island/docs/media/hyper-dimension-v166-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#living)
 
 [30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#living) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Source packages and release history](https://github.com/MkaliezZ/hyper-dimension/releases)
 
 The cover opens an online player; downloads have a separate control. The new 30-second native recording shows both island styles, AI resident dialogue, selectable steward appearances, an actual Word document task, parent/child Agent cooperation, a minigame inside its building dialog and the completed reward.
 
-2560 × 1440 / 60 fps with original BGM. Footage was captured from V145; current source is V159. Profiles, project images and work briefs are fictional; the Hermes task actually executes tools. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json).
+2560 × 1440 / 60 fps with original BGM. Footage was recaptured from the immutable V166 archive; current source is V167. Profiles, project images and work briefs are fictional; document and parent/child scenes show saved results from real tool executions. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v166-living-verification.json).
 
 ### V144 nearby resident sound
 

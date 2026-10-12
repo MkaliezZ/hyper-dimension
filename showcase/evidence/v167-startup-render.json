@@ -1,0 +1,48 @@
+{
+  "version": "V167",
+  "scope": "Actual protected sixteen orphan resident rest tickets, native ready within original45seconds, CPU12x, both styles before/after. Providers disabled, declared server fixtures, not human/physicalMac or ordinary hardware FPS.",
+  "cases": [
+    {
+      "variant": "before",
+      "theme": "pixel",
+      "seconds": 32.232,
+      "renderCallsDuringRecovery": 340,
+      "renderMillisDuringRecovery": 13712.29999947548,
+      "passed": true,
+      "pageErrors": 0
+    },
+    {
+      "variant": "before",
+      "theme": "origami",
+      "seconds": 36.061,
+      "renderCallsDuringRecovery": 349,
+      "renderMillisDuringRecovery": 16205.700000286102,
+      "passed": true,
+      "pageErrors": 0
+    },
+    {
+      "variant": "after",
+      "theme": "pixel",
+      "seconds": 9.877,
+      "renderCallsDuringRecovery": 0,
+      "renderMillisDuringRecovery": 0,
+      "passed": true,
+      "pageErrors": 0
+    },
+    {
+      "variant": "after",
+      "theme": "origami",
+      "seconds": 9.738,
+      "renderCallsDuringRecovery": 0,
+      "renderMillisDuringRecovery": 0,
+      "passed": true,
+      "pageErrors": 0
+    }
+  ],
+  "originalReadyTimeoutMs": 45000,
+  "protectedOrphanTicketsPerCase": 16,
+  "clockAndStockPreserved": true,
+  "nativeFarmEntryAfterRecovery": true,
+  "humanOrPhysicalMacAcceptance": false,
+  "wholeGoalAccepted": false
+}

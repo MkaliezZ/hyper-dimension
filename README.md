@@ -4,15 +4,19 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V166 开发快照**，完整产品验收仍在进行。
+在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V167 开发快照**，完整产品验收仍在进行。
 
-## 当前更新 · V166
+## 当前更新 · V167
 
-Windows 并发启动时的时钟锁临时占用已接入有界重试，22 项相关检查通过；完整平台结果继续核对。此前独立包的 945 项通过记录属于 V165。本机 V160、公开 V158 保持。[范围](island/docs/environment-lock-v166.md)。
+启动核对与画风切换期间暂停世界绘制，避免抢占存档处理；双主题 16 项作业的降速检查从约 32/36 秒降到约 10 秒，保留原回执与时间保护。原生刷新及会客厅检查通过，完整平台结果另行核对。新版 1440p/60 fps 视频已重新录制。[范围](island/docs/startup-render-v167.md)。
+
+### V166 · 时钟锁
+
+Windows 并发启动时的时钟锁临时占用已接入有界重试，22 项相关检查通过；完整平台结果继续核对。此前独立包的 945 项通过记录属于 V165。本机已备份恢复至 V166，公开包仍 V158。[范围](island/docs/environment-lock-v166.md)。
 
 ### V165 · 刷新恢复
 
-居民、矿洞与游客刷新核对已合并重复保存，逐项回执和并发修改保护保留；旧主存档缺失的物资发现记录会从已确认库存修复并先备份。本机与独立离线源码包均通过 945 项检查，独立包双画风实际施肥、收获与刷新通过；完整平台 CI 仍在进行。本机 V160、公开 V158 保持。[独立包验证](showcase/evidence/v165-frozen-recovery.json)。[范围](island/docs/recovery-checkpoints-v165.md)。
+居民、矿洞与游客刷新核对已合并重复保存，逐项回执和并发修改保护保留；旧主存档缺失的物资发现记录会从已确认库存修复并先备份。本机与独立离线源码包均通过 945 项检查，独立包双画风实际施肥、收获与刷新通过；完整平台 CI 仍在进行。本机已备份恢复至 V166，公开包仍 V158。[独立包验证](showcase/evidence/v165-frozen-recovery.json)。[范围](island/docs/recovery-checkpoints-v165.md)。
 
 ### V164 · NPC 产出
 
@@ -64,13 +68,13 @@ Windows 并发启动时的时钟锁临时占用已接入有界重试，22 项相
 
 ## 看一眼这座岛
 
-[![Hyper Dimension · AI 居民与 Agent 管家 30 秒演示](island/docs/media/hyper-dimension-v145-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · AI 居民与 Agent 管家 30 秒演示](island/docs/media/hyper-dimension-v166-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 [30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#living) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码包与版本记录](https://github.com/MkaliezZ/hyper-dimension/releases)
 
 点击封面直接在线播放；下载入口在播放器中单独提供。最新 30 秒影片为实际页面录制：双画风地图、AI 居民交谈、管家多形象、真实 Word 文档任务、主子 Agent 协作、房屋内小游戏及完成后的奖励。
 
-影片采用 2560 × 1440 / 60 fps 与原创 BGM；录制源码为 V145，当前源码为 V159。个人经历、项目图片与工作资料均为虚构示例，Hermes 文档任务实际执行。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [视频验证记录](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v145-living-verification.json)。
+影片采用 2560 × 1440 / 60 fps 与原创 BGM；影片从独立 V166 源码包重新录制；当前源码为 V167。个人经历、项目图片与工作资料均为虚构示例，管家文档与主子协作片段展示此前真实工具执行的保存结果。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [视频验证记录](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v166-living-verification.json)。
 
 ### V144 附近居民的声音
 

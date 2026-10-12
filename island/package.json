@@ -56,7 +56,8 @@
     "test:environment": "node --test tests/v127-environment.test.mjs",
     "test:environment:browser": "node tests/v127-environment-browser.mjs && node tests/v127-environment-compatible-browser.mjs",
     "test:gallery:browser": "node tests/v131-gallery-browser.mjs",
-    "test:soil-care:browser": "node tests/v159-soil-care-browser.mjs"
+    "test:soil-care:browser": "node tests/v159-soil-care-browser.mjs",
+    "test:startup": "node tests/v167-startup-browser.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.63.0"
