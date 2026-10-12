@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v162-agent-source",
+  "release": "hyper-dimension-v163-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 15878,
-      "sha256": "14b4e456ea148e3a1573491fa8fa01514808463971d9c17a0571d5c03f859ad1"
+      "bytes": 15906,
+      "sha256": "ac7808fb8037bf03f7f2425a7c4312ed77c99fe8d43c29292a358ba9b086d7fb"
     },
     {
       "path": "README.md",
-      "bytes": 16276,
-      "sha256": "c86868feefab22740a9b9c427abbeebf851b2e224c858c663c417efcbbf02502"
+      "bytes": 16275,
+      "sha256": "f92df5022733d5d611f0a914bf308e09a15ab0b284323a412a1a734e35c1ddea"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -899,6 +899,11 @@
       "path": "docs/soil-care-v159.md",
       "bytes": 3463,
       "sha256": "ff4343c863c742283ff8b89557e09217a90f1eec52a054b93170d5662552dff2"
+    },
+    {
+      "path": "docs/soil-recovery-diagnostics-v163.md",
+      "bytes": 1610,
+      "sha256": "bc1cdbed24a66fd59778f9ce9952abdfe228859c6495aaf155f8f14534ec18d3"
     },
     {
       "path": "docs/spatial-sound-v144.md",
@@ -6267,8 +6272,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 11597,
-      "sha256": "f956151272ff97fecfba0b863ccb7e8582e95db8d8c6762d82398ceb8e326293"
+      "bytes": 12182,
+      "sha256": "36c905174097e7ae29021ba7d52c9baacded7a5ab08778303f71f26dfb3f0d42"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -8596,5 +8601,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v162-github"
+  "publicRevision": "v163-github"
 }
