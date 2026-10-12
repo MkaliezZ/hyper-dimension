@@ -4,19 +4,23 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V167 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V168 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V167
+## Current updates · V168
 
-World rendering now yields during startup recovery and appearance changes. Both sixteen-ticket throttled checks improved from roughly 32/36 seconds to ten seconds with receipts and clock protections retained. Native reload and lobby checks passed; complete platform results remain separate. The 1440p/60-fps film was freshly recorded. [Scope](island/docs/startup-render-v167.md).
+Crafting reward clicks now wait for the last save confirmation instead of being ignored. Both native claim/cancel and protected-restart flows passed, along with 33 focused rules. All 26 local steward portraits were rechecked. [Fix and evidence](island/docs/reward-confirmation-v168.md). V167 full CI ended at 5/6; this revision's complete platform checks remain separate.
+
+### V167 · Startup drawing
+
+World drawing yields during recovery and appearance changes. Both sixteen-ticket throttled checks improved from roughly 32/36 seconds to ten seconds, retaining receipts and clock protection. [Scope](island/docs/startup-render-v167.md).
 
 ### V166 · Clock lock
 
-Clock initialization now retries temporary Windows lock-open contention within a fixed bound. All 22 related checks passed; full platform verification remains separate. The independently verified 945-check archive is V165. Local V166 was restored after a verified backup; public V158 remains current. [Scope](island/docs/environment-lock-v166.md).
+Clock initialization now retries temporary Windows lock-open contention within a fixed bound. All 22 related checks passed; full CI ended with five of six jobs passing and an Intel origami farm reload failure. The independently verified 945-check archive is V165. Local V166 was restored after a verified backup; public V158 remains current. [Scope](island/docs/environment-lock-v166.md).
 
 ### V165 · Reload recovery
 
-NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. All 945 checks passed locally and in the independent offline source archive. Both native farm/harvest/reload flows passed from that archive; full platform CI is still running. Local V160 and public V158 remain current. [Frozen archive checks](showcase/evidence/v165-frozen-recovery.json). [Scope](island/docs/recovery-checkpoints-v165.md).
+NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. All 945 checks passed locally and in the independent offline source archive. Both native farm/harvest/reload flows passed from that archive; V165 full CI ended at 5/6; its Windows clock-lock issue was repaired in V166. Local V166 and public V158 remain current. [Frozen archive checks](showcase/evidence/v165-frozen-recovery.json). [Scope](island/docs/recovery-checkpoints-v165.md).
 
 ### V164 · NPC gains
 
@@ -74,7 +78,7 @@ Normal lobby map clicks no longer flash a recovery card; failed responses remain
 
 The cover opens an online player; downloads have a separate control. The new 30-second native recording shows both island styles, AI resident dialogue, selectable steward appearances, an actual Word document task, parent/child Agent cooperation, a minigame inside its building dialog and the completed reward.
 
-2560 × 1440 / 60 fps with original BGM. Footage was recaptured from the immutable V166 archive; current source is V167. Profiles, project images and work briefs are fictional; document and parent/child scenes show saved results from real tool executions. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v166-living-verification.json).
+2560 × 1440 / 60 fps with original BGM. Footage was recaptured from the immutable V166 archive; current source is V168. Profiles, project images and work briefs are fictional; document and parent/child scenes show saved results from real tool executions. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v166-living-verification.json).
 
 ### V144 nearby resident sound
 

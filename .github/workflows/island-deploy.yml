@@ -126,6 +126,9 @@ jobs:
         if: inputs.check_scope == 'soil-diagnostics'
         run: npm ci --ignore-scripts
 
+      - name: Native queued reward confirmation
+        run: node tests/v168-reward-click-browser.mjs
+
       - name: Native greenhouse soil care
         run: node tests/v159-soil-care-browser.mjs
 
@@ -137,5 +140,7 @@ jobs:
           path: |
             island/qa/v159/native-soil-care/report.json
             island/qa/v159/native-soil-care/*.png
+            island/qa/v168/native-reward-click/report.json
+            island/qa/v168/native-reward-click/*.png
           if-no-files-found: ignore
           retention-days: 3

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v167-agent-source",
+  "release": "hyper-dimension-v168-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 24582,
-      "sha256": "3d36eba62db485189a1e075b0d551c765d189ec054efab18a0138e9d6fd378e0"
+      "bytes": 24943,
+      "sha256": "774aa6c739d4aba5dfb480c43adfb1c7d40e2ebb24061b6d7a34091dcd913238"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -604,6 +604,11 @@
       "path": "docs/resident-life-v112.md",
       "bytes": 3429,
       "sha256": "5bddd8fae9b878db3ae63886b13eedcff06f92c67f2d3b8d194fb4bde3036e20"
+    },
+    {
+      "path": "docs/reward-confirmation-v168.md",
+      "bytes": 3551,
+      "sha256": "69b920b3d3a1d42a8081f7958f27f3c378b2766aebaf99fc9a1d1d170804a0d3"
     },
     {
       "path": "docs/save-capacity-v128.md",
@@ -1261,6 +1266,11 @@
       "sha256": "23205d2132a1d11d844aa7bf85e6be16a4af214dc540c10144fd1b6f1e741899"
     },
     {
+      "path": "docs/verification/v168/native-reward.json",
+      "bytes": 7022,
+      "sha256": "78d67cf55fd8aa0d135e92a58d160cfa7e17d2cd0d0e4fdc95300327f480e360"
+    },
+    {
       "path": "docs/windows-locks-v162.md",
       "bytes": 2391,
       "sha256": "5fc7e0d9be6793d674945d77ed3572b4ee30ce8cac7587c2291b44e8993572c9"
@@ -1777,8 +1787,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9039,
-      "sha256": "8d13d0f6af257f65384da462c356040d57ff16b0bafde56ff51b1e8fa1a44761"
+      "bytes": 9109,
+      "sha256": "a0b8efb808065f67f7d0513e57dcfe6d112636f1421d66b9699818d58b4d65e7"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3997,8 +4007,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 139041,
-      "sha256": "8bfad9eb3eb080aefc466c9a4fa648675db1c5f465cad82492425813c8ac15de"
+      "bytes": 139060,
+      "sha256": "0698cdaa6119f9b24b6b766b3ecba32358bbdc8bb9b13827a71db42350461bcb"
     },
     {
       "path": "src/arcade.css",
@@ -4072,8 +4082,8 @@
     },
     {
       "path": "src/classicGames.js",
-      "bytes": 17505,
-      "sha256": "5df11a2c7ce7719a2938e6e35da7c6e7b2f2f4e568f8e5f13de315f4db1726ea"
+      "bytes": 17553,
+      "sha256": "82b0bc15c86940e07c4c1e494c487521482fd9e2368a05abe00002a29d82bd37"
     },
     {
       "path": "src/classicRules.js",
@@ -5197,8 +5207,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 8808,
-      "sha256": "91f1ff2fd2b09729f0522656310b18baf8258c786cebb1094c178d04d1ab3a41"
+      "bytes": 9848,
+      "sha256": "b76aa689d65669db57db72878b8ddd3958f2e46090bb2ea07265d861ee0d4b5c"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -5387,8 +5397,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 43685,
-      "sha256": "3efc73c9835b79cfbf480faab0cfc1903c5bdac9d0413932350e58c213c1644c"
+      "bytes": 43931,
+      "sha256": "90bc96f7f4ca31b3454c6c01fdc002819d0fb20d008537de8c820e1ab2b61c73"
     },
     {
       "path": "src/workshopProps.js",
@@ -6267,8 +6277,8 @@
     },
     {
       "path": "tests/v156-checkpoint-restart-browser.mjs",
-      "bytes": 8753,
-      "sha256": "f30136a5e772fb01ea0064d2b03e565c5d521174ae0191afadcf7d059832dd2b"
+      "bytes": 9207,
+      "sha256": "8141d16d6ba445c780b8d77d69068dff444bb62e4bd1ccb9c55d83d02a276e34"
     },
     {
       "path": "tests/v156-pearl-cup-craft-browser.mjs",
@@ -6349,6 +6359,11 @@
       "path": "tests/v167-startup-browser.mjs",
       "bytes": 5019,
       "sha256": "86665454208b4d2580950538e9327d7d09ff6e43d8cb154aaa6f44f5b78eab1d"
+    },
+    {
+      "path": "tests/v168-reward-click-browser.mjs",
+      "bytes": 9564,
+      "sha256": "91778fb0b2c2a615bce2ae44881c5dbb424399889146ed230df0c4e9d7209dae"
     },
     {
       "path": "tests/v17-harbor.test.mjs",
@@ -8646,5 +8661,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v167-github"
+  "publicRevision": "v168-github"
 }

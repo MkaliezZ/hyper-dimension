@@ -44,7 +44,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  const dialog=q('.wk-session-dialog');
  const painter=makeWorkshopPainter(canvas,theme,options.avatar,options.catchItem);
  const listen=(el,type,fn,opt)=>{el.addEventListener(type,fn,opt);cleanup.push(()=>el.removeEventListener(type,fn,opt))};
- function transportButtons(){const busy=checkpointPending||transportPaused||claimed;for(const b of root.querySelectorAll('[data-action="claim"],[data-action="restart"],[data-action="difficulty"]')){b.disabled=busy;if(b.dataset.action==='restart'){b.textContent=busy?'正在保存本局…':'新关卡 · 再来一局';b.setAttribute('aria-busy',String(busy));b.title=busy?'本局进度确认后即可开启新关卡':'';}}}
+ function transportButtons(){const busy=checkpointPending||transportPaused||claimed;for(const b of root.querySelectorAll('[data-action="claim"],[data-action="restart"],[data-action="difficulty"]')){b.disabled=b.dataset.action==='claim'?claimed||!options.deferredClaim&&(checkpointPending||transportPaused):busy;if(b.dataset.action==='restart'){b.textContent=busy?'正在保存本局…':'新关卡 · 再来一局';b.setAttribute('aria-busy',String(busy));b.title=busy?'本局进度确认后即可开启新关卡':'';}}}
 
  function send(action){if(!alive||paused)return;options.onGameEvent?.({action});workshopAction(s,action);flushEvents();ui(action.type!=='point');}
  function flushEvents(){for(const e of s.events.splice(0)){painter.event(e);audio.event(e);}}
@@ -67,7 +67,7 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
     '<p class="wk-eyebrow">'+(r.passed?'晨光岛 · 作业完成':'晨光岛 · 练习手记')+'</p><div class="wk-stars" aria-label="'+r.stars+' 星">'+[1,2,3].map(i=>'<span class="'+(i<=r.stars?'lit':'')+'">✦</span>').join('')+'</div><h2 id="wk-dialog-title">'+(r.passed?['','初露身手','佳作完成','匠心之作'][r.stars]:'再试一局')+'</h2><p>'+(r.passed?'你完成了「'+g.title+'」':'这次尚未完成目标。'+failureHint())+'</p>'+
     (r.passed&&embedded?'<div class="wk-result-product">'+art(recipe.item)+'<div><small>'+(options.catchItem?'本次钓获':craftReady?'本次制作':'本局练习')+'</small><b>'+esc(recipe.name)+'</b><span>'+(options.catchItem?'确认后收取本次钓获。':craftReady?'领取后制作 1 件，材料仅扣除一次。':'材料或解锁条件不足，不扣材料，不发放成品。')+'</span></div></div>':'')+
     '<div class="wk-result-stats"><div><small>得分</small><b>'+r.score+'</b></div><div><small>用时</small><b>'+formatTime(r.seconds)+'</b></div><div><small>历史最佳</small><b>'+best.score+'</b></div></div><div class="wk-result-actions">'+
-    (r.passed?command(options.standalone?'保存成绩 · 完成挑战':options.catchItem?'收下钓获':craftReady?'领取制作成果':'完成练习','claim',(checkpointPending||transportPaused||claimed)?'disabled':'','wk-primary'):'')+
+    (r.passed?command(options.standalone?'保存成绩 · 完成挑战':options.catchItem?'收下钓获':craftReady?'领取制作成果':'完成练习','claim',(claimed||!options.deferredClaim&&(checkpointPending||transportPaused))?'disabled':'','wk-primary'):'')+
     command('新关卡 · 再来一局','restart','','wk-secondary')+'</div><small>'+(r.passed?(options.standalone?'成绩已保存到此浏览器。':options.catchItem?'关闭将放弃本次钓获。':craftReady?'关闭此窗口将返回房间，不扣材料，也不发放成品。':'补齐材料与解锁条件后，再来制作。'):'本次未扣除制作材料。')+'</small></div>');transportButtons();return
   }
   overlay.innerHTML='';if(dialog.open)dialog.close();
@@ -201,14 +201,14 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   if(type==='difficulty'){restart(b.dataset.mode);return}
   if(type==='restart'){restart(options.mode);return}
   if(type==='claim'){
-   if(transportPaused)return;
-   if(claimed||!s.result?.passed||s.phase!=='result')return;claimed=true;b.disabled=true;const result={...s.result};
+   if(transportPaused&&!options.deferredClaim)return;
+   if(claimed||!s.result?.passed||s.phase!=='result')return;claimed=true;b.disabled=true;feedback.textContent='正在确认本局成果…';const result={...s.result};
    // Keep the result and its retry button until the controller accepts completion.
    // A concurrent save may reject a claim before it has sent any transaction.
    Promise.resolve().then(()=>onFinish(result)).then(accepted=>{
     if(accepted!==false){destroy();return}
-    if(alive){claimed=false;b.disabled=transportPaused;feedback.textContent='进度尚在核对，请稍后再次确认完成。';}
-   }).catch(()=>{if(alive){claimed=false;b.disabled=transportPaused;feedback.textContent='这次提交未完成，请重试；当前结果已保留。';}});return
+    if(alive){claimed=false;b.disabled=transportPaused&&!options.deferredClaim;feedback.textContent='进度尚在核对，请稍后再次确认完成。';}
+   }).catch(()=>{if(alive){claimed=false;b.disabled=transportPaused&&!options.deferredClaim;feedback.textContent='这次提交未完成，请重试；当前结果已保留。';}});return
   }
   if(type==='mark'){markMode=!markMode;ui(true);return}
   if(b.dataset.hold)return;

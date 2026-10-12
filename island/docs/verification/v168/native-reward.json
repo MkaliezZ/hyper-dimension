@@ -1,0 +1,186 @@
+{
+  "version": "V168",
+  "scope": "Native reward double-click while the last real greenhouse Sokoban checkpoint response is held. The same accepted response is released after the click; no second click is sent afterward. Claims require exactly one protected receipt and one actual crafted compost bag. Closing a queued claim instead must cancel it without consuming inputs or granting a product. Fixture grants only recipe raw inputs, seeds, building 14 and funds; no finished product or game outcome is injected. Native input follows the generated legal solution. Models are disabled. This check does not cover full crop growth, zero-start journeys, human acceptance or physical Mac devices.",
+  "nativeReward": {
+    "scope": "Native reward double-click while the last real greenhouse Sokoban checkpoint response is held. The same accepted response is released after the click; no second click is sent afterward. Claims require exactly one protected receipt and one actual crafted compost bag. Closing a queued claim instead must cancel it without consuming inputs or granting a product. Fixture grants only recipe raw inputs, seeds, building 14 and funds; no finished product or game outcome is injected. Native input follows the generated legal solution. Models are disabled. This check does not cover full crop growth, zero-start journeys, human acceptance or physical Mac devices.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "intent": "claim",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "queuedEarlyClaimSettledOnce": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "claim",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "queuedEarlyClaimSettledOnce": true,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "intent": "cancel",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "cancel",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      }
+    ],
+    "humanAcceptance": false,
+    "passed": true
+  },
+  "protectedRestart": {
+    "scope": "Native building-modal crafting with a real protected save. Only one actual checkpoint response fetched while the native result panel is visible is held behind a test-host release barrier. Result restart and difficulty stay disabled; V168 accepts a queued claim without settling before checkpoint confirmation; the host releases that same server response after native assertions, then controls recover and restart creates a fresh ticket. Earlier checkpoints pass normally. Granted-resource fixture, solution-assisted native input, normal clock and no injected game state or outcome; not human acceptance.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "checkpointResponses": [
+          {
+            "status": 200,
+            "code": null,
+            "error": null,
+            "phaseAtServerResponse": "celebrating",
+            "held": false
+          },
+          {
+            "status": 200,
+            "code": null,
+            "error": null,
+            "phaseAtServerResponse": "celebrating",
+            "held": false
+          },
+          {
+            "status": 200,
+            "code": null,
+            "error": null,
+            "phaseAtServerResponse": "result",
+            "held": true,
+            "released": true
+          }
+        ],
+        "heldResultResponses": 1,
+        "errors": [],
+        "passed": true,
+        "pendingRestartControlsDisabled": true,
+        "rewardAvailableWithoutEarlySettlement": true,
+        "sameTicketWhilePending": true,
+        "controlsRecoveredAfterSameResponseRelease": true,
+        "freshTicketAfterNativeRestart": true,
+        "oldTicketCancelledWithoutCostOrGain": true
+      },
+      {
+        "theme": "origami",
+        "checkpointResponses": [
+          {
+            "status": 200,
+            "code": null,
+            "error": null,
+            "phaseAtServerResponse": "celebrating",
+            "held": false
+          },
+          {
+            "status": 200,
+            "code": null,
+            "error": null,
+            "phaseAtServerResponse": "celebrating",
+            "held": false
+          },
+          {
+            "status": 200,
+            "code": null,
+            "error": null,
+            "phaseAtServerResponse": "result",
+            "held": true,
+            "released": true
+          }
+        ],
+        "heldResultResponses": 1,
+        "errors": [],
+        "passed": true,
+        "pendingRestartControlsDisabled": true,
+        "rewardAvailableWithoutEarlySettlement": true,
+        "sameTicketWhilePending": true,
+        "controlsRecoveredAfterSameResponseRelease": true,
+        "freshTicketAfterNativeRestart": true,
+        "oldTicketCancelledWithoutCostOrGain": true
+      }
+    ],
+    "humanAcceptance": false,
+    "passed": true
+  },
+  "focusedRuleChecks": 33,
+  "focusedRulePassed": true,
+  "currentLocalPortraitAudit": {
+    "version": "V166",
+    "uniqueCards": 26,
+    "bothThemes": true,
+    "liveBytesMatched": true,
+    "pageErrors": [],
+    "checks": [
+      {
+        "file": "src/avatars.js",
+        "sameLiveBytes": true,
+        "sha256": "f0e92cb8224374d2fd5efb203a23c0d7f938fe3125e5dfff794989776d2bc8b8"
+      },
+      {
+        "file": "src/avatarPortraitFrames.js",
+        "sameLiveBytes": true,
+        "sha256": "1bb2a091c34b642e31cdb79e7ba1a92be83ad67ffcc1626b76bec032c8a7ca01"
+      },
+      {
+        "file": "src/residentPortraits.js",
+        "sameLiveBytes": true,
+        "sha256": "fb2c66ed76c87b185f432689ef360149f8a90a500caf701bb9834d6a8dd62a14"
+      },
+      {
+        "file": "src/content-ui.css",
+        "sameLiveBytes": true,
+        "sha256": "90ff8830b3e64575bd3953e60299e2b4c3fc3a0b2e595a609e701bc6fcc012d8"
+      },
+      {
+        "file": "public/assets/avatar-portraits-pixel-v8.png",
+        "sameLiveBytes": true,
+        "sha256": "7961be5cf058c013b9a8ab2fac3ba39dbcaea2fa3bfbc9c145ff048f4ab2a088"
+      },
+      {
+        "file": "public/assets/avatar-portraits-origami-v8.png",
+        "sameLiveBytes": true,
+        "sha256": "8cceba9a05544dcb906aa6dc29c5946edf1940395b58e2c66bf97a171c88d0c6"
+      }
+    ]
+  },
+  "previousCi": {
+    "run": 38271154800,
+    "sourceCommit": "2292e718984c5dd93f34a211cf0d306e207be4e5",
+    "passedJobs": 5,
+    "totalJobs": 6,
+    "failedJob": 114885447360,
+    "step": "Native greenhouse soil care",
+    "theme": "origami",
+    "stage": "compost-crafting",
+    "waitSeconds": 30
+  },
+  "modelsCalled": false,
+  "humanAcceptance": false,
+  "physicalMacVerified": false,
+  "fullProductAcceptance": false
+}

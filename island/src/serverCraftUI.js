@@ -2,7 +2,7 @@ import {assertCraftResponse} from './craftResponseIdentity.js';
 import {lockActionUI,unlockActionUI,readRecoveryProgress} from './actionRecoveryUI.js';
 import {neutralCraftGame} from './craftGameReplay.js';
 export function createServerCraft({saves,theme,persist,applyState,mount,closeGame,animate,onComplete,toast,kind='craft',idPrefix='craft',noun='制作',beginInput=(recipeId,taskId,mode)=>({recipeId,taskId,mode}),restartInput=t=>t.recipeId,shouldRecover=()=>true,continuousCheckpoint=false,exitMessage='材料会解除预留，不消耗材料也不发放成品。',recoveryMessage='服务器保留关卡与材料预留；继续时不会重新生成关卡。'}){
- let ticket=null,game=null,buffer=[],settling=false,active=false,claiming=false,lastInput=null,sentCount=0,exitRequested=false,checkpointAgain=false;
+ let ticket=null,game=null,buffer=[],settling=false,active=false,claiming=false,lastInput=null,sentCount=0,exitRequested=false,checkpointAgain=false,checkpointFlight=null,claimRequested=false;
  
  function lock(context){lockActionUI(bar,context);}
  function unlock(){unlockActionUI(bar);}
@@ -13,9 +13,9 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
  function halt(){game?.setTransportPaused?.(true)}
  const streaming=()=>typeof continuousCheckpoint==='function'?continuousCheckpoint(ticket):continuousCheckpoint;
  function done(response){
-  if(!response.receipt)return false;active=false;claiming=false;exitRequested=false;unlock();game?.destroy();game=null;ticket=null;buffer=[];lastInput=null;sentCount=0;checkpointAgain=false;bar.classList.add('hidden');closeGame();onComplete(response.receipt);persist();return true;
+  if(!response.receipt)return false;active=false;claiming=false;claimRequested=false;exitRequested=false;unlock();game?.destroy();game=null;ticket=null;buffer=[];lastInput=null;sentCount=0;checkpointAgain=false;bar.classList.add('hidden');closeGame();onComplete(response.receipt);persist();return true;
  }
- function failure(e){settling=false;halt();lock();status('制作进度尚待确认',e.message);}
+ function failure(e){claimRequested=false;settling=false;halt();lock();status('制作进度尚待确认',e.message);}
  async function send(input){
   if(input.kind!==kind)throw Object.assign(Error('请先核对另一项待确认作业，再继续当前制作。'),{code:'action_foreign_pending'});
   lastInput=input;settling=true;if(input.operation!=='checkpoint'||!streaming())halt();
@@ -34,25 +34,39 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   try{const response=await send({...beginInput(recipeId,taskId,mode),kind,operation:'begin',requestId:crypto.randomUUID()});if(!done(response))mountTicket()}
   catch(e){failure(e)}
  }
- async function checkpoint(){
+ function checkpoint(){
+  if(checkpointFlight){if(streaming())checkpointAgain=true;return checkpointFlight;}
+  const flight=checkpointNow().finally(()=>{
+   if(checkpointFlight===flight)checkpointFlight=null;
+   const again=checkpointAgain;checkpointAgain=false;
+   if(again&&active&&!settling&&!claiming&&!claimRequested&&buffer.length&&!saves.pendingAction(theme()))queueMicrotask(checkpoint);
+  });checkpointFlight=flight;return flight;
+ }
+ async function checkpointNow(){
   if(!active||claiming||!ticket)return false;if(settling){if(streaming())checkpointAgain=true;return false;}if(!buffer.length)return true;
   const events=buffer.slice(0,2048);sentCount=events.length;game?.setCheckpointPending?.(true);
   try{
    const response=await send({...identity('checkpoint'),batch:ticket.nextBatch,events});
-   if(done(response))return;buffer.splice(0,sentCount);sentCount=0;game?.setCheckpointPending?.(false);game?.setTransportPaused?.(false);bar.classList.add('hidden');if(checkpointAgain){checkpointAgain=false;queueMicrotask(checkpoint);}return true;
+   if(done(response))return;buffer.splice(0,sentCount);sentCount=0;game?.setCheckpointPending?.(false);game?.setTransportPaused?.(false);bar.classList.add('hidden');return true;
   }catch(e){game?.setCheckpointPending?.(false);checkpointAgain=false;failure(e);return false}
  }
  async function claim(){
-  if(!active||settling||claiming)return false;
-  if(!await checkpoint())return false;if(settling||saves.pendingAction(theme())||saves.status(theme()).status==='conflict')return false;
-  // Drain a long frame batch before changing from the game to the room animation.
-  while(buffer.length){if(!await checkpoint())return false}
-  claiming=true;lock({title:'正在完成'+(ticket.name||noun),message:'正在确认结算，完成后会自动返回。',canRecover:false});status('正在完成制作','收好工作台后，成品会放入背包。',false);
-  try{await animate(ticket);const response=await send(identity('finish'));return done(response)}
-  catch(e){failure(e);return false}
+  if(!active||!ticket||claiming||claimRequested||exitRequested||settling&&!checkpointFlight)return false;
+  const requestId=ticket.requestId;claimRequested=true;
+  const valid=()=>active&&claimRequested&&!exitRequested&&ticket?.requestId===requestId&&!saves.pendingAction(theme())&&saves.status(theme()).status!=='conflict';
+  try{
+   // A visible reward click joins the last checkpoint, including its buffer cleanup.
+   if(checkpointFlight&&!await checkpointFlight)return false;
+   if(!valid()||settling||!await checkpoint())return false;
+   while(buffer.length){if(!valid()||!await checkpoint())return false}
+   if(!valid()||settling)return false;
+   claiming=true;lock({title:'正在完成'+(ticket.name||noun),message:'正在确认结算，完成后会自动返回。',canRecover:false});status('正在完成制作','收好工作台后，成品会放入背包。',false);
+   try{await animate(ticket);if(!active||!claimRequested||ticket?.requestId!==requestId)return false;const response=await send(identity('finish'));return done(response)}
+   catch(e){failure(e);return false}
+  }finally{if(!active||ticket?.requestId===requestId)claimRequested=false;}
  }
  async function exit(){
-  if(!active)return;if(settling){exitRequested=true;return}exitRequested=false;game?.destroy();game=null;buffer=[];claiming=false;
+  claimRequested=false;if(!active)return;if(settling){exitRequested=true;return}exitRequested=false;game?.destroy();game=null;buffer=[];claiming=false;
   if(!ticket){if(saves.pendingAction(theme())){status('上次制作尚待确认','先核对结果，再取消作业。');return}active=false;unlock();bar.classList.add('hidden');return}
   status('正在收好工作台',exitMessage);
   try{done(await send(identity('cancel')))}catch(e){failure(e)}
@@ -81,7 +95,7 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   }catch(e){failure(e)}
  };
  cancel.onclick=exit;reload.onclick=()=>readRecoveryProgress(bar,()=>saves.acceptServer(theme()),toast);
- const timer=setInterval(()=>{if(active&&!settling&&!claiming&&game&&buffer.length)checkpoint()},5000);
+ const timer=setInterval(()=>{if(active&&!settling&&!claiming&&!claimRequested&&game&&buffer.length)checkpoint()},5000);
  window.addEventListener('pagehide',()=>{if(active&&!settling&&!claiming)checkpoint()});
  function recover(){
   const pending=saves.pendingAction(theme()),activeTicket=saves.status(theme()).actions?.active;
@@ -89,5 +103,5 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   ticket=activeTicket?.kind===kind?activeTicket:null;lastInput=pending?.body||null;active=true;lock();
   status(ticket?'继续上次的'+ticket.name+'制作':'上次制作的结果尚待确认',recoveryMessage);
  }
- return {begin,recover,exit,refresh:()=>{if(!settling&&!buffer.length&&active){ticket=saves.status(theme()).actions?.active;if(ticket?.kind===kind)mountTicket();}},resume:async()=>{if(settling)return;if(active&&ticket){if(await checkpoint())mountTicket();}else recover();},busy:()=>active,settling:()=>settling,inspect:()=>({ticket,bufferedEvents:buffer.length,settling,claiming,active,lastInput}),destroy:()=>clearInterval(timer)};
+ return {begin,recover,exit,refresh:()=>{if(!settling&&!buffer.length&&active){ticket=saves.status(theme()).actions?.active;if(ticket?.kind===kind)mountTicket();}},resume:async()=>{if(settling)return;if(active&&ticket){if(await checkpoint())mountTicket();}else recover();},busy:()=>active,settling:()=>settling,inspect:()=>({ticket,bufferedEvents:buffer.length,settling,claiming,claimRequested,checkpointInFlight:!!checkpointFlight,active,lastInput}),destroy:()=>clearInterval(timer)};
 }

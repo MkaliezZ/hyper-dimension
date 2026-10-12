@@ -374,7 +374,7 @@ function mountServerCraft(ticket,session){
  const panel=$('modalRoot').querySelector('.modal');panel.classList.add('game-modal');if(WORKSHOP_GAMES[id])panel.classList.add('workbench-modal');
  panel.querySelector('.modal-head small').textContent='晨光岛 / 室内工作台';
  const workbench={building:b.name,station:room.station,stock:Object.fromEntries(Object.keys(recipe.cost).map(k=>[k,availableQuantity(state,k,ticket.owner)])),ready:!ticket.practice,canCraft:()=>!ticket.practice,purpose:itemPurpose(recipe.item,state).primary.text,onSwitchRecipe:async()=>{await session.exit();contentUI.recipes(id)}};
- const options={recipe,theme,avatar:state.playerProfile.avatar,workbench,mode:ticket.mode,level:ticket.game.level||{id,seed:ticket.seed,difficulty:ticket.difficulty},resumeGame:ticket.game,onGameEvent:session.trace,onOutcome:session.saveOutcome,onRestart:session.restart,onExit:session.exit,readBest:()=>state.workshopBests?.[id+'-'+ticket.difficulty]||{score:0,stars:0},writeBest:()=>{}};
+ const options={recipe,theme,avatar:state.playerProfile.avatar,workbench,deferredClaim:true,mode:ticket.mode,level:ticket.game.level||{id,seed:ticket.seed,difficulty:ticket.difficulty},resumeGame:ticket.game,onGameEvent:session.trace,onOutcome:session.saveOutcome,onRestart:session.restart,onExit:session.exit,readBest:()=>state.workshopBests?.[id+'-'+ticket.difficulty]||{score:0,stars:0},writeBest:()=>{}};
  const engine=mountRoomGame($('roomGameRoot'),id,session.claim,options);
  if(!WORKSHOP_GAMES[id])$('switchRecipe').onclick=async()=>{await session.exit();contentUI.recipes(id)};
  roomGame={destroy(){engine.destroy();session.exit()},inspect:()=>engine.inspect()};

@@ -25,7 +25,7 @@ export function mountClassicGame(root,id,onFinish,rawOptions,config){
  const pauseButton=button(isLink?'开始计时':'暂停',()=>{},session);
  pauseButton.dataset.session='pause';pauseButton.onclick=()=>{if(!alive||done)return;if(!started){started=true;options.onGameEvent?.({action:{type:'start'}});last=performance.now()}else paused=!paused;if(paused)stage.pause();pauseButton.textContent=paused?'继续':'暂停';};
  function syncResultControls(){
-  if(claimButton)claimButton.disabled=!alive||!claimReady||claiming||transportPaused;
+  if(claimButton)claimButton.disabled=!alive||!claimReady||claiming||transportPaused&&!options.deferredClaim;
   restartButton.disabled=claiming||transportPaused;
   root.querySelectorAll('[data-difficulty]').forEach(b=>{b.disabled=claiming||transportPaused});
  }
@@ -37,7 +37,7 @@ export function mountClassicGame(root,id,onFinish,rawOptions,config){
   claimButton=claim;syncResultControls();
   stage.present(pass,()=>{if(alive){claimReady=true;syncResultControls()}});
   claim.onclick=()=>{
-   if(!alive||claim.disabled||claiming||transportPaused)return;
+   if(!alive||claim.disabled||claiming||transportPaused&&!options.deferredClaim)return;
    if(!pass){restart();return}
    claiming=true;syncResultControls();text('正在确认制作成果…');
    // Keep the finished board until the controller acknowledges settlement.
