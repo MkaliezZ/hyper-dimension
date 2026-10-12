@@ -209,3 +209,8 @@ Later evidence remains version-specific. V162 passed 930 local checks but four o
 ## V165 · 恢复保存与旧发现记录
 
 V164 完整 CI 最终 4/6：Windows/Intel Mac 农田刷新恢复失败。V165 合并恢复期间重复保存，并从已确认库存修复旧发现标记；6 项新增针对性检查通过，完整原生/平台结果另计。[范围与边界](recovery-checkpoints-v165.md)。本机 V160、公开 V158 暂不替换。
+
+
+## V166 · Windows 时钟锁
+
+V165 Windows 规则检查暴露并发首次创建时钟锁的 EPERM；接入既有有界 exclusive-open 重试后，本机 22 项时钟/锁检查通过。[范围](environment-lock-v166.md)。完整平台另验，V165 独立包 945 项证据保持其版本，不转记给 V166。

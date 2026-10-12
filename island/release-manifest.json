@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v165-agent-source",
+  "release": "hyper-dimension-v166-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -52,8 +52,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 16750,
-      "sha256": "a86d55ad06d745b3ee4b55fe00b32aeedb7cf6587f5d454ad23333b18ee46bdd"
+      "bytes": 17042,
+      "sha256": "ce81b7b9970d862658e60e2dc55ccaecca7892886c4a9f96f4a87f1a2a904b32"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 23898,
-      "sha256": "4aa215f11c7e374f05577b959772b75c88d5d4d89a42210670c83d96e0b9a264"
+      "bytes": 24209,
+      "sha256": "7303826a719042257b56b972c08f47044be4700c720f05df913b78775adfb41a"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -144,6 +144,11 @@
       "path": "docs/economy-v143.md",
       "bytes": 4918,
       "sha256": "fcc5dabcef63559d81f2fc59803fab7e7a1e9fed3fcdb177403be9a021465589"
+    },
+    {
+      "path": "docs/environment-lock-v166.md",
+      "bytes": 1788,
+      "sha256": "4ec229914c65cc4e7d1856b7ef708c238539f59b32f282e61d1f10b021c3be3c"
     },
     {
       "path": "docs/environment-v131-evidence.json",
@@ -3582,8 +3587,8 @@
     },
     {
       "path": "server/environmentService.mjs",
-      "bytes": 4513,
-      "sha256": "f77e9782918b7e500f5cb1c6cffe260c775c96c19e109d1325681bdb5d7d622c"
+      "bytes": 4528,
+      "sha256": "a7b30e94f6ee4410bf4b70af24f34f37287902d1fc7306df4121f6147075a089"
     },
     {
       "path": "server/facilityActions.mjs",
@@ -8626,5 +8631,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v165-github"
+  "publicRevision": "v166-github"
 }

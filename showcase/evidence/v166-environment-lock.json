@@ -1,0 +1,17 @@
+{
+  "version": "V166",
+  "scope": "bounded Windows clock mutex acquisition retry",
+  "relatedChecks": 22,
+  "priorFailure": {
+    "run": 38258356754,
+    "job": 114842176850,
+    "sourceCommit": "438c30c0e4885142cc911cce2649cdbc392c66ec",
+    "test": "concurrent first boot publishes one complete clock before other readers can open it",
+    "error": "EPERM opening environment-clock.json.lock"
+  },
+  "defaultSuiteAccepted": false,
+  "wholeProductAccepted": false,
+  "localRuntime": "V160",
+  "publicRelease": "V158",
+  "previousFrozenEvidence": "v165-frozen-recovery.json"
+}

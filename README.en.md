@@ -4,9 +4,13 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V165 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V166 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V165
+## Current updates · V166
+
+Clock initialization now retries temporary Windows lock-open contention within a fixed bound. All 22 related checks passed; full platform verification remains separate. The independently verified 945-check archive is V165. Local V160 and public V158 stay current. [Scope](island/docs/environment-lock-v166.md).
+
+### V165 · Reload recovery
 
 NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. All 945 checks passed locally and in the independent offline source archive. Both native farm/harvest/reload flows passed from that archive; full platform CI is still running. Local V160 and public V158 remain current. [Frozen archive checks](showcase/evidence/v165-frozen-recovery.json). [Scope](island/docs/recovery-checkpoints-v165.md).
 
