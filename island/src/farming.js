@@ -1,3 +1,4 @@
+import {commitResources} from './resourceLedger.js';
 export const CROPS={wheat:{name:'小麦',seconds:180,item:'wheat',yield:2,color:'#e3bf55'},herb:{name:'药草',seconds:240,item:'herb',yield:2,color:'#85b784'},tomato:{name:'番茄',seconds:300,item:'tomato',yield:3,color:'#df745e'},pumpkin:{name:'南瓜',seconds:480,item:'pumpkin',yield:1,color:'#da9a4e'}};
 for(const [id,name,seconds,color] of [['carrot','胡萝卜',240,'#d38b45'],['corn','玉米',360,'#e4c056'],['potato','土豆',300,'#c3a06f'],['rice','稻米',420,'#ccb95e'],['strawberry','草莓',360,'#d86b81'],['cotton','棉花',480,'#eee4ce'],['flax','亚麻',420,'#9a9bbc']])CROPS[id]={name,seconds,item:id,yield:2,color};
 const soil={
@@ -17,4 +18,4 @@ export function remaining(p){return Math.max(0,cropInfo(p).seconds-(p.growth||0)
 export function cropTime(seconds){return Math.ceil(seconds/60)+' 分钟'}
 export function hydrateCrops(s){for(const p of s.plots){p.crop??='wheat';p.growth??=0}for(const id of ['tomato','pumpkin'])s.inventory[id]??=0}
 export function tickCrops(s,dt){const grown=[];for(const [i,p] of s.plots.entries())if(p.stage===3){p.growth=(p.growth||0)+dt;if(p.growth>=cropInfo(p).seconds){p.stage=4;p.growth=cropInfo(p).seconds;grown.push({index:i,name:cropInfo(p).name})}}return grown}
-export function harvestPlot(s,index){const p=s.plots[index];if(p.stage!==4)return null;const c=cropInfo(p);const amount=harvestAmount(p);s.inventory[c.item]=(s.inventory[c.item]||0)+amount;if(soilCharges(p)>0)p.fertility--;s.inventory.seed++;s.discovered??={};s.discovered[c.item]=true;s.tasks.farm=true;delete p.playerTended;p.stage=0;p.growth=0;return {name:c.name,item:c.item,amount}}
+export function harvestPlot(s,index){const p=s.plots[index];if(p.stage!==4)return null;const c=cropInfo(p);const amount=harvestAmount(p);if(!commitResources(s,{gain:{[c.item]:amount,seed:1},category:'farm_harvest',note:c.name+'收获'}).ok)return null;if(soilCharges(p)>0)p.fertility--;s.tasks.farm=true;delete p.playerTended;p.stage=0;p.growth=0;return {name:c.name,item:c.item,amount}}

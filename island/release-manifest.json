@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v163-agent-source",
+  "release": "hyper-dimension-v164-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 15906,
-      "sha256": "ac7808fb8037bf03f7f2425a7c4312ed77c99fe8d43c29292a358ba9b086d7fb"
+      "bytes": 15997,
+      "sha256": "730f3ac98aa943b735f95a13dc34c285c8c2f7bc7ede440685788898e27421f7"
     },
     {
       "path": "README.md",
-      "bytes": 16275,
-      "sha256": "f92df5022733d5d611f0a914bf308e09a15ab0b284323a412a1a734e35c1ddea"
+      "bytes": 16359,
+      "sha256": "726aa7667a9d2420beb906a5ccdcf679c05642796b1a2e2c4adbe43cd9761473"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 22698,
-      "sha256": "f006b5dafccde37981b60e0f4d167bea70c010b2ff8c7bb9d665b95a6ea8a7ef"
+      "bytes": 23536,
+      "sha256": "025b2d935e9187cc5552bd5c549c196d0d6450c09837e30d70f4141dca8ccd5b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -494,6 +494,11 @@
       "path": "docs/night-sky-v141.md",
       "bytes": 4675,
       "sha256": "74e43492e5b332a20f71b84b7dcc37fe55e4492b570dd7ce0bf6d710cadad00d"
+    },
+    {
+      "path": "docs/npc-gain-reload-v164.md",
+      "bytes": 3468,
+      "sha256": "7f8e997c05d4f4047db1548ee31e0091f4ef0399a8fc0c61569aeadfc5b006c8"
     },
     {
       "path": "docs/npc-map-identity-verification.json",
@@ -1752,8 +1757,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8866,
-      "sha256": "c380a45d368bbefd923c054b0161edbf5531b7203c176ed226b65e9bacfb532e"
+      "bytes": 8902,
+      "sha256": "b977bfabf40b580d6ef7ad4addc0af1dc4a3e2a7f35930577e27122cd36b8640"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3972,8 +3977,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 138751,
-      "sha256": "b82f18a96584033641cdd470c131d9aea192b1c104624d6a86b9791553abf412"
+      "bytes": 138964,
+      "sha256": "9f99d9596efeed5d21cd4254e6d9ee48edbe114b2bb07329d8ea6216fc12b2f8"
     },
     {
       "path": "src/arcade.css",
@@ -4087,8 +4092,8 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 9091,
-      "sha256": "0d268c366175ffedfebd0fd2541c92c95042a0f52e4df6788691855fc8dd5274"
+      "bytes": 9112,
+      "sha256": "06404df29af48700aa613106abf57fc887e6f4c9da8cfdb12106ea09666cd72b"
     },
     {
       "path": "src/contentUI.js",
@@ -4282,8 +4287,8 @@
     },
     {
       "path": "src/farming.js",
-      "bytes": 3709,
-      "sha256": "765cb983ad861b42f88856e7dc4d3e3d42b3e4830f33684e4bb337f0d2ba0044"
+      "bytes": 3763,
+      "sha256": "68bd8b1be34752202748d144c045d63e703588ebb62483e857045ac19bfc3662"
     },
     {
       "path": "src/festivalLayout.js",
@@ -5317,8 +5322,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 24318,
-      "sha256": "884013439fbd9f3b9b24134b80b1f495b207368ee46b6f177b5835bc7477f0fc"
+      "bytes": 24648,
+      "sha256": "e309520e4fb1c015526dfe734e6877e6ee202f1374ec1025f575a410e507f043"
     },
     {
       "path": "src/ui-v16.css",
@@ -6272,8 +6277,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 12182,
-      "sha256": "36c905174097e7ae29021ba7d52c9baacded7a5ab08778303f71f26dfb3f0d42"
+      "bytes": 12223,
+      "sha256": "4967252c00e7e611ffb9bd903bb57683376763c6abc2b028ed803ccf4f1f0878"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -6304,6 +6309,11 @@
       "path": "tests/v162-lock-open.test.mjs",
       "bytes": 2732,
       "sha256": "d706dbce092841abe7513e12b8ea7532cfcdd645dd3e4d86ce126ffde9bf81e9"
+    },
+    {
+      "path": "tests/v164-npc-gain-reload.test.mjs",
+      "bytes": 3955,
+      "sha256": "ee1949caa0fb6f97b0ece3b34cabf7323eaf131292062df2ba860df42b705172"
     },
     {
       "path": "tests/v17-harbor.test.mjs",
@@ -8601,5 +8611,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v163-github"
+  "publicRevision": "v164-github"
 }

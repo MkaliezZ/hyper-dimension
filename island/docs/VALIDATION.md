@@ -1,6 +1,6 @@
 # Validation / 验收说明
 
-以下按版本保留历史证据；当前 V138 结果见本文末尾。 / Historical evidence is retained by version; current V138 results are at the end.
+以下按版本保留历史证据；最新源码与交付状态见 README；下文保留历史版本证据。 / The README identifies current source and delivery status; historical evidence follows.
 
 ## V107 · 历史基线 / Historical baseline
 
@@ -147,7 +147,7 @@ V141 追加地图交互复核：双画风原生空地点击、居民弹窗关闭
 
 ## V145 · 管家发送顺序 / Steward submission order
 
-居民作业正在结算时，管家会等待回执再保存并寄出，减少短暂结算导致的发送失败。双画风原生UI验证：延迟期间零发送，恢复后唯一发送；离线和未确认作业仍保留恢复流程。[说明与证据](docs/steward-preflight-v145.md)。
+居民作业正在结算时，管家会等待回执再保存并寄出，减少短暂结算导致的发送失败。双画风原生UI验证：延迟期间零发送，恢复后唯一发送；离线和未确认作业仍保留恢复流程。[说明与证据](steward-preflight-v145.md)。
 
 The steward waits for in-flight game receipts before saving and submitting. Native dual-theme delayed-receipt checks confirm zero early calls and one eventual submission; unresolved failures retain explicit recovery.
 
@@ -197,3 +197,10 @@ NPC 原生回归等待实际帧，并核对同一服务器时间戳后执行严�
 ## V154 · 基础材料裁切
 
 双画风 100 个真实图标经过 SVG、场景与手持原生渲染，共 300 个显示面；非空、SVG 留白及四处已知邻图探针通过。开发 Agent 查看截图；不是全部素材语义或真人验收。V152 真实一小时完成不冒称 V154 一小时，完整 18R/28F/30T 范围尚未完成。
+
+
+## V155–V164 · 后续校验范围
+
+材料/产物裁切、实际制作与刷新、标准 A2A、肥料用途、刷新基线和 Windows 文件锁按对应提交分别留存。V162 默认 930 项本机通过，但跨平台 4/6；V163 提供实际失败阶段。V164 修复首次 NPC 产出导致的发现标记差异，原产量不变；完整结果继续验证。[V164 原因与范围](npc-gain-reload-v164.md)。当前公开 V158、本机 V160，后续源码不自动替换公开包或旧证据。
+
+Later evidence remains version-specific. V162 passed 930 local checks but four of six platform jobs; V163 exposes actual failure phases. V164 fixes first-NPC discovery/snapshot consistency with original yields retained. Full verification remains pending; public V158 and local V160 remain current.

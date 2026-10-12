@@ -1,0 +1,25 @@
+{
+  "version": "V164-source",
+  "scope": "First NPC gained-stock/discovery/personal-snapshot consistency; shared resource journal contributions and no re-award on actual protected-store replay. Isolated native craft/soil-care/growth/harvest/reload in both appearances.",
+  "defaultChecks": 939,
+  "focusedChecks": 53,
+  "focusedChecksOverlapDefault": true,
+  "nativeSoilCareThemes": 2,
+  "nativeObservedGrowthSeconds": [
+    183.543,
+    183.447
+  ],
+  "localPassed": true,
+  "fullPlatformResult": "pending",
+  "publicRelease": "V158",
+  "liveRuntime": "V160",
+  "modelsCalled": false,
+  "physicalMacAcceptance": false,
+  "humanAcceptance": false,
+  "fullProductAcceptance": false,
+  "unresolved": [
+    "Intel Mac unfinished startup phase",
+    "complete platform/frozen-package verification",
+    "full remaining 14 requirements"
+  ]
+}

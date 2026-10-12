@@ -1,6 +1,12 @@
 name: Island deployment checks
 on:
   workflow_dispatch:
+    inputs:
+      check_scope:
+        description: Full acceptance checks or isolated soil diagnostics
+        type: choice
+        default: full
+        options: [full, soil-diagnostics]
   push:
     paths:
       - island/**
@@ -13,6 +19,7 @@ permissions:
   contents: read
 jobs:
   portable-source:
+    if: github.event_name != 'workflow_dispatch' || inputs.check_scope != 'soil-diagnostics'
     name: ${{ matrix.os }} / Python 3.11
     strategy:
       fail-fast: false
@@ -69,7 +76,7 @@ jobs:
         run: node tests/v157-modal-command-navigation-browser.mjs
 
   native-art:
-    name: ${{ matrix.os }} / native art
+    name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native art' }}
     strategy:
       fail-fast: false
       matrix:
@@ -85,27 +92,39 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      - if: inputs.check_scope != 'soil-diagnostics'
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.11'
       - name: Inspect deployment plan
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tools/agent-deploy.mjs plan
       - name: Verify target platform
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tools/agent-deploy.mjs doctor --python=python
       - name: Rebuild runtime from bundled dependencies
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tools/agent-deploy.mjs setup --python=python --offline
 
       - name: Native steward portraits
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v153-portraits-browser.mjs
 
       - name: Native material item art
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v154-material-art-browser.mjs
 
       - name: Native recipe product art
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v155-product-art-browser.mjs
 
       - name: Native pearl cup crafting and refresh
+        if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v156-pearl-cup-craft-browser.mjs
+
+      - name: Install Node dependencies for isolated diagnostics
+        if: inputs.check_scope == 'soil-diagnostics'
+        run: npm ci --ignore-scripts
 
       - name: Native greenhouse soil care
         run: node tests/v159-soil-care-browser.mjs

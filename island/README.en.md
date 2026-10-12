@@ -4,11 +4,11 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V163 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V164 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V163
+## Current updates · V164
 
-V162 passed all 930 local default checks and four of six platform jobs. Windows and Intel Mac soil-care reloads still time out; those failures remain open. V163 corrects the failed diagnostic binding and retains isolated report/screenshots for diagnosis, without changing the game or weakening checks. Local V160 and public V158 remain current. [Scope](docs/soil-recovery-diagnostics-v163.md).
+First NPC mining gains now preserve discovery and the protected personal snapshot across reload. Harvests, greenhouse seed bonuses and raw gathering also use the resource ledger, with original quantities and exactly-once receipts retained. All 939 local default checks and both native soil-care/harvest/reload flows passed; Intel Mac boot recovery and the complete platform run remain under verification. Local V160 and public V158 stay current. [Scope](docs/npc-gain-reload-v164.md).
 
 ### V161 · Verification ordering
 
