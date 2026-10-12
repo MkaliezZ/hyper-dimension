@@ -83,6 +83,8 @@
       "runtimeScopeNotRun": true
     },
     "repair": "Coalesce discovery repair into pre-resource-authority migration so previous.json remains the original save",
-    "postRepairStatus": "running"
-  }
+    "postRepairStatus": "passed",
+    "postRepairChecks": 945
+  },
+  "frozenVerification": "v165-frozen-recovery.json"
 }

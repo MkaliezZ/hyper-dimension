@@ -1,0 +1,60 @@
+{
+  "version": "V165",
+  "sourceCommit": "438c30c0e4885142cc911cce2649cdbc392c66ec",
+  "artifact": "Hyper-Dimension-Agent-Source-v165-public.zip",
+  "sha256": "14cf16b0346f1e22cf9d97aed50abff3ee9027e413839eccdbb10af5130a4829",
+  "bytes": 1075764335,
+  "entries": 1723,
+  "payloadFiles": 1721,
+  "everyArchivedEntryMatchesGitBlobAfterRuntime": true,
+  "offline": {
+    "passed": true,
+    "defaultChecks": 945,
+    "python": "3.11.15",
+    "hermesSourceVersion": "0.19.1",
+    "modelsCalled": false
+  },
+  "native": {
+    "passed": true,
+    "themes": [
+      {
+        "theme": "pixel",
+        "growthWallSeconds": 185.323,
+        "craftingActual": true,
+        "harvest": {
+          "wheat": 3,
+          "seed": 1,
+          "nutritionRemaining": 2
+        },
+        "exactlyOnceAfterRefresh": true,
+        "pageErrors": 0,
+        "assetFailures": 0
+      },
+      {
+        "theme": "origami",
+        "growthWallSeconds": 184.399,
+        "craftingActual": true,
+        "harvest": {
+          "wheat": 3,
+          "seed": 1,
+          "nutritionRemaining": 2
+        },
+        "exactlyOnceAfterRefresh": true,
+        "pageErrors": 0,
+        "assetFailures": 0
+      }
+    ],
+    "fixture": "Declared raw recipe inputs, seeds, building 14 and funds; native Sokoban solution, actual farm actions, blocked models; not zero-start or human acceptance"
+  },
+  "ci": {
+    "run": 38258356754,
+    "sourceCommit": "438c30c0e4885142cc911cce2649cdbc392c66ec",
+    "observedStatus": "in_progress",
+    "observedConclusion": "",
+    "acceptedAsComplete": false
+  },
+  "localDeployed": false,
+  "publishedRelease": "V158",
+  "localRuntime": "V160",
+  "wholeProductAccepted": false
+}

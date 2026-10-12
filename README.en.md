@@ -8,7 +8,7 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 ## Current updates · V165
 
-NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. Six focused checks passed; native and platform validation is recorded separately. Local V160 and public V158 remain current. [Scope](island/docs/recovery-checkpoints-v165.md).
+NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. All 945 checks passed locally and in the independent offline source archive. Both native farm/harvest/reload flows passed from that archive; full platform CI is still running. Local V160 and public V158 remain current. [Frozen archive checks](showcase/evidence/v165-frozen-recovery.json). [Scope](island/docs/recovery-checkpoints-v165.md).
 
 ### V164 · NPC gains
 
