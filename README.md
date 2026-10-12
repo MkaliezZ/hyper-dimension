@@ -8,7 +8,7 @@
 
 ## 当前更新 · V168
 
-制作结果页的领奖点击会等待最后一次保存确认后结算，避免点击被忽略；双画风领奖、取消与重开检查通过，33 项相关规则通过。管家皮肤的 26 张立绘已按本机当前代码再次复查。[修复与记录](island/docs/reward-confirmation-v168.md)。V167 完整 CI 为 5/6，本次完整平台结果另验。
+制作结果页的领奖点击会等待最后一次保存确认后结算，避免点击被忽略；双画风领奖、取消与重开检查通过，33 项相关规则通过。管家皮肤的 26 张立绘已按本机当前代码再次复查。[修复与记录](island/docs/reward-confirmation-v168.md)。V168 已通过 Windows、Mac ARM 与 Intel 的全部 6 项流水线检查，独立源码包通过 945 项与双画风完整农田流程；本机和[公开源码包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v168)均已更新。[验证记录](showcase/evidence/v168-source-release.json)。
 
 ### V167 · 启动绘制
 

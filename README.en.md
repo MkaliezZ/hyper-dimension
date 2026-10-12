@@ -8,7 +8,7 @@ Gather, craft and manage an island in pixel or origami art, talk to AI residents
 
 ## Current updates · V168
 
-Crafting reward clicks now wait for the last save confirmation instead of being ignored. Both native claim/cancel and protected-restart flows passed, along with 33 focused rules. All 26 local steward portraits were rechecked. [Fix and evidence](island/docs/reward-confirmation-v168.md). V167 full CI ended at 5/6; this revision's complete platform checks remain separate.
+Crafting reward clicks now wait for the last save confirmation instead of being ignored. Both native claim/cancel and protected-restart flows passed, along with 33 focused rules. All 26 local steward portraits were rechecked. [Fix and evidence](island/docs/reward-confirmation-v168.md). All six V168 Windows/Mac ARM/Intel jobs passed, as did 945 independent offline checks and both complete native farm flows. The local app and [public source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v168) are updated. [Evidence](showcase/evidence/v168-source-release.json).
 
 ### V167 · Startup drawing
 

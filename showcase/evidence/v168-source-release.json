@@ -1,0 +1,58 @@
+{
+  "version": "V168",
+  "sourceCommit": "da8f296a17dfd1df6487f34fbd569655e5f398c4",
+  "ciRun": 38282616339,
+  "ciUrl": "https://github.com/MkaliezZ/hyper-dimension/actions/runs/38282616339",
+  "ciPassedJobs": 6,
+  "ciTotalJobs": 6,
+  "platforms": [
+    "windows-2022",
+    "macos-14 ARM",
+    "macos-15-intel"
+  ],
+  "archive": {
+    "filename": "Hyper-Dimension-Agent-Source-v168-public.zip",
+    "sha256": "e78245a056fc294f662606198f774bb93159b47bffa28c5f0b8974f81683f855",
+    "bytes": 1081850037,
+    "entries": 1730,
+    "payloadFiles": 1728,
+    "everyEntryMatchesGitBlob": true
+  },
+  "offline": {
+    "python": "3.11.15",
+    "hermes": "0.19.1",
+    "checks": 945,
+    "modelsCalled": false
+  },
+  "nativeFrozenFarm": {
+    "themes": 2,
+    "growthWallSeconds": {
+      "pixel": 183.718,
+      "origami": 182.975
+    },
+    "cropRewards": {
+      "wheat": 3,
+      "seed": 1,
+      "nutritionRemaining": 2
+    },
+    "actualCraftingAndDiskReload": true
+  },
+  "local": {
+    "version": "V168",
+    "ports": [
+      4173,
+      4174,
+      4175
+    ],
+    "fourSaveIdentitiesProfilesBalancesAndInventoryPreserved": true,
+    "privateConfigUnchanged": true,
+    "backupVerified": true
+  },
+  "publicRelease": "https://github.com/MkaliezZ/hyper-dimension/releases/tag/v168",
+  "publishedAt": "2026-10-12T18:30:05Z",
+  "remoteZipDigestVerified": true,
+  "humanAcceptance": false,
+  "physicalMacVerified": false,
+  "fullProductAcceptance": false,
+  "newTerrainStatus": "organic master candidates, native terrain generation pending"
+}
