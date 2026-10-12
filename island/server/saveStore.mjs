@@ -43,7 +43,7 @@ import {validPlacements} from '../src/placements.js';
 import {validProjects} from '../src/projectPlans.js';
 import {validRecruitment} from '../src/recruitment.js';
 import {validResourceLedger} from '../src/resourceLedger.js';
-import {validWardrobe} from '../src/contentCatalog.js';
+import {validWardrobe,ITEM_BY_ID} from '../src/contentCatalog.js';
 import {validToolbelt} from '../src/equipmentRules.js';
 import {mkdir,readFile,writeFile,unlink,readdir,stat,open} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
@@ -53,6 +53,7 @@ import {createZeroState} from '../src/freshStart.js';
 import {MAX_SAVE_BYTES,MAX_IMPORT_BYTES} from '../src/saveLimits.js';
 export {MAX_SAVE_BYTES,MAX_IMPORT_BYTES};
 const digest=state=>createHash('sha256').update(JSON.stringify(state)).digest('hex');
+const missingOwnedDiscoveries=s=>Object.entries(s.inventory).filter(([id,n])=>n>0&&Object.hasOwn(ITEM_BY_ID,id)&&s.discovered?.[id]!==true).map(([id])=>id);
 const fail=(message,status=400,code='invalid_save')=>Object.assign(Error(message),{status,code});
 const exists=async path=>{try{await stat(path);return true}catch(e){if(e.code==='ENOENT')return false;throw e}};
 export function validateState(state,theme=null){
@@ -234,9 +235,20 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
      // bootstrapping other controllers or interrupting an ongoing legacy activity.
      if(!actions.personal)applyPersonalCommand(state,actions,{operation:'enable',requestId:randomUUID()},now());
      enableResourceState(state,actions);
+     // Upgrade in the same commit so previous.json keeps the original canonical bytes.
+     for(const id of missingOwnedDiscoveries(state))(state.discovered??={})[id]=true;
      doc=await commit(p,theme,state,doc,'resource-migration',clientId,actions);
     }
     if(doc.state.economy?.budgetPolicyVersion!==105){await snapshot(p,doc,'before-economy-policy');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateEconomyPolicy(state,actions);doc=await commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);}
+    // V165: older NPC payouts could acknowledge stock before recording discovery.
+    // Derive flags only from the verified canonical inventory, never the browser copy.
+    const ownedUndiscovered=missingOwnedDiscoveries(doc.state);
+    if(ownedUndiscovered.length){
+     await snapshot(p,doc,'before-discovery-repair');
+     const state=structuredClone(doc.state),actions=structuredClone(doc.actions);state.discovered??={};
+     for(const id of ownedUndiscovered)state.discovered[id]=true;
+     doc=await commit(p,theme,state,doc,'discovery-repair',clientId,actions);
+    }
     return {document:doc,migrated:false,restarted,initialCreated:created,migration:await imports.migration(p)};
    });
   },

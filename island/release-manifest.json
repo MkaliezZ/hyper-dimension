@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v164-agent-source",
+  "release": "hyper-dimension-v165-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -52,8 +52,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 16359,
-      "sha256": "726aa7667a9d2420beb906a5ccdcf679c05642796b1a2e2c4adbe43cd9761473"
+      "bytes": 16750,
+      "sha256": "a86d55ad06d745b3ee4b55fe00b32aeedb7cf6587f5d454ad23333b18ee46bdd"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 23536,
-      "sha256": "025b2d935e9187cc5552bd5c549c196d0d6450c09837e30d70f4141dca8ccd5b"
+      "bytes": 23898,
+      "sha256": "4aa215f11c7e374f05577b959772b75c88d5d4d89a42210670c83d96e0b9a264"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -554,6 +554,11 @@
       "path": "docs/provenance/art-provenance-v9.json",
       "bytes": 2729,
       "sha256": "0e7b5336b6ccdb9472ec1004a28b9ab8f01bdebf5207ab5760a5671757366e7c"
+    },
+    {
+      "path": "docs/recovery-checkpoints-v165.md",
+      "bytes": 4918,
+      "sha256": "a2fa3f4ab46a60d9e8258e923f49531716fabd97925b9a89721c9f4d08272954"
     },
     {
       "path": "docs/recovery-navigation-v150.md",
@@ -1757,8 +1762,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 8902,
-      "sha256": "b977bfabf40b580d6ef7ad4addc0af1dc4a3e2a7f35930577e27122cd36b8640"
+      "bytes": 8979,
+      "sha256": "24860b14be4d8e2e3bcedff87090fc2d0844294d6374b1fed2ddfa686b38b20c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3882,8 +3887,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 34392,
-      "sha256": "b74ea990a15b330e970559804056a1fa93f41488774ca05e5719099a3097f723"
+      "bytes": 35311,
+      "sha256": "987b77e81397ddc53979adf1e57fedf75e663bc45750c15b3a2ef4feb39a9f64"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -5192,8 +5197,8 @@
     },
     {
       "path": "src/serverFieldNpcUI.js",
-      "bytes": 3415,
-      "sha256": "59898a7f8bceb96a91e6b5b3975912e0d10e75c29ed9d91eae393fd8a1b1837e"
+      "bytes": 3635,
+      "sha256": "545b1f20e1940a1e45fc42e24ed4d37b8798fcf892686bbdb1a5dc5499a12878"
     },
     {
       "path": "src/serverGatherUI.js",
@@ -5207,13 +5212,13 @@
     },
     {
       "path": "src/serverResidentUI.js",
-      "bytes": 3622,
-      "sha256": "2a8c4f7523335bbecc7663e58797ccc95b56e57c58b8ac91649b03cea0696da9"
+      "bytes": 3842,
+      "sha256": "12293ee42951db18f8779a9aceb4a0ed9ae4bcc5342a9b91ce0f3fac0f344a32"
     },
     {
       "path": "src/serverVisitorUI.js",
-      "bytes": 3209,
-      "sha256": "643fc9a379e3ccaba618eb0bfa90181a354c0ab8bba9657f37c568691724e156"
+      "bytes": 3296,
+      "sha256": "f25a8392f2f3e698be5c34c2bc3d1b5b622ffbc21f050a3d777eb2fcda1c4a69"
     },
     {
       "path": "src/shopfront-v113.css",
@@ -6314,6 +6319,16 @@
       "path": "tests/v164-npc-gain-reload.test.mjs",
       "bytes": 3955,
       "sha256": "ee1949caa0fb6f97b0ece3b34cabf7323eaf131292062df2ba860df42b705172"
+    },
+    {
+      "path": "tests/v165-discovery-repair.test.mjs",
+      "bytes": 4331,
+      "sha256": "f26ab519c10725d96db6e72f7c9c29340eb3f2f1b7b6edc261fc4057388e4ea0"
+    },
+    {
+      "path": "tests/v165-recovery-checkpoint.test.mjs",
+      "bytes": 4315,
+      "sha256": "536321b67457863b296e4cf0386450e28f116adae645ecb7247664da8ac45058"
     },
     {
       "path": "tests/v17-harbor.test.mjs",
@@ -8611,5 +8626,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v164-github"
+  "publicRevision": "v165-github"
 }

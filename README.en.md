@@ -4,11 +4,15 @@
 
 **An island that lives, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V164 development snapshot**; full product acceptance is still in progress.
+Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V165 development snapshot**; full product acceptance is still in progress.
 
-## Current updates · V164
+## Current updates · V165
 
-First NPC mining gains now preserve discovery and the protected personal snapshot across reload. Harvests, greenhouse seed bonuses and raw gathering also use the resource ledger, with original quantities and exactly-once receipts retained. All 939 local default checks and both native soil-care/harvest/reload flows passed; Intel Mac boot recovery and the complete platform run remain under verification. Local V160 and public V158 stay current. [Scope](island/docs/npc-gain-reload-v164.md).
+NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. Six focused checks passed; native and platform validation is recorded separately. Local V160 and public V158 remain current. [Scope](island/docs/recovery-checkpoints-v165.md).
+
+### V164 · NPC gains
+
+First NPC mining gains now preserve discovery and the protected personal snapshot across reload. Harvests, greenhouse seed bonuses and raw gathering also use the resource ledger, with original quantities and exactly-once receipts retained. All 939 local default checks and both native soil-care/harvest/reload flows passed; this revision ended with four of six CI jobs passing and farm reload recovery failures on Windows and Intel Mac. Local V160 and public V158 stay current. [Scope](island/docs/npc-gain-reload-v164.md).
 
 ### V161 · Verification ordering
 

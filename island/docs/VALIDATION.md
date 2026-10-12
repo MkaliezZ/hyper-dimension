@@ -204,3 +204,8 @@ NPC 原生回归等待实际帧，并核对同一服务器时间戳后执行严�
 材料/产物裁切、实际制作与刷新、标准 A2A、肥料用途、刷新基线和 Windows 文件锁按对应提交分别留存。V162 默认 930 项本机通过，但跨平台 4/6；V163 提供实际失败阶段。V164 修复首次 NPC 产出导致的发现标记差异，原产量不变；完整结果继续验证。[V164 原因与范围](npc-gain-reload-v164.md)。当前公开 V158、本机 V160，后续源码不自动替换公开包或旧证据。
 
 Later evidence remains version-specific. V162 passed 930 local checks but four of six platform jobs; V163 exposes actual failure phases. V164 fixes first-NPC discovery/snapshot consistency with original yields retained. Full verification remains pending; public V158 and local V160 remain current.
+
+
+## V165 · 恢复保存与旧发现记录
+
+V164 完整 CI 最终 4/6：Windows/Intel Mac 农田刷新恢复失败。V165 合并恢复期间重复保存，并从已确认库存修复旧发现标记；6 项新增针对性检查通过，完整原生/平台结果另计。[范围与边界](recovery-checkpoints-v165.md)。本机 V160、公开 V158 暂不替换。

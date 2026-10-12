@@ -1,0 +1,88 @@
+{
+  "revision": "v165",
+  "scope": "existing canonical discovery repair and orphan NPC/field/visitor recovery checkpoint coalescing",
+  "focusedChecks": 35,
+  "nativeProbe": {
+    "browser": "installed Edge",
+    "cpuThrottle": 4,
+    "automaticModelsBlocked": true,
+    "fixture": "recipe raw inputs, seeds, building 14 and funds; NPC work enabled",
+    "runs": [
+      {
+        "run": "recovery-profile",
+        "theme": "pixel",
+        "windowSeconds": 8.995,
+        "requests": 23,
+        "saves": 11,
+        "cancellations": 11,
+        "captureRetries": 0,
+        "merges": 22,
+        "growthSeconds": 192.554,
+        "passed": true
+      },
+      {
+        "run": "recovery-profile",
+        "theme": "origami",
+        "windowSeconds": 9.437,
+        "requests": 23,
+        "saves": 11,
+        "cancellations": 11,
+        "captureRetries": 0,
+        "merges": 22,
+        "growthSeconds": 192.182,
+        "passed": true
+      },
+      {
+        "run": "recovery-profile-after",
+        "theme": "pixel",
+        "windowSeconds": 5.324,
+        "requests": 12,
+        "saves": 2,
+        "cancellations": 9,
+        "captureRetries": 0,
+        "merges": 11,
+        "growthSeconds": 188.587,
+        "passed": true
+      },
+      {
+        "run": "recovery-profile-after",
+        "theme": "origami",
+        "windowSeconds": 6.739,
+        "requests": 15,
+        "saves": 3,
+        "cancellations": 11,
+        "captureRetries": 0,
+        "merges": 14,
+        "growthSeconds": 189.672,
+        "passed": true
+      }
+    ],
+    "note": "Autonomous jobs may differ between runs; only origami had eleven cancellations in both samples. Snapshot counts exclude the opening request. Timing is local, not cloud or physical Mac evidence."
+  },
+  "previousFullCi": {
+    "id": 38252053803,
+    "source": "84ceaa3afcc62fb2c185ba69e4613a8688b3a41d",
+    "status": "completed",
+    "conclusion": "failure",
+    "passedJobs": 4,
+    "failedJobs": [
+      "windows-2022 native art: greenhouse soil care",
+      "macos-15-intel native art: greenhouse soil care"
+    ]
+  },
+  "wholeProductAccepted": false,
+  "deployedLocally": false,
+  "publicRelease": "v158",
+  "localRuntime": "v160",
+  "newChecks": 6,
+  "defaultSuite": {
+    "firstRun": {
+      "tests": 931,
+      "passed": 927,
+      "failed": 4,
+      "runtimeScopeNotRun": true
+    },
+    "repair": "Coalesce discovery repair into pre-resource-authority migration so previous.json remains the original save",
+    "postRepairStatus": "running"
+  }
+}
