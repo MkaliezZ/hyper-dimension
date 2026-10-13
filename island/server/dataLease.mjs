@@ -29,7 +29,7 @@ async function registerRuntimeLease(root,file,token){
  return registryFile;
 }
 export async function registeredRuntimePids(project){
- const directory=await plainPath(runtimeRegistry(resolve(project)));if(!await exists(directory))return new Set();const pids=new Set();
+ const directory=await plainPath(runtimeRegistry(resolve(project)));if(!await exists(directory))return new Set();const pids=new Set(),unprotectedPids=new Set();
  for(const entry of await readdir(directory,{withFileTypes:true})){
   if(entry.isFile()&&/^[a-f0-9-]{36}\.json\.tmp$/.test(entry.name))continue;
   if(!entry.isFile()||!/^[a-f0-9-]{36}\.json$/.test(entry.name))throw fail('运行登记无法核对，请保留数据','data_process_unverified');
@@ -37,10 +37,10 @@ export async function registeredRuntimePids(project){
   if(r.mode!=='runtime'||entry.name!==r.token+'.json'||typeof r.directory!=='string'||typeof r.leaseFile!=='string')throw fail('运行登记无法核对，请保留数据','data_process_unverified');
   const root=await plainPath(r.directory),file=await plainPath(r.leaseFile);
   if(dirname(file)!==dirname(root)||!basename(file).startsWith('.'+basename(root)+'.hd-runtime-')||basename(file)!=='.'+basename(root)+'.hd-runtime-'+r.token+'.json')throw fail('运行登记与数据路径不一致','data_process_unverified');
-  const owner=await leaseOwner(file);if(!owner)continue;
+  const owner=await leaseOwner(file);if(!owner){unprotectedPids.add(r.pid);continue;}
   if(owner.value.pid!==r.pid||owner.value.token!==r.token||owner.value.mode!=='runtime'||resolve(owner.value.directory||'')!==root)throw fail('运行登记与数据锁不一致','data_process_unverified');
   pids.add(r.pid);
- }return pids;
+ }for(const pid of unprotectedPids)pids.delete(pid);return pids;
 }
 
 export async function acquireDataLease({directory,mode='runtime',allowRestore=false,sharedRuntime=false}){

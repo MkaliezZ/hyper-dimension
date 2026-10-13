@@ -66,6 +66,9 @@ jobs:
 
 
 
+      - name: Native low-frame-rate farm navigation
+        run: node tests/v173-farm-navigation-browser.mjs
+
       - name: Native protected checkpoint restart
         run: node tests/v156-checkpoint-restart-browser.mjs
 

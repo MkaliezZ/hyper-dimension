@@ -1,10 +1,5 @@
 # Hyper Dimension
 
-## V171 · Reception movement and ground alignment
-
-Rapid clicks keep the latest destination. Buildings align their ground footprints with marked parcel centres, with complete sprite crops and proportional dimensions. See [implementation and native measurements](docs/lobby-ground-v171.md). The published [V170 package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) has separate frozen-source and six-platform evidence.
-
-
 [中文](README.md) · [English](README.en.md) · [Deployment](DEPLOYMENT.md) · [Education module](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)
 
 **An island that feels alive, and a steward that gets things done.**
@@ -19,7 +14,21 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V170
+## What's new · V173
+
+Fixed slow walking at low frame rates and companion jumps when routes change. Reception characters catch up to confirmed positions along walkable paths; rapid clicks retain the final destination. Farm navigation at 8 / 15 FPS, reception movement at 10 FPS in both styles, and actual planting-to-harvest flows passed. [Fix and measurements](docs/frame-motion-v173.md).
+
+### V172 · Save contention and entry recovery
+
+Fixed `lan_busy` JSON replacing the island page during a save. Identity and entry reads use the last committed document, and explicit busy responses recover automatically. Autosave checks the latest valid periodic checkpoint while retaining full recovery validation. Both art styles passed browser recovery and travel exclusion checks. [Fix and validation](docs/save-entry-v172.md).
+
+### V171 · Reception movement and building alignment
+
+Reception movement keeps the latest target during rapid clicks, uses baked terrain routes and interpolates only confirmed waypoints. Ordinary movement receipts no longer rebuild the lobby. All25 production buildings and16 homes use calibrated ground centres, complete sprite crops and proportional dimensions. [Fix and measurements](docs/lobby-ground-v171.md).
+
+[Published V170 source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) passed all six Windows / Mac ARM / Intel Mac jobs and an independent offline rebuild. V172 finished 3/6: all three native-art and farming jobs passed. V173 addresses the movement assertion and Mac test temporary-path failures; its own cloud results are still required.
+
+### V170 · Crafting acknowledgments
 
 Crafting rewards and closing cancellation now wait for submitted resident transactions instead of losing the request during brief concurrency. An uncertain response retains the original job; explicit recovery lets the original close complete. Six native claim, cancel and lost-response cases passed across both styles, preserving one-time costs and receipts. [Fix and evidence](docs/reward-drain-v170.md).
 
@@ -51,11 +60,11 @@ The season interface uses 30 visual days per season. Full-map seasonal artwork, 
 
 | Pixel island | Origami island |
 | --- | --- |
-| ![V169 pixel island](docs/screenshots/v169-pixel-island.png) | ![V169 origami island](docs/screenshots/v169-origami-island.png) |
+| ![V171 pixel island](docs/screenshots/v171-pixel-island.png) | ![V171 origami island](docs/screenshots/v171-origami-island.png) |
 
 ## Deploy with a development Agent
 
-The deliverable contains **source, artwork, pinned dependencies and a machine-readable deployment protocol**. Windows x64 and macOS 14+ on Apple Silicon / Intel are supported; Ubuntu can also run it. Enter `` after cloning. A Release source archive starts directly at the game root.
+The deliverable contains **source, artwork, pinned dependencies and a machine-readable deployment protocol**. Windows x64 and macOS 14+ on Apple Silicon / Intel are supported; Ubuntu can also run it. Enter `island/` after cloning. A Release source archive starts directly at the game root.
 
 Have an Agent with terminal and file access read [AGENTS.md](AGENTS.md), [deploy.json](deploy.json) and [DEPLOYMENT.md](DEPLOYMENT.md), then run:
 

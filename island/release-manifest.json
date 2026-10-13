@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v172-agent-source",
+  "release": "hyper-dimension-v173-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 6966,
-      "sha256": "a7003c5e245cf2676946c88e3c40e8ae62a2869551b70415b22a1247bb9c42dc"
+      "bytes": 8155,
+      "sha256": "057aa4a506a2d691845eda109319bd532460f35f379785d5b7fce165ce628d17"
     },
     {
       "path": "README.md",
-      "bytes": 6134,
-      "sha256": "27b0bfc6475c0d7fb5ed6cabed8822e04e7349831838db5a57b21ce6d2832a23"
+      "bytes": 7163,
+      "sha256": "1594ac08a2ae8086975bafdf1a44c580ab4461e8d4c15ec2467a126905c885a1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 27032,
-      "sha256": "992161e5bf209ea9ba3e9c633ce30665ec515641af49cc31795b9880650e90cd"
+      "bytes": 27401,
+      "sha256": "47e1543aedfb0d6254b0e76d8029eaf94441d2784c474474f2f1ca7a451fc78f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -159,6 +159,11 @@
       "path": "docs/environment-v131.md",
       "bytes": 5140,
       "sha256": "e88bb518ce97ab6a41787719a1dc52ea19ef3e1494f78b5f414e2f0d1ac9f48f"
+    },
+    {
+      "path": "docs/frame-motion-v173.md",
+      "bytes": 3022,
+      "sha256": "1a2040233be64df50f67fd79dc0395c3989549223191b3158a93d051dc6b086d"
     },
     {
       "path": "docs/frozen-hour-v142.md",
@@ -1877,8 +1882,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9354,
-      "sha256": "6c910b8bdf34ff8396aa963e5f84ef7dd7b7d034c50dc7c5a85434f8b0a60f98"
+      "bytes": 9387,
+      "sha256": "4e57c9b5171270aeed104da924c43ab5c8dacf257e189c2ba3b8b36912aac6d2"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4062,8 +4067,8 @@
     },
     {
       "path": "server/dataLease.mjs",
-      "bytes": 12846,
-      "sha256": "a250ef9ddf0ecfb4c1b39a6dbaac413ea484ef1005ccf6dd4fd00be2c9504d3c"
+      "bytes": 12951,
+      "sha256": "004694f2cbb68a7dd6b20d9d5c25a75fca7654ab79442cec9d901988e1f9f521"
     },
     {
       "path": "server/deviceBridgeClient.mjs",
@@ -4502,8 +4507,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 141401,
-      "sha256": "c74750aa0e2fa855fbbbf19244b6dcdde9b9696219f0a74caa40b19e01cc47cd"
+      "bytes": 141609,
+      "sha256": "44fd07371fed7b518d9274d8bb0f9b2110934e3583fbb5403a850c4de3961b77"
     },
     {
       "path": "src/arcade.css",
@@ -4936,6 +4941,11 @@
       "sha256": "e162f1d15433cf3d5bdee71ed206ad4b3f5e16c03c612c58228dc4dc9cbae860"
     },
     {
+      "path": "src/frameClock.js",
+      "bytes": 273,
+      "sha256": "a3e73246cae4d387e99b6dd72fa66d82f94d68295542bb24bffa25b9ec505207"
+    },
+    {
       "path": "src/freshStart.js",
       "bytes": 924,
       "sha256": "ff81a02b8be8e748fdcba2192106e8243248b34efda08ed9a6309c2c03b62b1e"
@@ -5187,13 +5197,13 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 11621,
-      "sha256": "70b6fb2edf44ba2d9c05e83d9393cf3f072366094dacb93d3d8c4513878558e8"
+      "bytes": 11802,
+      "sha256": "a6c04fd9fadfdbd8688db0944a789cf967cf5220a83368b7c980f4ebe38d4ae1"
     },
     {
       "path": "src/lanMotion.js",
-      "bytes": 2888,
-      "sha256": "6c624d2fda25367c7bdce478e76a4934a2df1b7b5645e6c8f42a9b19c4b111e9"
+      "bytes": 3806,
+      "sha256": "ac5da862d2b90c31795c5a35fe87105d9981980aed00dadb4e3e78363311c228"
     },
     {
       "path": "src/lanMoveQueue.js",
@@ -6882,8 +6892,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 12223,
-      "sha256": "4967252c00e7e611ffb9bd903bb57683376763c6abc2b028ed803ccf4f1f0878"
+      "bytes": 12297,
+      "sha256": "d3db73e2da2b4c0fc116f85eb12298475c6c7e9758561c8367e452a67b37652e"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -6977,8 +6987,8 @@
     },
     {
       "path": "tests/v171-lobby-motion-browser.mjs",
-      "bytes": 5875,
-      "sha256": "4e62270948648a72f566a97ce9553dee82abe6ccc86059b7657e14c61eb3fd4d"
+      "bytes": 7389,
+      "sha256": "559fe4be8450a23c02c6aad071cf35df947f9496be488ca47506ec24d8730ac0"
     },
     {
       "path": "tests/v171-lobby-motion.test.mjs",
@@ -6992,8 +7002,18 @@
     },
     {
       "path": "tests/v172-lan-busy.test.mjs",
-      "bytes": 5467,
-      "sha256": "cdf10aaed9eac491a481e849c579081180c028bbc7be77d555f9ee708b6d9a58"
+      "bytes": 5508,
+      "sha256": "2263e755ec2ae91d5fc1e0f46cccac999dc0b37bd8830809fb69bc757fd2e62c"
+    },
+    {
+      "path": "tests/v173-farm-navigation-browser.mjs",
+      "bytes": 3855,
+      "sha256": "0c38b4175b797a127456751c3464f79fc2ec1693a624d78858547c7261aeff92"
+    },
+    {
+      "path": "tests/v173-frame-motion.test.mjs",
+      "bytes": 3213,
+      "sha256": "d4f5821ac06d791479ae7221b496120ba737ea11c51475b4260c19c16a3a4112"
     },
     {
       "path": "tests/v18-balance-probe.mjs",
@@ -9291,5 +9311,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v170-github"
+  "publicRevision": "v173-github"
 }

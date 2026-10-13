@@ -1,10 +1,5 @@
 # Hyper Dimension
 
-## V171 · 会客移动与地块校准
-
-连续点击保留最新目的地；房屋按地块占地中心校准底座，采用完整房屋裁切及等比尺寸。见[修复与原生实测](docs/lobby-ground-v171.md)。已发布[V170源码包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170)，其不可变包与六个平台证据独立记录。
-
-
 [中文](README.md) · [English](README.en.md) · [部署指南](DEPLOYMENT.md) · [教培模块](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)
 
 **一座会生活的岛，和一位能办事的管家。**
@@ -19,7 +14,21 @@
 
 1440p / 60 fps，原创 BGM。新地形片段来自 V169，居民、真实文档、主子 Agent 和小游戏片段保留各自录制版本与验证来源。个人资料和任务文件均为虚构示例。**小游戏目前为占位演示，玩法、美术与动画将继续优化。**
 
-## 当前更新 · V170
+## 当前更新 · V173
+
+修复低帧率下行走变慢，以及随行管家换路时的跳步。会客角色沿可行走道路追上已确认位置；连续改点保留最终目的地。8／15 帧农田导航、10 帧双画风会客及实际种植收获流程通过。[修复与实测](docs/frame-motion-v173.md)。
+
+### V172 · 保存占锁与入口恢复
+
+修复保存期间进入小岛可能显示 `lan_busy` 错误 JSON 的问题。登录与页面入口读取已提交档案；明确忙碌时自动恢复。自动保存仅检查最近有效的周期备份，保留完整的恢复校验。双画风浏览器恢复与出行互斥测试通过。[修复与验证](docs/save-entry-v172.md)。
+
+### V171 · 会客移动与建筑校准
+
+联机会客移动支持连续改点，使用预计算通路及已确认路点插值，普通移动不再重建会客页面。25座生产建筑与16座住所按地块中心校准底座，修正贴图跨网格裁切、两侧装饰造成的偏移及不等比缩放。[修复与实测](docs/lobby-ground-v171.md)。
+
+[已发布的V170部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) 已完成六项Windows／Mac ARM／Intel Mac检查与独立离线重建。V172 的完整 CI 为 3/6：三项美术与种植检查通过，移动断言及 Mac 测试临时路径失败已在 V173 修正，仍需本版本云端结果。
+
+### V170 · 制作并发确认
 
 制作领奖和关闭取消现在会等待已提交的居民事务确认，避免请求因短暂并发而丢失。丢失回包时保留原作业；明确核对后，再完成原关闭请求。双画风真实关卡的领取、取消和丢包恢复共六个原生场景通过，单次扣料与回执保护保持。[修复与验证](docs/reward-drain-v170.md)。
 
@@ -51,11 +60,11 @@
 
 | 像素海岛 | 折纸海岛 |
 | --- | --- |
-| ![V169 像素海岛](docs/screenshots/v169-pixel-island.png) | ![V169 折纸海岛](docs/screenshots/v169-origami-island.png) |
+| ![V171 像素海岛](docs/screenshots/v171-pixel-island.png) | ![V171 折纸海岛](docs/screenshots/v171-origami-island.png) |
 
 ## 交给开发 Agent 部署
 
-交付形态为**源码、素材、固定依赖与机器可读部署协议**。支持 Windows x64、macOS 14+ 的 Apple Silicon / Intel；Ubuntu 也可运行。克隆仓库后进入 ``，Release 源码包直接以游戏目录为根。
+交付形态为**源码、素材、固定依赖与机器可读部署协议**。支持 Windows x64、macOS 14+ 的 Apple Silicon / Intel；Ubuntu 也可运行。克隆仓库后进入 `island/`，Release 源码包直接以游戏目录为根。
 
 让具备终端和文件权限的 Agent 阅读 [AGENTS.md](AGENTS.md)、[deploy.json](deploy.json) 和 [DEPLOYMENT.md](DEPLOYMENT.md)，执行：
 

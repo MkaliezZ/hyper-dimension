@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V172
+## What's new · V173
+
+Fixed slow walking at low frame rates and companion jumps when routes change. Reception characters catch up to confirmed positions along walkable paths; rapid clicks retain the final destination. Farm navigation at 8 / 15 FPS, reception movement at 10 FPS in both styles, and actual planting-to-harvest flows passed. [Fix and measurements](island/docs/frame-motion-v173.md).
+
+### V172 · Save contention and entry recovery
 
 Fixed `lan_busy` JSON replacing the island page during a save. Identity and entry reads use the last committed document, and explicit busy responses recover automatically. Autosave checks the latest valid periodic checkpoint while retaining full recovery validation. Both art styles passed browser recovery and travel exclusion checks. [Fix and validation](island/docs/save-entry-v172.md).
 
@@ -22,7 +26,7 @@ Fixed `lan_busy` JSON replacing the island page during a save. Identity and entr
 
 Reception movement keeps the latest target during rapid clicks, uses baked terrain routes and interpolates only confirmed waypoints. Ordinary movement receipts no longer rebuild the lobby. All25 production buildings and16 homes use calibrated ground centres, complete sprite crops and proportional dimensions. [Fix and measurements](island/docs/lobby-ground-v171.md).
 
-[Published V170 source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) passed all six Windows / Mac ARM / Intel Mac jobs and an independent offline rebuild. V171 platform CI still has movement-test and farm-navigation failures under investigation. Local fix validation is recorded separately from platform acceptance.
+[Published V170 source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) passed all six Windows / Mac ARM / Intel Mac jobs and an independent offline rebuild. V172 finished 3/6: all three native-art and farming jobs passed. V173 addresses the movement assertion and Mac test temporary-path failures; its own cloud results are still required.
 
 ### V170 · Crafting acknowledgments
 
