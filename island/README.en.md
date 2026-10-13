@@ -14,7 +14,13 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V169
+## What's new · V170
+
+Crafting rewards and closing cancellation now wait for submitted resident transactions instead of losing the request during brief concurrency. An uncertain response retains the original job; explicit recovery lets the original close complete. Six native claim, cancel and lost-response cases passed across both styles, preserving one-time costs and receipts. [Fix and evidence](docs/reward-drain-v170.md).
+
+The expanded terrain and homes retain V169. The current film records terrain and UI from V169, with three Agent/party scenes explicitly labelled V166.
+
+### V169 · Organic terrain and staggered homes
 
 - **A more natural island:** mountain ridges, hills, waterfalls, a river valley, terraced fields, a cave entrance and irregular bays. The continuous terrain loads as 30 independently generated high-resolution regions.
 - **Staggered neighbourhoods:** 25 production buildings follow roads and terrain. All 15 AI residents and the steward have distinct homes; the owner gallery shares the mainland and the harbor keeps its own approach lanes.

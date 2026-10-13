@@ -1,0 +1,178 @@
+{
+  "version": "V170",
+  "scope": "Ordinary autonomous NPC work is suspended in the declared fixture. A real resident rest lease is accepted immediately after the craft checkpoint, while its response is held. Native reward double-click while the last real greenhouse Sokoban checkpoint response is held. The same accepted response is released after the click; no second click is sent afterward. Claims require exactly one protected receipt and one actual crafted compost bag. Closing a queued claim instead must cancel it without consuming inputs or granting a product. Fixture grants only recipe raw inputs, seeds, building 14 and funds; no finished product or game outcome is injected. Native input follows the generated legal solution. Models are disabled. This check does not cover full crop growth, zero-start journeys, human acceptance or physical Mac devices.",
+  "baselineFailedCases": [
+    {
+      "theme": "pixel",
+      "intent": "claim",
+      "reason": "AssertionError [ERR_ASSERTION]: visible reward must stay queued through a successful independent resident response",
+      "foreignPendingObserved": "resident"
+    },
+    {
+      "theme": "origami",
+      "intent": "claim",
+      "reason": "AssertionError [ERR_ASSERTION]: visible reward must stay queued through a successful independent resident response",
+      "foreignPendingObserved": "resident"
+    },
+    {
+      "theme": "pixel",
+      "intent": "cancel",
+      "reason": "page.waitForFunction: Timeout 30000ms exceeded.",
+      "foreignPendingObserved": "resident"
+    },
+    {
+      "theme": "origami",
+      "intent": "cancel",
+      "reason": "page.waitForFunction: Timeout 30000ms exceeded.",
+      "foreignPendingObserved": "resident"
+    }
+  ],
+  "nativeIndependentCases": {
+    "scope": "Ordinary autonomous NPC work is suspended in the declared fixture. A real resident rest lease is accepted immediately after the craft checkpoint, while its response is held. Native reward double-click while the last real greenhouse Sokoban checkpoint response is held. The same accepted response is released after the click; no second click is sent afterward. Claims require exactly one protected receipt and one actual crafted compost bag. Closing a queued claim instead must cancel it without consuming inputs or granting a product. Fixture grants only recipe raw inputs, seeds, building 14 and funds; no finished product or game outcome is injected. Native input follows the generated legal solution. Models are disabled. This check does not cover full crop growth, zero-start journeys, human acceptance or physical Mac devices.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "intent": "claim",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "foreignPendingObserved": "resident",
+        "queuedEarlyClaimSettledOnce": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "claim",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "foreignPendingObserved": "resident",
+        "queuedEarlyClaimSettledOnce": true,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "intent": "cancel",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "foreignPendingObserved": "resident",
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "cancel",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "foreignPendingObserved": "resident",
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "intent": "cancel-recovery",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [
+          {
+            "path": "/api/saves/pixel/action",
+            "error": "net::ERR_FAILED"
+          }
+        ],
+        "foreignPendingObserved": "resident",
+        "explicitResidentRecovery": true,
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "cancel-recovery",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [
+          {
+            "path": "/api/saves/origami/action",
+            "error": "net::ERR_FAILED"
+          }
+        ],
+        "foreignPendingObserved": "resident",
+        "explicitResidentRecovery": true,
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      }
+    ],
+    "humanAcceptance": false,
+    "passed": true
+  },
+  "nativeOriginalCases": {
+    "scope": "Native reward double-click while the last real greenhouse Sokoban checkpoint response is held. The same accepted response is released after the click; no second click is sent afterward. Claims require exactly one protected receipt and one actual crafted compost bag. Closing a queued claim instead must cancel it without consuming inputs or granting a product. Fixture grants only recipe raw inputs, seeds, building 14 and funds; no finished product or game outcome is injected. Native input follows the generated legal solution. Models are disabled. This check does not cover full crop growth, zero-start journeys, human acceptance or physical Mac devices.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "intent": "claim",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "queuedEarlyClaimSettledOnce": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "claim",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "queuedEarlyClaimSettledOnce": true,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "intent": "cancel",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "intent": "cancel",
+        "stage": "complete",
+        "errors": [],
+        "badAssets": [],
+        "networkFailures": [],
+        "cancelledQueuedClaimWithoutCostOrGain": true,
+        "passed": true
+      }
+    ],
+    "humanAcceptance": false,
+    "passed": true
+  },
+  "focusedRulesPassed": 22,
+  "previousCi": {
+    "version": "V169",
+    "run": 38329875515,
+    "passedJobs": 5,
+    "totalJobs": 6,
+    "failedJob": 115076974457,
+    "step": "Native greenhouse soil care",
+    "theme": "origami",
+    "stage": "compost-crafting",
+    "waitSeconds": 30
+  },
+  "modelsCalled": false,
+  "humanAcceptance": false,
+  "physicalMacVerified": false,
+  "fullProductAcceptance": false
+}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v169-agent-source",
+  "release": "hyper-dimension-v170-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 5919,
-      "sha256": "41a4063bcf41b9ab33c6287d80b7cfa3078958c28d300220d3653199e528c593"
+      "bytes": 6527,
+      "sha256": "b1ec413e99f08aabbce4263eb49efa543abed9e7a6d938c3c2f0522796df1826"
     },
     {
       "path": "README.md",
-      "bytes": 5238,
-      "sha256": "4fade13b6d85ef845eb7d90d073667afab406e67f5e6a3515a68ab523c6d93e4"
+      "bytes": 5774,
+      "sha256": "b90cb045f3ec9c4f2c03a6fb8976d4c4bbbd9e3d7ef6ff4ac44369b00f890f08"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 25468,
-      "sha256": "3b79b073b788ecb0da3c80735e09d0743404cccfc0dcc1feef52a8fba5a23e7c"
+      "bytes": 25888,
+      "sha256": "66e70bc912a0e239aaa62475a4f264a51ef40f9459d1523407eb1f483f77934c"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -619,6 +619,11 @@
       "path": "docs/reward-confirmation-v168.md",
       "bytes": 3551,
       "sha256": "69b920b3d3a1d42a8081f7958f27f3c378b2766aebaf99fc9a1d1d170804a0d3"
+    },
+    {
+      "path": "docs/reward-drain-v170.md",
+      "bytes": 3201,
+      "sha256": "b07fea5fc5f935b1275ec5384bcc212682bf55b3528bedd8e20e60580f0bd09c"
     },
     {
       "path": "docs/save-capacity-v128.md",
@@ -1324,6 +1329,11 @@
       "path": "docs/verification/v169/rules.json",
       "bytes": 834,
       "sha256": "f013b364c48d3046c324cabc51452839699ee95b3fdd34c4726d01e2f1c6824a"
+    },
+    {
+      "path": "docs/verification/v170/native-reward-drain.json",
+      "bytes": 7013,
+      "sha256": "c6076e26c889f268575bf9051cab38aaf4c0d6db807ca6d72352ea57bc7d9a21"
     },
     {
       "path": "docs/windows-locks-v162.md",
@@ -5702,8 +5712,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 9848,
-      "sha256": "b76aa689d65669db57db72878b8ddd3958f2e46090bb2ea07265d861ee0d4b5c"
+      "bytes": 10638,
+      "sha256": "993a32325dfcb81502aa64d0bd08bc716963974aa6ef1cd52c31b7f68d664d74"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -6909,6 +6919,11 @@
       "path": "tests/v17-modal-close-qa.mjs",
       "bytes": 3555,
       "sha256": "741a640ca908a06d02baad730334fa40c42da7f5883ed8d2b2be50667688302d"
+    },
+    {
+      "path": "tests/v170-reward-drain-browser.mjs",
+      "bytes": 12526,
+      "sha256": "2f6a42f4b03848e463bf48a83858c2844b7d175d19e0108c65f9f1e3da4ee7ba"
     },
     {
       "path": "tests/v18-balance-probe.mjs",
@@ -9201,5 +9216,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v169-github"
+  "publicRevision": "v170-github"
 }

@@ -26,7 +26,7 @@ jobs:
       matrix:
         os: [windows-2022, macos-14, macos-15-intel]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 35
+    timeout-minutes: 45
     defaults:
       run:
         working-directory: island
@@ -85,7 +85,7 @@ jobs:
       matrix:
         os: [windows-2022, macos-14, macos-15-intel]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 35
+    timeout-minutes: 45
     defaults:
       run:
         working-directory: island
@@ -132,6 +132,9 @@ jobs:
       - name: Native queued reward confirmation
         run: node tests/v168-reward-click-browser.mjs
 
+      - name: Native independent receipt and close recovery
+        run: node tests/v170-reward-drain-browser.mjs
+
       - name: Native greenhouse soil care
         run: node tests/v159-soil-care-browser.mjs
 
@@ -145,5 +148,7 @@ jobs:
             island/qa/v159/native-soil-care/*.png
             island/qa/v168/native-reward-click/report.json
             island/qa/v168/native-reward-click/*.png
+            island/qa/v170/native-reward-drain/report.json
+            island/qa/v170/native-reward-drain/*.png
           if-no-files-found: ignore
           retention-days: 3
