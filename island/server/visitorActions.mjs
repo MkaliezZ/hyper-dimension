@@ -37,7 +37,7 @@ export function advanceVisitorClock(s,b,seconds,now){
 }
 function routeLength(points){return points.slice(1).reduce((n,p,i)=>n+Math.hypot(p.x-points[i].x,p.y-points[i].y),0);}
 function arrivalSeconds(theme){const h=HARBOR_LAYOUTS[theme];return routeLength([h.cabin,h.ship,...h.arrival.map(([x,y])=>({x,y}))])/86;}
-function boardingSeconds(theme,q){const h=HARBOR_LAYOUTS[theme],a=h.waiting[q],last=h.waiting.at(-1);return routeLength([{x:a[0],y:a[1]},{x:a[0],y:a[1]+19},{x:1565,y:last[1]+19},h.boarding,h.ship,h.cabin])/86;}
+function boardingSeconds(theme,q){const h=HARBOR_LAYOUTS[theme],a=h.waiting[q],last=h.waiting.at(-1);return routeLength([{x:a[0],y:a[1]},{x:a[0],y:a[1]+19},{x:last[0]+14,y:last[1]+19},h.boarding,h.ship,h.cabin])/86;}
 export function visitorReplay(doc,i){
  if(i.kind!=='visitor')return null;const b=doc?.actions;if(!b)return null;
  if(i.operation==='enable'&&b.visitor)return {document:doc,ticket:null,receipt:null,replayed:true};

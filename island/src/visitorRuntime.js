@@ -1,3 +1,4 @@
+import {ISLAND_GEOGRAPHY} from './islandGeography.js';
 import {advanceBoatMotion} from './boatMotion.js';
 import {followPendingPath} from './movement.js';
 import {ECONOMY_RULES,effectiveQuality} from './economy.js';
@@ -9,7 +10,7 @@ import {TOURISTS,hydrateTown,assessIsland,settleVisit,reviewVisit} from './townS
 
 export function createVisitorRuntime({getState,followPath,onEvent,onChange,harborReserved=()=>false,extraPassengers=()=>[],remote=null}){
  const guests=[],boats=[];
- let time=0,nextBoat=8,serial=0,slotEntries=id=>({x:780,y:465});
+ let time=0,nextBoat=8,serial=0,slotEntries=id=>({...ISLAND_GEOGRAPHY.spawn});
  const s=()=>getState();
  function confirm(g,operation,args,done){
   if(g.remotePending)return;g.remotePending=true;

@@ -1,0 +1,19 @@
+{
+  "version": "V169",
+  "ruleChecks": 941,
+  "rulePassed": 941,
+  "runtimeScopeChecks": 14,
+  "runtimeScopePassed": 14,
+  "totalPassed": 955,
+  "ruleLogSha256": "06f2d7a21957a559a84290f9f64297faaf610f794f210c966da9b6d103dd2393",
+  "runtimeLogSha256": "4faf2c016a168e0adfaf940ab8bbd287551f67115b71fc3fbb514c0725924cf2",
+  "sequentialVerification": true,
+  "priorFailuresPreserved": true,
+  "concurrencyNote": "The final rules passed. The following runtime process checks initially overlapped an isolated film server; rerunning those fourteen after capture ended passed. Protections were not weakened.",
+  "nativeBrowser": "native-geography.json",
+  "lobbyBrowser": "native-lobby.json",
+  "lobbyNavigation": "native-lobby-navigation.json",
+  "humanAcceptance": false,
+  "physicalMacVerified": false,
+  "fullProductAcceptance": false
+}

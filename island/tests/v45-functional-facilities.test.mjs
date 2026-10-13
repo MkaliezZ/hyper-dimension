@@ -1,3 +1,5 @@
+import {safePlacement} from './spatial-fixture.mjs';
+import {HOTSPOTS} from '../src/world.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';
@@ -10,9 +12,9 @@ import {itemUse,ITEM_BY_ID} from '../src/contentCatalog.js';import {itemPurpose}
 import {tickCrops,CROPS} from '../src/farming.js';import {RESIDENTS} from '../src/world.js';
 import {validateState,createSaveStore} from '../server/saveStore.mjs';
 const fresh=theme=>{const s=hydrateTown(createZeroState());s.freshStartPending=false;hydratePlacements(s,theme);hydrateFunctionalFacilities(s);s.journey={completed:{harvest:true}};return s;};
-function place(s,item,x=800,y=560){s.inventory[item]=1;const r=decorate(s,{commandId:'place:'+item,action:'place',item,x,y,rotation:0},{theme:s.placementBook.theme});assert(r.ok,r.reason);hydrateFunctionalFacilities(s);return r.id;}
+function place(s,item,x,y){s.inventory[item]=1;if(x===undefined)({x,y}=safePlacement(s,item));const r=decorate(s,{commandId:'place:'+item,action:'place',item,x,y,rotation:0},{theme:s.placementBook.theme});assert(r.ok,r.reason);hydrateFunctionalFacilities(s);return r.id;}
 let serial=0;const cmd=(s,id,action,extra={},hooks={})=>functionalCommand(s,{commandId:'command:'+(++serial),displayId:id,action,expectedRevision:s.functionalFacilities.revision,...extra},hooks);
-function farmPosition(s){for(let y=624;y<790;y+=16)for(let x=344;x<640;x+=16){const p={item:'c14_6',x,y,rotation:0};if(checkDecoration(s,p,{theme:s.placementBook.theme}).ok)return p;}throw Error('No safe farm facility point');}
+function farmPosition(s){return safePlacement(s,'c14_6',{around:HOTSPOTS.find(h=>h.type==='farm').entry,maxRadius:240});}
 for(const theme of ['pixel','origami']){
  test(theme+' nursery consumes only unreserved input, advances effective time, pauses and harvests exactly once',()=>{
   const s=fresh(theme),id=place(s,'c6_8');s.inventory.shrimp=2;s.inventory.c6_0=2;reserveResources(s,'party:stock',{shrimp:1,c6_0:1});

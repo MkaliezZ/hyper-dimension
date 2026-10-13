@@ -1,3 +1,5 @@
+import {migrateWorldGeography} from './geographyMigration.mjs';
+import {validPlacements as validLegacyPlacements} from '../src/legacyPlacementValidation.js';
 import {applyWorldAppearance,worldAppearance} from './worldAppearance.mjs';
 import {atomicJSON} from './atomicJson.mjs';
 import {validShopfronts} from '../src/shopfronts.js';
@@ -56,7 +58,7 @@ const digest=state=>createHash('sha256').update(JSON.stringify(state)).digest('h
 const missingOwnedDiscoveries=s=>Object.entries(s.inventory).filter(([id,n])=>n>0&&Object.hasOwn(ITEM_BY_ID,id)&&s.discovered?.[id]!==true).map(([id])=>id);
 const fail=(message,status=400,code='invalid_save')=>Object.assign(Error(message),{status,code});
 const exists=async path=>{try{await stat(path);return true}catch(e){if(e.code==='ENOENT')return false;throw e}};
-export function validateState(state,theme=null){
+export function validateState(state,theme=null,{legacyGeometry=false}={}){
  if(state?.worldAppearance!==undefined&&!['pixel','origami'].includes(state.worldAppearance))throw fail('小岛画风无效');
  if(theme&&state?.placementBook&&state.placementBook.theme!==(state.worldAppearance||theme))throw fail('布置画风与存档不一致');
  if(!state||Array.isArray(state)||typeof state!=='object'||!Number.isSafeInteger(state.day)||state.day<1||
@@ -69,7 +71,7 @@ export function validateState(state,theme=null){
  if(!validAchievements(state))throw fail('成就记录无效，未覆盖现有进度');
  if(!validShopfronts(state))throw fail('货架记录无效，未覆盖现有进度');
  if(!validFunctionalFacilities(state))throw fail('功能设施记录无效，未覆盖现有进度');
- if(!validPlacements(state,{connectivity:true}))throw fail('岛上布置或通路无效，未覆盖现有进度');
+ if(!(legacyGeometry?validLegacyPlacements(state,{connectivity:true}):validPlacements(state,{connectivity:true})))throw fail('岛上布置或通路无效，未覆盖现有进度');
  if(!validNightParty(state))throw fail('夜集方案记录无效，未覆盖现有进度');
  if(!validFireworksParty(state))throw fail('烟花大会记录无效，未覆盖现有进度');
  if(!validCoutureParty(state))throw fail('穿搭大会记录无效，未覆盖现有进度');
@@ -88,8 +90,8 @@ export function validateState(state,theme=null){
 function validateDocument(doc,theme){
  if(doc?.state?.placementBook&&doc.state.placementBook.theme!==(doc.state.worldAppearance||theme))throw fail('布置画风与存档不一致');
  if(doc?.schema!==1||doc.theme!==theme||!Number.isSafeInteger(doc.revision)||doc.revision<1||typeof doc.version!=='string')throw fail('存档格式不受支持',503,'save_corrupt');
- validateState(doc.state,theme);
- if(!validActionBook(doc.actions)||doc.actions&&doc.actionsChecksum!==digest(doc.actions))throw fail('作业记录校验失败',503,'save_corrupt');
+ validateState(doc.state,theme,{legacyGeometry:doc.state.geographyVersion!==169});
+ if(!validActionBook(doc.actions,{legacyGeometry:doc.state.geographyVersion!==169})||doc.actions&&doc.actionsChecksum!==digest(doc.actions))throw fail('作业记录校验失败',503,'save_corrupt');
  if(doc.checksum!==digest(doc.state))throw fail('存档校验失败',503,'save_corrupt');
  if(doc.provenance||doc.importReceipts){if(doc.metadataChecksum!==digest([doc.provenance||null,doc.importReceipts||[]])||doc.provenance&&(doc.provenance.version!==1||typeof doc.provenance.origin!=='string')||doc.importReceipts&&(!Array.isArray(doc.importReceipts)||doc.importReceipts.length>20||doc.importReceipts.some(r=>!r||typeof r.id!=='string'||!/^[a-f0-9]{64}$/.test(r.requestHash))))throw fail('存档来源记录校验失败',503,'save_corrupt');}
  assertResourceState(doc.state,doc.actions);assertWonderState(doc.state,doc.actions);assertPlanningState(doc.state,doc.actions);assertPersonalState(doc.state,doc.actions);assertFarmState(doc.state,doc.actions);assertFieldState(doc.state,doc.actions);assertResidentState(doc.state,doc.actions);assertVisitorState(doc.state,doc.actions);assertCommerceState(doc.state,doc.actions);assertPartyState(doc.state,doc.actions);assertHireState(doc.state,doc.actions);assertFishingState(doc.state,doc.actions);assertFestivalState(doc.state,doc.actions);assertCoutureState(doc.state,doc.actions);assertFireworksState(doc.state,doc.actions);assertFacilityState(doc.state,doc.actions);
@@ -224,6 +226,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
      const state=serverZeroState(theme,initialIdentity(legacyState));
      doc=await commit(p,theme,state,null,'new',String(clientId).slice(0,80),bootstrapSaveAuthority(state,theme,now()),{provenance:{version:1,origin:'server-new',at:new Date(now()).toISOString()}});created=true;
     }
+    if(doc.state.geographyVersion!==169){await snapshot(p,doc,'before-geography-v169');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateWorldGeography(state,actions,theme);doc=await commit(p,theme,state,doc,'geography-migration-v169',clientId,actions);}
     let request;try{request=JSON.parse(await readFile(p.restart,'utf8'));}catch{}
     let restarted=false;if(request&&!request.applied){doc=await applyRestart(p,theme,doc,{...request,protect:true});restarted=true;}
     if(doc.actions&&doc.actions.wonders?.version!==3){const state=structuredClone(doc.state),actions=structuredClone(doc.actions);enableWonderState(state,actions);doc=await commit(p,theme,state,doc,'wonder-migration',clientId,actions);}
@@ -283,7 +286,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     if(externalEconomy){if(origin.signature!=='local')throw fail('本账户签名校验未通过',409,'import_not_allowed');await journal(p,theme).assertReplacement(source,old);assertCrossTasks(source,old?.state);}
     assertHireReplacement(source,old);clearActionHolds(source,{trustedRestore:origin.signature==='local'});
     if(!validSaveSlot(theme,source.saveSlot))source.saveSlot=legacySaveKey(theme)+'-restart-'+randomUUID();
-    const actions=bootstrapSaveAuthority(source,theme,now());validateState(source,theme);
+    migrateWorldGeography(source,newActionBook(),theme);const actions=bootstrapSaveAuthority(source,theme,now());validateState(source,theme);
     if(old)await snapshot(p,old,'before-import');
     const provenance={version:1,origin:candidate.source==='legacy-browser'?'legacy-browser':origin.kind,fileSignature:origin.signature,sourceHash:candidate.sourceHash,importId:previewId,at:new Date(now()).toISOString()},receipt={id:previewId,requestHash,sourceHash:candidate.sourceHash,migrationId:candidate.migrationId,at:new Date(now()).toISOString()};
     const doc=await commit(p,theme,source,old,'import',String(clientId).slice(0,80),actions,{provenance,importReceipts:[...(old?.importReceipts||[]),receipt].slice(-20)});
@@ -321,7 +324,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     const fingerprint=digest([state,activeSeconds]),prior=saveId&&[...(old?.actions?.farm?.autosaves||[]),...(old?.actions?.visitor?.autosaves||[]),...(old?.actions?.commerce?.autosaves||[]),...(old?.actions?.facility?.autosaves||[])].find(r=>r.id===saveId);
     if(prior){if(prior.fingerprint!==fingerprint||prior.expectedVersion!==expectedVersion)throw fail('同一存档请求不能变更内容',409,'save_id_conflict');return {document:old,replayed:true};}
     if(saveId!==null&&!/^[a-zA-Z0-9-]{8,80}$/.test(saveId))throw fail('存档请求编号无效');
-    compare(old,expectedVersion);if(state.worldAppearance!==old.state.worldAppearance)throw fail('画风切换需通过小岛外观入口',409,'appearance_conflict');if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
+    compare(old,expectedVersion);if(old.state.geographyVersion===169&&state.geographyVersion!==169)throw fail('地图版本已更新，请重新读取当前小岛',409,'geography_conflict');if(state.worldAppearance!==old.state.worldAppearance)throw fail('画风切换需通过小岛外观入口',409,'appearance_conflict');if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
     state=structuredClone(state);const actions=old.actions?structuredClone(old.actions):undefined;
     const farmSeconds=actions?.farm?.activeSeconds||0;advanceFarmClock(state,actions,activeSeconds,now());advanceFieldClock(state,actions,(actions?.farm?.activeSeconds||0)-farmSeconds);advanceVisitorClock(state,actions,activeSeconds,now());advanceCommerceClock(state,actions,activeSeconds,now());advanceFacilityClock(state,actions,activeSeconds,now());
     if(actions?.farm&&saveId)actions.farm.autosaves=[...(actions.farm.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
@@ -367,7 +370,8 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     await snapshot(p,old,'before-restore');
     clearActionHolds(source.state,{trustedRestore:true});
     if(protect&&!validSaveSlot(theme,source.state.saveSlot))source.state.saveSlot=legacySaveKey(theme)+'-restart-'+randomUUID();
-    const doc=await commit(p,theme,source.state,old,'restore',clientId,protect?bootstrapSaveAuthority(source.state,theme,now()):newActionBook(),protect?{provenance:{version:1,origin:'local-checkpoint',sourceChecksum:source.checksum,at:new Date(now()).toISOString()}}:{});
+    migrateWorldGeography(source.state,newActionBook(),theme);
+     const doc=await commit(p,theme,source.state,old,'restore',clientId,protect?bootstrapSaveAuthority(source.state,theme,now()):newActionBook(),protect?{provenance:{version:1,origin:'local-checkpoint',sourceChecksum:source.checksum,at:new Date(now()).toISOString()}}:{});
     return {document:doc};
    });
   },
@@ -382,7 +386,8 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     if(externalEconomy){await journal(p,theme).assertReplacement(source,old);assertCrossTasks(source,old?.state);}
     assertHireReplacement(source,old);
     if(old)await snapshot(p,old,'before-import');
-    const doc=await commit(p,theme,source,old,'import',clientId,newActionBook());
+    migrateWorldGeography(source,newActionBook(),theme);
+     const doc=await commit(p,theme,source,old,'import',clientId,newActionBook());
     return {document:doc};
    });
   },
@@ -406,3 +411,5 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
 
 // The complete-data verifier shares the exact game-save invariants.
 export {validateDocument as validateSavedDocument};
+
+export {validateDocument as validateSaveDocument};

@@ -4,169 +4,51 @@
 
 **一座会生活的岛，和一位能办事的管家。**
 
-在像素与折纸双画风的小岛上采集、制作、经营，与 AI 居民交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划、创建真实工作文件。两种画风共用同一存档和个人档案。当前为 **V168 开发快照**，完整产品验收仍在进行。
+采集、制作、经营、举办派对，与 AI 岛民自由交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划和创建真实工作文档。像素与折纸共用同一小岛和存档。
 
-## 当前更新 · V168
+## 先看看小岛
 
-制作结果页的领奖点击会等待最后一次保存确认后结算，避免点击被忽略；双画风领奖、取消与重开检查通过，33 项相关规则通过。管家皮肤的 26 张立绘已按本机当前代码再次复查。[修复与记录](island/docs/reward-confirmation-v168.md)。V168 已通过 Windows、Mac ARM 与 Intel 的全部 6 项流水线检查，独立源码包通过 945 项与双画风完整农田流程；本机和[公开源码包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v168)均已更新。[验证记录](showcase/evidence/v168-source-release.json)。
+[![Hyper Dimension · 双画风小岛与 Agent 管家](island/docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-### V167 · 启动绘制
+[在线播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码与版本](https://github.com/MkaliezZ/hyper-dimension/releases)
 
-启动核对与画风切换期间暂停世界绘制，双主题 16 项作业降速检查从约 32/36 秒降到约 10 秒；回执与时钟保护保留。[范围](island/docs/startup-render-v167.md)。
+1440p / 60 fps，原创 BGM。新地形片段来自 V169，居民、真实文档、主子 Agent 和小游戏片段保留各自录制版本与验证来源。个人资料和任务文件均为虚构示例。**小游戏目前为占位演示，玩法、美术与动画将继续优化。**
 
-### V166 · 时钟锁
+## 当前更新 · V169
 
-Windows 并发启动时的时钟锁临时占用已接入有界重试，22 项相关检查通过；完整平台最终 5/6，Intel 折纸农田刷新未通过。此前独立包的 945 项通过记录属于 V165。本机已备份恢复至 V166，公开包仍 V158。[范围](island/docs/environment-lock-v166.md)。
+- **更自然的海岛**：山岭、丘陵、瀑布、溪谷梯田、洞口与不规则海湾，连续底图以 30 块原生高清区域加载。
+- **错落的生活区**：25 种生产建筑沿道路和地形分布，15 位 AI 岛民及管家各有不同的住所；会客馆在同一主岛，码头保留独立进出通路。
+- **同一身份与进度**：两套画风共享建筑、住所和存档。旧地图存档先备份再迁移，保留钱物、制作记录和角色档案；恢复或导入旧备份也会适配新地图。
+- **连续移动**：按距离处理连续路点，保持不同刷新率下的速度和朝向；建筑入口和奇观陈列空间已随新地形校准。
 
-### V165 · 刷新恢复
+[地形实现与验证范围](island/docs/geography-v169.md) · [整体验证记录](island/docs/VALIDATION.md)
 
-居民、矿洞与游客刷新核对已合并重复保存，逐项回执和并发修改保护保留；旧主存档缺失的物资发现记录会从已确认库存修复并先备份。本机与独立离线源码包均通过 945 项检查，独立包双画风实际施肥、收获与刷新通过；V165 完整平台最终 5/6，Windows 时钟锁问题已在 V166 修复。本机已备份恢复至 V166，公开包仍 V158。[独立包验证](showcase/evidence/v165-frozen-recovery.json)。[范围](island/docs/recovery-checkpoints-v165.md)。
+## 在岛上做什么
 
-### V164 · NPC 产出
-
-首次 NPC 采矿产出已补齐发现标记，避免刷新后触发个人物资快照冲突；收获、补种与基础采集也纳入物资事务，原产量与唯一结算保持。939 项本机默认检查及双画风原生施肥、收获和刷新通过；该版本完整 CI 最终 4/6，Windows 与 Intel Mac 农田刷新恢复失败。本机仍为 V160，公开包仍为 V158。[范围](island/docs/npc-gain-reload-v164.md)。
-
-### V161 · 检查时序
-
-刷新检查现在先等待已启动的自动保存完成。延迟提交下的 8 项原生故障检查通过，钱物、时间和冲突断言保留。V160 跨平台最终 2/6 成功；农田刷新恢复继续诊断，V161 还暴露了 Windows 档案锁 EPERM 与 Mac ARM 茶盏领奖确认超时；V159/V160 保留草稿，公开部署包仍为 V158。V161 为检查更新，本机继续运行独立验证的 V160。[范围](island/docs/reload-checks-v161.md)。
-
-### V160 · 刷新恢复
-
-刷新后通过已确认的进度基线合并独立修改，减少错误的存档冲突和地图锁定。真正冲突保留核对，被明确拒绝的时间不重复补发。10 项规则、8 项原生刷新故障检查和双画风完整农田流程已通过；冻结包及同源跨平台结果另行核对，公开版本暂为 V158。[范围](island/docs/reload-recovery-v160.md) · [实际记录](showcase/evidence/v160-reload-baseline.json)。
-
-### V159 · 肥料用途
-
-
-温室肥料现在可到农田实际施用：一袋支持三次有限增产，含撒肥动画，保持完整成熟时间与唯一结算。自动货架默认留用非食品首件，余量与食品可出售。双画风实际制作、施肥、完整成熟、收获和刷新流程通过。V159本机与独立冻结包验证已完成；Mac Intel的农田刷新恢复检查失败，发布草稿暂缓，公开部署包仍为V158。 [验证与待修范围](showcase/evidence/v159-frozen-soil-care.json). [规则与验证范围](island/docs/soil-care-v159.md).
-
-标准 A2A 1.0 接口接入同一管家协作账本：支持能力发现、消息、任务查询与取消。官方客户端、三次真实 Hermes 回信及双画风原生记录已验证；物资预留仍需本人明确确认。[接口与验证范围](island/docs/a2a-standard-v158.md)。
-
-公开V158源码包与同一提交的六项跨平台检查已通过；独立离线重建通过903项检查，冻结包完成真实管家交流，26项皮肤选择再次复查。[源码包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v158) · [冻结包验证范围](showcase/evidence/v158-frozen-a2a.json)。
-
-### V157 · 经营与页面修复
-
-- **从零经营到真实管家协作**：两套画风各完成一次正常采集、手作、作物成熟、订单、Hermes 主子分工和夜集，工钱、离岛与刷新留存通过。[实际记录与范围](showcase/evidence/v157-native-zero-journey.json)。
-- **关闭页面后不会被旧回包拉回**：经营、设施和背包共六种操作 × 两套画风，12 组原生导航与唯一回执检查通过。[导航修复](island/docs/modal-command-navigation-v157.md)。
-- **双画风美术校准**：管家与角色立绘、材料与产物裁切修复保留；珍珠茶盏使用与配方对应的独立素材。[立绘](island/docs/steward-portraits-v153.md) · [产物](island/docs/product-art-v155.md) · [茶盏](island/docs/pearl-cup-v156.md)。
-
-从零检查使用两个隔离账号，木工采用解法辅助的原生输入，自动 NPC 模型请求被隔离，招募为真实 Hermes/deepseek-flash；仅覆盖夜集一类，不替代全部活动、真人品质或实体 Mac 验收。
-
-<details>
-<summary>此前修复与检查细节</summary>
-
-珍珠茶盏按配方重绘：一只茶盏、两颗杯壁珍珠、右侧单把手，两套使用独立完整透明素材。实际制作与刷新、全部 600 个产物图标检查通过；结算检查精确拦住真实回包并保留失败状态。[美术与检查范围](island/docs/pearl-cup-v156.md)。
-
-双画风配方产物的邻图碎片已修复，600 个图标 / 1,800 个原生显示面通过检查。小游戏结算的重开与难度按钮显示保存等待，确认后恢复。[产物美术与结算检查](island/docs/product-art-v155.md)。
-
-不可变 V153 安装副本已完成双画风 25 馆原生制作与刷新检查，采用全物资夹具和解题辅助，验收范围单独标明。 [Checks](island/docs/verification/v154/native-all-rooms-v153.json).
-
-双画风基础材料的图集边界已校准，背包、场景与手持物品共用同一裁切，避免邻图碎片和留白漏图。[材料美术与原生检查](island/docs/material-art-v154.md)。
-
-管家与角色形象的裁切已逐张校准，默认管家和相邻角色碎片不再串入选择卡片；两套画风保持成人比例。[立绘与实际检查](island/docs/steward-portraits-v153.md)。
-
-主题鼠标全面覆盖；双画风在同一小岛内切换并持久化；会客厅扩大地图、重排侧栏；联机 NPC 停步与转向按服务器真实状态展示。会客馆加入预加载。[实现与回归证据](island/docs/ui-reliability-v148.md)。
-
-会客地图正常点击不再闪现核对卡片；失败回包仍可按原编号恢复。[修复与原生检查](island/docs/lobby-navigation-v151.md)。
-
-</details>
-
-## 看一眼这座岛
-
-[![Hyper Dimension · AI 居民与 Agent 管家 30 秒演示](island/docs/media/hyper-dimension-v166-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
-
-[30 秒宣传片](https://mkaliezz.github.io/hyper-dimension/#living) · [45 秒完整演示](https://mkaliezz.github.io/hyper-dimension/#tour) · [45 秒会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码包与版本记录](https://github.com/MkaliezZ/hyper-dimension/releases)
-
-点击封面直接在线播放；下载入口在播放器中单独提供。最新 30 秒影片为实际页面录制：双画风地图、AI 居民交谈、管家多形象、真实 Word 文档任务、主子 Agent 协作、房屋内小游戏及完成后的奖励。
-
-影片采用 2560 × 1440 / 60 fps 与原创 BGM；影片从独立 V166 源码包重新录制；当前源码为 V168。个人经历、项目图片与工作资料均为虚构示例，管家文档与主子协作片段展示此前真实工具执行的保存结果。**小游戏目前是占位演示，玩法、美术与动画将继续优化。** [视频验证记录](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v166-living-verification.json)。
-
-### V144 附近居民的声音
-
-邻近居民的脚步、工作和交谈随距离与左右位置变化；只保留四名附近声源，暂停不补播。双画风实际声音路由与16项专项通过。[声音规则与验证](island/docs/spatial-sound-v144.md)。
-
-### V143 经营趋势
-
-成熟小岛允许小幅挂机盈利。经营手账新增近期日均接待净收益、主动收支与完整结余；双风格 12 场景各 60 日模拟通过。[经营规则与验证](island/docs/economy-v143.md)。
-
-### V142 双灶切配
-
-客单备料后，在食材上向下划刀；切配精度与双灶火候共同决定品质。手机触摸、空格操作、刷新续玩和单次材料结算均已在双画风通过实际流程。[玩法与验收](island/docs/kitchen-v142.md)。
-
-### V141 共绘星图夜集
-
-[![V141 · 双画风共绘星图夜集](island/docs/media/hyper-dimension-v141-night-sky-poster.png)](https://mkaliezz.github.io/hyper-dimension/#night)
-
-[观看 16 秒新玩法片段](https://mkaliezz.github.io/hyper-dimension/#night)：1440p / 60 fps、原生岛屿弹窗、居民到场、四盏飞行星灯和实际结算，配原创 BGM。小游戏演示仍在继续优化。
-
-观察海风和云带，瞄准并放飞四盏星灯，每盏可空中修正一次；与真实到场的居民一起点亮星图、领取纪念品。飞行进度可保存和刷新恢复，费用与奖励保持原规则。两种画风的真正零起点到首场夜集、空浏览器恢复及878项默认回归已通过。[玩法与验证](island/docs/night-sky-v141.md)。
-
-### 地图点击与居民身份修复
-
-姓名牌、人物与档案按同一居民编号对应；重叠时按显示顺序选择，悬停可查看姓名。像素与折纸两套画风的全部15名AI居民及管家已通过地图点击验证。 [验证说明](island/docs/npc-map-identity.md)。
-
-修复会客准备阶段提前暂停，以及提示叠加后遗留的点击锁；两画风空地移动、建筑到达及进入房间已复核。[交互修复](island/docs/map-navigation-v141.md)。
-
-### V140 主子 Agent 活动流程
-
-真实 Hermes 主子 Agent 确认制作分工，伙伴乘船到岛、沿路进工坊、交付星灯；邀请居民并举办夜集后，贡献、工资与离岛记录随存档保存。修复交接重复取消和迟到回调。[流程与验证](island/docs/recruitment-v140.md)。
-
-### V139 绘画玩法更新
-
-[观看 12 秒房屋内绘画片段](https://mkaliezz.github.io/hyper-dimension/#brush)：四类随机风物、连续运笔、配色与墨量、晾干与装裱评审。小游戏仍在房屋弹窗内进行。[玩法与验证](island/docs/brush-studio-v139.md)。
-
-| 像素绘画 | 折纸绘画 |
+| 体验 | 内容 |
 | --- | --- |
-| ![像素绘画](island/docs/screenshots/v139-pixel-drawing.png) | ![折纸绘画](island/docs/screenshots/v139-origami-drawing.png) |
+| 从零经营 | 25 种生产建筑、50 种基础素材、300 个配方；采集、制作、游客消费与岛务开支。一个经营日为 900 秒有效游戏时间。 |
+| 与居民生活 | 15 位 AI NPC 根据职业、性格和关系行动，支持自由对话、居民交谈与合作。模型为 DeepSeek V4.1 Flash。 |
+| 委托管家 | 自定义姓名、12 种形象；Hermes 读取委托资料、创建文档、追踪任务，并招募临时 Agent 伙伴协作。 |
+| 展示与接待 | 岛主会客馆展示介绍、教育／就业／人生经历、项目与图片；支持上传、草稿、发布、访客留言和回复。 |
+| 带管家来访 | 联机会客厅、随行 NPC、原机管家桥接及标准 A2A 通信，共用有来源的协作记录。跨设备使用需要配对与目标设备在线。 |
+| 双画风 | 像素／折纸的地图、建筑、人物、房间、物品和 UI；高清分块、海面水纹与近岸浪。 |
 
-管家主宣传片保留 V138 标记，新绘画片段标记 V139，小岛／会客馆导览保留 V135 标记。小游戏的玩法、美术与动画仍在继续优化。
+季节周期接口为每季 30 个视觉日。扩容后的全地图四季美术、可利用的天气、昼夜灯光与居民作息正在继续开发；住所本次先提供外观、身份档案及交流入口。
 
-## 你能做什么
+## 实际运行画面
 
-| 体验 | 当前内容 |
+| 像素海岛 | 折纸海岛 |
 | --- | --- |
-| 经营小岛 | 25 种生产建筑、50 种基础素材、300 个配方，采集、制作、游客消费与岛务开支。每经营日为 900 秒有效游戏时间。 |
-| 与 AI 居民生活 | 15 位 AI 居民根据职业、性格和关系行动；支持自由交流、居民之间的对话与共同工作。模型固定 DeepSeek V4.1 Flash。 |
-| 委托 Agent 管家 | 独立对话入口、12 种可选形象；可读取主动委托的本机资料、创建文档，并通过可追踪的任务协议招募临时 Agent 伙伴。 |
-| 展示自己、接待访客 | 岛主会客馆展示介绍、人生／教育／就业经历、项目与图片；支持文件上传、私有草稿、主动发布、登录访客留言与岛主回复。 |
-| 切换两种美术 | 同一小岛切换像素／折纸外观；连续高清分块地形、主题房间和 UI、海面水纹与近岸浪。 |
-| 看四季变化 | 季节树木、花瓣、落叶和雪晶；每季 30 个视觉日，完整四季 120 日。昼夜视觉效果暂时关闭，统一服务器时钟接口保留。 |
+| ![V169 像素海岛](island/docs/screenshots/v169-pixel-island.png) | ![V169 折纸海岛](island/docs/screenshots/v169-origami-island.png) |
 
-### 实际运行画面
+## 交给开发 Agent 部署
 
-| 折纸海岛 | 像素海岛 |
-| --- | --- |
-| ![折纸海岛](island/docs/screenshots/v134-origami-island.png) | ![像素海岛](island/docs/screenshots/v134-pixel-island.png) |
+交付形态为**源码、素材、固定依赖与机器可读部署协议**。支持 Windows x64、macOS 14+ 的 Apple Silicon / Intel；Ubuntu 也可运行。克隆仓库后进入 `island/`，Release 源码包直接以游戏目录为根。
 
-| 折纸会客馆内部 | 像素会客馆内部 |
-| --- | --- |
-| ![折纸档案展厅 · 虚构示例](island/docs/screenshots/v135-origami-gallery.png) | ![像素档案展厅 · 虚构示例](island/docs/screenshots/v135-pixel-gallery.png) |
+让具备终端和文件权限的 Agent 阅读 [AGENTS.md](island/AGENTS.md)、[deploy.json](island/deploy.json) 和 [DEPLOYMENT.md](island/DEPLOYMENT.md)，执行：
 
-| 人生与教育经历 | 项目和图片 |
-| --- | --- |
-| ![经历展陈 · 虚构示例](island/docs/screenshots/v135-origami-experiences.png) | ![项目展陈 · 虚构示例](island/docs/screenshots/v135-origami-projects.png) |
-
-| 管家之间的真实回信 · 折纸 | 管家之间的真实回信 · 像素 |
-| --- | --- |
-| ![折纸管家通信 · 虚构测试岛主](island/docs/screenshots/v137-origami-a2a.png) | ![像素管家通信 · 虚构测试岛主](island/docs/screenshots/v137-pixel-a2a.png) |
-
-双方各自的 Hermes／DeepSeek Flash 管家，交换服务端确认的岛屿见闻。截图使用虚构测试身份，回信来自真实 Agent。
-
-[在线播放 30 秒演示（画幅修正版）](https://mkaliezz.github.io/hyper-dimension/#bridge)：双风格当前岛屿、连接原机、真实虚构文档修改与回读、两位原机管家的通信记录。已有小岛／会客馆视频保留 V135 标记。[录制说明](island/docs/showcase-v138.md)。
-
-## 管家随行，工作区也随行
-
-在管家入口选择「连接原机」，核对配对标记后，自己的 Hermes 管家在原机处理文件；拜访另一座岛时仍可继续委托，也能与岛主的管家交换岛屿见闻。原机离线会明确显示，不会把文件工作转交到另一台电脑。[连接与恢复说明](island/docs/device-bridge-v138.md)。
-
-## 交给任意开发 Agent 部署
-
-交付形态是**源码、资源、固定依赖和机器可读部署协议**。Agent 需要有终端和文件权限。克隆仓库后进入 `island/`；若解压 Release 源码包，直接在解压目录操作。
-
-先让 Agent 阅读 [AGENTS.md](island/AGENTS.md)、[deploy.json](island/deploy.json) 和 [DEPLOYMENT.md](island/DEPLOYMENT.md)。推荐 Node.js 24、Python 3.11；支持 Windows x64 与 macOS 14+ 的 Apple Silicon／Intel。
-
-Windows PowerShell：
-
-```powershell
-cd island
+```sh
 node tools/agent-deploy.mjs plan
 node tools/agent-deploy.mjs doctor --python=python
 node tools/agent-deploy.mjs setup --python=python --offline
@@ -174,54 +56,19 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-macOS Terminal：
+macOS 通常使用 `--python=python3`；推荐 Node.js 24 与 Python 3.11。`--offline` 使用包内固定依赖，Windows/macOS CPython 3.11 可用。
 
-```sh
-cd island
-node tools/agent-deploy.mjs plan
-node tools/agent-deploy.mjs doctor --python=python3.11
-node tools/agent-deploy.mjs setup --python=python3.11 --offline
-node tools/agent-deploy.mjs verify
-node tools/agent-deploy.mjs run --mode=lan
-```
+- `lan`：会客厅与小岛，默认 `http://127.0.0.1:4175/play`。
+- `pixel` / `origami`：独立启动方式；画风仍是同一存档的外观选择。
+- API 密钥只写入目标机私有 `.env.local` 或环境变量；无密钥可运行规则模式。
+- 更新时保留 `data/`、私有配置和原机工作目录，按部署指南备份后迁移。
 
-默认入口为 `http://127.0.0.1:4175/play`，本机日志提供首次注册信息。单机入口使用 `run --mode=pixel`（4173）或 `run --mode=origami`（4174）。局域网监听需按部署指南显式配置。
+## 开发与接口
 
-`setup` 创建私有 `.env.local`。按需填写自己的 `DEEPSEEK_API_KEY`，模型使用 `deepseek-flash`，无 Pro 回退。未配置密钥可运行画面和本地规则，AI 对话与 Agent 工具执行需要正确配置后才能使用。
+- [游戏源码与部署](island/AGENTS.md) · [标准 A2A 1.0](island/docs/a2a-standard-v158.md) · [原机工作区桥接](island/docs/device-bridge-v138.md)
+- [物资与配方](island/docs/production-contracts-v114.md) · [经营趋势](island/docs/economy-v143.md) · [居民生活](island/docs/resident-life-v112.md)
+- [验证范围](island/docs/VALIDATION.md) · [GitHub Actions](https://github.com/MkaliezZ/hyper-dimension/actions) · [版本发布](https://github.com/MkaliezZ/hyper-dimension/releases)
 
-## 当前状态与验证范围
+## 许可
 
-管家支持自定义展示姓名：管家 → 管家档案 → 展示姓名 → 保存档案；名称随服务端存档保留，切换画风与随行登岛继续使用。
-
-V137 添加跨岛管家信息交流：双方开启接收后，各自的 Hermes 管家可以交换岛上见闻并接续讨论，刷新后保留署名与信件。首盏灯的新手引导同步当前材料配方。[交流说明](island/docs/a2a-information-v137.md)。
-
-V136 补齐管家委托的持久化与异常恢复：保存后寄出，丢失回复或刷新时核对原结果，避免重复操作文件。双画风已使用真实 Hermes／Flash 文档工具验证。[恢复说明](island/docs/steward-recovery-v136.md)。当前影片录于 V135，画面与美术保持一致。
-
-V135 调整会客馆的双风格展厅、档案排版、经历时间线、项目照片与留言页。双画风实际编辑、上传、发布、刷新恢复和访客留言流程通过。[会客馆说明](island/docs/gallery-ui-v135.md)。
-
-V134 完成连续地形、30 日换季和昼夜视觉暂停，807 项领域／维护检查、相关原生浏览器场景及 Windows／两架构 macOS CI 通过。[地形验证](island/docs/continuous-terrain-v134.md) · [部署 CI](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml)。CI 与开发 Windows 机器的限定场景检查，不等于实体 Mac 和完整真人游戏验收。
-
-## 文档与仓库
-
-- [部署与数据迁移](island/DEPLOYMENT.md) · [隐私边界](island/docs/PRIVACY.md) · [素材来源](island/docs/ASSETS.md)
-- [会客馆发布与留言](island/docs/portfolio-v130.md) · [共享时令接口](island/docs/environment-v131.md) · [版本记录](island/docs/CHANGELOG.md)
-- [教培模块](README.education.md)：海岛与原有教培业务的完整整合仍在进行。
-
-```text
-island/                 Game, Agent runtime, assets and tests
-  AGENTS.md · deploy.json · DEPLOYMENT.md
-  src/ · server/        Frontend and local services
-  public/ · vendor/     Dual-style assets and pinned dependencies
-  docs/                 Guides, screenshots and verification
-src/hyper_dimension/    Existing education business module
-web/ · migrations/      Education frontend and database baseline
-README.education.md     Education setup and documentation
-```
-
-开发检查在海岛源码目录执行 `npm test`，部署校验执行 `node tools/agent-deploy.mjs verify`。更新前停止本项目写入进程，并创建、验证私有备份；运行时应在各目标平台重建。
-
-公库不包含密钥、真实用户存档、聊天历史、现实工作文档或已安装运行时。模型与文件任务使用你配置的服务；详见[隐私说明](island/docs/PRIVACY.md)。
-
-## 许可与致谢
-
-原创代码与文档沿用仓库 [MIT License](LICENSE)；Hermes Agent、Playwright、Fusion Pixel Font 与各依赖保留自身许可证，见[第三方说明](island/THIRD_PARTY_NOTICES.md)。美术来源与许可另见[素材说明](island/docs/ASSETS.md)。
+代码遵循 [MIT](LICENSE)，第三方组件见 [声明](island/THIRD_PARTY_NOTICES.md)。新增海岛美术为本项目生成素材；公开媒体只使用隔离演示岛与虚构资料。

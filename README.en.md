@@ -1,172 +1,54 @@
 # Hyper Dimension
 
-[English](README.en.md) · [中文](README.md) · [Deployment](island/DEPLOYMENT.md) · [Education](README.education.md)
+[中文](README.md) · [English](README.en.md) · [Deployment](island/DEPLOYMENT.md) · [Education module](README.education.md)
 
-**An island that lives, and a steward that gets things done.**
+**An island that feels alive, and a steward that gets things done.**
 
-Gather, craft and manage an island in pixel or origami art, talk to AI residents, and ask a Hermes-powered Agent steward to read your working materials, organize plans and create real files. Both appearances share the same save and portfolio. This is the **V168 development snapshot**; full product acceptance is still in progress.
+Gather, craft, run your island and host parties. Talk freely with AI residents, or ask a Hermes Agent steward to read your briefs, organize plans and create real work documents. Pixel and origami share one island and save.
 
-## Current updates · V168
+## Watch the island
 
-Crafting reward clicks now wait for the last save confirmation instead of being ignored. Both native claim/cancel and protected-restart flows passed, along with 33 focused rules. All 26 local steward portraits were rechecked. [Fix and evidence](island/docs/reward-confirmation-v168.md). All six V168 Windows/Mac ARM/Intel jobs passed, as did 945 independent offline checks and both complete native farm flows. The local app and [public source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v168) are updated. [Evidence](showcase/evidence/v168-source-release.json).
+[![Hyper Dimension · Two art styles and a working Agent](island/docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#living)
 
-### V167 · Startup drawing
+[Play the 30-second film](https://mkaliezz.github.io/hyper-dimension/?lang=en#living) · [Inside the owner gallery](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Source releases](https://github.com/MkaliezZ/hyper-dimension/releases)
 
-World drawing yields during recovery and appearance changes. Both sixteen-ticket throttled checks improved from roughly 32/36 seconds to ten seconds, retaining receipts and clock protection. [Scope](island/docs/startup-render-v167.md).
+1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-### V166 · Clock lock
+## What's new · V169
 
-Clock initialization now retries temporary Windows lock-open contention within a fixed bound. All 22 related checks passed; full CI ended with five of six jobs passing and an Intel origami farm reload failure. The independently verified 945-check archive is V165. Local V166 was restored after a verified backup; public V158 remains current. [Scope](island/docs/environment-lock-v166.md).
+- **A more natural island:** mountain ridges, hills, waterfalls, a river valley, terraced fields, a cave entrance and irregular bays. The continuous terrain loads as 30 independently generated high-resolution regions.
+- **Staggered neighbourhoods:** 25 production buildings follow roads and terrain. All 15 AI residents and the steward have distinct homes; the owner gallery shares the mainland and the harbor keeps its own approach lanes.
+- **Shared identity and progress:** both styles use the same building, home and save identities. Older worlds are backed up and migrated while retaining currency, inventory, crafting records and character profiles. Restoring or importing an older checkpoint also adapts it to the new map.
+- **Continuous movement:** a distance budget spans consecutive waypoints, preserving walking speed and facing across refresh rates. Entrances and wonder display spaces have been recalibrated.
 
-### V165 · Reload recovery
+[Terrain implementation and verification scope](island/docs/geography-v169.md) · [Overall validation](island/docs/VALIDATION.md)
 
-NPC, mining and visitor reload recovery now avoids redundant saves while retaining individual durable receipts and concurrent edits. Existing canonical inventories repair missing discovery flags with a prior backup. All 945 checks passed locally and in the independent offline source archive. Both native farm/harvest/reload flows passed from that archive; V165 full CI ended at 5/6; its Windows clock-lock issue was repaired in V166. Local V166 and public V158 remain current. [Frozen archive checks](showcase/evidence/v165-frozen-recovery.json). [Scope](island/docs/recovery-checkpoints-v165.md).
+## Life on the island
 
-### V164 · NPC gains
-
-First NPC mining gains now preserve discovery and the protected personal snapshot across reload. Harvests, greenhouse seed bonuses and raw gathering also use the resource ledger, with original quantities and exactly-once receipts retained. All 939 local default checks and both native soil-care/harvest/reload flows passed; this revision ended with four of six CI jobs passing and farm reload recovery failures on Windows and Intel Mac. Local V166 was restored after a verified backup; public V158 remains current. [Scope](island/docs/npc-gain-reload-v164.md).
-
-### V161 · Verification ordering
-
-The refresh fixture now waits for already-started autosaves before checking the journal. Eight native fault cases passed with slowed commits, retaining all balance, time and conflict assertions. V160 finished with two of six platform jobs passing. Farm reload timeouts remain under diagnosis; V161 also exposed Windows identity-lock EPERM and a Mac ARM cup-claim confirmation timeout; V159/V160 stay draft and the public package remains V158. V161 changes verification; the running game stays on the independently verified V160 runtime. [Scope](island/docs/reload-checks-v161.md).
-
-### V160 · Reload recovery
-
-Reload recovery now merges independent changes using a durable acknowledged baseline. Real conflicts retain confirmation; a definitely rejected clock request cannot grant time twice. Ten rules, eight native browser fault cases and both full-length farm flows passed in the working source. The immutable archive and same-source platform CI are verified separately. The public release remains V158 while those checks are pending. [Scope](island/docs/reload-recovery-v160.md) · [Evidence](showcase/evidence/v160-reload-baseline.json).
-
-### V159 · Farm care
-
-
-Greenhouse compost now has a real farm use: three bounded harvest bonuses, animated application, unchanged growth clocks and idempotent settlement. Automatic shelves retain the first nonfood item and sell surplus and food. Both native themes passed crafting, fertilizing, full growth, harvest and refresh. V159 local and immutable-archive checks passed. The Mac Intel farm return after refresh failed its interaction recovery check, so the release draft is held; the public archive remains V158. [Checks and outstanding repair](showcase/evidence/v159-frozen-soil-care.json). [Rules and verification scope](island/docs/soil-care-v159.md).
-
-A standard A2A 1.0 interface now shares the existing steward ledger: discovery, messages, task queries and cancellation. The official client, three real Hermes replies and native pixel/origami transcripts were verified; resource reservations still require explicit owner confirmation. [Interface and verification scope](island/docs/a2a-standard-v158.md).
-
-The public V158 source archive and all six platform jobs passed for the same commit. An independent offline rebuild passed 903 checks, real steward correspondence ran from the immutable archive, and all 26 portrait choices were rechecked. [Source release](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v158) · [Frozen archive verification scope](showcase/evidence/v158-frozen-a2a.json).
-
-### V157 · Operations and navigation
-
-- **From zero to real steward cooperation:** both themes complete one normal acquisition/crafting/crop/order/Hermes parent-child/night-event journey, including wages, departure and refresh. [Actual evidence and scope](showcase/evidence/v157-native-zero-journey.json).
-- **Late responses respect navigation:** six business/facility/inventory operations across both themes pass 12 native close/view-change/unique-receipt checks. [Navigation fix](island/docs/modal-command-navigation-v157.md).
-- **Both art styles remain calibrated:** steward/player portraits and material/product clips retain their fixes; the pearl cup has dedicated recipe-aligned assets. [Portraits](island/docs/steward-portraits-v153.md) · [Products](island/docs/product-art-v155.md) · [Pearl cup](island/docs/pearl-cup-v156.md).
-
-Zero-start checks use two isolated accounts with solution-assisted native joinery. Automatic NPC model calls are blocked; recruitment uses actual Hermes/deepseek-flash. This covers one night-event path, not all activities, human quality or physical Mac acceptance.
-
-<details>
-<summary>Earlier fixes and detailed checks</summary>
-
-Pearl cups now match their recipe: one cup, two embedded pearls, one right handle, with separate complete PNGs for both themes. Native crafting/refresh and all 600 product icons pass; CI now holds one real result checkpoint response and retains failure diagnostics. [Art and test scope](island/docs/pearl-cup-v156.md).
-
-Both recipe-product atlases now share calibrated inventory, scene and held-item clipping: 600 icons / 1,800 native surfaces checked. Result restart and difficulty controls visibly wait for save acknowledgement, then recover. [Product art and restart checks](island/docs/product-art-v155.md).
-
-An immutable V153 installation passes native crafting and reload checks for all 25 rooms in both themes, with granted-resource fixtures and solution-assisted input; its scope is stated separately. [Checks](island/docs/verification/v154/native-all-rooms-v153.json).
-
-Material atlas boundaries are calibrated in both themes. Inventory, scene and held-item rendering share the same clipping, removing neighboring fragments and SVG letterbox leaks. [Material art and native checks](island/docs/material-art-v154.md).
-
-Steward and player portraits are individually clipped to keep neighboring sleeves and stray atlas fragments out of the chooser, preserving adult proportions in both themes. [Portraits and native checks](island/docs/steward-portraits-v153.md).
-
-Theme cursors cover legacy controls. Both appearances persist in one island save. The lobby gives the island more space and groups hospitality controls in a side rail. NPC walking and facing follow server intent. Gallery data is preloaded. [Implementation and regression evidence](island/docs/ui-reliability-v148.md).
-
-Normal lobby map clicks no longer flash a recovery card; failed responses remain recoverable. [Details and native checks](island/docs/lobby-navigation-v151.md).
-
-</details>
-
-## See the island
-
-[![Hyper Dimension · Living AI residents and Agent stewards](island/docs/media/hyper-dimension-v166-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#living)
-
-[30-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#living) · [45-second showcase](https://mkaliezz.github.io/hyper-dimension/?lang=en#tour) · [Gallery interior tour](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Source packages and release history](https://github.com/MkaliezZ/hyper-dimension/releases)
-
-The cover opens an online player; downloads have a separate control. The new 30-second native recording shows both island styles, AI resident dialogue, selectable steward appearances, an actual Word document task, parent/child Agent cooperation, a minigame inside its building dialog and the completed reward.
-
-2560 × 1440 / 60 fps with original BGM. Footage was recaptured from the immutable V166 archive; current source is V168. Profiles, project images and work briefs are fictional; document and parent/child scenes show saved results from real tool executions. **Minigames remain placeholder demonstrations and will continue to improve.** [Video verification](https://github.com/MkaliezZ/hyper-dimension/blob/main/showcase/media/v166-living-verification.json).
-
-### V144 nearby resident sound
-
-Footsteps, work and spoken lines have distance attenuation and stereo position, capped at four nearby residents. Pause clears missed sounds. Both styles pass native audio routing and 16 focused checks. [Rules and evidence](island/docs/spatial-sound-v144.md).
-
-### V143 economic trends
-
-Mature islands may earn a modest passive surplus. The business ledger shows recent visitor net income, active cash flows and full operating balance. Both styles pass a 12-case, 60-day synthetic matrix. [Rules and verification](island/docs/economy-v143.md).
-
-### V142 kitchen preparation
-
-Slice ingredients on the cutting board and manage both stoves. Preparation precision contributes to dish quality. Both styles pass native mouse, mobile touch, Space, disk resume and one exact recipe receipt. [Gameplay and verification](island/docs/kitchen-v142.md).
-
-### V141 starlight gathering
-
-[![V141 · Dual-style collaborative night sky](island/docs/media/hyper-dimension-v141-night-sky-poster.png)](https://mkaliezz.github.io/hyper-dimension/#night)
-
-[Watch the new 16-second gameplay clip](https://mkaliezz.github.io/hyper-dimension/#night): 1440p / 60 fps, the actual island modal, resident attendance, four lantern flights and authoritative payout, with original BGM. The minigame prototype continues to be improved.
-
-Aim four lanterns through changing wind and clouds, use one air correction per flight and light a constellation with the residents who actually arrive. Save/reload preserves flight progress; hosting and rewards retain their existing rules. Both styles pass a zero-stock journey through the first gathering and empty-browser restore, plus 878 default checks. [Gameplay and evidence](island/docs/night-sky-v141.md).
-
-### Map resident selection fix
-
-Rendered names, bodies and detail cards now share a stable resident identity; overlapping targets follow paint order and hover reveals names. All 15 AI residents and the steward pass native map-click checks in both art styles. [Verification](island/docs/npc-map-identity.md).
-
-Map movement and building entry now recover correctly after overlapping overlays; visitor preparation no longer pauses an island before its dialog opens. [Interaction repair](island/docs/map-navigation-v141.md).
-
-### V140 continuous parent/child Agent activity
-
-Real Hermes confirms dependent production; a partner arrives by ferry, walks to the workshop and delivers lanterns. Personal invitations, rewards, contribution, wages, departure and reload pass in both styles. Reentrant cancellation and stale callbacks are fixed. [Flow and scope](island/docs/recruitment-v140.md).
-
-### V139 drawing update
-
-[Watch the 12-second in-room drawing clip](https://mkaliezz.github.io/hyper-dimension/?lang=en#brush): four seeded motifs, continuous brush movement, ink and palette choices, drying layers and framing review. The game stays inside the building modal. [Mechanics and evidence](island/docs/brush-studio-v139.md).
-
-| Pixel drawing | Origami drawing |
+| Experience | Content |
 | --- | --- |
-| ![Pixel drawing](island/docs/screenshots/v139-pixel-drawing.png) | ![Origami drawing](island/docs/screenshots/v139-origami-drawing.png) |
+| Start from zero | 25 production buildings, 50 basic materials and 300 recipes; gathering, crafting, visitor spending and island expenses. An operating day is 900 active game seconds. |
+| Meet residents | 15 AI NPCs act according to occupation, personality and relationships, with free conversation and cooperative work. The model is DeepSeek V4.1 Flash. |
+| Delegate real work | A named steward with 12 selectable appearances uses Hermes to read delegated files, create documents, track tasks and recruit a temporary Agent partner. |
+| Showcase and host | The owner gallery supports life, education and employment histories, projects, pictures, uploads, drafts, publishing, visitor messages and replies. |
+| Travel with your steward | Multiplayer reception, accompanying NPCs, original-device bridging and standard A2A share attributed cooperation records. Cross-device work needs pairing and an online original device. |
+| Change art styles | Pixel and origami terrain, buildings, characters, rooms, items and UI, with native region loading, animated ocean ripples and shore waves. |
 
-The main steward film is labeled V138, the new drawing clip V139, and the island/gallery tours V135. Minigame improvements are ongoing.
+The season interface uses 30 visual days per season. Full-map seasonal artwork, useful weather, night lighting and resident schedules are continuing development on the expanded island. This update provides home exteriors, owner profiles and conversation entries.
 
-## What you can do
+## Native screenshots
 
-| Experience | Current implementation |
+| Pixel island | Origami island |
 | --- | --- |
-| Manage an island | 25 production buildings, 50 base materials and 300 recipes; gathering, crafting, visitor spending and running costs. An economic day is 900 seconds of effective play. |
-| Live with AI residents | 15 residents act on jobs, personality and relationships, with free conversation, social interaction and cooperative work. Fixed DeepSeek V4.1 Flash model. |
-| Delegate to an Agent steward | A dedicated conversation entrance, 12 selectable appearances, access to explicitly delegated local materials, real document creation and a traceable temporary Agent recruitment protocol. |
-| Host visitors and show your work | Biography, life/education/employment experience, projects, images and file uploads. Private drafts, explicit publication, authenticated guest messages and owner replies. |
-| Switch art styles | One island and save, two appearances; continuous detailed terrain tiles, themed rooms/UI, ocean ripples and shoreline waves. |
-| Watch the seasons | Seasonal forests, petals, leaves and snow crystals; 30 visual days per season, 120 per cycle. Day/night visuals are paused; shared-server clock interfaces remain available. |
-
-### Actual game views
-
-| Origami island | Pixel island |
-| --- | --- |
-| ![Origami island](island/docs/screenshots/v134-origami-island.png) | ![Pixel island](island/docs/screenshots/v134-pixel-island.png) |
-
-| Origami gallery interior | Pixel gallery interior |
-| --- | --- |
-| ![Origami gallery · fictional profile](island/docs/screenshots/v135-origami-gallery.png) | ![Pixel gallery · fictional profile](island/docs/screenshots/v135-pixel-gallery.png) |
-
-| Life and education | Projects and pictures |
-| --- | --- |
-| ![Experience exhibit · fictional profile](island/docs/screenshots/v135-origami-experiences.png) | ![Project exhibit · fictional profile](island/docs/screenshots/v135-origami-projects.png) |
-
-| Real steward correspondence · Origami | Real steward correspondence · Pixel |
-| --- | --- |
-| ![Origami A2A · fictional test owners](island/docs/screenshots/v137-origami-a2a.png) | ![Pixel A2A · fictional test owners](island/docs/screenshots/v137-pixel-a2a.png) |
-
-Separate Hermes/DeepSeek Flash stewards exchange canonical island facts. Owner identities are fictional; the displayed letters came from real agents.
-
-[Watch the corrected 30-second film](https://mkaliezz.github.io/hyper-dimension/?lang=en#bridge): current dual-style island, original-device pairing, real edits/read-back on fictional documents and attributed correspondence. Existing island/gallery films retain their V135 labels. [Capture notes](island/docs/showcase-v138.md).
-
-## Your steward travels with its own workspace
-
-Choose **Connect original device** from the steward, match the pairing marks, and keep your own Hermes running on that computer. Document work continues while visiting an island, alongside attributed steward correspondence. Offline status is explicit; file work is not silently rerouted. [Pairing and recovery](island/docs/device-bridge-v138.md).
+| ![V169 pixel island](island/docs/screenshots/v169-pixel-island.png) | ![V169 origami island](island/docs/screenshots/v169-origami-island.png) |
 
 ## Deploy with a development Agent
 
-The deliverable contains **source, assets, pinned dependencies and a machine-readable deployment protocol**. Your Agent needs terminal and file access. After cloning, enter `island/`; a Release source archive starts directly at the game root.
+The deliverable contains **source, artwork, pinned dependencies and a machine-readable deployment protocol**. Windows x64 and macOS 14+ on Apple Silicon / Intel are supported; Ubuntu can also run it. Enter `island/` after cloning. A Release source archive starts directly at the game root.
 
-Read [AGENTS.md](island/AGENTS.md), [deploy.json](island/deploy.json) and [DEPLOYMENT.md](island/DEPLOYMENT.md) first. Node.js 24 and Python 3.11 are recommended. Deployment supports Windows x64 and macOS 14+ on Apple Silicon and Intel.
+Have an Agent with terminal and file access read [AGENTS.md](island/AGENTS.md), [deploy.json](island/deploy.json) and [DEPLOYMENT.md](island/DEPLOYMENT.md), then run:
 
-Windows PowerShell:
-
-```powershell
-cd island
+```sh
 node tools/agent-deploy.mjs plan
 node tools/agent-deploy.mjs doctor --python=python
 node tools/agent-deploy.mjs setup --python=python --offline
@@ -174,54 +56,19 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-macOS Terminal:
+On macOS, usually select `--python=python3`. Node.js 24 and Python 3.11 are recommended. `--offline` uses bundled pinned dependencies on Windows/macOS CPython 3.11.
 
-```sh
-cd island
-node tools/agent-deploy.mjs plan
-node tools/agent-deploy.mjs doctor --python=python3.11
-node tools/agent-deploy.mjs setup --python=python3.11 --offline
-node tools/agent-deploy.mjs verify
-node tools/agent-deploy.mjs run --mode=lan
-```
+- `lan`: reception and island at `http://127.0.0.1:4175/play` by default.
+- `pixel` / `origami`: individual launch modes; appearance switching still shares the same save.
+- Keep API keys in private `.env.local` or environment variables. Without a key, rules mode works.
+- Preserve `data/`, private configuration and original-device workspaces during updates; back up before migration.
 
-Default entry: `http://127.0.0.1:4175/play`; local logs contain first-registration information. Standalone modes are `run --mode=pixel` (4173) and `run --mode=origami` (4174). Configure LAN listening explicitly using the deployment guide.
+## Development and interfaces
 
-`setup` creates a private `.env.local`. Supply your own `DEEPSEEK_API_KEY`; the model is `deepseek-flash`, without a Pro fallback. Without a key, visuals and local rules can run; AI conversation and Agent tool execution require a correctly configured provider.
+- [Game source and deployment](island/AGENTS.md) · [Standard A2A 1.0](island/docs/a2a-standard-v158.md) · [Original-device bridge](island/docs/device-bridge-v138.md)
+- [Materials and recipes](island/docs/production-contracts-v114.md) · [Economy trends](island/docs/economy-v143.md) · [Resident life](island/docs/resident-life-v112.md)
+- [Validation scope](island/docs/VALIDATION.md) · [GitHub Actions](https://github.com/MkaliezZ/hyper-dimension/actions) · [Releases](https://github.com/MkaliezZ/hyper-dimension/releases)
 
-## Status and verification boundaries
+## License
 
-Customize the steward name under Steward → Profile → Display name → Save. The name persists in the server save, across art styles and in visiting parties.
-
-V137 adds cross-island steward correspondence: after both owners enable reception, their own Hermes agents exchange island information and continue the conversation, with attributed letters retained after reload. First-lantern onboarding follows the current material bill. [Exchange notes](island/docs/a2a-information-v137.md).
-
-V136 adds durable steward requests and recovery: save before sending, read the original result after a lost response or reload, and prevent repeated file operations. Both styles were checked with real Hermes/Flash document tools. [Recovery notes](island/docs/steward-recovery-v136.md). Current footage is labeled V135; visuals and art are unchanged.
-
-V135 restyles the gallery's two themed interiors, biography, experience timeline, project photos and guestbook. Actual editing, uploading, publishing, reload persistence and guest-message flows passed in both appearances. [Gallery notes](island/docs/gallery-ui-v135.md).
-
-V134 completed continuous terrain, 30-day season changes and paused day/night visuals. Its 807 domain/maintenance checks, focused native-browser scenes and Windows/two-architecture macOS CI passed. [Terrain evidence](island/docs/continuous-terrain-v134.md) · [Deployment CI](https://github.com/MkaliezZ/hyper-dimension/actions/workflows/island-deploy.yml). CI and bounded development-Windows checks do not establish physical Mac or full human-play acceptance.
-
-## Documentation and repository
-
-- [Deployment and migration](island/DEPLOYMENT.md) · [Privacy](island/docs/PRIVACY.md) · [Asset provenance](island/docs/ASSETS.md)
-- [Gallery publishing and messages](island/docs/portfolio-v130.md) · [Shared clock interface](island/docs/environment-v131.md) · [Changelog](island/docs/CHANGELOG.md)
-- [Education module](README.education.md): full integration of the island and existing education business is ongoing.
-
-```text
-island/                 Game, Agent runtime, assets and tests
-  AGENTS.md · deploy.json · DEPLOYMENT.md
-  src/ · server/        Frontend and local services
-  public/ · vendor/     Dual-style assets and pinned dependencies
-  docs/                 Guides, screenshots and verification
-src/hyper_dimension/    Existing education business module
-web/ · migrations/      Education frontend and database baseline
-README.education.md     Education setup and documentation
-```
-
-Run `npm test` in the game source directory for development checks and `node tools/agent-deploy.mjs verify` for deployment verification. Stop this project's writers and create a verified private backup before updating. Rebuild runtimes on each target platform.
-
-The public repository excludes keys, real saves, private conversations, real work documents and installed runtimes. Model/file tasks use your configured services; see [Privacy](island/docs/PRIVACY.md).
-
-## License and acknowledgements
-
-Original code and documentation retain the repository's [MIT License](LICENSE). Hermes Agent, Playwright, Fusion Pixel Font and dependencies retain their own licenses: [Third-party notices](island/THIRD_PARTY_NOTICES.md). Art provenance and licensing are documented separately in [Assets](island/docs/ASSETS.md).
+Code is [MIT](LICENSE). See [third-party notices](island/THIRD_PARTY_NOTICES.md). New island artwork was generated for this project. Public media uses only isolated demonstration worlds and fictional data.

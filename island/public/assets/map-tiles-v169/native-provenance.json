@@ -1,0 +1,1264 @@
+{
+  "version": 169,
+  "method": "continuous-master-plus-native-regional-generation",
+  "files": [
+    {
+      "file": "pixel-0-0.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        0,
+        416,
+        416
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 3.01442,
+      "sha256": "ad672759486ff4d482f27e37e23620169e23c343eb9fd522ab7a4dce721efee7",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-1-0.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "f20633e7257d25d30989a3c273e008244132eaa5e1796d2b59e4d10424f76a55",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-2-0.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "36c910ecf69256a4cd92fdf9d9cf0854447b786f4b80d1a8733ab7d2e98d9e9a",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-3-0.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "22e558dfd4ead3144b76e8086286d2e951d1ff1469a26d6cfe9817cb164bbb7d",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-4-0.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "628e97f136859b9059e195abe210bc3808273107ea6dbfbfb874d805a621ba04",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-5-0.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        0,
+        416,
+        416
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 3.01442,
+      "sha256": "06a6f0c015faab2fb029c13757b922b863b9b7d85d2a52e4dd48758db3519985",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-0-1.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        352,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "9d145d61b17bfe038e8903ff17800859a3858925a86a99b73dba27a305d28a44",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-1-1.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "45b01aed17af212e02b55e300e711cb793a58ba7fc1bc6014d5f9088875be1ba",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-2-1.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "c44c81c64c51eaceae73f60abff4036956f9b47c0fac9b21c540379c0337b2d4",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-3-1.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "74bc187b91b05a292c0ca7bccd7b5275e5c1be8b9a92ede17c396cf1137cdbcf",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-4-1.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "551f13e1e28af4428bb1e336a88a0213becd824d38bcd28a63e69598c220d0e4",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-5-1.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        352,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "efeca10e4bcc566d09d13f49add51e8a78092a8cc314a072c802dcdffb3d3f76",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-0-2.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        736,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "02aeb761c7abb0a444b0da043547b702bf3c6a5179a2f6380e67afce1cd9cec7",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-1-2.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "9cbe9dbaace46e2de8d14c0f7c3b6ff33946fa06c5d084131b420d724e1369ff",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-2-2.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "4e0629f4725f198a8413c6c3a2225fe94f251c5984c4768d430793f993d7843a",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-3-2.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "87c5e64e9e0d00f0a25ed5eed22be0aa3ca9b9130686885344ec3a8a12666978",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-4-2.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "6d56c0775373d4f00c3d287c0bae11208aa7744aa5d02f18b77860de9d0a78c8",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-5-2.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        736,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "07458e7ed908e0adb321f5b4752887e1d24ed0f28be78ad8fdfbccf079ab294c",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-0-3.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        1120,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "b3f81933dc3d6335351a4221eb26a049f7ffaebb9a438f53f3a55acb7177186b",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-1-3.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "c764299d45701638567cae3b67427d37a5ed4a3e831f3065864e0d1dfd1d2e8b",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-2-3.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "c7c1d5970054c52d271befde1b61e2d4c2646a4acfcd4c506b36209f19e4ce74",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-3-3.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "ae75f97d102038e59c92a493fa39bd0d40734d8737a515cd019ce8aae606c9df",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-4-3.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "5517dd339efc6b50cd418c1428eaa0e056a0ee347f3da58ac2bb92a6ddb3e08f",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-5-3.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        1120,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "623234ad504096f0fcd15e555a99c0a891e33997a9f5a4f501ee8b452a3a6da1",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-0-4.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        1504,
+        416,
+        288
+      ],
+      "pixels": [
+        1507,
+        1044
+      ],
+      "nativeDensity": 3.6226,
+      "sha256": "a32d053a0108394bd7c3dca443088616bbb0d0b23db56fe90cc395b8752d9af7",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-1-4.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "0295913c7c72bfd4484c67d252089616f37a2f8e1fbee871bc068503ff25318d",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-2-4.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "81ac3b8cc62b6c258603dfbf984ed87e99999cb066bb151a56c4291861180f4f",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-3-4.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "22396c42b286f7c081c138701b153e9306b3ca4ea5a92e3fd6b3fefe840fc0d0",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-4-4.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1565,
+        1005
+      ],
+      "nativeDensity": 3.48958,
+      "sha256": "31f25106d2abd2482e87fe32d4b96fa77a44eb67dc915115725b6f42718495d0",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-5-4.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        1504,
+        416,
+        288
+      ],
+      "pixels": [
+        1507,
+        1044
+      ],
+      "nativeDensity": 3.6226,
+      "sha256": "a5eba435af0055d41f8be6adaa0ac863a22a900987bae2d0997388c4d82144e7",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-plaza.png",
+      "kind": "patch",
+      "bounds": [
+        855,
+        515,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "fe7aa629c76f15e78093ee006d20d44114c216c137986c3821a7c47a44942e54",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-home-6.png",
+      "kind": "patch",
+      "bounds": [
+        861,
+        1046,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "991dd1d192043c60cb4cde24aa3ab134ed93c107a0e684f99718dca04fa6b165",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-home-8.png",
+      "kind": "patch",
+      "bounds": [
+        1632,
+        905,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "a33b928437cb00fb40f2aef1059586bb43e8b98b86e28f18e8b20e7d2783accc",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-home-11.png",
+      "kind": "patch",
+      "bounds": [
+        1660,
+        349,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "04b028de78da2537e4e63af3116b406ed8469621d817fd3bb0d8456253d29a08",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-home-12.png",
+      "kind": "patch",
+      "bounds": [
+        1060,
+        829,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "34d7c830e81eb76a083273f4a90109bd98d3360028e719edee1333af2ed3a458",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-home-13.png",
+      "kind": "patch",
+      "bounds": [
+        576,
+        951,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "369e8ae2b08396feb7b0cc59f3df2b32bc1082dea193849b959446643f867799",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "pixel-home-14.png",
+      "kind": "patch",
+      "bounds": [
+        1547,
+        414,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "cd529e09d216a1f24ddf6d913e8381d286c63ebc82a97da9b46f545aa4a498f7",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-0-0.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        0,
+        416,
+        416
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 3.01442,
+      "sha256": "49d3a271b6b17213d7775cfbdb5e5c3fd089eda60a629be8b7a914fe567cf775",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-1-0.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "c7f2bd6267d81b4125c87f0f52ff51e1814309b0fde100e6f45e3c4aee8ca984",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-2-0.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "f40171dc54d03f670f246bfa8c3276a7de1507d53eefb06e3323a712bbd015d1",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-3-0.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "5e5a23d86b06aaa7e64782b3e781321aca18f747711bbd81892fc204da40211c",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-4-0.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        0,
+        448,
+        416
+      ],
+      "pixels": [
+        1302,
+        1208
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "f72341a21c190f1f49d1897f77973b92ea3bbe4f884a9b9260c8f614143bdfca",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-5-0.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        0,
+        416,
+        416
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 3.01442,
+      "sha256": "071dce8b46ca9434c866708ad73d6e1ed58044133f43ef1219f699d6f30ff008",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-0-1.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        352,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "ea7e147ff0cb5d0749fa3d6a3164dfcb750e911774321b958522755d7f1f4caa",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-1-1.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "6e384e9288ec71eb2242a82c6e7f4f9125c6e2ce94e68753b9ec41861d23aae3",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-2-1.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "2773a761e4653c6604a757ecf7bf7c261e8f1dbec9503e127ee26f4c722f6a77",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-3-1.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "a91f9324d9cc00a9df064815c00b028ccde238e7fcd08efd32a7c3aa1c0677f6",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-4-1.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        352,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "1cf7deb0c1d5ce0fa652df1bc6cf2f4987ee23607807195c9c72a9e2caef3cc6",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-5-1.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        352,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "8f153c449359e2c8216d4607d9d451cdb47f178d1505df752d22de0bcd808ed0",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-0-2.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        736,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "d997495ff477b6b003b5e32ad9c413e8b2952e31abcd05904515c5972ef74969",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-1-2.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "13f144481d0fcae630492e6a7dacb3e6c454fcc051845a45e457dc101611d6e5",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-2-2.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "2b4562bfc77cfe900d37578a5d0ea2c6e863180c89bc1fb9e8e7791ed78f28d5",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-3-2.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "86d2462e02b9e07a0f07f46db84ba015e4ace173478f61bd1e1b42db6aa91b16",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-4-2.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        736,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "818b6070100ed82f7b72c90a043faafccb91e35d160c6e78c069cddc750e8f58",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-5-2.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        736,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "6beeddd9bd0bb592652303ea9c0dd80e6f647c43253ef4c02a16c3cad292715c",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-0-3.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        1120,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "cfae7e8060f226a58d90b8d7eb8a7303ca02a58b86b39edd0b42049e5519608c",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-1-3.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "54d29d45a7619ba0260486f353a3e5db99993d6508385296a1c8c42e6e9d5b17",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-2-3.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "60190b6315507bea2e57ccb6f348804527312665491901e0791c22766f6f607f",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-3-3.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "82b02c756a8a96a19ebabba5e658dbe07bba1f7cd60628b103ed6b0914cce961",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-4-3.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        1120,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "344e1cf2033ef05311dab2d1b9197934bd4c54843cd003a1f7fa8617a781a699",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-5-3.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        1120,
+        416,
+        448
+      ],
+      "pixels": [
+        1208,
+        1302
+      ],
+      "nativeDensity": 2.90385,
+      "sha256": "cf5389e69e1d695b071587115d31d13abbab3df36a2eaa1bd6be131b17bf310a",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-0-4.png",
+      "kind": "region",
+      "bounds": [
+        0,
+        1504,
+        416,
+        288
+      ],
+      "pixels": [
+        1507,
+        1044
+      ],
+      "nativeDensity": 3.6226,
+      "sha256": "c7bbd656a6c078b348414a53ea610c340b227de2843228f4d2ec6720d6a6e4ff",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-1-4.png",
+      "kind": "region",
+      "bounds": [
+        352,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "1548184bd1178e2da82040d6fd5fca2ed2788dc4f89b77b0b4b816445d10fd53",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-2-4.png",
+      "kind": "region",
+      "bounds": [
+        736,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "09b2756bd2dddfde920e899b7fb8559041bdaab21f8f1e6d0b460fbe9e7b26ce",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-3-4.png",
+      "kind": "region",
+      "bounds": [
+        1120,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "7aa461b41c47c7cf94ee28b3760a97e7d6264710c64ad66c5b2ddf2f67234c62",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-4-4.png",
+      "kind": "region",
+      "bounds": [
+        1504,
+        1504,
+        448,
+        288
+      ],
+      "pixels": [
+        1564,
+        1006
+      ],
+      "nativeDensity": 3.49107,
+      "sha256": "cc9bc15383b8b37c6651649c63aabcd43bbf6cbbafe67d4a6dd532162790605d",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-5-4.png",
+      "kind": "region",
+      "bounds": [
+        1888,
+        1504,
+        416,
+        288
+      ],
+      "pixels": [
+        1507,
+        1044
+      ],
+      "nativeDensity": 3.6226,
+      "sha256": "e7ab43e5e961b7ff57277d1ef3f4c64408a6d0b17cbcdd038fdad2c32ccfac49",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-plaza.png",
+      "kind": "patch",
+      "bounds": [
+        855,
+        515,
+        448,
+        448
+      ],
+      "pixels": [
+        1254,
+        1254
+      ],
+      "nativeDensity": 2.79911,
+      "sha256": "b05aa664facf4d355776e580d85cd95c59961795aad2c397ecd7feb276b336c4",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-home-6.png",
+      "kind": "patch",
+      "bounds": [
+        861,
+        1046,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "171dd2ebfaca93af76ae0af0078055c65f7cd6c9f4f91c8e9a33f76ab3761a01",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-home-8.png",
+      "kind": "patch",
+      "bounds": [
+        1632,
+        905,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "8826d5e43fb44d962f256e6efc2fb5c230790b0659f6e0d64134b4e334d8b09c",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-home-11.png",
+      "kind": "patch",
+      "bounds": [
+        1660,
+        349,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "6e396fe77122dc87b015f9022459590fb77268dcaf93122bf1b2acdbdb5f9c34",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-home-12.png",
+      "kind": "patch",
+      "bounds": [
+        1060,
+        829,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "649ea23a8656df2625f7c8a1a451c589c7d6bdf179b8dc36db77883257f102d2",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-home-13.png",
+      "kind": "patch",
+      "bounds": [
+        576,
+        951,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "b4997f53a6c444b1865343d351e62f1d23b551888bfa510dc989398fe4819c9a",
+      "method": "built-in-image-generation"
+    },
+    {
+      "file": "origami-home-14.png",
+      "kind": "patch",
+      "bounds": [
+        1547,
+        414,
+        196,
+        176
+      ],
+      "pixels": [
+        1323,
+        1189
+      ],
+      "nativeDensity": 6.75,
+      "sha256": "1f230bc8c86d088729b53f67a9d2843eae75207aa46571e184d9974650649c1d",
+      "method": "built-in-image-generation"
+    }
+  ]
+}

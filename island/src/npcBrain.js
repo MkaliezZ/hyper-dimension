@@ -1,4 +1,4 @@
-import { BUILDINGS,SLOTS } from './world.js';
+import { BUILDINGS,SLOTS,HOTSPOTS } from './world.js';
 export const GOAL_POINTS={farm:{x:441,y:601},mine:{x:1134,y:296},plaza:{x:784,y:458},workshop:{x:706,y:206},tea:{x:866,y:218},gallery:{x:979,y:612}};
 const TEMPLATES={farm:['田垄有了新变化，我想去看看。','今天先去照料土地。'],mine:['矿洞的光好像又亮了一些。','我要去检查矿石和工具。'],plaza:['广场很适合与大家见面。','我去看看有没有新的聚会。'],workshop:['工坊或许能做出派对需要的东西。','工具整理好了，我去工坊。'],tea:['茶屋坐一会儿，可能会遇见朋友。','我想去茶屋聊聊今天的事。'],gallery:['有人在展馆留下了新故事。','我想看看岛上的收藏。']};
 export function decideLocally(resident,state,memories=[],turn=0){
@@ -11,4 +11,4 @@ export function decideLocally(resident,state,memories=[],turn=0){
 }
 export function recordMemory(state,event){state.islandMemory??=[];state.islandMemory.push({day:state.day,text:String(event).slice(0,120)});state.islandMemory=state.islandMemory.slice(-12)}
 
-export function destinationFor(decision,state){if(['farm','mine','plaza'].includes(decision.goal))return decision.goal==='farm'?{x:435,y:700}:decision.goal==='mine'?{x:1140,y:312}:{x:780,y:465};const id=Number.isInteger(decision.buildingId)&&state.buildings[decision.buildingId]!==undefined?decision.buildingId:Object.values(state.buildings).find(id=>BUILDINGS[id]?.kind===decision.goal);return SLOTS[id]?.entry||{x:780,y:465}}
+export function destinationFor(decision,state){if(['farm','mine','plaza'].includes(decision.goal))return {...HOTSPOTS.find(h=>h.type===decision.goal).entry};const id=Number.isInteger(decision.buildingId)&&state.buildings[decision.buildingId]!==undefined?decision.buildingId:Object.values(state.buildings).find(id=>BUILDINGS[id]?.kind===decision.goal);return SLOTS[id]?.entry||{...HOTSPOTS.find(h=>h.type==='plaza').entry}}

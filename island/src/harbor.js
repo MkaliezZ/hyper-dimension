@@ -3,7 +3,7 @@ import {createBoatVisualMotion} from './boatVisualMotion.js';
 import {drawRaster} from './rasterQuality.js';
 import {drawTerrainTiles} from './mapTiles.js';
 import {drawSeaTiles} from './seaTiles.js';
-import {HARBOR,WORLD,MAP_EXTENT} from './world.js';
+import {HARBOR,WORLD,MAP_EXTENT,harborArtRect} from './world.js';
 import {FERRY_ART,ferryBob,gangwayPlacement} from './harborArtwork.js';
 const boatVisualMotion=createBoatVisualMotion(HARBOR);
 const boatSheets={pixel:new Image(),origami:new Image()};for(const t of ['pixel','origami'])registerThemeArtwork(boatSheets[t],'/assets/boats-'+t+'-v4.png',t);
@@ -15,7 +15,7 @@ for(const theme of ['pixel','origami'])registerThemeArtwork(gangwaySheets[theme]
 // The loading preview is composed from these same tiles, with its shoreline already masked.
 export function drawIsland(ctx,map,theme){if(!drawTerrainTiles(ctx,theme)&&map?.complete&&map.naturalWidth){ctx.save();ctx.imageSmoothingEnabled=theme!=='pixel';ctx.imageSmoothingQuality='high';ctx.drawImage(map,0,0,MAP_EXTENT.width,MAP_EXTENT.height);ctx.restore();}}
 export function drawOuterSea(ctx,map,theme,time){const im=seaSheets[theme];if(!drawSeaTiles(ctx,seaTiles[theme],theme,WORLD)){if(im.complete&&im.naturalWidth)drawRaster(ctx,im,theme,0,0,WORLD.width,WORLD.height);else{ctx.fillStyle='#0c94c3';ctx.fillRect(0,0,WORLD.width,WORLD.height)}}}
-export function drawHarbor(ctx,theme,time){const im=dockSheets[theme];if(im.complete&&im.naturalWidth){drawRaster(ctx,im,theme,1100,750,510,340)}ctx.save();ctx.globalAlpha=.20;ctx.fillStyle='#fce2a1';for(const [x,y] of [[1195,828],[1417,909],[1557,933]]){ctx.beginPath();ctx.ellipse(x,y,3+Math.sin(time*2+x)*.6,4,0,0,Math.PI*2);ctx.fill()}ctx.restore();}
+export function drawHarbor(ctx,theme,time){const im=dockSheets[theme];if(im.complete&&im.naturalWidth){const p=harborArtRect(theme);drawRaster(ctx,im,theme,p.x,p.y,p.w,p.h)}ctx.save();ctx.globalAlpha=.20;ctx.fillStyle='#fce2a1';for(const [x,y] of [HARBOR.entrance,HARBOR.gate,HARBOR.boarding].map(p=>[p.x,p.y-12])){ctx.beginPath();ctx.ellipse(x,y,3+Math.sin(time*2+x)*.6,4,0,0,Math.PI*2);ctx.fill()}ctx.restore();}
 export function drawBoats(ctx,boats,theme,time){
  const im=boatSheets[theme];if(!im.complete||!im.naturalWidth)return;
  boatVisualMotion.retain(boats);const cw=im.naturalWidth/2,ch=im.naturalHeight/2;

@@ -1,0 +1,601 @@
+{
+  "version": 169,
+  "scope": "Current game source in an isolated zero-inventory world. Native mouse input enters the wood workshop and the butler residence; both actual artwork styles, shared appearance persistence and real frame timing are checked. Models disabled. This is not full-season, full residential-interior, human acceptance or physical Mac proof.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "errors": [],
+      "badAssets": [],
+      "stage": "complete",
+      "nativeTerrain": {
+        "loads": 37,
+        "failures": 0,
+        "evictions": 0,
+        "redraws": 1,
+        "bytes": 23126528,
+        "retries": 0,
+        "theme": "pixel",
+        "backend": "worker tiles",
+        "limitBytes": 134217728,
+        "pending": 0,
+        "resident": 37,
+        "visible": [
+          "pixel-home-12",
+          "pixel-3-2",
+          "pixel-2-2",
+          "pixel-home-6",
+          "pixel-plaza",
+          "pixel-3-3",
+          "pixel-3-1",
+          "pixel-2-3",
+          "pixel-4-2",
+          "pixel-home-13",
+          "pixel-2-1",
+          "pixel-4-3",
+          "pixel-home-8",
+          "pixel-home-14",
+          "pixel-4-1",
+          "pixel-1-2",
+          "pixel-3-4",
+          "pixel-home-11",
+          "pixel-1-3",
+          "pixel-2-4",
+          "pixel-1-1",
+          "pixel-3-0",
+          "pixel-5-2",
+          "pixel-4-4",
+          "pixel-2-0",
+          "pixel-5-3",
+          "pixel-4-0",
+          "pixel-5-1",
+          "pixel-1-4",
+          "pixel-1-0",
+          "pixel-0-2",
+          "pixel-5-4",
+          "pixel-0-3",
+          "pixel-0-1",
+          "pixel-5-0",
+          "pixel-0-4",
+          "pixel-0-0"
+        ],
+        "ready": [
+          "pixel-home-12",
+          "pixel-3-2",
+          "pixel-2-2",
+          "pixel-home-6",
+          "pixel-plaza",
+          "pixel-3-3",
+          "pixel-3-1",
+          "pixel-2-3",
+          "pixel-4-2",
+          "pixel-home-13",
+          "pixel-2-1",
+          "pixel-4-3",
+          "pixel-home-8",
+          "pixel-home-14",
+          "pixel-4-1",
+          "pixel-1-2",
+          "pixel-3-4",
+          "pixel-home-11",
+          "pixel-1-3",
+          "pixel-2-4",
+          "pixel-1-1",
+          "pixel-3-0",
+          "pixel-5-2",
+          "pixel-4-4",
+          "pixel-2-0",
+          "pixel-5-3",
+          "pixel-4-0",
+          "pixel-5-1",
+          "pixel-1-4",
+          "pixel-1-0",
+          "pixel-0-2",
+          "pixel-5-4",
+          "pixel-0-3",
+          "pixel-0-1",
+          "pixel-5-0",
+          "pixel-0-4",
+          "pixel-0-0"
+        ],
+        "preview": [],
+        "densities": [
+          {
+            "id": "pixel-home-12",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "pixel-3-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-2-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-home-6",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "pixel-plaza",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-3-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-3-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-2-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-4-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-home-13",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "pixel-2-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-4-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-home-8",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "pixel-home-14",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "pixel-4-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-1-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-3-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "pixel-home-11",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "pixel-1-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-2-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "pixel-1-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "pixel-3-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-5-2",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-4-4",
+            "decoded": 1,
+            "native": 3.4895833333333335
+          },
+          {
+            "id": "pixel-2-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-5-3",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-4-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-5-1",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-1-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "pixel-1-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-0-2",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-5-4",
+            "decoded": 1,
+            "native": 3.6225961538461537
+          },
+          {
+            "id": "pixel-0-3",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-0-1",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "pixel-5-0",
+            "decoded": 1,
+            "native": 3.014423076923077
+          },
+          {
+            "id": "pixel-0-4",
+            "decoded": 1,
+            "native": 3.6225961538461537
+          },
+          {
+            "id": "pixel-0-0",
+            "decoded": 1,
+            "native": 3.014423076923077
+          }
+        ],
+        "failed": []
+      },
+      "workshopEntered": true,
+      "butlerHomeOwnerMatched": true,
+      "sharedAppearance": true,
+      "appearancePersisted": true,
+      "frameSample": {
+        "frames": 120,
+        "medianMs": 7.899999999999636,
+        "p95Ms": 8.100000000000364,
+        "maxMs": 8.100000000000364
+      },
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "errors": [],
+      "badAssets": [],
+      "stage": "complete",
+      "nativeTerrain": {
+        "loads": 37,
+        "failures": 0,
+        "evictions": 0,
+        "redraws": 1,
+        "bytes": 23126528,
+        "retries": 0,
+        "theme": "origami",
+        "backend": "worker tiles",
+        "limitBytes": 134217728,
+        "pending": 0,
+        "resident": 37,
+        "visible": [
+          "origami-home-12",
+          "origami-3-2",
+          "origami-2-2",
+          "origami-home-6",
+          "origami-plaza",
+          "origami-3-3",
+          "origami-3-1",
+          "origami-2-3",
+          "origami-4-2",
+          "origami-home-13",
+          "origami-2-1",
+          "origami-4-3",
+          "origami-home-8",
+          "origami-home-14",
+          "origami-4-1",
+          "origami-1-2",
+          "origami-3-4",
+          "origami-home-11",
+          "origami-1-3",
+          "origami-2-4",
+          "origami-1-1",
+          "origami-3-0",
+          "origami-5-2",
+          "origami-4-4",
+          "origami-2-0",
+          "origami-5-3",
+          "origami-4-0",
+          "origami-5-1",
+          "origami-1-4",
+          "origami-1-0",
+          "origami-0-2",
+          "origami-5-4",
+          "origami-0-3",
+          "origami-0-1",
+          "origami-5-0",
+          "origami-0-4",
+          "origami-0-0"
+        ],
+        "ready": [
+          "origami-home-12",
+          "origami-3-2",
+          "origami-2-2",
+          "origami-home-6",
+          "origami-plaza",
+          "origami-3-3",
+          "origami-3-1",
+          "origami-2-3",
+          "origami-4-2",
+          "origami-home-13",
+          "origami-2-1",
+          "origami-4-3",
+          "origami-home-8",
+          "origami-home-14",
+          "origami-4-1",
+          "origami-1-2",
+          "origami-3-4",
+          "origami-home-11",
+          "origami-1-3",
+          "origami-2-4",
+          "origami-1-1",
+          "origami-3-0",
+          "origami-5-2",
+          "origami-4-4",
+          "origami-2-0",
+          "origami-5-3",
+          "origami-4-0",
+          "origami-5-1",
+          "origami-1-4",
+          "origami-1-0",
+          "origami-0-2",
+          "origami-5-4",
+          "origami-0-3",
+          "origami-0-1",
+          "origami-5-0",
+          "origami-0-4",
+          "origami-0-0"
+        ],
+        "preview": [],
+        "densities": [
+          {
+            "id": "origami-home-12",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "origami-3-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-2-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-home-6",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "origami-plaza",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-3-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-3-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-2-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-4-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-home-13",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "origami-2-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-4-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-home-8",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "origami-home-14",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "origami-4-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-1-2",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-3-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "origami-home-11",
+            "decoded": 1,
+            "native": 6.75
+          },
+          {
+            "id": "origami-1-3",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-2-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "origami-1-1",
+            "decoded": 1,
+            "native": 2.799107142857143
+          },
+          {
+            "id": "origami-3-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-5-2",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-4-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "origami-2-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-5-3",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-4-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-5-1",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-1-4",
+            "decoded": 1,
+            "native": 3.4910714285714284
+          },
+          {
+            "id": "origami-1-0",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-0-2",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-5-4",
+            "decoded": 1,
+            "native": 3.6225961538461537
+          },
+          {
+            "id": "origami-0-3",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-0-1",
+            "decoded": 1,
+            "native": 2.9038461538461537
+          },
+          {
+            "id": "origami-5-0",
+            "decoded": 1,
+            "native": 3.014423076923077
+          },
+          {
+            "id": "origami-0-4",
+            "decoded": 1,
+            "native": 3.6225961538461537
+          },
+          {
+            "id": "origami-0-0",
+            "decoded": 1,
+            "native": 3.014423076923077
+          }
+        ],
+        "failed": []
+      },
+      "workshopEntered": true,
+      "butlerHomeOwnerMatched": true,
+      "sharedAppearance": true,
+      "appearancePersisted": true,
+      "frameSample": {
+        "frames": 120,
+        "medianMs": 7.899999999999636,
+        "p95Ms": 8.100000000000364,
+        "maxMs": 8.100000000000364
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

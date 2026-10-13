@@ -1,6 +1,7 @@
+import {ISLAND_GEOGRAPHY} from './islandGeography.js';
 
 import {findPath,worldWalkable} from './world.js';
-export const NIGHT_PARTY_SPOTS=[{x:735,y:430},{x:845,y:430},{x:790,y:480}];
+export const NIGHT_PARTY_SPOTS=[{x:735,y:430},{x:845,y:430},{x:790,y:480}].map(p=>({x:p.x+ISLAND_GEOGRAPHY.landmarks.plaza.x-786,y:p.y+ISLAND_GEOGRAPHY.landmarks.plaza.y-458}));
 const people=g=>g?.participants||[0,2];
 export function nightPartyArrived(s){const a=s.nightAttendance;if(!a||!s.partySession||a.id!==s.partySession.id)return false;return people(s.partySession).every((id,i)=>{const p=a.people?.[id],n=s.npcPresence?.find(n=>n.id===id),target=NIGHT_PARTY_SPOTS[i];return p?.arrived===true&&p.inside===null&&Math.hypot(p.x-target.x,p.y-target.y)<=8&&n?.inside===null&&Math.hypot(n.x-target.x,n.y-target.y)<=8;});}
 export function createNightPartyRuntime({state,npcs,resident,followPath,occupied,now}){

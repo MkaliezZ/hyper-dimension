@@ -1,3 +1,4 @@
+import {ISLAND_GEOGRAPHY} from './islandGeography.js';
 import {SPECIALIZATIONS,specializationRank} from './specialization.js';
 const emblems={garden:'M24 38V20 M24 28C9 28 8 15 11 10C21 11 25 15 24 28 M24 23C38 24 41 12 37 7C28 10 22 15 24 23 M11 38H37',artisan:'M12 34L32 14 M27 8L39 20L32 27L20 15Z M9 31L17 39L11 43L5 37Z',host:'M24 6L29 18L42 20L32 28L35 42L24 34L13 42L16 28L6 20L19 18Z'};
 export function specializationSeal(path,rank,theme='pixel'){
@@ -21,7 +22,7 @@ export function drawSpecializationLandmark(c,s,theme,t,slots){
 }
 export function drawSpecializationPerformance(c,e,theme){
  const p=SPECIALIZATIONS.find(p=>e.id.startsWith('career:'+p.id+':'));if(!p)return;
- const t=e.time,x=e.center.x,y=e.center.y,fade=Math.min(1,t/1.5);c.save();c.fillStyle='rgba(25,43,52,'+.3*fade+')';c.fillRect(0,0,1856,1248);c.translate(x,y-45);
+ const t=e.time,x=e.center.x,y=e.center.y,fade=Math.min(1,t/1.5);c.save();c.fillStyle='rgba(25,43,52,'+.3*fade+')';c.fillRect(0,0,ISLAND_GEOGRAPHY.world.width,ISLAND_GEOGRAPHY.world.height);c.translate(x,y-45);
  const radius=55+Math.min(t,4)*7;c.strokeStyle=p.color+'aa';c.lineWidth=2;c.beginPath();c.ellipse(0,0,radius,radius*.45,0,0,7);c.stroke();
  for(let i=0;i<24;i++){const age=(t+i*.19)%5,a=i*Math.PI*2/24,r=25+age*23;const xx=Math.cos(a)*r,yy=Math.sin(a)*r*.5-age*8;c.globalAlpha=Math.min(1,age)*Math.max(0,1-age/5);c.fillStyle=i%3?p.color:'#f1cf80';if(theme==='pixel')c.fillRect(Math.round(xx),Math.round(yy),3,3);else{c.beginPath();c.moveTo(xx,yy-4);c.lineTo(xx+3,yy);c.lineTo(xx,yy+4);c.lineTo(xx-3,yy);c.closePath();c.fill();}}
  c.globalAlpha=fade;c.save();c.translate(0,-Math.sin(t*.7)*3);c.scale(2.2,2.2);motif(c,p.id,'#f6dfa4',theme);c.restore();c.restore();

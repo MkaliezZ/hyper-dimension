@@ -1,19 +1,20 @@
+import {ISLAND_GEOGRAPHY} from './islandGeography.js';
 import {drawSpecializationPerformance} from './specializationArt.js';
 import {drawItem} from './artStore.js';
 function polygon(c,points,fill,stroke){c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.stroke()}}
 function star(c,x,y,r,fill){polygon(c,Array.from({length:10},(_,i)=>{const a=i*Math.PI/5-Math.PI/2,z=i%2?r*.46:r;return [x+Math.cos(a)*z,y+Math.sin(a)*z]}),fill)}
 function lamp(c,x,y,theme,t,scale=1){c.save();c.translate(x,y);c.scale(scale,scale);c.fillStyle='#635d4777';c.beginPath();c.ellipse(0,0,14,5,0,0,7);c.fill();c.fillStyle='#907552';c.fillRect(-3,-33,6,33);c.fillStyle='#edbf6266';c.beginPath();c.ellipse(0,-40,17+Math.sin(t)*2,22,0,0,7);c.fill();drawItem(c,'lantern',theme,0,-40,29);c.restore()}
 export function drawJourneyLandmarks(c,s,theme,t,slots,harbor){
- const j=s.journey;if(!j)return;c.save();c.lineWidth=1.5;c.imageSmoothingEnabled=theme!=='pixel';
- if(j.claimed.light){lamp(c,746,472,theme,t);lamp(c,828,472,theme,t+.7)}
+ const j=s.journey;if(!j)return;const plaza=ISLAND_GEOGRAPHY.landmarks.plaza;c.save();c.lineWidth=1.5;c.imageSmoothingEnabled=theme!=='pixel';
+ if(j.claimed.light){lamp(c,plaza.x-40,plaza.y+14,theme,t);lamp(c,plaza.x+42,plaza.y+14,theme,t+.7)}
  if(j.claimed.trade){const b=slots[9],x=b.x,y=b.y-b.h*.35;c.strokeStyle='#6d7455';c.beginPath();c.moveTo(x-43,y);c.quadraticCurveTo(x,y+14,x+43,y);c.stroke();for(let i=0;i<7;i++){const xx=x-37+i*12,yy=y+3+Math.sin(i*Math.PI/6)*4;polygon(c,[[xx,yy],[xx+10,yy],[xx+5+Math.sin(t*2+i)*1.5,yy+13]],['#dcab62','#83aa9a','#c58079'][i%3])}}
- if(j.claimed.festival){c.fillStyle='#f4dfae88';c.beginPath();c.ellipse(786,443,24,11,0,0,7);c.fill();polygon(c,[[767,440],[786,431],[805,440],[786,449]],'#d2ae70','#776549');star(c,786,420,18,'#f4d380');polygon(c,[[786,402],[786,420],[769,425]],'#ffebba');for(let i=0;i<6;i++){const a=t*.15+i*Math.PI/3;star(c,786+Math.cos(a)*28,420+Math.sin(a)*9,2.5,'#fff1b8')}}
+ if(j.claimed.festival){c.save();c.translate(plaza.x-786,plaza.y-458);c.fillStyle='#f4dfae88';c.beginPath();c.ellipse(786,443,24,11,0,0,7);c.fill();polygon(c,[[767,440],[786,431],[805,440],[786,449]],'#d2ae70','#776549');star(c,786,420,18,'#f4d380');polygon(c,[[786,402],[786,420],[769,425]],'#ffebba');for(let i=0;i<6;i++){const a=t*.15+i*Math.PI/3;star(c,786+Math.cos(a)*28,420+Math.sin(a)*9,2.5,'#fff1b8')}c.restore();}
  if(j.claimed.signature){const x=harbor.gate.x-22,y=harbor.gate.y-18;c.fillStyle='#6c7660';c.fillRect(x-2,y-48,4,48);polygon(c,[[x,y-48],[x+25,y-43],[x,y-22]],'#79b1aa','#516d65');star(c,x+9,y-39,5,'#f6dd9b')}
  c.restore();
 }
 export function drawMomentPerformance(c,e,theme){
- if(!e)return;if(e.id.startsWith('career:')){drawSpecializationPerformance(c,e,theme);return;}const t=e.time,center=e.center||{x:786,y:460};c.save();c.imageSmoothingEnabled=theme!=='pixel';
- const fade=Math.min(1,t/1.5);c.fillStyle='rgba(25,43,65,'+((e.id==='trade'?.08:e.id==='festival'?.45:.23)*fade)+')';c.fillRect(0,0,1856,1248);
+ if(!e)return;if(e.id.startsWith('career:')){drawSpecializationPerformance(c,e,theme);return;}const t=e.time,center=e.center||ISLAND_GEOGRAPHY.landmarks.plaza;c.save();c.imageSmoothingEnabled=theme!=='pixel';
+ const fade=Math.min(1,t/1.5);c.fillStyle='rgba(25,43,65,'+((e.id==='trade'?.08:e.id==='festival'?.45:.23)*fade)+')';c.fillRect(0,0,ISLAND_GEOGRAPHY.world.width,ISLAND_GEOGRAPHY.world.height);
  const x0=center.x,y0=center.y;
  if(e.id==='light'||e.id==='festival'){
   const n=e.id==='light'?5:16;

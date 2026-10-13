@@ -1,9 +1,11 @@
+import {ISLAND_GEOGRAPHY,PERMANENT_HOMES} from './islandGeography.js';
+import {PORTFOLIO_SITE} from './portfolioLandmark.js';
 import {WONDER_DEFINITIONS} from './eventWonders.js';
 import {ITEM_BY_ID} from './contentCatalog.js';
 import {functionalDefinition} from './facilityCatalog.js';
 import {functionalStorageReason} from './functionalFacilities.js';
 import {availableQuantity,commitResources} from './resourceLedger.js';
-import {worldSlots,worldWalkableForTheme,HARBOR_LAYOUTS} from './world.js';
+import {worldSlots,worldWalkableForTheme,HARBOR_LAYOUTS,HOTSPOTS,WORLD,WORLD_CELL,pointInPolygon,nearPolyline} from './world.js';
 import {wonderPlacements} from './fishingWonderArt.js';
 export const PLACEMENT_LIMIT=64,PLACEMENT_GRID=8;
 const kinds=new Set(['decor','collection','component']),directions=['朝前','朝右','朝后','朝左'];
@@ -22,11 +24,9 @@ export function placementObstacles(s,theme,{except=null,extra=null}={}){
  const slots=[];for(const p of worldSlots(theme))slots[p.id]=p;
  return [...decorationColliders(s,{except}),...wonderPlacements(s,slots),...(extra?[{...extra,...displayShape(extra.item,extra.rotation)}]:[])];
 }
-function anchors(theme){
- return [...worldSlots(theme).map(p=>({...p.entry,name:'建筑入口 '+p.id})),{x:430,y:703,name:'农田'},{x:445,y:360,name:'林地'},{x:1157,y:275,name:'矿洞'},{x:786,y:458,name:'派对广场'},{...HARBOR_LAYOUTS[theme].entrance,name:'码头入口'}];
-}
+function anchors(theme){return [...worldSlots(theme).map(p=>({...p.entry,name:'建筑入口 '+p.id})),...PERMANENT_HOMES.map(h=>({...h.entry,name:h.name})),...HOTSPOTS.filter(h=>h.type!=='dock').map(h=>({...h.entry,name:h.label})),{...PORTFOLIO_SITE.entry,name:'岛主会客馆'},{...HARBOR_LAYOUTS[theme].entrance,name:'码头入口'}];}
 export function connectedPlacements(s,theme,{except=null,extra=null}={}){
- const obstacles=placementObstacles(s,theme,{except,extra}),cell=24,w=78,h=53,mask=new Int8Array(w*h);mask.fill(-1);
+ const obstacles=placementObstacles(s,theme,{except,extra}),cell=WORLD_CELL,w=Math.ceil(WORLD.width/cell)+1,h=Math.ceil(WORLD.height/cell)+1,mask=new Int8Array(w*h);mask.fill(-1);
  const ok=(x,y)=>{if(x<0||y<0||x>=w||y>=h)return false;const n=y*w+x;if(mask[n]<0)mask[n]=worldWalkableForTheme(theme,x*cell,y*cell,obstacles)?1:0;return mask[n]===1;};
  const nearest=p=>{let best=null;for(let y=Math.round(p.y/cell)-1;y<=Math.round(p.y/cell)+1;y++)for(let x=Math.round(p.x/cell)-1;x<=Math.round(p.x/cell)+1;x++){const d=Math.hypot(x*cell-p.x,y*cell-p.y);if(d<=32&&ok(x,y)&&(!best||d<best.d))best={x,y,d};}return best;};
  const source=nearest(HARBOR_LAYOUTS[theme].entrance);if(!source)return {ok:false,reason:'码头入口被阻断'};
@@ -41,12 +41,12 @@ export function connectedPlacements(s,theme,{except=null,extra=null}={}){
  return {ok:true};
 }
 const overlap=(a,b,gap=0)=>Math.abs(a.x-b.x)<a.rx+b.rx+gap&&Math.abs(a.y-b.y)<a.ry+b.ry+gap;
-function partyLocked(s,p){return !!(s.partySession||s.festivalParty?.session?.phase==='running'||s.fireworksParty?.session?.phase==='running'||s.coutureParty?.session?.phase==='running')&&Math.hypot(p.x-786,p.y-458)<190;}
+function partyLocked(s,p){return !!(s.partySession||s.festivalParty?.session?.phase==='running'||s.fireworksParty?.session?.phase==='running'||s.coutureParty?.session?.phase==='running')&&Math.hypot(p.x-ISLAND_GEOGRAPHY.landmarks.plaza.x,p.y-ISLAND_GEOGRAPHY.landmarks.plaza.y)<190;}
 export function checkDecoration(s,p,{theme=s.placementBook?.theme,except=null,actors=[],connectivity=true}={}){
  if(!['pixel','origami'].includes(theme)||!canPlaceItem(p.item)||!Number.isFinite(p.x)||!Number.isFinite(p.y)||!Number.isInteger(p.rotation)||p.rotation<0||p.rotation>3)return {ok:false,reason:'布置参数不完整'};
  const shape=displayShape(p.item,p.rotation),candidate={...p,...shape};
- if(p.x<80||p.x>1430||p.y<85||p.y>824||p.x>1122&&p.y>790)return {ok:false,reason:'请放在岛上的陆地空位，栈桥与航线留给行人'};
- if(Math.hypot(p.x-786,p.y-458)<82)return {ok:false,reason:'广场中心留给集会，请布置在周围空位'};
+ const harbor=HARBOR_LAYOUTS[theme];if(p.x<24||p.x>WORLD.width-24||p.y<24||p.y>WORLD.height-24||pointInPolygon(p.x,p.y,harbor.apron.map(([x,y])=>({x,y})))||nearPolyline(p.x,p.y,harbor.path.map(([x,y])=>({x,y})),36))return {ok:false,reason:'请放在岛上的陆地空位，栈桥与航线留给行人'};
+ if(Math.hypot(p.x-ISLAND_GEOGRAPHY.landmarks.plaza.x,p.y-ISLAND_GEOGRAPHY.landmarks.plaza.y)<82)return {ok:false,reason:'广场中心留给集会，请布置在周围空位'};
  if(partyLocked(s,p))return {ok:false,reason:'活动进行中，广场布置暂时锁定'};
  const slots=[];for(const slot of worldSlots(theme))slots[slot.id]=slot;
  const wonderSpaces=wonderPlacements({eventWonders:{owned:Object.fromEntries(Object.keys(WONDER_DEFINITIONS).map(id=>[id,{}])),displays:Object.fromEntries(Object.keys(WONDER_DEFINITIONS).map(id=>[id,true]))}},slots);

@@ -11,7 +11,7 @@ export function returnRoute(queue){
 }
 export function boardingRoute(queue){
  const q=HARBOR.waiting[queue],last=HARBOR.waiting.at(-1);
- return [q,{x:q.x,y:q.y+19},{x:1565,y:last.y+19},HARBOR.boarding,HARBOR.ship,HARBOR.cabin].map(p=>({...p}));
+ return [q,{x:q.x,y:q.y+19},{x:last.x+14,y:last.y+19},HARBOR.boarding,HARBOR.ship,HARBOR.cabin].map(p=>({...p}));
 }
 export function queueFor(guests){
  const occupied=new Set(guests.filter(g=>g.stage!=='departed'&&Number.isInteger(g.harborQueue)).map(g=>g.harborQueue));

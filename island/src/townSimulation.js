@@ -8,7 +8,7 @@ import {availableQuantity,commitResources} from './resourceLedger.js';
 import {hydrateEconomy,effectiveQuality,improveQuality,visitorPrice,operatingCost,transact,venueService} from './economy.js';
 import {hydrateContent,ALL_RECIPES,RECIPE_BY_ID,DEFAULT_RECIPES,ITEM_BY_ID,recipeGate,resourceLoot,commitRecipe,consumePlayerCredit} from './contentCatalog.js';
 import {hydrateCrops,harvestPlot,cropInfo} from './farming.js';
-import {BUILDINGS,SLOTS,ITEMS,HARBOR,RESIDENTS} from './world.js';
+import {BUILDINGS,SLOTS,ITEMS,HARBOR,RESIDENTS,HOTSPOTS} from './world.js';
 import {ROOMS} from './rooms.js';
 export const CAREERS=[
  ['农田照料与种苗培育',['farm',14,9]],['原料采购与木作制作',['mine',0,1]],['活动筹备与招待',[21,12,9]],['星空记录与知识整理',[7,5,22]],['植物采集与花艺',[14,3,9]],['船体维护与航标巡查',['forest',23,8]],['食材采购与烘焙',['farm',17,2]],['拍摄与展陈',[13,'plaza',18]],['捕鱼、整备渔具与售卖',['dock',16,9]],['药草采集与居民照护',[14,10,19]],['整理书籍与通信',[7,11,19]],['开采与工具检修',['mine',0,2]],['创作、排练与演出',[12,21,1]],['设计、共创与服装陈列',[4,24,9]],['藏品研究与布展',[18,7,6]],['岛屿调度与港口巡视',[11,23,'dock']],['临时筹备与手作协助',['forest','mine',0,19]]
@@ -19,7 +19,7 @@ export function hydrateTown(s){s.facilities??={};for(const b of BUILDINGS){s.fac
 export function career(i,s){return s.npcCareers[i]??={phase:0,completed:0,history:[],lastResult:''}}
 export function needs(i,s){const n=s.npcNeeds[i]??={energy:78,social:62};n.hunger??=76;n.rations??=2;n.mood??='平静';return n}
 export function relationship(s,a,b){s.npcRelations[a]??={};return s.npcRelations[a][b]=Object.assign({affinity:0,trust:0,affection:0,tension:0,interactions:0,lastEvent:null,label:'初识'},s.npcRelations[a][b]||{})}
-export function destination(d){if(d.buildingId!=null)return SLOTS[d.buildingId].entry;return d.goal==='farm'?{x:435,y:700}:d.goal==='mine'?{x:1140,y:310}:d.goal==='forest'?{x:435,y:354}:d.goal==='dock'?HARBOR.activities[0]:{x:780,y:465}}
+export function destination(d){if(d.buildingId!=null)return SLOTS[d.buildingId].entry;return d.goal==='dock'?HARBOR.activities[0]:{...(HOTSPOTS.find(h=>h.type===d.goal)||HOTSPOTS.find(h=>h.type==='plaza')).entry}}
 function target(step){return typeof step==='number'?{goal:BUILDINGS[step].kind,buildingId:step}:{goal:step,buildingId:null}}
 // Personal routines and shared projects choose concrete places; "tea" is not a universal destination.
 export const LEISURE_VENUES=[14,19,21,5,3,23,17,13,6,22,7,22,12,4,18,11,19];

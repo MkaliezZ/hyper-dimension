@@ -1,7 +1,7 @@
 
 import {HARBOR,SLOTS,findPath,worldWalkable,nearestWalkable,HARBOR_LAYOUTS} from './world.js';
 import {fishingCheckin} from './fishingParty.js';
-export function fishingSpots(theme=null){const raw=HARBOR_LAYOUTS[theme],h=raw?{apron:raw.apron.map(([x,y])=>({x,y})),activities:raw.activities.map(([x,y])=>({x,y}))}:HARBOR;const a=h.apron[6],b=h.apron[5];return [h.activities[0],h.activities[2],{x:a.x+(b.x-a.x)*.35,y:a.y+(b.y-a.y)*.35-6},{x:1463,y:976}];}
+export function fishingSpots(theme=null){const raw=HARBOR_LAYOUTS[theme],h=raw?{apron:raw.apron.map(([x,y])=>({x,y})),activities:raw.activities.map(([x,y])=>({x,y}))}:HARBOR;const a=h.apron[6],b=h.apron[5];return [h.activities[0],h.activities[2],{x:a.x+(b.x-a.x)*.35,y:a.y+(b.y-a.y)*.35-6},{x:h.apron[5].x-64,y:h.apron[5].y-14}];}
 export function createFishingPartyRuntime({state,npcs,followPath,resident,onChange,occupied=()=>false,onReady=()=>{}}){
  let id=null,held=new Set();
  const active=()=>{const g=state().fishingParty?.session;return g&&['checkin','running'].includes(g.phase)?g:null};

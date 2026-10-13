@@ -1,3 +1,4 @@
+import {safePlacement} from './spatial-fixture.mjs';
 import {hydratePlacements,decorate} from '../src/placements.js';import {hydrateFunctionalFacilities,functionalCommand,tickFunctionalFacilities,functionalUnit} from '../src/functionalFacilities.js';
 import test from 'node:test';import assert from 'node:assert/strict';import {mkdir,mkdtemp} from 'node:fs/promises';import {resolve} from 'node:path';import {randomUUID} from 'node:crypto';
 import {createSaveStore} from '../server/saveStore.mjs';import {createZeroState} from '../src/freshStart.js';import {hydrateTown} from '../src/townSimulation.js';import {ALL_RECIPES,RAW_MATERIALS} from '../src/contentCatalog.js';import {newActionBook} from '../server/playerActions.mjs';import {applyResidentCommand} from '../server/residentActions.mjs';import {availableQuantity,reserveResources,nextOperationId,commitResources} from '../src/resourceLedger.js';import {queueTask,beginTaskStep,controlTask,restoreTasks,taskOwner} from '../src/taskBoard.js';import {BUILDINGS} from '../src/world.js';import {recordResidentConversation,claimResidentStory} from '../src/residentStories.js';
@@ -27,7 +28,7 @@ test('a recruited NPC cannot create unassigned work outside an active contract',
 
 for(const theme of ['pixel','origami'])test(theme+' actual tea facility serves one cup only after the resident action and excludes simultaneous users',()=>{
  const s=fresh();hydratePlacements(s,theme);hydrateFunctionalFacilities(s);s.inventory.c1_9=1;s.inventory.tea=3;s.inventory.wood=1;
- const placed=decorate(s,{commandId:'resident-tea-place',action:'place',item:'c1_9',x:800,y:560,rotation:0},{theme});assert(placed.ok);
+ const placed=decorate(s,{commandId:'resident-tea-place',action:'place',item:'c1_9',...safePlacement(s,'c1_9',{theme})},{theme});assert(placed.ok);
  hydrateFunctionalFacilities(s);assert(functionalCommand(s,{commandId:'resident-tea-load',displayId:placed.id,action:'load',expectedRevision:s.functionalFacilities.revision}).ok);tickFunctionalFacilities(s,12);
  const b=newActionBook(),intent={goal:'tea',buildingId:null,action:'eat',facilityId:placed.id},r=applyResidentCommand(s,b,{...begin({actions:b}),intent},1000000);
  assert.throws(()=>applyResidentCommand(s,b,{...begin({actions:b}),actorId:6,intent},1000000),e=>e.code==='resident_facility_occupied');assert.throws(()=>applyResidentCommand(s,b,{kind:'resident',operation:'finish',requestId:r.ticket.requestId,epoch:b.epoch,sequence:b.sequence},1009999),e=>e.code==='action_early');assert.equal(functionalUnit(s,placed.id).servings,3);

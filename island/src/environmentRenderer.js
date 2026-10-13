@@ -1,13 +1,14 @@
+import {WORLD,MAP_EXTENT} from './world.js';
 import {drawSeasonArtwork,seasonArtworkStatus} from './seasonArtwork.js';
 import {drawOceanShader} from './oceanShader.js';
 import {buildEnvironmentGeometry} from './environmentGeometry.js';
 import {terrainViewport} from './mapTileLayout.js';
-const W=1856,H=1248,CELL=4,fields=new Map(),pending=new Set(),TAU=Math.PI*2;
+const W=WORLD.width,H=WORLD.height,CELL=4,fields=new Map(),pending=new Set(),TAU=Math.PI*2;
 let latest={ready:false,ripples:0,waveLoops:0,maskVersion:127};
 export function environmentArtStatus(){return {...latest,seasonalArtwork:seasonArtworkStatus(latest.theme)};}
 function canvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
 function prepare(image,theme){if(fields.has(theme))return fields.get(theme);if(!image?.complete||!image.naturalWidth||pending.has(theme))return null;pending.add(theme);
- const work=()=>{try{const small=canvas(W/CELL,H/CELL),ctx=small.getContext('2d',{willReadFrequently:true});ctx.fillStyle='#219fc3';ctx.fillRect(0,0,small.width,small.height);ctx.drawImage(image,0,0,W/CELL,1024/CELL);const pixels=ctx.getImageData(0,0,small.width,small.height),f=buildEnvironmentGeometry(pixels.data,small.width,small.height,CELL),waterPath=new Path2D(),landPath=new Path2D();waterPath.rect(0,0,W,H);
+ const work=()=>{try{const small=canvas(W/CELL,H/CELL),ctx=small.getContext('2d',{willReadFrequently:true});ctx.fillStyle='#219fc3';ctx.fillRect(0,0,small.width,small.height);ctx.drawImage(image,0,0,MAP_EXTENT.width/CELL,MAP_EXTENT.height/CELL);const pixels=ctx.getImageData(0,0,small.width,small.height),f=buildEnvironmentGeometry(pixels.data,small.width,small.height,CELL),waterPath=new Path2D(),landPath=new Path2D();waterPath.rect(0,0,W,H);
   for(const points of f.loops){for(const path of [waterPath,landPath]){path.moveTo(points[0].x,points[0].y);for(const p of points.slice(1))path.lineTo(p.x,p.y);path.closePath();}}
   const waterMask=canvas(W,H),wc=waterMask.getContext('2d');wc.fillStyle='#fff';wc.fill(waterPath,'evenodd');
   fields.set(theme,{...f,waterPath,landPath,waterMask});
@@ -35,11 +36,11 @@ export function drawOceanMotion(ctx,image,theme,time,env){
   if(!pixel&&pulse>.55){ctx.fillStyle='rgba(178,238,248,'+(pulse*.1)+')';ctx.beginPath();ctx.moveTo(x-length/2,y+2);ctx.lineTo(x+length/2,y+1);ctx.lineTo(x+length/3,y+5);ctx.closePath();ctx.fill();}
  }
  // Broken sunlight trails sample the same water mask as shoreline foam.
- const reflection='255,244,184';for(let i=0;i<68;i++){const y=70+i*17.2,x=1410+Math.sin(y*.016+time*.18)*45+Math.sin(i*5.1)*35;if(!visible({x,y},view)||!f.isWater(x,y))continue;const pulse=Math.max(0,Math.sin(time*1.1+i*1.73)),length=5+pulse*16;ctx.fillStyle='rgba('+reflection+','+(.07+pulse*.18)+')';if(pixel)ctx.fillRect(Math.round(x-length/2),Math.round(y),Math.round(length),1.4);else{ctx.beginPath();ctx.moveTo(x-length/2,y);ctx.lineTo(x,y-1.6);ctx.lineTo(x+length/2,y);ctx.lineTo(x,y+1.2);ctx.closePath();ctx.fill();}}
+ const reflection='255,244,184';for(let i=0;i<68;i++){const y=70+i*17.2,x=W-260+Math.sin(y*.016+time*.18)*45+Math.sin(i*5.1)*35;if(!visible({x,y},view)||!f.isWater(x,y))continue;const pulse=Math.max(0,Math.sin(time*1.1+i*1.73)),length=5+pulse*16;ctx.fillStyle='rgba('+reflection+','+(.07+pulse*.18)+')';if(pixel)ctx.fillRect(Math.round(x-length/2),Math.round(y),Math.round(length),1.4);else{ctx.beginPath();ctx.moveTo(x-length/2,y);ctx.lineTo(x,y-1.6);ctx.lineTo(x+length/2,y);ctx.lineTo(x,y+1.2);ctx.closePath();ctx.fill();}}
  ctx.restore();finishOcean(surface);latest={ready:true,theme,ripples,waveLoops,coastLoops:f.coast.length,maskVersion:127,backend:'canvas-compatible'};
 }
 // Each season uses newly drawn blossoms, foliage or snow in the original high-resolution forest geometry.
-export function drawSeasonTerrain(ctx,image,theme,env){prepare(image,theme);drawSeasonArtwork(ctx,theme,env);}
+export function drawSeasonTerrain(ctx,image,theme,env){prepare(image,theme);}
 export function drawEnvironmentFront(ctx,image,theme,env,time,{slots=[],buildings=null}={}){
  const f=prepare(image,theme),pixel=theme==='pixel',view=terrainViewport(ctx.getTransform(),ctx.canvas.width,ctx.canvas.height);ctx.save();
  if(f&&view){ctx.save();for(let i=0,count={spring:180,summer:68,autumn:150,winter:260}[env.season];i<count;i++){const x=hash(i+17)*W+Math.sin(time*.28+i)*24+Math.sin(time*.09)*18,speed={spring:12,summer:2,autumn:17,winter:16}[env.season]+hash(i+99)*10,y=(hash(i+231)*H+time*speed)%H;if(!visible({x,y},view)||env.season!=='winter'&&f.isWater(x,y))continue;const size=2.1+hash(i+54)*1.8;ctx.save();ctx.translate(x,y);ctx.globalAlpha=env.transition??1;

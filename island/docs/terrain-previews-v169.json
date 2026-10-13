@@ -1,0 +1,21 @@
+{
+  "version": 169,
+  "method": "Native Canvas composition of 30 original native terrain regions and 7 complete feature patches per style, with shared seam cuts and coastal alpha; no houses or actors baked in.",
+  "source": "Continuous organic island guide with mountain, hills, river valley and irregular coast; sixty native regional paintings plus fourteen complete patches",
+  "files": [
+    {
+      "file": "public/assets/map-tiles-v169/pixel-overview.png",
+      "width": 2304,
+      "height": 1792,
+      "bytes": 11854003,
+      "sha256": "97fe6296ea633875e5a31300c74f4f60d61223f24f8405a08fc8d4f080f051ab"
+    },
+    {
+      "file": "public/assets/map-tiles-v169/origami-overview.png",
+      "width": 2304,
+      "height": 1792,
+      "bytes": 11302967,
+      "sha256": "3fd50442021a76697679c81ca1ee6bd1f82ce5897a5a9d009559a340fae07bf4"
+    }
+  ]
+}

@@ -1,9 +1,10 @@
+import {ISLAND_GEOGRAPHY} from '../src/islandGeography.js';
 import {worldSlots,worldWalkableForTheme} from '../src/world.js';
 import {hydratePlacements,checkDecoration,snapDisplay} from '../src/placements.js';
 import {syncFacilityState} from './facilityActions.mjs';
 const fail=message=>Object.assign(Error(message),{code:'appearance_pending',status:409});
 export const worldAppearance=(s,storageTheme)=>s.worldAppearance||s.placementBook?.theme||storageTheme;
-function nearbyWalkable(theme,p){if(worldWalkableForTheme(theme,p.x,p.y))return p;for(let r=12;r<=300;r+=12)for(let i=0;i<16;i++){const q={x:p.x+Math.cos(i*Math.PI/8)*r,y:p.y+Math.sin(i*Math.PI/8)*r};if(worldWalkableForTheme(theme,q.x,q.y))return q;}return {x:780,y:470};}
+function nearbyWalkable(theme,p){if(worldWalkableForTheme(theme,p.x,p.y))return p;for(let r=12;r<=300;r+=12)for(let i=0;i<16;i++){const q={x:p.x+Math.cos(i*Math.PI/8)*r,y:p.y+Math.sin(i*Math.PI/8)*r};if(worldWalkableForTheme(theme,q.x,q.y))return q;}return {...ISLAND_GEOGRAPHY.spawn};}
 export function applyWorldAppearance(s,b,next,storageTheme){
  if(!['pixel','origami'].includes(next))throw fail('画风选择无效');const previous=worldAppearance(s,storageTheme);if(previous===next)return;
  if(b.active||Object.values(b.farm?.leases||{}).length||Object.values(b.field?.leases||{}).length||Object.values(b.resident?.leases||{}).length||Object.values(b.visitor?.leases||{}).length)throw fail('正在收尾岛上作业，请稍后切换');

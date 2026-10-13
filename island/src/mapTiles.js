@@ -1,3 +1,4 @@
+import {terrainDensity} from './terrainResolution.js';
 import {terrainTiles,terrainLandmarks,terrainViewport,tileIntersects} from './mapTileLayout.js';
 import {loadTerrainTile,closeTerrainSurface} from './mapTileLoader.js';
 const LIMIT=128*1024*1024,MAX_JOBS=2,MAX_ATTEMPTS=3,entries=new Map(),jobs=new Map();
@@ -31,6 +32,7 @@ function receive(data){
   if(entry[key]){stats.bytes-=entry[key].width*entry[key].height*4;closeTerrainSurface(entry[key]);}
   entry[key]=data.bitmap;stats.bytes+=data.bitmap.width*data.bitmap.height*4;
   if(key==='bitmap'&&entry.preview){stats.bytes-=entry.preview.width*entry.preview.height*4;closeTerrainSurface(entry.preview);entry.preview=null;}
+  if(key==='bitmap'){entry.nativeDensity=data.nativeDensity||entry.nativeDensity;entry.density=Math.min(entry.bitmap.width/entry.tile.bounds.w,entry.bitmap.height/entry.tile.bounds.h);}
   revision++;
  }
  if(data.phase!=='preview'){
@@ -49,27 +51,31 @@ function pump(){
  for(const tile of wanted){
   if(jobs.size>=MAX_JOBS)break;
   let entry=entries.get(tile.id);
-  if(entry&&(entry.bitmap||entry.pending||(entry.failed&&(entry.attempts>=MAX_ATTEMPTS||performance.now()<entry.retryAt))))continue;
+  if(entry)entry.tile=tile;
+  if(entry?.bitmap&&entry.density+.01>=Math.min(tile.density,entry.nativeDensity||Infinity)){entry.failed=false;continue;}
+  if(entry&&(entry.pending||(entry.failed&&(entry.attempts>=MAX_ATTEMPTS||performance.now()<entry.retryAt))))continue;
   if(!entry){entry={tile,used:performance.now(),attempts:0};entries.set(tile.id,entry);}
   else if(entry.failed)stats.retries++;
+  if(entry.bitmap&&!entry.failed)entry.attempts=0;
   entry.pending=true;entry.attempts++;const requestId=++serial;
   if(workerUnavailable){
    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(Error('terrain_load_timeout')),45_000);
    jobs.set(requestId,{entry,generation,timer,controller,backend:'main'});
-   loadTerrainTile(tile,{signal:controller.signal,onPreview:bitmap=>receive({requestId,phase:'preview',bitmap})})
+   loadTerrainTile(tile,{signal:controller.signal,density:tile.density,onMetadata:m=>entry.nativeDensity=m.nativeDensity,onPreview:bitmap=>receive({requestId,phase:'preview',bitmap})})
     .then(bitmap=>receive({requestId,phase:'ready',bitmap}),error=>receive({requestId,phase:'error',error:error.message}));
   }else{
    const timer=setTimeout(workerFailure,45_000);jobs.set(requestId,{entry,generation,timer,backend:'worker'});
-   try{worker.postMessage({requestId,id:tile.id,theme:tile.theme});}catch{workerFailure();break;}
+   try{worker.postMessage({requestId,id:tile.id,theme:tile.theme,density:tile.density});}catch{workerFailure();break;}
   }
  }
 }
-export function drawTerrainTiles(ctx,theme){
+export function drawTerrainTiles(ctx,theme,{nativeResolution=false}={}){
  select(theme);
  const matrix=ctx.getTransform(),view=terrainViewport(matrix,ctx.canvas.width,ctx.canvas.height);if(!view)return false;
  const cx=view.x+view.w/2,cy=view.y+view.h/2;
  wanted=[...terrainTiles(theme),...terrainLandmarks(theme)].filter(t=>tileIntersects(t,view)).sort((a,b)=>Math.hypot(a.core.x+192-cx,a.core.y+192-cy)-Math.hypot(b.core.x+192-cx,b.core.y+192-cy));
  if(!wanted.length)return false;
+ const density=nativeResolution?Infinity:terrainDensity(matrix,wanted,LIMIT);wanted=wanted.map(t=>({...t,density}));
  for(const tile of wanted){const e=entries.get(tile.id);if(e)e.used=performance.now();}
  pump();evict();
  // Reveal a complete viewport; previews are used only for individually failed assets.
@@ -89,4 +95,4 @@ export function drawTerrainTiles(ctx,theme){
  }
  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(layer,0,0);ctx.restore();return true;
 }
-export function terrainTileStatus(){return {...stats,theme:activeTheme,backend:workerUnavailable?'compatible tiles':'worker tiles',limitBytes:LIMIT,pending:jobs.size,resident:entries.size,visible:wanted.map(t=>t.id),ready:[...entries.values()].filter(e=>e.bitmap).map(e=>e.tile.id),preview:[...entries.values()].filter(e=>e.preview&&!e.bitmap).map(e=>e.tile.id),failed:[...entries.values()].filter(e=>e.failed).map(e=>e.tile.id)};}
+export function terrainTileStatus(){return {...stats,theme:activeTheme,backend:workerUnavailable?'compatible tiles':'worker tiles',limitBytes:LIMIT,pending:jobs.size,resident:entries.size,visible:wanted.map(t=>t.id),ready:[...entries.values()].filter(e=>e.bitmap).map(e=>e.tile.id),preview:[...entries.values()].filter(e=>e.preview&&!e.bitmap).map(e=>e.tile.id),densities:[...entries.values()].filter(e=>e.bitmap).map(e=>({id:e.tile.id,decoded:e.density,native:e.nativeDensity})),failed:[...entries.values()].filter(e=>e.failed).map(e=>e.tile.id)};}

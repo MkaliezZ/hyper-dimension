@@ -1,12 +1,12 @@
-import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{terrainTiles,terrainLandmarks,tileWeight,tileIntersects,terrainViewport,maskTerrain}from'../src/mapTileLayout.js';
-test('two themes each cover the expanded contiguous world exactly with 15 genuine high resolution assets',()=>{
- for(const theme of ['pixel','origami']){const tiles=terrainTiles(theme);assert.equal(tiles.length,15);assert.equal(tiles.reduce((sum,t)=>sum+t.core.w*t.core.h,0),1856*1024);
+import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{TILE_MAP,terrainTiles,terrainLandmarks,tileWeight,tileIntersects,terrainViewport,maskTerrain}from'../src/mapTileLayout.js';
+test('two themes each cover the expanded contiguous world exactly with 30 genuine high resolution assets',()=>{
+ for(const theme of ['pixel','origami']){const tiles=terrainTiles(theme);assert.equal(tiles.length,TILE_MAP.columns*TILE_MAP.rows);assert.equal(tiles.reduce((sum,t)=>sum+t.core.w*t.core.h,0),TILE_MAP.width*TILE_MAP.height);
   for(const tile of [...tiles,...terrainLandmarks(theme)]){const bytes=readFileSync('public'+tile.url);assert(bytes.readUInt32BE(16)>=tile.bounds.w*2);assert(bytes.readUInt32BE(20)>=tile.bounds.h*2);assert(Math.abs(bytes.readUInt32BE(16)/bytes.readUInt32BE(20)-tile.bounds.w/tile.bounds.h)<.015,tile.id);}
  }
 });
 test('adjacent support weights sum to one along seams and four-way corners',()=>{
  const tiles=terrainTiles('pixel');
- for(let y=.5;y<1024;y+=5.75)for(let x=.5;x<1856;x+=5.25){const sum=tiles.filter(t=>tileIntersects(t,{x,y,w:.001,h:.001})).reduce((a,t)=>a+tileWeight(t,x,y),0);assert(Math.abs(sum-1)<1e-10,`${x},${y}: ${sum}`);}
+ for(let y=.5;y<TILE_MAP.height;y+=5.75)for(let x=.5;x<TILE_MAP.width;x+=5.25){const sum=tiles.filter(t=>tileIntersects(t,{x,y,w:.001,h:.001})).reduce((a,t)=>a+tileWeight(t,x,y),0);assert(Math.abs(sum-1)<1e-10,`${x},${y}: ${sum}`);}
 });
 test('viewport uses physical canvas transform, including fractional DPR and dragging',()=>{
  assert.deepEqual(terrainViewport({a:2,b:0,c:0,d:2,e:-600,f:-200},1200,800),{x:300,y:100,w:600,h:400});

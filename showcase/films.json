@@ -1,8 +1,29 @@
 {
-  "version": "V166",
+  "version": "V169",
   "films": [
     {
       "id": "living",
+      "version": "V169",
+      "filename": "hyper-dimension-v169-living-agents-30s.mp4",
+      "duration": 30,
+      "sha256": "109704d15d4885e653a38639898c184fa08db38824d3337a221cc714b1b18178",
+      "poster": "assets/hyper-dimension-v169-living-agents-poster.png",
+      "download": "media/hyper-dimension-v169-living-agents-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 山海小岛与能办事的管家",
+        "en": "30 seconds · A mountain island and working Agents"
+      },
+      "caption": {
+        "zh": "新地形与错落住所 · 双画风 · 居民 · 真实工作 · Agent协作",
+        "en": "Organic terrain and homes · Two styles · Residents · Real work · Agent cooperation"
+      },
+      "description": {
+        "zh": "V169 新地形、会客馆、AI居民交流、管家形象及真实文档结果，1440p / 60 fps，原创 BGM。主子 Agent、星灯派对与完整领奖三段为明确标注的 V166 实录。所有资料与文件为虚构示例，工具结果来自真实执行。小游戏为占位演示，将继续优化。",
+        "en": "V169 terrain, gallery, resident chat, steward choices and real document results at 1440p / 60 fps with original BGM. Parent/child Agent, sky-lantern and full reward clips retain explicit V166 labels. Profiles and briefs are fictional; tool results are genuine. Minigames are prototypes and will improve."
+      }
+    },
+    {
+      "id": "living-v166",
       "version": "V166",
       "filename": "hyper-dimension-v166-living-agents-30s.mp4",
       "duration": 30,
@@ -10,8 +31,8 @@
       "poster": "assets/hyper-dimension-v166-living-agents-poster.png",
       "download": "media/hyper-dimension-v166-living-agents-30s.mp4",
       "title": {
-        "zh": "30 秒 · 会生活的岛与能办事的管家",
-        "en": "30 seconds · Living residents and working Agents"
+        "zh": "往期 · V166 小岛与管家",
+        "en": "Archive · V166 island and stewards"
       },
       "caption": {
         "zh": "双画风 · 居民交流 · 多形象管家 · 真实成果 · 主子协作",
