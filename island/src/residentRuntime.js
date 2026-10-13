@@ -1,4 +1,4 @@
-import {residentHasPendingWork} from './residentActivityControl.js';
+import {residentHasPendingWork,advanceAcceptedWorkAction} from './residentActivityControl.js';
 import {canPlantCrop} from './cropSeasons.js';
 import {worldEnvironment} from './environmentClient.js';
 import {residentSchedule,scheduledOptions,scheduleText} from './residentSchedule.js';
@@ -123,5 +123,5 @@ export function createResidentRuntime({npcs,getState,profile,followPath,onChange
  function syncProjectActors(){syncProjects(state());for(const n of npcs){if(n.partyControlled)continue;const id=n.assignment?.id||n.intent?.assignmentId,t=state().agentTaskLedger?.find(t=>t.id===id);if(t?.projectId&&(!['queued','running'].includes(t.status)||t.npcId!==n.npcId))stopAssignment(n)}}
  async function manageProject(id,action,npcId){const result=planningRemote?await planningRemote(action==='assign'?'assign':'control',{id,action,npcId}):action==='assign'?assignProjectStep(state(),id,npcId):controlProject(state(),id,action);if(result.ok){if(action==='assign'){const n=npcs[result.previousNpcId];if(n?.assignment?.id===id||n?.intent?.assignmentId===id)stopAssignment(n)}syncProjectActors();for(const n of npcs)if(!n.action&&!n.path.length)n.think=0;onChange()}return result}
  async function createPreparation(project){const result=planningRemote?await planningRemote('create',{project}):createProject(state(),project);if(result.ok){syncProjectActors();onChange()}return result}
- reset();return {update,reset,steward,recoverSteward,createPreparation,health,recheckAutomatic:()=>{batchAt=time+1;stewardAt=time+4;conversationAt=time},person,meetings,manageTask,manageProject,releaseActor:stopAssignment,syncProjects:syncProjectActors,claimFarm:(i,owner='player')=>{if(farmReservations.has(i)&&farmReservations.get(i)!==owner)return false;farmReservations.set(i,owner);return true},releaseFarm:(i,owner='player')=>{if(farmReservations.get(i)===owner)farmReservations.delete(i)},cadence:NPC_CADENCE,refresh:()=>{syncPresence()}};
+ reset();return {update,reset,advanceAcceptedWorkAction,steward,recoverSteward,createPreparation,health,recheckAutomatic:()=>{batchAt=time+1;stewardAt=time+4;conversationAt=time},person,meetings,manageTask,manageProject,releaseActor:stopAssignment,syncProjects:syncProjectActors,claimFarm:(i,owner='player')=>{if(farmReservations.has(i)&&farmReservations.get(i)!==owner)return false;farmReservations.set(i,owner);return true},releaseFarm:(i,owner='player')=>{if(farmReservations.get(i)===owner)farmReservations.delete(i)},cadence:NPC_CADENCE,refresh:()=>{syncPresence()}};
 }

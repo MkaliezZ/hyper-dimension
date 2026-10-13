@@ -14,7 +14,13 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V178
+## What's new · V179
+
+Approved navigation can arrive and open views during background settlement, with a separate slow-frame movement budget. Confirmed NPC farm, mine and daily work continue their animation timers and submit completion once. Unconfirmed tool performances settle into an idle wait; soil, inventory and rewards still require authoritative receipts. [Fixes and evidence](docs/navigation-arrival-v179.md).
+
+All **1095 default local checks** passed, together with dual-style slow-frame navigation, six reward/cancel recovery flows and actual NPC sow/water checks. Latest macOS cloud results are tracked by commit; character joints and every terrain boundary are under review.
+
+### V178 · Crop growth artwork
 
 All eleven original crops now have dedicated pixel and origami growth art, adding 88 native sprites. All 19 crops have 152 growth-stage sprites with measured soil anchors and appropriate harvesting tools. [Artwork and validation](docs/legacy-crop-art-v178.md).
 
@@ -90,4 +96,4 @@ On macOS, usually select `--python=python3`. Node.js 24 and Python 3.11 are reco
 
 ## License
 
-Code is [MIT](../LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md). New island artwork was generated for this project. Public media uses only isolated demonstration worlds and fictional data.
+Code is [MIT](LICENSE). See [third-party notices](island/THIRD_PARTY_NOTICES.md). New island artwork was generated for this project. Public media uses only isolated demonstration worlds and fictional data.

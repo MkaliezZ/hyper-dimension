@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v178-agent-source",
+  "release": "hyper-dimension-v179-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 7377,
-      "sha256": "8a50cd49358f4b9e62cd5ef3a99981406e930dd413b96ff444c405e55cd4a99e"
+      "bytes": 8081,
+      "sha256": "e60563bace497cbe543d1cb07f05a48591d77432bd84266e4bfddb6a6cccde70"
     },
     {
       "path": "README.md",
-      "bytes": 6691,
-      "sha256": "4c83e1b4163de1a771c47984212e789a617fae1b408753e4fdd1f3aafcbbd7ef"
+      "bytes": 7319,
+      "sha256": "811309f60aa0c83811d070c4695209edd86cf1cc526ba40cc53c7cfa3193f53c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 31239,
-      "sha256": "d427f3bfc0b1e4cc297fdda52084a22f3dcff93cfc62943378fb3a08323441ce"
+      "bytes": 32667,
+      "sha256": "2d72eda1c673e296ee3d57301e6e226a44fa196f9a48e1441fa69d723f8db381"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -534,6 +534,11 @@
       "path": "docs/modal-command-navigation-v157.md",
       "bytes": 3290,
       "sha256": "365e747117d84221b26ec7bd06f85ed4bfa972cdf18c92c99ff9fdbe9c140fad"
+    },
+    {
+      "path": "docs/navigation-arrival-v179.md",
+      "bytes": 6012,
+      "sha256": "b69a424ca2a3d914bda225e7a10ae7b89e1992643be16a349d72a888580e807d"
     },
     {
       "path": "docs/night-sky-v141-verification.json",
@@ -1947,8 +1952,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 10013,
-      "sha256": "d8cb079a91dfd77720c4945fd2dc29113ac6720c7eff97036dbca083e6278886"
+      "bytes": 10089,
+      "sha256": "04cdf0298fb80a32b95e6bf984b024c298341acce64d02d993ef4de1164fa2a7"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4707,8 +4712,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 141651,
-      "sha256": "658c0393562f484f2edd942b3a7e72e4747c7d6fc6b8ec66ad45369466b6a843"
+      "bytes": 142085,
+      "sha256": "f70cb204318d380058a79eb189a81ec30533bc0d9d71f7f07b610b2e5d096329"
     },
     {
       "path": "src/arcade.css",
@@ -4792,8 +4797,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 18430,
-      "sha256": "0d73cff280b3e142dd1f093a7f63104ed37267097ab36706f01895a4b4a357c8"
+      "bytes": 18461,
+      "sha256": "b14f342b540e8616e27e7a33bfcdec36038d4f00981fd77d9c9d02cc72170a48"
     },
     {
       "path": "src/classicGames.js",
@@ -5167,8 +5172,8 @@
     },
     {
       "path": "src/frameClock.js",
-      "bytes": 340,
-      "sha256": "2dcc1f8900ef5a7eb2f74fda0f2adec1f656eefbfc1176b50d1b3409fe83a8d0"
+      "bytes": 764,
+      "sha256": "b79bf43ffcca70c9acb63db9ac75d60a6fdced2ddde74d504e08b6d64fabfc7a"
     },
     {
       "path": "src/freshStart.js",
@@ -5572,8 +5577,8 @@
     },
     {
       "path": "src/movement.js",
-      "bytes": 1317,
-      "sha256": "04537c354e13438977f68109b1dc9f8775144c69611e782ba941e1a964c4df7c"
+      "bytes": 2065,
+      "sha256": "1ad38a02ddbe8ba0581808b0831c94c1c1395af36dce3e6a874ecdbb7e24cd73"
     },
     {
       "path": "src/night-sky-v141.css",
@@ -5862,8 +5867,8 @@
     },
     {
       "path": "src/residentActivityControl.js",
-      "bytes": 706,
-      "sha256": "b9c4a8f521e6c54064ce6fd905cbeca9e3da66b2a9a57d4b7e14a39013f68c1a"
+      "bytes": 1856,
+      "sha256": "df5a3378e88553e75cb0fefddfe73471546f0bde661bc928e46e50782302e181"
     },
     {
       "path": "src/residentChatUI.js",
@@ -5887,8 +5892,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 41782,
-      "sha256": "96c58c14e39dce627ae068a5290e986c1f522550ebb576150d0898bbc2ca8180"
+      "bytes": 41834,
+      "sha256": "d3d41494d3c2fa2e1c2557cc10e613c498247eb11a1b1a7f88367e825bbeece7"
     },
     {
       "path": "src/residentSchedule.js",
@@ -6182,8 +6187,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 24633,
-      "sha256": "ab62e6577bb12cf5b9b34ffaaa9ebeee77920233046803cfc7f841bc4585fb4b"
+      "bytes": 24689,
+      "sha256": "34d4fa3eff955e0cf69bbe4d3a9d5c8942948d9e105a8b93ec2194711f8af358"
     },
     {
       "path": "src/ui-v16.css",
@@ -7157,8 +7162,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 12851,
-      "sha256": "93e3015cc2abc1533aa9964b3105e6785926c1199609d6ba39d806574afabe9e"
+      "bytes": 13254,
+      "sha256": "bb067aa0610131dc442c54a2977cac6f140fd4e81c03cb0cfba5f004d303ceae"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -7242,8 +7247,8 @@
     },
     {
       "path": "tests/v170-reward-drain-browser.mjs",
-      "bytes": 12526,
-      "sha256": "2f6a42f4b03848e463bf48a83858c2844b7d175d19e0108c65f9f1e3da4ee7ba"
+      "bytes": 12763,
+      "sha256": "3ab033ac11eeda3503fe6ad9e7e6d39015ffff7ea94dc3c3dc85e98b525d5b0f"
     },
     {
       "path": "tests/v171-lan-geography.test.mjs",
@@ -7404,6 +7409,26 @@
       "path": "tests/v178-legacy-farm-browser.mjs",
       "bytes": 6883,
       "sha256": "3e11ef70e0af694b9d05b8359ff89c554fb09115ab480a06d15b71ad34388f1f"
+    },
+    {
+      "path": "tests/v179-action-lifecycle.test.mjs",
+      "bytes": 3470,
+      "sha256": "e2464413bccf68ddffd67c9a75b933aa333306900ead13e6f1651945c1f9eff1"
+    },
+    {
+      "path": "tests/v179-navigation-arrival-browser.mjs",
+      "bytes": 5894,
+      "sha256": "7f4b8e1acf5da9e2d10d60ffe42ef3a5b60a9ec86deaa119192f64d618a12d7e"
+    },
+    {
+      "path": "tests/v179-navigation-arrival.test.mjs",
+      "bytes": 2823,
+      "sha256": "b3d9c39cd55e368399ecfabe241ed1cfc93d6b230a5813b6d58ffdc4dbca8074"
+    },
+    {
+      "path": "tests/v179-npc-work-browser.mjs",
+      "bytes": 8528,
+      "sha256": "3a2da7b9ba3e12ec4382e91b5f8daf132894de68cdc9bbd4433fbb64910aa8c8"
     },
     {
       "path": "tests/v18-balance-probe.mjs",

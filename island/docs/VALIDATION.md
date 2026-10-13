@@ -288,3 +288,12 @@ The final default command passed **1071/1071** (1057 domain checks plus 14 runti
 The final default gate passed 1078/1078 (1064 domain checks and 14 runtime guards), without failures or skips. All 88 native legacy stages rendered; four native farm cases cover all eleven legacy crops and all nineteen loaded crop resources. Wheat cutting and carrot pulling each received two crops and one seed, without duplicate gains after reload.
 
 见 [V178 美术和验证](legacy-crop-art-v178.md)。原生成 PNG、完整裁切、土壤锚点和两个画风各自来源已记录；四季全岛地形、夜间实体灯光及完整真人验收继续。
+
+
+## V179 · 后台作业、移动与 CI 时序 / Work and navigation
+
+最终默认检查 **1095/1095** 通过（1081 领域规则 + 14 运行目录保护），0 失败、0 跳过。两画风 8/15 FPS 四组真实导航保留原断言通过；六组奖励、取消与丢失回执恢复通过。晴天夹具中 NPC 实际播种与浇水保留20秒动作，独立已批准居民回执暂缓期间动作仍结束、等待姿态停止，原田地在农活回执前保持原阶段；唯一耗种、浇水与刷新通过。
+
+The final default gate passed **1095/1095** (1081 domain checks and 14 runtime guards), without failures or skips. Four native 8/15 FPS navigation cases retain their original assertions; all six reward/cancel/recovery cases passed. Sunny NPC fixtures complete actual 20-second sow and water work while unrelated accepted replies are held, without changing soil before the farm receipt or duplicating seed costs after reload.
+
+V178 run 38418522784 has three successful jobs, two failed jobs and one timed-out job: the macOS 14 reward barrier race and Intel slow-frame navigation are distinct findings. Catalog art and native gameplay now run in independent jobs while preserving every original check; the new head requires fresh cloud verification. Native/fixture checks do not replace physical Mac, human, full-day schedule or whole-product acceptance. [Implementation and scope](navigation-arrival-v179.md).
