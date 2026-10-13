@@ -1,5 +1,6 @@
 
 import {randomInt,createHash} from 'node:crypto';
+import {createFishingMatch} from '../src/fishingRules.js';
 import {hydrateFishing,createFishingEvent,updateFishingEvent,inviteFishingNpc,createFishingPlan,cancelFishingDraft,startFishingParty,fishingCheckin,finishFishingParty,abandonFishingParty,archiveFishingParty,applyStewardParty,fishingOwner,validFishingParty,FISHING_EQUIPMENT} from '../src/fishingParty.js';
 import {partyDraftStamp,eventRequests} from '../src/partyPlanning.js';
 import {fishingSpots} from '../src/fishingPartyRuntime.js';
@@ -50,6 +51,7 @@ export function applyFishingCommand(s,b,i,now){
  if(i.operation==='begin'){
   const d=hydrateFishing(s).draft;if(!d||d.id!==i.eventId||d.version!==i.eventVersion)throw fail('开场方案已改变','fishing_draft_changed');if(b.active)throw fail('请先完成或取消当前岛主作业','action_active');if(i.expectedSequence!==b.sequence||(i.epoch??b.epoch)!==b.epoch&&i.epoch!==null)throw fail('当前作业版本已变化','action_sequence');if(s.day<=b.fishing.lastDay)throw fail('今天已经承办派对，明天再相聚','fishing_not_ready');
   d.seed=randomInt(1,0x100000000);const r=startFishingParty(s);if(!r.ok)throw fail(r.reason,'fishing_not_ready');markFishingPartyDay(s,b,s.day);
+  if(i.gameEnvironment)r.session.match=createFishingMatch(d.seed,d.difficulty,i.gameEnvironment.environment.weather);
   const t={kind:'fishing',item:'competition',name:r.session.name,eventId:d.id,eventVersion:d.version,requestId:i.requestId,epoch:b.epoch,sequence:++b.sequence,duration:2.2,day:s.day,startedAt:now,readyAt:now+2200,expiresAt:now+24*3600000,nextBatch:1,game:createFishingReplay(r.session.match)};
   b.active=t;b.fishing.hold=structuredClone(s.resourceLedger.reservations[fishingOwner(d.id)]);sync(s,b);return{ticket:t,receipt:null};
  }

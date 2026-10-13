@@ -1,3 +1,4 @@
+import {residentActivityBlocked} from './residentActivityControl.js';
 import {findPath,worldWalkable} from './world.js';
 import {coutureTarget} from './coutureLayout.js';
 import {currentCoutureBrief} from './coutureRules.js';
@@ -27,7 +28,7 @@ export function createCoutureRuntime({state,npcs,resident,followPath,occupied=()
    const n=npcs[p.id],target=coutureTarget(g,p.id,movementGame(g,local));if(!n||!target)continue;
    const key=target.x+','+target.y;
    if(!held.has(p.id)){
-    if(n.action||n.meeting||n.inside!=null||occupied(p.id)||n.recruitControlled){n.status='收尾手边的工作，再去穿搭大会赴约';continue;}
+    if(residentActivityBlocked(n,occupied)){n.status='收尾手边的工作，再去穿搭大会赴约';continue;}
     resident().releaseActor(n);n.partyControlled=true;n.after=null;n.intent=null;n.target=null;n.path=[];held.set(p.id,key);route(n,target);
    }else if(held.get(p.id)!==key){held.set(p.id,key);n.action=null;route(n,target);}
    const previous=local.reports.find(r=>r.npcId===p.id&&r.outcome==='shown');

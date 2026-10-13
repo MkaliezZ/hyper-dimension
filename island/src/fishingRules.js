@@ -1,14 +1,16 @@
 import {seededRandom} from './gameLevels.js';
+import {fishingWeather,validFishingWeather} from './weatherRules.js';
+export const fishingBiteWindow=m=>(m.difficulty==='easy'?2:1.2)+(m.weather?.assist ? .35 : 0);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const FISHING_SKILLS=[{id:8,skill:.86,title:'熟悉潮汐'}, {id:2,skill:.68,title:'稳稳收线'}];
-export function createFishingMatch(seed,difficulty='normal'){
+export function createFishingMatch(seed,difficulty='normal',weather=null){
  const random=seededRandom(seed),rounds=Array.from({length:6},(_,i)=>{
   const grade=[1,1,2,2,3,3][Math.floor(random()*6)];
   return {grade,name:['','银鳞小鱼','琥珀鳍鱼','星纹海鲈'][grade],spot:{x:420+random()*310,y:235+random()*105,phase:random()*6.28},
    wind:(random()-.5)*(difficulty==='easy'?20:42),wait:2.6+random()*2.4,
    rivals:FISHING_SKILLS.map(n=>({id:n.id,caught:random()<n.skill,perfect:random()<(n.id===8?.4:.24),at:9+random()*10}))};
  });
- return {version:1,seed:seed>>>0,difficulty,phase:'ready',index:0,elapsed:0,rounds,results:[],standing:[{id:-1,score:0,streak:0,combo:false},...FISHING_SKILLS.map(n=>({id:n.id,score:0,streak:0,combo:false}))],current:null};
+ return {...(weather?{weather:fishingWeather(weather)}:{}),version:1,seed:seed>>>0,difficulty,phase:'ready',index:0,elapsed:0,rounds,results:[],standing:[{id:-1,score:0,streak:0,combo:false},...FISHING_SKILLS.map(n=>({id:n.id,score:0,streak:0,combo:false}))],current:null};
 }
 export function startFishingRound(m){
  if(!['ready','round_result'].includes(m.phase)||m.index>=6)return false;
@@ -22,12 +24,12 @@ export function fishingAction(m,{type,x,y}){
  if(type!=='down')return false;
  if(Number.isFinite(x)&&Number.isFinite(y))c.pointer={x:clamp(x,0,960),y:clamp(y,0,540)};
  if(c.mode==='aim'){
-  c.castTarget={x:c.pointer.x+level.wind,y:c.pointer.y};c.castGood=Math.hypot(c.castTarget.x-level.spot.x,c.castTarget.y-level.spot.y)<(m.difficulty==='easy'?100:78);
+  c.castTarget={x:c.pointer.x+level.wind,y:c.pointer.y};c.castGood=Math.hypot(c.castTarget.x-level.spot.x,c.castTarget.y-level.spot.y)<(m.difficulty==='easy'?100:78)+(m.weather?.assist?15:0);
   c.mode='casting';c.modeT=0;c.message='抛竿入水…';return true;
  }
  if(c.mode==='waiting'){endCast(m,false,'提竿太早，鱼还在试探。');return true}
  if(c.mode==='bite'){
-  const window=m.difficulty==='easy'?2:1.2;c.perfect=Math.abs(c.modeT-window/2)<(m.difficulty==='easy'?.36:.2);c.mode='fight';c.modeT=0;c.holding=false;c.message=c.perfect?'精准提竿！观察鱼的挣扎，再按住收线。':'钩住了！平静时收线，挣扎时松开。';return true;
+  const window=fishingBiteWindow(m);c.perfect=Math.abs(c.modeT-window/2)<(m.difficulty==='easy'?.36:.2);c.mode='fight';c.modeT=0;c.holding=false;c.message=c.perfect?'精准提竿！观察鱼的挣扎，再按住收线。':'钩住了！平静时收线，挣扎时松开。';return true;
  }
  if(c.mode==='fight'){c.holding=true;return true}
  return false;
@@ -54,13 +56,13 @@ export function tickFishing(m,seconds){
   if(c.t>=25){endCast(m,false,'本轮时间到了，留待下一次潮汐。');continue}
   if(c.mode==='casting'&&c.modeT>=.8){if(!c.castGood)endCast(m,false,'落点偏离鱼影，下一竿记得补偿风向。');else{c.mode='waiting';c.modeT=0;c.message='看浮漂：轻晃是在试探，亮起金环再提竿。'}}
   else if(c.mode==='waiting'&&c.modeT>=l.wait){c.mode='bite';c.modeT=0;c.message='咬钩！现在提竿！'}
-  else if(c.mode==='bite'&&c.modeT>(m.difficulty==='easy'?2:1.2))endCast(m,false,'错过咬钩窗口，鱼松口了。');
+  else if(c.mode==='bite'&&c.modeT>fishingBiteWindow(m))endCast(m,false,'错过咬钩窗口，鱼松口了。');
   else if(c.mode==='fight'){
    c.fightAge+=dt;const a=c.fightAge,counter=m.difficulty==='easy'?.8:1;
    c.surge=Math.sin(a*(1.25+l.grade*.08)+l.spot.phase)>.48;
    c.fish={x:l.spot.x+Math.sin(a*1.13+l.spot.phase)*(65+l.grade*12),y:l.spot.y+Math.cos(a*.86)*23};
-   const tracking=Math.abs(c.pointer.x-c.fish.x)<(m.difficulty==='easy'?210:150);
-   if(c.holding){c.progress+=dt*(c.surge?.025:tracking?.2:.1);c.tension+=dt*(c.surge?.44*counter:.055)+(tracking?0:dt*.06);c.slack=0;}
+   const tracking=Math.abs(c.pointer.x-c.fish.x)<(m.difficulty==='easy'?210:150)+(m.weather?.assist?20:0);
+   if(c.holding){c.progress+=dt*(c.surge?.025:tracking?.2:.1);c.tension+=dt*(c.surge?.44*counter:.055)*(m.weather?.assist ? .85 : 1)+(tracking?0:dt*.06);c.slack=0;}
    else{c.tension-=dt*.34;c.progress=Math.max(0,c.progress-dt*.012);if(c.tension<=.015)c.slack+=dt;}
    c.tension=clamp(c.tension,0,1);
    if(c.progress>=1){c.progress=1;endCast(m,true,c.perfect?'精准钓获！':'稳稳钓获！')}
@@ -74,8 +76,8 @@ export function fishingScore(m){
  return {raw:m.standing[0].score,normalized:Math.round(m.standing[0].score/26*100),rank:1+rows.filter(r=>r.score>m.standing[0].score).length,rows,won:rows[0].score===m.standing[0].score};
 }
 export function validFishingMatch(m){
- if(!m||m.version!==1||!Number.isInteger(m.seed)||m.seed<0||m.seed>0xffffffff||!['easy','normal'].includes(m.difficulty)||!['ready','playing','round_result','results'].includes(m.phase)||!Number.isInteger(m.index)||m.index<0||m.index>6||!Number.isFinite(m.elapsed)||m.elapsed<0||m.elapsed>180||!Array.isArray(m.rounds)||!Array.isArray(m.results)||m.results.length>6)return false;
- const expected=createFishingMatch(m.seed,m.difficulty);
+ if(!m||!validFishingWeather(m.weather)||m.version!==1||!Number.isInteger(m.seed)||m.seed<0||m.seed>0xffffffff||!['easy','normal'].includes(m.difficulty)||!['ready','playing','round_result','results'].includes(m.phase)||!Number.isInteger(m.index)||m.index<0||m.index>6||!Number.isFinite(m.elapsed)||m.elapsed<0||m.elapsed>180||!Array.isArray(m.rounds)||!Array.isArray(m.results)||m.results.length>6)return false;
+ const expected=createFishingMatch(m.seed,m.difficulty,m.weather);
  if(JSON.stringify(m.rounds)!==JSON.stringify(expected.rounds))return false;
  const rows=expected.standing;
  for(const [i,r] of m.results.entries()){

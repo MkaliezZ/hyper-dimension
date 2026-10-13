@@ -1,3 +1,4 @@
+import {residentActivityBlocked} from './residentActivityControl.js';
 import {findPath,worldWalkable} from './world.js';
 import {fireworksTarget} from './fireworksLayout.js';
 export function createFireworksRuntime({state,npcs,resident,followPath,occupied=()=>false,player,game,now}){
@@ -10,7 +11,7 @@ export function createFireworksRuntime({state,npcs,resident,followPath,occupied=
   if(eventId!==g.id){eventId=g.id;if(s.fireworksAttendance?.id===g.id)for(const [id,p] of Object.entries(s.fireworksAttendance.people||{})){const n=npcs[id],live=s.npcPresence?.find(n=>n.id===Number(id));if(n&&p.controlled&&p.inside===null&&live&&live.inside==null&&Math.hypot(live.x-p.x,live.y-p.y)<=8&&worldWalkable(p.x,p.y)){n.x=p.x;n.y=p.y;n.inside=null;n.indoorActor=null;}}}
   if(s.fireworksAttendance?.id!==g.id)s.fireworksAttendance={id:g.id,people:{}};const a=s.fireworksAttendance,local=game()||g.game;
   for(const p of g.participants){const n=npcs[p.id],target=fireworksTarget(g,p.id);if(!n||!target)continue;
-   if(!held.has(p.id)){if(n.action||n.meeting||n.inside!=null||occupied(p.id)||n.recruitControlled){n.status='收尾手边工作，再去烟花大会协作席位';continue;}resident().releaseActor(n);n.partyControlled=true;n.after=null;n.intent=null;n.target=null;n.path=[];held.add(p.id);route(n,target);}
+   if(!held.has(p.id)){if(residentActivityBlocked(n,occupied)){n.status='收尾手边工作，再去烟花大会协作席位';continue;}resident().releaseActor(n);n.partyControlled=true;n.after=null;n.intent=null;n.target=null;n.path=[];held.add(p.id);route(n,target);}
    const distance=Math.hypot(n.x-target.x,n.y-target.y);
    if(distance>6){n.action=null;if(!n.path.length)route(n,target);n.status='沿道路前往烟花大会 · '+p.role;followPath(n,dt,65);}
    else{n.path=[];n.walkMix=0;n.walking=false;n.direction=Math.PI/2;

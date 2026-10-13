@@ -5,7 +5,7 @@ import {seededRandom,shuffle,rotatePiece,pieceOffsets} from './gameLevels.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
 import {TOOLS} from './equipmentRules.js';
 import {makeInteriorLevel,reviewInterior,placeInteriorFurniture,pickupInteriorFurniture,undoInteriorFurniture,makeInteriorWalkthrough,advanceInteriorWalkthrough} from './interiorDesign.js';
-export function anglingEquipment(s){const t=TOOLS[s.equipment?.id],owned=s.equipment?.source==='owned'&&t?.action==='fish',bonus=owned?t.trackingBonus:0;return {id:t?.action==='fish'?t.id:'rod',source:owned?'owned':'borrowed',trackingRadius:130+bonus,castRadius:95+bonus};}
+export function anglingEquipment(s){const t=TOOLS[s.equipment?.id],owned=s.equipment?.source==='owned'&&t?.action==='fish',bonus=owned?t.trackingBonus:0;return {id:t?.action==='fish'?t.id:'rod',source:owned?'owned':'borrowed',trackingRadius:130+bonus+(s.weather?.assist?20:0),castRadius:95+bonus+(s.weather?.assist?15:0)};}
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export {clamp};
 export function formatWorkshopTime(seconds){const n=Math.max(0,Math.ceil(Number.isFinite(seconds)?seconds:0));return Math.floor(n/60)+':'+String(n%60).padStart(2,'0')}
@@ -488,12 +488,12 @@ export function stepWorkshop(s,dt){
   const spot=l.spots[Math.min(s.catch,l.spots.length-1)];
   if(s.mode==='casting'){s.castAge+=dt;if(s.castAge>.8){emit(s,'splash',s.castTarget.x,s.castTarget.y);if(s.castGood){s.mode='waiting';s.biteAt=s.t+2.2+Math.sin(spot.phase)*.7;s.status='浮漂已入水，等待咬钩…'}else{s.mode='cast';s.escape++;s.status='落点离鱼影太远，参考风向重新抛竿';}}}
   if(s.mode==='waiting'&&s.t>=s.biteAt){s.mode='bite';s.status='咬钩！立即提竿';emit(s,'bite',spot.x,spot.y)}
-  if(s.mode==='bite'&&s.t>s.biteAt+l.strikeWindow){s.mode='cast';s.escape++;s.status='鱼松口了，重新寻找落点';}
+  if(s.mode==='bite'&&s.t>s.biteAt+l.strikeWindow+(s.weather?.assist ? .35 : 0)){s.mode='cast';s.escape++;s.status='鱼松口了，重新寻找落点';}
   if(s.mode==='fight'){
    const age=s.t-s.fightStart,burst=Math.sin(age*1.5+spot.phase)>.5;s.surge=burst;
    s.fish={x:spot.x+Math.sin(age*1.1+spot.phase)*100,y:spot.y+Math.cos(age*.8)*24};
    const tracking=Math.abs(s.pointer.x-s.fish.x)<anglingEquipment(s).trackingRadius;
-   if(s.holding){s.progress+=dt*(tracking?(burst?.023:.12):.035);s.tension+=dt*(burst?.33:.06)+(tracking?0:dt*.1);}
+   if(s.holding){s.progress+=dt*(tracking?(burst?.023:.12):.035);s.tension+=dt*(burst?.33:.06)*(s.weather?.assist ? .85 : 1)+(tracking?0:dt*.1);}
    else{s.tension-=dt*.27;s.progress=Math.max(0,s.progress-dt*.014);}
    s.tension=clamp(s.tension,0,1);
    if(s.progress>=1){s.catch++;s.score+=350+Math.round((1-s.tension)*150);emit(s,'catch',s.fish.x,s.fish.y,{art:'fish'});s.mode='landing';s.landingAt=s.t;s.holding=false;}

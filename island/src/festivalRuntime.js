@@ -1,3 +1,4 @@
+import {residentActivityBlocked} from './residentActivityControl.js';
 import {findPath,worldWalkable} from './world.js';
 export function createFestivalRuntime({state,npcs,resident,followPath,occupied=()=>false,player,game,now}){
  let eventId=null;const held=new Map();
@@ -26,7 +27,7 @@ export function createFestivalRuntime({state,npcs,resident,followPath,occupied=(
   for(const [id,job] of wanted){
    const n=npcs[id];if(!n)continue;
    if(!held.has(id)){
-    if(n.action||n.meeting||n.inside!=null||occupied(id)||n.recruitControlled){n.status=job.role==='staff'?'收尾当前工作，再去集市负责摊位':'收尾手边的事，再去集市选购';continue;}
+    if(residentActivityBlocked(n,occupied)){n.status=job.role==='staff'?'收尾当前工作，再去集市负责摊位':'收尾手边的事，再去集市选购';continue;}
     resident().releaseActor(n);n.partyControlled=true;n.after=null;n.intent=null;n.target=null;n.path=[];held.set(id,job);route(n,job.target);
    }else if(held.get(id).orderId!==job.orderId||held.get(id).slot!==job.slot){held.set(id,job);n.action=null;route(n,job.target);}
    const distance=Math.hypot(n.x-job.target.x,n.y-job.target.y);

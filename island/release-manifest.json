@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v174-agent-source",
+  "release": "hyper-dimension-v175-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8529,
-      "sha256": "7f5e94eed8b593310b470d7ead3ebecc9275d8a595c0fb1dd6cf0f4e627b5e36"
+      "bytes": 8996,
+      "sha256": "eef182364917d9675c62cc35fac0d188fb9d1f0557bd49e8273fcb6d3a19972b"
     },
     {
       "path": "README.md",
-      "bytes": 7469,
-      "sha256": "053b8024d96f6014164297e1785e646dc8ab3bbf869a496235fe51532250eeda"
+      "bytes": 7868,
+      "sha256": "609c7ca5bfdc35a77980679573441edc9ba673f62bdc715acc8ce84aa7004d53"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 28016,
-      "sha256": "4e6a7644998b5037ecb526be58a70fc9e216c8125514f4324e057bbbf41ebbf1"
+      "bytes": 28415,
+      "sha256": "2420159cecf7353388437d5db9664839b0934d24378b3e36d6636dbee307eec2"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -629,6 +629,11 @@
       "path": "docs/resident-life-v112.md",
       "bytes": 3429,
       "sha256": "5bddd8fae9b878db3ae63886b13eedcff06f92c67f2d3b8d194fb4bde3036e20"
+    },
+    {
+      "path": "docs/resident-schedule-v175.md",
+      "bytes": 2376,
+      "sha256": "9b1f628c10c19ec2b5b4b533e050c5055836563230635ee52f5044a66b008e4f"
     },
     {
       "path": "docs/reward-confirmation-v168.md",
@@ -1371,6 +1376,11 @@
       "sha256": "fb4c518a62aeab0bf78b9909a9738c2f955f06494e6732bf30bf1c2ae79eac36"
     },
     {
+      "path": "docs/weather-life-v175.md",
+      "bytes": 4298,
+      "sha256": "cf9a96542661f4f72c7b4d836ef486f43e5965af2c952964bef5752224de65fb"
+    },
+    {
       "path": "docs/windows-locks-v162.md",
       "bytes": 2391,
       "sha256": "5fc7e0d9be6793d674945d77ed3572b4ee30ce8cac7587c2291b44e8993572c9"
@@ -1887,8 +1897,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9424,
-      "sha256": "5f596926c42fd1f3c4633741c972a27695214ec4ce852894fddbac699206423e"
+      "bytes": 9573,
+      "sha256": "8ae43d50e9a03d3aa0c524ffd81f2702f9f7f13c993273fc92d7fccc0d461fa1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4012,8 +4022,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 15776,
-      "sha256": "4d315b99215f10d888dda6f7b948a7ca295b226fbb3a4007ce850474298e7d22"
+      "bytes": 15826,
+      "sha256": "b8f65c1f028c920ae0d39253940aa604c130b62f1b3f6c811801fac661d22c16"
     },
     {
       "path": "server/a2aGateway.mjs",
@@ -4112,8 +4122,8 @@
     },
     {
       "path": "server/farmActions.mjs",
-      "bytes": 17823,
-      "sha256": "64836b8ed0bb2515c9bf1d48394176c62c9c7ea4199a202ec22561fae85b8cbf"
+      "bytes": 18710,
+      "sha256": "5aab11aae05bfc186b949140061d287111a03131d94cb4def5b18aa11e87fea9"
     },
     {
       "path": "server/festivalActions.mjs",
@@ -4122,8 +4132,8 @@
     },
     {
       "path": "server/fieldActions.mjs",
-      "bytes": 14403,
-      "sha256": "c2f504c8e75abcc206785bf45a44b9a40e4f827c6692b6efdbab94ce0c62833c"
+      "bytes": 14553,
+      "sha256": "f7a19a6377f5dad1e2b1fbea4d8376488ffa6c2fcc0b4db6e4544a52b7a70feb"
     },
     {
       "path": "server/fireworksActions.mjs",
@@ -4132,8 +4142,13 @@
     },
     {
       "path": "server/fishingActions.mjs",
-      "bytes": 11441,
-      "sha256": "6d6799286b65993f9ab134d673d3348cc522b28fa352f38f5a68dea4ac4bcbf3"
+      "bytes": 11618,
+      "sha256": "286d40fbcbf1db54667aa0d22b9a79424e78962323e9b88120c689ee71c930d3"
+    },
+    {
+      "path": "server/gameEnvironment.mjs",
+      "bytes": 933,
+      "sha256": "0809eb29c6735b3f8fda175d96b95021e6d4e98edaf652af723b323e4e5c6fa8"
     },
     {
       "path": "server/geographyMigration.mjs",
@@ -4207,18 +4222,18 @@
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 25671,
-      "sha256": "8be38c76427a0708be8d809063077a7db60b23e2b15b8d28daa2d0b9e8e96041"
+      "bytes": 25712,
+      "sha256": "91fb7fb2842c8d10e3915986ad1b4067ecfdf6a3e8297ab8601650c0b9bbfc4a"
     },
     {
       "path": "server/lanRoomResidents.mjs",
-      "bytes": 8677,
-      "sha256": "953e58ad55d54cc81d78ffe8cca73483859db0b1b7b30a2b9865d6a39ee35328"
+      "bytes": 10521,
+      "sha256": "3fe188e1adfc0d362cdc53a3319c7f765c39107ed7218723101b6381eba268a0"
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 27546,
-      "sha256": "73dd60d10d80473c302c35d80c1a9fe87d74794773af0524f3ae27918c9348e7"
+      "bytes": 27726,
+      "sha256": "da28fc696aed7f479b5b4e1cb525ea60186bbd222d099e387d74dc25ec7b06fd"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -4232,8 +4247,8 @@
     },
     {
       "path": "server/lanTenantServices.mjs",
-      "bytes": 3630,
-      "sha256": "55ababa76a6cdb2bbe69b4be7d3401a39ad77a9af926ace6c5868c2fb9b9ddc5"
+      "bytes": 3739,
+      "sha256": "a629d850388de3b6e0205dd9050a0144b08aaa90c12e64aa18a88f67c34fe8ad"
     },
     {
       "path": "server/lanTravelParty.mjs",
@@ -4417,8 +4432,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 36955,
-      "sha256": "8bf6c135b0dc8252351ce48d6a7650d7ac1e828333b6dfe67838352daa74c599"
+      "bytes": 37141,
+      "sha256": "f2a683f28997ecd9de6545dd52dc587c719a79c78c97e5976b40b904aad5bca2"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -4512,8 +4527,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 141609,
-      "sha256": "44fd07371fed7b518d9274d8bb0f9b2110934e3583fbb5403a850c4de3961b77"
+      "bytes": 141494,
+      "sha256": "f8ceddc92933365dbee201a76a2a2fd63c8e313251516318e88d02e99cd53cf6"
     },
     {
       "path": "src/arcade.css",
@@ -4697,8 +4712,8 @@
     },
     {
       "path": "src/coutureRuntime.js",
-      "bytes": 5246,
-      "sha256": "71f80df957d52de28bd744be631b13a1bbc1a241fc1b760131a61e477bd7ff81"
+      "bytes": 5279,
+      "sha256": "8722658255e798c1e31ab2282d146899e88f68fa91c82fc7377ca648db4c9146"
     },
     {
       "path": "src/coutureUI.js",
@@ -4729,6 +4744,16 @@
       "path": "src/craftSpecifications.js",
       "bytes": 6342,
       "sha256": "13a425bbc546f1bbc5caad96a759442b4241a04d2acaf49b094489d5d80e1ecc"
+    },
+    {
+      "path": "src/cropPickerUI.js",
+      "bytes": 1020,
+      "sha256": "9553023db8a7b0178c9cfe44b243ba14dfa8609298af3d9c353d8eff8691fd74"
+    },
+    {
+      "path": "src/cropSeasons.js",
+      "bytes": 703,
+      "sha256": "485df675bb7a3ef1df64a5b801766f20708a7cc0973fd1031e733e7bd1afbf07"
     },
     {
       "path": "src/cursors-v147.css",
@@ -4762,8 +4787,8 @@
     },
     {
       "path": "src/environment-v127.css",
-      "bytes": 1469,
-      "sha256": "10961a6d8b09b83941bc4b81088e1732aa78b8ab3ac26ec7eaeaf5cfdadaf23e"
+      "bytes": 1900,
+      "sha256": "ff62427436b552d27d521a6ac0de01d402f799caa02f3e0b2491752db4b5e212"
     },
     {
       "path": "src/environmentClient.js",
@@ -4772,8 +4797,8 @@
     },
     {
       "path": "src/environmentClock.js",
-      "bytes": 2282,
-      "sha256": "7279604f366d6cb3e9f5652259d6cf664a6b5ecbb0d92c987249b49bb86955fc"
+      "bytes": 2404,
+      "sha256": "d2d3ac3459c6794fce4bf33cdb1ca8ecc1b1f30fe70116b5ad7b0ee49bfe4748"
     },
     {
       "path": "src/environmentGeometry.js",
@@ -4782,13 +4807,13 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 8711,
-      "sha256": "9cce12672d41083b05fc663d28e48fc978372d1ce820eb20460be83e682dbb27"
+      "bytes": 9567,
+      "sha256": "cf305331b0b3d5cee5e348279bdc16a14ff16f0a481e2282cdca727160ae41fb"
     },
     {
       "path": "src/environmentUI.js",
-      "bytes": 1061,
-      "sha256": "5897817e3c4681a8876a83528cf0196ffc3c9923c24b44960ec25f525634c25d"
+      "bytes": 1759,
+      "sha256": "ce76cdbbb201aed1ecccd5072f52298bd736e7dad8d5d6ff3bfaa9a39f8d4bee"
     },
     {
       "path": "src/equipment-v35.css",
@@ -4832,8 +4857,8 @@
     },
     {
       "path": "src/farmCareUI.js",
-      "bytes": 2626,
-      "sha256": "c34362a4f9573dfbe953dd358b6506844e1eeee78b8df2d19991bb4af38ebe00"
+      "bytes": 2688,
+      "sha256": "bfb215ff387c9a63ddfc54267a3c04b4d00c274648fe4d9b9d50de8a18607a81"
     },
     {
       "path": "src/farming.js",
@@ -4852,8 +4877,8 @@
     },
     {
       "path": "src/festivalRuntime.js",
-      "bytes": 3923,
-      "sha256": "08beb25382967f3c4482cced838afa8d8c2ea8b57e6f7874aea2d288215cdd83"
+      "bytes": 3958,
+      "sha256": "c7b0897ec9e66b70c6cef572fd310edf4ce41a8666a0bcc92b9101abb4b7d8a6"
     },
     {
       "path": "src/festivalUI.js",
@@ -4887,8 +4912,8 @@
     },
     {
       "path": "src/fireworksRuntime.js",
-      "bytes": 3214,
-      "sha256": "48aa03b9c0cd5f15b128ed12e60f9ad9f6692bfefe7a2f48cc158cb6a6665aac"
+      "bytes": 3247,
+      "sha256": "d283fe62d958608ebbc6d43bb97598f957e472be3be20407b0591939bb133f1c"
     },
     {
       "path": "src/fireworksUI.js",
@@ -4917,8 +4942,8 @@
     },
     {
       "path": "src/fishingPartyRuntime.js",
-      "bytes": 3245,
-      "sha256": "a44dccf420323a946c14b0135944fcb1b7bbb1525eeed565ca1c7da313826790"
+      "bytes": 3405,
+      "sha256": "1c8c2e44d8f72327b528f96e35591791bd97798b8b2a57a22d3c5ca14d5c276b"
     },
     {
       "path": "src/fishingPartyUI.js",
@@ -4927,8 +4952,8 @@
     },
     {
       "path": "src/fishingPartyView.js",
-      "bytes": 11067,
-      "sha256": "af8d0382d0b08998c240d478dcc7ad08c4ede5b61bf79cf3ceebb962c4e7c296"
+      "bytes": 11260,
+      "sha256": "468955cc86b2b410f6247237d7346163a4d6f61b8654e39f65a29ab91dfe745d"
     },
     {
       "path": "src/fishingReplay.js",
@@ -4937,8 +4962,8 @@
     },
     {
       "path": "src/fishingRules.js",
-      "bytes": 7662,
-      "sha256": "88c4a35f8881a399c8f61c4c46330275bb1791d57976b55b437db6674160db69"
+      "bytes": 7997,
+      "sha256": "e66acc63171863c9be6185d8df84ef30ad7611079ac8fcd0d97703ad038c420f"
     },
     {
       "path": "src/fishingWonderArt.js",
@@ -4947,8 +4972,8 @@
     },
     {
       "path": "src/frameClock.js",
-      "bytes": 273,
-      "sha256": "a3e73246cae4d387e99b6dd72fa66d82f94d68295542bb24bffa25b9ec505207"
+      "bytes": 340,
+      "sha256": "2dcc1f8900ef5a7eb2f74fda0f2adec1f656eefbfc1176b50d1b3409fe83a8d0"
     },
     {
       "path": "src/freshStart.js",
@@ -5202,8 +5227,8 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 11802,
-      "sha256": "a6c04fd9fadfdbd8688db0944a789cf967cf5220a83368b7c980f4ebe38d4ae1"
+      "bytes": 11875,
+      "sha256": "4929f1e84bdc986c8ab304de99432c8ff8e29b16712c78be9d847c127c3332f0"
     },
     {
       "path": "src/lanMotion.js",
@@ -5367,8 +5392,8 @@
     },
     {
       "path": "src/nightPartyRuntime.js",
-      "bytes": 2779,
-      "sha256": "bb55bad5776ac1d82d938ba6008cf40f5dd220dc9d5691c3327d2ae81c61462b"
+      "bytes": 2901,
+      "sha256": "f06de2730874778fe2b7067e76112cd0fd909095ad9163e1e902b0628d3a2d97"
     },
     {
       "path": "src/nightPartyUI.js",
@@ -5636,6 +5661,11 @@
       "sha256": "076e6222c2901ee1cbcbbba63b090390129db4cc0541d6d8d30edaa60dab78da"
     },
     {
+      "path": "src/residentActivityControl.js",
+      "bytes": 706,
+      "sha256": "b9c4a8f521e6c54064ce6fd905cbeca9e3da66b2a9a57d4b7e14a39013f68c1a"
+    },
+    {
       "path": "src/residentChatUI.js",
       "bytes": 5250,
       "sha256": "fd5331454d83a4dd53c8d5e5de897cf7ac85ffce1d7f147e0414a9b76d94cc42"
@@ -5657,8 +5687,13 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 38287,
-      "sha256": "3940a044f467f3bef3cf1effc2484f89ec355d5410aee29fcfbffe1f7ca20f4b"
+      "bytes": 41584,
+      "sha256": "7b5a5647e5987a99d2b4e8db98bb9b8c62a85d6d3233ff96385b386547a3e0f7"
+    },
+    {
+      "path": "src/residentSchedule.js",
+      "bytes": 2395,
+      "sha256": "bb007d1ae101a28d313013e6fc69b37256d0924a5cdded60b4625ce49966b991"
     },
     {
       "path": "src/residentSocialTopics.js",
@@ -5707,8 +5742,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 30719,
-      "sha256": "f8b4b17b912b10bc9ae70fafe1f14c6e2cdc2a0c9976dce90a4f58c343131be0"
+      "bytes": 30800,
+      "sha256": "77ccd5031d0d2124b4ed43e55b47cecb789743aa6ba71143fcbfc7cc40d8bd1a"
     },
     {
       "path": "src/saveDelta.js",
@@ -5782,8 +5817,8 @@
     },
     {
       "path": "src/serverFarmUI.js",
-      "bytes": 7481,
-      "sha256": "14e7f46968d6604172e1d8f1934f350b26413cef1c6d77e9410e82880fe90787"
+      "bytes": 7602,
+      "sha256": "c9cd6d63cc2cb09fb25a6155fa03696c47a11a74ba0bf4b313453831f9150d6e"
     },
     {
       "path": "src/serverFieldNpcUI.js",
@@ -5956,6 +5991,16 @@
       "sha256": "846df49ef26927dcc81b222a7cc8ad40272cce698cbec86131ef3b98370a932f"
     },
     {
+      "path": "src/weatherRules.js",
+      "bytes": 1255,
+      "sha256": "a68edea203920e2d49a20434c7bdc516598f7a0241e21f0c25e2e60ee096b723"
+    },
+    {
+      "path": "src/weatherVisuals.js",
+      "bytes": 823,
+      "sha256": "b287060c09a085db1bcc337db6fa835183298cda930b4af1e9217d0ed3fdaf6c"
+    },
+    {
       "path": "src/wonderRewardUI.js",
       "bytes": 1062,
       "sha256": "6bdb43633e1d2306902b3c37dcd56ed58e27a9f9ff2265bf8f417ed07036e2b1"
@@ -5982,8 +6027,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 43931,
-      "sha256": "90bc96f7f4ca31b3454c6c01fdc002819d0fb20d008537de8c820e1ab2b61c73"
+      "bytes": 44153,
+      "sha256": "f7ca54f2f06a357ffcbf9692ac5969f75a0960ee82f29bd11f8974357513fe6f"
     },
     {
       "path": "src/workshopProps.js",
@@ -5992,8 +6037,8 @@
     },
     {
       "path": "src/workshopRules.js",
-      "bytes": 48184,
-      "sha256": "5c73536bde7d9426b5dd7e29ab4230f1ec812785d085ca7074586ffb95b80f6e"
+      "bytes": 48294,
+      "sha256": "ccd5207be6e3438b8ecf3f2e308e51534de6521a87a1dcbb5aa8f976d597edc8"
     },
     {
       "path": "src/workshopSpecifications.js",
@@ -6827,8 +6872,8 @@
     },
     {
       "path": "tests/v148-lobby-browser.mjs",
-      "bytes": 7976,
-      "sha256": "0cb19a79b3f464d5648aab0a9c7cdb9fdc69da57df0da9bb9cc9c438aa037a2f"
+      "bytes": 8526,
+      "sha256": "23bf34394db3993f3329736c1b7c80a3755bca5918deb6177894aadf8805875e"
     },
     {
       "path": "tests/v148-motion.test.mjs",
@@ -6902,8 +6947,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 12297,
-      "sha256": "d3db73e2da2b4c0fc116f85eb12298475c6c7e9758561c8367e452a67b37652e"
+      "bytes": 12851,
+      "sha256": "93e3015cc2abc1533aa9964b3105e6785926c1199609d6ba39d806574afabe9e"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -7017,8 +7062,8 @@
     },
     {
       "path": "tests/v173-farm-navigation-browser.mjs",
-      "bytes": 3855,
-      "sha256": "0c38b4175b797a127456751c3464f79fc2ec1693a624d78858547c7261aeff92"
+      "bytes": 4526,
+      "sha256": "d2d729cd46f942dd1e88e97eaadb0bf3ec5810cfb28eb2a44afb6f9b200ce042"
     },
     {
       "path": "tests/v173-frame-motion.test.mjs",
@@ -7029,6 +7074,31 @@
       "path": "tests/v174-parcel-alignment.test.mjs",
       "bytes": 2366,
       "sha256": "225c3adc36afedcc6f712c8dde0f012478accb81839d574aaaef4a9e9717bf20"
+    },
+    {
+      "path": "tests/v175-active-clock.test.mjs",
+      "bytes": 2787,
+      "sha256": "dac986934d91fa4cf13347e077c2b19cda45acd550b181949c9c38724e6aeabd"
+    },
+    {
+      "path": "tests/v175-resident-party-sleep.test.mjs",
+      "bytes": 7559,
+      "sha256": "bf8404a59e2ac89c47cbf20ccdcafb76e19877f4e5c9d30a67f5e8dfa4f3a3ad"
+    },
+    {
+      "path": "tests/v175-resident-schedule.test.mjs",
+      "bytes": 10135,
+      "sha256": "9f6433376fc4a57612e5be923626082984e18bc21197269fc845be98cc73308d"
+    },
+    {
+      "path": "tests/v175-weather-browser.mjs",
+      "bytes": 8652,
+      "sha256": "5284a92286f01fc061f6dce8aa9a58e61262da74b358c6bd1626897b7d7ce180"
+    },
+    {
+      "path": "tests/v175-weather-gameplay.test.mjs",
+      "bytes": 13862,
+      "sha256": "a4e1c9dc624cbbbf81e10a74ae0bec7880136bb820e75c5c72cdb4b4fe79bb96"
     },
     {
       "path": "tests/v18-balance-probe.mjs",
@@ -9326,5 +9396,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v174-github"
+  "publicRevision": "v175-github"
 }

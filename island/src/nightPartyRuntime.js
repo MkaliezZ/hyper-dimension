@@ -1,3 +1,4 @@
+import {residentActivityBlocked} from './residentActivityControl.js';
 import {ISLAND_GEOGRAPHY} from './islandGeography.js';
 
 import {findPath,worldWalkable} from './world.js';
@@ -10,12 +11,12 @@ export function createNightPartyRuntime({state,npcs,resident,followPath,occupied
  function update(dt){
   const s=state(),g=s.partySession;if(!s.partyControl||!g){if(held.size)release();return;}
   if(eventId&&eventId!==g.id)release();
-  if(eventId!==g.id){eventId=g.id;const saved=s.nightAttendance?.id===g.id?s.nightAttendance:null;for(const id of people(g)){const p=saved?.people?.[id];if(p?.controlled&&p.inside===null&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&worldWalkable(p.x,p.y)){const n=npcs[id];n.x=p.x;n.y=p.y;n.inside=null;n.indoorActor=null;}}s.nightAttendance=saved||{id:g.id,people:{}};}
+  if(eventId!==g.id){eventId=g.id;const saved=s.nightAttendance?.id===g.id?s.nightAttendance:null;for(const id of people(g)){const p=saved?.people?.[id];if(!npcs[id]?.homeRest&&!residentActivityBlocked(npcs[id],occupied)&&p?.controlled&&p.inside===null&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&worldWalkable(p.x,p.y)){const n=npcs[id];n.x=p.x;n.y=p.y;n.inside=null;n.indoorActor=null;}}s.nightAttendance=saved||{id:g.id,people:{}};}
   if(!s.nightAttendance||s.nightAttendance.id!==g.id||!s.nightAttendance.people)s.nightAttendance={id:g.id,people:{}};
   for(const [i,id] of people(g).entries()){
    const n=npcs[id],target=NIGHT_PARTY_SPOTS[i];
    if(!held.has(id)){
-    if(n.action||n.meeting||n.inside!=null||occupied(id)){n.status='收尾当前工作，再到广场放飞星灯';continue;}
+    if(residentActivityBlocked(n,occupied)){n.status='收尾当前工作，再到广场放飞星灯';continue;}
     resident().releaseActor(n);n.partyControlled=true;held.add(id);n.path=findPath(n,target,worldWalkable);const end=n.path.at(-1)||n;if(Array.from({length:9},(_,j)=>worldWalkable(end.x+(target.x-end.x)*j/8,end.y+(target.y-end.y)*j/8)).every(Boolean))n.path.push({...target});
    }
    const distance=Math.hypot(n.x-target.x,n.y-target.y);

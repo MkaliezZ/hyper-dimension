@@ -12,6 +12,8 @@ import {recordTaskStep} from '../src/taskBoard.js';
 import {functionalDefinition} from '../src/facilityCatalog.js';
 import {irrigationConnected,protectedPlot} from '../src/functionalFacilities.js';
 import {NPC_CADENCE} from '../src/npcCadence.js';
+import {canPlantCrop,cropSeasonLabel} from '../src/cropSeasons.js';
+import {activeWeatherIntervals} from './gameEnvironment.mjs';
 export const FARM_LEASE_PREFIX='server-farm:';
 const fail=(message,code='farm_invalid')=>Object.assign(Error(message),{status:409,code});
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -47,13 +49,18 @@ function enableFarm(s,book,now){
 }
 const publicControl=b=>({version:1,leases:farmTickets(b).map(t=>({index:t.index,actor:t.actor,actorId:t.actorId,requestId:t.requestId,assignmentId:t.assignmentId,operationId:t.operationId,sequence:t.sequence}))});
 function sync(s,b){b.farm.plots=structuredClone(s.plots);s.farmControl=publicControl(b)}
-export function advanceFarmClock(s,b,seconds,now){
+export function advanceFarmClock(s,b,seconds,now,environment=null){
  if(!b?.farm)return [];
  assertFarmState(s,b);
  if(!Number.isFinite(seconds)||seconds<0||seconds>15)throw fail('农田有效时间请求无效','farm_clock');
  const elapsed=Math.min(seconds,15,Math.max(0,(now-b.farm.lastActiveAt)/1000));
  b.farm.lastActiveAt=now;b.farm.activeSeconds+=elapsed;
- const grown=tickCrops(s,elapsed);sync(s,b);return grown;
+ const grown=[],occupied=new Set(farmTickets(b).map(t=>t.index));
+ for(const part of activeWeatherIntervals(environment,elapsed)){
+  if(part.seconds>0&&part.environment?.weather.watersCrops)for(const [i,p] of s.plots.entries())if(p.stage===2&&!occupied.has(i)){p.stage=3;p.growth=0;p.wateredBy='rain';trackJourney(s,'water');}
+  grown.push(...tickCrops(s,part.seconds));
+ }
+ sync(s,b);return grown;
 }
 function matching(b,input){return farmTickets(b).find(t=>t.requestId===input.requestId&&t.epoch===input.epoch&&t.sequence===input.sequence)}
 export function farmReplay(doc,input){
@@ -92,6 +99,7 @@ export function applyFarmCommand(s,b,input,now){
   if(input.step!=='fertilize'&&p.stage!==stages[input.step])throw fail(p.stage===3?'作物还未成熟':'田地进度已变化，请重新查看','farm_stage');
   if(actor!=='player'&&protectedPlot(s,input.index))throw fail('这块田正在由岛主亲自照料','farm_protected');
   const crop=input.step==='sow'?input.crop:p.crop;if(!Object.hasOwn(CROPS,crop))throw fail('作物无效');
+  const environment=input.gameEnvironment?.environment;if(input.step==='sow'&&environment&&!canPlantCrop(crop,environment.season))throw fail(CROPS[crop].name+'适合'+cropSeasonLabel(crop)+'，现在是'+environment.seasonName+'季；已经种下的作物仍可照常成长和收获','farm_crop_season');
   const name=({hoe:'松土',sow:'播种',water:'浇水',harvest:'收获',fertilize:'施肥'})[input.step]+' · '+CROPS[crop].name;
   const sequence=b.sequence+1,owner=FARM_LEASE_PREFIX+b.epoch+':'+sequence,tool=actor==='facility'?null:resolveTool(s,input.step,{npc:actor==='npc'});
   const duration=actor==='npc'?NPC_CADENCE.workSeconds:actor==='facility'?3:input.step==='fertilize'?SOIL_CARE.seconds:Math.round(Math.max(.85,(input.step==='harvest'?1.5:1.3)*(tool?.durationScale||1))*1000)/1000;
@@ -136,7 +144,7 @@ export function applyFarmCommand(s,b,input,now){
    p.crop=t.crop;
    if(t.step==='harvest'){if(soilCharges(p)>0)p.fertility--;p.stage=0;p.growth=0;delete p.playerTended;s.tasks.farm=true;recordPlayerGoods(s,t.item,amount);trackJourney(s,'harvest',{item:t.item,amount});if(s.journey?.completed.harvest)for(const bed of s.plots)delete bed.playerTended;text='收获'+CROPS[t.crop].name+' ×'+amount+'，回收种子 ×1'+(soilCharges(p)>0?'，养分还可支持 '+soilCharges(p)+' 次收获':'');}
    else if(t.step==='fertilize'){if(!canFertilize(p))throw fail('田地养分已变化','farm_soil');p.fertility=SOIL_CARE.charges;text='第 '+(t.index+1)+' 块田已施肥，未来 '+SOIL_CARE.charges+' 次收获各增产 '+SOIL_CARE.bonus+' 份，成熟时间保持不变';}
-   else{p.stage=t.expectedStage+1;if(!s.journey?.completed.harvest)p.playerTended=true;if(t.step==='water'){p.growth=0;trackJourney(s,'water');}text=t.step==='hoe'?'土已松好，可以选择作物':t.step==='sow'?'已播种'+CROPS[t.crop].name+'，接下来浇水':CROPS[t.crop].name+'开始生长，约需 '+Math.ceil(CROPS[t.crop].seconds/60)+' 分钟';}
+   else{p.stage=t.expectedStage+1;if(t.step==='hoe'||t.step==='sow')delete p.wateredBy;if(t.step==='water')p.wateredBy='manual';if(!s.journey?.completed.harvest)p.playerTended=true;if(t.step==='water'){p.growth=0;trackJourney(s,'water');}text=t.step==='hoe'?'土已松好，可以选择作物':t.step==='sow'?'已播种'+CROPS[t.crop].name+'，接下来浇水':CROPS[t.crop].name+'开始生长，约需 '+Math.ceil(CROPS[t.crop].seconds/60)+' 分钟';}
   }
  }
  if(input.operation==='cancel'&&t.actor==='facility'){const u=s.functionalFacilities?.units?.[t.actorId];if(u?.serverFarmRequestId===t.requestId){u.phase='idle';u.elapsed=0;u.currentPlot=null;u.currentCrop=null;delete u.serverFarmRequestId;s.functionalFacilities.revision++}}

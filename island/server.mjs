@@ -24,7 +24,7 @@ import { resolve, extname, sep } from 'node:path';
 const root=resolve(import.meta.dirname);
 const dataLease=await acquireDataLease({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),mode:'runtime',sharedRuntime:true});
 const environmentService=await createEnvironmentService({directory:process.env.HD_ENVIRONMENT_DIR||(process.env.HD_SAVE_DIR?resolve(process.env.HD_SAVE_DIR,'environment'):resolve(root,'data/environment'))});
-const rawSaves=createSaveStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
+const rawSaves=createSaveStore({environmentProvider:()=>environmentService.view(),directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
 const worldSession=createWorldSession({directory:rawSaves.directory,saves:rawSaves}),saves=bindWorldStore(rawSaves,worldSession);
 const portfolio=createPortfolioStore({directory:rawSaves.directory});
 const stewardRequests=createStewardRequestStore({directory:rawSaves.directory});

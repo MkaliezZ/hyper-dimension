@@ -1,10 +1,11 @@
+import {residentSchedule,scheduleText} from '../src/residentSchedule.js';
 import {ROOMS} from '../src/rooms.js';
 import {travelPerson} from './lanTravelParty.mjs';
 import {worldSlots,worldWalkableForTheme,BUILDINGS} from '../src/world.js';
 const venues=[[14,3],[0,15],[21,9],[5,7],[3,14],[23,0],[17,2],[13,18],[9,16],[10,14],[7,18],[0,23],[12,21],[4,24],[18,7]];
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 export const roomPeople=r=>[...(r.residents||[]),...Object.values(r.members).flatMap(m=>m.companions||[])];
-export function publicPerson(c,online=true){return {...structuredClone(c.person),work:c.meeting?.kind==='work'?structuredClone(c.meeting):null,activity:c.activity||'在岛上走走',meetingId:c.meeting?.id||null,speech:c.speech||null,position:{x:c.x,y:c.y,direction:c.direction,walking:c.walking,online,updatedAt:c.updatedAt,route:c.path.slice(0,12),speed:62}}}
+export function publicPerson(c,online=true){return {...structuredClone(c.person),work:c.meeting?.kind==='work'?structuredClone(c.meeting):null,activity:c.activity||'在岛上走走',meetingId:c.meeting?.id||null,speech:c.speech||null,position:{indoors:c.homeRest?c.homeId:null,x:c.x,y:c.y,direction:c.direction,walking:c.walking,online,updatedAt:c.updatedAt,route:c.path.slice(0,12),speed:62}}}
 function places(theme,anchor,occupied=[],radius=108){
  const rows=[];for(let y=-radius;y<=radius;y+=18)for(let x=-radius;x<=radius;x+=18){const p={x:anchor.x+x,y:anchor.y+y};if(worldWalkableForTheme(theme,p.x,p.y)&&!occupied.some(q=>distance(p,q)<20))rows.push(p);}
  return rows.sort((a,b)=>distance(a,anchor)-distance(b,anchor));
@@ -37,12 +38,27 @@ export function stepPerson(r,c,dt,route,occupied=[]){
   if(len)c.direction=Math.atan2(dy,dx);c.x=next.x;c.y=next.y;c.walking=step>0;left-=step;if(len<=step+.001)c.path.shift();
  }
 }
-export function advanceResidents(r,at,route){
- const occupied=[...Object.values(r.members),...roomPeople(r)];
+export function advanceResidents(r,at,route,environment=null){
+ const occupied=[...Object.values(r.members),...roomPeople(r).filter(c=>!c.homeRest)];
  for(const c of r.residents||[]){
   const dt=Math.min(2,Math.max(0,(at-(c.updatedAt||at))/1000));c.updatedAt=at;
   if(at-r.members[r.owner].lastSeen>45000){c.walking=false;continue;}
   if(c.meeting){if(c.meeting.until<at){c.meeting=null;c.path=[];}else{stepPerson(r,c,dt,route,occupied);continue}}
+  const plan=residentSchedule(c.person.npcId,environment);
+  if(plan){
+   c.schedulePeriod=plan.period;
+   if(c.homeRest){if(plan.sleeping){c.walking=false;continue;}c.homeRest=false;c.homeId=null;c.scheduleKey=null;}
+   const key=plan.day+':'+plan.period+':'+plan.eventActive;
+   if(c.scheduleKey!==key||!c.path.length&&c.scheduleRetryAt&&at>=c.scheduleRetryAt){
+    const venueId=plan.working?plan.buildingId:plan.eventActive?(venues[c.person.npcId]?.[1]??22):22;
+    const venue=worldSlots(r.theme).find(s=>s.id===venueId),anchor=plan.sleeping?plan.home.entry:venue.entry;
+    let found=false;for(const target of plan.sleeping?[anchor]:places(r.theme,anchor,occupied.filter(x=>x!==c))){try{const path=route(r.theme,c,target);c.path=path;c.homeId=plan.sleeping?plan.home.id:null;c.scheduleKey=key;c.scheduleRetryAt=null;c.activity=plan.sleeping?scheduleText(plan):plan.working?'固定工作时段 · 在'+BUILDINGS[venue.id].name+'接待来访者':plan.eventActive?'下班后在'+BUILDINGS[venue.id].name+'与邻居分享见闻':'下班后在营地休息';found=true;break;}catch{}}
+    if(!found){c.scheduleRetryAt=at+10000;c.activity='等待可行走的路线 · '+scheduleText(plan);}
+   }
+   stepPerson(r,c,dt,route,occupied);
+   if(plan.sleeping&&!c.path.length&&distance(c,plan.home.entry)<24){c.homeRest=true;c.homeId=plan.home.id;c.walking=false;c.activity='在'+plan.home.name+'休息';}
+   continue;
+  }
   if(!c.path.length&&at>=c.visitAt){
    const ids=venues[c.person.npcId]||[];if(!ids.length)ids.push(c.person.npcId%25);
    const venueId=ids[c.visitIndex++%ids.length],venue=worldSlots(r.theme).find(s=>s.id===venueId);
@@ -55,6 +71,7 @@ export function advanceResidents(r,at,route){
 export function prepareMeeting(r,ids,id,at,route){
  const people=roomPeople(r),pair=ids.map(id=>people.find(c=>c.person.actorId===id));
  if(pair.some(c=>!c||!['ai','agent_recruited'].includes(c.person.kind)))throw Error('会面居民已离开');
+ if(pair.some(c=>c.homeRest||c.schedulePeriod==='sleep'))throw Error('居民正在回家休息，白天再约谈');
  if(pair[0].person.ownerAccountId===pair[1].person.ownerAccountId)throw Error('会面需要来自不同岛的居民');
  if(pair.some(c=>c.meeting&&c.meeting.id!==id&&c.meeting.until>at))throw Error('居民正在进行另一场交谈');
  if(pair.every(c=>c.meeting?.id===id))return;
@@ -78,6 +95,7 @@ export function finishMeeting(r,id,event=null){
 export function prepareRoomWork(r,parts,id,at,route){
  const people=roomPeople(r),actors=parts.map(p=>people.find(c=>c.person.actorId===p.actorId));if(actors.some(c=>!c))throw Error('共同试作的参与者已离岛');
  if(actors.every(c=>c.meeting?.id===id&&c.meeting.kind==='work'))return;
+ if(actors.some(c=>c.homeRest||c.schedulePeriod==='sleep'))throw Object.assign(Error('居民正在休息，起床后继续共同试作。'),{code:'lan_work_wait'});
  if(actors.some(c=>c.meeting&&c.meeting.id!==id&&c.meeting.until>at))throw Object.assign(Error('居民正在把这段话说完，稍后会前往工位。'),{code:'lan_work_wait'});
  const occupied=[...Object.values(r.members),...people.filter(c=>!actors.includes(c))],plans=[];
  for(const [index,c]of actors.entries()){

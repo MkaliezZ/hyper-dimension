@@ -5,6 +5,7 @@ import {mergeActionState,sameState} from './actionMerge.js';
 import {activeSlotKey,activeSaveKey,validSaveSlot} from './saveStorage.js';
 import {createSaveJournal} from './saveJournal.js';
 import {recoverPendingProgress} from './pendingSaveRecovery.js';
+import {MAX_VISIBLE_FRAME_SECONDS} from './frameClock.js';
 
 export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatus=()=>{},onRemoteState=()=>{}}){
  const sessions=new Map(),journal=createSaveJournal();
@@ -346,7 +347,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   r.appearanceRequest??={expectedVersion:r.version,appearance:next,requestId:crypto.randomUUID(),clientId};if(r.appearanceRequest.appearance!==next)throw Error('请先完成上次画风切换');
   try{const {document:doc}=await request(theme,'appearance',r.appearanceRequest);r.state=doc.state;r.dirty=false;await remember(r,doc);await cache(r);r.appearanceRequest=null;status(r,'saved','画风已切换 · 同一座小岛的进度');return r.state;}catch(e){if(e.status&&e.status<500)r.appearanceRequest=null;throw e;}
  }
- const api={appearance,load,enqueue,flush,action,refresh,async idle(theme){const r=record(theme);let tail;do{tail=r.actionTail;if(tail)await tail;if(r.inflight)await r.inflight;if(r.cacheTail)await r.cacheTail;}while(tail!==r.actionTail);if(read(commandKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成恢复'),{code:'action_pending'});},advanceTime(theme,dt){const r=record(theme);if(r.state?.farmControl?.version!==1&&r.state?.visitorControl?.version!==1&&r.state?.commerceControl?.version!==1&&r.state?.facilityControl?.version!==1||document.hidden)return;if(r.previewLock||r.previewPreparing||['recovering','offline','blocked','conflict','action_pending','import_pending'].includes(r.status)){r.activeSeconds=0;return}if(Number.isFinite(dt)&&dt>0&&dt<=.05)r.activeSeconds=Math.min(15,(r.activeSeconds||0)+dt);},pendingAction:theme=>read(commandKey(theme)),backups,backup,restore,previewImport,importSave,retryImport,cancelImportPreview,acceptServer,
+ const api={appearance,load,enqueue,flush,action,refresh,async idle(theme){const r=record(theme);let tail;do{tail=r.actionTail;if(tail)await tail;if(r.inflight)await r.inflight;if(r.cacheTail)await r.cacheTail;}while(tail!==r.actionTail);if(read(commandKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成恢复'),{code:'action_pending'});},advanceTime(theme,dt){const r=record(theme);if(r.state?.farmControl?.version!==1&&r.state?.visitorControl?.version!==1&&r.state?.commerceControl?.version!==1&&r.state?.facilityControl?.version!==1||document.hidden)return;if(r.previewLock||r.previewPreparing||['recovering','offline','blocked','conflict','action_pending','import_pending'].includes(r.status)){r.activeSeconds=0;return}if(Number.isFinite(dt)&&dt>0&&dt<=MAX_VISIBLE_FRAME_SECONDS)r.activeSeconds=Math.min(15,(r.activeSeconds||0)+dt);},pendingAction:theme=>read(commandKey(theme)),backups,backup,restore,previewImport,importSave,retryImport,cancelImportPreview,acceptServer,
   status:theme=>record(theme),blocked:theme=>!!record(theme).previewLock||!!record(theme).previewPreparing||['recovering','conflict','blocked','action_pending','import_pending'].includes(record(theme).status)};
  return storageTheme?Object.fromEntries(Object.entries(api).map(([k,fn])=>[k,(ignored,...args)=>fn(storageTheme,...args)])):api;
 }

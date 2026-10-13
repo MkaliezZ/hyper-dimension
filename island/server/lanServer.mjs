@@ -4,6 +4,7 @@ import {deviceAwareRuntimeFactory} from './deviceBridgeRuntime.mjs';
 import {createPortfolioStore} from './portfolioStore.mjs';
 import {servePortfolio} from './portfolioHttp.mjs';
 import {createEnvironmentService} from './environmentService.mjs';
+import {environmentAt} from '../src/environmentClock.js';
 import {acquireDataLease} from './dataLease.mjs';
 import {resolveTravelRecruitment} from './lanTravelParty.mjs';
 import {createLanHomeServices} from './lanHomeServices.mjs';
@@ -23,7 +24,7 @@ const interfaces=()=>Object.values(networkInterfaces()).flat().filter(a=>a&&a.fa
 export async function createLanHttpServer({environmentClockProvider,environmentDirectory,directory=resolve(root,'data'),host='127.0.0.1',port=4175,enrollmentKey=null,now=()=>Date.now(),agentRuntimeFactory,collaborationFault,socialFault}={}){
  if(!['127.0.0.1','0.0.0.0'].includes(host))throw Error('LAN listener requires an explicit loopback or all-interface address');
  const dataLease=await acquireDataLease({directory:resolve(directory,'_lan'),mode:'runtime'}),cleanup=[];try {
- const identities=createLanIdentityStore({directory,now,personalRuntime:true,resolveTravel:async account=>resolveTravelRecruitment(directory,account,await tenants.readIslandForServer(account.id,account.profile.theme))}),tenants=createLanTenantServices({directory,identities,now}),knownHosts=new Set(['127.0.0.1','localhost',hostname().toLowerCase(),...interfaces()]),rate=new Map();
+ const identities=createLanIdentityStore({directory,now,getEnvironment:()=>environmentAt(environmentService.view().clock,now()),personalRuntime:true,resolveTravel:async account=>resolveTravelRecruitment(directory,account,await tenants.readIslandForServer(account.id,account.profile.theme))}),tenants=createLanTenantServices({directory,identities,environmentProvider:()=>environmentService.view(),now}),knownHosts=new Set(['127.0.0.1','localhost',hostname().toLowerCase(),...interfaces()]),rate=new Map();
  if(!enrollmentKey){const dir=resolve(directory,'_lan');await mkdir(dir,{recursive:true});const file=resolve(dir,'enrollment.json');try{enrollmentKey=JSON.parse(await readFile(file,'utf8')).key}catch(e){if(e.code!=='ENOENT')throw e;enrollmentKey=randomBytes(6).toString('hex').toUpperCase();await writeFile(file,JSON.stringify({key:enrollmentKey},null,2)+'\n',{mode:0o600});}}
  if(typeof enrollmentKey!=='string'||enrollmentKey.length<8||enrollmentKey.length>80)throw Error('Invalid enrollment key');
  function allowed(req){let h;try{h=new URL('http://'+req.headers.host)}catch{return false;}if(!knownHosts.has(h.hostname.toLowerCase())||Number(h.port||80)!==server.address()?.port||req.headers['sec-fetch-site']==='cross-site')return false;if(req.headers.origin){try{if(new URL(req.headers.origin).origin!==h.origin)return false;}catch{return false;}}return true;}

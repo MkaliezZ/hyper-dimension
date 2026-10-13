@@ -3,7 +3,7 @@ import {availableQuantity} from './resourceLedger.js';
 import {cropInfo,soilCharges,harvestAmount,canFertilize,SOIL_CARE} from './farming.js';
 export function createFarmCareUI({state,theme,scene,busy,modalOpen,openModal,closeModal,goFarm,begin,detail}){
  const button=document.createElement('button');button.id='farmCareBtn';button.className='farm-care-trigger hud-panel';button.type='button';button.hidden=true;document.getElementById('app').append(button);
- const stage=p=>['待松土','待播种','待浇水','正在生长','等待收获'][p.stage];
+ const stage=p=>p.stage===3&&p.wateredBy==='rain'?'雨水浇透 · 生长中':['待松土','待播种','待浇水','正在生长','等待收获'][p.stage];
  let markupKey='';
  function paint(){button.hidden=scene()!=='farm'||modalOpen();if(button.hidden)return;button.disabled=busy();const count=availableQuantity(state(),SOIL_CARE.item),key=theme()+':'+count;if(key!==markupKey){markupKey=key;button.innerHTML=itemMarkup(SOIL_CARE.item,theme(),'farm-care-icon')+'<span><b>养土与施肥</b><small>可用肥料 '+count+' 袋</small></span>';}}
  function open(){if(busy())return;goFarm();const s=state(),available=availableQuantity(s,SOIL_CARE.item);openModal('田间养土','一袋肥料 · 一块田 · 三次有限增产',

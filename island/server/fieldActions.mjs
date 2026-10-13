@@ -14,6 +14,7 @@ import {recordTaskStep} from '../src/taskBoard.js';
 import {recordResidentStoryWork,interruptResidentStory} from '../src/residentStories.js';
 import {applyFarmCommand} from './farmActions.mjs';
 import {NPC_CADENCE} from '../src/npcCadence.js';
+import {fishingWeather} from '../src/weatherRules.js';
 export const FIELD_LEASE_PREFIX='server-field:';
 const fail=(message,code='field_invalid')=>Object.assign(Error(message),{status:409,code});
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
@@ -58,7 +59,7 @@ export function applyFieldCommand(s,b,i,now){enableField(s,b,now);assertFieldSta
   let seed=null,difficulty=1,game=null;
   if(actor==='player'){
    if(i.field==='mine')game=createMiningGame(minePrecision(s,tool));
-   else{const key='field-fishing',history=s.miniGameHistory??={};history[key]={attempts:0,wins:0,lossStreak:0,winStreak:0,recentSeeds:[],completedSeeds:[],...history[key]};const h=history[key];seed=randomInt(1,0x100000000);difficulty=chooseDifficulty(h,mode);h.attempts++;h.recentSeeds=[...h.recentSeeds,seed].slice(-12);h.lastMode=mode;game=createCraftGame(16,seed,difficulty,tool)}
+   else{const key='field-fishing',history=s.miniGameHistory??={};history[key]={attempts:0,wins:0,lossStreak:0,winStreak:0,recentSeeds:[],completedSeeds:[],...history[key]};const h=history[key];seed=randomInt(1,0x100000000);difficulty=chooseDifficulty(h,mode);h.attempts++;h.recentSeeds=[...h.recentSeeds,seed].slice(-12);h.lastMode=mode;game=createCraftGame(16,seed,difficulty,tool);if(i.gameEnvironment)game.state.weather=fishingWeather(i.gameEnvironment.environment.weather);}
   }
   const t={kind:'field',beginSignature:beginSignature(i),field:i.field,requestId:i.requestId,epoch:b.epoch,sequence,item:item.id,name,actor,actorId,index:i.field==='mine'?i.index:null,expectedHp:i.field==='mine'?s.oreNodes[i.index].hp:null,owner,reservedItems,action,tool,duration,mode,seed,difficulty,game,nextBatch:1,day:s.day,startedAt:now,readyAt:actor==='npc'?now+Math.ceil(duration*1000):null,expiresAt:now+30*60*1000,operationId,assignmentId:task?.id||null,assignmentVersion:task?.assignmentVersion||0,storyId,purposeId:String(i.purposeId||'').slice(0,100),source:task?'hermes':i.source==='deepseek'?'deepseek':'local'};
   if(actor==='player')t.readyAt=now+Math.ceil(duration*1000);

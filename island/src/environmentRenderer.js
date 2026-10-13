@@ -3,6 +3,7 @@ import {drawSeasonArtwork,seasonArtworkStatus} from './seasonArtwork.js';
 import {drawOceanShader} from './oceanShader.js';
 import {buildEnvironmentGeometry} from './environmentGeometry.js';
 import {terrainViewport} from './mapTileLayout.js';
+import {rainParticle,weatherParticleBudget} from './weatherVisuals.js';
 const W=WORLD.width,H=WORLD.height,CELL=4,fields=new Map(),pending=new Set(),TAU=Math.PI*2;
 let latest={ready:false,ripples:0,waveLoops:0,maskVersion:127};
 export function environmentArtStatus(){return {...latest,seasonalArtwork:seasonArtworkStatus(latest.theme)};}
@@ -42,11 +43,12 @@ export function drawOceanMotion(ctx,image,theme,time,env){
 // Each season uses newly drawn blossoms, foliage or snow in the original high-resolution forest geometry.
 export function drawSeasonTerrain(ctx,image,theme,env){prepare(image,theme);}
 export function drawEnvironmentFront(ctx,image,theme,env,time,{slots=[],buildings=null}={}){
- const f=prepare(image,theme),pixel=theme==='pixel',view=terrainViewport(ctx.getTransform(),ctx.canvas.width,ctx.canvas.height);ctx.save();
- if(f&&view){ctx.save();for(let i=0,count={spring:180,summer:68,autumn:150,winter:260}[env.season];i<count;i++){const x=hash(i+17)*W+Math.sin(time*.28+i)*24+Math.sin(time*.09)*18,speed={spring:12,summer:2,autumn:17,winter:16}[env.season]+hash(i+99)*10,y=(hash(i+231)*H+time*speed)%H;if(!visible({x,y},view)||env.season!=='winter'&&f.isWater(x,y))continue;const size=2.1+hash(i+54)*1.8;ctx.save();ctx.translate(x,y);ctx.globalAlpha=env.transition??1;
+ const f=prepare(image,theme),pixel=theme==='pixel',view=terrainViewport(ctx.getTransform(),ctx.canvas.width,ctx.canvas.height),budget=weatherParticleBudget(env);ctx.save();
+ if(f&&view){ctx.save();for(let i=0,count={spring:180,summer:0,autumn:150,winter:budget.snow}[env.season];i<count;i++){const x=hash(i+17)*W+Math.sin(time*.28+i)*24+Math.sin(time*.09)*18,speed={spring:12,summer:2,autumn:17,winter:16}[env.season]+hash(i+99)*10,y=(hash(i+231)*H+time*speed)%H;if(!visible({x,y},view)||env.season!=='winter'&&f.isWater(x,y))continue;const size=2.1+hash(i+54)*1.8;ctx.save();ctx.translate(x,y);ctx.globalAlpha=env.transition??1;
    if(env.season==='winter'){ctx.globalAlpha=(.62+.24*Math.sin(time+i))*(env.transition??1);ctx.fillStyle='#eef8ff';if(pixel){ctx.fillRect(-size/2,-size*.9,size,size*1.8);ctx.fillRect(-size*.9,-size/2,size*1.8,size);}else{ctx.rotate(time*.08+i);ctx.strokeStyle='#eef8ff';ctx.lineWidth=.65;ctx.beginPath();for(let arm=0;arm<6;arm++){const a=arm*TAU/6;ctx.moveTo(0,0);ctx.lineTo(Math.cos(a)*size,Math.sin(a)*size);const x=Math.cos(a)*size*.55,y=Math.sin(a)*size*.55;for(const side of [-1,1]){ctx.moveTo(x,y);ctx.lineTo(x+Math.cos(a+side*.85)*size*.33,y+Math.sin(a+side*.85)*size*.33);}}ctx.stroke();}}
    else if(env.season==='autumn'){ctx.rotate(Math.sin(time*.8+i)*1.1);ctx.fillStyle=i%2?'#d98036':'#edb951';ctx.beginPath();ctx.moveTo(-size*1.8,0);ctx.lineTo(0,-size);ctx.lineTo(size*1.8,0);ctx.lineTo(0,size);ctx.closePath();ctx.fill();ctx.strokeStyle='#9c653c88';ctx.lineWidth=.65;ctx.beginPath();ctx.moveTo(-size*1.8,0);ctx.lineTo(size*1.8,0);ctx.stroke();}
    else if(env.season==='spring'){ctx.rotate(time*.22+i+Math.sin(time*.75+i)*.65);ctx.fillStyle=i%2?'#f7c6dac9':'#ffe2ecd9';if(pixel){ctx.fillRect(-size,-size/2,size*1.5,size);ctx.fillRect(-size*.45,-size*.9,size*.7,size*.7);}else{ctx.beginPath();ctx.moveTo(-size,0);ctx.quadraticCurveTo(-size*.7,-size*1.2,size*.8,-size*.4);ctx.quadraticCurveTo(size*1.2,size*.7,-size,0);ctx.fill();ctx.strokeStyle='#fff2f2a0';ctx.lineWidth=.45;ctx.beginPath();ctx.moveTo(-size*.5,0);ctx.lineTo(size*.65,-size*.2);ctx.stroke();}}
    ctx.restore();}ctx.restore();}
- ctx.restore();
+ if(f&&view)for(let i=0;i<budget.rain;i++){const p=rainParticle(i,time,W,H);if(!visible(p,view,12))continue;ctx.strokeStyle='rgba(224,242,251,'+p.alpha+')';ctx.lineWidth=pixel?1.5:1;ctx.beginPath();if(p.kind==='drop'){const x=pixel?Math.round(p.x):p.x,y=pixel?Math.round(p.y):p.y;ctx.moveTo(x,y);ctx.lineTo(x+p.length*.18,y+p.length);}else{if(!f.isWater(p.x,p.y))continue;if(pixel){ctx.moveTo(Math.round(p.x-p.radius),Math.round(p.y));ctx.lineTo(Math.round(p.x-1),Math.round(p.y-1));ctx.moveTo(Math.round(p.x+1),Math.round(p.y+1));ctx.lineTo(Math.round(p.x+p.radius),Math.round(p.y));}else ctx.ellipse(p.x,p.y,p.radius,p.radius*.35,0,0,TAU);}ctx.stroke();}
+ latest={...latest,weather:env.weather?.id||'clear',rain:budget.rain,snow:budget.snow};ctx.restore();
 }

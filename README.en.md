@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V174
+## What's new · V175
+
+Shared weather now affects farming and fishing: 11 crops have planting seasons, rain waters outdoor plots and rainy fishing has wider input tolerance. All 16 permanent residents follow work and home schedules, with accepted night-event attendance. Fixed lost active time at low FPS and redundant scene resets when opening the gallery. [Implementation and evidence](island/docs/weather-life-v175.md).
+
+### V174 · Native parcels and building alignment
 
 Recalibrated all 25 production buildings and 16 homes against native terrain in both styles. Fixed the tide house, boatyard, post office and campsite offsets; narrow plots now preserve proportional building sizes. Rendering, labels, picking and ground collision follow the corrected anchors. [Alignment details](island/docs/parcel-alignment-v174.md).
 
@@ -58,7 +62,7 @@ The expanded terrain and homes retain V169. The current film records terrain and
 | Travel with your steward | Multiplayer reception, accompanying NPCs, original-device bridging and standard A2A share attributed cooperation records. Cross-device work needs pairing and an online original device. |
 | Change art styles | Pixel and origami terrain, buildings, characters, rooms, items and UI, with native region loading, animated ocean ripples and shore waves. |
 
-The season interface uses 30 visual days per season. Full-map seasonal artwork, useful weather, night lighting and resident schedules are continuing development on the expanded island. This update provides home exteriors, owner profiles and conversation entries.
+Each season lasts 30 visual days. Weather effects, seasonal planting and resident home schedules are connected. Full-map seasonal native artwork, new crops and recipes, night lighting and moon reflections remain in development; home interiors retain the existing presentation entries.
 
 ## Native screenshots
 

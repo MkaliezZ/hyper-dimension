@@ -33,6 +33,7 @@ import {assertVisitorState,advanceVisitorClock} from './visitorActions.mjs';
 import {assertResidentState} from './residentActions.mjs';
 import {assertFieldState,advanceFieldClock} from './fieldActions.mjs';
 import {assertFarmState,advanceFarmClock} from './farmActions.mjs';
+import {gameEnvironment} from './gameEnvironment.mjs';
 import {newActionBook,validActionBook,assertActionHold,clearActionHolds,actionReplay,applyGatherCommand} from './playerActions.mjs';
 import {validFunctionalFacilities} from '../src/functionalFacilities.js';
 import {validSpecialization} from '../src/specialization.js';
@@ -98,7 +99,7 @@ function validateDocument(doc,theme){
  return doc;
 }
 const info=doc=>({schema:doc.schema,theme:doc.theme,revision:doc.revision,version:doc.version,updatedAt:doc.updatedAt,reason:doc.reason,day:doc.state.day,coins:doc.state.coins});
-export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300000,externalEconomy=false,externalFault=()=>{},importFault=async()=>{}}){
+export function createSaveStore({directory,environmentProvider=()=>null,now=()=>Date.now(),backupInterval=300000,externalEconomy=false,externalFault=()=>{},importFault=async()=>{}}){
  const root=resolve(directory),hireRegistry=createRecruitmentStore({directory}),partyProof=createPartyProposalStore({directory}),imports=createSaveImportIO({root,now});
  function paths(theme){
   if(!['pixel','origami'].includes(theme))throw fail('未知画风');
@@ -334,7 +335,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     if(saveId!==null&&!/^[a-zA-Z0-9-]{8,80}$/.test(saveId))throw fail('存档请求编号无效');
     compare(old,expectedVersion);if(old.state.geographyVersion===169&&state.geographyVersion!==169)throw fail('地图版本已更新，请重新读取当前小岛',409,'geography_conflict');if(state.worldAppearance!==old.state.worldAppearance)throw fail('画风切换需通过小岛外观入口',409,'appearance_conflict');if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
     state=structuredClone(state);const actions=old.actions?structuredClone(old.actions):undefined;
-    const farmSeconds=actions?.farm?.activeSeconds||0;advanceFarmClock(state,actions,activeSeconds,now());advanceFieldClock(state,actions,(actions?.farm?.activeSeconds||0)-farmSeconds);advanceVisitorClock(state,actions,activeSeconds,now());advanceCommerceClock(state,actions,activeSeconds,now());advanceFacilityClock(state,actions,activeSeconds,now());
+    const farmSeconds=actions?.farm?.activeSeconds||0;advanceFarmClock(state,actions,activeSeconds,now(),gameEnvironment(environmentProvider,now()));advanceFieldClock(state,actions,(actions?.farm?.activeSeconds||0)-farmSeconds);advanceVisitorClock(state,actions,activeSeconds,now());advanceCommerceClock(state,actions,activeSeconds,now());advanceFacilityClock(state,actions,activeSeconds,now());
     if(actions?.farm&&saveId)actions.farm.autosaves=[...(actions.farm.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
     if(actions?.visitor&&saveId)actions.visitor.autosaves=[...(actions.visitor.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
     if(actions?.facility&&saveId)actions.facility.autosaves=[...(actions.facility.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
@@ -358,7 +359,7 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     const verifiedContract=input.kind==='commerce'&&['hire_handover','hire_renew','hire_bind','hire_renew_prepare'].includes(input.operation)?await hireRegistry.peek(theme,input.contractId):null;
     const verifiedRenewal=input.kind==='commerce'&&input.operation==='hire_renew'?await hireRegistry.peek(theme,input.renewalId):null;
     const verifiedProposal=input.kind==='commerce'&&['fish_steward','night_steward','festival_steward','couture_steward','fireworks_steward'].includes(input.operation)?await partyProof.peek({theme,worldKey:state.saveSlot||'legacy-'+theme,runId:input.runId,proposalId:input.proposalId}):null;
-    const result=applyGatherCommand(state,actions,{...input,theme,appearance:worldAppearance(state,theme),verifiedContract,verifiedRenewal,verifiedProposal},now());recordHostingAction(state,actions,input,result);recordHireDelivery(state,actions,result.receipt);recordCrossTaskReceipt(state,result.receipt);syncFacilityState(state,actions);
+    const result=applyGatherCommand(state,actions,{...input,gameEnvironment:gameEnvironment(environmentProvider,now()),theme,appearance:worldAppearance(state,theme),verifiedContract,verifiedRenewal,verifiedProposal},now());recordHostingAction(state,actions,input,result);recordHireDelivery(state,actions,result.receipt);recordCrossTaskReceipt(state,result.receipt);syncFacilityState(state,actions);
     const doc=await commit(p,theme,state,old,'action-'+input.operation,String(input.clientId||'').slice(0,80),actions);
     if(input.kind==='commerce'&&input.operation==='hire_renew')await hireRegistry.renewal_commit(theme,doc,input.renewalId);
     return {document:doc,...result,replayed:false};

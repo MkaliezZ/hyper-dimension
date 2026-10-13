@@ -1,3 +1,4 @@
+import {weatherForEnvironment} from './weatherRules.js';
 export const ENVIRONMENT_PROTOCOL=1;
 export const SEASONS=Object.freeze(['spring','summer','autumn','winter']);
 export const SEASON_NAMES=Object.freeze({spring:'春',summer:'夏',autumn:'秋',winter:'冬'});
@@ -11,5 +12,5 @@ export function environmentAt(c,serverNowMs){
  const daylight=clamp((Math.sin((phase-.25)*Math.PI*2)+.16)/.65),night=1-daylight,dawn=Math.exp(-Math.pow((hour-6.1)/1.2,2)),dusk=Math.exp(-Math.pow((hour-18.1)/1.4,2));
  const minutes=Math.floor(hour*60+1e-7)%1440;
  const period=hour<5||hour>=20?'night':hour<8?'dawn':hour<17?'day':'dusk';
- return {schema:1,clockId:c.clockId,revision:c.revision,source:c.source,cycles,phase,hour,period,season,seasonName:SEASON_NAMES[season],seasonProgress:mod(seasonCycle,1),daylight,night,dawn,dusk,clockText:String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0'),dayLengthMs:c.dayLengthMs,seasonDays:c.seasonDays,rate:c.rate};
+ return {weather:weatherForEnvironment({clockId:c.clockId,cycles,season}),schema:1,clockId:c.clockId,revision:c.revision,source:c.source,cycles,phase,hour,period,season,seasonName:SEASON_NAMES[season],seasonProgress:mod(seasonCycle,1),daylight,night,dawn,dusk,clockText:String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0'),dayLengthMs:c.dayLengthMs,seasonDays:c.seasonDays,rate:c.rate};
 }
