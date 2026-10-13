@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v176-agent-source",
+  "release": "hyper-dimension-v177-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 6784,
-      "sha256": "2bf70dbe2bc61865f1ab9ed4f3ba4af8e4612388e1249f524de2690dfcfdf7a3"
+      "bytes": 7058,
+      "sha256": "511fc2768f334274c2f1d6289961303ae95ce508782d6ae1889f1713c8961afe"
     },
     {
       "path": "README.md",
-      "bytes": 6123,
-      "sha256": "93368a051c8d34ffe94218113dbd1ee1b5d9e38fa115945dd1ebd9fd6facf111"
+      "bytes": 6367,
+      "sha256": "80aaf6fd206644e17ce3c170811af5bdf134783bc93b3d937cb247fb02e553c2"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -209,6 +209,11 @@
       "path": "docs/kitchen-v142.md",
       "bytes": 3145,
       "sha256": "d77a031507e27f8351138effdded54dc8a94ffdfe92722d89d5f1e0cebab84b4"
+    },
+    {
+      "path": "docs/lan-catalog-upgrade-v177.md",
+      "bytes": 2659,
+      "sha256": "457a3f3788396624c42cd681e756ba93253ab8e87b504e9b7bf1cda80eb4bfdf"
     },
     {
       "path": "docs/lobby-ground-v171.md",
@@ -1922,8 +1927,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9822,
-      "sha256": "a00ef14c0d1f32f03a1c3e80762d00b97318c8cfdeac79331e1257e688690f1c"
+      "bytes": 9862,
+      "sha256": "778484897fbbfd637f746004bc680aee0a8ce434477520a73a92208105c97300"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4557,8 +4562,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 37955,
-      "sha256": "df24693e1c4f68a51f3bd93ba2a9d1b4a8f4dc0a857444297d0abecb343b2465"
+      "bytes": 38070,
+      "sha256": "959a0a6d391952e434c1f2ff48204a6981b8d863a936c23ca0fa76baad3a861e"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -7324,6 +7329,11 @@
       "path": "tests/v176-workshop-transport-browser.mjs",
       "bytes": 5170,
       "sha256": "35754f27844dffd1020df400592fc2551a929560b9dbfd3e35decd6b6fb6c506"
+    },
+    {
+      "path": "tests/v177-lan-catalog-upgrade.test.mjs",
+      "bytes": 6397,
+      "sha256": "18dcc5db5947ec4dd4fd32c54a728e948935113aee7f89a9867e63e82301ec60"
     },
     {
       "path": "tests/v18-balance-probe.mjs",

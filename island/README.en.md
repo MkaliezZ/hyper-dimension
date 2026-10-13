@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V176
+## What's new · V177
+
+The LAN entry now upgrades legacy item catalogs before play, fixing repeated save conflicts after updating. Existing inventory and activity settlements are preserved. [Save upgrade fix](docs/lan-catalog-upgrade-v177.md).
+
+### V176 · Minigames, layout and seasonal content
 
 The boatyard now sits beside the southeastern harbor, with the fireworks workshop on the inner terrace. Routine checkpoints no longer interrupt wardrobe and shared minigame controls; recovery, held input and reward draining were also repaired. [Interaction and layout fixes](docs/minigame-input-v176.md).
 

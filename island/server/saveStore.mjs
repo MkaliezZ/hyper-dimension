@@ -211,6 +211,17 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
   await atomicJSON(p.restart,{...request,applied:true});
   return doc;
  }
+ async function migrateCatalog(p,theme,doc,clientId){
+  // Both protected LAN open and standalone openClient must extend the canonical
+  // inventory before browser hydration changes the protected personal snapshot.
+  const missing=Object.keys(ITEM_BY_ID).filter(id=>!Object.hasOwn(doc.state.inventory,id));
+  if(!missing.length&&doc.state.productionVersion===PRODUCTION_VERSION)return doc;
+  await snapshot(p,doc,'before-catalog-v176');
+  const state=structuredClone(doc.state),actions=doc.actions?structuredClone(doc.actions):undefined;
+  for(const id of missing)state.inventory[id]=0;
+  state.productionVersion=PRODUCTION_VERSION;
+  return commit(p,theme,state,doc,'catalog-migration-v176',clientId,actions);
+ }
  const api={
   directory:root,
   async open(theme,{legacyState,clientId='',protect=false,identity={}}={}){
@@ -224,6 +235,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
     }
     let request;try{request=JSON.parse(await readFile(p.restart,'utf8'))}catch{}
     if(request&&!request.applied){doc=await applyRestart(p,theme,doc,request);restarted=true}
+    if(protect)doc=await migrateCatalog(p,theme,doc,clientId);
     return {document:doc,migrated,restarted};
    });
   },
@@ -253,16 +265,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
      doc=await commit(p,theme,state,doc,'resource-migration',clientId,actions);
     }
     if(doc.state.economy?.budgetPolicyVersion!==105){await snapshot(p,doc,'before-economy-policy');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateEconomyPolicy(state,actions);doc=await commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);}
-    // Extend the canonical inventory before browser hydration. Adding zero keys in
-    // the browser would otherwise disagree with the protected personal snapshot.
-    const missingCatalogItems=Object.keys(ITEM_BY_ID).filter(id=>!Object.hasOwn(doc.state.inventory,id));
-    if(missingCatalogItems.length||doc.state.productionVersion!==PRODUCTION_VERSION){
-     await snapshot(p,doc,'before-catalog-v176');
-     const state=structuredClone(doc.state),actions=doc.actions?structuredClone(doc.actions):undefined;
-     for(const id of missingCatalogItems)state.inventory[id]=0;
-     state.productionVersion=PRODUCTION_VERSION;
-     doc=await commit(p,theme,state,doc,'catalog-migration-v176',clientId,actions);
-    }
+    doc=await migrateCatalog(p,theme,doc,clientId);
     // V165: older NPC payouts could acknowledge stock before recording discovery.
     // Derive flags only from the verified canonical inventory, never the browser copy.
     const ownedUndiscovered=missingOwnedDiscoveries(doc.state);
