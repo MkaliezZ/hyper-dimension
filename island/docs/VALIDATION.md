@@ -297,3 +297,10 @@ The final default gate passed 1078/1078 (1064 domain checks and 14 runtime guard
 The final default gate passed **1095/1095** (1081 domain checks and 14 runtime guards), without failures or skips. Four native 8/15 FPS navigation cases retain their original assertions; all six reward/cancel/recovery cases passed. Sunny NPC fixtures complete actual 20-second sow and water work while unrelated accepted replies are held, without changing soil before the farm receipt or duplicating seed costs after reload.
 
 V178 run 38418522784 has three successful jobs, two failed jobs and one timed-out job: the macOS 14 reward barrier race and Intel slow-frame navigation are distinct findings. Catalog art and native gameplay now run in independent jobs while preserving every original check; the new head requires fresh cloud verification. Native/fixture checks do not replace physical Mac, human, full-day schedule or whole-product acceptance. [Implementation and scope](navigation-arrival-v179.md).
+
+
+## V180 · 连续人物与所有地形连接 / Connected animation and every terrain join
+
+默认门1102项：1088领域规则通过，14运行目录保护在沙箱进程查询拒绝后以本机读权限重跑通过。双画风解码448个人物帧，审查3136个七类动作图样和480个穿衣工具组合；全部98个区域连接与20处补绘周边有逐项原生审查。6张局部原生PNG接入，原生产地块和寻路坐标保留。真实浏览器夹具的工坊/管家住所、换风格、刷新通过；模型调用关闭。初始化与后台加载长帧单独保留。V179云端为8成功、1取消，Intel部署45分钟时取消且checkout占约30分钟；该任务预算更新为60分钟，新提交尚需独立云端结果。[完整范围](terrain-animation-v180.md)。
+
+The required gate passed 1102 checks: 1088 domain checks and 14 runtime guards; the guards were rerun with local process-inventory permissions after a sandbox denial, without changing assertions. Native review covers 448 decoded character frames, 3136 action samples, 480 dressed-tool samples, all 98 regional joins and 20 landmark/repair perimeters. Six unmodified generated PNGs repair local joins without relocating production/navigation geometry. Isolated browser entry, shared-style switching and reload checks passed with models disabled. Cold and background-loading stalls are retained. V179 had eight successful jobs and one cancelled Intel deployment job; its checkout took about 30 minutes of the 45-minute limit. The deployment job budget is now 60 minutes; the new head needs fresh cloud results.

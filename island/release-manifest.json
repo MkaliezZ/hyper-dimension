@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v179-agent-source",
+  "release": "hyper-dimension-v180-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8081,
-      "sha256": "e60563bace497cbe543d1cb07f05a48591d77432bd84266e4bfddb6a6cccde70"
+      "bytes": 8727,
+      "sha256": "cb5a3251ddc916901e39be87df0b8011c91e6b8bc88dcfd06608ae6dc2fa6c21"
     },
     {
       "path": "README.md",
-      "bytes": 7319,
-      "sha256": "811309f60aa0c83811d070c4695209edd86cf1cc526ba40cc53c7cfa3193f53c"
+      "bytes": 7809,
+      "sha256": "e607ed7fa454b552ebe85b998ee40a13ec411b332a6090d78d19ae88091e3d17"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 32667,
-      "sha256": "2d72eda1c673e296ee3d57301e6e226a44fa196f9a48e1441fa69d723f8db381"
+      "bytes": 34269,
+      "sha256": "bdf6df635201019a9548e78eb6fd8b86b337da65db9782b54cc52d7eb7736831"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -109,6 +109,11 @@
       "path": "docs/brush-v139-verification.json",
       "bytes": 708,
       "sha256": "bdfecf00504866d70557aa2cccb1b3014b1895e9337e530116a45191a2e244b8"
+    },
+    {
+      "path": "docs/character-animation-evidence-v180.json",
+      "bytes": 7204,
+      "sha256": "90cf6854469e93056a4ed741423e7766c5ba86c61c33c417d8b3b75f3c6749d1"
     },
     {
       "path": "docs/classic-settlement-v110.md",
@@ -526,6 +531,76 @@
       "sha256": "8e2b483d8fd42109723fabe31ca26f6d8c0d332b37814e2c4be36d37d856da95"
     },
     {
+      "path": "docs/media/v180/origami-all-10-patch-perimeters.png",
+      "bytes": 6863342,
+      "sha256": "3d6e273660f2a120f07c7a046c1da850f27edb106e0d3b4662f4569b22ad04cd"
+    },
+    {
+      "path": "docs/media/v180/origami-all-49-edges.png",
+      "bytes": 8494165,
+      "sha256": "27ef8aa71dc299cef5d6045f320db04f14234de202953c200082b13ead43ed42"
+    },
+    {
+      "path": "docs/media/v180/origami-boatyard-context.png",
+      "bytes": 1558504,
+      "sha256": "6796096c2cccc880e6d42092cfc5364f5e2571ec67d644be04fd501cf955234e"
+    },
+    {
+      "path": "docs/media/v180/origami-farm-context.png",
+      "bytes": 3032237,
+      "sha256": "1da9501e68855b7a28b6752ed51c974b628c1df0304aa5adaca9fed167158e31"
+    },
+    {
+      "path": "docs/media/v180/origami-overview.png",
+      "bytes": 3875543,
+      "sha256": "dfac4454e4820cc219daeb1fa7232dca9ba977526e5ed02136096abd9b3ee6e6"
+    },
+    {
+      "path": "docs/media/v180/origami-photo-context.png",
+      "bytes": 1715180,
+      "sha256": "1b56e86b7cf7a53408c5907ee3d2988f16b6f60a3aea769b34256e7bbbc59db3"
+    },
+    {
+      "path": "docs/media/v180/origami-workshop.png",
+      "bytes": 2020992,
+      "sha256": "1b9f2f760a33f28f83acad25999d2769550850c21916fa630c9ffc9bdb4da639"
+    },
+    {
+      "path": "docs/media/v180/pixel-all-10-patch-perimeters.png",
+      "bytes": 7199027,
+      "sha256": "26974ffebb90ae283e83c07bbfcbf0a20e96731212547e159860bbda080eb2d6"
+    },
+    {
+      "path": "docs/media/v180/pixel-all-49-edges.png",
+      "bytes": 8843021,
+      "sha256": "6f120c63340a0ebd58aa14538c9e6092d65efa458f65cdb80260c0c248b0ca75"
+    },
+    {
+      "path": "docs/media/v180/pixel-boatyard-context.png",
+      "bytes": 1657364,
+      "sha256": "c5a0ad66cc00e1cfb9503fbd0908030ff007807c4fedec03b759a68013c31927"
+    },
+    {
+      "path": "docs/media/v180/pixel-farm-context.png",
+      "bytes": 3176722,
+      "sha256": "0fe83ea2d38a2279ecabf76ccd7d72417ec3dfbd164b1d2f8ecaa6bebf61eb89"
+    },
+    {
+      "path": "docs/media/v180/pixel-overview.png",
+      "bytes": 4115677,
+      "sha256": "751f2f54e8bbb34dd8787a2a82952c2124ed9ee40638d2e967d59eb92a640357"
+    },
+    {
+      "path": "docs/media/v180/pixel-photo-context.png",
+      "bytes": 1803548,
+      "sha256": "8fc8dd8a7bff2d9a28923ff474ef02cdaf4d76ea1fa845948fb53243f9aba853"
+    },
+    {
+      "path": "docs/media/v180/pixel-workshop.png",
+      "bytes": 1231822,
+      "sha256": "fa44a0b46f2b02d4933abff8d978bb143d7a5a33b9ffe2da502d27d641a301ab"
+    },
+    {
       "path": "docs/minigame-input-v176.md",
       "bytes": 5921,
       "sha256": "e512e40934ac80326be8e86618800b1da8957bf0c9110936fd6314e20e30d935"
@@ -534,6 +609,11 @@
       "path": "docs/modal-command-navigation-v157.md",
       "bytes": 3290,
       "sha256": "365e747117d84221b26ec7bd06f85ed4bfa972cdf18c92c99ff9fdbe9c140fad"
+    },
+    {
+      "path": "docs/native-join-art-provenance-v180.json",
+      "bytes": 2589,
+      "sha256": "e9a84ab25b985f6c071800005b4925cec31774d925b3c46cd508ca3996cb45c2"
     },
     {
       "path": "docs/navigation-arrival-v179.md",
@@ -1081,6 +1161,11 @@
       "sha256": "22e65028f1fa200c91c9a183cf6bc51d2f10f395eaf0493ff00e6d2930458931"
     },
     {
+      "path": "docs/terrain-animation-v180.md",
+      "bytes": 3731,
+      "sha256": "89d74fc42d30efadb550793143f367a5e6b08379699152dcda2979b236346660"
+    },
+    {
       "path": "docs/terrain-art-v119.json",
       "bytes": 5334,
       "sha256": "1f6e6c7d2a132b540095160d7e7a52af83a6654d533cf89157ebcd65a07d50ff"
@@ -1119,6 +1204,11 @@
       "path": "docs/terrain-previews-v169.json",
       "bytes": 856,
       "sha256": "502f6d8ffd45b026b89e145a381e5825a8e17d1921611b69ca790b15aae0e571"
+    },
+    {
+      "path": "docs/terrain-seam-review-v180.json",
+      "bytes": 44792,
+      "sha256": "d2cddd584b6ea4dcb89ef363742a8fad05304b047820e21518edbebb4ad6f3e9"
     },
     {
       "path": "docs/terrain-v119.md",
@@ -1952,8 +2042,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 10089,
-      "sha256": "04cdf0298fb80a32b95e6bf984b024c298341acce64d02d993ef4de1164fa2a7"
+      "bytes": 10157,
+      "sha256": "966211cf3e0be088be957a69453e826ceba66e4388e6aee4ae4bdf9aa590197a"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2879,6 +2969,36 @@
       "path": "public/assets/items-season-pixel-harvest-v176.png",
       "bytes": 1201067,
       "sha256": "90557645eb237be9ed7b479c47767f029e9e62d6a84796f950d8de84ad06447c"
+    },
+    {
+      "path": "public/assets/map-joins-v180/origami-boatyard-join.png",
+      "bytes": 2543335,
+      "sha256": "d20d8f9bdbf26990f6600b1553d9a2a5eb57acc3b4a76e3b941b3f8421975115"
+    },
+    {
+      "path": "public/assets/map-joins-v180/origami-farm-join.png",
+      "bytes": 2858785,
+      "sha256": "7c258a644122dad8dc77733ebaa1dd3f356c16d264fd6d61b9a0531f7dd7c974"
+    },
+    {
+      "path": "public/assets/map-joins-v180/origami-photo-join.png",
+      "bytes": 2801548,
+      "sha256": "060eed04ad6cbb8a6f22a5f7334b70d1d4369b2ac6f1ec37943d12e0e6adb8e5"
+    },
+    {
+      "path": "public/assets/map-joins-v180/pixel-boatyard-join.png",
+      "bytes": 2693826,
+      "sha256": "668467de1aa5a301c79666a3243a3f25df747ac3ff7d65265c668047443ddb6d"
+    },
+    {
+      "path": "public/assets/map-joins-v180/pixel-farm-join.png",
+      "bytes": 3034204,
+      "sha256": "593908e782019a6f9211fe9597c0d03154836bf6ce523603f234d83779249370"
+    },
+    {
+      "path": "public/assets/map-joins-v180/pixel-photo-join.png",
+      "bytes": 2887673,
+      "sha256": "2b5f5cbe0f4c53c42c23417a0c0f42d5b6f996a9040dc22aaf56746737d020eb"
     },
     {
       "path": "public/assets/map-tiles-v119/origami-0-0.png",
@@ -4697,8 +4817,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 5835,
-      "sha256": "0564de6f512da316e5d3143e818b502821845690f579f163233c9258f50b3ef6"
+      "bytes": 6148,
+      "sha256": "efc7110caf4baaaa0a63ea1aed9a04a7876ed1c1306c8aa775443110875bae61"
     },
     {
       "path": "src/activityGames.js",
@@ -4796,9 +4916,14 @@
       "sha256": "2694ce8359dc251056402898f2e3dcd6c8b5f4b26505ae8bffb8dbeb5ef091c0"
     },
     {
+      "path": "src/characterRig.js",
+      "bytes": 7435,
+      "sha256": "9c1bd9247aa6e04111f497310f2b8048f0df2428ebce48de2783f6744b573ef7"
+    },
+    {
       "path": "src/characters.js",
-      "bytes": 18461,
-      "sha256": "b14f342b540e8616e27e7a33bfcdec36038d4f00981fd77d9c9d02cc72170a48"
+      "bytes": 19012,
+      "sha256": "a4893024ff4bf759b15cf0d2eaecd265029c3b6c70f1f29f45442eb3ac8b9f2b"
     },
     {
       "path": "src/classicGames.js",
@@ -4834,6 +4959,11 @@
       "path": "src/collectionsUI.js",
       "bytes": 10242,
       "sha256": "53c41df8f54b0e33f0c45b9eac7b3f8af168440584b60f0bc3af1bf9c25717b7"
+    },
+    {
+      "path": "src/connectedSpriteSurface.js",
+      "bytes": 9517,
+      "sha256": "c02608ed859555d62b194b274bf30a07a614158d937b56f45cec9152d7cba06d"
     },
     {
       "path": "src/content-ui.css",
@@ -5257,8 +5387,8 @@
     },
     {
       "path": "src/garmentArt.js",
-      "bytes": 5068,
-      "sha256": "11b71a16013427c0b00b64a4ad6193e70a9b18393736d34880cfebc7142a03c6"
+      "bytes": 4385,
+      "sha256": "589dedab210cad457bb44e988f63c4be07da7433db7ec0ef7c7058b320d0ec63"
     },
     {
       "path": "src/gather-v46.css",
@@ -5517,8 +5647,8 @@
     },
     {
       "path": "src/mapTileLayout.js",
-      "bytes": 4382,
-      "sha256": "cd00e0893265f64df1b468813074c6e0930297076f9ce11af867b80fe1899bd3"
+      "bytes": 4645,
+      "sha256": "8f42dc980617d485770c08e5e696013ae38a62c5d7b8c01ec662fce64c448ae4"
     },
     {
       "path": "src/mapTileLoader.js",
@@ -5532,8 +5662,8 @@
     },
     {
       "path": "src/mapTiles.js",
-      "bytes": 6911,
-      "sha256": "b4ff21b975db786817f75eb39964ce1719f215c13e2063c4ef3b187c04cdddf8"
+      "bytes": 6950,
+      "sha256": "78972d26479a1991b1b03d70cca00c4c2f05c326a7635686315506ace9b1b5f8"
     },
     {
       "path": "src/market-v87.css",
@@ -6057,8 +6187,8 @@
     },
     {
       "path": "src/serverVisitorUI.js",
-      "bytes": 3296,
-      "sha256": "f25a8392f2f3e698be5c34c2bc3d1b5b622ffbc21f050a3d777eb2fcda1c4a69"
+      "bytes": 3331,
+      "sha256": "378d97b32deb1407e469f234e3eea0805a27affffceca5899d2fbaebf5626cc4"
     },
     {
       "path": "src/shopfront-v113.css",
@@ -6149,6 +6279,11 @@
       "path": "src/taskBoard.js",
       "bytes": 4901,
       "sha256": "6ff765a1267e808aea82e1ab440c4290f36d2c73805e18eebca838614d61a89a"
+    },
+    {
+      "path": "src/terrainJoinRepairs.js",
+      "bytes": 577,
+      "sha256": "42b000c14261b03dc559045c6783c63d1db447be75ca02f82f5dabe907988710"
     },
     {
       "path": "src/terrainNavigation.js",
@@ -7459,6 +7594,26 @@
       "path": "tests/v18-play-helpers.mjs",
       "bytes": 574,
       "sha256": "c0c5511c200eb6b4ff47e56f43184f88a727d8a77e3066fac798890d04c94067"
+    },
+    {
+      "path": "tests/v180-character-rig.test.mjs",
+      "bytes": 2942,
+      "sha256": "974631fea03be169efa130afab338fc7059259e2c1877151ceaa43da95eddaec"
+    },
+    {
+      "path": "tests/v180-rig-browser.mjs",
+      "bytes": 7323,
+      "sha256": "13e95217c4c869829614ac0b0d89c9be9126b71aca8cb2833a0e78ecdfd29115"
+    },
+    {
+      "path": "tests/v180-terrain-joins.test.mjs",
+      "bytes": 1312,
+      "sha256": "be48802be1bf7241b98f3e16a608661bea1a8b735036caf5efa8bd0adc74bdc8"
+    },
+    {
+      "path": "tests/v180-visual-review-browser.mjs",
+      "bytes": 7875,
+      "sha256": "20a17c40a17e6479f80c31285bf9653557cc4597a41d2cc36affcb8796b29556"
     },
     {
       "path": "tests/v19-before-qa.mjs",

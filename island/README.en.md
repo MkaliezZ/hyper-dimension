@@ -14,7 +14,13 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V179
+## What's new · V180
+
+Characters now use connected joint surfaces with matching tools and garments. All 98 regional terrain joins and landmark perimeters were reviewed in both styles; native local redraws repair the farm, boatyard and photography site. Network errors offer a clear receipt recovery path, and the Mac deployment job has a revised time budget. [Changes, art and evidence](docs/terrain-animation-v180.md).
+
+All **1102 required default checks** passed, with native workshop/home entry, shared-save appearance switching and reload checks in both styles. Cloud results for the new commit are tracked separately.
+
+### V179 · Background work and navigation
 
 Approved navigation can arrive and open views during background settlement, with a separate slow-frame movement budget. Confirmed NPC farm, mine and daily work continue their animation timers and submit completion once. Unconfirmed tool performances settle into an idle wait; soil, inventory and rewards still require authoritative receipts. [Fixes and evidence](docs/navigation-arrival-v179.md).
 

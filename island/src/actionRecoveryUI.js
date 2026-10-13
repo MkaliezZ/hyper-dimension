@@ -29,13 +29,14 @@ export function setRecoveryDialog(value){recoveryDialog=!!value;document.body.cl
 
 export function isRecoveryTarget(target){return target instanceof Element&&!!target.closest('#actionRecoveryDock,#saveStatus,#questToggle,#businessToggle'+(recoveryDialog?',#modalRoot':''));}
 let reading=false;
+export function recoveryErrorMessage(error){const message=error?.message||'';return /failed to fetch|fetch failed|networkerror|network request failed|load failed/i.test(message)?'暂时无法连接本机小岛服务。记录已保留；服务恢复后点击“核对全部并继续”。':message||'暂时无法读取进度，记录已保留，请重试';}
 export async function readRecoveryProgress(bar,read,toast){
  if(reading)return;reading=true;
  const buttons=[...(dock?.querySelectorAll('button')||[])].map(button=>[button,button.disabled]);
  const main=dock?.querySelector('#recoveryAll'),label=main?.textContent;
  if(main)main.textContent='正在核对，请稍候…';dock?.setAttribute('aria-busy','true');
  for(const[button]of buttons)button.disabled=true;
- try{await read();}catch(error){const text=error.message||'暂时无法读取进度，记录已保留，请重试';const p=bar.querySelector('p');if(p)p.textContent=text;toast?.(text);}
+ try{await read();}catch(error){const text=recoveryErrorMessage(error);const p=bar.querySelector('p');if(p)p.textContent=text;toast?.(text);}
  finally{reading=false;dock?.removeAttribute('aria-busy');if(main)main.textContent=label;for(const[button,disabled]of buttons)if(button.isConnected)button.disabled=disabled;}
 }
 

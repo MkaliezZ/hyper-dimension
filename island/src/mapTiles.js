@@ -90,7 +90,7 @@ export function drawTerrainTiles(ctx,theme,{nativeResolution=false}={}){
   paint.globalCompositeOperation='lighter';
   for(const tile of wanted.filter(t=>!t.patch)){const e=entries.get(tile.id),b=tile.bounds;paint.drawImage(e.bitmap||e.preview,b.x,b.y,b.w,b.h);}
   paint.globalCompositeOperation='source-over';
-  for(const tile of wanted.filter(t=>t.patch)){const e=entries.get(tile.id),b=tile.bounds;if(e?.bitmap)paint.drawImage(e.bitmap,b.x,b.y,b.w,b.h);}
+  for(const tile of wanted.filter(t=>t.patch).sort((a,b)=>a.patchOrder-b.patchOrder)){const e=entries.get(tile.id),b=tile.bounds;if(e?.bitmap)paint.drawImage(e.bitmap,b.x,b.y,b.w,b.h);}
   layerKey=key;stats.redraws++;
  }
  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(layer,0,0);ctx.restore();return true;

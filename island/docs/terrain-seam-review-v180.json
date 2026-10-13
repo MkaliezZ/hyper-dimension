@@ -1,0 +1,1518 @@
+{
+  "version": 180,
+  "baseJoinsReviewed": 98,
+  "previousPatchPerimetersReviewed": 14,
+  "newRepairPerimetersReviewed": 6,
+  "nativeRenderedReviewScale": 2,
+  "scope": "Full 30-tile terrain and all landmark perimeter review in both styles. Native redraws address farm crop/fence joins, boatyard path/beach steps and photography plot vegetation/fences. This is a bounded visual audit, not a mathematical claim of zero discrepancy at every possible zoom. Production parcels, building identity, entrances and navigation coordinates are unchanged.",
+  "themes": [
+    {
+      "theme": "pixel",
+      "edges": [
+        {
+          "id": "pixel-0-0__pixel-1-0",
+          "axis": "vertical",
+          "x": 384,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-0__pixel-0-1",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-0__pixel-2-0",
+          "axis": "vertical",
+          "x": 768,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-0__pixel-1-1",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-0__pixel-3-0",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-0__pixel-2-1",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-0__pixel-4-0",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-0__pixel-3-1",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-0__pixel-5-0",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-0__pixel-4-1",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-5-0__pixel-5-1",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-1__pixel-1-1",
+          "axis": "vertical",
+          "x": 384,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-1__pixel-0-2",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-1__pixel-2-1",
+          "axis": "vertical",
+          "x": 768,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-1__pixel-1-2",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-1__pixel-3-1",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-1__pixel-2-2",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-1__pixel-4-1",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-1__pixel-3-2",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-1__pixel-5-1",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-1__pixel-4-2",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-5-1__pixel-5-2",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-2__pixel-1-2",
+          "axis": "vertical",
+          "x": 384,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-2__pixel-0-3",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-2__pixel-2-2",
+          "axis": "vertical",
+          "x": 768,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-2__pixel-1-3",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-2__pixel-3-2",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-2__pixel-2-3",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-2__pixel-4-2",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-2__pixel-3-3",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-2__pixel-5-2",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-2__pixel-4-3",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-5-2__pixel-5-3",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-3__pixel-1-3",
+          "axis": "vertical",
+          "x": 384,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-3__pixel-0-4",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-3__pixel-2-3",
+          "axis": "vertical",
+          "x": 768,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-3__pixel-1-4",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-3__pixel-3-3",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-3__pixel-2-4",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-3__pixel-4-3",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-3__pixel-3-4",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-3__pixel-5-3",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-3__pixel-4-4",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 6,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-5-3__pixel-5-4",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 6,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-0-4__pixel-1-4",
+          "axis": "vertical",
+          "x": 384,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-1-4__pixel-2-4",
+          "axis": "vertical",
+          "x": 768,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-2-4__pixel-3-4",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-3-4__pixel-4-4",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        },
+        {
+          "id": "pixel-4-4__pixel-5-4",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/pixel-all-49-edges.png"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "pixel-plaza",
+          "bounds": {
+            "x": 855,
+            "y": 515,
+            "w": 448,
+            "h": 448
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-home-6",
+          "bounds": {
+            "x": 861,
+            "y": 1046,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-home-8",
+          "bounds": {
+            "x": 1632,
+            "y": 905,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-home-11",
+          "bounds": {
+            "x": 1660,
+            "y": 349,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-home-12",
+          "bounds": {
+            "x": 1060,
+            "y": 829,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-home-13",
+          "bounds": {
+            "x": 576,
+            "y": 951,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-home-14",
+          "bounds": {
+            "x": 1547,
+            "y": 414,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-farm-join",
+          "bounds": {
+            "x": 130,
+            "y": 875,
+            "w": 450,
+            "h": 380
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-boatyard-join",
+          "bounds": {
+            "x": 1480,
+            "y": 1020,
+            "w": 440,
+            "h": 360
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "pixel-photo-join",
+          "bounds": {
+            "x": 1130,
+            "y": 1050,
+            "w": 460,
+            "h": 360
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/pixel-all-10-patch-perimeters.png"
+        }
+      ]
+    },
+    {
+      "theme": "origami",
+      "edges": [
+        {
+          "id": "origami-0-0__origami-1-0",
+          "axis": "vertical",
+          "x": 384,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-0__origami-0-1",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-0__origami-2-0",
+          "axis": "vertical",
+          "x": 768,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-0__origami-1-1",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-0__origami-3-0",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-0__origami-2-1",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-0__origami-4-0",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 0,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-0__origami-3-1",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-0__origami-5-0",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 0,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-0__origami-4-1",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-5-0__origami-5-1",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-1__origami-1-1",
+          "axis": "vertical",
+          "x": 384,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-1__origami-0-2",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-1__origami-2-1",
+          "axis": "vertical",
+          "x": 768,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 1,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-1__origami-1-2",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-1__origami-3-1",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-1__origami-2-2",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-1__origami-4-1",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-1__origami-3-2",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-1__origami-5-1",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 384,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-1__origami-4-2",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 2,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-5-1__origami-5-2",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-2__origami-1-2",
+          "axis": "vertical",
+          "x": 384,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-2__origami-0-3",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-2__origami-2-2",
+          "axis": "vertical",
+          "x": 768,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-2__origami-1-3",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-2__origami-3-2",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-2__origami-2-3",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 3,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-2__origami-4-2",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-2__origami-3-3",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-2__origami-5-2",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 768,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-2__origami-4-3",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-5-2__origami-5-3",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-3__origami-1-3",
+          "axis": "vertical",
+          "x": 384,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-3__origami-0-4",
+          "axis": "horizontal",
+          "x": 0,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 4,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-3__origami-2-3",
+          "axis": "vertical",
+          "x": 768,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-3__origami-1-4",
+          "axis": "horizontal",
+          "x": 384,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-3__origami-3-3",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-3__origami-2-4",
+          "axis": "horizontal",
+          "x": 768,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-3__origami-4-3",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-3__origami-3-4",
+          "axis": "horizontal",
+          "x": 1152,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-3__origami-5-3",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 1152,
+          "length": 384,
+          "board": {
+            "row": 5,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-3__origami-4-4",
+          "axis": "horizontal",
+          "x": 1536,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 6,
+            "column": 0
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-5-3__origami-5-4",
+          "axis": "horizontal",
+          "x": 1920,
+          "y": 1536,
+          "length": 384,
+          "board": {
+            "row": 6,
+            "column": 1
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-0-4__origami-1-4",
+          "axis": "vertical",
+          "x": 384,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 2
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-1-4__origami-2-4",
+          "axis": "vertical",
+          "x": 768,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 3
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-2-4__origami-3-4",
+          "axis": "vertical",
+          "x": 1152,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 4
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-3-4__origami-4-4",
+          "axis": "vertical",
+          "x": 1536,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 5
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        },
+        {
+          "id": "origami-4-4__origami-5-4",
+          "axis": "vertical",
+          "x": 1920,
+          "y": 1536,
+          "length": 256,
+          "board": {
+            "row": 6,
+            "column": 6
+          },
+          "status": "visually-reviewed-at-2-native-backing-pixels-per-world-unit",
+          "reviewImage": "media/v180/origami-all-49-edges.png"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "origami-plaza",
+          "bounds": {
+            "x": 855,
+            "y": 515,
+            "w": 448,
+            "h": 448
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-home-6",
+          "bounds": {
+            "x": 861,
+            "y": 1046,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-home-8",
+          "bounds": {
+            "x": 1632,
+            "y": 905,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-home-11",
+          "bounds": {
+            "x": 1660,
+            "y": 349,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-home-12",
+          "bounds": {
+            "x": 1060,
+            "y": 829,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-home-13",
+          "bounds": {
+            "x": 576,
+            "y": 951,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-home-14",
+          "bounds": {
+            "x": 1547,
+            "y": 414,
+            "w": 196,
+            "h": 176
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-farm-join",
+          "bounds": {
+            "x": 130,
+            "y": 875,
+            "w": 450,
+            "h": 380
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-boatyard-join",
+          "bounds": {
+            "x": 1480,
+            "y": 1020,
+            "w": 440,
+            "h": 360
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        },
+        {
+          "id": "origami-photo-join",
+          "bounds": {
+            "x": 1130,
+            "y": 1050,
+            "w": 460,
+            "h": 360
+          },
+          "status": "visually-reviewed-with-surrounding-terrain",
+          "reviewImage": "media/v180/origami-all-10-patch-perimeters.png"
+        }
+      ]
+    }
+  ]
+}

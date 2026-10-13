@@ -1,4 +1,4 @@
-import {harvestArmOffset} from './toolMotion.js';
+import {createSpriteMesh,drawConnectedSprite,spriteMeshHands} from './characterRig.js';
 import {registerThemeArtwork,activateThemeArtwork,initialArtworkTheme} from './themeArtwork.js';
 import {GARMENTS} from './equipmentRules.js';
 const sheets={pixel:[],origami:[]},headSheets={pixel:new Image(),origami:new Image()};let metadata={};
@@ -15,31 +15,23 @@ function crop(ctx,f,x,y,width,height,portion=null){
  const r=f.frame,p=portion||[0,0,1,1];ctx.drawImage(f.img,r.x+p[0]*r.w,r.y+p[1]*r.h,p[2]*r.w,p[3]*r.h,x,y,width,height);
 }
 // Hands use the same sleeve anchors as the garment and tool, outside the avatar's mirror.
-export function garmentHands(f,heading,gait,work,action,t,harvest=null){
- const full=f?.spec.kind==='full',H=52,W=full?H*f.frame.w/f.frame.h:50,column=[0,1,2,3,4,3,2,1][heading],flip=[1,2,3].includes(heading);
- const points=column===2?[[.77,.40,1]]:column===1?[[.12,.39,-1],[.88,.34,1]]:column===3?[[.12,.35,-1],[.88,.39,1]]:[[.12,.39,-1],[.88,.39,1]];
- return points.map(([x,y,side])=>{const dy=harvest?harvestArmOffset(harvest):side<0?(action==='celebrate'?-Math.sin(t*Math.PI)*10:work*1.2):action?-Math.sin(t*Math.PI)*5:0;return {x:((x-.5)*W+side*gait*1.2)*(flip?-1:1),y:-H+y*H+dy,side,column,angle:-side*gait*.017*(flip?-1:1)}});
+export function garmentHands(f,heading,gait,work,action,t,harvest=null,preparedMesh=null){
+ const full=f?.spec.kind==='full',H=52,W=full?H*f.frame.w/f.frame.h:50;
+ const mesh=preparedMesh||createSpriteMesh({width:W,height:H,garment:true,gait,work,action,t,harvest});
+ return spriteMeshHands(mesh,heading,f?.flip??[1,2,3].includes(heading));
 }
-export function drawGarmentBody(ctx,id,theme,heading,gait,work,action,t,harvest=null){
+export function drawGarmentBody(ctx,id,theme,heading,gait,work,action,t,harvest=null,preparedMesh=null){
  const f=garmentFrame(id,theme,heading);if(!f||f.spec.kind!=='full')return false;
- const H=52,W=H*f.frame.w/f.frame.h;
- ctx.save();if(f.flip)ctx.scale(-1,1);
- const segment=(x,y,w,h,dx=0,dy=0,angle=0)=>{ctx.save();ctx.translate(dx,dy);ctx.rotate(angle);crop(ctx,f,-W/2+x*W,-H+y*H,w*W,h*H,[x,y,w,h]);ctx.restore()};
- segment(0,.81,.5,.19,gait*1.6,-Math.max(0,gait)*2.2);
- segment(.5,.81,.5,.19,-gait*1.6,-Math.max(0,-gait)*2.2);
- segment(0,.5,1,.32,0,-Math.abs(gait)*.4,Math.sin(gait)*.007);
- segment(.24,0,.52,.51,0,-Math.abs(gait)*.5+(harvest?.bend||0)*2);
- segment(0,.09,.25,.43,-gait*1.2,harvest?harvestArmOffset(harvest):action==='celebrate'?-Math.sin(t*Math.PI)*10:work*1.2,gait*.017);
- segment(.75,.09,.25,.43,gait*1.2,harvest?harvestArmOffset(harvest):action?-Math.sin(t*Math.PI)*5:0,-gait*.017);
- segment(0,0,1,.1,0,-Math.abs(gait)*.5);
- ctx.restore();return garmentHands(f,heading,gait,work,action,t,harvest);
+ const H=52,W=H*f.frame.w/f.frame.h,mesh=preparedMesh||createSpriteMesh({width:W,height:H,garment:true,gait,work,action,t,harvest});
+ ctx.save();if(f.flip)ctx.scale(-1,1);drawConnectedSprite(ctx,f.img,f.frame,mesh);ctx.restore();
+ return spriteMeshHands(mesh,heading,f.flip);
 }
-export function drawGarmentLayers(ctx,ids,theme,heading,baseWidth,gait,work,action,t,now,harvest=null){
+export function drawGarmentLayers(ctx,ids,theme,heading,baseWidth,gait,work,action,t,now,harvest=null,baseHands=null){
  for(const id of ids){
   const f=garmentFrame(id,theme,heading);if(!f||f.spec.kind==='full')continue;
   const k=f.spec.kind;ctx.save();if(f.flip)ctx.scale(-1,1);
   if(k==='gloves'){
-   const body=ids.find(key=>GARMENTS[key]?.slot==='body'),hands=garmentHands(garmentFrame(body,theme,heading),heading,gait,work,action,t,harvest);if(f.flip)ctx.scale(-1,1);for(const hand of hands){ctx.save();ctx.translate(hand.x,hand.y);ctx.rotate(hand.angle);const r=f.frame,half=r.w/2,h=9,w=half/r.h*h;ctx.drawImage(f.img,r.x+(hand.side<0?0:half),r.y,half,r.h,-w/2,-h/2,w,h);ctx.restore()}
+   const body=ids.find(key=>GARMENTS[key]?.slot==='body'),full=garmentFrame(body,theme,heading),hands=full?.spec.kind==='full'?garmentHands(full,heading,gait,work,action,t,harvest):baseHands||garmentHands(null,heading,gait,work,action,t,harvest);if(f.flip)ctx.scale(-1,1);for(const hand of hands){ctx.save();ctx.translate(hand.x,hand.y);ctx.rotate(hand.angle);const r=f.frame,half=r.w/2,h=9,w=half/r.h*h;ctx.drawImage(f.img,r.x+(hand.side<0?0:half),r.y,half,r.h,-w/2,-h/2,w,h);ctx.restore()}
   }else{
    const height={apron:43,shawl:28,cape:42,skirt:28,hat:0,comb:18}[k],width=k==='hat'?Math.max(44,Math.min(56,baseWidth*1.06)):k==='comb'?18:height*f.frame.w/f.frame.h,h=k==='hat'?width*f.frame.h/f.frame.w:height;
    const y={apron:-49,shawl:-52,cape:-52,skirt:-31,hat:-110,comb:-85}[k],x=k==='comb'?baseWidth*.22:0;

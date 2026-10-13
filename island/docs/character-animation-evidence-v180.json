@@ -1,0 +1,261 @@
+{
+  "version": 180,
+  "modelsCalled": false,
+  "decodedCharacterFrames": 448,
+  "renderedBareCharacterSamples": 3136,
+  "renderedGarmentSamples": 480,
+  "scope": "Native art review boards and isolated game fixtures; no private user data. Browser timing belongs to this machine, not a physical Mac performance guarantee. Initial and idle background-load stalls are retained separately.",
+  "timing": {
+    "scope": "Decoded original native avatars, residents and garments; continuous body/tool/glove poses and warm renderer cost in isolated browser fixtures. Review boards are not gameplay footage. Models disabled; no user saves. CPU render timing is evidence for this machine only.",
+    "mode": "connected-renderer",
+    "cases": [
+      {
+        "theme": "pixel",
+        "errors": [],
+        "badAssets": [],
+        "surface": {
+          "backend": "WebGL connected surface",
+          "draws": 2487,
+          "textures": 6,
+          "textureBytes": 37746188,
+          "limitBytes": 100663296,
+          "poseCache": {
+            "entries": 1320,
+            "bytes": 67093328,
+            "limitBytes": 67108864,
+            "hits": 11865,
+            "misses": 2503
+          }
+        },
+        "decodedFrames": 224,
+        "garmentSamples": 240,
+        "bench": {
+          "idle": {
+            "frames": 120,
+            "medianMs": 0.5999999046325684,
+            "p95Ms": 0.9000000953674316,
+            "maxMs": 1.2999999523162842,
+            "coldMaxMs": 2.100000023841858,
+            "frameCadence": {
+              "medianMs": 6.099999999999909,
+              "p95Ms": 6.199999999999818,
+              "maxMs": 6.200000000000273,
+              "over25ms": 0
+            }
+          },
+          "walk": {
+            "frames": 120,
+            "medianMs": 2.4000000953674316,
+            "p95Ms": 6.299999952316284,
+            "maxMs": 16.399999976158142,
+            "coldMaxMs": 214.89999997615814,
+            "frameCadence": {
+              "medianMs": 6.099999999999909,
+              "p95Ms": 6.200000000000273,
+              "maxMs": 12.200000000000273,
+              "over25ms": 0
+            }
+          },
+          "hoe": {
+            "frames": 120,
+            "medianMs": 3.600000023841858,
+            "p95Ms": 10.899999976158142,
+            "maxMs": 16.5,
+            "coldMaxMs": 16.799999952316284,
+            "frameCadence": {
+              "medianMs": 6.099999999999454,
+              "p95Ms": 12.199999999999818,
+              "maxMs": 18.300000000000182,
+              "over25ms": 0
+            }
+          },
+          "clothedWater": {
+            "frames": 120,
+            "medianMs": 5.300000071525574,
+            "p95Ms": 7.299999952316284,
+            "maxMs": 11.899999976158142,
+            "coldMaxMs": 59.5,
+            "frameCadence": {
+              "medianMs": 6.099999999999454,
+              "p95Ms": 12.100000000000364,
+              "maxMs": 18.100000000000364,
+              "over25ms": 0
+            }
+          }
+        },
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "errors": [],
+        "badAssets": [],
+        "surface": {
+          "backend": "WebGL connected surface",
+          "draws": 2487,
+          "textures": 11,
+          "textureBytes": 25866128,
+          "limitBytes": 100663296,
+          "poseCache": {
+            "entries": 1358,
+            "bytes": 67097704,
+            "limitBytes": 67108864,
+            "hits": 11865,
+            "misses": 2503
+          }
+        },
+        "decodedFrames": 224,
+        "garmentSamples": 240,
+        "bench": {
+          "idle": {
+            "frames": 120,
+            "medianMs": 0.6000000238418579,
+            "p95Ms": 1.0999999046325684,
+            "maxMs": 2.399999976158142,
+            "coldMaxMs": 64.30000007152557,
+            "frameCadence": {
+              "medianMs": 6.099999999999909,
+              "p95Ms": 6.200000000000273,
+              "maxMs": 97.09999999999991,
+              "over25ms": 2
+            }
+          },
+          "walk": {
+            "frames": 120,
+            "medianMs": 2.5,
+            "p95Ms": 5.800000071525574,
+            "maxMs": 9.399999976158142,
+            "coldMaxMs": 94.39999997615814,
+            "frameCadence": {
+              "medianMs": 6.099999999999909,
+              "p95Ms": 6.200000000000273,
+              "maxMs": 12.199999999999818,
+              "over25ms": 0
+            }
+          },
+          "hoe": {
+            "frames": 120,
+            "medianMs": 3.600000023841858,
+            "p95Ms": 11.099999904632568,
+            "maxMs": 15.899999976158142,
+            "coldMaxMs": 18.40000009536743,
+            "frameCadence": {
+              "medianMs": 6.099999999999454,
+              "p95Ms": 18.099999999999454,
+              "maxMs": 18.300000000000182,
+              "over25ms": 0
+            }
+          },
+          "clothedWater": {
+            "frames": 120,
+            "medianMs": 5.199999928474426,
+            "p95Ms": 8.100000023841858,
+            "maxMs": 11.799999952316284,
+            "coldMaxMs": 42.200000047683716,
+            "frameCadence": {
+              "medianMs": 6.099999999999454,
+              "p95Ms": 12.100000000000364,
+              "maxMs": 18.199999999999818,
+              "over25ms": 0
+            }
+          }
+        },
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "mapScenes": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "workshopEntered": true,
+      "butlerHomeOwnerMatched": true,
+      "sharedAppearance": true,
+      "appearancePersisted": true,
+      "frameSample": {
+        "frames": 120,
+        "medianMs": 6.099999999999454,
+        "p95Ms": 6.199999999999818,
+        "maxMs": 12.100000000000364
+      }
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "workshopEntered": true,
+      "butlerHomeOwnerMatched": true,
+      "sharedAppearance": true,
+      "appearancePersisted": true,
+      "frameSample": {
+        "frames": 120,
+        "medianMs": 6.099999999999454,
+        "p95Ms": 6.100000000000364,
+        "maxMs": 6.200000000000728
+      }
+    }
+  ],
+  "visualCases": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "art": {
+        "decodedFrames": 224,
+        "textures": 11,
+        "avatars": 12,
+        "residents": 16
+      },
+      "walk": {
+        "rendered": 224
+      },
+      "hoe": {
+        "rendered": 224
+      },
+      "pickaxe": {
+        "rendered": 224
+      },
+      "water": {
+        "rendered": 224
+      },
+      "sow": {
+        "rendered": 224
+      },
+      "craft": {
+        "rendered": 224
+      },
+      "harvest": {
+        "rendered": 224
+      }
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "art": {
+        "decodedFrames": 224,
+        "textures": 13,
+        "avatars": 12,
+        "residents": 16
+      },
+      "walk": {
+        "rendered": 224
+      },
+      "hoe": {
+        "rendered": 224
+      },
+      "pickaxe": {
+        "rendered": 224
+      },
+      "water": {
+        "rendered": 224
+      },
+      "sow": {
+        "rendered": 224
+      },
+      "craft": {
+        "rendered": 224
+      },
+      "harvest": {
+        "rendered": 224
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import {TERRAIN_SEAMS} from './terrainSeams.js';
+import {TERRAIN_JOIN_REPAIRS} from './terrainJoinRepairs.js';
 // Production and resident IDs stay stable while the calibrated landscape expands.
 export const TILE_MAP = Object.freeze({width:2304,height:1792,cell:384,overlap:32,columns:6,rows:5,version:169});
 export function terrainOverviewURL(theme){
@@ -14,7 +15,7 @@ export function terrainTiles(theme){
  });
 }
 const PATCHES=[{"name":"plaza","bounds":{"x":855,"y":515,"w":448,"h":448},"core":{"x":879,"y":539,"w":400,"h":400}},{"name":"home-6","bounds":{"x":861,"y":1046,"w":196,"h":176},"core":{"x":883,"y":1068,"w":152,"h":132}},{"name":"home-8","bounds":{"x":1632,"y":905,"w":196,"h":176},"core":{"x":1654,"y":927,"w":152,"h":132}},{"name":"home-11","bounds":{"x":1660,"y":349,"w":196,"h":176},"core":{"x":1682,"y":371,"w":152,"h":132}},{"name":"home-12","bounds":{"x":1060,"y":829,"w":196,"h":176},"core":{"x":1082,"y":851,"w":152,"h":132}},{"name":"home-13","bounds":{"x":576,"y":951,"w":196,"h":176},"core":{"x":598,"y":973,"w":152,"h":132}},{"name":"home-14","bounds":{"x":1547,"y":414,"w":196,"h":176},"core":{"x":1569,"y":436,"w":152,"h":132}}];
-export function terrainLandmarks(theme){if(!['pixel','origami'].includes(theme))throw Error('invalid_terrain_theme');return PATCHES.map(p=>({id:theme+'-'+p.name,theme,patch:true,bounds:p.bounds,core:p.core,url:'/assets/map-tiles-v169/'+theme+'-'+p.name+'.png'}));}
+export function terrainLandmarks(theme){if(!['pixel','origami'].includes(theme))throw Error('invalid_terrain_theme');return [...PATCHES.map(p=>({id:theme+'-'+p.name,theme,patch:true,bounds:p.bounds,core:p.core,url:'/assets/map-tiles-v169/'+theme+'-'+p.name+'.png'})),...TERRAIN_JOIN_REPAIRS.map(p=>({id:theme+'-'+p.name,theme,patch:true,bounds:p.bounds,core:p.core,url:'/assets/map-joins-v180/'+theme+'-'+p.name+'.png'}))].map((p,patchOrder)=>({...p,patchOrder}));}
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 function edge(theme,axis,index,position,fallback){const a=TERRAIN_SEAMS[theme]?.[axis]?.[index];if(!a)return fallback;const i=Math.max(0,Math.min(a.length-1,Math.floor(position))),next=Math.min(a.length-1,i+1);return a[i]+(a[next]-a[i])*Math.max(0,Math.min(1,position-i));}
 export function tileWeight(tile,x,y){

@@ -26,7 +26,9 @@ jobs:
       matrix:
         os: [windows-2022, macos-14, macos-15-intel]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    # Native rule and interaction limits remain in their tests. Large source-art
+    # checkout can take 30 minutes on hosted runners before validation begins.
+    timeout-minutes: 60
     defaults:
       run:
         working-directory: island
@@ -135,6 +137,20 @@ jobs:
       - name: Native recipe product art
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v155-product-art-browser.mjs
+
+      - name: Native connected characters and dressed tools
+        run: node tests/v180-rig-browser.mjs
+
+      - name: Retain native character diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-character-${{ matrix.os }}
+          path: |
+            island/qa/v180/native-rig/report.json
+            island/qa/v180/native-rig/*.png
+          if-no-files-found: ignore
+          retention-days: 3
 
   native-gameplay:
     name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }}

@@ -1,0 +1,103 @@
+{
+  "version": 180,
+  "generator": "built-in image_gen",
+  "imageEditingPerformedByPython": false,
+  "files": [
+    {
+      "file": "assets/map-joins-v180/pixel-farm-join.png",
+      "bounds": [
+        130,
+        875,
+        450,
+        380
+      ],
+      "pixels": [
+        1366,
+        1152
+      ],
+      "nativeDensity": 3.031578947368421,
+      "sha256": "593908e782019a6f9211fe9597c0d03154836bf6ce523603f234d83779249370",
+      "method": "built-in-image-generation; generated PNG retained byte-for-byte"
+    },
+    {
+      "file": "assets/map-joins-v180/pixel-boatyard-join.png",
+      "bounds": [
+        1480,
+        1020,
+        440,
+        360
+      ],
+      "pixels": [
+        1387,
+        1134
+      ],
+      "nativeDensity": 3.15,
+      "sha256": "668467de1aa5a301c79666a3243a3f25df747ac3ff7d65265c668047443ddb6d",
+      "method": "built-in-image-generation; generated PNG retained byte-for-byte"
+    },
+    {
+      "file": "assets/map-joins-v180/pixel-photo-join.png",
+      "bounds": [
+        1130,
+        1050,
+        460,
+        360
+      ],
+      "pixels": [
+        1419,
+        1109
+      ],
+      "nativeDensity": 3.0805555555555557,
+      "sha256": "2b5f5cbe0f4c53c42c23417a0c0f42d5b6f996a9040dc22aaf56746737d020eb",
+      "method": "built-in-image-generation; generated PNG retained byte-for-byte"
+    },
+    {
+      "file": "assets/map-joins-v180/origami-farm-join.png",
+      "bounds": [
+        130,
+        875,
+        450,
+        380
+      ],
+      "pixels": [
+        1366,
+        1152
+      ],
+      "nativeDensity": 3.031578947368421,
+      "sha256": "7c258a644122dad8dc77733ebaa1dd3f356c16d264fd6d61b9a0531f7dd7c974",
+      "method": "built-in-image-generation; generated PNG retained byte-for-byte"
+    },
+    {
+      "file": "assets/map-joins-v180/origami-boatyard-join.png",
+      "bounds": [
+        1480,
+        1020,
+        440,
+        360
+      ],
+      "pixels": [
+        1387,
+        1134
+      ],
+      "nativeDensity": 3.15,
+      "sha256": "d20d8f9bdbf26990f6600b1553d9a2a5eb57acc3b4a76e3b941b3f8421975115",
+      "method": "built-in-image-generation; generated PNG retained byte-for-byte"
+    },
+    {
+      "file": "assets/map-joins-v180/origami-photo-join.png",
+      "bounds": [
+        1130,
+        1050,
+        460,
+        360
+      ],
+      "pixels": [
+        1418,
+        1109
+      ],
+      "nativeDensity": 3.0805555555555557,
+      "sha256": "060eed04ad6cbb8a6f22a5f7334b70d1d4369b2ac6f1ec37943d12e0e6adb8e5",
+      "method": "built-in-image-generation; generated PNG retained byte-for-byte"
+    }
+  ]
+}
