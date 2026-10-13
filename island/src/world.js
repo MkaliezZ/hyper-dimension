@@ -102,7 +102,14 @@ export function worldWalkableForTheme(theme,x,y,colliders=[]){
  const cache=basePoints[theme],key=hy*(WORLD.width*2+1)+hx;let value=cache.get(key);if(value===undefined){value=baseWorldWalkable(theme,hx/2,hy/2);if(cache.size>=250000)cache.clear();cache.set(key,value);}return value;
 }
 export function worldWalkable(x,y){return worldWalkableForTheme(worldTheme,x,y,worldDisplayColliders)}
-export function findPath(start,end,walkable=worldWalkable,cell=CELL,movementCost=walkable===worldWalkable?terrainMovementCost:null){
+// Explicit theme keeps server-side routing independent of the active browser theme.
+// Baked edges cover static terrain; moving people remain real dynamic obstacles.
+export function findWorldPathForTheme(theme,start,end,avoid=[]){
+ const blocked=avoid.length?(x,y)=>avoid.some(p=>Math.hypot(p.x-x,p.y-y)<15):null;
+ const free=(x,y)=>worldWalkableForTheme(theme,x,y)&&(!blocked||!blocked(x,y));
+ return findPath(start,end,free,CELL,terrainMovementCost,{theme,blocked});
+}
+export function findPath(start,end,walkable=worldWalkable,cell=CELL,movementCost=walkable===worldWalkable?terrainMovementCost:null,navigation=null){
  let sx=Math.round(start.x/cell),sy=Math.round(start.y/cell);const gx=Math.round(end.x/cell),gy=Math.round(end.y/cell);
  const key=(x,y)=>`${x},${y}`;const goal={x:gx,y:gy};
  const ok=(x,y)=>walkable(x*cell,y*cell);
@@ -111,7 +118,7 @@ export function findPath(start,end,walkable=worldWalkable,cell=CELL,movementCost
  if(!ok(gx,gy)){let found=false;for(let radius=1;radius<=8&&!found;radius++){for(let y=gy-radius;y<=gy+radius&&!found;y++)for(let x=gx-radius;x<=gx+radius;x++){if(ok(x,y)){tx=x;ty=y;found=true;break}}}if(!found)return []}
  const open=new PathQueue(),seen=new Map([[key(sx,sy),0]]),parent=new Map();let visited=0;open.push({x:sx,y:sy,g:0,f:0});
  while(open.length&&visited<32000){const cur=open.shift();if(cur.g>(seen.get(key(cur.x,cur.y))??Infinity))continue;visited++;if(cur.x===tx&&cur.y===ty){const path=[];let k=key(tx,ty);while(k!==key(sx,sy)){const [px,py]=k.split(',').map(Number);path.push({x:px*cell,y:py*cell});k=parent.get(k);if(!k)break}return path.reverse()}
- for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]){const x=cur.x+dx,y=cur.y+dy;if(!ok(x,y))continue;if(dx&&dy&&(!ok(cur.x+dx,cur.y)||!ok(cur.x,cur.y+dy)))continue;if(cell===WORLD_CELL){const edge=walkable===worldWalkable?worldBaseEdge(worldTheme,cur.x,cur.y,dx,dy):null;if(edge===false)continue;if(edge===null||worldDisplayColliders.length||walkable!==worldWalkable){const steps=Math.ceil(Math.hypot(dx,dy)*cell/2);let clear=true;for(let i=1;i<steps;i++){const px=(cur.x+dx*i/steps)*cell,py=(cur.y+dy*i/steps)*cell;if(edge===null?!walkable(px,py):worldDisplayColliders.some(p=>Math.abs(px-p.x)<p.rx+9&&Math.abs(py-p.y)<p.ry+9)){clear=false;break;}}if(!clear)continue;}}const weight=movementCost?movementCost(x*cell,y*cell):1;const g=cur.g+(dx&&dy?1.414:1)*weight;const k=key(x,y);if(g>=(seen.get(k)??Infinity))continue;seen.set(k,g);parent.set(k,key(cur.x,cur.y));open.push({x,y,g,f:g+Math.hypot(tx-x,ty-y)})}
+ for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]){const x=cur.x+dx,y=cur.y+dy;if(!ok(x,y))continue;if(dx&&dy&&(!ok(cur.x+dx,cur.y)||!ok(cur.x,cur.y+dy)))continue;if(cell===WORLD_CELL){const edge=navigation?worldBaseEdge(navigation.theme,cur.x,cur.y,dx,dy):walkable===worldWalkable?worldBaseEdge(worldTheme,cur.x,cur.y,dx,dy):null;if(edge===false)continue;if(edge===null||(navigation?navigation.blocked:worldDisplayColliders.length||walkable!==worldWalkable)){const steps=Math.ceil(Math.hypot(dx,dy)*cell/2);let clear=true;for(let i=1;i<steps;i++){const px=(cur.x+dx*i/steps)*cell,py=(cur.y+dy*i/steps)*cell;if(edge===null?!walkable(px,py):navigation?navigation.blocked?.(px,py):worldDisplayColliders.some(p=>Math.abs(px-p.x)<p.rx+9&&Math.abs(py-p.y)<p.ry+9)){clear=false;break;}}if(!clear)continue;}}const weight=movementCost?movementCost(x*cell,y*cell):1;const g=cur.g+(dx&&dy?1.414:1)*weight;const k=key(x,y);if(g>=(seen.get(k)??Infinity))continue;seen.set(k,g);parent.set(k,key(cur.x,cur.y));open.push({x,y,g,f:g+Math.hypot(tx-x,ty-y)})}
  }
  return [];
 }

@@ -1,5 +1,10 @@
 # Hyper Dimension
 
+## V171 · 会客移动与地块校准
+
+连续点击保留最新目的地；房屋按地块占地中心校准底座，采用完整房屋裁切及等比尺寸。见[修复与原生实测](docs/lobby-ground-v171.md)。已发布[V170源码包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170)，其不可变包与六个平台证据独立记录。
+
+
 [中文](README.md) · [English](README.en.md) · [部署指南](DEPLOYMENT.md) · [教培模块](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)
 
 **一座会生活的岛，和一位能办事的管家。**

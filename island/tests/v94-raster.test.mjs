@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import {rea
 test('both baked 25-house crops correspond to the actual immutable artwork',()=>{
  for(const theme of ['pixel','origami']){
   const v=HOUSE_ATLAS_BOUNDS[theme],b=readFileSync('public'+v.src);assert.equal(createHash('sha256').update(b).digest('hex'),v.sha256,'regenerate crops when artwork changes');assert.equal(b.readUInt32BE(16),v.width);assert.equal(b.readUInt32BE(20),v.height);assert.equal(v.bounds.length,25);
-  for(let i=0;i<25;i++){const r=v.bounds[i],left=Math.round(i%5*v.width/5),top=Math.round(Math.floor(i/5)*v.height/5),right=Math.round((i%5+1)*v.width/5),bottom=Math.round((Math.floor(i/5)+1)*v.height/5);assert(r.w>100&&r.h>100);assert(r.x>=left&&r.y>=top&&r.x+r.w<=right&&r.y+r.h<=bottom);}
+  for(let i=0;i<25;i++){const r=v.bounds[i],left=Math.round(i%5*v.width/5),top=Math.round(Math.floor(i/5)*v.height/5),right=Math.round((i%5+1)*v.width/5),bottom=Math.round((Math.floor(i/5)+1)*v.height/5);assert(r.w>100&&r.h>100);assert(r.x>=0&&r.y>=0&&r.x+r.w<=v.width&&r.y+r.h<=v.height);assert(r.x+r.w/2>=left&&r.x+r.w/2<right&&r.y+r.h/2>=top&&r.y+r.h/2<bottom);assert.equal(v.cropMethod,'whole-atlas-connected-sprite-alpha-70');}
  }
 });
 test('only local artwork URLs enter the reconstruction worker',()=>{

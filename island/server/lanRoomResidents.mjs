@@ -17,7 +17,7 @@ export function seedRoomResidents(r,account,doc,route,at){
   const person=travelPerson(account,doc,i);if(existing.has(person.actorId))continue;
   const interests=venues[i],venue=slots.find(s=>s.id===interests[0])||slots[i%slots.length],anchor=venue.entry;
   const p=places(r.theme,anchor,occupied).find(p=>{try{route(r.theme,r.members[r.owner],p);return true}catch{return false}});
-  if(!p)continue;const c={person,...p,path:[],direction:Math.PI/2,walking:false,updatedAt:at,visitAt:at+15000+i*2000,visitIndex:0,activity:'在'+BUILDINGS[venue.id].name+'附近接待来访者'};
+  if(!p)continue;const c={person,...p,path:[],direction:Math.PI/2,walking:false,updatedAt:at,visitAt:at+15000+i*2000,visitIndex:1,activity:'在'+BUILDINGS[venue.id].name+'附近接待来访者'};
   r.residents.push(c);occupied.push(c);
  }
 }

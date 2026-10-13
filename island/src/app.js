@@ -1,4 +1,5 @@
 import {ISLAND_GEOGRAPHY,PERMANENT_HOMES,homeForResident,homeDisplayName} from './islandGeography.js';
+import {drawGroundCalibration} from './buildingGroundCalibration.js';
 import {productionGeometry,residenceGeometry,mapBuildingHit} from './buildingGeometry.js';
 import {drawResidence,residenceArtStatus,residencePortrait} from './residenceArt.js';
 import {createFarmCareUI} from './farmCareUI.js';
@@ -422,6 +423,7 @@ function drawWorld(){mapCharacters.reset();const img=images[theme],env=environme
  drawEnvironmentFront(ctx,img,theme,env,animationNow,{slots:SLOTS,buildings:state.buildings});
  nameplate('岛主会客馆',PORTFOLIO_SITE.building.x,PORTFOLIO_SITE.building.y-PORTFOLIO_SITE.building.h-8,13,'place');
  for(const n of npcs)if(n.inside==null&&n.visible!==false)drawSpeech(n);
+ drawGroundCalibration(ctx,theme,SLOTS,PERMANENT_HOMES);
 }
 function drawFarm(){const paper=theme==='origami';const sky=ctx.createLinearGradient(0,0,0,660);sky.addColorStop(0,paper?'#e6c6b5':'#a9d8bc');sky.addColorStop(.44,paper?'#f6e5d0':'#d3e6ba');sky.addColorStop(1,paper?'#c7ad8c':'#b7a677');ctx.fillStyle=sky;ctx.fillRect(0,0,1000,660);
  poly([[0,235],[90,215],[250,242],[430,213],[625,231],[810,203],[1000,224],[1000,660],[0,660]],paper?'#d7c5a1':'#7daa69');
@@ -543,9 +545,9 @@ function drawRoomArt(){
 const houseBounds=Object.fromEntries(['pixel','origami'].map(style=>[style,HOUSE_ATLAS_BOUNDS[style].bounds.map(b=>({...b}))]));
 function drawBuilding(s){const b=BUILDINGS[s.id],active=state.buildings[s.id]!==undefined,gate=unlockRequirement(s.id,state),sheet=houses[theme],crop=houseBounds[theme][s.id];
  ctx.save();if(!active){ctx.globalAlpha=gate.ready?.98:.92;ctx.filter=gate.ready?'saturate(.95)':'saturate(.75)'}const geometry=productionGeometry(s,theme),{w,h}=geometry;
- ellipse(s.x,geometry.foot-5,w*.4,9,'#1c4c2f35');if(crop)drawRaster(ctx,sheet,theme,crop.x,crop.y,crop.w,crop.h,geometry.x,geometry.y,w,h);ctx.restore();
- if(!active){const x=s.x+w/2-4,y=geometry.y+8;rr(x-7,y-7,14,14,theme==='pixel'?0:2,gate.ready?'#e4be75':'#d7c1a0','#927957');label(gate.ready?'✦':'◇',x,y+4,'#725540',10);if(!gate.ready){line(s.x-w/2,s.y+12,s.x-w/2-4,s.y-2,'#76a570',2);ellipse(s.x-w/2-5,s.y-4,4,3,'#90b381')}}
- const occupied=npcs.filter(n=>n.inside===s.id).length+(visitors?.guests||[]).filter(v=>v.inside===s.id).length;verticalBuildingName(b.name,s.x+w/2+6,geometry.y+5,occupied);
+ ellipse(geometry.x+w/2,geometry.foot-5,w*.4,9,'#1c4c2f35');if(crop)drawRaster(ctx,sheet,theme,crop.x,crop.y,crop.w,crop.h,geometry.x,geometry.y,w,h);ctx.restore();
+ if(!active){const x=geometry.x+w-4,y=geometry.y+8;rr(x-7,y-7,14,14,theme==='pixel'?0:2,gate.ready?'#e4be75':'#d7c1a0','#927957');label(gate.ready?'✦':'◇',x,y+4,'#725540',10);if(!gate.ready){line(geometry.x,s.y+12,geometry.x-4,s.y-2,'#76a570',2);ellipse(geometry.x-5,s.y-4,4,3,'#90b381')}}
+ const occupied=npcs.filter(n=>n.inside===s.id).length+(visitors?.guests||[]).filter(v=>v.inside===s.id).length;verticalBuildingName(b.name,geometry.x+w+6,geometry.y+5,occupied);
 }
 
 function animateRoom(room){

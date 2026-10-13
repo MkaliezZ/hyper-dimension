@@ -1,0 +1,5 @@
+// Ground footprint axes calibrated against the actual native artwork, in atlas pixels.
+// The complete sprite is drawn at one scale; pots, roof eaves and boat rigging
+// must not move the entrance away from its ground stair or change proportions.
+export const BUILDING_GROUND_ANCHORS={"pixel":{"production":[138.986,429.5,701.046,977.08,1253.922,142.042,424.97,701.928,977.912,1251.01,139.968,433.108,702.97,977.903,1248.982,137.88,412.0,707.11,973.87,1253.0,142.006,422.0,700.976,969.99,1249.946],"homes":[256.0,768.0,1280.0,1789.76,260.48,770.24,1275.52,1792.0,256.0,776.064,1306.88,1801.856,247.936,763.52,1277.312,1795.584]},"origami":{"production":[142.95,370.076,624.976,874.952,1136.05,132.0,383.96,630.968,879.08,1125.062,132.0,374.993,627.0,883.075,1127.0,134.034,382.916,628.994,886.034,1134.061,122.062,368.108,629.0,886.025,1135.956],"homes":[256.0,768.0,1280.0,1789.76,260.48,770.24,1277.76,1792.0,256.0,776.064,1306.88,1801.856,247.936,763.52,1277.312,1795.584]}};
+export function foundationAxis(theme,kind,id,crop){const x=BUILDING_GROUND_ANCHORS[theme]?.[kind]?.[id];return crop&&Number.isFinite(x)?(x-crop.x)/crop.w:.5;}

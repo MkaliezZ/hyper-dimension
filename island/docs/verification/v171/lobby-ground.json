@@ -1,0 +1,130 @@
+{
+  "version": 171,
+  "scope": "Windows native Edge on isolated fictional islands with providers disabled. No physical Mac, full seasonal world, residential interior or whole-product acceptance claim.",
+  "motionBefore": [
+    {
+      "theme": "pixel",
+      "createMs": 702.7658999999999,
+      "toasts": [
+        "上一项操作正在确认",
+        "上一项操作正在确认",
+        "上一项操作正在确认"
+      ],
+      "rebuilds": 1,
+      "frame": {
+        "median": 6.099999999999454,
+        "p95": 6.100000000000364,
+        "max": 24.199999999999818
+      },
+      "maxStep": 12.50418486636345,
+      "movingFrames": 747,
+      "moveRequests": 1
+    },
+    {
+      "theme": "origami",
+      "createMs": 547.5077999999994,
+      "toasts": [
+        "上一项操作正在确认",
+        "上一项操作正在确认",
+        "上一项操作正在确认"
+      ],
+      "rebuilds": 1,
+      "frame": {
+        "median": 6.099999999999454,
+        "p95": 6.199999999998909,
+        "max": 18.199999999999818
+      },
+      "maxStep": 27.07436186180369,
+      "movingFrames": 762,
+      "moveRequests": 1
+    }
+  ],
+  "motionAfter": [
+    {
+      "theme": "pixel",
+      "createMs": 266.4421,
+      "toasts": [],
+      "rebuilds": 0,
+      "frame": {
+        "median": 6.099999999998545,
+        "p95": 6.19999999999709,
+        "max": 12.200000000000728
+      },
+      "maxStep": 1.2604876375305594,
+      "movingFrames": 2526,
+      "movingNPCs": 7,
+      "npcMaxStep": 1.1348908126794868,
+      "moveRequests": 2
+    },
+    {
+      "theme": "origami",
+      "createMs": 170.41660000000047,
+      "toasts": [],
+      "rebuilds": 0,
+      "frame": {
+        "median": 6.099999999998545,
+        "p95": 6.19999999999709,
+        "max": 12.100000000000364
+      },
+      "maxStep": 1.785427917768402,
+      "movingFrames": 2480,
+      "movingNPCs": 7,
+      "npcMaxStep": 1.6074453088576774,
+      "moveRequests": 2
+    }
+  ],
+  "lostResponseRecovery": [
+    {
+      "theme": "pixel",
+      "stalePollDuringMoveIgnored": true,
+      "noTransientRecoveryCard": true,
+      "mapLayoutStable": true,
+      "lostResponseRecoveryAvailable": true,
+      "sameRequestReplay": true
+    },
+    {
+      "theme": "origami",
+      "stalePollDuringMoveIgnored": true,
+      "noTransientRecoveryCard": true,
+      "mapLayoutStable": true,
+      "lostResponseRecoveryAvailable": true,
+      "sameRequestReplay": true
+    }
+  ],
+  "groundEntryChecks": [
+    {
+      "theme": "pixel",
+      "workshopEntered": true,
+      "butlerHomeOwnerMatched": true,
+      "sharedAppearance": true,
+      "appearancePersisted": true,
+      "frameSample": {
+        "frames": 120,
+        "medianMs": 6.099999999999454,
+        "p95Ms": 6.199999999999818,
+        "maxMs": 6.200000000000728
+      },
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "workshopEntered": true,
+      "butlerHomeOwnerMatched": true,
+      "sharedAppearance": true,
+      "appearancePersisted": true,
+      "frameSample": {
+        "frames": 120,
+        "medianMs": 6.099999999999454,
+        "p95Ms": 6.100000000000364,
+        "maxMs": 6.199999999999818
+      },
+      "passed": true
+    }
+  ],
+  "ruleChecks": {
+    "focusedMotionGeometryRaster": 21,
+    "identityTravelMovement": 19,
+    "legacyRoomMigration": 3
+  },
+  "artworkCropRebuiltFromOriginalBytes": true
+}

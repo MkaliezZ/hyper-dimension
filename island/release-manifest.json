@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v170-agent-source",
+  "release": "hyper-dimension-v171-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 16590,
-      "sha256": "3e147c7792f91e996f7634b95bb41a99d7a0c34ec65f2ff601fecfb751d93485"
+      "bytes": 17050,
+      "sha256": "b0ab0f539997d99d5b5d1e6a0581ebc91bd4f94983207408efdc841d1cb8817a"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 6527,
-      "sha256": "b1ec413e99f08aabbce4263eb49efa543abed9e7a6d938c3c2f0522796df1826"
+      "bytes": 6966,
+      "sha256": "a7003c5e245cf2676946c88e3c40e8ae62a2869551b70415b22a1247bb9c42dc"
     },
     {
       "path": "README.md",
-      "bytes": 5774,
-      "sha256": "b90cb045f3ec9c4f2c03a6fb8976d4c4bbbd9e3d7ef6ff4ac44369b00f890f08"
+      "bytes": 6134,
+      "sha256": "27b0bfc6475c0d7fb5ed6cabed8822e04e7349831838db5a57b21ce6d2832a23"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 25888,
-      "sha256": "66e70bc912a0e239aaa62475a4f264a51ef40f9459d1523407eb1f483f77934c"
+      "bytes": 26757,
+      "sha256": "c2e0ef6c6b30eb55a5c28afba394c40499022140c628961e4a0602182b36ca52"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -204,6 +204,11 @@
       "path": "docs/kitchen-v142.md",
       "bytes": 3145,
       "sha256": "d77a031507e27f8351138effdded54dc8a94ffdfe92722d89d5f1e0cebab84b4"
+    },
+    {
+      "path": "docs/lobby-ground-v171.md",
+      "bytes": 2838,
+      "sha256": "3f75dd16072b6f6b0a9fbceb66001299035f9e953169ef71cbe1c54186951222"
     },
     {
       "path": "docs/lobby-motion-v152.md",
@@ -916,6 +921,16 @@
       "sha256": "d6c2d264a8f90e72ab75af667a4fd953f10a68113ee2dad356a63de26f332a5e"
     },
     {
+      "path": "docs/screenshots/v171-origami-island.png",
+      "bytes": 3881845,
+      "sha256": "79d20094dc3b133c0f75040d4d522605eafef44a1a91e2598a26521550d0ce7d"
+    },
+    {
+      "path": "docs/screenshots/v171-pixel-island.png",
+      "bytes": 4123249,
+      "sha256": "6f1d7d4d8fdd75283445ddaecf91d358f66d090131696f4391dc24aee80d6bc1"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -1334,6 +1349,11 @@
       "path": "docs/verification/v170/native-reward-drain.json",
       "bytes": 7013,
       "sha256": "c6076e26c889f268575bf9051cab38aaf4c0d6db807ca6d72352ea57bc7d9a21"
+    },
+    {
+      "path": "docs/verification/v171/lobby-ground.json",
+      "bytes": 3489,
+      "sha256": "fb4c518a62aeab0bf78b9909a9738c2f955f06494e6732bf30bf1c2ae79eac36"
     },
     {
       "path": "docs/windows-locks-v162.md",
@@ -1852,8 +1872,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9258,
-      "sha256": "102d8b2e826d195bd784f000b85844266da75da09a2e406b7c26f8e9163c29f0"
+      "bytes": 9325,
+      "sha256": "32677cdb6f7e8b4a67bcd960da487c83307953fb747c5aee12bbc8cce42215b3"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4161,19 +4181,24 @@
       "sha256": "03bec9f1543305428e2836d4847b97300ff9ed441cff1abfc4573ca59194752d"
     },
     {
+      "path": "server/lanGeographyMigration.mjs",
+      "bytes": 2926,
+      "sha256": "07033db678f9264ad328022ed5b69160b3e71d7fac7d9476d26585e4d0df6557"
+    },
+    {
       "path": "server/lanHomeServices.mjs",
       "bytes": 2643,
       "sha256": "48da8defe123267d44186bc956fbb0b57d64fbc8e7ea869b33c86f6cba4a1764"
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 24346,
-      "sha256": "eaf659fa1d27c6e168debd466e289e5174a616178998df2ed52bf56747d53070"
+      "bytes": 24996,
+      "sha256": "57e3a07fe116d34ee516624dfa95301dabfcfcecb7d3c09d6d4c96b59619e09e"
     },
     {
       "path": "server/lanRoomResidents.mjs",
       "bytes": 8677,
-      "sha256": "50fa828ba823a2673250fefdcdcdb21c07f77b08dd6cb933fe355cbd8ac36cce"
+      "sha256": "953e58ad55d54cc81d78ffe8cca73483859db0b1b7b30a2b9865d6a39ee35328"
     },
     {
       "path": "server/lanServer.mjs",
@@ -4472,8 +4497,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 141242,
-      "sha256": "edff5280d58795e7a9bcf4a4bec48fa1d985df4853d835d47726e65da9c5b1a2"
+      "bytes": 141401,
+      "sha256": "c74750aa0e2fa855fbbbf19244b6dcdde9b9696219f0a74caa40b19e01cc47cd"
     },
     {
       "path": "src/arcade.css",
@@ -4532,8 +4557,18 @@
     },
     {
       "path": "src/buildingGeometry.js",
-      "bytes": 975,
-      "sha256": "80a7c3d2656e6f4affecee3344f16e1eda68594180897de2c1da284ab43526a7"
+      "bytes": 1378,
+      "sha256": "b75f1ed84a57e2bfd6b750feb89a39831687e5a0de9e88a275c91500a83435a0"
+    },
+    {
+      "path": "src/buildingGroundAnchors.js",
+      "bytes": 1144,
+      "sha256": "7ff8343629f2ef31655c5911d51dd1a19033ea41acec8666545b62dfce99935e"
+    },
+    {
+      "path": "src/buildingGroundCalibration.js",
+      "bytes": 1521,
+      "sha256": "c20f9866f24e3b85cd47238883fe5f9a897b9b96965083f621b8d37fcd844f9f"
     },
     {
       "path": "src/catalog-data.js",
@@ -5017,8 +5052,8 @@
     },
     {
       "path": "src/houseAtlasBounds.js",
-      "bytes": 2167,
-      "sha256": "6d9d380af76e8eef934de9efdf7e175d1218a16cd2615ac04ad71c871caabcbe"
+      "bytes": 2298,
+      "sha256": "2382e00a56b441e3b4b8f5624261c0ca790899f15006c5ac09b15c34536b2914"
     },
     {
       "path": "src/hud.css",
@@ -5147,13 +5182,18 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 12089,
-      "sha256": "38d73267b5e26f1cffff2023813637759d96b0262641e11a691898389b81f050"
+      "bytes": 11621,
+      "sha256": "70b6fb2edf44ba2d9c05e83d9393cf3f072366094dacb93d3d8c4513878558e8"
     },
     {
       "path": "src/lanMotion.js",
-      "bytes": 1375,
-      "sha256": "6e4d2b2a928a9ca135dd52b6059dc72da4dc26144d7e7c4d9dd434ccd3eab6c0"
+      "bytes": 2888,
+      "sha256": "6c624d2fda25367c7bdce478e76a4934a2df1b7b5645e6c8f42a9b19c4b111e9"
+    },
+    {
+      "path": "src/lanMoveQueue.js",
+      "bytes": 1095,
+      "sha256": "86b6263b1eb3bff43d1940bcdf87eed6404b9b913f52c92b3053a689d0bfdce6"
     },
     {
       "path": "src/lanSocialUI.js",
@@ -5177,8 +5217,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 19359,
-      "sha256": "b256efe9a04d2859fc8909f18c6bd9383d88f58f9cec705581b31ff10c83176e"
+      "bytes": 19693,
+      "sha256": "0d4e7cea1261df6425a7825712635fd9bfdc10914c41207248932e2755432bf5"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -5562,8 +5602,8 @@
     },
     {
       "path": "src/residenceArt.js",
-      "bytes": 1214,
-      "sha256": "6c0542e3d2fcb4e24b4d16c06eee035902f59aae3fe886979997963d484e8d26"
+      "bytes": 1217,
+      "sha256": "c8c76e35949d552d610fcece9043014d4925e5d242707b6c0494f7d7ef5dd5d8"
     },
     {
       "path": "src/resident-chat-v118.css",
@@ -5942,13 +5982,13 @@
     },
     {
       "path": "src/world.js",
-      "bytes": 14971,
-      "sha256": "14cb670a6d44e4be682313716be9c8894eb18815f150813cac0fd2c1312b3a05"
+      "bytes": 15591,
+      "sha256": "3935d6bebd6a9d6f3e03c2e7339da2fa6d5dbd4b16712939eeaae7c2f9c2853a"
     },
     {
       "path": "src/worldNavigationEdges.js",
       "bytes": 145352,
-      "sha256": "db75fa5e7188402f84887c5ad40944ef563f9c731d65444ff79f94576a6c896a"
+      "sha256": "b41d154b76e0dd05f783e74059c2e6d3531afcb33c5fff07a4a84b2f55d87140"
     },
     {
       "path": "src/worldSession.js",
@@ -6762,8 +6802,8 @@
     },
     {
       "path": "tests/v148-lobby-browser.mjs",
-      "bytes": 7924,
-      "sha256": "1ab743b43591abfbd71917e59f90d5e4e14cf904fe6449a99491c25182341eb8"
+      "bytes": 7976,
+      "sha256": "0cb19a79b3f464d5648aab0a9c7cdb9fdc69da57df0da9bb9cc9c438aa037a2f"
     },
     {
       "path": "tests/v148-motion.test.mjs",
@@ -6924,6 +6964,21 @@
       "path": "tests/v170-reward-drain-browser.mjs",
       "bytes": 12526,
       "sha256": "2f6a42f4b03848e463bf48a83858c2844b7d175d19e0108c65f9f1e3da4ee7ba"
+    },
+    {
+      "path": "tests/v171-lan-geography.test.mjs",
+      "bytes": 2748,
+      "sha256": "09c5e2a08399b71629ae63be77a7b62bfdd40a85ed77ed5710d15bd5dd255864"
+    },
+    {
+      "path": "tests/v171-lobby-motion-browser.mjs",
+      "bytes": 5875,
+      "sha256": "4e62270948648a72f566a97ce9553dee82abe6ccc86059b7657e14c61eb3fd4d"
+    },
+    {
+      "path": "tests/v171-lobby-motion.test.mjs",
+      "bytes": 3678,
+      "sha256": "e300f42212ea478f85b48e8abdb14e1aeec70604923581b6052f235bf8ad377e"
     },
     {
       "path": "tests/v18-balance-probe.mjs",
@@ -8517,8 +8572,8 @@
     },
     {
       "path": "tests/v94-raster.test.mjs",
-      "bytes": 2306,
-      "sha256": "f20d6b846dc0c8d678a112d674a19b734f5d30b2c043fe38a3939819f244a91a"
+      "bytes": 2447,
+      "sha256": "934957df468c17eb48076fc1cff35e8d3610607ce5eaf6fc8009b9a5160a849b"
     },
     {
       "path": "tests/v94-save-continuity.mjs",
@@ -8624,6 +8679,11 @@
       "path": "tools/agent-install.py",
       "bytes": 4525,
       "sha256": "0da1bd1ba57d9d05db829221d28d6e51832b2142ac66e2e70bfe9c2cb0a51fdf"
+    },
+    {
+      "path": "tools/build-house-bounds.py",
+      "bytes": 2388,
+      "sha256": "eb97bd2b74fbf074e27350b230b93445e39292ee8241d7a8278758bbd5c00ff8"
     },
     {
       "path": "tools/build-navigation-edges.mjs",

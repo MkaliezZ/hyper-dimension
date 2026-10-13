@@ -1,5 +1,10 @@
 # Hyper Dimension
 
+## V171 · Reception movement and ground alignment
+
+Rapid clicks keep the latest destination. Buildings align their ground footprints with marked parcel centres, with complete sprite crops and proportional dimensions. See [implementation and native measurements](docs/lobby-ground-v171.md). The published [V170 package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) has separate frozen-source and six-platform evidence.
+
+
 [中文](README.md) · [English](README.en.md) · [Deployment](DEPLOYMENT.md) · [Education module](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)
 
 **An island that feels alive, and a steward that gets things done.**

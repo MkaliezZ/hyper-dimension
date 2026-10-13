@@ -1,0 +1,48 @@
+{
+  "releaseId": 411186804,
+  "url": "https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170",
+  "draft": false,
+  "sourceCommit": "01f2228c76389a5d9a0066a9a3aa5e3681c6e696",
+  "assets": [
+    {
+      "name": "Hyper-Dimension-Agent-Source-v170-public.zip",
+      "size": 1348359708,
+      "digest": "sha256:bae06f8d261aa9ed3c6d33d31eebd4415447f3215996617dc30c73fed6a9f63d",
+      "state": "uploaded"
+    },
+    {
+      "name": "source-v170.sha256",
+      "size": 112,
+      "digest": "sha256:0148b6ec6f3b36b8c28168a2266926ee1f56d05ad0505847482ef74797136337",
+      "state": "uploaded"
+    }
+  ],
+  "ciRun": "https://github.com/MkaliezZ/hyper-dimension/actions/runs/38336303730",
+  "ciConclusion": "success",
+  "platformJobs": [
+    {
+      "name": "windows-2022 / native art",
+      "conclusion": "success"
+    },
+    {
+      "name": "macos-15-intel / native art",
+      "conclusion": "success"
+    },
+    {
+      "name": "windows-2022 / Python 3.11",
+      "conclusion": "success"
+    },
+    {
+      "name": "macos-14 / native art",
+      "conclusion": "success"
+    },
+    {
+      "name": "macos-15-intel / Python 3.11",
+      "conclusion": "success"
+    },
+    {
+      "name": "macos-14 / Python 3.11",
+      "conclusion": "success"
+    }
+  ]
+}

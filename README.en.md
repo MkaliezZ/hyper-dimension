@@ -14,7 +14,13 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V170
+## What's new · V171
+
+Reception movement keeps the latest target during rapid clicks, uses baked terrain routes and interpolates only confirmed waypoints. Ordinary movement receipts no longer rebuild the lobby. All25 production buildings and16 homes use calibrated ground centres, complete sprite crops and proportional dimensions. [Fix and measurements](island/docs/lobby-ground-v171.md).
+
+[Published V170 source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) passed all six Windows / Mac ARM / Intel Mac jobs and an independent offline rebuild. V171 native measurements and its later platform CI are separate.
+
+### V170 · Crafting acknowledgments
 
 Crafting rewards and closing cancellation now wait for submitted resident transactions instead of losing the request during brief concurrency. An uncertain response retains the original job; explicit recovery lets the original close complete. Six native claim, cancel and lost-response cases passed across both styles, preserving one-time costs and receipts. [Fix and evidence](island/docs/reward-drain-v170.md).
 
@@ -46,7 +52,7 @@ The season interface uses 30 visual days per season. Full-map seasonal artwork, 
 
 | Pixel island | Origami island |
 | --- | --- |
-| ![V169 pixel island](island/docs/screenshots/v169-pixel-island.png) | ![V169 origami island](island/docs/screenshots/v169-origami-island.png) |
+| ![V171 pixel island](island/docs/screenshots/v171-pixel-island.png) | ![V171 origami island](island/docs/screenshots/v171-origami-island.png) |
 
 ## Deploy with a development Agent
 

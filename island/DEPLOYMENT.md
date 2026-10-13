@@ -147,3 +147,8 @@ V134: one visual day is 15 minutes, each season lasts 30 visual days. Day/night 
 ## 原机管家连接 / Connect an original computer
 
 完成运行环境配置后，可运行 `node tools/steward-bridge.mjs --help`。在管家入口生成配对码，填写工作区、保留私有状态目录，核对标记后连接。[双平台命令、重连与回执恢复](docs/device-bridge-v138.md)。原机密钥由原机读取，不放进配对命令。 / Configure the runtime, pair from the steward, select the workspace and preserve the private state directory. The original device reads its own provider key.
+
+
+## V171 · 新地形会客与建筑校准
+
+会客连续改点保留最新目的地，原请求恢复仍在；更新后开放旧会客房的地形适配先保存校验原档到私有data/_lan/geography-backups。地块中心、房屋底座、点击范围与入口可用`align=1`图层核对，见[说明](docs/lobby-ground-v171.md)。新修复的原生证据和跨平台CI各自记录；本机用户存档、API配置与原机工作目录必须保留。
