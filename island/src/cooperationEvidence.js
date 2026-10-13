@@ -1,5 +1,6 @@
 import {RAW_IDS_V1,RECIPE_IDS_V1} from './achievementUniverse.js';
-const items=new Set([...RAW_IDS_V1,...RECIPE_IDS_V1]);
+import {SEASONAL_ITEM_IDS} from './seasonalRecipes.js';
+const items=new Set([...RAW_IDS_V1,...RECIPE_IDS_V1,...SEASONAL_ITEM_IDS]);
 export function validCooperationRows(rows){
  if(!Array.isArray(rows)||!rows.length||rows.length>4000||new Set(rows.map(e=>e?.operationId)).size!==rows.length)return false;
  return rows.every(e=>e&&/^[-\w:.]{1,180}$/.test(e.stepId||'')&&/^[-\w:.]{1,180}$/.test(e.operationId||'')&&/^[a-zA-Z0-9-]{8,80}$/.test(e.contractId||'')&&/^hd-parent-[a-f0-9]{32}$/.test(e.parentRunId||'')&&/^hd-child-[a-f0-9]{32}$/.test(e.childRunId||'')&&items.has(e.item)&&Number.isSafeInteger(e.amount)&&e.amount>0);

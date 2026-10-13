@@ -48,10 +48,11 @@ export function advanceResidents(r,at,route,environment=null){
   if(plan){
    c.schedulePeriod=plan.period;
    if(c.homeRest){if(plan.sleeping){c.walking=false;continue;}c.homeRest=false;c.homeId=null;c.scheduleKey=null;}
-   const key=plan.day+':'+plan.period+':'+plan.eventActive;
+   const venueId=plan.working?plan.buildingId:plan.eventActive?(venues[c.person.npcId]?.[1]??22):22;
+   const venue=worldSlots(r.theme).find(s=>s.id===venueId),anchor=plan.sleeping?plan.home.entry:venue.entry;
+   // A moved workplace invalidates the cached destination without moving the NPC.
+   const key=plan.day+':'+plan.period+':'+plan.eventActive+':'+anchor.x+','+anchor.y;
    if(c.scheduleKey!==key||!c.path.length&&c.scheduleRetryAt&&at>=c.scheduleRetryAt){
-    const venueId=plan.working?plan.buildingId:plan.eventActive?(venues[c.person.npcId]?.[1]??22):22;
-    const venue=worldSlots(r.theme).find(s=>s.id===venueId),anchor=plan.sleeping?plan.home.entry:venue.entry;
     let found=false;for(const target of plan.sleeping?[anchor]:places(r.theme,anchor,occupied.filter(x=>x!==c))){try{const path=route(r.theme,c,target);c.path=path;c.homeId=plan.sleeping?plan.home.id:null;c.scheduleKey=key;c.scheduleRetryAt=null;c.activity=plan.sleeping?scheduleText(plan):plan.working?'固定工作时段 · 在'+BUILDINGS[venue.id].name+'接待来访者':plan.eventActive?'下班后在'+BUILDINGS[venue.id].name+'与邻居分享见闻':'下班后在营地休息';found=true;break;}catch{}}
     if(!found){c.scheduleRetryAt=at+10000;c.activity='等待可行走的路线 · '+scheduleText(plan);}
    }

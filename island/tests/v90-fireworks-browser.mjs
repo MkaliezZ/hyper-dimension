@@ -22,7 +22,7 @@ try{
   const context=await browser.newContext({viewport:{width:1440,height:1000}});await context.addCookies([{name:'hd_lan_session',value:user.token,url:base,httpOnly:true,sameSite:'Strict'}]);let loseFinish=true,delayFirstCheckpoint=true;const calls=[],finishIds=[];let editedDuringCheckpoint=false;
   await context.route('**/api/**',async r=>{
    const url=r.request().url();if(url.includes('/api/saves/')){if(url.endsWith('/action')){const b=r.request().postDataJSON();calls.push(b);if(b.kind==='fireworks'&&b.operation==='checkpoint'&&delayFirstCheckpoint){delayFirstCheckpoint=false;const response=await r.fetch();await new Promise(resolve=>setTimeout(resolve,1800));return r.fulfill({response});}if(b.kind==='fireworks'&&b.operation==='finish'){finishIds.push(b.requestId);if(loseFinish){loseFinish=false;await r.fetch();return r.abort('failed');}}}return r.continue();}
-   if(url.endsWith('/api/lan/me'))return r.continue();
+   if(url.endsWith('/api/lan/me')||url.endsWith('/api/world/session'))return r.continue();
    if(url.includes('/api/parties/')&&url.endsWith('/suggest')){const b=r.request().postDataJSON();assert.equal(b.input.template,'fireworks');return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...b.input,guestId:14,guestReason:'青禾愿意观察花园终曲，也会协助收拾广场。',source:'deepseek',model:'deepseek-flash',proposalId:randomUUID()})});}
    return r.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated fireworks QA"}'});
   });
@@ -53,7 +53,7 @@ try{
    if(['checkin','intermission'].includes(g.phase)){if(await page.locator('#fireworksStart').isEnabled())await page.locator('#fireworksStart').click();else await page.waitForTimeout(100);continue;}
    const act=g.level.rounds[g.round];
    if(g.phase==='arming'&&!armed.has(g.round)){
-    if(view.transport)editedDuringCheckpoint=true;
+    if(x.serverFireworks.settling)editedDuringCheckpoint=true;
     for(const t of act.targets){
      await page.locator('[data-fireworks-select="'+t.index+'"]').click();
      for(const item of ['lane:'+t.lane,'color:'+t.color,'shape:'+t.shape])await page.locator('[data-fireworks-config="'+t.index+'|'+item+'"]').click();

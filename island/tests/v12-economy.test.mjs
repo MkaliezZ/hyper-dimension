@@ -43,7 +43,7 @@ test('tourists buy advanced building products at their real tier price and debit
  const r=settleVisit(s,g,6,'advanced-sale',10);assert.equal(r.paid,20);assert.equal(r.cost,6);assert.equal(s.inventory.c6_8,0);assert.equal(s.economy.playerGoods.c6_8,0);assert.equal(s.economy.ledger.at(-1).item,'c6_8');
  assert.equal(settleVisit(s,g,6,'advanced-sale',11).paid,0);assert.equal(g.budget,4);
 });
-test('all 300 products expose actual purposes and can perform their primary use',()=>{
+test('all 308 products expose actual purposes and can perform their primary use',()=>{
  for(const r of ALL_RECIPES){const s=fresh(),p=itemPurpose(r.item,s);assert.ok(p.primary.text.length>10,r.name);assert.ok(p.primary.action,r.name);
   for(const n of p.next)assert.ok(RECIPE_BY_ID['recipe_'+n.id].cost[r.item]);
   s.inventory[r.item]=1;assert.ok(itemUse(r.item,s).ok,r.name);

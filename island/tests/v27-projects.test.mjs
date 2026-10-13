@@ -53,7 +53,7 @@ test('reassign and player takeover revoke in-flight operation without inventing 
  assert(assignProjectStep(s,t.id,11).ok);assert.equal(nextTask(s,11).id,t.id);assert.equal(t.completed,0);
  assert.equal(validateState(s),s);s.agentTaskLedger[0].resourceOwner='other';assert.throws(()=>validateState(s),/筹备/);
 });
-test('all 300 recipes resolve through real stock, with shared inputs and no recipe deadlock',()=>{
+test('all 308 recipes resolve through real stock, with shared inputs and no recipe deadlock',()=>{
  for(const recipe of ALL_RECIPES){
   const s=fresh();for(const f of Object.values(s.facilities))f.quality=80;for(let i=0;i<25;i++)s.roomGames[i]={plays:8};
   const created=createProject(s,{targets:{[recipe.item]:2}});assert(created.ok,recipe.id+': '+created.reason);const p=created.project;

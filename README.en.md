@@ -14,57 +14,40 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V175
+## What's new · V176
 
-Shared weather now affects farming and fishing: 11 crops have planting seasons, rain waters outdoor plots and rainy fishing has wider input tolerance. All 16 permanent residents follow work and home schedules, with accepted night-event attendance. Fixed lost active time at low FPS and redundant scene resets when opening the gallery. [Implementation and evidence](island/docs/weather-life-v175.md).
+The boatyard now sits beside the southeastern harbor, with the fireworks workshop on the inner terrace. Routine checkpoints no longer interrupt wardrobe and shared minigame controls; recovery, held input and reward draining were also repaired. [Interaction and layout fixes](island/docs/minigame-input-v176.md).
 
-### V174 · Native parcels and building alignment
+Eight new crops and eight seasonal foods bring the catalog to **19 crops, 58 materials and 308 recipes**. The new crops have four growth stages in both art styles. Their harvests become food for eating, gifts, resident meals and shop stock. [Crops and recipes](island/docs/seasonal-content-v176.md).
 
-Recalibrated all 25 production buildings and 16 homes against native terrain in both styles. Fixed the tide house, boatyard, post office and campsite offsets; narrow plots now preserve proportional building sizes. Rendering, labels, picking and ground collision follow the corrected anchors. [Alignment details](island/docs/parcel-alignment-v174.md).
+Harvesting distinguishes sickle cutting, fruit picking, leaf gathering, loosening and pulling roots, and lifting pumpkins. Original atlas positions and the V1 achievement set remain intact. Save migration fills missing inventory fields with zero without granting resources.
 
-### V173 · Movement timing
+All **1071 default local checks** passed, alongside six native crafting, claiming and reload flows across both styles. The preceding V175 passed all six platform CI jobs; V176 cloud results are tracked separately. [Validation scope](island/docs/VALIDATION.md) · [V175 CI](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38388258952).
 
-Fixed slow walking at low frame rates and companion jumps when routes change. Reception characters catch up to confirmed positions along walkable paths; rapid clicks retain the final destination. Farm navigation at 8 / 15 FPS, reception movement at 10 FPS in both styles, and actual planting-to-harvest flows passed. [Fix and measurements](island/docs/frame-motion-v173.md).
+### Recent improvements
 
-### V172 · Save contention and entry recovery
+[Buildings and parcels](island/docs/parcel-alignment-v174.md) · [Weather and schedules](island/docs/weather-life-v175.md) · [Continuous movement](island/docs/frame-motion-v173.md) · [Save entry recovery](island/docs/save-entry-v172.md) · [Expanded terrain and homes](island/docs/geography-v169.md).
 
-Fixed `lan_busy` JSON replacing the island page during a save. Identity and entry reads use the last committed document, and explicit busy responses recover automatically. Autosave checks the latest valid periodic checkpoint while retaining full recovery validation. Both art styles passed browser recovery and travel exclusion checks. [Fix and validation](island/docs/save-entry-v172.md).
-
-### V171 · Reception movement and building alignment
-
-Reception movement keeps the latest target during rapid clicks, uses baked terrain routes and interpolates only confirmed waypoints. Ordinary movement receipts no longer rebuild the lobby. All25 production buildings and16 homes use calibrated ground centres, complete sprite crops and proportional dimensions. [Fix and measurements](island/docs/lobby-ground-v171.md).
-
-[Published V170 source package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) passed all six Windows / Mac ARM / Intel Mac jobs and an independent offline rebuild. V172 finished 3/6: all three native-art and farming jobs passed. V173 addresses the movement assertion and Mac test temporary-path failures; its own cloud results are still required.
-
-### V170 · Crafting acknowledgments
-
-Crafting rewards and closing cancellation now wait for submitted resident transactions instead of losing the request during brief concurrency. An uncertain response retains the original job; explicit recovery lets the original close complete. Six native claim, cancel and lost-response cases passed across both styles, preserving one-time costs and receipts. [Fix and evidence](island/docs/reward-drain-v170.md).
-
-The expanded terrain and homes retain V169. The current film records terrain and UI from V169, with three Agent/party scenes explicitly labelled V166.
-
-### V169 · Organic terrain and staggered homes
-
-- **A more natural island:** mountain ridges, hills, waterfalls, a river valley, terraced fields, a cave entrance and irregular bays. The continuous terrain loads as 30 independently generated high-resolution regions.
-- **Staggered neighbourhoods:** 25 production buildings follow roads and terrain. All 15 AI residents and the steward have distinct homes; the owner gallery shares the mainland and the harbor keeps its own approach lanes.
-- **Shared identity and progress:** both styles use the same building, home and save identities. Older worlds are backed up and migrated while retaining currency, inventory, crafting records and character profiles. Restoring or importing an older checkpoint also adapts it to the new map.
-- **Continuous movement:** a distance budget spans consecutive waypoints, preserving walking speed and facing across refresh rates. Entrances and wonder display spaces have been recalibrated.
-
-[Terrain implementation and verification scope](island/docs/geography-v169.md) · [Overall validation](island/docs/VALIDATION.md)
+The [published V170 package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) retains its independent offline-rebuild evidence. Source updates, cloud checks and immutable packages are verified separately.
 
 ## Life on the island
 
 | Experience | Content |
 | --- | --- |
-| Start from zero | 25 production buildings, 50 basic materials and 300 recipes; gathering, crafting, visitor spending and island expenses. An operating day is 900 active game seconds. |
+| Start from zero | 25 production buildings, 58 basic materials and 308 recipes; gathering, crafting, visitor spending and island expenses. An operating day is 900 active game seconds. |
 | Meet residents | 15 AI NPCs act according to occupation, personality and relationships, with free conversation and cooperative work. The model is DeepSeek V4.1 Flash. |
 | Delegate real work | A named steward with 12 selectable appearances uses Hermes to read delegated files, create documents, track tasks and recruit a temporary Agent partner. |
 | Showcase and host | The owner gallery supports life, education and employment histories, projects, pictures, uploads, drafts, publishing, visitor messages and replies. |
 | Travel with your steward | Multiplayer reception, accompanying NPCs, original-device bridging and standard A2A share attributed cooperation records. Cross-device work needs pairing and an online original device. |
 | Change art styles | Pixel and origami terrain, buildings, characters, rooms, items and UI, with native region loading, animated ocean ripples and shore waves. |
 
-Each season lasts 30 visual days. Weather effects, seasonal planting and resident home schedules are connected. Full-map seasonal native artwork, new crops and recipes, night lighting and moon reflections remain in development; home interiors retain the existing presentation entries.
+Each season lasts 30 visual days. Weather effects, seasonal planting and resident home schedules are connected. Full-map seasonal native artwork, complete growth art for legacy crops, night lighting and moon reflections remain in development; home interiors retain the existing presentation entries.
 
 ## Native screenshots
+
+| V176 pixel farm | V176 origami farm |
+| --- | --- |
+| ![V176 pixel crops](island/docs/screenshots/v176-pixel-farm.png) | ![V176 origami crops](island/docs/screenshots/v176-origami-farm.png) |
 
 | Pixel island | Origami island |
 | --- | --- |

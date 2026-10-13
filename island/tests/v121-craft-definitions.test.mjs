@@ -16,13 +16,13 @@ function rawBill(id,multiplier=1,result={}){
  return result;
 }
 
-test('all 300 outputs have explicit bills, construction and supported categories; every raw material has a real consumer',()=>{
- assert.equal(ALL_RECIPES.length,300);assert.equal(RAW_MATERIALS.length,50);assert.equal(Object.keys(CRAFT_SPECIFICATIONS).length,300);
+test('all 308 outputs have explicit bills, construction and supported categories; every raw material has a real consumer',()=>{
+ assert.equal(ALL_RECIPES.length,308);assert.equal(RAW_MATERIALS.length,58);assert.equal(Object.keys(CRAFT_SPECIFICATIONS).length,308);
  for(const r of ALL_RECIPES){assert(r.construction.length>=12,r.item);assert.equal(r.definitionVersion,4);assert(Object.keys(r.cost).length>0);for(const [id,n]of Object.entries(r.cost)){assert(ITEM_BY_ID[id]);assert(Number.isInteger(n)&&n>0);}}
  for(const raw of RAW_MATERIALS)assert(ALL_RECIPES.some(r=>r.cost[raw.id]),raw.id+' unused');
 });
 
-test('recursive manufacture of each of the 300 products consumes exactly its raw bill without extra output or ledger leakage',()=>{
+test('recursive manufacture of each of the 308 products consumes exactly its raw bill without extra output or ledger leakage',()=>{
  for(const r of ALL_RECIPES){
   const s=fresh();for(const id of Object.keys(s.inventory))s.inventory[id]=0;
   s.freshStartPending=false;s.research={};for(let id=0;id<25;id++){s.research[id]=10;s.facilities[id].quality=90;}

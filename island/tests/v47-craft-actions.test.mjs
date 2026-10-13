@@ -91,9 +91,9 @@ test('materials missing at entry stay practice even if stock later appears',asyn
  const {r}=await play(f,start);f.advance(2100);const done=await f.store.action('pixel',command(r,'finish'));
  assert.equal(done.receipt.outcome,'practiced');assert.deepEqual(done.receipt.gain,{});assert.equal(done.document.state.inventory.lantern,0);assert.equal(done.document.state.craftHistory.recipe_lantern,undefined);
 });
-test('all 300 recipes use their actual catalog and return all ingredients on cancel',async()=>{
+test('all 308 recipes use their actual catalog and return all ingredients on cancel',async()=>{
  const f=await fixture();let d=f.document;
- assert.equal(ALL_RECIPES.length,300);
+ assert.equal(ALL_RECIPES.length,308);
  for(const recipe of ALL_RECIPES){
   const r=await f.store.action('pixel',begin(d,recipe.id));assert.equal(r.ticket.building,recipe.building);assert.equal(r.ticket.item,recipe.item);assert.equal(r.ticket.practice,false);
   assert.deepEqual(r.document.state.resourceLedger.reservations[r.ticket.owner].items,Object.fromEntries(Object.entries(r.ticket.reservedItems).sort(([a],[b])=>a.localeCompare(b))));

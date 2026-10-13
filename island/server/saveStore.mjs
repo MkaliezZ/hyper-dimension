@@ -47,6 +47,7 @@ import {validProjects} from '../src/projectPlans.js';
 import {validRecruitment} from '../src/recruitment.js';
 import {validResourceLedger} from '../src/resourceLedger.js';
 import {validWardrobe,ITEM_BY_ID} from '../src/contentCatalog.js';
+import {PRODUCTION_VERSION} from '../src/productionNetwork.js';
 import {validToolbelt} from '../src/equipmentRules.js';
 import {mkdir,readFile,writeFile,unlink,readdir,stat,open} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
@@ -63,7 +64,7 @@ export function validateState(state,theme=null,{legacyGeometry=false}={}){
  if(state?.worldAppearance!==undefined&&!['pixel','origami'].includes(state.worldAppearance))throw fail('小岛画风无效');
  if(theme&&state?.placementBook&&state.placementBook.theme!==(state.worldAppearance||theme))throw fail('布置画风与存档不一致');
  if(!state||Array.isArray(state)||typeof state!=='object'||!Number.isSafeInteger(state.day)||state.day<1||
- !Number.isFinite(state.coins)||state.coins<0||!state.inventory||Array.isArray(state.inventory)||
+ !Number.isFinite(state.coins)||state.coins<0||!state.inventory||typeof state.inventory!=='object'||Array.isArray(state.inventory)||
  !state.player||!Number.isFinite(state.player.x)||!Number.isFinite(state.player.y))throw fail('存档结构无效，未覆盖现有进度');
  for(const [key,value] of Object.entries(state.inventory))if(!/^[a-zA-Z0-9_-]{1,80}$/.test(key)||!Number.isSafeInteger(value)||value<0)throw fail('背包数据无效，未覆盖现有进度');
  if(Buffer.byteLength(JSON.stringify(state))>MAX_SAVE_BYTES)throw fail('存档超过 16 MiB 容量上限；上次成功保存的进度仍保留，请导出暂存并更新游戏',413,'save_too_large');
@@ -252,6 +253,16 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
      doc=await commit(p,theme,state,doc,'resource-migration',clientId,actions);
     }
     if(doc.state.economy?.budgetPolicyVersion!==105){await snapshot(p,doc,'before-economy-policy');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateEconomyPolicy(state,actions);doc=await commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);}
+    // Extend the canonical inventory before browser hydration. Adding zero keys in
+    // the browser would otherwise disagree with the protected personal snapshot.
+    const missingCatalogItems=Object.keys(ITEM_BY_ID).filter(id=>!Object.hasOwn(doc.state.inventory,id));
+    if(missingCatalogItems.length||doc.state.productionVersion!==PRODUCTION_VERSION){
+     await snapshot(p,doc,'before-catalog-v176');
+     const state=structuredClone(doc.state),actions=doc.actions?structuredClone(doc.actions):undefined;
+     for(const id of missingCatalogItems)state.inventory[id]=0;
+     state.productionVersion=PRODUCTION_VERSION;
+     doc=await commit(p,theme,state,doc,'catalog-migration-v176',clientId,actions);
+    }
     // V165: older NPC payouts could acknowledge stock before recording discovery.
     // Derive flags only from the verified canonical inventory, never the browser copy.
     const ownedUndiscovered=missingOwnedDiscoveries(doc.state);

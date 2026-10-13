@@ -1,4 +1,5 @@
-import {hoeToolPose} from './toolMotion.js';
+import {hoeToolPose,harvestStroke,harvestArmOffset} from './toolMotion.js';
+import {cropHarvestProfile} from './cropHarvest.js';
 import {heldToolGeometry,TOOL_ART} from './toolArt.js';
 import {registerThemeArtwork} from './themeArtwork.js';
 import {createSpriteRasterCache} from './spriteRaster.js';
@@ -37,7 +38,7 @@ export function portraitStyle(id,theme){return 'background-image:url(/assets/cha
 export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  const oldHeading=a.facing8,heading=facingIndex(a);if(oldHeading!=null&&oldHeading!==heading){const turn=Math.min((heading-oldHeading+8)%8,(oldHeading-heading+8)%8);a.previousHeading=turn===1?oldHeading:null;a.facingChangedAt=now}const blend=Math.min(1,Math.max(0,(now-(a.facingChangedAt??-1))/.08)),rear=[3,4,5].includes(heading),id=isNpc?a.npcId??0:0,{img,frame:directionFrame,flip}=(avatarFrame(a.appearance,theme,heading)||characterFrame(id,theme,!!a.isVisitor,heading));
  let bodyHalfWidth=14,bodyHeight=76;const walk=a.walkMix??(a.walking?1:0),gait=Math.sin(a.phase||0)*walk,act=a.action,t=act?(act.leisure&&act.type==='arrange'?(act.t%4)/4:isNpc&&act.duration>3&&['craft','pickaxe','axe','hoe','water','harvest','cook','brew','paint','arrange'].includes(act.type)?((act.t+(act.visualWait||0))%1.4)/1.4:Math.min(1,(act.t+(act.visualWait||0))/act.duration)):0;
- const action=act?.type,room=act?.roomId,work=act?Math.sin(t*Math.PI*2):0;
+ const action=act?.type,room=act?.roomId,work=act?Math.sin(t*Math.PI*2):0,harvest=action==='harvest'?harvestStroke(t,act.harvestMode||cropHarvestProfile(act.crop||act.output)?.mode||'cut'):null,harvestArm=harvestArmOffset(harvest);
  ctx.save();ctx.translate(a.x,a.y);ctx.scale(mult,mult);ctx.imageSmoothingEnabled=theme!=='pixel';
  ctx.fillStyle=isNpc?'#19372740':'#eecb6566';ctx.beginPath();ctx.ellipse(0,1,18,6,0,0,Math.PI*2);ctx.fill();
  const speaking=action==='talk'&&!!a.speech,talking=action==='talk';const gesture=talking?Math.sin(now*(speaking?4.2:1.6)+id):0;const bob=Math.abs(gait)*1.5+Math.sin(now*1.8+id)*.45+(speaking?gesture*.7:0);
@@ -47,33 +48,50 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  const vf=directionFrame,cw=vf?.w||img.naturalWidth/4,ch=vf?.h||img.naturalHeight/4,sx=vf?.x||0,sy=vf?.y||0,W=96*(vf?.aspectRatio??cw/ch),H=96;bodyHalfWidth=Math.max(bodyHalfWidth,W/2+2);bodyHeight=Math.max(bodyHeight,H+2);
  const body=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='body');
  const dressed=!!garmentFrame(body,theme,poseHeading);
- const garmentHands=dressed?drawGarmentBody(ctx,body,theme,poseHeading,gait,work,action,t):null;
+ const garmentHands=dressed?drawGarmentBody(ctx,body,theme,poseHeading,gait,work,action,t,harvest):null;
  ctx.save();if(flipped)ctx.scale(-1,1);
  const segment=(x,y,w,h,dx=0,dy=0,angle=0)=>{ctx.save();ctx.translate(dx,dy);ctx.rotate(angle);ctx.drawImage(img,sx+x*cw,sy+y*ch,w*cw,h*ch,-W/2+x*W,-H+y*H,w*W,h*H);ctx.restore()};
  if(!dressed){
   segment(0,.79,.5,.21,gait*1.6,-Math.max(0,gait)*2.2);
   segment(.5,.79,.5,.21,-gait*1.6,-Math.max(0,-gait)*2.2);
-  segment(.24,.52,.52,.29,0,-Math.abs(gait)*.5);
-  segment(0,.52,.27,.29,-gait*1.2,action==='celebrate'?-Math.sin(t*Math.PI)*13:work*1.2,gait*.017);
-  segment(.73,.52,.27,.29,gait*1.2,talking?(speaking?-4+gesture*3:gesture*.5):act?-Math.sin(t*Math.PI)*7:0,-gait*.017);
+  segment(.24,.52,.52,.29,0,-Math.abs(gait)*.5+(harvest?.bend||0)*2);
+  segment(0,.52,.27,.29,-gait*1.2,harvest?harvestArm:action==='celebrate'?-Math.sin(t*Math.PI)*13:work*1.2,gait*.017);
+  segment(.73,.52,.27,.29,gait*1.2,harvest?harvestArm:talking?(speaking?-4+gesture*3:gesture*.5):act?-Math.sin(t*Math.PI)*7:0,-gait*.017);
  }
  const head=(a.garments||[]).some(key=>GARMENTS[key]?.slot==='head')?hatlessHeadFrame(a.appearance,theme,poseHeading):null;
- if(head){const hh=46,hw=hh*head.frame.w/head.frame.h,r=head.frame;ctx.save();if(flipped)ctx.scale(-1,1);if(head.flip)ctx.scale(-1,1);ctx.drawImage(head.img,r.x,r.y,r.w,r.h,-hw/2,-94,hw,hh);ctx.restore();}else{
+ if(head){const hh=46,hw=hh*head.frame.w/head.frame.h,r=head.frame;ctx.save();if(flipped)ctx.scale(-1,1);if(head.flip)ctx.scale(-1,1);ctx.drawImage(head.img,r.x,r.y,r.w,r.h,-hw/2,-94+(harvest?.bend||0)*2,hw,hh);ctx.restore();}else{
  if(dressed){ctx.save();ctx.beginPath();ctx.moveTo(-W/2,-H);ctx.lineTo(W/2,-H);ctx.lineTo(W/2,-H*.52);ctx.lineTo(W*.13,-H*.52);ctx.lineTo(W*.13,-H*.50);ctx.lineTo(-W*.13,-H*.50);ctx.lineTo(-W*.13,-H*.52);ctx.lineTo(-W/2,-H*.52);ctx.closePath();ctx.clip();}
- segment(0,0,1,dressed ? .56 : .54,gait*.6,-Math.abs(gait)*.6,Math.sin(now*1.1+id)*.004+gesture*(speaking?.012:.005));
+ segment(0,0,1,dressed ? .56 : .54,gait*.6,-Math.abs(gait)*.6+(harvest?.bend||0)*2,Math.sin(now*1.1+id)*.004+gesture*(speaking?.012:.005));
  if(dressed)ctx.restore();}ctx.restore();
  if(garmentHands)for(const hand of garmentHands){
   const region=hand.column===2?[.45,.63,.43,.2]:hand.side<0?[.04,.65,.24,.19]:[.73,.65,.24,.19];
   ctx.save();ctx.translate(hand.x,hand.y);ctx.rotate(hand.angle);ctx.beginPath();ctx.ellipse(0,0,3.7,4.2,0,0,Math.PI*2);ctx.clip();
   ctx.drawImage(img,sx+region[0]*cw,sy+region[1]*ch,region[2]*cw,region[3]*ch,-4,-4.5,8,9);ctx.restore();
  }
- drawGarmentLayers(ctx,a.garments||[],theme,poseHeading,W,gait,work,action,t,now);
+ drawGarmentLayers(ctx,a.garments||[],theme,poseHeading,W,gait,work,action,t,now,harvest);
  ctx.restore();}else{ctx.fillStyle=color;ctx.fillRect(-14,-55,28,36);ctx.fillStyle='#e8bf9a';ctx.fillRect(-12,-76,24,22)}}
- const propBehind=action==='hoe'&&rear;if(propBehind)drawActionProp();
+ const propBehind=(action==='hoe'||harvest?.mode==='root'&&harvest.showTool)&&rear;if(propBehind)drawActionProp();
  if(blend<1&&a.previousHeading!=null){const previous=avatarFrame(a.appearance,theme,a.previousHeading)||characterFrame(id,theme,!!a.isVisitor,a.previousHeading);drawPose(previous.img,previous.frame,1-blend,previous.flip,a.previousHeading)}drawPose(img,directionFrame,a.previousHeading==null?1:blend,flip);
  if(!propBehind)drawActionProp();
  function drawActionProp(){if(act){
- ctx.save();const left=[1,2,3].includes(heading),body=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='body'),hands=sleeveHands(garmentFrame(body,theme,heading),heading,gait,work,action,t),hand=hands.find(p=>left?p.x<=0:p.x>=0)||hands[0];ctx.translate(hand.x,hand.y);ctx.scale(left?-1:1,1);
+ ctx.save();const left=[1,2,3].includes(heading),body=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='body'),hands=sleeveHands(garmentFrame(body,theme,heading),heading,gait,work,action,t,harvest),hand=hands.find(p=>left?p.x<=0:p.x>=0)||hands[0];ctx.translate(hand.x,hand.y);ctx.scale(left?-1:1,1);
+ function drawPalm(){
+  const glove=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='hands'),f=garmentFrame(glove,theme,heading);
+  ctx.save();ctx.beginPath();ctx.ellipse(0,0,3.4,3.8,0,0,Math.PI*2);ctx.clip();
+  if(f){const r=f.frame,half=r.w/2;ctx.drawImage(f.img,r.x+(hand.side<0?0:half),r.y+r.h*.35,half,r.h*.5,-4,-4,8,8);}
+  else if(directionFrame&&img.complete){const r=directionFrame,region=hand.column===2?[.45,.63,.43,.2]:hand.side<0?[.04,.65,.24,.19]:[.73,.65,.24,.19];ctx.drawImage(img,r.x+region[0]*r.w,r.y+region[1]*r.h,region[2]*r.w,region[3]*r.h,-4,-4,8,8);}
+  ctx.restore();
+ }
+ if(harvest){
+  let soil=harvest.soil,ground={x:5,y:22};
+  if(harvest.showTool){const root=harvest.mode==='root',tool=root?'hoe':'sickle',stroke=root?hoeToolPose(harvest.toolProgress,heading,hand,bob,heldToolGeometry('hoe',theme,TOOL_ART[theme].hoe.frame,54).shaftLength):null;
+   drawHeldTool(ctx,tool,theme,0,0,stroke?.size||39,stroke?.angle??harvest.toolAngle);if(stroke?.soil!=null){soil=stroke.soil;ground=stroke.ground;}
+  }
+  if(harvest.showCrop&&(act.crop||act.output)){ctx.save();ctx.globalAlpha*=harvest.cropOpacity;drawItem(ctx,act.crop||act.output,theme,4,-3,harvest.mode==='lift'?29:22,harvest.cropAngle);ctx.restore();}
+  drawPalm();
+  if(soil!=null){ctx.save();ctx.globalAlpha*=1-soil;for(let i=0;i<6;i++){ctx.fillStyle=(theme==='pixel'?['#765034','#aa7646','#cf9b60']:['#95704f','#ba936a','#d7b48a'])[i%3];ctx.fillRect(ground.x+(i-2.5)*3*soil,ground.y-(5+i%3*3)*Math.sin(soil*Math.PI),2,2);}ctx.restore();}
+  ctx.restore();return;
+ }
  const tools={hoe:'hoe',pickaxe:'pickaxe',axe:'axe',water:'watering_can',harvest:'sickle',sow:'seed',fertilize:'c14_8',fish:'rod'},prop=act.guestWork?null:act.equipment?.tool?.id||act.toolId||a.toolbelt?.[action]||tools[action]||act.output||(act.leisure||['rest','talk'].includes(action)?null:DEFAULT_RECIPES[room]?.item);
  if(prop){
  const stroke=action==='hoe'?hoeToolPose(t,heading,hand,bob,heldToolGeometry('hoe',theme,TOOL_ART[theme].hoe.frame,54).shaftLength):null;
@@ -81,13 +99,7 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
  const size=action==='fish'?64:action==='hoe'?stroke.size:action==='pickaxe'?54:39,held=drawHeldTool(ctx,prop,theme,0,0,size,angle);
  if(!held)drawItem(ctx,prop,theme,4,-5,size,angle);
  // The palm is in front of the handle, using this avatar or its actual glove artwork.
- if(held){
-  const glove=(a.garments||[]).find(key=>GARMENTS[key]?.slot==='hands'),f=garmentFrame(glove,theme,heading);
-  ctx.save();ctx.beginPath();ctx.ellipse(0,0,3.4,3.8,0,0,Math.PI*2);ctx.clip();
-  if(f){const r=f.frame,half=r.w/2;ctx.drawImage(f.img,r.x+(hand.side<0?0:half),r.y+r.h*.35,half,r.h*.5,-4,-4,8,8);}
-  else if(directionFrame&&img.complete){const r=directionFrame,region=hand.column===2?[.45,.63,.43,.2]:hand.side<0?[.04,.65,.24,.19]:[.73,.65,.24,.19];ctx.drawImage(img,r.x+region[0]*r.w,r.y+region[1]*r.h,region[2]*r.w,region[3]*r.h,-4,-4,8,8);}
-  ctx.restore();
- }
+ if(held)drawPalm();
  if(stroke?.soil!=null&&held){const p=stroke.soil,ground=stroke.ground.y,contactX=stroke.ground.x;ctx.save();ctx.globalAlpha*=1-p;for(let i=0;i<7;i++){const drift=(i-3)*2.2*p,lift=(5+(i%3)*3)*Math.sin(p*Math.PI);ctx.fillStyle=(theme==='pixel'?['#765034','#aa7646','#cf9b60']:['#95704f','#ba936a','#d7b48a'])[i%3];ctx.fillRect(contactX+drift,ground-lift+(i%2),theme==='pixel'?2:2.5,2);}ctx.restore();}
  if(action==='water'&&t>.35&&t<.8){const tip=held?.tip||{x:17,y:8};ctx.fillStyle='#a4e3ef';for(let i=0;i<5;i++)ctx.fillRect(tip.x+i*2,tip.y+3+i*5,2,4);}
  if(action==='fertilize'&&t>.22&&t<.86){ctx.save();for(let i=0;i<11;i++){const fall=((t-.22)*2.8+i/11)%1;ctx.globalAlpha=(1-fall)*.85;ctx.fillStyle=theme==='pixel'?['#765435','#a78b4e','#a1b768'][i%3]:['#8d6e4d','#bd9f72','#8da56d'][i%3];const x=9+Math.sin(i*2.6)*8+fall*16,y=4+fall*fall*34;if(theme==='pixel')ctx.fillRect(x,y,2,2);else{ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+3,y+1);ctx.lineTo(x+1,y+3);ctx.fill();}}ctx.restore();}

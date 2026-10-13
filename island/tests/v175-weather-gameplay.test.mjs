@@ -36,10 +36,10 @@ test('one deterministic world weather schedule with 30-day seasons and both bene
  for(const season of SEASONS){const ids=new Set();for(let n=0;n<30;n++){const e=environmentAt(base,atDay(SEASONS.indexOf(season)*30+n));assert.deepEqual(e.weather,weatherForEnvironment(e));assert.deepEqual(environmentAt({...base,revision:2},atDay(SEASONS.indexOf(season)*30+n)).weather,e.weather);ids.add(e.weather.id);}assert(ids.has(season==='winter'?'snow':'rain'));}
 });
 
-test('all existing crops have explicit season choices, with four usable winter staples',()=>{
+test('all existing crops have explicit season choices, with six usable winter crops',()=>{
  for(const id of Object.keys(CROPS))assert(SEASONS.some(s=>canPlantCrop(id,s)),id);
  assert.equal(canPlantCrop('strawberry','spring'),true);assert.equal(canPlantCrop('strawberry','winter'),false);
- assert.equal(Object.keys(CROPS).filter(id=>canPlantCrop(id,'winter')).length,4);
+ assert.equal(Object.keys(CROPS).filter(id=>canPlantCrop(id,'winter')).length,6);
 });
 
 test('server rejects out-of-season seed reservation even if request forges the environment',async()=>{

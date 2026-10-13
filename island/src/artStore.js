@@ -43,4 +43,5 @@ if(typeof Image!=='undefined')for(const theme of ['pixel','origami'])raster(FACI
 
 export function artStatus(){return {metadata:Object.keys(metadata).length,loaded:[...images].map(([file,im])=>({file,ready:im.complete&&im.naturalWidth>0}))}}
 
-if(typeof Image!=='undefined')for(const themes of Object.values(INDIVIDUAL_ITEM_ART))for(const art of Object.values(themes))raster(art.file);
+// Dedicated art is requested by itemFrame only when its item/theme is visible.
+// Catalog growth must not decode every seasonal atlas in both styles at startup.

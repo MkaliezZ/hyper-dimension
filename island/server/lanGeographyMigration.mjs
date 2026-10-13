@@ -1,5 +1,5 @@
 import {ISLAND_GEOGRAPHY,PERMANENT_HOMES} from '../src/islandGeography.js';
-import {worldWalkableForTheme,worldSlots,BUILDINGS} from '../src/world.js';
+import {worldWalkableForTheme,findWorldPathForTheme,worldSlots,BUILDINGS} from '../src/world.js';
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 function reachable(theme,anchor,occupied){
  const points=[];
@@ -11,12 +11,27 @@ function reachable(theme,anchor,occupied){
  throw Object.assign(Error('旧会客站位暂时无法适配新地形，原档已保留'),{code:'lan_map',status:503});
 }
 function routeClear(theme,start,path){let from=start;for(const to of path||[]){const n=Math.max(1,Math.ceil(distance(from,to)/3));for(let i=0;i<=n;i++)if(!worldWalkableForTheme(theme,from.x+(to.x-from.x)*i/n,from.y+(to.y-from.y)*i/n))return false;from=to;}return true;}
+// V176 swaps two business identities between existing physical parcels. Keep people
+// and earned work progress in place; only outdated work destinations need rerouting.
+const PRE_SWAP_WORK_ENTRIES=Object.freeze({20:{x:1644,y:1200},23:{x:1800,y:744}});
+function adaptMovedWorksites(room){
+ const people=[...(room.residents||[]),...Object.values(room.members).flatMap(m=>m.companions||[])],occupied=[...Object.values(room.members),...people];let changed=false;
+ for(const person of people){const work=person.meeting,old=PRE_SWAP_WORK_ENTRIES[work?.buildingId],site=worldSlots(room.theme).find(s=>s.id===work?.buildingId);
+  if(work?.kind!=='work'||!work.target||!old||!site||distance(work.target,old)>160||distance(work.target,site.entry)<=160)continue;
+  const target=reachable(room.theme,{x:site.entry.x+work.target.x-old.x,y:site.entry.y+work.target.y-old.y},occupied.filter(p=>p!==person)),route=findWorldPathForTheme(room.theme,person,target),last=route.at(-1)||person;
+  if(distance(last,target)>18||!routeClear(room.theme,person,route))throw Object.assign(Error('调整后的工位暂时不能抵达，原任务和进度已保留'),{code:'lan_map',status:503});
+  if(distance(last,target)>.01)route.push({...target});if(!routeClear(room.theme,person,route))throw Object.assign(Error('工位入口需要重新规划，原任务和进度已保留'),{code:'lan_map',status:503});
+  person.path=route;person.walking=route.length>0;work.target=target;work.phase='approaching';person.activity='前往'+BUILDINGS[site.id].name+'调整后的共同试作工位';changed=true;
+ }
+ return changed;
+}
 // The original checksummed identity document is backed up before this result is saved.
-// Closed rooms are historical records, and current-version rooms do no extra work.
+// Closed rooms are historical records; current terrain only needs stale venue targets checked.
 export function adaptOpenRoomGeography(document,at){
  const rooms=[];let relocated=0;
  for(const room of Object.values(document.rooms||{})){
-  if(room.phase!=='open'||room.geographyVersion===ISLAND_GEOGRAPHY.version)continue;
+  if(room.phase!=='open')continue;
+  if(room.geographyVersion===ISLAND_GEOGRAPHY.version){if(adaptMovedWorksites(room))rooms.push(room.id);continue;}
   const people=[...Object.values(room.members),...(room.residents||[]),...Object.values(room.members).flatMap(m=>m.companions||[])],occupied=people.filter(p=>worldWalkableForTheme(room.theme,p.x,p.y));
   for(const person of people){
    if(!worldWalkableForTheme(room.theme,person.x,person.y)){

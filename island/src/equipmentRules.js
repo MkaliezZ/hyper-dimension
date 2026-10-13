@@ -1,3 +1,4 @@
+import {cropHarvestProfile} from './cropHarvest.js';
 import {availableQuantity,commitResources,nextOperationId,reserveResources,releaseResources} from './resourceLedger.js';
 export const EQUIPMENT_VERSION=35;
 export const WEAR_SLOTS={body:'主服',bottom:'下装',apron:'围裙',outer:'披肩',head:'头饰',hands:'手套'};
@@ -73,6 +74,7 @@ export function resolveTool(s,action,{owner=null,npc=false}={}){
  if(id!==base&&availableQuantity(s,base,owner)>0)return {...TOOLS[base],source:'owned',requested:id};
  return {...TOOLS[base],source:'borrowed',requested:id,durationScale:1,precisionBonus:0,trackingBonus:0};
 }
+export function resolveHarvestTool(s,crop,options={}){const action=cropHarvestProfile(crop)?.toolAction;return action?resolveTool(s,action,options):null;}
 export function minePrecision(s,tool=resolveTool(s,'pickaxe')){return Math.min(.17,.12+(tool?.precisionBonus||0)+(isWorn(s,'c4_4')?.015:0))}
 export function beginToolUse(s,action,seconds){
  let tool=resolveTool(s,action),owner=null;

@@ -20,7 +20,7 @@ for(const theme of ['pixel','origami']){
  test(theme+' reported offsets match native terrace landmarks',()=>{
   const tide=residenceGeometry(PERMANENT_HOMES[5],theme),dock=productionGeometry(SLOTS[23],theme),post=productionGeometry(SLOTS[11],theme),camp=productionGeometry(SLOTS[22],theme);
   assert(Math.abs(tide.doorX-1388)<1);assert.equal(tide.foot,1381);
-  assert(Math.abs(dock.doorX-1782)<2);assert(Math.abs(dock.foot-689)<=1);
+  assert.equal(dock.doorX,1637.5);assert(Math.abs(dock.foot-1180)<=1); // V176: entire coastal parcel exchanged with the firework workshop.
   assert.equal(post.doorX,1538.5);assert.equal(post.foot,599);
   assert(Math.abs(camp.doorX-1779)<1);assert.equal(camp.foot,544);
   for(const s of [...SLOTS,...PERMANENT_HOMES]){const route=findWorldPathForTheme(theme,ISLAND_GEOGRAPHY.spawn,s.entry);assert(route.length);assert(Math.hypot(route.at(-1).x-s.entry.x,route.at(-1).y-s.entry.y)<=18);}

@@ -280,15 +280,15 @@ export const ISLAND_GEOGRAPHY=freeze({
     },
     {
       "id": 20,
-      "x": 1638.71,
-      "y": 1160.78,
-      "w": 90.73,
-      "h": 50.23,
+      "x": 1801.24,
+      "y": 697.62,
+      "w": 89.11,
+      "h": 53.47,
       "facing": "south",
-      "sourceParcel": 23,
+      "sourceParcel": 12,
       "entry": {
-        "x": 1644,
-        "y": 1200
+        "x": 1800,
+        "y": 744
       }
     },
     {
@@ -319,15 +319,15 @@ export const ISLAND_GEOGRAPHY=freeze({
     },
     {
       "id": 23,
-      "x": 1801.24,
-      "y": 697.62,
-      "w": 89.11,
-      "h": 53.47,
+      "x": 1638.71,
+      "y": 1160.78,
+      "w": 90.73,
+      "h": 50.23,
       "facing": "south",
-      "sourceParcel": 12,
+      "sourceParcel": 23,
       "entry": {
-        "x": 1800,
-        "y": 744
+        "x": 1644,
+        "y": 1200
       }
     },
     {

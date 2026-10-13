@@ -1,6 +1,7 @@
 import {functionalDefinition} from './facilityCatalog.js';
 import {availableQuantity,canSpendResources,commitResources,nextOperationId} from './resourceLedger.js';
 import {RAW_ROWS,PRODUCT_ROWS} from './catalog-data.js';
+import {SEASONAL_RECIPES} from './seasonalRecipes.js';
 import {hydrateWardrobe,equipOutfit,equipTool} from './equipmentRules.js';
 export {validWardrobe,hydrateWardrobe,equipOutfit,unequipOutfit} from './equipmentRules.js';
 import {connectWorkshops,checkWorkshopGraph,PRODUCTION_VERSION} from './productionNetwork.js';
@@ -8,7 +9,7 @@ export const RAW_MATERIALS=RAW_ROWS.map(([id,name,art,source],index)=>({id,name,
 const categories=['decor','food','food','decor','wear','study','decor','study','decor','gift','food','gift','decor','study','seedling','decor','tool','food','collection','decor','decor','decor','decor','decor','study'];
 const legacy={0:'lantern',1:'tea',2:'meal',3:'bouquet',4:'outfit',10:'remedy',15:'pottery',16:'rod',17:'bread',20:'firework',24:'painting'};
 const tools={1:'hoe',2:'pickaxe',3:'watering_can',4:'axe',5:'sickle'};
-export const ALL_RECIPES=connectWorkshops(PRODUCT_ROWS.flatMap((rows,building)=>rows.map((row,index)=>{
+export const ALL_RECIPES=connectWorkshops([...PRODUCT_ROWS.flatMap((rows,building)=>rows.map((row,index)=>{
  const tier=Math.floor(index/4),[name,art]=row.split('|'),id=building===0&&tools[index]?tools[index]:index===0&&legacy[building]?legacy[building]:`c${building}_${index}`;
  let category=building===0&&tools[index]?'tool':categories[building];
  if(building===16&&index>0)category=index===4?'component':index===9?'tool':'decor';
@@ -17,7 +18,7 @@ export const ALL_RECIPES=connectWorkshops(PRODUCT_ROWS.flatMap((rows,building)=>
  if(building===10&&index>0)category=index===11?'study':index===10||index===9?'gift':'decor';
  if(building===11&&[5,6].includes(index))category=index===5?'study':'decor';
  return {id:'recipe_'+id,item:id,name,art,building,index,tier,category,price:6+tier*7+index%4};
-})));
+})),...SEASONAL_RECIPES]);
 export const PRODUCTION_GRAPH=checkWorkshopGraph(ALL_RECIPES,RAW_MATERIALS);
 export const RECIPE_BY_ID=Object.fromEntries(ALL_RECIPES.map(r=>[r.id,r]));
 export const ITEM_BY_ID=Object.fromEntries([...RAW_MATERIALS,...ALL_RECIPES.map((r,index)=>({...r,id:r.item,index,recipeId:r.id,source:'recipe'}))].map(i=>[i.id,i]));

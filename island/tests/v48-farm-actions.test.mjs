@@ -20,10 +20,10 @@ test('server derives farm stages/cost/tool/time and one harvest, never client su
  r=await work(f,r.document,0,'sow',{crop:'tomato'});assert.equal(r.document.state.inventory.seed,2);assert.equal(r.document.state.plots[0].crop,'tomato');r=await work(f,r.document,0,'water');
  let d=r.document;await assert.rejects(f.store.action('pixel',begin(d,0,'harvest')),e=>e.code==='farm_stage');
  for(let i=0;i<20;i++)d=await pulse(f,d,15);assert.equal(d.state.plots[0].stage,4);
- const start=await f.store.action('pixel',begin(d,0,'harvest'));f.advance(1230);const done=await f.store.action('pixel',{...finish(start),gain:{tomato:999,coins:999}});assert.deepEqual(done.receipt.gain,{tomato:3,seed:1});assert.equal(done.document.state.inventory.tomato,3);assert.equal(done.document.state.inventory.seed,3);assert.equal(done.document.state.economy.playerGoods.tomato,3);assert.equal(done.document.state.plots[0].stage,0);
+ const start=await f.store.action('pixel',begin(d,0,'harvest'));f.advance(Math.ceil(start.ticket.duration*1000));const done=await f.store.action('pixel',{...finish(start),gain:{tomato:999,coins:999}});assert.deepEqual(done.receipt.gain,{tomato:3,seed:1});assert.equal(done.document.state.inventory.tomato,3);assert.equal(done.document.state.inventory.seed,3);assert.equal(done.document.state.economy.playerGoods.tomato,3);assert.equal(done.document.state.plots[0].stage,0);
  const again=await f.other().action('pixel',finish(start));assert(again.replayed);assert.equal(again.document.state.inventory.tomato,3);
 });
-test('all 11 crops use their full mature times and catalog yield including seed recovery',async()=>{
+test('all configured crops use their full mature times and catalog yield including seed recovery',async()=>{
  for(const [crop,c] of Object.entries(CROPS)){const f=await fixture(s=>{s.plots[0]={stage:1,growth:0,crop:'wheat'}});let d=(await work(f,f.document,0,'sow',{crop})).document;d=(await work(f,d,0,'water')).document;
  let left=c.seconds;while(left>1){const dt=Math.min(15,left-1);d=await pulse(f,d,dt);left-=dt;}assert.equal(d.state.plots[0].stage,3);d=await pulse(f,d,1);assert.equal(d.state.plots[0].stage,4);
  d=(await work(f,d,0,'harvest')).document;assert.equal(d.state.inventory[c.item],c.yield);assert.equal(d.state.inventory.seed,3);

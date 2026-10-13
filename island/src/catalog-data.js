@@ -1,3 +1,4 @@
+import {SEASONAL_RAW_ROWS} from './seasonalRecipes.js';
 // Ordered art and game definitions. Every recipe has a distinct named output.
 export const RAW_ROWS=[
  ['wood','木材','stack of cut logs','forest'],['bamboo','竹材','green bamboo stalks','forest'],['hardwood','硬木','dark hardwood log','forest'],['twig','树枝','bundle of thin twigs','forest'],['resin','树脂','golden resin in a little cup','forest'],
@@ -9,7 +10,8 @@ export const RAW_ROWS=[
  ['flax','亚麻','blue flowering flax stalks','farm'],['herb','草药','green medicinal herb sprig','greenhouse'],['mint','薄荷','mint leaves','greenhouse'],['lavender','薰衣草','violet lavender sprigs','greenhouse'],['rose','玫瑰','red rose blossoms','greenhouse'],
  ['sunflower','向日葵','golden sunflower bloom','greenhouse'],['bluegrass','蓝草','indigo blue flowering plant','greenhouse'],['mulberry','桑叶','serrated mulberry leaves','greenhouse'],['wax','蜂蜡','yellow beeswax honeycomb','forest'],['amber','琥珀','warm amber nugget','forest'],
  ['fish','海鱼','silver blue fish','fishing'],['shrimp','海虾','pink shrimp','fishing'],['crab','螃蟹','red crab','fishing'],['ink','乌贼墨','squid with dark ink droplet','fishing'],['seaweed','海藻','green seaweed fronds','shore'],
- ['shell','贝壳','pink scallop shell','shore'],['pearl','珍珠','open oyster with pearl','shore'],['coral','珊瑚碎片','pink washed-up coral fragments','shore'],['driftwood','漂流木','pale twisted driftwood','shore'],['seasalt','海盐','white sea salt in shell dish','shore']
+ ['shell','贝壳','pink scallop shell','shore'],['pearl','珍珠','open oyster with pearl','shore'],['coral','珊瑚碎片','pink washed-up coral fragments','shore'],['driftwood','漂流木','pale twisted driftwood','shore'],['seasalt','海盐','white sea salt in shell dish','shore'],
+ ...SEASONAL_RAW_ROWS
 ];
 // name|art description; categories are actual uses, not cosmetic rarity copies.
 export const PRODUCT_ROWS=[

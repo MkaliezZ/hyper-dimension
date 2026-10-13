@@ -263,3 +263,17 @@ V174 本地完整规则 984/984 通过；本机双风格实际点击与邮局进
 ## V175 · 时令玩法、作息与有效时间
 
 默认回归 1020/1020 通过；两风格实际低帧率耕种、晴/雨/雪原生页面与服务端农田结果、居民归家及受邀夜集规则通过。保持自动调用频率和收益上限，未宣称完整四季底图或夜间灯光完成。Mac Intel 的导航慢帧仍需本版本云端诊断。[范围与证据](weather-life-v175.md)。
+
+
+V175 云端终态补记：运行 38388258952 六项全部成功。Mac Intel 原生施肥、生长、收获与刷新双主题通过，实际生长分别 198.312 / 199.821 秒；旧失败记录保留。[CI](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38388258952)。
+
+## V176 · 季节作物、食品与采收
+
+默认回归 1071/1071 通过，0 跳过（1057 领域规则 + 14 运行目录保护）。新增八种作物、八个食品配方与双主题 96 个美术单元；原生物品检查 116 素材与 616 制作品，覆盖 SVG、场景和手持，并保留旧串图探针。两风格各三种代表配方通过原生输入、服务端回放、唯一领取和刷新；烘焙文案另有两例复核。两风格实际农田16图均已加载且尺寸正确，两次真实采收回执通过。旧档零库存迁移、材料预留与历史回执兼容通过。
+
+作物与食品的数量、季节、产量、成本、用途和边界见[季节内容说明](seasonal-content-v176.md)。原生验收使用隔离备料存档，不表示零起点、人类体验、长时平衡或八道食谱全难度完成。完整四季地形、旧十一种作物专用四阶段图和物理夜间灯光仍未完成；V176 云端检查和独立源码包另外记录。
+
+
+### V176 interaction and parcel follow-up
+
+The final default command passed **1071/1071** (1057 domain checks plus 14 runtime-scope checks), with no failures or skips. Both themes passed actual boatyard/fireworks map clicks, walking and indoor entry. The wardrobe comparison passed normal and delayed transport, deliberate lost-response recovery, one actual output and reload checks. Shared controller and held-input tests remain separate bounded evidence; see [the interaction notes](minigame-input-v176.md). Full seasonal terrain, all legacy crop growth art, physical night lighting and human acceptance are still separate work.

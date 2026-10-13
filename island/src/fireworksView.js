@@ -59,7 +59,7 @@ export function mountFireworks(root,ticket,controls,{theme,profile,portrait,read
    q('fireworksTimeline').innerHTML='<div class="fireworks-timeline-track"><i id="fireworksPlayhead"></i>'+a.targets.map(t=>'<span class="fireworks-beat" data-fireworks-beat="'+t.index+'" style="left:'+(t.at/12*100)+'%;width:'+(a.window*2/12*100)+'%"><b>'+ (t.index+1)+'</b></span>').join('')+'</div><small>提前发射，让绽放落在亮拍</small>';
   }
   q('fireworksPlayhead').style.left=(playing?Math.min(100,game.clock/12*100):game.phase==='review'||finished?100:0)+'%';
-  root.querySelectorAll('[data-fireworks-config]').forEach(b=>b.disabled=paused||!arming);root.querySelectorAll('[data-fireworks-select]').forEach(b=>{const i=Number(b.dataset.fireworksSelect);b.disabled=paused||(transport&&!arming)||!['arming','performing'].includes(game.phase)||game.shots.some(s=>s.round===game.round&&s.index===i);});
+  root.querySelectorAll('[data-fireworks-config]').forEach(b=>b.disabled=locked()||!arming);root.querySelectorAll('[data-fireworks-select]').forEach(b=>{const i=Number(b.dataset.fireworksSelect);b.disabled=locked()||!['arming','performing'].includes(game.phase)||game.shots.some(s=>s.round===game.round&&s.index===i);});
   for(let i=0;i<2;i++){const fired=game.shots.some(s=>s.round===game.round&&s.index===i);q('fireworksLaunch'+i).disabled=locked()||!playing||fired||game.clock>9.5||!ready();q('fireworksLaunch'+i).classList.toggle('fired',fired);root.querySelector('[data-fireworks-beat="'+i+'"]')?.classList.toggle('lit',playing&&Math.abs(game.clock-a.targets[i].at)<=a.window);}
   q('fireworksStart').classList.toggle('hidden',!starting);q('fireworksStart').disabled=locked()||!ready();text(q('fireworksStart'),!ready()?'等伙伴实际到齐':game.phase==='checkin'?'大家已到齐 · 编排第一幕':'编排下一幕');
   q('fireworksSubmit').classList.toggle('hidden',!arming);q('fireworksSubmit').disabled=locked()||!ready()||!game.configs.every(Boolean)||game.configs[0]?.lane===game.configs[1]?.lane;
@@ -68,7 +68,7 @@ export function mountFireworks(root,ticket,controls,{theme,profile,portrait,read
   q('fireworksClaim').classList.toggle('hidden',!finished);q('fireworksClaim').disabled=transport;q('fireworksCancel').disabled=transport;q('fireworksPause').classList.toggle('hidden',finished);text(q('fireworksPause'),paused?'继续本场':'暂停本场');
   if(game.effect?.id!==effect){effect=game.effect?.id||0;if(game.effect?.type==='launch')sound('trail');if(game.effect?.type==='result')sound('victory');}
  }
- function configure(i,item){if(paused||game.phase!=='arming')return;emit({action:{type:'configure',index:i,item}});selected=i;paint();}
+ function configure(i,item){if(locked()||game.phase!=='arming')return;emit({action:{type:'configure',index:i,item}});selected=i;paint();}
  function launch(i){if(locked()||game.phase!=='performing'||!ready())return;emit({action:{type:'launch',index:i}});selected=1-i;controls.saveOutcome();paint();}
  root.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.fireworksConfig){const [i,item]=b.dataset.fireworksConfig.split('|');configure(Number(i),item);}else if(b.dataset.fireworksSelect!==undefined){selected=Number(b.dataset.fireworksSelect);paint();}});
  q('fireworksStart').onclick=()=>{if(locked()||!ready())return;emit({action:{type:'start'}});for(let i=0;i<2;i++)emit({action:{type:'configure',index:i,item:'lane:'+(i*2)}});selected=0;controls.saveOutcome();paint();};
@@ -76,7 +76,7 @@ export function mountFireworks(root,ticket,controls,{theme,profile,portrait,read
  for(let i=0;i<2;i++)q('fireworksLaunch'+i).onclick=()=>launch(i);
  q('fireworksPause').onclick=()=>{paused=!paused;last=0;controls.saveOutcome();paint();};q('fireworksClaim').onclick=()=>{if(!transport&&game.phase==='results')controls.claim();};
  q('fireworksCancel').onclick=()=>{if(transport)return;if(!quitting){quitting=true;paused=true;controls.saveOutcome();text(q('fireworksCancel'),'确认结束 · 只归还未发射烟花');paint();return;}controls.exit();};
- function aim(x,y){if(paused||(transport&&game.phase!=='arming')||!['arming','performing'].includes(game.phase)||!game.configs[selected]||game.shots.some(s=>s.round===game.round&&s.index===selected))return;emit({action:{type:'aim',index:selected,x:clamp(x,.08,.92),y:clamp(y,.16,.56)}});paint();}
+ function aim(x,y){if(locked()||!['arming','performing'].includes(game.phase)||!game.configs[selected]||game.shots.some(s=>s.round===game.round&&s.index===selected))return;emit({action:{type:'aim',index:selected,x:clamp(x,.08,.92),y:clamp(y,.16,.56)}});paint();}
  function pointer(e){const r=canvas.getBoundingClientRect();aim((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);}
  canvas.onpointerdown=e=>{canvas.setPointerCapture(e.pointerId);pointer(e);};canvas.onpointermove=e=>{if(e.buttons&&performance.now()-aimAt>60){aimAt=performance.now();pointer(e);}};canvas.onpointerup=e=>{pointer(e);canvas.releasePointerCapture(e.pointerId);};
  function pause(){paused=true;last=0;controls.saveOutcome();paint();}

@@ -1,6 +1,6 @@
 import {BUILDINGS} from './world.js';
 import {ALL_RECIPES} from './contentCatalog.js';
-import {shopListing,shopSummary,shopItemOffer} from './shopfronts.js';
+import {shopListing,shopSummary,shopItemOffer,shopCapacity} from './shopfronts.js';
 import {availableQuantity,reservedQuantity} from './resourceLedger.js';
 import {visitorPrice,operatingCost,VENUE_SERVICES} from './economy.js';
 import {itemMarkup} from './artStore.js';
@@ -12,7 +12,7 @@ export function createShopfrontUI({state,theme,openModal,command,toast,back,deta
   if(busy)return;
   if(id===null){
    openModal('岛屿商铺货架','把手作品变成收入，也给下一道工序留下材料',
-    '<section class="shopfront-intro"><h3>由你决定卖什么、留下多少。</h3><p>游客按喜好和预算到店。每次实际购买一份，扣除 30% 运营费。默认非食品留用一件，食品和多余制品可出售；未卖出的物品仍在背包，可继续制作或用于派对。</p></section><div class="shopfront-grid">'+BUILDINGS.map(b=>{const v=shopSummary(state(),b.id),r=ALL_RECIPES.find(r=>r.building===b.id);return '<button class="shopfront-venue secondary" data-shelf="'+b.id+'">'+icon(r.item)+'<span><b>'+b.name+'</b><small>'+v.mode+' · 可售 '+v.stock+' 份</small><small>陈列 '+v.listed+' / 12 种</small></span></button>';}).join('')+'</div>',
+    '<section class="shopfront-intro"><h3>由你决定卖什么、留下多少。</h3><p>游客按喜好和预算到店。每次实际购买一份，扣除 30% 运营费。默认非食品留用一件，食品和多余制品可出售；未卖出的物品仍在背包，可继续制作或用于派对。</p></section><div class="shopfront-grid">'+BUILDINGS.map(b=>{const v=shopSummary(state(),b.id),r=ALL_RECIPES.find(r=>r.building===b.id);return '<button class="shopfront-venue secondary" data-shelf="'+b.id+'">'+icon(r.item)+'<span><b>'+b.name+'</b><small>'+v.mode+' · 可售 '+v.stock+' 份</small><small>陈列 '+v.listed+' / '+shopCapacity(b.id)+' 种</small></span></button>';}).join('')+'</div>',
     '<button class="secondary" id="shelvesBack">返回经营手账</button>');
    root().querySelector('#shelvesBack').onclick=back;
    root().querySelectorAll('[data-shelf]').forEach(el=>el.onclick=()=>open(Number(el.dataset.shelf)));

@@ -1,6 +1,6 @@
 import {CRAFT_SPECIFICATIONS} from './craftSpecifications.js';
 // One authoritative bill for every stable item ID. Accepted tasks retain their detached contract.
-export const PRODUCTION_VERSION=123;
+export const PRODUCTION_VERSION=176;
 export const COMMON_COMPONENTS={
  c0_7:{tier:0,category:'component',role:'木作构件'},
  c7_5:{tier:0,category:'component',role:'纸品'},

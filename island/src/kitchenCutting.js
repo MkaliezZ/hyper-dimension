@@ -1,11 +1,14 @@
 // Cut positions and judgment are shared by the browser and authoritative craft replay.
 export const KITCHEN_SCHEMA=142;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const ingredientCuts=(s,v)=>s.level.production?.cutCounts?.[s.level.ids[v]]??2;
+export const kitchenCutsRequired=(s,j)=>j?.ingredients?.reduce((n,v)=>n+ingredientCuts(s,v),0)||0;
+export function kitchenIngredientCuts(s,j,index){const before=j.ingredients.slice(0,index).reduce((n,v)=>n+ingredientCuts(s,v),0);return clamp(j.cuts-before,0,ingredientCuts(s,j.ingredients[index]));}
 export function kitchenTarget(s){
  const j=s.jobs?.[s.ticket];
- if(s.level.schemaVersion!==KITCHEN_SCHEMA||!j||j.state!=='prep'||j.ingredients.length!==s.level.orders[j.id].ingredients.length||j.cuts>=j.ingredients.length*2)return null;
- const index=Math.floor(j.cuts/2);
- return {job:j,index,x:421+index*69,y:328,remaining:2-j.cuts%2};
+ if(s.level.schemaVersion!==KITCHEN_SCHEMA||!j||j.state!=='prep'||j.ingredients.length!==s.level.orders[j.id].ingredients.length||j.cuts>=kitchenCutsRequired(s,j))return null;
+ let before=0;for(let index=0;index<j.ingredients.length;index++){const count=ingredientCuts(s,j.ingredients[index]);if(j.cuts<before+count)return {job:j,index,x:421+index*69,y:328,remaining:before+count-j.cuts};before+=count;}
+ return null;
 }
 export function initKitchenCutting(s){
  s.kitchenStroke=null;s.lastCut=-1;s.cutX=560;
@@ -17,7 +20,7 @@ function cut(s,target,x,emit,keyboard=false){
  if(s.t-s.lastCut<.36-1e-9)return false;
  const j=target.job,quality=keyboard?100:Math.round(clamp(100-Math.abs(x-target.x)*1.25,70,100));
  j.cuts++;j.cutQuality.push(quality);s.lastCut=s.t;s.cutX=x;s.cutFlash=.36;s.kitchenStroke=null;
- s.status=(quality>=92?'利落切配':'切配完成')+' · '+j.cuts+'/'+j.ingredients.length*2+(j.cuts===j.ingredients.length*2?' · 可以入灶':' · 每份食材切两刀');
+ s.status=(quality>=92?'利落切配':'切配完成')+' · '+j.cuts+'/'+kitchenCutsRequired(s,j)+(j.cuts===kitchenCutsRequired(s,j)?' · 可以入灶':' · 按高亮切口继续切配');
  emit(s,'cut',x,328,{art:s.level.ids[j.ingredients[target.index]],quality,ticket:j.id,index:target.index});return true;
 }
 export function kitchenCutAction(s,a,emit){

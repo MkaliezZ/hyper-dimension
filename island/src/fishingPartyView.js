@@ -56,7 +56,7 @@ export function mountFishingMatch(root,{session,theme,profile,avatar,persist,onC
  }
  function draw(ts){
   if(ended)return;const dt=last?Math.min(.05,(ts-last)/1000):0;last=ts;
-  if(!paused&&!transport&&dt>0){tickFishing(m,dt);trace({dt});if(ts-lastSave>2000&&m.phase==='playing'){lastSave=ts;save()}}
+  if(!paused&&!transport&&m.phase==='playing'&&dt>0){tickFishing(m,dt);trace({dt});if(ts-lastSave>2000&&m.phase==='playing'){lastSave=ts;save()}}
   const c=m.current,l=m.rounds[Math.min(m.index,5)],renderRound=m.phase==='round_result'||m.phase==='results'?m.rounds[Math.max(0,m.index-1)]:l;
   if(c?.mode!==lastMode){
    if(c?.mode==='bite'){audio.event({kind:'bite'});painter.event({kind:'splash',x:renderRound.spot.x,y:renderRound.spot.y})}
@@ -76,5 +76,5 @@ export function mountFishingMatch(root,{session,theme,profile,avatar,persist,onC
  }
  if(Number.isInteger(session.guestId)){const label=document.createElement('p');label.className='fishing-spectator';label.textContent=profile(session.guestId).name+' · '+(session.guestReason||'来海边陪你一起等潮汐');root.querySelector('.fishing-stage').after(label);}
  prepareStage(theme).catch(()=>{});paint();frame=requestAnimationFrame(draw);
- return {setTransportPaused:v=>{transport=v;last=0;paint();},destroy(){if(ended)return;ended=true;cancelAnimationFrame(frame);release();if(controls)controls.saveOutcome();else persist();painter.destroy();audio.destroy();window.removeEventListener('hd-sound-settings',pause);window.removeEventListener('blur',pause);document.removeEventListener('visibilitychange',onVisibility);root.removeEventListener('keydown',key);root.removeEventListener('keyup',key)},inspect:()=>({match:m,paused,transport})};
+ return {setTransportPaused:v=>{if(v&&!transport)release();transport=v;last=0;paint();},destroy(){if(ended)return;ended=true;cancelAnimationFrame(frame);release();if(controls)controls.saveOutcome();else persist();painter.destroy();audio.destroy();window.removeEventListener('hd-sound-settings',pause);window.removeEventListener('blur',pause);document.removeEventListener('visibilitychange',onVisibility);root.removeEventListener('keydown',key);root.removeEventListener('keyup',key)},inspect:()=>({match:m,paused,transport})};
 }

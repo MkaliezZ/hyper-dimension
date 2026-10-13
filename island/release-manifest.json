@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v175-agent-source",
+  "release": "hyper-dimension-v176-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -32,8 +32,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2270,
-      "sha256": "fde92861e030f3650c2737c93bc2d3fa5f4a3e2a10c40a0fe2617fff5f5171eb"
+      "bytes": 2306,
+      "sha256": "177be65d4723c70ecf68cafb79668d8cdb545f4f802e1f47f1e2a1e45f1a23fb"
     },
     {
       "path": "DEPLOYMENT.md",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8996,
-      "sha256": "eef182364917d9675c62cc35fac0d188fb9d1f0557bd49e8273fcb6d3a19972b"
+      "bytes": 6784,
+      "sha256": "2bf70dbe2bc61865f1ab9ed4f3ba4af8e4612388e1249f524de2690dfcfdf7a3"
     },
     {
       "path": "README.md",
-      "bytes": 7868,
-      "sha256": "609c7ca5bfdc35a77980679573441edc9ba673f62bdc715acc8ce84aa7004d53"
+      "bytes": 6123,
+      "sha256": "93368a051c8d34ffe94218113dbd1ee1b5d9e38fa115945dd1ebd9fd6facf111"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 28415,
-      "sha256": "2420159cecf7353388437d5db9664839b0934d24378b3e36d6636dbee307eec2"
+      "bytes": 30293,
+      "sha256": "e5907accf21911c6a61fa0bc424ec14b5f51784bc45bdc4dcb4de5cade410c6f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -509,6 +509,11 @@
       "path": "docs/media/v153-portrait-pixel.png",
       "bytes": 93603,
       "sha256": "8e2b483d8fd42109723fabe31ca26f6d8c0d332b37814e2c4be36d37d856da95"
+    },
+    {
+      "path": "docs/minigame-input-v176.md",
+      "bytes": 5921,
+      "sha256": "e512e40934ac80326be8e86618800b1da8957bf0c9110936fd6314e20e30d935"
     },
     {
       "path": "docs/modal-command-navigation-v157.md",
@@ -951,6 +956,16 @@
       "sha256": "6f1d7d4d8fdd75283445ddaecf91d358f66d090131696f4391dc24aee80d6bc1"
     },
     {
+      "path": "docs/screenshots/v176-origami-farm.png",
+      "bytes": 2385818,
+      "sha256": "135419ecbbecbd8540c996b2aa40ba1f0f5ef0d01a3a00fb14ac87a26a8af268"
+    },
+    {
+      "path": "docs/screenshots/v176-pixel-farm.png",
+      "bytes": 2744367,
+      "sha256": "4fbfef4e016e3e0aab853a32fe59393cbe475cb6bab49448c6c0a96a2eb49aa6"
+    },
+    {
       "path": "docs/sea-art-prompts-v122.json",
       "bytes": 2108,
       "sha256": "8d4ff2885dd644207cd2050f38434e9e785f049d499d546c6ce22dea6fcaaeaa"
@@ -959,6 +974,16 @@
       "path": "docs/sea-art-v122.json",
       "bytes": 662,
       "sha256": "ed2b936bd1d261ad646af958ceda48e2cb69b693d2cf103b7bab0a845b388ac8"
+    },
+    {
+      "path": "docs/seasonal-art-provenance-v176.json",
+      "bytes": 42093,
+      "sha256": "d64fb4ac6b60d6d7936ca03c656b38a0e3181dba4250e3cda043ea03224adf9c"
+    },
+    {
+      "path": "docs/seasonal-content-v176.md",
+      "bytes": 16093,
+      "sha256": "7aa39caffe530690b89425e2aeb2936aea4ada245cb19ac742c5ddf191021764"
     },
     {
       "path": "docs/shared-island-v118.md",
@@ -1897,8 +1922,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9573,
-      "sha256": "8ae43d50e9a03d3aa0c524ffd81f2702f9f7f13c993273fc92d7fccc0d461fa1"
+      "bytes": 9822,
+      "sha256": "a00ef14c0d1f32f03a1c3e80762d00b97318c8cfdeac79331e1257e688690f1c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2214,6 +2239,86 @@
       "path": "public/assets/couture-stage-pixel-v89b.png",
       "bytes": 1197723,
       "sha256": "8c5979d8fa6efb3c3c08276de8b485d5a094366ef23bf01a8be81fdf912a965d"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-blueberry-v176.png",
+      "bytes": 1140079,
+      "sha256": "b1d0035e3c2d631948207363ba3c513596f9f045da12e9e432bc8021ae82efed"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-cabbage-v176.png",
+      "bytes": 1254503,
+      "sha256": "b9487b86b4c54fda6a68d20d4a9081dfe789613759e5a7c7e805c1f7a9580b2c"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-cucumber-v176.png",
+      "bytes": 1079682,
+      "sha256": "455f83bac89e13a80a79267457b4741208c585ecb7808ce5d5afdd1b6318fa9c"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-daikon-v176.png",
+      "bytes": 1115885,
+      "sha256": "b7d0db9cebefb8e988b50b0c7ea62b94f94a72aaf4aad2dfa82dd5e3dc88d855"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-eggplant-v176.png",
+      "bytes": 1034472,
+      "sha256": "e6cdf9d3a81672dcc07ba7bd01938b7fcfa4dc271d85f3be3b1d07e76951ebc2"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-kale-v176.png",
+      "bytes": 1217208,
+      "sha256": "98a23893cc184ed972b684d88c612dc2e4c35415306e5a5ecf112e69e2bb59fd"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-pea-v176.png",
+      "bytes": 1051819,
+      "sha256": "128604efb8e4cf53e45555d4d777fdeee3c7e0acf20b3e16de57f7d055bd5082"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-sweet-potato-v176.png",
+      "bytes": 947138,
+      "sha256": "3c5012f3c08058bcaf155183c0b11d7a2fa346af7862da093fbc6f5a98bab08e"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-blueberry-v176.png",
+      "bytes": 881883,
+      "sha256": "97978b6f666f7b8f9b9db0bf7b9dc806d6f10b3ad25a67e94e6ceec1fcdf1b18"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-cabbage-v176.png",
+      "bytes": 781173,
+      "sha256": "6780971990fc3ae8e34b84aeb1f882c352d09d6f9d26605eb7dabb17dc567400"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-cucumber-v176.png",
+      "bytes": 943066,
+      "sha256": "5052d4bb7989edbaf03a726dee915acdc7175677ce8f1e045f95178125420f98"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-daikon-v176.png",
+      "bytes": 801897,
+      "sha256": "d9b3850e7f840ae55e0d1b8df960334b9425847b5611fef57a7a39161b528915"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-eggplant-v176.png",
+      "bytes": 934090,
+      "sha256": "89323aedce798740f9f89d830f024c990f4da0be2d8aa6d7291ab06fcfc21f23"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-kale-v176.png",
+      "bytes": 1008664,
+      "sha256": "4ce0117f36fe767c032b3f5f6a2511fc83a3680ef839fadf7644801adc44df71"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-pea-v176.png",
+      "bytes": 875585,
+      "sha256": "1a3ba7267e35c8d95ff7b9e6604de12dfc9988c552d59c065152d4ee781dd98b"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-sweet-potato-v176.png",
+      "bytes": 709459,
+      "sha256": "6846efae26c3b4c545d8f09ae43ba7db77f6f64616b5d35960027367a13f287f"
     },
     {
       "path": "public/assets/cursors/origami-action.png",
@@ -2694,6 +2799,26 @@
       "path": "public/assets/items-pixel-products-4-v8.png",
       "bytes": 2673558,
       "sha256": "ba5de7fee61a9bc53ed5744e6a78f8be30edacb4c027ac990d056fa1d6a0de65"
+    },
+    {
+      "path": "public/assets/items-season-origami-food-v176.png",
+      "bytes": 1954190,
+      "sha256": "8c10840cd247d160d00a6c506c0552133575b4d5977dc48060062d4214899f14"
+    },
+    {
+      "path": "public/assets/items-season-origami-harvest-v176.png",
+      "bytes": 1613560,
+      "sha256": "4bebfddb4c9842d235c9b18e8227b19896c0160542afe10ffd00c1dfceda2ff7"
+    },
+    {
+      "path": "public/assets/items-season-pixel-food-v176.png",
+      "bytes": 1634400,
+      "sha256": "37d22f2b130450a240dc727303d2d6a543a2c1070c1835c148928fabe88a9496"
+    },
+    {
+      "path": "public/assets/items-season-pixel-harvest-v176.png",
+      "bytes": 1201067,
+      "sha256": "90557645eb237be9ed7b479c47767f029e9e62d6a84796f950d8de84ad06447c"
     },
     {
       "path": "public/assets/map-tiles-v119/origami-0-0.png",
@@ -4067,8 +4192,8 @@
     },
     {
       "path": "server/craftActions.mjs",
-      "bytes": 10981,
-      "sha256": "cfcf1eddb6370b7f5fc9568127198eb664f22b6cba23f2a7c29eec9409488005"
+      "bytes": 10988,
+      "sha256": "8debd8cbb1e10c723ecfc28cd9f17bbc570f29b600ed80052dbcf0fa276580fe"
     },
     {
       "path": "server/crossIslandTasks.mjs",
@@ -4122,8 +4247,8 @@
     },
     {
       "path": "server/farmActions.mjs",
-      "bytes": 18710,
-      "sha256": "5aab11aae05bfc186b949140061d287111a03131d94cb4def5b18aa11e87fea9"
+      "bytes": 19031,
+      "sha256": "2711b8838264902a0fba8f0064203c1fc6434574cebea49955710a92a144cd16"
     },
     {
       "path": "server/festivalActions.mjs",
@@ -4212,8 +4337,8 @@
     },
     {
       "path": "server/lanGeographyMigration.mjs",
-      "bytes": 2926,
-      "sha256": "07033db678f9264ad328022ed5b69160b3e71d7fac7d9476d26585e4d0df6557"
+      "bytes": 4636,
+      "sha256": "2f5db66be382078da2c69d3786fae794ba18e0e0c81abdae5a05b9d92d2faaf9"
     },
     {
       "path": "server/lanHomeServices.mjs",
@@ -4227,8 +4352,8 @@
     },
     {
       "path": "server/lanRoomResidents.mjs",
-      "bytes": 10521,
-      "sha256": "3fe188e1adfc0d362cdc53a3319c7f765c39107ed7218723101b6381eba268a0"
+      "bytes": 10628,
+      "sha256": "409c09cefe97b7c8d3cacf25f8d70b0678ebe44f9a5a5667aaa951b99e565387"
     },
     {
       "path": "server/lanServer.mjs",
@@ -4432,8 +4557,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 37141,
-      "sha256": "f2a683f28997ecd9de6545dd52dc587c719a79c78c97e5976b40b904aad5bca2"
+      "bytes": 37955,
+      "sha256": "df24693e1c4f68a51f3bd93ba2a9d1b4a8f4dc0a857444297d0abecb343b2465"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -4527,8 +4652,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 141494,
-      "sha256": "f8ceddc92933365dbee201a76a2a2fd63c8e313251516318e88d02e99cd53cf6"
+      "bytes": 141651,
+      "sha256": "658c0393562f484f2edd942b3a7e72e4747c7d6fc6b8ec66ad45369466b6a843"
     },
     {
       "path": "src/arcade.css",
@@ -4547,8 +4672,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 7979,
-      "sha256": "b4bb4d6b0aaea144e7f88a01af21498d627fc72a226bf6fe92a07f446a5df6f7"
+      "bytes": 7999,
+      "sha256": "1f4bd37fa4719a5718e923fdd7d4ccf297a2cb89dbfd529c93775ed4d18e8334"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -4602,8 +4727,8 @@
     },
     {
       "path": "src/catalog-data.js",
-      "bytes": 14199,
-      "sha256": "36b9e4bd276f4b3e481cc4e80b3c37afb0dc902e754123b0c048b3840816c2be"
+      "bytes": 14278,
+      "sha256": "24ee773f51d1a5a6efb8f4d3f373059e1685fc41a682770577b1bdafafe4c460"
     },
     {
       "path": "src/characterFacing.js",
@@ -4612,8 +4737,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 17038,
-      "sha256": "0cb0c7b44013e101747e3655a27edf6af1b0588aa8144c2a8e5c67f97ca012df"
+      "bytes": 18430,
+      "sha256": "0d73cff280b3e142dd1f093a7f63104ed37267097ab36706f01895a4b4a357c8"
     },
     {
       "path": "src/classicGames.js",
@@ -4657,8 +4782,8 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 9112,
-      "sha256": "06404df29af48700aa613106abf57fc887e6f4c9da8cfdb12106ea09666cd72b"
+      "bytes": 9192,
+      "sha256": "07632d5c855a31503c64cef498ec8ad61939feb0f8b5a0d0d3357d8185ccf2c2"
     },
     {
       "path": "src/contentUI.js",
@@ -4677,8 +4802,8 @@
     },
     {
       "path": "src/cooperationEvidence.js",
-      "bytes": 2535,
-      "sha256": "2a6872c872534b30346272999323b0b4469100487e42bc633eaccc6b5a96cad9"
+      "bytes": 2612,
+      "sha256": "350220bc7a02e8a295203916cd3eab93d41ea6150192873a882c2c720edef665"
     },
     {
       "path": "src/cooperationUI.js",
@@ -4727,8 +4852,8 @@
     },
     {
       "path": "src/craftGameReplay.js",
-      "bytes": 5533,
-      "sha256": "b001d2ad89969bc3d0aa3a12954a72cbcc0fa80a83aa851dc3438bba01e2a314"
+      "bytes": 5552,
+      "sha256": "0230691ae267877e9aaed922b4f891f5c04d75d653de92612c14de735de7eb4f"
     },
     {
       "path": "src/craftPlanning.js",
@@ -4742,8 +4867,23 @@
     },
     {
       "path": "src/craftSpecifications.js",
-      "bytes": 6342,
-      "sha256": "13a425bbc546f1bbc5caad96a759442b4241a04d2acaf49b094489d5d80e1ecc"
+      "bytes": 6449,
+      "sha256": "24f5a3a3a308e039f3e07ac18367e19cf24c58dda5bef3f6f44c0461f1452452"
+    },
+    {
+      "path": "src/cropArt.js",
+      "bytes": 3425,
+      "sha256": "eaa40389375da3aec036e38119a056cedb34b46ca6ab8f0dd126dca19775fedd"
+    },
+    {
+      "path": "src/cropArtFrames.js",
+      "bytes": 17729,
+      "sha256": "aca8701e722bca7ded828a94bed0b6ff2a31490abd7e2b5c1a8cea7b211460c2"
+    },
+    {
+      "path": "src/cropHarvest.js",
+      "bytes": 812,
+      "sha256": "06ff4400a6fab61d3fb10cd75956e835260770932b50527f7a30c11040c46d77"
     },
     {
       "path": "src/cropPickerUI.js",
@@ -4752,8 +4892,8 @@
     },
     {
       "path": "src/cropSeasons.js",
-      "bytes": 703,
-      "sha256": "485df675bb7a3ef1df64a5b801766f20708a7cc0973fd1031e733e7bd1afbf07"
+      "bytes": 844,
+      "sha256": "3a4d0161c4da1ec419bd611e24e28f6bc440cc1f0d043ddd4cb5f39f333f56a2"
     },
     {
       "path": "src/cursors-v147.css",
@@ -4822,8 +4962,8 @@
     },
     {
       "path": "src/equipmentRules.js",
-      "bytes": 8652,
-      "sha256": "69105979836cd7647b73047f79a83855c0bdf1d76965deb955df8c1acc83e9f6"
+      "bytes": 8860,
+      "sha256": "2a66ca2670a8364291222dc99f74605cb83f0e1911161f390a293620445368f4"
     },
     {
       "path": "src/equipmentUI.js",
@@ -4862,8 +5002,8 @@
     },
     {
       "path": "src/farming.js",
-      "bytes": 3763,
-      "sha256": "68bd8b1be34752202748d144c045d63e703588ebb62483e857045ac19bfc3662"
+      "bytes": 3855,
+      "sha256": "031761d89a16a755e9cc13e9489ce177c3baa48af664497bbe6339578882bd1f"
     },
     {
       "path": "src/festivalLayout.js",
@@ -4922,8 +5062,8 @@
     },
     {
       "path": "src/fireworksView.js",
-      "bytes": 20046,
-      "sha256": "78007aa2c4e9344e6012ce45e6f7803437b896a66ddcff9a8d28b795ca6178df"
+      "bytes": 19996,
+      "sha256": "f633ea36c439990605c9717b39a8f39010e0e03c0afabdd68f4032e2cf7d3094"
     },
     {
       "path": "src/firstCraftGuide.js",
@@ -4952,8 +5092,8 @@
     },
     {
       "path": "src/fishingPartyView.js",
-      "bytes": 11260,
-      "sha256": "468955cc86b2b410f6247237d7346163a4d6f61b8654e39f65a29ab91dfe745d"
+      "bytes": 11308,
+      "sha256": "dd152cae2d9f607a08e4718f30a92c0fc6a4e1181400a134a8800904c5fb2534"
     },
     {
       "path": "src/fishingReplay.js",
@@ -5057,8 +5197,8 @@
     },
     {
       "path": "src/garmentArt.js",
-      "bytes": 4840,
-      "sha256": "1d0e710d9187e01ca7d29a16149552a1fd80200c5dfd303e4aaf9d97206f6542"
+      "bytes": 5068,
+      "sha256": "11b71a16013427c0b00b64a4ad6193e70a9b18393736d34880cfebc7142a03c6"
     },
     {
       "path": "src/gather-v46.css",
@@ -5107,8 +5247,8 @@
     },
     {
       "path": "src/individualItemArt.js",
-      "bytes": 596,
-      "sha256": "55be9edcaddafc44d15a176bb27e14b7d29d2909ee099d11a8c4508f0cd21576"
+      "bytes": 8294,
+      "sha256": "5a64b48afad6d6920631bec3a201dd3695c5db6fa9ede8dc390c283a13916a0c"
     },
     {
       "path": "src/interiorDesign.js",
@@ -5118,7 +5258,7 @@
     {
       "path": "src/islandGeography.js",
       "bytes": 14934,
-      "sha256": "3da142855a7524f1a6bb5360e9387b5c133f6d071b6baac5f1d6dd80d77f7c51"
+      "sha256": "fa1529c4ad74828e5548037cfef453a1be85ec8360c0a093828aa5407821cfb1"
     },
     {
       "path": "src/itemPurpose.js",
@@ -5152,8 +5292,8 @@
     },
     {
       "path": "src/kitchenCutting.js",
-      "bytes": 2930,
-      "sha256": "264091517462a6399a29acc99b16ffc9ac9e14db04ac7ca9479225ed8ea44c35"
+      "bytes": 3464,
+      "sha256": "1cb9b2181394bb6e22c79daf483c44fc6fc2755734237207fd2b5d99c76b6c50"
     },
     {
       "path": "src/lan-activities-v57.css",
@@ -5563,7 +5703,7 @@
     {
       "path": "src/productionNetwork.js",
       "bytes": 3690,
-      "sha256": "fb11a22253644c6ac18514b276211709c01a1c3d9c3729c245747de9bfe419b3"
+      "sha256": "4ed63d4268f12ddb78cfe3bdb159a2af997d9fbccfd97210d697a3e0f0d81303"
     },
     {
       "path": "src/projectPlans.js",
@@ -5687,8 +5827,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 41584,
-      "sha256": "7b5a5647e5987a99d2b4e8db98bb9b8c62a85d6d3233ff96385b386547a3e0f7"
+      "bytes": 41782,
+      "sha256": "96c58c14e39dce627ae068a5290e986c1f522550ebb576150d0898bbc2ca8180"
     },
     {
       "path": "src/residentSchedule.js",
@@ -5742,8 +5882,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 30800,
-      "sha256": "77ccd5031d0d2124b4ed43e55b47cecb789743aa6ba71143fcbfc7cc40d8bd1a"
+      "bytes": 31256,
+      "sha256": "d0a76d7f4984fae158f138d2d55af40e6a394b76d8700159a0be5961d0566079"
     },
     {
       "path": "src/saveDelta.js",
@@ -5797,8 +5937,18 @@
     },
     {
       "path": "src/seasonArtwork.js",
-      "bytes": 1878,
-      "sha256": "d64557dd2b749095aa0a2c0daf3ed7bb4f2d0134df0e0c45674a052779f37446"
+      "bytes": 2179,
+      "sha256": "bdd8f3cb89ccc184abf7d665a38bb69c4d8598cf4e775f88d6ae2cc42939c3f2"
+    },
+    {
+      "path": "src/seasonalRecipes.js",
+      "bytes": 4162,
+      "sha256": "c62910eb0f21d8c813b118a52c70d12c687c8eae322ee01198ab28d72f48de39"
+    },
+    {
+      "path": "src/seasonalWorkshop.js",
+      "bytes": 1551,
+      "sha256": "419799d8a16130888b2af03a4efb3f02a38819fc50ca2ae54bd5a39cf47da2c8"
     },
     {
       "path": "src/serverCommerceUI.js",
@@ -5807,8 +5957,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 10638,
-      "sha256": "993a32325dfcb81502aa64d0bd08bc716963974aa6ef1cd52c31b7f68d664d74"
+      "bytes": 12162,
+      "sha256": "8ac539abfae795a10907086af3cc917211715084559a1c57b95965e6637151ba"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -5852,13 +6002,13 @@
     },
     {
       "path": "src/shopfrontUI.js",
-      "bytes": 6698,
-      "sha256": "9c3d7bc10c40923162af1fc44627464200038e55ed5ad556229e03c2bef610d3"
+      "bytes": 6731,
+      "sha256": "b93318dde348c511b87624228385c10cd325a03687f62782a7e7d65784e3c9fe"
     },
     {
       "path": "src/shopfronts.js",
-      "bytes": 2873,
-      "sha256": "16461aba1e1b9c9ccb065b87bd8754a2167e40e518de4271b541ca419843988d"
+      "bytes": 2971,
+      "sha256": "411d8aa4a030278283bc99aad40823856bf1fe7ff6ff4eb7a21287c9ea73771f"
     },
     {
       "path": "src/sound-v38.css",
@@ -5943,7 +6093,7 @@
     {
       "path": "src/terrainParcelAnchors.js",
       "bytes": 4291,
-      "sha256": "152a46d2f66f2ab611eb585789757ebc4e384de124e73d4dd935e4de387da632"
+      "sha256": "82359a8e42a48c4b4fd92a91f9cb24cfe2f68617165e974ff337615a5eaf9c56"
     },
     {
       "path": "src/terrainResolution.js",
@@ -5967,8 +6117,8 @@
     },
     {
       "path": "src/toolMotion.js",
-      "bytes": 1429,
-      "sha256": "6f1b4577ac01a7bce3e58f42c23b31f9a94e00787dbbbd8f65b239a9f79fcb4c"
+      "bytes": 2869,
+      "sha256": "6ebf7978c830a8a34dca4784cd311a864985d56ae5b377c173c7a71f82e5dfc0"
     },
     {
       "path": "src/townSimulation.js",
@@ -6027,8 +6177,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 44153,
-      "sha256": "f7ca54f2f06a357ffcbf9692ac5969f75a0960ee82f29bd11f8974357513fe6f"
+      "bytes": 44733,
+      "sha256": "6664b566b7905a02d1c9931e372a3af37a7673627b9e2700d2d2e10e222990c9"
     },
     {
       "path": "src/workshopProps.js",
@@ -6037,8 +6187,8 @@
     },
     {
       "path": "src/workshopRules.js",
-      "bytes": 48294,
-      "sha256": "ccd5207be6e3438b8ecf3f2e308e51534de6521a87a1dcbb5aa8f976d597edc8"
+      "bytes": 48540,
+      "sha256": "639c17e5468ddaca55154edb1890666d92e50ae0310cf658cf3b62f8bb63caa9"
     },
     {
       "path": "src/workshopSpecifications.js",
@@ -6047,8 +6197,8 @@
     },
     {
       "path": "src/workshopView.js",
-      "bytes": 48422,
-      "sha256": "67d62c7ae335230f3dd595de4fa027f6db0d3c60f1604f0f2f5439983c42068c"
+      "bytes": 49115,
+      "sha256": "9730fb7ee80f40bdb4f6005bc7371bbcdfd2eaf43dda4c8d992622ffcde92950"
     },
     {
       "path": "src/world.js",
@@ -6058,7 +6208,7 @@
     {
       "path": "src/worldNavigationEdges.js",
       "bytes": 145449,
-      "sha256": "04d7605bbbf4e31d56dbd05795817906111013ceec25e0931bf10d31dd421700"
+      "sha256": "7a3fdf161f3ef38f7dee486eb897422a723919a94c5cb6fd696323a976bf7f4d"
     },
     {
       "path": "src/worldSession.js",
@@ -6507,8 +6657,8 @@
     },
     {
       "path": "tests/v113-shopfronts.test.mjs",
-      "bytes": 8872,
-      "sha256": "d0beae114a91f05eee4dd47d3418fbb529595c1fae259bb3ab0309ece3d5f78f"
+      "bytes": 8889,
+      "sha256": "df1bd243a175d41eb22b35729e2fd85463662707867d2e35faf5209f7e3e0d9e"
     },
     {
       "path": "tests/v114-contracts-browser.mjs",
@@ -6517,8 +6667,8 @@
     },
     {
       "path": "tests/v114-recipe-contracts.test.mjs",
-      "bytes": 10938,
-      "sha256": "d21952145de3b3581d98cb8c8bd0386f2f0fc7f3a1990f2a19284c40d7ead32a"
+      "bytes": 11080,
+      "sha256": "968d487ecbef63676a25cf19390f8417434f59005a821772769bab39cb8a238f"
     },
     {
       "path": "tests/v114-resident-dispatch.test.mjs",
@@ -6558,7 +6708,7 @@
     {
       "path": "tests/v117-craft-materials.test.mjs",
       "bytes": 3632,
-      "sha256": "987fe01ca4bb094266beb9de3c489cff9daccfc8e7c09dd828ea288bb44cfe8a"
+      "sha256": "fd461780c196bcadec7d6957f375c2e62f1d709e637ad30c0d9512ad00e63f43"
     },
     {
       "path": "tests/v117-materials-browser.mjs",
@@ -6633,12 +6783,12 @@
     {
       "path": "tests/v12-economy.test.mjs",
       "bytes": 5880,
-      "sha256": "95ed589377e5128384a04cd5be593fffeeef0440b334578fccc8a43660738d57"
+      "sha256": "a67bb76924226d1688fc7bc78b343b25d022fe9b149a04e7ba49098c473aacbf"
     },
     {
       "path": "tests/v121-craft-definitions.test.mjs",
       "bytes": 6692,
-      "sha256": "16c3495efe947ea7529a83214a5e8b67aaebba9e07e312c2e4790ec4b39d45f5"
+      "sha256": "70c6f5fbe26bdc202cc5154f3c3149ab56d7a993371ba543863f68b3338f50f9"
     },
     {
       "path": "tests/v121-materials-browser.mjs",
@@ -6822,8 +6972,8 @@
     },
     {
       "path": "tests/v142-kitchen-browser.mjs",
-      "bytes": 10770,
-      "sha256": "1aafad2582028c7b56fa6e844a677b1dba44dcfbac7550105bc9e3e1d9e85558"
+      "bytes": 10970,
+      "sha256": "fa41011ac8132c37303907610ba02979423b53c15d2e20a6e837467e26e3e728"
     },
     {
       "path": "tests/v142-kitchen.test.mjs",
@@ -6902,8 +7052,8 @@
     },
     {
       "path": "tests/v154-material-art-browser.mjs",
-      "bytes": 6923,
-      "sha256": "c6138985e3cc2351a1b7d88fd6d1d2fe0d1c2b7e786ecbf8f59e5fb329d0bb20"
+      "bytes": 8512,
+      "sha256": "ee2a942271fdef6d10e7ce6912f9b26833924cf4e70ce820c42f74a4158f03e5"
     },
     {
       "path": "tests/v155-checkpoint-restart-browser.mjs",
@@ -6912,8 +7062,8 @@
     },
     {
       "path": "tests/v155-product-art-browser.mjs",
-      "bytes": 7564,
-      "sha256": "df9730f4c01739d8d1e04721015d76cfaa1a71a6b084482677f9c741927e0640"
+      "bytes": 9092,
+      "sha256": "fbfeea82b1a777bd1bad7fcdb860e29b417799ea036aa2900535c1a7543ceea5"
     },
     {
       "path": "tests/v156-checkpoint-restart-browser.mjs",
@@ -7072,8 +7222,8 @@
     },
     {
       "path": "tests/v174-parcel-alignment.test.mjs",
-      "bytes": 2366,
-      "sha256": "225c3adc36afedcc6f712c8dde0f012478accb81839d574aaaef4a9e9717bf20"
+      "bytes": 2432,
+      "sha256": "1a44cb2173580d4a177e3a647e9f0ea2e101e80bfd69687f1c5fc1b5b1098b53"
     },
     {
       "path": "tests/v175-active-clock.test.mjs",
@@ -7097,8 +7247,83 @@
     },
     {
       "path": "tests/v175-weather-gameplay.test.mjs",
-      "bytes": 13862,
-      "sha256": "a4e1c9dc624cbbbf81e10a74ae0bec7880136bb820e75c5c72cdb4b4fe79bb96"
+      "bytes": 13859,
+      "sha256": "de4b1e12b3368fc75e6f4937019a796152308e3624ee218f46e639af54224d4c"
+    },
+    {
+      "path": "tests/v176-action-baseline.test.mjs",
+      "bytes": 7410,
+      "sha256": "00f725139f8d412f10083be9f49e8b83bc7ff57e348d80e5b197362dedda5bb4"
+    },
+    {
+      "path": "tests/v176-boatyard-browser.mjs",
+      "bytes": 5033,
+      "sha256": "af627566824a943d1aa2398d96e73f1449eabf385c3097dc4241bb1e215b0dd2"
+    },
+    {
+      "path": "tests/v176-boatyard-relocation.test.mjs",
+      "bytes": 4783,
+      "sha256": "ab7cd977830f8e7f4b0945f9f47e95b51af3a435b421a3e55684e0cf33d9bacf"
+    },
+    {
+      "path": "tests/v176-catalog-risk.test.mjs",
+      "bytes": 8200,
+      "sha256": "397755d87d67aa89ee4dfc997158b60ee198366d240e7e920f4a65e09b802171"
+    },
+    {
+      "path": "tests/v176-checkpoint-controller-browser.mjs",
+      "bytes": 8709,
+      "sha256": "a0a649ae5ff30d922e4581374bb1aef227387369d01b23d90db69f6a309270eb"
+    },
+    {
+      "path": "tests/v176-crop-art.test.mjs",
+      "bytes": 3738,
+      "sha256": "8f427da99c461490078ff75d2a52e6103b35120e39d19464a2a040daa3542e7d"
+    },
+    {
+      "path": "tests/v176-crop-harvest.test.mjs",
+      "bytes": 5457,
+      "sha256": "86241e0512bde339572117b87295c5df654850fe65d692434016540f918ea6b6"
+    },
+    {
+      "path": "tests/v176-crop-render-browser.mjs",
+      "bytes": 4018,
+      "sha256": "0ba1cde9150642a21e96cec7066c25bfdd5c532c30f9572612d45394ea84b09c"
+    },
+    {
+      "path": "tests/v176-farm-growth-browser.mjs",
+      "bytes": 6324,
+      "sha256": "3c841abf93dbb1cf5f42f26de12e349e40ca56ab2040b5565456d6ca9bb3a1b4"
+    },
+    {
+      "path": "tests/v176-fashion-input-browser.mjs",
+      "bytes": 9800,
+      "sha256": "beba6aadb312ce8788768758de9f2d56bf9aaabb7c019cda816967b2db177e34"
+    },
+    {
+      "path": "tests/v176-outdoor-checkpoint-browser.mjs",
+      "bytes": 13917,
+      "sha256": "a0b0dfe0fb3760eb32c61a62c2d325f11d6ab7e901df9c4aef48ccee503552c2"
+    },
+    {
+      "path": "tests/v176-season-artwork-loading.test.mjs",
+      "bytes": 2345,
+      "sha256": "f78e807ceb983d280fbbccc7d143bf62665bc410f998091ad0c7c91444444588"
+    },
+    {
+      "path": "tests/v176-season-content.test.mjs",
+      "bytes": 15007,
+      "sha256": "6f31e0fc46a3731d08462a53c8c3330d51cac1ce42643e1e7d33dba9d4840503"
+    },
+    {
+      "path": "tests/v176-season-recipes-browser.mjs",
+      "bytes": 11802,
+      "sha256": "5f0f85128253d42c3a97dce5baceaac3f437b86cfbc06045a0572aa5f90e8d34"
+    },
+    {
+      "path": "tests/v176-workshop-transport-browser.mjs",
+      "bytes": 5170,
+      "sha256": "35754f27844dffd1020df400592fc2551a929560b9dbfd3e35decd6b6fb6c506"
     },
     {
       "path": "tests/v18-balance-probe.mjs",
@@ -7152,8 +7377,8 @@
     },
     {
       "path": "tests/v19-play-helpers.mjs",
-      "bytes": 9096,
-      "sha256": "4d57af9e217c1d64187065ae09a1579ffa51ce1713f6be8edeb10a73db7338bc"
+      "bytes": 9160,
+      "sha256": "1bd646a85a3303d05b54817f7accfa17e0d15c3e9ab2153c84e174fb9e2e00af"
     },
     {
       "path": "tests/v19-play.test.mjs",
@@ -7328,7 +7553,7 @@
     {
       "path": "tests/v27-projects.test.mjs",
       "bytes": 9026,
-      "sha256": "b6dd5f81830421b57c79477896c6f329bc89a91e93d36198e3ad86db9e0564d3"
+      "sha256": "9f1e1994248f20e6781ce55de66adf26ec94168798ba93b54ef943a71ddc93bf"
     },
     {
       "path": "tests/v28-hermes-live.mjs",
@@ -7713,7 +7938,7 @@
     {
       "path": "tests/v47-craft-actions.test.mjs",
       "bytes": 14410,
-      "sha256": "8bd5b26d339b4f9cbac8725b96fa98a6b1ac6e8e4ab765ba3d9ec7b84f2d6dc7"
+      "sha256": "b4d11e477a2bb176660494e80a2ff9ad0ce3b9fc8a9eec5df3ba7db781f93461"
     },
     {
       "path": "tests/v47-craft-browser.mjs",
@@ -7742,8 +7967,8 @@
     },
     {
       "path": "tests/v48-farm-actions.test.mjs",
-      "bytes": 14837,
-      "sha256": "16bed5a7cee41c4ab2414574beae1bcd30577acd7a29cf5fb60b661cc252710b"
+      "bytes": 14878,
+      "sha256": "01362c200ad13266ed991d9128612dbb6230c2e5c83b8b6789a66a37259d618e"
     },
     {
       "path": "tests/v48-farm-browser.mjs",
@@ -7823,7 +8048,7 @@
     {
       "path": "tests/v50-resident-actions.test.mjs",
       "bytes": 18739,
-      "sha256": "f0eb56a649763e722d6959b064a42f96451e71e93e8318139e99b47d6cf4c96c"
+      "sha256": "727e3c1113ea605561ab2fe2bb0fc1a2af7c452f4c124916ebd5f7c90eed4eed"
     },
     {
       "path": "tests/v50-resident-browser.mjs",
@@ -8382,8 +8607,8 @@
     },
     {
       "path": "tests/v8-content.test.mjs",
-      "bytes": 4917,
-      "sha256": "ccf5a1227694dc48d988691df2ece982321e0d32d201cfc9d03fb7bdb6022290"
+      "bytes": 4955,
+      "sha256": "576eef47bd926bf55c37a88fabf97121a0daceeb517073230d65b0e3152cbff8"
     },
     {
       "path": "tests/v8-flow-qa.mjs",
@@ -8557,8 +8782,8 @@
     },
     {
       "path": "tests/v90-fireworks-browser.mjs",
-      "bytes": 16710,
-      "sha256": "6db8934d027012bee0ae582b3f342683ab9ceaa2854ea2a33562cae93ca309ac"
+      "bytes": 16758,
+      "sha256": "1578d0efc094252e66a4675815cd4ce6dddfc13e0818fe53cd7a65e863ac1a4f"
     },
     {
       "path": "tests/v90-fireworks-party.test.mjs",

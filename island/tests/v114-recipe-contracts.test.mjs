@@ -62,11 +62,12 @@ async function legacyDisk(f,r){
 }
 async function changedRecipe(id,run){const r=RECIPE_BY_ID[id],original=r.cost;r.cost={wood:83,clay:41};try{return await run(original)}finally{r.cost=original}}
 
-test('all 300 definitions produce detached, valid contracts and recover legacy accepted material lists',()=>{
+test('all 308 definitions produce detached contracts; original 300 recover legacy material lists',()=>{
  for(const r of ALL_RECIPES){
   const c=recipeContract(r),t={kind:'craft',recipeId:r.id,item:r.item,building:r.building,reservedItems:{...r.cost},recipeContract:c};
   assert(validRecipeContract(c));assert(validAcceptedRecipe(t));assert.notEqual(c.cost,r.cost);assert.deepEqual(acceptedRecipe(t).cost,r.cost);
-  const legacy=LEGACY_RECIPE_DEFINITIONS[r.id],old={...t,reservedItems:{...legacy.cost}};delete old.recipeContract;assert(validAcceptedRecipe(old));assert.deepEqual(acceptedRecipe(old).cost,legacy.cost);
+  const legacy=LEGACY_RECIPE_DEFINITIONS[r.id];if(!legacy){const old={...t};delete old.recipeContract;assert(!validAcceptedRecipe(old));assert.equal(acceptedRecipe(old),null);continue;}
+  const old={...t,reservedItems:{...legacy.cost}};delete old.recipeContract;assert(validAcceptedRecipe(old));assert.deepEqual(acceptedRecipe(old).cost,legacy.cost);
   if(JSON.stringify(r.cost)!==JSON.stringify(legacy.cost)){assert.notDeepEqual(acceptedRecipe(old).cost,r.cost);assert.equal(acceptedRecipe(old).productionVersion,32);}
  }
 });

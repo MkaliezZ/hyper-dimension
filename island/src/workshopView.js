@@ -1,4 +1,4 @@
-import {KITCHEN_SCHEMA,kitchenTarget} from './kitchenCutting.js';
+import {KITCHEN_SCHEMA,kitchenTarget,kitchenIngredientCuts} from './kitchenCutting.js';
 import {paintBrushStudio} from './brushPainter.js';
 import {POTTERY_COLORS,potteryGlazeReview,potteryKilnTarget} from './potteryStudio.js';
 import {propImage,drawProp} from './workshopProps.js';
@@ -73,9 +73,16 @@ export function makeWorkshopPainter(canvas,theme,avatar,catchItem=null){
   const l=s.level,k=s.kind,g=gridFrame(s,['nonogram','pipes'].includes(k));
   if(k==='joinery'){
    for(let i=0;i<l.w*l.h;i++){const p=gridCell(g,i);rect(c,p.x+2,p.y+2,g.cell-4,g.cell-4,l.target.includes(i)?'#aa815b38':'#65745b08',l.target.includes(i)?'#82634d66':null,2);}
-   for(const p of s.placed){const age=clamp((s.t-p.at)/.23,0,1);c.save();c.globalAlpha=.6+.4*age;for(const i of p.cells){const q=gridCell(g,i);wood(c,q.x+3,q.y+3-(1-age)*15,g.cell-6,g.cell-8,palette[p.piece%6],theme==='pixel');}c.restore();}
+   for(const p of s.placed){const age=clamp((s.t-p.at)/.23,0,1);c.save();c.globalAlpha=.6+.4*age;for(const i of p.cells){const q=gridCell(g,i);
+    if(s.id===17&&l.production){const y=q.y+3-(1-age)*15;rect(c,q.x+3,y,g.cell-6,g.cell-8,'#d9a164','#f2d99b',theme==='pixel'?2:8);drawItem(c,l.production.item,theme,q.x+g.cell/2,y+g.cell/2-4,g.cell-13);}
+    else wood(c,q.x+3,q.y+3-(1-age)*15,g.cell-6,g.cell-8,palette[p.piece%6],theme==='pixel');}c.restore();}
+   if(s.id===17&&l.production){
+    panel(c,26,116,145,292,false,theme==='pixel');text(c,'本次配料',98,143,19,'#665240');
+    l.production.ingredients.forEach((ingredient,i)=>{drawItem(c,ingredient.id,theme,82,191+i*78,59);text(c,'×'+ingredient.amount,133,198+i*78,19,'#665240');});
+    panel(c,791,173,145,193,false,theme==='pixel');text(c,'烘焙成品',864,201,19,'#665240');drawItem(c,l.production.item,theme,863,273,105);
+   }
    if(s.phase==='playing'&&s.selected>=0){const i=Math.floor((s.pointer.y-g.y)/g.cell)*g.cols+Math.floor((s.pointer.x-g.x)/g.cell);if(s.pointer.x>=g.x&&s.pointer.x<g.x+g.cols*g.cell&&s.pointer.y>=g.y&&s.pointer.y<g.y+g.rows*g.cell){const cells=pieceOffsets(l.pieces[s.selected],s.rotation).map(([dx,dy])=>({x:i%g.cols+dx,y:Math.floor(i/g.cols)+dy})),valid=cells.every(p=>p.x>=0&&p.x<l.w&&p.y>=0&&p.y<l.h&&l.target.includes(p.y*l.w+p.x)&&!s.occupied.includes(p.y*l.w+p.x));c.save();c.globalAlpha=.5;for(const p of cells)rect(c,g.x+p.x*g.cell+3,g.y+p.y*g.cell+3,g.cell-6,g.cell-6,valid?'#77b9a0':'#db8c7b','#fff2cc',3);c.restore();}}
-   if(s.hint&&s.t-s.hintAt<4){for(const i of s.hint.cells){const p=gridCell(g,i);rect(c,p.x+5,p.y+5,g.cell-10,g.cell-10,null,'#fef2ae',4);}text(c,'零件 '+(s.hint.piece+1)+' · 旋转 '+s.hint.rotation+' 次',480,520,21,'#fff1cd');}
+   if(s.hint&&s.t-s.hintAt<4){for(const i of s.hint.cells){const p=gridCell(g,i);rect(c,p.x+5,p.y+5,g.cell-10,g.cell-10,null,'#fef2ae',4);}text(c,(l.production?'拼块 ':'零件 ')+(s.hint.piece+1)+' · 旋转 '+s.hint.rotation+' 次',480,520,21,'#fff1cd');}
   }
   if(k==='tea'){
    l.values.forEach((v,i)=>{const p=gridCell(g,i),found=s.found.includes(i),up=found||s.opened.includes(i)||s.t<l.preview;const flip=effects.filter(e=>e.kind==='flip').at(-1),age=flip?clock-flip.born:1,scale=s.opened.at(-1)===i&&age<.22?Math.max(.09,Math.abs(Math.cos(age/.22*Math.PI))):1;
@@ -181,7 +188,7 @@ export function makeWorkshopPainter(canvas,theme,avatar,catchItem=null){
  function kitchen(s,dt){
   panel(c,350,205,260,205,false,theme==='pixel');wood(c,372,253,216,125,'#c8a375',theme==='pixel');
   const j=s.jobs[s.ticket];
-  if(j&&['prep','available'].includes(j.state)){j.ingredients.forEach((v,i)=>{const arrival=effects.findLast(e=>e.kind==='ingredient'&&e.ticket===j.id&&e.index===i),u=arrival?clamp((clock-arrival.born)/.24,0,1):1;c.save();c.globalAlpha=.55+.45*u;const cx=421+i*69,cy=322-(1-u)*22,parts=s.level.schemaVersion===KITCHEN_SCHEMA?Math.min(2,Math.max(0,j.cuts-i*2)):0;
+  if(j&&['prep','available'].includes(j.state)){j.ingredients.forEach((v,i)=>{const arrival=effects.findLast(e=>e.kind==='ingredient'&&e.ticket===j.id&&e.index===i),u=arrival?clamp((clock-arrival.born)/.24,0,1):1;c.save();c.globalAlpha=.55+.45*u;const cx=421+i*69,cy=322-(1-u)*22,parts=s.level.schemaVersion===KITCHEN_SCHEMA?kitchenIngredientCuts(s,j,i):0;
     if(parts){const count=parts+1;for(let part=0;part<count;part++){c.save();c.beginPath();c.rect(cx-28+part*56/count+(part-(count-1)/2)*4,cy-30,56/count,60);c.clip();drawItem(c,s.level.ids[v],theme,cx+(part-(count-1)/2)*4,cy,55);c.restore();}}
     else drawItem(c,s.level.ids[v],theme,cx,cy,55);c.restore();});if(j.cuts&&s.level.schemaVersion!==KITCHEN_SCHEMA){for(let i=0;i<j.cuts;i++){const x=402+i*26;rect(c,x,353,11,6,palette[i%6],null,1);}}}
   // Grip anchor is on the wooden handle. Lift, contact and recovery share the same board coordinates.

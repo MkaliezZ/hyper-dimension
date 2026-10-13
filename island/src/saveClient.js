@@ -124,7 +124,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     if(result.restarted){await forget(commandKey(theme));await forget(pendingKey(theme));}
     else{
      const response=await request(theme,'action',recovery.body);doc=response.document;
-     const merged=mergeActionState(recovery.baseState,pending?.state||recovery.baseState,doc.state);
+     const base=recovery.baseDocument?.document?.state??recovery.baseState;
+     const merged=mergeActionState(base,pending?.state||base,doc.state);
      await remember(r,doc);r.state=merged;r.dirty=!sameState(merged,doc.state);r.recoveredAction=response;
      await forget(commandKey(theme));await forget(pendingKey(theme));await cache(r);
      status(r,r.dirty?'pending':'saved','上次作业结算已核对');if(r.dirty)schedule(r);
@@ -226,20 +227,23 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function actionNow(theme,input){
   const r=record(theme);if(r.recovering)throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});
-  let envelope=read(commandKey(theme));
+  let envelope=read(commandKey(theme)),basePath=envelope?.baseDocument?'baseDocument.document.state':'baseState';
   if(envelope&&(envelope.body.requestId!==input.requestId||envelope.body.operation!==input.operation))throw Object.assign(Error('另一次作业结果待核对，请先重试'),{code:'action_pending'});
   if(!envelope){
    await flush(theme);
-   const body={...input,expectedVersion:r.version,clientId};
+   const body={...input,expectedVersion:r.version,clientId},baseDocument=baselineText(r);
+   if(!baseDocument)throw Object.assign(Error('已确认的存档基线尚未就绪，请先核对进度'),{code:'save_cache_error'});
    if(input.operation==='begin'){body.expectedSequence=r.actions?.sequence||0;body.epoch=r.actions?.epoch||null;}
-   const {serialized}=await cache(r);envelope={body};
-   // Persist the exact operation before sending it, so a lost response can be retried.
-   try{await journal.commit([[commandKey(theme),'{"body":'+JSON.stringify(body)+',"baseState":'+serialized+'}']])}catch{throw Error('浏览器无法保存作业回执，请释放本地存储空间后重试');}
+   await cache(r);envelope={body};basePath='baseDocument.document.state';
+   // Local edits may arrive after flush while cache yields. Keep their durable
+   // snapshot, but merge the reply against the acknowledged server document.
+   // Its version was captured with expectedVersion; reuse the worker's JSON.
+   try{await journal.commit([[commandKey(theme),'{"body":'+JSON.stringify(body)+',"baseDocument":'+baseDocument+'}']])}catch{throw Error('浏览器无法保存作业回执，请释放本地存储空间后重试');}
   }
   r.commandSending=true;clearTimeout(r.timer);r.timer=null;status(r,'saving','正在核对作业');
   try{
    const response=await request(theme,'action',envelope.body,undefined,true),doc=response.document;
-   const result=await reconcile(r,journal.serialized(commandKey(theme)),doc,'baseState'),merged=result.state;
+   const result=await reconcile(r,journal.serialized(commandKey(theme)),doc,basePath),merged=result.state;
    r.state=merged;onRemoteState(theme,r.state);await remember(r,doc);r.dirty=result.dirty||r.generation!==result.generation;
    await forget(commandKey(theme));await forget(pendingKey(theme));await cache(r);
    status(r,r.dirty?'pending':'saved','作业已保存到本机服务');// Controllers may resume after another local change; never republish the earlier snapshot.

@@ -27,7 +27,7 @@ test('revised durable objects do not consume manufactured meals; their construct
   if(['gift','food'].includes(r.category))continue;
   assert(!Object.keys(r.cost).some(part=>ITEM_BY_ID[part].category==='food'),r.name+' includes a prepared meal');
  }
- assert.equal(ALL_RECIPES.length,300);assert.equal(RAW_MATERIALS.length,50);
+ assert.equal(ALL_RECIPES.length,308);assert.equal(RAW_MATERIALS.length,58);
 });
 test('a tea station is built with its three cups and replans separate consumable tea service',()=>{
  const r=RECIPE_BY_ID.recipe_c1_9,facility=FUNCTIONAL_FACILITIES.c1_9;

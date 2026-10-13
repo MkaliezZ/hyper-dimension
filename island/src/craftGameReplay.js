@@ -9,8 +9,8 @@ import {makeLinkBoard,linkPath,findLinkMove,shuffleLinks,createMatchState,swapMa
 // is accepted as proof of a completed game.
 export function saveMatchState(s){const out={...s,randomSeed:s.random.state()};delete out.random;return out}
 export function restoreMatchState(s){const out={...structuredClone(s),random:seededRandom(s.randomSeed)};delete out.randomSeed;return out}
-export function createCraftGame(id,seed,difficulty,equipment=null){
- if(WORKSHOP_GAMES[id])return {engine:'workshop',state:createWorkshopState(makeWorkshopLevel(id,seed,difficulty),equipment),elapsed:0};
+export function createCraftGame(id,seed,difficulty,equipment=null,recipe=null){
+ if(WORKSHOP_GAMES[id])return {engine:'workshop',state:createWorkshopState(makeWorkshopLevel(id,seed,difficulty,recipe),equipment),elapsed:0};
  const level=makeLevel(id,{seed,difficulty}),link=[7,11].includes(id);
  return {engine:link?'link':'match',level,elapsed:0,time:0,started:!link,result:null,hintsUsed:0,
   ...(link?{values:makeLinkBoard(level).values,found:0,hints:level.hints,shuffles:level.link.shuffles,combos:0,bestCombo:0,lastPair:-99,randomSeed:(seed^0xCCA)>>>0}:{match:saveMatchState(createMatchState(level))})};

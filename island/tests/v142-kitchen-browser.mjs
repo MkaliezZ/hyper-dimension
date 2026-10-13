@@ -52,13 +52,13 @@ async function run(theme){
   for(let i=0;i<160;i++){const ticket=(await current()).actions.active;if(ticket?.game?.state?.jobs[0]?.cuts===before.jobs[0].cuts)break;await page.waitForTimeout(100);}
   const saved=(await current()).actions.active;assert.equal(saved.game.state.jobs[0].cuts,before.jobs[0].cuts);
   await page.screenshot({path:path.join(out,theme+'-sliced-before-reload.png')});await page.reload();await page.locator('#craftRetry').waitFor({state:'visible',timeout:45000});await page.locator('#craftRetry').click();
-  await page.waitForFunction(()=>window.islandInspect?.().roomGame?.kind==='kitchen',null,{timeout:45000});
+  await page.waitForFunction(()=>window.islandInspect?.().roomGame?.kind==='kitchen'&&window.islandInspect().roomGame.loaded&&!window.islandInspect().startup.busy&&!window.islandInspect().serverCraft.settling,null,{timeout:45000});
   const after=await inspect();assert.equal(after.level.schemaVersion,142);assert.equal(after.jobs[0].cuts,before.jobs[0].cuts);assert.equal(after.kitchenStroke,null);assert.deepEqual(after.jobs[0].cutQuality,before.jobs[0].cutQuality);
   assert.equal((await current()).actions.active.requestId,saved.requestId);row.resume={passed:true,cuts:after.jobs[0].cuts,sameRequest:true};restored=true;
  }
  try{
   for(let i=0;i<100;i++){try{if((await fetch('http://127.0.0.1:'+port+'/api/status')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
-  await page.goto('http://127.0.0.1:'+port+'/?qa=1&theme='+theme);await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready,null,{timeout:45000});
+  await page.goto('http://127.0.0.1:'+port+'/?qa=1&theme='+theme);await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!window.islandInspect().startup.busy,null,{timeout:45000});
   await openItem('meal');await page.locator('#itemCraft:enabled').click();await page.waitForFunction(()=>window.islandInspect?.().roomGame?.kind==='kitchen',null,{timeout:180000});
   const ticket=(await current()).actions.active;assert(!ticket.practice);assert.equal(ticket.recipeId,'recipe_meal');
   if(await page.locator('[data-action="start"]:visible').isVisible())await page.locator('[data-action="start"]').click();
@@ -87,7 +87,7 @@ async function run(theme){
   assert(row.result?.passed,'normal-clock kitchen must complete');assert(restored&&touchUsed&&mouseCuts===2&&keyboardCuts>0);
   await page.screenshot({path:path.join(out,theme+'-completed.png')});await page.waitForFunction(()=>!window.islandInspect().serverCraft.settling,null,{timeout:30000});await page.locator('[data-action="claim"]:enabled').click();
   await page.waitForFunction(()=>!window.islandInspect().serverCraft.active,null,{timeout:30000});let d=await current(),receipts=d.actions.receipts.filter(r=>r.ticket?.requestId===ticket.requestId&&r.outcome==='finished');assert.equal(receipts.length,1);assert.deepEqual(receipts[0].cost,RECIPE_BY_ID.recipe_meal.cost);assert.deepEqual(receipts[0].gain,{meal:1});
-  await page.reload();await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready,null,{timeout:45000});d=await current();assert.equal(d.actions.receipts.filter(r=>r.ticket?.requestId===ticket.requestId&&r.outcome==='finished').length,1);
+  await page.reload();await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!window.islandInspect().startup.busy,null,{timeout:45000});d=await current();assert.equal(d.actions.receipts.filter(r=>r.ticket?.requestId===ticket.requestId&&r.outcome==='finished').length,1);
   row.receipt={cost:receipts[0].cost,gain:receipts[0].gain,oneAfterReopen:true};row.inputs={mouseCuts,touchUsed,keyboardCuts};await Promise.all(pending);assert(row.actions.every(a=>a.status===200));assert.deepEqual(row.errors,[]);assert.deepEqual(row.badAssets,[]);row.passed=true;await progress();console.log(theme+' native kitchen, disk resume and exact meal receipt passed');
  }catch(e){row.failure=e.stack;row.last=await inspect().catch(()=>null);await progress();await page.screenshot({path:path.join(out,theme+'-failure.png')}).catch(()=>{});throw e;}
 }

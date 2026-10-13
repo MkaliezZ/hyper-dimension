@@ -76,7 +76,7 @@ export function applyCraftCommand(s,b,input,now){
    if(project)taskOperation=beginTaskStep(s,project.id);
   }
   history.attempts++;history.recentSeeds=[...history.recentSeeds,seed].slice(-12);history.lastDifficulty=difficulty;history.lastMode=mode;
-  const ticket={kind:'craft',requestId:input.requestId,epoch:b.epoch,sequence,recipeId:recipe.id,recipeContract:recipeContract(recipe),item:recipe.item,name:recipe.name,building:recipe.building,amount:1,action:ROOMS[recipe.building].action,mode,difficulty,seed,practice,duration,tool,reservedItems,owner,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+24*60*60*1000,projectTaskId:project&&!practice?project.id:null,taskOperation,assignmentVersion:project?.assignmentVersion||0,nextBatch:1,game:createCraftGame(recipe.building,seed,difficulty,tool)};
+  const ticket={kind:'craft',requestId:input.requestId,epoch:b.epoch,sequence,recipeId:recipe.id,recipeContract:recipeContract(recipe),item:recipe.item,name:recipe.name,building:recipe.building,amount:1,action:ROOMS[recipe.building].action,mode,difficulty,seed,practice,duration,tool,reservedItems,owner,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+24*60*60*1000,projectTaskId:project&&!practice?project.id:null,taskOperation,assignmentVersion:project?.assignmentVersion||0,nextBatch:1,game:createCraftGame(recipe.building,seed,difficulty,tool,recipe)};
   if(ticket.projectTaskId)Object.assign(s.resourceLedger.reservations[owner],{projectTaskId:ticket.projectTaskId,taskOperation:ticket.taskOperation,assignmentVersion:ticket.assignmentVersion});
   b.sequence=sequence;b.active=ticket;return {ticket,receipt:null};
  }

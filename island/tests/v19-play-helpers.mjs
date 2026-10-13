@@ -1,3 +1,4 @@
+import {kitchenCutsRequired} from '../src/kitchenCutting.js';
 import {BRUSH_SCHEMA,brushGuide} from '../src/brushStudio.js';
 import {potteryShapeReview,potteryGlazeReview,potteryKilnTarget,potteryKilnLoss} from '../src/potteryStudio.js';
 import {makeWorkshopLevel,createWorkshopState,workshopAction,stepWorkshop,neighbors,rotateMask,photoSubject,potteryAccuracy,firePosition,coutureBrief} from '../src/workshopRules.js';
@@ -11,7 +12,7 @@ export function chooseAction(s){
  if(k==='pipes'){const i=s.masks.findIndex((m,i)=>m!==l.solved[i]&&!l.fixed.includes(i));return i>=0?{type:'cell',index:i}:s.running?null:{type:'submit'};}
  if(k==='kitchen'){
   const ready=s.jobs.find(j=>j.state==='cooking'&&j.cooked>=j.cook+.08);if(ready)return {type:'serve',station:ready.station};
-  const j=s.jobs[s.ticket];if(j&&['available','prep'].includes(j.state)){const target=l.orders[j.id];if(j.ingredients.length<target.ingredients.length)return {type:'ingredient',index:target.ingredients[j.ingredients.length]};if(j.cuts<j.ingredients.length*2)return {type:'cut'};if(s.jobs.filter(j=>j.state==='cooking').length<2)return {type:'cook'};return null;}
+  const j=s.jobs[s.ticket];if(j&&['available','prep'].includes(j.state)){const target=l.orders[j.id];if(j.ingredients.length<target.ingredients.length)return {type:'ingredient',index:target.ingredients[j.ingredients.length]};if(j.cuts<kitchenCutsRequired(s,j))return {type:'cut'};if(s.jobs.filter(j=>j.state==='cooking').length<2)return {type:'cook'};return null;}
   const next=s.jobs.find(j=>['available','prep'].includes(j.state));return next?{type:'ticket',index:next.id}:null;
  }
  if(k==='couture'){if(s.runway)return null;const ids=coutureBrief(s).solutions[0],id=ids.find(id=>!s.outfit.includes(id));return id?{type:'wear',item:id}:{type:'submit'};}

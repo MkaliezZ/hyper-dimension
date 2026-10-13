@@ -2,9 +2,10 @@ import {ALL_RECIPES,ITEM_BY_ID} from './contentCatalog.js';
 import {availableQuantity} from './resourceLedger.js';
 const object=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
 const venueId=id=>Number.isInteger(id)&&id>=0&&id<25;
+export const shopCapacity=id=>ALL_RECIPES.filter(r=>r.building===id).length;
 const integer=n=>Number.isSafeInteger(n)&&n>=0;
 export function validShopListing(id,listing){
- return venueId(id)&&Array.isArray(listing)&&listing.length<=12&&new Set(listing.map(r=>r?.item)).size===listing.length&&listing.every(r=>object(r)&&Object.keys(r).length===2&&ITEM_BY_ID[r.item]?.source==='recipe'&&ITEM_BY_ID[r.item].building===id&&integer(r.keep)&&r.keep<=9999);
+ return venueId(id)&&Array.isArray(listing)&&listing.length<=shopCapacity(id)&&new Set(listing.map(r=>r?.item)).size===listing.length&&listing.every(r=>object(r)&&Object.keys(r).length===2&&ITEM_BY_ID[r.item]?.source==='recipe'&&ITEM_BY_ID[r.item].building===id&&integer(r.keep)&&r.keep<=9999);
 }
 export function validShopfronts(s){
  const v=s.shopfronts;if(v===undefined)return true;
@@ -26,7 +27,7 @@ export function shopSummary(s,id){
 export function configureShopfront(s,{buildingId,listing,expectedShopRevision}){
  if(!venueId(buildingId)||s.buildings?.[buildingId]===undefined)return {ok:false,reason:'请先开放对应建筑'};
  if(expectedShopRevision!==(s.shopfronts?.revision||0))return {ok:false,reason:'货架设置已变化，请重新打开后再保存'};
- if(listing!==null&&!validShopListing(buildingId,listing))return {ok:false,reason:'每馆仅可陈列本馆的十二种制品；保留数量须为 0 至 9999 的整数'};
+ if(listing!==null&&!validShopListing(buildingId,listing))return {ok:false,reason:'仅可陈列本馆的有效制品，不可重复；保留数量须为 0 至 9999 的整数'};
  s.shopfronts??={version:1,revision:0,venues:{}};
  if(listing===null)delete s.shopfronts.venues[buildingId];else s.shopfronts.venues[buildingId]=listing.map(r=>({item:r.item,keep:r.keep}));
  s.shopfronts.revision++;

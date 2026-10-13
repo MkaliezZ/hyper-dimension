@@ -1,8 +1,9 @@
-import {KITCHEN_SCHEMA,initKitchenCutting,kitchenCutAction,resetKitchenPrep,kitchenDishQuality,kitchenRunQuality} from './kitchenCutting.js';
+import {kitchenCutsRequired,KITCHEN_SCHEMA,initKitchenCutting,kitchenCutAction,resetKitchenPrep,kitchenDishQuality,kitchenRunQuality} from './kitchenCutting.js';
 import {makeBrushLevel,initBrush,brushAction,stepBrush,BRUSH_SCHEMA} from './brushStudio.js';
 import {makePotteryLevel,initPottery,potteryAction,stepPottery,potteryShapeReview} from './potteryStudio.js';
 import {seededRandom,shuffle,rotatePiece,pieceOffsets} from './gameLevels.js';
 import {WORKSHOP_GAMES} from './workshopCatalog.js';
+import {applySeasonalWorkshopRecipe} from './seasonalWorkshop.js';
 import {TOOLS} from './equipmentRules.js';
 import {makeInteriorLevel,reviewInterior,placeInteriorFurniture,pickupInteriorFurniture,undoInteriorFurniture,makeInteriorWalkthrough,advanceInteriorWalkthrough} from './interiorDesign.js';
 export function anglingEquipment(s){const t=TOOLS[s.equipment?.id],owned=s.equipment?.source==='owned'&&t?.action==='fish',bonus=owned?t.trackingBonus:0;return {id:t?.action==='fish'?t.id:'rod',source:owned?'owned':'borrowed',trackingRadius:130+bonus+(s.weather?.assist?20:0),castRadius:95+bonus+(s.weather?.assist?15:0)};}
@@ -146,7 +147,7 @@ function coutureLevel(r,d){
  }
  return {...briefs[0],items,briefs,time:[180,240,300][d-1]};
 }
-export function makeWorkshopLevel(id,seed,d=1){
+export function makeWorkshopLevel(id,seed,d=1,recipe=null){
  const config=WORKSHOP_GAMES[id],r=seededRandom(seed^Math.imul(id+31,7907)),pick=a=>a[r()*a.length|0],between=(a,b)=>a+r()*(b-a);
  const l={id,seed,d,kind:config.kind,time:180,difficulty:d};
  switch(l.kind){
@@ -169,7 +170,7 @@ export function makeWorkshopLevel(id,seed,d=1){
  case 'regatta':{const path=[{x:100,y:430},{x:170+between(-30,35),y:150+between(-35,35)},{x:440+between(-35,40),y:125+between(-35,35)},{x:720+between(-30,35),y:285+between(-30,30)},{x:820,y:440}];l.path=path;l.reefs=[{x:400,y:340,r:66},{x:635,y:105,r:50},{x:125,y:290,r:24}].filter(p=>!path.some(x=>Math.hypot(x.x-p.x,x.y-p.y)<100));l.current={x:between(-5,5)*d,y:between(-3,3)*d};l.time=110;break;}
  case 'brush':Object.assign(l,makeBrushLevel(r,d));break;
  }
- return l;
+ return applySeasonalWorkshopRecipe(l,recipe,r);
 }
 export function emit(s,kind,x=480,y=270,extra={}){s.events.push({kind,x,y,at:s.t,...extra});if(s.events.length>100)s.events.shift()}
 export function finishWorkshop(s,pass,quality=80){
@@ -230,7 +231,7 @@ function turnDifference(a,b){return Math.atan2(Math.sin(a-b),Math.cos(a-b))}
 export function progressWorkshop(s){
  const l=s.level;
  switch(s.kind){
- case 'joinery':return [s.placed.length,l.pieces.length,'零件'];
+ case 'joinery':return [s.placed.length,l.pieces.length,l.production?'点心拼块':'零件'];
  case 'tea':return [s.found.length/2,l.ids.length,'配对'];
  case 'kitchen':return [s.served,l.quota,'交付'];
  case 'couture':return [s.clientReports.length,l.briefs?.length||1,'顾客'];
@@ -325,7 +326,7 @@ export function workshopAction(s,a){
  }
  if(a.type==='help'){
   if(!s.help)return;s.help--;s.hintAt=s.t;
-  if(s.kind==='joinery'){const hint=l.solution.find(p=>!s.placed.some(v=>v.piece===p.piece));s.hint=hint;s.status='先完成已经高亮的零件；提示会影响最终评级';}
+  if(s.kind==='joinery'){const hint=l.solution.find(p=>!s.placed.some(v=>v.piece===p.piece));s.hint=hint;s.status=(l.production?'先摆好已经高亮的点心拼块':'先完成已经高亮的零件')+'；提示会影响最终评级';}
   else if(s.kind==='mosaic')s.reference=4;
   else if(s.kind==='nonogram'){const i=l.values.findIndex((v,i)=>v&&s.cells[i]!==1);if(i>=0){s.cells[i]=1;if(s.cells.every((v,i)=>(v===1?1:0)===l.values[i])){s.score=1000;finishWorkshop(s,true,100-(2-s.help)*9)}}}
   else if(s.kind==='expedition')s.mapUntil=s.t+4;
@@ -395,7 +396,7 @@ export function workshopAction(s,a){
   j.cuts=Math.min(j.ingredients.length*2,j.cuts+1);s.cutFlash=.36;s.status=j.cuts===j.ingredients.length*2?'切配完成，放入空灶开始烹调。':'切配中 '+j.cuts+' / '+j.ingredients.length*2;emit(s,'cut',390+j.cuts*17,330,{art:l.ids[j.ingredients[(j.cuts-1)%j.ingredients.length]]});return;
  }
  if(a.type==='cook'){
-  const j=s.jobs[s.ticket];if(!j||j.state!=='prep'||j.ingredients.length!==l.orders[s.ticket].ingredients.length||j.cuts<j.ingredients.length*2){s.status='备齐食材并完成切配，才能开火';return}
+  const j=s.jobs[s.ticket];if(!j||j.state!=='prep'||j.ingredients.length!==l.orders[s.ticket].ingredients.length||j.cuts<kitchenCutsRequired(s,j)){s.status='备齐食材并完成切配，才能开火';return}
   if([...j.ingredients].sort().join()!==[...l.orders[s.ticket].ingredients].sort().join()){j.ingredients=[];j.cuts=0;if(l.schemaVersion===KITCHEN_SCHEMA)resetKitchenPrep(j);s.strikes++;s.status='配料与订单不同，重新核对一下';emit(s,'shake');return}
   const occupied=s.jobs.filter(j=>j.state==='cooking').map(j=>j.station),station=[0,1].find(i=>!occupied.includes(i));
   if(station==null){s.status='双灶都在使用，先留意即将煮好的那锅';return}
@@ -404,7 +405,7 @@ export function workshopAction(s,a){
  if(a.type==='serve'){
   const j=s.jobs.find(j=>j.state==='cooking'&&j.station===a.station);if(!j)return;
   if(j.cooked<j.cook){s.status='火候还不到，稍候再装盘';return}
-  let q=clamp(100-(j.cooked-j.cook)*6,60,100);if(l.schemaVersion===KITCHEN_SCHEMA){q=kitchenDishQuality(j,q);j.quality=q;}j.state='served';s.served++;s.score+=Math.round(q*3);s.combo++;s.bestCombo=Math.max(s.combo,s.bestCombo);emit(s,'serve',a.station?730:250,300,{art:s.id===2?'meal':'c10_1'});s.status='交付完成 · 品质 '+Math.round(q);
+  let q=clamp(100-(j.cooked-j.cook)*6,60,100);if(l.schemaVersion===KITCHEN_SCHEMA){q=kitchenDishQuality(j,q);j.quality=q;}j.state='served';s.served++;s.score+=Math.round(q*3);s.combo++;s.bestCombo=Math.max(s.combo,s.bestCombo);emit(s,'serve',a.station?730:250,300,{art:l.production?.item||(s.id===2?'meal':'c10_1')});s.status='交付完成 · 品质 '+Math.round(q);
   if(s.served+s.failed===s.jobs.length)finishWorkshop(s,s.served>=l.quota,l.schemaVersion===KITCHEN_SCHEMA?kitchenRunQuality(s):75+s.served/s.jobs.length*20-s.strikes*2);return;
  }
  if(a.type==='wear'){const item=l.items.find(i=>i.id===a.item);if(item){s.outfit[item.slot]=item.id;s.lastReview=null;const review=outfitScore(s.outfit.map(id=>l.items.find(i=>i.id===id)),coutureBrief(s));s.status=review.complete?'搭配符合委托，可以提交评审。':review.unmet.join(' · ');emit(s,'ribbon',480,270,{art:item.id})}return}

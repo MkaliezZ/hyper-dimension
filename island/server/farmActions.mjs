@@ -3,7 +3,8 @@ import {cooperationWorkAuthorized,cooperationFarmAvailable,bindCooperationPlot,r
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {CROPS,hydrateCrops,tickCrops,cropInfo,SOIL_CARE,soilCharges,harvestAmount,canFertilize} from '../src/farming.js';
-import {resolveTool} from '../src/equipmentRules.js';
+import {resolveTool,resolveHarvestTool} from '../src/equipmentRules.js';
+import {cropHarvestProfile} from '../src/cropHarvest.js';
 import {reserveResources,releaseResources,commitResources} from '../src/resourceLedger.js';
 import {recordPlayerGoods} from '../src/economy.js';
 import {trackJourney} from '../src/journey.js';
@@ -26,7 +27,7 @@ export function validFarmBook(f,book){
  return !!f&&f.version===1&&Array.isArray(f.plots)&&f.plots.length===8&&f.plots.every(plotValid)&&Number.isFinite(f.lastActiveAt)&&Number.isFinite(f.activeSeconds)&&f.activeSeconds>=0&&f.leases&&typeof f.leases==='object'&&!Array.isArray(f.leases)&&Object.keys(f.leases).length<=20&&Object.values(f.leases).every(t=>t.kind==='farm'&&t.actor!=='player'&&validFarmTicket(t)&&t.epoch===book.epoch&&Number.isSafeInteger(t.sequence)&&t.sequence>0&&t.sequence<=book.sequence&&typeof t.requestId==='string'&&/^[a-zA-Z0-9-]{8,80}$/.test(t.requestId)&&Number.isFinite(t.readyAt)&&Number.isFinite(t.expiresAt))&&(!f.autosaves||Array.isArray(f.autosaves)&&f.autosaves.length<=64&&f.autosaves.every(r=>typeof r.id==='string'&&typeof r.expectedVersion==='string'&&/^[a-f0-9]{64}$/.test(r.fingerprint)));
 }
 export function validFarmTicket(t){
- return Object.hasOwn(stages,t.step)&&indexOK(t.index)&&['player','npc','facility'].includes(t.actor)&&(t.step==='fertilize'?t.actor==='player'&&[2,3].includes(t.expectedStage):stages[t.step]===t.expectedStage)&&Object.hasOwn(CROPS,t.crop)&&t.item===CROPS[t.crop].item&&Number.isFinite(t.duration)&&t.duration>=.85&&t.duration<=NPC_CADENCE.workSeconds&&typeof t.owner==='string'&&t.owner.startsWith(FARM_LEASE_PREFIX);
+ return Object.hasOwn(stages,t.step)&&indexOK(t.index)&&['player','npc','facility'].includes(t.actor)&&(t.step==='fertilize'?t.actor==='player'&&[2,3].includes(t.expectedStage):stages[t.step]===t.expectedStage)&&Object.hasOwn(CROPS,t.crop)&&(t.harvestMode===undefined||t.step==='harvest'&&t.harvestMode===cropHarvestProfile(t.crop)?.mode)&&t.item===CROPS[t.crop].item&&Number.isFinite(t.duration)&&t.duration>=.85&&t.duration<=NPC_CADENCE.workSeconds&&typeof t.owner==='string'&&t.owner.startsWith(FARM_LEASE_PREFIX);
 }
 export function farmTickets(book){return [book?.active?.kind==='farm'?book.active:null,...Object.values(book?.farm?.leases||{})].filter(Boolean)}
 export function farmHolds(book){
@@ -101,7 +102,7 @@ export function applyFarmCommand(s,b,input,now){
   const crop=input.step==='sow'?input.crop:p.crop;if(!Object.hasOwn(CROPS,crop))throw fail('作物无效');
   const environment=input.gameEnvironment?.environment;if(input.step==='sow'&&environment&&!canPlantCrop(crop,environment.season))throw fail(CROPS[crop].name+'适合'+cropSeasonLabel(crop)+'，现在是'+environment.seasonName+'季；已经种下的作物仍可照常成长和收获','farm_crop_season');
   const name=({hoe:'松土',sow:'播种',water:'浇水',harvest:'收获',fertilize:'施肥'})[input.step]+' · '+CROPS[crop].name;
-  const sequence=b.sequence+1,owner=FARM_LEASE_PREFIX+b.epoch+':'+sequence,tool=actor==='facility'?null:resolveTool(s,input.step,{npc:actor==='npc'});
+  const sequence=b.sequence+1,owner=FARM_LEASE_PREFIX+b.epoch+':'+sequence,tool=actor==='facility'?null:input.step==='harvest'?resolveHarvestTool(s,crop,{npc:actor==='npc'}):resolveTool(s,input.step,{npc:actor==='npc'});
   const duration=actor==='npc'?NPC_CADENCE.workSeconds:actor==='facility'?3:input.step==='fertilize'?SOIL_CARE.seconds:Math.round(Math.max(.85,(input.step==='harvest'?1.5:1.3)*(tool?.durationScale||1))*1000)/1000;
   const reservedItems=input.step==='sow'?{seed:1}:input.step==='fertilize'?{[SOIL_CARE.item]:1}:{};if(tool?.source==='owned')reservedItems[tool.id]=Math.max(1,reservedItems[tool.id]||0);
   const assigned=actor==='npc'?beginAssignedStep(s,b,{assignmentId:input.assignmentId,actorId,kind:'farm',crop,step:input.step}):null,task=assigned?.task||(actor==='npc'&&input.assignmentId?s.agentTaskLedger?.find(x=>x.id===input.assignmentId):null),assignmentOperation=assigned?.operationId||input.operationId;
@@ -116,7 +117,7 @@ export function applyFarmCommand(s,b,input,now){
    u.currentPlot=input.index;u.currentCrop=crop;u.phase='watering';u.elapsed=0;u.serverFarmRequestId=input.requestId;s.functionalFacilities.revision++;
   }
   if(task&&Object.keys(reservedItems).length)Object.assign(s.resourceLedger.reservations[owner],{projectTaskId:task.id,taskOperation:assignmentOperation,npcId:actorId});
-  const operationId=assignmentOperation||'farm-work:'+randomUUID(),t={kind:'farm',beginSignature:beginSignature(input),requestId:input.requestId,epoch:b.epoch,sequence,index:input.index,step:input.step,action:input.step,expectedStage:p.stage,crop,item:CROPS[crop].item,name,actor,actorId,owner,reservedItems,tool,duration,day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+30*60*1000,assignmentId:task?.id||null,assignmentVersion:task?.assignmentVersion||0,operationId,storyId,decision:actor==='npc'?{goal:'farm',action:'work',farmIndex:input.index,expectedStage:p.stage,resource:crop,resourceOwner:owner,operationId,storyId,assignmentId:task?.id||null,projectId:task?.projectId||null,preparing:p.stage!==4,purposeId:String(input.purposeId||'').slice(0,100),source:task?'hermes':input.source==='deepseek'?'deepseek':'local'}:null};
+  const operationId=assignmentOperation||'farm-work:'+randomUUID(),t={kind:'farm',beginSignature:beginSignature(input),requestId:input.requestId,epoch:b.epoch,sequence,index:input.index,step:input.step,action:input.step,expectedStage:p.stage,crop,item:CROPS[crop].item,name,actor,actorId,owner,reservedItems,tool,duration,...(input.step==='harvest'?{harvestMode:cropHarvestProfile(crop).mode}:{}),day:s.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+30*60*1000,assignmentId:task?.id||null,assignmentVersion:task?.assignmentVersion||0,operationId,storyId,decision:actor==='npc'?{goal:'farm',action:'work',farmIndex:input.index,expectedStage:p.stage,resource:crop,resourceOwner:owner,operationId,storyId,assignmentId:task?.id||null,projectId:task?.projectId||null,preparing:p.stage!==4,purposeId:String(input.purposeId||'').slice(0,100),source:task?'hermes':input.source==='deepseek'?'deepseek':'local'}:null};
   if(actor==='player')releaseCooperationPlotToPlayer(s,input.index);else if(storyId)bindCooperationPlot(s,storyId,actorId,input.index);
   b.sequence=sequence;if(actor==='player')b.active=t;else f.leases[t.requestId]=t;sync(s,b);return {ticket:t,receipt:null};
  }
