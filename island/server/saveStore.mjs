@@ -135,6 +135,14 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
   for(const id of files){try{const doc=validateDocument(JSON.parse(await readFile(join(p.history,id),'utf8')),p.dir.endsWith('origami')?'origami':'pixel');rows.push({id,doc})}catch{}}
   return rows.sort((a,b)=>b.doc.updatedAt.localeCompare(a.doc.updatedAt)||b.doc.revision-a.doc.revision);
  }
+ // Checkpoint names carry their creation time. Only the newest valid automatic
+ // checkpoint is needed to schedule a backup; full history remains validated for
+ // retention, listing and recovery. Long-idle saves no longer rescan every backup.
+ async function latestAutomatic(p,theme){
+  const files=(await readdir(p.history)).filter(id=>/^\d+-[a-f0-9-]+\.json$/.test(id)).sort((a,b)=>Number(b.split('-')[0])-Number(a.split('-')[0]));
+  for(const id of files){try{const doc=validateDocument(JSON.parse(await readFile(join(p.history,id),'utf8')),theme);if(doc.reason==='automatic')return {createdAt:Number(id.split('-')[0])};}catch{}}
+  return null;
+ }
  async function snapshot(p,doc,reason){
   const id=String(now())+'-'+randomUUID()+'.json';
   await atomicJSON(join(p.history,id),{...doc,reason});
@@ -333,8 +341,8 @@ export function createSaveStore({directory,now=()=>Date.now(),backupInterval=300
     if(actions?.commerce&&saveId)actions.commerce.autosaves=[...(actions.commerce.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
     // A run cannot silently change identity through autosave.
     if(old.state.saveSlot!==state.saveSlot)throw fail('存档批次不匹配',409,'save_conflict');
-    const rows=await history(p),last=rows.find(r=>r.doc.reason==='automatic');
-    if(!last||now()-Date.parse(last.doc.updatedAt)>=backupInterval)await snapshot(p,old,'automatic');
+    const last=await latestAutomatic(p,theme);
+    if(!last||now()-last.createdAt>=backupInterval)await snapshot(p,old,'automatic');
     const doc=await commit(p,theme,state,old,'autosave',String(clientId).slice(0,80),actions);
     // A reset receipt survives later autosaves, so replaying the same request is harmless.
     if(old.restartId){doc.restartId=old.restartId;await atomicJSON(p.current,doc)}

@@ -152,3 +152,8 @@ V134: one visual day is 15 minutes, each season lasts 30 visual days. Day/night 
 ## V171 · 新地形会客与建筑校准
 
 会客连续改点保留最新目的地，原请求恢复仍在；更新后开放旧会客房的地形适配先保存校验原档到私有data/_lan/geography-backups。地块中心、房屋底座、点击范围与入口可用`align=1`图层核对，见[说明](docs/lobby-ground-v171.md)。新修复的原生证据和跨平台CI各自记录；本机用户存档、API配置与原机工作目录必须保留。
+
+
+## V172 · Busy save entry recovery
+
+Identity reads no longer wait behind home-save writes. `/play` transient failures render a recoverable HTML entry; explicit busy open responses retry with bounded delay. Home production/travel exclusion remains enforced. See [validation](docs/save-entry-v172.md). Preserve existing data and .env.local when replacing source files.

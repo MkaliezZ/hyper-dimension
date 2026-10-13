@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v171-agent-source",
+  "release": "hyper-dimension-v172-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 17050,
-      "sha256": "b0ab0f539997d99d5b5d1e6a0581ebc91bd4f94983207408efdc841d1cb8817a"
+      "bytes": 17425,
+      "sha256": "4c51974749d892a77813bf3937ecdce181e55748337be7056387cf161e4f1c33"
     },
     {
       "path": "LICENSE",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 26757,
-      "sha256": "c2e0ef6c6b30eb55a5c28afba394c40499022140c628961e4a0602182b36ca52"
+      "bytes": 27032,
+      "sha256": "992161e5bf209ea9ba3e9c633ce30665ec515641af49cc31795b9880650e90cd"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -634,6 +634,11 @@
       "path": "docs/save-capacity-v128.md",
       "bytes": 3582,
       "sha256": "a624459411c28fb397451eb9307827d79a3de152a12071aa86774292dc1daba5"
+    },
+    {
+      "path": "docs/save-entry-v172.md",
+      "bytes": 2518,
+      "sha256": "80e5d6ef6bbfe24a19554449620ca9f185c60cd55d7a8e8c4c1afce5b5d78038"
     },
     {
       "path": "docs/save-recovery-v115.md",
@@ -1872,8 +1877,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9325,
-      "sha256": "32677cdb6f7e8b4a67bcd960da487c83307953fb747c5aee12bbc8cce42215b3"
+      "bytes": 9354,
+      "sha256": "6c910b8bdf34ff8396aa963e5f84ef7dd7b7d034c50dc7c5a85434f8b0a60f98"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4192,8 +4197,8 @@
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 24996,
-      "sha256": "57e3a07fe116d34ee516624dfa95301dabfcfcecb7d3c09d6d4c96b59619e09e"
+      "bytes": 25671,
+      "sha256": "8be38c76427a0708be8d809063077a7db60b23e2b15b8d28daa2d0b9e8e96041"
     },
     {
       "path": "server/lanRoomResidents.mjs",
@@ -4202,8 +4207,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 26068,
-      "sha256": "d4b6336838df526f94d035b930476c876a7eaf3339d598f28f20106df85fd7bc"
+      "bytes": 27546,
+      "sha256": "73dd60d10d80473c302c35d80c1a9fe87d74794773af0524f3ae27918c9348e7"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -4402,8 +4407,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 36349,
-      "sha256": "a39415e4e8f19c2d8790dd2b403d7a2f50d8ac6d66391df9898f6d9ad8b97417"
+      "bytes": 36955,
+      "sha256": "8bf6c135b0dc8252351ce48d6a7650d7ac1e828333b6dfe67838352daa74c599"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -5687,8 +5692,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 30124,
-      "sha256": "3d9da3b49ca213d93ecb8f60d6a7b1dc3ce4bb469a1c9f88b60d6a99e4a8319f"
+      "bytes": 30719,
+      "sha256": "f8b4b17b912b10bc9ae70fafe1f14c6e2cdc2a0c9976dce90a4f58c343131be0"
     },
     {
       "path": "src/saveDelta.js",
@@ -6979,6 +6984,16 @@
       "path": "tests/v171-lobby-motion.test.mjs",
       "bytes": 3678,
       "sha256": "e300f42212ea478f85b48e8abdb14e1aeec70604923581b6052f235bf8ad377e"
+    },
+    {
+      "path": "tests/v172-entry-browser.mjs",
+      "bytes": 3134,
+      "sha256": "53d9a202b826ce1af0465bc77e383514a996a5c66e8762a37e1d3570e93d3e5b"
+    },
+    {
+      "path": "tests/v172-lan-busy.test.mjs",
+      "bytes": 5467,
+      "sha256": "cdf10aaed9eac491a481e849c579081180c028bbc7be77d555f9ee708b6d9a58"
     },
     {
       "path": "tests/v18-balance-probe.mjs",

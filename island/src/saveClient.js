@@ -56,7 +56,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   const payload=body===undefined?undefined:encoded??await journal.encode(body);
   const response=await journal.request('/api/saves/'+theme+(operation?'/'+operation:''),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:payload},metadataOnly,actionsBase?.version);
   const data=response.data||JSON.parse(response.text);
-  if(!response.ok)throw Object.assign(Error(data.error||'存档服务未连接'),{code:data.code,status:response.status});
+  if(!response.ok)throw Object.assign(Error(data.error||'存档服务未连接'),{code:data.code,status:response.status,retryAfter:data.retryAfter});
   if(data.document){applySaveResponseActions(data.document,actionsBase);Object.defineProperty(data.document,'encoded',{value:response.text});}
   return data;
  }
@@ -79,7 +79,18 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i),m=key.match(/^hd-workshop-best-v19-(\d+)-(\d+)$/);if(m)local.workshopBests[m[1]+'-'+m[2]]=read(key)}
   }catch{}}
   try{
-   const result=await request(theme,'open',{legacyState:pending?.state||local,clientId});let doc=result.document;
+   let result;
+   for(let attempt=0;;attempt++){
+    try{result=await request(theme,'open',{legacyState:pending?.state||local,clientId});break;}
+    catch(error){
+     // These explicit busy rejections have not accepted the open transaction.
+     // Never extend this retry to actions, rewards, imports or ambiguous timeouts.
+     if(error.status!==503||!['lan_busy','save_busy','world_session_busy'].includes(error.code)||attempt>=5)throw error;
+     status(r,'loading','小岛正在保存，稍后自动继续读取');
+     await new Promise(resolve=>setTimeout(resolve,Math.min(5000,Math.max(1,Number(error.retryAfter)||attempt+1)*1000)));
+    }
+   }
+   let doc=result.document;
    r.migration=result.migration||null;
    if(read(importKey(theme))){r.state=doc.state;await remember(r,doc);const imported=await retryImport(theme,{reload:false});return imported.document.state;}
    if(result.initialCreated||result.restarted){
