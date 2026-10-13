@@ -2,7 +2,7 @@
 import {readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';import path from 'node:path';
 import {worldWalkableForTheme} from '../src/world.js';import {TERRAIN_NAVIGATION as n} from '../src/terrainNavigation.js';
 const root=path.resolve(import.meta.dirname,'..'),profiles={version:169,cell:n.cell,width:n.width,height:n.height,sourceHashes:{}};
-for(const name of ['src/world.js','src/islandGeography.js','src/terrainNavigation.js','src/portfolioLandmark.js'])profiles.sourceHashes[name]=createHash('sha256').update(await readFile(path.join(root,name))).digest('hex');
+for(const name of ['src/world.js','src/terrainParcelAnchors.js','src/islandGeography.js','src/terrainNavigation.js','src/portfolioLandmark.js'])profiles.sourceHashes[name]=createHash('sha256').update(await readFile(path.join(root,name))).digest('hex');
 const offsets=[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
 for(const theme of ['pixel','origami']){const rows=[];for(let y=0;y<n.height;y++){let row='';for(let x=0;x<n.width;x++){let flags=0;if(worldWalkableForTheme(theme,x*n.cell,y*n.cell))offsets.forEach(([dx,dy],i)=>{let ok=true;const steps=Math.ceil(Math.hypot(dx,dy)*n.cell/2);for(let k=1;k<=steps;k++)if(!worldWalkableForTheme(theme,(x+dx*k/steps)*n.cell,(y+dy*k/steps)*n.cell)){ok=false;break;}if(ok)flags|=1<<i;});row+=flags.toString(16).padStart(2,'0');}rows.push(row);}profiles[theme]=rows;console.log(theme+' continuous navigation edges baked');}
 const lines=[

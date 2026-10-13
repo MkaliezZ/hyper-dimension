@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v173-agent-source",
+  "release": "hyper-dimension-v174-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8155,
-      "sha256": "057aa4a506a2d691845eda109319bd532460f35f379785d5b7fce165ce628d17"
+      "bytes": 8529,
+      "sha256": "7f5e94eed8b593310b470d7ead3ebecc9275d8a595c0fb1dd6cf0f4e627b5e36"
     },
     {
       "path": "README.md",
-      "bytes": 7163,
-      "sha256": "1594ac08a2ae8086975bafdf1a44c580ab4461e8d4c15ec2467a126905c885a1"
+      "bytes": 7469,
+      "sha256": "053b8024d96f6014164297e1785e646dc8ab3bbf869a496235fe51532250eeda"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 27401,
-      "sha256": "47e1543aedfb0d6254b0e76d8029eaf94441d2784c474474f2f1ca7a451fc78f"
+      "bytes": 28016,
+      "sha256": "4e6a7644998b5037ecb526be58a70fc9e216c8125514f4324e057bbbf41ebbf1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -544,6 +544,11 @@
       "path": "docs/npc-recovery-v116.md",
       "bytes": 2882,
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
+    },
+    {
+      "path": "docs/parcel-alignment-v174.md",
+      "bytes": 1962,
+      "sha256": "820b1eb20f06ff000a09593b97f009eec27b1c4aaa0d379b3906cc7bc1a59a64"
     },
     {
       "path": "docs/pearl-cup-v156.md",
@@ -1882,8 +1887,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9387,
-      "sha256": "4e57c9b5171270aeed104da924c43ab5c8dacf257e189c2ba3b8b36912aac6d2"
+      "bytes": 9424,
+      "sha256": "5f596926c42fd1f3c4633741c972a27695214ec4ce852894fddbac699206423e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -4567,8 +4572,8 @@
     },
     {
       "path": "src/buildingGeometry.js",
-      "bytes": 1378,
-      "sha256": "b75f1ed84a57e2bfd6b750feb89a39831687e5a0de9e88a275c91500a83435a0"
+      "bytes": 1543,
+      "sha256": "ca71fc8753c0f6084275585b69dafd6db75a101de93c48ece62899852e888bb9"
     },
     {
       "path": "src/buildingGroundAnchors.js",
@@ -4577,8 +4582,8 @@
     },
     {
       "path": "src/buildingGroundCalibration.js",
-      "bytes": 1521,
-      "sha256": "c20f9866f24e3b85cd47238883fe5f9a897b9b96965083f621b8d37fcd844f9f"
+      "bytes": 1518,
+      "sha256": "178fe7e3f41a93b3970b3150d31ee369b93739ff86450d1d1c9d57bf25fac23d"
     },
     {
       "path": "src/catalog-data.js",
@@ -5901,6 +5906,11 @@
       "sha256": "93d43927253c922d53ca633101272ab124ade5cc226551de14b617707cf69bf6"
     },
     {
+      "path": "src/terrainParcelAnchors.js",
+      "bytes": 4291,
+      "sha256": "152a46d2f66f2ab611eb585789757ebc4e384de124e73d4dd935e4de387da632"
+    },
+    {
       "path": "src/terrainResolution.js",
       "bytes": 758,
       "sha256": "b7e1c47eec9202b8a4e5fbe4f71aca4b99949ad39c969400b4c14d04b420cc79"
@@ -5997,13 +6007,13 @@
     },
     {
       "path": "src/world.js",
-      "bytes": 15591,
-      "sha256": "3935d6bebd6a9d6f3e03c2e7339da2fa6d5dbd4b16712939eeaae7c2f9c2853a"
+      "bytes": 16279,
+      "sha256": "e85b620780cb503966e7396b4fbf1644ab564669e025f32c0e4f92513ed005ae"
     },
     {
       "path": "src/worldNavigationEdges.js",
-      "bytes": 145352,
-      "sha256": "b41d154b76e0dd05f783e74059c2e6d3531afcb33c5fff07a4a84b2f55d87140"
+      "bytes": 145449,
+      "sha256": "04d7605bbbf4e31d56dbd05795817906111013ceec25e0931bf10d31dd421700"
     },
     {
       "path": "src/worldSession.js",
@@ -7014,6 +7024,11 @@
       "path": "tests/v173-frame-motion.test.mjs",
       "bytes": 3213,
       "sha256": "d4f5821ac06d791479ae7221b496120ba737ea11c51475b4260c19c16a3a4112"
+    },
+    {
+      "path": "tests/v174-parcel-alignment.test.mjs",
+      "bytes": 2366,
+      "sha256": "225c3adc36afedcc6f712c8dde0f012478accb81839d574aaaef4a9e9717bf20"
     },
     {
       "path": "tests/v18-balance-probe.mjs",
@@ -8722,8 +8737,8 @@
     },
     {
       "path": "tools/build-navigation-edges.mjs",
-      "bytes": 2090,
-      "sha256": "38f1874bebff02b165122d3e7fde27035c62e52840d7f4c2451205cb70510b0b"
+      "bytes": 2120,
+      "sha256": "f6d0de344de49feccfcaae35a89b0f5018482e0833aab2f4f38e4527b0c72ce7"
     },
     {
       "path": "tools/build-terrain-overviews.mjs",
@@ -9311,5 +9326,5 @@
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
     }
   ],
-  "publicRevision": "v173-github"
+  "publicRevision": "v174-github"
 }

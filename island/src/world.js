@@ -1,3 +1,4 @@
+import {terrainParcel} from './terrainParcelAnchors.js';
 import {worldBaseEdge} from './worldNavigationEdges.js';
 import {ISLAND_GEOGRAPHY,PERMANENT_HOMES} from './islandGeography.js';
 import {terrainSurfaceWalkable,terrainMovementCost,TERRAIN_NAVIGATION} from './terrainNavigation.js';
@@ -89,7 +90,14 @@ setWorldTheme('pixel');
 export function pointInPolygon(x,y,points){let inside=false;for(let i=0,j=points.length-1;i<points.length;j=i++){const a=points[i],b=points[j];if((a.y>y)!==(b.y>y)&&x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)inside=!inside}return inside}
 export function nearPolyline(x,y,path,width){for(let i=1;i<path.length;i++){const a=path[i-1],b=path[i],dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((x-a.x)*dx+(y-a.y)*dy)/(dx*dx+dy*dy)||0));if(Math.hypot(x-a.x-dx*t,y-a.y-dy*t)<=width)return true}return false}
 export function pierWalkable(x,y){return pointInPolygon(x,y,HARBOR.apron)||nearPolyline(x,y,HARBOR.path,25*.85)}
-export function parcelBlocked(s,x,y){return Math.abs(x-s.x)<s.w*.40+4&&y>s.y-12&&y<s.y+s.h/2-2;}
+// A shared ground footprint keeps style switching compatible with saved routes.
+const parcelFootprints=new Map([...SLOTS,...PERMANENT_HOMES].map(s=>{
+ const kind=Number.isInteger(s.ownerId)?'homes':'production',id=s.ownerId??s.id;
+ const a=terrainParcel('pixel',kind,id),b=terrainParcel('origami',kind,id);
+ const foot=(a.foot+b.foot)/2,cx=(a.doorX+b.doorX)/2;
+ return [kind+':'+id,{x:cx,rx:Math.min(s.w*.40+4,(a.w+b.w)*.22),top:foot-Math.min(34,(a.h+b.h)*.28),bottom:foot-2}];
+}));
+export function parcelBlocked(s,x,y){const p=parcelFootprints.get((Number.isInteger(s.ownerId)?'homes':'production')+':'+(s.ownerId??s.id));return p?Math.abs(x-p.x)<p.rx&&y>p.top&&y<p.bottom:Math.abs(x-s.x)<s.w*.40+4&&y>s.y-12&&y<s.y+s.h/2-2;}
 const basePoints={pixel:new Map(),origami:new Map()};
 function baseWorldWalkable(theme,x,y){
  if(portfolioBlocked(x,y))return false;const h=harborGeometry[theme];if(pointInPolygon(x,y,h.apron)||nearPolyline(x,y,h.path,25*.85))return true;

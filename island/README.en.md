@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V173
+## What's new · V174
+
+Recalibrated all 25 production buildings and 16 homes against native terrain in both styles. Fixed the tide house, boatyard, post office and campsite offsets; narrow plots now preserve proportional building sizes. Rendering, labels, picking and ground collision follow the corrected anchors. [Alignment details](docs/parcel-alignment-v174.md).
+
+### V173 · Movement timing
 
 Fixed slow walking at low frame rates and companion jumps when routes change. Reception characters catch up to confirmed positions along walkable paths; rapid clicks retain the final destination. Farm navigation at 8 / 15 FPS, reception movement at 10 FPS in both styles, and actual planting-to-harvest flows passed. [Fix and measurements](docs/frame-motion-v173.md).
 
