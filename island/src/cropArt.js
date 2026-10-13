@@ -1,7 +1,7 @@
 import {CROP_ART_FRAMES} from './cropArtFrames.js';
 import {registerThemeArtwork} from './themeArtwork.js';
 const images=new Map(),validated=new WeakMap(),preparedThemes=new Set();
-export function cropPlantingGrid(crop){return ['cabbage','kale','pumpkin','blueberry','eggplant','cucumber','pea','sweet_potato','daikon'].includes(crop)?{rows:2,columns:3}:{rows:3,columns:4};}
+export function cropPlantingGrid(crop){return ['cabbage','kale','pumpkin','blueberry','eggplant','cucumber','pea','sweet_potato','daikon','corn','cotton','strawberry','potato','tomato'].includes(crop)?{rows:2,columns:3}:{rows:3,columns:4};}
 export function growthFrameIndex(stage,growth=0){if(stage<2)return -1;if(stage===4)return 3;if(stage===2)return 0;return growth<.32?0:growth<.68?1:2;}
 export function validCropArt(spec){return !!spec&&typeof spec.file==='string'&&Number.isInteger(spec.width)&&Number.isInteger(spec.height)&&spec.width>0&&spec.height>0&&Array.isArray(spec.frames)&&spec.frames.length===4&&spec.frames.every(f=>f&&Array.isArray(f.root)&&[f.x,f.y,f.w,f.h,f.renderHeight,...f.root].every(Number.isFinite)&&f.x>=0&&f.y>=0&&f.w>0&&f.h>0&&f.x+f.w<=spec.width&&f.y+f.h<=spec.height&&f.root?.length===2&&f.root.every(n=>n>=0&&n<=1)&&f.root[1]>=.75&&f.renderHeight>0&&f.renderHeight<=64);}
 export function cropFrameGeometry(frame,x,y){const scale=frame.renderHeight/frame.h;return {x:x-frame.root[0]*frame.w*scale,y:y-frame.root[1]*frame.h*scale,w:frame.w*scale,h:frame.h*scale,scale,root:{x,y}};}

@@ -1,7 +1,8 @@
 // Native generated growth artwork; measured alpha occupancy with 2px border.
 // Root anchors are normalized within each frame; renderHeight uses farm-world units.
 // The source PNGs are never modified. Wide plants stay within the planting grid.
-export const CROP_ART_FRAMES={
+import {LEGACY_CROP_ART_FRAMES} from './legacyCropArtFrames.js';
+const SEASONAL_CROP_ART_FRAMES={
   "pixel": {
     "cabbage": {
       "file": "crop-growth-pixel-cabbage-v176.png",
@@ -887,3 +888,5 @@ export const CROP_ART_FRAMES={
     }
   }
 };
+
+export const CROP_ART_FRAMES=Object.fromEntries(["pixel","origami"].map(theme=>[theme,{...LEGACY_CROP_ART_FRAMES[theme],...SEASONAL_CROP_ART_FRAMES[theme]}]));

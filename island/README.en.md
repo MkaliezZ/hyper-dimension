@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V177
+## What's new · V178
+
+All eleven original crops now have dedicated pixel and origami growth art, adding 88 native sprites. All 19 crops have 152 growth-stage sprites with measured soil anchors and appropriate harvesting tools. [Artwork and validation](docs/legacy-crop-art-v178.md).
+
+### V177 · Legacy LAN save upgrade
 
 The LAN entry now upgrades legacy item catalogs before play, fixing repeated save conflicts after updating. Existing inventory and activity settlements are preserved. [Save upgrade fix](docs/lan-catalog-upgrade-v177.md).
 
@@ -45,13 +49,13 @@ The [published V170 package](https://github.com/MkaliezZ/hyper-dimension/release
 | Travel with your steward | Multiplayer reception, accompanying NPCs, original-device bridging and standard A2A share attributed cooperation records. Cross-device work needs pairing and an online original device. |
 | Change art styles | Pixel and origami terrain, buildings, characters, rooms, items and UI, with native region loading, animated ocean ripples and shore waves. |
 
-Each season lasts 30 visual days. Weather effects, seasonal planting and resident home schedules are connected. Full-map seasonal native artwork, complete growth art for legacy crops, night lighting and moon reflections remain in development; home interiors retain the existing presentation entries.
+Each season lasts 30 visual days. Weather effects, seasonal planting and resident home schedules are connected. Full-map seasonal native artwork, night lighting and moon reflections remain in development; home interiors retain the existing presentation entries.
 
 ## Native screenshots
 
-| V176 pixel farm | V176 origami farm |
+| V178 pixel farm (mature-crop fixture) | V178 origami farm (mature-crop fixture) |
 | --- | --- |
-| ![V176 pixel crops](docs/screenshots/v176-pixel-farm.png) | ![V176 origami crops](docs/screenshots/v176-origami-farm.png) |
+| ![V178 pixel crops](docs/screenshots/v178-pixel-legacy-farm.png) | ![V178 origami crops](docs/screenshots/v178-origami-legacy-farm.png) |
 
 | Pixel island | Origami island |
 | --- | --- |

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v177-agent-source",
+  "release": "hyper-dimension-v178-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 7058,
-      "sha256": "511fc2768f334274c2f1d6289961303ae95ce508782d6ae1889f1713c8961afe"
+      "bytes": 7377,
+      "sha256": "8a50cd49358f4b9e62cd5ef3a99981406e930dd413b96ff444c405e55cd4a99e"
     },
     {
       "path": "README.md",
-      "bytes": 6367,
-      "sha256": "80aaf6fd206644e17ce3c170811af5bdf134783bc93b3d937cb247fb02e553c2"
+      "bytes": 6691,
+      "sha256": "4c83e1b4163de1a771c47984212e789a617fae1b408753e4fdd1f3aafcbbd7ef"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 30293,
-      "sha256": "e5907accf21911c6a61fa0bc424ec14b5f51784bc45bdc4dcb4de5cade410c6f"
+      "bytes": 31239,
+      "sha256": "d427f3bfc0b1e4cc297fdda52084a22f3dcff93cfc62943378fb3a08323441ce"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -214,6 +214,16 @@
       "path": "docs/lan-catalog-upgrade-v177.md",
       "bytes": 2659,
       "sha256": "457a3f3788396624c42cd681e756ba93253ab8e87b504e9b7bf1cda80eb4bfdf"
+    },
+    {
+      "path": "docs/legacy-crop-art-provenance-v178.json",
+      "bytes": 14429,
+      "sha256": "f7c98dbcd5ae17eb2adcb9f2c7925dcff5303969f8a836b91780df4f6894a689"
+    },
+    {
+      "path": "docs/legacy-crop-art-v178.md",
+      "bytes": 5011,
+      "sha256": "ccca4514a9a596c5facafb6ea19ccb80f9ff82cb202eaa190424413ca816fa3b"
     },
     {
       "path": "docs/lobby-ground-v171.md",
@@ -969,6 +979,16 @@
       "path": "docs/screenshots/v176-pixel-farm.png",
       "bytes": 2744367,
       "sha256": "4fbfef4e016e3e0aab853a32fe59393cbe475cb6bab49448c6c0a96a2eb49aa6"
+    },
+    {
+      "path": "docs/screenshots/v178-origami-legacy-farm.png",
+      "bytes": 2387339,
+      "sha256": "b82dd19a39aed16a2ea4b36cc3b711dd58453a3f42be26421c025704ae85360a"
+    },
+    {
+      "path": "docs/screenshots/v178-pixel-legacy-farm.png",
+      "bytes": 2753240,
+      "sha256": "0d9d33c64a35347ddb659aadbef73fb33d5ddd928c4702b7c3714e8fbfecfd87"
     },
     {
       "path": "docs/sea-art-prompts-v122.json",
@@ -1927,8 +1947,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 9862,
-      "sha256": "778484897fbbfd637f746004bc680aee0a8ce434477520a73a92208105c97300"
+      "bytes": 10013,
+      "sha256": "d8cb079a91dfd77720c4945fd2dc29113ac6720c7eff97036dbca083e6278886"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -2271,6 +2291,16 @@
       "sha256": "e6cdf9d3a81672dcc07ba7bd01938b7fcfa4dc271d85f3be3b1d07e76951ebc2"
     },
     {
+      "path": "public/assets/crop-growth-origami-garden-v178.png",
+      "bytes": 1612239,
+      "sha256": "e1f5aa11b6f07b9d15a536449b0d08e42738bb7a4441ed28440a944230287709"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-grains-v178.png",
+      "bytes": 1363405,
+      "sha256": "a39397b68197400bbe6e9a9a9270a2351d9dd0a3768e25287bac3142e48a4e56"
+    },
+    {
       "path": "public/assets/crop-growth-origami-kale-v176.png",
       "bytes": 1217208,
       "sha256": "98a23893cc184ed972b684d88c612dc2e4c35415306e5a5ecf112e69e2bb59fd"
@@ -2284,6 +2314,11 @@
       "path": "public/assets/crop-growth-origami-sweet-potato-v176.png",
       "bytes": 947138,
       "sha256": "3c5012f3c08058bcaf155183c0b11d7a2fa346af7862da093fbc6f5a98bab08e"
+    },
+    {
+      "path": "public/assets/crop-growth-origami-vegetables-v178-r2.png",
+      "bytes": 1682292,
+      "sha256": "1c17b315181641e23b05df7ad6eafb0f409a8874a021ae1ac065d0c18d982a1d"
     },
     {
       "path": "public/assets/crop-growth-pixel-blueberry-v176.png",
@@ -2311,6 +2346,16 @@
       "sha256": "89323aedce798740f9f89d830f024c990f4da0be2d8aa6d7291ab06fcfc21f23"
     },
     {
+      "path": "public/assets/crop-growth-pixel-garden-v178.png",
+      "bytes": 1376523,
+      "sha256": "a56689306cbf98595baf623e51554592ba24cd41e8ab49e95cbb1854c46a3bb4"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-grains-v178.png",
+      "bytes": 1384924,
+      "sha256": "e60b3e01f0815f7b6c3bf563fbbb9ca67abd89f6cc85f4f34e54c698041c8a35"
+    },
+    {
       "path": "public/assets/crop-growth-pixel-kale-v176.png",
       "bytes": 1008664,
       "sha256": "4ce0117f36fe767c032b3f5f6a2511fc83a3680ef839fadf7644801adc44df71"
@@ -2324,6 +2369,11 @@
       "path": "public/assets/crop-growth-pixel-sweet-potato-v176.png",
       "bytes": 709459,
       "sha256": "6846efae26c3b4c545d8f09ae43ba7db77f6f64616b5d35960027367a13f287f"
+    },
+    {
+      "path": "public/assets/crop-growth-pixel-vegetables-v178-r2.png",
+      "bytes": 1476810,
+      "sha256": "e68de39fdf8d360a63e7fa6145cf529ea8d04246ae9abf61ce5aac97c4379fbc"
     },
     {
       "path": "public/assets/cursors/origami-action.png",
@@ -4877,13 +4927,13 @@
     },
     {
       "path": "src/cropArt.js",
-      "bytes": 3425,
-      "sha256": "eaa40389375da3aec036e38119a056cedb34b46ca6ab8f0dd126dca19775fedd"
+      "bytes": 3471,
+      "sha256": "eb7b5279d9b39a419264a55a1873b20b22b932b74d362728036b45264d9a4495"
     },
     {
       "path": "src/cropArtFrames.js",
-      "bytes": 17729,
-      "sha256": "aca8701e722bca7ded828a94bed0b6ff2a31490abd7e2b5c1a8cea7b211460c2"
+      "bytes": 17957,
+      "sha256": "bd7888ef1be74ae0ad9859390b2b55868b4476f9a4599bcb2fcc6cd7117843ce"
     },
     {
       "path": "src/cropHarvest.js",
@@ -5424,6 +5474,11 @@
       "path": "src/layouts.js",
       "bytes": 2408,
       "sha256": "9aee20ef53fbbc54ef6e5f935589bede927a59b8d461d38c881a8d481480983b"
+    },
+    {
+      "path": "src/legacyCropArtFrames.js",
+      "bytes": 24038,
+      "sha256": "c74aea92440e7d151313cc4986c374fce7d4a38d91057eb615b06f3abcf1a5d3"
     },
     {
       "path": "src/legacyPlacementValidation.js",
@@ -7282,8 +7337,8 @@
     },
     {
       "path": "tests/v176-crop-art.test.mjs",
-      "bytes": 3738,
-      "sha256": "8f427da99c461490078ff75d2a52e6103b35120e39d19464a2a040daa3542e7d"
+      "bytes": 3795,
+      "sha256": "df6b190ff89eef9ab516697570a59d5799798291490527358c397b1e894cc7f5"
     },
     {
       "path": "tests/v176-crop-harvest.test.mjs",
@@ -7298,7 +7353,7 @@
     {
       "path": "tests/v176-farm-growth-browser.mjs",
       "bytes": 6324,
-      "sha256": "3c841abf93dbb1cf5f42f26de12e349e40ca56ab2040b5565456d6ca9bb3a1b4"
+      "sha256": "e58cc50512918af04c7d3eee037f449de84ac879cc7ceefa69912c35bc934740"
     },
     {
       "path": "tests/v176-fashion-input-browser.mjs",
@@ -7334,6 +7389,21 @@
       "path": "tests/v177-lan-catalog-upgrade.test.mjs",
       "bytes": 6397,
       "sha256": "18dcc5db5947ec4dd4fd32c54a728e948935113aee7f89a9867e63e82301ec60"
+    },
+    {
+      "path": "tests/v178-crop-stages-browser.mjs",
+      "bytes": 4376,
+      "sha256": "c6fadd3d9c56876eaf853c99692ce4f3f8746c0fc972fab02a075d1bac6dfb0b"
+    },
+    {
+      "path": "tests/v178-legacy-crop-art.test.mjs",
+      "bytes": 3326,
+      "sha256": "799377acf1e3fbde0b07be4bba476dff15dd2d9d2eb8c02aa5d40e1068862222"
+    },
+    {
+      "path": "tests/v178-legacy-farm-browser.mjs",
+      "bytes": 6883,
+      "sha256": "3e11ef70e0af694b9d05b8359ff89c554fb09115ab480a06d15b71ad34388f1f"
     },
     {
       "path": "tests/v18-balance-probe.mjs",

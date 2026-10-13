@@ -277,3 +277,14 @@ V175 云端终态补记：运行 38388258952 六项全部成功。Mac Intel 原�
 ### V176 interaction and parcel follow-up
 
 The final default command passed **1071/1071** (1057 domain checks plus 14 runtime-scope checks), with no failures or skips. Both themes passed actual boatyard/fireworks map clicks, walking and indoor entry. The wardrobe comparison passed normal and delayed transport, deliberate lost-response recovery, one actual output and reload checks. Shared controller and held-input tests remain separate bounded evidence; see [the interaction notes](minigame-input-v176.md). Full seasonal terrain, all legacy crop growth art, physical night lighting and human acceptance are still separate work.
+
+
+## V178 · 全作物生长美术 / Crop growth art
+
+
+
+最终默认检查 1078/1078 通过（1064 领域规则 + 14 运行目录保护），0 失败、0 跳过。两画风 88 个阶段实际绘制通过；两组农田共四次原生浏览器检查覆盖 11 个旧作物、19 个已加载作物资源，实际麦穗割取和胡萝卜拔取各获得作物2、种子1，刷新不重复。
+
+The final default gate passed 1078/1078 (1064 domain checks and 14 runtime guards), without failures or skips. All 88 native legacy stages rendered; four native farm cases cover all eleven legacy crops and all nineteen loaded crop resources. Wheat cutting and carrot pulling each received two crops and one seed, without duplicate gains after reload.
+
+见 [V178 美术和验证](legacy-crop-art-v178.md)。原生成 PNG、完整裁切、土壤锚点和两个画风各自来源已记录；四季全岛地形、夜间实体灯光及完整真人验收继续。
