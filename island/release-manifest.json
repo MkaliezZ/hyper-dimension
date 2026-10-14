@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v185-agent-source",
+  "release": "hyper-dimension-v186-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10844,
-      "sha256": "563813dbf1ee0fa14bc5e9e57788f81aab9179cd2745663b168fc66515799669"
+      "bytes": 11229,
+      "sha256": "5a0678d2b6ad1254d1efa4793346e9ce276223b803c30fc5d5d3173030dd00fc"
     },
     {
       "path": "README.md",
-      "bytes": 9537,
-      "sha256": "d31ce5b745628ef1ffb5d142b639e519c6332d1c135a4332489fd172df91f8cf"
+      "bytes": 9883,
+      "sha256": "a27d5d1308a92b4b00fd88833120c4f0a9a03da3f8afb9fea65d1b0ee04eeaee"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 37968,
-      "sha256": "fb5b72325a8edbb84ab01453a90ef3fded010111f8ed1382ce5d162e5d0c0ae0"
+      "bytes": 38675,
+      "sha256": "b9477917ad7716bf8a71b5cd0464aac31655f14f76e3edb6bd2c7c94d7141bdd"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -1109,6 +1109,11 @@
       "path": "docs/sea-art-v122.json",
       "bytes": 662,
       "sha256": "ed2b936bd1d261ad646af958ceda48e2cb69b693d2cf103b7bab0a845b388ac8"
+    },
+    {
+      "path": "docs/season-boundary-v186.md",
+      "bytes": 1919,
+      "sha256": "902d9decd6f91f896fd1630cdb2e8625f5cec68d0aad56493eed7e5bb0c97703"
     },
     {
       "path": "docs/seasonal-art-provenance-v176.json",
@@ -5157,8 +5162,8 @@
     },
     {
       "path": "src/environmentClient.js",
-      "bytes": 2242,
-      "sha256": "c135a2c8981e2a5511f174f80444429130655c1554ee9b13e4a80b3592c1e788"
+      "bytes": 2565,
+      "sha256": "9374591a96e91fbcb6d3a6197e570814a40f24497af3f5e66328b3000aa5652c"
     },
     {
       "path": "src/environmentClock.js",
@@ -7649,6 +7654,11 @@
       "path": "tests/v180-visual-review-browser.mjs",
       "bytes": 7875,
       "sha256": "20a17c40a17e6479f80c31285bf9653557cc4597a41d2cc36affcb8796b29556"
+    },
+    {
+      "path": "tests/v186-season-boundary.test.mjs",
+      "bytes": 2796,
+      "sha256": "0b7ce4a08ba51afa58385ffc47cac1a9ab898ba268a8ff8c89142f223076427f"
     },
     {
       "path": "tests/v19-before-qa.mjs",

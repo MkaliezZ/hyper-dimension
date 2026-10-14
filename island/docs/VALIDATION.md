@@ -334,3 +334,10 @@ Native reward fixtures now suspend autonomous NPC production before runtime init
 Intel Mac原生玩法已在V184云端通过。Mac ARM订单弹窗检查补齐启动条件、隔离生产与恢复现场诊断；双画风12个真实命令/原生关闭/晚到回执/刷新场景本地通过，新增对应CI失败附件。[范围与证据](docs/modal-navigation-v185.md)。Mac ARM新提交云端结果另行跟进。
 
 Intel Mac native gameplay passed in V184. The Mac ARM modal-navigation fixture now waits for completed startup, isolates autonomous production and records recovery diagnostics. Twelve dual-style native command/close/late-acknowledgement/reload cases pass locally, with retained CI failure artifacts. [Scope and evidence](docs/modal-navigation-v185.md). The new Mac ARM cloud result is tracked separately.
+
+
+## V186 · 自然换季边界
+
+修复自然跨过第30视觉日时未记录季节过渡，以及切回窗口后的换季检测；18项时钟与服务检查通过。V185的Windows与两种Mac云端9项检查已全部成功。[换季修复与美术进度](docs/season-boundary-v186.md)。原生四季底图尚在制作，未作为完整换季上线。
+
+Natural thirtieth-day boundaries and hidden-window recovery now record the season transition without restarting it on every frame or clock refresh. Eighteen focused clock/service checks pass; all nine V185 Windows/macOS cloud jobs succeeded. [Fix and artwork scope](docs/season-boundary-v186.md). Complete native seasonal terrain is still in production.
