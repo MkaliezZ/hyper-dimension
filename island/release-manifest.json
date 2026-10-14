@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v182-agent-source",
+  "release": "hyper-dimension-v184-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9907,
-      "sha256": "5432204174095571e8e0f9900b7be1336b748d60dec7d963fd0272fca9de9875"
+      "bytes": 10400,
+      "sha256": "92907158aa16cd4ae5fdd0080e7f5a943d2b632282a541b8868c6f5a8a112d11"
     },
     {
       "path": "README.md",
-      "bytes": 8784,
-      "sha256": "b3902864c89d7d4b581ad30ed491568c45057f45b7581ffd86f1a1131730d511"
+      "bytes": 9172,
+      "sha256": "e8844096239bbafa84f39ddb9ece63489d88ce3847df79b0b7c04dec4914a023"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 36334,
-      "sha256": "4a2756bd124438396d64d45a857ce8445c440b0db50963547ac772e809094b97"
+      "bytes": 37182,
+      "sha256": "08625f2c449d36ede0420dcdb97b31e40c1ec7e40fd520e0952251e90c9e2a81"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -764,6 +764,11 @@
       "path": "docs/reward-drain-v170.md",
       "bytes": 3201,
       "sha256": "b07fea5fc5f935b1275ec5384bcc212682bf55b3528bedd8e20e60580f0bd09c"
+    },
+    {
+      "path": "docs/reward-fixture-v184.md",
+      "bytes": 3158,
+      "sha256": "661c9cb55ade337ca7848817913ee5103f9fbca172fba8aaf90bb78a8b1ebafd"
     },
     {
       "path": "docs/save-capacity-v128.md",
@@ -7377,8 +7382,8 @@
     },
     {
       "path": "tests/v168-reward-click-browser.mjs",
-      "bytes": 9949,
-      "sha256": "a5724b46f2486cdc7d9dad578b8fa4f153d3aea7de2bf7a3b8cc60870b4c5204"
+      "bytes": 10568,
+      "sha256": "f30879e9e3fbecc0ae790298ba04fca2dfcc835cba60d72dd2444c45e61b6c16"
     },
     {
       "path": "tests/v169-geography-browser.mjs",
@@ -7407,8 +7412,8 @@
     },
     {
       "path": "tests/v170-reward-drain-browser.mjs",
-      "bytes": 12763,
-      "sha256": "3ab033ac11eeda3503fe6ad9e7e6d39015ffff7ea94dc3c3dc85e98b525d5b0f"
+      "bytes": 12947,
+      "sha256": "c3f95e5ace4d46e6bb708c6a3551fcb3020f35939c74395fd0934fc93a271328"
     },
     {
       "path": "tests/v171-lan-geography.test.mjs",

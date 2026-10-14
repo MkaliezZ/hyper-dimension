@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V182
+## What's new · V184
+
+Native reward fixtures now suspend autonomous NPC production before runtime initialization, preventing unrelated gathering from changing exact cancellation inventory assertions on longer Intel runs. Four delayed-claim/cancel and six independent-receipt/recovery cases pass locally, retaining actual resident receipts and all original single-settlement checks. [Fix and evidence](docs/reward-fixture-v184.md). New cloud results remain pending.
+
+### V182 · Checkpoint timing and action review
 
 The Intel Mac native-gameplay fixture now holds the accepted winning checkpoint independently of result-panel paint timing. Four delayed-claim and six independent-receipt/recovery cases pass. Native action review now includes idle, walk, hoe, mining, chopping, sowing, harvesting and clothed watering: 448 direction frames and 480 dressed/tool samples across both styles. [Fix and validation](docs/reward-checkpoint-v182.md). V182 cloud results are tracked separately.
 

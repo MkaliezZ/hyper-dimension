@@ -320,3 +320,10 @@ Sixteen origami residences now follow the existing paper-building language. Comp
 Intel Mac 原生玩法检查修复结果回执拦截时序；四个延迟领奖、六个独立回执/恢复场景通过。人物动作复查扩展到待机、走路、锄地、采矿、伐木、播种、收获及穿衣浇水，双画风448个方向帧和480个穿衣工具样本通过。[修复与验证](docs/reward-checkpoint-v182.md)。V182云端结果单独跟进。
 
 The Intel Mac native-gameplay fixture now holds the accepted winning checkpoint independently of result-panel paint timing. Four delayed-claim and six independent-receipt/recovery cases pass. Native action review now includes idle, walk, hoe, mining, chopping, sowing, harvesting and clothed watering: 448 direction frames and 480 dressed/tool samples across both styles. [Fix and validation](docs/reward-checkpoint-v182.md). V182 cloud results are tracked separately.
+
+
+## V184 · 原生领奖夹具与自主生产隔离
+
+Intel Mac 领奖取消夹具已在运行前暂停自主NPC生产，避免长时间测试期间的新采集干扰精确库存断言。四个延迟领奖/取消、六个独立回执/断线恢复场景本地通过，真实居民回执及原单次结算断言保留。[修复与证据](docs/reward-fixture-v184.md)。新提交云端结果继续核对。
+
+Native reward fixtures now suspend autonomous NPC production before runtime initialization, preventing unrelated gathering from changing exact cancellation inventory assertions on longer Intel runs. Four delayed-claim/cancel and six independent-receipt/recovery cases pass locally, retaining actual resident receipts and all original single-settlement checks. [Fix and evidence](docs/reward-fixture-v184.md). New cloud results remain pending.
