@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V184
+## What's new · V185
+
+Intel Mac native gameplay passed in V184. The Mac ARM modal-navigation fixture now waits for completed startup, isolates autonomous production and records recovery diagnostics. Twelve dual-style native command/close/late-acknowledgement/reload cases pass locally, with retained CI failure artifacts. [Scope and evidence](island/docs/modal-navigation-v185.md). The new Mac ARM cloud result is tracked separately.
+
+### V184 · Reward-fixture isolation
 
 Native reward fixtures now suspend autonomous NPC production before runtime initialization, preventing unrelated gathering from changing exact cancellation inventory assertions on longer Intel runs. Four delayed-claim/cancel and six independent-receipt/recovery cases pass locally, retaining actual resident receipts and all original single-settlement checks. [Fix and evidence](island/docs/reward-fixture-v184.md). New cloud results remain pending.
 

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v184-agent-source",
+  "release": "hyper-dimension-v185-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 10400,
-      "sha256": "92907158aa16cd4ae5fdd0080e7f5a943d2b632282a541b8868c6f5a8a112d11"
+      "bytes": 10844,
+      "sha256": "563813dbf1ee0fa14bc5e9e57788f81aab9179cd2745663b168fc66515799669"
     },
     {
       "path": "README.md",
-      "bytes": 9172,
-      "sha256": "e8844096239bbafa84f39ddb9ece63489d88ce3847df79b0b7c04dec4914a023"
+      "bytes": 9537,
+      "sha256": "d31ce5b745628ef1ffb5d142b639e519c6332d1c135a4332489fd172df91f8cf"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 37182,
-      "sha256": "08625f2c449d36ede0420dcdb97b31e40c1ec7e40fd520e0952251e90c9e2a81"
+      "bytes": 37968,
+      "sha256": "fb5b72325a8edbb84ab01453a90ef3fded010111f8ed1382ce5d162e5d0c0ae0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -609,6 +609,11 @@
       "path": "docs/modal-command-navigation-v157.md",
       "bytes": 3290,
       "sha256": "365e747117d84221b26ec7bd06f85ed4bfa972cdf18c92c99ff9fdbe9c140fad"
+    },
+    {
+      "path": "docs/modal-navigation-v185.md",
+      "bytes": 2821,
+      "sha256": "5ed783ae1bc2c7c2d4d4dc0dc6dceb22fa30aa8bcee6bd78f7fc74afeac22896"
     },
     {
       "path": "docs/native-join-art-provenance-v180.json",
@@ -7307,8 +7312,8 @@
     },
     {
       "path": "tests/v157-modal-command-navigation-browser.mjs",
-      "bytes": 8001,
-      "sha256": "aca49c27681d3eff38b53273d705fa4ee32b4343051c13f1e35586b5109adfe1"
+      "bytes": 9692,
+      "sha256": "f20863c8912bc0393d6eeabda7575fa416438c434bd9df6f2e6a6776e0026550"
     },
     {
       "path": "tests/v158-a2a-live.mjs",

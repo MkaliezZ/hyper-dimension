@@ -327,3 +327,10 @@ The Intel Mac native-gameplay fixture now holds the accepted winning checkpoint 
 Intel Mac 领奖取消夹具已在运行前暂停自主NPC生产，避免长时间测试期间的新采集干扰精确库存断言。四个延迟领奖/取消、六个独立回执/断线恢复场景本地通过，真实居民回执及原单次结算断言保留。[修复与证据](docs/reward-fixture-v184.md)。新提交云端结果继续核对。
 
 Native reward fixtures now suspend autonomous NPC production before runtime initialization, preventing unrelated gathering from changing exact cancellation inventory assertions on longer Intel runs. Four delayed-claim/cancel and six independent-receipt/recovery cases pass locally, retaining actual resident receipts and all original single-settlement checks. [Fix and evidence](docs/reward-fixture-v184.md). New cloud results remain pending.
+
+
+## V185 · 原生弹窗导航与失败诊断
+
+Intel Mac原生玩法已在V184云端通过。Mac ARM订单弹窗检查补齐启动条件、隔离生产与恢复现场诊断；双画风12个真实命令/原生关闭/晚到回执/刷新场景本地通过，新增对应CI失败附件。[范围与证据](docs/modal-navigation-v185.md)。Mac ARM新提交云端结果另行跟进。
+
+Intel Mac native gameplay passed in V184. The Mac ARM modal-navigation fixture now waits for completed startup, isolates autonomous production and records recovery diagnostics. Twelve dual-style native command/close/late-acknowledgement/reload cases pass locally, with retained CI failure artifacts. [Scope and evidence](docs/modal-navigation-v185.md). The new Mac ARM cloud result is tracked separately.

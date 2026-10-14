@@ -91,6 +91,8 @@ jobs:
           path: |
             island/qa/v173/native-farm-navigation/report.json
             island/qa/v173/native-farm-navigation/*.png
+            island/qa/v157/modal-command-navigation/report.json
+            island/qa/v157/modal-command-navigation/*.png
           if-no-files-found: ignore
           retention-days: 3
 
