@@ -313,3 +313,10 @@ V180云端终态补记：提交 `a7b3f77db66d961f54f940519e193ae2a8ba9113` 的9�
 16栋新增折纸住所重画为与原建筑一致的宽纸面和折痕风格，完整透明连通区取样与门口轴重新校准。原像素素材、地块、路径及存档结构不变。14项现有地形、迁移及建筑身份检查通过。本机实际总览与住所入口核对另存私人证据。新提交的全平台检查单独记录。[素材与范围](origami-homes-v181.md) · [单机与联机接续评估](single-player-readiness-v181.md)。
 
 Sixteen origami residences now follow the existing paper-building language. Complete connected-component crops and door axes preserve identity and placement. Fourteen existing geometry, migration and navigation checks passed; pixel art and world/save structure are unchanged. The new commit requires its own cloud results. See the linked readiness review for remaining single-player gates and multiplayer work.
+
+
+## V182 · 领奖回执拦截与全动作复查
+
+Intel Mac 原生玩法检查修复结果回执拦截时序；四个延迟领奖、六个独立回执/恢复场景通过。人物动作复查扩展到待机、走路、锄地、采矿、伐木、播种、收获及穿衣浇水，双画风448个方向帧和480个穿衣工具样本通过。[修复与验证](docs/reward-checkpoint-v182.md)。V182云端结果单独跟进。
+
+The Intel Mac native-gameplay fixture now holds the accepted winning checkpoint independently of result-panel paint timing. Four delayed-claim and six independent-receipt/recovery cases pass. Native action review now includes idle, walk, hoe, mining, chopping, sowing, harvesting and clothed watering: 448 direction frames and 480 dressed/tool samples across both styles. [Fix and validation](docs/reward-checkpoint-v182.md). V182 cloud results are tracked separately.

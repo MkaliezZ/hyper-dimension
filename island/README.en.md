@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V181
+## What's new · V182
+
+The Intel Mac native-gameplay fixture now holds the accepted winning checkpoint independently of result-panel paint timing. Four delayed-claim and six independent-receipt/recovery cases pass. Native action review now includes idle, walk, hoe, mining, chopping, sowing, harvesting and clothed watering: 448 direction frames and 480 dressed/tool samples across both styles. [Fix and validation](docs/reward-checkpoint-v182.md). V182 cloud results are tracked separately.
+
+### V181 · Origami homes and delivery review
 
 All sixteen added residences now match the original origami buildings with matte paper planes, visible folds and simpler silhouettes. Owner identity, door alignment and parcels are preserved; pixel artwork is unchanged. [Art and alignment](docs/origami-homes-v181.md) · [Single-player delivery and multiplayer next steps](docs/single-player-readiness-v181.md).
 

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v181-agent-source",
+  "release": "hyper-dimension-v182-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 9390,
-      "sha256": "c5d91a453c6c4327c27c795878baafda2eb00be6f00050d57ec1e23fbe7e9eee"
+      "bytes": 9907,
+      "sha256": "5432204174095571e8e0f9900b7be1336b748d60dec7d963fd0272fca9de9875"
     },
     {
       "path": "README.md",
-      "bytes": 8371,
-      "sha256": "9467165aed25f05692b593f4664b1a3bf86412a9ede9674c8e3409604b059771"
+      "bytes": 8784,
+      "sha256": "b3902864c89d7d4b581ad30ed491568c45057f45b7581ffd86f1a1131730d511"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 35442,
-      "sha256": "a160c1f28d5ed3c2adef15fef78de587d0fb258a534412bc1006ba21d3ac6c34"
+      "bytes": 36334,
+      "sha256": "4a2756bd124438396d64d45a857ce8445c440b0db50963547ac772e809094b97"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -749,6 +749,11 @@
       "path": "docs/resident-schedule-v175.md",
       "bytes": 2376,
       "sha256": "9b1f628c10c19ec2b5b4b533e050c5055836563230635ee52f5044a66b008e4f"
+    },
+    {
+      "path": "docs/reward-checkpoint-v182.md",
+      "bytes": 3475,
+      "sha256": "a71cc463610f5c5a9a855dfef49ebaba6caa6bad160acd6de785eb2f15f4222d"
     },
     {
       "path": "docs/reward-confirmation-v168.md",
@@ -7372,8 +7377,8 @@
     },
     {
       "path": "tests/v168-reward-click-browser.mjs",
-      "bytes": 9564,
-      "sha256": "91778fb0b2c2a615bce2ae44881c5dbb424399889146ed230df0c4e9d7209dae"
+      "bytes": 9949,
+      "sha256": "a5724b46f2486cdc7d9dad578b8fa4f153d3aea7de2bf7a3b8cc60870b4c5204"
     },
     {
       "path": "tests/v169-geography-browser.mjs",
@@ -7622,8 +7627,8 @@
     },
     {
       "path": "tests/v180-rig-browser.mjs",
-      "bytes": 7323,
-      "sha256": "13e95217c4c869829614ac0b0d89c9be9126b71aca8cb2833a0e78ecdfd29115"
+      "bytes": 7357,
+      "sha256": "47862be8c255648fdbb9dbbb183d29bee81a805d3f706f62afd823a9b9a82723"
     },
     {
       "path": "tests/v180-terrain-joins.test.mjs",
