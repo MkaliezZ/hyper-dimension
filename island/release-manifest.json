@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v180-agent-source",
+  "release": "hyper-dimension-v181-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 8727,
-      "sha256": "cb5a3251ddc916901e39be87df0b8011c91e6b8bc88dcfd06608ae6dc2fa6c21"
+      "bytes": 9390,
+      "sha256": "c5d91a453c6c4327c27c795878baafda2eb00be6f00050d57ec1e23fbe7e9eee"
     },
     {
       "path": "README.md",
-      "bytes": 7809,
-      "sha256": "e607ed7fa454b552ebe85b998ee40a13ec411b332a6090d78d19ae88091e3d17"
+      "bytes": 8371,
+      "sha256": "9467165aed25f05692b593f4664b1a3bf86412a9ede9674c8e3409604b059771"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 34269,
-      "sha256": "bdf6df635201019a9548e78eb6fd8b86b337da65db9782b54cc52d7eb7736831"
+      "bytes": 35442,
+      "sha256": "a160c1f28d5ed3c2adef15fef78de587d0fb258a534412bc1006ba21d3ac6c34"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -651,6 +651,16 @@
       "sha256": "9185276a0a6fbf413a295f6459fdcd709626b527f1a10fab1cf32b7b11f72c74"
     },
     {
+      "path": "docs/origami-homes-v181.json",
+      "bytes": 4717,
+      "sha256": "9bf49264bf7358271713fd8b8396683a40819b27cc8a334ad00524e702d55de3"
+    },
+    {
+      "path": "docs/origami-homes-v181.md",
+      "bytes": 2507,
+      "sha256": "8fc9b8b0e8b5830903158b99151632ed0d8acbb135d87f078cb5a231a3ea5463"
+    },
+    {
       "path": "docs/parcel-alignment-v174.md",
       "bytes": 1962,
       "sha256": "820b1eb20f06ff000a09593b97f009eec27b1c4aaa0d379b3906cc7bc1a59a64"
@@ -1124,6 +1134,11 @@
       "path": "docs/showcase-v141.md",
       "bytes": 1437,
       "sha256": "2b8cf125063ac3abe80dee5d1892a3edf4ae86125e0d01c773c94c31e22fb09e"
+    },
+    {
+      "path": "docs/single-player-readiness-v181.md",
+      "bytes": 7560,
+      "sha256": "e5a7f767f85db937c488c80da08ff3881038af7b462d3f64ba0bd3ce396fb38b"
     },
     {
       "path": "docs/soil-care-v159.md",
@@ -2729,6 +2744,11 @@
       "path": "public/assets/garments-pixel-pack-3-v35.png",
       "bytes": 2801128,
       "sha256": "a1769f5e2d8dd1f020ad39e930e302260f31eb0c2d4245784f14d50649e00f2d"
+    },
+    {
+      "path": "public/assets/homes-origami-v181.png",
+      "bytes": 2070132,
+      "sha256": "1660e0d58d3a65f0041dda1ad73abec8b8556b7a04c0e147c5118bf07e7077d8"
     },
     {
       "path": "public/assets/hud-items-origami.svg",
@@ -4897,8 +4917,8 @@
     },
     {
       "path": "src/buildingGroundAnchors.js",
-      "bytes": 1144,
-      "sha256": "7ff8343629f2ef31655c5911d51dd1a19033ea41acec8666545b62dfce99935e"
+      "bytes": 1091,
+      "sha256": "9ae48601d2fc6693eea80f79de0ff5835c43aacbc8556e18c4736f87e27efa19"
     },
     {
       "path": "src/buildingGroundCalibration.js",
@@ -5417,8 +5437,8 @@
     },
     {
       "path": "src/homeAtlasBounds.js",
-      "bytes": 7303,
-      "sha256": "178d1ea5a23226f89df2ede5bf5072a7f7854d7f6d7eb0b2d53f888411d80821"
+      "bytes": 5268,
+      "sha256": "e67319531e3a5981d570d11a5c429a143dff0a7b57a1fe13647700b4021c2a57"
     },
     {
       "path": "src/hostedProgress.js",
@@ -5982,8 +6002,8 @@
     },
     {
       "path": "src/residenceArt.js",
-      "bytes": 1217,
-      "sha256": "c8c76e35949d552d610fcece9043014d4925e5d242707b6c0494f7d7ef5dd5d8"
+      "bytes": 1252,
+      "sha256": "2dcff058f8910dfd501b948a03a2b43670b653f9e4437d014fb7e307479b0e99"
     },
     {
       "path": "src/resident-chat-v118.css",

@@ -304,3 +304,12 @@ V178 run 38418522784 has three successful jobs, two failed jobs and one timed-ou
 默认门1102项：1088领域规则通过，14运行目录保护在沙箱进程查询拒绝后以本机读权限重跑通过。双画风解码448个人物帧，审查3136个七类动作图样和480个穿衣工具组合；全部98个区域连接与20处补绘周边有逐项原生审查。6张局部原生PNG接入，原生产地块和寻路坐标保留。真实浏览器夹具的工坊/管家住所、换风格、刷新通过；模型调用关闭。初始化与后台加载长帧单独保留。V179云端为8成功、1取消，Intel部署45分钟时取消且checkout占约30分钟；该任务预算更新为60分钟，新提交尚需独立云端结果。[完整范围](terrain-animation-v180.md)。
 
 The required gate passed 1102 checks: 1088 domain checks and 14 runtime guards; the guards were rerun with local process-inventory permissions after a sandbox denial, without changing assertions. Native review covers 448 decoded character frames, 3136 action samples, 480 dressed-tool samples, all 98 regional joins and 20 landmark/repair perimeters. Six unmodified generated PNGs repair local joins without relocating production/navigation geometry. Isolated browser entry, shared-style switching and reload checks passed with models disabled. Cold and background-loading stalls are retained. V179 had eight successful jobs and one cancelled Intel deployment job; its checkout took about 30 minutes of the 45-minute limit. The deployment job budget is now 60 minutes; the new head needs fresh cloud results.
+
+
+V180云端终态补记：提交 `a7b3f77db66d961f54f940519e193ae2a8ba9113` 的9项Windows、macOS14、macOS15 Intel检查全部成功。[运行38463636947](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38463636947)。旧取消记录保留。
+
+## V181 · 折纸住所与交付范围核对
+
+16栋新增折纸住所重画为与原建筑一致的宽纸面和折痕风格，完整透明连通区取样与门口轴重新校准。原像素素材、地块、路径及存档结构不变。14项现有地形、迁移及建筑身份检查通过。本机实际总览与住所入口核对另存私人证据。新提交的全平台检查单独记录。[素材与范围](origami-homes-v181.md) · [单机与联机接续评估](single-player-readiness-v181.md)。
+
+Sixteen origami residences now follow the existing paper-building language. Complete connected-component crops and door axes preserve identity and placement. Fourteen existing geometry, migration and navigation checks passed; pixel art and world/save structure are unchanged. The new commit requires its own cloud results. See the linked readiness review for remaining single-player gates and multiplayer work.

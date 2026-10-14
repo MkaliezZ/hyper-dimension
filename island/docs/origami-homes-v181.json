@@ -1,0 +1,216 @@
+{
+  "version": 181,
+  "generator": "built-in image_gen",
+  "mode": "edit",
+  "image": {
+    "path": "public/assets/homes-origami-v181.png",
+    "sha256": "1660e0d58d3a65f0041dda1ad73abec8b8556b7a04c0e147c5118bf07e7077d8",
+    "width": 1254,
+    "height": 1254,
+    "nativePixelsUnchanged": true
+  },
+  "references": [
+    "public/assets/map-tiles-v169/homes-origami.png",
+    "public/assets/buildings-origami-front-v2.png"
+  ],
+  "prompt": "Edit the existing 4x4 residence atlas. Use buildings-origami-front-v2.png as the mandatory folded-paper style reference. Exactly sixteen complete isolated transparent houses, four rows and four columns, retaining the original resident order and color identities. Frontal elevated view with visible broad folded roof panels, matte cardstock, crisp seams, restrained paper plants, centered front doors. Remove dense individual roof tiles, realistic timber/stone texture, ornate gingerbread trim, rounded turrets and heavy tiny flowers. No text, labels, ground tiles or extra houses. Order: sage farmer/wheat; blue carpenter/hammer; coral shell collector; navy astronomer/star; dusty rose florist; turquoise sailor/wheel; ochre baker/bread; terracotta cook/pot; teal fisher/fish; moss herbalist/leaf; sage reader/book; teal crystal collector; lavender musician/lyre; purple tailor/spool; blue artist/palette; deep teal steward/compass. Preserve clean silhouette and paper construction at game scale. Genuine alpha background. Requested square 2048px; native returned size is 1254px, retained unchanged.",
+  "cropMethod": "read-only whole-image alpha-connected components above 70; original PNG never raster-edited",
+  "bounds": [
+    {
+      "ownerId": 0,
+      "x": 15,
+      "y": 60,
+      "w": 290,
+      "h": 264,
+      "door": {
+        "x": 0.510345,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 1,
+      "x": 325,
+      "y": 55,
+      "w": 284,
+      "h": 271,
+      "door": {
+        "x": 0.514085,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 2,
+      "x": 628,
+      "y": 57,
+      "w": 294,
+      "h": 268,
+      "door": {
+        "x": 0.530612,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 3,
+      "x": 942,
+      "y": 54,
+      "w": 300,
+      "h": 274,
+      "door": {
+        "x": 0.496667,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 4,
+      "x": 14,
+      "y": 360,
+      "w": 290,
+      "h": 267,
+      "door": {
+        "x": 0.489655,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 5,
+      "x": 323,
+      "y": 353,
+      "w": 289,
+      "h": 274,
+      "door": {
+        "x": 0.50519,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 6,
+      "x": 630,
+      "y": 374,
+      "w": 292,
+      "h": 252,
+      "door": {
+        "x": 0.520548,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 7,
+      "x": 941,
+      "y": 366,
+      "w": 295,
+      "h": 261,
+      "door": {
+        "x": 0.511864,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 8,
+      "x": 15,
+      "y": 676,
+      "w": 290,
+      "h": 254,
+      "door": {
+        "x": 0.489655,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 9,
+      "x": 326,
+      "y": 679,
+      "w": 288,
+      "h": 250,
+      "door": {
+        "x": 0.5,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 10,
+      "x": 630,
+      "y": 664,
+      "w": 295,
+      "h": 267,
+      "door": {
+        "x": 0.528814,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 11,
+      "x": 949,
+      "y": 676,
+      "w": 290,
+      "h": 257,
+      "door": {
+        "x": 0.503448,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 12,
+      "x": 15,
+      "y": 954,
+      "w": 287,
+      "h": 266,
+      "door": {
+        "x": 0.494774,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 13,
+      "x": 328,
+      "y": 976,
+      "w": 288,
+      "h": 245,
+      "door": {
+        "x": 0.489583,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 14,
+      "x": 636,
+      "y": 976,
+      "w": 294,
+      "h": 245,
+      "door": {
+        "x": 0.517007,
+        "y": 0.91
+      }
+    },
+    {
+      "ownerId": 15,
+      "x": 947,
+      "y": 959,
+      "w": 295,
+      "h": 261,
+      "door": {
+        "x": 0.491525,
+        "y": 0.91
+      }
+    }
+  ],
+  "doorAtlasX": [
+    163,
+    471,
+    784,
+    1091,
+    156,
+    469,
+    782,
+    1092,
+    157,
+    470,
+    786,
+    1095,
+    157,
+    469,
+    788,
+    1092
+  ],
+  "pixelThemeChanged": false,
+  "worldParcelAndNavigationChanged": false
+}

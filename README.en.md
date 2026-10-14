@@ -14,11 +14,17 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V180
+## What's new · V181
+
+All sixteen added residences now match the original origami buildings with matte paper planes, visible folds and simpler silhouettes. Owner identity, door alignment and parcels are preserved; pixel artwork is unchanged. [Art and alignment](island/docs/origami-homes-v181.md) · [Single-player delivery and multiplayer next steps](island/docs/single-player-readiness-v181.md).
+
+All nine V180 Windows/macOS deployment, art and gameplay CI jobs passed. [CI record](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38463636947). Fourteen related V181 geometry/migration/navigation checks pass; cloud results for the new commit are tracked separately.
+
+### V180 · Connected animation and terrain
 
 Characters now use connected joint surfaces with matching tools and garments. All 98 regional terrain joins and landmark perimeters were reviewed in both styles; native local redraws repair the farm, boatyard and photography site. Network errors offer a clear receipt recovery path, and the Mac deployment job has a revised time budget. [Changes, art and evidence](island/docs/terrain-animation-v180.md).
 
-All **1102 required default checks** passed, with native workshop/home entry, shared-save appearance switching and reload checks in both styles. Cloud results for the new commit are tracked separately.
+All **1102 required default checks** passed, with native workshop/home entry, shared-save appearance switching and reload checks in both styles. All nine V180 cloud jobs passed.
 
 ### V179 · Background work and navigation
 
