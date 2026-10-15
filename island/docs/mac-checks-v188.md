@@ -21,3 +21,10 @@ All six local claim, cancel and explicit disconnected-response recovery cases pa
 领奖测试捕获异步请求拦截器错误：正常执行期间计入失败，退出清理期间正确收尾，保留原始错误及完整报告。6组领奖、取消、断线显式核对均在本地通过，库存、成本及单次回执的严格断言保留。V188云端结果待本提交复核。
 
 新宣传片正在从V187当前游戏重新录制：所有画面重新采集，原视频画面不复用；两画风、四季、居民、管家工作与房屋内小游戏均使用当前运行代码。成片验证完成前仍保留已标注版本的旧视频。
+
+
+## Cloud follow-up / 云端复核
+
+On 2026-10-15, commit `3ecfc140e0794d849f4e8cc367620a6aaf8606db` passed all nine Windows, Apple Silicon Mac and Intel Mac deployment/art/gameplay jobs in [run 38719165846](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38719165846). Both previously failing Intel Mac jobs succeeded. This is hosted CI evidence, not a physical-device or human gameplay acceptance.
+
+2026-10-15，本修复提交的三平台部署、美术、玩法9项云端检查全部成功；此前失败的Intel Mac部署和玩法项均通过。记录保留于专题文档，README仅展示功能与使用入口。

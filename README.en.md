@@ -1,117 +1,36 @@
 # Hyper Dimension
 
-[中文](README.md) · [English](README.en.md) · [Deployment](island/DEPLOYMENT.md) · [Education module](README.education.md)
+[中文](README.md) · [English](README.en.md)
 
-**An island that feels alive, and a steward that gets things done.**
+**A living island. A steward for real work.**
 
-Gather, craft, run your island and host parties. Talk freely with AI residents, or ask a Hermes Agent steward to read your briefs, organize plans and create real work documents. Pixel and origami share one island and save.
+Gather, craft, run your island, host parties and talk freely with AI residents. Delegate research, planning and real document creation to your Hermes Agent steward. Pixel and origami styles share one island and save.
 
-## Watch the island
+## See the island
 
-[![Hyper Dimension · Two art styles and a working Agent](island/docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/?lang=en#living)
+[![Hyper Dimension · Island life and Agent stewards](island/docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-[Play the 30-second film](https://mkaliezz.github.io/hyper-dimension/?lang=en#living) · [Inside the owner gallery](https://mkaliezz.github.io/hyper-dimension/?lang=en#gallery) · [Source releases](https://github.com/MkaliezZ/hyper-dimension/releases)
+[Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living) · [Explore the owner gallery](https://mkaliezz.github.io/hyper-dimension/#gallery)
 
-1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
+Original soundtrack. Profiles and briefs are fictional; steward documents were produced with real tools. **Minigames are placeholder demonstrations and will keep improving.**
 
-## What's new · V188
+## Core experiences
 
-Fixed the navigation harness timing baseline and reward-interceptor teardown reporting. Four dual-style 8/15 FPS navigation cases and six reward/cancel/recovery cases passed locally, with original travel and settlement assertions retained. [Scope and evidence](island/docs/mac-checks-v188.md). Cloud results remain pending; new footage is being recorded on the current seasonal terrain.
-
-### V187 · Whole-island seasons
-
-Whole-island seasonal terrain is now connected in both styles, with 280 regional, join and preview images. Transitions wait for the visible view; failed loads retain the previous season and cold pans use the current season preview. All 16 actual home/meeting-room seasonal cases and 33 focused checks passed locally. [Artwork and validation scope](island/docs/native-seasons-v187.md).
+| Experience | What you can do |
+| --- | --- |
+| Run an island | 25 functional building types, 19 crops, 58 materials and 308 recipes. Gather, grow and craft goods for residents, visitors and events. |
+| Meet AI residents | 15 residents with distinct jobs, personalities and relationships, free conversation and daily routines. |
+| Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work and recruit a temporary Agent partner to share tasks. |
+| Seasons and two styles | Regional terrain, full-island seasonal art, waves and weather. Each season lasts 30 visual days; weather affects farming and fishing. |
+| Showcase and visit | Share experience, projects and images in your gallery, with guest messages. Bring NPC companions and use steward bridging and A2A in multiplayer reception. |
 
 | Pixel · Autumn | Origami · Winter |
 | --- | --- |
-| ![Pixel autumn](island/docs/media/season-v187-pixel-autumn.png) | ![Origami winter](island/docs/media/season-v187-origami-winter.png) |
+| ![Pixel autumn island](island/docs/media/season-v187-pixel-autumn.png) | ![Origami winter island](island/docs/media/season-v187-origami-winter.png) |
 
-### V186 · Natural season boundaries
+## Quick start
 
-Natural thirtieth-day boundaries and hidden-window recovery now record the season transition without restarting it on every frame or clock refresh. Eighteen focused clock/service checks pass; all nine V185 Windows/macOS cloud jobs succeeded. [Fix and artwork scope](island/docs/season-boundary-v186.md). Complete native seasonal terrain is still in production.
-
-### V185 · Modal navigation
-
-Intel Mac native gameplay passed in V184. The Mac ARM modal-navigation fixture now waits for completed startup, isolates autonomous production and records recovery diagnostics. Twelve dual-style native command/close/late-acknowledgement/reload cases pass locally, with retained CI failure artifacts. [Scope and evidence](island/docs/modal-navigation-v185.md). The new Mac ARM cloud result is tracked separately.
-
-### V184 · Reward-fixture isolation
-
-Native reward fixtures now suspend autonomous NPC production before runtime initialization, preventing unrelated gathering from changing exact cancellation inventory assertions on longer Intel runs. Four delayed-claim/cancel and six independent-receipt/recovery cases pass locally, retaining actual resident receipts and all original single-settlement checks. [Fix and evidence](island/docs/reward-fixture-v184.md). New cloud results remain pending.
-
-### V182 · Checkpoint timing and action review
-
-The Intel Mac native-gameplay fixture now holds the accepted winning checkpoint independently of result-panel paint timing. Four delayed-claim and six independent-receipt/recovery cases pass. Native action review now includes idle, walk, hoe, mining, chopping, sowing, harvesting and clothed watering: 448 direction frames and 480 dressed/tool samples across both styles. [Fix and validation](island/docs/reward-checkpoint-v182.md). V182 cloud results are tracked separately.
-
-### V181 · Origami homes and delivery review
-
-All sixteen added residences now match the original origami buildings with matte paper planes, visible folds and simpler silhouettes. Owner identity, door alignment and parcels are preserved; pixel artwork is unchanged. [Art and alignment](island/docs/origami-homes-v181.md) · [Single-player delivery and multiplayer next steps](island/docs/single-player-readiness-v181.md).
-
-All nine V180 Windows/macOS deployment, art and gameplay CI jobs passed. [CI record](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38463636947). Fourteen related V181 geometry/migration/navigation checks pass; cloud results for the new commit are tracked separately.
-
-### V180 · Connected animation and terrain
-
-Characters now use connected joint surfaces with matching tools and garments. All 98 regional terrain joins and landmark perimeters were reviewed in both styles; native local redraws repair the farm, boatyard and photography site. Network errors offer a clear receipt recovery path, and the Mac deployment job has a revised time budget. [Changes, art and evidence](island/docs/terrain-animation-v180.md).
-
-All **1102 required default checks** passed, with native workshop/home entry, shared-save appearance switching and reload checks in both styles. All nine V180 cloud jobs passed.
-
-### V179 · Background work and navigation
-
-Approved navigation can arrive and open views during background settlement, with a separate slow-frame movement budget. Confirmed NPC farm, mine and daily work continue their animation timers and submit completion once. Unconfirmed tool performances settle into an idle wait; soil, inventory and rewards still require authoritative receipts. [Fixes and evidence](island/docs/navigation-arrival-v179.md).
-
-All **1095 default local checks** passed, together with dual-style slow-frame navigation, six reward/cancel recovery flows and actual NPC sow/water checks. Latest macOS cloud results are tracked by commit; character joints and every terrain boundary are under review.
-
-### V178 · Crop growth artwork
-
-All eleven original crops now have dedicated pixel and origami growth art, adding 88 native sprites. All 19 crops have 152 growth-stage sprites with measured soil anchors and appropriate harvesting tools. [Artwork and validation](island/docs/legacy-crop-art-v178.md).
-
-### V177 · Legacy LAN save upgrade
-
-The LAN entry now upgrades legacy item catalogs before play, fixing repeated save conflicts after updating. Existing inventory and activity settlements are preserved. [Save upgrade fix](island/docs/lan-catalog-upgrade-v177.md).
-
-### V176 · Minigames, layout and seasonal content
-
-The boatyard now sits beside the southeastern harbor, with the fireworks workshop on the inner terrace. Routine checkpoints no longer interrupt wardrobe and shared minigame controls; recovery, held input and reward draining were also repaired. [Interaction and layout fixes](island/docs/minigame-input-v176.md).
-
-Eight new crops and eight seasonal foods bring the catalog to **19 crops, 58 materials and 308 recipes**. The new crops have four growth stages in both art styles. Their harvests become food for eating, gifts, resident meals and shop stock. [Crops and recipes](island/docs/seasonal-content-v176.md).
-
-Harvesting distinguishes sickle cutting, fruit picking, leaf gathering, loosening and pulling roots, and lifting pumpkins. Original atlas positions and the V1 achievement set remain intact. Save migration fills missing inventory fields with zero without granting resources.
-
-All **1071 default local checks** passed, alongside six native crafting, claiming and reload flows across both styles. The preceding V175 passed all six platform CI jobs; V176 cloud results are tracked separately. [Validation scope](island/docs/VALIDATION.md) · [V175 CI](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38388258952).
-
-### Recent improvements
-
-[Buildings and parcels](island/docs/parcel-alignment-v174.md) · [Weather and schedules](island/docs/weather-life-v175.md) · [Continuous movement](island/docs/frame-motion-v173.md) · [Save entry recovery](island/docs/save-entry-v172.md) · [Expanded terrain and homes](island/docs/geography-v169.md).
-
-The [published V170 package](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) retains its independent offline-rebuild evidence. Source updates, cloud checks and immutable packages are verified separately.
-
-## Life on the island
-
-| Experience | Content |
-| --- | --- |
-| Start from zero | 25 production buildings, 58 basic materials and 308 recipes; gathering, crafting, visitor spending and island expenses. An operating day is 900 active game seconds. |
-| Meet residents | 15 AI NPCs act according to occupation, personality and relationships, with free conversation and cooperative work. The model is DeepSeek V4.1 Flash. |
-| Delegate real work | A named steward with 12 selectable appearances uses Hermes to read delegated files, create documents, track tasks and recruit a temporary Agent partner. |
-| Showcase and host | The owner gallery supports life, education and employment histories, projects, pictures, uploads, drafts, publishing, visitor messages and replies. |
-| Travel with your steward | Multiplayer reception, accompanying NPCs, original-device bridging and standard A2A share attributed cooperation records. Cross-device work needs pairing and an online original device. |
-| Change art styles | Pixel and origami terrain, buildings, characters, rooms, items and UI, with native region loading, animated ocean ripples and shore waves. |
-
-Each season lasts 30 visual days. Weather effects, seasonal planting and resident home schedules are connected. Full-map seasonal native artwork, night lighting and moon reflections remain in development; home interiors retain the existing presentation entries.
-
-## Native screenshots
-
-| V178 pixel farm (mature-crop fixture) | V178 origami farm (mature-crop fixture) |
-| --- | --- |
-| ![V178 pixel crops](island/docs/screenshots/v178-pixel-legacy-farm.png) | ![V178 origami crops](island/docs/screenshots/v178-origami-legacy-farm.png) |
-
-| Pixel island | Origami island |
-| --- | --- |
-| ![V171 pixel island](island/docs/screenshots/v171-pixel-island.png) | ![V171 origami island](island/docs/screenshots/v171-origami-island.png) |
-
-## Deploy with a development Agent
-
-The deliverable contains **source, artwork, pinned dependencies and a machine-readable deployment protocol**. Windows x64 and macOS 14+ on Apple Silicon / Intel are supported; Ubuntu can also run it. Enter `island/` after cloning. A Release source archive starts directly at the game root.
-
-Have an Agent with terminal and file access read [AGENTS.md](island/AGENTS.md), [deploy.json](island/deploy.json) and [DEPLOYMENT.md](island/DEPLOYMENT.md), then run:
+Supports **Windows x64 and macOS 14+ (Apple Silicon / Intel)**; Ubuntu can also run it. Install Node.js 24 and Python 3.11. Enter `island/` after cloning, or use the game root in a source archive.
 
 ```sh
 node tools/agent-deploy.mjs plan
@@ -121,19 +40,12 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-On macOS, usually select `--python=python3`. Node.js 24 and Python 3.11 are recommended. `--offline` uses bundled pinned dependencies on Windows/macOS CPython 3.11.
+On macOS, use `--python=python3` instead of `--python=python`. Open `http://127.0.0.1:4175/play` after launch.
 
-- `lan`: reception and island at `http://127.0.0.1:4175/play` by default.
-- `pixel` / `origami`: individual launch modes; appearance switching still shares the same save.
-- Keep API keys in private `.env.local` or environment variables. Without a key, rules mode works.
-- Preserve `data/`, private configuration and original-device workspaces during updates; back up before migration.
+Keep API keys in private `.env.local`. Rules mode works without a key. Back up and preserve `data/` and private configuration when updating. You can also give the source to any Agent with terminal access and ask it to follow [DEPLOYMENT.md](island/DEPLOYMENT.md) and [AGENTS.md](island/AGENTS.md).
 
-## Development and interfaces
+## More
 
-- [Game source and deployment](island/AGENTS.md) · [Standard A2A 1.0](island/docs/a2a-standard-v158.md) · [Original-device bridge](island/docs/device-bridge-v138.md)
-- [Materials and recipes](island/docs/production-contracts-v114.md) · [Economy trends](island/docs/economy-v143.md) · [Resident life](island/docs/resident-life-v112.md)
-- [Validation scope](island/docs/VALIDATION.md) · [GitHub Actions](https://github.com/MkaliezZ/hyper-dimension/actions) · [Releases](https://github.com/MkaliezZ/hyper-dimension/releases)
+[Deployment and configuration](island/DEPLOYMENT.md) · [Agents / A2A](island/docs/a2a-standard-v158.md) · [Downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [Education module](README.education.md)
 
-## License
-
-Code is [MIT](LICENSE). See [third-party notices](island/THIRD_PARTY_NOTICES.md). New island artwork was generated for this project. Public media uses only isolated demonstration worlds and fictional data.
+Code is [MIT](LICENSE) licensed. See [third-party notices](island/THIRD_PARTY_NOTICES.md).

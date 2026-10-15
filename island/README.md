@@ -1,117 +1,36 @@
 # Hyper Dimension
 
-[中文](README.md) · [English](README.en.md) · [部署指南](DEPLOYMENT.md) · [教培模块](../README.education.md)
+[中文](README.md) · [English](README.en.md)
 
 **一座会生活的岛，和一位能办事的管家。**
 
-采集、制作、经营、举办派对，与 AI 岛民自由交流；也能委托基于 Hermes 的 Agent 管家读取资料、整理计划和创建真实工作文档。像素与折纸共用同一小岛和存档。
+采集、制作、经营、举办派对，与 AI 岛民自由交流；让 Hermes Agent 管家帮你整理资料、制定计划和创建真实工作文档。像素与折纸两种画风，共用同一小岛和存档。
 
-## 先看看小岛
+## 看看小岛
 
-[![Hyper Dimension · 双画风小岛与 Agent 管家](docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-[在线播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆内部导览](https://mkaliezz.github.io/hyper-dimension/#gallery) · [源码与版本](https://github.com/MkaliezZ/hyper-dimension/releases)
+[播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆导览](https://mkaliezz.github.io/hyper-dimension/#gallery)
 
-1440p / 60 fps，原创 BGM。新地形片段来自 V169，居民、真实文档、主子 Agent 和小游戏片段保留各自录制版本与验证来源。个人资料和任务文件均为虚构示例。**小游戏目前为占位演示，玩法、美术与动画将继续优化。**
+原创配乐，演示资料均为虚构示例，管家文档来自真实工具执行。**小游戏目前为占位演示，后续将继续优化。**
 
-## 当前更新 · V188
+## 核心体验
 
-修正Intel Mac导航检查的计时起点，并补齐领奖测试退出时异步请求的收尾和失败记录。双画风8/15 FPS寻路4组、领奖/取消/断线核对6组本地通过，原移动时限和单次结算断言保留。[修复与验证范围](docs/mac-checks-v188.md)。新云端结果待核对；新版视频正使用当前四季底图重新录制。
-
-### V187 · 整岛四季底图
-
-整岛四季底图现已覆盖像素与折纸两种画风：新增280张区域、连接与预览素材。换季等待可见区域加载齐全后过渡，缺图保留上一季；拖拽到新区域显示同季节预览。两种画风、小岛/会客房、四季共16组实际渲染检查通过，33项相关测试通过。[四季素材与验证范围](docs/native-seasons-v187.md)。
-
-| Pixel · Autumn | Origami · Winter |
+| 玩法 | 内容 |
 | --- | --- |
-| ![Pixel autumn](docs/media/season-v187-pixel-autumn.png) | ![Origami winter](docs/media/season-v187-origami-winter.png) |
+| 小岛经营 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。采集、种植、制作，为居民和游客提供商品与活动。 |
+| AI 居民 | 15 位居民拥有不同职业、性格与关系，可以自由对话、工作和共同生活。 |
+| Agent 管家 | 自定义姓名与 12 套形象；通过 Hermes 处理现实工作，招募临时 Agent 伙伴分工协作。 |
+| 四季与双画风 | 全岛分块地形、四季美术、海浪与天气；每季 30 个视觉日，天气影响种植和钓鱼。 |
+| 展示与来访 | 会客馆展示经历、项目与图片，支持访客留言；联机会客厅支持随行 NPC、管家桥接与 A2A 交流。 |
 
-### V186 · 自然换季边界
-
-修复自然跨过第30视觉日时未记录季节过渡，以及切回窗口后的换季检测；18项时钟与服务检查通过。V185的Windows与两种Mac云端9项检查已全部成功。[换季修复与美术进度](docs/season-boundary-v186.md)。原生四季底图尚在制作，未作为完整换季上线。
-
-### V185 · 弹窗导航
-
-Intel Mac原生玩法已在V184云端通过。Mac ARM订单弹窗检查补齐启动条件、隔离生产与恢复现场诊断；双画风12个真实命令/原生关闭/晚到回执/刷新场景本地通过，新增对应CI失败附件。[范围与证据](docs/modal-navigation-v185.md)。Mac ARM新提交云端结果另行跟进。
-
-### V184 · 领奖夹具隔离
-
-Intel Mac 领奖取消夹具已在运行前暂停自主NPC生产，避免长时间测试期间的新采集干扰精确库存断言。四个延迟领奖/取消、六个独立回执/断线恢复场景本地通过，真实居民回执及原单次结算断言保留。[修复与证据](docs/reward-fixture-v184.md)。新提交云端结果继续核对。
-
-### V182 · CI时序与人物复查
-
-Intel Mac 原生玩法检查修复结果回执拦截时序；四个延迟领奖、六个独立回执/恢复场景通过。人物动作复查扩展到待机、走路、锄地、采矿、伐木、播种、收获及穿衣浇水，双画风448个方向帧和480个穿衣工具样本通过。[修复与验证](docs/reward-checkpoint-v182.md)。V182云端结果单独跟进。
-
-### V181 · 折纸住所与交付评估
-
-16栋新增住所按原折纸建筑重画，统一纸面、折痕和简洁轮廓；屋主身份、门口与地块保持对应，像素素材不变。[美术与校准](docs/origami-homes-v181.md) · [单机交付与联机接续](docs/single-player-readiness-v181.md)。
-
-上一版V180的9项Windows/macOS云端部署、美术与玩法检查已全部通过。[CI记录](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38463636947)。V181的相关14项地形/建筑/旧档检查通过；新提交云端结果另行核对。
-
-### V180 · 连续人物与地形连接
-
-人物改为连续关节表面，工具与服装同步；双画风全部98条底图边界和补绘边缘已检查，农田、船坞、摄影屋补入原生连接素材。网络错误提供明确恢复入口，Mac 部署检查调整运行预算。[改动、美术与证据](docs/terrain-animation-v180.md)。
-
-**1102 项默认门检查**通过，两画风工坊、管家住所、共用存档切换与刷新通过。V180云端9项全部通过。
-
-### V179 · 后台作业与导航
-
-已批准的寻路可在后台作业结算时到达并打开场景；慢帧使用独立的移动预算。NPC 已确认的农田、矿洞与日常作业继续计时并只提交一次，未确认的工具演出在动作末尾停止。田地、物资和奖励仍按服务端回执结算。[修复与证据](docs/navigation-arrival-v179.md)。
-
-本地 **1095 项默认检查**通过，双画风低帧率寻路、六个奖励／取消恢复场景及实际 NPC 播种／浇水检查通过。macOS 云端结果按最新提交单独记录；人物关节和全岛地形接缝正在逐项审查。
-
-### V178 · 全作物生长美术
-
-原有 11 种作物补齐双画风四阶段原生生长图，新增 88 个形象。19 种作物合计 152 个生长阶段，根部与田垄对齐、成熟作物形态和采收工具对应。[生长美术与验证](docs/legacy-crop-art-v178.md)。
-
-### V177 · 联机旧档升级
-
-联机入口补齐旧存档物品目录升级，修复升级后反复出现存档冲突的问题；原库存和活动结算记录保留。[旧档升级修复](docs/lan-catalog-upgrade-v177.md)。
-
-### V176 · 小游戏、布局与时令内容
-
-船坞已移至东南码头旁，烟花工坊迁至内侧台地。修复服装店及共用小游戏保存时周期性无法操作的问题，补齐断线恢复、长按释放和领奖排空保护。[交互与布局修复](docs/minigame-input-v176.md)。
-
-八种新作物与八道时令食品已接入，共 **19 种作物、58 种素材、308 个配方**。新增作物具有双画风四阶段生长图；收获物可用于制作，食品可食用、赠礼、供居民用餐或上架经营。[作物与配方](docs/seasonal-content-v176.md)。
-
-按作物区分镰割、摘果、采叶、松土拔取和托起；旧物品图集顺序和初版成就集合保留。旧档只补缺失的零库存字段，不赠送资源。
-
-本地 **1071 项默认检查**通过，两画风三类新配方的六次实际通关、领取和刷新验证通过。上一版 V175 六项跨平台 CI 全部成功，V176 云端结果单独记录。[验证范围](docs/VALIDATION.md) · [V175 CI](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38388258952)。
-
-### 近期改进
-
-[房屋与地块校准](docs/parcel-alignment-v174.md) · [天气与居民作息](docs/weather-life-v175.md) · [连续移动](docs/frame-motion-v173.md) · [存档入口恢复](docs/save-entry-v172.md) · [山海地形与住所](docs/geography-v169.md)。
-
-[已发布 V170 部署包](https://github.com/MkaliezZ/hyper-dimension/releases/tag/v170) 保留独立离线重建证据。源码更新、云端检查和不可变发布包分别验证。
-
-## 在岛上做什么
-
-| 体验 | 内容 |
+| 像素 · 秋日 | 折纸 · 冬日 |
 | --- | --- |
-| 从零经营 | 25 种生产建筑、58 种基础素材、308 个配方；采集、制作、游客消费与岛务开支。一个经营日为 900 秒有效游戏时间。 |
-| 与居民生活 | 15 位 AI NPC 根据职业、性格和关系行动，支持自由对话、居民交谈与合作。模型为 DeepSeek V4.1 Flash。 |
-| 委托管家 | 自定义姓名、12 种形象；Hermes 读取委托资料、创建文档、追踪任务，并招募临时 Agent 伙伴协作。 |
-| 展示与接待 | 岛主会客馆展示介绍、教育／就业／人生经历、项目与图片；支持上传、草稿、发布、访客留言和回复。 |
-| 带管家来访 | 联机会客厅、随行 NPC、原机管家桥接及标准 A2A 通信，共用有来源的协作记录。跨设备使用需要配对与目标设备在线。 |
-| 双画风 | 像素／折纸的地图、建筑、人物、房间、物品和 UI；高清分块、海面水纹与近岸浪。 |
+| ![像素秋日小岛](docs/media/season-v187-pixel-autumn.png) | ![折纸冬日小岛](docs/media/season-v187-origami-winter.png) |
 
-每季 30 个视觉日；天气影响、季节播种和居民归家作息已接入。扩容地图的完整四季原生美术、夜间灯光及月影仍在制作，住所内部仍使用现有展示入口。
+## 快速开始
 
-## 实际运行画面
-
-| V178 像素农田（成熟作物验证场景） | V178 折纸农田（成熟作物验证场景） |
-| --- | --- |
-| ![V178 pixel crops](docs/screenshots/v178-pixel-legacy-farm.png) | ![V178 origami crops](docs/screenshots/v178-origami-legacy-farm.png) |
-
-| 像素海岛 | 折纸海岛 |
-| --- | --- |
-| ![V171 像素海岛](docs/screenshots/v171-pixel-island.png) | ![V171 折纸海岛](docs/screenshots/v171-origami-island.png) |
-
-## 交给开发 Agent 部署
-
-交付形态为**源码、素材、固定依赖与机器可读部署协议**。支持 Windows x64、macOS 14+ 的 Apple Silicon / Intel；Ubuntu 也可运行。克隆仓库后进入 `island/`，Release 源码包直接以游戏目录为根。
-
-让具备终端和文件权限的 Agent 阅读 [AGENTS.md](AGENTS.md)、[deploy.json](deploy.json) 和 [DEPLOYMENT.md](DEPLOYMENT.md)，执行：
+支持 **Windows x64、macOS 14+（Apple Silicon / Intel）**，也可在 Ubuntu 运行。准备 Node.js 24、Python 3.11。在当前游戏目录执行以下命令。
 
 ```sh
 node tools/agent-deploy.mjs plan
@@ -121,19 +40,12 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-macOS 通常使用 `--python=python3`；推荐 Node.js 24 与 Python 3.11。`--offline` 使用包内固定依赖，Windows/macOS CPython 3.11 可用。
+macOS 将 `--python=python` 换为 `--python=python3`。启动后打开 `http://127.0.0.1:4175/play`。
 
-- `lan`：会客厅与小岛，默认 `http://127.0.0.1:4175/play`。
-- `pixel` / `origami`：独立启动方式；画风仍是同一存档的外观选择。
-- API 密钥只写入目标机私有 `.env.local` 或环境变量；无密钥可运行规则模式。
-- 更新时保留 `data/`、私有配置和原机工作目录，按部署指南备份后迁移。
+API 密钥保存在私有 `.env.local`；无密钥可体验规则模式。更新前备份并保留 `data/` 和私有配置。也可以把源码交给任意具备终端权限的 Agent，按 [部署指南](DEPLOYMENT.md) 与 [AGENTS.md](AGENTS.md) 完成部署。
 
-## 开发与接口
+## 更多
 
-- [游戏源码与部署](AGENTS.md) · [标准 A2A 1.0](docs/a2a-standard-v158.md) · [原机工作区桥接](docs/device-bridge-v138.md)
-- [物资与配方](docs/production-contracts-v114.md) · [经营趋势](docs/economy-v143.md) · [居民生活](docs/resident-life-v112.md)
-- [验证范围](docs/VALIDATION.md) · [GitHub Actions](https://github.com/MkaliezZ/hyper-dimension/actions) · [版本发布](https://github.com/MkaliezZ/hyper-dimension/releases)
+[部署与配置](DEPLOYMENT.md) · [Agent / A2A](docs/a2a-standard-v158.md) · [版本下载](https://github.com/MkaliezZ/hyper-dimension/releases) · [教培模块](../README.education.md)
 
-## 许可
-
-代码遵循 [MIT](LICENSE)，第三方组件见 [声明](island/THIRD_PARTY_NOTICES.md)。新增海岛美术为本项目生成素材；公开媒体只使用隔离演示岛与虚构资料。
+代码采用 [MIT](LICENSE) 许可；第三方组件见 [声明](THIRD_PARTY_NOTICES.md)。

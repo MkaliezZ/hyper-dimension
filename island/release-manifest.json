@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v188-agent-source",
+  "release": "hyper-dimension-v189-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -32,8 +32,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2306,
-      "sha256": "177be65d4723c70ecf68cafb79668d8cdb545f4f802e1f47f1e2a1e45f1a23fb"
+      "bytes": 2677,
+      "sha256": "5a6f5e26a50f41e9b2bf24d27c1cb76698ba84641784cca7016c9b1fa70976aa"
     },
     {
       "path": "DEPLOYMENT.md",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 12241,
-      "sha256": "17c4c8d4771c784f4ca5467e36bb9f4446411872c603a7533404e38cca96a927"
+      "bytes": 3012,
+      "sha256": "2bdd4e8efeacedd780b7ad885af571e48c7fea510cb8583e838aa958218b7707"
     },
     {
       "path": "README.md",
-      "bytes": 10877,
-      "sha256": "4394582a95a6750fd725ccbdf0c26adcf2026c42d2dccf0a8b428bf66ca3ae72"
+      "bytes": 2829,
+      "sha256": "ec3f9b29981d5347e193522e220ef768985efd7a18b7f689a4d4b0d706a27887"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -247,8 +247,8 @@
     },
     {
       "path": "docs/mac-checks-v188.md",
-      "bytes": 2849,
-      "sha256": "85d893b1dca0420bcb83dbeabd44811be1552964a7a553f236f4856478db88d6"
+      "bytes": 3479,
+      "sha256": "836f7f2e63e478708b345e2c35c6e3848ebda539469fb5dbf182c93d7c01dbe0"
     },
     {
       "path": "docs/map-navigation-v141-verification.json",
