@@ -10,6 +10,7 @@ import {INTERIOR_ROLES} from './interiorDesign.js';
 import {gameLevelOptions,nextGameOptions,itemName,pieceOffsets} from './gameLevels.js';
 import {itemMarkup} from './artStore.js';
 import {DEFAULT_RECIPES} from './contentCatalog.js';
+import {advanceResultPresentation} from './workshopPresentation.js';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const formatTime=formatWorkshopTime;
 const DIFFICULTIES=['','轻松','标准','挑战'];
@@ -258,10 +259,14 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  listen(window,'keydown',e=>keyAction(e,true),true);listen(window,'keyup',e=>keyAction(e,false),true);
  listen(window,'hd-sound-settings',()=>pause('正在调整全岛声音，关卡和材料为你保留。'));
  listen(window,'blur',()=>pause('窗口已切换，倒计时与动作已暂停。'));
- listen(document,'visibilitychange',()=>{if(document.hidden)pause('画面已隐藏，进度为你保留。')});
+ listen(document,'visibilitychange',()=>{last=performance.now();painter.resetClock();if(document.hidden)pause('画面已隐藏，进度为你保留。')});
  function tick(now){
-  if(!alive||!root.isConnected)return;const dt=Math.min(.05,Math.max(0,(now-last)/1000));last=now;
-  if(loaded&&!paused&&!transportPaused){if(['playing','celebrating'].includes(s.phase))options.onGameEvent?.({dt});stepWorkshop(s,dt);flushEvents();audio.tick(s);}
+  if(!alive||!root.isConnected)return;const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.05,elapsed);last=now;
+  if(loaded&&!paused&&!transportPaused&&!document.hidden){
+   if(s.phase==='celebrating')advanceResultPresentation(s,elapsed);
+   else{if(s.phase==='playing')options.onGameEvent?.({dt});stepWorkshop(s,dt);}
+   flushEvents();audio.tick(s);
+  }
   painter.render(s,now);ui();
   if(s.result&&!reported){reported=true;saveBest();options.onOutcome?.({...s.result});}
   if(s.phase==='result'&&!outcomeShown)renderOverlay();

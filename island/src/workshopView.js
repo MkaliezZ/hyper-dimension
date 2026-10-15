@@ -426,7 +426,7 @@ export function makeWorkshopPainter(canvas,theme,avatar,catchItem=null){
  return {
   event:burst,
   render(s,now){
-   const dt=last?Math.min(.05,(now-last)/1000):0;last=now;clock+=dt;
+   const elapsed=last?Math.max(0,(now-last)/1000):0,dt=s.result?elapsed:Math.min(.05,elapsed);last=now;clock+=dt;
    const dpr=Math.min(2,window.devicePixelRatio||1),width=Math.max(1,Math.round(canvas.clientWidth*dpr)),height=Math.max(1,Math.round(canvas.clientHeight*dpr));if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
    const scale=theme==='pixel'?.75:Math.min(1.5,Math.max(1,canvas.clientWidth/W));if(surface.width!==Math.round(W*scale)||surface.height!==Math.round(H*scale)){surface.width=Math.round(W*scale);surface.height=Math.round(H*scale);}c.setTransform(scale,0,0,scale,0,0);c.imageSmoothingEnabled=theme!=='pixel';c.lineJoin='round';c.lineCap='round';c.lineWidth=1;c.clearRect(0,0,W,H);
    if(s.kind==='pottery'){const im=potteryStageImage(theme);if(im.complete&&im.naturalWidth)c.drawImage(im,0,0,W,H);else{c.fillStyle='#b88b68';c.fillRect(0,0,W,H);}}else paintPanel(c,theme,WORKSHOP_GAMES[s.id].panel);
@@ -442,6 +442,7 @@ export function makeWorkshopPainter(canvas,theme,avatar,catchItem=null){
    if(s.kind==='brush')brush(s);
    animationEffects(dt);c.restore();out.imageSmoothingEnabled=theme!=='pixel';out.clearRect(0,0,canvas.width,canvas.height);out.drawImage(surface,0,0,canvas.width,canvas.height);
   },
+  resetClock(){last=0},
   destroy(){particles.length=0;effects.length=0}
  };
 }

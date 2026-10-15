@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v193-agent-source",
+  "release": "hyper-dimension-v194-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 44723,
-      "sha256": "2a0d8aa4544011eb31d3833c01b39b88a2eb9d7bf2ab704b32500c5391e5c98f"
+      "bytes": 47655,
+      "sha256": "31fd4a49b45d3800fcf3341f9e4add8a5b6b1ee545e181acfa2338ccf90dc1aa"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2112,8 +2112,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 10963,
-      "sha256": "2bb7495db74b33b506ea6fec6fb5c2a421cd9ce740297a691edf8c7c66c2dbe5"
+      "bytes": 11028,
+      "sha256": "5c9ea082241e2d944216ea5091b28d606f4943f69aa3baa2eafe543b8439ffbe"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7106,6 +7106,11 @@
       "sha256": "a7c21fc42c323287167e51331b6226d2a981fa2f8c49b024c01fc4762f84b554"
     },
     {
+      "path": "src/lanCommandRetry.js",
+      "bytes": 663,
+      "sha256": "f8c412dca8e7a4a213c4fe21a2d0d75bb71266656b0bd766fda4d00c4f978388"
+    },
+    {
       "path": "src/lanEconomyUI.js",
       "bytes": 4863,
       "sha256": "21aa6f1e7f535f7f3b5037452fe80b26264ffd67433ff7fb48486d560795d0b5"
@@ -7157,8 +7162,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 19693,
-      "sha256": "0d4e7cea1261df6425a7825712635fd9bfdc10914c41207248932e2755432bf5"
+      "bytes": 19758,
+      "sha256": "1e9d4ac3db0710929cc25e27d401a9a00719ff533d820474adf395f76227df47"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -7992,8 +7997,13 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 44733,
-      "sha256": "6664b566b7905a02d1c9931e372a3af37a7673627b9e2700d2d2e10e222990c9"
+      "bytes": 44946,
+      "sha256": "11f99e897533f9f3005ceb9675654b38a7587b70d2b65d6f671356b51e33265a"
+    },
+    {
+      "path": "src/workshopPresentation.js",
+      "bytes": 632,
+      "sha256": "e665257497094814f4310888d0730b999986854d85cfc9e8bb9196e48b51d150"
     },
     {
       "path": "src/workshopProps.js",
@@ -8012,8 +8022,8 @@
     },
     {
       "path": "src/workshopView.js",
-      "bytes": 49115,
-      "sha256": "9730fb7ee80f40bdb4f6005bc7371bbcdfd2eaf43dda4c8d992622ffcde92950"
+      "bytes": 49184,
+      "sha256": "abb3e5ac254602e43c7d3ade4a0eee63d4757149140e39e3248c5e951c2cbd2c"
     },
     {
       "path": "src/world.js",
@@ -9007,8 +9017,8 @@
     },
     {
       "path": "tests/v171-lobby-motion-browser.mjs",
-      "bytes": 7389,
-      "sha256": "559fe4be8450a23c02c6aad071cf35df947f9496be488ca47506ec24d8730ac0"
+      "bytes": 8583,
+      "sha256": "d88d8c0051d68ecc77d954d252c4a9587b9acdd5f6d16d56a8f74ef0b79578c5"
     },
     {
       "path": "tests/v171-lobby-motion.test.mjs",
@@ -9334,6 +9344,21 @@
       "path": "tests/v193-craft-homes.test.mjs",
       "bytes": 4244,
       "sha256": "ad2c3eefad1cbd6a3ae6474180e38746e11a8fe01e4a0c0b23b6bb0faf3bb6e3"
+    },
+    {
+      "path": "tests/v194-move-retry.test.mjs",
+      "bytes": 1754,
+      "sha256": "d46a30487f1f8d77567a7a5c01064dafac6246efe734eee2e87373720f7f705a"
+    },
+    {
+      "path": "tests/v194-result-pacing-browser.mjs",
+      "bytes": 11637,
+      "sha256": "682f061bd7052bb953dfc0b445927ddc6ac0b4ff473351bfdda959f20fb00d3d"
+    },
+    {
+      "path": "tests/v194-result-pacing.test.mjs",
+      "bytes": 2105,
+      "sha256": "bb7229d781cb7faaad140e1b9fbc8beae710da21b568427c53bde6fafdb3a134"
     },
     {
       "path": "tests/v20-regressions.test.mjs",

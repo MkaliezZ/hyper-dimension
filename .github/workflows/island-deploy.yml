@@ -68,6 +68,12 @@ jobs:
 
 
 
+      - name: Native lobby lost movement receipt
+        env:
+          HD_MOTION_FAULT: lost
+          HD_QA_OUT: qa/v194/movement-lost
+        run: node tests/v171-lobby-motion-browser.mjs
+
       - name: Native low-frame-rate farm navigation
         run: node tests/v173-farm-navigation-browser.mjs
 
@@ -89,6 +95,12 @@ jobs:
         with:
           name: native-navigation-${{ matrix.os }}
           path: |
+            island/qa/v171/native-lobby-motion/report.json
+            island/qa/v171/native-lobby-motion/*motion-samples.json
+            island/qa/v171/native-lobby-motion/*.png
+            island/qa/v194/movement-lost/report.json
+            island/qa/v194/movement-lost/*motion-samples.json
+            island/qa/v194/movement-lost/*.png
             island/qa/v173/native-farm-navigation/report.json
             island/qa/v173/native-farm-navigation/*.png
             island/qa/v157/modal-command-navigation/report.json
@@ -187,6 +199,11 @@ jobs:
       - name: Native queued reward confirmation
         run: node tests/v168-reward-click-browser.mjs
 
+      - name: Native low-frame-rate result and queued reward
+        env:
+          HD_REWARD_INTENTS: claim
+        run: node tests/v194-result-pacing-browser.mjs
+
       - name: Native independent receipt and close recovery
         run: node tests/v170-reward-drain-browser.mjs
 
@@ -209,6 +226,8 @@ jobs:
             island/qa/v159/native-soil-care/*.png
             island/qa/v168/native-reward-click/report.json
             island/qa/v168/native-reward-click/*.png
+            island/qa/v194/slow-result/report.json
+            island/qa/v194/slow-result/*.png
             island/qa/v170/native-reward-drain/report.json
             island/qa/v170/native-reward-drain/*.png
             island/qa/v179/navigation-arrival/report.json
