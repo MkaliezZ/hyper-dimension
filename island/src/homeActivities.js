@@ -1,6 +1,7 @@
 import {CROPS} from './farming.js';
 import {canPlantCrop} from './cropSeasons.js';
 import {SEASONS} from './environmentClock.js';
+import {evaluateSocialActivity} from './homeSocialActivities.js';
 
 const rng=seed=>()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
 function shuffle(rows,random){const out=[...rows];for(let i=out.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
@@ -67,5 +68,5 @@ export function evaluateHomeActivity(input,day){
     if(!joinerySolved(board))return null;
     return {homeId:1,kind:'joinery',day,moves:input.moves.length,title:'木片拼画'};
   }
-  return null;
+  return evaluateSocialActivity(input,day);
 }

@@ -363,3 +363,11 @@ Wheat Cottage and Joinery House now have different native pixel/origami interior
 Eleven focused home and personal-ledger tests passed, including reachable furniture, seasonal puzzle solvability, legal slide replay, old-book compatibility, duplicate requests, forged autosaves and unchanged currency/inventory. Four native browser cases cover both homes and both styles, actual game inputs, server records, reload and close. A narrower mobile follow-up checks that labels become numbered markers plus readable shortcuts. The LAN browser check verifies /play, the real personal action, appearance switching and a shared persisted home record. These isolated local fixtures do not prove all sixteen homes, physical Mac use or human acceptance.
 
 Run `npm run test:homes` and `npm run test:homes:browser`. No paid model calls or real user saves are needed by these checks. README updates remain functional only.
+
+## V192 · Host and observer homes
+
+Two more independent pixel/origami homes are playable: Lulu's gathering room and Xingye's curved observatory. Four original images have separate collision/interaction calibration, including a repainted observatory passage. Seating cards use a unique daily solution; fictional sky logs identify stars by bearing, colour, brightness and order. Both save through the personal ledger without economic rewards. Four of sixteen homes now have playable interiors; twelve remain.
+
+Twenty focused rules passed across home navigation, daily challenge solvability, duplicate commits, restart, forged state rejection, unchanged economy and shared appearance. Four new native browser cases cover both houses/styles, every furniture approach, actual puzzle inputs, completion, save/reload, mobile labels and close. These checks use isolated fictional saves at fresh ports and no external model calls; they never operate on the user's browser or private saves. Follow-up LAN cases check the real personal action and style-switch persistence. Original farmer/carpenter rooms are also regression checked after extending the shared UI. This is not all-home, physical multi-device, Mac hardware or human acceptance.
+
+Run `npm run test:homes` and `npm run test:homes:browser`. For the host LAN case, set `HD_HOME_ID=2` before `node tests/v192-social-homes-lan-browser.mjs`; the default is the observatory.
