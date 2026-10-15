@@ -405,3 +405,19 @@ The daily baking schedule validates eight steps across four exclusive stations, 
 The V194 deployment run 38763968313 passed all three native-gameplay and all three native-art jobs. Its three Python matrix jobs failed in an older native lobby test that expected manual recovery after a single lost response, whereas V194 now recovers that response automatically. The test now drops all three bounded attempts, confirms the original pending request remains, and verifies a manual replay with the same request ID. Both styles pass locally; automatic recovery remains covered separately. This updates the expected recovery contract without removing the manual-recovery or layout assertions. Current cross-platform results must still be checked on the new commit.
 
 Run `npm run test:homes` and `npm run test:homes:browser`. The new LAN case defaults to home 7 (photographer); `HD_HOME_ID=6` selects the baker. Eight of sixteen distinct interiors are implemented; the remaining homes and broader goal are incomplete.
+
+## V196 · Fisher and herbalist homes, gallery rendering
+
+Two unique interiors add a wet entry/tackle bench/tide desk for Xiaoman and a front visiting nook/rear botanical desk/private bed for Luobai. Four original assets cover both styles, with the herbalist's obstructing central partition corrected. Ten homes now have calibrated floor routes and personal hobbies; six remain.
+
+The travel-case exercise checks six rotated packing shapes, collisions, bounds, fixed dividers and a suitable fictional departure forecast. The click anchor is an occupied point on each shape, so a concave shape never requires clicking a disabled cell. The leaf notebook validates row/column clues, explicit blank markings and a unique solution. Both save exactly once without minting stock or currency.
+
+29 focused rules pass, including 365 daily briefs, every home furniture approach, rejected malformed submissions, journal restart and autosave protection. Four native final cases use day 4 (including the concave rotation), real clicks/drags and server persistence in both styles. A further compact-layout case and one LAN travel-case appearance-switch/reload case pass. These use fictional saves, ephemeral ports and disabled providers, not the user browser or physical multi-device acceptance.
+
+V195's Windows and Mac ARM Python jobs failed because an older checkpoint fixture waited for a response only after the browser reached the result phase; the actual accepted winning response had already arrived during celebration. The fixture now holds the server-replayed winning checkpoint independently of presentation phase, preserving all pending-restart, no-early-reward and fresh-ticket assertions. Both styles pass locally.
+
+V195 Intel Mac also exceeded the existing 1500 ms cached-gallery paint budget. Local 4x CPU sampling did not reproduce the 1957.5 ms CI result, but showed full island rendering dominating sampled JavaScript while the opaque gallery covered it. The gallery now retains the already painted backdrop; world updates continue, resize invalidates the snapshot and closing resumes world rendering. Under the same local 4x throttle, paired samples changed from 186/221 ms to 118/120 ms. A native regression verifies zero covered background paints, exactly one resize paint locally, and continuous paints after close in both styles. The 1500 ms budget is retained; new CI results must still be verified rather than inferred from local results.
+
+The full existing lobby regression also passes locally in both styles, including shared-save appearance, bootstrap recovery, gallery drafting and mobile overflow.
+
+Run `npm run test:homes`, `npm run test:homes:browser`, and `npm run test:gallery:browser`. The broader goal, remaining homes, local night lighting, combined playthroughs and real cross-device/human/OPC validation remain incomplete.

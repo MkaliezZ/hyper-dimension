@@ -65,6 +65,9 @@ jobs:
       - name: Native lobby appearance and NPC motion
         run: node --test tests/v148-identity.test.mjs tests/v148-motion.test.mjs tests/v148-travel-schema.test.mjs tests/v152-motion.test.mjs && node tests/v148-lobby-browser.mjs && node tests/v151-lobby-navigation-browser.mjs && node tests/v171-lobby-motion-browser.mjs
 
+      - name: Native gallery backdrop and resize
+        run: node tests/v196-gallery-backdrop-browser.mjs
+
 
 
 
@@ -103,6 +106,10 @@ jobs:
             island/qa/v194/movement-lost/*.png
             island/qa/v173/native-farm-navigation/report.json
             island/qa/v173/native-farm-navigation/*.png
+            island/qa/v148/native-lobby/report.json
+            island/qa/v148/native-lobby/*.png
+            island/qa/v196/gallery-backdrop/report.json
+            island/qa/v196/gallery-backdrop/*.png
             island/qa/v157/modal-command-navigation/report.json
             island/qa/v157/modal-command-navigation/*.png
           if-no-files-found: ignore

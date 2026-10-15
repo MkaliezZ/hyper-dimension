@@ -1,3 +1,5 @@
+import {homeNatureChallenge,homeNatureSolved} from './homeNatureActivities.js';
+import {mountNatureGame,refreshNatureGame,resetNatureGame} from './homeNatureUI.js';
 import {homeEverydayChallenge,homeEverydaySolved} from './homeEverydayActivities.js';
 import {mountEverydayGame,refreshEverydayGame,resetEverydayGame,photoCropMarkup} from './homeEverydayUI.js';
 import {RESIDENCE_LAYOUTS,homeWalkable,homeZoneAt} from './residenceLayouts.js';
@@ -98,16 +100,16 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
       body.innerHTML='<div class="home-farm-summary"><b>来自真实农田</b><span>'+needs+' 块待浇水 · '+ripe+' 块可收获</span></div><button class="primary" data-home-farm>前往照料田地</button>';body.querySelector('button').onclick=goFarm;
     }else if(z.kind==='weather'){
       const e=environment(),weather=e.weather,ready=weather?.id==='clear'&&['night','dusk'].includes(e.period);
-      body.innerHTML='<div class="home-keepsake"><b>'+esc(SEASON_NAMES[e.season]+'季 · '+(weather?.name||'天气未同步'))+'</b><p>岛上时刻 '+esc(e.clockText||'—')+'</p><span>'+(ready?'天空晴朗，适合观测。':'先整理已经记录的星图，等到晴朗的夜晚再观察。')+'</span></div><p>'+((weather?.watersCrops)?'今天的降水会照料露天田地。':'露天作物仍需要按田块状态照料。')+(weather?.fishingAssist?' 雨天钓鱼更容易把握。':'')+'</p>';
+      body.innerHTML='<div class="home-keepsake"><b>'+esc(SEASON_NAMES[e.season]+'季 · '+(weather?.name||'天气未同步'))+'</b><p>岛上时刻 '+esc(e.clockText||'—')+'</p><span>'+(s.id===3?(ready?'天空晴朗，适合观测。':'先整理已经记录的星图，等到晴朗的夜晚再观察。'):s.id===8?'这是小岛当前天气，行囊桌上的海况是单独的每日演练。':'留意此刻的光线，天气会改变家里的观察。')+'</span></div><p>'+((weather?.watersCrops)?'今天的降水会照料露天田地。':'露天作物仍需要按田块状态照料。')+(weather?.fishingAssist?' 雨天钓鱼更容易把握。':'')+'</p>';
     }else if(z.kind==='recipes'){body.innerHTML='<button class="primary" data-home-recipes>翻阅制作配方</button>';body.querySelector('button').onclick=recipes;
     }else if(z.kind==='bed'){const schedule=residentSchedule(s.id,environment());const clock=h=>String(Math.floor(h)).padStart(2,'0')+':'+String(Math.round(h%1*60)).padStart(2,'0');body.innerHTML='<div class="home-keepsake"><b>安静的生活角</b><p>'+clock(schedule.sleep)+' 休息 · '+clock(schedule.wake)+' 起床</p><span>作息跟随岛上的世界时钟。</span></div>';
     }else{const memory=state().npcMemory?.[s.id]?.at(-1)?.text;body.innerHTML='<blockquote>'+esc(memory||s.owner.lifeGoal)+'</blockquote>';}
   }
   function mountGame(s,body){
     const day=state().day,season=environment().season;
-    if(!s.game||s.game.day!==day){const c=s.id===0?nurseryChallenge(day,season):s.id===1?joineryChallenge(day):homeSocialChallenge(s.id,day)||homeCraftChallenge(s.id,day)||homeEverydayChallenge(s.id,day);s.game={...c,values:s.id===0?[...c.givens]:[...c.board],selected:c.guests?.[0]??c.palette?.[0]??0,moves:'',saved:false,submitting:false};}
+    if(!s.game||s.game.day!==day){const c=s.id===0?nurseryChallenge(day,season):s.id===1?joineryChallenge(day):homeSocialChallenge(s.id,day)||homeCraftChallenge(s.id,day)||homeEverydayChallenge(s.id,day)||homeNatureChallenge(s.id,day);s.game={...c,values:s.id===0?[...c.givens]:[...c.board],selected:c.guests?.[0]??c.palette?.[0]??0,moves:'',saved:false,submitting:false};}
     const g=s.game;
-    body.innerHTML='<div class="home-game"><div class="home-game-meta">第 '+g.day+' 天 · '+(g.kind==='nursery'?SEASON_NAMES[g.season]+'季育苗':{joinery:'木片修复',gathering:'四人小聚预排',starchart:'星迹观测整理',botanical:'花房标本拼贴',rigging:'船模绳路练习',baking:'早餐出炉计划',photography:'光影四帧'}[g.kind])+'</div><div class="home-game-board"></div><div class="home-game-controls"></div><p class="home-game-feedback" aria-live="polite"></p><p class="home-soft home-game-note">家中消遣不消耗物资；完成后保存手账。</p></div>';
+    body.innerHTML='<div class="home-game"><div class="home-game-meta">第 '+g.day+' 天 · '+(g.kind==='nursery'?SEASON_NAMES[g.season]+'季育苗':{joinery:'木片修复',gathering:'四人小聚预排',starchart:'星迹观测整理',botanical:'花房标本拼贴',rigging:'船模绳路练习',baking:'早餐出炉计划',photography:'光影四帧',voyage:'潮汐行囊',leafprint:'一页叶影'}[g.kind])+'</div><div class="home-game-board"></div><div class="home-game-controls"></div><p class="home-game-feedback" aria-live="polite"></p><p class="home-soft home-game-note">家中消遣不消耗物资；完成后保存手账。</p></div>';
     const board=body.querySelector('.home-game-board'),controls=body.querySelector('.home-game-controls');
     if(g.kind==='nursery'){
       board.classList.add('home-nursery');board.innerHTML=Array.from({length:16},(_,i)=>'<button data-home-cell="'+i+'" '+(g.givens[i]!==null?'disabled':'')+'></button>').join('');
@@ -122,8 +124,8 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
       board.querySelectorAll('button').forEach(button=>button.onclick=()=>{if(g.saved||g.submitting||g.moves.length>=2000)return;const tile=Number(button.dataset.homeWood),next=slideWood(g.values,tile);if(next){g.values=next;g.moves+=tile;refreshGame(s);}});
       controls.querySelector('[data-home-picture]').onclick=e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',String(on));board.classList.toggle('home-show-picture',on);board.style.backgroundImage=on?'url('+s.url+')':'';};
       controls.querySelector('[data-home-undo]').onclick=()=>{if(!g.moves.length||g.saved||g.submitting)return;g.values=slideWood(g.values,Number(g.moves.at(-1)));g.moves=g.moves.slice(0,-1);refreshGame(s);};
-    }else {const options={g,board,controls,style:s.style,url:s.url,profile,itemArt,refresh:()=>refreshGame(s),feedback:text=>feedback(s,text)};mountSocialGame(options)||mountCraftGame(options)||mountEverydayGame(options);}
-    controls.querySelector('[data-home-reset]').onclick=()=>{if(g.submitting)return;g.values=g.kind==='nursery'?[...g.givens]:[...g.board];g.moves='';g.saved=false;g.spins=[...g.values];g.showBreak=false;resetEverydayGame(g);refreshGame(s);};
+    }else {const options={g,board,controls,style:s.style,url:s.url,profile,itemArt,refresh:()=>refreshGame(s),feedback:text=>feedback(s,text)};mountSocialGame(options)||mountCraftGame(options)||mountEverydayGame(options)||mountNatureGame(options);}
+    controls.querySelector('[data-home-reset]').onclick=()=>{if(g.submitting)return;g.values=g.kind==='nursery'?[...g.givens]:[...g.board];g.moves='';g.saved=false;g.spins=[...g.values];g.showBreak=false;resetEverydayGame(g);resetNatureGame(g);refreshGame(s);};
     saveButton(s).onclick=async()=>{
       if(g.submitting||g.saved||!solved(g))return;g.submitting=true;refreshGame(s);
       try{const result=await command('home_activity',{homeId:s.id,day:g.day,...(g.kind==='nursery'?{season:g.season,board:[...g.values]}:g.kind==='joinery'?{moves:g.moves}:{board:[...g.values]})});g.saved=true;if(active===s&&s.game===g)feedback(s,result.receipt.text);}
@@ -132,7 +134,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     };
     refreshGame(s);
   }
-  const solved=g=>g.kind==='nursery'?nurserySolved(g,g.values):g.kind==='joinery'?joinerySolved(g.values):homeSocialSolved(g,g.values)||homeCraftSolved(g,g.values)||homeEverydaySolved(g,g.values);
+  const solved=g=>g.kind==='nursery'?nurserySolved(g,g.values):g.kind==='joinery'?joinerySolved(g.values):homeSocialSolved(g,g.values)||homeCraftSolved(g,g.values)||homeEverydaySolved(g,g.values)||homeNatureSolved(g,g.values);
   function feedback(s,text){const el=panel(s).querySelector('.home-game-feedback');if(el)el.textContent=text;}
   function refreshGame(s,keepMessage=false){
     const g=s.game,body=panel(s).querySelector('.home-game');if(!g||!body)return;
@@ -145,7 +147,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     }else if(g.kind==='joinery'){
       body.querySelectorAll('[data-home-wood]').forEach(button=>{const tile=Number(button.dataset.homeWood),i=g.values.indexOf(tile);button.style.transform='translate('+(i%3*100)+'%, '+(Math.floor(i/3)*100)+'%)';button.disabled=g.saved||g.submitting||!slideWood(g.values,tile);});
       if(!keepMessage)feedback(s,g.saved?'今天的木片拼画已保存。':done?'画面与接缝都对齐了。':'沿空位滑动木片 · 已移动 '+g.moves.length+' 步');
-    }else {const options={g,body,url:s.url,profile,itemArt,done,keepMessage,feedback:text=>feedback(s,text)};refreshSocialGame(options)||refreshCraftGame(options)||refreshEverydayGame(options);}
+    }else {const options={g,body,url:s.url,profile,itemArt,done,keepMessage,feedback:text=>feedback(s,text)};refreshSocialGame(options)||refreshCraftGame(options)||refreshEverydayGame(options)||refreshNatureGame(options);}
     const save=saveButton(s);save.disabled=!done||g.submitting||g.saved;save.textContent=g.submitting?'正在记入手账…':g.saved?'已留在家中手账':done?'记下今天的小完成':'完成后记入手账';
   }
   return {open,destroy,inspect:()=>active?{id:active.id,loaded:active.loaded,zone:active.selected,player:{x:active.player.x,y:active.player.y,walking:!!active.player.walking,path:active.player.path.map(p=>({...p}))},game:active.game?{kind:active.game.kind,day:active.game.day,season:active.game.season,values:[...active.game.values],moves:active.game.moves,frame:active.game.frame?{...active.game.frame}:null,shot:active.game.shot??null,solved:solved(active.game),saved:active.game.saved}:null}:null};
