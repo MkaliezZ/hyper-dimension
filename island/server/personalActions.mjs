@@ -47,7 +47,7 @@ export function applyPersonalCommand(s,b,i,now){
  if(i.operation==='avatar'&&(!['butler','player'].includes(i.target)||!Object.hasOwn(AVATAR_BY_ID,i.avatarId||'')&&!(i.target==='butler'&&i.avatarId==='default')))throw fail('角色形象无效');
  const before={coins:s.coins,inventory:{...s.inventory}};let details;
  if(i.operation==='home_activity'){
-  const entry=evaluateHomeActivity(i,s.day);if(!entry)throw fail('这页手账还没有完成，请检查排列或拼画','personal_unavailable');
+  const entry=evaluateHomeActivity(i,s.day,s);if(!entry)throw fail('这页手账还没有完成，请检查排列或拼画','personal_unavailable');
   const previous=s.homeActivities?.[i.homeId],alreadyToday=previous?.lastDay===s.day;
   s.homeActivities??={};s.homeActivities[i.homeId]={completedDays:(previous?.completedDays||0)+(alreadyToday?0:1),lastDay:s.day,last:entry};
   details={ok:true,entry,text:entry.title+'已记入家中手账。'+(alreadyToday?'今天的记录已更新。':'这是一起度过的一段闲暇。')};

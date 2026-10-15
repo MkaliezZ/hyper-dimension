@@ -207,6 +207,14 @@ jobs:
         run: node tests/v198-creative-homes-browser.mjs
       - name: Native music journal across appearance switch
         run: node tests/v198-creative-homes-lan-browser.mjs
+      - name: Native curator and steward homes
+        run: node tests/v199-legacy-homes-browser.mjs
+      - name: Native curator journal across appearance switch
+        run: node tests/v199-legacy-homes-lan-browser.mjs
+      - name: Native steward journal and exchange entry
+        env:
+          HD_HOME_ID: '15'
+        run: node tests/v199-legacy-homes-lan-browser.mjs
       - name: Retain native residence diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -221,6 +229,12 @@ jobs:
             island/qa/v198/native-homes/*.png
             island/qa/v198/native-home-lan-12/report.json
             island/qa/v198/native-home-lan-12/*.png
+            island/qa/v199/native-homes/report.json
+            island/qa/v199/native-homes/*.png
+            island/qa/v199/native-home-lan-14/report.json
+            island/qa/v199/native-home-lan-14/*.png
+            island/qa/v199/native-home-lan-15/report.json
+            island/qa/v199/native-home-lan-15/*.png
           if-no-files-found: ignore
           retention-days: 3
 

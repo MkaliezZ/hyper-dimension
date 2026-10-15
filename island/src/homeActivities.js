@@ -1,3 +1,4 @@
+import {evaluateLegacyActivity} from './homeLegacyActivities.js';
 import {evaluateCreativeActivity} from './homeCreativeActivities.js';
 import {evaluateResearchActivity} from './homeResearchActivities.js';
 import {evaluateEverydayActivity} from './homeEverydayActivities.js';
@@ -61,7 +62,7 @@ export function replayJoinery(challenge,moves){
 }
 
 // These home hobbies award a journal entry, never currency, materials or production credit.
-export function evaluateHomeActivity(input,day){
+export function evaluateHomeActivity(input,day,state={}){
   if(input.homeId===0){
     if(!SEASONS.includes(input.season))return null;
     const challenge=nurseryChallenge(day,input.season);
@@ -73,5 +74,5 @@ export function evaluateHomeActivity(input,day){
     if(!joinerySolved(board))return null;
     return {homeId:1,kind:'joinery',day,moves:input.moves.length,title:'木片拼画'};
   }
-  return evaluateSocialActivity(input,day)||evaluateCraftActivity(input,day)||evaluateEverydayActivity(input,day)||evaluateNatureActivity(input,day)||evaluateResearchActivity(input,day)||evaluateCreativeActivity(input,day);
+  return evaluateSocialActivity(input,day)||evaluateCraftActivity(input,day)||evaluateEverydayActivity(input,day)||evaluateNatureActivity(input,day)||evaluateResearchActivity(input,day)||evaluateCreativeActivity(input,day)||evaluateLegacyActivity(input,day,state);
 }

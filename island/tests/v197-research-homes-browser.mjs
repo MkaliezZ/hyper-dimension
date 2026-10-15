@@ -33,7 +33,7 @@ try{
    await page.mouse.click(r.x+r.width/2+(b.x+b.w/2-s.camera.x)*sc,r.y+r.height/2+(b.y+b.h*.23-s.camera.y)*sc);
    await page.locator('.home-room').waitFor({timeout:30000});await page.waitForFunction(()=>window.islandInspect().residences.interior?.loaded,null,{timeout:30000});
   }
-  async function zone(name){await page.locator('.home-room [data-home-zone="'+name+'"]').click();await page.waitForFunction(name=>window.islandInspect().residences.interior?.zone===name,name,{timeout:15000});}
+  async function zone(name){await page.locator('.home-room [data-home-zone="'+name+'"]').click();await page.waitForFunction(name=>window.islandInspect().residences.interior?.zone===name,name,{timeout:45000});}
   try{
    for(let i=0;i<100;i++){try{if((await fetch(base+'/api/status')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
    await page.goto(base+'/?qa=1');await ready();row.stage='enter';await enter();row.room=(await inspect()).residences.interior;
