@@ -8,7 +8,7 @@ Gather, craft, run your island, host parties and talk freely with AI residents. 
 
 ## See the island
 
-[![Hyper Dimension · Island life and Agent stewards](docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · Island life and Agent stewards](docs/media/hyper-dimension-v190-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 [Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living) · [Explore the owner gallery](https://mkaliezz.github.io/hyper-dimension/#gallery)
 

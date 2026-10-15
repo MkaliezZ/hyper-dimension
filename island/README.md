@@ -8,7 +8,7 @@
 
 ## 看看小岛
 
-[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v169-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v190-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 [播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆导览](https://mkaliezz.github.io/hyper-dimension/#gallery)
 

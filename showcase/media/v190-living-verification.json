@@ -1,0 +1,147 @@
+{
+  "version": "V190",
+  "sourceBaseCommit": "3ecfc140e0794d849f4e8cc367620a6aaf8606db",
+  "filename": "hyper-dimension-v190-living-agents-30s.mp4",
+  "bytes": 38014551,
+  "sha256": "1f6eda1d490e93751ada750a43ac610ba2eba37735000a13db35b9bbd08e5f2c",
+  "duration": 30,
+  "width": 2560,
+  "height": 1440,
+  "fps": 60,
+  "frames": 1800,
+  "audio": "Original Hyper Dimension Island Hours BGM, AAC",
+  "renderMode": "Offline equal-step native browser renders at 1/60s simulation intervals. This film is not a live game FPS benchmark.",
+  "oldFootageUsed": false,
+  "temporalInterpolation": false,
+  "allVisualsNew": true,
+  "nativeGameModal": true,
+  "actualFourFlightPayout": true,
+  "realResidentReply": "Previously generated actual reply, freshly displayed in current UI",
+  "realHermesWordArtifact": "Previously generated actual fictional Word artifact, freshly displayed in current UI",
+  "realParentChildRecruitment": "Fresh actual Hermes delegation and acceptance on 2026-10-15, deepseek-flash; no production completion claimed",
+  "fictionalProfilesAndDocumentsOnly": true,
+  "visualClock": "Spring/autumn/winter selected through the actual environment protocol for the isolated filming fixture.",
+  "shots": [
+    {
+      "name": "01-origami-island",
+      "at": 0,
+      "duration": 2,
+      "start": 0.25,
+      "frames": 120,
+      "sourceVersion": "V188 runtime",
+      "zh": "一座会生活的岛 · 一位能办事的管家",
+      "en": "A living island. A steward for real work."
+    },
+    {
+      "name": "02-pixel-island",
+      "at": 2,
+      "duration": 2,
+      "start": 0.3,
+      "frames": 120,
+      "sourceVersion": "V188 runtime",
+      "zh": "像素与折纸 · 共用一座小岛与存档",
+      "en": "Pixel and origami. One shared island and save."
+    },
+    {
+      "name": "02b-origami-winter",
+      "at": 4,
+      "duration": 1.5,
+      "start": 0.5,
+      "frames": 90,
+      "sourceVersion": "V188 runtime",
+      "zh": "整岛四季 · 山林、田地与海岸一起变化",
+      "en": "Seasons across the mountains, fields and coast."
+    },
+    {
+      "name": "05-owner-gallery",
+      "at": 5.5,
+      "duration": 2,
+      "start": 0.3,
+      "frames": 120,
+      "sourceVersion": "V188 runtime",
+      "zh": "会客馆 · 展示你的经历、作品与项目",
+      "en": "An owner gallery for your story and projects."
+    },
+    {
+      "name": "10-real-resident-chat",
+      "at": 7.5,
+      "duration": 3,
+      "start": 0.3,
+      "frames": 180,
+      "sourceVersion": "V188 runtime",
+      "zh": "15 位 AI 居民 · 每个人都可以自由交流",
+      "en": "15 AI residents. Talk freely with every one."
+    },
+    {
+      "name": "03-avatar-men",
+      "at": 10.5,
+      "duration": 1.5,
+      "start": 0.4,
+      "frames": 90,
+      "sourceVersion": "V188 runtime",
+      "zh": "Agent 管家 · 六套男性形象",
+      "en": "Your Agent steward. Six male appearances."
+    },
+    {
+      "name": "04-avatar-women",
+      "at": 12.0,
+      "duration": 1.5,
+      "start": 0.4,
+      "frames": 90,
+      "sourceVersion": "V188 runtime",
+      "zh": "六套女性形象 · 名称与外观随存档保存",
+      "en": "Six female appearances. A persistent identity."
+    },
+    {
+      "name": "14-saved-document",
+      "at": 13.5,
+      "duration": 2,
+      "start": 0.3,
+      "frames": 120,
+      "sourceVersion": "V188 runtime",
+      "zh": "真实 Hermes 工作 · 把委托变成文档",
+      "en": "Real Hermes work. Turn a brief into a document."
+    },
+    {
+      "name": "15-document-content",
+      "at": 15.5,
+      "duration": 3.5,
+      "start": 0.2,
+      "frames": 210,
+      "sourceVersion": "V188 runtime",
+      "zh": "读取、创建与回读 · 打开实际 Word 成果",
+      "en": "Read, create and verify a real Word deliverable."
+    },
+    {
+      "name": "17-agent-exchange",
+      "at": 19.0,
+      "duration": 4,
+      "start": 0.25,
+      "frames": 240,
+      "sourceVersion": "V188 runtime",
+      "zh": "主子 Agent 真实协作 · 委派与接单",
+      "en": "Real parent/child agents. Delegate and accept work."
+    },
+    {
+      "name": "night-flight",
+      "at": 23.0,
+      "duration": 3.5,
+      "start": 1.2,
+      "frames": 210,
+      "sourceVersion": "V188 runtime",
+      "zh": "小岛派对 · 在房屋弹窗中亲手点亮星空",
+      "en": "A party inside the game popup. Light up the sky."
+    },
+    {
+      "name": "paid-result",
+      "at": 26.5,
+      "duration": 3.5,
+      "start": 0.25,
+      "frames": 210,
+      "sourceVersion": "V188 runtime",
+      "zh": "四次点亮完成 · 实际奖励已入账",
+      "en": "Four launches complete. Actual reward received."
+    }
+  ],
+  "passed": true
+}

@@ -1,8 +1,29 @@
 {
-  "version": "V169",
+  "version": "V190",
   "films": [
     {
       "id": "living",
+      "version": "V190",
+      "filename": "hyper-dimension-v190-living-agents-30s.mp4",
+      "duration": 30,
+      "sha256": "1f6eda1d490e93751ada750a43ac610ba2eba37735000a13db35b9bbd08e5f2c",
+      "poster": "assets/hyper-dimension-v190-living-agents-poster.png",
+      "download": "media/hyper-dimension-v190-living-agents-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 四季小岛与能办事的管家",
+        "en": "30 seconds · Seasonal island and working Agents"
+      },
+      "caption": {
+        "zh": "全新四季画面 · 居民交流 · 多形象管家 · 真实工作与协作",
+        "en": "New seasonal scenes · Residents · Steward choices · Real work and cooperation"
+      },
+      "description": {
+        "zh": "全部画面由当前游戏重新采集：双画风四季、会客馆、AI居民、12套管家形象、真实Word成果、新执行的主子Agent委派与接单，以及房屋弹窗内小游戏和实际奖励。1440p / 60 fps逐帧导出，原创BGM，无旧片段或补帧；成片帧率不代表实时性能测试。资料与工作简报均为虚构示例，居民回应和文档展示真实历史执行结果。小游戏为占位演示，将继续优化。",
+        "en": "All visuals newly captured from the current game: dual-style seasons, gallery, AI residents, 12 steward appearances, real Word results, fresh parent/child delegation and acceptance, plus the native minigame popup and actual reward. Offline 1440p/60 fps equal-step browser export with original BGM; no old footage or interpolation. Film frame rate is not a live performance benchmark. Profiles and briefs are fictional; resident replies and documents show genuine saved results. Minigames are demonstrations and will improve."
+      }
+    },
+    {
+      "id": "living-v169",
       "version": "V169",
       "filename": "hyper-dimension-v169-living-agents-30s.mp4",
       "duration": 30,
@@ -10,8 +31,8 @@
       "poster": "assets/hyper-dimension-v169-living-agents-poster.png",
       "download": "media/hyper-dimension-v169-living-agents-30s.mp4",
       "title": {
-        "zh": "30 秒 · 山海小岛与能办事的管家",
-        "en": "30 seconds · A mountain island and working Agents"
+        "zh": "往期 · V169 小岛与管家",
+        "en": "Archive · V169 island and stewards"
       },
       "caption": {
         "zh": "新地形与错落住所 · 双画风 · 居民 · 真实工作 · Agent协作",

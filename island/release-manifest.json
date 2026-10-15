@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v189-agent-source",
+  "release": "hyper-dimension-v190-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -48,12 +48,12 @@
     {
       "path": "README.en.md",
       "bytes": 3012,
-      "sha256": "2bdd4e8efeacedd780b7ad885af571e48c7fea510cb8583e838aa958218b7707"
+      "sha256": "76185a2e519e1fbec420586bb44baa554e7750c9ae60af39d27ff9ec3a610640"
     },
     {
       "path": "README.md",
       "bytes": 2829,
-      "sha256": "ec3f9b29981d5347e193522e220ef768985efd7a18b7f689a4d4b0d706a27887"
+      "sha256": "0ea3b7ba9c367f6b21de5f61524f52154dd6147a7eaf42782488ebe488c485e1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -364,6 +364,11 @@
       "path": "docs/media/hyper-dimension-v169-living-agents-poster.png",
       "bytes": 6959342,
       "sha256": "74b6c2334d252734b9480de4f986b1c1d84870dea627ece762670a8d71fe4dc2"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v190-living-agents-poster.png",
+      "bytes": 6832141,
+      "sha256": "6f6c4c7b994831a5623a215a3092e3e50ae5bface69c6572c4f39e1f91bc4725"
     },
     {
       "path": "docs/media/music-notes.json",
