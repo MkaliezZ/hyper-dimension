@@ -471,3 +471,11 @@ World-canvas ambient illumination accompanies source-aligned warm lights, ground
 V199 hosted run38801937118 has two confirmed failures: Windows Python lane's lobby fixture asserted room creation without retaining the HTTP body; Intel native-gameplay's intercepted request hit ECONNRESET during explicit recovery. Both home styles pass locally, but the original Windows status/body is unavailable, so its cause is not claimed proven. The lobby fixture now preserves immutable request IDs across bounded retries of only declared busy/rate responses, with immediate diagnostic failure for auth/validation/unknown responses. The reward interceptor uses Playwright's bounded ECONNRESET-only retry for the same idempotent body; deliberate dropped-response injection remains unchanged. Two lobby and six reward claim/cancel/recovery native cases pass locally. Actual next hosted outcomes remain required.
 
 Use `npm run test:night`. Full current video/site renewal, combined economy and25workshop journeys, physical cross-device A2A and human/OPC acceptance remain in the active goal. New lighting is not evidence of whole-product completion, Mac hardware acceptance or a fresh offline installation.
+
+
+## V201 · 会客厅断线回执（2026-10-16）
+
+- V200 Windows Python 任务 116718359445 的失败日志为建房 APIRequestContext.post ECONNRESET。只据此处理本轮传输重置，不追认 V199 的未知 HTTP 失败原因。
+- 测试辅助器对 ECONNRESET 使用最多两次相同内容重试，原有明确繁忙/限流等待与身份、校验、未知错误立即失败规则保留。
+- 实际 HTTP 回包在持久建房后被断开，恢复取得相同房间与重放回执；错误边界检查合计 2 项通过。双画风实际会客厅 2 个原生场景通过。没有提高交互性能或玩法判定门槛。
+- 新托管结果尚待；本机回归不代替完整跨平台、实体设备、真人或整体交付验收。详见 [请求回包验证](lan-reply-recovery-v201.md)。

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v200-agent-source",
+  "release": "hyper-dimension-v201-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 64653,
-      "sha256": "dde4c00dfb3c99ab7496288f5cc289b4ecde4a2eb26ac8c49fac0f6dc27e0fa1"
+      "bytes": 65453,
+      "sha256": "0be5036080289f8d71592196dc3bdd2b7264f64b95c845c16146de61e8b06047"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -219,6 +219,11 @@
       "path": "docs/lan-catalog-upgrade-v177.md",
       "bytes": 2659,
       "sha256": "457a3f3788396624c42cd681e756ba93253ab8e87b504e9b7bf1cda80eb4bfdf"
+    },
+    {
+      "path": "docs/lan-reply-recovery-v201.md",
+      "bytes": 1100,
+      "sha256": "a70a7d2ae817afad5df73771cbdd720e5e840d2b16c533e379876d9de6e89831"
     },
     {
       "path": "docs/legacy-crop-art-provenance-v178.json",
@@ -8342,8 +8347,8 @@
     },
     {
       "path": "tests/lanRequest.mjs",
-      "bytes": 871,
-      "sha256": "be394fc4bd51e94223ec10d6a5014246b9bfc49217966fa3a8b9c22a347ceaa0"
+      "bytes": 982,
+      "sha256": "05cbbf77339d7b9f4adf349ac2b3db4e9fd195e4e9b8964ffe317a1141affb47"
     },
     {
       "path": "tests/layout-validation.mjs",
@@ -9684,6 +9689,11 @@
       "path": "tests/v200-night-lighting.test.mjs",
       "bytes": 4520,
       "sha256": "eaca692544c0361c043fa2effb6d3b763511b12b1058de87d75e7c02758c3c1d"
+    },
+    {
+      "path": "tests/v201-lan-request.test.mjs",
+      "bytes": 3439,
+      "sha256": "c53d1070259bf765ceffe051e3432f97b3ff29ad2843ae1f5353dbb6908aa675"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
