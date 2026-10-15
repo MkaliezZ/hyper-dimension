@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v187-agent-source",
+  "release": "hyper-dimension-v188-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11826,
-      "sha256": "47db928eddd3db6a210d9c6fabc3f99bf3b5b5aaf47f317934d53808f5c14996"
+      "bytes": 12241,
+      "sha256": "17c4c8d4771c784f4ca5467e36bb9f4446411872c603a7533404e38cca96a927"
     },
     {
       "path": "README.md",
-      "bytes": 10477,
-      "sha256": "6dece225e6d0339f257ee3c1e620d59975334a182439c9716cf8106ef5711c12"
+      "bytes": 10877,
+      "sha256": "4394582a95a6750fd725ccbdf0c26adcf2026c42d2dccf0a8b428bf66ca3ae72"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 39469,
-      "sha256": "48d371965689e84c8bc03fdc6888cb0a1ab020145f4235b1439d33d7400a5636"
+      "bytes": 40256,
+      "sha256": "71400fc1a6df008e521bb18b784f6f08757a7fead6e729816e0a32658ffcbb05"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -244,6 +244,11 @@
       "path": "docs/lobby-navigation-v151.md",
       "bytes": 1857,
       "sha256": "e393e0990729a2ec987d3f9d6daa5c0ee2bb14759fa0c48c863ce936c870915a"
+    },
+    {
+      "path": "docs/mac-checks-v188.md",
+      "bytes": 2849,
+      "sha256": "85d893b1dca0420bcb83dbeabd44811be1552964a7a553f236f4856478db88d6"
     },
     {
       "path": "docs/map-navigation-v141-verification.json",
@@ -8872,8 +8877,8 @@
     },
     {
       "path": "tests/v170-reward-drain-browser.mjs",
-      "bytes": 12947,
-      "sha256": "c3f95e5ace4d46e6bb708c6a3551fcb3020f35939c74395fd0934fc93a271328"
+      "bytes": 13200,
+      "sha256": "05057d51c6444cc5343fb047e7f2e34d51e683bbd87505d08726ce5d62d9077e"
     },
     {
       "path": "tests/v171-lan-geography.test.mjs",
@@ -8902,8 +8907,8 @@
     },
     {
       "path": "tests/v173-farm-navigation-browser.mjs",
-      "bytes": 4526,
-      "sha256": "d2d729cd46f942dd1e88e97eaadb0bf3ec5810cfb28eb2a44afb6f9b200ce042"
+      "bytes": 4832,
+      "sha256": "d9618f91c0d2aad083d94f29abf9935cc4e151b5b4897faeb425a3cd903352ac"
     },
     {
       "path": "tests/v173-frame-motion.test.mjs",

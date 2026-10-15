@@ -14,7 +14,11 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V187
+## What's new · V188
+
+Fixed the navigation harness timing baseline and reward-interceptor teardown reporting. Four dual-style 8/15 FPS navigation cases and six reward/cancel/recovery cases passed locally, with original travel and settlement assertions retained. [Scope and evidence](island/docs/mac-checks-v188.md). Cloud results remain pending; new footage is being recorded on the current seasonal terrain.
+
+### V187 · Whole-island seasons
 
 Whole-island seasonal terrain is now connected in both styles, with 280 regional, join and preview images. Transitions wait for the visible view; failed loads retain the previous season and cold pans use the current season preview. All 16 actual home/meeting-room seasonal cases and 33 focused checks passed locally. [Artwork and validation scope](island/docs/native-seasons-v187.md).
 

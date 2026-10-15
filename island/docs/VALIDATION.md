@@ -348,3 +348,10 @@ Natural thirtieth-day boundaries and hidden-window recovery now record the seaso
 整岛四季底图现已覆盖像素与折纸两种画风：新增280张区域、连接与预览素材。换季等待可见区域加载齐全后过渡，缺图保留上一季；拖拽到新区域显示同季节预览。两种画风、小岛/会客房、四季共16组实际渲染检查通过，33项相关测试通过。[四季素材与验证范围](docs/native-seasons-v187.md)。
 
 Whole-island seasonal terrain is now connected in both styles, with 280 regional, join and preview images. Transitions wait for the visible view; failed loads retain the previous season and cold pans use the current season preview. All 16 actual home/meeting-room seasonal cases and 33 focused checks passed locally. [Artwork and validation scope](docs/native-seasons-v187.md).
+
+
+## V188 · Mac检查时序与退出
+
+修正Intel Mac导航检查的计时起点，并补齐领奖测试退出时异步请求的收尾和失败记录。双画风8/15 FPS寻路4组、领奖/取消/断线核对6组本地通过，原移动时限和单次结算断言保留。[修复与验证范围](docs/mac-checks-v188.md)。新云端结果待核对；新版视频正使用当前四季底图重新录制。
+
+Fixed the navigation harness timing baseline and reward-interceptor teardown reporting. Four dual-style 8/15 FPS navigation cases and six reward/cancel/recovery cases passed locally, with original travel and settlement assertions retained. [Scope and evidence](docs/mac-checks-v188.md). Cloud results remain pending; new footage is being recorded on the current seasonal terrain.
