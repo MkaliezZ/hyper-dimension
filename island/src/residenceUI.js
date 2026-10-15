@@ -1,3 +1,5 @@
+import {homeCreativeChallenge,homeCreativeSolved} from './homeCreativeActivities.js';
+import {mountCreativeGame,refreshCreativeGame,resetCreativeGame} from './homeCreativeUI.js';
 import {homeResearchChallenge,homeResearchSolved} from './homeResearchActivities.js';
 import {mountResearchGame,refreshResearchGame,resetResearchGame} from './homeResearchUI.js';
 import {homeNatureChallenge,homeNatureSolved} from './homeNatureActivities.js';
@@ -23,7 +25,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
   let active=null;
   function destroy(){
     if(!active)return;
-    active.disposed=true;cancelAnimationFrame(active.frame);active.resize?.disconnect();
+    active.game?.dispose?.();active.disposed=true;cancelAnimationFrame(active.frame);active.resize?.disconnect();
     document.removeEventListener('visibilitychange',active.visibility);active=null;
   }
   function open(id){
@@ -89,7 +91,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     panel(s).innerHTML='<small class="home-eyebrow">一间有主人的家</small><h3>'+esc(s.layout.name)+'</h3><p>'+esc(s.layout.intro)+'</p><blockquote>'+esc(s.owner.personality)+'</blockquote><p class="home-soft">走到家具前，读读留下的记录，或玩一会儿主人的桌上游戏。</p>';
   }
   function detail(s,z){
-    if(active!==s)return;s.selected=z.id;saveButton(s).classList.toggle('hidden',z.kind!=='activity');s.root.classList.toggle('home-playing',z.kind==='activity'&&s.id>=2);
+    if(active!==s)return;s.game?.dispose?.();s.selected=z.id;saveButton(s).classList.toggle('hidden',z.kind!=='activity');s.root.classList.toggle('home-playing',z.kind==='activity'&&s.id>=2);
     panel(s).innerHTML='<small class="home-eyebrow">'+esc(s.layout.name)+'</small><h3>'+esc(z.name)+'</h3><p>'+esc(z.description)+'</p><div class="home-zone-content"></div>';
     const body=panel(s).querySelector('.home-zone-content');
     if(z.kind==='activity'){mountGame(s,body);return;}
@@ -109,9 +111,9 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
   }
   function mountGame(s,body){
     const day=state().day,season=environment().season;
-    if(!s.game||s.game.day!==day){const c=s.id===0?nurseryChallenge(day,season):s.id===1?joineryChallenge(day):homeSocialChallenge(s.id,day)||homeCraftChallenge(s.id,day)||homeEverydayChallenge(s.id,day)||homeNatureChallenge(s.id,day)||homeResearchChallenge(s.id,day);s.game={...c,values:s.id===0?[...c.givens]:[...c.board],selected:c.guests?.[0]??c.palette?.[0]??0,moves:'',saved:false,submitting:false};}
+    if(!s.game||s.game.day!==day){const c=s.id===0?nurseryChallenge(day,season):s.id===1?joineryChallenge(day):homeSocialChallenge(s.id,day)||homeCraftChallenge(s.id,day)||homeEverydayChallenge(s.id,day)||homeNatureChallenge(s.id,day)||homeResearchChallenge(s.id,day)||homeCreativeChallenge(s.id,day);s.game={...c,values:s.id===0?[...c.givens]:[...c.board],selected:c.guests?.[0]??c.palette?.[0]??0,moves:'',saved:false,submitting:false};}
     const g=s.game;
-    body.innerHTML='<div class="home-game"><div class="home-game-meta">第 '+g.day+' 天 · '+(g.kind==='nursery'?SEASON_NAMES[g.season]+'季育苗':{joinery:'木片修复',gathering:'四人小聚预排',starchart:'星迹观测整理',botanical:'花房标本拼贴',rigging:'船模绳路练习',baking:'早餐出炉计划',photography:'光影四帧',voyage:'潮汐行囊',leafprint:'一页叶影',archive:'六页航海录',strata:'地层标本复原'}[g.kind])+'</div><div class="home-game-board"></div><div class="home-game-controls"></div><p class="home-game-feedback" aria-live="polite"></p><p class="home-soft home-game-note">家中消遣不消耗物资；完成后保存手账。</p></div>';
+    body.innerHTML='<div class="home-game"><div class="home-game-meta">第 '+g.day+' 天 · '+(g.kind==='nursery'?SEASON_NAMES[g.season]+'季育苗':{joinery:'木片修复',gathering:'四人小聚预排',starchart:'星迹观测整理',botanical:'花房标本拼贴',rigging:'船模绳路练习',baking:'早餐出炉计划',photography:'光影四帧',voyage:'潮汐行囊',leafprint:'一页叶影',archive:'六页航海录',strata:'地层标本复原',melody:'弦风八音',swatch:'彩线配色委托'}[g.kind])+'</div><div class="home-game-board"></div><div class="home-game-controls"></div><p class="home-game-feedback" aria-live="polite"></p><p class="home-soft home-game-note">家中消遣不消耗物资；完成后保存手账。</p></div>';
     const board=body.querySelector('.home-game-board'),controls=body.querySelector('.home-game-controls');
     if(g.kind==='nursery'){
       board.classList.add('home-nursery');board.innerHTML=Array.from({length:16},(_,i)=>'<button data-home-cell="'+i+'" '+(g.givens[i]!==null?'disabled':'')+'></button>').join('');
@@ -126,8 +128,8 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
       board.querySelectorAll('button').forEach(button=>button.onclick=()=>{if(g.saved||g.submitting||g.moves.length>=2000)return;const tile=Number(button.dataset.homeWood),next=slideWood(g.values,tile);if(next){g.values=next;g.moves+=tile;refreshGame(s);}});
       controls.querySelector('[data-home-picture]').onclick=e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',String(on));board.classList.toggle('home-show-picture',on);board.style.backgroundImage=on?'url('+s.url+')':'';};
       controls.querySelector('[data-home-undo]').onclick=()=>{if(!g.moves.length||g.saved||g.submitting)return;g.values=slideWood(g.values,Number(g.moves.at(-1)));g.moves=g.moves.slice(0,-1);refreshGame(s);};
-    }else {const options={g,board,controls,style:s.style,url:s.url,profile,itemArt,refresh:()=>refreshGame(s),feedback:text=>feedback(s,text)};mountSocialGame(options)||mountCraftGame(options)||mountEverydayGame(options)||mountNatureGame(options)||mountResearchGame(options);}
-    controls.querySelector('[data-home-reset]').onclick=()=>{if(g.submitting)return;g.values=g.kind==='nursery'?[...g.givens]:[...g.board];g.moves='';g.saved=false;g.spins=[...g.values];g.showBreak=false;resetEverydayGame(g);resetNatureGame(g);resetResearchGame(g);refreshGame(s);};
+    }else {const options={g,board,controls,style:s.style,url:s.url,profile,itemArt,act:(type,duration)=>{if(active===s&&!s.disposed)s.player.action={type,leisure:true,t:0,duration};},refresh:()=>refreshGame(s),feedback:text=>feedback(s,text)};mountSocialGame(options)||mountCraftGame(options)||mountEverydayGame(options)||mountNatureGame(options)||mountResearchGame(options)||mountCreativeGame(options);}
+    controls.querySelector('[data-home-reset]').onclick=()=>{if(g.submitting)return;g.values=g.kind==='nursery'?[...g.givens]:[...g.board];g.moves='';g.saved=false;g.spins=[...g.values];g.showBreak=false;resetEverydayGame(g);resetNatureGame(g);resetResearchGame(g);resetCreativeGame(g);refreshGame(s);};
     saveButton(s).onclick=async()=>{
       if(g.submitting||g.saved||!solved(g))return;g.submitting=true;refreshGame(s);
       try{const result=await command('home_activity',{homeId:s.id,day:g.day,...(g.kind==='nursery'?{season:g.season,board:[...g.values]}:g.kind==='joinery'?{moves:g.moves}:{board:[...g.values]})});g.saved=true;if(active===s&&s.game===g)feedback(s,result.receipt.text);}
@@ -136,7 +138,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     };
     refreshGame(s);
   }
-  const solved=g=>g.kind==='nursery'?nurserySolved(g,g.values):g.kind==='joinery'?joinerySolved(g.values):homeSocialSolved(g,g.values)||homeCraftSolved(g,g.values)||homeEverydaySolved(g,g.values)||homeNatureSolved(g,g.values)||homeResearchSolved(g,g.values);
+  const solved=g=>g.kind==='nursery'?nurserySolved(g,g.values):g.kind==='joinery'?joinerySolved(g.values):homeSocialSolved(g,g.values)||homeCraftSolved(g,g.values)||homeEverydaySolved(g,g.values)||homeNatureSolved(g,g.values)||homeResearchSolved(g,g.values)||homeCreativeSolved(g,g.values);
   function feedback(s,text){const el=panel(s).querySelector('.home-game-feedback');if(el)el.textContent=text;}
   function refreshGame(s,keepMessage=false){
     const g=s.game,body=panel(s).querySelector('.home-game');if(!g||!body)return;
@@ -149,7 +151,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     }else if(g.kind==='joinery'){
       body.querySelectorAll('[data-home-wood]').forEach(button=>{const tile=Number(button.dataset.homeWood),i=g.values.indexOf(tile);button.style.transform='translate('+(i%3*100)+'%, '+(Math.floor(i/3)*100)+'%)';button.disabled=g.saved||g.submitting||!slideWood(g.values,tile);});
       if(!keepMessage)feedback(s,g.saved?'今天的木片拼画已保存。':done?'画面与接缝都对齐了。':'沿空位滑动木片 · 已移动 '+g.moves.length+' 步');
-    }else {const options={g,body,url:s.url,profile,itemArt,done,keepMessage,feedback:text=>feedback(s,text)};refreshSocialGame(options)||refreshCraftGame(options)||refreshEverydayGame(options)||refreshNatureGame(options)||refreshResearchGame(options);}
+    }else {const options={g,body,url:s.url,profile,itemArt,done,keepMessage,feedback:text=>feedback(s,text)};refreshSocialGame(options)||refreshCraftGame(options)||refreshEverydayGame(options)||refreshNatureGame(options)||refreshResearchGame(options)||refreshCreativeGame(options);}
     const save=saveButton(s);save.disabled=!done||g.submitting||g.saved;save.textContent=g.submitting?'正在记入手账…':g.saved?'已留在家中手账':done?'记下今天的小完成':'完成后记入手账';
   }
   return {open,destroy,inspect:()=>active?{id:active.id,loaded:active.loaded,zone:active.selected,player:{x:active.player.x,y:active.player.y,walking:!!active.player.walking,path:active.player.path.map(p=>({...p}))},game:active.game?{kind:active.game.kind,day:active.game.day,season:active.game.season,values:[...active.game.values],moves:active.game.moves,frame:active.game.frame?{...active.game.frame}:null,shot:active.game.shot??null,solved:solved(active.game),saved:active.game.saved}:null}:null};

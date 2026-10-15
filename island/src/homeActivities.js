@@ -1,3 +1,4 @@
+import {evaluateCreativeActivity} from './homeCreativeActivities.js';
 import {evaluateResearchActivity} from './homeResearchActivities.js';
 import {evaluateEverydayActivity} from './homeEverydayActivities.js';
 import {evaluateNatureActivity} from './homeNatureActivities.js';
@@ -72,5 +73,5 @@ export function evaluateHomeActivity(input,day){
     if(!joinerySolved(board))return null;
     return {homeId:1,kind:'joinery',day,moves:input.moves.length,title:'木片拼画'};
   }
-  return evaluateSocialActivity(input,day)||evaluateCraftActivity(input,day)||evaluateEverydayActivity(input,day)||evaluateNatureActivity(input,day)||evaluateResearchActivity(input,day);
+  return evaluateSocialActivity(input,day)||evaluateCraftActivity(input,day)||evaluateEverydayActivity(input,day)||evaluateNatureActivity(input,day)||evaluateResearchActivity(input,day)||evaluateCreativeActivity(input,day);
 }

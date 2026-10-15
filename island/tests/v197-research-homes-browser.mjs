@@ -1,3 +1,4 @@
+import {assertHomeJournalReceipt} from './homeJournalReceipt.mjs';
 import {playResearch} from './v197-research-input.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
@@ -46,7 +47,7 @@ try{
    await page.locator('.home-game-board').evaluate(async el=>{await Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{})));});const fit=await page.locator('.home-game-board').evaluate(el=>({width:el.clientWidth,scroll:el.scrollWidth}));assert(fit.width>=160&&fit.scroll<=fit.width+1);
    await page.locator('.modal,.modal-body,.home-sidebar').evaluateAll(els=>els.forEach(el=>el.scrollTo(0,0)));await page.screenshot({path:path.join(out,theme+'-'+id+'-solved.png')});
    row.stage='save';await page.locator('.home-game-save').click();await page.waitForFunction(()=>window.islandInspect().residences.interior?.game?.saved,null,{timeout:30000});
-   const saved=await store.current(theme);assert.equal(saved.state.homeActivities[id].completedDays,1);assert.equal(saved.state.coins,0);assert.equal(Object.values(saved.state.inventory).reduce((a,b)=>a+b,0),0);row.persistedRecord=saved.state.homeActivities[id];
+   const saved=await store.current(theme);row.homeReceipt=assertHomeJournalReceipt(saved,id);row.persistedRecord=saved.state.homeActivities[id];
    row.stage='reload';await page.reload();await ready();await enter();await zone(RESIDENCE_LAYOUTS[id].zones.find(z=>z.kind==='record').id);assert((await page.locator('.home-keepsake').innerText()).includes('1 天'));row.reloaded=true;
    row.stage='mobile';await page.setViewportSize({width:390,height:844});assert.equal(await page.locator('.home-marker-name:visible').count(),0);await page.screenshot({path:path.join(out,theme+'-'+id+'-mobile.png')});
    await page.locator('.modal').evaluate(el=>el.scrollTo(0,el.scrollHeight));const close=await page.locator('#closeModal').boundingBox();assert(close&&close.y>=0&&close.y+close.height<=844);await page.locator('#closeModal').click();await page.waitForFunction(()=>window.islandInspect().residences.interior===null);assert.equal(await page.locator('.home-visit').count(),0);row.cleanup=true;
