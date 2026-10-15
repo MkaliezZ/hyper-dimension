@@ -5,6 +5,7 @@ import {drawTerrainTiles} from './mapTiles.js';
 import {drawSeaTiles} from './seaTiles.js';
 import {HARBOR,WORLD,MAP_EXTENT,harborArtRect} from './world.js';
 import {FERRY_ART,ferryBob,gangwayPlacement} from './harborArtwork.js';
+import {alphaSilhouette,excludeSilhouette} from './alphaSilhouette.js';
 const boatVisualMotion=createBoatVisualMotion(HARBOR);
 const boatSheets={pixel:new Image(),origami:new Image()};for(const t of ['pixel','origami'])registerThemeArtwork(boatSheets[t],'/assets/boats-'+t+'-v4.png',t);
 const seaSheets={pixel:new Image(),origami:new Image()},dockSheets={pixel:new Image(),origami:new Image()};
@@ -39,4 +40,17 @@ function drawGangway(ctx,theme,boat,pose,time,foreground){
 // Near ropes and timber fascia must cover passengers' feet, while the far rail stays behind them.
 export function drawHarborForeground(ctx,boats,theme,time){
  for(const boat of boats)if(boat.phase==='moored')drawGangway(ctx,theme,boat,{x:boat.x,y:boat.y},time,true);
+}
+// Reference alpha painter for pixel-mask checks. Runtime reflection uses the
+// cached contours below, avoiding a canvas-copy stall on pixel renderers.
+export function eraseHarborReflection(ctx,boats,theme,time){
+ const dock=dockSheets[theme],r=harborArtRect(theme);if(dock.complete&&dock.naturalWidth)ctx.drawImage(dock,r.x,r.y,r.w,r.h);
+ const im=boatSheets[theme];if(!im.complete||!im.naturalWidth)return;const cw=im.naturalWidth/2,ch=im.naturalHeight/2;
+ for(const b of boats){const pose=boatVisualMotion.sample(b,time),x=pose.x+FERRY_ART.offsetX,y=pose.y+ferryBob(b,time);ctx.drawImage(im,b.phase==='leaving'?cw:0,0,cw,ch*FERRY_ART.frameHeight,x-100,y+FERRY_ART.top,FERRY_ART.width,FERRY_ART.height*FERRY_ART.frameHeight);}
+}
+export function clipHarborReflection(ctx,boats,theme,time,region){
+ const overlaps=r=>r.x<region.x+region.w&&r.x+r.w>region.x&&r.y<region.y+region.h&&r.y+r.h>region.y;
+ const dock=dockSheets[theme],rect=harborArtRect(theme);if(overlaps(rect)&&dock.complete&&dock.naturalWidth)excludeSilhouette(ctx,alphaSilhouette(dock),rect,WORLD);
+ const im=boatSheets[theme];if(!im.complete||!im.naturalWidth)return;const cw=im.naturalWidth/2,ch=im.naturalHeight/2;
+ for(const b of boats){const pose=boatVisualMotion.sample(b,time),r={x:pose.x+FERRY_ART.offsetX-100,y:pose.y+ferryBob(b,time)+FERRY_ART.top,w:FERRY_ART.width,h:FERRY_ART.height*FERRY_ART.frameHeight};if(overlaps(r))excludeSilhouette(ctx,alphaSilhouette(im,b.phase==='leaving'?cw:0,0,cw,ch*FERRY_ART.frameHeight),r,WORLD);}
 }

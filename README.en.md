@@ -22,7 +22,7 @@ Original soundtrack. Profiles and briefs are fictional; steward documents were p
 | Meet AI residents | 15 residents with distinct jobs, personalities and relationships, free conversation and daily routines. |
 | Visit a home | Explore sixteen distinct homes shaped by their owners’ work and interests, try personal hobbies and keep a household journal. |
 | Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work and recruit a temporary Agent partner to share tasks. |
-| Seasons and two styles | Regional terrain, full-island seasonal art, waves and weather. Each season lasts 30 visual days; weather affects farming and fishing. |
+| Seasons and two styles | Regional seasonal terrain, waves, weather, evening lights and rippling moon reflections. Each season lasts 30 visual days; weather affects farming and fishing. |
 | Showcase and visit | Share experience, projects and images in your gallery, with guest messages. Bring NPC companions and use steward bridging and A2A in multiplayer reception. |
 
 | Pixel · Autumn | Origami · Winter |

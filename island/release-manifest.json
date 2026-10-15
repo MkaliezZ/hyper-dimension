@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v199-agent-source",
+  "release": "hyper-dimension-v200-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3159,
-      "sha256": "144a7c8a99e9a93cbaa639bbee9f5ddd0068f17ac527d4e1ca71748319c74847"
+      "bytes": 3185,
+      "sha256": "c0e9a83f96512d1fb397f1791843d352cf4769fc497604e01114791b26a0eeb1"
     },
     {
       "path": "README.md",
-      "bytes": 2969,
-      "sha256": "1fea49ebada8dda22414c4d4dc817de54279d456ecb5ed3060add01810254838"
+      "bytes": 2981,
+      "sha256": "682fa671d2396e267b5e39c1293826053728ee2c57a0430869d66b72153e2e89"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 61287,
-      "sha256": "f7afab889e3e76f317b743643a0a9dbdaa8135270658513a35fd72569019157c"
+      "bytes": 64653,
+      "sha256": "dde4c00dfb3c99ab7496288f5cc289b4ecde4a2eb26ac8c49fac0f6dc27e0fa1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -1601,6 +1601,11 @@
       "sha256": "5fc7e0d9be6793d674945d77ed3572b4ee30ce8cac7587c2291b44e8993572c9"
     },
     {
+      "path": "docs/world-lighting-v200.md",
+      "bytes": 2413,
+      "sha256": "761301923bff7586da718f68b310e82749f2cd9b4b105731c604012917eaca31"
+    },
+    {
       "path": "index.html",
       "bytes": 6754,
       "sha256": "59e87b796220b27010c2d7a911ed1ac226f9d2f6c90a77d8986be44f419287b9"
@@ -2112,8 +2117,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 11851,
-      "sha256": "e68d6dd6fafc55e488b28257b9bd093b166d6017e2da14287a1ecb507601beaa"
+      "bytes": 12070,
+      "sha256": "c9d4116ed0f5e7e144c2c6c8f6934e422592f226437b74508efb1d06e435c6cb"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6471,9 +6476,14 @@
       "sha256": "6a6b626d6916e4e8858c8d9ee55dcc8a4819fab226f1e5fdb133129c79ca5d9a"
     },
     {
+      "path": "src/alphaSilhouette.js",
+      "bytes": 2370,
+      "sha256": "39ae7cf84b02a0642b554a8a26f96f396b8c48c9cb8f28b3090e357e16c55543"
+    },
+    {
       "path": "src/app.js",
-      "bytes": 143371,
-      "sha256": "ada4e31d429763bb96fad4373a0ec424ee3b92cfccd317681c12c0fc688e9e92"
+      "bytes": 143583,
+      "sha256": "e39ee9a6259a27827647779a7c3c2ba23c7b9c5ee76a5ac95ed00e5bed267571"
     },
     {
       "path": "src/arcade.css",
@@ -6777,13 +6787,13 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 9958,
-      "sha256": "e6869ea6e88c251cd6f73a5d07fe75c6d950890d0df8af4a232771227e79f8f8"
+      "bytes": 10258,
+      "sha256": "dd746eb633dcfe4e4fb677046ee3775c1d2a09d7cba5883b03656777daa69dfa"
     },
     {
       "path": "src/environmentUI.js",
-      "bytes": 1759,
-      "sha256": "ce76cdbbb201aed1ecccd5072f52298bd736e7dad8d5d6ff3bfaa9a39f8d4bee"
+      "bytes": 1843,
+      "sha256": "9aa870bf67b3190acc852e3cb141c0597b03919b3e9118a43f7cb327961a9562"
     },
     {
       "path": "src/equipment-v35.css",
@@ -7042,8 +7052,8 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 4272,
-      "sha256": "16af9f38b1d7f95422c335ac8b1f519e4faf040c0b049410647909b3d15bf1c9"
+      "bytes": 5867,
+      "sha256": "41d005dd49b7ae9efb319a2c34e87089a9f8c01abf082a442471e5634fefaa4d"
     },
     {
       "path": "src/harborArtwork.js",
@@ -7441,6 +7451,16 @@
       "sha256": "0a686d02f522170f967d0e316a84a1d42dabf1da82d797097b2cb12a5d70fa8e"
     },
     {
+      "path": "src/nightLighting.js",
+      "bytes": 6375,
+      "sha256": "932a3cf74acd11797668be2c5e1431da55da0e4db83bdb68b3dbfdaa7781843d"
+    },
+    {
+      "path": "src/nightLightingRenderer.js",
+      "bytes": 6663,
+      "sha256": "59bd8a7be94f3ae467dadecbc8db6e475e6416aa6aaa1b66c0f0cb5d2d2c35e2"
+    },
+    {
       "path": "src/nightPartyPlanning.js",
       "bytes": 8738,
       "sha256": "adc94296f6185b2316587d02952377c669996412ca08e7b7c53055e4b1e9f9f6"
@@ -7502,8 +7522,8 @@
     },
     {
       "path": "src/oceanShader.js",
-      "bytes": 5922,
-      "sha256": "53838249f89575c625b9d917a75fa126fd5cf5711f72aedaa2a10c53b7fd3875"
+      "bytes": 6021,
+      "sha256": "8c89265c8097ac6f69d050f104d995bc0519f0a78e3047ee4c737fb77e4cd758"
     },
     {
       "path": "src/outdoorOccupancy.js",
@@ -8321,6 +8341,11 @@
       "sha256": "3a621e87939096b6c2d0ab5516602a22db462e2828a04b66816b0760106e9843"
     },
     {
+      "path": "tests/lanRequest.mjs",
+      "bytes": 871,
+      "sha256": "be394fc4bd51e94223ec10d6a5014246b9bfc49217966fa3a8b9c22a347ceaa0"
+    },
+    {
       "path": "tests/layout-validation.mjs",
       "bytes": 716,
       "sha256": "678958964a9352f74ebabf662511f1a836d5c88a9c11cd482c54f990fe87d9bd"
@@ -9032,8 +9057,8 @@
     },
     {
       "path": "tests/v148-lobby-browser.mjs",
-      "bytes": 8526,
-      "sha256": "23bf34394db3993f3329736c1b7c80a3755bca5918deb6177894aadf8805875e"
+      "bytes": 8660,
+      "sha256": "aebb893033282ddbf5265caa1345172ba7b1af3fd144ed0cc62361735a17db65"
     },
     {
       "path": "tests/v148-motion.test.mjs",
@@ -9192,8 +9217,8 @@
     },
     {
       "path": "tests/v170-reward-drain-browser.mjs",
-      "bytes": 13200,
-      "sha256": "05057d51c6444cc5343fb047e7f2e34d51e683bbd87505d08726ce5d62d9077e"
+      "bytes": 13228,
+      "sha256": "e71b40d801fd66fb9983f1da06f756859599ac7844fac754d96af5b5b4326453"
     },
     {
       "path": "tests/v171-lan-geography.test.mjs",
@@ -9649,6 +9674,16 @@
       "path": "tests/v20-workbench-qa.mjs",
       "bytes": 7755,
       "sha256": "3911893036668735acb0c7e48c9958de8f1d63483ca09d8ac1d6eb4cfa11dc96"
+    },
+    {
+      "path": "tests/v200-night-lighting-browser.mjs",
+      "bytes": 9050,
+      "sha256": "bfaaa12cfee2c400a5e96809e32d0f6f89299fd36387572d035227f7c16a5b86"
+    },
+    {
+      "path": "tests/v200-night-lighting.test.mjs",
+      "bytes": 4520,
+      "sha256": "eaca692544c0361c043fa2effb6d3b763511b12b1058de87d75e7c02758c3c1d"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
