@@ -1,3 +1,4 @@
+import {evaluateEverydayActivity} from './homeEverydayActivities.js';
 import {CROPS} from './farming.js';
 import {canPlantCrop} from './cropSeasons.js';
 import {SEASONS} from './environmentClock.js';
@@ -69,5 +70,5 @@ export function evaluateHomeActivity(input,day){
     if(!joinerySolved(board))return null;
     return {homeId:1,kind:'joinery',day,moves:input.moves.length,title:'木片拼画'};
   }
-  return evaluateSocialActivity(input,day)||evaluateCraftActivity(input,day);
+  return evaluateSocialActivity(input,day)||evaluateCraftActivity(input,day)||evaluateEverydayActivity(input,day);
 }

@@ -1,3 +1,5 @@
+import {homeEverydayChallenge,homeEverydaySolved} from './homeEverydayActivities.js';
+import {mountEverydayGame,refreshEverydayGame,resetEverydayGame,photoCropMarkup} from './homeEverydayUI.js';
 import {RESIDENCE_LAYOUTS,homeWalkable,homeZoneAt} from './residenceLayouts.js';
 import {nurseryChallenge,nurseryErrors,nurserySolved,solveNursery,joineryChallenge,slideWood,joinerySolved} from './homeActivities.js';
 import {drawAnimatedCharacter} from './characters.js';
@@ -89,6 +91,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     if(z.kind==='activity'){mountGame(s,body);return;}
     if(z.kind==='record'){
       const row=state().homeActivities?.[s.id];body.innerHTML=row?'<div class="home-keepsake"><small>第 '+row.lastDay+' 天</small><b>'+esc(row.last.title)+'</b><p>已经留下 '+row.completedDays+' 天的记录。</p><span>闲暇里的小小完成</span></div>':'<div class="home-keepsake"><b>这一页还空着</b><p>完成桌上游戏后，留下一张今天的手账。</p></div>';
+      if(s.id===7&&state().homeActivities?.[7]?.last?.kind==='photography'){body.innerHTML+='<div class="home-saved-photos">'+state().homeActivities[7].last.board.map(frame=>photoCropMarkup(frame,s.url)).join('')+'</div>';}
       if(s.id===0){const challenge=nurseryChallenge(state().day,environment().season);body.innerHTML+='<h4>本季的种苗</h4><div class="home-seed-catalog">'+challenge.crops.map(id=>'<span>'+itemArt(id)+'<b>'+CROPS[id].name+'</b></span>').join('')+'</div>';}
     }else if(z.kind==='farm'){
       const plots=state().plots||[],needs=plots.filter(p=>p.stage===2).length,ripe=plots.filter(p=>p.stage===4).length;
@@ -102,9 +105,9 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
   }
   function mountGame(s,body){
     const day=state().day,season=environment().season;
-    if(!s.game||s.game.day!==day){const c=s.id===0?nurseryChallenge(day,season):s.id===1?joineryChallenge(day):homeSocialChallenge(s.id,day)||homeCraftChallenge(s.id,day);s.game={...c,values:s.id===0?[...c.givens]:[...c.board],selected:c.guests?.[0]??c.palette?.[0]??0,moves:'',saved:false,submitting:false};}
+    if(!s.game||s.game.day!==day){const c=s.id===0?nurseryChallenge(day,season):s.id===1?joineryChallenge(day):homeSocialChallenge(s.id,day)||homeCraftChallenge(s.id,day)||homeEverydayChallenge(s.id,day);s.game={...c,values:s.id===0?[...c.givens]:[...c.board],selected:c.guests?.[0]??c.palette?.[0]??0,moves:'',saved:false,submitting:false};}
     const g=s.game;
-    body.innerHTML='<div class="home-game"><div class="home-game-meta">第 '+g.day+' 天 · '+(g.kind==='nursery'?SEASON_NAMES[g.season]+'季育苗':{joinery:'木片修复',gathering:'四人小聚预排',starchart:'星迹观测整理',botanical:'花房标本拼贴',rigging:'船模绳路练习'}[g.kind])+'</div><div class="home-game-board"></div><div class="home-game-controls"></div><p class="home-game-feedback" aria-live="polite"></p><p class="home-soft home-game-note">家中消遣不消耗物资；完成后保存手账。</p></div>';
+    body.innerHTML='<div class="home-game"><div class="home-game-meta">第 '+g.day+' 天 · '+(g.kind==='nursery'?SEASON_NAMES[g.season]+'季育苗':{joinery:'木片修复',gathering:'四人小聚预排',starchart:'星迹观测整理',botanical:'花房标本拼贴',rigging:'船模绳路练习',baking:'早餐出炉计划',photography:'光影四帧'}[g.kind])+'</div><div class="home-game-board"></div><div class="home-game-controls"></div><p class="home-game-feedback" aria-live="polite"></p><p class="home-soft home-game-note">家中消遣不消耗物资；完成后保存手账。</p></div>';
     const board=body.querySelector('.home-game-board'),controls=body.querySelector('.home-game-controls');
     if(g.kind==='nursery'){
       board.classList.add('home-nursery');board.innerHTML=Array.from({length:16},(_,i)=>'<button data-home-cell="'+i+'" '+(g.givens[i]!==null?'disabled':'')+'></button>').join('');
@@ -119,8 +122,8 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
       board.querySelectorAll('button').forEach(button=>button.onclick=()=>{if(g.saved||g.submitting||g.moves.length>=2000)return;const tile=Number(button.dataset.homeWood),next=slideWood(g.values,tile);if(next){g.values=next;g.moves+=tile;refreshGame(s);}});
       controls.querySelector('[data-home-picture]').onclick=e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',String(on));board.classList.toggle('home-show-picture',on);board.style.backgroundImage=on?'url('+s.url+')':'';};
       controls.querySelector('[data-home-undo]').onclick=()=>{if(!g.moves.length||g.saved||g.submitting)return;g.values=slideWood(g.values,Number(g.moves.at(-1)));g.moves=g.moves.slice(0,-1);refreshGame(s);};
-    }else {const options={g,board,controls,style:s.style,profile,itemArt,refresh:()=>refreshGame(s),feedback:text=>feedback(s,text)};mountSocialGame(options)||mountCraftGame(options);}
-    controls.querySelector('[data-home-reset]').onclick=()=>{if(g.submitting)return;g.values=g.kind==='nursery'?[...g.givens]:[...g.board];g.moves='';g.saved=false;g.spins=[...g.values];g.showBreak=false;refreshGame(s);};
+    }else {const options={g,board,controls,style:s.style,url:s.url,profile,itemArt,refresh:()=>refreshGame(s),feedback:text=>feedback(s,text)};mountSocialGame(options)||mountCraftGame(options)||mountEverydayGame(options);}
+    controls.querySelector('[data-home-reset]').onclick=()=>{if(g.submitting)return;g.values=g.kind==='nursery'?[...g.givens]:[...g.board];g.moves='';g.saved=false;g.spins=[...g.values];g.showBreak=false;resetEverydayGame(g);refreshGame(s);};
     saveButton(s).onclick=async()=>{
       if(g.submitting||g.saved||!solved(g))return;g.submitting=true;refreshGame(s);
       try{const result=await command('home_activity',{homeId:s.id,day:g.day,...(g.kind==='nursery'?{season:g.season,board:[...g.values]}:g.kind==='joinery'?{moves:g.moves}:{board:[...g.values]})});g.saved=true;if(active===s&&s.game===g)feedback(s,result.receipt.text);}
@@ -129,7 +132,7 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     };
     refreshGame(s);
   }
-  const solved=g=>g.kind==='nursery'?nurserySolved(g,g.values):g.kind==='joinery'?joinerySolved(g.values):homeSocialSolved(g,g.values)||homeCraftSolved(g,g.values);
+  const solved=g=>g.kind==='nursery'?nurserySolved(g,g.values):g.kind==='joinery'?joinerySolved(g.values):homeSocialSolved(g,g.values)||homeCraftSolved(g,g.values)||homeEverydaySolved(g,g.values);
   function feedback(s,text){const el=panel(s).querySelector('.home-game-feedback');if(el)el.textContent=text;}
   function refreshGame(s,keepMessage=false){
     const g=s.game,body=panel(s).querySelector('.home-game');if(!g||!body)return;
@@ -142,8 +145,8 @@ export function createResidenceUI({state,theme,environment,profile,resident,open
     }else if(g.kind==='joinery'){
       body.querySelectorAll('[data-home-wood]').forEach(button=>{const tile=Number(button.dataset.homeWood),i=g.values.indexOf(tile);button.style.transform='translate('+(i%3*100)+'%, '+(Math.floor(i/3)*100)+'%)';button.disabled=g.saved||g.submitting||!slideWood(g.values,tile);});
       if(!keepMessage)feedback(s,g.saved?'今天的木片拼画已保存。':done?'画面与接缝都对齐了。':'沿空位滑动木片 · 已移动 '+g.moves.length+' 步');
-    }else {const options={g,body,profile,itemArt,done,keepMessage,feedback:text=>feedback(s,text)};refreshSocialGame(options)||refreshCraftGame(options);}
+    }else {const options={g,body,url:s.url,profile,itemArt,done,keepMessage,feedback:text=>feedback(s,text)};refreshSocialGame(options)||refreshCraftGame(options)||refreshEverydayGame(options);}
     const save=saveButton(s);save.disabled=!done||g.submitting||g.saved;save.textContent=g.submitting?'正在记入手账…':g.saved?'已留在家中手账':done?'记下今天的小完成':'完成后记入手账';
   }
-  return {open,destroy,inspect:()=>active?{id:active.id,loaded:active.loaded,zone:active.selected,player:{x:active.player.x,y:active.player.y,walking:!!active.player.walking,path:active.player.path.map(p=>({...p}))},game:active.game?{kind:active.game.kind,day:active.game.day,season:active.game.season,values:[...active.game.values],moves:active.game.moves,solved:solved(active.game),saved:active.game.saved}:null}:null};
+  return {open,destroy,inspect:()=>active?{id:active.id,loaded:active.loaded,zone:active.selected,player:{x:active.player.x,y:active.player.y,walking:!!active.player.walking,path:active.player.path.map(p=>({...p}))},game:active.game?{kind:active.game.kind,day:active.game.day,season:active.game.season,values:[...active.game.values],moves:active.game.moves,frame:active.game.frame?{...active.game.frame}:null,shot:active.game.shot??null,solved:solved(active.game),saved:active.game.saved}:null}:null};
 }
