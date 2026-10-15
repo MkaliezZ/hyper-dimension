@@ -143,6 +143,10 @@ jobs:
       - name: Native connected characters and dressed tools
         run: node tests/v180-rig-browser.mjs
 
+      - name: Native seasonal terrain in home and meeting room
+        if: inputs.check_scope != 'soil-diagnostics'
+        run: node tests/v187-season-browser.mjs
+
       - name: Retain native character diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -151,6 +155,8 @@ jobs:
           path: |
             island/qa/v180/native-rig/report.json
             island/qa/v180/native-rig/*.png
+            island/qa/v187/native-seasons/report.json
+            island/qa/v187/native-seasons/*.png
           if-no-files-found: ignore
           retention-days: 3
 

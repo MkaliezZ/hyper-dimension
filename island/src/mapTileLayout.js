@@ -1,4 +1,6 @@
 import {TERRAIN_SEAMS} from './terrainSeams.js';
+import {SEASON_TERRAIN_SEAMS} from './seasonTerrainSeams.js';
+import {SEASON_PATCH_SEAMS} from './seasonPatchSeams.js';
 import {TERRAIN_JOIN_REPAIRS} from './terrainJoinRepairs.js';
 // Production and resident IDs stay stable while the calibrated landscape expands.
 export const TILE_MAP = Object.freeze({width:2304,height:1792,cell:384,overlap:32,columns:6,rows:5,version:169});
@@ -17,11 +19,12 @@ export function terrainTiles(theme){
 const PATCHES=[{"name":"plaza","bounds":{"x":855,"y":515,"w":448,"h":448},"core":{"x":879,"y":539,"w":400,"h":400}},{"name":"home-6","bounds":{"x":861,"y":1046,"w":196,"h":176},"core":{"x":883,"y":1068,"w":152,"h":132}},{"name":"home-8","bounds":{"x":1632,"y":905,"w":196,"h":176},"core":{"x":1654,"y":927,"w":152,"h":132}},{"name":"home-11","bounds":{"x":1660,"y":349,"w":196,"h":176},"core":{"x":1682,"y":371,"w":152,"h":132}},{"name":"home-12","bounds":{"x":1060,"y":829,"w":196,"h":176},"core":{"x":1082,"y":851,"w":152,"h":132}},{"name":"home-13","bounds":{"x":576,"y":951,"w":196,"h":176},"core":{"x":598,"y":973,"w":152,"h":132}},{"name":"home-14","bounds":{"x":1547,"y":414,"w":196,"h":176},"core":{"x":1569,"y":436,"w":152,"h":132}}];
 export function terrainLandmarks(theme){if(!['pixel','origami'].includes(theme))throw Error('invalid_terrain_theme');return [...PATCHES.map(p=>({id:theme+'-'+p.name,theme,patch:true,bounds:p.bounds,core:p.core,url:'/assets/map-tiles-v169/'+theme+'-'+p.name+'.png'})),...TERRAIN_JOIN_REPAIRS.map(p=>({id:theme+'-'+p.name,theme,patch:true,bounds:p.bounds,core:p.core,url:'/assets/map-joins-v180/'+theme+'-'+p.name+'.png'}))].map((p,patchOrder)=>({...p,patchOrder}));}
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
-function edge(theme,axis,index,position,fallback){const a=TERRAIN_SEAMS[theme]?.[axis]?.[index];if(!a)return fallback;const i=Math.max(0,Math.min(a.length-1,Math.floor(position))),next=Math.min(a.length-1,i+1);return a[i]+(a[next]-a[i])*Math.max(0,Math.min(1,position-i));}
+function patchCut(values,position){const i=Math.max(0,Math.min(values.length-1,Math.floor(position))),j=Math.min(values.length-1,i+1);return values[i]+(values[j]-values[i])*Math.max(0,Math.min(1,position-i));}
+function edge(theme,season,axis,index,position,fallback){const a=(SEASON_TERRAIN_SEAMS[theme]?.[season]||TERRAIN_SEAMS[theme])?.[axis]?.[index];if(!a)return fallback;const i=Math.max(0,Math.min(a.length-1,Math.floor(position))),next=Math.min(a.length-1,i+1);return a[i]+(a[next]-a[i])*Math.max(0,Math.min(1,position-i));}
 export function tileWeight(tile,x,y){
  const c=tile.core,o=TERRAIN_SEAMS[tile.theme]?.transition||1;
- if(tile.patch){const b=tile.bounds;return smooth(Math.min(x-b.x,b.x+b.w-x)/16)*smooth(Math.min(y-b.y,b.y+b.h-y)/16);}
- const left=edge(tile.theme,'vertical',tile.col-1,y,c.x),right=edge(tile.theme,'vertical',tile.col,y,c.x+c.w),top=edge(tile.theme,'horizontal',tile.row-1,x,c.y),bottom=edge(tile.theme,'horizontal',tile.row,x,c.y+c.h);
+ if(tile.patch){const b=tile.bounds,p=SEASON_PATCH_SEAMS[tile.theme]?.[tile.season]?.[tile.key];if(p){const xx=x-b.x,yy=y-b.y;return smooth((xx-patchCut(p.left,yy)+.75)/1.5)*smooth((b.w-xx-patchCut(p.right,yy)+.75)/1.5)*smooth((yy-patchCut(p.top,xx)+.75)/1.5)*smooth((b.h-yy-patchCut(p.bottom,xx)+.75)/1.5);}return smooth(Math.min(x-b.x,b.x+b.w-x)/16)*smooth(Math.min(y-b.y,b.y+b.h-y)/16);}
+ const left=edge(tile.theme,tile.season,'vertical',tile.col-1,y,c.x),right=edge(tile.theme,tile.season,'vertical',tile.col,y,c.x+c.w),top=edge(tile.theme,tile.season,'horizontal',tile.row-1,x,c.y),bottom=edge(tile.theme,tile.season,'horizontal',tile.row,x,c.y+c.h);
  return (tile.col>0?smooth((x-left+o)/(2*o)):1)*(tile.col<TILE_MAP.columns-1?1-smooth((x-right+o)/(2*o)):1)*(tile.row>0?smooth((y-top+o)/(2*o)):1)*(tile.row<TILE_MAP.rows-1?1-smooth((y-bottom+o)/(2*o)):1);
 }
 export function tileIntersects(tile,view,margin=0){const b=tile.bounds;return b.x<view.x+view.w+margin&&b.x+b.w>view.x-margin&&b.y<view.y+view.h+margin&&b.y+b.h>view.y-margin;}

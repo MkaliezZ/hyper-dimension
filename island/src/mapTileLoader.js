@@ -41,7 +41,7 @@ export async function loadTerrainTile(tile,{signal,onPreview=()=>{},onMetadata=(
  catch(error){
   check(signal);
   // A missing high-resolution asset keeps only its own overview crop as a fallback.
-  if(!tile.patch){
+  if(!tile.patch&&(!tile.season||tile.season==='summer')){
    let overview;
    try{overview=await decode(terrainOverviewURL(tile.theme),signal);const preview=await prepare(overview,tile,true,signal);onPreview(preview);}
    catch(previewError){check(signal);}finally{overview?.close?.();}

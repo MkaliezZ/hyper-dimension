@@ -83,6 +83,7 @@ import {activeSlotKey} from './saveStorage.js';
 import {drawRaster,canvasResolution,rasterTransform,rasterQualityStatus} from './rasterQuality.js';
 import {terrainTileStatus} from './mapTiles.js';
 import {terrainOverviewURL} from './mapTileLayout.js';
+import {preloadSeasonOverview} from './seasonOverview.js';
 import {worldEnvironment} from './environmentClient.js';
 import {drawOceanMotion,drawSeasonTerrain,drawEnvironmentFront,environmentArtStatus} from './environmentRenderer.js';
 import {seaTileStatus} from './seaTiles.js';
@@ -231,7 +232,7 @@ async function setTheme(next){
   await saves.idle(theme);
   await serverFarm?.prepareTheme();await serverFieldNpc?.prepareTheme();await serverResident?.prepareTheme();await serverVisitor?.prepareTheme();
   endMoment(false);stewardChat?.reset();closeModal();releasePlayerStations();persist();await saves.idle(theme);await saves.flush(theme);
-  await activateThemeArtwork(next);
+  await Promise.all([activateThemeArtwork(next),preloadSeasonOverview(next,environment.sample().season)]);
   const nextState=await saves.appearance(theme,next);
   theme=next;document.body.dataset.theme=theme;setWorldTheme(theme);syncFarmPlots();state=hydrateIslandSave(nextState,next);
   partyGame=state.partySession||null;partySettling=false;
@@ -415,7 +416,7 @@ function label(text,x,y,color='#fff',size=13,align='center'){ctx.fillStyle=color
 const environment=worldEnvironment();environment.start();let environmentHUDAt=-1;
 function updateEnvironmentHUD(){if(animationNow-environmentHUDAt<.5)return;environmentHUDAt=animationNow;const env=environment.sample(),button=$('worldEnvironmentStatus');if(button){button.textContent=environmentBadge(env);button.dataset.period=env.period;button.title='世界时令 · '+env.seasonName+'季 · '+env.clockText;}}
 $('worldEnvironmentStatus').onclick=()=>openModal('小岛时令','海风与四季，沿同一个世界时钟流动。',environmentCalendarMarkup(environment.sample()));
-function drawWorld(){mapCharacters.reset();const img=images[theme],env=environment.sample();drawOuterSea(ctx,img,theme,animationNow);drawIsland(ctx,img,theme);drawSeasonTerrain(ctx,img,theme,env);drawOceanMotion(ctx,img,theme,animationNow,env);drawPortfolioLand(ctx,theme);
+function drawWorld(){mapCharacters.reset();const img=images[theme],env=environment.sample();drawOuterSea(ctx,img,theme,animationNow);drawIsland(ctx,img,theme,env);drawSeasonTerrain(ctx,img,theme,env);drawOceanMotion(ctx,img,theme,animationNow,env);drawPortfolioLand(ctx,theme);
  // Shoreline foam uses connected-ocean geometry, never walkability or plot coordinates.
  // Entry markers remain tied to tangible locations.
  const marks=HOTSPOTS.filter(h=>['farm','mine','plaza'].includes(h.type)).map(h=>[({farm:'沃土农田',mine:'星晶矿洞',plaza:'星灯派对广场'})[h.type],h.x,h.y-48]);for(const [t,x,y] of marks)nameplate(t,x,y,12,'place');
@@ -795,7 +796,7 @@ function showFirstDay(){
 }
 showFirstDay();
 async function recoverStartup(){try{for(const [index,controller] of [serverGather,serverCraft,serverFarm,serverField,serverFieldNpc,serverResident,serverVisitor,serverCommerce,serverParty,serverFishing,serverFestival,serverCouture,serverFireworks,serverFacility,serverPersonal].entries()){recoveryPhase='controller-'+index;await controller.recover();}}finally{recoveryBoot=false;recoveryPhase='ready';bootNotice.remove();$('app').removeAttribute('aria-busy');}}
-recoveryPhase='theme-artwork';await activateThemeArtwork(theme);
+recoveryPhase='theme-artwork';await Promise.all([activateThemeArtwork(theme),preloadSeasonOverview(theme,environment.sample().season)]);
 const startupRecovery=recoverStartup();
 startupRecovery.finally(()=>setTimeout(()=>{if(window.requestIdleCallback)requestIdleCallback(()=>portfolioUI.preload(),{timeout:5000});else portfolioUI.preload();},1500));
 $('saveStatus').setAttribute('role','button');$('saveStatus').tabIndex=0;

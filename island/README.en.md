@@ -14,7 +14,15 @@ Gather, craft, run your island and host parties. Talk freely with AI residents, 
 
 1440p / 60 fps with original BGM. New terrain footage comes from V169; resident, document, parent/child Agent and minigame scenes retain their recorded versions and evidence sources. Profiles and task documents are fictional. **Minigames are demonstration prototypes; gameplay, art and animation will continue improving.**
 
-## What's new · V186
+## What's new · V187
+
+Whole-island seasonal terrain is now connected in both styles, with 280 regional, join and preview images. Transitions wait for the visible view; failed loads retain the previous season and cold pans use the current season preview. All 16 actual home/meeting-room seasonal cases and 33 focused checks passed locally. [Artwork and validation scope](docs/native-seasons-v187.md).
+
+| Pixel · Autumn | Origami · Winter |
+| --- | --- |
+| ![Pixel autumn](docs/media/season-v187-pixel-autumn.png) | ![Origami winter](docs/media/season-v187-origami-winter.png) |
+
+### V186 · Natural season boundaries
 
 Natural thirtieth-day boundaries and hidden-window recovery now record the season transition without restarting it on every frame or clock refresh. Eighteen focused clock/service checks pass; all nine V185 Windows/macOS cloud jobs succeeded. [Fix and artwork scope](docs/season-boundary-v186.md). Complete native seasonal terrain is still in production.
 

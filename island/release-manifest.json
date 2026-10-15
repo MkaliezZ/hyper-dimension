@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v186-agent-source",
+  "release": "hyper-dimension-v187-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 11229,
-      "sha256": "5a0678d2b6ad1254d1efa4793346e9ce276223b803c30fc5d5d3173030dd00fc"
+      "bytes": 11826,
+      "sha256": "47db928eddd3db6a210d9c6fabc3f99bf3b5b5aaf47f317934d53808f5c14996"
     },
     {
       "path": "README.md",
-      "bytes": 9883,
-      "sha256": "a27d5d1308a92b4b00fd88833120c4f0a9a03da3f8afb9fea65d1b0ee04eeaee"
+      "bytes": 10477,
+      "sha256": "6dece225e6d0339f257ee3c1e620d59975334a182439c9716cf8106ef5711c12"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 38675,
-      "sha256": "b9477917ad7716bf8a71b5cd0464aac31655f14f76e3edb6bd2c7c94d7141bdd"
+      "bytes": 39469,
+      "sha256": "48d371965689e84c8bc03fdc6888cb0a1ab020145f4235b1439d33d7400a5636"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -406,6 +406,16 @@
       "sha256": "aa1cae06cb852f864c6b19c62b6f9d16425ed567390f7792c76bbd3e764709bc"
     },
     {
+      "path": "docs/media/season-v187-origami-winter.png",
+      "bytes": 2949137,
+      "sha256": "81ddd4485208daf668693688f177a740ad211617b490410549d452f2506ef4c6"
+    },
+    {
+      "path": "docs/media/season-v187-pixel-autumn.png",
+      "bytes": 3282342,
+      "sha256": "1dfbb02af2651dd0050afdc7c917a20712e26aa6792f0103410f29b02cd188d3"
+    },
+    {
       "path": "docs/media/shopfront-origami-v113.png",
       "bytes": 890806,
       "sha256": "1cc03c987536ce8d35a8abc290acf15d86394068aea6d70015fd730b40fd00b1"
@@ -619,6 +629,16 @@
       "path": "docs/native-join-art-provenance-v180.json",
       "bytes": 2589,
       "sha256": "e9a84ab25b985f6c071800005b4925cec31774d925b3c46cd508ca3996cb45c2"
+    },
+    {
+      "path": "docs/native-seasons-v187-evidence.json",
+      "bytes": 7765,
+      "sha256": "94a03bcf5083814ca13341bdaccb6ceb93b4de60f82cc6524e9c1fbd982aca09"
+    },
+    {
+      "path": "docs/native-seasons-v187.md",
+      "bytes": 4153,
+      "sha256": "e6000e755182e8ea9a0f6a6c5f0ff844643cc17b2a71ba0e9131940c0ff177fb"
     },
     {
       "path": "docs/navigation-arrival-v179.md",
@@ -2077,8 +2097,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 10157,
-      "sha256": "966211cf3e0be088be957a69453e826ceba66e4388e6aee4ae4bdf9aa590197a"
+      "bytes": 10389,
+      "sha256": "d683bc9753b0c5d56e489adfd731bb9b7b70a0e4429dc4a92550b33712a528a6"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3996,6 +4016,1411 @@
       "sha256": "7c84f2bd0834b52bd0014ef7ca98eb638721ebd4281d5a1ff47a841d65ffa288"
     },
     {
+      "path": "public/assets/season-terrain-v187/manifest.json",
+      "bytes": 60343,
+      "sha256": "527447fbbe646cbf6bf12fd57dbcc7ce6603e8eb2ff7069523f3660e77bf1eb7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/0-0.png",
+      "bytes": 2750529,
+      "sha256": "4b883fb4905c658cb4330e2a35182b97003fc0978bd6ec5edbca794dcd809ebd"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/0-1.png",
+      "bytes": 3134779,
+      "sha256": "071b64b278a91b036536ef774ea8da8f6808bc322f4203f90e893bf3f7b1956f"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/0-2.png",
+      "bytes": 3108592,
+      "sha256": "5259983cfdc57839983c6bdf9bfc9c09d7bb6eb840571c9bdbb5b10f7964eb75"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/0-3.png",
+      "bytes": 2879561,
+      "sha256": "cd2908f5db4c078194b389cadf81d82bbd909a35197ff5b9a99e2a5c9d25dd80"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/0-4.png",
+      "bytes": 2060519,
+      "sha256": "3468b17c6a43aabb8b0ae105bb2805dabe03b821366a6c3c093abaf6a770b33c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/1-0.png",
+      "bytes": 3035685,
+      "sha256": "2cc2586a579f6083cb7caac169fcf24f8b5c25c5f47d88e7edd815f15f7a9ffa"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/1-1.png",
+      "bytes": 3143890,
+      "sha256": "afe8eee3c04e2eb6238dcb36c14d9547abed7c35d17151ae14c8ff13826fc14b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/1-2.png",
+      "bytes": 3167748,
+      "sha256": "f7d99eb9f05fe9263c3053d25df643a44d00d297b6cf3824621c2761f47c306a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/1-3.png",
+      "bytes": 2989227,
+      "sha256": "4cdeb315df48c73dd6da69951f92d3b4b063feb830ecce971eec3c31ece35153"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/1-4.png",
+      "bytes": 2600582,
+      "sha256": "ee1860f8f36cb83703e194e1cf4ddbd5fd5a1711e1ef7f26c205b482f912c972"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/2-0.png",
+      "bytes": 2929432,
+      "sha256": "24847da162ee14936002bbffd33a39e7c3cc274030f8763e146ccf7141e903fc"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/2-1.png",
+      "bytes": 3297948,
+      "sha256": "9ea4ba785dcf87aa2911b48f645e3845305c44a1e0ce6e8ded803c3ecfc65557"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/2-2.png",
+      "bytes": 3160448,
+      "sha256": "c98d904794af2fe4f32cab3cc4059313e3d3415f0b4c2f507dabf7ca0a84f4b7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/2-3.png",
+      "bytes": 2941307,
+      "sha256": "236d938f5c4c2a246b9d9e42d2d7c63f4c59562367688b0709d023e690f9b6bc"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/2-4.png",
+      "bytes": 2492108,
+      "sha256": "0606cf5057c25b7837beda9d49cd7ca8b8b2257fe3f1d8e8b2546a136cfcbba5"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/3-0.png",
+      "bytes": 3068706,
+      "sha256": "23c347cd83fa6aa3d3bfa65e0f9ba0d125b563562a0b874f2e05db0671431747"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/3-1.png",
+      "bytes": 3275547,
+      "sha256": "61eb6c6211b6634e87803c5bc37574434b9d7bbaac836deb92e60775c813d8bb"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/3-2.png",
+      "bytes": 3054299,
+      "sha256": "79c8c6744ec170ca5889b170a9153658ec869c7b246d9a781ec68377b6b3aa92"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/3-3.png",
+      "bytes": 3040632,
+      "sha256": "271126879c67661ee53b470c5caf502344d9dd148334f0caa6c12e5ae723fe67"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/3-4.png",
+      "bytes": 2664378,
+      "sha256": "291ac1a665fa685f4a733c47c609532c9df5504569fe700f56d3825630e38eb6"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/4-0.png",
+      "bytes": 2938893,
+      "sha256": "1c991b7a43675c081e200736f6547acfb7ce43ab2ac8a53345567308a8d55f1c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/4-1.png",
+      "bytes": 3132518,
+      "sha256": "7c5b513c3d233b0c9f295e22fb8ef36c2865e13a4a63e47e2a5e36ccc711575d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/4-2.png",
+      "bytes": 2991779,
+      "sha256": "6c4ca2e7ea16f08b6b4bd0db17b0a5791cb768a9b8035b57f7d9a313f40f1b38"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/4-3.png",
+      "bytes": 2946892,
+      "sha256": "be2206f5b70bf525310e22c2e96a0139fb3e1dad16dac2d2f6c4d0f3ce38a8f0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/4-4.png",
+      "bytes": 2675725,
+      "sha256": "3c7509edd5f12d4a5b637a91a7b82a9cb18dff80027fae44521a5402f48727cc"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/5-0.png",
+      "bytes": 2660467,
+      "sha256": "fcb9e7b847d3984e7a22e9328ea4a196e3a27443745d6a848078be33f3193021"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/5-1.png",
+      "bytes": 2859705,
+      "sha256": "30888545945ae1f5f565ce6f96934fd2b8c12c93f9226cb8f7a09e427f95d6f3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/5-2.png",
+      "bytes": 2762732,
+      "sha256": "1240504ff093089d98f134d6c53332e102c873f5c6158f994163aff6aaa35284"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/5-3.png",
+      "bytes": 2687056,
+      "sha256": "d88e906af914f3be7efc11f5ecb808285e270cee22c9e1c3ac277a6a5a3920b5"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/5-4.png",
+      "bytes": 2374894,
+      "sha256": "71ab541c186cec7c8aa549f7415b4f5f199b9ef7b34d184325701be8d9416939"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/boatyard-join.png",
+      "bytes": 2595764,
+      "sha256": "791c7c80b57f6774be2bce6ab61985909673c85939fcc40351da9ab2a30ea8b1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/farm-join.png",
+      "bytes": 2998534,
+      "sha256": "85b15d96d7c482eca15d27b13de47be3ed4517d036fd9a867777128b13a3fbbc"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/home-11.png",
+      "bytes": 3001601,
+      "sha256": "4f8f7e8092c3a0621cd9aee222616837c69b529e437f73d004bd177accf2c34d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/home-12.png",
+      "bytes": 2882434,
+      "sha256": "c221370217feb174231bfbd3aa127443fa7a4f7eca6eb7cc434653a9b53e8bec"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/home-13.png",
+      "bytes": 2992865,
+      "sha256": "f53eabca22729c3f0525a4733c054fc3a5f6375630b571b61f4598de3f9fe9d3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/home-14.png",
+      "bytes": 2973077,
+      "sha256": "8ede6f271ce5c8533546be2ace64607d024553334f991ace5cbe44cb27515e95"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/home-6.png",
+      "bytes": 2879098,
+      "sha256": "676aecf31a5879b6575c972b1f53f32ee4ddb97aca56d6ae739eaae6e13c1e62"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/home-8.png",
+      "bytes": 2870394,
+      "sha256": "a6dce1c9277d43ae8d771abb587f580e77d7be7e5475b7e13461ac8251e1c85a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/overview.png",
+      "bytes": 11283021,
+      "sha256": "c66c192400ffb892874b7e9eeff008f62accf6a65bbffb4b317712573a089bc0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/photo-join.png",
+      "bytes": 2900475,
+      "sha256": "af4e3a7f76c33aa9560bc689cc1a54d3a6aad2ac54bf0da42072cd61fde3980c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/plaza.png",
+      "bytes": 3167373,
+      "sha256": "54859cf568879d0dd010a2b2ff30385ed07651a901d8cb1de94487e35b782cd0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/repair-hall-court.png",
+      "bytes": 2482539,
+      "sha256": "80ccbcebfdc8b5a1030418d0a0cbddf8035c9f46b2bee94734e251aa0c40959d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/repair-southwest-yard.png",
+      "bytes": 2422796,
+      "sha256": "fc5a722ce1f6e5727b70eef0f16c97d6df5e88ca63e5cd3e1b5cb67ecc8e653a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/repair-terrace-porch.png",
+      "bytes": 2443763,
+      "sha256": "305333f5aa0c361a77ad7f5aef202fd28864daec59bf546af19f78926c96eaaf"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/autumn/repair-workshop-porch.png",
+      "bytes": 2559474,
+      "sha256": "269b569d079d027cd57f0b5508ea31a633dd7e260052c087f897746a950c3ef2"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/0-0.png",
+      "bytes": 2774889,
+      "sha256": "c3af63cb8203c09a1b1e73642580dd5d3557827fcefd840f87f1c163bfb4abc7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/0-1.png",
+      "bytes": 3103361,
+      "sha256": "085ae41455c75f81f08cce955ca1a837495ac281443cdf2e52b6b996dba3d47f"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/0-2.png",
+      "bytes": 3071599,
+      "sha256": "ec154de485a43c5de01ffded96b0ec6eada678e3d627ef20fd2f0ab0d93b1f02"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/0-3.png",
+      "bytes": 2889495,
+      "sha256": "a838f34b5afd57854ef8ba42340b211c000b00302493aa7ba33d7625a1fe56c4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/0-4.png",
+      "bytes": 2058139,
+      "sha256": "6a62187c7a9a55d90dd8bb33d8065eeeeb435c2173d11cd89ef4cc775bc929b7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/1-0.png",
+      "bytes": 3041381,
+      "sha256": "9a190e71ef114701d824830fb2739c54fd5b273e175559b7306b2d9de0fbcec4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/1-1.png",
+      "bytes": 3192819,
+      "sha256": "773e51380d4108af07392f52d565b31480941a946d2c432c018bf09341394f91"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/1-2.png",
+      "bytes": 3133779,
+      "sha256": "a752050d4987977e1020ae1a58cc282d705043829bd9c4860b811ee8db0e013c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/1-3.png",
+      "bytes": 2966717,
+      "sha256": "f5ac6889b09a1bb3f928ccc799d1266bf96ce333253c56815592ee7983173ce9"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/1-4.png",
+      "bytes": 2637880,
+      "sha256": "1b08c0e45b5c6a4e2850711cb4643a7446ef19c64e4a43bb20521fedbacbb76f"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/2-0.png",
+      "bytes": 2862668,
+      "sha256": "9925feb167e760b17308938dc12557e023bf2ab59354889db8ddfbdd30dd968d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/2-1.png",
+      "bytes": 3292776,
+      "sha256": "fe055265b98ba9afe3823cbec0edf118e9f541760e0461d9c5a509cf5b869fa9"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/2-2.png",
+      "bytes": 3091471,
+      "sha256": "99a22befd2d7361f88a53631cc1ffc983b2a9b9c955403604e9df9c36d8038ff"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/2-3.png",
+      "bytes": 2967370,
+      "sha256": "0c81a79e8ec9af9eb69acc1952642e3147b1c6e6f9048d1efa4940543cb6b453"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/2-4.png",
+      "bytes": 2491545,
+      "sha256": "43007972c34e6661d0cee1cc137fb79811552853181c9cda9a7c2238c743a388"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/3-0.png",
+      "bytes": 3100911,
+      "sha256": "6e35e184ffe8eac8c237ef379df45a185416a37542227adb597996a6eea9cafd"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/3-1.png",
+      "bytes": 3274393,
+      "sha256": "fee0880e301eb351e720f55df2ca48db32e71c9b79ab3a0c4c173edf42cd2926"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/3-2.png",
+      "bytes": 2979866,
+      "sha256": "949145583c52d5def0bac73e26e8e4937355d6e049acc1ccec3a82c8d0d03699"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/3-3.png",
+      "bytes": 3001267,
+      "sha256": "b15bafc8ba1906859632cec0bc95fa8bf483f5085820039de563a46d64de934e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/3-4.png",
+      "bytes": 2593971,
+      "sha256": "55e6aeb81a13a48f9231b98043bfed4cf750daf8b2cf530879cf1cd9499fc0c3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/4-0.png",
+      "bytes": 2943532,
+      "sha256": "2dea10310876cf5e91b2b48478c64d3ea518d3707d98016306d48561e80f200f"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/4-1.png",
+      "bytes": 3137224,
+      "sha256": "91ed72a8bfc0791c47327f3d22434f7b208c388a1dd4072698a3b40697bd5bc1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/4-2.png",
+      "bytes": 2985916,
+      "sha256": "ad1e1157e90c9b98e66d1103d26e4e541b57926d52d7bf23cf353689957cb5f2"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/4-3.png",
+      "bytes": 2855332,
+      "sha256": "7e266a66884faecaf28993690b503f33684b2965260a37867fb8c82c22c656cb"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/4-4.png",
+      "bytes": 2619084,
+      "sha256": "53b956c3880e4ab2c2f4d19a559aab10816ffaaedaac9da1d7c7ed0f342f0028"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/5-0.png",
+      "bytes": 2712916,
+      "sha256": "adf95f428b8651f83dd881cbec8aacc702b9215ec772c10bd9ae78c74549eb8e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/5-1.png",
+      "bytes": 2805576,
+      "sha256": "a84ba654505049c114213a3a06d9540d0b69b60e6d6965cce68cf7addf11e36c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/5-2.png",
+      "bytes": 2783060,
+      "sha256": "f72a0421f82c007dc25e6be010c8bf9026059ccf04b44515af877c769582013a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/5-3.png",
+      "bytes": 2741972,
+      "sha256": "04b381b7c2965160e2d28ba4bcc3a1b45803299165f819d8b1547d1fe5f30ae3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/5-4.png",
+      "bytes": 2356058,
+      "sha256": "cd34a442b4c579f04da877fd4c3ea0beef9bd1b9f5a6c4daa0bf13252e667f0c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/boatyard-join.png",
+      "bytes": 2530539,
+      "sha256": "8be2c64c7ce7af0a8f73258450807dbc1bce2a72de621877db59d4de043a3d04"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/farm-join.png",
+      "bytes": 2912185,
+      "sha256": "a2cab67915f62ece32a932ffd1f96895af1ff050149d01093384803353bb1660"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/home-11.png",
+      "bytes": 2869593,
+      "sha256": "939da25372adbc34bbaaa25468f7b319204b30a656202dd244d5cabbac9bb03b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/home-12.png",
+      "bytes": 2792199,
+      "sha256": "a43c85fece2d023b18f80e0d4f65f9ba492136535cc8d632e08007a2351f5cea"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/home-13.png",
+      "bytes": 2930481,
+      "sha256": "dcfddea1e2879d39ef74c1e1a738ee1a952984ff0d3ecf9cad55500cb28c2000"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/home-14.png",
+      "bytes": 2893507,
+      "sha256": "c78170f26fe6b10d5ba0a61e88f8cb4de7d9cba2030c14d8d2b8eaf0b22547ed"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/home-6.png",
+      "bytes": 2774796,
+      "sha256": "d22fc6c8ab847a663e74228196121b187104ab598488b3a21a994fa00c8647e4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/home-8.png",
+      "bytes": 2815992,
+      "sha256": "6d85f5cd316fcf1893041b4313b662dc9d3ea4a0a05bf85af3cd01d8eda1944b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/overview.png",
+      "bytes": 11380532,
+      "sha256": "cd37d9d298573166eefba9c2c6017a034e7df20a63d42f16bc5f5187e004430b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/photo-join.png",
+      "bytes": 2817387,
+      "sha256": "a044a3f9f4430ef4656cd44b33a4b7dd91ad1854bbbcb0773763942e0f1a3b75"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/plaza.png",
+      "bytes": 3165859,
+      "sha256": "58efa18403105b3fae1c4c9a748989eb1c2fe3c26dc6a6df78d05c768f9e3a0a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/repair-hall-court.png",
+      "bytes": 2587162,
+      "sha256": "080c020953f8f2f783a75707e878ebbb2d3571162516091101484b13f83be8a0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/repair-southwest-yard.png",
+      "bytes": 2400749,
+      "sha256": "3a23ac7c0d3c67e53deab70790cdeacf6164c40a83f74db1d5f379fb4040ccd4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/repair-terrace-porch.png",
+      "bytes": 2453122,
+      "sha256": "0373e920276543c14cd21fa4da68f59597947e1ac837935480bb25f90ab71b8c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/spring/repair-workshop-porch.png",
+      "bytes": 2337529,
+      "sha256": "4ac43c8a3f5d3f4fe552ef6a390981143b7a6ccbc3e0968e82949da3d73a8c51"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/summer/overview.png",
+      "bytes": 11324121,
+      "sha256": "fc5415fe51c3e50e0f63cbc73aa7b42cbe34f00290e4c134193a591433bf88f0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/summer/repair-hall-court.png",
+      "bytes": 2627878,
+      "sha256": "e6e12ebf95a05de9ac200981aaa1948109cfe027aa1d6f10a2a55e7744afe1e7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/summer/repair-southwest-yard.png",
+      "bytes": 2407396,
+      "sha256": "92d9b197970e019192bc5bb4ccfc248b913b5ba2cd1dbcc7d1d3d7dab5e706ca"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/summer/repair-terrace-porch.png",
+      "bytes": 2498532,
+      "sha256": "642f316452f10055ad838c219e49e3d9e2e3f90ba8bd6d02ca3048984616ea25"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/summer/repair-workshop-porch.png",
+      "bytes": 2465191,
+      "sha256": "a9ba644db34dee6d2020b66fac1cdf43ecbbef26cec9748188c971d65508c04e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/0-0.png",
+      "bytes": 2683675,
+      "sha256": "b2f6374979d2976c00b6a9ec8dc49bd0adeb6d66669efceed5a807176a22862c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/0-1.png",
+      "bytes": 2907480,
+      "sha256": "d51d26eead69b480e3387ae7c384ca1ba01feec4354ef67b428501c529e36211"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/0-2.png",
+      "bytes": 2910155,
+      "sha256": "2524d8d40607179cd115b07fac7f65ff31ba759bbe8c7f9a51fd09385e6610ba"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/0-3.png",
+      "bytes": 2730385,
+      "sha256": "17017c4f7392c51e1c58ff45e5e37c3010f03f3493354a4412ab8d0ad167aee9"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/0-4.png",
+      "bytes": 2045607,
+      "sha256": "b0947905bd8282bc69563ce9da655eb380c8ca656968c310eaaca6d48a0803e1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/1-0.png",
+      "bytes": 2832745,
+      "sha256": "ead0652bc40538dd6c5480ded3faa01bb05a769462f54b4eb51a88b0dbb03af3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/1-1.png",
+      "bytes": 2989069,
+      "sha256": "a1441eaae3f8b64c6213d8e566427d0b1a4a50437899653e13e05cfc06853b2d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/1-2.png",
+      "bytes": 2972726,
+      "sha256": "56c68ae9d22353f1ca0cd03c47eaf099ae0e0a2bcc12e94a49621b85e5004ee5"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/1-3.png",
+      "bytes": 2754381,
+      "sha256": "e495266649ca8e0eafa12bf214ec2f4df6514d489e18431c6ca92759b562438b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/1-4.png",
+      "bytes": 2536101,
+      "sha256": "5bd9cdac17ae51ee81d384d0e231b122399887762ca494450833b0560c5e12db"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/2-0.png",
+      "bytes": 2751991,
+      "sha256": "9dbbba56ccdfa2edfd219500f9360d4a0cc255d153220378f9507e7854746d86"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/2-1.png",
+      "bytes": 2819508,
+      "sha256": "73445143db2c97d102bf75ccd455b525530e18e33524985a5230a36b7718d266"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/2-2.png",
+      "bytes": 2704706,
+      "sha256": "46f2503f4d35192ac7c97cd52c6faf7f3c3ead3c17f5a6c8a049e4c3962a420e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/2-3.png",
+      "bytes": 2758080,
+      "sha256": "b1c6b819ac68cbd99c5ff3dcf65cea67ff684ca038c2e7243488771b1a06bb0d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/2-4.png",
+      "bytes": 2416039,
+      "sha256": "fd95a20947a200c3526922d97c2f582e9e7dc410f2978b48009cfea2efcec889"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/3-0.png",
+      "bytes": 2850813,
+      "sha256": "99d0f440bcafaaa831fdc30617740b00f744a223c768b4481139c71b92981fad"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/3-1.png",
+      "bytes": 2878478,
+      "sha256": "5cc3ac91fce8c534255bff9175e07e5333a938825edd103682917abc15dca42c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/3-2.png",
+      "bytes": 2702686,
+      "sha256": "e16fc8db294bff3e4f5cafafdee0acaeaea88b9f7af6f4bb03bb077018961712"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/3-3.png",
+      "bytes": 2780470,
+      "sha256": "679cc5784e3eb6b190957393986467cdb2a3994652eeb122cc61f687dbed92e4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/3-4.png",
+      "bytes": 2588442,
+      "sha256": "638b3dc286dd0f6e7643fd8bc32d21c909b1349e75c70b540259a563ee9a06b0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/4-0.png",
+      "bytes": 2754718,
+      "sha256": "3119e9021c375059862ed52510750bc1b31b741dbee0c5c0e7863ef916ccfead"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/4-1.png",
+      "bytes": 2908457,
+      "sha256": "0937d8998c75443b332774c4adc59b9f5a218a6e94ad295df2ff6015e0d23501"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/4-2.png",
+      "bytes": 2742417,
+      "sha256": "fd7b878ed7e40cbde35bed4fc522abaaeda0679c7be75ef3f65ac665112dd9ba"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/4-3.png",
+      "bytes": 2722161,
+      "sha256": "e13155454d18ed5156d8a89570efe27944a1a77b7791dbce42b9fb4be29b72e4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/4-4.png",
+      "bytes": 2555845,
+      "sha256": "70bea921428cf0e429b6b4709c67c4060e3b9f021696a36e3eae1eec4d64d579"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/5-0.png",
+      "bytes": 2630975,
+      "sha256": "9689426b748e844a8cc9c5f3338fd94ddea5869980150bb0dd6377eb9d8990ff"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/5-1.png",
+      "bytes": 2724107,
+      "sha256": "b9df1a7f559bb2aac24712af3decf3814b0077f49f08da5db8af014eb1dd815f"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/5-2.png",
+      "bytes": 2617167,
+      "sha256": "7f1f13eed57e013690f4d29d25f2e935f2f27f6758af178a4078095a907973dd"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/5-3.png",
+      "bytes": 2662043,
+      "sha256": "f1f9ee1d173a90f871fc70533f8cc10a47ab853fb2f4e5ea458eaeb8a578ec3b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/5-4.png",
+      "bytes": 2344437,
+      "sha256": "611fe654ce124b4607d86c1c07fa9f4badcc2b612cdda1c3482d1817453be0cc"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/boatyard-join.png",
+      "bytes": 2499726,
+      "sha256": "f789b8a3be0953a62ce97e9aa5531268d978bea3b5af85d47ba7b7df37812c21"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/farm-join.png",
+      "bytes": 2768443,
+      "sha256": "73d8f857774c8c8ed9985e6041a151289dde34dc3edd147c122dd24eabfa7eaa"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/home-11.png",
+      "bytes": 2661003,
+      "sha256": "0e43fd6d72d52d13df8026f93dee815e06afc0e329e3310c1693adc91a1100eb"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/home-12.png",
+      "bytes": 2553834,
+      "sha256": "5692be299705e4cbec478968fda098d8be58b0a9bd70c74b321e6f76be07ccc1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/home-13.png",
+      "bytes": 2782882,
+      "sha256": "b081d2e6a103c7be9330f75d011e9db930796ac289e918253bc47a3490cdb4f2"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/home-14.png",
+      "bytes": 2564022,
+      "sha256": "27529cb338fb8775b084db347cbf65bc5b6d3d5e9ba971593dbd7e0498d7d138"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/home-6.png",
+      "bytes": 2542721,
+      "sha256": "c9551850d870b9759c40e6ffe4a66edda2600698c409d4c3475995e9488db85e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/home-8.png",
+      "bytes": 2555432,
+      "sha256": "d617a5d063a2b02ff2ee7ef6257484ba0686eb2dd425a82a31068211bd59b747"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/overview.png",
+      "bytes": 11054854,
+      "sha256": "ebfbbbd5400449a84a41f7c01d3f5cd3432ea1e004758f7e2f2025528899fc23"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/photo-join.png",
+      "bytes": 2695974,
+      "sha256": "4dad6c9272faf6fdd25fd1473fd0651fb56a5ed586f164d724cce9610679fd97"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/plaza.png",
+      "bytes": 2898035,
+      "sha256": "20456a1ad5f77aabd1edf5a0a6cc948e6909d9763a46e2747cdfe5be6a4d502d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/repair-hall-court.png",
+      "bytes": 2228911,
+      "sha256": "979e338e6a290fb58fe42d531f9c89a7138dc11aa8a8adc24c66f96c7177e8e6"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/repair-southwest-yard.png",
+      "bytes": 2089393,
+      "sha256": "c3da59110fda275ce05d626af25e69d14aa99d6af5ce599d247e3c2b537a1ae9"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/repair-terrace-porch.png",
+      "bytes": 2121379,
+      "sha256": "eb83c5777ff1152af8e13c7a4a8ed8cdb8a5ece47be7acb9f85cb5b4fedfb7bf"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/origami/winter/repair-workshop-porch.png",
+      "bytes": 2060077,
+      "sha256": "757163dda01888cc063e0336db9788d42456ef35b6b74431447b4d4502fd9b44"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/0-0.png",
+      "bytes": 2781186,
+      "sha256": "cf196e5eedaf47c81bac7f93e68638509336f6af73f61f6a83d1a85ca194ed6b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/0-1.png",
+      "bytes": 3108464,
+      "sha256": "ef3afce6edc5a7b76ec240c6e739e69b310cc3629f20f76516a0e9a99e895ad5"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/0-2.png",
+      "bytes": 3279951,
+      "sha256": "b0683746f3d5ca33b4bc98c91f0c091d7165de4fc3669cdc2f543dc49e6e8b8a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/0-3.png",
+      "bytes": 2794560,
+      "sha256": "d0bfb92437ad8051b9c33f6bf931dea22139415c9da3e3bb38f8271999e8e8a1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/0-4.png",
+      "bytes": 2377562,
+      "sha256": "525b080ed45641d833ea2fefc424e9681811b26dac5521398a057e70c2269e63"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/1-0.png",
+      "bytes": 2972672,
+      "sha256": "638ab6661248aae96f1171fe4e05f0145ec8b4e9c0e60f0ebfc7e9f6c42eb71d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/1-1.png",
+      "bytes": 3269099,
+      "sha256": "4b948a740083a791654128d0a4c20eb18ad368d2d8455b0685f9e4cd77b79659"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/1-2.png",
+      "bytes": 3316581,
+      "sha256": "e5b6507f9f5de987d8923c322ff1905ed73388fd7c76c2219688cffc36275e17"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/1-3.png",
+      "bytes": 3005446,
+      "sha256": "daf269a651dea8842b4dbf6874135b16d9a6b75c78ab5b68d05fe9409bdb8ff2"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/1-4.png",
+      "bytes": 2554917,
+      "sha256": "179ec00d4abdc861428287b2853dca979c1586a50ba201067bb199d2b16ca00a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/2-0.png",
+      "bytes": 3087765,
+      "sha256": "bc2f9317319cb27d767a53e0235e7f9d7e199d402146559cd2b7dba61e974987"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/2-1.png",
+      "bytes": 3457994,
+      "sha256": "e8b992daa680b5e5c7b9cacb7a73ad2abb885c6305b925730f034f230380f435"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/2-2.png",
+      "bytes": 3333198,
+      "sha256": "7160164d4f0df4d22b5d2e784b234db2e9fbb0c38d4ebf7c73f9164ffa29c803"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/2-3.png",
+      "bytes": 3067081,
+      "sha256": "bed2a99c26ede64e833df6623779312cdf875862b1921f5dfd43e51c628b68be"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/2-4.png",
+      "bytes": 2418106,
+      "sha256": "0fb1df1c9773e9b400ee169ed45ead9ce99461ca9c9e9e7170f64c20cd326d6c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/3-0.png",
+      "bytes": 3142696,
+      "sha256": "60d69cfb69167f71bf72c8944fc7c757274e507c96b92e3170c5981ef5e2b9fa"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/3-1.png",
+      "bytes": 3419459,
+      "sha256": "09b846153ec879cffbf63160d9cb8e139a4f99b1b0342b4d84ead410eec332bf"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/3-2.png",
+      "bytes": 3303248,
+      "sha256": "01c9a8607625a2881748cd916b97858da99e42769b093317bc4a3b1082c6ac28"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/3-3.png",
+      "bytes": 3107671,
+      "sha256": "0fb75cda1426b49045960fb6cf1acb5744ea62a57bd6c41e3d654b160dee6a6b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/3-4.png",
+      "bytes": 2569184,
+      "sha256": "9ba4e21fa23be987b564cd510db865c154b2fe8ca05c1df31bfa1213883f91c9"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/4-0.png",
+      "bytes": 2954021,
+      "sha256": "40dd23eb765a7bd5d9f1c4651d926298f36bff63770908df645e4e93a786cc33"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/4-1.png",
+      "bytes": 3336723,
+      "sha256": "9dc4693e1c3f23fe510f0fcf744fa23555419e48f447b5b5ac59901975f76b55"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/4-2.png",
+      "bytes": 3184564,
+      "sha256": "5a43b3a20f1a177cbd7d3c1ab20df2c87d8512da03b5a75b2f44784005e17693"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/4-3.png",
+      "bytes": 2930268,
+      "sha256": "ee5541669753a11f8a7e4eac103243eb031df467a7fa76cc12c040f6d234f210"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/4-4.png",
+      "bytes": 2617570,
+      "sha256": "9b1f54e166676deb44b372a8bfc70c07082883202840cf790e16794fa51c9fba"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/5-0.png",
+      "bytes": 2677001,
+      "sha256": "ee4f836e0ca14fba6fc770b4d06ec479d7d7e78f88c70ef0e1ba6b3dd4ce03c1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/5-1.png",
+      "bytes": 2955188,
+      "sha256": "ab336c014ea86ba5abb084b3c0f50ede7ca7abc8741e4585e8c59033ef98f148"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/5-2.png",
+      "bytes": 2844579,
+      "sha256": "72649b9b91c54f69550cf240318d6a3cd240d5d1400f7764275a7680697c6b2a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/5-3.png",
+      "bytes": 2593989,
+      "sha256": "28acd731577c9b6f1e9d441afa4d77048c4e765218e9f383e108838a58efd740"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/5-4.png",
+      "bytes": 2114164,
+      "sha256": "e86fbb1621719224227573e452f5605e7dc5f589b28adb32dcdf6b3adbf70201"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/boatyard-join.png",
+      "bytes": 2893614,
+      "sha256": "988447887f8dd81691ded92d5f366adea10d06879b36a6e4699a98718ae5154e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/farm-join.png",
+      "bytes": 3299343,
+      "sha256": "3cdcc44317300ee20bcb8dced1c5b5bfb37312cdbe81a2b9b4cc0e6e10375d34"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/home-11.png",
+      "bytes": 2950672,
+      "sha256": "a030a634e78886ef17632f98645b6caea5677b987b47785aebdb8837b6731340"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/home-12.png",
+      "bytes": 3029576,
+      "sha256": "a30f37276c03e30c506601a19a7786952e2de210aa55713d0899b7f4d65c201c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/home-13.png",
+      "bytes": 3085883,
+      "sha256": "6e6eb0c0b19199a0092224822cea5b119188b565b2908c54fefe4c09ae25ddcd"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/home-14.png",
+      "bytes": 2989458,
+      "sha256": "7f77f7986a49b3807a489d358502c5086c94651ba5b9ec9de2c7084a87b36982"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/home-6.png",
+      "bytes": 2796988,
+      "sha256": "593732e8b1ea9aba2bca76e36d500e32e2178837c153df3bee55d4850d283a09"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/home-8.png",
+      "bytes": 2693290,
+      "sha256": "640cc3ed1bd5ebe0ecbc94e62609a3a4de039b0d48fc30a1752cadaa80739aa2"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/overview.png",
+      "bytes": 12013691,
+      "sha256": "6f03fea5970608928729675c08d0047776ec5afa2e6d203df105d06bf19ad499"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/photo-join.png",
+      "bytes": 3186921,
+      "sha256": "30c70b1ac8ec69542247c3e7e6ecf7492cf2770459e4dfc77f98ce5eb3473d08"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/plaza.png",
+      "bytes": 3646900,
+      "sha256": "4a3c6ed42675faf5ba001ca8bef5d867e5c0ef743b65dbdbb73c4b6abbc8c367"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/repair-hall-court.png",
+      "bytes": 3019637,
+      "sha256": "3b039681c60d284294c7d9ee60df28e5d6e35c9f76d61212c60f4549bbb7f276"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/repair-southwest-yard.png",
+      "bytes": 2917661,
+      "sha256": "db7c19f5b06e488bddaf0178f31b695bf3a517e301a0aafa2cb17e0e35577ede"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/repair-terrace-porch.png",
+      "bytes": 2995230,
+      "sha256": "d88b79ad736b51621aaaf3f094c53c51289e083ddab51965568585b706dd5d35"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/autumn/repair-workshop-porch.png",
+      "bytes": 2988880,
+      "sha256": "17e88a44cc9ec81832f1bdf6d9416acf0be4f970373ad618a3c5379b72629335"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/0-0.png",
+      "bytes": 2838821,
+      "sha256": "c3b859fe29d50c1dec5f7dc3b308c7b4e5f2f8b63a7bc5760b1ec0d8691c68bb"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/0-1.png",
+      "bytes": 3149871,
+      "sha256": "5ea89682d240476d4c339add56c21f59e79a1d51605b2337ebd0a4d300d36113"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/0-2.png",
+      "bytes": 3335931,
+      "sha256": "1c756d396cad27b3dc901be6f0c12b21474374550425fac463e017de6c535fca"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/0-3.png",
+      "bytes": 2815996,
+      "sha256": "8e00d2a340b20b38e5439421214c0aa2d9d3b39af8c51e14fe814a226eed8502"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/0-4.png",
+      "bytes": 2377127,
+      "sha256": "d20d7fa7e30ed96590452598e369504e53fc1e53c26bfd0056f58e9342e72005"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/1-0.png",
+      "bytes": 3093333,
+      "sha256": "418f79b2315df7a8bfd18d5b38ba066faf258a3e83d190521cb671801534c838"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/1-1.png",
+      "bytes": 3372569,
+      "sha256": "401192ba3f6a0ec7a0971f0292792141a933bdf1433bff051084220f418c01e0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/1-2.png",
+      "bytes": 3206341,
+      "sha256": "11b923e8e0b8646463f76b8661e13feaad571e3e07d01e92c7c25560def268da"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/1-3.png",
+      "bytes": 2990284,
+      "sha256": "b9b54e37d7a1a05c2b9f5c5961d261a12bf5e229467c8252ff86c76f00db69b4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/1-4.png",
+      "bytes": 2610293,
+      "sha256": "905a5de98436ddea746031e50a39d58a6f63ee2d93cb82b795814e4a0bbf59a6"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/2-0.png",
+      "bytes": 3122256,
+      "sha256": "abf4b8a9b44aa115eeae8736c1b0cfe09fe19d879e0570e61bbadc90ffcc30ee"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/2-1.png",
+      "bytes": 3434729,
+      "sha256": "883bf20937cf20ce907446d89b72779dd4cffedd228581b33e05cc39d28591ae"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/2-2.png",
+      "bytes": 3299434,
+      "sha256": "2888cdba2f232297d6fb719ece872cba34f4279115110ddf8c68d2c4609c4fa6"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/2-3.png",
+      "bytes": 3082235,
+      "sha256": "0d566c434360f4c880b420f357595febbbf922ba329cb164b6c0772cfdcdd8a6"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/2-4.png",
+      "bytes": 2452064,
+      "sha256": "7617200cb8b16f36c0644631c4e0f002aa551d7fe17726efadecd30eaab620c4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/3-0.png",
+      "bytes": 3151223,
+      "sha256": "a8835153ce8bd918d3905ab77e72ca1b1b45f38db4893a31bdb1bb3a670de273"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/3-1.png",
+      "bytes": 3486080,
+      "sha256": "1f9d13300d26ddd66c28e4483486cdf8835a7e55d83a2bb32a67f52c9145e079"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/3-2.png",
+      "bytes": 3263349,
+      "sha256": "40107b0f64f9d9a6b582b11bcec47175c8fd2b8ccdcada23c5d73fa374d7b444"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/3-3.png",
+      "bytes": 2941599,
+      "sha256": "73dd952750dcb74be9139b32d50fc188ea42712f5d270201ee849aa15ece8625"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/3-4.png",
+      "bytes": 2562389,
+      "sha256": "282858c5f07c04fe7460fe618fe1f3849c8af4a9e477d26a5ed156384b6feea7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/4-0.png",
+      "bytes": 2961580,
+      "sha256": "cab654b08d8656e1741a38d5908cf5cd17c0070081b76b39a8b1467c42a0b16a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/4-1.png",
+      "bytes": 3434646,
+      "sha256": "2c63221c6e1df4ab2714fb912506d4638af090e2c687c57a6494396514148978"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/4-2.png",
+      "bytes": 3090600,
+      "sha256": "0b2940f6fb1c131fa658b4f059152472e9932a6ad64a28fab3ffcef85950b89a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/4-3.png",
+      "bytes": 2919308,
+      "sha256": "55382fe2a6f0e6c04017f618f30353a484c42458163d9b27fec9ba38cc6cfb83"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/4-4.png",
+      "bytes": 2680925,
+      "sha256": "1a3dab7c0d74bb5872f24997197a014fc6594cbd77af048a32f3c1ef4b27c8ac"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/5-0.png",
+      "bytes": 2733316,
+      "sha256": "f2377559997d23f09c22394002c24011690ec04017795de50719738d284b8148"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/5-1.png",
+      "bytes": 3000451,
+      "sha256": "019c50c23ec86887349d55cf93c13c160484e52adda48e3f0ce78dc0aa37103e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/5-2.png",
+      "bytes": 2845539,
+      "sha256": "eefaa0287bfd5e22c7a53d18975b47770ecac9e8bb5119055d0ee55501b5f5ff"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/5-3.png",
+      "bytes": 2574597,
+      "sha256": "2e925b1fefa430c091725c7d4976fae350e26155dc01f614a4c405fba81a1f27"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/5-4.png",
+      "bytes": 2124549,
+      "sha256": "871e9888cda4764edcf446b819e7c08e1ae8f660df606d349c3d3a1c1cb3eae2"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/boatyard-join.png",
+      "bytes": 2808121,
+      "sha256": "79e2b2204d3263a73bd76dacbaef98f137a8d17a2fdcee8d2f1b094f23454617"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/farm-join.png",
+      "bytes": 3217406,
+      "sha256": "23c9d2d8683e518a9727c2ab96834272bbb35a55508b586005f94698ba15c917"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/home-11.png",
+      "bytes": 2871590,
+      "sha256": "db41b1978e0fb89f1d017d5725465777a77e5e5df4c22fdbc8aa7a571b0403a0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/home-12.png",
+      "bytes": 2881861,
+      "sha256": "ada634ade9f91d5a1c04df712807dbb75a0bc7dd1c3cda14c2f90ddbfdbbc58f"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/home-13.png",
+      "bytes": 3023302,
+      "sha256": "49fbda3c96ae25b740f9090d68f50b00717d117faa0588c6479addefaca7a997"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/home-14.png",
+      "bytes": 2924984,
+      "sha256": "39f0a0f70e08afe6b8dfe0c54ae8bf3b277e257eac677551899b9b2022c80913"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/home-6.png",
+      "bytes": 2651613,
+      "sha256": "41145e068ab961aa426b04c5ebc409dff4e750ffe3266039b17707c3f9fcee7a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/home-8.png",
+      "bytes": 2614614,
+      "sha256": "826f4b33bd02c1927a7ee068ebeaeb20128ace7a9b6a3bf24b61a359931fc71d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/overview.png",
+      "bytes": 12071365,
+      "sha256": "10d4dda3ba21bc28ab74ae9afbe8fee5dafba0bad23fbdd22c3516049b80f1ef"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/photo-join.png",
+      "bytes": 3161396,
+      "sha256": "10cd0adf3cea64d96ad0a31b17cf29645e0cf04d2013782476b3af7056946213"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/plaza.png",
+      "bytes": 3580922,
+      "sha256": "e5d42435a868047f5a983199c0fde75bb82aca56bce1c97f94930b606b486e59"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/repair-hall-court.png",
+      "bytes": 3103734,
+      "sha256": "c5fadccf2273ecc1ff8999acbeb2d61932ea1e920cc50e90fd0c9c6ab3e61927"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/repair-southwest-yard.png",
+      "bytes": 2885860,
+      "sha256": "3f7ae5fb3ba25cf35dbba4cced13a7251fc4652ed58330a80eb394c17ad36a11"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/repair-terrace-porch.png",
+      "bytes": 3061024,
+      "sha256": "e68ffd5270baf3e89a293e5db5d7789b4a94902a8cad13529bf05ccc30299e62"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/spring/repair-workshop-porch.png",
+      "bytes": 2979558,
+      "sha256": "ada70c3c70a2393117e3a5c52bac7e88b4346a0c874f39dd605161628076f117"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/summer/overview.png",
+      "bytes": 11925553,
+      "sha256": "7eccc79bc00db87a94914e8a8b76289d96b1aca7f528e41ee2044f8aab385f5c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/summer/repair-hall-court.png",
+      "bytes": 2913155,
+      "sha256": "00e0ff82f0a4480e1e50536e7f769d52de9a57eb18274b5c2d1ed37cedb3ceb8"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/summer/repair-southwest-yard.png",
+      "bytes": 2836349,
+      "sha256": "3476a65e2eba4679469e15040a1b3277b43666cc8bba77f9584eae51fae7cd4d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/summer/repair-terrace-porch.png",
+      "bytes": 2977068,
+      "sha256": "328a5d598f91695e7a511019a425f527d7f1f1f24d1d8cc592ea1397744c33c5"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/summer/repair-workshop-porch.png",
+      "bytes": 2807217,
+      "sha256": "8377891b1c4b20d577215c5022d703e6292310087ffd2804f79ba929ec4d63d3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/0-0.png",
+      "bytes": 2748424,
+      "sha256": "66ea462f8efbf8d0b7b2d1925c708e52a1b9662e848f237e66154b483fce2162"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/0-1.png",
+      "bytes": 3074357,
+      "sha256": "ad6b566f91e2b3e4bb65a971dc76b7e8e7670ff538913c321aa2b28a38a0960b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/0-2.png",
+      "bytes": 3226934,
+      "sha256": "7505cee9993158454b17affaba1e70cdba99d039793949df4b37d6bfa5cd0439"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/0-3.png",
+      "bytes": 2735529,
+      "sha256": "586d6c39d61992c70771ed996ff7af0674d14553816258c82157480c60338714"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/0-4.png",
+      "bytes": 2383374,
+      "sha256": "afa7662ccad5c1a5de3154e8291dd3ed84b885a103383475c0ec7ae23e7b8d0d"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/1-0.png",
+      "bytes": 3089053,
+      "sha256": "966337fb30bfd78b306525649bcdbc569e0d6687d589e6b04e53c8015cd21f45"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/1-1.png",
+      "bytes": 3256534,
+      "sha256": "9aab537af926553e694b1a5f8a2c0fab24b41431653c3a40ddc0c8a95fdf5a97"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/1-2.png",
+      "bytes": 3176503,
+      "sha256": "538b56284a1b7b324afef7243ee23019c32db3076a4303373079ae7d95c2272a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/1-3.png",
+      "bytes": 2905602,
+      "sha256": "34d5f15f3e11c3695f7f2f35bb6221f7a0d4669d5bd0e3be7a8a6b1c4e85e396"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/1-4.png",
+      "bytes": 2572248,
+      "sha256": "56281433a0f0701c98b6a12a717581d11dc732480ae1633328708bb46a2ec79b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/2-0.png",
+      "bytes": 2963531,
+      "sha256": "9adceb6f820baf1441df055857a49c5d99b42bc86351be9e5f97aa3bd7bbc2de"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/2-1.png",
+      "bytes": 3192060,
+      "sha256": "7b6ea88c284a768d1eb4211ede1d4ecfa4c191bd1dc5f95d2e3efb3c8e6df811"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/2-2.png",
+      "bytes": 3040292,
+      "sha256": "d43efd1a4ba10186d41f4bef3f4d1a7ca0640abdf6e322127bafc5ce79317095"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/2-3.png",
+      "bytes": 2989953,
+      "sha256": "77a744318f8d25d68a2547027241eb1930840c22da98acc6f06aefd7d7d31da1"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/2-4.png",
+      "bytes": 2402207,
+      "sha256": "0cc463c1a94345ed050b1f661e710a199823fdbd31718ecad23c7b05ae592cce"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/3-0.png",
+      "bytes": 3088871,
+      "sha256": "1e2c9245763f137be135d900aa07db93ab696c221d68bfc7e820078712840e79"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/3-1.png",
+      "bytes": 3277460,
+      "sha256": "dc4cc03f3fbe6f6c5c7e1650e366ded030aee4b40f05bed093fdeb335291440e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/3-2.png",
+      "bytes": 3096168,
+      "sha256": "36d58c8400aab9363611e98292feefe4382e30a0cb8c3502ed4430eca1a43391"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/3-3.png",
+      "bytes": 2948518,
+      "sha256": "0ae2a6f3b16cd0ba7d01fdfa16eaf7ba17c629e1b294e26a20c74f6ccd553b77"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/3-4.png",
+      "bytes": 2620093,
+      "sha256": "f7ac5edf091dfc8cc575d5762f436011014a6365204dc3c390d5d295c5e5184e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/4-0.png",
+      "bytes": 2912254,
+      "sha256": "913cbb0f4c39fff488759c72166dc49d05e847dc0d9e8b61a4f8dcef9c1f565e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/4-1.png",
+      "bytes": 3282621,
+      "sha256": "da928ddf10eeec713ef98a44b1dff7a1e92489564c2263fac09b51744e6df5e4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/4-2.png",
+      "bytes": 2981019,
+      "sha256": "65193fd3e69a45f013333503799242d8f29b7b3cf72d52c2afcef48545c5bcc0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/4-3.png",
+      "bytes": 2843256,
+      "sha256": "5ecc228da05aaa4e56147e4b6e8a39c9dd093a76c32a8d095396973081a28e9e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/4-4.png",
+      "bytes": 2598500,
+      "sha256": "86c36e5e0ed7019ea6915b7d339aa7ee1c3583b6763aa3efc0ccfcb7e6550e39"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/5-0.png",
+      "bytes": 2660515,
+      "sha256": "56a6da46b4f5e379a524536c5eb118dd430bf9eec5660e69be3b5bd5deeea85a"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/5-1.png",
+      "bytes": 2878215,
+      "sha256": "53902171b66dd666748289b4c70ad67097cf16a4a74a7233544c08c2c361c95e"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/5-2.png",
+      "bytes": 2720768,
+      "sha256": "cd8d9c79fbee89a61ef795ac4286e1b296e5aeb421f69589ddee55643f669589"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/5-3.png",
+      "bytes": 2510370,
+      "sha256": "e096fa7304b6a63805bb845b7082bea702a7b1dafe4c715714b363418dea6350"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/5-4.png",
+      "bytes": 2109140,
+      "sha256": "6379ab2730aaf283cccbf7389ae7e677a9f43ccd1bc3428159516aad508ed54b"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/boatyard-join.png",
+      "bytes": 2754874,
+      "sha256": "b973fc9a27be05ccdba27aeb30f44f5ea8177ace4a50d2a225d850a94b5c0d22"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/farm-join.png",
+      "bytes": 3190070,
+      "sha256": "feff9cc909f6cfc2501e4aa7889a5cbb58b51caffbdb60486d7c36552c2fbad3"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/home-11.png",
+      "bytes": 2881592,
+      "sha256": "0112acee003f5e76f69444615b5bc8ba62a1e113882d46fc225797a9d60e80da"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/home-12.png",
+      "bytes": 2834233,
+      "sha256": "2e759b9d4e0d87aab1c75f52cb91d1402e108b5e2d593c42b74953ab0ac11989"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/home-13.png",
+      "bytes": 2897389,
+      "sha256": "171131ffe0d6c7cc0625cc4126ff270a803befc0e9205fc4ee113d244572c62c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/home-14.png",
+      "bytes": 2712290,
+      "sha256": "92ef61c25c37f5ec38142f95b2ff9fe5535bfe8db4747d39ea9b869e391b45b4"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/home-6.png",
+      "bytes": 2732059,
+      "sha256": "3d51ea88ebaa6920c6c4f3868598fd7cc15b027bc35aba3e237d7582d73f4c8c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/home-8.png",
+      "bytes": 2600455,
+      "sha256": "5c78d16e54950097feb1803570096407208fe2eee6f5e66c12df47e2de5a30aa"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/overview.png",
+      "bytes": 11864394,
+      "sha256": "295faa19e2364e3af63f0e8755a8dd05f94c3ff6b6d10a5af46e79666210b82c"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/photo-join.png",
+      "bytes": 3053847,
+      "sha256": "753a255863c951ca20a791c0e7386621b7f5e3c24cc6f81e1aa2a76c7067bbf7"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/plaza.png",
+      "bytes": 3388545,
+      "sha256": "78473c64a0872d1d45a794d0a9cbd21560ba3fa4c6200d9e21f59f8877e4eec0"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/repair-hall-court.png",
+      "bytes": 2576959,
+      "sha256": "9fff8e4e338c8ed4ef1af2fc3e673369828c824639dfdedc4cecd1471a7e83c8"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/repair-southwest-yard.png",
+      "bytes": 2311206,
+      "sha256": "56d93ad403173925b6bcd81bcb776f132238fa4fac1101b6b4c48b05474f9cbf"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/repair-terrace-porch.png",
+      "bytes": 2438652,
+      "sha256": "47b4f7e1568b3cb7774d85530988e5823da99cd16f10db8ae06c64d500924e30"
+    },
+    {
+      "path": "public/assets/season-terrain-v187/pixel/winter/repair-workshop-porch.png",
+      "bytes": 2305926,
+      "sha256": "54e2d343309de23f68fea5c18c247af103c09c597e722bc45cfcc6e21b5e0c95"
+    },
+    {
       "path": "public/assets/seasons-v132/origami-autumn-0-0.png",
       "bytes": 2745892,
       "sha256": "49f91fc6e382651ad0613fb1b699ff9a4d805f21fcba14df5a42055b9eff3037"
@@ -4872,8 +6297,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 142085,
-      "sha256": "f70cb204318d380058a79eb189a81ec30533bc0d9d71f7f07b610b2e5d096329"
+      "bytes": 142288,
+      "sha256": "9bc52df44f523ea7787201f24e143d94db3f868bf33012ee7a5933eb8be58055"
     },
     {
       "path": "src/arcade.css",
@@ -5177,8 +6602,8 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 9567,
-      "sha256": "cf305331b0b3d5cee5e348279bdc16a14ff16f0a481e2282cdca727160ae41fb"
+      "bytes": 9958,
+      "sha256": "e6869ea6e88c251cd6f73a5d07fe75c6d950890d0df8af4a232771227e79f8f8"
     },
     {
       "path": "src/environmentUI.js",
@@ -5442,8 +6867,8 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 4184,
-      "sha256": "252b6ea162aac9f77bcdda358ceaab3d821ded1c33d39cb652b7174804af91fb"
+      "bytes": 4272,
+      "sha256": "16af9f38b1d7f95422c335ac8b1f519e4faf040c0b049410647909b3d15bf1c9"
     },
     {
       "path": "src/harborArtwork.js",
@@ -5597,8 +7022,8 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 11875,
-      "sha256": "4929f1e84bdc986c8ab304de99432c8ff8e29b16712c78be9d847c127c3332f0"
+      "bytes": 12031,
+      "sha256": "5eda847239c05f8696db9c17bd66c678dada87c32e44640906820b67a5764d22"
     },
     {
       "path": "src/lanMotion.js",
@@ -5687,23 +7112,23 @@
     },
     {
       "path": "src/mapTileLayout.js",
-      "bytes": 4645,
-      "sha256": "8f42dc980617d485770c08e5e696013ae38a62c5d7b8c01ec662fce64c448ae4"
+      "bytes": 5343,
+      "sha256": "70ae18f622a5f739fe5c5f73fe86faa06499795451dfedb0c2881a910ed3b1bd"
     },
     {
       "path": "src/mapTileLoader.js",
-      "bytes": 2985,
-      "sha256": "96b387cc56fdc27221da0700a8cf6989755ea634313d3d61b8ed7daa9225e7d5"
+      "bytes": 3025,
+      "sha256": "4b884586c4a1c259de415c0af7851ede4921b421ac7a290c42388eda7ef9f3b0"
     },
     {
       "path": "src/mapTileWorker.js",
-      "bytes": 2187,
-      "sha256": "ea88cea3ee800b11f7f90dc15158c00080254928f31e2cc029ebd772ce5c667d"
+      "bytes": 2227,
+      "sha256": "7be6d3e3b1cde7ec08baa1069ee6c9cbf820b01a4e49ae9657c4dbfb53424c6b"
     },
     {
       "path": "src/mapTiles.js",
-      "bytes": 6950,
-      "sha256": "78972d26479a1991b1b03d70cca00c4c2f05c326a7635686315506ace9b1b5f8"
+      "bytes": 9528,
+      "sha256": "cbb2cb972437de76ff30925ce9892169d6a87b0f50e2ca0f77ea749c27552901"
     },
     {
       "path": "src/market-v87.css",
@@ -6174,6 +7599,31 @@
       "path": "src/seasonArtwork.js",
       "bytes": 2179,
       "sha256": "bdd8f3cb89ccc184abf7d665a38bb69c4d8598cf4e775f88d6ae2cc42939c3f2"
+    },
+    {
+      "path": "src/seasonOverview.js",
+      "bytes": 3032,
+      "sha256": "63e6b892b282838f217e5a19487467dc3c17c50a7b27be59e04010398d79009a"
+    },
+    {
+      "path": "src/seasonPatchSeams.js",
+      "bytes": 348459,
+      "sha256": "98c68d9f878db3a9e348782d1d6d5392a2f358e8efce92d6270afc27dba12e1c"
+    },
+    {
+      "path": "src/seasonTerrain.js",
+      "bytes": 692,
+      "sha256": "402ca1aafb9f6eab2224895d1a810a76b62c9e7a0590e64809120ef2611991ad"
+    },
+    {
+      "path": "src/seasonTerrainRepairs.js",
+      "bytes": 761,
+      "sha256": "cec0641a5087ad0ad9d411b8f9dafecbf41b3b597b8c81583d8d4c8fe2d71e98"
+    },
+    {
+      "path": "src/seasonTerrainSeams.js",
+      "bytes": 496681,
+      "sha256": "348a1c835cd434021ff02630111c75c90731d16395619956a757af472ad429e3"
     },
     {
       "path": "src/seasonalRecipes.js",
@@ -7072,8 +8522,8 @@
     },
     {
       "path": "tests/v127-environment-browser.mjs",
-      "bytes": 6757,
-      "sha256": "207b9f48e05aa84dfcdb72f8bd1a4fd56fe19f99af5f508498529ca4a84bc58c"
+      "bytes": 6863,
+      "sha256": "e8f31d731056a706bc71347621a2d526ec63a301ec2179bfb3209cafd04bdcd6"
     },
     {
       "path": "tests/v127-environment-compatible-browser.mjs",
@@ -7659,6 +9109,21 @@
       "path": "tests/v186-season-boundary.test.mjs",
       "bytes": 2796,
       "sha256": "0b7ce4a08ba51afa58385ffc47cac1a9ab898ba268a8ff8c89142f223076427f"
+    },
+    {
+      "path": "tests/v187-season-browser.mjs",
+      "bytes": 4441,
+      "sha256": "cca031444547821e94b3912cbd11c4c82461ef674df20898617b9742fd4687fc"
+    },
+    {
+      "path": "tests/v187-season-loading-browser.mjs",
+      "bytes": 6988,
+      "sha256": "8d955308b6418c6e31087d067334d1a919a4009c3cbd4942396dcde3c6370e72"
+    },
+    {
+      "path": "tests/v187-season-terrain.test.mjs",
+      "bytes": 2378,
+      "sha256": "558fd8aeb9e645cd74406ea4fd17fedab1ebf9bd855542fcc5a924f2a6f4edf9"
     },
     {
       "path": "tests/v19-before-qa.mjs",

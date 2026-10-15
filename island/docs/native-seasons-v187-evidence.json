@@ -1,0 +1,289 @@
+{
+  "version": 187,
+  "focusedChecks": 33,
+  "fullProductAcceptance": false,
+  "physicalMacAcceptance": false,
+  "actualRenderers": {
+    "scope": "Isolated actual home and meeting-room renderers, both themes and four seasons; no model calls or user saves. Not a whole-product or physical Mac acceptance.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "surface": "home",
+        "season": "spring",
+        "visibleRegions": 34,
+        "decodedBytes": 35379184,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "home",
+        "season": "summer",
+        "visibleRegions": 68,
+        "decodedBytes": 54243296,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "home",
+        "season": "autumn",
+        "visibleRegions": 34,
+        "decodedBytes": 73107408,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "home",
+        "season": "winter",
+        "visibleRegions": 68,
+        "decodedBytes": 91971520,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "meeting",
+        "season": "spring",
+        "visibleRegions": 44,
+        "decodedBytes": 43401968,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "meeting",
+        "season": "summer",
+        "visibleRegions": 88,
+        "decodedBytes": 69348064,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "meeting",
+        "season": "autumn",
+        "visibleRegions": 88,
+        "decodedBytes": 95294160,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "surface": "meeting",
+        "season": "winter",
+        "visibleRegions": 88,
+        "decodedBytes": 117089184,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "home",
+        "season": "spring",
+        "visibleRegions": 34,
+        "decodedBytes": 36982384,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "home",
+        "season": "summer",
+        "visibleRegions": 68,
+        "decodedBytes": 55845056,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "home",
+        "season": "autumn",
+        "visibleRegions": 68,
+        "decodedBytes": 74709168,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "home",
+        "season": "winter",
+        "visibleRegions": 68,
+        "decodedBytes": 91968640,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "meeting",
+        "season": "spring",
+        "visibleRegions": 44,
+        "decodedBytes": 43401968,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "meeting",
+        "season": "summer",
+        "visibleRegions": 88,
+        "decodedBytes": 69346624,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "meeting",
+        "season": "autumn",
+        "visibleRegions": 88,
+        "decodedBytes": 95292720,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "surface": "meeting",
+        "season": "winter",
+        "visibleRegions": 88,
+        "decodedBytes": 117086304,
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "passed": true
+  },
+  "delayedAndMissingRegions": {
+    "scope": "Isolated native seasonal terrain loader; no gameplay, user save, whole-island seam or full season acceptance claimed",
+    "cases": [
+      {
+        "theme": "pixel",
+        "backend": "worker",
+        "previousSeasonPreservedDuringRealPendingLoad": true,
+        "framesDuringHold": 427,
+        "repairPatchRequiredBeforeSwitch": true,
+        "fadeHashes": {
+          "before": 2964117255,
+          "start": 2964117255,
+          "half": 736144262,
+          "final": 509346577
+        },
+        "missingAssetPreservesLastCompleteSeason": true,
+        "cacheBytes": 117623976,
+        "peakCacheBytes": 117624600,
+        "cacheLimit": 134217728,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "backend": "worker",
+        "previousSeasonPreservedDuringRealPendingLoad": true,
+        "framesDuringHold": 434,
+        "repairPatchRequiredBeforeSwitch": true,
+        "fadeHashes": {
+          "before": 3508476736,
+          "start": 3508476736,
+          "half": 1923857510,
+          "final": 1097016901
+        },
+        "missingAssetPreservesLastCompleteSeason": true,
+        "cacheBytes": 117619008,
+        "peakCacheBytes": 117619008,
+        "cacheLimit": 134217728,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "backend": "compatible",
+        "previousSeasonPreservedDuringRealPendingLoad": true,
+        "framesDuringHold": 472,
+        "repairPatchRequiredBeforeSwitch": true,
+        "fadeHashes": {
+          "before": 2964117255,
+          "start": 2964117255,
+          "half": 736144262,
+          "final": 509346577
+        },
+        "missingAssetPreservesLastCompleteSeason": true,
+        "cacheBytes": 117623976,
+        "peakCacheBytes": 117623976,
+        "cacheLimit": 134217728,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "backend": "compatible",
+        "previousSeasonPreservedDuringRealPendingLoad": true,
+        "framesDuringHold": 524,
+        "repairPatchRequiredBeforeSwitch": true,
+        "fadeHashes": {
+          "before": 2034305687,
+          "start": 2034305687,
+          "half": 3197139534,
+          "final": 1654821863
+        },
+        "missingAssetPreservesLastCompleteSeason": true,
+        "cacheBytes": 117619008,
+        "peakCacheBytes": 117619008,
+        "cacheLimit": 134217728,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "coldPan": {
+    "passed": true,
+    "cases": [
+      {
+        "theme": "pixel",
+        "backend": "worker",
+        "startInWinter": true,
+        "coldPanMatchesWinterOverview": true,
+        "overviewDifference": {
+          "mean": 0.00024722222222222224,
+          "max": 1,
+          "largeFraction": 0
+        },
+        "regionalRecovery": true,
+        "themeSwitch": true,
+        "peakCacheBytes": 62398784,
+        "limit": 134217728,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "backend": "worker",
+        "startInWinter": true,
+        "coldPanMatchesWinterOverview": true,
+        "overviewDifference": {
+          "mean": 0.02071388888888889,
+          "max": 1,
+          "largeFraction": 0
+        },
+        "regionalRecovery": true,
+        "themeSwitch": true,
+        "peakCacheBytes": 62397216,
+        "limit": 134217728,
+        "passed": true
+      },
+      {
+        "theme": "pixel",
+        "backend": "compatible",
+        "startInWinter": true,
+        "coldPanMatchesWinterOverview": true,
+        "overviewDifference": {
+          "mean": 0.00024722222222222224,
+          "max": 1,
+          "largeFraction": 0
+        },
+        "regionalRecovery": true,
+        "themeSwitch": true,
+        "peakCacheBytes": 62398784,
+        "limit": 134217728,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "backend": "compatible",
+        "startInWinter": true,
+        "coldPanMatchesWinterOverview": true,
+        "overviewDifference": {
+          "mean": 0.02071388888888889,
+          "max": 1,
+          "largeFraction": 0
+        },
+        "regionalRecovery": true,
+        "themeSwitch": true,
+        "peakCacheBytes": 62397216,
+        "limit": 134217728,
+        "passed": true
+      }
+    ],
+    "scope": "Real native winter overview and regional assets, startup/cold-pan/recovery/theme-switch; isolated renderer, not gameplay acceptance"
+  }
+}

@@ -341,3 +341,10 @@ Intel Mac native gameplay passed in V184. The Mac ARM modal-navigation fixture n
 修复自然跨过第30视觉日时未记录季节过渡，以及切回窗口后的换季检测；18项时钟与服务检查通过。V185的Windows与两种Mac云端9项检查已全部成功。[换季修复与美术进度](docs/season-boundary-v186.md)。原生四季底图尚在制作，未作为完整换季上线。
 
 Natural thirtieth-day boundaries and hidden-window recovery now record the season transition without restarting it on every frame or clock refresh. Eighteen focused clock/service checks pass; all nine V185 Windows/macOS cloud jobs succeeded. [Fix and artwork scope](docs/season-boundary-v186.md). Complete native seasonal terrain is still in production.
+
+
+## V187 · 整岛四季底图
+
+整岛四季底图现已覆盖像素与折纸两种画风：新增280张区域、连接与预览素材。换季等待可见区域加载齐全后过渡，缺图保留上一季；拖拽到新区域显示同季节预览。两种画风、小岛/会客房、四季共16组实际渲染检查通过，33项相关测试通过。[四季素材与验证范围](docs/native-seasons-v187.md)。
+
+Whole-island seasonal terrain is now connected in both styles, with 280 regional, join and preview images. Transitions wait for the visible view; failed loads retain the previous season and cold pans use the current season preview. All 16 actual home/meeting-room seasonal cases and 33 focused checks passed locally. [Artwork and validation scope](docs/native-seasons-v187.md).

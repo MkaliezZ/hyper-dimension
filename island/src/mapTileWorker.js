@@ -1,5 +1,6 @@
 import {terrainSurfaceSize} from './terrainResolution.js';
-import {terrainTiles,terrainLandmarks,maskTerrain,terrainOverviewURL} from './mapTileLayout.js';
+import {maskTerrain,terrainOverviewURL} from './mapTileLayout.js';
+import {seasonalTerrain} from './seasonTerrain.js';
 let baseTheme='',basePromise=null;
 async function decode(url){const response=await fetch(url);if(!response.ok)throw Error(`terrain_http_${response.status}`);return createImageBitmap(await response.blob());}
 function baseFor(theme){
@@ -16,7 +17,7 @@ function prepare(source,tile,preview,density){
  return surface.transferToImageBitmap();
 }
 self.onmessage=async({data})=>{
- const {requestId,theme,id,density}=data,tile=[...terrainTiles(theme),...terrainLandmarks(theme)].find(t=>t.id===id);if(!tile)return;
+ const {requestId,theme,id,density,season='summer'}=data,tile=seasonalTerrain(theme,season).find(t=>t.id===id);if(!tile)return;
  let source;
  try{
   source=await decode(tile.url);
@@ -24,7 +25,7 @@ self.onmessage=async({data})=>{
   const bitmap=prepare(source,tile,false,density),nativeDensity=Math.min(source.width/tile.bounds.w,source.height/tile.bounds.h);self.postMessage({requestId,phase:'ready',bitmap,nativeDensity},[bitmap]);
  }catch(e){
   // A preview failure must never prevent a high-resolution tile from loading.
-  if(!tile.patch){try{const preview=prepare(await baseFor(theme),tile,true);self.postMessage({requestId,phase:'preview',bitmap:preview},[preview]);}catch{}}
+  if(!tile.patch&&tile.season==='summer'){try{const preview=prepare(await baseFor(theme),tile,true);self.postMessage({requestId,phase:'preview',bitmap:preview},[preview]);}catch{}}
   self.postMessage({requestId,phase:'error',error:e.message});
  }finally{source?.close();}
 };

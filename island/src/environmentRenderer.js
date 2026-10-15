@@ -1,12 +1,13 @@
 import {WORLD,MAP_EXTENT} from './world.js';
-import {drawSeasonArtwork,seasonArtworkStatus} from './seasonArtwork.js';
+import {terrainTileStatus} from './mapTiles.js';
+import {SEASONS,seasonalTerrain} from './seasonTerrain.js';
 import {drawOceanShader} from './oceanShader.js';
 import {buildEnvironmentGeometry} from './environmentGeometry.js';
 import {terrainViewport} from './mapTileLayout.js';
 import {rainParticle,weatherParticleBudget} from './weatherVisuals.js';
 const W=WORLD.width,H=WORLD.height,CELL=4,fields=new Map(),pending=new Set(),TAU=Math.PI*2;
 let latest={ready:false,ripples:0,waveLoops:0,maskVersion:127};
-export function environmentArtStatus(){return {...latest,seasonalArtwork:seasonArtworkStatus(latest.theme)};}
+export function environmentArtStatus(){const terrain=terrainTileStatus(),theme=terrain.theme||latest.theme||'pixel';return {...latest,seasonalArtwork:{kind:'native-seasonal-terrain',coverage:'whole-island',version:187,enabled:true,theme,season:terrain.season,targetSeason:terrain.targetSeason,variants:SEASONS.map(season=>({season,regions:seasonalTerrain(theme,season).length,ready:terrain.season===season,previewReady:terrain.overview.ready.includes(season)}))}};}
 function canvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
 function prepare(image,theme){if(fields.has(theme))return fields.get(theme);if(!image?.complete||!image.naturalWidth||pending.has(theme))return null;pending.add(theme);
  const work=()=>{try{const small=canvas(W/CELL,H/CELL),ctx=small.getContext('2d',{willReadFrequently:true});ctx.fillStyle='#219fc3';ctx.fillRect(0,0,small.width,small.height);ctx.drawImage(image,0,0,MAP_EXTENT.width/CELL,MAP_EXTENT.height/CELL);const pixels=ctx.getImageData(0,0,small.width,small.height),f=buildEnvironmentGeometry(pixels.data,small.width,small.height,CELL),waterPath=new Path2D(),landPath=new Path2D();waterPath.rect(0,0,W,H);
