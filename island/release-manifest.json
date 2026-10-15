@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v190-agent-source",
+  "release": "hyper-dimension-v191-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3012,
-      "sha256": "76185a2e519e1fbec420586bb44baa554e7750c9ae60af39d27ff9ec3a610640"
+      "bytes": 3181,
+      "sha256": "e2c69d3c58eea7b6ba24ca7f9ec35039172e34155457a6e1e6b5939c25d8e04f"
     },
     {
       "path": "README.md",
-      "bytes": 2829,
-      "sha256": "0ea3b7ba9c367f6b21de5f61524f52154dd6147a7eaf42782488ebe488c485e1"
+      "bytes": 2972,
+      "sha256": "91e410afdc26d331cbd73738bf322173dd9b9b9bba068a9cbe7ecfe9af317b78"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 40256,
-      "sha256": "71400fc1a6df008e521bb18b784f6f08757a7fead6e729816e0a32658ffcbb05"
+      "bytes": 41623,
+      "sha256": "96b4c9c0481ba258344437193d93f2b9716ea8b20316d921a893766cc1ee7ff0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -769,6 +769,11 @@
       "path": "docs/reload-recovery-v160.md",
       "bytes": 2894,
       "sha256": "76b18a70129e1ed9a40473bc68649e62a2d620b58fe1f2d0642dc91273baa57d"
+    },
+    {
+      "path": "docs/residence-interiors-v191.md",
+      "bytes": 6241,
+      "sha256": "cbe6acc96d775db78ce31c4717556a2adc28b35246ea6450d72672904ac4dcf3"
     },
     {
       "path": "docs/resident-cooperation-v111.md",
@@ -1597,8 +1602,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 6312,
-      "sha256": "825c4f01a8773ea9cca8c7c6ab4a151cd1413dd971e7c628f594b585d6b0e67e"
+      "bytes": 6367,
+      "sha256": "feceec36e2d4b7edf5b3a7e796b7144fdadd4ceff43065723abcff4bd5121445"
     },
     {
       "path": "licenses/FusionPixel-OFL.txt",
@@ -2107,8 +2112,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 10389,
-      "sha256": "d683bc9753b0c5d56e489adfd731bb9b7b70a0e4429dc4a92550b33712a528a6"
+      "bytes": 10614,
+      "sha256": "af26abc41b69f9b9cf0bb2520846a3463ce6ed7ce7258df909bb03d3ea7d7fd3"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -3974,6 +3979,26 @@
       "path": "public/assets/pottery-stage-pixel-v41.png",
       "bytes": 2689792,
       "sha256": "79256b1b3d02465e156c4706be142f95c521fc5bc0599d785c88fdf14b31d518"
+    },
+    {
+      "path": "public/assets/residences-v191/joinery-origami.png",
+      "bytes": 2596951,
+      "sha256": "3562a21d0e480c6f2fd4bed3e16c567cf22093673def80756baa6d3b071fc507"
+    },
+    {
+      "path": "public/assets/residences-v191/joinery-pixel.png",
+      "bytes": 2361944,
+      "sha256": "5821de1a33f22489e23d932324a6367c12c05f187288d568e23305b42833e6d4"
+    },
+    {
+      "path": "public/assets/residences-v191/wheat-origami.png",
+      "bytes": 2407517,
+      "sha256": "813e2a24892d79206ec561b77cda438cea52d7a2dd2f132aee2ba4627c3ce123"
+    },
+    {
+      "path": "public/assets/residences-v191/wheat-pixel.png",
+      "bytes": 2362499,
+      "sha256": "f2c238195b398d622cdd2e2328e27de8272ae6d6abb767532f5a87a4ec19e4c2"
     },
     {
       "path": "public/assets/resident-portraits-origami-v6.png",
@@ -6122,8 +6147,8 @@
     },
     {
       "path": "server/personalActions.mjs",
-      "bytes": 7145,
-      "sha256": "f64253e3c75b01032cbdb5824426c14aca4c8b0095d274011e6b0702ac34824c"
+      "bytes": 8079,
+      "sha256": "8d8bb635464856340be2397a67331f7078724d42f502a3725ea2ad925041cc4a"
     },
     {
       "path": "server/planningAuthority.mjs",
@@ -6307,8 +6332,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 142288,
-      "sha256": "9bc52df44f523ea7787201f24e143d94db3f868bf33012ee7a5933eb8be58055"
+      "bytes": 142813,
+      "sha256": "ac11bd68e5f09a08c0581768e1c4edce5850ed6d890fc1473f8856a80bc70ae2"
     },
     {
       "path": "src/arcade.css",
@@ -6891,6 +6916,11 @@
       "sha256": "cbfa0d09e61de5c0f1bd90a41ccb25c64a62350b5eba9f18a40b62af2896ebae"
     },
     {
+      "path": "src/homeActivities.js",
+      "bytes": 4579,
+      "sha256": "57fb9ed00246e96a7efc041ea7dec7179455f11db85c0dec2fb19050313ddddb"
+    },
+    {
       "path": "src/homeAtlasBounds.js",
       "bytes": 5268,
       "sha256": "e67319531e3a5981d570d11a5c429a143dff0a7b57a1fe13647700b4021c2a57"
@@ -7456,9 +7486,24 @@
       "sha256": "24e735199a5c33ac178e06fe053a69173bac1e7efe3ea0e122d4f2dccaa697de"
     },
     {
+      "path": "src/residence-v191.css",
+      "bytes": 7900,
+      "sha256": "88dfd8b49e739f92eeb56b2558708196c2546e62f9e70c7efa2501eaba49842a"
+    },
+    {
       "path": "src/residenceArt.js",
       "bytes": 1252,
       "sha256": "2dcff058f8910dfd501b948a03a2b43670b653f9e4437d014fb7e307479b0e99"
+    },
+    {
+      "path": "src/residenceLayouts.js",
+      "bytes": 3701,
+      "sha256": "af065b1b709f336aeb9d0cd4cf4935e984f5d537d99c68ca9321a817cc850d4f"
+    },
+    {
+      "path": "src/residenceUI.js",
+      "bytes": 17301,
+      "sha256": "3d238baab4e4c70ed558d7149bef8ffc88492e017a4f1f772997dc18e5835782"
     },
     {
       "path": "src/resident-chat-v118.css",
@@ -9174,6 +9219,21 @@
       "path": "tests/v19-visual-qa.mjs",
       "bytes": 2479,
       "sha256": "b4e2c0ce09bfd6a6de795d96033a7e1137bed68a963e9358af5e7448b10d229f"
+    },
+    {
+      "path": "tests/v191-homes-browser.mjs",
+      "bytes": 7241,
+      "sha256": "96aa69a39c0e53f0c3db304c61d6de2fc889f1dfd09876a263594eb90583c23f"
+    },
+    {
+      "path": "tests/v191-homes-lan-browser.mjs",
+      "bytes": 4943,
+      "sha256": "048355e6936b511082e6404d6b51b8f91301d7899dd6dccb9fba5061db4bc83a"
+    },
+    {
+      "path": "tests/v191-homes.test.mjs",
+      "bytes": 5443,
+      "sha256": "4475445ac8f79b2c0ae775f0cbc213bd29227adc82bf6195c64555a28f7bd87b"
     },
     {
       "path": "tests/v20-regressions.test.mjs",

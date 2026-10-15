@@ -1,4 +1,6 @@
 import {AVATAR_BY_ID} from '../src/avatarCatalog.js';
+import {createHash} from 'node:crypto';
+import {evaluateHomeActivity} from '../src/homeActivities.js';
 import {itemUse,ITEM_BY_ID} from '../src/contentCatalog.js';
 import {equipOutfit,unequipOutfit,equipTool,GARMENTS,TOOLS} from '../src/equipmentRules.js';
 import {claimMoment,refreshJourney,hydrateJourney,MOMENTS} from '../src/journey.js';
@@ -6,12 +8,12 @@ import {claimSpecialization,SPECIALIZATIONS} from '../src/specialization.js';
 import {sameState} from '../src/actionMerge.js';
 const fail=(message,code='personal_invalid')=>Object.assign(Error(message),{status:409,code});
 const idOK=id=>typeof id==='string'&&/^[a-zA-Z0-9-]{8,80}$/.test(id);
-const operations=['use','gift','equip','unequip','tool','moment','specialization','avatar'];
-const signature=i=>i.operation==='avatar'?JSON.stringify([i.operation,i.target,i.avatarId,i.day??null]):JSON.stringify([i.operation,i.itemId??null,i.npcId??null,i.momentId??null,i.path??null,i.rank??null,i.day??null]);
+const operations=['use','gift','equip','unequip','tool','moment','specialization','avatar','home_activity'];
+const signature=i=>i.operation==='home_activity'?'home_activity:'+createHash('sha256').update(JSON.stringify([i.homeId,i.day,i.season??null,i.board??null,i.moves??null])).digest('hex'):i.operation==='avatar'?JSON.stringify([i.operation,i.target,i.avatarId,i.day??null]):JSON.stringify([i.operation,i.itemId??null,i.npcId??null,i.momentId??null,i.path??null,i.rank??null,i.day??null]);
 const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
 export function personalSnapshot(s){
  const t=s.journey?.stats||{};
- return {coins:s.coins,inventory:structuredClone(s.inventory),craftHistory:structuredClone(s.craftHistory||{}),roomGames:structuredClone(s.roomGames||{}),gatherCounts:structuredClone(s.gatherCounts||{}),discovered:structuredClone(s.discovered||{}),wardrobe:structuredClone(s.wardrobe??null),toolbelt:structuredClone(s.toolbelt??null),giftLog:structuredClone(s.giftLog||[]),research:structuredClone(s.research||{}),playerVitals:structuredClone(s.playerVitals??null),playerGoods:structuredClone(s.economy?.playerGoods||{}),journeyClaimed:structuredClone(s.journey?.claimed||{}),specializationAwards:structuredClone(s.specialization?.awards||{}),journeyProgress:Object.fromEntries(['gathered','crafted','buildings','watered','harvested','orders','parties','nightParties'].map(k=>[k,structuredClone(t[k]??(['gathered','crafted','buildings'].includes(k)?{}:0))]))};
+ return {...(s.homeActivities?{homeActivities:structuredClone(s.homeActivities)}:{}),coins:s.coins,inventory:structuredClone(s.inventory),craftHistory:structuredClone(s.craftHistory||{}),roomGames:structuredClone(s.roomGames||{}),gatherCounts:structuredClone(s.gatherCounts||{}),discovered:structuredClone(s.discovered||{}),wardrobe:structuredClone(s.wardrobe??null),toolbelt:structuredClone(s.toolbelt??null),giftLog:structuredClone(s.giftLog||[]),research:structuredClone(s.research||{}),playerVitals:structuredClone(s.playerVitals??null),playerGoods:structuredClone(s.economy?.playerGoods||{}),journeyClaimed:structuredClone(s.journey?.claimed||{}),specializationAwards:structuredClone(s.specialization?.awards||{}),journeyProgress:Object.fromEntries(['gathered','crafted','buildings','watered','harvested','orders','parties','nightParties'].map(k=>[k,structuredClone(t[k]??(['gathered','crafted','buildings'].includes(k)?{}:0))]))};
 }
 const mirror=b=>({version:1,enabled:true});
 export function validPersonalBook(p){
@@ -44,7 +46,13 @@ export function applyPersonalCommand(s,b,i,now){
  if(i.operation==='specialization'&&(!SPECIALIZATIONS.some(p=>p.id===i.path)||!Number.isInteger(i.rank)||i.rank<1||i.rank>5))throw fail('专精纪念编号无效');
  if(i.operation==='avatar'&&(!['butler','player'].includes(i.target)||!Object.hasOwn(AVATAR_BY_ID,i.avatarId||'')&&!(i.target==='butler'&&i.avatarId==='default')))throw fail('角色形象无效');
  const before={coins:s.coins,inventory:{...s.inventory}};let details;
- if(i.operation==='avatar'){if(i.target==='butler')s.butlerAvatar=i.avatarId;else{s.playerProfile??={};s.playerProfile.avatar=i.avatarId;}details={ok:true,target:i.target,avatarId:i.avatarId,text:(i.target==='butler'?'管家':'岛主')+'形象已保存，刷新与切换画风后继续保留。'};}
+ if(i.operation==='home_activity'){
+  const entry=evaluateHomeActivity(i,s.day);if(!entry)throw fail('这页手账还没有完成，请检查排列或拼画','personal_unavailable');
+  const previous=s.homeActivities?.[i.homeId],alreadyToday=previous?.lastDay===s.day;
+  s.homeActivities??={};s.homeActivities[i.homeId]={completedDays:(previous?.completedDays||0)+(alreadyToday?0:1),lastDay:s.day,last:entry};
+  details={ok:true,entry,text:entry.title+'已记入家中手账。'+(alreadyToday?'今天的记录已更新。':'这是一起度过的一段闲暇。')};
+ }
+ else if(i.operation==='avatar'){if(i.target==='butler')s.butlerAvatar=i.avatarId;else{s.playerProfile??={};s.playerProfile.avatar=i.avatarId;}details={ok:true,target:i.target,avatarId:i.avatarId,text:(i.target==='butler'?'管家':'岛主')+'形象已保存，刷新与切换画风后继续保留。'};}
  else if(i.operation==='use'||i.operation==='gift')details=itemUse(i.itemId,s,{action:i.operation==='gift'?'gift':'use',npcId:i.npcId??15});
  else if(i.operation==='equip')details=equipOutfit(i.itemId,s);
  else if(i.operation==='unequip')details=unequipOutfit(s,i.itemId??null);

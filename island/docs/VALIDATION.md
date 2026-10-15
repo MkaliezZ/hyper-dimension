@@ -355,3 +355,11 @@ Whole-island seasonal terrain is now connected in both styles, with 280 regional
 修正Intel Mac导航检查的计时起点，并补齐领奖测试退出时异步请求的收尾和失败记录。双画风8/15 FPS寻路4组、领奖/取消/断线核对6组本地通过，原移动时限和单次结算断言保留。[修复与验证范围](docs/mac-checks-v188.md)。新云端结果待核对；新版视频正使用当前四季底图重新录制。
 
 Fixed the navigation harness timing baseline and reward-interceptor teardown reporting. Four dual-style 8/15 FPS navigation cases and six reward/cancel/recovery cases passed locally, with original travel and settlement assertions retained. [Scope and evidence](docs/mac-checks-v188.md). Cloud results remain pending; new footage is being recorded on the current seasonal terrain.
+
+## V191 · Independent residence interiors
+
+Wheat Cottage and Joinery House now have different native pixel/origami interior paintings, individually calibrated floor navigation and furniture interactions. Their daily nursery and sliding-picture hobbies save non-economic journal entries through the existing personal-action ledger. Old personal snapshots without the optional home record remain compatible. The remaining fourteen homes still require their own art and interaction work; see [residence design](residence-interiors-v191.md).
+
+Eleven focused home and personal-ledger tests passed, including reachable furniture, seasonal puzzle solvability, legal slide replay, old-book compatibility, duplicate requests, forged autosaves and unchanged currency/inventory. Four native browser cases cover both homes and both styles, actual game inputs, server records, reload and close. A narrower mobile follow-up checks that labels become numbered markers plus readable shortcuts. The LAN browser check verifies /play, the real personal action, appearance switching and a shared persisted home record. These isolated local fixtures do not prove all sixteen homes, physical Mac use or human acceptance.
+
+Run `npm run test:homes` and `npm run test:homes:browser`. No paid model calls or real user saves are needed by these checks. README updates remain functional only.
