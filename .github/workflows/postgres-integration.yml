@@ -8,25 +8,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        # Docker Official Image mirror avoids Docker Hub shared-runner pull limits.
-        image: public.ecr.aws/docker/library/postgres:17
-        env:
-          POSTGRES_USER: hd_test
-          POSTGRES_PASSWORD: hd_test_only
-          POSTGRES_DB: hd_test
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U hd_test -d hd_test"
-          --health-interval 5s
-          --health-timeout 5s
-          --health-retries 10
     env:
       HD_TEST_PG_DSN: postgresql://hd_test:hd_test_only@127.0.0.1:5432/hd_test
     steps:
       - uses: actions/checkout@v4
+      - name: Start PostgreSQL 17 with official registry fallback
+        run: bash .github/scripts/start-test-postgres.sh
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -34,3 +21,9 @@ jobs:
         run: python -m pip install -e '.[dev,mcp,a2a,database,pdf]'
       - name: Run all tests with PostgreSQL
         run: python -m pytest -q
+      - name: PostgreSQL diagnostics
+        if: failure()
+        run: docker logs --tail 100 hd-ci-postgres || true
+      - name: Stop test database
+        if: always()
+        run: docker rm --force hd-ci-postgres || true
