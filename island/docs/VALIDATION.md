@@ -371,3 +371,13 @@ Two more independent pixel/origami homes are playable: Lulu's gathering room and
 Twenty focused rules passed across home navigation, daily challenge solvability, duplicate commits, restart, forged state rejection, unchanged economy and shared appearance. Four new native browser cases cover both houses/styles, every furniture approach, actual puzzle inputs, completion, save/reload, mobile labels and close. These checks use isolated fictional saves at fresh ports and no external model calls; they never operate on the user's browser or private saves. Follow-up LAN cases check the real personal action and style-switch persistence. Original farmer/carpenter rooms are also regression checked after extending the shared UI. This is not all-home, physical multi-device, Mac hardware or human acceptance.
 
 Run `npm run test:homes` and `npm run test:homes:browser`. For the host LAN case, set `HD_HOME_ID=2` before `node tests/v192-social-homes-lan-browser.mjs`; the default is the observatory.
+
+## V193 · Florist and shipwright homes
+
+Two independently planned houses add the florist's glasshouse, pressed-flower desk and curtained bed, and the shipwright's curved cabin with map table, repair bench and built-in berth. Four original images cover pixel and origami. Daily pressed-specimen arrangements and rotating rope boards have server-validated solutions and persistent personal journals, without economic rewards. Six of sixteen homes now have playable interiors; ten remain.
+
+23 focused rules passed, including navigation between all furniture approaches, challenge variation and solvability, fixed rope terminals, duplicate/forged requests, restart, unchanged inventory and shared appearance. Four native browser cases cover both new houses/styles, real puzzle input, completion, save/reload, mobile close and asset loading. Two isolated LAN cases verify the personal action and journal after style switch and reload. Two prior homes are regression checked through their activities. All use fictional isolated saves at fresh ports and no external model calls; no live user browser or saves are used. These are not physical Mac, multi-device or human acceptance.
+
+Run `npm run test:homes` and `npm run test:homes:browser`. For the florist LAN case set `HD_HOME_ID=4` before `node tests/v193-craft-homes-lan-browser.mjs`; default is the shipwright.
+
+The preceding deployment workflow 38751583983 has a macOS Intel native queued-reward failure: a checkpoint request aborted while the test awaited the crafting result. Its diagnostic log is retained for follow-up; this residence iteration does not claim to repair that failure or complete cross-platform acceptance.
