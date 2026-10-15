@@ -421,3 +421,13 @@ V195 Intel Mac also exceeded the existing 1500 ms cached-gallery paint budget. L
 The full existing lobby regression also passes locally in both styles, including shared-save appearance, bootstrap recovery, gallery drafting and mobile overflow.
 
 Run `npm run test:homes`, `npm run test:homes:browser`, and `npm run test:gallery:browser`. The broader goal, remaining homes, local night lighting, combined playthroughs and real cross-device/human/OPC validation remain incomplete.
+
+## V197 · Librarian and mineral explorer homes
+
+Two new private interiors bring the implemented total to 12/16 homes. Qinghe's archive desk, mismatched reading chairs, U-shaped book wall and source index surround a continuous route from the front-left door to the rear-right bed. An obstructing high partition and long bedside shelf in the first art draft were corrected. Yanyan's irregular stone cottage has a diagonal specimen table with a route on each side, a wet boot entry, tool-care bench, map desk and bed. Four original images provide matching pixel/origami floor plans.
+
+The archive hobby distinguishes the time of an event from a later letter or an announcement's print date. Six events, sources and timeline positions vary daily. The mineral hobby swaps and rotates nine cuts of a continuous procedural cross-section, with distinct inclusions, layer boundaries and a quartz vein. Rotation uses short quarter-turn animation across the wrap boundary. These are explicit home exercises, not actual voyage/production completion; journals persist without creating goods or currency.
+
+32 focused rules pass, including all-pairs furniture paths for every implemented home, 365 archive briefs, 365 mineral boards, rejecting forged submissions, immutable retries, restart and autosave protection. Four final native input cases cover both new homes in both styles, including real furniture navigation, source selection, swaps, rotations, undo, reference, saving, refresh, mobile layout and closing. One isolated LAN archive case verifies shared-style persistence after switching appearance and reloading. Test users and saves are fictional; provider APIs are disabled and ports are ephemeral. This does not constitute physical two-device, human or Mac acceptance.
+
+Use `npm run test:homes` and `npm run test:homes:browser`. Remaining scope includes four homes, local night lights and moon reflection, combined economy/workshop playthroughs, cross-device A2A and human/OPC validation. Public video coverage remains the V190 ending-v2 sequence and does not yet include these homes.
