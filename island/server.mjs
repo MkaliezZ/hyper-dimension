@@ -8,6 +8,7 @@ import {createResidentChatStore} from './server/residentChatStore.mjs';
 import {manualPartyContext} from './server/manualPartyContext.mjs';
 import {acquireDataLease} from './server/dataLease.mjs';
 import {readJsonBody,MANUAL_STEWARD_BODY_BYTES} from './server/httpBody.mjs';
+import {serveCoCreationAssets} from './server/coCreationAssetHttp.mjs';
 import {createCoCreationStore} from './server/cocreationStore.mjs';
 import {CO_CREATION_EXAMPLES} from './src/cocreation.js';
 import {createSaveStore,MAX_SAVE_BYTES,MAX_IMPORT_BYTES} from './server/saveStore.mjs';
@@ -24,12 +25,14 @@ import { resolve, extname, sep } from 'node:path';
 const root=resolve(import.meta.dirname);
 const dataLease=await acquireDataLease({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),mode:'runtime',sharedRuntime:true});
 const environmentService=await createEnvironmentService({directory:process.env.HD_ENVIRONMENT_DIR||(process.env.HD_SAVE_DIR?resolve(process.env.HD_SAVE_DIR,'environment'):resolve(root,'data/environment'))});
-const rawSaves=createSaveStore({environmentProvider:()=>environmentService.view(),directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
+let rawCoCreation;
+const rawSaves=createSaveStore({contentProvider:(style,world)=>rawCoCreation.catalog(style,world),environmentProvider:()=>environmentService.view(),directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves')});
 const worldSession=createWorldSession({directory:rawSaves.directory,saves:rawSaves}),saves=bindWorldStore(rawSaves,worldSession);
 const portfolio=createPortfolioStore({directory:rawSaves.directory});
 const stewardRequests=createStewardRequestStore({directory:rawSaves.directory});
 const residentChat=createResidentChatStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),saves,run:chatWithResident});
-const cocreation=createCoCreationStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),worldExists:async(style,key)=>{const d=await saves.current(style);return !!d&&key===(d.state.saveSlot||'legacy-'+style);}});
+rawCoCreation=createCoCreationStore({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),catalogBaseline:async style=>(await saves.current(style))?.state.customCatalog||null,worldExists:async(style,key)=>{const d=await saves.current(style);return !!d&&key===(d.state.saveSlot||'legacy-'+style);}});
+const cocreation=bindWorldStore(rawCoCreation,worldSession);
 const recruitment=createRecruitmentService({directory:process.env.HD_SAVE_DIR||resolve(root,'data/saves'),saves,run:recruitmentRun,cancel:cancelRecruitmentRun});
 const partyPlanning=createPartyPlanningService({saves,suggest:suggestParty});
 const port=Number(process.argv.find(x=>x.startsWith('--port='))?.split('=')[1]??process.env.PORT??4173);
@@ -76,6 +79,7 @@ const server=createServer(async(req,res)=>{
     return sendJSON(res,405,{error:'不支持此成果操作'});
    }catch(e){return sendAgentError(res,e)}
   }
+  if(await serveCoCreationAssets({req,res,pathname,assets:cocreation.assets,readJSON,sendJSON}))return;
   const coRoute=pathname.match(/^\/api\/cocreation\/(pixel|origami)(?:\/(action|examples|export\/opc-[a-z0-9-]+\/\d+))?$/);
   if(coRoute){const [,style,operation]=coRoute;try{if(req.method==='GET'&&operation==='examples')return sendJSON(res,200,{examples:CO_CREATION_EXAMPLES});if(req.method==='GET'&&!operation)return sendJSON(res,200,{document:await cocreation.current(style)});if(req.method==='POST'&&operation==='action')return sendJSON(res,200,await cocreation.action(style,await readJSON(req,220000)));if(req.method==='GET'&&operation?.startsWith('export/')){const[,id,n]=operation.split('/'),data=await cocreation.export(style,id,Number(n));return sendJSON(res,200,data);}return sendJSON(res,405,{error:'不支持此共创操作'});}catch(e){return sendJSON(res,e.status||500,{error:String(e.message).slice(0,400),code:e.code||'cocreation_unavailable'});}}
   const saveRoute=pathname.match(/^\/api\/saves\/(pixel|origami)(?:\/(open|save|action|appearance|backups|backup|restore|restart|import|import-preview|migration-export|export))?$/);

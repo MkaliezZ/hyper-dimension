@@ -24,6 +24,7 @@
 | Agent 管家 | 自定义姓名与 12 套形象；通过 Hermes 处理现实工作，招募临时 Agent 伙伴；可手动为居民安排最多四项顺序工作，按作息排队执行。 |
 | 四季与双画风 | 分块四季地形、海浪天气、昼夜灯火与海面月影；每季 30 个视觉日，天气影响种植和钓鱼。 |
 | 展示与来访 | 会客馆展示经历、项目与图片，支持访客留言；联机会客厅支持随行 NPC、管家桥接与 A2A 交流。 |
+| OPC 共创 | 新增正式物品与加工配方，上传像素／折纸素材；审核发布、实际制作、导出复用与版本回退。 |
 
 | 像素 · 小墨的木榫居 | 折纸 · 知夏的拾珍屋 |
 | --- | --- |
@@ -47,6 +48,6 @@ API 密钥保存在私有 `.env.local`；无密钥可体验规则模式。更新
 
 ## 更多
 
-[部署与配置](DEPLOYMENT.md) · [OPC 共创课](public/assets/cocreation/course-v1.md) · [Agent / A2A](docs/a2a-standard-v158.md) · [版本下载](https://github.com/MkaliezZ/hyper-dimension/releases) · [教培模块](../README.education.md)
+[部署与配置](DEPLOYMENT.md) · [OPC 共创课](public/assets/cocreation/course-v2.md) · [Agent / A2A](docs/a2a-standard-v158.md) · [版本下载](https://github.com/MkaliezZ/hyper-dimension/releases) · [教培模块](../README.education.md)
 
 代码采用 [MIT](LICENSE) 许可；第三方组件见 [声明](THIRD_PARTY_NOTICES.md)。

@@ -17,7 +17,7 @@ const DIFFICULTIES=['','轻松','标准','挑战'];
 const command=(label,type,extra='',cls='')=>'<button type="button" class="wk-control '+cls+'" data-action="'+type+'" '+extra+'>'+label+'</button>';
 export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  const options=gameLevelOptions(id,baseOptions),theme=options.theme||document.body.dataset.theme||'pixel',g=WORKSHOP_GAMES[id],level=options.resumeGame?.engine==='workshop'&&options.resumeGame.state?.level?.id===id?structuredClone(options.resumeGame.state.level):makeWorkshopLevel(id,options.level.seed,options.level.difficulty,options.recipe);
- const s=options.resumeGame?.engine==='workshop'?structuredClone(options.resumeGame.state):createWorkshopState(level,options.equipment),art=id=>itemMarkup(id,theme,'wk-item-art'),recipe=options.recipe||(options.catchItem?{item:options.catchItem,name:itemName(options.catchItem)}:DEFAULT_RECIPES[id]),audio=createWorkshopAudio();
+ const s=options.resumeGame?.engine==='workshop'?structuredClone(options.resumeGame.state):createWorkshopState(level,options.equipment),art=id=>itemMarkup(id,theme,'wk-item-art',options.catalogState?.()),recipe=options.recipe||(options.catchItem?{item:options.catchItem,name:itemName(options.catchItem)}:DEFAULT_RECIPES[id]),audio=createWorkshopAudio();
  let alive=true,frame=0,last=performance.now(),replacement=null,paused=false,reported=false,claimed=false,uiAt=-1,uiPhase='',controlsKey='',outcomeShown=false,autoPauseReason='',loaded=false,markMode=false,entryTime=0;
  s.events=[];let transportPaused=false,checkpointPending=false;
  let wardrobeTab=0;

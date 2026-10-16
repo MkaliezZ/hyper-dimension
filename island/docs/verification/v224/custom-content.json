@@ -1,0 +1,54 @@
+{
+  "version": 224,
+  "builtinMaterials": 58,
+  "builtinRecipes": 308,
+  "customLimits": {
+    "itemsPerPack": 12,
+    "retainedItemsPerWorld": 288,
+    "pngBytes": 262144,
+    "pngDimensions": [
+      32,
+      512
+    ]
+  },
+  "rules": {
+    "newDomainAndHttpPassed": 9,
+    "relatedOldV1AndNewPassed": 18,
+    "relatedSubsetOverlapsFull": true
+  },
+  "native": {
+    "casesPassed": 2,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "fictionalOwners": 4,
+    "actualPointerPlayedGames": 6,
+    "fixtureStockNotZeroJourney": true,
+    "actualCustomComponentReuse": true,
+    "actualGift": true,
+    "exportedPngAssetsImportedAndCraftedByAnotherOwner": true,
+    "actualImageDecodeChecked": true,
+    "editorAndProductAt390pxChecked": true,
+    "testPatternArtNotProductionArt": true,
+    "providersDisabled": true,
+    "resultOrTimeInjection": false,
+    "earlierDomOnlyArtPassExcluded": true
+  },
+  "fullCurrentSourceRegression": {
+    "passed": true,
+    "mainPassed": 1218,
+    "runtimePassed": 14,
+    "total": 1232,
+    "failed": 0
+  },
+  "notVerified": [
+    "Human 150-minute class",
+    "NPC or Agent automatic use of custom recipes",
+    "Custom visitor shelf sales",
+    "Ecosystem moderation",
+    "Mac hardware acceptance",
+    "Whole goal"
+  ],
+  "wholeGoalComplete": false
+}

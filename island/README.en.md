@@ -24,6 +24,7 @@ Original soundtrack. Profiles and briefs are fictional; steward documents were p
 | Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work, recruit a temporary Agent partner, and queue up to four ordered jobs for a resident to follow during their work hours. |
 | Seasons and two styles | Regional seasonal terrain, waves, weather, evening lights and rippling moon reflections. Each season lasts 30 visual days; weather affects farming and fishing. |
 | Showcase and visit | Share experience, projects and images in your gallery, with guest messages. Bring NPC companions and use steward bridging and A2A in multiplayer reception. |
+| Create with OPC | Add real products and ingredient chains with pixel/origami artwork. Review, publish, craft, export for reuse and roll back versions. |
 
 | Pixel · Joinery home | Origami · Curator home |
 | --- | --- |
@@ -47,6 +48,6 @@ Keep API keys in private `.env.local`. Rules mode works without a key. Back up a
 
 ## More
 
-[Deployment and configuration](DEPLOYMENT.md) · [OPC co-creation course (Chinese)](public/assets/cocreation/course-v1.md) · [Agents / A2A](docs/a2a-standard-v158.md) · [Downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [Education module](../README.education.md)
+[Deployment and configuration](DEPLOYMENT.md) · [OPC co-creation course (Chinese)](public/assets/cocreation/course-v2.md) · [Agents / A2A](docs/a2a-standard-v158.md) · [Downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [Education module](../README.education.md)
 
 Code is [MIT](LICENSE) licensed. See [third-party notices](THIRD_PARTY_NOTICES.md).

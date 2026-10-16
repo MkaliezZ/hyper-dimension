@@ -1,7 +1,7 @@
 import {ISLAND_GEOGRAPHY,PERMANENT_HOMES} from './islandGeography.js';
 import {PORTFOLIO_SITE} from './portfolioLandmark.js';
 import {WONDER_DEFINITIONS} from './eventWonders.js';
-import {ITEM_BY_ID} from './contentCatalog.js';
+import {catalogItem} from './contentCatalog.js';
 import {functionalDefinition} from './facilityCatalog.js';
 import {functionalStorageReason} from './functionalFacilities.js';
 import {availableQuantity,commitResources} from './resourceLedger.js';
@@ -10,19 +10,19 @@ import {wonderPlacements} from './fishingWonderArt.js';
 export const PLACEMENT_LIMIT=64,PLACEMENT_GRID=8;
 const kinds=new Set(['decor','collection','component']),directions=['朝前','朝右','朝后','朝左'];
 const key=s=>typeof s==='string'&&/^[a-zA-Z0-9_.:-]{1,150}$/.test(s)&&!['__proto__','constructor','prototype'].includes(s);
-export const canPlaceItem=id=>!!ITEM_BY_ID[id]&&(kinds.has(ITEM_BY_ID[id].category)||!!functionalDefinition(id))&&id!=='c16_4';
-export function displayShape(item,rotation=0){
- const i=ITEM_BY_ID[item],tier=i?.tier||0,facility=functionalDefinition(item);if(facility)return {...facility.shape};let rx=i?.category==='component'?16:22+tier*3,ry=11+tier*2;
+export const canPlaceItem=(id,s=null)=>{const item=catalogItem(s,id);return !!item&&(kinds.has(item.category)||!!functionalDefinition(id))&&id!=='c16_4';};
+export function displayShape(item,rotation=0,s=null){
+ const i=catalogItem(s,item),tier=i?.tier||0,facility=functionalDefinition(item);if(facility)return {...facility.shape};let rx=i?.category==='component'?16:22+tier*3,ry=11+tier*2;
  if(rotation%2)[rx,ry]=[Math.max(13,ry+3),Math.max(13,rx*.65)];
  return {rx,ry,h:42+tier*8};
 }
 export function snapDisplay(x,y){return {x:Math.round(x/PLACEMENT_GRID)*PLACEMENT_GRID,y:Math.round(y/PLACEMENT_GRID)*PLACEMENT_GRID};}
 export function decorationColliders(s,{except=null}={}){
- return (s.placedItems||[]).filter(p=>p.version===2&&p.id!==except).map(p=>({...p,...displayShape(p.item,p.rotation)}));
+ return (s.placedItems||[]).filter(p=>p.version===2&&p.id!==except).map(p=>({...p,...displayShape(p.item,p.rotation,s)}));
 }
 export function placementObstacles(s,theme,{except=null,extra=null}={}){
  const slots=[];for(const p of worldSlots(theme))slots[p.id]=p;
- return [...decorationColliders(s,{except}),...wonderPlacements(s,slots),...(extra?[{...extra,...displayShape(extra.item,extra.rotation)}]:[])];
+ return [...decorationColliders(s,{except}),...wonderPlacements(s,slots),...(extra?[{...extra,...displayShape(extra.item,extra.rotation,s)}]:[])];
 }
 function anchors(theme){return [...worldSlots(theme).map(p=>({...p.entry,name:'建筑入口 '+p.id})),...PERMANENT_HOMES.map(h=>({...h.entry,name:h.name})),...HOTSPOTS.filter(h=>h.type!=='dock').map(h=>({...h.entry,name:h.label})),{...PORTFOLIO_SITE.entry,name:'岛主会客馆'},{...HARBOR_LAYOUTS[theme].entrance,name:'码头入口'}];}
 export function connectedPlacements(s,theme,{except=null,extra=null}={}){
@@ -43,8 +43,8 @@ export function connectedPlacements(s,theme,{except=null,extra=null}={}){
 const overlap=(a,b,gap=0)=>Math.abs(a.x-b.x)<a.rx+b.rx+gap&&Math.abs(a.y-b.y)<a.ry+b.ry+gap;
 function partyLocked(s,p){return !!(s.partySession||s.festivalParty?.session?.phase==='running'||s.fireworksParty?.session?.phase==='running'||s.coutureParty?.session?.phase==='running')&&Math.hypot(p.x-ISLAND_GEOGRAPHY.landmarks.plaza.x,p.y-ISLAND_GEOGRAPHY.landmarks.plaza.y)<190;}
 export function checkDecoration(s,p,{theme=s.placementBook?.theme,except=null,actors=[],connectivity=true}={}){
- if(!['pixel','origami'].includes(theme)||!canPlaceItem(p.item)||!Number.isFinite(p.x)||!Number.isFinite(p.y)||!Number.isInteger(p.rotation)||p.rotation<0||p.rotation>3)return {ok:false,reason:'布置参数不完整'};
- const shape=displayShape(p.item,p.rotation),candidate={...p,...shape};
+ if(!['pixel','origami'].includes(theme)||!canPlaceItem(p.item,s)||!Number.isFinite(p.x)||!Number.isFinite(p.y)||!Number.isInteger(p.rotation)||p.rotation<0||p.rotation>3)return {ok:false,reason:'布置参数不完整'};
+ const shape=displayShape(p.item,p.rotation,s),candidate={...p,...shape};
  const harbor=HARBOR_LAYOUTS[theme];if(p.x<24||p.x>WORLD.width-24||p.y<24||p.y>WORLD.height-24||pointInPolygon(p.x,p.y,harbor.apron.map(([x,y])=>({x,y})))||nearPolyline(p.x,p.y,harbor.path.map(([x,y])=>({x,y})),36))return {ok:false,reason:'请放在岛上的陆地空位，栈桥与航线留给行人'};
  if(Math.hypot(p.x-ISLAND_GEOGRAPHY.landmarks.plaza.x,p.y-ISLAND_GEOGRAPHY.landmarks.plaza.y)<82)return {ok:false,reason:'广场中心留给集会，请布置在周围空位'};
  if(partyLocked(s,p))return {ok:false,reason:'活动进行中，广场布置暂时锁定'};
@@ -61,7 +61,7 @@ export function checkDecoration(s,p,{theme=s.placementBook?.theme,except=null,ac
  return connectivity?connectedPlacements(s,theme,{except,extra:p}):{ok:true};
 }
 function quality(s,building){
- s.decorBonuses??={};const old=s.decorBonuses[building]||0,next=Math.max(0,...(s.placedItems||[]).filter(p=>p.building===building).map(p=>1+(ITEM_BY_ID[p.item]?.tier||0)));
+ s.decorBonuses??={};const old=s.decorBonuses[building]||0,next=Math.max(0,...(s.placedItems||[]).filter(p=>p.building===building).map(p=>1+(catalogItem(s,p.item)?.tier||0)));
  const f=s.facilities?.[building];if(f){
   s.decorQualityState??={};const saved=s.decorQualityState[building],base=Math.max(0,Math.min(95,saved?saved.base+f.quality-saved.lastQuality:f.quality-old));
   f.quality=Math.min(95,base+next);s.decorQualityState[building]={base,lastQuality:f.quality};
@@ -73,8 +73,8 @@ export function hydratePlacements(s,theme){
  s.placementBook={version:1,theme,revision:0,serial:0,receipts:{},history:[]};
  const old=s.placedItems;s.placedItems=[];
  for(const legacy of old){
-  if(!canPlaceItem(legacy.item)){s.placedItems.push(legacy);continue;}
-  const item=ITEM_BY_ID[legacy.item],slot=worldSlots(theme).find(p=>p.id===item.building),start={x:slot.entry.x+38,y:slot.entry.y+8};
+  if(!canPlaceItem(legacy.item,s)){s.placedItems.push(legacy);continue;}
+  const item=catalogItem(s,legacy.item),slot=worldSlots(theme).find(p=>p.id===item.building),start={x:slot.entry.x+38,y:slot.entry.y+8};
   let found=null;
   for(let radius=0;radius<=200&&!found;radius+=24)for(let i=0;i<(radius?16:1);i++){
    const p={item:item.id,...snapDisplay(start.x+Math.cos(i*Math.PI/8)*radius,start.y+Math.sin(i*Math.PI/8)*radius),rotation:0};
@@ -101,22 +101,22 @@ export function decorate(s,input,{theme,actors=[]}={}){
  if(current&&action==='move'&&s.functionalFacilities?.units[current.id]?.phase==='watering')return failure('正在灌溉，请先关闭灌溉再移动');
  if(current&&action==='store'){const reason=functionalStorageReason(s,current.id);if(reason)return failure(reason);}
  const placedItem=action==='place'?item:current.item;
- if(!canPlaceItem(placedItem))return failure('这件物品不能放置');
+ if(!canPlaceItem(placedItem,s))return failure('这件物品不能放置');
  if(action==='place'&&(s.placedItems.length>=PLACEMENT_LIMIT||availableQuantity(s,item)<1))return failure(s.placedItems.length>=PLACEMENT_LIMIT?'岛上最多同时陈列 64 件，请先收回一件':'物品不足，或已留给筹备任务');
  let result;
  if(action==='store'){
   const credited=commitResources(s,{id:'display:'+commandId, gain:{[current.item]:1},category:'display_storage'});if(!credited.ok)return failure('收回记录冲突');
   s.placedItems.splice(s.placedItems.indexOf(current),1);if(s.functionalFacilities?.units[current.id]){delete s.functionalFacilities.units[current.id];s.functionalFacilities.revision++;}returnPersonal(s,current);quality(s,current.building);
-  result={ok:true,id:current.id,item:current.item,text:ITEM_BY_ID[current.item].name+'已完整收回背包'};
+  result={ok:true,id:current.id,item:current.item,text:catalogItem(s,current.item).name+'已完整收回背包'};
  }else{
   const candidate={item:placedItem,...snapDisplay(x,y),rotation};
   const legal=checkDecoration(s,candidate,{theme,except:current?.id,actors});if(!legal.ok)return legal;
   if(action==='place'){
    const credit=(s.economy?.playerGoods?.[item]||0)>0,debit=commitResources(s,{id:'display:'+commandId,cost:{[item]:1},category:'display_place'});
    if(!debit.ok)return failure('物资不足，未放置');
-   const row={...candidate,id:'display-'+(++book.serial),building:ITEM_BY_ID[item].building,personalCredit:credit,version:2};s.placedItems.push(row);quality(s,row.building);
-   result={ok:true,id:row.id,item,text:ITEM_BY_ID[item].name+'已布置 · '+directions[rotation]};
-  }else{Object.assign(current,candidate);result={ok:true,id:current.id,item:current.item,text:ITEM_BY_ID[current.item].name+'已移动 · '+directions[rotation]};}
+   const row={...candidate,id:'display-'+(++book.serial),building:catalogItem(s,item).building,personalCredit:credit,version:2};s.placedItems.push(row);quality(s,row.building);
+   result={ok:true,id:row.id,item,text:catalogItem(s,item).name+'已布置 · '+directions[rotation]};
+  }else{Object.assign(current,candidate);result={ok:true,id:current.id,item:current.item,text:catalogItem(s,current.item).name+'已移动 · '+directions[rotation]};}
  }
  book.revision++;book.receipts[commandId]={signature,day:s.day,result:structuredClone(result)};
  book.history.push({day:s.day,action,id:result.id,item:result.item,text:result.text});book.history=book.history.slice(-80);
@@ -126,13 +126,13 @@ export function validPlacements(s,{connectivity=false}={}){
  if(s.placedItems===undefined&&s.placementBook===undefined)return true;
  if(!Array.isArray(s.placedItems)||s.placedItems.length>PLACEMENT_LIMIT)return false;
  if(s.decorQualityState!==undefined&&(!s.decorQualityState||typeof s.decorQualityState!=='object'||Array.isArray(s.decorQualityState)||Object.entries(s.decorQualityState).some(([id,q])=>!Number.isInteger(Number(id))||Number(id)<0||Number(id)>24||!q||![q.base,q.lastQuality].every(n=>Number.isFinite(n)&&n>=0&&n<=95))))return false;
- const b=s.placementBook;if(b===undefined)return s.placedItems.every(p=>canPlaceItem(p.item)&&p.building===ITEM_BY_ID[p.item].building&&p.version===undefined);
+ const b=s.placementBook;if(b===undefined)return s.placedItems.every(p=>canPlaceItem(p.item,s)&&p.building===catalogItem(s,p.item).building&&p.version===undefined);
  const object=x=>x&&typeof x==='object'&&!Array.isArray(x);
  if(b.version!==1||!['pixel','origami'].includes(b.theme)||!Number.isSafeInteger(b.revision)||b.revision<0||!Number.isSafeInteger(b.serial)||b.serial<0||!object(b.receipts)||!Array.isArray(b.history)||b.history.length>80)return false;
  if(new Set(s.placedItems.map(p=>p.id)).size!==s.placedItems.length)return false;
  for(const p of s.placedItems){
-  if(!/^display-[1-9][0-9]*$/.test(p.id||'')||Number(p.id.slice(8))>b.serial||p.version!==2||p.building!==ITEM_BY_ID[p.item]?.building||typeof p.personalCredit!=='boolean'||!checkDecoration({...s,partySession:null},p,{theme:b.theme,except:p.id,connectivity:false}).ok)return false;
+  if(!/^display-[1-9][0-9]*$/.test(p.id||'')||Number(p.id.slice(8))>b.serial||p.version!==2||p.building!==catalogItem(s,p.item)?.building||typeof p.personalCredit!=='boolean'||!checkDecoration({...s,partySession:null},p,{theme:b.theme,except:p.id,connectivity:false}).ok)return false;
  }
- if(Object.entries(b.receipts).some(([id,r])=>!key(id)||typeof r.signature!=='string'||r.signature.length>500||!Number.isSafeInteger(r.day)||r.day<1||r.result?.ok!==true||!key(r.result.id)||!canPlaceItem(r.result.item)||typeof r.result.text!=='string'))return false;
+ if(Object.entries(b.receipts).some(([id,r])=>!key(id)||typeof r.signature!=='string'||r.signature.length>500||!Number.isSafeInteger(r.day)||r.day<1||r.result?.ok!==true||!key(r.result.id)||!canPlaceItem(r.result.item,s)||typeof r.result.text!=='string'))return false;
  return !connectivity||connectedPlacements(s,b.theme).ok;
 }

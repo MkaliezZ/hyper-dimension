@@ -1,6 +1,6 @@
 import {recipeContract,acceptedRecipe,validAcceptedRecipe} from '../src/recipeContracts.js';
 import {randomInt,createHash} from 'node:crypto';
-import {RECIPE_BY_ID,canCraft,recipeGate,hydrateContent,takeCraftNutrition} from '../src/contentCatalog.js';
+import {RECIPE_BY_ID,catalogRecipe,canCraft,recipeGate,hydrateContent,takeCraftNutrition} from '../src/contentCatalog.js';
 import {reserveResources,releaseResources,commitResources,nextOperationId} from '../src/resourceLedger.js';
 import {createCraftGame,applyCraftTrace,craftResult,neutralCraftGame} from '../src/craftGameReplay.js';
 import {chooseDifficulty} from '../src/gameLevels.js';
@@ -15,7 +15,7 @@ const fail=(text,code='craft_invalid')=>Object.assign(Error(text),{status:409,co
 const digest=events=>createHash('sha256').update(JSON.stringify(events)).digest('hex');
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export function validCraftTicket(t,receipt=false){
- if(!validAcceptedRecipe(t)||!RECIPE_BY_ID[t.recipeId]||t.item!==RECIPE_BY_ID[t.recipeId].item||t.building!==RECIPE_BY_ID[t.recipeId].building||!Number.isInteger(t.seed)||t.seed<0||t.seed>0xffffffff||![1,2,3].includes(t.difficulty)||typeof t.practice!=='boolean'||!Number.isFinite(t.duration)||t.duration<.85||t.duration>2.1)return false;
+ if(!validAcceptedRecipe(t)||!Number.isInteger(t.seed)||t.seed<0||t.seed>0xffffffff||![1,2,3].includes(t.difficulty)||typeof t.practice!=='boolean'||!Number.isFinite(t.duration)||t.duration<.85||t.duration>2.1)return false;
  return receipt||!!t.game&&['workshop','link','match'].includes(t.game.engine)&&Number.isFinite(t.game.elapsed)&&t.game.elapsed>=0&&Number.isSafeInteger(t.nextBatch)&&t.nextBatch>=1;
 }
 export function craftHold(t){return t.practice?{}:{[t.owner]:{items:Object.fromEntries(Object.entries(t.reservedItems||acceptedRecipe(t)?.cost||{}).sort(([a],[b])=>a.localeCompare(b))),purpose:'服务端制作 '+t.name,day:t.day,...(t.projectTaskId?{projectTaskId:t.projectTaskId,taskOperation:t.taskOperation,assignmentVersion:t.assignmentVersion}:{})}}}
@@ -57,7 +57,7 @@ export function applyCraftCommand(s,b,input,now){
   if(b.active)throw fail('上一次作业尚未完成，请继续或取消','action_active');
   if((input.epoch??null)!==b.epoch&&input.epoch!==null)throw fail('作业所属存档已更换','action_epoch');
   if(input.expectedSequence!==b.sequence)throw fail('另一窗口已更新作业','action_sequence');
-  const recipe=RECIPE_BY_ID[input.recipeId];if(!recipe)throw fail('配方不存在');
+  const recipe=catalogRecipe(s,input.recipeId);if(!recipe)throw fail('配方不存在');
   const mode=input.mode||'auto';if(!['auto','1','2','3'].includes(mode))throw fail('难度无效');
   hydrateContent(s);
   const project=playerProjectTask(s,recipe.item,input.taskId||null),projectOwner=project?.resourceOwner||null;

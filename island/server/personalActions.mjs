@@ -1,7 +1,7 @@
 import {AVATAR_BY_ID} from '../src/avatarCatalog.js';
 import {createHash} from 'node:crypto';
 import {evaluateHomeActivity} from '../src/homeActivities.js';
-import {itemUse,ITEM_BY_ID} from '../src/contentCatalog.js';
+import {itemUse,ITEM_BY_ID,catalogItem} from '../src/contentCatalog.js';
 import {equipOutfit,unequipOutfit,equipTool,GARMENTS,TOOLS} from '../src/equipmentRules.js';
 import {claimMoment,refreshJourney,hydrateJourney,MOMENTS} from '../src/journey.js';
 import {claimSpecialization,SPECIALIZATIONS} from '../src/specialization.js';
@@ -38,7 +38,7 @@ export function applyPersonalCommand(s,b,i,now){
  if(!b.personal)throw fail('个人物资账本尚未启用','personal_not_enabled');
  assertPersonalState(s,b);if(!operations.includes(i.operation))throw fail('不支持的物品操作');
  if(i.day!==s.day)throw fail('游戏日已经更新，请重新查看物品','personal_day');
- if(['use','gift','equip','tool'].includes(i.operation)&&(typeof i.itemId!=='string'||!Object.hasOwn(ITEM_BY_ID,i.itemId)))throw fail('物品编号无效');
+ if(['use','gift','equip','tool'].includes(i.operation)&&(typeof i.itemId!=='string'||!catalogItem(s,i.itemId)))throw fail('物品编号无效');
  if(i.npcId!==undefined&&(!Number.isInteger(i.npcId)||i.npcId<0||i.npcId>15))throw fail('收礼居民编号无效');
  if(i.operation==='equip'&&!Object.hasOwn(GARMENTS,i.itemId)||i.operation==='unequip'&&i.itemId!=null&&(typeof i.itemId!=='string'||!Object.hasOwn(GARMENTS,i.itemId)))throw fail('衣物编号无效');
  if(i.operation==='tool'&&!Object.hasOwn(TOOLS,i.itemId))throw fail('工具编号无效');

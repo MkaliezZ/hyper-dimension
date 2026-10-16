@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v223-agent-source",
+  "release": "hyper-dimension-v224-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3558,
-      "sha256": "91bc0bd081aac1deef2c320605df5e6066e30fb1adbb2f4775f5017ded029542"
+      "bytes": 3713,
+      "sha256": "644beb96dc0495e13f9058e40c6333c660fd1490e92ae3c64035114584e61a73"
     },
     {
       "path": "README.md",
-      "bytes": 3329,
-      "sha256": "6871f1e8ef8e5ac4a3be02ed4d755a6e9e693991826c3f9a72eaa77edebcb0cf"
+      "bytes": 3473,
+      "sha256": "4f94aba202c9ad298625e708911ef8bcfaf871981872d18053abe01a603c253c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 79571,
-      "sha256": "ccbfd8f293a0cd8a89686898cd10162a9bc358fbade55cfd89885b43603d3d88"
+      "bytes": 80193,
+      "sha256": "a1c928d75645b280e82d3024ae4f1614bb981f4154c15a47c010685eaa84c2cc"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13389,
-      "sha256": "2922f7091e2cde00124f0aa16794f18e717a4d4d0439ffc57fa8948afe995d34"
+      "bytes": 13464,
+      "sha256": "f3b032b7d4fd1252eef8b743b88500da979dd20a8ee3e3bf1dac7b04f00f2274"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6032,8 +6032,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 15826,
-      "sha256": "b8f65c1f028c920ae0d39253940aa604c130b62f1b3f6c811801fac661d22c16"
+      "bytes": 16234,
+      "sha256": "0a972ffee55216e28a08dd72d2a8a12ee9cee1c58d6ad1248d96140a5511b7d9"
     },
     {
       "path": "server/a2aGateway.mjs",
@@ -6062,8 +6062,8 @@
     },
     {
       "path": "server/cocreationStore.mjs",
-      "bytes": 11587,
-      "sha256": "621c91cde3b31558ca90ee991d6c908aa7246fbc73183773aec14379e48dd69f"
+      "bytes": 15138,
+      "sha256": "e2f4b3fcceedc8db45b242fc5c56dc64ad3147d6096597f1382b2782cd57be52"
     },
     {
       "path": "server/commerceActions.mjs",
@@ -6077,8 +6077,8 @@
     },
     {
       "path": "server/craftActions.mjs",
-      "bytes": 10988,
-      "sha256": "8debd8cbb1e10c723ecfc28cd9f17bbc570f29b600ed80052dbcf0fa276580fe"
+      "bytes": 10890,
+      "sha256": "74538148b3ec03996abc755f79ea8a5d528e97dcfc995a88bf6b617d38de4690"
     },
     {
       "path": "server/crossIslandTasks.mjs",
@@ -6127,8 +6127,8 @@
     },
     {
       "path": "server/facilityActions.mjs",
-      "bytes": 8292,
-      "sha256": "5fbd43f4745e9588a152f91cfdf5fb2ce5e826ac6fea93794b8fce7f2898e52f"
+      "bytes": 8353,
+      "sha256": "f1a0afb9aaad718e6c15cd7e37669cb39b34d397570d27fbc2685554527e3b1d"
     },
     {
       "path": "server/farmActions.mjs",
@@ -6242,8 +6242,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 27726,
-      "sha256": "da28fc696aed7f479b5b4e1cb525ea60186bbd222d099e387d74dc25ec7b06fd"
+      "bytes": 28240,
+      "sha256": "ffd524a78513d674eb1d0f94456c7000397c393fe8eedec22b4a489b08c4b3a5"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -6257,8 +6257,8 @@
     },
     {
       "path": "server/lanTenantServices.mjs",
-      "bytes": 3739,
-      "sha256": "a629d850388de3b6e0205dd9050a0144b08aaa90c12e64aa18a88f67c34fe8ad"
+      "bytes": 3971,
+      "sha256": "b9e009eb25d8920434137b4cf114c1a039d2d451b9496c1e1f1916cb6d1c5046"
     },
     {
       "path": "server/lanTravelParty.mjs",
@@ -6352,8 +6352,8 @@
     },
     {
       "path": "server/personalActions.mjs",
-      "bytes": 8081,
-      "sha256": "6dfcade34600bb61af7b5cd03cd9ee865076e82dc698df0f3ea1917d7620966f"
+      "bytes": 8082,
+      "sha256": "0e14878d61b1220fe75bfbb5a3ce04e5fc34cfbd544a6558f382985ec4f39b9a"
     },
     {
       "path": "server/planningAuthority.mjs",
@@ -6442,8 +6442,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 38167,
-      "sha256": "4e2c7bac5f437198eb5433450101abeb267593e34f768a35f7f04da6a7da003c"
+      "bytes": 39858,
+      "sha256": "64150f879931c37f3b066c9438076510ac9a91e746b1e0164050529d3c22a16c"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144150,
-      "sha256": "ca2b5fd2d263076cdb2277e1c29488923465f6803e35df6316cde2d044bf6a72"
+      "bytes": 144326,
+      "sha256": "da500553c467f699a789f1e9d0ed16049f96fe47c887830cdf3e6730363701d0"
     },
     {
       "path": "src/arcade.css",
@@ -6562,8 +6562,8 @@
     },
     {
       "path": "src/artStore.js",
-      "bytes": 7999,
-      "sha256": "1f4bd37fa4719a5718e923fdd7d4ccf297a2cb89dbfd529c93775ed4d18e8334"
+      "bytes": 8612,
+      "sha256": "95afbf4d4c2f3dcf2b635a887cab4988ee75933eb7ac3c9a1aa3b46f839bcbf4"
     },
     {
       "path": "src/avatarCatalog.js",
@@ -6637,8 +6637,8 @@
     },
     {
       "path": "src/classicGames.js",
-      "bytes": 17553,
-      "sha256": "82b0bc15c86940e07c4c1e494c487521482fd9e2368a05abe00002a29d82bd37"
+      "bytes": 17610,
+      "sha256": "5f8e2e3d7a0afc40f63ef85ddd6bbf9a0ac8ef356d71a174b17c1418427b1929"
     },
     {
       "path": "src/classicRules.js",
@@ -6647,18 +6647,18 @@
     },
     {
       "path": "src/cocreation-v56.css",
-      "bytes": 7002,
-      "sha256": "c55cf804d6495b52544463a86e7fb62a0f6ee3425be64467f09ac4d0dc75c9ad"
+      "bytes": 7957,
+      "sha256": "b6a65562d392c08932e036f5df4f94ff225babf9c95b59b902cd5edbddda6c9f"
     },
     {
       "path": "src/cocreation.js",
-      "bytes": 4878,
-      "sha256": "27cf9d39f95d25bb656eb1646892c724f6b1eb581d250c6de7f1f445e162205f"
+      "bytes": 5737,
+      "sha256": "2dc41b54675f3fe9257b663bd1d0d5ad5a3d73da5e39e871630064cab9405b4e"
     },
     {
       "path": "src/cocreationUI.js",
-      "bytes": 23906,
-      "sha256": "946e8ea187ec70fc98b8cc4ba88a646cb8df58c6818cbb0b384ff71b3323fada"
+      "bytes": 26786,
+      "sha256": "fd506177e1fd8f30dfb82bf73dc84c15a646fee1810e6651a582aba8bdc2e20e"
     },
     {
       "path": "src/collections-v33.css",
@@ -6682,13 +6682,13 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 9192,
-      "sha256": "07632d5c855a31503c64cef498ec8ad61939feb0f8b5a0d0d3357d8185ccf2c2"
+      "bytes": 9792,
+      "sha256": "bd1da3be73ca6d4d3b6329605b02528a752992c7eed52cfc1a58c691ba74931d"
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 17821,
-      "sha256": "737fee343014d5d3057637db2a82639fb4b3995be34832f00a9d49f63ffce825"
+      "bytes": 18280,
+      "sha256": "870b3c312a89c8235d9d33c580465bb6d9aea90188324ff26635a7e2914d2da2"
     },
     {
       "path": "src/conversationFallback.js",
@@ -7062,8 +7062,8 @@
     },
     {
       "path": "src/gamePerformance.js",
-      "bytes": 3369,
-      "sha256": "a27bc9d0f0b121d65782a1494444cc3aa94ebd5571b833ea4cdabbaa0c138f1c"
+      "bytes": 3423,
+      "sha256": "3b51c6ecadc685c4114b1786e537d22e57492887df5f8dd5af79f6e3a82a8a7d"
     },
     {
       "path": "src/games-v18.css",
@@ -7242,8 +7242,8 @@
     },
     {
       "path": "src/itemPurpose.js",
-      "bytes": 4549,
-      "sha256": "65568ecfe7f7955ea624afb8095d51c40a83da80c84925b98730de36af422afa"
+      "bytes": 4670,
+      "sha256": "9168efd7d63179e5c7e1ee14283288b7001fbef707287e416c3819dce2fff0e7"
     },
     {
       "path": "src/journalFold.js",
@@ -7657,18 +7657,18 @@
     },
     {
       "path": "src/placementArt.js",
-      "bytes": 1740,
-      "sha256": "bfdcdc6fb52a07f336643ed50b5de3127be19e37c6def508e581c4ec44f234a1"
+      "bytes": 1748,
+      "sha256": "c6214b5e2d1bec0964beef36caa09a0b3a4dd1157cb4456641e5586e26afb630"
     },
     {
       "path": "src/placementUI.js",
-      "bytes": 9557,
-      "sha256": "7256434343224369da2cbc4a8c0892c03f9c7abc65fcfc65819e44cb2289a0e2"
+      "bytes": 9658,
+      "sha256": "2a101e34fedb87eb1cfc7fac4ab6b46318928a43bfb0dd1a3417b080898ab53b"
     },
     {
       "path": "src/placements.js",
-      "bytes": 13639,
-      "sha256": "78806fec439e2356e6d7d6a65e7e39ec8c222dafc4fa51ebc5872a79f5405a06"
+      "bytes": 13718,
+      "sha256": "691638a510194a5c0980b144f4558870b7a53f6676ba1c8a79dbeed5312a26e9"
     },
     {
       "path": "src/portfolio-v130.css",
@@ -7737,8 +7737,8 @@
     },
     {
       "path": "src/recipeContracts.js",
-      "bytes": 2587,
-      "sha256": "454d54e2d7df6f172ad8c1843926abc2d703686df7577ee8976968380db51c78"
+      "bytes": 3140,
+      "sha256": "0f1ef8970d61224a9a72676efadb533712262eafbb1f748c29f6990f0843690d"
     },
     {
       "path": "src/recruitCandidateLibrary.js",
@@ -8257,8 +8257,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 44946,
-      "sha256": "11f99e897533f9f3005ceb9675654b38a7587b70d2b65d6f671356b51e33265a"
+      "bytes": 44971,
+      "sha256": "94517e784a233e0a4ff08856d7e61f4d994588a10d96ee8d7e58f9b855b5c7c5"
     },
     {
       "path": "src/workshopPresentation.js",
@@ -12334,7 +12334,72 @@
       "path": "docs/verification/v223/recovery-feedback.json",
       "bytes": 1035,
       "sha256": "7e9bdba086e8f130d0f1acab346898ba0e27a995d7498e00965f772c9811905d"
+    },
+    {
+      "path": "docs/custom-content-v224.md",
+      "bytes": 5556,
+      "sha256": "9a41c001d3ebee4e977f4b468af636e2a93d324d84e2a3a19d7741ef1465fef1"
+    },
+    {
+      "path": "docs/verification/v224/custom-content.json",
+      "bytes": 1301,
+      "sha256": "06ee65d594662a661713b17389f972652b7e519e6e46f46cf63afe03b95655e4"
+    },
+    {
+      "path": "public/assets/cocreation/course-v2.md",
+      "bytes": 4351,
+      "sha256": "d121021686d38fcd774d8f421cd457378f83d6a57f93d21db95aa3906b0a3a57"
+    },
+    {
+      "path": "public/assets/cocreation/student-workbook-v2.md",
+      "bytes": 1898,
+      "sha256": "0c330925403141bfb492d74cafe91ea69f151da5fa49e8839d9a6597c4a9a885"
+    },
+    {
+      "path": "server/coCreationAssetHttp.mjs",
+      "bytes": 1508,
+      "sha256": "fc9ce61fdc91efcda31f2ae8fd7e3ffa4e3e13f5ae56fd5df966b4a8f32a80f8"
+    },
+    {
+      "path": "server/coCreationAssets.mjs",
+      "bytes": 5701,
+      "sha256": "6d29b0c5beda25fc41579136a530a2bb7db70ed4db0ca166e644e2797aa6d41f"
+    },
+    {
+      "path": "server/customCatalogSync.mjs",
+      "bytes": 1000,
+      "sha256": "6eeafee467046aafb23905d0c86132fac3ba180fbb327ca01110ffc0b8ac071d"
+    },
+    {
+      "path": "src/coCreationContentEditor.js",
+      "bytes": 7913,
+      "sha256": "1ea2dc8095e2a4f7068a8384b5060abd2bf8fbe0e4de9def1e735750194025b9"
+    },
+    {
+      "path": "src/customContent.js",
+      "bytes": 7557,
+      "sha256": "b3832aa065e3f70b5d79ff1dc10a6b1ea22b392cae5c66f71b74a08fe2d0616c"
+    },
+    {
+      "path": "tests/v224-content-fixtures.mjs",
+      "bytes": 1990,
+      "sha256": "5f97db9cdb7c225aab206c4e3f4742d4b323fcf16f00b4e112ef4b70dc39e17d"
+    },
+    {
+      "path": "tests/v224-custom-content-browser.mjs",
+      "bytes": 10191,
+      "sha256": "e6b5704a3f4e657ef78b616f2aa857ea40f6426b69056982b06aedffb28c68b0"
+    },
+    {
+      "path": "tests/v224-custom-content-http.test.mjs",
+      "bytes": 4539,
+      "sha256": "2b28392567bcfbf44658b29aacbaa5d37316d1b8242453fd61b19ade798be94b"
+    },
+    {
+      "path": "tests/v224-custom-content.test.mjs",
+      "bytes": 13815,
+      "sha256": "fe417e27db482937b613d837674673be6c3eec9c960010ea36c51c067a869f16"
     }
   ],
-  "publicRevision": "v223-github"
+  "publicRevision": "v224-github"
 }

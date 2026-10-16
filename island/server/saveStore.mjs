@@ -1,4 +1,6 @@
+import {customCatalogSnapshot} from './customCatalogSync.mjs';
 import {migrateWorldGeography} from './geographyMigration.mjs';
+import {validCustomCatalog} from '../src/customContent.js';
 import {validPlacements as validLegacyPlacements} from '../src/legacyPlacementValidation.js';
 import {applyWorldAppearance,worldAppearance} from './worldAppearance.mjs';
 import {atomicJSON,openExclusiveFile} from './atomicJson.mjs';
@@ -62,6 +64,7 @@ const missingOwnedDiscoveries=s=>Object.entries(s.inventory).filter(([id,n])=>n>
 const fail=(message,status=400,code='invalid_save')=>Object.assign(Error(message),{status,code});
 const exists=async path=>{try{await stat(path);return true}catch(e){if(e.code==='ENOENT')return false;throw e}};
 export function validateState(state,theme=null,{legacyGeometry=false}={}){
+ if(!validCustomCatalog(state?.customCatalog,state?.saveSlot))throw fail('共创目录数据无效，未覆盖现有进度');
  if(state?.worldAppearance!==undefined&&!['pixel','origami'].includes(state.worldAppearance))throw fail('小岛画风无效');
  if(theme&&state?.placementBook&&state.placementBook.theme!==(state.worldAppearance||theme))throw fail('布置画风与存档不一致');
  if(!state||Array.isArray(state)||typeof state!=='object'||!Number.isSafeInteger(state.day)||state.day<1||
@@ -101,7 +104,7 @@ function validateDocument(doc,theme){
  return doc;
 }
 const info=doc=>({schema:doc.schema,theme:doc.theme,revision:doc.revision,version:doc.version,updatedAt:doc.updatedAt,reason:doc.reason,day:doc.state.day,coins:doc.state.coins});
-export function createSaveStore({directory,environmentProvider=()=>null,now=()=>Date.now(),backupInterval=300000,externalEconomy=false,externalFault=()=>{},importFault=async()=>{}}){
+export function createSaveStore({directory,environmentProvider=()=>null,contentProvider=null,now=()=>Date.now(),backupInterval=300000,externalEconomy=false,externalFault=()=>{},importFault=async()=>{}}){
  const root=resolve(directory),hireRegistry=createRecruitmentStore({directory}),partyProof=createPartyProposalStore({directory}),imports=createSaveImportIO({root,now});
  function paths(theme){
   if(!['pixel','origami'].includes(theme))throw fail('未知画风');
@@ -223,6 +226,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
   state.productionVersion=PRODUCTION_VERSION;
   return commit(p,theme,state,doc,'catalog-migration-v176',clientId,actions);
  }
+ async function syncCustomCatalog(p,theme,doc,clientId=''){if(!contentProvider||!doc)return doc;const next=customCatalogSnapshot(doc.state.customCatalog,await contentProvider(theme,doc.state.saveSlot),doc.state.saveSlot);if(!validCustomCatalog(next,doc.state.saveSlot))throw fail('共创发布目录校验失败',503,'cocreation_catalog_invalid');if(JSON.stringify(doc.state.customCatalog??null)===JSON.stringify(next??null))return doc;const state=structuredClone(doc.state);if(next)state.customCatalog=next;else delete state.customCatalog;const actions=structuredClone(doc.actions);syncFacilityState(state,actions);return commit(p,theme,state,doc,'cocreation-catalog',clientId,actions);}
  const api={
   directory:root,
   async open(theme,{legacyState,clientId='',protect=false,identity={}}={}){
@@ -236,7 +240,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
     }
     let request;try{request=JSON.parse(await readFile(p.restart,'utf8'))}catch{}
     if(request&&!request.applied){doc=await applyRestart(p,theme,doc,request);restarted=true}
-    if(protect)doc=await migrateCatalog(p,theme,doc,clientId);
+    if(protect){doc=await migrateCatalog(p,theme,doc,clientId);doc=await syncCustomCatalog(p,theme,doc,clientId);}
     return {document:doc,migrated,restarted};
    });
   },
@@ -276,7 +280,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
      for(const id of ownedUndiscovered)state.discovered[id]=true;
      doc=await commit(p,theme,state,doc,'discovery-repair',clientId,actions);
     }
-    return {document:doc,migrated:false,restarted,initialCreated:created,migration:await imports.migration(p)};
+    doc=await syncCustomCatalog(p,theme,doc,clientId);return {document:doc,migrated:false,restarted,initialCreated:created,migration:await imports.migration(p)};
    });
   },
   async export(theme){return withLock(theme,async p=>{const doc=await readCurrent(p,theme);if(!doc)throw fail('尚无服务端存档',404,'save_missing');return imports.export(doc);});},
@@ -341,14 +345,14 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
     return {document:await commit(p,theme,state,old,'appearance',clientId,actions)};
    });
   },
-  async current(theme){return withLock(theme,p=>readCurrent(p,theme))},
+  async current(theme){return withLock(theme,async p=>syncCustomCatalog(p,theme,await readCurrent(p,theme)))},
   async save(theme,{state,expectedVersion,clientId='',saveId=null,activeSeconds=0}){
    return withLock(theme,async p=>{
     const old=await readCurrent(p,theme);
     const fingerprint=digest([state,activeSeconds]),prior=saveId&&[...(old?.actions?.farm?.autosaves||[]),...(old?.actions?.visitor?.autosaves||[]),...(old?.actions?.commerce?.autosaves||[]),...(old?.actions?.facility?.autosaves||[])].find(r=>r.id===saveId);
     if(prior){if(prior.fingerprint!==fingerprint||prior.expectedVersion!==expectedVersion)throw fail('同一存档请求不能变更内容',409,'save_id_conflict');return {document:old,replayed:true};}
     if(saveId!==null&&!/^[a-zA-Z0-9-]{8,80}$/.test(saveId))throw fail('存档请求编号无效');
-    compare(old,expectedVersion);if(old.state.geographyVersion===169&&state.geographyVersion!==169)throw fail('地图版本已更新，请重新读取当前小岛',409,'geography_conflict');if(state.worldAppearance!==old.state.worldAppearance)throw fail('画风切换需通过小岛外观入口',409,'appearance_conflict');if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
+    compare(old,expectedVersion);if(digest(state.customCatalog??null)!==digest(old.state.customCatalog??null))throw fail('共创目录由已审核的发布版本维护，请读取服务端进度',409,'cocreation_catalog_conflict');if(old.state.geographyVersion===169&&state.geographyVersion!==169)throw fail('地图版本已更新，请重新读取当前小岛',409,'geography_conflict');if(state.worldAppearance!==old.state.worldAppearance)throw fail('画风切换需通过小岛外观入口',409,'appearance_conflict');if(externalEconomy){journal(p,theme).assertState(state,old);assertCrossTasks(state,old.state);}validateState(state,theme);assertResourceState(state,old.actions);assertResourceJournal(state,old.state,old.actions);assertWonderState(state,old.actions);assertPartyHostingState(state,old.actions);assertPlanningState(state,old.actions);assertPersonalState(state,old.actions);assertActionHold(state,old.actions);assertFarmState(state,old.actions);assertFieldState(state,old.actions);assertResidentState(state,old.actions);assertVisitorState(state,old.actions);assertCommerceState(state,old.actions);assertPartyState(state,old.actions);assertHireState(state,old.actions);assertFishingState(state,old.actions);assertFestivalState(state,old.actions);assertCoutureState(state,old.actions);assertFireworksState(state,old.actions);assertFacilityState(state,old.actions);
     state=structuredClone(state);const actions=old.actions?structuredClone(old.actions):undefined;
     const farmSeconds=actions?.farm?.activeSeconds||0;advanceFarmClock(state,actions,activeSeconds,now(),gameEnvironment(environmentProvider,now()));advanceFieldClock(state,actions,(actions?.farm?.activeSeconds||0)-farmSeconds);advanceVisitorClock(state,actions,activeSeconds,now());advanceCommerceClock(state,actions,activeSeconds,now());advanceFacilityClock(state,actions,activeSeconds,now());
     if(actions?.farm&&saveId)actions.farm.autosaves=[...(actions.farm.autosaves||[]),{id:saveId,fingerprint,expectedVersion}].slice(-64);
@@ -371,7 +375,8 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
     const replay=actionReplay(old,input);if(replay){if(input.kind==='commerce'&&input.operation==='hire_renew')await hireRegistry.renewal_commit(theme,old,input.renewalId);return replay;}
     compare(old,input.expectedVersion);
     const state=structuredClone(old.state),actions=structuredClone(old.actions||newActionBook());
-    const verifiedContract=input.kind==='commerce'&&['hire_handover','hire_renew','hire_bind','hire_renew_prepare'].includes(input.operation)?await hireRegistry.peek(theme,input.contractId):null;
+    if(input.kind==='craft'&&input.operation==='begin'&&contentProvider){const catalog=customCatalogSnapshot(state.customCatalog,await contentProvider(theme,state.saveSlot),state.saveSlot);if(!validCustomCatalog(catalog,state.saveSlot))throw fail('共创发布目录校验失败',503,'cocreation_catalog_invalid');if(catalog)state.customCatalog=catalog;else delete state.customCatalog;}
+     const verifiedContract=input.kind==='commerce'&&['hire_handover','hire_renew','hire_bind','hire_renew_prepare'].includes(input.operation)?await hireRegistry.peek(theme,input.contractId):null;
     const verifiedRenewal=input.kind==='commerce'&&input.operation==='hire_renew'?await hireRegistry.peek(theme,input.renewalId):null;
     const verifiedProposal=input.kind==='commerce'&&['fish_steward','night_steward','festival_steward','couture_steward','fireworks_steward'].includes(input.operation)?await partyProof.peek({theme,worldKey:state.saveSlot||'legacy-'+theme,runId:input.runId,proposalId:input.proposalId}):null;
     const result=applyGatherCommand(state,actions,{...input,gameEnvironment:gameEnvironment(environmentProvider,now()),theme,appearance:worldAppearance(state,theme),verifiedContract,verifiedRenewal,verifiedProposal},now());recordHostingAction(state,actions,input,result);recordHireDelivery(state,actions,result.receipt);recordCrossTaskReceipt(state,result.receipt);syncFacilityState(state,actions);

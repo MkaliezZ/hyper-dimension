@@ -10,12 +10,12 @@ import {makeLinkBoard,linkPath,findLinkMove,shuffleLinks,createMatchState,matchM
 // collection and gravity. Timers advance only while this game is visible/active.
 export function mountClassicGame(root,id,onFinish,rawOptions,config){
  const options=gameLevelOptions(id,rawOptions),level=options.level,g=config,theme=options.theme||document.body.dataset.theme||'pixel',recipe=options.recipe||DEFAULT_RECIPES[id];
- const art=k=>itemMarkup(k,theme),isLink=g.kind==='link',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const art=k=>itemMarkup(k,theme,'item-art',options.catalogState?.()),isLink=g.kind==='link',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const resumed=options.resumeGame;let transportPaused=false,claiming=false,claimReady=false,claimButton=null;
  let alive=true,done=false,busy=false,paused=false,activeWindow=true,started=resumed?.started??!isLink,frame=0,last=performance.now(),time=resumed?.time||0,selected=null,queue=[],pending=null,replacement=null,detail={},hinted=[],hintUntil=0;
  root.innerHTML='<section class="room-game classic-game" data-game-id="'+id+'" data-kind="'+g.kind+'"><div class="game-brief">'+art(recipe.item)+'<div><b>'+g.title+'</b><p>'+g.instructions+'</p></div></div><div class="classic-objectives"></div><p class="activity-status" role="status"></p><div class="activity-board classic-board"><div class="classic-grid"></div><svg class="link-lines" aria-hidden="true"></svg><span class="classic-combo" aria-live="polite"></span></div><div class="activity-controls"></div><div class="activity-session-controls"></div></section>';
  const board=root.querySelector('.activity-board'),grid=root.querySelector('.classic-grid'),status=root.querySelector('.activity-status'),objectives=root.querySelector('.classic-objectives'),controls=root.querySelector('.activity-controls'),session=root.querySelector('.activity-session-controls'),line=board.querySelector('.link-lines'),combo=board.querySelector('.classic-combo');
- const stage=createGamePerformance(board,theme,recipe.item);
+ const stage=createGamePerformance(board,theme,recipe.item,options.catalogState);
  const canPlay=()=>alive&&!done&&!busy&&!transportPaused&&!paused&&activeWindow&&!document.hidden;
  function text(s){status.textContent=s}
  function button(label,fn,parent=controls){const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent=label;b.onclick=()=>{if(canPlay())fn()};parent.append(b);return b}

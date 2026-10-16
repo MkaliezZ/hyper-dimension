@@ -577,3 +577,8 @@ The primary save store now uses its existing exclusive-open retry helper for tra
 ## V223 · 核对反馈 / Recovery feedback
 
 存档弹窗读取现在使用统一恢复面板，持续显示核对步骤、失败原因和暂存副本完成后的安全重入入口。双画风修复前有效夹具 2 例失败，修复后 2 例通过；原模态弹窗、等待重入、取消导航各 2 例及 13 条回执／导航规则通过。原用户页受已保存浏览器权限阻挡，未确认其刷新结果。详见 [专题说明](recovery-feedback-v223.md)。
+
+
+## V224 · 正式物品共创 / Custom products
+
+新增每岛独立的正式物品、加工配方与双画风 PNG；服务端审核发布、原材料单制作、组件复用、直接使用、陈列、导出附件与另一岛主导入制作。当前新增规则／HTTP 9 项和双画风原生流程 2 例通过；隔离预置物资与 PNG 图案夹具不代替零开局、真人授课或成品美术。早先只查 DOM 的图片通过结果已排除，现核对实际图片解码与截图。完整验证状态见 [证明摘要](verification/v224/custom-content.json)，边界见 [实现说明](custom-content-v224.md)。
