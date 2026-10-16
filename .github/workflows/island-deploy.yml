@@ -287,6 +287,10 @@ jobs:
       - name: Native NPC sow and water during independent receipts
         run: node tests/v179-npc-work-browser.mjs
 
+      - name: Native interior return points and forest navigation
+        if: inputs.check_scope != 'soil-diagnostics'
+        run: node tests/v203-scene-return-browser.mjs
+
       - name: Retain isolated native soil-care diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -305,5 +309,7 @@ jobs:
             island/qa/v179/navigation-arrival/*.png
             island/qa/v179/npc-work/report.json
             island/qa/v179/npc-work/*.png
+            island/qa/v203/native-scene-return/report.json
+            island/qa/v203/native-scene-return/*.png
           if-no-files-found: ignore
           retention-days: 3

@@ -231,6 +231,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   if(envelope&&(envelope.body.requestId!==input.requestId||envelope.body.operation!==input.operation))throw Object.assign(Error('另一次作业结果待核对，请先重试'),{code:'action_pending'});
   if(!envelope){
    await flush(theme);
+   // Reserve the acknowledged version before durable cache/worker calls yield.
+   // A timer may otherwise save a newer version before this command is sent.
+   r.commandSending=true;clearTimeout(r.timer);r.timer=null;
+   try{
    const body={...input,expectedVersion:r.version,clientId},baseDocument=baselineText(r);
    if(!baseDocument)throw Object.assign(Error('已确认的存档基线尚未就绪，请先核对进度'),{code:'save_cache_error'});
    if(input.operation==='begin'){body.expectedSequence=r.actions?.sequence||0;body.epoch=r.actions?.epoch||null;}
@@ -239,6 +243,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    // snapshot, but merge the reply against the acknowledged server document.
    // Its version was captured with expectedVersion; reuse the worker's JSON.
    try{await journal.commit([[commandKey(theme),'{"body":'+JSON.stringify(body)+',"baseDocument":'+baseDocument+'}']])}catch{throw Error('浏览器无法保存作业回执，请释放本地存储空间后重试');}
+   }catch(error){r.commandSending=false;if(r.dirty)schedule(r);throw error;}
   }
   r.commandSending=true;clearTimeout(r.timer);r.timer=null;status(r,'saving','正在核对作业');
   try{

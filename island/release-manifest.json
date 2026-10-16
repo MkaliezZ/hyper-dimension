@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v202-agent-source",
+  "release": "hyper-dimension-v203-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 67987,
-      "sha256": "b8bb3cf1359343f8d5b8eb464702dd3721ce0af6c3d9f4087a17a59b86950383"
+      "bytes": 69265,
+      "sha256": "ca53ab196085a3dd1a930f184b50b40635c5ac8d20368172c5cba2dfe1d2a321"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -849,6 +849,11 @@
       "path": "docs/save-recovery-v115.md",
       "bytes": 3202,
       "sha256": "46f091bfd995018271fa1ae87c47e1bd58a0e59cb02a7ac4ae948ed65c0b46ce"
+    },
+    {
+      "path": "docs/scene-return-v203.md",
+      "bytes": 2083,
+      "sha256": "64ac50984923c4831a81bc17286d24e0c3c323404916ae90c768389e1dbc8a74"
     },
     {
       "path": "docs/screenshots/v123/origami-before-resume.png",
@@ -2157,8 +2162,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12070,
-      "sha256": "c9d4116ed0f5e7e144c2c6c8f6934e422592f226437b74508efb1d06e435c6cb"
+      "bytes": 12220,
+      "sha256": "3aab3d50b5de74be1f66683e7c19a700b8f7082f3b514bcb5f57c0c66b07914a"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6522,8 +6527,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 143625,
-      "sha256": "52ff61e3221581a9e1269e8cbf581e1afd15f5ffa19183ab032dcab9682b4d2a"
+      "bytes": 143666,
+      "sha256": "f2605e6a650cc9a38dbaf140c3b8449cd71c801d3ef0af40ad86f91fdddfc964"
     },
     {
       "path": "src/arcade.css",
@@ -7912,8 +7917,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 31256,
-      "sha256": "d0a76d7f4984fae158f138d2d55af40e6a394b76d8700159a0be5961d0566079"
+      "bytes": 31560,
+      "sha256": "62eb4a52239e947857980e1c4c88dfc490eb7e3f0913d5d45c7d04a12d28f5fe"
     },
     {
       "path": "src/saveDelta.js",
@@ -9734,6 +9739,16 @@
       "path": "tests/v202-offline-prerequisites.test.py",
       "bytes": 2321,
       "sha256": "89be3c22a93761a75767449ff6ecf92631a83644e8c3a4b50742460bf95dca3a"
+    },
+    {
+      "path": "tests/v203-save-command.test.mjs",
+      "bytes": 3664,
+      "sha256": "92a297a64a24a87ae05ba64fc12c1a63408aa0a78028ad4298e9eb937a5a0fec"
+    },
+    {
+      "path": "tests/v203-scene-return-browser.mjs",
+      "bytes": 7311,
+      "sha256": "daff84641f9296117187937bb003c48e1848761bc9ef177435e4975f056c0edc"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
