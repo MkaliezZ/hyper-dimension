@@ -2,7 +2,8 @@ import {enablePlanningState} from './planningAuthority.mjs';
 import {createProject,controlProject,assignProjectStep,syncProjects} from '../src/projectPlans.js';
 import {queueTask,controlTask} from '../src/taskBoard.js';
 import {BUILDINGS,RESIDENTS} from '../src/world.js';
-import {ITEM_BY_ID,RECIPE_BY_ID,recipeGate} from '../src/contentCatalog.js';
+import {catalogItem,catalogRecipe} from '../src/contentCatalog.js';
+import {planningRecipeGate} from '../src/craftPlanning.js';
 import {RECIPES} from '../src/townSimulation.js';
 
 export const PLANNING_OPERATIONS=['plan_enable','plan_create','plan_control','plan_assign','task_control','plan_batch'];
@@ -17,10 +18,10 @@ function dispatch(s,input){
  if(typeof id!=='string'||!/^[-\w:.]{1,110}$/.test(id)||!Number.isInteger(npcId)||npcId<0||npcId>15||!goals.has(goal)||typeof input.intent!=='string'||!input.intent.trim()||input.intent.length>160||!Number.isInteger(quantity)||quantity<1||quantity>50)return {ok:false,reason:'负责人、数量或目标无效'};
  if(bid!==null&&(!Number.isInteger(bid)||bid<0||bid>24||BUILDINGS[bid].kind!==goal||s.buildings[bid]===undefined))return {ok:false,reason:'建筑与工作目标不匹配'};
  if(resource!==null){
-  const item=own(ITEM_BY_ID,resource)?ITEM_BY_ID[resource]:null,expected=item&&(['shore','fishing'].includes(item.source)?'dock':item.source==='greenhouse'?'workshop':item.source);
+  const item=catalogItem(s,resource),expected=item&&(['shore','fishing'].includes(item.source)?'dock':item.source==='greenhouse'?'workshop':item.source);
   if(!item||item.category!=='material'||expected!==goal||item.source==='greenhouse'&&bid!==14)return {ok:false,reason:'采集目标与地点不匹配'};
  }
- if(recipeId!==null){const r=own(RECIPE_BY_ID,recipeId)?RECIPE_BY_ID[recipeId]:null;if(!r||r.building!==bid||!recipeGate(r,s).ready||resource!==null)return {ok:false,reason:'配方未解锁、工作台错误或同时指定采集'};}
+ if(recipeId!==null){const r=catalogRecipe(s,recipeId);if(!r||r.building!==bid||!planningRecipeGate(r,s).ready||resource!==null)return {ok:false,reason:'配方或前置当前无法准备、工作台错误或同时指定采集'};}
  const c={id,npcId,goal,intent:input.intent.trim(),quantity,resource,recipeId,buildingId:bid,source:'hermes'};
  if(input.dependsOn!==undefined){if(!Array.isArray(input.dependsOn)||input.dependsOn.length>20||input.dependsOn.some(x=>typeof x!=='string'))return {ok:false,reason:'前置分工无效'};c.dependsOn=[...new Set(input.dependsOn)];}
  if(input.parentId!==undefined){if(input.parentId!==null&&(typeof input.parentId!=='string'||!s.agentTaskLedger?.some(t=>t.id===input.parentId)))return {ok:false,reason:'上级分工不存在'};c.parentId=input.parentId;}
@@ -33,7 +34,7 @@ function dispatch(s,input){
   if(!(c.dependsOn||[]).every(id=>visit(id)))return {ok:false,reason:'前置分工存在循环或过长，请先整理原任务'};
   if(active.some(t=>!ancestors.has(t.id)))return {ok:false,reason:'这位伙伴已有未完成分工；顺序追加须等待其全部现有任务'};
  }
- const targetItem=recipeId?RECIPE_BY_ID[recipeId].item:resource||({forest:'wood',mine:'ore',farm:'wheat',dock:'fish'})[goal]||RECIPES[bid]?.item||null;
+ const targetItem=recipeId?catalogRecipe(s,recipeId).item:resource||({forest:'wood',mine:'ore',farm:'wheat',dock:'fish'})[goal]||RECIPES[bid]?.item||null;
  const name=s.npcProfiles?.[npcId]?.name||RESIDENTS[npcId]?.name||'伙伴',r=queueTask(s,c,{name,targetItem});
  return {id,ok:r.ok,replayed:!!r.replayed,reason:r.reason||null,...r.ok?{task:r.task}:{}};
 }

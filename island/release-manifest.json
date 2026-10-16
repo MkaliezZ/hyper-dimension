@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v226-agent-source",
+  "release": "hyper-dimension-v227-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3713,
-      "sha256": "644beb96dc0495e13f9058e40c6333c660fd1490e92ae3c64035114584e61a73"
+      "bytes": 3779,
+      "sha256": "11877b4896c79c6bf8acb3dc015b5f2ef4cf2e4ecc65a25b0887df00d5785fab"
     },
     {
       "path": "README.md",
-      "bytes": 3473,
-      "sha256": "4f94aba202c9ad298625e708911ef8bcfaf871981872d18053abe01a603c253c"
+      "bytes": 3524,
+      "sha256": "51e68d245497fe948ca37ca95f0be58252f985eac2d6b8236771b85a709a32b6"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 81386,
-      "sha256": "c9107b1d21f6111625b6103b56bde9cac840fcd6a1f2205b7ee38b9d7218873f"
+      "bytes": 82169,
+      "sha256": "282b0bbd658d82f096d6126981406f290c24cd0236b2d047cc1f40b8bc0d10ff"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13501,
-      "sha256": "e64fafdf242c9d9f4d114e301046da48cabb0f5a0ce0889d53a7545452344d7e"
+      "bytes": 13534,
+      "sha256": "cd8ca7a942ea5ecc32cb17c13f1ad91f3927f321384c8e3cfdb907acee8bc0e3"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6032,8 +6032,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 16234,
-      "sha256": "0a972ffee55216e28a08dd72d2a8a12ee9cee1c58d6ad1248d96140a5511b7d9"
+      "bytes": 16467,
+      "sha256": "6a7d97ef17761f78fa18afa0f5e87d1ef335aa346f1602083cd659427d21e2b4"
     },
     {
       "path": "server/a2aGateway.mjs",
@@ -6047,8 +6047,8 @@
     },
     {
       "path": "server/agentService.mjs",
-      "bytes": 28332,
-      "sha256": "43b058717be0f232709b32d9ceec109de1147125ee8595bf3126f61d5a70d656"
+      "bytes": 29085,
+      "sha256": "3e7d68c6ee12d7f1187b7932bee91e4aa1a5c4fb43d3c318234636ff90196870"
     },
     {
       "path": "server/atomicJson.mjs",
@@ -6172,8 +6172,8 @@
     },
     {
       "path": "server/hermes_worker.py",
-      "bytes": 22497,
-      "sha256": "92ba604d6a74cdbc802c7cc598c5a46bd7a0fe4a57a6878bfd8ff17de1734279"
+      "bytes": 22951,
+      "sha256": "7f243475c8f0195a22367c90fee3588c25fb0eefd91a7258bafb4ed5c8054e86"
     },
     {
       "path": "server/hireActions.mjs",
@@ -6202,8 +6202,8 @@
     },
     {
       "path": "server/lanAgentService.mjs",
-      "bytes": 17412,
-      "sha256": "0d23007f0210566a690c4d295a87813b24d22b1ff1d01204177ad7fe916177d9"
+      "bytes": 17541,
+      "sha256": "9ee804610910eb013eb3463adcb65b62474384191696f1470b12326a2c207f19"
     },
     {
       "path": "server/lanAgentWorker.mjs",
@@ -6357,13 +6357,13 @@
     },
     {
       "path": "server/planningAuthority.mjs",
-      "bytes": 4819,
-      "sha256": "40b21e2b1aeead46aa1423c7e8838566f034291fd36492cd92083b80faa664b5"
+      "bytes": 5085,
+      "sha256": "62b13753d8c18816e13ec29eba5d65f49ea35a9ec13fcbdcd918a982bfd480a6"
     },
     {
       "path": "server/planningCommands.mjs",
-      "bytes": 6769,
-      "sha256": "31b69ce3fd81f1d6af926aee8fd59aca31d6f83dde3b2674fdc06bf83897472d"
+      "bytes": 6793,
+      "sha256": "a7b84dbd95968bea174dc5009edce6f274891d23aa4d046a1b441a937b1ab2cb"
     },
     {
       "path": "server/playerActions.mjs",
@@ -6407,8 +6407,8 @@
     },
     {
       "path": "server/residentActions.mjs",
-      "bytes": 16009,
-      "sha256": "d3502c26a92104608f5212f2ebba4e2cba8eb5bbfe32abcfd1a680cac54999dc"
+      "bytes": 16762,
+      "sha256": "48867dfad3cf95b90287a3248733fafcca4571301c6d460692ee0d44542e30e1"
     },
     {
       "path": "server/residentChatStore.mjs",
@@ -6442,8 +6442,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 39858,
-      "sha256": "64150f879931c37f3b066c9438076510ac9a91e746b1e0164050529d3c22a16c"
+      "bytes": 40512,
+      "sha256": "6e98042ae309dd5c4978285d1176fbc3eca409d0876fb122277d18bdc08fe078"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -6682,8 +6682,8 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 9792,
-      "sha256": "bd1da3be73ca6d4d3b6329605b02528a752992c7eed52cfc1a58c691ba74931d"
+      "bytes": 9904,
+      "sha256": "9cc9708f8f953e8881ba3979e2e4ef7aee880dea8ea00b775394a135c6cefad9"
     },
     {
       "path": "src/contentUI.js",
@@ -6757,8 +6757,8 @@
     },
     {
       "path": "src/craftPlanning.js",
-      "bytes": 2243,
-      "sha256": "f686f6ff721737dd58ff7af7d5f20d942652077ad1be1e8e9a48b2d1465c0dfd"
+      "bytes": 3532,
+      "sha256": "fa0c860d819447d1bbb05aed8d1366ebe2e1f478d41e877699cbc7fdd7892b18"
     },
     {
       "path": "src/craftResponseIdentity.js",
@@ -7707,13 +7707,13 @@
     },
     {
       "path": "src/projectPlans.js",
-      "bytes": 10874,
-      "sha256": "5f11adbaa2c2fc29034dbb8a03f595c97f7229b82d9f9c673afe900a1081f8f0"
+      "bytes": 13937,
+      "sha256": "876bf723f342053592d77868d87c29c8e37214f5dcda428c796e8cd81df597e3"
     },
     {
       "path": "src/projectUI.js",
-      "bytes": 9179,
-      "sha256": "853af30235d2f9c64262fd646db860221283d4f8a80daca37abbac20cf85e6f7"
+      "bytes": 9430,
+      "sha256": "327d5fe1b2f6e305e8442c8dac376d8ed9d5266f14ede9f1004ce61ead22389a"
     },
     {
       "path": "src/projects-v27.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 43827,
-      "sha256": "a741f7485a813cab90947bb4eca1935fb63666bc407945f0f28d6a08baa7b5ae"
+      "bytes": 43963,
+      "sha256": "d380db20629ffc75945bc27bba8e8d856728ccc41c4af8dbebb10ee0fde2e469"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8062,8 +8062,8 @@
     },
     {
       "path": "src/serverResidentUI.js",
-      "bytes": 3842,
-      "sha256": "12293ee42951db18f8779a9aceb4a0ed9ae4bcc5342a9b91ce0f3fac0f344a32"
+      "bytes": 3853,
+      "sha256": "1f21c277a023ba9f75ac2a67c697ce58c5dcffcc9d7f3edb16f58d002baa13be"
     },
     {
       "path": "src/serverVisitorUI.js",
@@ -8202,8 +8202,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 25017,
-      "sha256": "5508c8254e3c8319c676b61ac645f3bdce8fefc7210d3b4d8c950577fdd4a0d3"
+      "bytes": 25295,
+      "sha256": "3b859763a007233a7012305e91e9799c59590428dab3118644846b17da643747"
     },
     {
       "path": "src/ui-v16.css",
@@ -12424,6 +12424,36 @@
       "path": "docs/verification/v226/save-replacement.json",
       "bytes": 1301,
       "sha256": "69deb788fd68518f0572f91f22d9a76471af831ef5ccaf8024f0fd1c552fdbd1"
+    },
+    {
+      "path": "server/agentCatalogContext.mjs",
+      "bytes": 790,
+      "sha256": "235cbbc5b2f46f6fa64a9db122585de92ce64803e1b5ea7a02fe248b713f218d"
+    },
+    {
+      "path": "src/customProduction.js",
+      "bytes": 1897,
+      "sha256": "0c46b21cf15a468ff06110b3424fa2df8c0d8dcd004cd417a25785fcda73eef8"
+    },
+    {
+      "path": "tests/v227-custom-agent.test.mjs",
+      "bytes": 27230,
+      "sha256": "8d855e106af877b0b03849e9458b5e700191bb9f968725d4b957dd52f92f5439"
+    },
+    {
+      "path": "tests/v227-custom-agent-browser.mjs",
+      "bytes": 7273,
+      "sha256": "c83d8fac08a5ef714b1d1733e72f2aa6ce21e2ee24a4750a3addb68ca27363e0"
+    },
+    {
+      "path": "docs/custom-agent-v227.md",
+      "bytes": 2706,
+      "sha256": "bb0cc7d2bc643dc1a4fcea0b198b1f0eeac9ae51529a866a423dbf4f9e04a9ef"
+    },
+    {
+      "path": "docs/verification/v227/custom-agent.json",
+      "bytes": 2584,
+      "sha256": "e5509bf9d307f07ee2a673434a6b838296bade795666c7d2037bc76a555a5e2e"
     }
   ],
   "publicRevision": "v226-github"

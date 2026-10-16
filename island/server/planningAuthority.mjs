@@ -13,7 +13,14 @@ export function clearPlanningState(s){delete s.planningControl;}
 const tickets=b=>[b.active,...Object.values(b.farm?.leases||{}),...Object.values(b.field?.leases||{}),...Object.values(b.resident?.leases||{})].filter(Boolean);
 export function taskDecision(s,t,{reserve=true}={}){return planAssignedTask(s,t,{server:reserve});}
 
-export function syncPlanningState(s,b){if(!b?.planning)return;hydrateTaskBoard(s);hydrateProjects(s);s.planningControl=mirror();syncProjects(s,{server:true});for(let npc=0;npc<=16;npc++)nextTask(s,npc,{server:true});for(const t of s.agentTaskLedger)if(!t.projectId&&['queued','running','waiting'].includes(t.status)&&t.command?.recipeId&&!tickets(b).some(lease=>lease.assignmentId===t.id))taskDecision(s,t);b.planning.fingerprint=fingerprint(s);}
+export function syncPlanningState(s,b){
+ if(!b?.planning)return;hydrateTaskBoard(s);hydrateProjects(s);s.planningControl=mirror();syncProjects(s,{server:true});
+ for(const t of s.agentTaskLedger)if(!t.projectId&&['queued','running','waiting'].includes(t.status)&&t.command?.recipeId&&!tickets(b).some(lease=>lease.assignmentId===t.id)){
+  const decision=taskDecision(s,t);t.blocked=decision.blocked?decision.reason||'当前制作配方尚未开放':'';
+  if(t.blocked){t.status='waiting';t.result=t.blocked;}
+ }
+ for(let npc=0;npc<=16;npc++)nextTask(s,npc,{server:true});b.planning.fingerprint=fingerprint(s);
+}
 export function enablePlanningState(s,b){if(!b.planning){hydrateTaskBoard(s);hydrateProjects(s);restoreTasks(s);for(const t of Object.values(b.resident?.leases||{})){const row=s.resourceLedger?.reservations?.[t.owner];if(t.mode==='craft'&&row&&s.agentTaskLedger.some(a=>a.projectId&&a.id===t.assignmentId&&a.operationId===t.operationId)){t.projectReservation=true;Object.assign(row,{projectTaskId:t.assignmentId,taskOperation:t.operationId,productionItem:t.item});}}b.planning={version:1,fingerprint:'0'.repeat(64)};syncPlanningState(s,b);}return {ticket:null,receipt:null};}
 export function beginAssignedStep(s,b,{assignmentId,actorId,kind,intent=null,field=null,itemId=null,crop=null,step=null}){
  if(!b?.planning||!assignmentId)return null;
@@ -24,6 +31,7 @@ export function beginAssignedStep(s,b,{assignmentId,actorId,kind,intent=null,fie
  if(tickets(b).some(lease=>lease.assignmentId===t.id||lease.actor==='npc'&&lease.actorId===actorId))throw fail('负责人或这一步仍在另一项作业','npc_action_active');
  if(actorId===16&&(!s.recruitment?.active||!b.hire?.contracts?.[s.recruitment.active.id]?.steps.some(x=>x.id===t.id)))throw fail('这一步没有已核对的临时伙伴聘约');
  const d=taskDecision(s,t),expectedKind=d.goal==='farm'?'farm':d.goal==='mine'?'field':'resident';
+ if(d.blocked)throw fail(d.reason||'本步配方尚未开放','planning_assignment_blocked');
  if(expectedKind!==kind)throw fail('提交的作业地点与原分工不一致','planning_assignment_mismatch');
  if(kind==='field'&&(field!==d.goal||itemId!==(d.resource||t.targetItem||'ore')))throw fail('矿洞目标与原分工不一致','planning_assignment_mismatch');
  if(kind==='farm'&&(step!=='hoe'&&Object.hasOwn(CROPS,d.resource)&&crop!==d.resource))throw fail('作物与原分工不一致','planning_assignment_mismatch');

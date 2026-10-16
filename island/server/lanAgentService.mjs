@@ -1,4 +1,5 @@
 import {manualPartyContext} from './manualPartyContext.mjs';
+import {agentCatalogContext} from './agentCatalogContext.mjs';
 import {travelPerson} from './lanTravelParty.mjs';
 import {fork} from 'node:child_process';
 import {mkdir,readFile,writeFile,rename,unlink,open} from 'node:fs/promises';
@@ -58,7 +59,7 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
  }
  async function world(c,theme){
   if(!['pixel','origami'].includes(theme))throw fail('画风无效','lan_agent_theme',400);
-  const d=await tenants.readIslandForServer(c.accountId,theme);if(!d)throw fail('请先进入自己的小岛建立档案','lan_save_missing',404);
+  const d=await c.saves.current(theme);if(!d)throw fail('请先进入自己的小岛建立档案','lan_save_missing',404);
   if(typeof d.state?.saveSlot!=='string'||!d.state.saveSlot)throw fail('请先进入自己的小岛，建立出行档案','lan_travel_home');
   return d.state;
  }
@@ -85,8 +86,8 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
     events:[...(Array.isArray(input.events)?input.events:[]),presence?'岛主正在会客，原岛生产暂停；岛内分工只能讨论，不能声称已经执行。':'岛主正在自己的小岛。']};
    // Client metadata never chooses an owner, runtime directory, or conversation history.
    delete data.ownerId;delete data.runtime;delete data.directory;
-   Object.assign(data,manualPartyContext(state,theme,{saveSlot:input.saveSlot,visiting:!!presence}));
-   if(presence){data.residents=[];data.built=[];data.recipes=[];data.inventory=state.inventory||{};}
+   Object.assign(data,manualPartyContext(state,theme,{saveSlot:input.saveSlot,visiting:!!presence}),agentCatalogContext(state));
+   if(presence){data.residents=[];data.built=[];data.recipes=[];data.customPreparableRecipes=[];data.inventory=state.inventory||{};}
    void Promise.resolve(a.automaticTasks.get('steward')).catch(()=>{}).then(()=>a.runtime.call('command',data)).then(result=>lock(a,async()=>{
     job.result=result;job.status=result.source==='hermes'?'completed':'failed';job.finishedAt=now();await persist(a);
    }),error=>lock(a,async()=>{job.status='unconfirmed';job.error=String(error.message).slice(0,300);job.finishedAt=now();await persist(a);})).catch(()=>{job.status='unconfirmed';job.error='执行记录保存失败，请检查文档成果后核对';}).finally(()=>{a.running=null;});
@@ -111,7 +112,7 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
      recipes:input.recipes,projects:input.projects,taskBoard:input.taskBoard,journey:input.journey,tasks:input.tasks,
      events:input.events,executions:input.executions,economy:input.economy,residents:(input.residents||[]).map(r=>({...r,memories:[...(r.memories||[]),...(crossMemories[r.id]||[])]})),
      topic:input.topic,socialType:input.socialType,butler:travelPerson(c.account,{state},15),
-     history:[],includeWorkProject:false,automatic:true};
+     history:[],includeWorkProject:false,automatic:true,...agentCatalogContext(state)};
     if(kind==='steward'&&recruitmentHooks){const v=await recruitmentHooks.observe(token,theme);data.recruitment={eligible:v.eligible,reason:v.reason,stats:v.stats,policy:{enabled:v.policy.enabled,dailyBudget:v.policy.dailyBudget,maxContractsPerDay:v.policy.maxContractsPerDay,coinFloor:v.policy.coinFloor},opportunities:v.opportunities.slice(0,12).map(o=>({...o,steps:o.steps.slice(0,6)}))};}
     const running=a.runtime.call(kind,data);a.automaticTasks.set(kind,running);
     const result=await running;

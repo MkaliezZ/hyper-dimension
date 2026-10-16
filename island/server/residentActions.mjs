@@ -1,10 +1,11 @@
 import {recipeContract,acceptedRecipe,validAcceptedRecipe} from '../src/recipeContracts.js';
 import {routineFor} from '../src/residentLife.js';
+import {customProductionOptions} from '../src/customProduction.js';
 import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID} from 'node:crypto';
-import {hydrateTown,commitWork,RECIPES,career,needs} from '../src/townSimulation.js';
-import {RAW_MATERIALS,RECIPE_BY_ID,ITEM_BY_ID,canCraft,recipeGate} from '../src/contentCatalog.js';
+import {hydrateTown,commitWork,RECIPES,CAREERS,career,needs} from '../src/townSimulation.js';
+import {RAW_MATERIALS,catalogRecipe,catalogItem,ITEM_BY_ID,canCraft,recipeGate} from '../src/contentCatalog.js';
 import {reserveResources,releaseResources,availableQuantity,hydrateResources} from '../src/resourceLedger.js';
 import {recordTaskStep,taskOwner,hydrateTaskBoard} from '../src/taskBoard.js';
 import {recordResidentStoryWork,interruptResidentStory} from '../src/residentStories.js';
@@ -40,21 +41,21 @@ function storyValid(s,t,starting=false){return cooperationWorkAuthorized(s,{...t
 function plan(s,i,task){
  const d={};for(const k of fields)if(i.intent?.[k]!==undefined)d[k]=i.intent[k];d.buildingId??=null;
  if(!['work','eat','rest','visit'].includes(d.action)||typeof d.goal!=='string'||d.goal.length>40||d.buildingId!==null&&(!Number.isInteger(d.buildingId)||!BUILDINGS[d.buildingId]||s.buildings[d.buildingId]===undefined)||d.purposeId!==undefined&&(typeof d.purposeId!=='string'||d.purposeId.length>100))throw fail('居民活动或建筑无效');
- if(d.recipeId&&!RECIPE_BY_ID[d.recipeId])throw fail('居民配方不存在');
+ if(d.recipeId&&!catalogRecipe(s,d.recipeId))throw fail('居民配方不存在');
  if(d.purposeId?.startsWith('career:')&&d.purposeId!=='career:'+career(i.actorId,s).phase)throw fail('职业阶段已变化','resident_plan_changed');
  const sourceOwner=task?(task.resourceOwner||taskOwner(task.id)):null;let cost={},item='service',name=d.buildingId===null?d.goal:BUILDINGS[d.buildingId].name,mode='life',duration=d.action==='rest'?14:d.action==='eat'&&d.foodId==='rations'?9:d.action==='eat'?10:12;
  if(d.facilityId){const u=functionalUnit(s,d.facilityId),p=s.placedItems?.find(p=>p.id===d.facilityId);if(d.action!=='eat'||!p||p.item!=='c1_9'||u?.phase!=='ready'||u.servings<1)throw fail('茶炉当前不能饮茶','resident_facility_changed');mode='tea';name='暖手茶炉';duration=10;}
  else if(d.action==='eat'){
   d.foodId??=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';
   if(d.foodId==='rations'){if(needs(i.actorId,s).rations<1)throw fail('自备简餐已用完','resident_food');duration=9;}
-  else{const food=ITEM_BY_ID[d.foodId];if(!food||!(food.category==='food'&&[1,2,17].includes(food.building)||['wheat','mushroom','strawberry'].includes(food.id))||availableQuantity(s,food.id)<1)throw fail('餐点已售罄或预留，请重新选择','resident_food');cost={[food.id]:1};item=food.id;}
+  else{const food=catalogItem(s,d.foodId);if(!food||!(food.category==='food'&&[1,2,17].includes(food.building)||['wheat','mushroom','strawberry'].includes(food.id))||availableQuantity(s,food.id)<1)throw fail('餐点已售罄或预留，请重新选择','resident_food');cost={[food.id]:1};item=food.id;}
  }else if(d.action==='work'){
   duration=NPC_CADENCE.workSeconds;
   if(d.goal==='farm'||d.goal==='mine'){mode='observe';d.noFarmTask=true;d.mineIndex=-1;}
   else if(d.goal==='forest'||d.goal==='dock'||d.buildingId===14&&!d.recipeId&&(d.resource||d.activity==='herbs')){
    d.resource??=d.goal==='forest'?'wood':d.goal==='dock'?'fish':'herb';const raw=RAW_MATERIALS.find(x=>x.id===d.resource);const source=d.goal==='forest'?['forest']:d.goal==='dock'?['shore','fishing']:['greenhouse'];
    if(d.resource==='seed'&&d.buildingId===14){}else if(!raw||!source.includes(raw.source))throw fail('素材与居民采集地点不符');mode='gather';item=d.resource;
-  }else if(d.buildingId!==null){const r=RECIPE_BY_ID[d.recipeId]||RECIPES[d.buildingId];if(d.recipeId&&r?.building!==d.buildingId)throw fail('配方与工作建筑不符');mode=r&&canCraft(r,s,{owner:sourceOwner})?'craft':'maintenance';if(mode==='craft'){d.recipeId=r.id;cost={...r.cost};item=r.item;}else d.productionMode='maintenance';
+  }else if(d.buildingId!==null){const r=catalogRecipe(s,d.recipeId)||RECIPES[d.buildingId];if(d.recipeId&&r?.building!==d.buildingId)throw fail('配方与工作建筑不符');mode=r&&canCraft(r,s,{owner:sourceOwner})?'craft':'maintenance';if(mode==='craft'){d.recipeId=r.id;cost={...r.cost};item=r.item;}else d.productionMode='maintenance';
   }else if(d.goal==='plaza'){mode='observe';}else throw fail('居民工作地点无效');
  }
  d.source=task?'hermes':d.source==='deepseek'?'deepseek':'local';d.resourceOwner=null;
@@ -72,6 +73,10 @@ export function applyResidentCommand(s,b,i,now){
   const assignmentId=i.intent?.assignmentId||null,assigned=beginAssignedStep(s,b,{assignmentId,actorId:i.actorId,kind:'resident',intent:i.intent}),task=assigned?.task||(assignmentId&&s.agentTaskLedger.find(x=>x.id===assignmentId));
   if(assignmentId&&(!task||task.status!=='running'||task.npcId!==i.actorId||(!assigned&&task.operationId!==i.intent.operationId)))throw fail('分工已暂停或改派','resident_task_changed');
   if(i.actorId===16&&(i.intent?.action==='work'&&!task||s.recruitment?.active?.phase!=='working'||s.recruitment.active.leaveRequested))throw fail('招聘伙伴当前不能工作','resident_task_changed');
+  if(!task&&i.intent?.purposeId?.startsWith('custom:')){
+   const options=customProductionOptions({...s,residentControl:{...s.residentControl,leases:residentTickets(b)}},{route:CAREERS[i.actorId].route,history:career(i.actorId,s).history,profile:s.npcProfiles?.[i.actorId]||{}});
+   if(!options.some(o=>o.purposeId===i.intent.purposeId&&o.action===i.intent.action&&o.goal===i.intent.goal&&(o.buildingId??null)===(i.intent.buildingId??null)&&(o.recipeId??null)===(i.intent.recipeId??null)&&(o.resource??null)===(i.intent.resource??null)))throw fail('共创样品的库存、在制任务或今日工作安排已变化','resident_plan_changed');
+  }
   const p=plan(s,assigned?{...i,intent:{...i.intent,...assigned.decision}}:i,task),sequence=b.sequence+1,owner=RESIDENT_LEASE_PREFIX+b.epoch+':'+sequence,operationId=task?.operationId||i.intent?.operationId||'npc-work:'+randomUUID(),storyId=i.intent?.storyId||null;
   if(!key(operationId)||s.taskActionReceipts[operationId])throw fail('居民动作编号已使用','resident_operation');
   if(storyId&&!storyValid(s,{storyId,actorId:i.actorId,operationId,intent:p.d},true))throw fail('居民约定已变化','resident_story_changed');
@@ -81,7 +86,7 @@ export function applyResidentCommand(s,b,i,now){
   if(held)for(const [id,n]of Object.entries(p.cost)){const moved=Math.min(held.items[id]||0,n);if(moved){sourceTransfer[id]=moved;held.items[id]-=moved;if(!held.items[id])delete held.items[id];}}if(held&&!Object.keys(held.items).length)delete s.resourceLedger.reservations[p.sourceOwner];
   const reservedItems={...p.cost};if(p.tool?.source==='owned')reservedItems[p.tool.id]=Math.max(reservedItems[p.tool.id]||0,1);
   if(Object.keys(reservedItems).length&&!reserveResources(s,owner,reservedItems,{purpose:'居民作业 '+p.name}).ok)throw fail('工作材料被其他作业占用','resident_materials');
-  const t={kind:'resident',actor:'npc',actorId:i.actorId,requestId:i.requestId,epoch:b.epoch,sequence,item:p.item,name:p.name,mode:p.mode,action:p.action,tool:p.tool,duration:p.duration,gameTime:Number.isFinite(i.gameTime)&&i.gameTime>=0?Math.min(i.gameTime,1e9):0,cost:p.cost,...(p.mode==='craft'?{recipeContract:recipeContract(RECIPE_BY_ID[p.d.recipeId])}:{}),reservedItems,owner,sourceOwner:p.sourceOwner,sourceTransfer,operationId,assignmentId,assignmentVersion:task?.assignmentVersion||0,projectReservation:!!(task?.projectId&&p.mode==='craft'),storyId,day:s.day,startedAt:now,readyAt:now+p.duration*1000,expiresAt:now+30*60*1000,intent:{...p.d,operationId,resourceOwner:owner,storyId},beginSignature:signature(i)};
+  const t={kind:'resident',actor:'npc',actorId:i.actorId,requestId:i.requestId,epoch:b.epoch,sequence,item:p.item,name:p.name,mode:p.mode,action:p.action,tool:p.tool,duration:p.duration,gameTime:Number.isFinite(i.gameTime)&&i.gameTime>=0?Math.min(i.gameTime,1e9):0,cost:p.cost,...(p.mode==='craft'?{recipeContract:recipeContract(catalogRecipe(s,p.d.recipeId))}:{}),reservedItems,owner,sourceOwner:p.sourceOwner,sourceTransfer,operationId,assignmentId,assignmentVersion:task?.assignmentVersion||0,projectReservation:!!(task?.projectId&&p.mode==='craft'),storyId,day:s.day,startedAt:now,readyAt:now+p.duration*1000,expiresAt:now+30*60*1000,intent:{...p.d,operationId,resourceOwner:owner,storyId},beginSignature:signature(i)};
   if(t.projectReservation)Object.assign(s.resourceLedger.reservations[owner],{projectTaskId:t.assignmentId,taskOperation:t.operationId,productionItem:t.item});
   b.sequence=sequence;b.resident.leases[t.requestId]=t;sync(s,b);return {ticket:t,receipt:null};
  }

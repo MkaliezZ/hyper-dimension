@@ -226,7 +226,21 @@ export function createSaveStore({directory,environmentProvider=()=>null,contentP
   state.productionVersion=PRODUCTION_VERSION;
   return commit(p,theme,state,doc,'catalog-migration-v176',clientId,actions);
  }
- async function syncCustomCatalog(p,theme,doc,clientId=''){if(!contentProvider||!doc)return doc;const next=customCatalogSnapshot(doc.state.customCatalog,await contentProvider(theme,doc.state.saveSlot),doc.state.saveSlot);if(!validCustomCatalog(next,doc.state.saveSlot))throw fail('共创发布目录校验失败',503,'cocreation_catalog_invalid');if(JSON.stringify(doc.state.customCatalog??null)===JSON.stringify(next??null))return doc;const state=structuredClone(doc.state);if(next)state.customCatalog=next;else delete state.customCatalog;const actions=structuredClone(doc.actions);syncFacilityState(state,actions);return commit(p,theme,state,doc,'cocreation-catalog',clientId,actions);}
+ function adoptCustomCatalog(state,actions,catalog){
+  if(catalog)state.customCatalog=catalog;else delete state.customCatalog;
+  // Hydration must not add unknown zero-stock keys only on the client: personal
+  // authority compares the whole inventory, including explicitly empty entries.
+  for(const item of catalog?.items||[])state.inventory[item.id]??=0;
+  syncFacilityState(state,actions);syncPlanningState(state,actions);syncPersonalState(state,actions);syncResourceState(state,actions);
+ }
+ async function syncCustomCatalog(p,theme,doc,clientId=''){
+  if(!contentProvider||!doc)return doc;
+  const next=customCatalogSnapshot(doc.state.customCatalog,await contentProvider(theme,doc.state.saveSlot),doc.state.saveSlot);
+  if(!validCustomCatalog(next,doc.state.saveSlot))throw fail('共创发布目录校验失败',503,'cocreation_catalog_invalid');
+  if(JSON.stringify(doc.state.customCatalog??null)===JSON.stringify(next??null)&&!(next?.items||[]).some(i=>!Object.hasOwn(doc.state.inventory,i.id)))return doc;
+  const state=structuredClone(doc.state),actions=structuredClone(doc.actions);adoptCustomCatalog(state,actions,next);
+  return commit(p,theme,state,doc,'cocreation-catalog',clientId,actions);
+ }
  const api={
   directory:root,
   async open(theme,{legacyState,clientId='',protect=false,identity={}}={}){
@@ -375,7 +389,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,contentP
     const replay=actionReplay(old,input);if(replay){if(input.kind==='commerce'&&input.operation==='hire_renew')await hireRegistry.renewal_commit(theme,old,input.renewalId);return replay;}
     compare(old,input.expectedVersion);
     const state=structuredClone(old.state),actions=structuredClone(old.actions||newActionBook());
-    if(input.kind==='craft'&&input.operation==='begin'&&contentProvider){const catalog=customCatalogSnapshot(state.customCatalog,await contentProvider(theme,state.saveSlot),state.saveSlot);if(!validCustomCatalog(catalog,state.saveSlot))throw fail('共创发布目录校验失败',503,'cocreation_catalog_invalid');if(catalog)state.customCatalog=catalog;else delete state.customCatalog;}
+    if(contentProvider&&(input.operation==='begin'&&['craft','resident'].includes(input.kind)||input.kind==='commerce'&&['plan_create','plan_batch','plan_control','plan_assign','task_control'].includes(input.operation))){const catalog=customCatalogSnapshot(state.customCatalog,await contentProvider(theme,state.saveSlot),state.saveSlot);if(!validCustomCatalog(catalog,state.saveSlot))throw fail('共创发布目录校验失败',503,'cocreation_catalog_invalid');adoptCustomCatalog(state,actions,catalog);}
      const verifiedContract=input.kind==='commerce'&&['hire_handover','hire_renew','hire_bind','hire_renew_prepare'].includes(input.operation)?await hireRegistry.peek(theme,input.contractId):null;
     const verifiedRenewal=input.kind==='commerce'&&input.operation==='hire_renew'?await hireRegistry.peek(theme,input.renewalId):null;
     const verifiedProposal=input.kind==='commerce'&&['fish_steward','night_steward','festival_steward','couture_steward','fireworks_steward'].includes(input.operation)?await partyProof.peek({theme,worldKey:state.saveSlot||'legacy-'+theme,runId:input.runId,proposalId:input.proposalId}):null;

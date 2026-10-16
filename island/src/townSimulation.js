@@ -1,4 +1,5 @@
 import {workApproachTopic} from './residentSocialTopics.js';
+import {customProductionOptions} from './customProduction.js';
 import {residentCooldownRemaining,setResidentCooldown,residentHistoryAge} from './residentCooldowns.js';
 import {shopItemOffer} from './shopfronts.js';
 import {socialCandidates,socialBoundary,leisureOptions,routineFor,temperament} from './residentLife.js';
@@ -7,7 +8,7 @@ import {teaFacilityOptions,functionalCommand} from './functionalFacilities.js';
 import {hydrateResidentStories,residentStoryOptions,pendingResidentStory,STORY_LIMITS} from './residentStories.js';
 import {availableQuantity,commitResources} from './resourceLedger.js';
 import {hydrateEconomy,effectiveQuality,improveQuality,visitorPrice,operatingCost,transact,venueService} from './economy.js';
-import {hydrateContent,ALL_RECIPES,RECIPE_BY_ID,DEFAULT_RECIPES,ITEM_BY_ID,recipeGate,resourceLoot,commitRecipe,consumePlayerCredit} from './contentCatalog.js';
+import {hydrateContent,ALL_RECIPES,RECIPE_BY_ID,DEFAULT_RECIPES,ITEM_BY_ID,catalogRecipe,catalogItem,contentItems,recipeGate,resourceLoot,commitRecipe,consumePlayerCredit} from './contentCatalog.js';
 import {hydrateCrops,harvestPlot,cropInfo} from './farming.js';
 import {BUILDINGS,SLOTS,ITEMS,HARBOR,RESIDENTS,HOTSPOTS} from './world.js';
 import {ROOMS} from './rooms.js';
@@ -60,7 +61,7 @@ export function availableMealQuantity(s,foodId,actorId){
  const earlier=(s.npcPresence||[]).filter(p=>p.id!==actorId&&p.mealFood===foodId&&!leased.has(p.id)&&(p.mealOrder<order||p.mealOrder===order&&p.id<actorId)).length;
  return Math.max(0,availableQuantity(s,foodId)-earlier);
 }
-export function mealOptions(i,s,r,time){const c=career(i,s),food=Object.values(ITEM_BY_ID).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableMealQuantity(s,x.id,i)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time,s),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
+export function mealOptions(i,s,r,time){const c=career(i,s),food=contentItems(s).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableMealQuantity(s,x.id,i)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time,s),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
  for(const [id,bid] of [['wheat',2],['mushroom',22],['strawberry',22]])if(availableMealQuantity(s,id,i)>0)food.push({...target(bid),action:'eat',activity:'eat',duration:10,foodId:id,purposeId:'need:food:'+id,score:94-crowdPenalty(s,bid,i),reason:bid===2?'用现有小麦煮粥，补充饱足':'去营地准备'+ITEMS[id][0]+'简餐'});
  if(needs(i,s).rations>0){const bid=[19,22,2].sort((a,b)=>crowdPenalty(s,a,i)-crowdPenalty(s,b,i)||Math.abs((LEISURE_VENUES[i]||0)-a)-Math.abs((LEISURE_VENUES[i]||0)-b))[0];food.push({...target(bid),action:'eat',activity:'eat',duration:9,foodId:'rations',purposeId:'need:rations',score:92-crowdPenalty(s,bid,i),reason:'找个空闲的休息位吃自备简餐'});}
  if(!food.length)food.push({goal:'forest',buildingId:null,resource:'mushroom',action:'work',activity:'gather',duration:8,purposeId:'need:food-supply',score:104,reason:'食物库存不足，先采集可做简餐的蘑菇'});
@@ -71,6 +72,7 @@ export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),ma
  if(n.energy<38)options.push({...target(19),action:'rest',activity:'rest',duration:14,purposeId:'need:energy',score:110-crowdPenalty(s,19,i)*.25,reason:'体力不足，回居民之家坐下休息'});
  if(n.hunger<42)options.push(...mealOptions(i,s,r,time),...teaFacilityOptions(s,i,time));
  main.score=(main.waiting?8:62)-crowdPenalty(s,main.buildingId,i)*.4;if(residentCooldownRemaining(s,c,'retry',time)>0&&main.buildingId===c.retryBuilding)main.score=5;options.push(main);
+ options.push(...customProductionOptions(s,{route:CAREERS[i].route,history:c.history,profile:r,crowd:bid=>residentCrowd(s,bid,i)}));
  const traits=temperament(r),socialLow=traits.quiet?36:traits.outgoing?50:42;
  const candidates=socialCandidates(s,i,r).map(candidate=>({...candidate,topic:workApproachTopic(s,i,candidate.id,r,{...RESIDENTS[candidate.id],...s.npcProfiles?.[candidate.id]})}));
  candidates.sort((a,b)=>(b.rel.tension>12?2:b.topic?1:0)-(a.rel.tension>12?2:a.topic?1:0));
@@ -110,7 +112,7 @@ function executeWork(i,d,s,time,{acceptedRecipe=null}={}){const n=needs(i,s),c=c
  function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){setResidentCooldown(s,c,'retry',30,time);c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({day:s.day,daySeconds:s.economy?.daySeconds||0,time,goal:d.goal,buildingId:d.buildingId,action:d.action,purposeId:d.purposeId,result,source:d.source});c.history=c.history.slice(-16);return result;}
  if(d.facilityId){const b=s.functionalFacilities,r=functionalCommand(s,{commandId:d.operationId||('npc-tea:'+i+':'+time),displayId:d.facilityId,action:'sip',expectedRevision:b?.revision});if(!r.ok)return complete(r.reason,false);if(!r.replayed){n.hunger=Math.min(100,n.hunger+22);n.energy=Math.min(100,n.energy+7);n.social=Math.min(100,n.social+2);n.mood='温暖';}return complete('在岛上的暖手茶炉享用花茶 · 余量实际减少一杯');}
  if(d.action==='rest'){n.energy=Math.min(100,n.energy+42);n.mood='放松';return complete('在居民之家休息，恢复体力')}
- if(d.action==='eat'){let item=d.foodId;if(!item)item=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';if(item==='rations'){if(n.rations<1)return complete('自备简餐已用完，需要准备食物',false);n.rations--;n.hunger=Math.min(100,n.hunger+40);result='吃一份自备简餐（剩余 '+n.rations+' 份）';}else{const info=ITEM_BY_ID[item],valid=info&&(info.category==='food'&&[1,2,17].includes(info.building)||['wheat','mushroom','strawberry'].includes(item));if(!valid||!commitResources(s,{owner:d.resourceOwner||null,cost:{[item]:1},category:'resident_meal',note:'居民 '+i}).ok)return complete('选定餐点已售罄或预留，重新选择食物',false);n.hunger=Math.min(100,n.hunger+(info.building===1?22:38));result='享用'+ITEMS[item][0];}n.energy=Math.min(100,n.energy+7);n.mood='满足';return complete(result)}
+ if(d.action==='eat'){let item=d.foodId;if(!item)item=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';if(item==='rations'){if(n.rations<1)return complete('自备简餐已用完，需要准备食物',false);n.rations--;n.hunger=Math.min(100,n.hunger+40);result='吃一份自备简餐（剩余 '+n.rations+' 份）';}else{const info=catalogItem(s,item),valid=info&&(info.category==='food'&&[1,2,17].includes(info.building)||['wheat','mushroom','strawberry'].includes(item));if(!valid||!commitResources(s,{owner:d.resourceOwner||null,cost:{[item]:1},category:'resident_meal',note:'居民 '+i}).ok)return complete('选定餐点已售罄或预留，重新选择食物',false);n.hunger=Math.min(100,n.hunger+(info.building===1?22:38));result='享用'+info.name;}n.energy=Math.min(100,n.energy+7);n.mood='满足';return complete(result)}
  if(d.action==='visit'){const routine=routineFor(i,d);n.energy=Math.min(100,n.energy+12);n.social=Math.min(100,n.social+6);n.mood='放松';c.workSinceBreak=0;setResidentCooldown(s,c,'personal',65,time);return complete(routine?'在'+BUILDINGS[d.buildingId].name+routine.title:'在'+(d.buildingId!=null?BUILDINGS[d.buildingId].name:TITLES[d.goal])+'体验个人兴趣与生活')}
  n.energy=Math.max(0,n.energy-5);n.hunger=Math.max(0,n.hunger-4);
  if(d.goal==='farm'){const p=d.noFarmTask?null:d.farmIndex!=null?s.plots[d.farmIndex]:s.plots.find(p=>p.stage===4)||s.plots.find(p=>p.stage===2)||s.plots.find(p=>p.stage===1&&s.inventory.seed>0)||s.plots.find(p=>p.stage===0);if(p){if(p.stage===0){p.stage=1;delete p.wateredBy;result='为田垄松土';advance=false}else if(p.stage===1){if(commitResources(s,{owner:d.resourceOwner||null,cost:{seed:1},category:'resident_sow'}).ok){p.stage=2;delete p.wateredBy;result='播种'+cropInfo(p).name}else result='种苗已经用完，先补充种苗';advance=false}else if(p.stage===2){p.stage=3;p.growth=0;p.wateredBy='npc';result='给'+cropInfo(p).name+'浇水，等待成熟';advance=false}else if(p.stage===4){const index=s.plots.indexOf(p),crop=harvestPlot(s,index);result='收获'+crop.name+' ×'+crop.amount}}else{result='检查作物长势';advance=false}}
@@ -119,7 +121,7 @@ function executeWork(i,d,s,time,{acceptedRecipe=null}={}){const n=needs(i,s),c=c
  else if(d.goal==='dock'){const item=d.resource||'fish';resourceLoot(ITEM_BY_ID[item]?.source||'fishing',s,1,item);result='在码头取得'+ITEMS[item][0]+' ×1'}
  else if(d.buildingId===14&&d.resource==='seed'&&!d.recipeId){commitResources(s,{gain:{seed:1},category:'nursery_collect'});result='从温室苗床收取种子 ×1'}
  else if(d.buildingId===14&&!d.recipeId&&(d.activity==='herbs'||d.resource)){const item=d.resource||'herb';resourceLoot('greenhouse',s,1,item);const replenished=s.inventory.seed<4&&commitResources(s,{gain:{seed:1},category:'nursery_bonus',note:'居民 '+i}).ok;result='从温室采收'+ITEMS[item][0]+' ×1'+(replenished?'，补充种苗':'')}
- else if(d.buildingId!=null){const recipe=acceptedRecipe||RECIPE_BY_ID[d.recipeId]||RECIPES[d.buildingId];if(d.productionMode!=='maintenance'&&recipe&&recipe.building===d.buildingId&&commitRecipe(recipe,s,{owner:d.resourceOwner||null,commandId:d.operationId?d.operationId+':craft':null})){if(recipe.item==='lantern')s.tasks.craft=true;improveQuality(s.facilities[d.buildingId],.1);result='在'+BUILDINGS[d.buildingId].name+'制作'+ITEMS[recipe.item][0]+' ×1'}else{result='完成'+ROOMS[d.buildingId].station+'的整理、维护与服务准备';if(recipe)advance=false;}const f=s.facilities[d.buildingId];f.condition=Math.min(100,f.condition+.5);f.lastWork=time;}
+ else if(d.buildingId!=null){const recipe=acceptedRecipe||catalogRecipe(s,d.recipeId)||RECIPES[d.buildingId];if(d.productionMode!=='maintenance'&&recipe&&recipe.building===d.buildingId&&commitRecipe(recipe,s,{owner:d.resourceOwner||null,commandId:d.operationId?d.operationId+':craft':null})){if(recipe.item==='lantern')s.tasks.craft=true;improveQuality(s.facilities[d.buildingId],.1);result='在'+BUILDINGS[d.buildingId].name+'制作'+(catalogItem(s,recipe.item)?.name||recipe.name)+' ×1'}else{result='完成'+ROOMS[d.buildingId].station+'的整理、维护与服务准备';if(recipe)advance=false;}const f=s.facilities[d.buildingId];f.condition=Math.min(100,f.condition+.5);f.lastWork=time;}
  else result='观察广场人流，整理活动信息';
  return complete(result,advance);
 }
@@ -143,7 +145,7 @@ export function visitQuote(s,guest,buildingId){
  if(guest.budget<price)return {paid:0,reason:'预算不足'};
  if(recipe&&!selling&&!service)return {paid:0,reason:'商品售罄'};
  return {paid:price,cost,net:price-cost,item:selling?recipe.item:null,service:!selling?service?.name||null:null,
-  reason:guest.name+'在'+BUILDINGS[buildingId].name+(selling?'购买'+ITEMS[recipe.item][0]:'体验'+(service?.name||'服务'))+'，营业 '+price+'、成本 '+cost+'、净入账 +'+(price-cost)+' 岛币'};
+  reason:guest.name+'在'+BUILDINGS[buildingId].name+(selling?'购买'+(catalogItem(s,recipe.item)?.name||recipe.name):'体验'+(service?.name||'服务'))+'，营业 '+price+'、成本 '+cost+'、净入账 +'+(price-cost)+' 岛币'};
 }
 export function settleVisit(s,guest,buildingId,receiptId,time,options={}){
  if(s.economy.receipts[receiptId])return {paid:0,reason:'该消费已经结算'};

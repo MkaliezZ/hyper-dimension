@@ -319,6 +319,9 @@ jobs:
       - name: Native custom products, artwork, reuse and cross-owner import
         run: node tests/v224-custom-content-browser.mjs
 
+      - name: Native custom recipe resident preparation and reopen
+        run: node tests/v227-custom-agent-browser.mjs
+
       - name: Native night planning skips empty purposes
         run: node tests/v216-night-planning-browser.mjs
 
@@ -355,6 +358,8 @@ jobs:
             island/qa/v222/native-recruitment-errors/*.png
             island/qa/v224/native-custom-content/report.json
             island/qa/v224/native-custom-content/*.png
+            island/qa/v227/native-custom-agent/report.json
+            island/qa/v227/native-custom-agent/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
           if-no-files-found: ignore

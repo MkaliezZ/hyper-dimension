@@ -20,5 +20,5 @@ export function createServerResident({saves,theme,persist,applyState,toast}){
  // All recovery cards reconcile the shared journal; a card must not reinterpret another job as its own.
  retry.onclick=()=>readRecoveryProgress(bar,()=>saves.acceptServer(theme()),toast);
  read.onclick=()=>readRecoveryProgress(bar,()=>saves.acceptServer(theme()),toast);
- return {begin,finish,cancel,recover,occupied:i=>all().some(t=>t.actorId===i),settling:()=>inflight>0||locked,busy:()=>inflight>0||locked,prepareTheme:async()=>{for(const t of all())await cancel(t);jobs.clear()},inspect:()=>({inflight,locked,current,jobs:[...jobs.values()]})};
+ return {begin,finish,cancel,recover,leases:all,occupied:i=>all().some(t=>t.actorId===i),settling:()=>inflight>0||locked,busy:()=>inflight>0||locked,prepareTheme:async()=>{for(const t of all())await cancel(t);jobs.clear()},inspect:()=>({inflight,locked,current,jobs:[...jobs.values()]})};
 }

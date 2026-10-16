@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "version": "V227",
+  "scope": "Approved per-island custom products in canonical resident and Agent planning. Original18 requirements remain4complete/14in_progress.",
+  "wholeGoalComplete": false,
+  "checks": {
+    "newDomainRules": 20,
+    "fullMainRules": 1246,
+    "separateRuntimeScopeRules": 14,
+    "fullTotal": 1260,
+    "fullPassed": true,
+    "nativeCustomAgentCases": 2,
+    "nativeCustomAgentPassed": true,
+    "nativeRecoveryFeedbackCases": 2,
+    "nativeRecoveryFeedbackPassed": true,
+    "nativeThemes": [
+      "pixel",
+      "origami"
+    ],
+    "normalNpcWorkSeconds": 20,
+    "zeroInventoryHydrationRegression": true,
+    "acceptedBillsAndRevocation": true,
+    "longIdsAndTwelveStepDependencies": true,
+    "tenantCatalogIsolation": true,
+    "autonomousStockAndDailyLimits": true
+  },
+  "realProvider": {
+    "source": "hermes",
+    "acceptedCustomCommands": 1,
+    "canonicalTask": "done",
+    "actualDelivery": 1,
+    "workDuration": 20,
+    "planningSource": "deepseek",
+    "model": "deepseek-flash",
+    "decisionSelectedCustomPurpose": false,
+    "scope": "One fictional island; real Hermes tool dispatch and Flash planning, canonical20second delivery. No user save/browser/document contents."
+  },
+  "failureHistory": {
+    "baselineCustomAgentRules": {
+      "passed": 0,
+      "failed": 6
+    },
+    "firstNativeCases": {
+      "passed": 0,
+      "failed": 2,
+      "reason": "Custom zero-stock client hydration diverged from personal authority; canonical catalog adoption corrected."
+    },
+    "firstFullSource": {
+      "passed": 1245,
+      "failed": 1,
+      "reason": "Advanced ingredient traversal stopped at the target gate; original assertions retained and implementation corrected."
+    },
+    "excludedFixtureAttempts": [
+      "An inconsistent NPC number/name in the first real-provider prompt.",
+      "A three-product exploratory native fixture exceeded its unchanged180second window; retained privately. Final one-product scenarios retain explicit prerequisite and final task delivery assertions."
+    ]
+  },
+  "boundaries": [
+    "Fictional progressed native islands declare50wood/resin/fiber; QA PNG patterns are not product artwork.",
+    "Native browser automation is not human or physical Mac acceptance.",
+    "Original user Codex tab remains unobserved.",
+    "Visitor custom shelves, updated showcase video, broader A2A and course/human/long-run work remain open.",
+    "Archive reinstallation and live deployment are separate release steps."
+  ]
+}
