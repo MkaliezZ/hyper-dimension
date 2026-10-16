@@ -9,7 +9,7 @@ export function createFestivalRuntime({state,npcs,resident,followPath,occupied=(
   n.path=findPath(n,target,worldWalkable);const end=n.path.at(-1)||n;
   if(Math.hypot(end.x-target.x,end.y-target.y)<=35&&Array.from({length:9},(_,i)=>worldWalkable(end.x+(target.x-end.x)*i/8,end.y+(target.y-end.y)*i/8)).every(Boolean))n.path.push({...target});
  }
- function update(dt){
+ function update(dt,travelDt=dt){
   const s=state(),g=active();if(!g){if(held.size)release();return;}
   if(eventId&&eventId!==g.id)release();
   if(eventId!==g.id){
@@ -31,7 +31,7 @@ export function createFestivalRuntime({state,npcs,resident,followPath,occupied=(
     resident().releaseActor(n);n.partyControlled=true;n.after=null;n.intent=null;n.target=null;n.path=[];held.set(id,job);route(n,job.target);
    }else if(held.get(id).orderId!==job.orderId||held.get(id).slot!==job.slot){held.set(id,job);n.action=null;route(n,job.target);}
    const distance=Math.hypot(n.x-job.target.x,n.y-job.target.y);
-   if(distance>6){n.action=null;if(!n.path.length)route(n,job.target);n.status=job.role==='staff'?'沿道路前往集市岗位':'前往集市的专属选购位置';followPath(n,dt,65);}
+   if(distance>6){n.action=null;if(!n.path.length)route(n,job.target);n.status=job.role==='staff'?'沿道路前往集市岗位':'前往集市的专属选购位置';followPath(n,travelDt,65);}
    else{n.path=[];n.after=null;n.walkMix=0;n.walking=false;n.direction=job.role==='staff'?Math.PI/2:-Math.PI/2;n.status=job.role==='staff'?'集市营业 · '+g.participants[job.slot].role:'选购海岛手艺 · 等候交付';n.action={type:job.role==='staff'?'craft':'talk',t:(now()+id*.37)%1.6,duration:1.6};}
    a.people[id]={x:n.x,y:n.y,inside:n.inside??null,controlled:true,arrived:Math.hypot(n.x-job.target.x,n.y-job.target.y)<=6,role:job.role,slot:job.slot,...(job.orderId==null?{}:{orderId:job.orderId})};
   }

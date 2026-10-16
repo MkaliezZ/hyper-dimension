@@ -55,7 +55,7 @@ export function createRecruitmentRuntime({state,npcs,followPath,resident,visitor
   npcs.push(actor);lastId=a.id;
  }
  function reset(){lastId=null;attach()}
- function update(dt){
+ function update(dt,travelDt=dt){
   attach();const a=active();if(!a||!actor)return;
   if(a.phase==='departed')return;
   if(a.phase==='working'&&state().recruitment.renewal?.oldId===a.id){savePose();actor.recruitControlled=true;actor.status='正在与管家商量续约分工';return;}
@@ -72,13 +72,13 @@ export function createRecruitmentRuntime({state,npcs,followPath,resident,visitor
   }
   if(a.phase==='awaiting_ferry'&&!a.leaveRequested&&createBoat())a.phase='inbound';
   if(a.phase==='leaving_room'){
-   if(actor.indoorActor?.path.length)followPath(actor.indoorActor,dt,108);
+   if(actor.indoorActor?.path.length)followPath(actor.indoorActor,travelDt,108);
    if(actor.inside==null)beginReturn();
   }
   if(a.phase==='waiting_boat'&&!boat())createBoat();
   const b=boat();
   if(b){
-   b.t+=dt;
+   b.t+=['approaching','leaving'].includes(b.phase)?travelDt:dt;
    if(b.phase==='approaching'){
     const p=Math.min(1,b.t/12),e=p*p*(3-2*p);b.x=HARBOR.sea.x+(HARBOR.berth.x-HARBOR.sea.x)*e;b.y=HARBOR.sea.y+(HARBOR.berth.y-HARBOR.sea.y)*e;
     if(p===1){b.phase='moored';b.t=0;
@@ -94,7 +94,7 @@ export function createRecruitmentRuntime({state,npcs,followPath,resident,visitor
   }
   if(a.phase==='waiting_boat'&&boat()?.phase==='moored')path(boardingRoute(actor.harborQueue),'boarding','boarding');
   if(['landing','returning','boarding'].includes(a.phase)){
-   if(actor.path.length&&!shouldYield(actor,[...crowd(),actor]))followPath(actor,dt,78);
+   if(actor.path.length&&!shouldYield(actor,[...crowd(),actor]))followPath(actor,travelDt,78);
    else if(actor.path.length){actor.walkMix*=Math.exp(-dt*10);actor.walking=false}
    if(!actor.path.length){
     if(a.phase==='landing'){

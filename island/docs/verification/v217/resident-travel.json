@@ -1,0 +1,195 @@
+{
+  "scope": "Native manual-chat queue registration, actual NPC movement/tool actions and authoritative task receipts, mid-chain reload and empty-browser reopen. Fictional accounts, zero initial materials, needs fixture, deterministic model reply; providers blocked, no accelerated clock, no user browser/data. Original first-job120seconds and shared remaining-chain240seconds count fixed working hours; calendar waiting is separate and bounded by two visual days. Not real model decision or human acceptance.",
+  "slowVisibleFrames": true,
+  "renderDelayPolicy": {
+    "normalMs": 75,
+    "stallMs": 650,
+    "every": 12,
+    "timestamps": "Actual monotonic RAF timestamps; no accelerated world clock"
+  },
+  "clockUnchanged": true,
+  "passed": true,
+  "baseline": {
+    "sourceCommit": "30815f69ccc6501c7a02f778b6aab9d5d7d93cb9",
+    "runId": 38896805957,
+    "failedJobId": 116959115961,
+    "artifactId": 12045565611,
+    "result": "Original shared240-second working-time gate failed. Logs and isolated artifact retained; no blind re-run or budget expansion."
+  },
+  "focusedRuleSummaries": [
+    "ℹ tests 33",
+    "ℹ pass 33",
+    "ℹ fail 0"
+  ],
+  "beforeFixReproductions": {
+    "navigationCasesFailed": 4,
+    "socialAlternativeCasesFailed": 2,
+    "readyContinuationCasesFailed": 1,
+    "otherContinuationBoundariesPassed": 3
+  },
+  "cases": [
+    {
+      "theme": "pixel",
+      "workingBudgets": [
+        {
+          "id": "first",
+          "workingMs": 31742,
+          "sharedUsedMs": 31742,
+          "limitMs": 120000,
+          "calendarMs": 38174
+        },
+        {
+          "id": "second",
+          "workingMs": 87167,
+          "sharedUsedMs": 87167,
+          "limitMs": 240000,
+          "calendarMs": 130702
+        },
+        {
+          "id": "third",
+          "workingMs": 65591,
+          "sharedUsedMs": 152758,
+          "limitMs": 240000,
+          "calendarMs": 196295
+        }
+      ],
+      "documents": [
+        {
+          "label": "before-mid-chain-reload",
+          "seconds": 37.492599999904634,
+          "frames": 284,
+          "fps": 7.574828099430884,
+          "maxGap": 721.4000000000001,
+          "visible": true,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        },
+        {
+          "label": "before-empty-browser-reopen",
+          "seconds": 158.0787999999523,
+          "frames": 1196,
+          "fps": 7.565846906734874,
+          "maxGap": 668.2000000000116,
+          "visible": true,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        }
+      ],
+      "pageErrors": [],
+      "saveErrors": [],
+      "uniqueActualTaskReceipts": 3,
+      "delivered": [
+        {
+          "assignmentId": "first",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "second",
+          "gain": {
+            "seaweed": 1
+          }
+        },
+        {
+          "assignmentId": "third",
+          "gain": {
+            "wood": 2
+          }
+        }
+      ],
+      "midChainReloadPreserved": true,
+      "emptyBrowserReopenPreserved": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "workingBudgets": [
+        {
+          "id": "first",
+          "workingMs": 30095,
+          "sharedUsedMs": 30095,
+          "limitMs": 120000,
+          "calendarMs": 36688
+        },
+        {
+          "id": "second",
+          "workingMs": 95884,
+          "sharedUsedMs": 95884,
+          "limitMs": 240000,
+          "calendarMs": 138000
+        },
+        {
+          "id": "third",
+          "workingMs": 66675,
+          "sharedUsedMs": 162559,
+          "limitMs": 240000,
+          "calendarMs": 204677
+        }
+      ],
+      "documents": [
+        {
+          "label": "before-mid-chain-reload",
+          "seconds": 36.0595,
+          "frames": 230,
+          "fps": 6.37834689887547,
+          "maxGap": 775.8999999999996,
+          "visible": true,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        },
+        {
+          "label": "before-empty-browser-reopen",
+          "seconds": 167.9485,
+          "frames": 1426,
+          "fps": 8.49069804136387,
+          "maxGap": 680.5,
+          "visible": true,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        }
+      ],
+      "pageErrors": [],
+      "saveErrors": [],
+      "uniqueActualTaskReceipts": 3,
+      "delivered": [
+        {
+          "assignmentId": "first",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "second",
+          "gain": {
+            "seaweed": 1
+          }
+        },
+        {
+          "assignmentId": "third",
+          "gain": {
+            "wood": 2
+          }
+        }
+      ],
+      "midChainReloadPreserved": true,
+      "emptyBrowserReopenPreserved": true,
+      "passed": true
+    }
+  ],
+  "hostedCurrentFixConfirmed": false,
+  "humanOrPhysicalMacAcceptance": false,
+  "wholeGoalComplete": false
+}

@@ -131,7 +131,7 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
   // A boat never leaves while somebody is on its gangway or still unloading.
   if(boat.t>=24){boat.phase='leaving';boat.t=0;boat.transferPhase='complete';}
  }
- function update(dt,now){
+ function update(dt,now,travelDt=dt){
   time=now;if(remote&&!remote.ready()){remote.ensure?.();return;}if(!remote)s().economy.active=guests.filter(g=>g.stage!=='departed'&&g.stage!=='onboard').length;
   if(time>=nextBoat&&!harborReserved()){
    nextBoat=time+ECONOMY_RULES.ferryInterval;
@@ -139,10 +139,10 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
   }
   for(const b of boats){
    if(b.phase==='approaching'){
-    if(advanceBoatMotion(b,dt,HARBOR)>=1)land(b);
+    if(advanceBoatMotion(b,travelDt,HARBOR)>=1)land(b);
    }else if(b.phase==='moored'){b.t+=dt;transfer(b);}
    else if(b.phase==='leaving'){
-    if(advanceBoatMotion(b,dt,HARBOR)>=1)b.phase='gone';
+    if(advanceBoatMotion(b,travelDt,HARBOR)>=1)b.phase='gone';
    }
   }
   for(const g of guests){
@@ -150,7 +150,7 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
    if(g.remoteRetry&&time>=g.remoteRetry.at){const retry=g.remoteRetry;g.remoteRetry=null;retry.run();}
    if(g.remotePending)continue;
    if(g.retry&&time>=g.retryAt){const retry=g.retry;g.retry=null;navigate(g,retry.end,retry.after);}
-   if(g.indoorActor?.path.length){followPath(g.indoorActor,dt,105);continue;}
+   if(g.indoorActor?.path.length){followPath(g.indoorActor,travelDt,105);continue;}
    if(g.stage==='servicing'){
     g.serviceTime+=dt;g.indoorActor.action.t=g.serviceTime;
     if(g.serviceTime>=ECONOMY_RULES.serviceSeconds){
@@ -160,7 +160,7 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
     }
    }else if(g.path.length){
     if(shouldYield(g,[...guests,...extraPassengers()])){g.walkMix=(g.walkMix||0)*Math.exp(-dt*10);g.walking=false;}
-    else {g.animationPhase=(g.animationPhase||0)+dt*7;followPath(g,dt,86);}
+    else {g.animationPhase=(g.animationPhase||0)+dt*7;followPath(g,travelDt,86);}
    }
    if(!g.forcedReturn&&time-g.arrivedAt>220&&!['returning','waitingBoat','boarding','landing'].includes(g.stage)){
     g.forcedReturn=true;g.path=[];g.after=null;if(remote&&g.serverTicket)confirm(g,'cancel',{},()=>{g.serverTicket=null;leaveRoom(g,()=>returnHome(g));});else leaveRoom(g,()=>returnHome(g));
@@ -169,14 +169,14 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
   for(let i=boats.length-1;i>=0;i--)if(boats[i].phase==='gone')boats.splice(i,1);
   for(let i=guests.length-1;i>=0;i--)if(guests[i].stage==='departed')guests.splice(i,1);
  }
- function animatePending(dt){
-  for(const b of boats)advanceBoatMotion(b,dt,HARBOR);
+ function animatePending(dt,travelDt=dt){
+  for(const b of boats)advanceBoatMotion(b,travelDt,HARBOR);
   for(const g of guests){
    if(g.stage==='departed'||g.stage==='onboard')continue;
-   if(g.indoorActor?.path.length)followPendingPath(g.indoorActor,dt,105);
+   if(g.indoorActor?.path.length)followPendingPath(g.indoorActor,travelDt,105);
    else if(g.path.length){
     if(shouldYield(g,[...guests,...extraPassengers()])){g.walkMix=(g.walkMix||0)*Math.exp(-dt*10);g.walking=false;}
-    else followPendingPath(g,dt,86);
+    else followPendingPath(g,travelDt,86);
    }
    if(g.indoorActor?.action)g.indoorActor.action.visualWait=(g.indoorActor.action.visualWait||0)+dt;
   }

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v216-agent-source",
+  "release": "hyper-dimension-v217-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 75970,
-      "sha256": "8d2770d049a7e54591e7c3d2b026e2f0c7c94a582dd0a5150f47bd78ea747bdf"
+      "bytes": 76717,
+      "sha256": "f66ee1fc263038044399b64db29ef0f60bfab1390f48fbbc8291d026d9326a94"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13101,
-      "sha256": "e49990c50f8968e479e5b6ec5243fc8fbb3e321ab242d2a05980b6f236ea2a24"
+      "bytes": 13273,
+      "sha256": "c60d9dd483e208de8c8e97945f98ddb2afe2df7f20eee0268e2598c1329c6179"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144021,
-      "sha256": "dd7ab0f46f1cfe6189746d384cf01e73592285bea0c61a39f9a9078b4231f26c"
+      "bytes": 144114,
+      "sha256": "43cc78970e5a0e9866d32899ef356ad504d7ec832b40c6e6237020ba82230d60"
     },
     {
       "path": "src/arcade.css",
@@ -6737,8 +6737,8 @@
     },
     {
       "path": "src/coutureRuntime.js",
-      "bytes": 5279,
-      "sha256": "8722658255e798c1e31ab2282d146899e88f68fa91c82fc7377ca648db4c9146"
+      "bytes": 5297,
+      "sha256": "b06696ca2a968f4185dcc990638c759289442fe961b9ae2f53debae01b736a5d"
     },
     {
       "path": "src/coutureUI.js",
@@ -6917,8 +6917,8 @@
     },
     {
       "path": "src/festivalRuntime.js",
-      "bytes": 3958,
-      "sha256": "c7b0897ec9e66b70c6cef572fd310edf4ce41a8666a0bcc92b9101abb4b7d8a6"
+      "bytes": 3976,
+      "sha256": "26ba41c400c5951066ae5385ee818dda940525d85537425cf0976b4651b9298d"
     },
     {
       "path": "src/festivalUI.js",
@@ -6952,8 +6952,8 @@
     },
     {
       "path": "src/fireworksRuntime.js",
-      "bytes": 3247,
-      "sha256": "d283fe62d958608ebbc6d43bb97598f957e472be3be20407b0591939bb133f1c"
+      "bytes": 3265,
+      "sha256": "6264e650512a77b0d14479493da96c1c2d9bb8471f871c85b1e3c301017ad9bf"
     },
     {
       "path": "src/fireworksUI.js",
@@ -6982,8 +6982,8 @@
     },
     {
       "path": "src/fishingPartyRuntime.js",
-      "bytes": 3405,
-      "sha256": "1c8c2e44d8f72327b528f96e35591791bd97798b8b2a57a22d3c5ca14d5c276b"
+      "bytes": 3429,
+      "sha256": "92b2fc3e416b2d8c0f351c82b038303a9903e3a7d7cfb57632a4fa710bb9349f"
     },
     {
       "path": "src/fishingPartyUI.js",
@@ -7532,8 +7532,8 @@
     },
     {
       "path": "src/nightPartyRuntime.js",
-      "bytes": 2901,
-      "sha256": "f06de2730874778fe2b7067e76112cd0fd909095ad9163e1e902b0628d3a2d97"
+      "bytes": 2919,
+      "sha256": "d6c24c44e0c53a5d7f9a880338335ff62a072f5581a5263148564d3db8a89f1f"
     },
     {
       "path": "src/nightPartyUI.js",
@@ -7777,8 +7777,8 @@
     },
     {
       "path": "src/recruitmentRuntime.js",
-      "bytes": 7476,
-      "sha256": "a98b46666c23da3c9d178405160d601a1a190ab51db209bf296fff64a81e3ac6"
+      "bytes": 7553,
+      "sha256": "7fc35d70d228921b7acd446b2c55244c8c1e248e66909dd29420ee1275f70a7c"
     },
     {
       "path": "src/recruitmentUI.js",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 43172,
-      "sha256": "bd5e30766c940143f8fb54790d53429f245915deb07a21186307b0e7e4672c15"
+      "bytes": 43715,
+      "sha256": "1129e29b442b115f835e717eb8b43cc8983a00e3bccb253df6b63a2e2de94526"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8217,8 +8217,8 @@
     },
     {
       "path": "src/visitorRuntime.js",
-      "bytes": 12920,
-      "sha256": "846df49ef26927dcc81b222a7cc8ad40272cce698cbec86131ef3b98370a932f"
+      "bytes": 12986,
+      "sha256": "b717bebbf19ea7a63bb15ab01a37622da40ceff904a3ca25ee0285b68275902e"
     },
     {
       "path": "src/weatherRules.js",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 9793,
-      "sha256": "012f50ca94542091b59110575997cbdad0f14dcd6a0e1ccad286a43284d2a247"
+      "bytes": 10911,
+      "sha256": "dd0c3e8b672a5de1d4a7eb76cb950a44961e5cefd0c985a58509a00ebd53b7f5"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -12169,6 +12169,41 @@
       "path": "tests/v216-resident-plan-readiness.test.mjs",
       "bytes": 5201,
       "sha256": "e4bae370dbfbf38cb0ea5e6111368b6ba1352f76fc80f888d2f750127aebbae6"
+    },
+    {
+      "path": "docs/resident-travel-v217.md",
+      "bytes": 2798,
+      "sha256": "146d225cd060bcd12d969d56e7e112454ca3e2b280bbf044ac4b3f2249566704"
+    },
+    {
+      "path": "docs/verification/v217/resident-travel.json",
+      "bytes": 5358,
+      "sha256": "220162ba5a380140494da4e45248db3e0922f6e0f38818d074e87ba54ab46069"
+    },
+    {
+      "path": "tests/v217-queued-work-continuation.test.mjs",
+      "bytes": 2477,
+      "sha256": "59955f91e3f90dbcb7beb7453187e3b007caeb36251de4ae7c5c0da59396220a"
+    },
+    {
+      "path": "tests/v217-resident-navigation.test.mjs",
+      "bytes": 2115,
+      "sha256": "cb3a477cc92b2496d872936b50d4a4e919ff73f765691d53d649ecafcd91fa67"
+    },
+    {
+      "path": "tests/v217-resident-social-alternative.test.mjs",
+      "bytes": 2605,
+      "sha256": "096c45049db5950e84b4efe9a9593a3b86d294c7296cd3d7cef802d42e96f56c"
+    },
+    {
+      "path": "tests/v217-visitor-navigation.test.mjs",
+      "bytes": 2045,
+      "sha256": "88ae6c93242273f49442e84d34a2e545e1c77058e9b4c21cfb42c590a8b0d1ed"
+    },
+    {
+      "path": "tests/visibleSlowFrames.mjs",
+      "bytes": 861,
+      "sha256": "ce1d155d242c00904ad404f33cd23631f34a14c31f92971a840f57373ea56dfb"
     }
   ],
   "publicRevision": "v175-github"

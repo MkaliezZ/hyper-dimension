@@ -12,7 +12,7 @@ export function createCoutureRuntime({state,npcs,resident,followPath,occupied=()
  // acknowledged. A later batch must still be able to verify every real pose.
  function pendingRound(g,local){return ['intermission','results'].includes(local.phase)&&local.reports.length>g.game.reports.length;}
  function movementGame(g,local){return pendingRound(g,local)&&local.reports.at(-1)?.outcome==='shown'?{...local,phase:'review'}:local;}
- function update(dt){
+ function update(dt,travelDt=dt){
   const s=state(),g=active();if(!g){if(held.size)release();return;}
   if(eventId&&eventId!==g.id)release();
   if(eventId!==g.id){
@@ -34,7 +34,7 @@ export function createCoutureRuntime({state,npcs,resident,followPath,occupied=()
    const previous=local.reports.find(r=>r.npcId===p.id&&r.outcome==='shown');
    n.coutureGarments=p.model?Object.values(p.id===brief.npcId&&local.phase!=='intermission'&&local.phase!=='results'?local.outfit:previous?.outfit||{}).filter(Boolean):[];
    const distance=Math.hypot(n.x-target.x,n.y-target.y);
-   if(distance>6){n.action=null;n.couturePose=null;if(!n.path.length)route(n,target);n.status=local.phase==='walking'&&p.id===brief.npcId?'穿好本轮造型，沿秀道登台':'沿道路去自己的穿搭大会席位';followPath(n,dt,65);}
+   if(distance>6){n.action=null;n.couturePose=null;if(!n.path.length)route(n,target);n.status=local.phase==='walking'&&p.id===brief.npcId?'穿好本轮造型，沿秀道登台':'沿道路去自己的穿搭大会席位';followPath(n,travelDt,65);}
    else{
     n.path=[];n.after=null;n.walkMix=0;n.walking=false;
     const effect=local.effect,current=p.model&&p.id===brief.npcId&&local.phase==='showing',pose=current&&effect?.type==='pose'?effect.pose:null;

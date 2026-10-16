@@ -547,3 +547,7 @@ The V214 Windows resident-work artifact caught an unintended split of the origin
 ## V216 - Resumable reconciliation and actionable resident planning
 
 Recovery checkpoints are durable before waiting on old requests. An ordinary re-entry link resumes the existing confirmation in a fresh document before simulation starts, retaining the original backup and operation IDs. Nighttime residents with no legal purposes skip provider planning without consuming its budget. Both-theme native checks and an isolated Codex in-app-browser recovery path passed; the original user page was not inspected and the hosted slow-render work-chain issue remains open. [Details and sanitized evidence](recovery-reentry-v216.md).
+
+## V217 - Consistent navigation and valid autonomous alternatives
+
+Residents, visitors, recruitment transports and activity arrivals now receive the existing navigation-only frame budget; protected needs, work, service and settlement clocks retain their rule time. Confirmed dependent work skips an unrelated autonomous-purpose pause when shifts and needs allow it. Failed invitations select a valid personal alternative before falling back, preventing empty resident jobs. Actual delayed-RAF two-theme queues retained their original120/shared240-second working budgets, three unique receipts and reload/reopen assertions. Hosted confirmation and broader acceptance remain open. [Reproductions, evidence and boundaries](resident-travel-v217.md).
