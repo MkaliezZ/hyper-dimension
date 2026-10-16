@@ -572,3 +572,8 @@ The primary save store now uses its existing exclusive-open retry helper for tra
 ## V222 - Recruitment errors survive unrelated status reads
 
 招聘失败文案与状态查询错误分别保留；同申请继续确认与单笔预留保持，当前世界的同编号进行中聘约才能确认接收。双主题四个原生错误恢复案例和 37 项相关规则通过；V221 的真实像素零开局在原申请续作后完成主子交付、首场派对与离岛，首次超时仍保留。[范围与限制](recruitment-recovery-v222.md)。
+
+
+## V223 · 核对反馈 / Recovery feedback
+
+存档弹窗读取现在使用统一恢复面板，持续显示核对步骤、失败原因和暂存副本完成后的安全重入入口。双画风修复前有效夹具 2 例失败，修复后 2 例通过；原模态弹窗、等待重入、取消导航各 2 例及 13 条回执／导航规则通过。原用户页受已保存浏览器权限阻挡，未确认其刷新结果。详见 [专题说明](recovery-feedback-v223.md)。

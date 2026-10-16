@@ -1,5 +1,5 @@
 import {MAX_IMPORT_BYTES} from './saveLimits.js';
-import {setRecoveryDialog} from './actionRecoveryUI.js';
+import {setRecoveryDialog,readRecoveryProgress} from './actionRecoveryUI.js';
 import {modalNavigationToken} from './modalNavigation.js';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const labels={automatic:'自动备份',manual:'手动备份',migration:'浏览器旧档',new:'初次登岛','before-restart':'归零前备份','before-restore':'恢复前备份',recovery:'故障恢复',restore:'恢复存档',restart:'从零重开',import:'导入存档','before-import':'导入前备份'};
@@ -45,7 +45,7 @@ export function createSaveUI({saves,theme,openModal,toast}){
   act('retrySaveImport',()=>saves.retryImport(style));
   act('saveNow',async()=>{await saves.flush(style);toast('进度已写入本机服务');if(token.current())show()});
   act('backupNow',async()=>{await saves.backup(style);toast('已创建可恢复的存档备份');if(token.current())show()});
-  act('acceptServerSave',()=>saves.acceptServer(style));
+  act('acceptServerSave',()=>readRecoveryProgress(root,()=>saves.acceptServer(style),toast));
   act('exportPending',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(s.state,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='hyper-dimension-'+style+'-pending.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
   try{
    const rows=await saves.backups(style),list=root.querySelector('#saveHistory');if(!token.current()||!list)return;

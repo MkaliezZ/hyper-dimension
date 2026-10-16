@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v222-agent-source",
+  "release": "hyper-dimension-v223-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 79096,
-      "sha256": "8e77473bfc15f3e603420303da5ec31fd164a2fabc5b1db2e08eb6f0b1d67362"
+      "bytes": 79571,
+      "sha256": "ccbfd8f293a0cd8a89686898cd10162a9bc358fbade55cfd89885b43603d3d88"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -6522,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 10419,
-      "sha256": "0896ed2ac6dacc21c2d1a90c5ecdf6a02c4c22f5fad4782862687994919a4ba2"
+      "bytes": 10968,
+      "sha256": "531520f83e1e3ab1834ec391852d48c971ff9ec064a35966d1bccf733d427e34"
     },
     {
       "path": "src/activityGames.js",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144114,
-      "sha256": "43cc78970e5a0e9866d32899ef356ad504d7ec832b40c6e6237020ba82230d60"
+      "bytes": 144150,
+      "sha256": "ca2b5fd2d263076cdb2277e1c29488923465f6803e35df6316cde2d044bf6a72"
     },
     {
       "path": "src/arcade.css",
@@ -7967,8 +7967,8 @@
     },
     {
       "path": "src/saveUI.js",
-      "bytes": 8552,
-      "sha256": "2ccd8b4d79a11b44688bbaddcd3b013f5e871696ea3860b29ddb36e60fd1fb87"
+      "bytes": 8610,
+      "sha256": "b9583079350165d6c0759670fff1c6e466201d2a32fab8b057398d6a82bf947a"
     },
     {
       "path": "src/saveWorker.js",
@@ -12319,7 +12319,22 @@
       "path": "docs/verification/v222/recruitment-recovery.json",
       "bytes": 1402,
       "sha256": "94cd49a63c1739787db035ab937b6d20cfd2c4008cf1671078fb3219c01dd45f"
+    },
+    {
+      "path": "tests/v223-recovery-feedback-browser.mjs",
+      "bytes": 7082,
+      "sha256": "a1efce1ca1dac9283f476e82e0083e2240f025cfa1ae262a7d4408e0fa33a3df"
+    },
+    {
+      "path": "docs/recovery-feedback-v223.md",
+      "bytes": 2417,
+      "sha256": "8c064675ff62328e6eba766557127c673237070f2f8d2d20db1727e39678d12f"
+    },
+    {
+      "path": "docs/verification/v223/recovery-feedback.json",
+      "bytes": 1035,
+      "sha256": "7e9bdba086e8f130d0f1acab346898ba0e27a995d7498e00965f772c9811905d"
     }
   ],
-  "publicRevision": "v222-github"
+  "publicRevision": "v223-github"
 }

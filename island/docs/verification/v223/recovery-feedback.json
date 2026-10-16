@@ -1,0 +1,31 @@
+{
+  "version": 223,
+  "scope": "Recovery presentation and shared entry only; save/action authority and navigation semantics unchanged",
+  "native": {
+    "validBeforeFailed": 2,
+    "afterPassed": 2,
+    "cases": {
+      "pixel": "actual canonical read held; visible progress and ordinary re-entry",
+      "origami": "single canonical read 503; retained visible error and native retry"
+    },
+    "canonicalIdentityCoinsInventoryReceiptCountPreserved": true,
+    "durableLocalBackupPreserved": true,
+    "unresolvedOutgoingSimulationSealed": true,
+    "narrowViewport": 390,
+    "setupProbeWithOverlongLoginExcluded": true
+  },
+  "existingNative": {
+    "modalBothThemes": 2,
+    "heldReadBothThemes": 2,
+    "cancelledNavigationBothThemes": 2,
+    "passed": 6
+  },
+  "receiptNavigationRules": {
+    "passed": 13,
+    "failed": 0
+  },
+  "originalUserTabVerified": false,
+  "originalUserTabReason": "Saved browser permission denied observation; no alternate access attempted",
+  "humanAcceptance": false,
+  "wholeGoalComplete": false
+}

@@ -33,6 +33,7 @@ function sync(){
   // navigations are cancelled. Never unseal or resubmit the obsolete document.
   if(!link.hasAttribute('href'))link.href=recoveryReturnURL();
  }}
+ if(dock){const progress=dock.querySelector('[data-recovery-progress]'),message=state?.status==='recovering'?state.message||'正在核对小岛进度…':'';progress.hidden=!message;if(progress.textContent!==message)progress.textContent=message;}
   if(!active.size){observer?.disconnect();observer=null;if(suspendedDialogs.size)restoreNativeDialogs();return;}
   suspendNativeDialogs();
  const header=dock.querySelector('.recovery-all'),check=header.querySelector('#recoveryAll');
@@ -44,7 +45,7 @@ function sync(){
 }
 function schedule(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;sync();});}
 export function lockActionUI(bar,context=null){
- if(!dock){dock=document.createElement('div');dock.id='actionRecoveryDock';dock.setAttribute('aria-label','待确认操作');const header=document.createElement('div');header.className='recovery-all';header.innerHTML='<div><strong>恢复小岛进度</strong><p>先核对已提交结果，再继续游玩。当前暂存会保留副本。</p><p data-recovery-error role="status" hidden></p></div><div class="recovery-actions"><button class="primary" id="recoveryAll">核对全部并继续</button><button class="secondary" id="recoveryReturn" hidden>取消未完成作业并回岛</button><a class="primary" id="recoveryOpenIsland" hidden>返回小岛</a></div>';dock.append(header);header.querySelector('#recoveryAll').onclick=()=>readRecoveryProgress(header,()=>{if(!recoverAll)throw Error('进度恢复尚未就绪，请刷新后重试');return recoverAll();});header.querySelector('#recoveryReturn').onclick=()=>{const ticket=recoveryState()?.active;if(!ticket)return;const expectedActive=Object.fromEntries(['kind','requestId','epoch','sequence'].map(k=>[k,ticket[k]]));return readRecoveryProgress(header,()=>recoverAll?.({cancelActive:true,expectedActive}));};document.body.append(dock);}
+ if(!dock){dock=document.createElement('div');dock.id='actionRecoveryDock';dock.setAttribute('aria-label','待确认操作');const header=document.createElement('div');header.className='recovery-all';header.innerHTML='<div><strong>恢复小岛进度</strong><p>先核对已提交结果，再继续游玩。当前暂存会保留副本。</p><p data-recovery-progress role="status" hidden></p><p data-recovery-error role="status" hidden></p></div><div class="recovery-actions"><button class="primary" id="recoveryAll">核对全部并继续</button><button class="secondary" id="recoveryReturn" hidden>取消未完成作业并回岛</button><a class="primary" id="recoveryOpenIsland" hidden>返回小岛</a></div>';dock.append(header);header.querySelector('#recoveryAll').onclick=()=>readRecoveryProgress(header,()=>{if(!recoverAll)throw Error('进度恢复尚未就绪，请刷新后重试');return recoverAll();});header.querySelector('#recoveryReturn').onclick=()=>{const ticket=recoveryState()?.active;if(!ticket)return;const expectedActive=Object.fromEntries(['kind','requestId','epoch','sequence'].map(k=>[k,ticket[k]]));return readRecoveryProgress(header,()=>recoverAll?.({cancelActive:true,expectedActive}));};document.body.append(dock);}
  active.add(bar);contexts.set(bar,context);if(bar.parentElement!==dock)dock.append(bar);
  // Recovery must remain available even without a pending command or conflict status.
  if(!bar.querySelector('[data-recovery-read]')){
@@ -65,8 +66,12 @@ export function isRecoveryTarget(target){return target instanceof Element&&!!tar
 let reading=false;
 export function recoveryErrorMessage(error){const message=error?.message||'';return /failed to fetch|fetch failed|networkerror|network request failed|load failed/i.test(message)?'暂时无法连接本机小岛服务。记录已保留；服务恢复后点击“核对全部并继续”。':message||'暂时无法读取进度，记录已保留，请重试';}
 export async function readRecoveryProgress(bar,read,toast){
- if(reading)return;reading=true;
- const errorStatus=bar.querySelector('[data-recovery-error]');if(errorStatus){errorStatus.hidden=true;errorStatus.textContent='';}
+ if(reading)return;
+ // The save dialog normally hides this dock. Every reconciliation must show
+ // its waiting/error/re-entry controls, including reads started in that dialog.
+ if(recoveryDialog)setRecoveryDialog(false);
+ reading=true;
+ const errorStatus=bar.querySelector('[data-recovery-error]')||dock?.querySelector('[data-recovery-error]');if(errorStatus){errorStatus.hidden=true;errorStatus.textContent='';}
  const buttons=[...(dock?.querySelectorAll('button')||[])].map(button=>[button,button.disabled]);
  const main=dock?.querySelector('#recoveryAll'),label=main?.textContent;
  if(main)main.textContent='正在核对，请稍候…';dock?.setAttribute('aria-busy','true');
