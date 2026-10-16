@@ -73,7 +73,8 @@
     "test:visiting-party": "node tests/v205-visiting-party-browser.mjs",
     "test:multi-island-integration": "node --test tests/v60-lan-travel.test.mjs tests/v74-recruit-travel.test.mjs tests/v77-guest-cooperation.test.mjs tests/v158-a2a-standard.test.mjs tests/v231-multi-island-journey.test.mjs",
     "test:combined-economy": "node --test tests/v231-combined-economy.test.mjs",
-    "test:opc-review": "node tests/v234-cocreation-review-browser.mjs"
+    "test:opc-review": "node tests/v234-cocreation-review-browser.mjs",
+    "test:project-window": "node tests/v237-project-window-browser.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.63.0"

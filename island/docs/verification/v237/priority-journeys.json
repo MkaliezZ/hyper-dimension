@@ -1,0 +1,144 @@
+{
+  "version": "V237",
+  "sourceBase": "1ed6fb959124b3f006f6361a4c8da83a6d522fc9",
+  "wholeGoalComplete": false,
+  "humanAcceptance": false,
+  "modelsCalled": false,
+  "sourceChanges": "Project steps reuse the existing runtime work-window note; note changes participate in paint identity. No schedule, rewards, admission, crop, world-clock or resource rules changed.",
+  "relatedRulesPassed": 12,
+  "nativeWorkWindow": {
+    "scope": "Native project UI with server-created zero resources and a real canonical wood plan. Only the displayed world-clock observation is controlled to test off-shift, sleep and next-shift rendering. No work, money, model, human or real-time scheduling acceptance claimed.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "offShiftText": "当前已下班；工作时段 07:00–16:00，上班后继续排队工作。",
+        "sleepText": "正在休息；工作时段 07:00–16:00，上班后继续排队工作。",
+        "liveClockRepaint": true
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "offShiftText": "当前已下班；工作时段 07:00–16:00，上班后继续排队工作。",
+        "sleepText": "正在休息；工作时段 07:00–16:00，上班后继续排队工作。",
+        "liveClockRepaint": true
+      }
+    ]
+  },
+  "zeroStartMarket": {
+    "scope": "Server-created zero coins and inventory, native player gathering of recipe inputs, normal-clock NPC component and final product preparation, mid-chain browser reload, real boat/land/walk/visitor sale and persisted shelf/economic receipt. Providers disabled, fixture artwork/pack declared, no initial stock/quality/needs/time/result injection. This is a short zero-start production-to-visitor journey, First-buyer wait covers the finite tourist rotation at the actual ferry interval plus120seconds for roads/service, unlike the old progressed90quality fixture150second expectation. Baseline both styles failed at293seconds just as the first stocked-venue buyer arrived aboard. Original baseline retained; all sale/stock/price assertions unchanged. Not30-day full economics, human or model acceptance.",
+    "baselinePassed": false,
+    "baselineFailure": "Both styles reached the end of the old150s progressed-fixture wait while their first stocked-venue buyer was arriving on a normal ferry. Baseline retained; no game-price/rule changes.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "serverZeroStart": true,
+        "gathers": [
+          "wood",
+          "wood",
+          "wood",
+          "resin",
+          "fiber"
+        ],
+        "midChainReload": true,
+        "actualTaskDeliveries": [
+          {
+            "item": "opc_letter_studio_letter",
+            "completed": 1,
+            "status": "done"
+          },
+          {
+            "item": "opc_letter_studio_seal",
+            "completed": 1,
+            "status": "done"
+          }
+        ],
+        "sales": [
+          {
+            "paid": 7,
+            "cost": 3,
+            "net": 4,
+            "stock": 0
+          }
+        ],
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "serverZeroStart": true,
+        "gathers": [
+          "wood",
+          "wood",
+          "wood",
+          "resin",
+          "fiber"
+        ],
+        "midChainReload": true,
+        "actualTaskDeliveries": [
+          {
+            "item": "opc_letter_studio_letter",
+            "completed": 1,
+            "status": "done"
+          },
+          {
+            "item": "opc_letter_studio_seal",
+            "completed": 1,
+            "status": "done"
+          }
+        ],
+        "sales": [
+          {
+            "paid": 7,
+            "cost": 3,
+            "net": 4,
+            "stock": 0
+          }
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "zeroStartFirstNightContinuation": {
+    "scope": "Copies only prior isolated server-created zero-start test islands; no user data, no stock/needs/clock/position/result mutation. Continue from actual disk state after off-shift calendar wait; baseline failure retained. The old360second calendar wait failed while actors were off-shift. This continuation keeps360seconds of actual eligible working time, with a separate maximum two900second visual days of calendar waiting, matching existing scheduled-task policy. No accelerated time or human acceptance.",
+    "originalFullRunPassed": false,
+    "originalFailure": "360s calendar preparation wait ended while named actors were off shift; pixel additionally logged one safely rejected stale player-water begin. Original run retained as failed.",
+    "clockFilesRetained": true,
+    "cases": [
+      {
+        "theme": "pixel",
+        "projectId": "night-supplies-48",
+        "workingMs": 33008,
+        "preparationResumed": true,
+        "uniquePayout": {
+          "eventId": "party-1-0",
+          "reward": 28,
+          "coins": 87
+        },
+        "emptyBrowserReopen": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "projectId": "night-supplies-46",
+        "workingMs": 81965,
+        "preparationResumed": true,
+        "uniquePayout": {
+          "eventId": "party-1-0",
+          "reward": 28,
+          "coins": 89
+        },
+        "emptyBrowserReopen": true,
+        "passed": true
+      }
+    ]
+  },
+  "limits": [
+    "Not a new uninterrupted zero-start hour pass",
+    "Not all-five-party zero-start30-day economics or all orders/specializations",
+    "No human/new-player/physical-device/OPC-class acceptance"
+  ],
+  "testedSourceHashes": {
+    "src/projectUI.js": "2eabb7400ed44b3f480ee568e25ae1eed6908101e914bf6cff81c552fabc68c2",
+    "src/app.js": "86936989b1d1847c5639dae87aaccb7481728110a9027732a402130e609cd113"
+  }
+}

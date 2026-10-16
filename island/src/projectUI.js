@@ -5,7 +5,7 @@ import {itemMarkup,artReady} from './artStore.js';
 import {RESIDENTS} from './world.js';
 import {esc} from './journeyUI.js';
 const status={preparing:'筹备中',ready:'物资齐备',paused:'已暂停',completed:'已入库',cancelled:'已取消',queued:'待出发',running:'执行中',waiting:'等候前置',done:'需求已满足'};
-export function createProjectUI({state,theme,openModal,persist,create,manage,refresh,toast,craft,gather,back}){
+export function createProjectUI({state,theme,openModal,persist,create,manage,refresh,toast,craft,gather,back,taskAvailability=()=>''}){
  const $=id=>document.getElementById(id);let managing=false,lastSignature='',draft={lantern:1,wheat:2};
  const name=id=>id===16?state().recruitment?.active?.profile?.name||'临时伙伴':state().npcProfiles?.[id]?.name||RESIDENTS[id]?.name||'伙伴';
  const item=id=>catalogItem(state(),id);
@@ -29,7 +29,7 @@ export function createProjectUI({state,theme,openModal,persist,create,manage,ref
  function paint(force=false){
   const root=$('projectList');if(!root)return;
   if(!force&&root.contains(document.activeElement)&&document.activeElement.tagName==='SELECT')return;
-  const rows=hydrateProjects(state());document.querySelector('.project-modal')?.classList.toggle('has-projects',rows.length>0);const signature=JSON.stringify([theme(),rows,rows.flatMap(p=>projectSteps(state(),p.id)),state().npcProfiles]);if(!force&&signature===lastSignature)return;lastSignature=signature;const live=rows.filter(p=>['preparing','ready','paused'].includes(p.status)),recent=rows.filter(p=>!['preparing','ready','paused'].includes(p.status)).slice(-5).reverse();
+  const rows=hydrateProjects(state());document.querySelector('.project-modal')?.classList.toggle('has-projects',rows.length>0);const windows=Object.fromEntries(rows.flatMap(p=>projectSteps(state(),p.id)).filter(t=>t.remaining>0&&t.npcId>=0&&t.status!=='running').map(t=>[t.id,taskAvailability(t.npcId)]));const signature=JSON.stringify([theme(),rows,rows.flatMap(p=>projectSteps(state(),p.id)),state().npcProfiles,windows]);if(!force&&signature===lastSignature)return;lastSignature=signature;const live=rows.filter(p=>['preparing','ready','paused'].includes(p.status)),recent=rows.filter(p=>!['preparing','ready','paused'].includes(p.status)).slice(-5).reverse();
   const html=[...live,...recent].map(p=>{
    const active=['preparing','ready','paused'].includes(p.status),steps=projectSteps(state(),p.id);
    const button=(action,label,cls='secondary')=>'<button class="'+cls+'" data-plan="'+p.id+'" data-plan-action="'+action+'">'+label+'</button>';
@@ -37,7 +37,7 @@ export function createProjectUI({state,theme,openModal,persist,create,manage,ref
    (steps.length?'<ol class="plan-steps">'+steps.map(t=>{
     const missing=t.remaining>0,canAct=active&&p.status!=='paused'&&missing;
     return '<li data-plan-step="'+t.id+'"><div class="plan-step-main">'+icon(t.targetItem)+'<div><b>'+esc((item(t.targetItem)?.name||t.targetItem))+' <em>'+status[t.status]+'</em></b><p>'+(missing?'还需 '+t.remaining+' 份':'当前库存需求已满足')+' · 步骤实际产出 '+(t.completed||0)+' 份</p><small>'+esc(t.blocked|| (t.dependsOn.length?'先备好：'+t.dependsOn.map(id=>item(steps.find(x=>x.id===id)?.targetItem)?.name||'前置材料').join('、'):t.npcId===-1?'岛主完成真实采集或制作后，物资自动计入':t.result||'按职业安排下一步'))+'</small></div></div>'+
-    (canAct?'<div class="plan-step-controls"><label>负责人<select data-plan-assignee="'+t.id+'"><option value="-1" '+(t.npcId===-1?'selected':'')+'>我来接管</option>'+RESIDENTS.map((r,i)=>'<option value="'+i+'" '+(t.npcId===i?'selected':'')+'>'+esc(name(i))+' · '+esc(r.job)+'</option>').join('')+(state().recruitment?.active?.steps?.some(step=>step.id===t.id)?'<option value="16" '+(t.npcId===16?'selected':'')+'>'+esc(name(16))+' · 临时伙伴</option>':'')+'</select></label>'+(t.npcId===-1?'<button class="primary" data-plan-do="'+t.id+'" '+(t.status!=='queued'?'disabled':'')+'>去'+(catalogRecipe(state(),item(t.targetItem)?.recipeId)?'制作':'采集')+'</button>':'')+'</div>':'')+'</li>';
+    (canAct&&windows[t.id]?'<p class="plan-help plan-work-window" role="status">'+esc(windows[t.id])+'</p>':'')+(canAct?'<div class="plan-step-controls"><label>负责人<select data-plan-assignee="'+t.id+'"><option value="-1" '+(t.npcId===-1?'selected':'')+'>我来接管</option>'+RESIDENTS.map((r,i)=>'<option value="'+i+'" '+(t.npcId===i?'selected':'')+'>'+esc(name(i))+' · '+esc(r.job)+'</option>').join('')+(state().recruitment?.active?.steps?.some(step=>step.id===t.id)?'<option value="16" '+(t.npcId===16?'selected':'')+'>'+esc(name(16))+' · 临时伙伴</option>':'')+'</select></label>'+(t.npcId===-1?'<button class="primary" data-plan-do="'+t.id+'" '+(t.status!=='queued'?'disabled':'')+'>去'+(catalogRecipe(state(),item(t.targetItem)?.recipeId)?'制作':'采集')+'</button>':'')+'</div>':'')+'</li>';
    }).join('')+'</ol>':'<p class="plan-help">现有库存已满足清单，无需派出额外任务。</p>')+
    '<div class="plan-controls">'+(p.status==='ready'?button('finish','完成筹备 · 物资入库','primary'):'')+(active?(p.status==='paused'?button('resume','继续筹备'):button('pause','暂停'))+button('cancel','取消计划'):'')+'</div><details class="plan-history" data-project-history="'+p.id+'"><summary>筹备记录 · '+p.history.length+' 条'+(p.runId?' · 已绑定 Hermes 运行':'')+'</summary>'+p.history.slice(-8).reverse().map(h=>'<p>第 '+h.day+' 天 · '+esc(h.text)+'</p>').join('')+'</details></article>';
   }).join('')||'<div class="plan-empty">清单还空着。写下需要准备的物资，和伙伴一起开始。</div>';
