@@ -43,7 +43,7 @@ export async function readRecoveryProgress(bar,read,toast){
  if(main)main.textContent='正在核对，请稍候…';dock?.setAttribute('aria-busy','true');
  for(const[button]of buttons)button.disabled=true;
  try{await read();}catch(error){const text=recoveryErrorMessage(error);const p=errorStatus||bar.querySelector('p');if(p){p.textContent=text;p.hidden=false;}toast?.(text);}
- finally{reading=false;dock?.removeAttribute('aria-busy');if(main)main.textContent=label;for(const[button,disabled]of buttons)if(button.isConnected)button.disabled=disabled;}
+ finally{reading=false;const navigating=recoveryState()?.navigating;if(!navigating)dock?.removeAttribute('aria-busy');if(main)main.textContent=navigating?'进度已核对，正在回岛…':label;for(const[button,disabled]of buttons)if(button.isConnected)button.disabled=!!navigating||disabled;}
 }
 
 export function configureActionRecovery(fn,state=()=>null){recoverAll=fn;recoveryState=state;}

@@ -161,7 +161,7 @@ function paintSaveStatus(){
  if(el.textContent!==status.message)el.textContent=status.message;el.title='点击管理服务端存档、备份与恢复';el.dataset.status=status.status;
  reflectSaveRecovery(status);
 }
-configureActionRecovery(options=>saves.acceptServer(theme,options),()=>({active:saves.status(theme).actions?.active,pending:saves.pendingAction(theme),status:saves.status(theme).status}));
+configureActionRecovery(options=>saves.acceptServer(theme,options),()=>({active:saves.status(theme).actions?.active,pending:saves.pendingAction(theme),status:saves.status(theme).status,navigating:saves.status(theme).navigationPending===true}));
 const saveUI=createSaveUI({saves,theme:()=>theme,openModal,toast});
 document.body.dataset.theme=theme;
 setWorldTheme(theme);

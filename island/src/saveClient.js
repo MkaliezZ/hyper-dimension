@@ -352,10 +352,13 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    r.state=doc.state;r.activeSeconds=0;r.dirty=false;await remember(r,doc);await cache(r);
    await forget(pendingKey(theme));await forget(commandKey(theme));await forget(autosaveKey(theme));
    try{localStorage.removeItem('hyper-dimension-'+theme+'-emergency-save');}catch{}
-   r.recovering=false;status(r,'saved','服务端进度已核对，即将继续');location.reload();
+   // reload() starts navigation; it does not synchronously stop this document.
+   // Old RAF/timer callbacks still hold the pre-recovery game state. Keep them
+   // sealed until unload so they cannot journal that stale state over this receipt.
+   r.navigationPending=true;status(r,'recovering','进度已核对，正在返回小岛…');location.reload();
   })().catch(error=>{
-   r.recovering=false;status(r,['conflict','blocked','offline','action_pending'].includes(previousStatus)?previousStatus:'action_pending','核对未完成 · '+(error.message||'请稍后重试'));throw error;
-  }).finally(()=>{r.recovering=false;r.recoveryPromise=null;});
+   r.navigationPending=false;r.recovering=false;status(r,['conflict','blocked','offline','action_pending'].includes(previousStatus)?previousStatus:'action_pending','核对未完成 · '+(error.message||'请稍后重试'));throw error;
+  }).finally(()=>{if(!r.navigationPending){r.recovering=false;r.recoveryPromise=null;}});
   return r.recoveryPromise;
  }
 

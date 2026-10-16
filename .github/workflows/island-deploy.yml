@@ -318,5 +318,9 @@ jobs:
             island/qa/v203/native-scene-return/report.json
             island/qa/v203/native-scene-return/*.png
             island/qa/v204/browser-save-waiter/report.json
+            island/qa/v205/native-recovery-return/report.json
+            island/qa/v205/native-recovery-return/*.png
+            island/qa/v205/native-visiting-party/report.json
+            island/qa/v205/native-visiting-party/*.png
           if-no-files-found: ignore
           retention-days: 3

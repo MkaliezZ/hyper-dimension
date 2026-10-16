@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v205-agent-source",
+  "release": "hyper-dimension-v206-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 70427,
-      "sha256": "33112e85958695f63335005c2868ffe5ffed97d84e5746439e28f53ac83bd9d3"
+      "bytes": 70905,
+      "sha256": "1a00d0aa088eff8bef7812afa6d09f4d91b8ebf53a1194e1f768906e33ca9e69"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -774,6 +774,11 @@
       "path": "docs/recovery-navigation-v150.md",
       "bytes": 1049,
       "sha256": "c1072f8cf7682b9f76a6717ba26bd5ed28214d46c7e202c15244edfb2e44a0a2"
+    },
+    {
+      "path": "docs/recovery-navigation-v206.md",
+      "bytes": 1662,
+      "sha256": "fc29990ab3c7aa0c0b71eb87851699c1c9047eefbb8bf3fe084860ef7a77c494"
     },
     {
       "path": "docs/recovery-return-v205.md",
@@ -2172,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12666,
-      "sha256": "d1b23b027c3f2d99b36d658be12628fab5f3d8f982e06bcd3b72ad4ae0f64052"
+      "bytes": 12746,
+      "sha256": "53fea0a5d67398cb6cea269d1a56675272b34c057860bbfadc246c650a62ba5f"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6517,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 7725,
-      "sha256": "b86ad6ee34b6dc3818c13647050a3156212029d849e65e9bb2efa19160d7c7db"
+      "bytes": 7846,
+      "sha256": "5d787a9adc449755a8775f51b399d06e3cb9fe1118d486eac539158cbd01a470"
     },
     {
       "path": "src/activityGames.js",
@@ -6537,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 143799,
-      "sha256": "c37e731fed5f263850266a713832e60de8ecc0cc8008d5da4a0fa4e44c0b6f76"
+      "bytes": 143855,
+      "sha256": "cd002bfcdbdd74c1a30bb09bd6aea8f2cd4b6230e48986e5b60a8c2f4b221691"
     },
     {
       "path": "src/arcade.css",
@@ -7927,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 32851,
-      "sha256": "84694943026a9422ae086639b1351456938d3a1a401c27eb19a926a672308057"
+      "bytes": 33159,
+      "sha256": "e5f3b6a20c9003e8a70dcf547bcfa792801badae2d8a1285b79c8a8a2cbff744"
     },
     {
       "path": "src/saveDelta.js",
@@ -9772,8 +9777,8 @@
     },
     {
       "path": "tests/v205-recovery-return-browser.mjs",
-      "bytes": 6879,
-      "sha256": "c2a81f6e3a5a8ac797d14c1e78de7687b2de3cf091e831fe060a13bdd3a8b5d3"
+      "bytes": 7946,
+      "sha256": "24c14b05b56f62e87b5318832159efbd7c0e8ec82fb259788381afc588262b39"
     },
     {
       "path": "tests/v205-recovery-return.test.mjs",
@@ -9784,6 +9789,11 @@
       "path": "tests/v205-visiting-party-browser.mjs",
       "bytes": 6218,
       "sha256": "12281a911fbcbd6df13c250bcdf23f57fb9bda65410360940dff5f4e4d671b7d"
+    },
+    {
+      "path": "tests/v206-recovery-navigation.test.mjs",
+      "bytes": 2555,
+      "sha256": "15fde590d35ab4e08d64a0451a771670582e6427b1e5109a30517ba70bca8fbd"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
