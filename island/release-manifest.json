@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v218-agent-source",
+  "release": "hyper-dimension-v219-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3456,
-      "sha256": "ba370d1450628c55b127c5d03e7f17c5d7ea1694837c4251e7294713da1aa154"
+      "bytes": 3508,
+      "sha256": "8226846ac020e62c3037cd2dcf9e95744fe36dd2d3614483f614c1b7c364f633"
     },
     {
       "path": "README.md",
-      "bytes": 3227,
-      "sha256": "fdd696f69c0d6c3dde5f82a6e54a3a061b1ff1fca3898b9b48d31e44a906b9c3"
+      "bytes": 3278,
+      "sha256": "080406a7d92ec89ced352cbff1523a325ae9a8bd794807747e0e74f65b124356"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 77361,
-      "sha256": "8b6f0e6f20c708ef7278f148dbbf3c0fddf77d12e56a16a3cb129952416d8e89"
+      "bytes": 77697,
+      "sha256": "d13f82fb9e528773b541d55dd7a5c2199dfaed2106e781b24cf3703fdafb423f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13314,
-      "sha256": "7b0adda82f2687c318eed3cb7b055d4d4c7c5fedb2cc160481b9b257573e6af1"
+      "bytes": 13350,
+      "sha256": "69261a6eb9a282bf285f35025d43d3ba4120466c7b7af65cd30eae93da2c3839"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6632,8 +6632,8 @@
     },
     {
       "path": "src/characters.js",
-      "bytes": 19012,
-      "sha256": "a4893024ff4bf759b15cf0d2eaecd265029c3b6c70f1f29f45442eb3ac8b9f2b"
+      "bytes": 19074,
+      "sha256": "fba2a4d2390a3e75e5d2a88e501c2a8d063d224c1b8e461f1bb421ed4ea7be14"
     },
     {
       "path": "src/classicGames.js",
@@ -6862,8 +6862,8 @@
     },
     {
       "path": "src/equipmentRules.js",
-      "bytes": 8860,
-      "sha256": "2a66ca2670a8364291222dc99f74605cb83f0e1911161f390a293620445368f4"
+      "bytes": 9056,
+      "sha256": "d9cba055749602cc93dc9b280e45ccd9c4150e910f615aea33a9fbbd42622a6f"
     },
     {
       "path": "src/equipmentUI.js",
@@ -7702,8 +7702,8 @@
     },
     {
       "path": "src/productionNetwork.js",
-      "bytes": 3690,
-      "sha256": "4ed63d4268f12ddb78cfe3bdb159a2af997d9fbccfd97210d697a3e0f0d81303"
+      "bytes": 3744,
+      "sha256": "82721aff866e11637376d8e27cad65fb1b68a5f5af25e3215c498531fc5533d4"
     },
     {
       "path": "src/projectPlans.js",
@@ -8192,8 +8192,8 @@
     },
     {
       "path": "src/toolArt.js",
-      "bytes": 1584,
-      "sha256": "bab05b7455a7684721955de4146f0915f363f77bdef43cbc77ad98a45d5dc2ee"
+      "bytes": 1880,
+      "sha256": "6d0683f31f4f41cc7e183d50178e5786e78f7e610038dfacfd66af2b0bf451e7"
     },
     {
       "path": "src/toolMotion.js",
@@ -8277,8 +8277,8 @@
     },
     {
       "path": "src/workshopSpecifications.js",
-      "bytes": 32437,
-      "sha256": "0305a782c4bc9a6130586528bf170325336b2abfee27ca5cc92952762b519699"
+      "bytes": 32625,
+      "sha256": "17d77e30aaca2cc879fb0fa6a43c70f2fca5457c1c654df8a68d26cac02713b6"
     },
     {
       "path": "src/workshopView.js",
@@ -9422,8 +9422,8 @@
     },
     {
       "path": "tests/v177-lan-catalog-upgrade.test.mjs",
-      "bytes": 6397,
-      "sha256": "18dcc5db5947ec4dd4fd32c54a728e948935113aee7f89a9867e63e82301ec60"
+      "bytes": 6477,
+      "sha256": "7df9553c8dbf8aabbc3a0153403e33ebbff5c22e8da08eb98e8aab56db800ace"
     },
     {
       "path": "tests/v178-crop-stages-browser.mjs",
@@ -12224,7 +12224,42 @@
       "path": "tests/v218-save-lock-contention.test.mjs",
       "bytes": 3594,
       "sha256": "6811cd5eab41a86dae6d6a8666e5014640376cf6fc6326330262d037c63bc80c"
+    },
+    {
+      "path": "docs/production-uses-v219.md",
+      "bytes": 1456,
+      "sha256": "c0a4eac414532b1fd9b206ad00afc05b3db684242839fe9c0e12b99debd64c92"
+    },
+    {
+      "path": "docs/verification/v219/production-uses.json",
+      "bytes": 2975,
+      "sha256": "c081a7b29ebedd3b528c3291354d55cf340b8e6b6f7f46d92152784f84a7233b"
+    },
+    {
+      "path": "public/assets/art-provenance-v219.json",
+      "bytes": 5040,
+      "sha256": "9d4a74873fcfa1f6d1755ef1cb0f53dd2bbc30f4d8c90ff989feeaa8fb31b30b"
+    },
+    {
+      "path": "public/assets/tool-brush-origami-v219.png",
+      "bytes": 298495,
+      "sha256": "60cb50c6ec5ee40414df3e3be5c04fe467d4972e85ed1c5e5054e730190d8e96"
+    },
+    {
+      "path": "public/assets/tool-brush-pixel-v219.png",
+      "bytes": 188139,
+      "sha256": "7843b27daa3f5d10bdd9171a7d9c169cecb6a92256d81e4e655ebddf958e80fc"
+    },
+    {
+      "path": "tests/v219-painting-tools-browser.mjs",
+      "bytes": 9439,
+      "sha256": "1b2767a997a37d2d1e3a846a040343163740a857c253d4fc949e01ddcb4b23bc"
+    },
+    {
+      "path": "tests/v219-production-uses.test.mjs",
+      "bytes": 6389,
+      "sha256": "29e80c4c07bb4628c15f1fe7be7955b96c0f528112615b4d08a7ef98d8326a50"
     }
   ],
-  "publicRevision": "v175-github"
+  "publicRevision": "v219-github"
 }

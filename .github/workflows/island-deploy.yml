@@ -171,12 +171,17 @@ jobs:
       - name: Native clock-driven night lighting
         run: node tests/v200-night-lighting-browser.mjs
 
+      - name: Native painting tools and canvas production
+        run: node tests/v219-painting-tools-browser.mjs
+
       - name: Retain native character diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: native-character-${{ matrix.os }}
           path: |
+            island/qa/v219/native-painting-tools/report.json
+            island/qa/v219/native-painting-tools/*.png
             island/qa/v180/native-rig/report.json
             island/qa/v180/native-rig/*.png
             island/qa/v187/native-seasons/report.json

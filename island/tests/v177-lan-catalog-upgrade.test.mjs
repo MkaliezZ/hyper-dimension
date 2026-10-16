@@ -11,6 +11,7 @@ import {createZeroState} from '../src/freshStart.js';
 import {hydrateTown} from '../src/townSimulation.js';
 import {ITEM_BY_ID} from '../src/contentCatalog.js';
 import {SEASONAL_RECIPES} from '../src/seasonalRecipes.js';
+import {PRODUCTION_VERSION} from '../src/productionNetwork.js';
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const added=['cabbage','pea','cucumber','eggplant','blueberry','sweet_potato','daikon','kale',...SEASONAL_RECIPES.map(r=>r.item)];
 
@@ -35,7 +36,7 @@ for(const theme of ['pixel','origami'])test(`${theme} actual LAN entry upgrades 
   assert.throws(()=>assertPersonalState(hydrateTown(structuredClone(legacy.state)),legacy.actions),e=>e.code==='personal_state_conflict','fixture reproduces the pre-fix browser conflict');
   const hostile=structuredClone(legacy.state);hostile.coins=999999;hostile.inventory.cabbage=99999;
   const migrated=(await post('open',{legacyState:hostile})).document;doc=migrated;
-  assert.equal(doc.reason,'catalog-migration-v176');assert.equal(doc.state.productionVersion,176);assert.equal(doc.revision,legacy.revision+1);
+  assert.equal(doc.reason,'catalog-migration-v176');assert.equal(doc.state.productionVersion,PRODUCTION_VERSION);assert.equal(doc.revision,legacy.revision+1);
   assert.equal(doc.state.coins,legacy.state.coins);assert.equal(doc.state.day,120);assert.equal(doc.state.saveSlot,legacy.state.saveSlot);
   for(const [id,n]of Object.entries(legacy.state.inventory))assert.equal(doc.state.inventory[id],n,id);
   for(const id of added)assert.equal(doc.state.inventory[id],0,id);

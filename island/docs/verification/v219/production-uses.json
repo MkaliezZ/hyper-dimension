@@ -1,0 +1,93 @@
+{
+  "scope": "Four confirmed item-purpose gaps addressed with actual crafting dependencies and one reusable equipped tool. Fictional fixtures only; automated, not human/physical-device acceptance.",
+  "catalog": {
+    "materials": 58,
+    "recipes": 308,
+    "stableIdsPreserved": true,
+    "productionVersion": 219
+  },
+  "newRules": 6,
+  "focusedRules": 22,
+  "focusedPassed": true,
+  "catalogUpgradeRules": {
+    "passed": true,
+    "cases": 8,
+    "overlapsNewRules": true,
+    "originalMigrationAndConservationAssertionsRetained": true
+  },
+  "initialDefault": {
+    "tests": 1200,
+    "passed": 1198,
+    "failed": 2,
+    "cause": "Migration regression hardcoded current catalog version176 after the actual catalog advanced219. Assertion now compares exported authoritative version; all other migration assertions retained."
+  },
+  "native": {
+    "scope": "Isolated pre-unlocked fixtures with one prepared canvas, paint inputs and one personal brush. Native building-modal mouse gestures, natural game/animation clocks, actual server replay, one accepted painting receipt and retained reusable brush, refresh persistence and responsive review. No AI calls or user data; not zero-start/human/complete art acceptance.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "equippedViaBag": true,
+        "brushReturned": true,
+        "canvasConsumed": true,
+        "refreshPreserved": true,
+        "result": {
+          "passed": true,
+          "quality": 100,
+          "score": 5000,
+          "total": 100,
+          "stars": 3,
+          "seconds": 48.41789999985839,
+          "seed": 1191830846
+        }
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "equippedViaBag": true,
+        "brushReturned": true,
+        "canvasConsumed": true,
+        "refreshPreserved": true,
+        "result": {
+          "passed": true,
+          "quality": 100,
+          "score": 5000,
+          "total": 100,
+          "stars": 3,
+          "seconds": 51.13080000085971,
+          "seed": 1868788766
+        }
+      }
+    ],
+    "passed": true
+  },
+  "legacySourceUpgrade": {
+    "scope": "Actual immutable V218 source begins a painting under its original V176 bill, V219 store reopens and finishes by legal game inputs with explicit unit-clock fixture. Not native wall-clock gameplay.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "actualOpenClientMigration": true,
+        "originalBillPreserved": true,
+        "noNewToolOrCanvasCharged": true,
+        "uniqueReceipt": true,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "actualOpenClientMigration": true,
+        "originalBillPreserved": true,
+        "noNewToolOrCanvasCharged": true,
+        "uniqueReceipt": true,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "defaultFinal": {
+    "mainRules": 1200,
+    "runtimeScope": 14,
+    "failed": 0,
+    "passed": true
+  },
+  "wholeGoalComplete": false
+}

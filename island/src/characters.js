@@ -88,10 +88,10 @@ export function drawAnimatedCharacter(ctx,a,theme,color,isNpc,now,mult){
   if(soil!=null){ctx.save();ctx.globalAlpha*=1-soil;for(let i=0;i<6;i++){ctx.fillStyle=(theme==='pixel'?['#765034','#aa7646','#cf9b60']:['#95704f','#ba936a','#d7b48a'])[i%3];ctx.fillRect(ground.x+(i-2.5)*3*soil,ground.y-(5+i%3*3)*Math.sin(soil*Math.PI),2,2);}ctx.restore();}
   ctx.restore();return;
  }
- const tools={hoe:'hoe',pickaxe:'pickaxe',axe:'axe',water:'watering_can',harvest:'sickle',sow:'seed',fertilize:'c14_8',fish:'rod'},prop=act.guestWork?null:act.equipment?.tool?.id||act.toolId||a.toolbelt?.[action]||tools[action]||act.output||(act.leisure||['rest','talk'].includes(action)?null:DEFAULT_RECIPES[room]?.item);
+ const tools={hoe:'hoe',pickaxe:'pickaxe',axe:'axe',water:'watering_can',harvest:'sickle',sow:'seed',fertilize:'c14_8',fish:'rod',paint:'c24_2'},prop=act.guestWork?null:act.equipment?.tool?.id||act.toolId||a.toolbelt?.[action]||tools[action]||act.output||(act.leisure||['rest','talk'].includes(action)?null:DEFAULT_RECIPES[room]?.item);
  if(prop){
  const stroke=action==='hoe'?hoeToolPose(t,heading,hand,bob,heldToolGeometry('hoe',theme,TOOL_ART[theme].hoe.frame,54).shaftLength):null;
- const angle=stroke?.angle??(['pickaxe','axe','harvest'].includes(action)?-1.9+Math.sin(t*Math.PI)*2.05:action==='water'?.2+Math.sin(t*Math.PI)*.3:action==='fish'?-.75:Math.sin(t*Math.PI)*.12);
+ const angle=stroke?.angle??(['pickaxe','axe','harvest'].includes(action)?-1.9+Math.sin(t*Math.PI)*2.05:action==='water'?.2+Math.sin(t*Math.PI)*.3:action==='fish'?-.75:action==='paint'?-1.3+Math.sin(t*Math.PI*2)*.45:Math.sin(t*Math.PI)*.12);
  const size=action==='fish'?64:action==='hoe'?stroke.size:action==='pickaxe'?54:39,held=drawHeldTool(ctx,prop,theme,0,0,size,angle);
  if(!held)drawItem(ctx,prop,theme,4,-5,size,angle);
  // The palm is in front of the handle, using this avatar or its actual glove artwork.

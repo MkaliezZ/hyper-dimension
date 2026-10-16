@@ -555,3 +555,8 @@ Residents, visitors, recruitment transports and activity arrivals now receive th
 ## V218 - Bounded Windows save-lock acquisition
 
 The primary save store now uses its existing exclusive-open retry helper for transient Windows sharing denials. Business operations run only after ownership; persistent denial preserves canonical bytes. Actual store-level replay and two-theme native gathering under injected contention passed. The original hosted EPERM syscall/path was not captured, so this fixes a reproduced acquisition gap without claiming every filesystem origin resolved. Original queue budgets remain unchanged and subsequent diagnostics include actual error text. [Evidence and limitations](save-lock-sharing-v218.md).
+
+
+## V219 - Useful components and reusable painting tools
+
+三件原本没有后续配方的组件已接入画作、藏书整补和摄影架制作；竹木画笔成为可装备、预留后归还的耐用工具。两主题单支画笔使用对应素材与握点，关卡完成条件保持。[范围与证据](production-uses-v219.md)。

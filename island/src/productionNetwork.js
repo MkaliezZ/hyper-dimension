@@ -1,6 +1,6 @@
 import {CRAFT_SPECIFICATIONS} from './craftSpecifications.js';
 // One authoritative bill for every stable item ID. Accepted tasks retain their detached contract.
-export const PRODUCTION_VERSION=176;
+export const PRODUCTION_VERSION=219;
 export const COMMON_COMPONENTS={
  c0_7:{tier:0,category:'component',role:'木作构件'},
  c7_5:{tier:0,category:'component',role:'纸品'},
@@ -14,7 +14,7 @@ const USES={
  decor:'在所属建筑庭院陈列，提升设施品质与访客吸引力；移动或收回不销毁物品。',
  collection:'收藏并在建筑庭院陈列，完善图鉴；移动或收回保留原件。',
  food:'享用补充体力与饱足，也可给居民、补货或投入食物组合配方。',
- tool:'装备到对应作业工具栏，在耕种、采矿或钓鱼时使用该工具图像。',
+ tool:'装备到对应作业工具栏，在耕种、采矿、钓鱼或绘画时使用该工具图像；作业结束归还，不消耗工具本体。',
  wear:'实际穿戴在角色上，也可作为派对主题穿着、居民礼物或服装收藏。',
  study:'投入本馆研究，提升制作熟练度，帮助开放进阶图纸。',
  seedling:'研究育苗材料，获得通用种子与本馆熟练度；也可继续制作花圃。',

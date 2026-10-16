@@ -2,6 +2,7 @@
 // have opposite handle directions, so a shared lower-left grip is incorrect.
 export const TOOL_ART={
  pixel:{
+  c24_2:{"file":"tool-brush-pixel-v219.png","width":1102,"height":1427,"frame":{"x":492,"y":85,"w":120,"h":1234},"grip":[0.5,0.65],"tip":[0.5,0]},
   hoe:{file:'tool-hoe-pixel-v119.png',width:1254,height:1254,frame:{x:164,y:194,w:1055,h:962},grip:[88/1055,841/962],tip:[926/1055,279/962]},
   pickaxe:{grip:[.24,.79],tip:[.53,.13]},
   axe:{grip:[.21,.78],tip:[.67,.22]},
@@ -11,6 +12,7 @@ export const TOOL_ART={
   c16_9:{grip:[.15,.83],tip:[.96,.03]}
  },
  origami:{
+  c24_2:{"file":"tool-brush-origami-v219.png","width":1122,"height":1402,"frame":{"x":496,"y":37,"w":130,"h":1326},"grip":[0.5,0.65],"tip":[0.5,0]},
   hoe:{file:'tool-hoe-origami-v119.png',width:1254,height:1254,frame:{x:130,y:164,w:1095,h:981},grip:[110/1095,871/981],tip:[953/1095,314/981]},
   pickaxe:{grip:[.79,.79],tip:[.47,.13]},
   axe:{grip:[.21,.78],tip:[.64,.23]},

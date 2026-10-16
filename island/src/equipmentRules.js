@@ -58,10 +58,10 @@ export function unequipOutfit(s,id=null){
  w.history.push({day:s.day,from:olds.map(([,r])=>r.item),to:null});w.history=w.history.slice(-40);syncWardrobe(s,w);
  return {ok:true,text:olds.map(([,r])=>GARMENTS[r.item].name).join('、')+'已放回背包'};
 }
-export const BASE_TOOLS={hoe:'hoe',pickaxe:'pickaxe',water:'watering_can',axe:'axe',harvest:'sickle',fish:'rod'};
+export const BASE_TOOLS={hoe:'hoe',pickaxe:'pickaxe',water:'watering_can',axe:'axe',harvest:'sickle',fish:'rod',paint:'c24_2'};
 export const TOOLS=Object.fromEntries([
  ['hoe','田间锄头','hoe',.85,0,0],['pickaxe','矿工镐','pickaxe',.9,.03,0],['watering_can','浇水壶','water',.85,0,0],
- ['axe','伐木斧','axe',.8,0,0],['sickle','收割镰','harvest',.82,0,0],['rod','渔竿','fish',.92,0,6],['c16_9','远投钓竿','fish',.85,0,14]
+ ['axe','伐木斧','axe',.8,0,0],['sickle','收割镰','harvest',.82,0,0],['rod','渔竿','fish',.92,0,6],['c16_9','远投钓竿','fish',.85,0,14],['c24_2','竹木画笔','paint',.8,0,0]
 ].map(([id,name,action,durationScale,precisionBonus,trackingBonus])=>[id,{id,name,action,durationScale,precisionBonus,trackingBonus}]));
 export function validToolbelt(s){return s.toolbelt===undefined||!!s.toolbelt&&typeof s.toolbelt==='object'&&!Array.isArray(s.toolbelt)&&Object.entries(s.toolbelt).every(([action,id])=>own(BASE_TOOLS,action)&&TOOLS[id]?.action===action)}
 export function equipTool(id,s){const spec=TOOLS[id];if(!spec)return {ok:false,text:'这件物品不是作业工具'};if(availableQuantity(s,id)<1)return {ok:false,text:'这件工具正在预留或不在背包中'};s.toolbelt??={...BASE_TOOLS};s.toolbelt[spec.action]=id;return {ok:true,text:'已装备'+spec.name+'，作业时会预留这一件'}}
@@ -88,8 +88,8 @@ export function endToolUse(s,use){if(use?.owner?.startsWith('player-tool:'))rele
 export function clearToolLeases(s){if(s.resourceControl?.enabled)return;for(const key of Object.keys(s.resourceLedger?.reservations||{}))if(key.startsWith('player-tool:'))releaseResources(s,key)}
 export function toolPurpose(id,s){
  const t=TOOLS[id];if(!t)return null;const resolved=resolveTool(s,t.action);
- const effects=['作业时长减少 '+Math.round((1-t.durationScale)*100)+'%'];
+ const effects=[(t.action==='paint'?'绘画收尾动作时长减少 ':'作业时长减少 ')+Math.round((1-t.durationScale)*100)+'%'];
  if(t.precisionBonus)effects.push('采矿精准区宽度增加 '+Math.round(t.precisionBonus*200)+' 个百分点');
  if(t.trackingBonus)effects.push('普通钓场控鱼与落点容错半径 +'+t.trackingBonus);
- return {action:'装备工具',text:effects.join('；')+'。有可用实物才生效，作业时预留、结束归还；公共借用保持基础效果。',status:resolved.id===id&&resolved.source==='owned'?'当前自有装备':availableQuantity(s,id)<1?'库存不足或正在预留':'可装备'};
+ return {action:'装备工具',text:effects.join('；')+(t.action==='paint'?'；绘画小游戏仍需完整完成，不缩短关卡时间':'')+'。有可用实物才生效，作业时预留、结束归还；公共借用保持基础效果。',status:resolved.id===id&&resolved.source==='owned'?'当前自有装备':availableQuantity(s,id)<1?'库存不足或正在预留':'可装备'};
 }

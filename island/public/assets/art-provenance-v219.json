@@ -1,0 +1,40 @@
+{
+  "version": 219,
+  "generator": "Built-in image_gen tool",
+  "generatedAtDate": "2026-10-16",
+  "purpose": "Single handheld painting tools for the existing pixel and origami themes. New sibling files; existing atlas art preserved. Generated alpha bytes retained; frames trim only near-transparent residue.",
+  "assets": [
+    {
+      "file": "tool-brush-pixel-v219.png",
+      "sha256": "7843b27daa3f5d10bdd9171a7d9c169cecb6a92256d81e4e655ebddf958e80fc",
+      "theme": "pixel",
+      "subjectCount": 1,
+      "transparentBackground": true,
+      "frame": {
+        "x": 492,
+        "y": 85,
+        "w": 120,
+        "h": 1234
+      },
+      "visualReview": "Complete one-brush silhouette checked; measured alpha64 frame and lower-third grip. Native in-game pose review tracked separately.",
+      "promptSpecification": "Use case: stylized-concept. Production-ready handheld 2D game tool sprite for Hyper Dimension in refined pixel art with crisp deliberate clusters and warm walnut outlines. Exactly one straight vertical bamboo artist paintbrush; pointed warm ochre bristles at top, gold bamboo handle below, natural-fiber ferrule and muted teal wrap around lower third. Continuous handle and attached bristles, complete isolated object with transparent alpha. No bundle, container, hands, palette, paint drips, plants, scenery, text, logo or external shadow.",
+      "prompt": "Use case: stylized-concept. Asset type: production-ready handheld 2D game tool sprite for Hyper Dimension, beautiful refined PIXEL ART island simulation. Draw EXACTLY ONE long bamboo artist paintbrush, an actual usable single paintbrush, no bundle, no container. Side view. Straight axis vertical, soft pointed ochre bristles at the TOP, warm gold bamboo cylindrical handle tapering towards the BOTTOM, small tightly bound natural-fiber ferrule fastening bristles to handle, tiny teal wrap at mid handle to match island craft palette. Bristles attached seamlessly to shaft. Handle accounts for about 70 percent of total brush length; precise grip around lower third. Charming handcrafted RPG pixel aesthetic, crisp deliberate pixel clusters, warm walnut outlines, restrained highlights, no smooth 3D shading, no blurry edges. Center complete object with generous transparent margin, occupy 78 percent canvas height, narrow brush width about 12 percent canvas width. Single sprite, no scene, no UI, no text, no logo, no shadow outside object. Real transparent alpha background. Need isolated brush usable as rotatable handheld sprite; do not add palette, paint drips, hands, flowers, leaves, second brush, decorative attached objects. Keep silhouette simple and structurally correct."
+    },
+    {
+      "file": "tool-brush-origami-v219.png",
+      "sha256": "60cb50c6ec5ee40414df3e3be5c04fe467d4972e85ed1c5e5054e730190d8e96",
+      "theme": "origami",
+      "subjectCount": 1,
+      "transparentBackground": true,
+      "frame": {
+        "x": 496,
+        "y": 37,
+        "w": 130,
+        "h": 1326
+      },
+      "visualReview": "Complete one-brush silhouette checked; measured alpha64 frame and lower-third grip. Native in-game pose review tracked separately.",
+      "promptSpecification": "Use case: stylized-concept. Production-ready handheld 2D game tool sprite for Hyper Dimension in elegant origami papercraft with matte grain, faceted paper surfaces and clean cut edges. Exactly one straight vertical bamboo artist paintbrush; pointed warm ochre bristles at top, gold bamboo handle below, natural-fiber ferrule and muted teal wrap around lower third. Continuous handle and attached bristles, complete isolated object with transparent alpha. No bundle, container, hands, palette, paint drips, plants, scenery, text, logo or external shadow.",
+      "prompt": "Use case: stylized-concept. Asset type: production-ready handheld 2D game tool sprite for Hyper Dimension, beautiful refined ORIGAMI PAPERCRAFT island simulation. Draw EXACTLY ONE straight long artist paintbrush with a bamboo handle, crafted from folded textured paper. A single usable brush, not a bundle or kit. Side view. Straight axis vertical, pointed warm ochre paper bristles at TOP, simple warm bamboo-gold handle extending to BOTTOM, small tightly bound natural fiber paper ferrule fastening bristles seamlessly to handle, tiny muted teal wrap at middle of handle. Handle around70percent full brush length, grip around lower third. Elegant faceted folded paper surfaces, matte watercolor paper grain, clean cut edges, very subtle internal contact shadows, warm pastel palette matching a handmade origami island. Center entire isolated object with generous transparent margin, occupy78percent canvas height, brush width around12percent canvas width. Flat 2D asset that can rotate as a held tool. EXACTLY ONE brush, structurally correct continuous handle and attached bristles. Real transparent alpha background. No hands, palette, pot, paint drips, flowers, leaves, scenery, text, logo, drop shadow outside object, second brush, or decorative attached objects."
+    }
+  ]
+}

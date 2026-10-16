@@ -92,7 +92,7 @@ export const ADDITIONAL_CRAFT_SPECIFICATIONS={
  c7_7:[{c7_5:3,ink:2,c5_0:1,c24_5:1},'纸页抄写星空诗篇，星图作插页，植物色料装饰封面。'],
  c7_8:[{lantern:1,wood:1,c24_5:1},'灯笼光源装入木质灯架，植物色料饰罩，制成可放置读书灯。',{category:'decor'}],
  c7_9:[{c7_5:2,fiber:2,resin:1,flax:1},'备用纸、补页纤维、黏接树脂和亚麻护封组合为书籍修复包。',{category:'component',tier:0}],
- c7_11:[{c0_7:3,iron:1,wax:1,c7_0:1,c7_7:1},'木板箱用铁扣与蜂蜡加固，装入航海日志和星空诗集，成为故事收藏箱。',{category:'decor'}],
+ c7_11:[{c0_7:3,iron:1,wax:1,c7_0:1,c7_7:1,c7_9:1},'用书籍修复包整补日志与诗集的书页、加固护封，再放入蜂蜡防护的铁扣木箱，成为故事收藏箱。',{category:'decor'}],
  // Lighthouse.
  c8_0:[{copper:1,quartz:1,wax:1,fiber:1,c24_1:1},'铜壳装玻璃窗、蜡烛与灯芯，矿物色标成红色信号灯。'],
  c8_1:[{wood:2,resin:2,iron:1,c24_1:1,fiber:2},'木浮筒以树脂防水，铁件做锚点，纤维系泊，矿物色绘航标。'],
@@ -167,7 +167,7 @@ export const ADDITIONAL_CRAFT_SPECIFICATIONS={
  c13_6:[{clay:2,quartz:1,resin:1},'陶土烧成显影托盒，石英釉和树脂外壁封护；显影耗材由馆内供应。',{category:'decor'}],
  c13_7:[{quartz:3,copper:2,resin:1,c24_5:1},'铜镜筒安装石英玻璃片，树脂固定，植物色装饰镜筒外圈。',{category:'component',tier:0}],
  c13_8:[{c7_5:4,c13_0:3,c11_8:1,flax:1},'把三张派对留影与一张请柬装订成纪念册，亚麻保护书脊。'],
- c13_9:[{c13_5:1,copper:2,iron:2,c5_0:1},'在已有三脚架上安装金属跟踪转台，并以星图标记观测方向。',{category:'decor'}],
+ c13_9:[{c13_5:1,c13_7:1,copper:2,iron:2,c5_0:1},'竹木三脚架安装海风镜头和金属跟踪座，以星图标记方向，组合成可陈列的星空摄影架。',{category:'decor'}],
  c13_10:[{c13_1:1,pearl:3,resin:1},'已有木质相框外缘镶珍珠，树脂固定，仍是一只相框。',{category:'decor'}],
  c13_11:[{c7_5:5,c13_0:4,c11_1:1,cotton:1,flax:2},'四张海岛相片和明信片装成晨光影集，棉麻包封面并加固装订。'],
  // Greenhouse: fertilizer and hardware do not turn into seeds when used.
@@ -257,9 +257,9 @@ export const ADDITIONAL_CRAFT_SPECIFICATIONS={
  c23_10:[{c23_8:1,c23_7:1,c8_2:1,bouquet:1,lantern:1},'小舟模型配船帆、海风旗、花束和灯笼，组成庆典游船展示模型。'],
  c23_11:[{c23_0:3,c23_1:2,c23_7:1,c23_3:2,c8_5:1,c0_7:3},'船板拼成渡船模型，防水涂层封护，安装帆、船绳和航线图展示。'],
  // Art studio.
- painting:[{c0_7:1,cotton:2,c24_1:1,c24_5:1,ink:1},'木板撑起棉布画面，两类色料和墨线绘岛景，制成一幅完整画作。',{category:'decor'}],
+ painting:[{c24_3:1,c24_1:1,c24_5:1,ink:1},'在预制棉布画板上以两类色料和墨线绘制岛景，装裱成完整画作。画笔为可重复使用的工具，不作为原料消耗。',{category:'decor'}],
  c24_1:[{ore:1,clay:1,quartz:1},'星晶矿物、陶土与石英在画室研磨为游戏颜料，装成一组着色材料。'],
- c24_2:[{bamboo:2,fiber:1,resin:1},'竹杆固定植物纤维刷毛，树脂加固接头，制成一组画笔。',{category:'component',tier:0}],
+ c24_2:[{bamboo:2,fiber:1,resin:1},'竹杆固定植物纤维刷毛，树脂加固接头，制成一支耐用画笔。装备后用于绘画收尾，作业结束归还。',{category:'tool',tier:0}],
  c24_3:[{c0_7:2,cotton:2,fiber:1},'木板做框，棉布绷成画面，纤维固定，成为空白棉布画板。',{category:'component',tier:0}],
  c24_4:[{c7_5:2,c24_1:1,c24_5:1},'手工纸染出不同颜色，裁成方形并收纳，组成折纸套件。'],
  c24_5:[{bluegrass:2,seasalt:1},'蓝草提取植物色，海盐固色，装成一份可供纺织与绘画的染料。'],
