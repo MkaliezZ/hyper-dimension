@@ -19,7 +19,9 @@ function autonomyMarkup(registry,candidates,busy){
 }
 
 export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,back,projects,refreshActor,command}){
- let selectedCandidate='mai',selectedPlan=null,editPending=null,registry=null,error='',busy=false,polling=false,generation=0,lastSignature='',lastPoll=0;
+ let selectedCandidate='mai',selectedPlan=null,editPending=null,registry=null,error='',errorRequestId=null,pollError='',busy=false,polling=false,generation=0,lastSignature='',lastPoll=0;
+ // Successful background reads only acknowledge mutations present in this world.
+ function actionError(message,requestId=null){error=message;errorRequestId=requestId;}
  const $=id=>document.getElementById(id);
  const here=()=>({theme:theme(),world:recruitmentWorldKey(state(),theme()),generation});
  const same=c=>c.theme===theme()&&c.world===recruitmentWorldKey(state(),theme())&&c.generation===generation;
@@ -47,7 +49,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   // Restoring an older world snapshot must not resurrect a closed seat or keep producing.
   if(r.active&&!r.active.leaveRequested&&history.some(h=>h.id===r.active.id&&['departed','cancelled'].includes(h.phase))){requestRecruitmentLeave(state(),'这份聘约已结束，恢复进度后交接离岛');persist()}
   if(current?.world===c.world&&current.phase==='active'&&!r.active){
-   const response=await command('hire_bind',{contractId:current.id,day:state().day}),result=response.receipt.details;if(!same(c))return;if(!result.ok){error=result.reason;return}
+   const response=await command('hire_bind',{contractId:current.id,day:state().day}),result=response.receipt.details;if(!same(c))return;if(!result.ok){actionError(result.reason,current.id);return}
    refreshActor();persist();
   }
   if(r.active&&current?.id===r.active.id&&current.profile?.version>r.active.profile.version){r.active.profile=current.profile;persist()}
@@ -65,14 +67,14 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
  async function poll(force=false){
   if(polling||busy||!force&&Date.now()-lastPoll<2000)return;
   const c=here();polling=true;lastPoll=Date.now();
-  try{const data=await api('status',null,c);if(!same(c))return;registry=data;error='';await applyStatus(c);if(same(c)&&registry.offers?.length)await autonomous(registry.offers)}
-  catch(e){if(same(c))error=e.message}
+  try{const data=await api('status',null,c);if(!same(c))return;registry=data;pollError='';if(errorRequestId&&registry.active?.id===errorRequestId&&registry.active.world===c.world)actionError('');await applyStatus(c);if(same(c)&&registry.offers?.length)await autonomous(registry.offers)}
+  catch(e){if(same(c))pollError=e.message}
   finally{polling=false;paint();if(!same(c))void poll(true)}
  }
  async function submit(projectId,existingId=null,mode='hire',candidateId=selectedCandidate,recallId=null,source='user'){
-  if(busy)return;const c=here(),id=existingId||crypto.randomUUID();busy=true;error='';paint();
+  if(busy)return;const c=here(),id=existingId||crypto.randomUUID();busy=true;actionError('');paint();
   try{await command('hire_prepare',{contractId:id,projectId,candidateId,mode,recallId,source,day:state().day});if(!same(c))return;await flush(c);await api(mode,mode==='retry'?{id}:mode==='recall'?{id:recallId,requestId:id,projectId}:{requestId:id,projectId,candidateId,source},c)}
-  catch(e){if(same(c)){error=e.message;if(source==='primary'&&e.status>=400&&e.status<500){await command('hire_release',{contractId:id,day:state().day});}}}
+  catch(e){if(same(c)){actionError(e.message,id);if(source==='primary'&&e.status>=400&&e.status<500){await command('hire_release',{contractId:id,day:state().day});}}}
   finally{busy=false;await poll(true);if(same(c))paint()}
  }
 
@@ -85,29 +87,29 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
  async function savePolicy(e){
   e.preventDefault();if(busy||!registry?.autonomy)return;const c=here(),p=registry.autonomy.policy;
   const input={enabled:$('recruitPolicyEnabled').checked,dailyBudget:Number($('recruitPolicyBudget').value),maxContractsPerDay:Number($('recruitPolicyCount').value),coinFloor:Number($('recruitPolicyFloor').value),candidateIds:[...document.querySelectorAll('[name="recruitPolicyCandidate"]:checked')].map(el=>el.value)};
-  busy=true;error='';try{await flush(c);await api('policy',{requestId:crypto.randomUUID(),expectedVersion:p.version,input},c);toast('自主招聘政策已保存，管家按原巡查频率判断');}catch(e){if(same(c))error=e.message;}finally{busy=false;await poll(true);if(same(c))paint(true);}
+  busy=true;actionError('');try{await flush(c);await api('policy',{requestId:crypto.randomUUID(),expectedVersion:p.version,input},c);toast('自主招聘政策已保存，管家按原巡查频率判断');}catch(e){if(same(c))actionError(e.message);}finally{busy=false;await poll(true);if(same(c))paint(true);}
  }
  async function renew(projectId){
   if(busy)return;const c=here(),a=state().recruitment?.active;if(!a)return;
   const old=registry?.active,ready=renewalReadiness(state(),old);if(!ready.ok&&!state().recruitment.renewal){toast(ready.reason);return;}
   const draft=state().recruitment.renewal||{id:crypto.randomUUID(),oldId:a.id,projectId};
-  busy=true;error='';paint(true);
+  busy=true;actionError('');paint(true);
   try{await command('hire_renew_prepare',{contractId:draft.oldId,renewalId:draft.id,projectId:draft.projectId,day:state().day});if(!same(c))return;await flush(c);await api('renew',{id:draft.oldId,requestId:draft.id,projectId:draft.projectId},c);}
-  catch(e){if(same(c))error=e.message;}
+  catch(e){if(same(c))actionError(e.message);}
   finally{busy=false;await poll(true);if(same(c))paint(true);}
  }
  async function cancelRenewal(){
-  if(busy)return;const c=here(),draft=state().recruitment?.renewal;if(!draft)return;busy=true;error='';
-  try{await flush(c);await api('cancel',{id:draft.id},c);}catch(e){if(same(c))error=e.message;}
+  if(busy)return;const c=here(),draft=state().recruitment?.renewal;if(!draft)return;busy=true;actionError('');
+  try{await flush(c);await api('cancel',{id:draft.id},c);}catch(e){if(same(c))actionError(e.message);}
   finally{busy=false;await poll(true);if(same(c))paint(true);}
  }
  async function cancel(id){
-  if(busy)return;const c=here();busy=true;const r=hydrateRecruitment(state());if(r.active?.id===id)requestRecruitmentLeave(state(),'岛主结束聘约，交接后继续采风');
+  if(busy)return;const c=here();busy=true;actionError('');const r=hydrateRecruitment(state());if(r.active?.id===id)requestRecruitmentLeave(state(),'岛主结束聘约，交接后继续采风');
   try{await flush(c);const result=await api('cancel',{id},c);if(!same(c))return;if(result.contract.phase==='cancelled'){await command('hire_release',{contractId:id,day:state().day});}}
-  catch(e){if(same(c))error=e.message}
+  catch(e){if(same(c))actionError(e.message)}
   finally{busy=false;await poll(true);if(same(c))paint()}
  }
- async function createCandidate(input,requestId){if(busy)return false;const c=here();let failure='';busy=true;try{await flush(c);const result=await api('candidate',{requestId,input},c);if(!same(c))return false;selectedCandidate=result.candidate.id;localStorage.removeItem('hd-recruit-candidate-draft:'+c.theme+':'+c.world);toast('伙伴档案已保存，可以选择筹备清单邀请到岛');return true;}catch(e){failure=e.message;return false;}finally{busy=false;await poll(true);if(same(c)){if(failure)error=failure;paint(true);}}}
+ async function createCandidate(input,requestId){if(busy)return false;const c=here();let failure='';busy=true;actionError('');try{await flush(c);const result=await api('candidate',{requestId,input},c);if(!same(c))return false;selectedCandidate=result.candidate.id;localStorage.removeItem('hd-recruit-candidate-draft:'+c.theme+':'+c.world);toast('伙伴档案已保存，可以选择筹备清单邀请到岛');return true;}catch(e){failure=e.message;return false;}finally{busy=false;await poll(true);if(same(c)){if(failure)actionError(failure);paint(true);}}}
 
  async function editProfile(){
   if(busy)return;const c=here(),a=hydrateRecruitment(state()).active;if(!a)return;if(state().recruitment.renewal){toast('续约协商期间请先保留当前档案，结束协商后再修改');return;}
@@ -115,11 +117,11 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   if(Object.values(fields).some(v=>!v)){toast('请填写完整的伙伴档案');return}
   const draft=JSON.stringify({id:a.id,expectedVersion:a.profile.version,fields});
   if(editPending?.draft!==draft)editPending={draft,id:crypto.randomUUID()};
-  busy=true;error='';
+  busy=true;actionError('');
   try{
    await flush(c);const result=await api('profile',{id:a.id,expectedVersion:a.profile.version,requestId:editPending.id,fields},c);
    if(!same(c))return;registry.active=result.contract;a.profile=result.contract.profile;editPending=null;persist();toast('伙伴档案已保存，修改记录已写入名册');
-  }catch(e){if(same(c))error=e.message}
+  }catch(e){if(same(c))actionError(e.message)}
   finally{busy=false;await poll(true);if(same(c))paint(true)}
  }
  const library=createCandidateLibrary({openModal,theme,world:()=>here().world,records:()=>registry?.candidateRecords||[],refresh:()=>poll(true),back:()=>open(),toast,save:async body=>{const c=here();await flush(c);const r=await api('candidate_manage',body,c);if(!same(c))throw Error('当前小岛已变化，请在原小岛核对档案');return r;}});
@@ -136,7 +138,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   const renewPlans=(state().workProjects||[]).filter(p=>['preparing','paused'].includes(p.status)),renewReady=renewalReadiness(state(),registry?.active);
   const plans=(state().workProjects||[]).filter(p=>p.status==='preparing'),contract=registry?.active;
   selectedPlan=plans.some(p=>p.id===selectedPlan)?selectedPlan:plans[0]?.id;const eligible=selectedPlan?projectSteps(state(),selectedPlan).filter(t=>t.remaining>0&&t.npcId!==-1&&!t.blocked&&candidateStepAllowed(candidate,t)).length:0;
-  const signature=JSON.stringify([theme(),selectedCandidate,selectedPlan,candidates,a,progress,pending,plans.map(p=>[p.id,p.status]),contract?.phase,registry?.history,registry?.candidateRecords,registry?.renewal,registry?.autonomy,state().recruitment.renewal,renewReady,renewPlans,error,busy]);
+  const issue=error||pollError;const signature=JSON.stringify([theme(),selectedCandidate,selectedPlan,candidates,a,progress,pending,plans.map(p=>[p.id,p.status]),contract?.phase,registry?.history,registry?.candidateRecords,registry?.renewal,registry?.autonomy,state().recruitment.renewal,renewReady,renewPlans,error,pollError,busy]);
   if(!force&&(lastSignature===signature||document.activeElement?.closest('#recruitPolicyForm')))return;lastSignature=signature;
   const details=[...root.querySelectorAll('details[open]')].map(d=>d.dataset.history),body=root.closest('.modal-body'),scroll=body.scrollTop;
   const status=a?RECRUIT_STAGE_LABEL[a.phase]:contract?labels[contract.phase]:pending?'招聘请求等待确认':'一席空位，等一位新朋友';
@@ -147,7 +149,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
     (pending&&!contract?'<button class="primary" id="recruitResume">继续确认同一申请</button>':'')+'<button class="secondary" id="recruitCancel" data-id="'+(contract?.id||pending.id)+'" '+(busy?'disabled':'')+'>取消本次到岛</button>':
    plans.length?'<label class="recruit-plan-label">这次一起准备什么？<select id="recruitPlan">'+plans.map(p=>'<option value="'+p.id+'" '+(p.id===selectedPlan?'selected':'')+'>'+esc(p.title)+'</option>').join('')+'</select></label><button class="primary" id="recruitHire" '+(busy||!eligible?'disabled':'')+'>邀请'+esc(candidate.name)+'协作 · 预留 8 岛币</button><p class="recruit-match" role="status">'+(eligible?'这份清单有 '+eligible+' 项工作符合伙伴职业，由主子 Agent 商定本次分工。':'这份清单没有符合伙伴职业的待办，请更换伙伴或筹备清单。')+'</p>':
    '<div class="recruit-empty"><b>先写一份筹备清单</b><p>确定要准备的物资，管家才能与伙伴商量具体分工。</p><button class="primary" id="recruitCreatePlan">去写清单</button></div>')+
-   (error?'<p class="recruit-error" role="status">'+esc(error)+'</p><button class="secondary" id="recruitRefresh">重新查询</button>':'')+'</section>'+
+   (issue?'<p class="recruit-error" role="status">'+esc(issue)+'</p><button class="secondary" id="recruitRefresh">重新查询</button>':'')+'</section>'+
 
    (here().world===contract?.world?recruitmentExchange(contract,state(),theme()):'')+autonomyMarkup(registry,candidates,busy)+(a?.autonomousDecision?'<section class="recruit-autonomy"><h4>管家自主邀请的伙伴</h4><p>'+esc(a.autonomousDecision.reason)+'</p><details data-history="autonomy-source"><summary>本次决策来源</summary><p>巡查运行 <code>'+esc(a.autonomousDecision.runId)+'</code></p><p>用量记录 <code>'+esc(a.autonomousDecision.ledgerRunId)+'</code></p><p>招聘政策第 '+a.autonomousDecision.policyVersion+' 版</p></details></section>':'')+
    (a?'<section class="recruit-renewal"><h4>继续留岛协作</h4><p>每段续约 2 个游戏日，另预留 8 岛币；旧聘约按实际交付单独结算。最多连续续约三次。</p>'+
@@ -173,7 +175,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   root.querySelectorAll('[data-recruit-recall]').forEach(b=>b.onclick=()=>submit(selectedPlan,null,'recall',b.dataset.candidateId,b.dataset.recruitRecall));
   root.querySelectorAll('[data-recruit-retry]').forEach(b=>b.onclick=()=>submit(b.dataset.project,b.dataset.recruitRetry,'retry',b.dataset.candidateId));
  }
- function reset(){generation++;selectedCandidate='mai';selectedPlan=null;editPending=null;registry=null;error='';lastSignature='';lastPoll=0;void poll(true)}
+ function reset(){generation++;selectedCandidate='mai';selectedPlan=null;editPending=null;registry=null;actionError('');pollError='';lastSignature='';lastPoll=0;void poll(true)}
  setInterval(()=>{const r=hydrateRecruitment(state());if(r.active||r.pending||registry?.autonomy?.policy.enabled||$('recruitmentPanel'))void poll()},2200);
  return {open,paint,reset,poll,submit,cancel,autonomous};
 }

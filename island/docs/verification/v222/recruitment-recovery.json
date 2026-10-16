@@ -1,0 +1,49 @@
+{
+  "version": 222,
+  "sourceRuntimeChange": "Recruitment UI error ownership only; backend/finance/cadence unchanged",
+  "native": {
+    "oldValidWorldCasesFailed": 4,
+    "afterValidWorldCasesPassed": 4,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "rejections": [
+      409,
+      503
+    ],
+    "sameRetryBody": true,
+    "singleReservation": 8,
+    "cancelReleasesWithoutBalanceChange": true,
+    "unrelatedWorldOrIdDoesNotAcknowledge": true,
+    "matchingLiveContractAcknowledges": true,
+    "readErrorsClearOnSuccessfulRead": true,
+    "syntheticStatusIsDisplayFixtureOnly": true,
+    "fixtureSetupProbesExcluded": true
+  },
+  "relatedRules": {
+    "passed": 37,
+    "failed": 0,
+    "scope": "Existing recruitment/store/request/game/exchange tests"
+  },
+  "realZeroStartObservation": {
+    "version": 221,
+    "sourceCommit": "5ced63ffb8decc2b26f0677c85270bd1879690fc",
+    "theme": "pixel",
+    "firstAttempt": "failed-260-second-recruitment-wait-retained",
+    "originalFailureCauseKnown": false,
+    "sameRequestContinuationPassed": true,
+    "resetProgress": false,
+    "engine": "hermes",
+    "model": "deepseek-flash",
+    "delivered": 2,
+    "wage": 8,
+    "partyPaid": 28,
+    "childReceiptCount": 2,
+    "sourcePayloadsUnchanged": 2457,
+    "humanAcceptance": false
+  },
+  "wholeGoalComplete": false,
+  "currentVersionHourVerified": false,
+  "macHardwareVerified": false
+}

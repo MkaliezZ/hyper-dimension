@@ -568,3 +568,7 @@ The primary save store now uses its existing exclusive-open retry helper for tra
 ## V221 - Resident continuity and current catalog totals
 
 居民短等待按有效游戏时间延续；旧经历还原剩余时长，避免刷新后误等旧页面的数千秒。双画风隔离页面实际赴约、完成本地规则交谈、保存和刷新后保持新等待；当前目录数量显示与初版成就定义分别保留。模型调用间隔不变，完整自然长期故事与真人验收继续。[范围与复现](resident-continuity-v221.md)。
+
+## V222 - Recruitment errors survive unrelated status reads
+
+招聘失败文案与状态查询错误分别保留；同申请继续确认与单笔预留保持，当前世界的同编号进行中聘约才能确认接收。双主题四个原生错误恢复案例和 37 项相关规则通过；V221 的真实像素零开局在原申请续作后完成主子交付、首场派对与离岛，首次超时仍保留。[范围与限制](recruitment-recovery-v222.md)。

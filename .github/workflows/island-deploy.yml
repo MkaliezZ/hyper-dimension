@@ -307,6 +307,9 @@ jobs:
       - name: Native current catalog totals and preserved legacy achievements
         run: node tests/v221-catalog-counts-browser.mjs
 
+      - name: Native recruitment error recovery and request identity
+        run: node tests/v222-recruitment-errors-browser.mjs
+
       - name: Native night planning skips empty purposes
         run: node tests/v216-night-planning-browser.mjs
 
@@ -335,6 +338,8 @@ jobs:
             island/qa/v220/native-recovery-modal/*.png
             island/qa/v221/native-catalog-counts/report.json
             island/qa/v221/native-catalog-counts/*.png
+            island/qa/v222/native-recruitment-errors/report.json
+            island/qa/v222/native-recruitment-errors/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
           if-no-files-found: ignore

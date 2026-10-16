@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v221-agent-source",
+  "release": "hyper-dimension-v222-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 78635,
-      "sha256": "a70fff2418d89e240329767a71e04a321d7085cf36a620e94d52ed7735ab3222"
+      "bytes": 79096,
+      "sha256": "8e77473bfc15f3e603420303da5ec31fd164a2fabc5b1db2e08eb6f0b1d67362"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7782,8 +7782,8 @@
     },
     {
       "path": "src/recruitmentUI.js",
-      "bytes": 25720,
-      "sha256": "24e735199a5c33ac178e06fe053a69173bac1e7efe3ea0e122d4f2dccaa697de"
+      "bytes": 26233,
+      "sha256": "35d7fe26a183e77572a80a8a00329190372de55a01c0f84e233c990af7929282"
     },
     {
       "path": "src/residence-v191.css",
@@ -12304,7 +12304,22 @@
       "path": "docs/verification/v221/resident-continuity.json",
       "bytes": 2956,
       "sha256": "517c133860c217af237b5397ffc8e28a46c7b4fa07a6df78a145a6d016016506"
+    },
+    {
+      "path": "tests/v222-recruitment-errors-browser.mjs",
+      "bytes": 8198,
+      "sha256": "83d2ebc627f6dc669cf5094eea23fcffed80f875edb73f3af5131df28db98032"
+    },
+    {
+      "path": "docs/recruitment-recovery-v222.md",
+      "bytes": 2555,
+      "sha256": "5f493a3b625c9ab881fa56d5fcf8e3aaf2cf53e69b460319e759878202fbb982"
+    },
+    {
+      "path": "docs/verification/v222/recruitment-recovery.json",
+      "bytes": 1402,
+      "sha256": "94cd49a63c1739787db035ab937b6d20cfd2c4008cf1671078fb3219c01dd45f"
     }
   ],
-  "publicRevision": "v221-github"
+  "publicRevision": "v222-github"
 }

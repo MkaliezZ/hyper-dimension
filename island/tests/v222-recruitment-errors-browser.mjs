@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,readFile,writeFile} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {chromium} from 'playwright-core';
+import {browserLaunchOptions} from './browserRuntime.mjs';
+import {createLanHttpServer} from '../server/lanServer.mjs';
+import {hydrateTown} from '../src/townSimulation.js';
+import {createZeroState} from '../src/freshStart.js';
+import {createProject} from '../src/projectPlans.js';
+
+const out=resolve(process.env.HD_QA_OUT||'qa/v222/native-recruitment-errors');await mkdir(out,{recursive:true});
+const service=await createLanHttpServer({directory:await mkdtemp(join(out,'fictional-')),port:0,enrollmentKey:'RECRUIT-ERROR-ONLY'}),base='http://127.0.0.1:'+service.port,browser=await chromium.launch(browserLaunchOptions());
+const report={scope:'Fictional progressed LAN fixtures with100coins and an actual saved wood-supply plan. Inject definite409 and ambiguous503 hire responses; successful background status reads must not erase their messages. Native same-ID retry/cancellation must preserve one8coin reservation and release it once. One case models eventual status acceptance and rejects unrelated request/world acknowledgments; this is a display fixture, not an actual contract. Separate status transport errors clear after a successful read. Providers disabled; no real recruitment or zero-start/human acceptance claimed.',cases:[],passed:false};
+try{
+ for(const theme of ['pixel','origami'])for(const rejection of [409,503]){
+  const row={theme,rejection,errors:[],hireInputs:[],statusReads:0,statusSuccesses:0};report.cases.push(row);
+  const account=await service.identities.register({login:'re_'+theme+'_'+rejection,password:'fictional-recruit-password',name:'招聘提示验证岛主',islandName:'招聘提示验证岛',avatar:'female_1',theme}),store=(await service.tenants.get(account.token)).saves,seed=hydrateTown(createZeroState());seed.freshStartPending=false;seed.coins=100;seed.saveSlot='v222-errors-'+account.view.me.id;
+  const plan=createProject(seed,{id:'recruit-error-supply',title:'招聘错误验证物资',targets:{wood:20}});assert(plan.ok);await store.open(theme,{legacyState:seed,protect:true});
+  const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();await context.addCookies([{name:'hd_lan_session',value:account.token,url:base,httpOnly:true,sameSite:'Strict'}]);let statusFailures=0,syntheticStatus=null;row.statusFixtures=[];if(process.env.HD_QA_RECRUIT_UI)await context.route('**/src/recruitmentUI.js',async r=>r.fulfill({contentType:'text/javascript',body:await readFile(resolve(process.env.HD_QA_RECRUIT_UI),'utf8')}));
+  await context.route('**/api/**',async r=>{const path=new URL(r.request().url()).pathname;if(path==='/api/recruitment/'+theme+'/hire'){row.hireInputs.push(r.request().postDataJSON());return r.fulfill({status:rejection,contentType:'application/json',body:JSON.stringify({error:'验证招聘失败'+row.hireInputs.length+'：记录已保留',code:rejection===409?'recruitment_no_work':'recruitment_unavailable'})});}if(path==='/api/recruitment/'+theme+'/status'){row.statusReads++;if(syntheticStatus){const response=await r.fetch();if(!response.ok())return r.fulfill({response});const body=await response.json(),marker='状态夹具序号'+row.statusReads;body.active={...syntheticStatus,phase:'planning'};assert(body.autonomy);body.autonomy.reason=marker;row.statusFixtures.push({...syntheticStatus,marker});return r.fulfill({response,contentType:'application/json',body:JSON.stringify(body)});}if(statusFailures>0){statusFailures--;return r.fulfill({status:503,contentType:'application/json',body:'{"error":"验证状态读取暂不可用","code":"recruitment_unavailable"}'});}}if(/^\/api\/(npc|hermes)\//.test(path)||path==='/api/lan/social/tick')return r.fulfill({status:503,contentType:'application/json',body:'{"error":"Providers disabled in fictional error check"}'});return r.continue();});
+  page.on('pageerror',e=>row.errors.push(e.message));page.on('response',r=>{if(new URL(r.url()).pathname==='/api/recruitment/'+theme+'/status'&&r.status()===200)row.statusSuccesses++;});
+  try{
+   await page.goto(base+'/play?qa=1');await page.waitForFunction(()=>window.islandInspect?.().startup.busy===false,null,{timeout:60000});await page.locator('#stewardBtn').click();await page.locator('#stewardRecruit').click();await page.locator('#recruitPlan').selectOption('recruit-error-supply');await page.locator('#recruitHire').click();
+   await page.waitForFunction(()=>document.querySelector('.recruit-error')?.textContent.includes('验证招聘失败1'),null,{timeout:8000});const reads=row.statusSuccesses,until=Date.now()+12000;while(row.statusSuccesses<reads+2&&Date.now()<until)await page.waitForTimeout(250);assert(row.statusSuccesses>=reads+2);assert.match(await page.locator('.recruit-error').textContent(),/验证招聘失败1/);
+   let doc=await store.current(theme);const id=doc.state.recruitment.pending.id;assert.equal(row.hireInputs.length,1);assert.equal(row.hireInputs[0].requestId,id);assert.equal(doc.state.coins,100);assert.equal(doc.state.resourceLedger.reservations['hire:'+id].items.coins,8);row.initialPendingId=id;
+   await page.locator('#recruitResume').click();await page.waitForFunction(()=>document.querySelector('.recruit-error')?.textContent.includes('验证招聘失败2'),null,{timeout:8000});assert.equal(row.hireInputs.length,2);assert.deepEqual(row.hireInputs[1],row.hireInputs[0]);doc=await store.current(theme);assert.equal(doc.state.coins,100);assert.equal(Object.keys(doc.state.resourceLedger.reservations).filter(k=>k.startsWith('hire:')).length,1);assert.equal(doc.state.resourceLedger.reservations['hire:'+id].items.coins,8);
+   if(theme==='pixel'&&rejection===503){
+    for(const entry of [{id,world:'unrelated-world'},{id:'unrelated-request',world:doc.state.saveSlot},{id,world:doc.state.saveSlot}]){
+     syntheticStatus=entry;const count=row.statusFixtures.length,deadline=Date.now()+8000;while(row.statusFixtures.length===count&&Date.now()<deadline)await page.waitForTimeout(100);assert(row.statusFixtures.length>count);const marker=row.statusFixtures.at(-1).marker;await page.waitForFunction(marker=>document.querySelector('#recruitmentPanel')?.textContent.includes(marker),marker,{timeout:8000});
+     if(entry.id===id&&entry.world===doc.state.saveSlot)assert.equal(await page.locator('.recruit-error').count(),0);else assert.match(await page.locator('.recruit-error').textContent(),/验证招聘失败2/);
+    }
+    syntheticStatus=null;await page.waitForFunction(()=>!document.querySelector('#recruitmentPanel')?.textContent.includes('状态夹具序号'),null,{timeout:8000});row.onlyMatchingWorldAndRequestAcknowledge=true;
+   }
+   await page.screenshot({path:join(out,theme+'-'+rejection+'-retained.png')});await page.locator('#recruitCancel').click();await page.waitForFunction(()=>!islandInspect().recruitment.pending,null,{timeout:30000});doc=await store.current(theme);assert.equal(doc.state.coins,100);assert.equal(doc.state.resourceLedger.reservations['hire:'+id],undefined);await page.locator('.recruit-error').waitFor({state:'detached',timeout:8000});
+   statusFailures=1;await page.waitForFunction(()=>document.querySelector('.recruit-error')?.textContent.includes('验证状态读取暂不可用'),null,{timeout:8000});await page.waitForFunction(()=>!document.querySelector('.recruit-error'),null,{timeout:8000});row.sameRequestPreserved=true;row.singleReservationReleased=true;row.pollErrorCleared=true;assert.deepEqual(row.errors,[]);row.passed=true;
+  }catch(error){row.failure=error.stack;process.exitCode=1;await page.screenshot({path:join(out,theme+'-'+rejection+'-failure.png')}).catch(()=>{});}
+  finally{await context.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));}
+ }
+ report.passed=report.cases.every(c=>c.passed);
+}finally{await browser.close();await service.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,cases:report.cases.map(c=>({theme:c.theme,rejection:c.rejection,passed:c.passed,failure:c.failure}))}));}
