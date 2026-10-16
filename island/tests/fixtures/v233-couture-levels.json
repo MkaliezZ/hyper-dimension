@@ -1,0 +1,2274 @@
+[
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "47ef6535eeb96b0f14d56839063096b674162270143848ae362902e52953a347"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "8b9644e2d0983cb5a753f66f277ac76b0e2b0b103caf4a7ead1b0fd7e20e6c95"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "9ecc57074936432d177f2e71ac9e3e8e17f23bcd5726626dc8c488296b85c7da"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "764e2328f8f357d940f2cf7ac67ccf1d9bb64a2f123bb3013acaa72f1f4c782e"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "072acdcf9b55436017b1daf22e16d1a3eefe57541a728c0efd893fa6994cee6d"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "9dedc0d7b50003cd678024b17a9ba1606d1f1ab1c2fdb4fde7d675c546eeeb19"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "fd64add4e6774f555299c0e61bdcd3a31ac12d95939f821f04a8a75954de0086"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "8934e61561fca27fb100d61ffa1e33dfa86a9aa44fd811c50e5c8e9b75bf3d08"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "c505f47e1c30fd94b8ed962f99ee58509b63a9cdafabf98db56683e1651fe83e"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "6c45f85caa3e55b5a8175b46d8a8a3c86e44231ef4c2274d4b9b9610ebcbf64b"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "c618c2e208c34197dd3f390b9ade3738c79263e02f19f562fc4329e19966f260"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "a22431eb8c37898fe2a18521e1e9726e53b43c70a4ef74a351b87bbc977cdad7"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "2bdb7ebef21d92e79d08a5075d788b5e137795eeaff4b816e7267f344edac664"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "267928a4762b039d401ddb95f62e3146287466c5f69ba1f018ab15cb4536fb6d"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "75f5145a09efde219221a1bc0ff05823b05b1070fd1daf00f3408847a9f7f155"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "b3d0f71a714cb17a51ff41e679a3833f27f78e7f8928480de7ca0efa067db8d1"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "08ac0e8e50f4bd6fcc0db469cbae38d6664b45266243df4e4a54db69338aa23e"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "96b9df799b534c9933c07c0599b344aa12c342ecf61a2c16b32de1b07431e1e3"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "46c526006123b7e3b1f7d945f47fdc5328b526a2e600f679a40bc7a6c7ffa07f"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "5bef1c7e84a91030f6b9efcf023878b91484926be25f8baec6218ec2a60f9f2b"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "f00040dc9b18dec63a9576b5232d08160012d60a60d210f7d17799681bae667c"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "d5c769bac3fbbcd01e0ac338f444b228600039671d63f26d33fc740a916ba67d"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "dcfd644d99fb749780fb354f21b899c32f8f8f7fc58a9120e1961321723324c6"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "402ef500ae4bc930f1052cbf87e55e68de9fc8ae4dfe0d4366aec745b92c05e4"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "9d2d0a6003e76c136355d30f962344bbee5d72a5581e17d92acac9c86f2552c1"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "59d3a866ec105ae470f31e55a45b0d7f7747a530ff2e106fc6150ce27d7b0492"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "6dae9e5d129165aaa5503ba0579d4bf3520cc705c807873abd0ae6a2e0ab40ea"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "8781b7d76ee00a62c46f47ebae707240dee30ba6ce82c5e98a72eab0c78e2726"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "e0cdebcbfb9c1cf261b32f7c528128631ce4fe135161c2b50b1004bca6daf415"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "5d1d8b0fe796bcb5541a4a38654647c4f949f3e731a36b24d46007f729cc7f99"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "bbe4f4db4986763eea50e6ac06f98a6c61b56f56b21ebf4a6975d3dcec2db12a"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "0a2bc16f051a745a0e56ca3872e22212be1e99963fbc56483daee28ec8c51cce"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "d40b3c74878284d540177a7a0c2517035d2334d3c4f610602b0080bdb210b6e8"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "628c82c92966bc4309ebcfa1d1c52929425b118fc5019c23fab01f6e0d0340f4"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "ee719a4e3375f7866b5a2458f81218406036b2b6666cbebeeb4257ba929b4fd4"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "05617feb60b140379271f04b4b64a6e959cb16bedd29d6936b6e97872c811412"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "ba675359e86606101813b1aa91b5cf08850816e5fdefd7e25d0614dab0fdbe66"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "96e884dcc6309f7b22147dfb679b2539e388a2b64b3d319dfea7dc49a47a6b1b"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "48fad73bb3c08bc776946e04d5c0deb76cf77bb65222e1438c529a8637b44f19"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "5172c87c06acb6e42d119343f576e6357dd9873195e06ef9315734c616079430"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "6fcf2e0693f72ec97ffaa37a64cf3c314712ebf3e630dd6571106f8a47573fbb"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "616786d3eca2a97a41b722a60169f4ba2d5f7c07a5b0fd47d8f0997248adc60b"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "f373a294918250fa2875e7cb8a7e5faa1ce573261083e5063ac7c45838b2645c"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "fb1808586b325d369baca2419190ec426b0992a287ed453de9b84a1e726db621"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "21004ed3b74b5a2b18a2781f75a4ea2047492089bb928b41b7708eb206942489"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "cda31a9bcfc89c0fc2107374cadf2da384ff255025f302f08be7a5a176feb8a6"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "fa14296033d2f4add8ed182de4d77ca73a68f1c559a4834747647284200940d0"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_3",
+      "c4_10",
+      "c4_5",
+      "c4_6"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "590c48c95cd00df341e0146eae42fb7bee1d3b8354025b55d1932b3f38381a69"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "eb3d4898003dfdbc3e86dfbe5a78e70cf5d523a8b527336eff93462e74f7d41b"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "745463c69472c256965f7c907a846b4be5ade95350c7065b6d0b0cbf16feaabe"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "17c4ebff37a7ef0b1266f4541a7532bf61ac2ef469bf2e7ece9205abc74e112c"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "a192b151576dc7a0d945e0b519d7b5e67a08edd87dd186bb7567f060dd0f39cb"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "d1718954e2918a48c0a17f5fc48fc6a3659fd3e7145254eadc1e86426298e8d0"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "db21ab7bfd683188edf377313904a4c4cf51d8a056887535c84ba1178ee61e2b"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "8a6293296bc61e086ccf52d079b1b29b1f11a2d79aa118db3b69ebc6434e6cf9"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "e017ab94ca5adae62e19d9c4a34b01f1c77a4bf2d7c34cc021c6b1a3da235b44"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "29bb591cafccce21e96bb3f8579ce3530e03f47a1fd77d867393ee58edef196d"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "b4e89290dfdca0051c3e3be1c03de87b08082e1dd86c9879cdba27dd7a522feb"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "9db5115276beaa6c9a74f20b4369251044a777d00374faebdf52c95502e52900"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "4dd12889351700eceb81e3cfa16a17f61653ecc6cd3ae4805730286dd2f644f8"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "a9c904000269c04e285ef9b4ee630186605fc3fe040cd88c3be1e381a80e6edd"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "a196409fccd2f143d1064c3dcee87a5cbdfdcde02de390e66415effc0a9347e0"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "1d3e6f2f126ca4ff6c1088cafdd00218de47dbb36283031c9bb6cb23c7fdb5a1"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [],
+    "levelSha256": "34cc0227d08678e254b60e0156b37f69bac30e94260e14117b96c55cb33e1b55"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "6fed6b5ad6c77c6642cb8d11c311d8dad613b52fd03a9b5318fa867b91e8e880"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "4aa540cdd679ac566e150183c2a036843b2463816111b784a7d99032f041a638"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "17efccd7222fe62397e1539324ba393045e996a9b9f41cea7a7cc5f4ce4ecf81"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "8b66dbfbd4386809f54831fba67aeb9839249516d9fd7c293d9135a689cf2aef"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "033ec11519f61c2202073a0de34528f474d07ade66c5d7cb4b7178f15759db4f"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "6d44f16090c334e1edad8de53a6a034de70879dc8e0359352186ebad10182eff"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "adddb56393ccb054d92d1cf946d047df4c2c4317da277f1f48b46041f51d4543"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "12f736da44345166fa29d5946fa086b897924e3340633dee0179f29cd9b5e5f6"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "3d176951ad979fa35d0fb1b73f5d8d5a72101f1f3950e327cbff5954a6bbf98f"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "86335bf326b90b01c84b3a5bc34a36accadec47dae1660b215ef1f59ca5c5aa7"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "7fdfa85c0b26ed3934d21427ffe29a4b2cce3177c42a44a717a3e08353c9bdeb"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "3eb707382c337f827c1c0c975b00ddca3b61a93103931fa078d1f7ed1d459207"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "ed157d7fff275fd3f6bd902795e4e084e28c2dda04f37a78a2616bc1e9916c23"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "d6742e297d7a871597bbb5379bd8faa7e06f75dce3679859707818d1188cc834"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "655aa59b2080ac0acd83520ded8a7845235309e29d19fcfaa15b4501c825876b"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "1d7aae5424ab07b8d11b49dd5e75a2fd9829a5d82e9fa6fba20a57f588420b05"
+  },
+  {
+    "seed": 0,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "e2a95e3f64dff9a50cab06f6c6524cabd9b8245dd141c3e7e72c80da7da618a8"
+  },
+  {
+    "seed": 1,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "936e75df42c94bae7810c397e7b0b2cec6bb8158996d117065741c42cba32afd"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "3a131543184acfc1f3ec187ad747823fde145be9fd1563a17877a435b4873f88"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "easy",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "b9c3ada9dd61c4b070291d426f90fe3ee35ea8eb2e858c57045f390fb06bd62b"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "e4bd1331e8ce6cb6f3fca21ccdb184a1dea1c3c53833d1e511abb2c7de49f357"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "d36dfffa7f8f639f685365dbfbb0e89ab14be80b3aca7b12ad66bc2cd61e91ae"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "f127f3e3bdba0575cfbd6f3d5cd4b510cd03d2f7ece75cff64b58cbada673bf3"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [],
+    "levelSha256": "d6ee9502261905ae9e06ecb6f363d9f6371ad83b89dd2787841b11a345dd36b1"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "76fabcbba032fdbaa00bb3d6a72b1c4c928b498817367c2e177b88eb99fb1584"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "504eddb1c90d9177aa52b721d9d11ca09e7a95e8b40d5d4fb41ddda027546e4f"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "c6c20a8b7751c5db7d9d5c857154e2651c468c0fbbd867c242ceedfda6bbb24e"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "sea"
+    ],
+    "levelSha256": "dc79e6e2ddb3da19d12a0cf7c6d471cbfe6bb6eadb1e9f8d21e21576d008af54"
+  },
+  {
+    "seed": 0,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "2dbc0f683378787d43bbb142e83b0a01313a53bd6c45d18cebafbab58a419199"
+  },
+  {
+    "seed": 1,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "6283833a32439b9627995528b7c79f0b660cfd0a30f0f463863802d83753f311"
+  },
+  {
+    "seed": 12345678,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "5ab118e204a51ec9a5b34100479ae8ae27e465e38b054d8203037085126c8645"
+  },
+  {
+    "seed": 4294967295,
+    "difficulty": "normal",
+    "wardrobe": [
+      "c4_1",
+      "c4_9",
+      "c4_8",
+      "c4_11",
+      "c4_7",
+      "c4_3",
+      "c4_10",
+      "c4_4",
+      "c4_5",
+      "c4_6",
+      "c4_2"
+    ],
+    "excluded": [
+      13,
+      7,
+      2,
+      11
+    ],
+    "tags": [
+      "nature",
+      "stars"
+    ],
+    "levelSha256": "121d417ef43b8f66723c60cb5deea6acb3937e0aa478d72c3f4f02633a2c29bd"
+  }
+]

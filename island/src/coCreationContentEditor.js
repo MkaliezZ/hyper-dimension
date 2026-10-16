@@ -4,6 +4,20 @@ import {BUILDINGS} from './world.js';
 import {CUSTOM_CONTENT_SCHEMA,customRecipeId} from './customContent.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const blankCustomArt=()=>Object.fromEntries(['pixel','origami'].map(theme=>[theme,{sha256:'0'.repeat(64),width:32,height:32}]));
+export function customContentSummary(pack){
+ if(pack.schema!==CUSTOM_CONTENT_SCHEMA)return '';
+ const items=pack.content.items,filled=items.reduce((n,item)=>n+['pixel','origami'].filter(style=>item.art[style].sha256!=='0'.repeat(64)).length,0);
+ return '<small class="co-content-count">'+items.length+' 件正式物品 · 双画风 '+filled+'/'+items.length*2+'</small>';
+}
+export function customContentReviewMarkup(pack,theme){
+ if(pack.schema!==CUSTOM_CONTENT_SCHEMA)return '';
+ const itemName=id=>id.startsWith('@')?pack.content.items.find(i=>i.id===id.slice(1))?.name||id:RAW_MATERIALS.find(i=>i.id===id)?.name||ALL_RECIPES.find(r=>r.item===id)?.name||id;
+ const recipeName=id=>id.startsWith('@')?itemName(id):ALL_RECIPES.find(r=>r.id===id)?.name||id;
+ return '<section class="co-custom-editor co-review-products"><h3>作品原图与配方</h3>'+customContentSummary(pack)+pack.content.items.map(item=>{
+  const recipe=pack.content.recipes.find(r=>r.item===item.id),purpose=({gift:'赠送居民',component:'加工组件',food:'餐食',study:'研究',decor:'岛上摆件'})[item.category];
+  return '<fieldset><legend>'+esc(item.name)+'</legend><p>'+esc(BUILDINGS[item.building].name+' · '+purpose+' · '+['基础','进阶','大师'][item.tier])+'</p><div class="co-product-art">'+['pixel','origami'].map(style=>'<figure><figcaption>'+({pixel:'像素风',origami:'折纸风'})[style]+'</figcaption><img data-co-review-art="'+style+'" alt="'+esc(item.name)+' · '+({pixel:'像素风',origami:'折纸风'})[style]+'" width="96" height="96" decoding="async" src="'+customArtURL(theme,item.art[style].sha256)+'"></figure>').join('')+'</div><p>'+esc(item.description)+'</p><p class="hint">材料：'+Object.entries(recipe.cost).map(([id,n])=>esc(itemName(id))+' ×'+n).join(' · ')+'</p><p class="hint">前置：'+(recipe.requires.length?recipe.requires.map(id=>esc(recipeName(id))).join(' · '):'无前置图纸')+'</p></fieldset>';
+ }).join('')+'</section>';
+}
 export function addCustomProduct(pack){
  const p=structuredClone(pack);p.schema=CUSTOM_CONTENT_SCHEMA;p.content??={items:[],recipes:[]};if(p.content.items.length>=12)throw Error('每件作品最多 12 件正式物品');
  let n=1;while(p.content.items.some(i=>i.id==='craft-'+n))n++;const id='craft-'+n;

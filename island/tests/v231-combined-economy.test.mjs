@@ -19,16 +19,17 @@ for(const theme of ['pixel','origami'])test(theme+' combined same-island party, 
  const f=await fixture('night',theme,{nonTargetStock:100}),row={theme,days,initialCoins:(await f.current()).state.coins,categories:{},daily:[],parties:[],hires:[],investments:[],snapshots:0,passed:false};report.cases.push(row);
  let previous=await f.current(),receiptIds=new Set((previous.state.resourceLedger?.events||[]).map(e=>e.id)),net=0,queuedSeconds=0,domainNow=previous.actions.commerce.lastActiveAt,flushing=false;
  const originalAdvance=f.advance;
- // Use the last acknowledged response like an ordinary client. Every mutation
- // still goes through the durable store; repeated unchanged disk reads are not
- // additional economic coverage. A new store verifies persistence at the end.
- f.current=async()=>structuredClone(previous);
+ // Keep one immutable acknowledged snapshot. Editors explicitly clone below;
+ // readers cannot silently mutate the audit baseline. Every mutation still goes
+ // through the durable store and a new store checks the final disk state.
+ function immutable(value){const pending=[value],seen=new WeakSet();while(pending.length){const v=pending.pop();if(!v||typeof v!=='object'||seen.has(v))continue;seen.add(v);for(const child of Object.values(v))if(child&&typeof child==='object')pending.push(child);Object.freeze(v);}return value;}
+ f.current=async()=>previous;
  function observe(d){
   const s=d.state,events=(s.resourceLedger?.events||[]).filter(e=>!receiptIds.has(e.id));for(const e of events)receiptIds.add(e.id);
   const delta=s.coins-previous.state.coins,recorded=events.reduce((n,e)=>n+(e.delta.coins||0),0);assert.equal(delta,recorded,'Cash movement must match new resource events');net+=delta;assert.equal(s.coins,row.initialCoins+net);assert(s.coins>=0);assert(Object.values(s.inventory).every(n=>n>=0));assert(validActionBook(d.actions));
   const cash=events.filter(e=>e.id.startsWith('cash:')||e.delta.coins),ledger=s.economy.cashLedger.slice(-cash.length||s.economy.cashLedger.length);
   if(cash.length){assert.equal(ledger.length,cash.length);assert.equal(ledger.reduce((n,r)=>n+r.net,0),delta,'Cash ledger and resource ledger must agree');for(const r of ledger){const a=row.categories[r.category]??={count:0,income:0,cost:0,net:0};a.count++;a.income+=r.income;a.cost+=r.cost;a.net+=r.net;}}
-  previous=d;row.snapshots++;
+  previous=immutable(structuredClone(d));row.snapshots++;
  }
  async function raw(kind,operation,args={}){const d=previous,r=await f.store.action(theme,{kind,operation,requestId:randomUUID(),expectedVersion:d.version,expectedSequence:d.actions?.sequence||0,epoch:d.actions?.epoch||null,day:d.state.day,...(kind==='party'&&operation==='begin'?{gameVersion:2}:{}),...args});observe(r.document);return r;}
  async function pump(){

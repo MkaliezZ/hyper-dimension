@@ -33,9 +33,16 @@ function setup(seed,difficulty,wardrobe,excluded,tags){
   if(!coutureSolutions(wardrobe,brief).length)throw Error('Unreachable couture brief');rounds.push(brief);
  }return {models,rounds};
 }
+const setupCache=new Map(),SETUP_CACHE_LIMIT=128;
+function cachedSetup(seed,difficulty,wardrobe,excluded,tags){
+ const key=JSON.stringify([seed,difficulty,wardrobe,excluded,tags]);let level=setupCache.get(key);
+ if(!level){level=setup(seed,difficulty,wardrobe,excluded,tags);if(setupCache.size>=SETUP_CACHE_LIMIT)setupCache.delete(setupCache.keys().next().value);setupCache.set(key,level);}
+ // Never share a mutable level with a game or trust caller-provided level data.
+ return structuredClone(level);
+}
 export function createCoutureGame(seed,difficulty='normal',wardrobe=Object.keys(COUTURE_BASE),excluded=[13,7,2],tags=[]){
  if(!integer(seed,0,0xffffffff)||!['easy','normal'].includes(difficulty)||!Array.isArray(wardrobe)||new Set(wardrobe).size!==wardrobe.length||wardrobe.some(id=>!byId[id])||Object.keys(COUTURE_BASE).some(id=>!wardrobe.includes(id))||!Array.isArray(excluded)||excluded.length<3||excluded.length>4||new Set(excluded).size!==excluded.length||excluded.some(n=>!integer(n,0,14)||[0,4,12].includes(n))||!Array.isArray(tags)||tags.length>2||new Set(tags).size!==tags.length||tags.some(t=>!['sea','nature','cuisine','craft','stars','music'].includes(t)))throw Error('Invalid couture setup');
- wardrobe=[...wardrobe].sort();const level=setup(seed,difficulty,wardrobe,excluded,tags);
+ wardrobe=[...wardrobe].sort();const level=cachedSetup(seed,difficulty,wardrobe,excluded,tags);
  return {engine:'couture-party',version:1,seed,difficulty,wardrobe,excluded:[...excluded],tags:[...tags],level,phase:'checkin',round:0,elapsed:0,clock:0,outfit:empty(),show:null,reports:[],strikes:0,status:'等评审、模特和岛主实际到齐再开始',effectSerial:0,effect:null};
 }
 export function currentCoutureBrief(g){return g.level.rounds[g.round];}

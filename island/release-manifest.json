@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v232-agent-source",
+  "release": "hyper-dimension-v233-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3842,
-      "sha256": "13cb9e42e258f4ebfa7d6aca80c8d2511745d2c62ceea40b917cce2a9bac0cfe"
+      "bytes": 3866,
+      "sha256": "8ce1eaee36cf5e8e8636741864a51a1eb8168f985b2e6c7f901138f5a6ee7401"
     },
     {
       "path": "README.md",
-      "bytes": 3572,
-      "sha256": "c22ee30b900f9b52688c7a6c75e1ad399ee76b848b1473a3472c16e608e82553"
+      "bytes": 3587,
+      "sha256": "44f9876557db860e19e4d63a7b5274f22bb35c762897a54ae569c2d6085663b9"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 84147,
-      "sha256": "d0d3b48082cddc7a99ab5435fcc9d04c5463cb9ee5548a67dd14ce2cfb151f52"
+      "bytes": 84750,
+      "sha256": "4f96bf91c4299cc362fd789d109ef06a9d6e6be2d0805c96b07409c84c1f9f7f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 14106,
-      "sha256": "7540e820b760a77df1c0142435980de957f91e135e7832c19bb60fce31e9f691"
+      "bytes": 14223,
+      "sha256": "7006ca82ac7b0dd7c504c303aece42a7f0948446a8d987e6e17ed222c1648766"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6647,8 +6647,8 @@
     },
     {
       "path": "src/cocreation-v56.css",
-      "bytes": 7957,
-      "sha256": "b6a65562d392c08932e036f5df4f94ff225babf9c95b59b902cd5edbddda6c9f"
+      "bytes": 8757,
+      "sha256": "549796dbd0ed9290bcad25c462a4390fe2e7cb14912f59fd21b93d3fddfed050"
     },
     {
       "path": "src/cocreation.js",
@@ -6657,8 +6657,8 @@
     },
     {
       "path": "src/cocreationUI.js",
-      "bytes": 26786,
-      "sha256": "fd506177e1fd8f30dfb82bf73dc84c15a646fee1810e6651a582aba8bdc2e20e"
+      "bytes": 27323,
+      "sha256": "0d719048bbbed879ad733c49e5f14046f94ff46304ee7f34261e3c3a10f1bc51"
     },
     {
       "path": "src/collections-v33.css",
@@ -6732,8 +6732,8 @@
     },
     {
       "path": "src/coutureRules.js",
-      "bytes": 12716,
-      "sha256": "a4546e6a352f93af8c1bc7205d511b381580ebb0d6426bf4d3022f61c0853256"
+      "bytes": 13228,
+      "sha256": "0d53de7d8fabaf951d5aaed8cd4ea8c3644cc580ed084baee0d19d1f237f8958"
     },
     {
       "path": "src/coutureRuntime.js",
@@ -12372,8 +12372,8 @@
     },
     {
       "path": "src/coCreationContentEditor.js",
-      "bytes": 7913,
-      "sha256": "1ea2dc8095e2a4f7068a8384b5060abd2bf8fbe0e4de9def1e735750194025b9"
+      "bytes": 9875,
+      "sha256": "977b11f8042d0de5e7f112dce13e6504dab512f0317f26118a75f5ae1aa35943"
     },
     {
       "path": "src/customContent.js",
@@ -12517,8 +12517,8 @@
     },
     {
       "path": "tests/v231-combined-economy.test.mjs",
-      "bytes": 11715,
-      "sha256": "d03e5525276ff7b1f0eacca1279eef8882e68308333e07e039d0beccfa6df5a8"
+      "bytes": 12018,
+      "sha256": "6210e63e5cf5cbd5b77691079484f4ec36026723772a98708f3389e6664454bb"
     },
     {
       "path": "tests/v231-multi-island-journey.test.mjs",
@@ -12544,7 +12544,32 @@
       "path": "docs/verification/v232/farm-readiness.json",
       "bytes": 2773,
       "sha256": "13790ff36c940593bfbe31ed865a54dcbd193020f7ae876bb8ea40d0b14225b9"
+    },
+    {
+      "path": "tests/fixtures/v233-couture-levels.json",
+      "bytes": 36082,
+      "sha256": "efa556b00c50a1f967002eede5b8697b8d371633f2b250f031893df07e972275"
+    },
+    {
+      "path": "tests/v233-couture-validation-cache.test.mjs",
+      "bytes": 2645,
+      "sha256": "aa584d22dfcc063b85aef50fc751a01c9fdd8e4cacfbf7542792d0296cc0f569"
+    },
+    {
+      "path": "tests/v234-cocreation-review-browser.mjs",
+      "bytes": 11496,
+      "sha256": "86f807aea5f75bd90e3ea4043eb2e27189832b1c5766b5efcc4aadafbaee4dbe"
+    },
+    {
+      "path": "docs/validation-performance-v233.md",
+      "bytes": 3891,
+      "sha256": "28e26ecc955737eb2d7e3c0f0d7ecd2ac6b53abf6c4d3b42779fc7828fa53d5a"
+    },
+    {
+      "path": "docs/verification/v233/priority-closeout.json",
+      "bytes": 16390,
+      "sha256": "ba7e98e06adf7fbd1396e8a2e47d6d52ed436c87a1829dcf25ea56370d9257ce"
     }
   ],
-  "publicRevision": "v232-github"
+  "publicRevision": "v233-github"
 }

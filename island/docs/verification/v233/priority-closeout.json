@@ -1,0 +1,645 @@
+{
+  "version": "V233",
+  "at": "2026-10-16T22:48:51.748643+00:00",
+  "sourceBase": "ac938fbfa2013741d3dd6366ef550016ca1c835a",
+  "wholeGoalComplete": false,
+  "humanAcceptance": false,
+  "cache": {
+    "boundedDefinitions": 128,
+    "callerLevelsTrusted": false,
+    "returnedLevelsAreIndependentClones": true,
+    "preChangeGoldenConfigurations": 96,
+    "newIntegrityCases": 6,
+    "relatedCasesPassed": 15,
+    "sameHostDiagnostic": {
+      "iterations": 1500,
+      "wardrobe": "all11built-inclothes",
+      "beforeMs": 1453.4537,
+      "afterMs": 32.6889,
+      "wholeGameFpsClaim": false
+    }
+  },
+  "fullDomainRules": {
+    "main": 1264,
+    "runtime": 14,
+    "total": 1278,
+    "failed": 0,
+    "scope": "Cache/farm/core rules; subsequent presentation changes additionally exercised by actual browser workflows."
+  },
+  "combinedAccounting": {
+    "scope": "One canonical progressed island per style, rotating all five legally replayed party games, actual visitor quotes/escrow, per-day recruitment wages, paid upgrades/maintenance and900accepted seconds/day. Starts with140coins and100declared stock per catalog item except initial wood/lantern deficits. Clock, attendance and model lineage are deterministic fixtures; no rendering, human input, real provider or zero-resource-gathering claim. This is a combined accounting check, not a full zero-start economic or human balance acceptance.",
+    "clockInjected": true,
+    "initialResourcesSynthetic": true,
+    "modelsCalled": false,
+    "original30dayBudgetSecondsPerTheme": 510,
+    "tenDayCases": [
+      {
+        "theme": "pixel",
+        "days": 10,
+        "initialCoins": 140,
+        "finalCoins": 141,
+        "totalNet": 1,
+        "deferred": 0,
+        "snapshots": 2277,
+        "categories": {
+          "visitor": {
+            "count": 367,
+            "income": 1468,
+            "cost": 734,
+            "net": 734
+          },
+          "party": {
+            "count": 20,
+            "income": 540,
+            "cost": 112,
+            "net": 428
+          },
+          "recruitment": {
+            "count": 10,
+            "income": 0,
+            "cost": 80,
+            "net": -80
+          },
+          "town": {
+            "count": 10,
+            "income": 0,
+            "cost": 720,
+            "net": -720
+          },
+          "upgrade": {
+            "count": 2,
+            "income": 0,
+            "cost": 245,
+            "net": -245
+          },
+          "maintenance": {
+            "count": 4,
+            "income": 0,
+            "cost": 116,
+            "net": -116
+          }
+        },
+        "passed": true,
+        "completedDays": 10,
+        "partiesByType": {
+          "night": 2,
+          "fishing": 2,
+          "market": 2,
+          "couture": 2,
+          "fireworks": 2
+        },
+        "paidHireCount": 10,
+        "investments": [
+          {
+            "day": 5,
+            "kind": "upgrade",
+            "coins": 80
+          },
+          {
+            "day": 7,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 8,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 9,
+            "kind": "maintain",
+            "coins": 29
+          },
+          {
+            "day": 10,
+            "kind": "upgrade",
+            "coins": 165
+          },
+          {
+            "day": 10,
+            "kind": "maintain",
+            "coins": 33
+          }
+        ]
+      },
+      {
+        "theme": "origami",
+        "days": 10,
+        "initialCoins": 140,
+        "finalCoins": 145,
+        "totalNet": 5,
+        "deferred": 0,
+        "snapshots": 2277,
+        "categories": {
+          "visitor": {
+            "count": 367,
+            "income": 1468,
+            "cost": 734,
+            "net": 734
+          },
+          "party": {
+            "count": 20,
+            "income": 544,
+            "cost": 112,
+            "net": 432
+          },
+          "recruitment": {
+            "count": 10,
+            "income": 0,
+            "cost": 80,
+            "net": -80
+          },
+          "town": {
+            "count": 10,
+            "income": 0,
+            "cost": 720,
+            "net": -720
+          },
+          "upgrade": {
+            "count": 2,
+            "income": 0,
+            "cost": 245,
+            "net": -245
+          },
+          "maintenance": {
+            "count": 4,
+            "income": 0,
+            "cost": 116,
+            "net": -116
+          }
+        },
+        "passed": true,
+        "completedDays": 10,
+        "partiesByType": {
+          "night": 2,
+          "fishing": 2,
+          "market": 2,
+          "couture": 2,
+          "fireworks": 2
+        },
+        "paidHireCount": 10,
+        "investments": [
+          {
+            "day": 5,
+            "kind": "upgrade",
+            "coins": 80
+          },
+          {
+            "day": 7,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 8,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 9,
+            "kind": "maintain",
+            "coins": 29
+          },
+          {
+            "day": 10,
+            "kind": "upgrade",
+            "coins": 165
+          },
+          {
+            "day": 10,
+            "kind": "maintain",
+            "coins": 33
+          }
+        ]
+      }
+    ],
+    "thirtyDayCases": [
+      {
+        "theme": "pixel",
+        "days": 30,
+        "initialCoins": 140,
+        "finalCoins": 100,
+        "totalNet": -40,
+        "deferred": 0,
+        "snapshots": 6807,
+        "categories": {
+          "visitor": {
+            "count": 1108,
+            "income": 4451,
+            "cost": 2216,
+            "net": 2235
+          },
+          "party": {
+            "count": 60,
+            "income": 1621,
+            "cost": 336,
+            "net": 1285
+          },
+          "recruitment": {
+            "count": 30,
+            "income": 0,
+            "cost": 240,
+            "net": -240
+          },
+          "town": {
+            "count": 30,
+            "income": 0,
+            "cost": 2168,
+            "net": -2168
+          },
+          "upgrade": {
+            "count": 3,
+            "income": 0,
+            "cost": 545,
+            "net": -545
+          },
+          "maintenance": {
+            "count": 20,
+            "income": 0,
+            "cost": 607,
+            "net": -607
+          }
+        },
+        "passed": true,
+        "completedDays": 30,
+        "partiesByType": {
+          "night": 6,
+          "fishing": 6,
+          "market": 6,
+          "couture": 6,
+          "fireworks": 6
+        },
+        "paidHireCount": 30,
+        "investments": [
+          {
+            "day": 5,
+            "kind": "upgrade",
+            "coins": 80
+          },
+          {
+            "day": 7,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 8,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 9,
+            "kind": "maintain",
+            "coins": 29
+          },
+          {
+            "day": 10,
+            "kind": "upgrade",
+            "coins": 165
+          },
+          {
+            "day": 10,
+            "kind": "maintain",
+            "coins": 33
+          },
+          {
+            "day": 13,
+            "kind": "maintain",
+            "coins": 28
+          },
+          {
+            "day": 14,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 15,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 16,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 17,
+            "kind": "maintain",
+            "coins": 30
+          },
+          {
+            "day": 18,
+            "kind": "maintain",
+            "coins": 30
+          },
+          {
+            "day": 19,
+            "kind": "maintain",
+            "coins": 32
+          },
+          {
+            "day": 20,
+            "kind": "maintain",
+            "coins": 42
+          },
+          {
+            "day": 21,
+            "kind": "maintain",
+            "coins": 33
+          },
+          {
+            "day": 22,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 23,
+            "kind": "maintain",
+            "coins": 28
+          },
+          {
+            "day": 24,
+            "kind": "maintain",
+            "coins": 38
+          },
+          {
+            "day": 25,
+            "kind": "maintain",
+            "coins": 42
+          },
+          {
+            "day": 27,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 28,
+            "kind": "maintain",
+            "coins": 26
+          },
+          {
+            "day": 29,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 30,
+            "kind": "upgrade",
+            "coins": 300
+          }
+        ]
+      },
+      {
+        "theme": "origami",
+        "days": 30,
+        "initialCoins": 140,
+        "finalCoins": 98,
+        "totalNet": -42,
+        "deferred": 0,
+        "snapshots": 6798,
+        "categories": {
+          "visitor": {
+            "count": 1104,
+            "income": 4435,
+            "cost": 2208,
+            "net": 2227
+          },
+          "party": {
+            "count": 60,
+            "income": 1627,
+            "cost": 336,
+            "net": 1291
+          },
+          "recruitment": {
+            "count": 30,
+            "income": 0,
+            "cost": 240,
+            "net": -240
+          },
+          "town": {
+            "count": 30,
+            "income": 0,
+            "cost": 2168,
+            "net": -2168
+          },
+          "upgrade": {
+            "count": 3,
+            "income": 0,
+            "cost": 545,
+            "net": -545
+          },
+          "maintenance": {
+            "count": 20,
+            "income": 0,
+            "cost": 607,
+            "net": -607
+          }
+        },
+        "passed": true,
+        "completedDays": 30,
+        "partiesByType": {
+          "night": 6,
+          "fishing": 6,
+          "market": 6,
+          "couture": 6,
+          "fireworks": 6
+        },
+        "paidHireCount": 30,
+        "investments": [
+          {
+            "day": 5,
+            "kind": "upgrade",
+            "coins": 80
+          },
+          {
+            "day": 7,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 8,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 9,
+            "kind": "maintain",
+            "coins": 29
+          },
+          {
+            "day": 10,
+            "kind": "upgrade",
+            "coins": 165
+          },
+          {
+            "day": 10,
+            "kind": "maintain",
+            "coins": 33
+          },
+          {
+            "day": 13,
+            "kind": "maintain",
+            "coins": 28
+          },
+          {
+            "day": 14,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 15,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 16,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 17,
+            "kind": "maintain",
+            "coins": 30
+          },
+          {
+            "day": 18,
+            "kind": "maintain",
+            "coins": 30
+          },
+          {
+            "day": 19,
+            "kind": "maintain",
+            "coins": 32
+          },
+          {
+            "day": 20,
+            "kind": "maintain",
+            "coins": 42
+          },
+          {
+            "day": 21,
+            "kind": "maintain",
+            "coins": 33
+          },
+          {
+            "day": 22,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 23,
+            "kind": "maintain",
+            "coins": 28
+          },
+          {
+            "day": 24,
+            "kind": "maintain",
+            "coins": 38
+          },
+          {
+            "day": 25,
+            "kind": "maintain",
+            "coins": 42
+          },
+          {
+            "day": 27,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 28,
+            "kind": "maintain",
+            "coins": 26
+          },
+          {
+            "day": 29,
+            "kind": "maintain",
+            "coins": 27
+          },
+          {
+            "day": 30,
+            "kind": "upgrade",
+            "coins": 300
+          }
+        ]
+      }
+    ],
+    "allAssertionsRetained": true,
+    "diskReopenVerified": true
+  },
+  "opcReview": {
+    "failedBefore": 2,
+    "beforeReason": "No per-product dual-art review images",
+    "finalNativeWorkflow": {
+      "scope": "Fictional progressed islands with declared fixture materials. Native UI exposes both artworks per product during review and correct catalog product totals; then creates two custom products, uploads distinct PNG fixtures, reviews and publishes, plays canonical link games with pointer input, reuses the component, gifts the result, exports and imports on another island. Normal game clocks and server input replay; no injected results. PNG fixtures are test patterns, not production artwork. No user browser/save/provider calls.",
+      "passed": true,
+      "cases": [
+        {
+          "theme": "pixel",
+          "errors": [],
+          "customArtworkDecoded": true,
+          "realCraftReuseAndGift": true,
+          "crossOwnerImportedAssetsAndCraft": true,
+          "passed": true
+        },
+        {
+          "theme": "origami",
+          "errors": [],
+          "customArtworkDecoded": true,
+          "realCraftReuseAndGift": true,
+          "crossOwnerImportedAssetsAndCraft": true,
+          "passed": true
+        }
+      ]
+    },
+    "finalVisualCapture": {
+      "scope": "Visual review capture only: real isolated two-product PNG upload, submission, review thumbnails and item summary. No crafting or learner acceptance claimed.",
+      "passed": true,
+      "cases": [
+        {
+          "theme": "pixel",
+          "errors": [],
+          "passed": true
+        },
+        {
+          "theme": "origami",
+          "errors": [],
+          "passed": true
+        }
+      ]
+    },
+    "rootVisualInspection": "Pixel desktop and origami mobile inspected; both styles paired and visible before technical metadata. Actual PNG fixtures are test patterns, not production artwork.",
+    "newImageRenderRules": "Pixel previews use pixelated sampling; origami previews use normal sampling independently of island theme.",
+    "dshFindingsVerified": {
+      "accepted": 2,
+      "rejected": 6,
+      "actualLearners": 0,
+      "modelNameIndependentlyVerified": false
+    }
+  },
+  "frozenV230Hour": {
+    "completed": true,
+    "overallPassed": false,
+    "performancePassed": true,
+    "functionalApiPassed": false,
+    "sourceFilesUnchanged": 2495,
+    "unexpectedErrors": [
+      "origami model_response_format503",
+      "origami farm_stage409"
+    ],
+    "originalFailurePreserved": true
+  },
+  "remaining": [
+    "Zero-start combined economics, orders and specialization",
+    "Broader multi-island supply chains and physical-device/user validation",
+    "Actual OPC learners and5–8newplayers",
+    "New final deployment package and updated video",
+    "Strict diagnosis of captured model-format failure; no raw bad reply was retained inV230hour"
+  ],
+  "testedRuntimeHashes": {
+    "src/coutureRules.js": "0d53de7d8fabaf951d5aaed8cd4ea8c3644cc580ed084baee0d19d1f237f8958",
+    "src/coCreationContentEditor.js": "977b11f8042d0de5e7f112dce13e6504dab512f0317f26118a75f5ae1aa35943",
+    "src/cocreationUI.js": "0d719048bbbed879ad733c49e5f14046f94ff46304ee7f34261e3c3a10f1bc51",
+    "src/cocreation-v56.css": "549796dbd0ed9290bcad25c462a4390fe2e7cb14912f59fd21b93d3fddfed050",
+    "src/residentRuntime.js": "4f124b2c97257cadcbd90f8dab81ee5c090ef6195124224f77397eaf51f33167",
+    "src/serverFarmUI.js": "9b4ab32e8cd88a9bc257220623b56decdd4533af75131be06252161d9590690f"
+  }
+}
