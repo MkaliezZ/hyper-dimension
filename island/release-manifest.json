@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3185,
-      "sha256": "c0e9a83f96512d1fb397f1791843d352cf4769fc497604e01114791b26a0eeb1"
+      "bytes": 3209,
+      "sha256": "eb5f9d10a255ba915f846389f03632876c388e3fcda335f8a7bc4e39a5da799b"
     },
     {
       "path": "README.md",
-      "bytes": 2981,
-      "sha256": "682fa671d2396e267b5e39c1293826053728ee2c57a0430869d66b72153e2e89"
+      "bytes": 3077,
+      "sha256": "c73588334cbfa6399451ed94be56383f1e4346256c27109d7455319e400970e3"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 65453,
-      "sha256": "0be5036080289f8d71592196dc3bdd2b7264f64b95c845c16146de61e8b06047"
+      "bytes": 67288,
+      "sha256": "552364f2a0de9f2b4589c6ea3ad9ff2c09ad2645f904be76c3ee6eaac6f24516"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -222,8 +222,8 @@
     },
     {
       "path": "docs/lan-reply-recovery-v201.md",
-      "bytes": 1100,
-      "sha256": "a70a7d2ae817afad5df73771cbdd720e5e840d2b16c533e379876d9de6e89831"
+      "bytes": 1540,
+      "sha256": "07c77cfafe8e4a05e2df1f09d9138eb948a6054e9e58746c16d85be32549daa9"
     },
     {
       "path": "docs/legacy-crop-art-provenance-v178.json",
@@ -306,6 +306,16 @@
       "sha256": "52e202f67a77dac24b29ae9da8799badd7b96449db4b30c80da63524985c80a4"
     },
     {
+      "path": "docs/media/home-v201-origami-curator.png",
+      "bytes": 1447263,
+      "sha256": "397eef2ff1bc1a62103655c14d47f7c1ad92a3d5aec6eca9acc8de06682dc145"
+    },
+    {
+      "path": "docs/media/home-v201-pixel-joinery.png",
+      "bytes": 1578013,
+      "sha256": "be35d68577569dff687acdd1772e27787de23d718e8b46c87638510358efeee7"
+    },
+    {
       "path": "docs/media/hyper-dimension-poster.png",
       "bytes": 4528297,
       "sha256": "5bb92759ffd2d30dc750377a09e911065c4c7834326cfe8387ae472225286e19"
@@ -374,6 +384,11 @@
       "path": "docs/media/hyper-dimension-v190-living-agents-poster.png",
       "bytes": 6832141,
       "sha256": "6f6c4c7b994831a5623a215a3092e3e50ae5bface69c6572c4f39e1f91bc4725"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v201-homes-night-poster.png",
+      "bytes": 5999855,
+      "sha256": "0f6a11c0a78c0784db79febf5ba05b67463458438b5a192cd98a230c75832155"
     },
     {
       "path": "docs/media/music-notes.json",
@@ -2377,8 +2392,8 @@
     },
     {
       "path": "public/assets/cocreation/course-v1.md",
-      "bytes": 4753,
-      "sha256": "e1a87d14b9e341538fd292bdb2efbd8abecae6e204f6f9502a5eecb11832c808"
+      "bytes": 6412,
+      "sha256": "95a2853f4f3da1a3655c5947e3e010136a0a0b9e9096b3b8822156982172326f"
     },
     {
       "path": "public/assets/cocreation/opc-patient-potter.hdpack.json",
@@ -2392,8 +2407,8 @@
     },
     {
       "path": "public/assets/cocreation/student-workbook-v1.md",
-      "bytes": 2784,
-      "sha256": "e40c9df3f729d1e50d0f8dcb2010fdd868e3e2db23910ac04c1084617ff9ac4c"
+      "bytes": 3520,
+      "sha256": "ab7c464ec228e2d2b3bc1b486a1ccd128c3ddab3cbe146736eccacc359a12632"
     },
     {
       "path": "public/assets/cooperation-monument-origami-v33.png",
@@ -6487,8 +6502,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 143583,
-      "sha256": "e39ee9a6259a27827647779a7c3c2ba23c7b9c5ee76a5ac95ed00e5bed267571"
+      "bytes": 143625,
+      "sha256": "52ff61e3221581a9e1269e8cbf581e1afd15f5ffa19183ab032dcab9682b4d2a"
     },
     {
       "path": "src/arcade.css",
@@ -9692,8 +9707,8 @@
     },
     {
       "path": "tests/v201-lan-request.test.mjs",
-      "bytes": 3439,
-      "sha256": "c53d1070259bf765ceffe051e3432f97b3ff29ad2843ae1f5353dbb6908aa675"
+      "bytes": 3464,
+      "sha256": "fd52ff041497a3626fdc37280c8deb553a5c288e9bad5978657de894404f1584"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
@@ -10927,8 +10942,8 @@
     },
     {
       "path": "tests/v80-release-browser.mjs",
-      "bytes": 6325,
-      "sha256": "f9f02ee8457841fac553740e58ab80a12fceb2b848aabb3bed54bc6a645dce5e"
+      "bytes": 6669,
+      "sha256": "d220d71a72a4465b070fd218f3b0a680e18ad71aff69d807f238ca8c283aa010"
     },
     {
       "path": "tests/v80-runtime-config.test.mjs",
@@ -11332,8 +11347,8 @@
     },
     {
       "path": "tools/cocreation-check.mjs",
-      "bytes": 1249,
-      "sha256": "246c0720e373a5bf7b4904f8cd577cbf91e54783ccdde06b93a4b7bef63e81c6"
+      "bytes": 2055,
+      "sha256": "2bbe22270aced4538b2dca2c16e9d734d55b1aead2ec707393d691c4c9d70e84"
     },
     {
       "path": "tools/data-backup.mjs",

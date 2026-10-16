@@ -8,7 +8,7 @@ Gather, craft, run your island, host parties and talk freely with AI residents. 
 
 ## See the island
 
-[![Hyper Dimension · Island life and Agent stewards](docs/media/hyper-dimension-v190-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · Island life and Agent stewards](docs/media/hyper-dimension-v201-homes-night-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 [Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living) · [Explore the owner gallery](https://mkaliezz.github.io/hyper-dimension/#gallery)
 
@@ -25,9 +25,9 @@ Original soundtrack. Profiles and briefs are fictional; steward documents were p
 | Seasons and two styles | Regional seasonal terrain, waves, weather, evening lights and rippling moon reflections. Each season lasts 30 visual days; weather affects farming and fishing. |
 | Showcase and visit | Share experience, projects and images in your gallery, with guest messages. Bring NPC companions and use steward bridging and A2A in multiplayer reception. |
 
-| Pixel · Autumn | Origami · Winter |
+| Pixel · Joinery home | Origami · Curator home |
 | --- | --- |
-| ![Pixel autumn island](docs/media/season-v187-pixel-autumn.png) | ![Origami winter island](docs/media/season-v187-origami-winter.png) |
+| ![Pixel joinery home interior](docs/media/home-v201-pixel-joinery.png) | ![Origami curator home interior](docs/media/home-v201-origami-curator.png) |
 
 ## Quick start
 

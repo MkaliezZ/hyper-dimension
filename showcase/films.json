@@ -1,8 +1,30 @@
 {
-  "version": "V190",
+  "version": "V201",
   "films": [
     {
       "id": "living",
+      "version": "V201",
+      "filename": "hyper-dimension-v201-homes-night-agents-30s.mp4",
+      "duration": 30,
+      "sha256": "1949bd04a800b7ceae29ee2b41c1a850388f0d63676e403cbc3f34cfd1357c16",
+      "poster": "assets/hyper-dimension-v201-homes-night-poster.png",
+      "download": "media/hyper-dimension-v201-homes-night-agents-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 四季灯火、居民的家与 Agent 管家",
+        "en": "30 seconds · Seasonal island, homes and working Agents"
+      },
+      "caption": {
+        "zh": "双画风四季与夜景 · 个性住宅 · AI 居民 · 真实工作与分工记录",
+        "en": "Seasons and night lights · Individual homes · AI residents · Real work and delegation records"
+      },
+      "description": {
+        "zh": "当前版本重新采集的双画风海岛、四季夜景、个性住宅、会客馆、居民交流与多形象管家；展示真实历史 Word 成果和主子 Agent 分工记录，以及本轮实际操作的房屋弹窗小游戏与入账奖励。1440p / 60 fps逐帧导出，原创BGM，独立字幕边缘和完整结尾。没有旧视频片段或补帧；成片帧率不是实时性能测试。人物档案与工作简报均为虚构示例。小游戏目前为占位演示，后续继续优化。",
+        "en": "New captures of the current dual-style island, seasons and night lights, individual homes, gallery, resident chat and steward appearances. Genuine saved Word results and parent/child delegation records are shown alongside newly played native-popup minigame footage and an actual payout. Offline 1440p/60 fps export, original BGM, separate caption margins and a complete ending. No old video clips or interpolation; film frame rate is not a live performance benchmark. Profiles and work briefs are fictional. Minigames are prototypes and will improve."
+      },
+      "mediaRevision": 1
+    },
+    {
+      "id": "living-v190",
       "version": "V190",
       "filename": "hyper-dimension-v190-living-agents-30s-ending-v2.mp4",
       "duration": 30,
@@ -10,8 +32,8 @@
       "poster": "assets/hyper-dimension-v190-living-agents-poster.png",
       "download": "media/hyper-dimension-v190-living-agents-30s-ending-v2.mp4",
       "title": {
-        "zh": "30 秒 · 四季小岛与能办事的管家",
-        "en": "30 seconds · Seasonal island and working Agents"
+        "zh": "往期 · V190 四季与管家",
+        "en": "Archive · V190 seasons and stewards"
       },
       "caption": {
         "zh": "全新四季画面 · 居民交流 · 多形象管家 · 真实工作与协作",

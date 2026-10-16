@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {once} from 'node:events';
-import {mkdtemp} from 'node:fs/promises';
+import {mkdtemp,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -14,7 +14,7 @@ async function listen(server){server.listen(0,'127.0.0.1');await once(server,'li
 async function close(server){server.closeAllConnections();await new Promise((resolve,reject)=>server.close(e=>e?reject(e):resolve()));}
 
 test('a reset after durable room creation replays one immutable command and returns the same room',async()=>{
- const directory=await mkdtemp(join(tmpdir(),'hd-lan-lost-reply-'));
+ const directory=await mkdtemp(join(await realpath(tmpdir()),'hd-lan-lost-reply-'));
  const service=await createLanHttpServer({directory,port:0,enrollmentKey:'FICTIONAL-RESET-TEST'}),base='http://127.0.0.1:'+service.port;
  const account=await service.identities.register({login:'lost_reply_fixture',password:'fictional-reset-password',name:'测试岛主',islandName:'断线测试岛',avatar:'female_1',theme:'pixel'});
  const received=[],results=[],proxy=createServer(async(req,res)=>{

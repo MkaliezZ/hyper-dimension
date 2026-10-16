@@ -8,7 +8,7 @@
 
 ## 看看小岛
 
-[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v190-living-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v201-homes-night-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 [播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆导览](https://mkaliezz.github.io/hyper-dimension/#gallery)
 
@@ -25,9 +25,9 @@
 | 四季与双画风 | 分块四季地形、海浪天气、昼夜灯火与海面月影；每季 30 个视觉日，天气影响种植和钓鱼。 |
 | 展示与来访 | 会客馆展示经历、项目与图片，支持访客留言；联机会客厅支持随行 NPC、管家桥接与 A2A 交流。 |
 
-| 像素 · 秋日 | 折纸 · 冬日 |
+| 像素 · 小墨的木榫居 | 折纸 · 知夏的拾珍屋 |
 | --- | --- |
-| ![像素秋日小岛](docs/media/season-v187-pixel-autumn.png) | ![折纸冬日小岛](docs/media/season-v187-origami-winter.png) |
+| ![像素木榫居独立布局](docs/media/home-v201-pixel-joinery.png) | ![折纸拾珍屋独立布局](docs/media/home-v201-origami-curator.png) |
 
 ## 快速开始
 
@@ -47,6 +47,6 @@ API 密钥保存在私有 `.env.local`；无密钥可体验规则模式。更新
 
 ## 更多
 
-[部署与配置](DEPLOYMENT.md) · [Agent / A2A](docs/a2a-standard-v158.md) · [版本下载](https://github.com/MkaliezZ/hyper-dimension/releases) · [教培模块](../README.education.md)
+[部署与配置](DEPLOYMENT.md) · [OPC 共创课](public/assets/cocreation/course-v1.md) · [Agent / A2A](docs/a2a-standard-v158.md) · [版本下载](https://github.com/MkaliezZ/hyper-dimension/releases) · [教培模块](../README.education.md)
 
 代码采用 [MIT](LICENSE) 许可；第三方组件见 [声明](THIRD_PARTY_NOTICES.md)。

@@ -1,0 +1,207 @@
+{
+  "version": "V201",
+  "mediaRevision": 1,
+  "ending": {
+    "seconds": 3,
+    "brand": true,
+    "positioning": true,
+    "sourceUrl": true,
+    "fadeToBlack": true,
+    "musicFadeOut": true
+  },
+  "sourceBaseCommit": "2c6ed6dde407c69c1787bdf47c7cc374310863f6",
+  "filename": "hyper-dimension-v201-homes-night-agents-30s.mp4",
+  "bytes": 74838257,
+  "sha256": "1949bd04a800b7ceae29ee2b41c1a850388f0d63676e403cbc3f34cfd1357c16",
+  "duration": 30,
+  "width": 2560,
+  "height": 1440,
+  "fps": 60,
+  "frames": 1800,
+  "audio": "Original Hyper Dimension Island Hours BGM, AAC",
+  "renderMode": "Native 1440p browser renders at equal 1/60s simulation steps, scaled once into a complete visible browser frame with separate caption margins. Not a live FPS benchmark.",
+  "oldFootageUsed": false,
+  "temporalInterpolation": false,
+  "allVisualsNew": true,
+  "nativeGameModal": true,
+  "actualFourFlightPayout": true,
+  "realResidentReply": "Previously generated actual reply, freshly displayed in current UI",
+  "realHermesWordArtifact": "Previously generated actual fictional Word artifact, freshly displayed in current UI",
+  "realParentChildRecruitment": "Actual historical fictional Hermes delegation and acceptance on 2026-10-15, deepseek-flash, freshly displayed by V200 UI; no new provider execution or production completion claimed",
+  "fictionalProfilesAndDocumentsOnly": true,
+  "personalizedHomes": 16,
+  "nightLightingAndMoonReflection": true,
+  "captionsDoNotCoverGameUI": true,
+  "frameLayout": {
+    "browserWidth": 2276,
+    "browserHeight": 1280,
+    "left": 142,
+    "top": 104,
+    "captionTop": 104,
+    "captionBottom": 56
+  },
+  "visualClock": "Spring/autumn/winter and clear night selected through the actual environment protocol for the isolated filming fixture.",
+  "shots": [
+    {
+      "name": "01-origami-island",
+      "at": 0,
+      "duration": 2,
+      "start": 0.8,
+      "frames": 120,
+      "sourceVersion": "V200 runtime",
+      "zh": "一座会生活的岛 · 一位能办事的管家",
+      "en": "A living island. A steward for real work."
+    },
+    {
+      "name": "02-pixel-island",
+      "at": 2,
+      "duration": 1.75,
+      "start": 0.8,
+      "frames": 105,
+      "sourceVersion": "V200 runtime",
+      "zh": "像素与折纸 · 共用一座小岛与存档",
+      "en": "Pixel and origami. One shared island and save."
+    },
+    {
+      "name": "02b-origami-winter",
+      "at": 3.75,
+      "duration": 1.5,
+      "start": 0.8,
+      "frames": 90,
+      "sourceVersion": "V200 runtime",
+      "zh": "整岛四季 · 山林、田地与海岸一起变化",
+      "en": "Seasons across mountains, fields and coast."
+    },
+    {
+      "name": "08-origami-night",
+      "at": 5.25,
+      "duration": 2,
+      "start": 0.8,
+      "frames": 120,
+      "sourceVersion": "V200 runtime",
+      "zh": "灯火与月影 · 小岛迎来自己的夜晚",
+      "en": "Lanterns and moonlight. Night comes to the island."
+    },
+    {
+      "name": "06-pixel-joinery-home",
+      "at": 7.25,
+      "duration": 1.5,
+      "start": 0.4,
+      "frames": 90,
+      "sourceVersion": "V200 runtime",
+      "zh": "16 户不同的家 · 职业与爱好走进生活",
+      "en": "16 individual homes, shaped by work and hobbies."
+    },
+    {
+      "name": "07-origami-curator-home",
+      "at": 8.75,
+      "duration": 1.5,
+      "start": 0.4,
+      "frames": 90,
+      "sourceVersion": "V200 runtime",
+      "zh": "独立布局与互动 · 走进居民的家",
+      "en": "Distinct layouts and activities. Visit a resident."
+    },
+    {
+      "name": "05-owner-gallery",
+      "at": 10.25,
+      "duration": 1.75,
+      "start": 0.3,
+      "frames": 105,
+      "sourceVersion": "V200 runtime",
+      "zh": "会客馆 · 展示你的经历、作品与项目",
+      "en": "An owner gallery for your story and projects."
+    },
+    {
+      "name": "10-real-resident-chat",
+      "at": 12.0,
+      "duration": 2.5,
+      "start": 0.3,
+      "frames": 150,
+      "sourceVersion": "V200 runtime",
+      "zh": "15 位 AI 居民 · 每个人都可以自由交流",
+      "en": "15 AI residents. Talk freely with every one."
+    },
+    {
+      "name": "03-avatar-men",
+      "at": 14.5,
+      "duration": 1,
+      "start": 0.4,
+      "frames": 60,
+      "sourceVersion": "V200 runtime",
+      "zh": "Agent 管家 · 12 套可选形象",
+      "en": "Your Agent steward. 12 appearance choices."
+    },
+    {
+      "name": "04-avatar-women",
+      "at": 15.5,
+      "duration": 1,
+      "start": 0.4,
+      "frames": 60,
+      "sourceVersion": "V200 runtime",
+      "zh": "名称与形象 · 随你的小岛持续保存",
+      "en": "A name and appearance that stay with your island."
+    },
+    {
+      "name": "15-document-content",
+      "at": 16.5,
+      "duration": 3.5,
+      "start": 0.2,
+      "frames": 210,
+      "sourceVersion": "V200 runtime",
+      "zh": "真实 Hermes 工作 · 打开实际 Word 成果",
+      "en": "Real Hermes work. Open an actual Word deliverable."
+    },
+    {
+      "name": "17-agent-exchange",
+      "at": 20.0,
+      "duration": 3.5,
+      "start": 0.25,
+      "frames": 210,
+      "sourceVersion": "V200 runtime",
+      "zh": "管家与临时伙伴 · 真实委派与接单记录",
+      "en": "Steward and companion. Genuine delegation records."
+    },
+    {
+      "name": "night-flight",
+      "at": 23.5,
+      "duration": 2,
+      "start": 1.2,
+      "frames": 120,
+      "sourceVersion": "V200 runtime",
+      "zh": "小岛派对 · 在房屋弹窗中点亮星空",
+      "en": "A party inside the game popup. Light up the sky."
+    },
+    {
+      "name": "paid-result",
+      "at": 25.5,
+      "duration": 1.5,
+      "start": 0.25,
+      "frames": 90,
+      "sourceVersion": "V200 runtime",
+      "zh": "四次点亮完成 · 实际奖励已入账",
+      "en": "Four launches complete. Actual reward received."
+    },
+    {
+      "name": "closing-title-and-source",
+      "at": 26.6,
+      "duration": 3.4,
+      "overlap": 0.4,
+      "frames": 204,
+      "zh": "一座能玩的岛，一位能办事的管家。",
+      "en": "A playful island. A steward for real life.",
+      "source": "Current island footage with a designed typographic end card; no interpolated frames."
+    }
+  ],
+  "passed": true,
+  "referencePlayback": {
+    "browser": "Bundled Chromium headless shell, ordinary default playback options",
+    "uninterruptedSeconds": 30,
+    "totalFrames": 1800,
+    "droppedFrames": 0,
+    "controls": true,
+    "bilingual": true,
+    "downloadsTriggered": 0
+  },
+  "playbackBoundary": "On this Windows host the default Edge headless compositor presents about50frames/s for both this film and the archived V190 control; hardware/software decoding and plain layout show the same cap. Disabling only the test frame limiter gives1800/0. This remains an environment-specific investigation, not an all-browser smoothness claim."
+}
