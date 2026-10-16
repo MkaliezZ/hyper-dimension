@@ -1,6 +1,27 @@
 // One owner for interaction locks: independent recovery panels must never make each other inert.
 import {recoveryReturnURL} from './recoveryNavigation.js';
 const active=new Set(),contexts=new Map(),original=new Map();let observer=null,dock=null,recoveryDialog=false,queued=false,recoverAll=null,recoveryState=()=>null;
+const suspendedDialogs=new Map();
+function suspendNativeDialogs(){
+ // showModal() makes the rest of the document implicitly inert. A CSS z-index
+ // or setting inert=false cannot make the recovery dock clickable through it.
+ for(const dialog of document.querySelectorAll('dialog:modal')){
+  if(!suspendedDialogs.has(dialog))suspendedDialogs.set(dialog,{content:dialog.firstElementChild,returnValue:dialog.returnValue});
+  dialog.close();
+ }
+}
+function restoreNativeDialogs(){
+ const entries=[...suspendedDialogs];
+ queueMicrotask(()=>{for(const[dialog,snapshot]of entries){
+  if(active.size)continue;
+  if(suspendedDialogs.get(dialog)!==snapshot)continue;
+  suspendedDialogs.delete(dialog);
+  if(!dialog.isConnected||dialog.open||dialog.firstElementChild!==snapshot.content)continue;
+  // A controller may have removed or replaced the game while its receipt was
+  // being read. Restore only the same surviving pause/result, never old markup.
+  try{dialog.returnValue=snapshot.returnValue;dialog.showModal();}catch{}
+ }});
+}
 function remember(el,value){if(!original.has(el))original.set(el,el.inert);el.inert=value;}
 function restore(){for(const[el,value]of original)if(el.isConnected)el.inert=value;original.clear();}
 function sync(){
@@ -12,7 +33,8 @@ function sync(){
   // navigations are cancelled. Never unseal or resubmit the obsolete document.
   if(!link.hasAttribute('href'))link.href=recoveryReturnURL();
  }}
- if(!active.size){observer?.disconnect();observer=null;return;}
+  if(!active.size){observer?.disconnect();observer=null;if(suspendedDialogs.size)restoreNativeDialogs();return;}
+  suspendNativeDialogs();
  const header=dock.querySelector('.recovery-all'),check=header.querySelector('#recoveryAll');
  const label=state?.navigating?'进度已核对，正在回岛…':ticket?'核对作业回执':'核对进度并返回小岛';if(check.textContent!==label&&!reading)check.textContent=label;
  for(const bar of active){const button=bar.querySelector('[data-recovery-read]');if(button){button.hidden=!!verified;const text=ticket?'核对作业回执（保留未完成作业）':'核对进度并收起提示';if(button.textContent!==text)button.textContent=text;}}
@@ -30,7 +52,7 @@ export function lockActionUI(bar,context=null){
   button.onclick=()=>readRecoveryProgress(bar,()=>{if(!recoverAll)throw Error('进度恢复尚未就绪，请刷新后重试');return recoverAll();});
   (bar.querySelector('.gather-buttons')||bar).append(button);
  }
- if(!observer){observer=new MutationObserver(schedule);observer.observe(document.body,{childList:true,subtree:true});}
+  if(!observer){observer=new MutationObserver(schedule);observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});}
  sync();
 }
 export function unlockActionUI(bar){active.delete(bar);contexts.delete(bar);sync();}

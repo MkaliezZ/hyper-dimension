@@ -180,6 +180,10 @@ jobs:
         with:
           name: native-character-${{ matrix.os }}
           path: |
+            island/qa/v155/native-product-clips/report.json
+            island/qa/v155/native-product-clips/pixel-checks.json
+            island/qa/v155/native-product-clips/probe-input.json
+            island/qa/v155/native-product-clips/*-c24_2-svg.png
             island/qa/v219/native-painting-tools/report.json
             island/qa/v219/native-painting-tools/*.png
             island/qa/v180/native-rig/report.json
@@ -297,6 +301,9 @@ jobs:
       - name: Native re-entry while recovery read is pending
         run: node tests/v216-recovery-wait-browser.mjs
 
+      - name: Native recovery input through workshop modal dialogs
+        run: node tests/v220-recovery-modal-browser.mjs
+
       - name: Native night planning skips empty purposes
         run: node tests/v216-night-planning-browser.mjs
 
@@ -321,6 +328,8 @@ jobs:
             island/qa/v214/native-recovery-link/*.png
             island/qa/v216/native-recovery-wait/report.json
             island/qa/v216/native-recovery-wait/*.png
+            island/qa/v220/native-recovery-modal/report.json
+            island/qa/v220/native-recovery-modal/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
           if-no-files-found: ignore

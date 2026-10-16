@@ -560,3 +560,7 @@ The primary save store now uses its existing exclusive-open retry helper for tra
 ## V219 - Useful components and reusable painting tools
 
 三件原本没有后续配方的组件已接入画作、藏书整补和摄影架制作；竹木画笔成为可装备、预留后归还的耐用工具。两主题单支画笔使用对应素材与握点，关卡完成条件保持。[范围与证据](production-uses-v219.md)。
+
+## V220 - Recovery input through native modal dialogs
+
+小游戏原生暂停／结算弹窗可能让其外部的恢复按钮无法收到点击。恢复面板现暂时收起这些模态弹窗，退出后仅恢复仍有效的原弹窗。双画风隔离 LAN 原生点击核对、暂存副本和服务端资源保留，以及弹窗生命周期检查通过；用户原页面因浏览器权限设置未读取，仍需刷新后确认。[复现和边界](recovery-modal-v220.md)。

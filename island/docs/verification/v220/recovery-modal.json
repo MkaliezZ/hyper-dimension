@@ -1,0 +1,67 @@
+{
+  "version": 220,
+  "baseCommit": "4e431e4eb62a3cb95ea1dd8bc90f7138d7cfc3db",
+  "scope": "Recovery-only candidate excludes unrelated in-progress catalog/cooldown work; synthetic native-dialog structure with actual fictional LAN canonical reconciliation.",
+  "baseline": {
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "failed": 2,
+    "reason": "Native modal dialog intercepted pointer events outside its top layer"
+  },
+  "unit": {
+    "passed": 17,
+    "failed": 0
+  },
+  "native": [
+    {
+      "name": "modal",
+      "passed": true,
+      "themes": [
+        "pixel",
+        "origami"
+      ]
+    },
+    {
+      "name": "cancel-return",
+      "passed": true,
+      "themes": [
+        "pixel",
+        "origami"
+      ]
+    },
+    {
+      "name": "return-link",
+      "passed": true,
+      "themes": [
+        "pixel",
+        "origami"
+      ]
+    },
+    {
+      "name": "read-wait",
+      "passed": true,
+      "themes": [
+        "pixel",
+        "origami"
+      ]
+    }
+  ],
+  "productArt": {
+    "passed": true,
+    "renderedProducts": 616,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "independentToolsRequireExactFileTrimAndDecodedSize": true,
+    "foregroundNeighborLetterboxAssertionsRetained": true,
+    "hostedRecheck": "pending"
+  },
+  "userOriginalPageInspected": false,
+  "userOriginalPageConfirmedAfterRefresh": false,
+  "humanAcceptance": false,
+  "macHardwareAcceptance": false,
+  "wholeGoalComplete": false
+}

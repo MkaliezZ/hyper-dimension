@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v219-agent-source",
+  "release": "hyper-dimension-v220-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 77697,
-      "sha256": "d13f82fb9e528773b541d55dd7a5c2199dfaed2106e781b24cf3703fdafb423f"
+      "bytes": 78172,
+      "sha256": "a2dc0333046c3a28ecaea7e1dfc7e1c1bad4721f8b0c3d182a31e638a99e67f9"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -6522,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 9276,
-      "sha256": "e6d80e1c3425f45a0653a629c4a4915d548ba6cb8e8f65c2272d7231a1f61bea"
+      "bytes": 10419,
+      "sha256": "0896ed2ac6dacc21c2d1a90c5ecdf6a02c4c22f5fad4782862687994919a4ba2"
     },
     {
       "path": "src/activityGames.js",
@@ -9157,8 +9157,8 @@
     },
     {
       "path": "tests/v155-product-art-browser.mjs",
-      "bytes": 9092,
-      "sha256": "fbfeea82b1a777bd1bad7fcdb860e29b417799ea036aa2900535c1a7543ceea5"
+      "bytes": 9902,
+      "sha256": "f171ed4fc42425c24df5f5cc832eece5730dbe751d5c405517df9276c4e0aa12"
     },
     {
       "path": "tests/v156-checkpoint-restart-browser.mjs",
@@ -12259,7 +12259,22 @@
       "path": "tests/v219-production-uses.test.mjs",
       "bytes": 6389,
       "sha256": "29e80c4c07bb4628c15f1fe7be7955b96c0f528112615b4d08a7ef98d8326a50"
+    },
+    {
+      "path": "tests/v220-recovery-modal-browser.mjs",
+      "bytes": 7505,
+      "sha256": "15b31f2637c244d79b35e4035bc0fd402ab1c8cdf7adeeceb2e184553247f4ab"
+    },
+    {
+      "path": "docs/recovery-modal-v220.md",
+      "bytes": 2854,
+      "sha256": "e4b8774c217c08175112d3e593e0e4c98e4c087a39cac2f9a414af1e74a9f2c5"
+    },
+    {
+      "path": "docs/verification/v220/recovery-modal.json",
+      "bytes": 1459,
+      "sha256": "2fd5d099683a86854a82a49ebe038052006d4c30b9ec33bb2bcc2c95a7c41f35"
     }
   ],
-  "publicRevision": "v219-github"
+  "publicRevision": "v220-github"
 }
