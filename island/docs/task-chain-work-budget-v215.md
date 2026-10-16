@@ -1,0 +1,13 @@
+# Preserve the original remaining-chain allowance
+
+The [V214 Windows resident-work job](https://github.com/MkaliezZ/hyper-dimension/actions/runs/38887726331/job/116929454729) failed at the new 120-second limit for its second journey. The retained artifact shows pixel had just finished that step and origami was performing its leased shore action. Both were still in working hours; this was different from the earlier off-shift failure. The artifact does not include a frame-rate measurement, so the precise rendering contribution is unproven.
+
+The original V213 check allowed 120 seconds for the first job and 240 seconds for the whole remaining chain. V214 incorrectly converted the latter into two independent 120-second limits. The check now charges both remaining jobs against one shared 240-second work allowance. That allowance cannot reset when the next step starts. The first job retains its 120-second bound; off-shift calendar waiting remains separately capped by two visual days. Exact quantities, dependency order, unique receipts, mid-chain reload and empty-browser recovery remain asserted. This corrects the verifier's timing policy; it is not a claim that a game rendering defect was fixed.
+
+Budget checks cover a second journey using 130 seconds followed by 105 seconds, cumulative exhaustion, off-shift waiting, the unchanged first-job deadline, and invalid samples that cannot subtract time. Native reports now retain frame rate, maximum frame gap, cumulative budget usage and save-error codes to help diagnose subsequent failures. The original failed run and artifact are retained; it was not rerun unchanged.
+
+## Broader collect/craft evidence
+
+Independent V214 checks also exercised four wood → one plank consuming three wood → two wood. Both styles completed actual travel, work and craft receipts, then recovered the saved queue. A lost committed craft response was reconciled once; another active craft was paused, reloaded and resumed with its ingredient reservation intact. Two fresh real Hermes/Flash sessions generated and completed the same chain using the independently installed archive. Their ledger reports ten provider API calls across the two manual sessions; automatic provider routes were blocked. [Sanitized evidence](verification/v215/collect-craft-chain.json).
+
+Those checks use fictional accounts and a needs fixture with zero initial materials. They do not prove every recipe, zero-start economic progression, full main/sub-Agent orchestration, all party templates, human play or physical devices. V214's source archive and installation remain immutable; this patch changes tests and documentation, not game runtime behavior.

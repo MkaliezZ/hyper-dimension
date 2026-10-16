@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v214-agent-source",
+  "release": "hyper-dimension-v215-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 74654,
-      "sha256": "57c0358cee2229c27f45f09bb5c6a0a4811f227f4bbd5bc5d0cf22c5ebc9f95e"
+      "bytes": 75341,
+      "sha256": "5ce59165bf94538f5d7555bfd17197b9973b8397264edbb7104554a623567955"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12984,
-      "sha256": "c0a14da83291b33d2e868baf530d46dcb6b8f9ba7f2bc89ef6aa02be73f0bc0f"
+      "bytes": 13021,
+      "sha256": "e2aec4d9345cb99fc6e7dfc4246d465aa67fd33266b5654ecb743b8d9d8250b7"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 8453,
-      "sha256": "236607f46bb0c2fa0de157906f696e409b4d136f6bac9f2503da26618b80ef1a"
+      "bytes": 9793,
+      "sha256": "012f50ca94542091b59110575997cbdad0f14dcd6a0e1ccad286a43284d2a247"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -12087,8 +12087,8 @@
     },
     {
       "path": "docs/queued-work-schedules-v214.md",
-      "bytes": 3086,
-      "sha256": "8a1f70703c89b30657c37790444e5ea03df2fe418d76eda0f1d82d143d277120"
+      "bytes": 3375,
+      "sha256": "398f0a3e39f29586e2475bcbc0cff0b2edeee8bc8cfea089362a1f1391f5c5d4"
     },
     {
       "path": "docs/verification/v214/real-queued-work.json",
@@ -12104,6 +12104,26 @@
       "path": "docs/recovery-return-link-v214.md",
       "bytes": 1823,
       "sha256": "49a793924e7cced5209b4632cb53db61fc3f2ec042a09f86b314e72b70dbe54e"
+    },
+    {
+      "path": "tests/workTimeBudget.mjs",
+      "bytes": 602,
+      "sha256": "740f19ab3a59df67494e441cf6cce8a51026c29d958415c3da2a8d6769826741"
+    },
+    {
+      "path": "tests/v215-task-work-budget.test.mjs",
+      "bytes": 1507,
+      "sha256": "1de83cb1b1fe90c696c109e6b8c52507f5a06955bd56205e15e6ffbeffe7e65d"
+    },
+    {
+      "path": "docs/task-chain-work-budget-v215.md",
+      "bytes": 2674,
+      "sha256": "1446a6b07f464f1315edeba35d652e09fcce1aa150528387a2ee8b5fd9f29e88"
+    },
+    {
+      "path": "docs/verification/v215/collect-craft-chain.json",
+      "bytes": 5756,
+      "sha256": "3a46e240c4c91e9774e75d325a734d95fa0ce5d4f5c558538cc4a811b9164b49"
     }
   ],
   "publicRevision": "v175-github"

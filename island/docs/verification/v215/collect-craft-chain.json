@@ -1,0 +1,227 @@
+{
+  "runtimeSourceCommit": "35625deb97296519448f43efed26316325c0edf3",
+  "archiveSha256": "26df2b6b893d1a264a00b3e94ed7725ecf2b2c0b1da9f65904a71724656704d1",
+  "payloadFilesUnchangedAfterRealCalls": 2417,
+  "passed": true,
+  "fictionalAccounts": true,
+  "zeroInitialMaterials": true,
+  "needsFixture": true,
+  "clockRate": 1,
+  "visualDaySeconds": 900,
+  "clockUnchanged": true,
+  "controlledCases": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "orderedOutputs": [
+        {
+          "wood": 4
+        },
+        {
+          "c0_7": 1
+        },
+        {
+          "wood": 2
+        }
+      ],
+      "craftCost": {
+        "wood": 3
+      },
+      "midChainReload": true,
+      "freshBrowserRecovery": true
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "orderedOutputs": [
+        {
+          "wood": 4
+        },
+        {
+          "c0_7": 1
+        },
+        {
+          "wood": 2
+        }
+      ],
+      "craftCost": {
+        "wood": 3
+      },
+      "midChainReload": true,
+      "freshBrowserRecovery": true
+    }
+  ],
+  "faultCases": [
+    {
+      "theme": "pixel",
+      "lostCommittedReplyReconciledOnce": true,
+      "pausedAcrossReloadWithReservation": false,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "lostCommittedReplyReconciledOnce": false,
+      "pausedAcrossReloadWithReservation": true,
+      "passed": true
+    }
+  ],
+  "actualManualSessions": 2,
+  "actualProviderUsage": {
+    "calls": 10,
+    "totalTokens": 253789,
+    "unknownCalls": 0
+  },
+  "automaticProviderRuns": 0,
+  "realCases": [
+    {
+      "theme": "pixel",
+      "model": "deepseek-flash",
+      "commands": [
+        {
+          "id": "b23f6c4f9e98431f86589bcad85a53dd",
+          "npcId": 5,
+          "goal": "forest",
+          "resource": "wood",
+          "recipeId": null,
+          "buildingId": null,
+          "quantity": 4,
+          "dependsOn": []
+        },
+        {
+          "id": "be6c31e573754578b091686fc576238c",
+          "npcId": 5,
+          "goal": "workshop",
+          "resource": null,
+          "recipeId": "recipe_c0_7",
+          "buildingId": 0,
+          "quantity": 1,
+          "dependsOn": [
+            "b23f6c4f9e98431f86589bcad85a53dd"
+          ]
+        },
+        {
+          "id": "80b40f6487964e8fa2e1ad45c7984bb1",
+          "npcId": 5,
+          "goal": "forest",
+          "resource": "wood",
+          "recipeId": null,
+          "buildingId": null,
+          "quantity": 2,
+          "dependsOn": [
+            "be6c31e573754578b091686fc576238c"
+          ]
+        }
+      ],
+      "physicalReceipts": [
+        {
+          "assignmentId": "b23f6c4f9e98431f86589bcad85a53dd",
+          "requestId": "f7cbe7b0-2c5b-4baf-8e7b-a8a4399b50da",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "b23f6c4f9e98431f86589bcad85a53dd",
+          "requestId": "48048038-4eea-4bae-a44e-07f0bd95e010",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "be6c31e573754578b091686fc576238c",
+          "requestId": "1e317622-8ff0-4b62-9ea2-8ce200db1af6",
+          "gain": {
+            "c0_7": 1
+          }
+        },
+        {
+          "assignmentId": "80b40f6487964e8fa2e1ad45c7984bb1",
+          "requestId": "5b2ebc1c-75e5-48b4-a241-07458e52b7ff",
+          "gain": {
+            "wood": 2
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "model": "deepseek-flash",
+      "commands": [
+        {
+          "id": "dd773073d0c14d78ab6da21e836f48b3",
+          "npcId": 5,
+          "goal": "forest",
+          "resource": "wood",
+          "recipeId": null,
+          "buildingId": null,
+          "quantity": 4,
+          "dependsOn": []
+        },
+        {
+          "id": "aae5196db3804180bbefe4cb8fc9f63c",
+          "npcId": 5,
+          "goal": "workshop",
+          "resource": null,
+          "recipeId": "recipe_c0_7",
+          "buildingId": 0,
+          "quantity": 1,
+          "dependsOn": [
+            "dd773073d0c14d78ab6da21e836f48b3"
+          ]
+        },
+        {
+          "id": "c551728f57e8487eb7d27e0e9606be00",
+          "npcId": 5,
+          "goal": "forest",
+          "resource": "wood",
+          "recipeId": null,
+          "buildingId": null,
+          "quantity": 2,
+          "dependsOn": [
+            "aae5196db3804180bbefe4cb8fc9f63c"
+          ]
+        }
+      ],
+      "physicalReceipts": [
+        {
+          "assignmentId": "dd773073d0c14d78ab6da21e836f48b3",
+          "requestId": "a0ba7bf8-4c5d-4a24-93e0-ded60486592a",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "dd773073d0c14d78ab6da21e836f48b3",
+          "requestId": "7e9aebc6-9128-4af8-8b55-bfc8254ff0ff",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "aae5196db3804180bbefe4cb8fc9f63c",
+          "requestId": "67e52751-c852-4cd8-949d-e999ded89a0a",
+          "gain": {
+            "c0_7": 1
+          }
+        },
+        {
+          "assignmentId": "c551728f57e8487eb7d27e0e9606be00",
+          "requestId": "0fb2ae5c-f18f-4c9c-9e55-80c78aa685b4",
+          "gain": {
+            "wood": 2
+          }
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "scopeExcludes": [
+    "all recipes",
+    "complete zero-start economy",
+    "full main/sub-Agent orchestration",
+    "all party templates",
+    "human or physical-device acceptance"
+  ],
+  "wholeGoalComplete": false
+}
