@@ -19,9 +19,9 @@ Join the same visitor room, then open **Personal steward → Steward exchange**.
 
 Each turn is executed by the authenticated owner's isolated Hermes process with `deepseek-flash`; messages link the two owners' run records. Only canonical public game facts are supplied. Information exchange grants no resource or document-write authority. Event preparation remains a separate capability. Conversations are limited to eight letters and thirty minutes, and stop on departure, withdrawn reception or invalid identity. Visiting AI residents use the existing conversation/relationship/home-memory system.
 
-**当前在同一个游戏服务器上运行。访客原设备的 Agent 及工作区桥接尚未完成；这不是任意第三方 A2A 服务自动互通的声明。**
+**当前在同一个游戏服务器上运行。原机 Agent 和工作区可经[原机连接](device-bridge-v138.md)配对；物理跨设备验收仍需完成。这不是任意第三方 A2A 服务自动互通的声明。**
 
-**These are isolated owner runtimes on one game server. The visitor's original-device Agent/workspace bridge is pending. This does not claim automatic interoperability with arbitrary third-party A2A servers.**
+**These are isolated owner runtimes on one game server. An original-device Agent/workspace can be paired through the device bridge; physical multi-device acceptance is still pending. This does not claim automatic interoperability with arbitrary third-party A2A servers.**
 
 ## 验证 / Verification
 

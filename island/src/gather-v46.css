@@ -34,3 +34,4 @@
 
 /* Text-only operation cards have no leading illustration column. */
 .gather-v46.recovery-text{grid-template-columns:minmax(0,1fr)}.gather-v46.recovery-text>div{min-width:0}.gather-v46.recovery-text strong{display:block}.gather-v46.recovery-text p{white-space:normal;overflow-wrap:anywhere}.gather-v46.recovery-text .gather-buttons{grid-column:auto}
+.recovery-actions{display:flex;flex-direction:column;gap:8px;max-width:100%}.recovery-actions button{white-space:normal}.recovery-actions [hidden],.recovery-read[hidden]{display:none!important}

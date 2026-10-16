@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v204-agent-source",
+  "release": "hyper-dimension-v205-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,13 +82,13 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 69934,
-      "sha256": "081cefd30bcf793778fd06ce837ebadcbcf247f322806a2f46450a6bbd7e5c68"
+      "bytes": 70427,
+      "sha256": "33112e85958695f63335005c2868ffe5ffed97d84e5746439e28f53ac83bd9d3"
     },
     {
       "path": "docs/a2a-information-v137.md",
-      "bytes": 3859,
-      "sha256": "fe2ec902f1781349740ed3c1e9e6086f99000a4847161fedec8581da9c2a88e4"
+      "bytes": 3976,
+      "sha256": "c4099f53fe0a8a612f632f05ad211c28d733cba2fbb4c64273f0d3a6acac223f"
     },
     {
       "path": "docs/a2a-standard-v158.md",
@@ -774,6 +774,11 @@
       "path": "docs/recovery-navigation-v150.md",
       "bytes": 1049,
       "sha256": "c1072f8cf7682b9f76a6717ba26bd5ed28214d46c7e202c15244edfb2e44a0a2"
+    },
+    {
+      "path": "docs/recovery-return-v205.md",
+      "bytes": 2137,
+      "sha256": "8fdb36dd6fb4ceda3993d62acab380c73c98acfe12ececa85bc15f6d2fbc3241"
     },
     {
       "path": "docs/recruitment-v140-verification.json",
@@ -2167,8 +2172,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12398,
-      "sha256": "50626858b9c515878c54ec0c151adf1e16a5e056afe6dfb1d4e685a6761d1504"
+      "bytes": 12666,
+      "sha256": "d1b23b027c3f2d99b36d658be12628fab5f3d8f982e06bcd3b72ad4ae0f64052"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6512,8 +6517,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 6148,
-      "sha256": "efc7110caf4baaaa0a63ea1aed9a04a7876ed1c1306c8aa775443110875bae61"
+      "bytes": 7725,
+      "sha256": "b86ad6ee34b6dc3818c13647050a3156212029d849e65e9bb2efa19160d7c7db"
     },
     {
       "path": "src/activityGames.js",
@@ -6532,8 +6537,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 143666,
-      "sha256": "f2605e6a650cc9a38dbaf140c3b8449cd71c801d3ef0af40ad86f91fdddfc964"
+      "bytes": 143799,
+      "sha256": "c37e731fed5f263850266a713832e60de8ecc0cc8008d5da4a0fa4e44c0b6f76"
     },
     {
       "path": "src/arcade.css",
@@ -7092,8 +7097,8 @@
     },
     {
       "path": "src/gather-v46.css",
-      "bytes": 6686,
-      "sha256": "b872962c67cf9728eece8746a5467dfc0b536458d9996ce371efdf176435b23f"
+      "bytes": 6880,
+      "sha256": "cb70f11744fcb15c9d9fdf559a045a97f9100697d5cbbca1c897083e07376c69"
     },
     {
       "path": "src/guestWorkArt.js",
@@ -7372,8 +7377,8 @@
     },
     {
       "path": "src/lanTravelUI.js",
-      "bytes": 3353,
-      "sha256": "7573b50eec322416d24d06821b9a73cabc4b19da34bd41c50d54785b03de566e"
+      "bytes": 3398,
+      "sha256": "c64eba1035072b38179178c7ac07261d45a2951eeb585a7ebdd9571a8a6d24d1"
     },
     {
       "path": "src/lanUI.js",
@@ -7922,8 +7927,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 31760,
-      "sha256": "7872481c365d9d41ddf2115b07bb7dc9971dbafb424ae19a6bbf6bc10af28148"
+      "bytes": 32851,
+      "sha256": "84694943026a9422ae086639b1351456938d3a1a401c27eb19a926a672308057"
     },
     {
       "path": "src/saveDelta.js",
@@ -9764,6 +9769,21 @@
       "path": "tests/v204-save-waiter.test.mjs",
       "bytes": 2962,
       "sha256": "99fd58b03175e34ead3da55f120fc065209b7b755eebeb627864b7e83a4b9233"
+    },
+    {
+      "path": "tests/v205-recovery-return-browser.mjs",
+      "bytes": 6879,
+      "sha256": "c2a81f6e3a5a8ac797d14c1e78de7687b2de3cf091e831fe060a13bdd3a8b5d3"
+    },
+    {
+      "path": "tests/v205-recovery-return.test.mjs",
+      "bytes": 4256,
+      "sha256": "2302ea15c2d0efce9d5570c596936861807dd7ef68da770c7f43ad824b440076"
+    },
+    {
+      "path": "tests/v205-visiting-party-browser.mjs",
+      "bytes": 6218,
+      "sha256": "12281a911fbcbd6df13c250bcdf23f57fb9bda65410360940dff5f4e4d671b7d"
     },
     {
       "path": "tests/v21-experience-qa.mjs",

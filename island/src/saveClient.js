@@ -316,7 +316,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   return retryImport(theme);
  }
 
- function acceptServer(theme){
+ function acceptServer(theme,{cancelActive=false,expectedActive=null}={}){
   const r=record(theme);if(read(importKey(theme)))return retryImport(theme);if(r.recoveryPromise)return r.recoveryPromise;
   const previousStatus=r.status;r.recovering=true;clearTimeout(r.timer);r.timer=null;
   status(r,'recovering','正在核对作业与服务端进度…');
@@ -336,10 +336,22 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    if(auto)await replay('save',auto.body);
    if(pending)await replay('action',pending.body);
-   const {document:doc}=await request(theme,'');
+   let {document:doc}=await request(theme,'');
    if(!doc?.state||!doc.version)throw Error('尚未取得有效的服务端进度，暂存已保留');
+   if(cancelActive&&doc.actions?.active){
+    const ticket=doc.actions.active,keys=['kind','requestId','epoch','sequence'];
+    if(!expectedActive||keys.some(k=>expectedActive[k]!==ticket[k]))throw Object.assign(Error('待恢复作业已经变化，请核对后选择继续或取消'),{code:'action_recovery_changed'});
+    // The separate, explicitly labelled return button cancels only the ticket
+    // the player saw. Journal its original identity before sending; a lost
+    // response is replayed by that same identity on the next recovery attempt.
+    const body={...Object.fromEntries(keys.map(k=>[k,ticket[k]])),operation:'cancel',expectedVersion:doc.version,clientId};
+    await journal.set(commandKey(theme),{body,baseDocument:{document:doc}});
+    const response=await request(theme,'action',body);doc=response.document;
+    if(!response.receipt||doc?.actions?.active)throw Error('取消结果尚未确认，作业记录已保留');
+   }
    r.state=doc.state;r.activeSeconds=0;r.dirty=false;await remember(r,doc);await cache(r);
    await forget(pendingKey(theme));await forget(commandKey(theme));await forget(autosaveKey(theme));
+   try{localStorage.removeItem('hyper-dimension-'+theme+'-emergency-save');}catch{}
    r.recovering=false;status(r,'saved','服务端进度已核对，即将继续');location.reload();
   })().catch(error=>{
    r.recovering=false;status(r,['conflict','blocked','offline','action_pending'].includes(previousStatus)?previousStatus:'action_pending','核对未完成 · '+(error.message||'请稍后重试'));throw error;
@@ -347,7 +359,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   return r.recoveryPromise;
  }
 
- function suspend(){for(const r of sessions.values())if(r.dirty&&!r.previewLock&&!r.previewPreparing&&!read(importKey(r.theme))){
+ function suspend(){for(const r of sessions.values())if(r.dirty&&!r.recovering&&!r.previewLock&&!r.previewPreparing&&!read(importKey(r.theme))){
   // pagehide can terminate a worker: retain a synchronous emergency journal only here.
   try{const serialized=JSON.stringify(r.state);if(!journal.enabled())storeLocal(r.theme,r.state,serialized);localStorage.setItem(journal.enabled()?'hyper-dimension-'+r.theme+'-emergency-save':pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(r.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(new Date().toISOString())+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+(baselineText(r)||'null')+'}');}catch{}
   cache(r).catch(()=>{});flush(r.theme).catch(()=>{});

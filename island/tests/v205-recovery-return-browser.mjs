@@ -1,0 +1,49 @@
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {chromium} from 'playwright-core';
+import {browserLaunchOptions} from './browserRuntime.mjs';
+import {createLanHttpServer} from '../server/lanServer.mjs';
+import {createZeroState} from '../src/freshStart.js';
+import {hydrateTown} from '../src/townSimulation.js';
+import {RECIPE_BY_ID} from '../src/contentCatalog.js';
+
+const out=resolve(process.env.HD_QA_OUT||'qa/v205/native-recovery-return');await mkdir(out,{recursive:true});
+const service=await createLanHttpServer({directory:await mkdtemp(join(out,'fictional-')),port:0,enrollmentKey:'RECOVERY-RETURN'}),base='http://127.0.0.1:'+service.port,browser=await chromium.launch(browserLaunchOptions());
+const report={scope:'Actual isolated LAN /play, fictional accounts, authoritative unfinished craft and NPC job. Native recovery UI cancels only the displayed unfinished craft; lost response replay, material reservation, three reloads and ordinary navigation checked. No user browser, data, injected time or provider calls.',cases:[],passed:false};
+try{
+ for(const theme of ['pixel','origami']){
+  const row={theme,errors:[],traffic:[],reloads:0};report.cases.push(row);
+  const account=await service.identities.register({login:'recover_return_'+theme,password:'fictional-password-only',name:'恢复验证岛主',islandName:'回执验证岛',avatar:'female_1',theme}),store=(await service.tenants.get(account.token)).saves,seed=hydrateTown(createZeroState()),recipe=RECIPE_BY_ID.recipe_c14_8;
+  seed.freshStartPending=false;seed.coins=100;for(const[id,n]of Object.entries(recipe.cost))seed.inventory[id]=n;
+  let doc=(await store.open(theme,{legacyState:seed,protect:true})).document;
+  const craft=await store.action(theme,{kind:'craft',operation:'begin',recipeId:recipe.id,mode:'auto',requestId:crypto.randomUUID(),expectedVersion:doc.version,epoch:doc.actions.epoch,expectedSequence:doc.actions.sequence});doc=craft.document;
+  const npc=await store.action(theme,{kind:'resident',operation:'begin',actorId:0,intent:{goal:'plaza',action:'rest'},requestId:crypto.randomUUID(),expectedVersion:doc.version,epoch:doc.actions.epoch,expectedSequence:doc.actions.sequence});
+  const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();
+  await context.addCookies([{name:'hd_lan_session',value:account.token,url:base,httpOnly:true,sameSite:'Strict'}]);
+  await context.route('**/api/**',r=>{const p=new URL(r.request().url()).pathname;return p.startsWith('/api/npc/')||p.startsWith('/api/hermes/')||p.endsWith('/suggest')||p==='/api/lan/social/tick'?r.fulfill({status:503,contentType:'application/json',body:'{"error":"Providers disabled in isolated recovery check"}'}):r.continue();});
+  let drop=theme==='origami';
+  await context.route('**/api/saves/*/action',async r=>{const body=r.request().postDataJSON();row.traffic.push({kind:body.kind,operation:body.operation,requestId:body.requestId});if(drop&&body.kind==='craft'&&body.operation==='cancel'){drop=false;await r.fetch();await r.abort('failed');}else await r.continue();});
+  page.on('pageerror',e=>row.errors.push(e.message));page.on('framenavigated',f=>{if(f===page.mainFrame())row.reloads++;});
+  const ready=()=>page.waitForFunction(()=>window.islandInspect?.().serverFacility?.ready&&window.islandInspect?.().serverVisitor?.ready&&!window.islandInspect().startup.busy&&!window.islandInspect().serverCraft.active&&document.querySelector('#saveStatus')?.dataset.status!=='recovering',null,{timeout:60000});
+  try{
+   await page.goto(base+'/play?qa=1');await page.locator('#recoveryReturn:visible').waitFor({timeout:60000});
+   assert.equal(await page.locator('#recoveryAll').isVisible(),false,'verified unfinished work must offer continue/cancel, not the same reload loop');
+   assert.equal(await page.locator('#serverCraft [data-recovery-read]').isVisible(),false);
+   assert(await page.locator('#craftRetry').isVisible());assert.match(await page.locator('.recovery-all p:not([data-recovery-error])').textContent(),/温室肥料/);
+   await page.setViewportSize({width:390,height:844});assert.equal(await page.locator('#actionRecoveryDock').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);await page.screenshot({path:join(out,theme+'-choices-390.png')});await page.setViewportSize({width:1440,height:1000});
+   await page.locator('#recoveryReturn').click();
+   if(theme==='origami'){await page.waitForFunction(()=>!document.querySelector('#actionRecoveryDock')?.hasAttribute('aria-busy'));assert.equal(row.reloads,1);assert(await page.locator('[data-recovery-error]').isVisible());assert.match(await page.locator('[data-recovery-error]').textContent(),/连接|fetch/i);await page.locator('#recoveryReturn').click();}
+   await ready();assert.equal(row.reloads,2,'one successful reconciliation reload');
+   let after=await store.current(theme);assert.equal(after.actions.active,null);assert.equal(after.actions.receipts.filter(r=>r.ticket.requestId===craft.ticket.requestId&&r.outcome==='cancelled').length,1);assert.equal(after.actions.receipts.filter(r=>r.ticket.requestId===npc.ticket.requestId&&r.outcome==='cancelled').length,1);
+   for(let round=0;round<3;round++){
+    await ready();await page.waitForTimeout(5500);assert.equal(await page.locator('#actionRecoveryDock:visible').count(),0);assert(!['conflict','blocked','action_pending'].includes(await page.locator('#saveStatus').getAttribute('data-status')));
+    await page.locator('#bagBtn').click();await page.locator('#closeModal').click();if(round<2)await page.reload();
+   }
+   after=await store.current(theme);assert.equal(after.actions.receipts.filter(r=>r.ticket.requestId===craft.ticket.requestId).length,1);assert.equal(after.state.inventory.c14_8||0,0);for(const[id,n]of Object.entries(recipe.cost))assert.equal(after.state.inventory[id],n);assert.deepEqual(row.errors,[]);await page.screenshot({path:join(out,theme+'-recovered.png')});row.lostResponseReplayed=theme==='origami';row.unfinishedWorkCancelledOnce=true;row.repeatedReloadsStable=3;row.passed=true;
+  }catch(e){row.failure=e.stack;row.diagnostic=await page.evaluate(()=>({startup:window.islandInspect?.().startup,status:document.querySelector('#saveStatus')?.dataset.status,cards:[...document.querySelectorAll('#actionRecoveryDock>.gather-v46:not(.hidden)')].map(x=>({id:x.id,text:x.textContent}))})).catch(()=>null);await page.screenshot({path:join(out,theme+'-failure.png')}).catch(()=>{});throw e;}
+  finally{await context.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));}
+ }
+ report.passed=true;
+}catch(e){report.failure=e.stack;process.exitCode=1;}
+finally{await browser.close();await service.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));}
