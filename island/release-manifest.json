@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 70905,
-      "sha256": "1a00d0aa088eff8bef7812afa6d09f4d91b8ebf53a1194e1f768906e33ca9e69"
+      "bytes": 71358,
+      "sha256": "7e7272814acb3a37ac2969f35d9f52cdbf75ac6df8007e0e2f6711a74bc4d8e0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9162,8 +9162,8 @@
     },
     {
       "path": "tests/v156-checkpoint-restart-browser.mjs",
-      "bytes": 9565,
-      "sha256": "23838d4f717f91294493820e285368f1bcf653399a06dd50a83493398720e2ef"
+      "bytes": 10076,
+      "sha256": "6e781fa2cf3558126e9ab40e44d8645605993aae600856463821a0cc9dc61437"
     },
     {
       "path": "tests/v156-pearl-cup-craft-browser.mjs",
@@ -9777,8 +9777,8 @@
     },
     {
       "path": "tests/v205-recovery-return-browser.mjs",
-      "bytes": 7946,
-      "sha256": "24c14b05b56f62e87b5318832159efbd7c0e8ec82fb259788381afc588262b39"
+      "bytes": 9024,
+      "sha256": "d86049014b1452c778a161c9e7f5deb51de697a1b5712a8f67619b6322babef4"
     },
     {
       "path": "tests/v205-recovery-return.test.mjs",
@@ -12009,6 +12009,11 @@
       "path": "vendor/wheels/websockets-15.0.1-cp311-cp311-win_amd64.whl",
       "bytes": 176828,
       "sha256": "27ccee0071a0e75d22cb35849b1db43f2ecd3e161041ac1ee9d2352ddf72f065"
+    },
+    {
+      "path": "docs/validation-startup-v207.md",
+      "bytes": 2158,
+      "sha256": "1e526e326d0e754296ff82c429fb2a73d7f3ba0e3a7d67e6007e3432f0cd83f5"
     }
   ],
   "publicRevision": "v175-github"

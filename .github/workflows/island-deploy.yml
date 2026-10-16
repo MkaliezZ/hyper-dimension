@@ -110,6 +110,8 @@ jobs:
             island/qa/v148/native-lobby/*.png
             island/qa/v196/gallery-backdrop/report.json
             island/qa/v196/gallery-backdrop/*.png
+            island/qa/v156/checkpoint-restart/report.json
+            island/qa/v156/checkpoint-restart/*.png
             island/qa/v157/modal-command-navigation/report.json
             island/qa/v157/modal-command-navigation/*.png
           if-no-files-found: ignore

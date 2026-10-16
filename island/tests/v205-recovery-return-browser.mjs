@@ -25,12 +25,20 @@ try{
   let documents=0;await context.route('**/play?qa=1',async r=>{if(++documents>1)await new Promise(resolve=>setTimeout(resolve,750));await r.continue();});
   await context.route('**/src/app.js',async r=>{const response=await r.fetch(),body=await response.text(),needle='configureActionRecovery(options=>saves.acceptServer(theme,options),';assert(body.includes(needle));await r.fulfill({response,body:body.replace(needle,"configureActionRecovery(async options=>{const oldState=state;const result=await saves.acceptServer(theme,options);sessionStorage.setItem('qa-recovery-late-checkpoint','1');saves.enqueue(theme,oldState);return result;},")});});
   await context.route('**/api/**',r=>{const p=new URL(r.request().url()).pathname;return p.startsWith('/api/npc/')||p.startsWith('/api/hermes/')||p.endsWith('/suggest')||p==='/api/lan/social/tick'?r.fulfill({status:503,contentType:'application/json',body:'{"error":"Providers disabled in isolated recovery check"}'}):r.continue();});
-  let drop=theme==='origami';
-  await context.route('**/api/saves/*/action',async r=>{const body=r.request().postDataJSON();row.traffic.push({kind:body.kind,operation:body.operation,requestId:body.requestId});if(drop&&body.kind==='craft'&&body.operation==='cancel'){drop=false;await r.fetch();await r.abort('failed');}else await r.continue();});
+  let drop=theme==='origami',releaseStartup=null,holdStartup=true,heldResolve;
+  const startupHeld=new Promise(resolve=>{heldResolve=resolve;});
+  await context.route('**/api/saves/*/action',async r=>{const body=r.request().postDataJSON();row.traffic.push({kind:body.kind,operation:body.operation,requestId:body.requestId});if(holdStartup&&body.kind==='resident'&&body.operation==='cancel'){holdStartup=false;const response=await r.fetch();await new Promise(resolve=>{releaseStartup=resolve;heldResolve();});return r.fulfill({response});}if(drop&&body.kind==='craft'&&body.operation==='cancel'){drop=false;await r.fetch();await r.abort('failed');}else await r.continue();});
   page.on('pageerror',e=>row.errors.push(e.message));page.on('framenavigated',f=>{if(f===page.mainFrame())row.reloads++;});
   const ready=()=>page.waitForFunction(()=>window.islandInspect?.().serverFacility?.ready&&window.islandInspect?.().serverVisitor?.ready&&!window.islandInspect().startup.busy&&!window.islandInspect().serverCraft.active&&document.querySelector('#saveStatus')?.dataset.status!=='recovering',null,{timeout:60000});
   try{
    await page.goto(base+'/play?qa=1');await page.locator('#recoveryReturn:visible').waitFor({timeout:60000});
+   // The craft card is mounted before later controllers finish recovering.
+   // Hold an actual resident receipt to exercise that interval deterministically.
+   let startupTimer;try{await Promise.race([startupHeld,new Promise((_,reject)=>{startupTimer=setTimeout(()=>reject(Error('Startup resident receipt never reached the hold barrier')),30000);})]);}finally{clearTimeout(startupTimer);}
+   assert.equal(await page.evaluate(()=>window.islandInspect().startup.busy),true);
+   assert.equal(holdStartup,false);assert.equal(typeof releaseStartup,'function');
+   row.startupReceiptHeld=true;releaseStartup();releaseStartup=null;
+   await page.waitForFunction(()=>window.islandInspect?.().startup.busy===false,null,{timeout:60000});
    assert.equal(await page.locator('#recoveryAll').isVisible(),false,'verified unfinished work must offer continue/cancel, not the same reload loop');
    assert.equal(await page.locator('#serverCraft [data-recovery-read]').isVisible(),false);
    assert(await page.locator('#craftRetry').isVisible());assert.match(await page.locator('.recovery-all p:not([data-recovery-error])').textContent(),/温室肥料/);
@@ -46,7 +54,7 @@ try{
    }
    after=await store.current(theme);assert.equal(after.actions.receipts.filter(r=>r.ticket.requestId===craft.ticket.requestId).length,1);assert.equal(after.state.inventory.c14_8||0,0);for(const[id,n]of Object.entries(recipe.cost))assert.equal(after.state.inventory[id],n);assert.deepEqual(row.errors,[]);await page.screenshot({path:join(out,theme+'-recovered.png')});row.lostResponseReplayed=theme==='origami';row.unfinishedWorkCancelledOnce=true;row.repeatedReloadsStable=3;row.passed=true;
   }catch(e){row.failure=e.stack;row.diagnostic=await page.evaluate(()=>({startup:window.islandInspect?.().startup,status:document.querySelector('#saveStatus')?.dataset.status,cards:[...document.querySelectorAll('#actionRecoveryDock>.gather-v46:not(.hidden)')].map(x=>({id:x.id,text:x.textContent}))})).catch(()=>null);await page.screenshot({path:join(out,theme+'-failure.png')}).catch(()=>{});throw e;}
-  finally{await context.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));}
+  finally{releaseStartup?.();await context.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));}
  }
  report.passed=true;
 }catch(e){report.failure=e.stack;process.exitCode=1;}
