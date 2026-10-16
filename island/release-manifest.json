@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 71358,
-      "sha256": "7e7272814acb3a37ac2969f35d9f52cdbf75ac6df8007e0e2f6711a74bc4d8e0"
+      "bytes": 71814,
+      "sha256": "62b7cd5bb45d1a3b6e793db67ebf0984cbfce97aefee35a61223823ad2d78d71"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7332,8 +7332,8 @@
     },
     {
       "path": "src/lanCommandRetry.js",
-      "bytes": 663,
-      "sha256": "f8c412dca8e7a4a213c4fe21a2d0d75bb71266656b0bd766fda4d00c4f978388"
+      "bytes": 699,
+      "sha256": "79f2434e7ec357b4178e2b7ba2a3c88da7c3b97218cd63b7b96c413c16105b5e"
     },
     {
       "path": "src/lanEconomyUI.js",
@@ -9617,8 +9617,8 @@
     },
     {
       "path": "tests/v194-move-retry.test.mjs",
-      "bytes": 1754,
-      "sha256": "d46a30487f1f8d77567a7a5c01064dafac6246efe734eee2e87373720f7f705a"
+      "bytes": 3215,
+      "sha256": "aca02f12eace64dbf26d03be1d5648a7fed166fa07239a9b62535107145c4f93"
     },
     {
       "path": "tests/v194-result-pacing-browser.mjs",
@@ -9787,8 +9787,8 @@
     },
     {
       "path": "tests/v205-visiting-party-browser.mjs",
-      "bytes": 6218,
-      "sha256": "12281a911fbcbd6df13c250bcdf23f57fb9bda65410360940dff5f4e4d671b7d"
+      "bytes": 8198,
+      "sha256": "b36e8dcdca2965c410db6b5e624b9c5fe80b0cb6fc25d132bc5d929669ae261a"
     },
     {
       "path": "tests/v206-recovery-navigation.test.mjs",
@@ -12014,6 +12014,11 @@
       "path": "docs/validation-startup-v207.md",
       "bytes": 2158,
       "sha256": "1e526e326d0e754296ff82c429fb2a73d7f3ba0e3a7d67e6007e3432f0cd83f5"
+    },
+    {
+      "path": "docs/guest-departure-v209.md",
+      "bytes": 2078,
+      "sha256": "0ff52c0c05805e8909f851e8c4501ec00ae2a178bc40d18c2e2a81f3e0a2e8cc"
     }
   ],
   "publicRevision": "v175-github"
