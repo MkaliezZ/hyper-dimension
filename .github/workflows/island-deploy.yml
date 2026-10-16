@@ -278,6 +278,9 @@ jobs:
       - name: Native independent receipt and close recovery
         run: node tests/v170-reward-drain-browser.mjs
 
+      - name: Browser save waiter and authoritative craft ordering
+        run: node tests/v204-save-waiter-browser.mjs
+
       - name: Native greenhouse soil care
         run: node tests/v159-soil-care-browser.mjs
 
@@ -311,5 +314,6 @@ jobs:
             island/qa/v179/npc-work/*.png
             island/qa/v203/native-scene-return/report.json
             island/qa/v203/native-scene-return/*.png
+            island/qa/v204/browser-save-waiter/report.json
           if-no-files-found: ignore
           retention-days: 3

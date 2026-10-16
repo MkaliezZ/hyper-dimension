@@ -231,6 +231,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   if(envelope&&(envelope.body.requestId!==input.requestId||envelope.body.operation!==input.operation))throw Object.assign(Error('另一次作业结果待核对，请先重试'),{code:'action_pending'});
   if(!envelope){
    await flush(theme);
+   // A flush waiter can start its next save before this outer await resumes.
+   // Drain that actual flight before reserving the command's acknowledged version.
+   while(r.inflight)await r.inflight;
    // Reserve the acknowledged version before durable cache/worker calls yield.
    // A timer may otherwise save a newer version before this command is sent.
    r.commandSending=true;clearTimeout(r.timer);r.timer=null;

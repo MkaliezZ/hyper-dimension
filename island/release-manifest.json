@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v203-agent-source",
+  "release": "hyper-dimension-v204-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 69265,
-      "sha256": "ca53ab196085a3dd1a930f184b50b40635c5ac8d20368172c5cba2dfe1d2a321"
+      "bytes": 69934,
+      "sha256": "081cefd30bcf793778fd06ce837ebadcbcf247f322806a2f46450a6bbd7e5c68"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -849,6 +849,11 @@
       "path": "docs/save-recovery-v115.md",
       "bytes": 3202,
       "sha256": "46f091bfd995018271fa1ae87c47e1bd58a0e59cb02a7ac4ae948ed65c0b46ce"
+    },
+    {
+      "path": "docs/save-waiter-v204.md",
+      "bytes": 1559,
+      "sha256": "0fffa751e56d7ecf9b676727db155c4be3d9d8d1c5ee54d8a430f08abb7e996e"
     },
     {
       "path": "docs/scene-return-v203.md",
@@ -2162,8 +2167,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12220,
-      "sha256": "3aab3d50b5de74be1f66683e7c19a700b8f7082f3b514bcb5f57c0c66b07914a"
+      "bytes": 12398,
+      "sha256": "50626858b9c515878c54ec0c151adf1e16a5e056afe6dfb1d4e685a6761d1504"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7917,8 +7922,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 31560,
-      "sha256": "62eb4a52239e947857980e1c4c88dfc490eb7e3f0913d5d45c7d04a12d28f5fe"
+      "bytes": 31760,
+      "sha256": "7872481c365d9d41ddf2115b07bb7dc9971dbafb424ae19a6bbf6bc10af28148"
     },
     {
       "path": "src/saveDelta.js",
@@ -9177,8 +9182,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 13254,
-      "sha256": "bb067aa0610131dc442c54a2977cac6f140fd4e81c03cb0cfba5f004d303ceae"
+      "bytes": 14275,
+      "sha256": "fd663eb250687ac8c27aefd2470952e279ebdc1a4383fdf117c276d3b285a2b6"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -9749,6 +9754,16 @@
       "path": "tests/v203-scene-return-browser.mjs",
       "bytes": 7311,
       "sha256": "daff84641f9296117187937bb003c48e1848761bc9ef177435e4975f056c0edc"
+    },
+    {
+      "path": "tests/v204-save-waiter-browser.mjs",
+      "bytes": 6026,
+      "sha256": "9aab59a1f92543ed75a6175efa944ef5c88cad05e2c91a27742b922c7a272a86"
+    },
+    {
+      "path": "tests/v204-save-waiter.test.mjs",
+      "bytes": 2962,
+      "sha256": "99fd58b03175e34ead3da55f120fc065209b7b755eebeb627864b7e83a4b9233"
     },
     {
       "path": "tests/v21-experience-qa.mjs",
