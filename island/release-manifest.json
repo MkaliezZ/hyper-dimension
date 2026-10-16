@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v227-agent-source",
+  "release": "hyper-dimension-v229-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 82169,
-      "sha256": "282b0bbd658d82f096d6126981406f290c24cd0236b2d047cc1f40b8bc0d10ff"
+      "bytes": 82547,
+      "sha256": "3de92676687a21743aa8c4e3c8f535ea9e788d05fc6b6c776d9dccfd0c0fcbd0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13534,
-      "sha256": "cd8ca7a942ea5ecc32cb17c13f1ad91f3927f321384c8e3cfdb907acee8bc0e3"
+      "bytes": 13613,
+      "sha256": "339b16a436c1765ea780bef5aa8748c52ddb011323a6a5dd296c9c0fc4a3a259"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6522,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 11521,
-      "sha256": "932ff329cc9b8847fa884b4721d5db453ecec4507a1a199dc32fb2892d3e44fe"
+      "bytes": 11452,
+      "sha256": "19340cc9a1e0315f14113347cf6975e85f278127ea989e90bfdcc71b7e11f150"
     },
     {
       "path": "src/activityGames.js",
@@ -7102,8 +7102,8 @@
     },
     {
       "path": "src/gather-v46.css",
-      "bytes": 7548,
-      "sha256": "dae32309b5053561581a89f572cc151f4cc69b3ed46b34950308f33ad7374a87"
+      "bytes": 7691,
+      "sha256": "77a21a6dee253678aab85409bccd5dca92072688dee5a747c648905519f8a9da"
     },
     {
       "path": "src/guestWorkArt.js",
@@ -12454,6 +12454,21 @@
       "path": "docs/verification/v227/custom-agent.json",
       "bytes": 2584,
       "sha256": "e5509bf9d307f07ee2a673434a6b838296bade795666c7d2037bc76a555a5e2e"
+    },
+    {
+      "path": "tests/v229-recovery-controls-browser.mjs",
+      "bytes": 7543,
+      "sha256": "0acaa2ef9c1548dddc0b5b85b3baf1576aeb7ab8ac2977975188bbe3decf2db5"
+    },
+    {
+      "path": "docs/recovery-controls-v229.md",
+      "bytes": 1437,
+      "sha256": "9702f056a6b815db49242b03bf1b1c71d1cfc2cd8748f8c4ec46734d33a8aeab"
+    },
+    {
+      "path": "docs/verification/v229/recovery-controls.json",
+      "bytes": 1318,
+      "sha256": "665bf56dac9984c7e360f2c554b1dd5b20ffabfb2d481d37393561d16fc1dff5"
     }
   ],
   "publicRevision": "v226-github"

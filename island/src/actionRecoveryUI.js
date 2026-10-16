@@ -26,7 +26,7 @@ function remember(el,value){if(!original.has(el))original.set(el,el.inert);el.in
 function restore(){for(const[el,value]of original)if(el.isConnected)el.inert=value;original.clear();}
 function sync(){
  restore();const state=recoveryState(),ticket=state?.active,verified=ticket&&!state.pending&&!['conflict','blocked','offline','action_pending'].includes(state.status);
- if(dock){dock.hidden=!active.size;const work=[...active].map(bar=>contexts.get(bar)),preparing=work.length&&work.every(c=>c?.canRecover===false),context=preparing?work[0]:null,title=dock.querySelector('.recovery-all strong'),message=dock.querySelector('.recovery-all p'),button=dock.querySelector('#recoveryAll');const t=state?.navigating?'进度已核对':context?.title||'恢复小岛进度',m=state?.navigating?'进度已确认，暂存副本已保留。如果没有自动返回，请点击“返回小岛”。':context?.message||(state?.restartReady?'当前暂存已保留副本。若核对长时间无响应，可点击“重新进入并继续核对”；系统会保留原作业编号继续读取结果。':ticket?'「'+(ticket.name||'上次作业')+'」尚未完成。可以继续作业，或取消后回岛；未消耗的材料预留会解除。':'先核对已提交结果，再继续游玩。当前暂存会保留副本。');if(title.textContent!==t)title.textContent=t;if(message.textContent!==m)message.textContent=m;button.hidden=!!preparing||!!verified;dock.querySelector('#recoveryReturn').hidden=!ticket||!!preparing;}
+ if(dock){dock.hidden=!active.size&&!reading&&!state?.navigating;const work=[...active].map(bar=>contexts.get(bar)),preparing=work.length&&work.every(c=>c?.canRecover===false),context=preparing?work[0]:null,title=dock.querySelector('.recovery-all strong'),message=dock.querySelector('.recovery-all p'),button=dock.querySelector('#recoveryAll');const t=state?.navigating?'进度已核对':context?.title||'恢复小岛进度',m=state?.navigating?'进度已确认，暂存副本已保留。如果没有自动返回，请点击“返回小岛”。':context?.message||(state?.restartReady?'当前暂存已保留副本。若核对长时间无响应，可点击“重新进入并继续核对”；系统会保留原作业编号继续读取结果。':ticket?'「'+(ticket.name||'上次作业')+'」尚未完成。可以继续作业，或取消后回岛；未消耗的材料预留会解除。':'先核对已提交结果，再继续游玩。当前暂存会保留副本。');if(title.textContent!==t)title.textContent=t;if(message.textContent!==m)message.textContent=m;button.hidden=!!preparing||!!verified;dock.querySelector('#recoveryReturn').hidden=!ticket||!!preparing;}
  if(dock){const confirmed=state?.navigating===true,link=dock.querySelector('#recoveryOpenIsland'),canRestart=confirmed||state?.restartReady===true;dock.toggleAttribute('data-recovery-confirmed',confirmed);link.hidden=!canRestart;const linkText=confirmed?'返回小岛':'重新进入并继续核对';if(link.textContent!==linkText)link.textContent=linkText;if(canRestart&&(state?.restartURL?link.getAttribute('href')!==state.restartURL:!link.hasAttribute('href')))link.href=state?.restartURL||recoveryReturnURL();if(confirmed){
   dock.querySelector('#recoveryAll').hidden=true;dock.querySelector('#recoveryReturn').hidden=true;
   // An ordinary link retains a user-initiated way out if both automatic
@@ -34,14 +34,18 @@ function sync(){
   if(!link.hasAttribute('href'))link.href=recoveryReturnURL();
  }}
  if(dock){const progress=dock.querySelector('[data-recovery-progress]'),message=state?.status==='recovering'?state.message||'正在核对小岛进度…':'';progress.hidden=!message;if(progress.textContent!==message)progress.textContent=message;}
-  if(!active.size){observer?.disconnect();observer=null;if(suspendedDialogs.size)restoreNativeDialogs();return;}
+  if(!dock||!active.size&&!reading&&!state?.navigating){observer?.disconnect();observer=null;if(suspendedDialogs.size)restoreNativeDialogs();return;}
   suspendNativeDialogs();
  const header=dock.querySelector('.recovery-all'),check=header.querySelector('#recoveryAll');
- const label=state?.navigating?'进度已核对，正在回岛…':ticket?'核对作业回执':'核对进度并返回小岛';if(check.textContent!==label&&!reading)check.textContent=label;
+ const label=state?.navigating?'进度已核对，正在回岛…':reading?'正在核对，请稍候…':ticket?'核对作业回执':'核对进度并返回小岛';if(check.textContent!==label)check.textContent=label;
+ for(const button of header.querySelectorAll('button'))button.disabled=reading||state?.navigating===true;
  for(const bar of active){const button=bar.querySelector('[data-recovery-read]');if(button){button.hidden=!!verified;const text=ticket?'核对作业回执（保留未完成作业）':'核对进度并收起提示';if(button.textContent!==text)button.textContent=text;}}
  const allowed=[dock,document.getElementById('saveStatus'),document.getElementById('questToggle'),document.getElementById('businessToggle'),...(recoveryDialog?[document.getElementById('modalRoot')]:[])].filter(Boolean);
  function visit(el){if(['SCRIPT','STYLE','LINK'].includes(el.tagName))return;if(allowed.includes(el)){remember(el,false);return;}if(allowed.some(a=>el.contains(a))){remember(el,false);for(const child of el.children)visit(child);}else remember(el,true);}
  for(const el of document.body.children)visit(el);
+ // Controllers may mount or finish while reconciliation awaits a receipt.
+ // Inertness follows the recovery owner without overwriting their disabled flags.
+ if(reading)for(const bar of active)remember(bar,true);
 }
 function schedule(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;sync();});}
 export function lockActionUI(bar,context=null){
@@ -69,15 +73,12 @@ export async function readRecoveryProgress(bar,read,toast){
  if(reading)return;
  // The save dialog normally hides this dock. Every reconciliation must show
  // its waiting/error/re-entry controls, including reads started in that dialog.
- if(recoveryDialog)setRecoveryDialog(false);
  reading=true;
+ if(recoveryDialog)setRecoveryDialog(false);
  const errorStatus=bar.querySelector('[data-recovery-error]')||dock?.querySelector('[data-recovery-error]');if(errorStatus){errorStatus.hidden=true;errorStatus.textContent='';}
- const buttons=[...(dock?.querySelectorAll('button')||[])].map(button=>[button,button.disabled]);
- const main=dock?.querySelector('#recoveryAll'),label=main?.textContent;
- if(main)main.textContent='正在核对，请稍候…';dock?.setAttribute('aria-busy','true');
- for(const[button]of buttons)button.disabled=true;
+ dock?.setAttribute('aria-busy','true');sync();
  try{await read();}catch(error){const text=recoveryErrorMessage(error);const p=errorStatus||bar.querySelector('p');if(p){p.textContent=text;p.hidden=false;}toast?.(text);}
- finally{reading=false;const navigating=recoveryState()?.navigating;dock?.removeAttribute('aria-busy');if(main)main.textContent=navigating?'进度已核对，正在回岛…':label;for(const[button,disabled]of buttons)if(button.isConnected)button.disabled=!!navigating||disabled;}
+ finally{reading=false;dock?.removeAttribute('aria-busy');sync();}
 }
 
 export function configureActionRecovery(fn,state=()=>null){recoverAll=fn;recoveryState=state;}

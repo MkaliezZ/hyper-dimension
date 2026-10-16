@@ -307,6 +307,9 @@ jobs:
       - name: Native save-dialog recovery feedback and safe re-entry
         run: node tests/v223-recovery-feedback-browser.mjs
 
+      - name: Native recovery controls follow in-flight reads
+        run: node tests/v229-recovery-controls-browser.mjs
+
       - name: Native signed import and historical restore re-entry
         run: node tests/v226-save-replacement-browser.mjs
 
@@ -350,6 +353,8 @@ jobs:
             island/qa/v220/native-recovery-modal/*.png
             island/qa/v223/native-recovery-feedback/report.json
             island/qa/v223/native-recovery-feedback/*.png
+            island/qa/v229/recovery-controls/report.json
+            island/qa/v229/recovery-controls/*.png
             island/qa/v226/native-save-replacement/report.json
             island/qa/v226/native-save-replacement/*.png
             island/qa/v221/native-catalog-counts/report.json

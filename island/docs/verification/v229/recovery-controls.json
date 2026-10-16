@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "version": "V229",
+  "wholeGoalComplete": false,
+  "scope": "Recovery control lifetime only; original18 requirements remain4complete/14in_progress.",
+  "baseline": {
+    "validFailures": 2,
+    "reason": "New/mutating controller cards were still interactive while canonical recovery awaited its response."
+  },
+  "checks": {
+    "controls-final": {
+      "passed": true,
+      "cases": 2
+    },
+    "feedback-fixed": {
+      "passed": true,
+      "cases": 2
+    },
+    "modal-fixed": {
+      "passed": true,
+      "cases": 2
+    },
+    "return-final": {
+      "passed": true,
+      "cases": 2
+    }
+  },
+  "relatedDomainRules": 21,
+  "relatedDomainRulesPassed": true,
+  "originalUserTabRead": false,
+  "originalUserTabConfirmed": false,
+  "modelsCalled": false,
+  "humanAcceptance": false,
+  "physicalMacAcceptance": false,
+  "fixtureScope": "Actual isolated canonical conflicts, held then rejected read, actual retry/navigation/resources; additional UI-only cards exercise controller lifecycle, never game completion or rewards.",
+  "modifiedProductSource": {
+    "src/actionRecoveryUI.js": "19340cc9a1e0315f14113347cf6975e85f278127ea989e90bfdcc71b7e11f150",
+    "src/gather-v46.css": "77a21a6dee253678aab85409bccd5dca92072688dee5a747c648905519f8a9da"
+  }
+}

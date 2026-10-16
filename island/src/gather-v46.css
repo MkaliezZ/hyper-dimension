@@ -40,3 +40,6 @@
 
 /* Keep recovery navigation readable beside the progress explanation. */
 .recovery-all>div:first-child{min-width:0;flex:1}.recovery-actions{flex:0 0 176px}@media(max-width:600px){.recovery-actions{flex:1 0 100%;width:100%}}
+
+/* Pending cards remain visually inactive while their controller state updates. */
+#actionRecoveryDock>.gather-v46[inert] button{opacity:.55}

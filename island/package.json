@@ -67,6 +67,7 @@
     "test:night": "node --test tests/v200-night-lighting.test.mjs tests/v127-environment.test.mjs tests/v175-resident-schedule.test.mjs && node tests/v200-night-lighting-browser.mjs",
     "test:scene-return": "node --test tests/v203-save-command.test.mjs && node tests/v203-scene-return-browser.mjs",
     "test:save-order": "node --test tests/v203-save-command.test.mjs tests/v204-save-waiter.test.mjs && node tests/v204-save-waiter-browser.mjs",
+    "test:recovery-controls": "node tests/v229-recovery-controls-browser.mjs",
     "test:recovery-return": "node --test tests/recovery-20261006.test.mjs tests/v205-recovery-return.test.mjs tests/v206-recovery-navigation.test.mjs tests/v211-recovery-navigation.test.mjs && node tests/v205-recovery-return-browser.mjs",
     "test:visiting-party": "node tests/v205-visiting-party-browser.mjs"
   },
