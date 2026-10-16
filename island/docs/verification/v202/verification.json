@@ -1,0 +1,57 @@
+{
+  "version": "V202",
+  "economicPolicy": 202,
+  "normal25FacilityBudget": 72,
+  "openLegacyDayPreserved": true,
+  "startsFollowingDay": true,
+  "sourceSHA256": {
+    "src/economy.js": "d11e1a3782eddf7cd449806ccc8c3c05f6408555fee46cf38f189d9ea9364723",
+    "server/saveStore.mjs": "14f33882fe0fc7399d72024d9a5c8f1949308b12fdd61958ff82ad65ea4a71a5",
+    "tools/agent-deploy.mjs": "4a1424e469690f4550fc885cf38b2c992f0add416eb174c94ffe0d6ceaab8211",
+    "tools/agent-install.py": "23a488fcee4a100fd96ca4093877ffa6df18cc92ac3f8ee9a69e664ed8062bda"
+  },
+  "economicMatrix": {
+    "cases": 12,
+    "gameDaysPerCase": 60,
+    "stepSeconds": 0.2,
+    "modelsCalled": false,
+    "passed": true,
+    "syntheticPlayerInput": true,
+    "matureInitialStateSynthetic": true,
+    "humanAcceptance": false
+  },
+  "currentFrozenV201ProductionGames": {
+    "themes": 2,
+    "roomsPerTheme": 25,
+    "passed": true,
+    "resourcesGrantedByFixture": true,
+    "operatorReadsSolutions": true,
+    "legitimateUnsuccessfulRoundRetained": true,
+    "zeroCostNativeRetry": true,
+    "humanQualityAcceptance": false
+  },
+  "nativeOldSaveMigration": {
+    "themes": 2,
+    "passed": true,
+    "oldPolicy": 105,
+    "oldBudget": 84,
+    "newBudget": 72,
+    "fixtureTwoSettledDaysAnd880Seconds": true,
+    "historicalRowsPreserved": true,
+    "reloadPreserved": true,
+    "mobileWidth": 390
+  },
+  "offlinePreflight": {
+    "actualWindowsPython312RejectedBeforeWrites": true,
+    "actualWindowsPython311Accepted": true,
+    "online312Accepted": true,
+    "pythonBootstrapNegativeCases": 2,
+    "physicalMacAcceptance": false
+  },
+  "fullDefaultRules": {
+    "default": 1138,
+    "runtimeScope": 14,
+    "passed": true
+  },
+  "wholeGoalComplete": false
+}

@@ -18,7 +18,7 @@ Original soundtrack. Profiles and briefs are fictional; steward documents were p
 
 | Experience | What you can do |
 | --- | --- |
-| Run an island | 25 functional building types, 19 crops, 58 materials and 308 recipes. Gather, grow and craft goods for residents, visitors and events. |
+| Run an island | 25 functional building types, 19 crops, 58 materials and 308 recipes. Gather, grow and craft goods for residents, visitors and events. Mature islands earn a modest passive surplus. |
 | Meet AI residents | 15 residents with distinct jobs, personalities and relationships, free conversation and daily routines. |
 | Visit a home | Explore sixteen distinct homes shaped by their owners’ work and interests, try personal hobbies and keep a household journal. |
 | Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work and recruit a temporary Agent partner to share tasks. |
@@ -41,12 +41,12 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-On macOS, use `--python=python3` instead of `--python=python`. Open `http://127.0.0.1:4175/play` after launch.
+On macOS and Ubuntu, use `--python=python3` instead of `--python=python`. On Ubuntu, omit `--offline` to install online. Open `http://127.0.0.1:4175/play` after launch.
 
 Keep API keys in private `.env.local`. Rules mode works without a key. Back up and preserve `data/` and private configuration when updating. You can also give the source to any Agent with terminal access and ask it to follow [DEPLOYMENT.md](DEPLOYMENT.md) and [AGENTS.md](AGENTS.md).
 
 ## More
 
-[Deployment and configuration](DEPLOYMENT.md) · [Agents / A2A](docs/a2a-standard-v158.md) · [Downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [Education module](../README.education.md)
+[Deployment and configuration](DEPLOYMENT.md) · [OPC co-creation course (Chinese)](public/assets/cocreation/course-v1.md) · [Agents / A2A](docs/a2a-standard-v158.md) · [Downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [Education module](../README.education.md)
 
 Code is [MIT](LICENSE) licensed. See [third-party notices](THIRD_PARTY_NOTICES.md).

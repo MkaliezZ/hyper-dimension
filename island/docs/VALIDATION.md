@@ -485,3 +485,8 @@ V201 media: current V200 runtime visuals are newly exported at 1440p, with home 
 V201 course files now describe Agent deployment, independent accounts, one home workshop across styles, package exchange and real participant feedback. The environment check locates the current eight style/season terrain groups and validates both downloadable packs. No real class is claimed. The home-camera button no longer uses the old 768/512 coordinates: it resets to the actual world/room center. Four native new-start/gather/save/empty-browser recovery cases, including actual home-button center assertions, pass locally; independent final-archive installation is recorded separately. Follow-up Windows deployment passed at84f8f91, while both Mac Python lanes exposed a system-temp symlink in the new reset fixture. That fixture now resolves the real temp root, preserving production path protection; next hosted results remain necessary.
 
 V201 reference playback: ordinary bundled Chromium plays the complete30seconds/1800frames with0dropped frames, controls, language switch and no download/error. Default Edge headless on this host drops~303frames at a uniform~50presented frames/s; archivedV190 shows the same behavior. Hardware/software decoders and plain layout do not change the cap; an uncapped diagnostic presents1800/0. This boundary remains recorded and is not reclassified as universal browser smoothness.
+
+
+## V202 · 经营与离线部署
+
+[经营策略与范围](economy-upkeep-v202.md)保留V201实际失败的12组对照；候选12组各60游戏日通过，成熟挂机均值为正。旧档两画风原生跨日/刷新/390px迁移通过，历史账单不改；1138默认与14运行范围规则通过。离线解释器预检在写入前拒绝不兼容版本，直接Python入口的负例也加入verify。当前不可变V201包另完成双画风25馆共50个实际制作/结算/刷新流程，材料与解法由测试提供，一次合法三消失败及零成本重开保留。上述均不代表真人娱乐性、完整组合经济、实体多设备、当前冻结版一小时或整个目标完成。

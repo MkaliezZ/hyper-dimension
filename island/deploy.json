@@ -36,7 +36,14 @@
     "python": {
       "minimum": "3.11",
       "maximumExclusive": "3.14",
-      "preferred": "3.11"
+      "preferred": "3.11",
+      "offline": {
+        "implementation": "CPython",
+        "version": "3.11",
+        "bits": 64,
+        "platforms": ["Windows x64", "macOS 14+ x64", "macOS 14+ arm64"],
+        "preflight": "doctor --offline --python=<executable>"
+      }
     },
     "hermes": {
       "version": "0.19.1",

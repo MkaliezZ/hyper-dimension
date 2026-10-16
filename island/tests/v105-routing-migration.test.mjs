@@ -5,12 +5,24 @@ import {createResidentRuntime} from '../src/residentRuntime.js';
 import {queueTask} from '../src/taskBoard.js';
 import {bootstrapSaveAuthority} from '../server/saveBootstrap.mjs';
 import {assertCommerceState,migrateEconomyPolicy} from '../server/commerceActions.mjs';
+import {ECONOMY_POLICY_VERSION} from '../src/economy.js';
+import {createSaveStore} from '../server/saveStore.mjs';
+import {mkdir,mkdtemp} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
 const policy=(s,b,version=32)=>{Object.assign(s.economy,{budgetPolicyVersion:version,budgetPolicyStartsDay:1,budgetPreviousVersion:26,daySeconds:105});b.commerce.snapshot.daySeconds=105;b.commerce.snapshot.policy=Object.fromEntries(Object.keys(b.commerce.snapshot.policy).map(k=>[k,s.economy[k]]));s.commerceControl.daySeconds=105;};
-test('server migration updates the protected policy snapshot, keeps world/clock/stock/receipts, and is idempotent',()=>{
- const s=hydrateTown(createState()),b=bootstrapSaveAuthority(s,'pixel',Date.now());policy(s,b);const before=structuredClone({coins:s.coins,stock:s.inventory,day:s.day,seconds:s.economy.daySeconds,receipts:b.receipts,epoch:b.epoch,lease:b.active,townDays:s.economy.townDays});
- assertCommerceState(s,b);assert.equal(migrateEconomyPolicy(s,b),true);assertCommerceState(s,b);assert.equal(s.economy.budgetPreviousVersion,32);assert.equal(s.economy.budgetPolicyStartsDay,2);assert.equal(b.commerce.snapshot.policy.budgetPolicyVersion,105);
+for(const version of [32,105])test('server migration from V'+version+' keeps protected world/clock/stock/receipts and is idempotent',()=>{
+ const s=hydrateTown(createState()),b=bootstrapSaveAuthority(s,'pixel',Date.now());policy(s,b,version);const before=structuredClone({coins:s.coins,stock:s.inventory,day:s.day,seconds:s.economy.daySeconds,receipts:b.receipts,epoch:b.epoch,lease:b.active,townDays:s.economy.townDays});
+ assertCommerceState(s,b);assert.equal(migrateEconomyPolicy(s,b),true);assertCommerceState(s,b);assert.equal(s.economy.budgetPreviousVersion,version);assert.equal(s.economy.budgetPolicyStartsDay,2);assert.equal(b.commerce.snapshot.policy.budgetPolicyVersion,ECONOMY_POLICY_VERSION);
  assert.deepEqual({coins:s.coins,stock:s.inventory,day:s.day,seconds:s.economy.daySeconds,receipts:b.receipts,epoch:b.epoch,lease:b.active,townDays:s.economy.townDays},before);
  const migrated=JSON.stringify([s,b]);assert.equal(migrateEconomyPolicy(s,b),false);assert.equal(JSON.stringify([s,b]),migrated);
+});
+
+test('opening a current-policy server save again does not repeat migration or increment its version',async()=>{
+ const base=resolve('qa/v202/policy-reopen');await mkdir(base,{recursive:true});const directory=await mkdtemp(join(base,'save-'));
+ const first=await createSaveStore({directory}).open('pixel',{protect:true});
+ const second=await createSaveStore({directory}).open('pixel',{protect:true});
+ assert.equal(first.document.state.economy.budgetPolicyVersion,ECONOMY_POLICY_VERSION);
+ assert.equal(second.document.version,first.document.version);assert.deepEqual(second.document.actions,first.document.actions);
 });
 test('server policy migration rejects a mismatched old ledger before changing anything',()=>{
  const s=hydrateTown(createState()),b=bootstrapSaveAuthority(s,'pixel',Date.now());policy(s,b);s.economy.budgetPreviousVersion=12;const before=JSON.stringify([s,b]);assert.throws(()=>migrateEconomyPolicy(s,b),e=>e.code==='commerce_state_conflict');assert.equal(JSON.stringify([s,b]),before);

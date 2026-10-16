@@ -29,6 +29,7 @@ import {assertPartyState} from './partyActions.mjs';
 import {assertHireState,recordHireDelivery,assertHireReplacement} from './hireActions.mjs';
 import {createRecruitmentStore} from './recruitmentStore.mjs';
 import {assertCommerceState,advanceCommerceClock,migrateEconomyPolicy} from './commerceActions.mjs';
+import {ECONOMY_POLICY_VERSION} from '../src/economy.js';
 import {assertVisitorState,advanceVisitorClock} from './visitorActions.mjs';
 import {assertResidentState} from './residentActions.mjs';
 import {assertFieldState,advanceFieldClock} from './fieldActions.mjs';
@@ -264,7 +265,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
      for(const id of missingOwnedDiscoveries(state))(state.discovered??={})[id]=true;
      doc=await commit(p,theme,state,doc,'resource-migration',clientId,actions);
     }
-    if(doc.state.economy?.budgetPolicyVersion!==105){await snapshot(p,doc,'before-economy-policy');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateEconomyPolicy(state,actions);doc=await commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);}
+    if(doc.state.economy?.budgetPolicyVersion!==ECONOMY_POLICY_VERSION){await snapshot(p,doc,'before-economy-policy');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateEconomyPolicy(state,actions);doc=await commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);}
     doc=await migrateCatalog(p,theme,doc,clientId);
     // V165: older NPC payouts could acknowledge stock before recording discovery.
     // Derive flags only from the verified canonical inventory, never the browser copy.

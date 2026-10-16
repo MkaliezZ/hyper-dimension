@@ -67,6 +67,7 @@ for(const theme of ['pixel','origami'])for(const mode of ['passive','active','up
   if(mode.startsWith('upgraded'))assert.ok(report.dailyProfitAcceleration<=8,'mature daily profit must not compound rapidly');
   if(active){assert.equal(orders,simulationDays);assert.ok(report.dailyOperatingNet>2&&report.dailyOperatingNet<=26,'one synthetic daily commission should improve income without an excessive surplus');assert.ok(report.incomeToFullCost<=1.20,'one daily commission must not exceed a 20% full-cost surplus');}
   else {assert.equal(orders,0);assert.ok(report.dailyOperatingNet>=-10&&report.dailyOperatingNet<=12,'passive operating surplus must grow slowly');assert.ok(report.incomeToFullCost>=.9&&report.incomeToFullCost<=1.08,'passive income must stay within 90–108% of full operating costs');}
+  if(mode==='upgraded-passive')assert.ok(report.dailyOperatingNet>0,'mature passive operation must keep a modest positive average after full costs');
  }catch(e){failures.push({theme,mode,message:e.message});}
  reports.push(report);console.log(JSON.stringify({...report,daily:undefined}));
  runtime.reset();visitors.reset();

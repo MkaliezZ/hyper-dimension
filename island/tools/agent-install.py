@@ -1,9 +1,15 @@
 """Agent source deployment: recreate the runtime on the target OS; no provider calls."""
-import json,sys,os,zipfile,stat,hashlib,subprocess,time
+import json,sys,os,zipfile,stat,hashlib,subprocess,time,platform,struct
 from pathlib import Path,PurePosixPath
 root=Path(__file__).resolve().parents[1];runtime=root/'.runtime';vendor=root/'vendor'
 offline='--offline' in sys.argv;verify_only='--verify-only' in sys.argv
 if not (3,11)<=sys.version_info[:2]<(3,14):raise RuntimeError('Use Python 3.11-3.13')
+if offline and not verify_only:
+    machine=platform.machine().lower()
+    native_windows=sys.platform=='win32' and machine in ('amd64','x86_64')
+    native_mac=sys.platform=='darwin' and machine in ('x86_64','arm64') and int((platform.mac_ver()[0] or '0').split('.')[0])>=14
+    if sys.version_info[:2]!=(3,11) or sys.implementation.name!='cpython' or struct.calcsize('P')!=8 or not (native_windows or native_mac):
+        raise RuntimeError('Offline installation requires CPython 3.11 (64-bit) on Windows x64 or macOS 14+ (x64/arm64). Select a compatible --python executable or omit --offline for an online installation.')
 python=runtime/'python'/('Scripts/python.exe' if os.name=='nt' else 'bin/python')
 hermes=runtime/'hermes-agent';metadata=json.loads((vendor/'python-wheels.json').read_text(encoding='utf-8'))
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()

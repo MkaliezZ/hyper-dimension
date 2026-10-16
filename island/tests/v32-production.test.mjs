@@ -11,7 +11,7 @@ import {availableQuantity,reserveResources,commitResources,validResourceLedger} 
 import {restoreTasks} from '../src/taskBoard.js';
 import {createResidentRuntime} from '../src/residentRuntime.js';
 import {followPath} from '../src/movement.js';
-import {townDailyBudget,tickTownEconomy} from '../src/economy.js';
+import {ECONOMY_POLICY_VERSION,townDailyBudget,tickTownEconomy} from '../src/economy.js';
 import {validateState} from '../server/saveStore.mjs';
 const fresh=()=>hydrateTown(createZeroState());
 const work=(s,i)=>purposeOptions(i,s,RESIDENTS[i]).find(x=>x.purposeId.startsWith('career:'));
@@ -20,7 +20,7 @@ test('premium upkeep migrates only after the current day and retains the accepte
  for(const f of Object.values(s.facilities)){f.quality=95;f.upgrades=4;f.condition=100;}
  const before=townDailyBudget(s);assert.equal(before.policyVersion,26);assert.equal(before.total,146);
  const migrated=hydrateTown(JSON.parse(JSON.stringify(s)));assert.equal(townDailyBudget(migrated).total,146);tickTownEconomy(migrated,1);
- assert.equal(migrated.economy.townDays.at(-1).budget,146);assert.equal(townDailyBudget(migrated).policyVersion,105);assert.equal(townDailyBudget(migrated).total,153);
+ assert.equal(migrated.economy.townDays.at(-1).budget,146);assert.equal(townDailyBudget(migrated).policyVersion,ECONOMY_POLICY_VERSION);assert.equal(townDailyBudget(migrated).total,141);
 });
 test('all 25 workshops supply and consume real products; full graph is bounded and acyclic',()=>{
  const cross=PRODUCTION_GRAPH.edges.filter(e=>e.from!==e.to);

@@ -10,26 +10,26 @@ import {validateState} from '../server/saveStore.mjs';
 const fresh=()=>hydrateTown(createState());
 
 test('15-minute budget protects working capital, has no debt, and active earnings do not inflate the bill',()=>{
- const s=fresh();assert.equal(townDailyBudget(s).total,84);const before=townDailyBudget(s);
+ const s=fresh();assert.equal(townDailyBudget(s).total,72);const before=townDailyBudget(s);
  transact(s,{income:100,category:'order',note:'manual work'});
  assert.deepEqual(townDailyBudget(s),before);
- const row=settleTownDay(s);assert.equal(row.paid,84);assert.equal(row.operatingNet,16);assert.equal(settleTownDay(s),false);
+ const row=settleTownDay(s);assert.equal(row.paid,72);assert.equal(row.operatingNet,28);assert.equal(settleTownDay(s),false);
  s.day++;s.coins=23;assert.equal(settleTownDay(s).paid,3);assert.equal(s.coins,20);
- s.day++;const reduced=settleTownDay(s);assert.equal(reduced.paid,0);assert.equal(reduced.deferred,84);
+ s.day++;const reduced=settleTownDay(s);assert.equal(reduced.paid,0);assert.equal(reduced.deferred,72);
  assert.equal(s.coins,20);
 });
 
 test('existing in-progress day keeps old bill; next day adopts new policy once across reload',()=>{
  let s=fresh();delete s.economy.budgetPolicyVersion;delete s.economy.budgetPolicyStartsDay;s.economy.daySeconds=899;s.coins=300;
  s=hydrateTown(JSON.parse(JSON.stringify(s)));assert.equal(townDailyBudget(s).total,18);
- tickTownEconomy(s,1);assert.equal(s.coins,282);assert.equal(s.day,2);assert.equal(townDailyBudget(s).total,84);
- s=hydrateTown(JSON.parse(JSON.stringify(s)));tickTownEconomy(s,900);assert.equal(s.coins,198);assert.equal(s.day,3);
+ tickTownEconomy(s,1);assert.equal(s.coins,282);assert.equal(s.day,2);assert.equal(townDailyBudget(s).total,72);
+ s=hydrateTown(JSON.parse(JSON.stringify(s)));tickTownEconomy(s,900);assert.equal(s.coins,210);assert.equal(s.day,3);
 });
 
 test('zero start earns admission without a cash prerequisite and never accrues debt',()=>{
  const s=hydrateTown(createZeroState());assert.equal(s.coins,0);
  const sale=settleVisit(s,{name:'旅人',budget:24},6,'zero-visitor',10);assert.equal(sale.net,2);
- const day=settleTownDay(s);assert.equal(day.paid,0);assert.equal(s.coins,2);assert.equal(day.deferred,84);
+ const day=settleTownDay(s);assert.equal(day.paid,0);assert.equal(s.coins,2);assert.equal(day.deferred,72);
  s.day++;assert.equal(settleTownDay(s).paid,0);assert.equal(s.coins,2);
 });
 

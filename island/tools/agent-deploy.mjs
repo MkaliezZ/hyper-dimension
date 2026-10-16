@@ -22,10 +22,17 @@ export function parseArguments(argv){const command=argv[0]||'plan',options={};if
  for(const a of argv.slice(1)){if(a==='--offline')options.offline=true;else if(/^--(?:python|mode|port|host)=.+$/.test(a)){const i=a.indexOf('=');options[a.slice(2,i)]=a.slice(i+1);}else throw Error('Unsupported argument');}
  return{command,options};
 }
-async function inspectPython(executable){try{const {stdout}=await exec(executable,['-c','import sys,json;print(json.dumps({"version":sys.version.split()[0],"executable":sys.executable,"major":sys.version_info.major,"minor":sys.version_info.minor}))'],{windowsHide:true,timeout:15000,maxBuffer:4096});const p=JSON.parse(stdout);return{...p,supported:p.major===3&&p.minor>=11&&p.minor<14};}catch{return{supported:false,error:'Python not available; supply --python=<executable> for Python 3.11-3.13'};}}
+async function inspectPython(executable){try{const {stdout}=await exec(executable,['-c','import sys,json,platform,struct;print(json.dumps({"version":sys.version.split()[0],"executable":sys.executable,"major":sys.version_info.major,"minor":sys.version_info.minor,"implementation":sys.implementation.name,"platform":sys.platform,"machine":platform.machine(),"bits":struct.calcsize("P")*8,"macos":platform.mac_ver()[0]}))'],{windowsHide:true,timeout:15000,maxBuffer:4096});const p=JSON.parse(stdout);return{...p,supported:p.major===3&&p.minor>=11&&p.minor<14};}catch{return{supported:false,error:'Python not available; supply --python=<executable> for Python 3.11-3.13'};}}
+export const OFFLINE_PYTHON_GUIDANCE='Offline installation requires CPython 3.11 (64-bit) on Windows x64 or macOS 14+ (x64/arm64). Select a compatible --python executable or omit --offline for an online installation.';
+export function offlinePythonCheck(p,targetPlatform=process.platform){
+ const machine=String(p.machine||'').toLowerCase(),native=p.platform===targetPlatform,windows=p.platform==='win32'&&['amd64','x86_64'].includes(machine),mac=p.platform==='darwin'&&['x86_64','arm64'].includes(machine)&&Number(String(p.macos||'').split('.')[0])>=14;
+ const passed=p.major===3&&p.minor===11&&p.implementation==='cpython'&&p.bits===64&&native&&(windows||mac);
+ return{name:'offline-wheels',passed,python:p.version||null,implementation:p.implementation||null,platform:p.platform||null,machine:p.machine||null,...(!passed?{reason:OFFLINE_PYTHON_GUIDANCE}:{})};
+}
 function run(executable,args,{root,env={},inherit=true}={}){return new Promise((accept,reject)=>{const child=spawn(executable,args,{cwd:root,windowsHide:true,shell:false,stdio:inherit?'inherit':'pipe',env:{...process.env,PYTHONUTF8:'1',PYTHONDONTWRITEBYTECODE:'1',...env}});child.on('error',reject);child.on('exit',(code,signal)=>code===0?accept():reject(Error('Command failed ('+(signal||code)+'): '+args[0])));});}
 export async function deploymentDoctor({root,python=process.platform==='win32'?'python':'python3',options={}}){
  const plan=deploymentPlan({root,...options}),interpreter=await inspectPython(python),checks=[{name:'Node',passed:nodeSupported(process.versions.node),version:process.versions.node},{name:'Python',passed:interpreter.supported,...interpreter}];
+ if(options.offline)checks.push(offlinePythonCheck(interpreter,plan.platform));
  for(const f of ['server.mjs','server/lanServer.mjs','package-lock.json','vendor/hermes-agent.zip','vendor/requirements-agent.lock'])checks.push({name:f,passed:existsSync(join(root,f))});
  let integrity;try{integrity=await verifyPayload(root);checks.push({name:'source-manifest',passed:integrity.target==='agent-source'});}catch{checks.push({name:'source-manifest',passed:false});}
  let configured=false;try{const text=await readFile(join(root,'.env.local'),'utf8');configured=/^\s*DEEPSEEK_API_KEY\s*=\s*[^#\s]+/m.test(text);}catch{}
@@ -63,6 +70,7 @@ export async function deployMain(argv,root=resolve(import.meta.dirname,'..')){
  if(!existsSync(plan.python)||!existsSync(join(plan.hermes,'run_agent.py')))throw Error('Run setup first; runtime is missing');
  if(command==='verify'){
   await run(plan.python,[join(root,'tools/agent-install.py'),'--verify-only'],{root});
+  await run(plan.python,[join(root,'tests/v202-offline-prerequisites.test.py')],{root});
   const pkg=JSON.parse(await readFile(join(root,'package.json'),'utf8')),testArgs=pkg.scripts.test.split(' ').slice(1);await run(process.execPath,testArgs,{root,env:{DEEPSEEK_API_KEY:''}});
   await run(process.execPath,[join(root,'tools/cocreation-check.mjs')],{root});
   console.log(JSON.stringify({verified:true,modelsCalled:false,scope:'payload + native runtime imports + default rules + course environment; not hardware/human acceptance'}));return;

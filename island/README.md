@@ -18,7 +18,7 @@
 
 | 玩法 | 内容 |
 | --- | --- |
-| 小岛经营 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。采集、种植、制作，为居民和游客提供商品与活动。 |
+| 小岛经营 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。采集、种植、制作，为居民和游客提供商品与活动；成熟经营保持缓慢的挂机收益。 |
 | AI 居民 | 15 位居民拥有不同职业、性格与关系，可以自由对话、工作和共同生活。 |
 | 居民的家 | 十六户独立住所，围绕主人的职业与爱好设计布局，走动探索、体验家中消遣、留下手账。 |
 | Agent 管家 | 自定义姓名与 12 套形象；通过 Hermes 处理现实工作，招募临时 Agent 伙伴分工协作。 |
@@ -41,7 +41,7 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-macOS 将 `--python=python` 换为 `--python=python3`。启动后打开 `http://127.0.0.1:4175/play`。
+macOS 和 Ubuntu 将 `--python=python` 换为 `--python=python3`；Ubuntu 还需去掉 `--offline`。启动后打开 `http://127.0.0.1:4175/play`。
 
 API 密钥保存在私有 `.env.local`；无密钥可体验规则模式。更新前备份并保留 `data/` 和私有配置。也可以把源码交给任意具备终端权限的 Agent，按 [部署指南](DEPLOYMENT.md) 与 [AGENTS.md](AGENTS.md) 完成部署。
 

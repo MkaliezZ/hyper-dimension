@@ -7,18 +7,18 @@ import {ALL_RECIPES,RECIPE_BY_ID,itemUse,commitRecipe,takeCraftNutrition} from '
 import {itemPurpose} from '../src/itemPurpose.js';
 const fresh=()=>hydrateTown(createState());
 test('daily operating budget charges once, keeps working capital and never builds debt',()=>{
- const s=fresh();assert.equal(townDailyBudget(s).total,84);assert.equal(projectedDayAccounts(s).projectedNet,-84);
- assert.equal(settleTownDay(s).paid,84);assert.equal(s.coins,36);assert.equal(settleTownDay(s),false);
- s.day++;s.coins=24;const row=settleTownDay(s);assert.equal(row.paid,4);assert.equal(row.deferred,80);assert.equal(s.coins,20);
- s.day++;assert.equal(settleTownDay(s).paid,0);assert.equal(s.coins,20);assert.equal(s.economy.costs,88);
+ const s=fresh();assert.equal(townDailyBudget(s).total,72);assert.equal(projectedDayAccounts(s).projectedNet,-72);
+ assert.equal(settleTownDay(s).paid,72);assert.equal(s.coins,48);assert.equal(settleTownDay(s),false);
+ s.day++;s.coins=24;const row=settleTownDay(s);assert.equal(row.paid,4);assert.equal(row.deferred,68);assert.equal(s.coins,20);
+ s.day++;assert.equal(settleTownDay(s).paid,0);assert.equal(s.coins,20);assert.equal(s.economy.costs,76);
 });
 test('active day progress survives reload with no offline or duplicate charge',()=>{
  assert.equal(ECONOMY_RULES.daySeconds,900);let s=fresh();tickTownEconomy(s,100);s=hydrateTown(JSON.parse(JSON.stringify(s)));
  assert.equal(s.day,1);assert.equal(s.coins,120);assert.equal(s.economy.daySeconds,100);
  tickTownEconomy(s,799);assert.equal(s.day,1);assert.equal(s.coins,120);assert.equal(s.economy.townDays.length,0);
  s=hydrateTown(JSON.parse(JSON.stringify(s)));assert.equal(s.economy.daySeconds,899);
- tickTownEconomy(s,1);assert.equal(s.day,2);assert.equal(s.coins,36);assert.equal(s.economy.townDays.length,1);
- s=hydrateTown(JSON.parse(JSON.stringify(s)));assert.equal(s.day,2);assert.equal(s.coins,36);
+ tickTownEconomy(s,1);assert.equal(s.day,2);assert.equal(s.coins,48);assert.equal(s.economy.townDays.length,1);
+ s=hydrateTown(JSON.parse(JSON.stringify(s)));assert.equal(s.day,2);assert.equal(s.coins,48);
 });
 test('automatic and purchased goods cannot fill personal orders; a real manual delivery pays once',()=>{
  let s=fresh();s.inventory.lantern=3;assert.equal(deliverTownOrder(s,1),false);

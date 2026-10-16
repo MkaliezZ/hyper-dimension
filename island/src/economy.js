@@ -3,7 +3,7 @@ import {relationshipInvitation} from './residentStories.js';
 import {availableQuantity,canSpendResources,commitResources} from './resourceLedger.js';
 import {ITEM_BY_ID} from './contentCatalog.js';
 // Game currency policy shared by browser and deterministic simulations.
-export const ECONOMY_POLICY_VERSION=105;
+export const ECONOMY_POLICY_VERSION=202;
 export const ECONOMY_RULES={ferryInterval:90,guestsPerBoat:2,maxGuests:6,serviceSeconds:12,partyFee:8,partyReward:20,partyPerfectBonus:2,daySeconds:900,cashReserve:20};
 export const SUPPLY_PACKS=[
  {id:'seeds',name:'播种补给',coins:18,items:{seed:5}},
@@ -13,7 +13,7 @@ export const SUPPLY_PACKS=[
 ];
 export function hydrateEconomy(s){
  s.economy??={};const e=s.economy;e.costs??=0;e.cashLedger??=[];e.cashReceipts??={};
- if(e.budgetPolicyVersion!==ECONOMY_POLICY_VERSION){const current=s.day<(e.budgetPolicyStartsDay||0)?e.budgetPreviousVersion:e.budgetPolicyVersion,previous=[12,26,32].includes(current)?current:12;e.budgetPreviousVersion=previous;e.budgetPolicyStartsDay=(Number.isFinite(e.daySeconds)&&e.daySeconds>0?(s.day||1)+1:s.day||1);e.budgetPolicyVersion=ECONOMY_POLICY_VERSION;}
+ if(e.budgetPolicyVersion!==ECONOMY_POLICY_VERSION){const current=s.day<(e.budgetPolicyStartsDay||0)?e.budgetPreviousVersion:e.budgetPolicyVersion,previous=[12,26,32,105].includes(current)?current:12;e.budgetPreviousVersion=previous;e.budgetPolicyStartsDay=(Number.isFinite(e.daySeconds)&&e.daySeconds>0?(s.day||1)+1:s.day||1);e.budgetPolicyVersion=ECONOMY_POLICY_VERSION;}
  e.accountingStartedDay??=s.day||1;e.townBudgetStartedDay??=s.day||1;e.daySeconds??=0;e.townDays??=[];e.playerGoods??={};e.orderIncome??=0;
  for(const f of Object.values(s.facilities||{})){f.condition??=100;f.operatingCosts??=0;f.upgrades=Math.max(0,Math.min(4,Math.floor(f.upgrades||0)));}
  return e;
@@ -78,9 +78,9 @@ export function venueService(id,quality){
 
 export function townDailyBudget(s){
  const ids=Object.values(s.buildings||{}).filter(id=>s.facilities[id]),upscale=ids.reduce((v,id)=>v+Math.max(0,(venueService(id,effectiveQuality(s.facilities[id]))?.price||4)-4),0);
- const policyVersion=s.day<(s.economy?.budgetPolicyStartsDay||0)?(s.economy?.budgetPreviousVersion||12):(s.economy?.budgetPolicyVersion||105),legacy=policyVersion===12;
+ const policyVersion=s.day<(s.economy?.budgetPolicyStartsDay||0)?(s.economy?.budgetPreviousVersion||12):(s.economy?.budgetPolicyVersion||ECONOMY_POLICY_VERSION),legacy=policyVersion===12;
  // Fixed 15-minute operating costs. Player orders and party income never increase this bill.
- const rows=[{name:'公共水电',coins:legacy?3:14},{name:'居民公共补给',coins:legacy?3:14},{name:'码头清洁与航务',coins:legacy?3:14},{name:'开放设施管理',coins:Math.ceil(ids.length*(legacy?.36:policyVersion===105?1.68:1.52))},{name:'优质体验设施养护',coins:Math.ceil(upscale*(legacy?.6:policyVersion===26?3:3.12))}];
+ const rows=[{name:'公共水电',coins:legacy?3:14},{name:'居民公共补给',coins:legacy?3:14},{name:'码头清洁与航务',coins:legacy?3:14},{name:'开放设施管理',coins:Math.ceil(ids.length*(legacy?.36:policyVersion===202?1.2:policyVersion===105?1.68:1.52))},{name:'优质体验设施养护',coins:Math.ceil(upscale*(legacy?.6:policyVersion===26?3:3.12))}];
  return {rows,total:rows.reduce((v,r)=>v+r.coins,0),policyVersion,startsDay:s.economy?.budgetPolicyStartsDay||s.day};
 }
 export function projectedDayAccounts(s){

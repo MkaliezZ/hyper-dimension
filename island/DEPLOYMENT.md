@@ -59,6 +59,8 @@ run以前台进程工作，适合Agent自己的后台执行工具/终端会话�
 
 Windows/macOS 14+ CPython3.11可用随包对应wheel与npm tarball：setup --offline。Python3.12/3.13及Linux需要本平台依赖，默认从固定版本下载；Windows专用依赖带平台条件，不能强装pywin32。setup不使用未固定的Hermes最新版。跨平台环境探测/路径/条件依赖与命令协议必须测试；Mac实体机器验证仍待。
 
+离线部署先运行 `node tools/agent-deploy.mjs doctor --offline --python=目标解释器`。检查会读取所选解释器的实际实现、版本、位数、平台与 macOS 版本；不兼容时在创建运行环境或写入存档目录之前返回 `offline-wheels` 原因。请指定 64 位 CPython 3.11，或移除 `--offline` 使用联网安装。直接运行 Python 安装脚本也会先执行相同范围的检查，避免出现已经解压 Hermes 才发现没有兼容 wheel 的半成品目录。
+
 完整R01–R18/F01–F28/30T范围保持。此前13:18:38截止未达成；最新两小时截止为2026-10-07 23:37:43（UTC+8），完整验收亦未按时完成，继续执行且不重新计时。程序可启动、专项通过不代表完整游戏质量/真人/一小时验收。
 
 ## 浏览器验收（Windows / macOS）

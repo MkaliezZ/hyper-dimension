@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v201-agent-source",
+  "release": "hyper-dimension-v202-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 17425,
-      "sha256": "4c51974749d892a77813bf3937ecdce181e55748337be7056387cf161e4f1c33"
+      "bytes": 17775,
+      "sha256": "b6201e50c74c9a509ff654afa87b6e117a00f36fe0c64e1e0be703274fecb246"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3209,
-      "sha256": "eb5f9d10a255ba915f846389f03632876c388e3fcda335f8a7bc4e39a5da799b"
+      "bytes": 3390,
+      "sha256": "bbdf7b834d6e921286e3084ea630a11c305c66b65f18aa06a7d31b9c4632688f"
     },
     {
       "path": "README.md",
-      "bytes": 3077,
-      "sha256": "c73588334cbfa6399451ed94be56383f1e4346256c27109d7455319e400970e3"
+      "bytes": 3164,
+      "sha256": "800a08cf191d347b25b4e90cffa434e2caa0a2011f0370d8cca6202ce2bc7147"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -62,8 +62,8 @@
     },
     {
       "path": "deploy.json",
-      "bytes": 1934,
-      "sha256": "b47f3ecf8a28168f81fdc2134beeec15e434dc19fdd4cde5553f9b46faa0e6c5"
+      "bytes": 2182,
+      "sha256": "b2d420cc13edb34da96669af6e203cef163587ced5196bfee4a159c3904731b3"
     },
     {
       "path": "docs/ASSETS.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 67288,
-      "sha256": "552364f2a0de9f2b4589c6ea3ad9ff2c09ad2645f904be76c3ee6eaac6f24516"
+      "bytes": 67987,
+      "sha256": "b8bb3cf1359343f8d5b8eb464702dd3721ce0af6c3d9f4087a17a59b86950383"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -144,6 +144,11 @@
       "path": "docs/device-bridge-v138.md",
       "bytes": 5232,
       "sha256": "d4077b036002b47ce496f93aa31972a89443432b8d5df371e01e95abd1cf8aeb"
+    },
+    {
+      "path": "docs/economy-upkeep-v202.md",
+      "bytes": 4858,
+      "sha256": "4ed1d97d8c5b2b0ac4474bbf55d5731121aab58525f64b46b24fd7b101f7702b"
     },
     {
       "path": "docs/economy-v143.md",
@@ -1609,6 +1614,21 @@
       "path": "docs/verification/v171/lobby-ground.json",
       "bytes": 3489,
       "sha256": "fb4c518a62aeab0bf78b9909a9738c2f955f06494e6732bf30bf1c2ae79eac36"
+    },
+    {
+      "path": "docs/verification/v202/economy-900s.json",
+      "bytes": 228856,
+      "sha256": "605ee58959d770184854cfdef0614f9069b3c4f7cf66ed12840159ac26c51dd6"
+    },
+    {
+      "path": "docs/verification/v202/economy-v201-baseline.json",
+      "bytes": 230668,
+      "sha256": "def95adc36eb6ff400bf3d7ccf305a861694e3ac7d55dc501e273b03024fe36e"
+    },
+    {
+      "path": "docs/verification/v202/verification.json",
+      "bytes": 1727,
+      "sha256": "9e876c01848a96fbcdb1ea025a6aacd7ce00ee697a59a5182f4e5287b359d1a1"
     },
     {
       "path": "docs/weather-life-v175.md",
@@ -6402,8 +6422,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 38070,
-      "sha256": "959a0a6d391952e434c1f2ff48204a6981b8d863a936c23ca0fa76baad3a861e"
+      "bytes": 38147,
+      "sha256": "14f33882fe0fc7399d72024d9a5c8f1949308b12fdd61958ff82ad65ea4a71a5"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -6777,8 +6797,8 @@
     },
     {
       "path": "src/economy.js",
-      "bytes": 10808,
-      "sha256": "5c4758dfac3a664c3ca1ee449521efe264cf273857200c2d9bc81a80fff34027"
+      "bytes": 10855,
+      "sha256": "d11e1a3782eddf7cd449806ccc8c3c05f6408555fee46cf38f189d9ea9364723"
     },
     {
       "path": "src/economyTrend.js",
@@ -8637,13 +8657,13 @@
     },
     {
       "path": "tests/v105-budget-policy.test.mjs",
-      "bytes": 2289,
-      "sha256": "9d4553fd07cd538ee06db6a6fb5be63c83419ac7802fc095e81df318d43960d3"
+      "bytes": 3421,
+      "sha256": "bb3985865e0095aabf05f34b9a9c350070dd13c7ba0f164859268c01f927181c"
     },
     {
       "path": "tests/v105-routing-migration.test.mjs",
-      "bytes": 4267,
-      "sha256": "76a71b635ae80391e78e7773fe05faf57cceec2cdfee765619653787419c59cf"
+      "bytes": 5141,
+      "sha256": "b726a6735b1ad478a523f3edffd332890400a2975206e97bcbbccbd4cb2e6ea6"
     },
     {
       "path": "tests/v106-recruitment-requests.test.mjs",
@@ -8838,7 +8858,7 @@
     {
       "path": "tests/v12-economy.test.mjs",
       "bytes": 5880,
-      "sha256": "a67bb76924226d1688fc7bc78b343b25d022fe9b149a04e7ba49098c473aacbf"
+      "sha256": "78edfef77f66852b14dac6e56cf20f82c365ddd7c9c291e29a4316e2d39e9fda"
     },
     {
       "path": "tests/v121-craft-definitions.test.mjs",
@@ -9711,6 +9731,11 @@
       "sha256": "fd52ff041497a3626fdc37280c8deb553a5c288e9bad5978657de894404f1584"
     },
     {
+      "path": "tests/v202-offline-prerequisites.test.py",
+      "bytes": 2321,
+      "sha256": "89be3c22a93761a75767449ff6ecf92631a83644e8c3a4b50742460bf95dca3a"
+    },
+    {
       "path": "tests/v21-experience-qa.mjs",
       "bytes": 10126,
       "sha256": "6ee8d3700776d99e53e8457f6fd15cd81c3057f6550f8319f1c5f984ef05c9ba"
@@ -9832,13 +9857,13 @@
     },
     {
       "path": "tests/v26-economy-simulation.mjs",
-      "bytes": 6318,
-      "sha256": "31b2f4112b7487a4571a927bd8064286796e615585d69c901953dd1c41522465"
+      "bytes": 6468,
+      "sha256": "08c7b5cb4735733b1b8cffa2869c3e6d8eac657483319f673d3ae5028fecd809"
     },
     {
       "path": "tests/v26-economy-wardrobe.test.mjs",
       "bytes": 4729,
-      "sha256": "7113635e77938b0e2b883fc52a3b049be67702e4011bf4dc80e095c9f3f4fb4a"
+      "sha256": "897d950b518cb950a703a65aad8f64429317ae34b708abe9c4c9035746e1577f"
     },
     {
       "path": "tests/v27-browser.mjs",
@@ -9962,8 +9987,8 @@
     },
     {
       "path": "tests/v32-production.test.mjs",
-      "bytes": 6949,
-      "sha256": "557c01c98a2fa541fc35f43ce67c833e9a86592ace1dbd6c6cc6f6423023d237"
+      "bytes": 6991,
+      "sha256": "4b13331e910c40de634dae796c10e4c5d1c2c535cb4ad3df414a0af11c5cdfc4"
     },
     {
       "path": "tests/v33-collections-browser.mjs",
@@ -11257,8 +11282,8 @@
     },
     {
       "path": "tests/v97-agent-deploy.test.mjs",
-      "bytes": 4599,
-      "sha256": "b6c8dda90f58584e26d222f81e3e5f1294da58e9626397ddf5eea660b6da2d84"
+      "bytes": 5573,
+      "sha256": "d1fdba9fd33a43d9bc6626a3f7276c2c8270760871e830f4905716b7b0708931"
     },
     {
       "path": "tests/v98-live-files.mjs",
@@ -11322,13 +11347,13 @@
     },
     {
       "path": "tools/agent-deploy.mjs",
-      "bytes": 8517,
-      "sha256": "c8e3589c06c80fd04bfa49de903392c902fab0e0a0ab0c9dd9930e771967edb6"
+      "bytes": 9720,
+      "sha256": "4a1424e469690f4550fc885cf38b2c992f0add416eb174c94ffe0d6ceaab8211"
     },
     {
       "path": "tools/agent-install.py",
-      "bytes": 4525,
-      "sha256": "0da1bd1ba57d9d05db829221d28d6e51832b2142ac66e2e70bfe9c2cb0a51fdf"
+      "bytes": 5166,
+      "sha256": "23a488fcee4a100fd96ca4093877ffa6df18cc92ac3f8ee9a69e664ed8062bda"
     },
     {
       "path": "tools/build-house-bounds.py",
