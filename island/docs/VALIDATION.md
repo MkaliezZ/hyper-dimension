@@ -564,3 +564,7 @@ The primary save store now uses its existing exclusive-open retry helper for tra
 ## V220 - Recovery input through native modal dialogs
 
 小游戏原生暂停／结算弹窗可能让其外部的恢复按钮无法收到点击。恢复面板现暂时收起这些模态弹窗，退出后仅恢复仍有效的原弹窗。双画风隔离 LAN 原生点击核对、暂存副本和服务端资源保留，以及弹窗生命周期检查通过；用户原页面因浏览器权限设置未读取，仍需刷新后确认。[复现和边界](recovery-modal-v220.md)。
+
+## V221 - Resident continuity and current catalog totals
+
+居民短等待按有效游戏时间延续；旧经历还原剩余时长，避免刷新后误等旧页面的数千秒。双画风隔离页面实际赴约、完成本地规则交谈、保存和刷新后保持新等待；当前目录数量显示与初版成就定义分别保留。模型调用间隔不变，完整自然长期故事与真人验收继续。[范围与复现](resident-continuity-v221.md)。

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v220-agent-source",
+  "release": "hyper-dimension-v221-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3508,
-      "sha256": "8226846ac020e62c3037cd2dcf9e95744fe36dd2d3614483f614c1b7c364f633"
+      "bytes": 3558,
+      "sha256": "91bc0bd081aac1deef2c320605df5e6066e30fb1adbb2f4775f5017ded029542"
     },
     {
       "path": "README.md",
-      "bytes": 3278,
-      "sha256": "080406a7d92ec89ced352cbff1523a325ae9a8bd794807747e0e74f65b124356"
+      "bytes": 3329,
+      "sha256": "6871f1e8ef8e5ac4a3be02ed4d755a6e9e693991826c3f9a72eaa77edebcb0cf"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 78172,
-      "sha256": "a2dc0333046c3a28ecaea7e1dfc7e1c1bad4721f8b0c3d182a31e638a99e67f9"
+      "bytes": 78635,
+      "sha256": "a70fff2418d89e240329767a71e04a321d7085cf36a620e94d52ed7735ab3222"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13350,
-      "sha256": "69261a6eb9a282bf285f35025d43d3ba4120466c7b7af65cd30eae93da2c3839"
+      "bytes": 13389,
+      "sha256": "2922f7091e2cde00124f0aa16794f18e717a4d4d0439ffc57fa8948afe995d34"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6687,8 +6687,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 17675,
-      "sha256": "86fe5ba0400e735e541e16ef7025bb9b5f1895423f6eb09dafa3e9f9a0c222fd"
+      "bytes": 17821,
+      "sha256": "737fee343014d5d3057637db2a82639fb4b3995be34832f00a9d49f63ffce825"
     },
     {
       "path": "src/conversationFallback.js",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 43715,
-      "sha256": "1129e29b442b115f835e717eb8b43cc8983a00e3bccb253df6b63a2e2de94526"
+      "bytes": 43827,
+      "sha256": "a741f7485a813cab90947bb4eca1935fb63666bc407945f0f28d6a08baa7b5ae"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8202,8 +8202,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 24689,
-      "sha256": "34d4fa3eff955e0cf69bbe4d3a9d5c8942948d9e105a8b93ec2194711f8af358"
+      "bytes": 25017,
+      "sha256": "5508c8254e3c8319c676b61ac645f3bdce8fefc7210d3b4d8c950577fdd4a0d3"
     },
     {
       "path": "src/ui-v16.css",
@@ -12192,8 +12192,8 @@
     },
     {
       "path": "tests/v217-resident-social-alternative.test.mjs",
-      "bytes": 2605,
-      "sha256": "096c45049db5950e84b4efe9a9593a3b86d294c7296cd3d7cef802d42e96f56c"
+      "bytes": 2693,
+      "sha256": "bf91cb0744f716d137fc35924c645ea6df2f414bce69d7035071a4137132b122"
     },
     {
       "path": "tests/v217-visitor-navigation.test.mjs",
@@ -12274,7 +12274,37 @@
       "path": "docs/verification/v220/recovery-modal.json",
       "bytes": 1459,
       "sha256": "2fd5d099683a86854a82a49ebe038052006d4c30b9ec33bb2bcc2c95a7c41f35"
+    },
+    {
+      "path": "src/residentCooldowns.js",
+      "bytes": 2742,
+      "sha256": "e1d04e6c2b4bc8b8a9d8f48b9f1e4b52c660abf2c0402045cbd7e71cbb8da72c"
+    },
+    {
+      "path": "tests/v221-resident-cooldowns.test.mjs",
+      "bytes": 6114,
+      "sha256": "b3aa030308bc888814ae92d3ee7714e7a02c359c1e7bb9284a56266ff73da2cc"
+    },
+    {
+      "path": "tests/v221-catalog-counts-browser.mjs",
+      "bytes": 5700,
+      "sha256": "fd77ea3be5add74e0e5e17510700ef12f58e2c02f008c2999463623d47b5c762"
+    },
+    {
+      "path": "tests/v221-resident-reentry-browser.mjs",
+      "bytes": 7505,
+      "sha256": "fdac3256ca2842ac9ea8c2c5e50db4561d403ac71cf5f9c4096ac0ea19ddc882"
+    },
+    {
+      "path": "docs/resident-continuity-v221.md",
+      "bytes": 3615,
+      "sha256": "9431959f7ca9f3afe947148d46617a3877840fe523627b6a6b86c614687dad7f"
+    },
+    {
+      "path": "docs/verification/v221/resident-continuity.json",
+      "bytes": 2956,
+      "sha256": "517c133860c217af237b5397ffc8e28a46c7b4fa07a6df78a145a6d016016506"
     }
   ],
-  "publicRevision": "v220-github"
+  "publicRevision": "v221-github"
 }

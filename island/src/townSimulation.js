@@ -1,4 +1,5 @@
 import {workApproachTopic} from './residentSocialTopics.js';
+import {residentCooldownRemaining,setResidentCooldown,residentHistoryAge} from './residentCooldowns.js';
 import {shopItemOffer} from './shopfronts.js';
 import {socialCandidates,socialBoundary,leisureOptions,routineFor,temperament} from './residentLife.js';
 import {chooseResidentCooperation,activityCooperationNeeds} from './residentCooperation.js';
@@ -25,7 +26,7 @@ function target(step){return typeof step==='number'?{goal:BUILDINGS[step].kind,b
 export const LEISURE_VENUES=[14,19,21,5,3,23,17,13,6,22,7,22,12,4,18,11,19];
 export function residentCrowd(s,bid,except=-1){return (s.npcPresence||[]).filter(n=>n.id!==except&&(n.inside===bid||n.buildingId===bid)).length}
 function crowdPenalty(s,bid,i){return bid==null?0:residentCrowd(s,bid,i)*12}
-function repeatPenalty(c,bid,time){const h=c.history.slice(-2);return bid!=null&&h.length&&h.every(x=>x.buildingId===bid)&&time-(h.at(-1).time||0)<90?20:0}
+function repeatPenalty(c,bid,time,s){const h=c.history.slice(-2);return bid!=null&&h.length&&h.every(x=>x.buildingId===bid)&&residentHistoryAge(s,h.at(-1),time)<90?20:0}
 function nextCareerProduction(recipe,s,path=[]){
  if(path.includes(recipe.item)||path.length>8)return {blocked:'制作依赖需要检查，先处理其他工作'};
  const gate=recipeGate(recipe,s);if(!gate.ready)return {blocked:gate.text};
@@ -59,41 +60,41 @@ export function availableMealQuantity(s,foodId,actorId){
  const earlier=(s.npcPresence||[]).filter(p=>p.id!==actorId&&p.mealFood===foodId&&!leased.has(p.id)&&(p.mealOrder<order||p.mealOrder===order&&p.id<actorId)).length;
  return Math.max(0,availableQuantity(s,foodId)-earlier);
 }
-export function mealOptions(i,s,r,time){const c=career(i,s),food=Object.values(ITEM_BY_ID).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableMealQuantity(s,x.id,i)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
+export function mealOptions(i,s,r,time){const c=career(i,s),food=Object.values(ITEM_BY_ID).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableMealQuantity(s,x.id,i)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time,s),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
  for(const [id,bid] of [['wheat',2],['mushroom',22],['strawberry',22]])if(availableMealQuantity(s,id,i)>0)food.push({...target(bid),action:'eat',activity:'eat',duration:10,foodId:id,purposeId:'need:food:'+id,score:94-crowdPenalty(s,bid,i),reason:bid===2?'用现有小麦煮粥，补充饱足':'去营地准备'+ITEMS[id][0]+'简餐'});
  if(needs(i,s).rations>0){const bid=[19,22,2].sort((a,b)=>crowdPenalty(s,a,i)-crowdPenalty(s,b,i)||Math.abs((LEISURE_VENUES[i]||0)-a)-Math.abs((LEISURE_VENUES[i]||0)-b))[0];food.push({...target(bid),action:'eat',activity:'eat',duration:9,foodId:'rations',purposeId:'need:rations',score:92-crowdPenalty(s,bid,i),reason:'找个空闲的休息位吃自备简餐'});}
  if(!food.length)food.push({goal:'forest',buildingId:null,resource:'mushroom',action:'work',activity:'gather',duration:8,purposeId:'need:food-supply',score:104,reason:'食物库存不足，先采集可做简餐的蘑菇'});
  return food.sort((a,b)=>b.score-a.score).slice(0,2);
 }
-export function socialVenue(i,partner,s,type,time=0){const a=CAREERS[i].route.filter(x=>typeof x==='number'),b=CAREERS[partner].route.filter(x=>typeof x==='number'),common=a.filter(x=>b.includes(x));const candidates=type==='dispute'?[11,9,22]:type==='negotiate'?[...common,11,9]:type==='reconcile'?[22,19,7,...common]:[...common,LEISURE_VENUES[i],LEISURE_VENUES[partner],21,22];const unique=[...new Set(candidates)].filter(x=>s.buildings[x]!==undefined);return unique.sort((x,y)=>crowdPenalty(s,x,i)+repeatPenalty(career(i,s),x,time)-crowdPenalty(s,y,i)-repeatPenalty(career(i,s),y,time)||candidates.indexOf(x)-candidates.indexOf(y))[0]??22;}
-export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),main=stepOption(i,s,r),options=residentStoryOptions(s,i).filter(o=>o.action!=='social'||time>(c.socialAfter||0)&&!socialBoundary(s,i,o.partnerId));
+export function socialVenue(i,partner,s,type,time=0){const a=CAREERS[i].route.filter(x=>typeof x==='number'),b=CAREERS[partner].route.filter(x=>typeof x==='number'),common=a.filter(x=>b.includes(x));const candidates=type==='dispute'?[11,9,22]:type==='negotiate'?[...common,11,9]:type==='reconcile'?[22,19,7,...common]:[...common,LEISURE_VENUES[i],LEISURE_VENUES[partner],21,22];const unique=[...new Set(candidates)].filter(x=>s.buildings[x]!==undefined);return unique.sort((x,y)=>crowdPenalty(s,x,i)+repeatPenalty(career(i,s),x,time,s)-crowdPenalty(s,y,i)-repeatPenalty(career(i,s),y,time,s)||candidates.indexOf(x)-candidates.indexOf(y))[0]??22;}
+export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),main=stepOption(i,s,r),options=residentStoryOptions(s,i).filter(o=>o.action!=='social'||residentCooldownRemaining(s,c,'social',time)<=0&&!socialBoundary(s,i,o.partnerId));
  if(n.energy<38)options.push({...target(19),action:'rest',activity:'rest',duration:14,purposeId:'need:energy',score:110-crowdPenalty(s,19,i)*.25,reason:'体力不足，回居民之家坐下休息'});
  if(n.hunger<42)options.push(...mealOptions(i,s,r,time),...teaFacilityOptions(s,i,time));
- main.score=(main.waiting?8:62)-crowdPenalty(s,main.buildingId,i)*.4;if(time<(c.retryAfter||0)&&main.buildingId===c.retryBuilding)main.score=5;options.push(main);
+ main.score=(main.waiting?8:62)-crowdPenalty(s,main.buildingId,i)*.4;if(residentCooldownRemaining(s,c,'retry',time)>0&&main.buildingId===c.retryBuilding)main.score=5;options.push(main);
  const traits=temperament(r),socialLow=traits.quiet?36:traits.outgoing?50:42;
  const candidates=socialCandidates(s,i,r).map(candidate=>({...candidate,topic:workApproachTopic(s,i,candidate.id,r,{...RESIDENTS[candidate.id],...s.npcProfiles?.[candidate.id]})}));
  candidates.sort((a,b)=>(b.rel.tension>12?2:b.topic?1:0)-(a.rel.tension>12?2:a.topic?1:0));
- if(time>(c.socialAfter||0))for(const candidate of candidates){
+ if(residentCooldownRemaining(s,c,'social',time)<=0)for(const candidate of candidates){
   const known=candidate.id,rel=candidate.rel;
-  if(pendingResidentStory(s,i,known)||time<=(career(known,s).socialAfter||0))continue;
+  if(pendingResidentStory(s,i,known)||residentCooldownRemaining(s,career(known,s),'social',time)>0)continue;
   if(n.social>=58&&!(rel.tension>12))break;
   const issue=rel.tension>12?'reconcile':rel.affection>12&&rel.trust>8&&candidate.romanceAllowed?'confession':rel.affinity<-6||candidate.topic?'dispute':main.reason.includes('先取得')&&rel.interactions>0&&rel.affinity>5?'negotiate':'friendship',bid=socialVenue(i,known,s,issue,time);
   options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:known,socialType:issue,socialTopic:issue==='dispute'?candidate.topic:null,purposeId:'relationship:'+known,score:(rel.tension>12?82:n.social<socialLow?76:40)-crowdPenalty(s,bid,i),reason:candidate.topic&&issue==='dispute'?candidate.topic.reason:'在'+BUILDINGS[bid].name+'与'+(s.npcProfiles?.[known]?.name||'同伴')+(issue==='reconcile'?'谈清上次分歧，尝试修复关系':issue==='confession'?'表达更亲近的心意':issue==='dispute'?'说明工作安排中仍有不同意见':issue==='negotiate'?'讨论物资分配与工作互助':candidate.familiar?'分享近期工作和生活':'聊聊彼此的工作，认识新的邻居')});break;
  }
  // Activity work is offered at normal decision boundaries, without extra model calls.
  const stories=s.residentStories,open=stories.episodes.filter(e=>['scheduled','meeting','working'].includes(e.status));
- if(i<15&&n.energy>38&&n.hunger>42&&time>(c.socialAfter||0)&&open.length<STORY_LIMITS.active&&!open.some(e=>e.people.includes(i))){
+ if(i<15&&n.energy>38&&n.hunger>42&&residentCooldownRemaining(s,c,'social',time)<=0&&open.length<STORY_LIMITS.active&&!open.some(e=>e.people.includes(i))){
   const groups=activityCooperationNeeds(s),partners=Array.from({length:15},(_,j)=>j).filter(j=>j!==i).sort((a,b)=>(relationship(s,i,b).trust||0)-(relationship(s,i,a).trust||0)||a-b);
   for(const j of partners){
    const p=s.npcPresence?.find(p=>p.id===j),nn=needs(j,s),rel=relationship(s,i,j),key=[i,j].sort((a,b)=>a-b).join('-');
-   if(p&&(p.meeting||p.assignment||p.partyControlled||p.recruitControlled)||nn.energy<=38||nn.hunger<=42||time<=(career(j,s).socialAfter||0)||rel.tension>12||rel.affinity< -6||socialBoundary(s,i,j)||open.some(e=>e.people.includes(j))||stories.lastPairDay[key]!==undefined&&s.day-stories.lastPairDay[key]<STORY_LIMITS.pairDays)continue;
+   if(p&&(p.meeting||p.assignment||p.partyControlled||p.recruitControlled)||nn.energy<=38||nn.hunger<=42||residentCooldownRemaining(s,career(j,s),'social',time)>0||rel.tension>12||rel.affinity< -6||socialBoundary(s,i,j)||open.some(e=>e.people.includes(j))||stories.lastPairDay[key]!==undefined&&s.day-stories.lastPairDay[key]<STORY_LIMITS.pairDays)continue;
    const proposal=chooseResidentCooperation(s,[i,j],{careers:CAREERS,groups,activityOnly:true});if(!proposal)continue;
    const bid=socialVenue(i,j,s,'negotiate',time),a=proposal.plans[i],b=proposal.plans[j];
    options.push({...target(bid),action:'social',activity:'social',duration:12,partnerId:j,socialType:'negotiate',purposeId:'activity-cooperation:'+j,score:73-crowdPenalty(s,bid,i),reason:'为「'+proposal.demand.name+'」与'+(s.npcProfiles?.[j]?.name||'同伴')+'商量分工：我准备'+ITEM_BY_ID[a.resource].name+'，对方准备'+ITEM_BY_ID[b.resource].name});break;
   }
  }
  const breakDue=(c.workSinceBreak||0)>=3||main.waiting||main.score<10;
- if(time>(c.personalAfter||0))options.push(...leisureOptions(s,i,r,{breakDue,mainWaiting:main.waiting,crowd:bid=>residentCrowd(s,bid,i)}));
+ if(residentCooldownRemaining(s,c,'personal',time)<=0)options.push(...leisureOptions(s,i,r,{breakDue,mainWaiting:main.waiting,crowd:bid=>residentCrowd(s,bid,i)}));
  options.sort((a,b)=>b.score-a.score);
  if(n.energy<20)return options.filter(o=>o.action==='rest');if(n.hunger<30)return options.filter(o=>o.action==='eat'||o.purposeId==='need:food-supply');return options;
 }
@@ -106,11 +107,11 @@ export function commitWork(i,d,s,time,options={}){
  return result;
 }
 function executeWork(i,d,s,time,{acceptedRecipe=null}={}){const n=needs(i,s),c=career(i,s);let result='',advance=true;
- function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){c.retryAfter=time+30;c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({day:s.day,daySeconds:s.economy?.daySeconds||0,time,goal:d.goal,buildingId:d.buildingId,action:d.action,purposeId:d.purposeId,result,source:d.source});c.history=c.history.slice(-16);return result;}
+ function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){setResidentCooldown(s,c,'retry',30,time);c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({day:s.day,daySeconds:s.economy?.daySeconds||0,time,goal:d.goal,buildingId:d.buildingId,action:d.action,purposeId:d.purposeId,result,source:d.source});c.history=c.history.slice(-16);return result;}
  if(d.facilityId){const b=s.functionalFacilities,r=functionalCommand(s,{commandId:d.operationId||('npc-tea:'+i+':'+time),displayId:d.facilityId,action:'sip',expectedRevision:b?.revision});if(!r.ok)return complete(r.reason,false);if(!r.replayed){n.hunger=Math.min(100,n.hunger+22);n.energy=Math.min(100,n.energy+7);n.social=Math.min(100,n.social+2);n.mood='温暖';}return complete('在岛上的暖手茶炉享用花茶 · 余量实际减少一杯');}
  if(d.action==='rest'){n.energy=Math.min(100,n.energy+42);n.mood='放松';return complete('在居民之家休息，恢复体力')}
  if(d.action==='eat'){let item=d.foodId;if(!item)item=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';if(item==='rations'){if(n.rations<1)return complete('自备简餐已用完，需要准备食物',false);n.rations--;n.hunger=Math.min(100,n.hunger+40);result='吃一份自备简餐（剩余 '+n.rations+' 份）';}else{const info=ITEM_BY_ID[item],valid=info&&(info.category==='food'&&[1,2,17].includes(info.building)||['wheat','mushroom','strawberry'].includes(item));if(!valid||!commitResources(s,{owner:d.resourceOwner||null,cost:{[item]:1},category:'resident_meal',note:'居民 '+i}).ok)return complete('选定餐点已售罄或预留，重新选择食物',false);n.hunger=Math.min(100,n.hunger+(info.building===1?22:38));result='享用'+ITEMS[item][0];}n.energy=Math.min(100,n.energy+7);n.mood='满足';return complete(result)}
- if(d.action==='visit'){const routine=routineFor(i,d);n.energy=Math.min(100,n.energy+12);n.social=Math.min(100,n.social+6);n.mood='放松';c.workSinceBreak=0;c.personalAfter=time+65;return complete(routine?'在'+BUILDINGS[d.buildingId].name+routine.title:'在'+(d.buildingId!=null?BUILDINGS[d.buildingId].name:TITLES[d.goal])+'体验个人兴趣与生活')}
+ if(d.action==='visit'){const routine=routineFor(i,d);n.energy=Math.min(100,n.energy+12);n.social=Math.min(100,n.social+6);n.mood='放松';c.workSinceBreak=0;setResidentCooldown(s,c,'personal',65,time);return complete(routine?'在'+BUILDINGS[d.buildingId].name+routine.title:'在'+(d.buildingId!=null?BUILDINGS[d.buildingId].name:TITLES[d.goal])+'体验个人兴趣与生活')}
  n.energy=Math.max(0,n.energy-5);n.hunger=Math.max(0,n.hunger-4);
  if(d.goal==='farm'){const p=d.noFarmTask?null:d.farmIndex!=null?s.plots[d.farmIndex]:s.plots.find(p=>p.stage===4)||s.plots.find(p=>p.stage===2)||s.plots.find(p=>p.stage===1&&s.inventory.seed>0)||s.plots.find(p=>p.stage===0);if(p){if(p.stage===0){p.stage=1;delete p.wateredBy;result='为田垄松土';advance=false}else if(p.stage===1){if(commitResources(s,{owner:d.resourceOwner||null,cost:{seed:1},category:'resident_sow'}).ok){p.stage=2;delete p.wateredBy;result='播种'+cropInfo(p).name}else result='种苗已经用完，先补充种苗';advance=false}else if(p.stage===2){p.stage=3;p.growth=0;p.wateredBy='npc';result='给'+cropInfo(p).name+'浇水，等待成熟';advance=false}else if(p.stage===4){const index=s.plots.indexOf(p),crop=harvestPlot(s,index);result='收获'+crop.name+' ×'+crop.amount}}else{result='检查作物长势';advance=false}}
  else if(d.goal==='mine'){const node=d.mineIndex!=null?s.oreNodes[d.mineIndex]:s.oreNodes.find(p=>p.hp>0);if(node&&node.hp>0){const extra=d.resource&&d.resource!=='stone'&&d.resource!=='ore'&&ITEM_BY_ID[d.resource]?.source==='mine'?d.resource:null,gain={stone:1,...(extra?{[extra]:1}:{}),...(node.hp===1?{ore:2}:{})};if(!commitResources(s,{owner:d.resourceOwner||null,gain,category:'resident_mine',note:'居民 '+i}).ok)return complete('矿物无法入库，保留矿脉等待核对',false);node.hp--;if(extra){s.gatherCounts??={};s.gatherCounts.mine=(s.gatherCounts.mine||0)+1;}result='开采石材 ×1'+(extra?'、'+ITEMS[extra][0]+' ×1':'');if(!node.hp){node.regen=20;s.tasks.mine=true;result='开采石材 ×1、矿石 ×2'}}else{result='检修矿镐，等待矿脉恢复';advance=false}}

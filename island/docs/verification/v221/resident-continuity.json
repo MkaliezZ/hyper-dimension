@@ -1,0 +1,121 @@
+{
+  "version": 221,
+  "scope": "Resident effective-time continuity and known catalog totals; original18 requirements preserved",
+  "defaultTests": {
+    "passed": 1223,
+    "failed": 0,
+    "firstAttempt": {
+      "passed": 1207,
+      "failed": 2,
+      "runtimeScopeNotRun": true,
+      "reason": "New test directory retained old v220 name after rename; assertions unchanged"
+    }
+  },
+  "relatedTests": {
+    "passed": 32,
+    "failed": 0,
+    "includedInDefault": true
+  },
+  "nativeReentry": {
+    "passed": true,
+    "cases": [
+      {
+        "theme": "pixel",
+        "mode": "expired-legacy",
+        "passed": true,
+        "conversation": {
+          "type": "reconcile",
+          "source": "local",
+          "participants": [
+            0,
+            8
+          ],
+          "lines": 4
+        },
+        "stampPreservedOnDiskAndReload": true,
+        "pageErrors": 0
+      },
+      {
+        "theme": "pixel",
+        "mode": "active-stamp",
+        "passed": true,
+        "conversation": null,
+        "stampPreservedOnDiskAndReload": true,
+        "pageErrors": 0
+      },
+      {
+        "theme": "origami",
+        "mode": "expired-legacy",
+        "passed": true,
+        "conversation": {
+          "type": "reconcile",
+          "source": "local",
+          "participants": [
+            0,
+            8
+          ],
+          "lines": 4
+        },
+        "stampPreservedOnDiskAndReload": true,
+        "pageErrors": 0
+      },
+      {
+        "theme": "origami",
+        "mode": "active-stamp",
+        "passed": true,
+        "conversation": null,
+        "stampPreservedOnDiskAndReload": true,
+        "pageErrors": 0
+      }
+    ],
+    "providersDisabled": true,
+    "initialNeedsRelationsHistoryAreFixtures": true,
+    "normalRate": true,
+    "visualDaySeconds": 900
+  },
+  "baselineClient": {
+    "version": "V220 / unchanged V219 resident logic",
+    "expiredLegacyCasesFailed": 2,
+    "activeStampFixturesPassed": 2,
+    "meetingObservationBudgetSeconds": 8
+  },
+  "catalog": {
+    "passed": true,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "materials": 58,
+    "recipes": 308,
+    "knownItems": 366,
+    "legacyAchievementMaterials": 50,
+    "legacyAchievementRecipes": 300,
+    "unknownFieldsPreserved": true,
+    "mobileWidth": 390
+  },
+  "oldFrozenSaveObservation": [
+    {
+      "theme": "pixel",
+      "day": 4,
+      "freshPageTime": 3,
+      "oldVisits": 0,
+      "newVisits": 18,
+      "oldSocial": 0,
+      "newSocial": 8,
+      "scope": "Read-only branch evaluation, not continued simulation or a new-hour acceptance"
+    },
+    {
+      "theme": "origami",
+      "day": 4,
+      "freshPageTime": 3,
+      "oldVisits": 0,
+      "newVisits": 22,
+      "oldSocial": 0,
+      "newSocial": 9,
+      "scope": "Read-only branch evaluation, not continued simulation or a new-hour acceptance"
+    }
+  ],
+  "wholeGoalComplete": false,
+  "humanAcceptance": false,
+  "currentVersionHourAccepted": false
+}

@@ -304,6 +304,9 @@ jobs:
       - name: Native recovery input through workshop modal dialogs
         run: node tests/v220-recovery-modal-browser.mjs
 
+      - name: Native current catalog totals and preserved legacy achievements
+        run: node tests/v221-catalog-counts-browser.mjs
+
       - name: Native night planning skips empty purposes
         run: node tests/v216-night-planning-browser.mjs
 
@@ -330,6 +333,8 @@ jobs:
             island/qa/v216/native-recovery-wait/*.png
             island/qa/v220/native-recovery-modal/report.json
             island/qa/v220/native-recovery-modal/*.png
+            island/qa/v221/native-catalog-counts/report.json
+            island/qa/v221/native-catalog-counts/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
           if-no-files-found: ignore
@@ -366,6 +371,9 @@ jobs:
       - name: Native NPC sow and water during independent receipts
         run: node tests/v179-npc-work-browser.mjs
 
+      - name: Native resident social continuity after reload
+        run: node tests/v221-resident-reentry-browser.mjs
+
       - name: Native interior return points and forest navigation
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v203-scene-return-browser.mjs
@@ -382,6 +390,8 @@ jobs:
             island/qa/v179/navigation-arrival/*.png
             island/qa/v179/npc-work/report.json
             island/qa/v179/npc-work/*.png
+            island/qa/v221/native-resident-reentry/report.json
+            island/qa/v221/native-resident-reentry/*.png
             island/qa/v203/native-scene-return/report.json
             island/qa/v203/native-scene-return/*.png
           if-no-files-found: ignore
