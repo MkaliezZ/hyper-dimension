@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v211-agent-source",
+  "release": "hyper-dimension-v212-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 72217,
-      "sha256": "f25a1fcb74c84d07e4c1e0ddd8ff2c61258d67fbb03c95a39f153fc24d1f7607"
+      "bytes": 72833,
+      "sha256": "1a406e906079a20c20e472945820c72e7de5f3471889a25479306e318aec2f20"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12826,
-      "sha256": "82a85f6d41fcd8677565136f833bb05dd7d1fda723d49e0e182458001c692c2d"
+      "bytes": 12867,
+      "sha256": "117c2604cc4c35b0db4648e1227d2b74637d043f0f954c3e8fdfe5ae9350d68b"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6232,8 +6232,8 @@
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 25712,
-      "sha256": "91fb7fb2842c8d10e3915986ad1b4067ecfdf6a3e8297ab8601650c0b9bbfc4a"
+      "bytes": 25563,
+      "sha256": "d73574f6f8f6222421584925ff61e7562c7882fd02ba1750e5e6ae7cb3d0e0c5"
     },
     {
       "path": "server/lanRoomResidents.mjs",
@@ -9787,8 +9787,8 @@
     },
     {
       "path": "tests/v205-visiting-party-browser.mjs",
-      "bytes": 8198,
-      "sha256": "b36e8dcdca2965c410db6b5e624b9c5fe80b0cb6fc25d132bc5d929669ae261a"
+      "bytes": 8244,
+      "sha256": "597efece80bc0f7c79c470dee89c1f6b11baa414645495cd7db28b0a4930e128"
     },
     {
       "path": "tests/v206-recovery-navigation.test.mjs",
@@ -12034,6 +12034,16 @@
       "path": "docs/recovery-fallback-v211.md",
       "bytes": 1532,
       "sha256": "b0e72e8957493738604aec29e4b43f305ff2c64270a70c95d520b43ef52eb653"
+    },
+    {
+      "path": "docs/lan-identity-publication-v212.md",
+      "bytes": 1955,
+      "sha256": "f6df786080d59a8e666707ff8300bc21effa1a14d6538f6a62b19793befd6818"
+    },
+    {
+      "path": "tests/v212-lan-identity-replace.test.mjs",
+      "bytes": 3916,
+      "sha256": "d4285e49175cf585e73682735b43eecb56a7a9fef7be5563e500195c081b93fe"
     }
   ],
   "publicRevision": "v175-github"

@@ -1,13 +1,12 @@
 import {adaptOpenRoomGeography} from './lanGeographyMigration.mjs';
 import {ISLAND_GEOGRAPHY} from '../src/islandGeography.js';
-import {openExclusiveFile} from './atomicJson.mjs';
+import {openExclusiveFile,atomicJSON as atomic} from './atomicJson.mjs';
 import {seedRoomResidents,advanceResidents,stepPerson,roomPeople,publicPerson,prepareMeeting,meetingReady,finishMeeting,prepareRoomWork,roomWorkProgress} from './lanRoomResidents.mjs';
 import {travelPreparation,freezeTravelParty} from './lanTravelParty.mjs';
-import {mkdir,readFile,writeFile,rename,unlink,open,stat} from 'node:fs/promises';import {resolve,join} from 'node:path';import {randomUUID,randomBytes,createHash,scrypt as scryptCallback,timingSafeEqual} from 'node:crypto';import {promisify} from 'node:util';import {AVATAR_BY_ID} from '../src/avatarCatalog.js';import {worldWalkableForTheme,findWorldPathForTheme,WORLD,HARBOR_LAYOUTS} from '../src/world.js';
+import {mkdir,readFile,writeFile,unlink,stat} from 'node:fs/promises';import {resolve,join} from 'node:path';import {randomUUID,randomBytes,createHash,scrypt as scryptCallback,timingSafeEqual} from 'node:crypto';import {promisify} from 'node:util';import {AVATAR_BY_ID} from '../src/avatarCatalog.js';import {worldWalkableForTheme,findWorldPathForTheme,WORLD,HARBOR_LAYOUTS} from '../src/world.js';
 const scrypt=promisify(scryptCallback),sha=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex'),fail=(message,code='lan_conflict',status=409)=>Object.assign(Error(message),{code,status}),clone=v=>structuredClone(v),themes=new Set(['pixel','origami']);
 const text=(v,min,max)=>{if(typeof v!=='string'||v.trim().length<min||v.trim().length>max||/[\u0000-\u001f]/.test(v))throw fail('文字长度或格式不符合要求','lan_invalid',400);return v.trim();};
 const strict=(v,keys)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!keys.includes(k)))throw fail('联机请求包含不支持的字段','lan_invalid',400);};
-async function atomic(file,v){const tmp=file+'.'+randomUUID()+'.tmp';await writeFile(tmp,JSON.stringify(v,null,2)+'\n',{mode:0o600});await rename(tmp,file);}
 function profile(input){const p={name:text(input.name,2,24),islandName:text(input.islandName,2,32),avatar:input.avatar,theme:input.theme};if(!AVATAR_BY_ID[p.avatar]||!themes.has(p.theme))throw fail('请选择有效画风与形象','lan_invalid',400);return p;}
 function privateAccount(a){return{id:a.id,profile:clone(a.profile),createdAt:a.createdAt};}
 function spawnPoint(theme,index){const candidates=[];for(let y=ISLAND_GEOGRAPHY.spawn.y-72;y<=ISLAND_GEOGRAPHY.spawn.y+72;y+=12)for(let x=ISLAND_GEOGRAPHY.spawn.x-84;x<=ISLAND_GEOGRAPHY.spawn.x+84;x+=12)if(worldWalkableForTheme(theme,x,y))candidates.push({x,y});candidates.sort((a,b)=>Math.hypot(a.x-ISLAND_GEOGRAPHY.spawn.x,a.y-ISLAND_GEOGRAPHY.spawn.y)-Math.hypot(b.x-ISLAND_GEOGRAPHY.spawn.x,b.y-ISLAND_GEOGRAPHY.spawn.y));return candidates[index]||candidates[0];}
