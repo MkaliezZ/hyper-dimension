@@ -186,6 +186,13 @@ export function createSaveStore({directory,environmentProvider=()=>null,contentP
  function journal(p,theme){return createLanEconomyJournal({paths:p,theme,now,validateDocument,fault:externalFault});}
  function wonderJournal(p,theme){return createLanWonderJournal({paths:p,theme,now,validateDocument});}
  async function readCurrent(p,theme){let doc;try{doc=await readCurrentBase(p,theme)}catch(e){if(!externalEconomy||e.code!=='save_corrupt')throw e;const recovered=await journal(p,theme).repair(null);if(!recovered)throw e;return wonderJournal(p,theme).repair(recovered);}return externalEconomy?wonderJournal(p,theme).repair(await journal(p,theme).repair(doc)):doc;}
+ async function migrateProtectedEconomy(p,theme,doc,clientId){
+  if(doc.state.economy?.budgetPolicyVersion===ECONOMY_POLICY_VERSION)return doc;
+  await snapshot(p,doc,'before-economy-policy');
+  const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());
+  migrateEconomyPolicy(state,actions);
+  return commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);
+ }
  async function commit(p,theme,state,old,reason,clientId='',actions=old?.actions,metadata={}){
   if(actions&&actions.wonders?.version!==3&&old?.actions?.commerce)enableWonderState(state,actions,{source:old.state});
   if(externalEconomy)await wonderJournal(p,theme).merge(state,actions);
@@ -254,7 +261,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,contentP
     }
     let request;try{request=JSON.parse(await readFile(p.restart,'utf8'))}catch{}
     if(request&&!request.applied){doc=await applyRestart(p,theme,doc,request);restarted=true}
-    if(protect){doc=await migrateCatalog(p,theme,doc,clientId);doc=await syncCustomCatalog(p,theme,doc,clientId);}
+    if(protect){doc=await migrateProtectedEconomy(p,theme,doc,clientId);doc=await migrateCatalog(p,theme,doc,clientId);doc=await syncCustomCatalog(p,theme,doc,clientId);}
     return {document:doc,migrated,restarted};
    });
   },
@@ -283,7 +290,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,contentP
      for(const id of missingOwnedDiscoveries(state))(state.discovered??={})[id]=true;
      doc=await commit(p,theme,state,doc,'resource-migration',clientId,actions);
     }
-    if(doc.state.economy?.budgetPolicyVersion!==ECONOMY_POLICY_VERSION){await snapshot(p,doc,'before-economy-policy');const state=structuredClone(doc.state),actions=structuredClone(doc.actions||newActionBook());migrateEconomyPolicy(state,actions);doc=await commit(p,theme,state,doc,'economy-policy-migration',clientId,actions);}
+    doc=await migrateProtectedEconomy(p,theme,doc,clientId);
     doc=await migrateCatalog(p,theme,doc,clientId);
     // V165: older NPC payouts could acknowledge stock before recording discovery.
     // Derive flags only from the verified canonical inventory, never the browser copy.

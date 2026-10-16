@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v237-agent-source",
+  "release": "hyper-dimension-v242-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 85357,
-      "sha256": "c3a9bda260aa165bb065a7b41067499ed40932bb21e527da7e3d649098746399"
+      "bytes": 86008,
+      "sha256": "ea4eca5173818cc321005420eaaeb2492c259cb0a75465cfb6c4e4e829613118"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 14296,
-      "sha256": "f4b3695c4de63f3b5d92dd8872d5ac4db673c974853e6a1144dac482ce5664b7"
+      "bytes": 14679,
+      "sha256": "b9fefa762e402cabaf8fb57403f27f4289d46454a813fba4f411eb17130cc95d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6442,8 +6442,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 40534,
-      "sha256": "e0463944d47da744ee64618b6fb09cf8a9bfc91bffe09140c77502fc2227f879"
+      "bytes": 40733,
+      "sha256": "517f7645b8521a0be0048d3c3cdf1018e7798a1a93b2c5a2b832dea9522e2562"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -12482,8 +12482,8 @@
     },
     {
       "path": "tests/v228-custom-shops-browser.mjs",
-      "bytes": 10887,
-      "sha256": "b66c14b37c17d890308f62aa28c200ba508c0d528cf2947cd84eb341d444955c"
+      "bytes": 13833,
+      "sha256": "9291333079278c09fb88b42e2a51b248a3248330c22f96083df5b31fd19a3ac7"
     },
     {
       "path": "docs/custom-market-v230.md",
@@ -12522,8 +12522,8 @@
     },
     {
       "path": "tests/v231-multi-island-journey.test.mjs",
-      "bytes": 13377,
-      "sha256": "6d34d9fbcf8f28729d1be7c2ce4b70895e2640b91f748d9ad3374e8c07141eb3"
+      "bytes": 16619,
+      "sha256": "84973ea0db265f48b9a68da7010a246c0e143bd344790328d6f0b58f31dd1b5e"
     },
     {
       "path": "tests/v232-farm-readiness.test.mjs",
@@ -12584,7 +12584,42 @@
       "path": "docs/verification/v237/priority-journeys.json",
       "bytes": 5778,
       "sha256": "40f965280083e0b7181eb8d01aa266029e8ba6debd1a4665958c21b735af153a"
+    },
+    {
+      "path": "docs/recovery-travel-v242.md",
+      "bytes": 4501,
+      "sha256": "82dc38261e58900b3771a00dfb5dc7494190d4c80b6b517cb3dae5bc98e81c84"
+    },
+    {
+      "path": "docs/verification/v242/priority-closeout.json",
+      "bytes": 34935,
+      "sha256": "d5ce76cc24fdc13c67d894c6736035b3eb9ab73d7f61e0446c7202db1ce0e982"
+    },
+    {
+      "path": "tests/v239-real-travel-social.mjs",
+      "bytes": 5833,
+      "sha256": "584a46e1727d1f48b2e647c4e746935ed023d6fe0b18478b67a07b3b70677ac5"
+    },
+    {
+      "path": "tests/v242-policy-migration-browser.mjs",
+      "bytes": 5430,
+      "sha256": "d7d55de8119f308cd3854588d2d78e0e59d06ba06cc717cec8ade698b19655bc"
+    },
+    {
+      "path": "tests/v242-protected-policy-migration.test.mjs",
+      "bytes": 5601,
+      "sha256": "4bb392d47b05d5d77baf73ee7275806b0045a2bc4ba235a397a9960dd6da13a5"
+    },
+    {
+      "path": "tools/test-network-matrix.mjs",
+      "bytes": 302,
+      "sha256": "3051b2f0c93eeffe82a7236282cbecdc88faa35f647e25cbbeda5dcf0caf5e35"
+    },
+    {
+      "path": "tools/test-zero-market.mjs",
+      "bytes": 184,
+      "sha256": "8af66d71e79c6236bf92c568c18101ab46023b5c869a8cf3fff97baf091500f8"
     }
   ],
-  "publicRevision": "v237-github"
+  "publicRevision": "v242-github"
 }

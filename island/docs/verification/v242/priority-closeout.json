@@ -1,0 +1,1255 @@
+{
+  "version": "V242",
+  "sourceBase": "488825c74c629be50289e6cad695dfa470ebf862",
+  "wholeGoalComplete": false,
+  "humanAcceptance": false,
+  "physicalDevicesTested": false,
+  "fullRules": {
+    "passed": 1282,
+    "failed": 0,
+    "suites": [
+      1268,
+      14
+    ]
+  },
+  "recovery": {
+    "unitBaseline": {
+      "passed": 1,
+      "failed": 3
+    },
+    "unitAfter": {
+      "passed": 4,
+      "failed": 0
+    },
+    "sameFailedFictionalLegacySave": {
+      "passed": true,
+      "migrationPreserved": {
+        "inventory": true,
+        "coins": true,
+        "tasks": true,
+        "reservations": true,
+        "recruitment": true,
+        "residentTickets": true,
+        "oldDayBill": true
+      },
+      "historicalAgentDelegationVisible": true,
+      "ordinaryAutosave": true,
+      "emptyBrowserAndReloadReady": true
+    },
+    "originalUserBrowserObserved": false,
+    "nativeBothStyles": {
+      "scope": "Two fictional server-created zero islands, with acknowledged policy105 reconstructed on disk while the service is stopped. Native LAN open, ordinary autosave, appearance transaction and reload. No original user data, injected resources/time, real models, human or physical-device acceptance.",
+      "cases": [
+        {
+          "theme": "pixel",
+          "errors": [],
+          "saveErrors": [],
+          "passed": true,
+          "ordinaryAutosave": true,
+          "sharedSaveSwitchAndReload": true
+        },
+        {
+          "theme": "origami",
+          "errors": [],
+          "saveErrors": [],
+          "passed": true,
+          "ordinaryAutosave": true,
+          "sharedSaveSwitchAndReload": true
+        }
+      ],
+      "passed": true
+    },
+    "firstZeroSecondFixtureBaseline": {
+      "passed": false,
+      "reason": "Incorrect test expected next-day policy at zero elapsed seconds; existing policy applies immediately. Mid-day deferral remains separately asserted."
+    }
+  },
+  "zeroStartMarket": {
+    "scope": "Server-created zero coins/inventory, native player gathering, component-to-product resident production and reload between stages. No injected stock, needs, facility quality or clock. Real publish records, shelf UI,32px PNG decoding, native visitor boat/land/walk/service and authoritative sale with normal clocks. Arrival must fit the finite tourist rotation at the actual ferry interval; the original150second road/service budget begins when a qualifying buyer arrives. Providers disabled. HTML-like item name is an escaping fixture. Not human or physical-device acceptance.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "serverZeroStart": true,
+        "midChainReload": true,
+        "arrival": {
+          "waitMs": 156536,
+          "budgetSeconds": 720,
+          "buyerId": 6,
+          "phase": "onboard"
+        },
+        "roadAndService": {
+          "wallMs": 40345,
+          "originalBudgetMs": 150000
+        },
+        "sales": [
+          {
+            "paid": 7,
+            "cost": 3,
+            "net": 4,
+            "stock": 0
+          }
+        ]
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "serverZeroStart": true,
+        "midChainReload": true,
+        "arrival": {
+          "waitMs": 154477,
+          "budgetSeconds": 720,
+          "buyerId": 6,
+          "phase": "onboard"
+        },
+        "roadAndService": {
+          "wallMs": 43392,
+          "originalBudgetMs": 150000
+        },
+        "sales": [
+          {
+            "paid": 7,
+            "cost": 3,
+            "net": 4,
+            "stock": 0
+          }
+        ]
+      }
+    ]
+  },
+  "activityMatrix": {
+    "scope": "Four fictional accounts with mixed home themes; required personal stewards and two consenting residents each; canonical harbor movement, standard A2A transport, paid shared activity, restart/replay, return and original-island preservation. Time and progressed initial resources are declared fixtures. Provider mode is recorded separately; this does not claim human/new-player or physical multi-device acceptance.",
+    "clockInjected": true,
+    "initialStateSynthetic": true,
+    "modelsCalled": false,
+    "modelResponsesSynthetic": true,
+    "httpActivityRequests": true,
+    "perCaseWallBudgetSeconds": 180,
+    "replayTickBudget": 3750,
+    "ticksPerCheckpoint": 100,
+    "cases": [
+      {
+        "hostTheme": "pixel",
+        "activity": "tea",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "tea",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "tea",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "fashion",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 94
+          },
+          {
+            "accountIndex": 2,
+            "quality": 94
+          },
+          {
+            "accountIndex": 3,
+            "quality": 94
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "fashion",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 93
+          },
+          {
+            "accountIndex": 2,
+            "quality": 93
+          },
+          {
+            "accountIndex": 3,
+            "quality": 93
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "fashion",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 90
+          },
+          {
+            "accountIndex": 2,
+            "quality": 90
+          },
+          {
+            "accountIndex": 3,
+            "quality": 90
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "pottery",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 87
+          },
+          {
+            "accountIndex": 2,
+            "quality": 87
+          },
+          {
+            "accountIndex": 3,
+            "quality": 87
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "pottery",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 90
+          },
+          {
+            "accountIndex": 2,
+            "quality": 90
+          },
+          {
+            "accountIndex": 3,
+            "quality": 90
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "pottery",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 93
+          },
+          {
+            "accountIndex": 2,
+            "quality": 93
+          },
+          {
+            "accountIndex": 3,
+            "quality": 93
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "kitchen",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "kitchen",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "pixel",
+        "activity": "kitchen",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "tea",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "tea",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "tea",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "fashion",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 88
+          },
+          {
+            "accountIndex": 2,
+            "quality": 88
+          },
+          {
+            "accountIndex": 3,
+            "quality": 88
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "fashion",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 88
+          },
+          {
+            "accountIndex": 2,
+            "quality": 88
+          },
+          {
+            "accountIndex": 3,
+            "quality": 88
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "fashion",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 87
+          },
+          {
+            "accountIndex": 2,
+            "quality": 87
+          },
+          {
+            "accountIndex": 3,
+            "quality": 87
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "pottery",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 87
+          },
+          {
+            "accountIndex": 2,
+            "quality": 87
+          },
+          {
+            "accountIndex": 3,
+            "quality": 87
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "pottery",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 90
+          },
+          {
+            "accountIndex": 2,
+            "quality": 90
+          },
+          {
+            "accountIndex": 3,
+            "quality": 90
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "pottery",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 93
+          },
+          {
+            "accountIndex": 2,
+            "quality": 93
+          },
+          {
+            "accountIndex": 3,
+            "quality": 93
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "kitchen",
+        "difficulty": 1,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "kitchen",
+        "difficulty": 2,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 99
+          },
+          {
+            "accountIndex": 2,
+            "quality": 99
+          },
+          {
+            "accountIndex": 3,
+            "quality": 99
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      },
+      {
+        "hostTheme": "origami",
+        "activity": "kitchen",
+        "difficulty": 3,
+        "passed": true,
+        "results": [
+          {
+            "accountIndex": 1,
+            "quality": 100
+          },
+          {
+            "accountIndex": 2,
+            "quality": 100
+          },
+          {
+            "accountIndex": 3,
+            "quality": 100
+          }
+        ],
+        "preparingCancellation": {
+          "http": true,
+          "guests": 3,
+          "allMaterialsAndCashRefunded": true,
+          "uniqueReplay": true
+        },
+        "a2a": {
+          "informationTurns": 2,
+          "eventStewardTurns": 9,
+          "exactOwnerRuntimeRouting": true,
+          "explicitExecution": true,
+          "privateThirdPartyIsolation": true
+        },
+        "settlement": {
+          "completedGuests": 3,
+          "ratings": 3,
+          "totalCoinDelta": -8,
+          "materialsConserved": true,
+          "holdsCleared": true,
+          "restartAndReplayUnique": true,
+          "returnHomeWritable": true
+        }
+      }
+    ]
+  },
+  "realResidentSocial": {
+    "scope": "Two fictional zero-resource accounts per style, required personal stewards and a consenting permanent resident. Canonical server harbor/roads and resident meeting; actual owner-routed Flash conversation, origin-bound history, return and service restart. Transport time is an explicit injected clock held while the real provider responds; not real-time cadence, physical devices, human acceptance or a recruitment proof. No original browser/save/documents. Exact provider responses retained privately.",
+    "clockInjected": true,
+    "initialResourcesSynthetic": false,
+    "modelsCalled": true,
+    "modelResponsesSynthetic": false,
+    "actualProviderReplies": [
+      {
+        "status": 200,
+        "responseSha256": "de5e0a18992c7ea25ec44aaecf0dbcd2ca7f2256698e97b4e24febd81e3d7997",
+        "providerModel": "deepseek-flash",
+        "finishReasons": [
+          "stop"
+        ],
+        "usage": {
+          "prompt_tokens": 1048,
+          "completion_tokens": 363,
+          "total_tokens": 1411,
+          "prompt_tokens_details": {
+            "cached_tokens": 128
+          },
+          "prompt_cache_hit_tokens": 128,
+          "prompt_cache_miss_tokens": 920
+        }
+      },
+      {
+        "status": 200,
+        "responseSha256": "4b2a2aada8a89a30e39d2702caacc3b6e2c4c47e330b2b8fdda54b76104eec1f",
+        "providerModel": "deepseek-flash",
+        "finishReasons": [
+          "stop"
+        ],
+        "usage": {
+          "prompt_tokens": 1048,
+          "completion_tokens": 364,
+          "total_tokens": 1412,
+          "prompt_tokens_details": {
+            "cached_tokens": 896
+          },
+          "prompt_cache_hit_tokens": 896,
+          "prompt_cache_miss_tokens": 152
+        }
+      }
+    ],
+    "rawRepliesRemainPrivate": true,
+    "cases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "requiredStewardAndConsentingResident": true,
+        "actualOwnerLedgerMatched": true,
+        "originHistorySurvivesReturnAndRestart": true,
+        "event": {
+          "type": "negotiate",
+          "lineCount": 6,
+          "source": "deepseek",
+          "model": "deepseek-flash",
+          "people": [
+            {
+              "npcId": 8,
+              "ownerIndex": 0,
+              "homeTheme": "pixel"
+            },
+            {
+              "npcId": 0,
+              "ownerIndex": 1,
+              "homeTheme": "pixel"
+            }
+          ]
+        }
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "requiredStewardAndConsentingResident": true,
+        "actualOwnerLedgerMatched": true,
+        "originHistorySurvivesReturnAndRestart": true,
+        "event": {
+          "type": "negotiate",
+          "lineCount": 6,
+          "source": "deepseek",
+          "model": "deepseek-flash",
+          "people": [
+            {
+              "npcId": 8,
+              "ownerIndex": 0,
+              "homeTheme": "origami"
+            },
+            {
+              "npcId": 0,
+              "ownerIndex": 1,
+              "homeTheme": "origami"
+            }
+          ]
+        }
+      }
+    ],
+    "portableRunnerOptInGuardVerified": true
+  },
+  "candidateV233IndependentInstallation": {
+    "passed": false,
+    "failedStep": "production-market",
+    "originalFailureRetained": true,
+    "finalCandidatePromoted": false
+  },
+  "remaining": [
+    "current frozen source archive and independent installation",
+    "new video composition and visual review",
+    "current one-hour actual clock verification",
+    "actual OPC learners",
+    "5-8 actual new players",
+    "physical multi-device acceptance",
+    "full zero-start long-term economics"
+  ]
+}
