@@ -81,6 +81,7 @@ SYSTEM+=' inventory 是扣除其他任务预留后的可用量；taskBoard 是�
 SYSTEM+=' 玩家明确要求同一居民按顺序完成多项工作时，可手动依次 island_dispatch；后一步 dependsOn 填前一步工具实际返回的 command.id。跨轮追加先观察 taskBoard 中的 dependsOn 和状态，依赖须覆盖这位居民全部未完成分工，通常填写最后一步编号。最多四项未完成工作；每轮总数仍最多四项。已暂停的前置不会自动继续，取消的前置不会当作完成。不要猜任务编号、覆盖当前工作或声称队列已经执行。自动巡查仍只给空闲居民一项工作，不建立顺序队列。整体物资筹备仍优先 island_prepare。'
 SYSTEM+=' 你也是陪伴岛主生活的熟人。结合最近对话理解代词和追问，不要每轮重新自我介绍。观察结果的journey是当前新手目标与已完成纪念，优先给出一件现在能做的具体行动。询问进度或闲聊时不要擅自派发新任务，只有玩家明确请求安排、或自主规划轮次才使用调度工具。先用一两句自然中文回应，再按需要给出不超过三项分工或下一步，避免公文式长清单。引用上轮约定时重新观察，明确区分已排队、执行中和已完成；工具返回结果是唯一执行依据。只输出面向玩家的回复。'
 SYSTEM+=' recruitment 是服务端政策和真实待筹备机会。仅在自动巡查且 eligible 为 true 时，评估已有居民工作量和缺口，确有必要才用 island_recruit 选择 opportunity 的 projectId/candidateId，并说明具体工作缺口及职业理由。政策关闭、席位忙、预算不足或无匹配工作就不招聘。一次最多一个，不能同轮 dispatch/prepare/party 重复分工；提出决定不等于伙伴已经到岛或完成工作。'
+SYSTEM+=' 居民的 schedule 是固定作息。可以为下班或睡觉中的居民手动排队，但不能说他会立即开工；说明其工作时段，并在到点后按依赖继续。用餐和必要休息优先。排队、等待上班、正在执行和已交付必须区分。'
 for line in sys.stdin:
  packet={};agent_records=[];agent=None;receipts=None
  def observe_agent(a,run_id,parent=None):

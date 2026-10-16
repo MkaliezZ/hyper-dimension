@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-16T10:13:21.888574+00:00",
+  "modelDecisionBaseline": "74cc6166d644bce6be31887026b1b9a36d04749d",
+  "scope": "Fictional real Hermes queues, needs fixture, fixed work shifts, natural-clock resumption; not human/physical-device/full-goal acceptance",
+  "manualProviderSessions": 2,
+  "automaticProviderRoundsInOriginalProbe": 2,
+  "model": "deepseek-flash",
+  "cases": [
+    {
+      "theme": "pixel",
+      "realPlanCommands": 3,
+      "orderedUniqueActionReceipts": 3,
+      "midChainReload": true,
+      "freshBrowserReopen": true
+    },
+    {
+      "theme": "origami",
+      "realPlanCommands": 3,
+      "originalTaskIdsReused": true,
+      "orderedUniqueActionReceipts": 3,
+      "naturalNextWorkShift": true,
+      "workingWaitMs": [
+        67575,
+        63933,
+        77136
+      ],
+      "midChainReload": true,
+      "freshBrowserReopen": true,
+      "additionalProviderRequestsDuringResumption": 0,
+      "clockRate": 1,
+      "clockUnchanged": true
+    }
+  ],
+  "executionSourceFiles": {
+    "src/residentRuntime.js": "09de8da7b347f2fc0a14959d4ac73fa7ae3ab20d6a86e0c3a21c68ff89a9f1ef",
+    "src/taskWorkWindow.js": "f5386202a59ca517c09008e7a09e3dbe1fdd260014bed7e1a2db9c7f3305bfd0",
+    "src/stewardChat.js": "1cd241239387f227786350b236652446fae61e68307d1cd9d58c1d87364c9292",
+    "src/app.js": "5f52e18f0bf67c80007887b14e0d16f15ea851d64c439eb2d2aee5862e331b54"
+  },
+  "wholeGoalComplete": false
+}

@@ -532,3 +532,10 @@ The Windows native gameplay job for V211 passed recovery-return, then failed cre
 ## V213 — Explicit manual resident task chains
 
 Manual steward tools and saved planning transactions now accept a bounded, explicit same-resident dependency queue. Automatic cadence and one-job patrol behavior remain unchanged. Actual transaction checks cover order, quantities, durable reopen/replay and pause/cancel boundaries; the native two-theme check performs forest → shore → forest with a mid-chain reload and empty-browser recovery. Provider replies are deterministic in this native check, not fresh AI decisions. Python verifies the actual worker dispatch function and registered schema. [Scope and limitations](task-chains-v213.md).
+
+
+## V214 — Queued work follows world identity and fixed shifts
+
+Malformed identity-less saves are rejected before a manual request consumes an ID or records a running job. Task cards and model observations now explain fixed work hours; optional unleased visits can hand over to queued work when the shift begins, while actions, receipts, conversations and essential needs remain protected. Real Hermes/Flash plans completed both themes; the original off-shift origami queue resumed on its unchanged natural clock with no additional provider calls. Native CI checks now separate work-time budgets from bounded calendar waits, retaining the original quantity/replay assertions, commands and platforms. [Details and sanitized evidence](queued-work-schedules-v214.md).
+
+Confirmed recovery also exposes an ordinary return link when an embedded browser cancels both automatic navigations. The old page stays sealed, its previous local snapshot remains, and both themes return with unchanged authoritative resources and usable controls. An isolated Codex in-app browser fixture also returned and opened the bag. [Reproduction and boundaries](recovery-return-link-v214.md).

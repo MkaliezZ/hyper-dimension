@@ -286,8 +286,8 @@ jobs:
       - name: Native recovery return and visiting parties
         run: node tests/v205-recovery-return-browser.mjs && node tests/v205-visiting-party-browser.mjs
 
-      - name: Native sequential resident tasks
-        run: node tests/v213-task-chain-browser.mjs
+      - name: Native confirmed return after two cancelled navigations
+        run: node tests/v214-recovery-link-browser.mjs
 
       - name: Retain isolated native soil-care diagnostics
         if: always()
@@ -306,8 +306,8 @@ jobs:
             island/qa/v205/native-recovery-return/*.png
             island/qa/v205/native-visiting-party/report.json
             island/qa/v205/native-visiting-party/*.png
-            island/qa/v213/native-task-chains/report.json
-            island/qa/v213/native-task-chains/*.png
+            island/qa/v214/native-recovery-link/report.json
+            island/qa/v214/native-recovery-link/*.png
           if-no-files-found: ignore
           retention-days: 3
 
@@ -360,5 +360,37 @@ jobs:
             island/qa/v179/npc-work/*.png
             island/qa/v203/native-scene-return/report.json
             island/qa/v203/native-scene-return/*.png
+          if-no-files-found: ignore
+          retention-days: 3
+
+  native-resident-work:
+    name: ${{ matrix.os }} / native resident work
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: island
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install isolated browser dependencies
+        run: npm ci --ignore-scripts
+      - name: Native sequential resident tasks across fixed work shifts
+        run: node tests/v213-task-chain-browser.mjs
+      - name: Retain native resident work diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-resident-work-${{ matrix.os }}
+          path: |
+            island/qa/v213/native-task-chains/report.json
+            island/qa/v213/native-task-chains/*.png
           if-no-files-found: ignore
           retention-days: 3

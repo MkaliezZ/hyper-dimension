@@ -59,6 +59,7 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
  async function world(c,theme){
   if(!['pixel','origami'].includes(theme))throw fail('画风无效','lan_agent_theme',400);
   const d=await tenants.readIslandForServer(c.accountId,theme);if(!d)throw fail('请先进入自己的小岛建立档案','lan_save_missing',404);
+  if(typeof d.state?.saveSlot!=='string'||!d.state.saveSlot)throw fail('请先进入自己的小岛，建立出行档案','lan_travel_home');
   return d.state;
  }
  const history=(a,key)=>[...(a.state.seeds[key]||[]),...a.state.jobs.filter(j=>j.worldKey===key).flatMap(j=>[

@@ -1,0 +1,9 @@
+# A visible return after confirmed recovery
+
+The V211 fallback covers one cancelled reload. If an embedded browser also cancels the subsequent replacement navigation, the old page correctly stays sealed but previously offered only disabled controls. An isolated Codex in-app browser fixture reproduced that state by replying 204 to both navigations. This induced failure is not proof that the user's own request returned 204.
+
+After authoritative reconciliation succeeds, recovery now displays an ordinary **返回小岛** link to a fresh URL on the same island. It is immediately available if automatic navigation does not finish. The confirmed card replaces obsolete pending messages; it does not re-submit a result, cancel an unfinished task implicitly, clear a save or resume the stale simulation. Until reconciliation succeeds the link stays hidden. Network and receipt failures retain the existing retry path.
+
+The in-app browser fixture returned through that link and opened the bag. A native test covers both styles, two cancelled navigations, the preserved previous local snapshot, unchanged canonical currency/inventory/receipts, mobile width, and usable controls after the return. Its first post-change run reached the correct new island but tried to open the bag through the legitimate first-day introduction; the fixture now explicitly starts that day before checking the bag. The original failing reports are retained privately. Existing unfinished-craft cancellation, lost-reply replay, protected materials and repeated-reload tests remain separate.
+
+Only fictional accounts and independent local origins were used. No user browser contents or authenticated user save APIs were read. This validates the bounded recovery flow, not every possible cause of an unresponsive user page or full product acceptance.

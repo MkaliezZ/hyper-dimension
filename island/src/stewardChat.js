@@ -6,7 +6,7 @@ export function hydrateChat(s){
  const c=s.stewardChat;c.messages??=[];c.draft??='';c.sequence??=0;return c;
 }
 export function chatHistory(s){return hydrateChat(s).messages.filter(m=>m.status==='sent'&&m.role==='user'||m.status==='done'&&m.role==='assistant').slice(-12).map(m=>({role:m.role,content:((m.source==='local'?'[本地手账，未连接模型] ':'')+m.text).trim().slice(0,1400)}));}
-export function createStewardChat({state,profile,portrait,openModal,persist,checkpoint,request,recover,edit,appearance,guide,health,manageTask,projects,recruit,party,workbench,previewArtifact}){
+export function createStewardChat({state,profile,portrait,openModal,persist,checkpoint,request,recover,edit,appearance,guide,health,manageTask,projects,recruit,party,workbench,previewArtifact,taskAvailability=()=>''}){
  let pending=null,followTail=true,resizeObserver=null;const taskBusy=new Set();let taskMessage='';
  const $=id=>document.getElementById(id);
  function init(){const c=hydrateChat(state());if(!pending)for(const m of c.messages)if(m.status==='pending'&&(!recover||!/^[-A-Za-z0-9]{8,100}$/.test(m.requestId||''))){m.status='error';m.text='这条旧对话没有可核对的委托编号，请先查看文档成果再决定是否重试。'}return c}
@@ -36,8 +36,10 @@ export function createStewardChat({state,profile,portrait,openModal,persist,chec
    const before=(t.dependsOn||[]).map(id=>state().agentTaskLedger.find(x=>x.id===id)).filter(Boolean),waiting=before.filter(x=>x.status!=='done');
    const blocked=waiting.some(x=>['cancelled','failed','interrupted'].includes(x.status)),paused=waiting.some(x=>x.status==='paused');
    const dependency=before.length&&!['done','cancelled'].includes(t.status)?'<p class="steward-task-dependency">'+esc(blocked?'前置未完成或已取消，此项不会开始；可取消后重新安排。':paused?'前置已暂停，请先继续前置分工。':waiting.length?'顺序等待：'+waiting.map(x=>x.intent).join(' → '):'前置已完成，按顺序执行当前工作')+'</p>':'';
+   const availability=active&&t.status!=='running'?taskAvailability(t.npcId):'';
+   const windowNote=availability?'<p class="steward-task-window">'+esc(availability)+'</p>':'';
    const button=(action,label)=>'<button type="button" class="secondary" data-task-id="'+esc(t.id)+'" data-task-action="'+action+'">'+label+'</button>';
-   return '<div class="steward-task" data-task-status="'+esc(t.status)+'"><span class="task-dot"></span><div><b>'+esc(t.name)+' · '+esc(({queued:'已排队',running:'执行中',waiting:'等候前置',paused:'已暂停',done:'已完成',cancelled:'已取消',interrupted:'已中断',replaced:'已改派'})[t.status]||'进行中')+'</b><p>'+esc(t.intent)+'</p>'+dependency+(t.quantity?'<small>实际完成 '+(t.completed||0)+' / '+t.quantity+' · '+(t.evidence?.length||0)+' 条动作回执</small>':'')+'<p>'+esc(t.result||'抵达目标并完成动作后记录产出')+'</p>'+(t.command?'<div class="task-controls">'+(t.projectId?'<button type="button" class="secondary" data-task-project="'+esc(t.projectId)+'">查看筹备手账</button>':(active?button('pause','暂停'):'')+(resumable?button('resume','继续'):'')+(active||t.status==='paused'?button('cancel','取消分工'):''))+'</div>':'')+'</div></div>';
+   return '<div class="steward-task" data-task-status="'+esc(t.status)+'"><span class="task-dot"></span><div><b>'+esc(t.name)+' · '+esc(({queued:'已排队',running:'执行中',waiting:'等候前置',paused:'已暂停',done:'已完成',cancelled:'已取消',interrupted:'已中断',replaced:'已改派'})[t.status]||'进行中')+'</b><p>'+esc(t.intent)+'</p>'+dependency+windowNote+(t.quantity?'<small>实际完成 '+(t.completed||0)+' / '+t.quantity+' · '+(t.evidence?.length||0)+' 条动作回执</small>':'')+'<p>'+esc(t.result||'抵达目标并完成动作后记录产出')+'</p>'+(t.command?'<div class="task-controls">'+(t.projectId?'<button type="button" class="secondary" data-task-project="'+esc(t.projectId)+'">查看筹备手账</button>':(active?button('pause','暂停'):'')+(resumable?button('resume','继续'):'')+(active||t.status==='paused'?button('cancel','取消分工'):''))+'</div>':'')+'</div></div>';
   }).join(''):'<p class="steward-quiet">还没有委托。可以先聊聊你的计划。</p>';
  }
  function hostReceipts(message){

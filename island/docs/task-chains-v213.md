@@ -13,3 +13,6 @@ Both the cleaned model observation and the resident runtime retain dependency ID
 - A native isolated LAN check submits a deterministic steward reply through the manual chat UI. One NPC performs forest → shore → forest jobs with real time, movement and tool actions. A mid-chain reload resumes remaining work, and a new browser context recovers all three completed jobs without duplicate receipts. The first browser draft incorrectly counted cards in both chat and sidebar; the selector is now scoped to the task sidebar, with the earlier failure retained in private QA evidence.
 
 The native check uses fictional accounts and a needs fixture, starts with no materials, blocks provider calls, and does not accelerate time. It demonstrates execution of a supplied plan, not a fresh AI decision, human play, a complete zero-start economy, physical devices, or full main/sub-Agent orchestration. The original R01/R02/R03 requirements remain in progress.
+
+
+Additional real-provider and off-shift continuation evidence is recorded in [V214](queued-work-schedules-v214.md). The original V213 deterministic checks and their boundaries are retained.

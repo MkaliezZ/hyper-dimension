@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {navigateAfterRecovery} from '../src/recoveryNavigation.js';
+import {navigateAfterRecovery,recoveryReturnURL} from '../src/recoveryNavigation.js';
 
 function fixture(){
  const events=new Map(),replaced=[],errors=[];let timer,delay,reloads=0,cancelled=0;
@@ -16,3 +16,4 @@ test('normal pagehide cancels fallback and cannot navigate again from an obsolet
 test('a different navigation chosen by the player is never replaced with the old island',()=>{const f=fixture();navigateAfterRecovery(f.options);f.pageLocation.href='http://localhost:4175/';f.fire();assert.equal(f.replaced.length,0);});
 test('reload exception uses the fresh return path immediately',()=>{const f=fixture();f.pageLocation.reload=()=>{throw Error('embedded reload refused');};navigateAfterRecovery(f.options);assert.equal(f.replaced.length,1);assert.equal(f.cancelled,1);});
 test('a rejected fallback reports the navigation error without resuming the obsolete game',()=>{const f=fixture(),error=Error('navigation unavailable');f.pageLocation.replace=()=>{throw error;};navigateAfterRecovery(f.options);f.fire();assert.deepEqual(f.errors,[error]);});
+test('explicit confirmed return uses a fresh URL in the same island with the original query and hash',()=>{const original='http://localhost:4175/play?rev=current&recoveryReturn=old#island',target=new URL(recoveryReturnURL(original));assert.equal(target.origin,'http://localhost:4175');assert.equal(target.pathname,'/play');assert.equal(target.searchParams.get('rev'),'current');assert.notEqual(target.searchParams.get('recoveryReturn'),'old');assert.equal(target.hash,'#island');});

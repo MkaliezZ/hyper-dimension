@@ -1,10 +1,17 @@
 // One owner for interaction locks: independent recovery panels must never make each other inert.
+import {recoveryReturnURL} from './recoveryNavigation.js';
 const active=new Set(),contexts=new Map(),original=new Map();let observer=null,dock=null,recoveryDialog=false,queued=false,recoverAll=null,recoveryState=()=>null;
 function remember(el,value){if(!original.has(el))original.set(el,el.inert);el.inert=value;}
 function restore(){for(const[el,value]of original)if(el.isConnected)el.inert=value;original.clear();}
 function sync(){
  restore();const state=recoveryState(),ticket=state?.active,verified=ticket&&!state.pending&&!['conflict','blocked','offline','action_pending'].includes(state.status);
- if(dock){dock.hidden=!active.size;const work=[...active].map(bar=>contexts.get(bar)),preparing=work.length&&work.every(c=>c?.canRecover===false),context=preparing?work[0]:null,title=dock.querySelector('.recovery-all strong'),message=dock.querySelector('.recovery-all p'),button=dock.querySelector('#recoveryAll');const t=context?.title||'恢复小岛进度',m=context?.message||(ticket?'「'+(ticket.name||'上次作业')+'」尚未完成。可以继续作业，或取消后回岛；未消耗的材料预留会解除。':'先核对已提交结果，再继续游玩。当前暂存会保留副本。');if(title.textContent!==t)title.textContent=t;if(message.textContent!==m)message.textContent=m;button.hidden=!!preparing||!!verified;dock.querySelector('#recoveryReturn').hidden=!ticket||!!preparing;}
+ if(dock){dock.hidden=!active.size;const work=[...active].map(bar=>contexts.get(bar)),preparing=work.length&&work.every(c=>c?.canRecover===false),context=preparing?work[0]:null,title=dock.querySelector('.recovery-all strong'),message=dock.querySelector('.recovery-all p'),button=dock.querySelector('#recoveryAll');const t=state?.navigating?'进度已核对':context?.title||'恢复小岛进度',m=state?.navigating?'进度已确认，暂存副本已保留。如果没有自动返回，请点击“返回小岛”。':context?.message||(ticket?'「'+(ticket.name||'上次作业')+'」尚未完成。可以继续作业，或取消后回岛；未消耗的材料预留会解除。':'先核对已提交结果，再继续游玩。当前暂存会保留副本。');if(title.textContent!==t)title.textContent=t;if(message.textContent!==m)message.textContent=m;button.hidden=!!preparing||!!verified;dock.querySelector('#recoveryReturn').hidden=!ticket||!!preparing;}
+ if(dock){const confirmed=state?.navigating===true,link=dock.querySelector('#recoveryOpenIsland');dock.toggleAttribute('data-recovery-confirmed',confirmed);link.hidden=!confirmed;if(confirmed){
+  dock.querySelector('#recoveryAll').hidden=true;dock.querySelector('#recoveryReturn').hidden=true;
+  // An ordinary link retains a user-initiated way out if both automatic
+  // navigations are cancelled. Never unseal or resubmit the obsolete document.
+  if(!link.hasAttribute('href'))link.href=recoveryReturnURL();
+ }}
  if(!active.size){observer?.disconnect();observer=null;return;}
  const header=dock.querySelector('.recovery-all'),check=header.querySelector('#recoveryAll');
  const label=state?.navigating?'进度已核对，正在回岛…':ticket?'核对作业回执':'核对进度并返回小岛';if(check.textContent!==label&&!reading)check.textContent=label;
@@ -15,7 +22,7 @@ function sync(){
 }
 function schedule(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;sync();});}
 export function lockActionUI(bar,context=null){
- if(!dock){dock=document.createElement('div');dock.id='actionRecoveryDock';dock.setAttribute('aria-label','待确认操作');const header=document.createElement('div');header.className='recovery-all';header.innerHTML='<div><strong>恢复小岛进度</strong><p>先核对已提交结果，再继续游玩。当前暂存会保留副本。</p><p data-recovery-error role="status" hidden></p></div><div class="recovery-actions"><button class="primary" id="recoveryAll">核对全部并继续</button><button class="secondary" id="recoveryReturn" hidden>取消未完成作业并回岛</button></div>';dock.append(header);header.querySelector('#recoveryAll').onclick=()=>readRecoveryProgress(header,()=>recoverAll?.());header.querySelector('#recoveryReturn').onclick=()=>{const ticket=recoveryState()?.active;if(!ticket)return;const expectedActive=Object.fromEntries(['kind','requestId','epoch','sequence'].map(k=>[k,ticket[k]]));return readRecoveryProgress(header,()=>recoverAll?.({cancelActive:true,expectedActive}));};document.body.append(dock);}
+ if(!dock){dock=document.createElement('div');dock.id='actionRecoveryDock';dock.setAttribute('aria-label','待确认操作');const header=document.createElement('div');header.className='recovery-all';header.innerHTML='<div><strong>恢复小岛进度</strong><p>先核对已提交结果，再继续游玩。当前暂存会保留副本。</p><p data-recovery-error role="status" hidden></p></div><div class="recovery-actions"><button class="primary" id="recoveryAll">核对全部并继续</button><button class="secondary" id="recoveryReturn" hidden>取消未完成作业并回岛</button><a class="primary" id="recoveryOpenIsland" hidden>返回小岛</a></div>';dock.append(header);header.querySelector('#recoveryAll').onclick=()=>readRecoveryProgress(header,()=>recoverAll?.());header.querySelector('#recoveryReturn').onclick=()=>{const ticket=recoveryState()?.active;if(!ticket)return;const expectedActive=Object.fromEntries(['kind','requestId','epoch','sequence'].map(k=>[k,ticket[k]]));return readRecoveryProgress(header,()=>recoverAll?.({cancelActive:true,expectedActive}));};document.body.append(dock);}
  active.add(bar);contexts.set(bar,context);if(bar.parentElement!==dock)dock.append(bar);
  // Recovery must remain available even without a pending command or conflict status.
  if(!bar.querySelector('[data-recovery-read]')){
@@ -43,7 +50,7 @@ export async function readRecoveryProgress(bar,read,toast){
  if(main)main.textContent='正在核对，请稍候…';dock?.setAttribute('aria-busy','true');
  for(const[button]of buttons)button.disabled=true;
  try{await read();}catch(error){const text=recoveryErrorMessage(error);const p=errorStatus||bar.querySelector('p');if(p){p.textContent=text;p.hidden=false;}toast?.(text);}
- finally{reading=false;const navigating=recoveryState()?.navigating;if(!navigating)dock?.removeAttribute('aria-busy');if(main)main.textContent=navigating?'进度已核对，正在回岛…':label;for(const[button,disabled]of buttons)if(button.isConnected)button.disabled=!!navigating||disabled;}
+ finally{reading=false;const navigating=recoveryState()?.navigating;dock?.removeAttribute('aria-busy');if(main)main.textContent=navigating?'进度已核对，正在回岛…':label;for(const[button,disabled]of buttons)if(button.isConnected)button.disabled=!!navigating||disabled;}
 }
 
 export function configureActionRecovery(fn,state=()=>null){recoverAll=fn;recoveryState=state;}
