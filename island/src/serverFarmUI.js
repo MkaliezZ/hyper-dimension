@@ -11,6 +11,7 @@ export function createServerFarm({saves,theme,persist,applyState,startAnimation,
  function show(title,text){q('farmHeading').textContent=title;q('farmMessage').textContent=text;bar.classList.remove('hidden');retry.disabled=inflight>0;cancel.disabled=inflight>0||!!saves.pendingAction(theme());reload.classList.toggle('hidden',saves.status(theme()).status!=='conflict');bar.querySelector('.gather-art').innerHTML=current?itemMarkup(current.item,theme()):''}
  const identity=(t,operation)=>({kind:'farm',operation,requestId:t.requestId,epoch:t.epoch,sequence:t.sequence});
  const all=()=>{const b=saves.status(theme()).actions;return [b?.active?.kind==='farm'?b.active:null,...Object.values(b?.farm?.leases||{})].filter(Boolean)};
+ function ready(index,stage,crop){const farm=saves.status(theme()).actions?.farm;if(!farm)return true;const plot=farm.plots?.[index];return !!plot&&plot.stage===stage&&(stage<2||plot.crop===crop);}
  async function send(input){
   inflight++;lastInput=input;
   try{if(!saves.pendingAction(theme()))persist();const r=await saves.action(theme(),input);applyState(r.state);return r}
@@ -22,6 +23,7 @@ export function createServerFarm({saves,theme,persist,applyState,startAnimation,
  function play(){lock();show('正在'+current.name,'第 '+(current.index+1)+' 块田 · 动作完成后确认田地和物资。');startAnimation(current,async()=>{try{receipt(await send(identity(current,'finish')))}catch(e){failure(e)}})}
  async function begin(index,step,crop){if(current||locked)return;lock();show('正在准备农活','留好种子与工具，准备进入田垄。');try{const r=await send({kind:'farm',operation:'begin',actor:'player',index,step,crop,requestId:crypto.randomUUID()});if(!receipt(r)){current=r.ticket;play()}}catch(e){if(!saves.pendingAction(theme())&&['farm_crop_season','farm_stage'].includes(e.code)){release();toast(e.message);return;}failure(e)}}
  async function beginNpc(n,d,type){
+  const expectedStage=({hoe:0,sow:1,water:2,harvest:4})[type];if(expectedStage!==undefined&&!ready(d.farmIndex,expectedStage,saves.status(theme()).state.plots[d.farmIndex]?.crop))return null;
   let r;try{r=await send({kind:'farm',operation:'begin',actor:'npc',actorId:n.npcId,index:d.farmIndex,step:type,crop:type==='sow'&&Object.hasOwn(CROPS,d.resource)?d.resource:saves.status(theme()).state.plots[d.farmIndex].crop,assignmentId:d.assignmentId||null,operationId:d.operationId||null,storyId:d.storyId||null,purposeId:d.purposeId,source:d.source,requestId:crypto.randomUUID()});}catch(e){e.pendingAction=!!saves.pendingAction(theme());if(e.pendingAction)failure(e);throw e}
   if(r.receipt)return null;jobs.set(r.ticket.requestId,r.ticket);return r.ticket;
  }
@@ -58,5 +60,5 @@ export function createServerFarm({saves,theme,persist,applyState,startAnimation,
   // Interrupted NPC/facility actions return their unspent reservations and requeue.
   for(const t of all().filter(t=>t.actor!=='player'&&!jobs.has(t.requestId))){try{await cancelTicket(t)}catch(e){failure(e,t);break}}
  }
- return {begin,beginNpc,finishNpc,cancelTicket,beginWater,finishWater,cancelWater,recover,prepareTheme:async()=>{for(const t of all().filter(t=>t.actor!=='player'))await cancelTicket(t);jobs.clear();water.clear()},occupied:i=>all().some(t=>t.index===i),busy:()=>locked||inflight>0,settling:()=>inflight>0||locked&&current?.actor!=='player',inspect:()=>({current,inflight,locked,jobs:[...jobs.values()],water:[...water.entries()]})};
+ return {begin,beginNpc,finishNpc,cancelTicket,beginWater,finishWater,cancelWater,ready,recover,prepareTheme:async()=>{for(const t of all().filter(t=>t.actor!=='player'))await cancelTicket(t);jobs.clear();water.clear()},occupied:i=>all().some(t=>t.index===i),busy:()=>locked||inflight>0,settling:()=>inflight>0||locked&&current?.actor!=='player',inspect:()=>({current,inflight,locked,jobs:[...jobs.values()],water:[...water.entries()]})};
 }

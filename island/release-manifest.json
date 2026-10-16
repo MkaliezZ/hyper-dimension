@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v231-agent-source",
+  "release": "hyper-dimension-v232-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 83718,
-      "sha256": "922084aa5356b0b77a0c5b69273751b8029906b473952922235a68aa50e08ce8"
+      "bytes": 84147,
+      "sha256": "d0d3b48082cddc7a99ab5435fcc9d04c5463cb9ee5548a67dd14ce2cfb151f52"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 14071,
-      "sha256": "6f8268779d25875731f2c6659d9fb5df910830dc8a88ad611d171cbfe90ec111"
+      "bytes": 14106,
+      "sha256": "7540e820b760a77df1c0142435980de957f91e135e7832c19bb60fce31e9f691"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144326,
-      "sha256": "da500553c467f699a789f1e9d0ed16049f96fe47c887830cdf3e6730363701d0"
+      "bytes": 144387,
+      "sha256": "460745f83ab861f459f1052e2b16a4121a832e8280b8cdceed957bc50b547a2d"
     },
     {
       "path": "src/arcade.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 43963,
-      "sha256": "d380db20629ffc75945bc27bba8e8d856728ccc41c4af8dbebb10ee0fde2e469"
+      "bytes": 44023,
+      "sha256": "4f124b2c97257cadcbd90f8dab81ee5c090ef6195124224f77397eaf51f33167"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8042,8 +8042,8 @@
     },
     {
       "path": "src/serverFarmUI.js",
-      "bytes": 7602,
-      "sha256": "c9cd6d63cc2cb09fb25a6155fa03696c47a11a74ba0bf4b313453831f9150d6e"
+      "bytes": 7998,
+      "sha256": "9b4ab32e8cd88a9bc257220623b56decdd4533af75131be06252161d9590690f"
     },
     {
       "path": "src/serverFieldNpcUI.js",
@@ -12524,7 +12524,27 @@
       "path": "tests/v231-multi-island-journey.test.mjs",
       "bytes": 13377,
       "sha256": "6d34d9fbcf8f28729d1be7c2ce4b70895e2640b91f748d9ad3374e8c07141eb3"
+    },
+    {
+      "path": "tests/v232-farm-readiness.test.mjs",
+      "bytes": 2595,
+      "sha256": "767975da88abf16c96fd712b8da4f999fcd2fda6029c90fec4fa410942784aac"
+    },
+    {
+      "path": "tests/v232-farm-readiness-browser.mjs",
+      "bytes": 3185,
+      "sha256": "9cfa25df1921e590e3053ba9b51d8fc1e0b0eab8a51fe1a3fa1f397d9dc56ded"
+    },
+    {
+      "path": "docs/farm-readiness-v232.md",
+      "bytes": 2117,
+      "sha256": "63ffcd50f5834f7fbc9cadcb3670bed28493a4c5dff16ee1c4e075eb2f9e14c1"
+    },
+    {
+      "path": "docs/verification/v232/farm-readiness.json",
+      "bytes": 2773,
+      "sha256": "13790ff36c940593bfbe31ed865a54dcbd193020f7ae876bb8ea40d0b14225b9"
     }
   ],
-  "publicRevision": "v231-github"
+  "publicRevision": "v232-github"
 }

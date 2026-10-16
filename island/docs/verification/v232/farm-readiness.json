@@ -1,0 +1,115 @@
+{
+  "version": "V232",
+  "at": "2026-10-16T22:07:18.826207+00:00",
+  "sourceBase": "afaffe5b248c527589d582a08615e02d701ec6b4",
+  "capturedRuntimeFailure": {
+    "version": "V230",
+    "theme": "origami",
+    "at": "2026-10-16T21:55:53.933Z",
+    "path": "/api/saves/origami/action",
+    "code": "farm_stage",
+    "message": "作物还未成熟",
+    "kind": "farm",
+    "operation": "begin",
+    "actorId": 0,
+    "originalCompleteClientSnapshotRetained": false
+  },
+  "reproduction": {
+    "cases": 2,
+    "failedBefore": 2,
+    "invalidPrematureDispatchesPerTheme": 3,
+    "passedAfter": 2,
+    "afterPrematureDispatches": 0,
+    "dispatchesAfterConfirmedMaturity": 1,
+    "dispatchDoesNotMintGoods": true
+  },
+  "relatedRules": {
+    "passed": 46,
+    "failed": 0
+  },
+  "browserComponent": {
+    "scope": "Actual browser component with controlled acknowledged/local farm snapshots and request spy. Not a complete gameplay, real server harvest or human test.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "before": {
+          "deferred": true,
+          "calls": 0,
+          "persists": 0,
+          "jobs": 0,
+          "ready": false
+        },
+        "after": {
+          "calls": 1,
+          "persists": 1,
+          "jobs": 1,
+          "step": "harvest",
+          "ticket": true,
+          "wrongCrop": false
+        },
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "before": {
+          "deferred": true,
+          "calls": 0,
+          "persists": 0,
+          "jobs": 0,
+          "ready": false
+        },
+        "after": {
+          "calls": 1,
+          "persists": 1,
+          "jobs": 1,
+          "step": "harvest",
+          "ticket": true,
+          "wrongCrop": false
+        },
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "nativeHarvest": {
+    "scope": "Actual isolated farm page, 8 mature native growth assets rendered on calibrated soil and player harvest server receipt. No models or production save writes.",
+    "passed": true,
+    "themes": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "receipt": {
+          "mode": "leaf",
+          "gain": {
+            "cabbage": 2,
+            "seed": 1
+          }
+        },
+        "errors": []
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "receipt": {
+          "mode": "leaf",
+          "gain": {
+            "cabbage": 2,
+            "seed": 1
+          }
+        },
+        "errors": []
+      }
+    ]
+  },
+  "fullRules": {
+    "passed": true,
+    "mainCases": 1258,
+    "runtimeCases": 14,
+    "totalCases": 1272,
+    "failed": 0
+  },
+  "serverConstraintsRelaxed": false,
+  "originalFrozenHourReclassified": false,
+  "wholeGoalComplete": false,
+  "humanAcceptance": false
+}
