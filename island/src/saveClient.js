@@ -7,6 +7,7 @@ import {createSaveJournal} from './saveJournal.js';
 import {recoverPendingProgress} from './pendingSaveRecovery.js';
 import {MAX_VISIBLE_FRAME_SECONDS} from './frameClock.js';
 import {navigateAfterRecovery} from './recoveryNavigation.js';
+import {prepareRecoveryReentry,hasRecoveryReentry,clearRecoveryReentry} from './recoveryIntent.js';
 
 export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatus=()=>{},onRemoteState=()=>{}}){
  const sessions=new Map(),journal=createSaveJournal();
@@ -72,7 +73,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   if(r.recovering||r.previewPreparing||r.previewLock||read(importKey(r.theme))||r.timer||r.commandSending||hasCommand(r.theme)||r.status==='conflict'||r.status==='blocked')return;
   r.timer=setTimeout(()=>{r.timer=null;flush(r.theme).catch(()=>{})},delay);
  }
- async function load(theme){
+ async function loadSaved(theme){
   await journal.prepare(theme);
   const r=record(theme),pending=read(pendingKey(theme));
   let local=read(activeSaveKey(theme))||loadLocal(theme);
@@ -159,6 +160,14 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    status(r,blocked?'blocked':'offline',blocked?'服务端存档异常 · 游戏已暂停':'服务未连接 · 浏览器暂存');
    await cache(r);if(!blocked)schedule(r,15000);return r.state;
   }
+ }
+ async function load(theme){
+  const state=await loadSaved(theme);
+  if(!hasRecoveryReentry(theme)||!read(pendingKey(theme)+'-previous')?.state)return state;
+  // Only an explicit re-entry link from this session, after a durable backup,
+  // authorizes resuming reconciliation before any simulation controllers exist.
+  try{await acceptServer(theme,{reload:false,preserveBackup:true});return record(theme).state;}
+  catch{return record(theme).state;}
  }
  function enqueue(theme,state){
   const r=record(theme);if(r.recovering||r.previewLock||r.previewPreparing||read(importKey(theme)))return;r.state=state;r.dirty=true;r.generation++;
@@ -317,16 +326,19 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   return retryImport(theme);
  }
 
- function acceptServer(theme,{cancelActive=false,expectedActive=null}={}){
+ function acceptServer(theme,{cancelActive=false,expectedActive=null,reload=true,preserveBackup=false}={}){
   const r=record(theme);if(read(importKey(theme)))return retryImport(theme);if(r.recoveryPromise)return r.recoveryPromise;
-  const previousStatus=r.status;r.recovering=true;clearTimeout(r.timer);r.timer=null;
-  status(r,'recovering','正在核对作业与服务端进度…');
+  const previousStatus=r.status;r.recovering=true;r.recoveryRestartReady=false;clearTimeout(r.timer);r.timer=null;
+  status(r,'recovering','正在保留当前暂存副本…');
   r.recoveryPromise=(async()=>{
-   // Drain old submissions; new and queued commands cannot race recovery.
+   // Preserve this document before waiting on an old submission. A user-initiated
+   // re-entry can then replay the durable original operation IDs in a fresh page;
+   // it must never unseal this page or invent a successful receipt.
+   if(!preserveBackup)await journal.set(pendingKey(theme)+'-previous',{state:r.state,pendingAction:read(commandKey(theme)),autosave:read(autosaveKey(theme)),savedAt:new Date().toISOString()});
+   r.recoveryRestartURL=prepareRecoveryReentry(theme);r.recoveryRestartReady=!!r.recoveryRestartURL;status(r,'recovering','暂存副本已保留 · 正在等待已提交作业…');
    if(r.actionTail)await r.actionTail.catch(()=>{});
    if(r.inflight)await r.inflight.catch(()=>{});
    const pending=read(commandKey(theme)),auto=read(autosaveKey(theme));
-   await journal.set(pendingKey(theme)+'-previous',{state:r.state,pendingAction:pending,autosave:auto,savedAt:new Date().toISOString()});
    async function replay(operation,body){
     try{await request(theme,operation,body);}
     catch(error){
@@ -335,8 +347,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
      if(!error.code||!error.status||error.status>=500||[401,403,408,429].includes(error.status))throw error;
     }
    }
-   if(auto)await replay('save',auto.body);
-   if(pending)await replay('action',pending.body);
+   if(auto){status(r,'recovering','正在核对上次保存回执…');await replay('save',auto.body);}
+   if(pending){status(r,'recovering','正在核对上次作业回执…');await replay('action',pending.body);}
+   status(r,'recovering','正在读取服务端已确认进度…');
    let {document:doc}=await request(theme,'');
    if(!doc?.state||!doc.version)throw Error('尚未取得有效的服务端进度，暂存已保留');
    if(cancelActive&&doc.actions?.active){
@@ -353,6 +366,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    r.state=doc.state;r.activeSeconds=0;r.dirty=false;await remember(r,doc);await cache(r);
    await forget(pendingKey(theme));await forget(commandKey(theme));await forget(autosaveKey(theme));
    try{localStorage.removeItem('hyper-dimension-'+theme+'-emergency-save');}catch{}
+   clearRecoveryReentry(theme);
+   if(!reload){r.recovering=false;r.recoveryRestartReady=false;status(r,'saved','进度已核对，已返回小岛');return r.state;}
    // reload() starts navigation; it does not synchronously stop this document.
    // Old RAF/timer callbacks still hold the pre-recovery game state. Keep them
    // sealed until unload so they cannot journal that stale state over this receipt.

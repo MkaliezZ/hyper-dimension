@@ -1,0 +1,26 @@
+{
+  "scope": "Fictional LAN accounts; each case starts with an explicit 02:00 clock fixture at rate1 and a900-second visual day. Native client sends no empty resident planning request; actual server returns a schedule skip without a provider or budget reservation. Controlled manual steward reply checks UI availability, not real host work. No user browser/data/key, accelerated time, human or physical-device acceptance.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "errors": [],
+      "automaticNpcRequests": 0,
+      "manualRequests": 1,
+      "passed": true,
+      "actualServerSkippedWithoutBudget": true,
+      "clockUnchanged": true,
+      "sleepingOrGoingHome": 16
+    },
+    {
+      "theme": "origami",
+      "errors": [],
+      "automaticNpcRequests": 0,
+      "manualRequests": 1,
+      "passed": true,
+      "actualServerSkippedWithoutBudget": true,
+      "clockUnchanged": true,
+      "sleepingOrGoingHome": 16
+    }
+  ],
+  "passed": true
+}

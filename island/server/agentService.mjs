@@ -1,4 +1,5 @@
 import {trimResidentLife} from '../src/residentLife.js';
+import {RESIDENT_PLAN_GOALS,residentPlanAvailability} from '../src/residentPlanning.js';
 import {validPresentationOperationId} from '../src/resourceLedger.js';
 import {runtimeConfig} from './runtimeConfig.mjs';
 import {createPartyProposalStore} from './partyProposalStore.mjs';
@@ -14,7 +15,7 @@ import {spawn} from 'node:child_process';
 import {createInterface} from 'node:readline';
 import {readFile,mkdir,writeFile,stat} from 'node:fs/promises';
 import {resolve} from 'node:path';
-const root=resolve(import.meta.dirname,'..'),goals=new Set(['farm','mine','plaza','workshop','tea','gallery','forest','dock']);
+const root=resolve(import.meta.dirname,'..'),goals=new Set(RESIDENT_PLAN_GOALS);
 let key=process.env.DEEPSEEK_API_KEY||'';try{const env=await readFile(resolve(root,'.env.local'),'utf8');key||=env.match(/^DEEPSEEK_API_KEY=(.+)$/m)?.[1]?.trim()||''}catch{}
 const status={deepseek:{model:DEEPSEEK_MODEL,modelLabel:DEEPSEEK_MODEL_LABEL,automaticModelFallback:false,configured:!!key,verified:false,calls:0,tokens:0,lastSuccess:0,lastError:''},hermes:{capabilities:{manual:['island','local-documents'],automatic:['island']},model:DEEPSEEK_MODEL,modelLabel:DEEPSEEK_MODEL_LABEL,automaticModelFallback:false,configured:false,verified:false,calls:0,lastSuccess:0,lastError:'',tools:[]}};
 const install=runtimeConfig.paths.install,hermesPython=runtimeConfig.paths.hermesPython;
@@ -105,10 +106,13 @@ export async function chatWithResident(data){
  return {reply:answer.reply,source:'deepseek',model:DEEPSEEK_MODEL,ledgerRunId:answer.ledgerRunId};
 }
 export async function decideBatch(data){
- const residents=people(data),world=cleanWorld(data),ids=new Set(residents.map(r=>r.id));if(!ids.size)throw Error('缺少居民');const run=await reserveAutomaticCall('plans',runMeta(data,'plans',[...ids]));
+ const residents=people(data);if(!residents.length)throw Error('缺少居民');
+ const availability=residentPlanAvailability(residents),ids=new Set(availability.requestedIds);
+ if(!ids.size)return {decisions:[],source:'schedule',model:null,skipped:true,reason:availability.reason,message:availability.message,skippedIds:availability.skippedIds,missingIds:[]};
+ const world=cleanWorld(data),run=await reserveAutomaticCall('plans',runMeta(data,'plans',[...ids]));
  const system='你驱动有职业、生活和复杂关系的小岛居民。commitments是实际交谈留下的后续约定，到期且提供story:选项时优先履约，紧迫的食物/体力需求和已有委托优先。承诺不等于交付，不能声称尚未发生的约定已经完成。life记录生活节奏、实际休闲结果与仍需尊重的相处边界；不要把拒绝后的交友交流说成再次表白，也不要让有分歧的人立刻反复约谈。每人options是当前世界检查过的可执行目的：有工作流程的下一步，也有体力、饥饿、社交或矛盾需求。你必须从该人options选择一个purposeId，不能随意换建筑、对象或活动。仔细看career最近结果，不打断已经执行的动作。reason具体说明为什么现在去这个地点：缺什么原料、怎样做职业工作，或者真实的关系动机。needs.energy=100表示体力充沛，needs.hunger=100表示吃饱，needs.social=100表示社交满足；数字越低越需要补充，不能把hunger99当作很饿。低于20优先恢复。social低于55且energy和hunger大于30时，应考虑实际提供的社交目的，选择几对合适居民即可，其他居民继续工作。可以在合理时机选择社交，涉及合作、生活、资源分配分歧、好感或和解，不能把所有人都安排在同一地点闲逛。options.score已包含真实库存、职业流程、个人休闲、拥挤度、重复访问与饥饿优先级；优先参考高分目的。风铃茶屋只适合实际茶饮或茶艺工作，不是全岛默认社交场所；必须选择各自options中的具体buildingId。score大于95的生活需求优先处理，等待生长时选择个人兴趣休息。不得编造已完成的工作或不存在的经历。只输出JSON {decisions:[{id,purposeId,reason:"30字左右的具体当前目的",speech:"20字左右符合个性的短句"}]}，覆盖requestedIds。';
  const accepted=new Map();for(let round=0;round<1;round++){const requestedIds=[...ids].filter(id=>!accepted.has(id));if(!requestedIds.length)break;const answer=await rpc('deepseek',{system,payload:{world,requestedIds,residents},maxTokens:3000},{run});for(const d of answer.decisions||[]){const selected=selectResidentDecision(residents,d,requestedIds);if(selected)accepted.set(selected.id,selected)}}
- if(!accepted.size)throw Error('计划未能选择世界提供的具体目的');return {decisions:[...accepted.values()],source:'deepseek',model:DEEPSEEK_MODEL,ledgerRunId:run.id,missingIds:[...ids].filter(id=>!accepted.has(id))};
+ if(!accepted.size)throw Error('计划未能选择世界提供的具体目的');return {decisions:[...accepted.values()],source:'deepseek',model:DEEPSEEK_MODEL,ledgerRunId:run.id,missingIds:[...ids].filter(id=>!accepted.has(id)),skippedIds:availability.skippedIds};
 }
 export async function converse(data){
  const residents=people(data),ids=new Set(residents.map(r=>r.id));if(ids.size!==2)throw Error('交谈需要两位居民');const world=cleanWorld(data),run=await reserveAutomaticCall('conversations',runMeta(data,'conversations',[...ids]));const types=new Set(['friendship','negotiate','dispute','reconcile','confession']);const requestedType=types.has(data.socialType)?data.socialType:'friendship';

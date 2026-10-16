@@ -1,0 +1,38 @@
+{
+  "scope": "Isolated fictional LAN accounts. Hold the actual canonical-read response during reconciliation; require a durable backup and ordinary restart link while the old page remains sealed. Re-enter without releasing the old response, then check canonical resources, receipts and usable controls in both themes. No user browser/save/provider or accelerated game clock. The origami case additionally removes its own fictional pending checkpoint to represent an already-resolved write; the original backup must survive re-entry.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "errors": [],
+      "backupPreservedBeforeRestart": true,
+      "reenteredWhileOldReadHeld": true,
+      "originalConfirmationResumedWithoutSecondClick": true,
+      "originalBackupPreservedAfterReentry": true,
+      "progressPreserved": true,
+      "controlsUsable": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "errors": [],
+      "backupPreservedBeforeRestart": true,
+      "resolvedPendingJournalFixture": true,
+      "reenteredWhileOldReadHeld": true,
+      "originalConfirmationResumedWithoutSecondClick": true,
+      "originalBackupPreservedAfterReentry": true,
+      "progressPreserved": true,
+      "controlsUsable": true,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "codexInAppBrowser": {
+    "scope": "Own isolated fictional localhost origin; original user browser/save not read.",
+    "heldCanonicalRead": true,
+    "ordinaryLinkOpened": true,
+    "confirmationAutomaticallyResumed": true,
+    "bagOpenedAndClosed": true,
+    "canonicalCoins": 0
+  },
+  "remainingBoundary": "The specific original user-page click state has not been inspected. Hosted slow-render resident-work CI failure remains a separate open issue; no physical Mac or human acceptance is claimed."
+}

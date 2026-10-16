@@ -543,3 +543,7 @@ Confirmed recovery also exposes an ordinary return link when an embedded browser
 ## V215 — Original shared chain budget and actual crafting evidence
 
 The V214 Windows resident-work artifact caught an unintended split of the original 240-second remaining-chain allowance. The native gate now shares that allowance across both jobs and records frame/save diagnostics, retaining its first-job and calendar bounds and original outcome assertions. Independent V214 checks additionally cover actual collect/craft/collect chains, lost committed replies, pause/reload/resume, and two fresh real Hermes/Flash manual sessions. This is a verification correction and broader evidence, with no game runtime change. [Failure, scope and evidence](task-chain-work-budget-v215.md).
+
+## V216 - Resumable reconciliation and actionable resident planning
+
+Recovery checkpoints are durable before waiting on old requests. An ordinary re-entry link resumes the existing confirmation in a fresh document before simulation starts, retaining the original backup and operation IDs. Nighttime residents with no legal purposes skip provider planning without consuming its budget. Both-theme native checks and an isolated Codex in-app-browser recovery path passed; the original user page was not inspected and the hosted slow-render work-chain issue remains open. [Details and sanitized evidence](recovery-reentry-v216.md).

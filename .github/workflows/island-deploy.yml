@@ -289,6 +289,12 @@ jobs:
       - name: Native confirmed return after two cancelled navigations
         run: node tests/v214-recovery-link-browser.mjs
 
+      - name: Native re-entry while recovery read is pending
+        run: node tests/v216-recovery-wait-browser.mjs
+
+      - name: Native night planning skips empty purposes
+        run: node tests/v216-night-planning-browser.mjs
+
       - name: Retain isolated native soil-care diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -308,6 +314,10 @@ jobs:
             island/qa/v205/native-visiting-party/*.png
             island/qa/v214/native-recovery-link/report.json
             island/qa/v214/native-recovery-link/*.png
+            island/qa/v216/native-recovery-wait/report.json
+            island/qa/v216/native-recovery-wait/*.png
+            island/qa/v216/native-night-planning/report.json
+            island/qa/v216/native-night-planning/*.png
           if-no-files-found: ignore
           retention-days: 3
 

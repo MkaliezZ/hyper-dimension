@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v215-agent-source",
+  "release": "hyper-dimension-v216-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 75341,
-      "sha256": "5ce59165bf94538f5d7555bfd17197b9973b8397264edbb7104554a623567955"
+      "bytes": 75970,
+      "sha256": "8d2770d049a7e54591e7c3d2b026e2f0c7c94a582dd0a5150f47bd78ea747bdf"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13021,
-      "sha256": "e2aec4d9345cb99fc6e7dfc4246d465aa67fd33266b5654ecb743b8d9d8250b7"
+      "bytes": 13101,
+      "sha256": "e49990c50f8968e479e5b6ec5243fc8fbb3e321ab242d2a05980b6f236ea2a24"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6047,8 +6047,8 @@
     },
     {
       "path": "server/agentService.mjs",
-      "bytes": 28001,
-      "sha256": "31144e1358ad7b6dcc606e73270ba557e0ec745a6b46c47fa68e068b47c5a311"
+      "bytes": 28332,
+      "sha256": "43b058717be0f232709b32d9ceec109de1147125ee8595bf3126f61d5a70d656"
     },
     {
       "path": "server/atomicJson.mjs",
@@ -6522,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 8680,
-      "sha256": "eafd364e35483eb2d95f72ada5cc01c1bfdccd4d1f69b0f5d7c7256fa8c2e860"
+      "bytes": 9276,
+      "sha256": "e6d80e1c3425f45a0653a629c4a4915d548ba6cb8e8f65c2272d7231a1f61bea"
     },
     {
       "path": "src/activityGames.js",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 143910,
-      "sha256": "5f52e18f0bf67c80007887b14e0d16f15ea851d64c439eb2d2aee5862e331b54"
+      "bytes": 144021,
+      "sha256": "dd7ab0f46f1cfe6189746d384cf01e73592285bea0c61a39f9a9078b4231f26c"
     },
     {
       "path": "src/arcade.css",
@@ -7102,8 +7102,8 @@
     },
     {
       "path": "src/gather-v46.css",
-      "bytes": 7323,
-      "sha256": "64a2fb165748e22d79729b418e4d9b0c16b1eb87f4d8cf5102eebd29f6e925d3"
+      "bytes": 7548,
+      "sha256": "dae32309b5053561581a89f572cc151f4cc69b3ed46b34950308f33ad7374a87"
     },
     {
       "path": "src/guestWorkArt.js",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 42841,
-      "sha256": "09de8da7b347f2fc0a14959d4ac73fa7ae3ab20d6a86e0c3a21c68ff89a9f1ef"
+      "bytes": 43172,
+      "sha256": "bd5e30766c940143f8fb54790d53429f245915deb07a21186307b0e7e4672c15"
     },
     {
       "path": "src/residentSchedule.js",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 33313,
-      "sha256": "e893938d697c67d375f68cbedf7736d73cbe2b173ce07b95b484ac4e76face0c"
+      "bytes": 34682,
+      "sha256": "34e5f8a72e0cada51ac51545fd6c6f9b988089103461fa1cbedfe006254f1d4e"
     },
     {
       "path": "src/saveDelta.js",
@@ -9333,7 +9333,7 @@
     {
       "path": "tests/v175-resident-schedule.test.mjs",
       "bytes": 10135,
-      "sha256": "9f6433376fc4a57612e5be923626082984e18bc21197269fc845be98cc73308d"
+      "sha256": "a899f0bbcd1021fd5b20c5edb49c51119c0da7db16587eaf1566283f226b6ac4"
     },
     {
       "path": "tests/v175-weather-browser.mjs",
@@ -12124,6 +12124,51 @@
       "path": "docs/verification/v215/collect-craft-chain.json",
       "bytes": 5756,
       "sha256": "3a46e240c4c91e9774e75d325a734d95fa0ce5d4f5c558538cc4a811b9164b49"
+    },
+    {
+      "path": "docs/recovery-reentry-v216.md",
+      "bytes": 2553,
+      "sha256": "e09638f4b31e6dc535c9388e7c2b0d9b68910652b9f3fc59202e6585e12d4596"
+    },
+    {
+      "path": "docs/verification/v216/night-planning.json",
+      "bytes": 986,
+      "sha256": "5757127a8d0c54feef8a21a89f1137084c80baa2ce8f0dca2b0772eb53d13acc"
+    },
+    {
+      "path": "docs/verification/v216/recovery-reentry.json",
+      "bytes": 1838,
+      "sha256": "101d834553fb378a650f8d4ac09fc53779a42e71b0a20dff4677534d8ae410d8"
+    },
+    {
+      "path": "src/recoveryIntent.js",
+      "bytes": 1174,
+      "sha256": "362d304b4a804fa399562e0df1989dd0de68990a52288515cb606da9e096f846"
+    },
+    {
+      "path": "src/residentPlanning.js",
+      "bytes": 1165,
+      "sha256": "086a4e8fcb1c67326598fd735e692ea2dfbf538481a329b6bda728ddcd910a3d"
+    },
+    {
+      "path": "tests/v216-night-planning-browser.mjs",
+      "bytes": 5745,
+      "sha256": "7dc13122e648dcf4f845db041e6f561bb313c9b8046533a92bd8d05f89086ba0"
+    },
+    {
+      "path": "tests/v216-recovery-intent.test.mjs",
+      "bytes": 1606,
+      "sha256": "c2ff4279f698247221a22e017b5d043b83bd6fbec4a19bbd4b99f1ccfbe6d055"
+    },
+    {
+      "path": "tests/v216-recovery-wait-browser.mjs",
+      "bytes": 6665,
+      "sha256": "9b73471afbdee380dc9b3f5e2c22963a6fd3507a8ac466f741627a37f3363671"
+    },
+    {
+      "path": "tests/v216-resident-plan-readiness.test.mjs",
+      "bytes": 5201,
+      "sha256": "e4bae370dbfbf38cb0ea5e6111368b6ba1352f76fc80f888d2f750127aebbae6"
     }
   ],
   "publicRevision": "v175-github"

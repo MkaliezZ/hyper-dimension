@@ -37,3 +37,6 @@
 .recovery-actions{display:flex;flex-direction:column;gap:8px;max-width:100%}.recovery-actions button{white-space:normal}.recovery-actions [hidden],.recovery-read[hidden]{display:none!important}
 .recovery-actions a{display:grid;place-items:center;min-height:44px;padding:10px 18px;font:inherit;font-weight:700;text-align:center;text-decoration:none;white-space:normal;cursor:var(--hd-cursor-action,default)}.recovery-actions a:focus-visible{outline:3px solid #e7ac4e;outline-offset:3px}#actionRecoveryDock[data-recovery-confirmed]>.gather-v46{display:none}
 .recovery-dialog-open #actionRecoveryDock[data-recovery-confirmed]{display:flex}
+
+/* Keep recovery navigation readable beside the progress explanation. */
+.recovery-all>div:first-child{min-width:0;flex:1}.recovery-actions{flex:0 0 176px}@media(max-width:600px){.recovery-actions{flex:1 0 100%;width:100%}}
