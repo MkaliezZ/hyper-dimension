@@ -18,6 +18,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  const commandKey=theme=>'hyper-dimension-'+theme+'-pending-action';
  const pendingKey=theme=>'hyper-dimension-'+theme+'-pending-server-save';
  const importKey=theme=>'hyper-dimension-'+theme+'-pending-import';
+ const replacementKey=theme=>'hyper-dimension-'+theme+'-pending-replacement';
  const metaKey=theme=>'hyper-dimension-'+theme+'-server-meta';
  const record=theme=>{if(!sessions.has(theme))sessions.set(theme,{theme,state:null,version:null,dirty:false,inflight:null,timer:null,status:'loading',message:'正在读取服务端存档',updatedAt:'',generation:0});return sessions.get(theme)};
  async function reconcile(r,base,remote,path){
@@ -35,6 +36,29 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  const read=key=>journal.get(key);
  const forget=key=>journal.remove(key);
  function status(r,name,message){if(r.status===name&&r.message===message)return;if(r.recovering&&name!=='recovering')return;r.status=name;r.message=message;onStatus(r.theme)}
+ function returnToIsland(r,message='进度已核对，正在返回小岛…'){
+  r.recovering=true;r.navigationPending=true;r.replacing=null;r.recoveryRestartReady=false;r.recoveryRestartURL=null;
+  clearRecoveryReentry(r.theme);clearTimeout(r.timer);r.timer=null;status(r,'recovering',message);
+  navigateAfterRecovery({onError:()=>status(r,'recovering','进度已确认 · 请点击“返回小岛”重新进入')});
+ }
+ async function preserveReplacement(r){
+  await journal.set(pendingKey(r.theme)+'-previous',{state:r.state,pendingAction:read(commandKey(r.theme)),autosave:read(autosaveKey(r.theme)),savedAt:new Date().toISOString()});
+ }
+ async function adoptReplacement(r,doc){
+  if(!doc?.state||!doc.version)throw Error('尚未取得有效的服务端进度，暂存已保留');
+  r.state=doc.state;r.activeSeconds=0;r.dirty=false;await remember(r,doc);await cache(r);
+  // Drain earlier cache captures before removing their outgoing envelopes.
+  await forget(pendingKey(r.theme));await forget(commandKey(r.theme));await forget(autosaveKey(r.theme));
+  try{localStorage.removeItem('hyper-dimension-'+r.theme+'-emergency-save');}catch{}
+ }
+ async function replaceObservedProgress(r,doc,message,{waitForActions=false}={}){
+  r.recovering=true;r.replacing='progress';status(r,'recovering','正在保留暂存并接续服务端进度…');
+  try{
+   if(waitForActions&&r.actionTail)await r.actionTail.catch(()=>{});
+   await preserveReplacement(r);await journal.set(replacementKey(r.theme),{operation:'adopt',sourceVersion:doc.version});
+   await adoptReplacement(r,doc);await forget(replacementKey(r.theme));returnToIsland(r,message);
+  }catch(error){r.recovering=false;r.replacing=null;status(r,'action_pending','进度替换尚待核对 · 原记录保留，请读取服务端进度');throw Object.assign(error,{replacementPending:true});}
+ }
  function cache(r){
   clearTimeout(r.cacheTimer);r.cacheTimer=null;
   const run=async()=>{
@@ -70,7 +94,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  const hasCommand=theme=>{try{return journal.has(commandKey(theme))}catch{return false}};
  function schedule(r,delay=5000){
-  if(r.recovering||r.previewPreparing||r.previewLock||read(importKey(r.theme))||r.timer||r.commandSending||hasCommand(r.theme)||r.status==='conflict'||r.status==='blocked')return;
+  if(r.recovering||r.previewPreparing||r.previewLock||read(importKey(r.theme))||read(replacementKey(r.theme))||r.timer||r.commandSending||hasCommand(r.theme)||['conflict','blocked','action_pending'].includes(r.status))return;
   r.timer=setTimeout(()=>{r.timer=null;flush(r.theme).catch(()=>{})},delay);
  }
  async function loadSaved(theme){
@@ -95,6 +119,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    let doc=result.document;
    r.migration=result.migration||null;
+   if(read(replacementKey(theme))){r.state=doc.state;r.dirty=false;await remember(r,doc);status(r,'action_pending','进度替换结果尚待核对 · 请读取服务端进度，原暂存已保留');return r.state;}
    if(read(importKey(theme))){r.state=doc.state;await remember(r,doc);const imported=await retryImport(theme,{reload:false});return imported.document.state;}
    if(result.initialCreated||result.restarted){
     await journal.set(pendingKey(theme)+'-previous',{state:pending?.state||local,pendingAction:read(commandKey(theme)),autosave:read(autosaveKey(theme)),savedAt:new Date().toISOString()});
@@ -151,6 +176,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    await cache(r);return r.state;
   }catch(error){
+   if(read(replacementKey(theme))){r.state=r.state||pending?.state||local;r.dirty=false;status(r,'action_pending','进度替换结果尚待核对 · 请连接本机服务后重试');return r.state;}
    if(read(importKey(theme))){r.state=r.state||pending?.state||local;r.dirty=false;status(r,'import_pending','导入结果待核对 · 点击重试');return r.state;}
    r.state=pending?.state||local;r.version=pending?.baseVersion||read(metaKey(theme))?.version||null;r.dirty=true;
    const blocked=['save_corrupt','save_version','lan_wallet_corrupt','lan_travel_active'].includes(error.code);
@@ -170,7 +196,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   catch{return record(theme).state;}
  }
  function enqueue(theme,state){
-  const r=record(theme);if(r.recovering||r.previewLock||r.previewPreparing||read(importKey(theme)))return;r.state=state;r.dirty=true;r.generation++;
+  const r=record(theme);if(r.recovering||r.previewLock||r.previewPreparing||read(importKey(theme))||read(replacementKey(theme)))return;r.state=state;r.dirty=true;r.generation++;
   // Coalesce same-frame NPC changes; flush awaits a durable journal before sending.
   if(!r.cacheTimer)r.cacheTimer=setTimeout(()=>{r.cacheTimer=null;cache(r).catch(()=>{})},250);
   if(!r.commandSending&&!hasCommand(theme)&&!['conflict','blocked','offline','action_pending'].includes(r.status))status(r,'pending','进度待保存 · 自动写入中');
@@ -178,8 +204,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function flush(theme){
   const r=record(theme);
+  if(read(replacementKey(theme)))throw Object.assign(Error('进度替换结果尚待核对'),{code:'action_pending'});
   if(r.previewLock||r.previewPreparing||read(importKey(theme)))throw Object.assign(Error('存档导入尚待确认'),{code:'import_pending'});
   if(r.recovering)throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});
+  if(r.status==='action_pending')throw Object.assign(Error(r.message||'操作结果尚待核对'),{code:'action_pending'});
   if(r.commandSending||read(commandKey(theme)))throw Object.assign(Error('作业结算待核对，请先重试该次作业'),{code:'action_pending'});
   if(['conflict','blocked'].includes(r.status))throw Error(r.message);
   if(r.inflight){await r.inflight;if(r.dirty)return flush(theme);return}
@@ -190,7 +218,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     const cached=await cache(r),generation=cached.generation;status(r,'saving','正在保存到本机服务');
     if(!r.version){
      const result=await request(theme,'open',{legacyState:r.state,clientId}),doc=result.document;
-     if(result.restarted||result.initialCreated){r.state=doc.state;await remember(r,doc);r.dirty=false;await forget(pendingKey(theme));location.reload();return}
+     if(result.restarted||result.initialCreated){await replaceObservedProgress(r,doc,'新进度已确认，正在返回小岛…');return}
      if(!sameState(doc.state,r.state))throw Object.assign(Error('服务器已有另一份进度'),{code:'save_conflict'});
      await remember(r,doc);
     }
@@ -207,6 +235,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     if(r.dirty)schedule(r);
    }catch(error){
     r.activeSeconds=0;
+    if(error.replacementPending)throw error;
     // A definite version rejection did not advance this autosave's clock.
     // Merge independent edits against the acknowledged baseline; never guess
     // the result of a timed-out request or discard overlapping edits.
@@ -233,10 +262,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   try{await r.inflight}finally{r.inflight=null;r.reconciling=false}
  }
  async function action(theme,input){
-  const r=record(theme);if(r.recovering)throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
  }
  async function actionNow(theme,input){
-  const r=record(theme);if(r.recovering)throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});
   let envelope=read(commandKey(theme)),basePath=envelope?.baseDocument?'baseDocument.document.state':'baseState';
   if(envelope&&(envelope.body.requestId!==input.requestId||envelope.body.operation!==input.operation))throw Object.assign(Error('另一次作业结果待核对，请先重试'),{code:'action_pending'});
   if(!envelope){
@@ -274,8 +303,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   }finally{r.commandSending=false;r.reconciling=false;if(r.dirty&&!read(commandKey(theme)))schedule(r);}
  }
  async function refresh(theme){
-  const r=record(theme);if(r.commandSending||r.inflight||read(commandKey(theme))||read(autosaveKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成该次操作'),{code:'action_pending'});
-  const {document:doc}=await request(theme,'');if(!doc||doc.version===r.version)return;if(doc.state.saveSlot!==r.state?.saveSlot){location.reload();return;}
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))return;if(r.commandSending||r.inflight||read(commandKey(theme))||read(autosaveKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成该次操作'),{code:'action_pending'});
+  const {document:doc}=await request(theme,'');if(!doc||doc.version===r.version)return;if(doc.state.saveSlot!==r.state?.saveSlot){await replaceObservedProgress(r,doc,'小岛进度已更新，正在重新进入…',{waitForActions:true});return;}
   try{
    if(r.dirty){const result=await reconcile(r,r.remoteEncoded||r.remoteState,doc,r.remoteEncoded?'document.state':undefined);r.state=result.state;onRemoteState(theme,r.state);await remember(r,doc);r.dirty=result.dirty||r.generation!==result.generation;await cache(r);status(r,r.dirty?'pending':'saved','跨岛结算已核对，本岛操作已保留');if(r.dirty)schedule(r);return;}
    r.reconciling=true;r.state=doc.state;r.activeSeconds=0;onRemoteState(theme,r.state);await remember(r,doc);await forget(autosaveKey(theme));await forget(pendingKey(theme));await cache(r);status(r,'saved','跨岛结算与本岛进度已同步');
@@ -284,16 +313,27 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function backups(theme){return (await request(theme,'backups')).backups}
  async function backup(theme){await flush(theme);return request(theme,'backup',{expectedVersion:record(theme).version})}
- async function restore(theme,id){
-  const r=record(theme);clearTimeout(r.timer);
-  if(r.inflight)await r.inflight.catch(()=>{});
-  const {document:doc}=await request(theme,'restore',{id,expectedVersion:r.version,clientId});
-  r.state=doc.state;r.dirty=false;await remember(r,doc);await forget(pendingKey(theme));await forget(commandKey(theme));await forget(autosaveKey(theme));await cache(r);
-  location.reload();
+ function restore(theme,id){
+  const r=record(theme);if(r.restoring)return r.restoring;
+  if(r.recovering||read(replacementKey(theme))||read(importKey(theme)))return Promise.reject(Object.assign(Error('上一次替换结果尚待核对，请先读取服务端进度'),{code:'action_pending'}));
+  r.recovering=true;r.replacing='restore';r.recoveryRestartReady=false;r.recoveryRestartURL=null;clearTimeout(r.timer);r.timer=null;status(r,'recovering','正在保留暂存并恢复历史进度…');
+  r.restoring=(async()=>{
+   try{
+    if(r.actionTail)await r.actionTail.catch(()=>{});if(r.inflight)await r.inflight.catch(()=>{});
+    await preserveReplacement(r);const body={id,expectedVersion:r.version,clientId};await journal.set(replacementKey(theme),{operation:'restore',body});
+    const {document:doc}=await request(theme,'restore',body);await adoptReplacement(r,doc);await forget(replacementKey(theme));
+    returnToIsland(r,'历史进度已恢复，正在返回小岛…');
+   }catch(error){
+    r.recovering=false;r.replacing=null;
+    const uncertain=!error.code||!Number.isInteger(error.status)||error.status>=500||[401,403,408,429].includes(error.status);
+    if(!uncertain)await forget(replacementKey(theme));
+    status(r,'action_pending',uncertain?'历史恢复结果尚待核对 · 原记录已保留，请读取服务端进度':'历史恢复未生效 · '+error.message);throw error;
+   }finally{if(!r.navigationPending){r.recovering=false;r.replacing=null;r.restoring=null;}}
+  })();return r.restoring;
  }
 
  async function previewImport(theme,data,{migrationId}={}){
-  const r=record(theme);cancelImportPreview(theme);clearTimeout(r.timer);r.timer=null;
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});cancelImportPreview(theme);clearTimeout(r.timer);r.timer=null;
   if(r.inflight)await r.inflight.catch(()=>{});
   if(r.actionTail)await r.actionTail.catch(()=>{});
   if(read(commandKey(theme))||read(autosaveKey(theme))||read(importKey(theme)))throw Object.assign(Error('上一次操作结果尚待核对，请先恢复进度'),{code:'action_pending'});
@@ -305,18 +345,17 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  function cancelImportPreview(theme){const r=record(theme);r.previewLock=null;if(r.dirty)schedule(r);}
  async function adoptImport(r,doc){
-  r.state=doc.state;r.activeSeconds=0;r.dirty=false;r.migration=null;await remember(r,doc);
-  await forget(pendingKey(r.theme));await forget(commandKey(r.theme));await forget(autosaveKey(r.theme));await forget(importKey(r.theme));await cache(r);
+  await adoptReplacement(r,doc);r.migration=null;await forget(importKey(r.theme));
  }
  async function retryImport(theme,{reload=true}={}){
   const r=record(theme);if(r.importing)return r.importing;const envelope=read(importKey(theme));if(!envelope)throw Error('没有待确认的导入操作');
-  r.recovering=true;status(r,'recovering','正在核对存档导入…');clearTimeout(r.timer);r.timer=null;
+  r.recovering=true;r.replacing='import';r.recoveryRestartReady=false;r.recoveryRestartURL=null;status(r,'recovering','正在核对存档导入…');clearTimeout(r.timer);r.timer=null;
   r.importing=(async()=>{
-   try{const response=await request(theme,'import',envelope.body);await adoptImport(r,response.document);r.recovering=false;status(r,'saved','导入已确认，进度已保存');if(reload)location.reload();return response;}
-   catch(error){r.recovering=false;const uncertain=!error.code||!Number.isInteger(error.status)||error.status>=500||[401,403,408,429].includes(error.status);
+   try{if(r.actionTail)await r.actionTail.catch(()=>{});if(r.inflight)await r.inflight.catch(()=>{});const response=await request(theme,'import',envelope.body);await adoptImport(r,response.document);if(reload)returnToIsland(r,'导入已确认，正在返回小岛…');else{r.recovering=false;r.replacing=null;status(r,'saved','导入已确认，进度已保存');}return response;}
+   catch(error){r.recovering=false;r.replacing=null;const uncertain=!error.code||!Number.isInteger(error.status)||error.status>=500||[401,403,408,429].includes(error.status);
     if(!uncertain){await forget(importKey(theme));status(r,'conflict','导入未生效 · '+error.message);}else status(r,'import_pending','导入结果待核对 · 点击重试');
     throw error;
-   }finally{r.recovering=false;r.previewLock=null;r.importing=null;}
+   }finally{if(!r.navigationPending){r.recovering=false;r.replacing=null;}r.previewLock=null;r.importing=null;}
   })();return r.importing;
  }
  async function importSave(theme,preview){
@@ -327,14 +366,16 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
 
  function acceptServer(theme,{cancelActive=false,expectedActive=null,reload=true,preserveBackup=false}={}){
-  const r=record(theme);if(read(importKey(theme)))return retryImport(theme);if(r.recoveryPromise)return r.recoveryPromise;
+  const r=record(theme);if(r.restoring)return r.restoring;if(read(importKey(theme))&&!read(replacementKey(theme)))return retryImport(theme);if(r.recoveryPromise)return r.recoveryPromise;
   const previousStatus=r.status;r.recovering=true;r.recoveryRestartReady=false;clearTimeout(r.timer);r.timer=null;
   status(r,'recovering','正在保留当前暂存副本…');
   r.recoveryPromise=(async()=>{
    // Preserve this document before waiting on an old submission. A user-initiated
    // re-entry can then replay the durable original operation IDs in a fresh page;
    // it must never unseal this page or invent a successful receipt.
-   if(!preserveBackup)await journal.set(pendingKey(theme)+'-previous',{state:r.state,pendingAction:read(commandKey(theme)),autosave:read(autosaveKey(theme)),savedAt:new Date().toISOString()});
+   if(!preserveBackup&&!read(replacementKey(theme)))await preserveReplacement(r);
+   const replaced=read(replacementKey(theme));
+   if(replaced&&read(importKey(theme)))await journal.set(importKey(theme)+'-previous',{pendingImport:read(importKey(theme)),reason:'canonical-selection-after-replacement',savedAt:new Date().toISOString()});
    r.recoveryRestartURL=prepareRecoveryReentry(theme);r.recoveryRestartReady=!!r.recoveryRestartURL;status(r,'recovering','暂存副本已保留 · 正在等待已提交作业…');
    if(r.actionTail)await r.actionTail.catch(()=>{});
    if(r.inflight)await r.inflight.catch(()=>{});
@@ -347,8 +388,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
      if(!error.code||!error.status||error.status>=500||[401,403,408,429].includes(error.status))throw error;
     }
    }
-   if(auto){status(r,'recovering','正在核对上次保存回执…');await replay('save',auto.body);}
-   if(pending){status(r,'recovering','正在核对上次作业回执…');await replay('action',pending.body);}
+   if(auto&&!read(replacementKey(theme))){status(r,'recovering','正在核对上次保存回执…');await replay('save',auto.body);}
+   if(pending&&!read(replacementKey(theme))){status(r,'recovering','正在核对上次作业回执…');await replay('action',pending.body);}
    status(r,'recovering','正在读取服务端已确认进度…');
    let {document:doc}=await request(theme,'');
    if(!doc?.state||!doc.version)throw Error('尚未取得有效的服务端进度，暂存已保留');
@@ -363,22 +404,20 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     const response=await request(theme,'action',body);doc=response.document;
     if(!response.receipt||doc?.actions?.active)throw Error('取消结果尚未确认，作业记录已保留');
    }
-   r.state=doc.state;r.activeSeconds=0;r.dirty=false;await remember(r,doc);await cache(r);
-   await forget(pendingKey(theme));await forget(commandKey(theme));await forget(autosaveKey(theme));
-   try{localStorage.removeItem('hyper-dimension-'+theme+'-emergency-save');}catch{}
+   await adoptReplacement(r,doc);if(replaced)await forget(importKey(theme));await forget(replacementKey(theme));
    clearRecoveryReentry(theme);
    if(!reload){r.recovering=false;r.recoveryRestartReady=false;status(r,'saved','进度已核对，已返回小岛');return r.state;}
    // reload() starts navigation; it does not synchronously stop this document.
    // Old RAF/timer callbacks still hold the pre-recovery game state. Keep them
    // sealed until unload so they cannot journal that stale state over this receipt.
-   r.navigationPending=true;status(r,'recovering','进度已核对，正在返回小岛…');navigateAfterRecovery({onError:()=>status(r,'recovering','进度已核对 · 请刷新页面返回小岛')});
+   returnToIsland(r);
   })().catch(error=>{
    r.navigationPending=false;r.recovering=false;status(r,['conflict','blocked','offline','action_pending'].includes(previousStatus)?previousStatus:'action_pending','核对未完成 · '+(error.message||'请稍后重试'));throw error;
   }).finally(()=>{if(!r.navigationPending){r.recovering=false;r.recoveryPromise=null;}});
   return r.recoveryPromise;
  }
 
- function suspend(){for(const r of sessions.values())if(r.dirty&&!r.recovering&&!r.previewLock&&!r.previewPreparing&&!read(importKey(r.theme))){
+ function suspend(){for(const r of sessions.values())if(r.dirty&&!r.recovering&&!r.previewLock&&!r.previewPreparing&&!read(importKey(r.theme))&&!read(replacementKey(r.theme))){
   // pagehide can terminate a worker: retain a synchronous emergency journal only here.
   try{const serialized=JSON.stringify(r.state);if(!journal.enabled())storeLocal(r.theme,r.state,serialized);localStorage.setItem(journal.enabled()?'hyper-dimension-'+r.theme+'-emergency-save':pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(r.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(new Date().toISOString())+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+(baselineText(r)||'null')+'}');}catch{}
   cache(r).catch(()=>{});flush(r.theme).catch(()=>{});
@@ -391,6 +430,6 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   try{const {document:doc}=await request(theme,'appearance',r.appearanceRequest);r.state=doc.state;r.dirty=false;await remember(r,doc);await cache(r);r.appearanceRequest=null;status(r,'saved','画风已切换 · 同一座小岛的进度');return r.state;}catch(e){if(e.status&&e.status<500)r.appearanceRequest=null;throw e;}
  }
  const api={appearance,load,enqueue,flush,action,refresh,async idle(theme){const r=record(theme);let tail;do{tail=r.actionTail;if(tail)await tail;if(r.inflight)await r.inflight;if(r.cacheTail)await r.cacheTail;}while(tail!==r.actionTail);if(read(commandKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成恢复'),{code:'action_pending'});},advanceTime(theme,dt){const r=record(theme);if(r.state?.farmControl?.version!==1&&r.state?.visitorControl?.version!==1&&r.state?.commerceControl?.version!==1&&r.state?.facilityControl?.version!==1||document.hidden)return;if(r.previewLock||r.previewPreparing||['recovering','offline','blocked','conflict','action_pending','import_pending'].includes(r.status)){r.activeSeconds=0;return}if(Number.isFinite(dt)&&dt>0&&dt<=MAX_VISIBLE_FRAME_SECONDS)r.activeSeconds=Math.min(15,(r.activeSeconds||0)+dt);},pendingAction:theme=>read(commandKey(theme)),backups,backup,restore,previewImport,importSave,retryImport,cancelImportPreview,acceptServer,
-  status:theme=>record(theme),blocked:theme=>!!record(theme).previewLock||!!record(theme).previewPreparing||['recovering','conflict','blocked','action_pending','import_pending'].includes(record(theme).status)};
+   status:theme=>record(theme),blocked:theme=>!!read(replacementKey(theme))||!!record(theme).previewLock||!!record(theme).previewPreparing||['recovering','conflict','blocked','action_pending','import_pending'].includes(record(theme).status)};
  return storageTheme?Object.fromEntries(Object.entries(api).map(([k,fn])=>[k,(ignored,...args)=>fn(storageTheme,...args)])):api;
 }

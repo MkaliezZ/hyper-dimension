@@ -20,7 +20,7 @@ export function createSaveJournal(){
   if(!worker)return;
   try{const stored=await rpc('entries',namespace+'hyper-dimension-'+theme+'-');for(const [key,value] of stored)raw.set(key.slice(namespace.length),value);enabled=true;}
   catch{worker.terminate();worker=null;return;}
-  const keys=[activeSaveKey(theme),...['pending-server-save','pending-clock-save','pending-action','server-meta','pending-server-save-previous'].map(k=>'hyper-dimension-'+theme+'-'+k)],imports=[];
+  const keys=[activeSaveKey(theme),...['pending-server-save','pending-clock-save','pending-action','pending-import','pending-replacement','server-meta','pending-server-save-previous'].map(k=>'hyper-dimension-'+theme+'-'+k)],imports=[];
   for(const key of keys){let value;try{value=localStorage.getItem(key);}catch{}if(value!==null&&value!==undefined){raw.set(key,value);parsed.delete(key);imports.push([key,value]);}}
   const emergencyKey='hyper-dimension-'+theme+'-emergency-save';let emergency;try{emergency=JSON.parse(localStorage.getItem(emergencyKey)||'null');}catch{}
   const stamp=get('hyper-dimension-'+theme+'-journal-stamp');

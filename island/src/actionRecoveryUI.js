@@ -87,8 +87,12 @@ export function configureActionRecovery(fn,state=()=>null){recoverAll=fn;recover
 let saveRecoveryBar=null;
 export function reflectSaveRecovery(status){
  const blocked=['conflict','action_pending','import_pending','blocked'].includes(status.status);
- if(!blocked){if(status.status==='recovering')return;if(saveRecoveryBar){unlockActionUI(saveRecoveryBar);saveRecoveryBar.remove();saveRecoveryBar=null;}return;}
+ const replacing=status.status==='recovering'&&(status.replacing||status.navigationPending);
+ if(!blocked&&!replacing){if(status.status==='recovering')return;if(saveRecoveryBar){unlockActionUI(saveRecoveryBar);saveRecoveryBar.remove();saveRecoveryBar=null;}return;}
  if(!saveRecoveryBar){saveRecoveryBar=document.createElement('section');saveRecoveryBar.id='saveRecoveryPrompt';saveRecoveryBar.className='gather-v46 recovery-text';saveRecoveryBar.innerHTML='<div><strong>小岛进度需要核对</strong><p role="status"></p></div><div class="gather-buttons"><button class="secondary" data-save-recovery-details>查看存档与恢复选项</button></div>';saveRecoveryBar.querySelector('[data-save-recovery-details]').onclick=()=>document.getElementById('saveStatus')?.click();}
- saveRecoveryBar.querySelector('p').textContent=status.message+'。核对后即可恢复移动和进入房屋，当前暂存会保留副本。';
- lockActionUI(saveRecoveryBar);
+ saveRecoveryBar.querySelector('strong').textContent=replacing?(status.navigationPending?'进度已确认':'正在替换小岛进度'):'小岛进度需要核对';
+ saveRecoveryBar.querySelector('p').textContent=status.message+(replacing?'。原记录已保留；确认后会重新进入小岛。':'。核对后即可恢复移动和进入房屋，当前暂存会保留副本。');
+ saveRecoveryBar.querySelector('[data-save-recovery-details]').hidden=!!replacing;
+ lockActionUI(saveRecoveryBar,replacing?{canRecover:false,title:'正在替换小岛进度',message:status.message}:null);
+ if(replacing)setRecoveryDialog(false);
 }

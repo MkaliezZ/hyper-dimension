@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v225-agent-source",
+  "release": "hyper-dimension-v226-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 80882,
-      "sha256": "9507c3db2bbd9eda886c1de70d11efe9b0d2c4b4f524b2eccb8c1cd85fd36640"
+      "bytes": 81386,
+      "sha256": "c9107b1d21f6111625b6103b56bde9cac840fcd6a1f2205b7ee38b9d7218873f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13464,
-      "sha256": "f3b032b7d4fd1252eef8b743b88500da979dd20a8ee3e3bf1dac7b04f00f2274"
+      "bytes": 13501,
+      "sha256": "e64fafdf242c9d9f4d114e301046da48cabb0f5a0ce0889d53a7545452344d7e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6522,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 10968,
-      "sha256": "531520f83e1e3ab1834ec391852d48c971ff9ec064a35966d1bccf733d427e34"
+      "bytes": 11521,
+      "sha256": "932ff329cc9b8847fa884b4721d5db453ecec4507a1a199dc32fb2892d3e44fe"
     },
     {
       "path": "src/activityGames.js",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 34682,
-      "sha256": "34e5f8a72e0cada51ac51545fd6c6f9b988089103461fa1cbedfe006254f1d4e"
+      "bytes": 38920,
+      "sha256": "90aa1b6109479a1a391dd7e7db32928a2c6be8f6bae6cf9060a39f3654d4fc53"
     },
     {
       "path": "src/saveDelta.js",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 6720,
-      "sha256": "35c170e3ff1f29a0b497ec7b8bac65d0c1e3f888e24c6afa9486724ca84bc74a"
+      "bytes": 6759,
+      "sha256": "57f20a3bb9cb0c8900bb54c05cc5af45451016e58fc4467d7428afec5d52f08b"
     },
     {
       "path": "src/saveLimits.js",
@@ -12404,7 +12404,27 @@
       "path": "docs/verification/v225/recovery-selection.json",
       "bytes": 803,
       "sha256": "b27d51e0dbef0b75335aec9c3802797050ff5a80a2a6e50d831dab14dd5408e9"
+    },
+    {
+      "path": "tests/v226-save-replacement.test.mjs",
+      "bytes": 14080,
+      "sha256": "329dfa3d8d10565b2a72fd62d8224125a69db3cea4a0d915d7fbf0e5ea08b0a3"
+    },
+    {
+      "path": "tests/v226-save-replacement-browser.mjs",
+      "bytes": 10389,
+      "sha256": "336dda881de48117367938de2e039e4299ce6d0c1bc970631161bb6e986a78c4"
+    },
+    {
+      "path": "docs/save-replacement-v226.md",
+      "bytes": 2863,
+      "sha256": "56aec39b9a1f1593af075c2e755edb0e0f013ec4db51e06a1a1c6a2223d36924"
+    },
+    {
+      "path": "docs/verification/v226/save-replacement.json",
+      "bytes": 1301,
+      "sha256": "69deb788fd68518f0572f91f22d9a76471af831ef5ccaf8024f0fd1c552fdbd1"
     }
   ],
-  "publicRevision": "v225-github"
+  "publicRevision": "v226-github"
 }

@@ -1,0 +1,45 @@
+{
+  "version": 226,
+  "baseline": {
+    "validCasesFailed": 4,
+    "reason": "Confirmed import or history restore accepted an outgoing old-state checkpoint after HTTP204 cancelled its reload",
+    "fixtureSetupFailuresExcluded": true
+  },
+  "rules": {
+    "newPassed": 8,
+    "relatedFocusedPassed": 20,
+    "focusedOverlapsFull": true,
+    "defaultPassed": 1226,
+    "runtimePassed": 14,
+    "fullTotal": 1240,
+    "fullFailed": 0,
+    "olderPendingImportBackedUpAndNotReplayedAfterReplacement": true
+  },
+  "native": {
+    "passed": 6,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "confirmedRestore": 2,
+    "signedLocalImport": 2,
+    "lostRestoreResponseAcrossReload": 2,
+    "cancelledAutomaticNavigation": true,
+    "ordinaryConfirmedReturnLink": true,
+    "outgoingCheckpointSealed": true,
+    "uncertainRestoreNotResubmitted": true,
+    "lostImportReplaysOriginalPreviewOnly": true,
+    "canonicalIdentityResourcesAndServerBackupPreserved": true,
+    "repeatedReentryStable": true,
+    "responsive390px": true,
+    "providersDisabled": true,
+    "userBrowserOrSaveRead": false
+  },
+  "notVerified": [
+    "Original Codex tab",
+    "Physical Mac acceptance",
+    "Human acceptance",
+    "Whole goal"
+  ],
+  "wholeGoalComplete": false
+}
