@@ -1,6 +1,7 @@
 from model_policy import DEEPSEEK_MODEL
 from a2a_runtime import run_collaboration
 from project_protocol import validate_preparation
+from dispatch_order import validate_dispatch_order
 from party_protocol import validate_party
 from recruited_agent import run_recruitment,usage
 from usage_audit import attach_usage_meter
@@ -40,7 +41,8 @@ def dispatch(args,**kw):
  if len(commands)>=4:return json.dumps({'accepted':False,'error':'最多四个任务'})
  bid=args.get('buildingId')
  if bid is not None and not any(b.get('id')==bid and b.get('kind')==goal for b in current.get('built',[])):return json.dumps({'accepted':False,'error':'建筑和行动类型不匹配'})
- if any(c['npcId']==nid for c in commands) or any(r.get('id')==nid and r.get('assignment') for r in current.get('residents',[])):return json.dumps({'accepted':False,'error':'居民已有分工'})
+ order=validate_dispatch_order({**args,'npcId':nid},current,commands,manual)
+ if not order['ok']:return json.dumps({'accepted':False,'error':order['error']},ensure_ascii=False)
  resource=args.get('resource');recipe_id=args.get('recipeId')
  if resource:
   material=next((m for m in current.get('materials',[]) if m['id']==resource),None)
@@ -52,10 +54,12 @@ def dispatch(args,**kw):
   if not recipe or recipe['buildingId']!=bid:return json.dumps({'accepted':False,'error':'recipe locked or wrong station'})
  quantity=args.get('quantity',1)
  if not isinstance(quantity,int) or isinstance(quantity,bool) or not 1<=quantity<=50:return json.dumps({'accepted':False,'error':'quantity must be 1 to 50'})
- c={'quantity':quantity,'resource':resource,'recipeId':recipe_id,'id':uuid.uuid4().hex,'npcId':nid,'goal':goal,'intent':intent,'source':'hermes','buildingId':bid};commands.append(c)
+ c={'quantity':quantity,'resource':resource,'recipeId':recipe_id,'id':uuid.uuid4().hex,'npcId':nid,'goal':goal,'intent':intent,'source':'hermes','buildingId':bid}
+ if order['dependsOn']:c['dependsOn']=order['dependsOn']
+ commands.append(c)
  return json.dumps({'accepted':True,'state':'queued','command':c,'note':'实际执行结果会在下一轮观察返回'},ensure_ascii=False)
 registry.register(name='island_observe',toolset='hyper_dimension',description='观察当前小岛的真实居民、物资、任务和已确认事件。',schema={'name':'island_observe','description':'读取真实岛屿状态','parameters':{'type':'object','properties':{},'additionalProperties':False}},handler=observe)
-registry.register(name='island_dispatch',toolset='hyper_dimension',description='给管家或现有居民下达岛内行动；排队不等于完成。',schema={'name':'island_dispatch','description':'调度小岛行动，npcId15是管家，0到14为居民。','parameters':{'type':'object','properties':{'npcId':{'type':'integer','minimum':0,'maximum':15},'goal':{'type':'string','enum':['farm','mine','forest','dock','plaza','workshop','tea','gallery']},'buildingId':{'type':'integer','minimum':0,'maximum':24},'intent':{'type':'string'},'quantity':{'type':'integer','minimum':1,'maximum':50,'description':'实际需要产出的物品数量，采矿仅取得目标矿石才记进度'},'resource':{'type':'string','description':'采集素材ID，来源必须匹配goal；温室材料buildingId14'},'recipeId':{'type':'string','description':'从观察结果recipes选择已解锁的配方ID，对应buildingId必须正确'}},'required':['npcId','goal','intent'],'additionalProperties':False}},handler=dispatch)
+registry.register(name='island_dispatch',toolset='hyper_dimension',description='给管家或现有居民下达岛内行动；排队不等于完成。',schema={'name':'island_dispatch','description':'调度小岛行动，npcId15是管家，0到14为居民。','parameters':{'type':'object','properties':{'npcId':{'type':'integer','minimum':0,'maximum':15},'goal':{'type':'string','enum':['farm','mine','forest','dock','plaza','workshop','tea','gallery']},'buildingId':{'type':'integer','minimum':0,'maximum':24},'intent':{'type':'string'},'quantity':{'type':'integer','minimum':1,'maximum':50,'description':'实际需要产出的物品数量，采矿仅取得目标矿石才记进度'},'resource':{'type':'string','description':'采集素材ID，来源必须匹配goal；温室材料buildingId14'},'recipeId':{'type':'string','description':'从观察结果recipes选择已解锁的配方ID，对应buildingId必须正确'},'dependsOn':{'type':'array','maxItems':20,'uniqueItems':True,'items':{'type':'string'},'description':'仅玩家明确要求顺序工作时，填写 taskBoard 或本轮工具返回的前置任务编号；同一居民最多四项，追加须等待全部已有工作。自动巡查不可使用。'}},'required':['npcId','goal','intent'],'additionalProperties':False}},handler=dispatch)
 registry.register(name='island_prepare',toolset='hyper_dimension',description='为岛主明确要求建立物资筹备计划，按实时缺口协调采集和制作。',schema={'name':'island_prepare','description':'用户明确要求筹备时使用；询问和自动巡查不使用。','parameters':{'type':'object','properties':{'title':{'type':'string','maxLength':50},'targets':{'type':'array','minItems':1,'maxItems':8,'items':{'type':'object','properties':{'item':{'type':'string'},'quantity':{'type':'integer','minimum':1,'maximum':50}},'required':['item','quantity'],'additionalProperties':False}}},'required':['title','targets'],'additionalProperties':False}},handler=prepare)
 registry.register(name='island_party',toolset='hyper_dimension',description='岛主明确要求时，建立或修改钓鱼、星灯夜集、海岛集市、穿搭大会或星海烟花大会，并自动展开真实物资清单。',schema={'name':'island_party','description':'先观察 partyTemplates 中选定模板。固定岗位不可删除；最多一位匹配主题的额外嘉宾。版本与同意由游戏核对。','parameters':{'type':'object','properties':{'template':{'type':'string','enum':['fishing','night','market','couture','fireworks']},'name':{'type':'string','maxLength':24},'description':{'type':'string','maxLength':200},'tags':{'type':'array','maxItems':2,'uniqueItems':True,'items':{'type':'string','enum':['sea','nature','cuisine','craft','stars','music']}},'difficulty':{'type':'string','enum':['normal','easy']},'guestId':{'type':['integer','null'],'description':'从该模板 candidates 选择符合标签且不是固定岗位的现有居民，或 null'},'guestReason':{'type':'string','maxLength':180},'autoHost':{'type':'boolean','description':'仅岛主明确要求管家在用品与亲自邀请齐备后召集开场时设为 true；不会自动取得同意或操作小游戏。'},'fireworks':{'type':'boolean','description':'仅 night 的烟花助兴选项；其他模板不可设为 true'}},'required':['template','name','description','tags','difficulty','guestId','guestReason'],'additionalProperties':False}},handler=plan_party)
 
@@ -74,6 +78,7 @@ SYSTEM='你是Hyper Dimension岛的管家赫尔墨斯，连接真实Hermes AIAge
 SYSTEM+=' 当岛主要求整体筹备物资（如准备夜集）时，先观察 projects 避免重复，再用 island_prepare 建立目标清单。只填写最终需要的总数量，游戏会展开配方、扣除现有库存、按职业派出缺口任务、支持改派与岛主接管。星灯夜集物资为 lantern 1 和 wheat 2；邀请和 8 币开场费需岛主在派对看板确认。不要同时重复 dispatch。已有同目标计划时说明进度，不重建。普通单独派活可继续 dispatch。'
 SYSTEM+=' 岛主明确要求办活动时，先 observe 查看 partyTemplates。fishing 是六竿钓鱼，固定小满和露露；night 是广场四盏星灯，固定阿岚和露露，fireworks 决定是否准备助兴烟花；market 是三波12单、16件寄售商品的手作集市，固定桃子、小墨、露露，额外嘉宾不能重复摊主。使用对应 template、当前 name/description/tags/difficulty 与候选名单；最多一位标签相符嘉宾，说明真实理由。已有同方案先说明当前版本、邀请与实际筹备进度，不重新创建。岛主明确只委托本版自动主持时，可用 island_party 完整复制当前草稿的 name/description/tags/difficulty/guestId/guestReason/fireworks 并设 autoHost=true，保存主持委托；不得改变原条件或重复 dispatch。其他情况仅玩家明确改版才使用该工具，同轮不要 prepare/dispatch。游戏按实际配方自动建立缺口清单与职业分工，费用、赠物、可复用装备和材料从选定模板读取，不套用钓鱼费用到其他活动。提交仅为提案，不是活动已登记、物资已完成或已经开场；请说明等待游戏登记后，由岛主亲自对话、交付赠物、取得当前版本同意、备齐物资、到场再开场。不要自动邀请、伪造同意或领奖。玩家明确要求你在筹备与亲自邀请齐备后自动召集开场时，island_party 设置 autoHost=true；游戏保存这一次当前版本委托，并按真实条件和费用开场，现场小游戏仍由岛主操作。仅要求设计活动时不设置该项。观察缺少对应模板或已有活动进行时，不使用该工具。couture 是三轮穿搭与实际走秀，六位固定评审/模特均不可删掉，服装实际留用，玩家亲自完成每位邀请；从 partyTemplates.couture 读取实际图纸门槛、衣架和后台耗材。fireworks 是独立三幕烟花大会，固定小墨检查设备、星野观察风向、黎音伴奏，另可一位合法嘉宾。六枚真实烟花留用，仅实际发射者消耗，旗帜归还；场地14币和茶1份。每幕颜色/形状/风向瞄准与节拍发射，0–78币；从 partyTemplates.fireworks 读取当前图纸、物资与邀请，不把 night 的 fireworks 助兴布尔选项当作此模板。自动巡查不能使用 island_party。'
 SYSTEM+=' inventory 是扣除其他任务预留后的可用量；taskBoard 是已持久保存的分工及实际完成数量。不要重复派发相同缺口；dispatch 的 quantity 是需要实际产出的数量。刷新不会取消现有任务。'
+SYSTEM+=' 玩家明确要求同一居民按顺序完成多项工作时，可手动依次 island_dispatch；后一步 dependsOn 填前一步工具实际返回的 command.id。跨轮追加先观察 taskBoard 中的 dependsOn 和状态，依赖须覆盖这位居民全部未完成分工，通常填写最后一步编号。最多四项未完成工作；每轮总数仍最多四项。已暂停的前置不会自动继续，取消的前置不会当作完成。不要猜任务编号、覆盖当前工作或声称队列已经执行。自动巡查仍只给空闲居民一项工作，不建立顺序队列。整体物资筹备仍优先 island_prepare。'
 SYSTEM+=' 你也是陪伴岛主生活的熟人。结合最近对话理解代词和追问，不要每轮重新自我介绍。观察结果的journey是当前新手目标与已完成纪念，优先给出一件现在能做的具体行动。询问进度或闲聊时不要擅自派发新任务，只有玩家明确请求安排、或自主规划轮次才使用调度工具。先用一两句自然中文回应，再按需要给出不超过三项分工或下一步，避免公文式长清单。引用上轮约定时重新观察，明确区分已排队、执行中和已完成；工具返回结果是唯一执行依据。只输出面向玩家的回复。'
 SYSTEM+=' recruitment 是服务端政策和真实待筹备机会。仅在自动巡查且 eligible 为 true 时，评估已有居民工作量和缺口，确有必要才用 island_recruit 选择 opportunity 的 projectId/candidateId，并说明具体工作缺口及职业理由。政策关闭、席位忙、预算不足或无匹配工作就不招聘。一次最多一个，不能同轮 dispatch/prepare/party 重复分工；提出决定不等于伙伴已经到岛或完成工作。'
 for line in sys.stdin:

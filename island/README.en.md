@@ -21,7 +21,7 @@ Original soundtrack. Profiles and briefs are fictional; steward documents were p
 | Run an island | 25 functional building types, 19 crops, 58 materials and 308 recipes. Gather, grow and craft goods for residents, visitors and events. Mature islands earn a modest passive surplus. |
 | Meet AI residents | 15 residents with distinct jobs, personalities and relationships, free conversation and daily routines. |
 | Visit a home | Explore sixteen distinct homes shaped by their owners’ work and interests, try personal hobbies and keep a household journal. |
-| Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work and recruit a temporary Agent partner to share tasks. |
+| Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work, recruit a temporary Agent partner, and queue up to four explicitly ordered jobs for one resident. |
 | Seasons and two styles | Regional seasonal terrain, waves, weather, evening lights and rippling moon reflections. Each season lasts 30 visual days; weather affects farming and fishing. |
 | Showcase and visit | Share experience, projects and images in your gallery, with guest messages. Bring NPC companions and use steward bridging and A2A in multiplayer reception. |
 

@@ -527,3 +527,8 @@ V203 Windows原生玩法停在折纸肥料制作入口，实际诊断为版本�
 ## V212 — Windows LAN identity publication
 
 The Windows native gameplay job for V211 passed recovery-return, then failed creating an origami visit room with HTTP 503 / EPERM. The retained report has no syscall detail. Actual identity-store fault injection reproduces the missing retry at either current or previous document replacement. The store now uses the existing synced atomic publisher and its bounded Windows-only contention handling. Permanent denial and unrelated disk errors still fail without replacing the committed document. [Details and verification boundaries](lan-identity-publication-v212.md).
+
+
+## V213 — Explicit manual resident task chains
+
+Manual steward tools and saved planning transactions now accept a bounded, explicit same-resident dependency queue. Automatic cadence and one-job patrol behavior remain unchanged. Actual transaction checks cover order, quantities, durable reopen/replay and pause/cancel boundaries; the native two-theme check performs forest → shore → forest with a mid-chain reload and empty-browser recovery. Provider replies are deterministic in this native check, not fresh AI decisions. Python verifies the actual worker dispatch function and registered schema. [Scope and limitations](task-chains-v213.md).

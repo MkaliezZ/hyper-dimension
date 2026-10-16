@@ -71,6 +71,7 @@ export async function deployMain(argv,root=resolve(import.meta.dirname,'..')){
  if(command==='verify'){
   await run(plan.python,[join(root,'tools/agent-install.py'),'--verify-only'],{root});
   await run(plan.python,[join(root,'tests/v202-offline-prerequisites.test.py')],{root});
+  await run(plan.python,[join(root,'tests/v213-dispatch-order.test.py')],{root});
   const pkg=JSON.parse(await readFile(join(root,'package.json'),'utf8')),testArgs=pkg.scripts.test.split(' ').slice(1);await run(process.execPath,testArgs,{root,env:{DEEPSEEK_API_KEY:''}});
   await run(process.execPath,[join(root,'tools/cocreation-check.mjs')],{root});
   console.log(JSON.stringify({verified:true,modelsCalled:false,scope:'payload + native runtime imports + default rules + course environment; not hardware/human acceptance'}));return;

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v212-agent-source",
+  "release": "hyper-dimension-v213-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3390,
-      "sha256": "bbdf7b834d6e921286e3084ea630a11c305c66b65f18aa06a7d31b9c4632688f"
+      "bytes": 3435,
+      "sha256": "966ca29505bdd6fa9e21387f8c7c0bbb74ebac70659134d0a648b13c94e14d13"
     },
     {
       "path": "README.md",
-      "bytes": 3164,
-      "sha256": "800a08cf191d347b25b4e90cffa434e2caa0a2011f0370d8cca6202ce2bc7147"
+      "bytes": 3209,
+      "sha256": "dae4183b0cf3d37c047cf92338262ae48eeae47955ef489ebf963e9202a76b5c"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 72833,
-      "sha256": "1a406e906079a20c20e472945820c72e7de5f3471889a25479306e318aec2f20"
+      "bytes": 73485,
+      "sha256": "c5f5aeecd6b290d43f2f8a68b3ef31336458e73b783d9428b332fd9101a982d2"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12867,
-      "sha256": "117c2604cc4c35b0db4648e1227d2b74637d043f0f954c3e8fdfe5ae9350d68b"
+      "bytes": 12899,
+      "sha256": "0e14d8a636146585ff65f4f880f8ad5587e288d4ed0a944a2449c714957469c6"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6047,8 +6047,8 @@
     },
     {
       "path": "server/agentService.mjs",
-      "bytes": 27366,
-      "sha256": "606d1ea5733c73b19c0649a7ee48bc02c60c62cb2d99777997dec5be0f5b4abb"
+      "bytes": 27508,
+      "sha256": "69d81b9e4c244f62f514b7f30d17ac02d38dd7fd7fc5ffaf4908007571727a49"
     },
     {
       "path": "server/atomicJson.mjs",
@@ -6172,8 +6172,8 @@
     },
     {
       "path": "server/hermes_worker.py",
-      "bytes": 21178,
-      "sha256": "4d9cd93b72d73f9f525e08ba53cda3c5daa479b1799ccee54de964fa91293fe3"
+      "bytes": 22214,
+      "sha256": "f5261174fc1d4ebde2fd8cde6fc156d51438a56c9314ffa8857a6446a5ecb476"
     },
     {
       "path": "server/hireActions.mjs",
@@ -6362,8 +6362,8 @@
     },
     {
       "path": "server/planningCommands.mjs",
-      "bytes": 6119,
-      "sha256": "dbc251f6d53d8303618d903c853f568dc912f1fa4537bdae211887c148c2df97"
+      "bytes": 6769,
+      "sha256": "31b69ce3fd81f1d6af926aee8fd59aca31d6f83dde3b2674fdc06bf83897472d"
     },
     {
       "path": "server/playerActions.mjs",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 41834,
-      "sha256": "d3d41494d3c2fa2e1c2557cc10e613c498247eb11a1b1a7f88367e825bbeece7"
+      "bytes": 41860,
+      "sha256": "a0bb7f8f7834d909d2ca19e82dc7cdf91dd38ac67eb1ad7a64b39ece60c0dc11"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8142,8 +8142,8 @@
     },
     {
       "path": "src/stewardChat.js",
-      "bytes": 18892,
-      "sha256": "6927d9ccd670bd11828230c364e15c5f5457ded15eb87817c062952792d1e2e6"
+      "bytes": 19582,
+      "sha256": "2e2531021bf78a6448e9c978dda819aad02f3092be1dba0c217939daa17eff05"
     },
     {
       "path": "src/stewardParties.js",
@@ -11407,8 +11407,8 @@
     },
     {
       "path": "tools/agent-deploy.mjs",
-      "bytes": 9720,
-      "sha256": "4a1424e469690f4550fc885cf38b2c992f0add416eb174c94ffe0d6ceaab8211"
+      "bytes": 9802,
+      "sha256": "b23bc61e0735cacbb1098f9d15f81f2d6fb897332c7d88c866672644648ad22a"
     },
     {
       "path": "tools/agent-install.py",
@@ -12044,6 +12044,31 @@
       "path": "tests/v212-lan-identity-replace.test.mjs",
       "bytes": 3916,
       "sha256": "d4285e49175cf585e73682735b43eecb56a7a9fef7be5563e500195c081b93fe"
+    },
+    {
+      "path": "server/dispatch_order.py",
+      "bytes": 2551,
+      "sha256": "b5746fdc8dbb845d6acb1cf3967a171864880d0208127c1514d5aff10038a2a2"
+    },
+    {
+      "path": "tests/v213-dispatch-order.test.py",
+      "bytes": 4687,
+      "sha256": "81b05896d93832f670849e47d04eea0a72ba861cc629f06d448cfb31af4d60d4"
+    },
+    {
+      "path": "tests/v213-task-chains.test.mjs",
+      "bytes": 5496,
+      "sha256": "f43c478083e40cba8d4aa11b01306fcf5ef685a0c39e869ec9f4880369aaa84b"
+    },
+    {
+      "path": "tests/v213-task-chain-browser.mjs",
+      "bytes": 6877,
+      "sha256": "0ca86b33503d3552de7a9256b08ba12e811b434559aa6bbe3f05b078da2c21ee"
+    },
+    {
+      "path": "docs/task-chains-v213.md",
+      "bytes": 2767,
+      "sha256": "94fabc3df2536c6a24db99a1cab879e90cd097802459138737dc10a30344d90b"
     }
   ],
   "publicRevision": "v175-github"

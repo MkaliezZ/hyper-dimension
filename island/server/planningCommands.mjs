@@ -25,7 +25,14 @@ function dispatch(s,input){
  if(input.dependsOn!==undefined){if(!Array.isArray(input.dependsOn)||input.dependsOn.length>20||input.dependsOn.some(x=>typeof x!=='string'))return {ok:false,reason:'前置分工无效'};c.dependsOn=[...new Set(input.dependsOn)];}
  if(input.parentId!==undefined){if(input.parentId!==null&&(typeof input.parentId!=='string'||!s.agentTaskLedger?.some(t=>t.id===input.parentId)))return {ok:false,reason:'上级分工不存在'};c.parentId=input.parentId;}
  const existing=s.agentTaskLedger?.find(t=>t.id===id);
- if(!existing&&(s.agentTaskLedger||[]).some(t=>t.npcId===npcId&&['queued','running','waiting','paused'].includes(t.status)))return {ok:false,reason:'这位伙伴已有未完成分工'};
+ if(!existing){
+  const active=(s.agentTaskLedger||[]).filter(t=>t.npcId===npcId&&['queued','running','waiting','paused'].includes(t.status));
+  if(active.length>=4)return {ok:false,reason:'每位居民最多保留四项未完成分工'};
+  const ancestors=new Set();
+  const visit=(id,path=new Set())=>{if(path.has(id)||path.size>=64)return false;if(ancestors.has(id))return true;const next=new Set([...path,id]);if(!(s.agentTaskLedger.find(t=>t.id===id)?.dependsOn||[]).every(dep=>visit(dep,next)))return false;ancestors.add(id);return true;};
+  if(!(c.dependsOn||[]).every(id=>visit(id)))return {ok:false,reason:'前置分工存在循环或过长，请先整理原任务'};
+  if(active.some(t=>!ancestors.has(t.id)))return {ok:false,reason:'这位伙伴已有未完成分工；顺序追加须等待其全部现有任务'};
+ }
  const targetItem=recipeId?RECIPE_BY_ID[recipeId].item:resource||({forest:'wood',mine:'ore',farm:'wheat',dock:'fish'})[goal]||RECIPES[bid]?.item||null;
  const name=s.npcProfiles?.[npcId]?.name||RESIDENTS[npcId]?.name||'伙伴',r=queueTask(s,c,{name,targetItem});
  return {id,ok:r.ok,replayed:!!r.replayed,reason:r.reason||null,...r.ok?{task:r.task}:{}};
