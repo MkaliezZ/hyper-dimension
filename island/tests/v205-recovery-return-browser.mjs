@@ -41,7 +41,7 @@ try{
    await page.waitForFunction(()=>window.islandInspect?.().startup.busy===false,null,{timeout:60000});
    assert.equal(await page.locator('#recoveryAll').isVisible(),false,'verified unfinished work must offer continue/cancel, not the same reload loop');
    assert.equal(await page.locator('#serverCraft [data-recovery-read]').isVisible(),false);
-   assert(await page.locator('#craftRetry').isVisible());assert.match(await page.locator('.recovery-all p:not([data-recovery-error])').textContent(),/温室肥料/);
+   assert(await page.locator('#craftRetry').isVisible());assert.match(await page.locator('.recovery-all p:not([data-recovery-error]):not([data-recovery-progress])').textContent(),/温室肥料/);
    await page.setViewportSize({width:390,height:844});assert.equal(await page.locator('#actionRecoveryDock').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);await page.screenshot({path:join(out,theme+'-choices-390.png')});await page.setViewportSize({width:1440,height:1000});
    await page.locator('#recoveryReturn').click();
    if(theme==='origami'){await page.waitForFunction(()=>!document.querySelector('#actionRecoveryDock')?.hasAttribute('aria-busy'));assert.equal(row.reloads,1);assert(await page.locator('[data-recovery-error]').isVisible());assert.match(await page.locator('[data-recovery-error]').textContent(),/连接|fetch/i);await page.locator('#recoveryReturn').click();}

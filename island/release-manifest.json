@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v224-agent-source",
+  "release": "hyper-dimension-v225-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 80193,
-      "sha256": "a1c928d75645b280e82d3024ae4f1614bb981f4154c15a47c010685eaa84c2cc"
+      "bytes": 80882,
+      "sha256": "9507c3db2bbd9eda886c1de70d11efe9b0d2c4b4f524b2eccb8c1cd85fd36640"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9777,8 +9777,8 @@
     },
     {
       "path": "tests/v205-recovery-return-browser.mjs",
-      "bytes": 9300,
-      "sha256": "220cedac248ef4c45892a6d56d037e9b95d465d4ca6712f7952b1f3535f11d46"
+      "bytes": 9330,
+      "sha256": "d8b328fbe7ddaa3ae509808dcb1a8529790ac0aae269039007901f93b9f79c63"
     },
     {
       "path": "tests/v205-recovery-return.test.mjs",
@@ -12399,7 +12399,12 @@
       "path": "tests/v224-custom-content.test.mjs",
       "bytes": 13815,
       "sha256": "fe417e27db482937b613d837674673be6c3eec9c960010ea36c51c067a869f16"
+    },
+    {
+      "path": "docs/verification/v225/recovery-selection.json",
+      "bytes": 803,
+      "sha256": "b27d51e0dbef0b75335aec9c3802797050ff5a80a2a6e50d831dab14dd5408e9"
     }
   ],
-  "publicRevision": "v224-github"
+  "publicRevision": "v225-github"
 }

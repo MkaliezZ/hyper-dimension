@@ -1,0 +1,25 @@
+{
+  "version": 225,
+  "change": "Disambiguate the existing recovery explanation assertion from the V223 progress paragraph; all original checks and budgets retained.",
+  "baseline": {
+    "archive": "V224",
+    "failure": "strict selector matched explanation and hidden progress paragraphs",
+    "independentInstallPromoted": false
+  },
+  "nativeAfter": {
+    "passed": 2,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "canonicalCraftCancellationOnce": true,
+    "lostResponseReplayOriginalIdentity": true,
+    "cancelledFirstReloadFallback": true,
+    "staleOutgoingCheckpointSealed": true,
+    "repeatedReloadsStablePerTheme": 3,
+    "providersDisabled": true,
+    "userBrowserObserved": false
+  },
+  "fullProductAcceptance": false,
+  "wholeGoalComplete": false
+}
