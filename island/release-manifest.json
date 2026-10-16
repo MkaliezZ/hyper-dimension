@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v217-agent-source",
+  "release": "hyper-dimension-v218-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 76717,
-      "sha256": "f66ee1fc263038044399b64db29ef0f60bfab1390f48fbbc8291d026d9326a94"
+      "bytes": 77361,
+      "sha256": "8b6f0e6f20c708ef7278f148dbbf3c0fddf77d12e56a16a3cb129952416d8e89"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13273,
-      "sha256": "c60d9dd483e208de8c8e97945f98ddb2afe2df7f20eee0268e2598c1329c6179"
+      "bytes": 13314,
+      "sha256": "7b0adda82f2687c318eed3cb7b055d4d4c7c5fedb2cc160481b9b257573e6af1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6442,8 +6442,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 38147,
-      "sha256": "14f33882fe0fc7399d72024d9a5c8f1949308b12fdd61958ff82ad65ea4a71a5"
+      "bytes": 38167,
+      "sha256": "4e2c7bac5f437198eb5433450101abeb267593e34f768a35f7f04da6a7da003c"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 10911,
-      "sha256": "dd0c3e8b672a5de1d4a7eb76cb950a44961e5cefd0c985a58509a00ebd53b7f5"
+      "bytes": 11036,
+      "sha256": "af1cce383ae466aca2e96ccf71d69e92c6af2a8de25db6397d84ea57ffeb8044"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -12204,6 +12204,26 @@
       "path": "tests/visibleSlowFrames.mjs",
       "bytes": 861,
       "sha256": "ce1d155d242c00904ad404f33cd23631f34a14c31f92971a840f57373ea56dfb"
+    },
+    {
+      "path": "docs/save-lock-sharing-v218.md",
+      "bytes": 1867,
+      "sha256": "6e6af7cd0f8df2568ed60763b160f98a471bcc53a324f3064bc3c4814482ad7e"
+    },
+    {
+      "path": "docs/verification/v218/save-lock-contention.json",
+      "bytes": 1726,
+      "sha256": "ae878c1b5c251e39f3bd2f95aa01e491b432b8a3572ee80da2c9addfaf888217"
+    },
+    {
+      "path": "tests/v218-save-lock-browser.mjs",
+      "bytes": 5086,
+      "sha256": "b24de4e04bfbfe4afee669da18879ba3828578b07e12a8640c1fcd25baa11610"
+    },
+    {
+      "path": "tests/v218-save-lock-contention.test.mjs",
+      "bytes": 3594,
+      "sha256": "6811cd5eab41a86dae6d6a8666e5014640376cf6fc6326330262d037c63bc80c"
     }
   ],
   "publicRevision": "v175-github"

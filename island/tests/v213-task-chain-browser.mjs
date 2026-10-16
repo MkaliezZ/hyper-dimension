@@ -35,7 +35,7 @@ try{
    await context.route('**/api/**',r=>{const path=new URL(r.request().url()).pathname;
     if(path==='/api/hermes/command')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({source:'hermes',model:'deepseek-flash',answer:'已提出三步顺序分工，等实际动作完成后记录。',runId:'fictional-chain-'+theme,commands,plans:[],parties:[],operations:[]})});
     if(/^\/api\/(npc|hermes)\//.test(path)||path==='/api/lan/social/tick')return r.fulfill({status:503,contentType:'application/json',body:'{"error":"Isolated queue validation: providers disabled"}'});return r.continue();});
-   const page=await context.newPage();page.on('pageerror',e=>row.errors.push(e.message));page.on('response',r=>{if(new URL(r.url()).pathname.startsWith('/api/saves/')&&r.status()>=400)void r.json().then(d=>row.saveErrors.push({status:r.status(),code:d.code,path:new URL(r.url()).pathname})).catch(()=>{});});await page.goto(base+'/play?qa=1');
+   const page=await context.newPage();page.on('pageerror',e=>row.errors.push(e.message));page.on('response',r=>{if(new URL(r.url()).pathname.startsWith('/api/saves/')&&r.status()>=400)void r.json().then(d=>row.saveErrors.push({status:r.status(),code:d.code,error:String(d.error||'').slice(0,800),operation:r.request().postDataJSON()?.operation,kind:r.request().postDataJSON()?.kind,path:new URL(r.url()).pathname})).catch(()=>{});});await page.goto(base+'/play?qa=1');
    await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy&&!document.querySelector('#islandBootNotice'),null,{timeout:60000});return{context,page};
   };
   let {context,page}=await open();

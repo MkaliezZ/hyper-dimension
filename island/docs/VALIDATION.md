@@ -551,3 +551,7 @@ Recovery checkpoints are durable before waiting on old requests. An ordinary re-
 ## V217 - Consistent navigation and valid autonomous alternatives
 
 Residents, visitors, recruitment transports and activity arrivals now receive the existing navigation-only frame budget; protected needs, work, service and settlement clocks retain their rule time. Confirmed dependent work skips an unrelated autonomous-purpose pause when shifts and needs allow it. Failed invitations select a valid personal alternative before falling back, preventing empty resident jobs. Actual delayed-RAF two-theme queues retained their original120/shared240-second working budgets, three unique receipts and reload/reopen assertions. Hosted confirmation and broader acceptance remain open. [Reproductions, evidence and boundaries](resident-travel-v217.md).
+
+## V218 - Bounded Windows save-lock acquisition
+
+The primary save store now uses its existing exclusive-open retry helper for transient Windows sharing denials. Business operations run only after ownership; persistent denial preserves canonical bytes. Actual store-level replay and two-theme native gathering under injected contention passed. The original hosted EPERM syscall/path was not captured, so this fixes a reproduced acquisition gap without claiming every filesystem origin resolved. Original queue budgets remain unchanged and subsequent diagnostics include actual error text. [Evidence and limitations](save-lock-sharing-v218.md).

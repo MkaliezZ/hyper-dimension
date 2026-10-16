@@ -392,6 +392,9 @@ jobs:
           node-version: '24'
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts
+      - name: Native Windows save lock contention and unique delivery
+        if: runner.os == 'Windows'
+        run: node tests/v218-save-lock-browser.mjs
       - name: Native sequential resident tasks across fixed work shifts
         run: node tests/v213-task-chain-browser.mjs
       - name: Retain native resident work diagnostics
@@ -402,5 +405,7 @@ jobs:
           path: |
             island/qa/v213/native-task-chains/report.json
             island/qa/v213/native-task-chains/*.png
+            island/qa/v218/native-save-lock/report.json
+            island/qa/v218/native-save-lock/*.png
           if-no-files-found: ignore
           retention-days: 3

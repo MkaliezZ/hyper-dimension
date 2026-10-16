@@ -1,7 +1,7 @@
 import {migrateWorldGeography} from './geographyMigration.mjs';
 import {validPlacements as validLegacyPlacements} from '../src/legacyPlacementValidation.js';
 import {applyWorldAppearance,worldAppearance} from './worldAppearance.mjs';
-import {atomicJSON} from './atomicJson.mjs';
+import {atomicJSON,openExclusiveFile} from './atomicJson.mjs';
 import {validShopfronts} from '../src/shopfronts.js';
 import {validResidentLife} from '../src/residentLife.js';
 import {assertResourceState,assertResourceJournal,syncResourceState,enableResourceState} from './resourceAuthority.mjs';
@@ -113,7 +113,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,now=()=>
   const token=randomUUID(),start=Date.now();
   let file;
   while(!file){
-   try{file=await open(p.lock,'wx',0o600);await file.writeFile(JSON.stringify({pid:process.pid,token}));await file.close();}
+   try{file=await openExclusiveFile(p.lock);await file.writeFile(JSON.stringify({pid:process.pid,token}));await file.close();}
    catch(e){
     if(e.code!=='EEXIST')throw e;
     try{

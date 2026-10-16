@@ -1,0 +1,37 @@
+{
+  "scope": "Fictional LAN accounts only. Actual Node save-lock open injects3EPERM failures during native player gathering, then verifies a single gather receipt and empty-browser restoration in both themes. Actual original request replay is separately tested by store-level units, not by the browser fixture. No user data or provider calls.",
+  "cases": [
+    {
+      "theme": "pixel",
+      "errors": [],
+      "saveErrors": [],
+      "passed": true,
+      "actualUniqueGatherReceipt": true,
+      "injectedFailures": 3,
+      "emptyBrowserRestore": true
+    },
+    {
+      "theme": "origami",
+      "errors": [],
+      "saveErrors": [],
+      "passed": true,
+      "actualUniqueGatherReceipt": true,
+      "injectedFailures": 3,
+      "emptyBrowserRestore": true
+    }
+  ],
+  "passed": true,
+  "sourceBeforeFixTestsFailed": 4,
+  "relatedRulesAfterFixPassed": 16,
+  "productionChange": "The primary save-store acquisition now uses the existing bounded openExclusiveFile helper. Original exclusive flags, ownership and business-operation replay are retained.",
+  "hostedIncident": {
+    "sourceCommit": "8fc6056ba92517cb51c296718c2db32dcd4b858f",
+    "runId": 38900286804,
+    "jobId": 116970561217,
+    "artifactId": 12046222958,
+    "pixel": "EPERM503 then action_pending timeout",
+    "origami": "passed original shared240-second budget at208583ms"
+  },
+  "limitation": "Original hosted response retained codeEPERM without its filesystem syscall/path; the reproduced acquisition gap is fixed, but other I/O origins are not claimed resolved. The native queue now captures the actual error text for subsequent failures. New hosted confirmation pending.",
+  "wholeGoalComplete": false
+}
