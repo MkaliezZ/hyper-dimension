@@ -1,8 +1,11 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {readFile,writeFile} from 'node:fs/promises';
+import test from 'node:test';import assert from 'node:assert/strict';import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {fixture,meet} from './v74-travel-fixture.mjs';import {controlProject} from '../src/projectPlans.js';import {finishVisit} from './v72-recruitment-fixture.mjs';import {createHash} from 'node:crypto';
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+await mkdir('qa/v77',{recursive:true});
 async function prepare(theme,options){
- const f=await fixture(theme,options);await f.update(s=>{s.freshStartPending=false;for(const id of ['wood','stone','ore','clay','herb','wheat','seed','fish'])s.inventory[id]=100;},0);
+ // Progressed host fixture also supplies the current lantern recipe's quartz,
+ // wax and fiber. Insufficient-funds cases below explicitly remove its costs.
+ const f=await fixture(theme,options);await f.update(s=>{s.freshStartPending=false;for(const id of ['wood','stone','ore','clay','herb','wheat','seed','fish','quartz','wax','fiber'])s.inventory[id]=100;},0);
  await f.action(1,'travel_invite',{npcId:16});const room=await f.action(0,'room_create',{title:'客岛共同试作',maxPlayers:2});await f.action(1,'room_join',{code:room.view.room.code});
  const e=await meet(f),offer=await f.service.social.cooperate(f.accounts[1].token,{eventId:e.id,operation:'propose'});f.event=offer.event;f.roomId=room.roomId;f.cooperate=(i,operation)=>f.service.social.cooperate(f.accounts[i].token,{eventId:e.id,operation});f.host=()=>f.service.tenants.get(f.accounts[0].token).then(c=>c.saves.current(theme));return f;
 }

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v230-agent-source",
+  "release": "hyper-dimension-v231-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 83133,
-      "sha256": "341768db745e0c073de33657cc0422313995b2adfc4b80beb2bc3d36813b1188"
+      "bytes": 83718,
+      "sha256": "922084aa5356b0b77a0c5b69273751b8029906b473952922235a68aa50e08ce8"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 13763,
-      "sha256": "d3766aae82776f25226f217d5fe11344e91e454d1329b86d357b6059c81f9d7d"
+      "bytes": 14071,
+      "sha256": "6f8268779d25875731f2c6659d9fb5df910830dc8a88ad611d171cbfe90ec111"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -10742,8 +10742,8 @@
     },
     {
       "path": "tests/v60-lan-travel.test.mjs",
-      "bytes": 5664,
-      "sha256": "abcc06a98d3e1c4869debbe52d67858708d02c8d6af8ceae7a103478f25378b2"
+      "bytes": 5710,
+      "sha256": "1ec5b32d418697ac4e847a90f3fd28dac2f93c236703e2c1c5ffab8e3aead6b0"
     },
     {
       "path": "tests/v60-travel-browser.mjs",
@@ -10977,8 +10977,8 @@
     },
     {
       "path": "tests/v77-guest-cooperation.test.mjs",
-      "bytes": 14218,
-      "sha256": "18f57b0cdf757494db8ea51c8df478d651e09b690ee56b4071e04b4d5d2de840"
+      "bytes": 14445,
+      "sha256": "ec8622c06c9fe6661b19211a8c513ff2389114a9d5957f929dd458541323c513"
     },
     {
       "path": "tests/v79-data-backup.test.mjs",
@@ -12347,13 +12347,13 @@
     },
     {
       "path": "public/assets/cocreation/course-v2.md",
-      "bytes": 4351,
-      "sha256": "d121021686d38fcd774d8f421cd457378f83d6a57f93d21db95aa3906b0a3a57"
+      "bytes": 5239,
+      "sha256": "edb4b8091b4ddc75946206131fdda9e0223003cddd88dafb04ec0c8f0e7b57d2"
     },
     {
       "path": "public/assets/cocreation/student-workbook-v2.md",
-      "bytes": 1898,
-      "sha256": "0c330925403141bfb492d74cafe91ea69f151da5fa49e8839d9a6597c4a9a885"
+      "bytes": 2598,
+      "sha256": "ea07c928f39b4466f5f479bf33b283a8647d56f1b49e36957a2f853fc7f9a2ee"
     },
     {
       "path": "server/coCreationAssetHttp.mjs",
@@ -12494,7 +12494,37 @@
       "path": "docs/verification/v230/custom-market.json",
       "bytes": 3063,
       "sha256": "c3cb12eda7f3a08c633d023d2a5ceb9f0888521628799199dcac97e08d37011d"
+    },
+    {
+      "path": "docs/acceptance-results-template.csv",
+      "bytes": 220,
+      "sha256": "e0da6c42ccdde153114a36212fa5f3f0dea8cf5d0094cd21853c14ee6b7d8150"
+    },
+    {
+      "path": "docs/acceptance-session-v231.md",
+      "bytes": 4736,
+      "sha256": "8374be064d5afb31beabae6ceaad49ae9bad622e34368a39a1c966a4f2e15e09"
+    },
+    {
+      "path": "docs/multi-island-economy-v231.md",
+      "bytes": 3915,
+      "sha256": "e703533411840008f38facfe6696ead4d7b40ef8c26672dc5e238e1db2aefd0a"
+    },
+    {
+      "path": "docs/verification/v231/integration.json",
+      "bytes": 18078,
+      "sha256": "75b67b5a9b7adc5f0afc3fff1530694efd834a9f9c3652899c510881e0ecfc8b"
+    },
+    {
+      "path": "tests/v231-combined-economy.test.mjs",
+      "bytes": 11715,
+      "sha256": "d03e5525276ff7b1f0eacca1279eef8882e68308333e07e039d0beccfa6df5a8"
+    },
+    {
+      "path": "tests/v231-multi-island-journey.test.mjs",
+      "bytes": 13377,
+      "sha256": "6d34d9fbcf8f28729d1be7c2ce4b70895e2640b91f748d9ad3374e8c07141eb3"
     }
   ],
-  "publicRevision": "v226-github"
+  "publicRevision": "v231-github"
 }

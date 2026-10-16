@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {mkdtemp,readFile} from 'node:fs/promises';import {resolve} from 'node:path';import {randomUUID} from 'node:crypto';
+import {mkdir,mkdtemp,readFile} from 'node:fs/promises';import {resolve} from 'node:path';import {randomUUID} from 'node:crypto';
 import {createLanHttpServer} from '../server/lanServer.mjs';import {worldWalkableForTheme,HARBOR_LAYOUTS} from '../src/world.js';
+await mkdir('qa/v60',{recursive:true});
 async function fixture(theme){let now=1800000000000;const directory=await mkdtemp(resolve('qa/v60/travel-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'TRAVEL-FIXTURE',now:()=>now}),accounts=[];
 for(let i=0;i<4;i++){const a=await service.identities.register({login:'travel_'+i,password:'fixture-password',name:'同行岛主'+i,islandName:'同行小岛'+i,theme,avatar:'male_'+i});accounts.push(a);await service.tenants.open(a.token,theme,{});}
 const call=(i,operation,args={})=>service.identities.action(accounts[i].token,{operation,requestId:randomUUID(),...args});

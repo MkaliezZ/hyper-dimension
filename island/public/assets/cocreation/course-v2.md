@@ -2,7 +2,7 @@
 
 ## 本课成果
 
-完成两件有用途的正式物品、两张加工配方、像素与折纸两套 PNG、一份审核发布记录，以及可交给另一位岛主导入的作品包。用真实材料制作组件，再用组件加工成礼物并赠给居民。练习挑战仍可独立试玩；练习成绩不会发放正式库存。
+完成两类有用途的正式物品、两张加工配方、像素与折纸两套 PNG、一份审核发布记录，以及可交给另一位岛主导入的作品包。用真实材料制作组件，再加工成礼物，体验赠礼、留用和游客购买。练习挑战仍可独立试玩；练习成绩不会发放正式库存。
 
 ## 课前准备
 
@@ -18,7 +18,7 @@
 | 20 分钟 | 后台 → 共创工坊 → 新增正式物品包 | 填好作品编号、作者、介绍、授权；创建组件 |
 | 30 分钟 | 设置材料并添加第二件物品 | 第一件用木料、树脂等真实素材；第二件消耗第一件；没有循环依赖 |
 | 25 分钟 | 上传并核对双画风素材 | 每件物品都有两张已保存、能预览的图片；文字和图片对应 |
-| 25 分钟 | 保存并提交、审核、启用 | 在关联建筑亲手完成小游戏，确认扣料、入库和后续加工；把礼物交给居民 |
+| 25 分钟 | 保存并提交、审核、启用，制作与经营 | 在关联建筑制作并核对扣料、组件加工和赠礼；手动上架一件成品，记录游客成交价、成本及净收入 |
 | 20 分钟 | 导出版本并交给另一位岛主导入 | 文件附带 PNG；接收方审核启用后，能使用自己的材料制作 |
 | 15 分钟 | 修改、发布 v2，再回退 v1 | 原作者与历史保留；名称和素材恢复；已经开始的制作仍用原材料单 |
 
@@ -34,6 +34,12 @@
 - 已发布物品的建筑、等级和用途保持一致；如需改成另一类物品，新增编号。修改名称、介绍、图片、材料或前置条件需另建版本并审核。
 - 每岛最多 24 个作品包，每包保留 20 个版本；已发布的旧物品保留资料，整个岛屿最多保留 288 件自定义物品。容量不足时拒绝新发布，已有库存不会被删除。
 
+## 从作品到经营
+
+从背包打开成品详情，查看用途、关联场馆和预估售价，再进入该场馆货架。自定义物品默认不出售，需要岛主主动上架；非食品默认留用一件。课堂可制作三件成品，分别赠礼、留用和待售，也可明确将留用量设为零后出售唯一成品。
+
+完成一次真实游客交易后，对照库存减少、岛币收入与经营成本。上架和游客到访不代表已经成交；被任务预留的成品不能出售，游客也受预算和行程限制。若课堂时间内未成交，记录“已上架、待游客购买”，不可填写虚构成交。选择启用 AI 的班级，还可让管家分派组件制作；记录实际任务与交付回执。
+
 ## 导出、复用与回退
 
 在作品详情导出所选版本。新增物品包包含声明式配方与实际 PNG，接收方从工坊导入，确认作者和授权后再提交审核、启用。导入作品包不会赠送材料、金币或成品，也不会改变另一位岛主的档案。
@@ -42,4 +48,4 @@
 
 ## English summary
 
-Create two real products with a component chain, upload matching pixel/origami PNGs, review and activate the version, craft through normal building minigames, and reuse or gift the output. Export includes the PNG files. Another owner imports, reviews and crafts with their own resources. Publishing and rollback preserve accepted craft costs and old inventory metadata. The 150-minute lesson plan still requires an actual learner trial.
+Create two product types with a component chain, upload matching pixel/origami PNGs, review and activate the version, and craft through normal building minigames. Gift, retain and explicitly list the output for visitors; check actual stock, sale proceeds and costs. Export includes the PNG files. Another owner imports, reviews and crafts with their own resources. Publishing and rollback preserve accepted craft costs and old inventory metadata. The 150-minute lesson plan still requires an actual learner trial.
