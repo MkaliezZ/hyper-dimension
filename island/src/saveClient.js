@@ -6,6 +6,7 @@ import {activeSlotKey,activeSaveKey,validSaveSlot} from './saveStorage.js';
 import {createSaveJournal} from './saveJournal.js';
 import {recoverPendingProgress} from './pendingSaveRecovery.js';
 import {MAX_VISIBLE_FRAME_SECONDS} from './frameClock.js';
+import {navigateAfterRecovery} from './recoveryNavigation.js';
 
 export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatus=()=>{},onRemoteState=()=>{}}){
  const sessions=new Map(),journal=createSaveJournal();
@@ -355,7 +356,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    // reload() starts navigation; it does not synchronously stop this document.
    // Old RAF/timer callbacks still hold the pre-recovery game state. Keep them
    // sealed until unload so they cannot journal that stale state over this receipt.
-   r.navigationPending=true;status(r,'recovering','进度已核对，正在返回小岛…');location.reload();
+   r.navigationPending=true;status(r,'recovering','进度已核对，正在返回小岛…');navigateAfterRecovery({onError:()=>status(r,'recovering','进度已核对 · 请刷新页面返回小岛')});
   })().catch(error=>{
    r.navigationPending=false;r.recovering=false;status(r,['conflict','blocked','offline','action_pending'].includes(previousStatus)?previousStatus:'action_pending','核对未完成 · '+(error.message||'请稍后重试'));throw error;
   }).finally(()=>{if(!r.navigationPending){r.recovering=false;r.recoveryPromise=null;}});

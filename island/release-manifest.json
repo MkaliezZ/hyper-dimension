@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v206-agent-source",
+  "release": "hyper-dimension-v211-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 71814,
-      "sha256": "62b7cd5bb45d1a3b6e793db67ebf0984cbfce97aefee35a61223823ad2d78d71"
+      "bytes": 72217,
+      "sha256": "f25a1fcb74c84d07e4c1e0ddd8ff2c61258d67fbb03c95a39f153fc24d1f7607"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 12746,
-      "sha256": "53fea0a5d67398cb6cea269d1a56675272b34c057860bbfadc246c650a62ba5f"
+      "bytes": 12826,
+      "sha256": "82a85f6d41fcd8677565136f833bb05dd7d1fda723d49e0e182458001c692c2d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6522,8 +6522,8 @@
     },
     {
       "path": "src/actionRecoveryUI.js",
-      "bytes": 7846,
-      "sha256": "5d787a9adc449755a8775f51b399d06e3cb9fe1118d486eac539158cbd01a470"
+      "bytes": 7900,
+      "sha256": "0720da62da99b766a93b2dd10811e9666c16de92ae27721a8ce75e81183726ef"
     },
     {
       "path": "src/activityGames.js",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 33159,
-      "sha256": "e5f3b6a20c9003e8a70dcf547bcfa792801badae2d8a1285b79c8a8a2cbff744"
+      "bytes": 33313,
+      "sha256": "e893938d697c67d375f68cbedf7736d73cbe2b173ce07b95b484ac4e76face0c"
     },
     {
       "path": "src/saveDelta.js",
@@ -9777,8 +9777,8 @@
     },
     {
       "path": "tests/v205-recovery-return-browser.mjs",
-      "bytes": 9024,
-      "sha256": "d86049014b1452c778a161c9e7f5deb51de697a1b5712a8f67619b6322babef4"
+      "bytes": 9300,
+      "sha256": "220cedac248ef4c45892a6d56d037e9b95d465d4ca6712f7952b1f3535f11d46"
     },
     {
       "path": "tests/v205-recovery-return.test.mjs",
@@ -12019,6 +12019,21 @@
       "path": "docs/guest-departure-v209.md",
       "bytes": 2078,
       "sha256": "0ff52c0c05805e8909f851e8c4501ec00ae2a178bc40d18c2e2a81f3e0a2e8cc"
+    },
+    {
+      "path": "src/recoveryNavigation.js",
+      "bytes": 1001,
+      "sha256": "fe668a1d16aaaeb7c069c5b0fad7c8a0e3a38acd456093eba02e41e059625e9e"
+    },
+    {
+      "path": "tests/v211-recovery-navigation.test.mjs",
+      "bytes": 2425,
+      "sha256": "2c03a7baa34b53853fad4d4e9dfa7cb85e80b2f37ed39edaec4189fbb99cb02d"
+    },
+    {
+      "path": "docs/recovery-fallback-v211.md",
+      "bytes": 1532,
+      "sha256": "b0e72e8957493738604aec29e4b43f305ff2c64270a70c95d520b43ef52eb653"
     }
   ],
   "publicRevision": "v175-github"
