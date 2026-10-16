@@ -48,7 +48,7 @@ export function buySupplies(s,id){
  const pack=SUPPLY_PACKS.find(p=>p.id===id);if(!pack||!payMaterials(s,{coins:pack.coins},'supplies',pack.name))return false;
  for(const [key,n] of Object.entries(pack.items)){s.inventory[key]=(s.inventory[key]||0)+n;s.discovered[key]=true;}return true;
 }
-export function visitorPrice(item,recipe=null){return recipe?.index>0?recipe.price:({outfit:9,painting:8,meal:6,bouquet:5,rod:6}[item]||4)}
+export function visitorPrice(item,recipe=null){return recipe?.source==='cocreation'?(Number.isSafeInteger(recipe.price)?Math.max(2,Math.min(24,recipe.price)):2):recipe?.index>0?recipe.price:({outfit:9,painting:8,meal:6,bouquet:5,rod:6}[item]||4)}
 export function operatingCost(price){return Math.max(1,Math.ceil(price*.3))}
 export function dayAccounts(s){const rows=(s.economy?.cashLedger||[]).filter(r=>r.day===s.day);return rows.reduce((a,r)=>({income:a.income+r.income,cost:a.cost+r.cost,net:a.net+r.net}),{income:0,cost:0,net:0})}
 export function partyCost({fireworks=false}={}){return {coins:ECONOMY_RULES.partyFee,lantern:1,wheat:2,...(fireworks?{firework:1}:{})}}

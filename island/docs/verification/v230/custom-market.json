@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "version": "V230",
+  "wholeGoalComplete": false,
+  "scope": "Per-island reviewed custom products, explicit shelves, visitor attractions and canonical purchase settlement. Original18requirements remain4complete/14in_progress.",
+  "checks": {
+    "newRules": 10,
+    "fullMainRules": 1256,
+    "separateRuntimeScopeRules": 14,
+    "fullTotal": 1270,
+    "fullPassed": true,
+    "relatedReviewedRules": 48,
+    "relatedReviewedPassed": true
+  },
+  "native": {
+    "shelves": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "purposeShelfRoundTrip": true,
+        "actualSales": 1,
+        "firstSale": {
+          "gross": 7,
+          "fee": 3,
+          "remainingStock": 2
+        }
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "purposeShelfRoundTrip": true,
+        "actualSales": 1,
+        "firstSale": {
+          "gross": 7,
+          "fee": 3,
+          "remainingStock": 2
+        }
+      }
+    ],
+    "productionToMarket": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "purposeShelfRoundTrip": true,
+        "actualSales": 1,
+        "firstSale": {
+          "gross": 7,
+          "fee": 3,
+          "remainingStock": 0
+        },
+        "actualPrerequisiteAndFinalDelivery": true,
+        "customStockBeforeListing": 1
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "purposeShelfRoundTrip": true,
+        "actualSales": 1,
+        "firstSale": {
+          "gross": 7,
+          "fee": 3,
+          "remainingStock": 0
+        },
+        "actualPrerequisiteAndFinalDelivery": true,
+        "customStockBeforeListing": 1
+      }
+    ]
+  },
+  "validFailureBaselines": {
+    "initialCustomShelfRules": 6,
+    "missingPurposeAndNonminimalMetadata": 2
+  },
+  "excludedAttempts": [
+    "A gate invoked outside the isolated game checkout resolved the live parent project; provider-disabled guards rejected its configured environment. Correct isolated checkout passed with those assertions unchanged.",
+    "The first production-to-market fixture expected zero before explicitly changing the default one-item floor; its expectation was corrected while preserving the default-floor assertion.",
+    "A proposed venue-relocation repair was withdrawn after the original publication identity guard rejected that unsupported mutation. Its rejection and unchanged in-flight sale are now tested."
+  ],
+  "budgetsAndFees": "Existing guest budgets, ferry cadence, occupancy and30percent rounded operating fee; custom prices2to24; exact-once receipts and reserved stock preserved.",
+  "fixtures": "Declared50wood/resin/fiber; two shelf cases additionally start with3owned gifts. Two production cases start with no custom output and require real resident prerequisite/final delivery with normal20second work before listing and actual visitor purchase. Uploaded PNGs are QA patterns.",
+  "modelsCalled": false,
+  "originalUserBrowserRead": false,
+  "humanAcceptance": false,
+  "physicalMacAcceptance": false,
+  "zeroStartGatheringAcceptance": false
+}

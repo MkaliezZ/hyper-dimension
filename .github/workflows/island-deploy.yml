@@ -325,6 +325,15 @@ jobs:
       - name: Native custom recipe resident preparation and reopen
         run: node tests/v227-custom-agent-browser.mjs
 
+      - name: Native custom product shelves and visitor sales
+        run: node tests/v228-custom-shops-browser.mjs
+
+      - name: Native resident production to visitor purchase
+        env:
+          HD_QA_SHELF_FROM_PRODUCTION: "1"
+          HD_QA_OUT: qa/v230/native-production-market
+        run: node tests/v228-custom-shops-browser.mjs
+
       - name: Native night planning skips empty purposes
         run: node tests/v216-night-planning-browser.mjs
 
@@ -365,6 +374,10 @@ jobs:
             island/qa/v224/native-custom-content/*.png
             island/qa/v227/native-custom-agent/report.json
             island/qa/v227/native-custom-agent/*.png
+            island/qa/v228/native-custom-shops/report.json
+            island/qa/v228/native-custom-shops/*.png
+            island/qa/v230/native-production-market/report.json
+            island/qa/v230/native-production-market/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
           if-no-files-found: ignore
