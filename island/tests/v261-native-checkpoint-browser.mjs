@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,readFile,writeFile} from 'node:fs/promises';
+import {resolve,join,dirname} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {createRequire} from 'node:module';
+import {randomUUID} from 'node:crypto';
+const root=resolve(import.meta.dirname,'..'),out=resolve(process.env.HD_QA_OUT||'qa/v261/native-checkpoint');await mkdir(dirname(out),{recursive:true});await mkdir(out,{recursive:false});
+// This fixture must not use private provider/runtime settings.
+process.env.DEEPSEEK_API_KEY='';for(const key of ['HD_HERMES_HOME','HD_STEWARD_WORKDIR','HD_DOCUMENT_ROOT','HD_RUN_LEDGER_DIR','HD_ARTIFACT_DIR','HD_MODEL_ENDPOINT'])delete process.env[key];
+const load=f=>import(pathToFileURL(join(root,f)));
+const {chromium}=createRequire(join(root,'package.json'))('playwright-core');
+const {browserLaunchOptions}=await load('tests/browserRuntime.mjs');
+const {createLanHttpServer}=await load('server/lanServer.mjs');
+const {seedLegacyAuthority}=await load('tests/fixtures/trusted-initial-state.mjs');
+const {DEFAULT_RECIPES}=await load('src/contentCatalog.js');
+const {equipOutfit}=await load('src/equipmentRules.js');
+const {chooseAction}=await load('tests/v19-play-helpers.mjs');
+const report={scope:'Focused actual native Continue/result UI and authoritative funded tea trial in each theme. Two fictional accounts, one rendered guest browser at a time; controlled initial100coins/materials/outfit, preparation clock offset61000ms only, actual elapsed gameplay. A real accepted checkpoint response is dropped, then reload and native Continue must reconcile the original request before new input. No actual models, four-user/full visit/A2A, earned-zero economy, human/physical-device/final-delivery claim.',sourceBaseCommit:'3d7469fa8445b16ee7435dc017b2ce468b7af4e3',sourceWorkingPatch:'src/lanActivitiesUI.js',initialResourcesSynthetic:true,preparationClockInjected:true,gameplayUsesRealElapsedTime:true,modelsCalled:false,cases:[],passed:false,wholeGoalComplete:false};
+const save=()=>writeFile(join(out,'report.json'),JSON.stringify(report,null,2)),delay=ms=>new Promise(r=>setTimeout(r,ms));
+let browser;
+try{
+ browser=await chromium.launch(browserLaunchOptions());
+ for(const theme of ['pixel','origami']){
+  const row={theme,errors:[],badAssets:[],requests:[],passed:false};report.cases.push(row);await save();
+  let offset=0,context,page,service;
+  try{
+   const directory=await mkdtemp(join(out,theme+'-fictional-'));service=await createLanHttpServer({directory,port:0,enrollmentKey:'CHECKPOINT-RELOAD-FIXTURE',now:()=>Date.now()+offset});const base='http://127.0.0.1:'+service.port,accounts=[];
+   for(let n=0;n<2;n++){
+    const a=await service.identities.register({login:theme+'_checkpoint_'+n,password:'fictional-qa-password',name:'虚构进度验证'+n,islandName:'虚构续玩岛'+n,avatar:n?'female_1':'male_2',theme});accounts.push(a);await seedLegacyAuthority(service.tenants,a.token,theme);await service.tenants.open(a.token,theme,{});const tenant=await service.tenants.get(a.token),d=await tenant.saves.current(theme),state=structuredClone(d.state);state.coins=100;
+    if(n===0)for(const [id,quantity]of Object.entries(DEFAULT_RECIPES[1].cost))state.inventory[id]=quantity*10;
+    else{state.inventory.wood=2;state.economy.playerGoods.wood=2;state.inventory.outfit=1;assert(equipOutfit('outfit',state).ok);}
+    await tenant.saves.save(theme,{state,expectedVersion:d.version});
+   }
+   const [host,guest]=accounts,identity=(a,operation,args={})=>service.identities.action(a.token,{operation,requestId:randomUUID(),...args});
+   const room=(await identity(host,'room_create',{title:'虚构断点茶会',maxPlayers:2})).view.room;await identity(guest,'room_join',{code:room.code});
+   const act=(a,operation,args={})=>service.activities.action(a.token,{operation,requestId:randomUUID(),...args}),view=a=>service.activities.view(a.token);
+   const eventId=(await act(host,'publish',{roomId:room.id,title:'虚构断点续玩茶会',kind:'tea',brief:'验证已确认进度与奖励只提交一次。',invitees:[guest.view.me.id],requirements:{items:[{item:'wood',quantity:2}],garment:'outfit'},prepareSeconds:60,difficulty:1,minQuality:55,economyMode:'funded',deliveryMode:'transfer'})).eventId;row.eventId=eventId;
+   await act(guest,'respond',{eventId,response:'accepted'});await act(guest,'checkin',{eventId});offset+=61000;await act(host,'start',{eventId,expectedRevision:(await view(host)).events.find(e=>e.id===eventId).revision});
+   context=await browser.newContext({viewport:{width:1280,height:900}});await context.addCookies([{name:'hd_lan_session',value:guest.token,url:base,httpOnly:true,sameSite:'Strict'}]);page=await context.newPage();page.on('pageerror',e=>row.errors.push(e.message));page.on('response',async response=>{const path=new URL(response.url()).pathname;if(path.startsWith('/assets/')&&response.status()>=400)row.badAssets.push(path);if(path==='/api/lan/activities/action'){let data={};try{data=await response.json();}catch{}const input=response.request().postDataJSON();row.requests.push({operation:input.operation,requestId:input.requestId,runId:input.runId,batch:input.batch,status:response.status(),replayed:data.replayed===true,code:data.code,outcome:data.receipt?.outcome});}});
+   await page.goto(base+'/?qa=1',{waitUntil:'domcontentloaded'});await page.locator('[data-event-play="'+eventId+'"]').click();await page.waitForFunction(()=>window.lanInspect().activities.game?.loaded);await page.locator('[data-action="start"]').click();await delay(500);await page.locator('[data-action="pause"]').click();const paused=(await page.evaluate(()=>window.lanInspect().activities.game)).t;await delay(250);assert.equal((await page.evaluate(()=>window.lanInspect().activities.game)).t,paused);await page.locator('[data-action="resume"]').click();
+   let acceptedCheckpoint;const accepted=new Promise(resolve=>{acceptedCheckpoint=resolve;});await context.route('**/api/lan/activities/action',async route=>{const input=route.request().postDataJSON();if(input.operation==='trial_checkpoint'&&!row.droppedCheckpoint){const reply=await route.fetch();assert.equal(reply.status(),200);row.droppedCheckpoint={requestId:input.requestId,runId:input.runId,batch:input.batch};await route.abort('failed');acceptedCheckpoint();}else await route.continue();});
+   await page.locator('#lanEventSuspend').click();await Promise.race([accepted,delay(12000).then(()=>{throw Error('No accepted pause checkpoint was observed');})]);await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-event-play="'+eventId+'"]').click();await page.waitForFunction(()=>window.lanInspect().activities.game?.loaded&&!window.lanInspect().activities.pending&&!window.lanInspect().activities.flight);assert.equal((await view(guest)).events.find(e=>e.id===eventId).trial.runId,row.droppedCheckpoint.runId);assert(row.requests.some(r=>r.requestId===row.droppedCheckpoint.requestId&&r.replayed));
+   const started=Date.now();while(Date.now()-started<50000){const g=await page.evaluate(()=>window.lanInspect().activities.game);if(g.phase==='result')break;if(g.paused){await page.locator('[data-action="resume"]').click();continue;}const action=chooseAction(g);if(action?.type==='cell')await page.locator('[data-cell="'+action.index+'"]').click();await delay(90);}
+   const local=await page.evaluate(()=>window.lanInspect().activities.game.result);assert(local?.passed,JSON.stringify(local));await page.waitForFunction(()=>!document.querySelector('[data-action="claim"]').disabled);await page.locator('[data-action="claim"]').click();await page.waitForFunction(()=>!window.lanInspect().activities.playing);const completed=(await view(guest)).events.find(e=>e.id===eventId);assert.equal(completed.results.length,1);assert.equal(completed.trial,null);assert.equal(completed.results[0].runId,row.droppedCheckpoint.runId);assert.equal(completed.results[0].outcome,'completed');assert(completed.results[0].quality>=55);const canonical=JSON.parse(await readFile(join(directory,'_lan/activities.json'),'utf8')).events[eventId].results[guest.view.me.id];assert(canonical.result.passed);assert.equal(canonical.result.quality,completed.results[0].quality);assert(row.requests.some(r=>r.operation==='trial_finish'&&r.status===200&&r.outcome==='completed'));
+   const finish={operation:'finish',requestId:randomUUID(),eventId,expectedRevision:(await view(host)).events.find(e=>e.id===eventId).revision};await service.activities.action(host.token,finish);const before=await Promise.all(accounts.map(a=>service.tenants.readIslandForServer(a.view.me.id,theme)));assert((await service.activities.action(host.token,finish)).replayed);const after=await Promise.all(accounts.map(a=>service.tenants.readIslandForServer(a.view.me.id,theme)));assert.deepEqual(after.map(x=>x.state.coins),before.map(x=>x.state.coins));assert.equal(after[0].state.coins+after[1].state.coins,192);assert.equal(after[1].state.inventory.wood,0);assert.equal(after[1].state.economy.playerGoods.wood,0);assert.equal(after[0].state.inventory.wood,2);for(const d of after)assert.deepEqual(d.state.lanEconomyControl.holds,{});
+   await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(id=>window.lanInspect?.().activities.doc?.events.find(e=>e.id===id)?.phase==='completed',eventId);await page.screenshot({path:join(out,theme+'-settled.png')});assert.deepEqual(row.errors,[]);assert.deepEqual(row.badAssets,[]);row.result=local;row.originalRunAndAcceptedCheckpointReused=true;row.newInputsPreservedAfterReload=true;row.nativeClaimSubmittedToCanonicalTrial=true;row.settlementReplayUnique=true;row.totalCoinDelta=-8;row.noMaterialsOrPaymentDuplicated=true;row.passed=true;await save();
+  }catch(e){row.failure=e.stack;await save();await Promise.race([page?.screenshot({path:join(out,theme+'-failure.png')}).catch(()=>{}),delay(5000)]);throw e;}
+  finally{await context?.close();await service?.close();await save();}
+ }
+ report.passed=true;
+}catch(e){report.failure=e.stack;process.exitCode=1;}
+finally{await browser?.close();report.finishedAt=new Date().toISOString();await save();console.log(JSON.stringify({passed:report.passed,cases:report.cases.map(c=>({theme:c.theme,passed:c.passed,failure:c.failure?.slice(0,600)})),wholeGoalComplete:false}));}

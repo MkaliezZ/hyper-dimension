@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v260-agent-source",
+  "release": "hyper-dimension-v261-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 93546,
-      "sha256": "368d9d34e4bb645a92c25f6b4a58400e838c5ba1095cbe80abbb27138ca66245"
+      "bytes": 93893,
+      "sha256": "c93c25245a59253829321923a079ed86c19eb9bea3b8dded1a715082c1889b81"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15661,
-      "sha256": "58f81432d5a1c07db32a2380589ccd4166f2e2e2218dcf0bcea7aaad48289096"
+      "bytes": 15747,
+      "sha256": "9b3bffd3f500408e9312cc5fcd3b5bab1f53f2e2b7a2511ad2599a87e4017f95"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7317,8 +7317,8 @@
     },
     {
       "path": "src/lanActivitiesUI.js",
-      "bytes": 20427,
-      "sha256": "d99082ad2cdbcfa5c5153aba1fca5c4261399af383cc76bab9e826b554466bb3"
+      "bytes": 21803,
+      "sha256": "c3613da77f3b635e7fe72a3fdc17ff2cd3f9b159bfb3b228be1ae2347a29a9a6"
     },
     {
       "path": "src/lanAgentExchangeUI.js",
@@ -12929,7 +12929,22 @@
       "path": "docs/verification/v260/visitor-queue-recovery.json",
       "bytes": 1176,
       "sha256": "852b2b5679cc89ab5f8abd988a4d714384f1f10e4f500e2de8357693376f4dab"
+    },
+    {
+      "path": "tests/v261-native-checkpoint-browser.mjs",
+      "bytes": 10306,
+      "sha256": "6da70a5265fdb925ab308657883457fb40f06e8888e93025ae039a4e094d1833"
+    },
+    {
+      "path": "docs/lan-activity-recovery-v261.md",
+      "bytes": 1831,
+      "sha256": "0a8a2bb57ec3d76759f82899afd30570018733ddf8d81bad0795e8402f99dd47"
+    },
+    {
+      "path": "docs/verification/v261/lan-activity-recovery.json",
+      "bytes": 1996,
+      "sha256": "d73e89b6842a35a8655a5526c603cf220478e86714a2604b3f8ed37eb2bcce26"
     }
   ],
-  "publicRevision": "v260-github"
+  "publicRevision": "v261-github"
 }

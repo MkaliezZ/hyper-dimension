@@ -1,0 +1,55 @@
+{
+  "version": "V261",
+  "sourceBaseCommit": "3d7469fa8445b16ee7435dc017b2ce468b7af4e3",
+  "requiredRules": 1386,
+  "ruleGroups": [
+    1372,
+    14
+  ],
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "originalAcceptedCheckpointRequestReused": true,
+      "originalTrialRunReused": true,
+      "nativeQuality": 100,
+      "canonicalTrialFinishRequests": 1,
+      "canonicalOutcome": "completed",
+      "actualPaidSettlementAndReplay": true,
+      "totalCoinDelta": -8,
+      "carriedWoodTransferredOnce": true,
+      "holdsCleared": true,
+      "pageOrAssetErrors": 0
+    },
+    {
+      "theme": "origami",
+      "originalAcceptedCheckpointRequestReused": true,
+      "originalTrialRunReused": true,
+      "nativeQuality": 100,
+      "canonicalTrialFinishRequests": 1,
+      "canonicalOutcome": "completed",
+      "actualPaidSettlementAndReplay": true,
+      "totalCoinDelta": -8,
+      "carriedWoodTransferredOnce": true,
+      "holdsCleared": true,
+      "pageOrAssetErrors": 0
+    }
+  ],
+  "persistedCheckpointReconciledBeforeMount": true,
+  "newInputTraceNotDiscardedByOldCheckpointLength": true,
+  "sameTrialCompletionWaitsForAcceptedCommand": true,
+  "completionReturnsExplicitAcceptanceAndFailureRemainsRetryable": true,
+  "matchingOriginalFinishRequestIsReused": true,
+  "duplicateFinishClicksShareOneCompletion": true,
+  "backendInputReplayClockFundingAndRewardGuardsUnchanged": true,
+  "fixtureInitial100CoinsAndVenueMaterialsAndGuestOutfit": true,
+  "preparationClockOffsetMs": 61000,
+  "gameplayUsesActualElapsedTime": true,
+  "modelsCalled": false,
+  "renderedBrowserViewsAtOnce": 1,
+  "accountsPerCase": 2,
+  "scope": "Focused dual-theme native Continue/claim and authoritative funded settlement, not the complete four-owner/companion/A2A/human/physical-device journey.",
+  "priorWrongSchemaAndLegacyFixtureFailuresRetained": true,
+  "fourOwnerNativeJourneyStillIncomplete": true,
+  "finalSourcePackageVideoAndActualPeopleStillPending": true,
+  "wholeGoalComplete": false
+}

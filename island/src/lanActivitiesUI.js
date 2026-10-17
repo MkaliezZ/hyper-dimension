@@ -3,10 +3,10 @@ import {lanEconomyForm,updateLanEconomyPreview,lanEconomyCard} from './lanEconom
 import {neutralCraftGame} from './craftGameReplay.js';import {mountRoomGame} from './roomGames.js';import {ITEM_BY_ID,RECIPE_BY_ID,CATALOG_ITEMS} from './contentCatalog.js';import {GARMENTS} from './equipmentRules.js';import {itemMarkup} from './artStore.js';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),phases={preparing:'筹备中',live:'正在举办',completed:'已圆满结束',cancelled:'已取消',expired:'已到期'};
 export function createLanActivitiesUI(api){
- const root=document.getElementById('lanActivities'),modal=document.getElementById('lanEventModal');let context=null,doc=null,key='',poll=null,refreshing=false,flight=0,engine=null,playing=null,trace=[],timer=null,uiTimer=null,stopping=false,signature='';
+ const root=document.getElementById('lanActivities'),modal=document.getElementById('lanEventModal');let context=null,doc=null,key='',poll=null,refreshing=false,flight=0,engine=null,playing=null,trace=[],timer=null,uiTimer=null,stopping=false,signature='',commandReady=Promise.resolve(),finishing=null;
  const cache=()=>context?'hd-lan:'+context.me.id+':pending-event-command':'',pending=()=>{try{return JSON.parse(localStorage.getItem(cache())||'null')}catch{return null}};
  async function request(body){const r=await fetch('/api/lan/activities'+(body?'/action':''),{method:body?'POST':'GET',headers:{'X-HD-Island':context.me.id,...body?{'Content-Type':'application/json'}:{}},body:body?JSON.stringify(body):undefined,cache:'no-store',signal:AbortSignal.timeout(15000)}),data=await r.json();if(!r.ok)throw Object.assign(Error(data.error||'活动服务暂缓'),{status:r.status,code:data.code});return data;}
- async function command(args){if(flight)throw Error('活动操作正在确认');const old=pending();if(old&&old.requestId!==args.requestId)throw Error('先核对上次活动操作，再继续');const body=old||{...args,requestId:crypto.randomUUID()},storageKey=cache();if(!old)localStorage.setItem(storageKey,JSON.stringify(body));flight++;try{const r=await request(body);doc=r.view;localStorage.removeItem(storageKey);if(body.operation==='finish'&&!r.replayed){const e=doc.events.find(e=>e.id===body.eventId);if(e?.wonder?.milestone&&e.owner===context.me.id)showWonder(e);}return r;}catch(e){if(e.code&&e.status<500)localStorage.removeItem(storageKey);throw e;}finally{flight--;}}
+ async function command(args){if(flight)throw Error('活动操作正在确认');const old=pending();if(old&&old.requestId!==args.requestId)throw Error('先核对上次活动操作，再继续');const body=old||{...args,requestId:crypto.randomUUID()},storageKey=cache();if(!old)localStorage.setItem(storageKey,JSON.stringify(body));flight++;let commandFinished;commandReady=new Promise(resolve=>{commandFinished=resolve;});try{const r=await request(body);doc=r.view;localStorage.removeItem(storageKey);if(body.operation==='finish'&&!r.replayed){const e=doc.events.find(e=>e.id===body.eventId);if(e?.wonder?.milestone&&e.owner===context.me.id)showWonder(e);}return r;}catch(e){if(e.code&&e.status<500)localStorage.removeItem(storageKey);throw e;}finally{flight--;commandFinished();}}
  const act=fn=>async e=>{e?.preventDefault();try{await fn();render(true);}catch(e){api.toast(e.message);const status=document.getElementById('lanEventStatus');if(status)status.textContent=e.message;render();}};
  const chosen=id=>doc?.events.find(e=>e.id===id),bind=(selector,fn)=>root.querySelectorAll(selector).forEach(b=>b.onclick=act(()=>fn(b)));
  const date=t=>new Date(t).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
@@ -33,7 +33,16 @@ export function createLanActivitiesUI(api){
  document.getElementById('lanEventPublish')?.addEventListener('submit',act(async()=>{const val=id=>document.getElementById(id).value,items=[0,1,2].filter(n=>val('lanRequire_'+n)).map(n=>({item:val('lanRequire_'+n),quantity:Number(val('lanQuantity_'+n))}));await command({operation:'publish',roomId:context.room.id,title:val('lanEventTitle'),kind:val('lanEventKind'),brief:val('lanEventBrief')||doc.kinds.find(k=>k.id===val('lanEventKind')).brief,prepareSeconds:Number(val('lanEventPrepare')),difficulty:Number(val('lanEventDifficulty')),minQuality:Number(val('lanEventQuality')),economyMode:val('lanEconomyMode'),deliveryMode:val('lanEconomyMode')==='funded'?val('lanDeliveryMode'):'bring',requirements:{items,garment:val('lanEventGarment')||null},invitees:[...root.querySelectorAll('[data-lan-invite]:checked')].map(x=>x.dataset.lanInvite)});api.toast('活动邀请已寄出');}));
  bind('[data-event-accept]',b=>command({operation:'respond',eventId:b.dataset.eventAccept,response:'accepted'}));bind('[data-event-decline]',b=>command({operation:'respond',eventId:b.dataset.eventDecline,response:'declined'}));bind('[data-event-arrive]',async b=>{await command({operation:'arrive',eventId:b.dataset.eventArrive});api.toast('已靠泊，沿栈桥进入主办岛。');});bind('[data-event-check]',async b=>{await command({operation:'checkin',eventId:b.dataset.eventCheck});api.toast(chosen(b.dataset.eventCheck)?.economy.mode==='funded'?'入席准备已预留，结束后按规则交付与退款':'携物与穿着已核对，留在各自背包');});
  for(const op of ['start','finish','cancel'])bind('[data-event-'+op+']',async b=>{const id=b.getAttribute('data-event-'+op);try{return await command({operation:op,eventId:id,expectedRevision:chosen(id).revision});}catch(error){if(error.code!=='lan_event_revision')throw error;await refresh();return command({operation:op,eventId:id,expectedRevision:chosen(id).revision});}});
- bind('[data-event-play]',async b=>{const id=b.dataset.eventPlay;if(!chosen(id).trial)await command({operation:'trial_begin',eventId:id});mount(id);});
+ bind('[data-event-play]',async b=>{
+  const id=b.dataset.eventPlay,owner=context.me.id;await commandReady;if(context?.me.id!==owner)return;
+  // A reload can leave an already accepted checkpoint awaiting its original
+  // receipt. Reconcile it before cloning the trial and starting a new trace.
+  const old=pending();if(old){
+   if(old.eventId!==id||!['trial_begin','trial_checkpoint','trial_finish'].includes(old.operation))throw Error('请先核对上次活动操作，再继续挑战');
+   await command(old);if(old.operation==='trial_finish')return;
+  }
+  if(!chosen(id).trial)await command({operation:'trial_begin',eventId:id});mount(id);
+ });
  bind('[data-event-abandon]',async b=>{const id=b.dataset.eventAbandon;await command({operation:'trial_cancel',eventId:id,runId:chosen(id).trial.runId});if(playing===id)stopEngine(false);});
  bind('[data-event-subscribe]',b=>command({operation:'subscribe',hostId:b.dataset.eventSubscribe,subscribed:b.dataset.subscribed!=='true'}));
  root.querySelectorAll('[data-event-rate]').forEach(form=>form.onsubmit=act(()=>command({operation:'rate',eventId:form.dataset.eventRate,stars:Number(document.getElementById('lanStars_'+form.dataset.eventRate).value),comment:document.getElementById('lanComment_'+form.dataset.eventRate).value})));
@@ -46,7 +55,24 @@ export function createLanActivitiesUI(api){
  engine=mountRoomGame(document.getElementById('lanEventGameRoot'),t.building,finish,{theme:e.theme,avatar:context.me.profile.avatar,standalone:true,recipe:RECIPE_BY_ID[t.recipeId],mode:String(t.difficulty),level:t.game.level,resumeGame:neutralCraftGame(structuredClone(t.game)),onGameEvent:x=>trace.push(x),onOutcome:flush,onExit:suspend,onRestart:()=>api.toast('收起本局后，可结束旧关卡再重试。'),readBest:()=>({score:0,stars:0}),writeBest:()=>{}});
  document.getElementById('lanEventClose').onclick=suspend;document.getElementById('lanEventSuspend').onclick=suspend;document.getElementById('lanEventClaim').onclick=finish;timer=setInterval(flush,5000);uiTimer=setInterval(()=>{if(!playing)return;const b=modal.querySelector('[data-action="claim"],.activity-finish');if(b){b.textContent='保存活动成绩';document.getElementById('lanEventClaim').disabled=b.disabled;}modal.querySelectorAll('[data-action="difficulty"],[data-difficulty]').forEach(b=>b.disabled=true);modal.querySelectorAll('[data-action="restart"]').forEach(b=>{b.disabled=true;b.textContent='本局结束后可返回活动';});for(const small of modal.querySelectorAll('.wk-result-card small'))if(small.textContent.includes('成绩已保存到此浏览器'))small.textContent='确认后，成绩保存到本机联机活动档案。';},250);
  }
- async function finish(){if(!playing||flight)return;engine?.setTransportPaused(true);while(trace.length)if(!await flush())return;const id=playing,t=chosen(id)?.trial;try{const r=await command({operation:'trial_finish',eventId:id,runId:t.runId});stopEngine(false);render(true);api.toast(r.receipt.outcome==='completed'?'活动挑战完成 · 品质'+r.receipt.result.quality:'练习已记录，可以在本场剩余次数内再试');}catch(e){api.toast(e.message);}}
+ async function finish(){
+  if(finishing)return finishing;if(!playing)return false;
+  const id=playing,runId=chosen(id)?.trial?.runId,owner=context?.me.id;
+  finishing=(async()=>{
+   engine?.setTransportPaused(true);
+   // A result click may coincide with the last accepted checkpoint. Keep the
+   // same trial alive until that request settles, then submit its remaining trace.
+   await commandReady;
+   if(context?.me.id!==owner||playing!==id||chosen(id)?.trial?.runId!==runId)return false;
+   try{
+    const old=pending(),sameFinish=old?.operation==='trial_finish'&&old.eventId===id&&old.runId===runId;
+    if(!sameFinish)while(trace.length)if(!await flush()){if(!flight&&!pending())engine?.setTransportPaused(false);return false;}
+    const r=await command(sameFinish?old:{operation:'trial_finish',eventId:id,runId});
+    stopEngine(false);render(true);api.toast(r.receipt.outcome==='completed'?'活动挑战完成 · 品质'+r.receipt.result.quality:'练习已记录，可以在本场剩余次数内再试');return true;
+   }catch(e){api.toast(e.message);if(!flight&&!pending())engine?.setTransportPaused(false);return false;}
+  })();
+  try{return await finishing;}finally{finishing=null;}
+ }
  async function suspend(){if(flight){api.toast('进度正在确认，请稍候收起');return;}engine?.setTransportPaused(true);trace.push({neutral:true});while(trace.length)if(!await flush()){stopEngine(false);render(true);return;}stopEngine(false);render(true);}
  function stopEngine(){if(stopping)return;stopping=true;clearInterval(timer);clearInterval(uiTimer);timer=uiTimer=null;engine?.destroy();engine=null;playing=null;trace=[];if(modal.dataset.previousTheme)document.body.dataset.theme=modal.dataset.previousTheme;modal.innerHTML='';stopping=false;}
  function clear(){clearInterval(poll);poll=null;stopEngine();context=null;doc=null;key='';signature='';root.innerHTML='';}
