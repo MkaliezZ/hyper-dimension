@@ -1,0 +1,49 @@
+{
+  "version": "V263",
+  "sourceBaseCommit": "95e0f8d39b5c5611456cbe8a6e96360ce45aa8b2",
+  "changesAreTestTimingAndDiagnosticsOnly": true,
+  "gameRuntimeAndDependencyPayloadsUnchanged": 1484,
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "nativePreparationMs": 4814,
+      "httpAcceptanceMs": 32,
+      "clockBefore": 5.171399999999998,
+      "clockDuring": 7.780799999999993,
+      "actualAcceptedReplyHeld": true,
+      "noEarlyOutcome": true,
+      "normalCancelAndOneDurableConversationAfterReload": true
+    },
+    {
+      "theme": "origami",
+      "nativePreparationMs": 5003,
+      "httpAcceptanceMs": 32,
+      "clockBefore": 5.234699999999995,
+      "clockDuring": 7.859399999999995,
+      "actualAcceptedReplyHeld": true,
+      "noEarlyOutcome": true,
+      "normalCancelAndOneDurableConversationAfterReload": true
+    }
+  ],
+  "nativePreparationBudgetMs": 30000,
+  "httpAcceptanceBudgetMs": 10000,
+  "httpBudgetMeasuredFromRealDispatch": true,
+  "actualPendingObservationMs": 2600,
+  "minimumDialogueAdvanceMs": 1000,
+  "originalLogicalOutcomeCancelSaveAndReloadAssertionsRetained": true,
+  "heldReplyReleasedBeforeFailureScreenshot": true,
+  "previousHostedFailure": {
+    "run": 39032299534,
+    "job": 117395360424,
+    "theme": "pixel",
+    "eventuallyAcceptedRequestRecorded": true,
+    "originalReportAndCrcVerifiedArtifactRetained": true
+  },
+  "defaultRequired1390RulesInheritedFromV262": true,
+  "defaultRulesNotRerunForUnchangedGameCode": true,
+  "exactV262FifteenStepFreshWindowsInstallationPassed": true,
+  "currentHostedRecoveryNotYetEstablished": true,
+  "currentFinalPackageHourAndVideoStillPending": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v262-agent-source",
+  "release": "hyper-dimension-v263-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 94599,
-      "sha256": "f17319d1ddae0f29b1b32847f4cefe887358785fe418e8cc64e79844569c271a"
+      "bytes": 95079,
+      "sha256": "39fe022af7d6eec75b420e63fe90dfb9982b8db13a0551194ac653af544a269e"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12952,8 +12952,8 @@
     },
     {
       "path": "tests/v262-social-pending-browser.mjs",
-      "bytes": 8067,
-      "sha256": "0ebb0512ee354e78a23e5161667196abd537f92d0a0deddf62346846ef3e350c"
+      "bytes": 8937,
+      "sha256": "daf5e28b470f7fae6ae38ae5896c51ef57725f033b40bd71ac0569da7b8c890f"
     },
     {
       "path": "docs/social-receipts-and-visits-v262.md",
@@ -12964,7 +12964,17 @@
       "path": "docs/verification/v262/social-receipts-and-visits.json",
       "bytes": 4858,
       "sha256": "41bce82ca9c593c49fe574154cb4a378a890e74e3dc82b680dbcc4c953222798"
+    },
+    {
+      "path": "docs/native-request-timing-v263.md",
+      "bytes": 1701,
+      "sha256": "c4b8bdc32b7f345121f9bb5b2e45730a345d9d021b5bcf4bd41f8814fc6afcbe"
+    },
+    {
+      "path": "docs/verification/v263/native-request-timing.json",
+      "bytes": 1717,
+      "sha256": "1aa4b9ab27162518abd4f4d0554de9cf96bd100e0742999cab5b1408229276cb"
     }
   ],
-  "publicRevision": "v262-github"
+  "publicRevision": "v263-github"
 }

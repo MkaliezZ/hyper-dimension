@@ -32,10 +32,14 @@ try{
    const ready=()=>page.waitForFunction(()=>window.islandInspect?.().startup.busy===false&&window.islandInspect().environment.clockId?.startsWith('social-pending-'),null,{timeout:60000});
    const pair=()=>page.evaluate(()=>{const s=islandInspect(),meeting=s.meetings.find(m=>m.ids.includes(0)&&m.ids.includes(8));return{now:s.now,meeting,conversations:s.npcConversations.filter(c=>c.participants?.includes(0)&&c.participants.includes(8)),saveStatus:document.querySelector('#saveStatus')?.dataset.status};});
    await page.goto(base+'/play?qa=1',{waitUntil:'domcontentloaded'});await ready();await page.waitForFunction(()=>islandInspect().meetings.some(m=>m.ids.includes(0)&&m.ids.includes(8)&&m.phase==='speaking'&&m.clock<1.5),null,{timeout:150000});
-   let accepted;const acceptedResponse=new Promise(resolve=>accepted=resolve),hold=new Promise(resolve=>releaseHold=resolve);let holdCount=0;
-   await context.route('**/api/saves/*/action',async route=>{const i=route.request().postDataJSON();if(i.operation==='begin'&&i.itemId==='wood'&&!i.kind&&!holdCount){holdCount++;const response=await route.fetch();assert.equal(response.status(),200);row.heldRequestId=i.requestId;accepted();await hold;await route.fulfill({response});}else await route.fallback();});
-   await page.locator('#gatherBtn').click();await page.locator('[data-source="forest"]').click();await page.locator('[data-gather="wood"]').click();
-   await Promise.race([acceptedResponse,new Promise((_,reject)=>setTimeout(()=>reject(Error('Actual unrelated gather response was not accepted')),10000))]);
+   let accepted,dispatched;const acceptedResponse=new Promise(resolve=>accepted=resolve),dispatchedRequest=new Promise(resolve=>dispatched=resolve),hold=new Promise(resolve=>releaseHold=resolve);let holdCount=0;row.gatherTimings={};
+   await context.route('**/api/saves/*/action',async route=>{const i=route.request().postDataJSON();if(i.operation==='begin'&&i.itemId==='wood'&&!i.kind&&!holdCount){holdCount++;row.gatherTimings.dispatchedAt=Date.now();dispatched();const response=await route.fetch();assert.equal(response.status(),200);row.gatherTimings.acceptedAt=Date.now();row.gatherTimings.httpAcceptanceMs=row.gatherTimings.acceptedAt-row.gatherTimings.dispatchedAt;row.heldRequestId=i.requestId;accepted();await hold;await route.fulfill({response});}else await route.fallback();});
+   await page.locator('#gatherBtn').click();await page.locator('[data-source="forest"]').click();row.gatherTimings.clickedAt=Date.now();await page.locator('[data-gather="wood"]').click();
+   // Native preparation includes draining the real prior save before dispatch.
+   // Keep the10second HTTP bound, measured from the actual request itself.
+   await Promise.race([dispatchedRequest,new Promise((_,reject)=>setTimeout(()=>reject(Error('Native gather preparation did not dispatch its request')),30000))]);
+   row.gatherTimings.preparationMs=row.gatherTimings.dispatchedAt-row.gatherTimings.clickedAt;
+   await Promise.race([acceptedResponse,new Promise((_,reject)=>setTimeout(()=>reject(Error('Actual gather HTTP response exceeded10seconds after dispatch')),Math.max(1,10000-(Date.now()-row.gatherTimings.dispatchedAt))))]);
    const before=await pair();assert.equal(before.meeting?.phase,'speaking');await page.waitForTimeout(2600);const during=await pair();
    assert.equal(during.meeting?.phase,'speaking');assert(during.meeting.clock-before.meeting.clock>=1,'Dialogue must advance during the held unrelated receipt');assert.equal(during.conversations.length,0,'The pending presentation must not claim completion');
    assert.equal((await store.current(theme)).state.npcConversations.filter(c=>c.participants.includes(0)&&c.participants.includes(8)).length,0);
@@ -45,7 +49,7 @@ try{
    await page.locator('#saveStatus').click();await page.locator('#saveNow').click();await page.waitForFunction(()=>!document.querySelector('#saveNow')?.disabled,null,{timeout:30000});await page.locator('#closeModal').click();
    const saved=(await store.current(theme)).state.npcConversations.filter(c=>c.participants.includes(0)&&c.participants.includes(8));assert.equal(saved.length,1);assert.equal(saved[0].id,after.conversations[0].id);
    await page.reload({waitUntil:'domcontentloaded'});await ready();assert.deepEqual((await pair()).conversations,saved);assert.equal(holdCount,1);assert.deepEqual(row.errors,[]);assert.deepEqual(row.saveErrors,[]);await page.screenshot({path:join(out,theme+'-restored.png')});row.nativeGatherCancelledAfterHold=true;row.oneDurableConversationAfterReload=true;row.passed=true;
-  }catch(e){row.failure=e.stack;process.exitCode=1;await persist();await page?.screenshot({path:join(out,theme+'-failure.png'),timeout:10000}).catch(()=>{});}
+  }catch(e){row.failure=e.stack;row.failedAt=Date.now();process.exitCode=1;if(!released){releaseHold?.();released=true;}await persist();await page?.screenshot({path:join(out,theme+'-failure.png'),timeout:10000}).catch(()=>{});}
   finally{if(!released)releaseHold?.();await context?.close();await service?.close();await persist();}
  }
  report.passed=report.cases.length===2&&report.cases.every(c=>c.passed);
