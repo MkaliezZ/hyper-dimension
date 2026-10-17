@@ -1,0 +1,61 @@
+{
+  "version": "V254",
+  "sourceBaseCommit": "5e325665fd8660e2c20f4d9325b49ebcc5e13d74",
+  "behavior": "Transient Windows sharing holds and explicit game-save503 replies can finish the original durable command without a fresh request ID or duplicate gain.",
+  "windowsRetryDelayTotalMs": 2500,
+  "windowsMaximumAttempts": 11,
+  "gameReplyRetryDelaysMs": [
+    250,
+    750
+  ],
+  "gameReplyRetryStatus": 503,
+  "gameReplyRetryCodes": [
+    "EPERM",
+    "EACCES",
+    "EBUSY",
+    "save_busy",
+    "save_unavailable"
+  ],
+  "gameCommandBytesVersionEpochSequenceAndClientIdPreserved": true,
+  "permanentFailureRetainsOriginalCanonicalBytesAndRecoveryEnvelope": true,
+  "authorizationConflictUnknownServerAndNonWindowsIoFailuresNotConcealed": true,
+  "noRealWorkOrHermesRequestRetriedByThisPolicy": true,
+  "rulesPassed": 1335,
+  "ruleGroups": [
+    1321,
+    14
+  ],
+  "localEvidence": {
+    "baselineUnitCases": 9,
+    "baselineUnitFailed": 4,
+    "baselineNativeCasesFailed": 2,
+    "relatedRuleCasesPassed": 17,
+    "nativeStylesPassed": 2,
+    "actualWindowsFileSharingTestPassed": true,
+    "eachNativeGrantedWorkSeconds": 20,
+    "nativeFault": "Two503EPERM replies replace successful actual begin/duplicate replies; third sends identical command bytes",
+    "emptyBrowserAndIndependentDiskReplayPassed": true,
+    "seasonalLocalCasesPassed": 16,
+    "hostedMacSeasonFailureStillOpen": true,
+    "reportHashes": {
+      "native-io-fixed/report.json": "e996bd063d622f0908a565611c207823a5e1d1cbffbce78a0904448b92c2c132",
+      "native-io-baseline/report.json": "6d662516b853160c52db9b975da436d6f85e8e23af1372f71803124872c82a32",
+      "native-seasons/report.json": "5f9e861bebd49e9e0caa6ac8e5e7b335b75d0b39694e725d3183b4c2792ae3be",
+      "io-baseline.log": "e56367b7ec7d29169ba2882026c1be6024a4d755dc1b82cb5edf4604b170f99c",
+      "io-fixed.log": "3b63f96fcca87390b8ddf5b2a6ab085162b37a30e870aa933df4a20724be7617"
+    }
+  },
+  "workflow": {
+    "existingJobsAndAssertionsUnchanged": true,
+    "matrixJobs": 18,
+    "nativeGameCommandRecoveryStepAdded": true,
+    "nativeReportRetainedWithoutPrivateData": true,
+    "seasonalCaseCount": 16,
+    "seasonalReadinessTimeoutMs": 60000,
+    "seasonalDiagnosticsOnly": true
+  },
+  "scope": "Isolated fictional SaveStore/SaveClient components, actual Windows no-delete file sharing and two native browser themes. Reply faults are explicitly injected after real commits. No original user saves or browser, changed game clock, providers or human/device acceptance.",
+  "hostedMacSeasonFailure": "Still open. Local sixteen-case season check passed; new progress diagnostics retain the original60s readiness predicates, memory bound and16 cases.",
+  "modelCadenceAndEconomyPolicyUnchanged": true,
+  "wholeGoalComplete": false
+}

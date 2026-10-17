@@ -55,7 +55,7 @@ for(const code of ['EPERM','ENOSPC'])test('failed '+code+' room publication reta
  const f=await fixture();
  await withRenameFault(f.file,Infinity,code,async({calls,failure})=>{
   await assert.rejects(f.store.action(f.account.token,f.command),e=>e===failure);
-  assert.equal(calls.length,code==='EPERM'&&process.platform==='win32'?7:1);
+  assert.equal(calls.length,code==='EPERM'&&process.platform==='win32'?11:1);
  });
  assert.equal(await fs.readFile(f.file,'utf8'),f.before);
  assert.deepEqual(JSON.parse(await fs.readFile(f.previous,'utf8')),JSON.parse(f.before));

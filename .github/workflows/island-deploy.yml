@@ -472,6 +472,9 @@ jobs:
       - name: Native Windows save lock contention and unique delivery
         if: runner.os == 'Windows'
         run: node tests/v218-save-lock-browser.mjs
+      - name: Native durable task recovery after transient I/O replies
+        run: node tests/v254-save-io-browser.mjs
+        timeout-minutes: 5
       - name: Native sequential resident tasks across fixed work shifts
         run: node tests/v213-task-chain-browser.mjs
       - name: Native recruited partner food and task continuation
@@ -488,5 +491,6 @@ jobs:
             island/qa/v218/native-save-lock/report.json
             island/qa/v218/native-save-lock/*.png
             island/qa/v253/native-partner-self-care/report.json
+            island/qa/v254/native-save-io/report.json
           if-no-files-found: ignore
           retention-days: 3

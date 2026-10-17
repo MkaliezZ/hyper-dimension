@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v253-agent-source",
+  "release": "hyper-dimension-v254-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 91052,
-      "sha256": "0ffc6d13a42379c1247e6c6d98a8e4beed9d3729810e4b4a2fb40537dc6f86dd"
+      "bytes": 91439,
+      "sha256": "43285da1f4182b29424108f5cc7e69459090ced7ac2db48b62ebb44db7c9a26f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15356,
-      "sha256": "6c51408e4f6f34290346d6d7704194ffcc35624025845282d25ed38cf8f4b338"
+      "bytes": 15426,
+      "sha256": "b5ddda78bda4b5b65757596776ca00af1dd847d50fcd288f32c63186183d02f7"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6052,8 +6052,8 @@
     },
     {
       "path": "server/atomicJson.mjs",
-      "bytes": 1740,
-      "sha256": "e7ea12a7c694540c9ce1795337e95b9dc084ffff1d326a3694424fecfc315193"
+      "bytes": 1851,
+      "sha256": "2788962bb8ba9838a414f428d7a1b53a12368506c2e748deac892f8aee7b04b1"
     },
     {
       "path": "server/automaticBudget.mjs",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 40568,
-      "sha256": "37f8e44a2f6cef1d47e4db55cb869f0da11e3eafe529789b6e0d6d7f5f2d7efb"
+      "bytes": 41090,
+      "sha256": "5062ecc82d30d9f47fabcaa18fcc84bffa76e8500d5decda78a02efb83e5cd70"
     },
     {
       "path": "src/saveDelta.js",
@@ -8772,8 +8772,8 @@
     },
     {
       "path": "tests/v115-atomic-json.test.mjs",
-      "bytes": 2257,
-      "sha256": "608711260d2d89bf41c0cb31bc19346ec6ec1a317a0e3b8e51b88ca9dc92631c"
+      "bytes": 2259,
+      "sha256": "d5dacaf56d9b60f06d0a3619102dd1cb56f51ca593a3f1d39b682a070d2a0ecd"
     },
     {
       "path": "tests/v116-meal-planning.test.mjs",
@@ -9222,8 +9222,8 @@
     },
     {
       "path": "tests/v162-lock-open.test.mjs",
-      "bytes": 2732,
-      "sha256": "d706dbce092841abe7513e12b8ea7532cfcdd645dd3e4d86ce126ffde9bf81e9"
+      "bytes": 2734,
+      "sha256": "bdd8f668fea50d96c649ab2137444431d886ae17729d62e1e5de430c567b28a7"
     },
     {
       "path": "tests/v164-npc-gain-reload.test.mjs",
@@ -9517,8 +9517,8 @@
     },
     {
       "path": "tests/v187-season-browser.mjs",
-      "bytes": 4441,
-      "sha256": "cca031444547821e94b3912cbd11c4c82461ef674df20898617b9742fd4687fc"
+      "bytes": 5212,
+      "sha256": "5b84560e58c03f34bc050518aaecd820da60e66730c8de7591a76def3339159a"
     },
     {
       "path": "tests/v187-season-loading-browser.mjs",
@@ -12042,8 +12042,8 @@
     },
     {
       "path": "tests/v212-lan-identity-replace.test.mjs",
-      "bytes": 3916,
-      "sha256": "d4285e49175cf585e73682735b43eecb56a7a9fef7be5563e500195c081b93fe"
+      "bytes": 3917,
+      "sha256": "096bd6a63cf1044cfdcc03809865ff32040415e95d2ad99335dcb8456871d0d4"
     },
     {
       "path": "server/dispatch_order.py",
@@ -12222,8 +12222,8 @@
     },
     {
       "path": "tests/v218-save-lock-contention.test.mjs",
-      "bytes": 3594,
-      "sha256": "6811cd5eab41a86dae6d6a8666e5014640376cf6fc6326330262d037c63bc80c"
+      "bytes": 3595,
+      "sha256": "710219eeab347bf6f4acc89aef71740e90f434fc55fc0aba00a8e532981503dd"
     },
     {
       "path": "docs/production-uses-v219.md",
@@ -12794,7 +12794,32 @@
       "path": "docs/verification/v253/partner-self-care.json",
       "bytes": 2956,
       "sha256": "05a973f4dab4e9c7caa2d11930c084d5fb79d01885e6cb57dee1a2c1872b0178"
+    },
+    {
+      "path": "tests/v254-save-io-retry.test.mjs",
+      "bytes": 4476,
+      "sha256": "ec94eb33663ef3cea521f278fcdf5fb9afd31620b1bcd6db9316192560d50b0f"
+    },
+    {
+      "path": "tests/v254-windows-sharing.test.mjs",
+      "bytes": 3444,
+      "sha256": "43a7ddfd43b2dfb550bcf47e0b7026285c092f586e5d9661f27496a4bc640840"
+    },
+    {
+      "path": "tests/v254-save-io-browser.mjs",
+      "bytes": 6790,
+      "sha256": "61cb9996feba75e3994c122b1eb6ba2a6f68a53c6d4e89bb4597120a8b0a2eb3"
+    },
+    {
+      "path": "docs/save-io-recovery-v254.md",
+      "bytes": 1764,
+      "sha256": "5f4de858363d8d4c43c72f5a82a431c0952154afa5808d742ec7216293ace18f"
+    },
+    {
+      "path": "docs/verification/v254/save-io-recovery.json",
+      "bytes": 2769,
+      "sha256": "c5f4e3fe91f416c0ee99b5e553710babd31946017e063efc60e5b709c7ef8740"
     }
   ],
-  "publicRevision": "v253-github"
+  "publicRevision": "v254-github"
 }
