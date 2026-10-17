@@ -427,6 +427,9 @@ jobs:
       - name: Native resident social continuity after reload
         run: node tests/v221-resident-reentry-browser.mjs
 
+      - name: Native dialogue while another receipt settles
+        run: node tests/v262-social-pending-browser.mjs
+
       - name: Native interior return points and forest navigation
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v203-scene-return-browser.mjs
@@ -445,6 +448,8 @@ jobs:
             island/qa/v179/npc-work/*.png
             island/qa/v221/native-resident-reentry/report.json
             island/qa/v221/native-resident-reentry/*.png
+            island/qa/v262/social-pending/report.json
+            island/qa/v262/social-pending/*.png
             island/qa/v203/native-scene-return/report.json
             island/qa/v203/native-scene-return/*.png
           if-no-files-found: ignore

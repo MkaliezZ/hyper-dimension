@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v261-agent-source",
+  "release": "hyper-dimension-v262-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 93893,
-      "sha256": "c93c25245a59253829321923a079ed86c19eb9bea3b8dded1a715082c1889b81"
+      "bytes": 94599,
+      "sha256": "f17319d1ddae0f29b1b32847f4cefe887358785fe418e8cc64e79844569c271a"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15747,
-      "sha256": "9b3bffd3f500408e9312cc5fcd3b5bab1f53f2e2b7a2511ad2599a87e4017f95"
+      "bytes": 15867,
+      "sha256": "c645bfd9f9f4e171fb3a78e7e6231bcde489550c80da927c0159c537afdc6389"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144686,
-      "sha256": "fa06dafad28842624192139f13aea1c943892d4c731843d3d80af1bcbec31b60"
+      "bytes": 144723,
+      "sha256": "1febebcb2fe6142e2b57642f27c4f7a4d5af9a935a8a151210b6af41081bd96a"
     },
     {
       "path": "src/arcade.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 45181,
-      "sha256": "c441ec5e5b8c751dad8e5ad14b1aeee5c13179a1275fd80b1c280aa78de86554"
+      "bytes": 45808,
+      "sha256": "fa93c14284b59bfde02c69c68e6eb08af829959c003c45dd2e6da2935ef10492"
     },
     {
       "path": "src/residentSchedule.js",
@@ -12944,7 +12944,27 @@
       "path": "docs/verification/v261/lan-activity-recovery.json",
       "bytes": 1996,
       "sha256": "d73e89b6842a35a8655a5526c603cf220478e86714a2604b3f8ed37eb2bcce26"
+    },
+    {
+      "path": "tests/v262-social-presentation.test.mjs",
+      "bytes": 3853,
+      "sha256": "55cb2cfaf3fcc12363bf76ea80dbaee394cc20ea4f11ed7afe678b246d7389d5"
+    },
+    {
+      "path": "tests/v262-social-pending-browser.mjs",
+      "bytes": 8067,
+      "sha256": "0ebb0512ee354e78a23e5161667196abd537f92d0a0deddf62346846ef3e350c"
+    },
+    {
+      "path": "docs/social-receipts-and-visits-v262.md",
+      "bytes": 2932,
+      "sha256": "0bf0f45e0c59595f0ae995ebec8d3038d072a5f074b6bfbbcd4231d589d6d20e"
+    },
+    {
+      "path": "docs/verification/v262/social-receipts-and-visits.json",
+      "bytes": 4858,
+      "sha256": "41bce82ca9c593c49fe574154cb4a378a890e74e3dc82b680dbcc4c953222798"
     }
   ],
-  "publicRevision": "v261-github"
+  "publicRevision": "v262-github"
 }

@@ -1,0 +1,158 @@
+{
+  "version": "V262",
+  "sourceBaseCommit": "5da3256f01448d327cfef6633b46a6c404ee647a",
+  "requiredRules": 1390,
+  "ruleGroups": [
+    1376,
+    14
+  ],
+  "unitBefore": {
+    "passed": 2,
+    "failed": 2
+  },
+  "unitAfter": {
+    "passed": 4,
+    "failed": 0
+  },
+  "nativePendingReceiptCases": [
+    {
+      "theme": "pixel",
+      "actualAcceptedGatherReplyHeld": true,
+      "dialogueClockBefore": 5.163899999999999,
+      "dialogueClockDuring": 7.7828,
+      "logicalOutcomeNotWrittenDuringHold": true,
+      "ordinaryCancellationAndSaveAndReload": true,
+      "durableConversationCount": 1,
+      "localFallbackNotClaimedAsAi": true,
+      "pageAndSaveApiErrors": 0
+    },
+    {
+      "theme": "origami",
+      "actualAcceptedGatherReplyHeld": true,
+      "dialogueClockBefore": 5.051699999999991,
+      "dialogueClockDuring": 7.672799999999987,
+      "logicalOutcomeNotWrittenDuringHold": true,
+      "ordinaryCancellationAndSaveAndReload": true,
+      "durableConversationCount": 1,
+      "localFallbackNotClaimedAsAi": true,
+      "pageAndSaveApiErrors": 0
+    }
+  ],
+  "originalNativeReentryCases": 4,
+  "originalReentryTimeoutMs": 150000,
+  "originalCooldownAndReloadAssertionsUnchanged": true,
+  "visualProgressOnlyUntilSafeOrdinaryUpdate": true,
+  "noEarlyRelationshipMemoryCooldownOrResourceMutation": true,
+  "oldWorldResetCannotFinishOldConversation": true,
+  "modelAndEconomyAndBackendRulesUnchanged": true,
+  "priorMacIntelFailure": {
+    "run": 39028189041,
+    "job": 117383516481,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "step": "Native resident social continuity after reload",
+    "symptom": "150-second timeout with participants already speaking, local dialogue clock at11.03/13.30",
+    "logsAndCrcVerifiedOriginalArtifactsRetained": true
+  },
+  "currentHostedMacRecoveryNotYetEstablished": true,
+  "fourOwnerRuntimeSourceCommit": "5da3256f01448d327cfef6633b46a6c404ee647a",
+  "fourOwnerRuntimeLiteralJsClosureUnchanged": {
+    "files": 263,
+    "roots": [
+      "src/lanUI.js",
+      "server/lanServer.mjs"
+    ],
+    "scope": "Literal relative JavaScript imports only, not the full single-player /play iframe or every possible dynamic path"
+  },
+  "fourOwnerCases": [
+    {
+      "hostTheme": "origami",
+      "accounts": 4,
+      "originalDeviceClis": 4,
+      "mandatoryStewards": 4,
+      "consentingAiCompanions": 8,
+      "renderedViewsAtOnce": 1,
+      "actualA2aMessages": 11,
+      "actualPerOwnerA2aRuns": [
+        7,
+        2,
+        1,
+        1
+      ],
+      "everyParentChainMatchesActualOriginalRuntime": true,
+      "nativeCompletedTrials": 3,
+      "qualities": [
+        100,
+        100,
+        100
+      ],
+      "settlement": {
+        "actualGuests": 3,
+        "ratings": 3,
+        "totalCoinDelta": -8,
+        "materialConservation": true,
+        "holdsCleared": true,
+        "originalDeviceA2aJobs": 11,
+        "ownersAndParentLinksMatched": true,
+        "standardReadbackAndThirdPartyIsolation": true,
+        "lostExecutionCheckpointAndSettlementRepliesRecovered": true,
+        "restartUnique": true,
+        "returnHomePreserved": true
+      },
+      "actualCrossIslandNpcModelConversations": 1,
+      "model": "deepseek-flash",
+      "newProviderCaptures": 0,
+      "priorProviderCaptures": 113
+    },
+    {
+      "hostTheme": "pixel",
+      "accounts": 4,
+      "originalDeviceClis": 4,
+      "mandatoryStewards": 4,
+      "consentingAiCompanions": 8,
+      "renderedViewsAtOnce": 1,
+      "actualA2aMessages": 11,
+      "actualPerOwnerA2aRuns": [
+        7,
+        2,
+        1,
+        1
+      ],
+      "everyParentChainMatchesActualOriginalRuntime": true,
+      "nativeCompletedTrials": 3,
+      "qualities": [
+        100,
+        100,
+        100
+      ],
+      "settlement": {
+        "actualGuests": 3,
+        "ratings": 3,
+        "totalCoinDelta": -8,
+        "materialConservation": true,
+        "holdsCleared": true,
+        "originalDeviceA2aJobs": 11,
+        "ownersAndParentLinksMatched": true,
+        "standardReadbackAndThirdPartyIsolation": true,
+        "lostExecutionCheckpointAndSettlementRepliesRecovered": true,
+        "restartUnique": true,
+        "returnHomePreserved": true
+      },
+      "actualCrossIslandNpcModelConversations": 1,
+      "model": "deepseek-flash",
+      "newProviderCaptures": 109,
+      "priorProviderCaptures": 0
+    }
+  ],
+  "origamiSameEventContinuationRetainsPriorFailure": true,
+  "pixelFreshAccountsRetainOldSessionLimitFailureAndRefundEvidence": true,
+  "declaredInitialResourceAndOutfitAndVenueFixtures": true,
+  "actualElapsedNativeActivityGameplay": true,
+  "exactV261CandidateFourteenStepWindowsInstallPassed": true,
+  "currentV262CandidateInstallHourAndVideoStillPending": true,
+  "actualOpcAndFiveToEightPlayersStillPending": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}
