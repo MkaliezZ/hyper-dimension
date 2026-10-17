@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v243-agent-source",
+  "release": "hyper-dimension-v245-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 86572,
-      "sha256": "e50edcee4058c7190be47963bc0bd56c5de07922e1075785c17ad6a4ba27c2da"
+      "bytes": 87739,
+      "sha256": "a52e93da61cd5d1de0d00e3b039d2a5373f79f612975d7537379d06b3a2b6b00"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 14748,
-      "sha256": "63d6e3ba5af8085042029a7cbdeb4bc55c75f42258dea7e4e15f1dcf1f766f2d"
+      "bytes": 15157,
+      "sha256": "bb312fefd39accb394f5596b4bae4eca456503236da205c0fb8284972351d415"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 38920,
-      "sha256": "90aa1b6109479a1a391dd7e7db32928a2c6be8f6bae6cf9060a39f3654d4fc53"
+      "bytes": 39504,
+      "sha256": "02c6c95d9550b85607cfd104a9b1b6ab6e61d2e28cdce52c6cbc4946bd4f4ce6"
     },
     {
       "path": "src/saveDelta.js",
@@ -8042,8 +8042,8 @@
     },
     {
       "path": "src/serverFarmUI.js",
-      "bytes": 7998,
-      "sha256": "9b4ab32e8cd88a9bc257220623b56decdd4533af75131be06252161d9590690f"
+      "bytes": 8020,
+      "sha256": "6fdf334b5a7f41996c1bf1d8ffe153ad2399b2f42650dd218e848cbb085430b5"
     },
     {
       "path": "src/serverFieldNpcUI.js",
@@ -8057,8 +8057,8 @@
     },
     {
       "path": "src/serverPersonalUI.js",
-      "bytes": 2636,
-      "sha256": "88894493959a514e397c17188f1edd9b6049d336b2944d9c35ef248320ddbdeb"
+      "bytes": 2807,
+      "sha256": "b946e5a423a9fc51927f49ee37b0f7e175a92c45034d708abf0bf8475d542c23"
     },
     {
       "path": "src/serverResidentUI.js",
@@ -8288,12 +8288,12 @@
     {
       "path": "src/world.js",
       "bytes": 16279,
-      "sha256": "e85b620780cb503966e7396b4fbf1644ab564669e025f32c0e4f92513ed005ae"
+      "sha256": "2b1c175c5afe89f3f57bd3f49308923b504b726687157f8e87d176f00c5e935c"
     },
     {
       "path": "src/worldNavigationEdges.js",
       "bytes": 145449,
-      "sha256": "7a3fdf161f3ef38f7dee486eb897422a723919a94c5cb6fd696323a976bf7f4d"
+      "sha256": "a64b0331f0af2ceaa82cb3c97020db8dc136afc98d2aff5b2e8eefd03881dd7a"
     },
     {
       "path": "src/worldSession.js",
@@ -9267,8 +9267,8 @@
     },
     {
       "path": "tests/v17-harbor.test.mjs",
-      "bytes": 5246,
-      "sha256": "950aa8aa986ab4cdf1e93906dbab0ab6f3354bd5edf3728187025967f63f122e"
+      "bytes": 5365,
+      "sha256": "5e66fe5db6b105f7dea92472e646bbe5a0d524c858ae6997edb1ba4d2d389672"
     },
     {
       "path": "tests/v17-modal-close-qa.mjs",
@@ -11252,8 +11252,8 @@
     },
     {
       "path": "tests/v93-hosting-browser.mjs",
-      "bytes": 8446,
-      "sha256": "532d9800a271f150cc4218e56ddd411a5bac4f2c3dc4d7bc773c77f04238689c"
+      "bytes": 8449,
+      "sha256": "e64f3b33b9e6aa477253c750462650f4240b71a80d1a83e7113ddfb344288bc0"
     },
     {
       "path": "tests/v93-hosting-fixture.mjs",
@@ -12654,7 +12654,42 @@
       "path": "tools/test-zero-first-night.mjs",
       "bytes": 104,
       "sha256": "33aea05eca1fe68480bb8e7c38e4d70613942a032380b4cbdbf4041d65cf1829"
+    },
+    {
+      "path": "docs/task-continuation-v245.md",
+      "bytes": 6523,
+      "sha256": "96067f9a599e7e9d69b72bc96c2960133db8e7b317543238b3a3a1cd51a0b57a"
+    },
+    {
+      "path": "docs/verification/v245/task-continuation.json",
+      "bytes": 20246,
+      "sha256": "ec8a15397d973d074627ecbc6ba863a5f6db529d1d5591f9ce148c4218272697"
+    },
+    {
+      "path": "src/farmIntent.js",
+      "bytes": 902,
+      "sha256": "8e49ff085c9293e16ae417e9b23799eb043e97c3b513e0aa733ab8091aafad87"
+    },
+    {
+      "path": "tests/v245-moment-day-browser.mjs",
+      "bytes": 6790,
+      "sha256": "c322589358ef24c1c815ad1c6f551b56cff9e1f066660eb2710f20534e060f7e"
+    },
+    {
+      "path": "tests/v245-paused-restart-browser.mjs",
+      "bytes": 7748,
+      "sha256": "76961cad5ce73c334fe7388b5be70ae238c48d786f8ddf93361dfc1bb5256d51"
+    },
+    {
+      "path": "tests/v245-player-farm-intent-browser.mjs",
+      "bytes": 8369,
+      "sha256": "1f3730b6b662f7ab6c35dfa229337f1bd9f30fbd2b7912733929ece8bd11f1aa"
+    },
+    {
+      "path": "tests/v245-player-farm-intent.test.mjs",
+      "bytes": 1798,
+      "sha256": "86c7b607c0d90a751704c3fb7439efd7bf59e9f9264824b1f185bb221a475fa9"
     }
   ],
-  "publicRevision": "v243-github"
+  "publicRevision": "v245-github"
 }

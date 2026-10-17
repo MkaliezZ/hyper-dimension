@@ -1,0 +1,626 @@
+{
+  "version": "V245",
+  "sourceBase": "32c559c63c7be1f8076450f4286ec502553908c4",
+  "wholeGoalComplete": false,
+  "humanAcceptance": false,
+  "originalUserBrowserObserved": false,
+  "runtimeSourceChanged": true,
+  "nativePause": {
+    "scope": "Two fictional zero-material LAN islands with an explicit high-needs fixture and controlled manual Hermes reply. Native queue, partial real production, pause during the next real operation, reload,22s paused observation, actual service restart, empty-browser resume and dependency completion. Real clocks; no stock/result injection, real models, user browser or human claim.",
+    "sourceCaseCount": 2,
+    "cases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "partialAtPause": [
+          {
+            "id": "first",
+            "status": "paused",
+            "completed": 2,
+            "evidence": 1
+          },
+          {
+            "id": "second",
+            "status": "waiting",
+            "completed": 0,
+            "evidence": 0
+          }
+        ],
+        "reloadAndLateOperationWindowPreserved": true,
+        "actualServerRestartPreserved": true,
+        "actualCompletion": [
+          {
+            "id": "first",
+            "completed": 4,
+            "evidence": 2
+          },
+          {
+            "id": "second",
+            "completed": 2,
+            "evidence": 1
+          }
+        ]
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "partialAtPause": [
+          {
+            "id": "first",
+            "status": "paused",
+            "completed": 2,
+            "evidence": 1
+          },
+          {
+            "id": "second",
+            "status": "waiting",
+            "completed": 0,
+            "evidence": 0
+          }
+        ],
+        "reloadAndLateOperationWindowPreserved": true,
+        "actualServerRestartPreserved": true,
+        "actualCompletion": [
+          {
+            "id": "first",
+            "completed": 4,
+            "evidence": 2
+          },
+          {
+            "id": "second",
+            "completed": 2,
+            "evidence": 1
+          }
+        ]
+      }
+    ],
+    "earlierSelectorFailuresRetained": true,
+    "portableRunnerSyntaxChecked": true,
+    "portableRunnerExactExecutionPending": false,
+    "portableRunnerExactExecutionPassed": true,
+    "portableRunnerCases": 2,
+    "portableRuntimeSource": "V243"
+  },
+  "nativeAutoHost": {
+    "scope": "Actual isolated LAN browser pages: progressed stock, player clicks every consent/gift, saved hosting intent across reload, automatic actual server start and actual runtime road movement. Provider endpoints blocked, no new models. Completion logic checked separately with input replays. Not live-user, zero-resource progression or human acceptance.",
+    "sourceCaseCount": 10,
+    "cases": [
+      {
+        "theme": "pixel",
+        "template": "night",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          0,
+          2
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "pixel",
+        "template": "fishing",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          2,
+          8
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "pixel",
+        "template": "market",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          1,
+          2,
+          6
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "pixel",
+        "template": "couture",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          2,
+          4,
+          7,
+          12,
+          13,
+          0
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "pixel",
+        "template": "fireworks",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          1,
+          3,
+          12
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "origami",
+        "template": "night",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          0,
+          2
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "origami",
+        "template": "fishing",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          2,
+          8
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "origami",
+        "template": "market",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          1,
+          2,
+          6
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "origami",
+        "template": "couture",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          0,
+          2,
+          4,
+          7,
+          12,
+          13
+        ],
+        "playerArrived": true
+      },
+      {
+        "theme": "origami",
+        "template": "fireworks",
+        "allPersonalInvites": true,
+        "reloadBeforeStart": true,
+        "compactNoOverflow": true,
+        "automaticActualStart": true,
+        "actualArrivals": true,
+        "movingResidents": [
+          1,
+          3,
+          12
+        ],
+        "playerArrived": true
+      }
+    ],
+    "initialBootstrapInterceptionFailureRetained": true,
+    "mandatoryWorldApiRoutesNowAllowed": true,
+    "originalReadyAndArrivalBudgetsUnchanged": true,
+    "completionGameAndPayoutNotPartOfThisFlow": true,
+    "portableExactFireworksProbe": {
+      "passed": true,
+      "caseCount": 2,
+      "scope": "Exact portable public entry, fireworks in both themes, V245 local source. Earlier full five-template10case evidence remains distinct."
+    }
+  },
+  "retainedAgentProduction": {
+    "scope": "Resume an actual retained fictional Hermes parent/child contract and canonical production in V243 UI, normal clocks, reload after real progress, unique actual-delivery wage and departure. Historical model delegation is audited separately; no new provider call, injected resources/results or zero-start/human claim.",
+    "actualHistoricalParentChild": {
+      "model": "deepseek-flash",
+      "parentTools": [
+        "recruitment_delegate",
+        "recruitment_observe"
+      ],
+      "childTools": [
+        "recruitment_observe_child",
+        "recruitment_take_step"
+      ],
+      "parentLinkAudited": true
+    },
+    "initialDelivered": 0,
+    "reloadedAfterActualProgress": true,
+    "deliveredAtReload": 1,
+    "actualProduction": {
+      "delivered": 6,
+      "agreed": 10,
+      "fee": 5,
+      "uniqueEvidence": true,
+      "items": [
+        {
+          "item": "lantern",
+          "amount": 1
+        },
+        {
+          "item": "lantern",
+          "amount": 1
+        },
+        {
+          "item": "quartz",
+          "amount": 1
+        },
+        {
+          "item": "quartz",
+          "amount": 1
+        },
+        {
+          "item": "wax",
+          "amount": 2
+        }
+      ],
+      "naturalDeparture": true
+    },
+    "reloadDoesNotRepeatWage": true,
+    "newModelCalls": 0,
+    "initialResourcesSynthetic": true
+  },
+  "realCoutureHosting": {
+    "scope": "Two actual configured Flash Hermes manual couture requests using the independently installed V243 runtime to delegate hosting of an existing activity, verified immutable proposals and actual protected hosting registration. Invitations and goods are not fabricated; runtime/browser road checks are separate. Isolated account workspaces, no real documents or live player data.",
+    "manualHermesRuns": 2,
+    "cases": [
+      {
+        "theme": "pixel",
+        "template": "couture",
+        "source": "hermes",
+        "model": "deepseek-flash",
+        "actualSaved": true,
+        "invitesEmpty": true,
+        "cashUnchanged": true,
+        "goodsUnchanged": true
+      },
+      {
+        "theme": "origami",
+        "template": "couture",
+        "source": "hermes",
+        "model": "deepseek-flash",
+        "actualSaved": true,
+        "invitesEmpty": true,
+        "cashUnchanged": true,
+        "goodsUnchanged": true
+      }
+    ],
+    "providerAudit": {
+      "manualHermesRuns": 2,
+      "actualProviderChatRequests": 5,
+      "metadataDiscoveryProbes": 22,
+      "rawResponsesRetainedPrivately": true,
+      "requestPromptsOrAuthenticationPersisted": false,
+      "rows": [
+        {
+          "status": 200,
+          "providerModel": "deepseek-flash",
+          "responseSha256": "7c5e629863993ddee6529971c2a949589473edebb141c9bddd61dd1c776f9d0c",
+          "finishReasons": [
+            "tool_calls"
+          ],
+          "usage": {
+            "prompt_tokens": 4974,
+            "completion_tokens": 38,
+            "total_tokens": 5012,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 4334
+          }
+        },
+        {
+          "status": 200,
+          "providerModel": "deepseek-flash",
+          "responseSha256": "274f66db55cc12d5a65f209fc819e350eef8f46618eaeab5e88dff8992cdec8c",
+          "finishReasons": [
+            "tool_calls"
+          ],
+          "usage": {
+            "prompt_tokens": 13680,
+            "completion_tokens": 190,
+            "total_tokens": 13870,
+            "prompt_tokens_details": {
+              "cached_tokens": 4992
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 8688
+          }
+        },
+        {
+          "status": 200,
+          "providerModel": "deepseek-flash",
+          "responseSha256": "0f477f9aaed6a245c0363a20f383fb0c1c3e6b9051d4752c8d2857378215f06c",
+          "finishReasons": [
+            "stop"
+          ],
+          "usage": {
+            "prompt_tokens": 14141,
+            "completion_tokens": 297,
+            "total_tokens": 14438,
+            "prompt_tokens_details": {
+              "cached_tokens": 13568
+            },
+            "prompt_cache_hit_tokens": 13568,
+            "prompt_cache_miss_tokens": 573
+          }
+        },
+        {
+          "status": 200,
+          "providerModel": "deepseek-flash",
+          "responseSha256": "21b1b1a9ecb582a75a6719a264a80ccf641a031d0008d2978e650a044ca7a3cd",
+          "finishReasons": [
+            "tool_calls"
+          ],
+          "usage": {
+            "prompt_tokens": 4982,
+            "completion_tokens": 37,
+            "total_tokens": 5019,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 4342
+          }
+        },
+        {
+          "status": 200,
+          "providerModel": "deepseek-flash",
+          "responseSha256": "574b7a84fb22aa2122bee057dca37f1829020a66064067e43eb62f2e4e44c744",
+          "finishReasons": [
+            "tool_calls"
+          ],
+          "usage": {
+            "prompt_tokens": 13692,
+            "completion_tokens": 187,
+            "total_tokens": 13879,
+            "prompt_tokens_details": {
+              "cached_tokens": 4992
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 8700
+          }
+        }
+      ]
+    },
+    "activityStartAndAttendanceCheckedSeparately": true
+  },
+  "dshReview": {
+    "readOnly": true,
+    "productBugFromPauseHypothesisConfirmed": false,
+    "rootCorrection": "restoreTasks only repairs running tasks; paused is preserved. A literal grep misses dynamic prefix+_steward calls, including the existing actual fireworks case. Native gaps were verified directly."
+  },
+  "remaining": [
+    "full zero-start long-term economy and all five activity chains",
+    "current frozen package independent installation and one-hour verification",
+    "canonical PRD delivery merge",
+    "actual OPC learners and 5-8 new players",
+    "physical multi-device acceptance",
+    "last-priority minigame feel, animation/art coverage and long-term growth"
+  ],
+  "playerFarmIntent": {
+    "source": "V245 local source",
+    "authoritativeApiErrorBaseline": true,
+    "originalCandidateFailed": true,
+    "originalCandidate": "V243, independent step31of32",
+    "originalCandidateNotPromoted": true,
+    "pendingReplayPathUnchanged": true,
+    "serverValidationUnchanged": true,
+    "scope": "Native SaveClient worker/journal, farm controller and real HTTP authoritative store. Explicit fictional seeded/tool/plot fixtures. A real completed water receipt is held while an obsolete water intent queues behind it. Also checks premature predicted harvest, valid canonical watering despite local prediction, and crop selection. No provider, clock acceleration, user browser or human acceptance.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "staleQueuedWater": {
+          "animations": 0,
+          "locked": false,
+          "pending": false,
+          "stage": 3
+        },
+        "prematureHarvest": {
+          "animations": 0,
+          "locked": false,
+          "pending": false
+        },
+        "validWater": {
+          "animations": 1,
+          "ticket": true,
+          "step": "water",
+          "index": 1,
+          "locked": false,
+          "pending": false
+        },
+        "selectedNewCrop": {
+          "ticket": true,
+          "crop": "tomato",
+          "locked": false
+        },
+        "final": {
+          "seeds": 5,
+          "stage": 3,
+          "watered": 1,
+          "leases": 0
+        },
+        "unexpectedApiErrors": 0
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "staleQueuedWater": {
+          "animations": 0,
+          "locked": false,
+          "pending": false,
+          "stage": 3
+        },
+        "prematureHarvest": {
+          "animations": 0,
+          "locked": false,
+          "pending": false
+        },
+        "validWater": {
+          "animations": 1,
+          "ticket": true,
+          "step": "water",
+          "index": 1,
+          "locked": false,
+          "pending": false
+        },
+        "selectedNewCrop": {
+          "ticket": true,
+          "crop": "tomato",
+          "locked": false
+        },
+        "final": {
+          "seeds": 5,
+          "stage": 3,
+          "watered": 1,
+          "leases": 0
+        },
+        "unexpectedApiErrors": 0
+      }
+    ],
+    "earlierFixtureMistakesPreserved": true,
+    "relatedFarmRuleTestsPassed": 18,
+    "saveWaiterNativeCasesPassed": 2,
+    "zeroFirstNightCurrentSourcePending": true
+  },
+  "harborQueue": {
+    "scope": "Current relocated dual-style dock: original 32-unit minimum queue spacing, continuous deck routes, real simulated complete ferry cycle and physical navigation clock isolation. No art re-generation, real clocks or human claim.",
+    "beforeMinimumSpacing": {
+      "pixel": 27.2,
+      "origami": 27.53
+    },
+    "afterMinimumSpacing": {
+      "pixel": 32.3,
+      "origami": 32.7
+    },
+    "relatedTestsPassed": 9,
+    "originalMinimumAssertionRetained": true,
+    "historicalSeaProbeRelocatedWithDock": true,
+    "baselineFailuresRetained": true
+  },
+  "requiredRules": {
+    "passed": true,
+    "mainTests": 1277,
+    "runtimeScopeTests": 14,
+    "total": 1291,
+    "earlierSourceHashFailuresRetained": true,
+    "navigationRegeneratedWithIdenticalEdgeRows": true,
+    "optionalHistoricalGlobAuditPassed": false,
+    "optionalHistoricalGlobAuditScope": "Broader historical glob found the queue bug, then was stopped with its identified lingering old autonomy process; its failures are retained separately. Final official entry plus current regressions passed."
+  },
+  "momentDay": {
+    "scope": "Native SaveClient journal/worker and personal controller with real authoritative HTTP transactions. Explicit fictional fixture at899.95of900active seconds, with eligible trade/light milestones. A normal0.1second clock save crosses the day before claim; one committed light response is deliberately lost and replayed. No accelerated wall clock, provider, user data or zero-start/human claim.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "crossDay": {
+          "capturedDay": 1,
+          "confirmedDay": 2,
+          "receiptDay": 2,
+          "claimed": true
+        },
+        "replay": {
+          "failed": true,
+          "pendingDay": 2,
+          "replayed": true,
+          "claimed": true,
+          "pendingAfter": false
+        },
+        "uniqueMoments": 2,
+        "passed": true
+      },
+      {
+        "theme": "origami",
+        "crossDay": {
+          "capturedDay": 1,
+          "confirmedDay": 2,
+          "receiptDay": 2,
+          "claimed": true
+        },
+        "replay": {
+          "failed": true,
+          "pendingDay": 2,
+          "replayed": true,
+          "claimed": true,
+          "pendingAfter": false
+        },
+        "uniqueMoments": 2,
+        "passed": true
+      }
+    ],
+    "sameRequestIdOnReplay": true,
+    "pendingJournalBypassesPreparation": true,
+    "serverDayAndRewardChecksUnchanged": true,
+    "latestContinuousFirstNightRunPassed": false,
+    "continuousFailure": "Origami finished the actual first party but claim crossed day1to2 and received personal_day. Pixel completed its full journey. Original failed overall run retained.",
+    "retainedNativeContinuation": {
+      "scope": "Continuation of exact retained fictional normal-clock zero-start first-night records. Original failed run remains failed and original directories untouched. Empty-browser actual native claim and second empty-browser restore. No new stock, game time, completed party or eligibility injected; not a newly continuous zero-start pass or human test.",
+      "cases": [
+        {
+          "theme": "origami",
+          "beforeDay": 2,
+          "nightParties": 1,
+          "alreadyClaimed": false,
+          "uniqueClaimReceipts": 1,
+          "emptyBrowserRestored": true,
+          "originalClockUnchanged": true,
+          "passed": true
+        },
+        {
+          "theme": "pixel",
+          "beforeDay": 2,
+          "nightParties": 1,
+          "alreadyClaimed": true,
+          "uniqueClaimReceipts": 1,
+          "emptyBrowserRestored": true,
+          "originalClockUnchanged": true,
+          "passed": true
+        }
+      ]
+    },
+    "newContinuousCandidateVerificationPending": true,
+    "currentPersonalAndRuntimeRulesPassed": 21,
+    "identityChangeRejectedBeforeJournal": true,
+    "currentFarmAndSaveWaiterCasesPassed": 4
+  }
+}

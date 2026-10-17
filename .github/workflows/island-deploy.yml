@@ -292,6 +292,9 @@ jobs:
       - name: Browser save waiter and authoritative craft ordering
         run: node tests/v204-save-waiter-browser.mjs
 
+      - name: Native player farm intent after queued receipts
+        run: node tests/v245-player-farm-intent-browser.mjs && node tests/v245-moment-day-browser.mjs
+
       - name: Native recovery return and visiting parties
         run: node tests/v205-recovery-return-browser.mjs && node tests/v205-visiting-party-browser.mjs
 

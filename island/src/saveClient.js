@@ -1,4 +1,5 @@
 import {isSaveCapacityError} from './saveLimits.js';
+import {assertCurrentFarmIntent} from './farmIntent.js';
 import {applySaveResponseActions} from './saveResponse.js';
 import {yieldForSave} from "./saveScheduler.js";
 import {mergeActionState,sameState} from './actionMerge.js';
@@ -261,10 +262,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   })();
   try{await r.inflight}finally{r.inflight=null;r.reconciling=false}
  }
- async function action(theme,input){
-  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
+ async function action(theme,input,prepareInput){
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input,prepareInput),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
  }
- async function actionNow(theme,input){
+ async function actionNow(theme,input,prepareInput){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});
   let envelope=read(commandKey(theme)),basePath=envelope?.baseDocument?'baseDocument.document.state':'baseState';
   if(envelope&&(envelope.body.requestId!==input.requestId||envelope.body.operation!==input.operation))throw Object.assign(Error('另一次作业结果待核对，请先重试'),{code:'action_pending'});
@@ -273,11 +274,16 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    // A flush waiter can start its next save before this outer await resumes.
    // Drain that actual flight before reserving the command's acknowledged version.
    while(r.inflight)await r.inflight;
+   // Re-derive volatile UI fields only for a new command, after confirmed saves.
+   // Durable pending commands bypass preparation and keep their exact identity.
+   const prepared=prepareInput?prepareInput(input,{state:r.state,actions:r.actions}):input;
+   if(!prepared||['requestId','kind','operation'].some(k=>prepared[k]!==input[k]))throw Object.assign(Error('New action preparation changed its identity'),{code:'action_identity'});
+   assertCurrentFarmIntent(r.actions,prepared);
    // Reserve the acknowledged version before durable cache/worker calls yield.
    // A timer may otherwise save a newer version before this command is sent.
    r.commandSending=true;clearTimeout(r.timer);r.timer=null;
    try{
-   const body={...input,expectedVersion:r.version,clientId},baseDocument=baselineText(r);
+   const body={...prepared,expectedVersion:r.version,clientId},baseDocument=baselineText(r);
    if(!baseDocument)throw Object.assign(Error('已确认的存档基线尚未就绪，请先核对进度'),{code:'save_cache_error'});
    if(input.operation==='begin'){body.expectedSequence=r.actions?.sequence||0;body.epoch=r.actions?.epoch||null;}
    await cache(r);envelope={body};basePath='baseDocument.document.state';

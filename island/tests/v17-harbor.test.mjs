@@ -18,7 +18,9 @@ for(const theme of ['pixel','origami']){
    continuousRoute(HARBOR.waiting[i],boardingRoute(i),surface);
    for(let j=0;j<i;j++)assert.ok(Math.hypot(HARBOR.waiting[i].x-HARBOR.waiting[j].x,HARBOR.waiting[i].y-HARBOR.waiting[j].y)>=32);
   }
-  assert.equal(worldWalkable(1230,820),false,'sea-side sand cannot bypass the bridge');
+  // Keep the original sea-side probe beside the current relocated dock.
+  const shore=HARBOR.path[2];
+  assert.equal(worldWalkable(shore.x,shore.y-44*.85),false,'sea-side sand cannot bypass the bridge');
   for(const p of [...HARBOR.activities,SLOTS[8].entry,SLOTS[22].entry]){
    const route=findPath(p,HARBOR.entrance);
    assert.ok(route.length, 'port route must exist');
