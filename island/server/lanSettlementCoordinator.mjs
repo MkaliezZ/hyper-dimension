@@ -1,6 +1,6 @@
-import {readFile,open,rename,unlink} from 'node:fs/promises';import {randomUUID,createHash} from 'node:crypto';
+import {atomicJSON as atomic} from './atomicJson.mjs';
+import {readFile,unlink} from 'node:fs/promises';import {randomUUID,createHash} from 'node:crypto';
 const clone=v=>structuredClone(v),sha=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex'),failure=e=>({message:e.message,code:e.code||'lan_event_settlement',status:e.status||503});
-async function atomic(file,value){const tmp=file+'.'+randomUUID()+'.tmp';let h;try{h=await open(tmp,'wx',0o600);await h.writeFile(JSON.stringify(value));await h.sync();await h.close();h=null;await rename(tmp,file);}finally{await h?.close().catch(()=>{});await unlink(tmp).catch(()=>{});}}
 export function createLanSettlementCoordinator({file,tenants,save,fault=()=>{}}){
  async function read(){try{const p=JSON.parse(await readFile(file,'utf8'));if(p.schema!==1||!p.next||!p.old||!Array.isArray(p.steps)||p.checksum!==sha({...p,checksum:undefined}))throw Error();return p;}catch(e){if(e.code==='ENOENT')return null;throw Object.assign(Error('活动结算待办校验失败，现有档案已保留'),{status:503,code:'lan_event_settlement_corrupt'});}}
  async function write(p){delete p.checksum;p.checksum=sha(p);await atomic(file,p);}

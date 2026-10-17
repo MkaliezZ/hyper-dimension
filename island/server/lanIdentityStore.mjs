@@ -1,6 +1,6 @@
 import {adaptOpenRoomGeography} from './lanGeographyMigration.mjs';
 import {ISLAND_GEOGRAPHY} from '../src/islandGeography.js';
-import {openExclusiveFile,atomicJSON as atomic} from './atomicJson.mjs';
+import {openExclusiveFile,releaseOwnedLock,atomicJSON as atomic} from './atomicJson.mjs';
 import {seedRoomResidents,advanceResidents,stepPerson,roomPeople,publicPerson,prepareMeeting,meetingReady,finishMeeting,prepareRoomWork,roomWorkProgress} from './lanRoomResidents.mjs';
 import {travelPreparation,freezeTravelParty} from './lanTravelParty.mjs';
 import {mkdir,readFile,writeFile,unlink,stat} from 'node:fs/promises';import {resolve,join} from 'node:path';import {randomUUID,randomBytes,createHash,scrypt as scryptCallback,timingSafeEqual} from 'node:crypto';import {promisify} from 'node:util';import {AVATAR_BY_ID} from '../src/avatarCatalog.js';import {worldWalkableForTheme,findWorldPathForTheme,WORLD,HARBOR_LAYOUTS} from '../src/world.js';
@@ -15,7 +15,7 @@ function safeRoute(theme,start,end,avoid=[]){if(Math.hypot(start.x-end.x,start.y
 export function createLanIdentityStore({directory,now=()=>Date.now(),sessionMs=72*3600000,resolveTravel=null,personalRuntime=false,getEnvironment=()=>null}){
  const root=resolve(directory,'_lan'),file=join(root,'identity.json'),previous=join(root,'identity.previous.json'),lock=join(root,'identity.lock');
  async function locked(fn){await mkdir(root,{recursive:true});const token=randomUUID(),start=Date.now();let acquired=false;while(!acquired){try{const f=await openExclusiveFile(lock);await f.writeFile(JSON.stringify({pid:process.pid,token}));await f.close();acquired=true;}catch(e){if(e.code!=='EEXIST')throw e;try{const owner=JSON.parse(await readFile(lock,'utf8'));try{process.kill(owner.pid,0)}catch(e){if(e.code!=='EPERM'){await unlink(lock);continue;}}}catch{try{if(Date.now()-(await stat(lock)).mtimeMs>30000){await unlink(lock);continue;}}catch{}}if(Date.now()-start>5000)throw Object.assign(fail('联机档案正在写入，请稍后重试','lan_busy',503),{retryAfter:1});await new Promise(r=>setTimeout(r,25));}}
- try{return await fn();}finally{try{if(JSON.parse(await readFile(lock,'utf8')).token===token)await unlink(lock)}catch{}}}
+ try{return await fn();}finally{try{await releaseOwnedLock(lock,token)}catch{}}}
  // Readers consume the last atomically committed document. They do not migrate,
  // create records, or wait behind home-save transactions. Writers still share the lock.
  async function committed(){

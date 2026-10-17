@@ -3,7 +3,7 @@ import {migrateWorldGeography} from './geographyMigration.mjs';
 import {validCustomCatalog} from '../src/customContent.js';
 import {validPlacements as validLegacyPlacements} from '../src/legacyPlacementValidation.js';
 import {applyWorldAppearance,worldAppearance} from './worldAppearance.mjs';
-import {atomicJSON,openExclusiveFile} from './atomicJson.mjs';
+import {atomicJSON,openExclusiveFile,releaseOwnedLock} from './atomicJson.mjs';
 import {validShopfronts} from '../src/shopfronts.js';
 import {validResidentLife} from '../src/residentLife.js';
 import {assertResourceState,assertResourceJournal,syncResourceState,enableResourceState} from './resourceAuthority.mjs';
@@ -132,7 +132,7 @@ export function createSaveStore({directory,environmentProvider=()=>null,contentP
    }
   }
   try{return await fn(p)}finally{
-   try{if(JSON.parse(await readFile(p.lock,'utf8')).token===token)await unlink(p.lock)}catch{}
+   try{await releaseOwnedLock(p.lock,token)}catch{}
   }
  }
  async function history(p){

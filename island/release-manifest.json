@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v254-agent-source",
+  "release": "hyper-dimension-v255-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 91439,
-      "sha256": "43285da1f4182b29424108f5cc7e69459090ced7ac2db48b62ebb44db7c9a26f"
+      "bytes": 91838,
+      "sha256": "4a4b8be9465ac1b2d661cbf2a071d6e393751be46d3ee2b6310c1f1cb1017825"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15426,
-      "sha256": "b5ddda78bda4b5b65757596776ca00af1dd847d50fcd288f32c63186183d02f7"
+      "bytes": 15501,
+      "sha256": "e1fb9950f7559465cb432288809193ed28b0137b3bf42b2b87e560e88cdae378"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6052,8 +6052,8 @@
     },
     {
       "path": "server/atomicJson.mjs",
-      "bytes": 1851,
-      "sha256": "2788962bb8ba9838a414f428d7a1b53a12368506c2e748deac892f8aee7b04b1"
+      "bytes": 2956,
+      "sha256": "82cdeb61b30b61d38ee0304434f073cdcea3dd7cf613bc5a968d4781ccf4b7ae"
     },
     {
       "path": "server/automaticBudget.mjs",
@@ -6197,8 +6197,8 @@
     },
     {
       "path": "server/lanActivityStore.mjs",
-      "bytes": 19098,
-      "sha256": "bb861bad9e0108a6a8d28c7442586ed97e81828a99f59c92c1c5aedecbf30ed8"
+      "bytes": 18846,
+      "sha256": "79ae32c080ff7b513d2e38d1c2a8efc07e91a4a83e5f753379c6c3eb8ccffe40"
     },
     {
       "path": "server/lanAgentService.mjs",
@@ -6232,8 +6232,8 @@
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 25563,
-      "sha256": "d73574f6f8f6222421584925ff61e7562c7882fd02ba1750e5e6ae7cb3d0e0c5"
+      "bytes": 25539,
+      "sha256": "1a26ff800346bfdfed71282a7592debd374c44f38a629b9707b229bfc81278ce"
     },
     {
       "path": "server/lanRoomResidents.mjs",
@@ -6247,8 +6247,8 @@
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
-      "bytes": 3248,
-      "sha256": "2d60a1dadc72f1b613ca82877a92d6a1036a9f4a257d29de81c86f239cca842b"
+      "bytes": 3002,
+      "sha256": "a78edc211060ca3dc2f45635e537f4adce569c873dfbca757697d3feca61b01d"
     },
     {
       "path": "server/lanSocialStore.mjs",
@@ -6442,8 +6442,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 40733,
-      "sha256": "517f7645b8521a0be0048d3c3cdf1018e7798a1a93b2c5a2b832dea9522e2562"
+      "bytes": 40707,
+      "sha256": "a892f0f62b8f80f7785c08be0e84ec692bb3c6b08ad81635b0ba31d712ce0656"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -12819,7 +12819,27 @@
       "path": "docs/verification/v254/save-io-recovery.json",
       "bytes": 2769,
       "sha256": "c5f4e3fe91f416c0ee99b5e553710babd31946017e063efc60e5b709c7ef8740"
+    },
+    {
+      "path": "tests/v255-lan-activity-io.test.mjs",
+      "bytes": 6519,
+      "sha256": "14661c884bcbebba22bc25a96f3cd31cda080cdb9680f50aa476eb7fa8c862ad"
+    },
+    {
+      "path": "tests/v255-owned-lock-release.test.mjs",
+      "bytes": 5775,
+      "sha256": "622f45cec369944c5253fffd074ffd762e433ad097e807ee2503c255cf955b71"
+    },
+    {
+      "path": "docs/owned-lock-recovery-v255.md",
+      "bytes": 1899,
+      "sha256": "9b74ac73c9dce230edcbb8c2153bb0e4c34638475b0866d7bdbeff4c5f0b7c24"
+    },
+    {
+      "path": "docs/verification/v255/owned-lock-recovery.json",
+      "bytes": 2907,
+      "sha256": "662b3b22939941380d17089e825fc3d74f05a020bf3ef5284159b0fe9b79c948"
     }
   ],
-  "publicRevision": "v254-github"
+  "publicRevision": "v255-github"
 }

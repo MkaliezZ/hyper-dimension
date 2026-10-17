@@ -1,0 +1,49 @@
+{
+  "version": "V255",
+  "sourceBaseCommit": "160e020d7a19fc284bc42a9e20b11b82b99d62f0",
+  "rulesPassed": 1350,
+  "ruleGroups": [
+    1336,
+    14
+  ],
+  "activityBaseline": {
+    "tests": 8,
+    "failed": 6,
+    "scope": "Two actual Windows destination holds,three explicit acquisition faults and a held settlement journal after a real venue debit; two persistent-failure recovery cases retain data."
+  },
+  "lockCleanupBaseline": {
+    "tests": 7,
+    "failed": 7,
+    "actualFunctionalFailures": 6,
+    "newOwnershipPolicyCase": 1,
+    "scope": "Actual Windows no-delete holds during finally cleanup in game,identity andactivity stores; transient and longer-than-window cases. One additional ownership-policy rule requires the new safe helper."
+  },
+  "relatedGroupsPassed": [
+    35,
+    35
+  ],
+  "relatedGroupsOverlap": true,
+  "windowsRetryDelayTotalMs": 2500,
+  "shortActualHoldMs": 1200,
+  "longActualHoldMs": 3500,
+  "activityAndSettlementUseSharedAtomicReplacement": true,
+  "activityAcquisitionUsesExistingBoundedExclusiveOpen": true,
+  "everyCleanupAttemptChecksCurrentProcessAndOriginalRandomToken": true,
+  "onlyKnownCompletedFailedReleasesRememberedInProcess": true,
+  "nextRequestCanRetryItsKnownFinishedReleaseWithoutReexecutingTheReceipt": true,
+  "changedActiveOwnerOrForeignProcessNeverRemoved": true,
+  "originalActiveLockWaitAndStaleOwnerPolicyUnchanged": true,
+  "fundedReplayHasOneEventElevenCoinsTotalReservedAndNoDuplicateDebit": true,
+  "originalRequestsMoneyGameClockWorkDurationsAndProviderPolicyUnchanged": true,
+  "scope": "Isolated fictional components on Windows. Actual no-delete file-sharing holders plus explicitly injected acquisition errors. Funded tests declare progressed stock/cash and fixed-time v58 accounting fixtures. Not human,newzerojourney,fullnativejointactivity,physicalMac/multidevice or final-package acceptance.",
+  "fixtureCorrectionRetained": "The first settlement hook originally held the zero-cost guard step; corrected to hold after the actual venue debit. Public status is held. Original failed baseline/driver retained; no runtime assertion waived.",
+  "currentCausalMarketJourney": "Separate immutable V254 run remains live; an out-of-season tomato dependency in required equipment has been diagnosed and needs its own compatible correction. This patch does not claim the market or full goal passed.",
+  "reportSha256": {
+    "activity-io-baseline.log": "5d8eb84d10c61ecd329d131cf780cc87375850da8f06488ba8f7f9cd89fac4f4",
+    "lock-release-baseline.log": "81b7cf0473855ecb30e2dd9eb7a4bf0e68f94909bfeb3db01f5dc679b1a9b4c2",
+    "activity-io-fixed.log": "c407a47469ac9353bbdf0a8abef8a35b387771c07da25341ceba1c236593cc7d",
+    "owned-lock-fixed.log": "a1cd13715b2d44de4598a585474e906d75ed337ca940f6d29f66ebac94eebd73",
+    "required-rules.log": "2e3ea6367cfa91dd1c791dc06d92365331e8cff973a8a83518d299b439b896c5"
+  },
+  "wholeGoalComplete": false
+}
