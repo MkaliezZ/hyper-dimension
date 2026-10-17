@@ -1,0 +1,123 @@
+{
+  "version": "V256",
+  "sourceBaseCommit": "96bad953ee79b8c0b24bd527d1395ee6d9599e56",
+  "rulesPassed": 1357,
+  "ruleGroups": [
+    1343,
+    14
+  ],
+  "baselineTests": 7,
+  "baselineFailed": 2,
+  "relatedRulesPassed": 26,
+  "behavior": "A free resident with a ready accepted assignment can resume when work becomes available without inheriting a finished leisure idle pause. Wakeup is consumed once per assignment/world day.",
+  "workingHoursEssentialHungerEnergyPausedTasksPendingReceiptsAndManualConversationPreserved": true,
+  "activeMovementWorkAndIndoorActionsNotInterruptedByThisHelper": true,
+  "waitingOrBlockedWorkKeepsItsExistingBackoff": true,
+  "ephemeralWakeupKeyResetOnRuntimeReset": true,
+  "originalWorkSeconds": 20,
+  "originalEffectiveDaySeconds": 900,
+  "modelCadenceUnchanged": true,
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "originalThreeTaskReceipts": [
+        {
+          "assignmentId": "first",
+          "requestId": "44b1dda5-568d-4095-b6bd-6cfaab120041",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "second",
+          "requestId": "2ac6111b-6650-4117-8ece-dae3f308a2e3",
+          "gain": {
+            "seaweed": 1
+          }
+        },
+        {
+          "assignmentId": "third",
+          "requestId": "4a7aa68d-6602-425b-8600-623137856291",
+          "gain": {
+            "wood": 2
+          }
+        }
+      ],
+      "budgets": {
+        "first": {
+          "usedMs": 22928,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 113453,
+          "limitMs": 240000
+        }
+      },
+      "emptyBrowserSnapshot": {
+        "seconds": 7.0398999998569485,
+        "frames": 44,
+        "fps": 6.250088779797168,
+        "maxGap": 658.0999999999995,
+        "visible": true
+      },
+      "midChainReloadPreserved": true
+    },
+    {
+      "theme": "origami",
+      "originalThreeTaskReceipts": [
+        {
+          "assignmentId": "first",
+          "requestId": "69c38033-4e6f-4469-9b95-4a651baabc08",
+          "gain": {
+            "wood": 2
+          }
+        },
+        {
+          "assignmentId": "second",
+          "requestId": "b2346687-90fc-4987-973b-ff24804ab21c",
+          "gain": {
+            "seaweed": 1
+          }
+        },
+        {
+          "assignmentId": "third",
+          "requestId": "5f2cc5e9-0e52-4fb6-bec8-f9345c579830",
+          "gain": {
+            "wood": 2
+          }
+        }
+      ],
+      "budgets": {
+        "first": {
+          "usedMs": 23000,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 111470,
+          "limitMs": 240000
+        }
+      },
+      "emptyBrowserSnapshot": {
+        "seconds": 5.790399999856949,
+        "frames": 40,
+        "fps": 6.907985631560547,
+        "maxGap": 673.0999999999999,
+        "visible": true
+      },
+      "midChainReloadPreserved": true
+    }
+  ],
+  "nativeScope": "Native manual-chat queue registration, actual NPC movement/tool actions and authoritative task receipts, mid-chain reload and empty-browser reopen. Fictional accounts, zero initial materials, needs fixture, deterministic model reply; providers blocked, no accelerated clock, no user browser/data. Original first-job120seconds and shared remaining-chain240seconds count fixed working hours; calendar waiting is separate and bounded by two visual days. Not real model decision or human acceptance.",
+  "nativeSourceExperiment": "Exact reviewed V255 payloads plus one runtime queued-idle wakeup proposal; not a committed/final package. All listed bytes held stable until native verdict.",
+  "nativeRuntimeSha256": "c441ec5e5b8c751dad8e5ad14b1aeee5c13179a1275fd80b1c280aa78de86554",
+  "nativeSourceBytesBeforeAfterIdentical": true,
+  "nativeVisibleFramePolicy": {
+    "normalMs": 75,
+    "stallMs": 650,
+    "every": 12
+  },
+  "hostedV254FailureNotReclassified": true,
+  "hostedCurrentRecoveryStillPending": true,
+  "scope": "Fictional native queues with a declared needs fixture and deterministic manual model reply. Actual movement/actions/receipts/reload and natural game/work clocks; real providers and original user data disabled. Not human,physical-device,current independent install or final-bundle acceptance.",
+  "wholeGoalComplete": false
+}

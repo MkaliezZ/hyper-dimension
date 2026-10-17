@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v255-agent-source",
+  "release": "hyper-dimension-v256-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 91838,
-      "sha256": "4a4b8be9465ac1b2d661cbf2a071d6e393751be46d3ee2b6310c1f1cb1017825"
+      "bytes": 92187,
+      "sha256": "946d99edb5fbb3b11b86c3274d0d3c9d110c77d6199a8313c12c96fb22dc1fcb"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15501,
-      "sha256": "e1fb9950f7559465cb432288809193ed28b0137b3bf42b2b87e560e88cdae378"
+      "bytes": 15540,
+      "sha256": "839f0b1f379cb38c0e4d073924d971ff4592bcacde351a1deba75636e7e94059"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 44481,
-      "sha256": "f2affba2b50ee11d434413834affbc484c7c664d3a33304b7b01311a383f9a0c"
+      "bytes": 45181,
+      "sha256": "c441ec5e5b8c751dad8e5ad14b1aeee5c13179a1275fd80b1c280aa78de86554"
     },
     {
       "path": "src/residentSchedule.js",
@@ -12839,7 +12839,22 @@
       "path": "docs/verification/v255/owned-lock-recovery.json",
       "bytes": 2907,
       "sha256": "662b3b22939941380d17089e825fc3d74f05a020bf3ef5284159b0fe9b79c948"
+    },
+    {
+      "path": "tests/v256-queued-work-wakeup.test.mjs",
+      "bytes": 2892,
+      "sha256": "612fc0a51f21ec8efd3f857ea78ce3bbe5208dceb70c8db05e57c240993cc1eb"
+    },
+    {
+      "path": "docs/queued-idle-wakeup-v256.md",
+      "bytes": 1659,
+      "sha256": "ab23c59be71623d3cbb13db1e9fc9362e8df70184806e6bb3c3a547dcf6d35c8"
+    },
+    {
+      "path": "docs/verification/v256/queued-idle-wakeup.json",
+      "bytes": 4280,
+      "sha256": "e88c44ef44be23ddd92a2a06637f1cb65cdf95f10dd0d2500a83b763955b1df4"
     }
   ],
-  "publicRevision": "v255-github"
+  "publicRevision": "v256-github"
 }
