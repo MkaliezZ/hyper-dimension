@@ -1,0 +1,74 @@
+{
+  "version": "V252",
+  "sourceBaseCommit": "3dda8c3880493367e121f69a9dd3734877952524",
+  "originalHostedFailure": {
+    "run": 39003716169,
+    "job": 117312047284,
+    "platform": "macos-15-intel",
+    "originalCases": 4,
+    "failed": 2,
+    "timeoutMsRetained": 150000,
+    "scope": "Both expired legacy cases reached the distant camp and only started dialogue near the original timeout; active cooldown persistence passed."
+  },
+  "fix": "Within the same context-appropriate candidate venues, balance the longer straight-line walk for the two currently located residents. Keep crowd/repeat penalties and contextual fallback for missing coordinates. No per-decision path searches or clock changes.",
+  "newVenueRules": 3,
+  "unitBaselineFailed": 2,
+  "relatedRulesPassed": 19,
+  "requiredRuleGroups": [
+    1307,
+    14
+  ],
+  "requiredRules": 1321,
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "mode": "expired-legacy",
+      "passed": true,
+      "conversation": {
+        "type": "reconcile",
+        "source": "local",
+        "participants": [
+          0,
+          8
+        ],
+        "lines": 4
+      },
+      "cooldownStampRetained": true
+    },
+    {
+      "theme": "pixel",
+      "mode": "active-stamp",
+      "passed": true,
+      "conversation": null,
+      "cooldownStampRetained": true
+    },
+    {
+      "theme": "origami",
+      "mode": "expired-legacy",
+      "passed": true,
+      "conversation": {
+        "type": "reconcile",
+        "source": "local",
+        "participants": [
+          0,
+          8
+        ],
+        "lines": 4
+      },
+      "cooldownStampRetained": true
+    },
+    {
+      "theme": "origami",
+      "mode": "active-stamp",
+      "passed": true,
+      "conversation": null,
+      "cooldownStampRetained": true
+    }
+  ],
+  "nativeScope": "Fictional LAN saves start with explicitly configured prior-day history, needs and a pending disagreement. Normal rate1/900-second clocks and native movement/conversation are used after entry. Providers are disabled; actual local fallback dialogue is not called AI-generated. Expired legacy pauses must release; a new completed conversation must create a durable pause; active pauses survive reload. No user data, human, offline-time or full long-term story acceptance.",
+  "originalNativeDriverAndTimeBoundsUnchanged": true,
+  "sourceSha256": "aae141e1541cb3a9dbd431136e90a28872136e18aa7964b6abd8272aa24710ea",
+  "newHostedMacResultPending": true,
+  "actualV251TaskFlowIsSeparateImmutableSource": true,
+  "wholeGoalComplete": false
+}

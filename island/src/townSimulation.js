@@ -68,7 +68,16 @@ export function mealOptions(i,s,r,time){const c=career(i,s),food=contentItems(s)
  if(!food.length)food.push({goal:'forest',buildingId:null,resource:'mushroom',action:'work',activity:'gather',duration:8,purposeId:'need:food-supply',score:104,reason:'食物库存不足，先采集可做简餐的蘑菇'});
  return food.sort((a,b)=>b.score-a.score).slice(0,2);
 }
-export function socialVenue(i,partner,s,type,time=0){const a=CAREERS[i].route.filter(x=>typeof x==='number'),b=CAREERS[partner].route.filter(x=>typeof x==='number'),common=a.filter(x=>b.includes(x));const candidates=type==='dispute'?[11,9,22]:type==='negotiate'?[...common,11,9]:type==='reconcile'?[22,19,7,...common]:[...common,LEISURE_VENUES[i],LEISURE_VENUES[partner],21,22];const unique=[...new Set(candidates)].filter(x=>s.buildings[x]!==undefined);return unique.sort((x,y)=>crowdPenalty(s,x,i)+repeatPenalty(career(i,s),x,time,s)-crowdPenalty(s,y,i)-repeatPenalty(career(i,s),y,time,s)||candidates.indexOf(x)-candidates.indexOf(y))[0]??22;}
+export function socialVenue(i,partner,s,type,time=0){
+ const a=CAREERS[i].route.filter(x=>typeof x==='number'),b=CAREERS[partner].route.filter(x=>typeof x==='number'),common=a.filter(x=>b.includes(x));
+ const candidates=type==='dispute'?[11,9,22]:type==='negotiate'?[...common,11,9]:type==='reconcile'?[22,19,7,...common]:[...common,LEISURE_VENUES[i],LEISURE_VENUES[partner],21,22];
+ const unique=[...new Set(candidates)].filter(x=>s.buildings[x]!==undefined),people=[i,partner].map(id=>s.npcPresence?.find(n=>n.id===id));
+ const located=people.every(p=>Number.isFinite(p?.x)&&Number.isFinite(p?.y));
+ // Balance the longer walk without adding path searches to every resident decision.
+ const travel=new Map(unique.map(id=>[id,located?Math.max(...people.map(p=>Math.hypot(p.x-SLOTS[id].entry.x,p.y-SLOTS[id].entry.y)))/64:0]));
+ const cost=id=>crowdPenalty(s,id,i)+repeatPenalty(career(i,s),id,time,s)+travel.get(id);
+ return unique.sort((x,y)=>cost(x)-cost(y)||candidates.indexOf(x)-candidates.indexOf(y))[0]??22;
+}
 export function purposeOptions(i,s,r,time=0){const n=needs(i,s),c=career(i,s),main=stepOption(i,s,r),options=residentStoryOptions(s,i).filter(o=>o.action!=='social'||residentCooldownRemaining(s,c,'social',time)<=0&&!socialBoundary(s,i,o.partnerId));
  if(n.energy<38)options.push({...target(19),action:'rest',activity:'rest',duration:14,purposeId:'need:energy',score:110-crowdPenalty(s,19,i)*.25,reason:'体力不足，回居民之家坐下休息'});
  if(n.hunger<42)options.push(...mealOptions(i,s,r,time),...teaFacilityOptions(s,i,time));

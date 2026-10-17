@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v251-agent-source",
+  "release": "hyper-dimension-v252-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 90354,
-      "sha256": "2c88da9cb003420aeb497cdbf806f8ce633c8e71006964e950e825fa1a979144"
+      "bytes": 90696,
+      "sha256": "d6496a7ad37fd157dc0cee55e3f105e0f3b5bba7d1dd4fa67651853054bad73b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15274,
-      "sha256": "3ae532e8de0556f04ae6409436d634aa039ac96383e06e9b87d5f3a174fdc0db"
+      "bytes": 15318,
+      "sha256": "b509ec5f00b9705a7762dfb32da839f6a8f0759548ab83499cbe4c064dfb657a"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -8202,8 +8202,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 25484,
-      "sha256": "b0df8bdd4c41d8e009ed7d9b47ece19853d5f83f9960f9f70b45096e679b6bcd"
+      "bytes": 25854,
+      "sha256": "aae141e1541cb3a9dbd431136e90a28872136e18aa7964b6abd8272aa24710ea"
     },
     {
       "path": "src/ui-v16.css",
@@ -12759,7 +12759,22 @@
       "path": "docs/verification/v251/recruited-work-gaps.json",
       "bytes": 1467,
       "sha256": "4fdedb79453067f4452f01d0e8ab9e1112d128aafa52c62b6e3f0dcf651a1b46"
+    },
+    {
+      "path": "tests/v252-social-meeting-distance.test.mjs",
+      "bytes": 1592,
+      "sha256": "c8876342afa608ce902fef6ea956b3d4cf0ac7e57403fe886ad937a69f6892ff"
+    },
+    {
+      "path": "docs/social-meeting-distance-v252.md",
+      "bytes": 1237,
+      "sha256": "e452f5beca777a7690921dbf1410eeea236932968343b4a8b9a5ba2edd920a06"
+    },
+    {
+      "path": "docs/verification/v252/social-meeting-distance.json",
+      "bytes": 2534,
+      "sha256": "1decb05a9b91ecd0e2127527a529217ba78d78350141408494bd46102e3533b9"
     }
   ],
-  "publicRevision": "v251-github"
+  "publicRevision": "v252-github"
 }
