@@ -370,6 +370,7 @@ jobs:
             island/qa/v216/native-recovery-wait/*.png
             island/qa/v220/native-recovery-modal/report.json
             island/qa/v220/native-recovery-modal/*.png
+            island/qa/v220/native-recovery-modal/*-input-failure.zip
             island/qa/v223/native-recovery-feedback/report.json
             island/qa/v223/native-recovery-feedback/*.png
             island/qa/v229/recovery-controls/report.json

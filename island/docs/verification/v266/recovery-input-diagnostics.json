@@ -1,0 +1,39 @@
+{
+  "version": "V266",
+  "sourceBaseCommit": "c0f0a1bbb70ea0df2789d829dd22a882736621b9",
+  "runtimePayloadsByteIdenticalToQualifiedV265": 1251,
+  "runtimeChange": false,
+  "originalHostedInputFailureStillUnresolved": true,
+  "originalHostedRun": 39069914132,
+  "originalHostedJob": 117505455661,
+  "originalArtifactId": 12114769183,
+  "originalArtifactSha256": "7f1ce3777e3c6f6677ef97ef45a8ba5393b9536606006e3f5743611653f6ccef",
+  "originalArtifactCrcVerified": true,
+  "localUnchangedCasePassedBothThemes": true,
+  "localInstrumentedCasePassedBothThemes": true,
+  "nativeClickTimeoutMsUnchanged": 4000,
+  "originalAssertionsAndInteractionLinesVerbatim": true,
+  "privateTopLayerNegativeControlFailedBothThemesAsRequired": true,
+  "negativeFailureTraceCrcVerifiedBothThemes": true,
+  "localInputElapsedMs": {
+    "pixel": 162,
+    "origami": 139
+  },
+  "newHostedRunRequired": true,
+  "wholeGoalComplete": false,
+  "currentExactV265Qualification": {
+    "sourceCommit": "c0f0a1bbb70ea0df2789d829dd22a882736621b9",
+    "archiveSha256": "b13883556defda9c1853296b40ed33780354794e0016117caaab884e8041c197",
+    "sourceFrozen": true,
+    "independentWindowsStepsPassed": 15,
+    "protectedTenDayAccountingBothThemesPassed": true,
+    "realNaturalHourBothThemesPassed": true,
+    "clockInjected": false,
+    "unexpectedApiErrors": 0,
+    "privateProviderResponseCaptures": 122,
+    "hourReportSha256": "27345ed15400b9961dd2579d95b82927a05ae5b6cd0bff11be03574d99775a23",
+    "fullRulesPassed": 1393,
+    "fullRulesSourceCommit": "c0f0a1bbb70ea0df2789d829dd22a882736621b9",
+    "humanOrPhysicalDeviceAcceptance": false
+  }
+}
