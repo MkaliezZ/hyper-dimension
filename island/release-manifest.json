@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v258-agent-source",
+  "release": "hyper-dimension-v259-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 92856,
-      "sha256": "01e97b488135f790fadaa1036d25aaee48e6c8f50783989651d8e5f6fe8e0044"
+      "bytes": 93198,
+      "sha256": "dc5780892fb50f1895f3b92d44da340719dc9c9918fa9b04122e532e8e7fd901"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9157,8 +9157,8 @@
     },
     {
       "path": "tests/v155-product-art-browser.mjs",
-      "bytes": 9902,
-      "sha256": "f171ed4fc42425c24df5f5cc832eece5730dbe751d5c405517df9276c4e0aa12"
+      "bytes": 10729,
+      "sha256": "a5f9d2b021d6892e98411b9ec364b9c7805af1c90c4becfd4803758301470999"
     },
     {
       "path": "tests/v156-checkpoint-restart-browser.mjs",
@@ -9192,8 +9192,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 14275,
-      "sha256": "fd663eb250687ac8c27aefd2470952e279ebdc1a4383fdf117c276d3b285a2b6"
+      "bytes": 15070,
+      "sha256": "5d71c55322e7b965975b0cf24f36657e12292ffe952de54a26f4fff06867eddd"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -12904,7 +12904,17 @@
       "path": "docs/verification/v258/visitor-service.json",
       "bytes": 3232,
       "sha256": "6410bf4e814eee58e787f01cfb5b944b4c4917628c393aa1ce00dfe62d39aa59"
+    },
+    {
+      "path": "docs/native-diagnostics-v259.md",
+      "bytes": 1318,
+      "sha256": "8b55b6ae513ef4b38ed38eea087e2bb7e4dc2dffb1899ada7187d02a8d2fde84"
+    },
+    {
+      "path": "docs/verification/v259/native-diagnostics.json",
+      "bytes": 931,
+      "sha256": "cb7bddac19fa352c0a1f1872996a605c23591e54f7c6c5a81e1d2daf6d539ffb"
     }
   ],
-  "publicRevision": "v258-github"
+  "publicRevision": "v259-github"
 }

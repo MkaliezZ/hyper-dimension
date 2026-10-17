@@ -1,0 +1,19 @@
+{
+  "version": "V259",
+  "sourceBaseCommit": "668f56957a449b39e60c2e1805bd1b8aa3fd78b6",
+  "sourcePayloadsUnchangedExceptTwoNativeTests": 2575,
+  "gameRuntimeAndDefaultRuleSuiteUnchanged": true,
+  "inheritedRequiredRules": 1376,
+  "fullNativeArtCases": 616,
+  "svgSceneAndHeldChecks": true,
+  "individualArtValidatedAgainstExactThemeFileFrameAndDecodedDimensions": true,
+  "neighboringArtAndLetterboxAssertionsRetained": true,
+  "hostedWindowsAndMacIntelArtFailureRoot": "Stale renderer-test exception allowed only the pearl-cup individual PNG, rejecting correctly declared individual market price tags.",
+  "hostedRecoveryNotYetVerified": true,
+  "soilDiagnosticWindowsCases": 2,
+  "soilOriginalZeroInventoryAssertionsRetained": 2,
+  "soilInputsNpcBehaviorAndTimeoutsUnchanged": true,
+  "macIntelSoilFailureStillOpen": true,
+  "actualHumanOrPhysicalMultiDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}
