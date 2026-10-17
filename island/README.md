@@ -8,7 +8,7 @@
 
 ## 看看小岛
 
-[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v201-homes-night-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · 小岛生活与 Agent 管家](docs/media/hyper-dimension-v243-island-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 [播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆导览](https://mkaliezz.github.io/hyper-dimension/#gallery)
 
@@ -19,7 +19,7 @@
 | 玩法 | 内容 |
 | --- | --- |
 | 小岛经营 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。采集、种植、制作；组件用于后续加工，工具可重复使用。为居民和游客提供商品与活动，成熟经营保持缓慢的挂机收益。 |
-| AI 居民 | 15 位居民拥有不同职业、性格与关系，可以自由对话、工作和共同生活。休闲与社交等待按有效游戏时间延续。 |
+| AI 居民 | 15 位居民拥有不同职业、性格与关系，可以自由对话、工作和共同生活。跨岛相遇会留下交流和关系记录。 |
 | 居民的家 | 十六户独立住所，围绕主人的职业与爱好设计布局，走动探索、体验家中消遣、留下手账。 |
 | Agent 管家 | 自定义姓名与 12 套形象；通过 Hermes 处理现实工作，招募临时 Agent 伙伴；可手动为居民安排最多四项顺序工作，按作息排队执行，筹备手账显示工作时段与等待原因。 |
 | 四季与双画风 | 分块四季地形、海浪天气、昼夜灯火与海面月影；每季 30 个视觉日，天气影响种植和钓鱼。 |

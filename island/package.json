@@ -78,7 +78,8 @@
     "test:network-matrix": "node tools/test-network-matrix.mjs",
     "test:zero-market": "node tools/test-zero-market.mjs",
     "test:real-travel-social": "node tests/v239-real-travel-social.mjs",
-    "test:legacy-policy": "node --test tests/v242-protected-policy-migration.test.mjs && node tests/v242-policy-migration-browser.mjs"
+    "test:legacy-policy": "node --test tests/v242-protected-policy-migration.test.mjs && node tests/v242-policy-migration-browser.mjs",
+    "test:zero-first-night": "node tools/test-zero-first-night.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.63.0"

@@ -1,0 +1,262 @@
+{
+  "version": "V243",
+  "journeySourceCommit": "3656c79b2763917a7172d4de0cc72e8cf2e635d1",
+  "wholeGoalComplete": false,
+  "modelsCalled": false,
+  "humanAcceptance": false,
+  "originalUserBrowserObserved": false,
+  "originalCalendarOnlyFailureRetained": true,
+  "clockInjected": false,
+  "initialResourcesSynthetic": false,
+  "workingBudgetMs": 360000,
+  "calendarBudgetMs": 1800000,
+  "unexpectedApiErrors": 0,
+  "zeroStartJourney": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "serverZero": true,
+      "realCropWallSeconds": 180.971,
+      "preparation": {
+        "workingBudgetMs": 360000,
+        "calendarBudgetMs": 1800000,
+        "workingMs": 92309,
+        "calendarMs": 612691
+      },
+      "steps": [
+        {
+          "name": "server-zero-first-day",
+          "gameSeconds": 0.123,
+          "coins": 0
+        },
+        {
+          "name": "met-own-Hermes-butler",
+          "gameSeconds": 0.42169999999999985,
+          "coins": 0
+        },
+        {
+          "name": "two-real-axe-gathers",
+          "gameSeconds": 9.653999999999963,
+          "coins": 0
+        },
+        {
+          "name": "item-detail-authoritative-order",
+          "gameSeconds": 10.405699999999952,
+          "coins": 6
+        },
+        {
+          "name": "real-timed-mining-and-pickaxe",
+          "gameSeconds": 21.7745999999999,
+          "coins": 6
+        },
+        {
+          "name": "actual-targeted-quartz-for-glass",
+          "gameSeconds": 30.25530000000001,
+          "coins": 6
+        },
+        {
+          "name": "real-wax-and-fiber-for-current-lantern-recipe",
+          "gameSeconds": 35.523600000000194,
+          "coins": 6
+        },
+        {
+          "name": "first-real-native-joinery-lantern",
+          "gameSeconds": 43.65880000000081,
+          "coins": 6
+        },
+        {
+          "name": "two-earned-milestones-and-seed-supply",
+          "gameSeconds": 44.03090000000084,
+          "coins": 6
+        },
+        {
+          "name": "actual-hoe-sow-and-watering",
+          "gameSeconds": 59.04460000000207,
+          "coins": 6
+        },
+        {
+          "name": "three-minute-real-crop-growth-and-sickle-harvest",
+          "gameSeconds": 242.05080000002687,
+          "coins": 22
+        },
+        {
+          "name": "handcrafted-lantern-becomes-operating-income",
+          "gameSeconds": 243.29050000002727,
+          "coins": 32
+        },
+        {
+          "name": "actual-resident-night-preparation",
+          "gameSeconds": 246.4372000000281,
+          "coins": 32
+        },
+        {
+          "name": "residents-delivered-real-night-supplies",
+          "gameSeconds": 858.8873000009004,
+          "coins": 81
+        },
+        {
+          "name": "personally-delivered-two-real-invitations",
+          "gameSeconds": 865.4695000008984,
+          "coins": 81
+        },
+        {
+          "name": "residents-actually-walked-to-four-lights",
+          "gameSeconds": 883.8766000008951,
+          "coins": 73
+        },
+        {
+          "name": "first-night-real-four-acts-and-paid-reward",
+          "gameSeconds": 925.4227000009374,
+          "coins": 48
+        },
+        {
+          "name": "earned-first-night-memorial",
+          "gameSeconds": 925.949300000938,
+          "coins": 48
+        }
+      ],
+      "realFirstNightPaid": true,
+      "emptyBrowserRestore": true
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "serverZero": true,
+      "realCropWallSeconds": 180.287,
+      "preparation": {
+        "workingBudgetMs": 360000,
+        "calendarBudgetMs": 1800000,
+        "workingMs": 94451,
+        "calendarMs": 612777
+      },
+      "steps": [
+        {
+          "name": "server-zero-first-day",
+          "gameSeconds": 0.20170000000000027,
+          "coins": 0
+        },
+        {
+          "name": "met-own-Hermes-butler",
+          "gameSeconds": 0.44520000000000015,
+          "coins": 0
+        },
+        {
+          "name": "two-real-axe-gathers",
+          "gameSeconds": 9.995699999999957,
+          "coins": 0
+        },
+        {
+          "name": "item-detail-authoritative-order",
+          "gameSeconds": 10.961399999999948,
+          "coins": 6
+        },
+        {
+          "name": "real-timed-mining-and-pickaxe",
+          "gameSeconds": 21.99089999999985,
+          "coins": 6
+        },
+        {
+          "name": "actual-targeted-quartz-for-glass",
+          "gameSeconds": 30.29549999999993,
+          "coins": 6
+        },
+        {
+          "name": "real-wax-and-fiber-for-current-lantern-recipe",
+          "gameSeconds": 36.05000000000014,
+          "coins": 6
+        },
+        {
+          "name": "first-real-native-joinery-lantern",
+          "gameSeconds": 45.15610000000097,
+          "coins": 6
+        },
+        {
+          "name": "two-earned-milestones-and-seed-supply",
+          "gameSeconds": 45.66690000000098,
+          "coins": 6
+        },
+        {
+          "name": "actual-hoe-sow-and-watering",
+          "gameSeconds": 60.76280000000226,
+          "coins": 6
+        },
+        {
+          "name": "three-minute-real-crop-growth-and-sickle-harvest",
+          "gameSeconds": 243.29890000002763,
+          "coins": 22
+        },
+        {
+          "name": "handcrafted-lantern-becomes-operating-income",
+          "gameSeconds": 244.67330000002792,
+          "coins": 32
+        },
+        {
+          "name": "actual-resident-night-preparation",
+          "gameSeconds": 247.74080000002823,
+          "coins": 32
+        },
+        {
+          "name": "residents-delivered-real-night-supplies",
+          "gameSeconds": 860.444300000897,
+          "coins": 74
+        },
+        {
+          "name": "personally-delivered-two-real-invitations",
+          "gameSeconds": 866.3098000008955,
+          "coins": 74
+        },
+        {
+          "name": "residents-actually-walked-to-four-lights",
+          "gameSeconds": 884.5841000008929,
+          "coins": 66
+        },
+        {
+          "name": "first-night-real-four-acts-and-paid-reward",
+          "gameSeconds": 927.1191000009321,
+          "coins": 48
+        },
+        {
+          "name": "earned-first-night-memorial",
+          "gameSeconds": 927.8511000009328,
+          "coins": 48
+        }
+      ],
+      "realFirstNightPaid": true,
+      "emptyBrowserRestore": true
+    }
+  ],
+  "oldPolicyBrowserJournal": {
+    "scope": "Two fictional server-created zero islands, with acknowledged policy105 reconstructed on disk while the service is stopped. Browser has a pending pre-migration journal, with a hydrated policy202 local state and acknowledged policy105 baseline. Native LAN open, ordinary autosave, appearance transaction and reload. No original user data, injected resources/time, real models, human or physical-device acceptance.",
+    "cases": [
+      {
+        "theme": "pixel",
+        "errors": [],
+        "saveErrors": [],
+        "passed": true,
+        "ordinaryAutosave": true,
+        "sharedSaveSwitchAndReload": true
+      },
+      {
+        "theme": "origami",
+        "errors": [],
+        "saveErrors": [],
+        "passed": true,
+        "ordinaryAutosave": true,
+        "sharedSaveSwitchAndReload": true
+      }
+    ],
+    "passed": true
+  },
+  "portableWorkWindowRunner": {
+    "syntaxChecked": true,
+    "exactInstalledExecutionPending": true,
+    "originalDefaultCalendarGateUnchanged": true
+  },
+  "remaining": [
+    "all five zero-start activities and long-term economics",
+    "full source archive independent install",
+    "current one-hour gate",
+    "actual OPC learners",
+    "5-8 actual new players and physical multi-device acceptance"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v242-agent-source",
+  "release": "hyper-dimension-v243-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3920,
-      "sha256": "e0eb9d5c881b679e7028b0236e7e12f7aade4e70a3c0c446f98cd004c14c3a2c"
+      "bytes": 3941,
+      "sha256": "f257cb1c8dc8ad72d3b1c3b8f2a58eea4210be7c16a9d96070d5730371f82f79"
     },
     {
       "path": "README.md",
-      "bytes": 3635,
-      "sha256": "baf9c9ae12a96f81d0133c2ad471136bf053bb20f99872096d77b29b2190195a"
+      "bytes": 3631,
+      "sha256": "206e6dbea26203ecdc87da1b0a2787e966cc7d1b9908f19d09763881f812372e"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 86008,
-      "sha256": "ea4eca5173818cc321005420eaaeb2492c259cb0a75465cfb6c4e4e829613118"
+      "bytes": 86572,
+      "sha256": "e50edcee4058c7190be47963bc0bd56c5de07922e1075785c17ad6a4ba27c2da"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 14679,
-      "sha256": "b9fefa762e402cabaf8fb57403f27f4289d46454a813fba4f411eb17130cc95d"
+      "bytes": 14748,
+      "sha256": "63d6e3ba5af8085042029a7cbdeb4bc55c75f42258dea7e4e15f1dcf1f766f2d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -8622,8 +8622,8 @@
     },
     {
       "path": "tests/v100-zero-first-night-browser.mjs",
-      "bytes": 17394,
-      "sha256": "3a6a1579d387759d09b55c0f5294b3b838ef090fd87d48be656a0b2fd5baca59"
+      "bytes": 17908,
+      "sha256": "d0c2b8474bb015b752c0ff925e911e350e40d789223e1913984e775279fd19e6"
     },
     {
       "path": "tests/v100-zero-journey-browser.mjs",
@@ -12619,7 +12619,42 @@
       "path": "tools/test-zero-market.mjs",
       "bytes": 184,
       "sha256": "8af66d71e79c6236bf92c568c18101ab46023b5c869a8cf3fff97baf091500f8"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v243-island-agents-30s.mp4",
+      "bytes": 70149041,
+      "sha256": "a7a70b2ddedb3c61d9919ee7f24a1d80cbf615b4064851f6f678ffbb9234bd2e"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v243-island-agents-poster.png",
+      "bytes": 5821336,
+      "sha256": "ca673b7f162268b7d9393ac8d0d8277b55727ccaff71b30c8ba9fff3566c995f"
+    },
+    {
+      "path": "docs/media/v243-showcase-verification.json",
+      "bytes": 7655,
+      "sha256": "43b8283e658559423e55b330319b49a072b2a112445d76627040d88e375c1782"
+    },
+    {
+      "path": "docs/verification/v243/zero-first-night.json",
+      "bytes": 7882,
+      "sha256": "43252ecd6ca8759fc75cf235cfa791eed67c4e67890827e5c52c9dbc4cd6cdb1"
+    },
+    {
+      "path": "docs/zero-first-night-v243.md",
+      "bytes": 3588,
+      "sha256": "51bc98fff7f8da6281c0e4f442666e131485a63a429f106c2b8680a083fea524"
+    },
+    {
+      "path": "tests/project-work-window-wait.mjs",
+      "bytes": 1466,
+      "sha256": "d8ea7d99111de158cba2b39ec6849d42aa15cf59ea92e9719e6481a782a8e7f8"
+    },
+    {
+      "path": "tools/test-zero-first-night.mjs",
+      "bytes": 104,
+      "sha256": "33aea05eca1fe68480bb8e7c38e4d70613942a032380b4cbdbf4041d65cf1829"
     }
   ],
-  "publicRevision": "v242-github"
+  "publicRevision": "v243-github"
 }

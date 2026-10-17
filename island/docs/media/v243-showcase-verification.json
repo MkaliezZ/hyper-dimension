@@ -1,0 +1,230 @@
+{
+  "version": "V243",
+  "mediaRevision": 1,
+  "ending": {
+    "seconds": 3,
+    "brand": true,
+    "positioning": true,
+    "sourceUrl": true,
+    "fadeToBlack": true,
+    "musicFadeOut": true
+  },
+  "sourceBaseCommit": "3656c79b2763917a7172d4de0cc72e8cf2e635d1",
+  "visualSourceVersions": [
+    "V233",
+    "V242"
+  ],
+  "visualSourceScope": "Main island, appearances, gallery, document and game newly captured from preserved V233; current V242 recovery repair changes no covered visual assets or minigame rules. Agent collaboration and actual cross-island resident history newly displayed by V242.",
+  "filename": "hyper-dimension-v243-island-agents-30s.mp4",
+  "bytes": 70149041,
+  "sha256": "a7a70b2ddedb3c61d9919ee7f24a1d80cbf615b4064851f6f678ffbb9234bd2e",
+  "duration": 30,
+  "width": 2560,
+  "height": 1440,
+  "fps": 60,
+  "frames": 1800,
+  "audio": "Original Hyper Dimension Island Hours BGM, AAC",
+  "renderMode": "Native 1440p browser renders at equal 1/60s simulation steps, scaled once into a complete visible browser frame with separate caption margins. Not a live FPS benchmark.",
+  "oldFootageUsed": false,
+  "temporalInterpolation": false,
+  "allVisualsNew": true,
+  "nativeGameModal": true,
+  "actualFourFlightPayout": true,
+  "realResidentInteraction": "Actual retained two-owner DeepSeek Flash conversation, six lines; source ownership and history separately audited, newly displayed by V242 UI",
+  "realHermesWordArtifact": "Previously generated actual fictional Word artifact, freshly displayed in current UI",
+  "realParentChildRecruitment": "Actual historical fictional Hermes delegation and acceptance on 2026-10-15, deepseek-flash, freshly displayed by V242 UI; no new provider execution or production completion claimed",
+  "fictionalProfilesAndDocumentsOnly": true,
+  "personalizedHomeInteriorsShown": false,
+  "nightLightingAndMoonReflection": true,
+  "captionsDoNotCoverGameUI": true,
+  "frameLayout": {
+    "browserWidth": 2276,
+    "browserHeight": 1280,
+    "left": 142,
+    "top": 104,
+    "captionTop": 104,
+    "captionBottom": 56
+  },
+  "visualClock": "Spring/autumn/winter and clear night selected through the actual environment protocol for the isolated filming fixture.",
+  "shots": [
+    {
+      "name": "01-origami-island",
+      "at": 0,
+      "duration": 2,
+      "start": 0.7,
+      "frames": 120,
+      "sourceVersion": "V233 runtime",
+      "zh": "一座会生活的岛 · 一位能办事的管家",
+      "en": "A living island. A steward for real work."
+    },
+    {
+      "name": "02-pixel-island",
+      "at": 2,
+      "duration": 2,
+      "start": 0.7,
+      "frames": 120,
+      "sourceVersion": "V233 runtime",
+      "zh": "像素与折纸 · 共用同一座岛与存档",
+      "en": "Pixel and origami. One island, one save."
+    },
+    {
+      "name": "02b-origami-winter",
+      "at": 4,
+      "duration": 1.5,
+      "start": 0.8,
+      "frames": 90,
+      "sourceVersion": "V233 runtime",
+      "zh": "四季从山林延伸到田野与海岸",
+      "en": "Seasons across woodland, fields and coast."
+    },
+    {
+      "name": "08-origami-night",
+      "at": 5.5,
+      "duration": 1.5,
+      "start": 0.8,
+      "frames": 90,
+      "sourceVersion": "V233 runtime",
+      "zh": "灯火、星空与水中的月影",
+      "en": "Lantern light, stars and moonlit water."
+    },
+    {
+      "name": "18-real-npc-social",
+      "at": 7.0,
+      "duration": 3,
+      "start": 0.25,
+      "frames": 180,
+      "sourceVersion": "V242 runtime",
+      "zh": "AI 居民跨岛相遇 · 交流与记忆随原岛保存",
+      "en": "AI residents meet. Conversations return home with them."
+    },
+    {
+      "name": "03-avatar-men",
+      "at": 10.0,
+      "duration": 1,
+      "start": 0.5,
+      "frames": 60,
+      "sourceVersion": "V233 runtime",
+      "zh": "自己的管家 · 名称与形象可选",
+      "en": "Your steward. Your name and appearance."
+    },
+    {
+      "name": "04-avatar-women",
+      "at": 11.0,
+      "duration": 1,
+      "start": 0.5,
+      "frames": 60,
+      "sourceVersion": "V233 runtime",
+      "zh": "12 套管家形象 · 随存档保留",
+      "en": "12 appearances, kept with your island."
+    },
+    {
+      "name": "15-document-content",
+      "at": 12.0,
+      "duration": 5,
+      "start": 0.2,
+      "frames": 300,
+      "sourceVersion": "V233 runtime",
+      "zh": "真实 Hermes 工作 · 实际生成的 Word 成果",
+      "en": "Real Hermes work. An actual Word deliverable."
+    },
+    {
+      "name": "17-agent-exchange",
+      "at": 17.0,
+      "duration": 4,
+      "start": 0.25,
+      "frames": 240,
+      "sourceVersion": "V242 runtime",
+      "zh": "管家与子 Agent · 实际委派和接单记录",
+      "en": "Steward and companion. Real delegation records."
+    },
+    {
+      "name": "05-owner-gallery",
+      "at": 21.0,
+      "duration": 2,
+      "start": 0.4,
+      "frames": 120,
+      "sourceVersion": "V233 runtime",
+      "zh": "会客馆 · 展示经历、作品与项目",
+      "en": "An owner gallery for your story and projects."
+    },
+    {
+      "name": "night-flight",
+      "at": 23.0,
+      "duration": 3,
+      "start": 1.2,
+      "frames": 180,
+      "sourceVersion": "V233 runtime",
+      "zh": "星灯派对 · 在游戏弹窗里亲手点亮",
+      "en": "A hands-on lantern party inside the game popup."
+    },
+    {
+      "name": "paid-result",
+      "at": 26.0,
+      "duration": 1,
+      "start": 0.25,
+      "frames": 60,
+      "sourceVersion": "V233 runtime",
+      "zh": "四幕完成 · 正式奖励入账",
+      "en": "Four launches complete. Reward received."
+    },
+    {
+      "name": "closing-title-and-source",
+      "at": 26.6,
+      "duration": 3.4,
+      "overlap": 0.4,
+      "frames": 204,
+      "zh": "一座能玩的岛，一位能办事的管家。",
+      "en": "A playful island. A steward for real life.",
+      "source": "Current island footage with a designed typographic end card; no interpolated frames."
+    }
+  ],
+  "passed": true,
+  "visualReview": {
+    "reviewer": "Codex visual inspection, not human/new-player acceptance",
+    "passed": true,
+    "contactSheetReviewed": true,
+    "workAndAgentFramesReviewed": true,
+    "nativePopupFrameReviewed": true,
+    "correctedSocialSourceAndFinalFrameReviewed": true,
+    "endingReviewed": true,
+    "privacyScope": "Fictional records only; no private credentials/documents shown",
+    "failedFirstSocialSizingRetained": true
+  },
+  "movingSourceFrames": {
+    "scope": "Two-second moving-source crops at60fps, decoded adjacent-frame hashes. Confirms rendered motion updates, not live performance or overall human smoothness acceptance. Static UI shots intentionally excluded.",
+    "passed": true,
+    "cases": [
+      {
+        "clip": "01-origami-island",
+        "sampledFrames": 120,
+        "consecutiveIdenticalFrames": 0,
+        "uniqueHashes": 120
+      },
+      {
+        "clip": "02-pixel-island",
+        "sampledFrames": 120,
+        "consecutiveIdenticalFrames": 0,
+        "uniqueHashes": 120
+      },
+      {
+        "clip": "night-flight",
+        "sampledFrames": 120,
+        "consecutiveIdenticalFrames": 0,
+        "uniqueHashes": 120
+      }
+    ]
+  },
+  "localBuiltPlayerCheck": {
+    "scope": "Isolated automatic local built-site browser check. Native play, pause, seek/end/replay and mobile language/layout; no user browser, human or physical device claim.",
+    "errors": [],
+    "passed": true,
+    "video": {
+      "src": "hyper-dimension-v243-island-agents-30s.mp4",
+      "width": 2560,
+      "height": 1440,
+      "duration": 30
+    },
+    "nativePlaybackAndEnding": true,
+    "mobileEnglish": true
+  }
+}

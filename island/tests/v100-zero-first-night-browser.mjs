@@ -1,9 +1,10 @@
+import {waitForScheduledProject} from './project-work-window-wait.mjs';
 import {playNightAct} from './night-play-browser.mjs';
 import {browserLaunchOptions} from './browserRuntime.mjs';
 import {chromium}from'playwright-core';import{spawn}from'node:child_process';import{mkdir,mkdtemp,writeFile}from'node:fs/promises';import{resolve,join}from'node:path';import{createServer}from'node:net';import assert from'node:assert/strict';import{rasterTransform}from'../src/rasterQuality.js';import{createSaveStore}from'../server/saveStore.mjs';
 const out=resolve(process.env.HD_QA_ZERO_OUT||'qa/v100/zero-first-night');await mkdir(out,{recursive:true});
 const responseReads=[];
-const report={at:new Date().toISOString(),scope:'Actual server-created zero-resource first day, native dual-theme UI gathering, timed mining, joinery, server order payment, milestone supply, actual planting/growth/harvest and first night via actual resident preparation/invitations/road attendance/four aimed flights/paid memorial, and empty-browser restore. No state/time/stock/quality injection; providers blocked in this isolated UI run. Automated actions are not human play or full 25-workshop acceptance.',cases:[],errors:[],badAssets:[],apiErrors:[]};
+const report={preparationWaitPolicy:process.env.HD_QA_RESPECT_WORK_WINDOWS==='1'?'Original360s eligible work; maximum two normal900s visual days calendar wait. Prior calendar-only failure is retained separately. No time acceleration.':'Original360s calendar-only gate',at:new Date().toISOString(),scope:'Actual server-created zero-resource first day, native dual-theme UI gathering, timed mining, joinery, server order payment, milestone supply, actual planting/growth/harvest and first night via actual resident preparation/invitations/road attendance/four aimed flights/paid memorial, and empty-browser restore. No state/time/stock/quality injection; providers blocked in this isolated UI run. Automated actions are not human play or full 25-workshop acceptance.',cases:[],errors:[],badAssets:[],apiErrors:[]};
 let browser;const sessions=[];
 async function port(){const p=createServer();await new Promise(r=>p.listen(0,'127.0.0.1',r));const n=p.address().port;await new Promise(r=>p.close(r));return n;}
 async function run(theme){
@@ -51,7 +52,7 @@ async function run(theme){
 
   await page.locator('#partyBtn').click();await page.locator('[data-party-template="night"] .party-guide-book').click();await page.locator('#nightBasic').click();await page.waitForFunction(()=>!!window.islandInspect().nightParty?.draft);await page.locator('#nightPlan').click();await page.waitForFunction(()=>!!window.islandInspect().nightParty?.draft?.projectId);
   const projectId=(await inspect()).nightParty.draft.projectId;row.realPreparationProjectId=projectId;await step('actual-resident-night-preparation');
-  await page.waitForFunction(id=>window.islandInspect().workProjects.some(p=>p.id===id&&p.status==='ready'),projectId,{timeout:360000});await step('residents-delivered-real-night-supplies');
+  if(process.env.HD_QA_RESPECT_WORK_WINDOWS==='1')row.preparationWait=await waitForScheduledProject(page,projectId,{onSample:async result=>{row.preparationWait=result;await save();}});else await page.waitForFunction(id=>window.islandInspect().workProjects.some(p=>p.id===id&&p.status==='ready'),projectId,{timeout:360000});await step('residents-delivered-real-night-supplies');
   for(const id of [0,2]){
    await page.locator('[data-night-invite="'+id+'"]').click();await page.locator('#nightInviteConfirm:enabled').waitFor({timeout:30000});await page.locator('#nightInviteConfirm').click();await page.waitForFunction(id=>!!window.islandInspect().partySession?.invites?.[id]||!!window.islandInspect().nightParty?.draft?.invites[id],id);await page.locator('#nightBoard').waitFor();
   }
