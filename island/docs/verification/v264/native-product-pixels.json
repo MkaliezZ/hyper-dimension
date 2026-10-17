@@ -1,0 +1,75 @@
+{
+  "version": "V264",
+  "sourceBaseCommit": "1968a6fc46475b5fc3bc729377452cc840c320f2",
+  "requiredRules": 1391,
+  "ruleGroups": [
+    1377,
+    14
+  ],
+  "pythonBoundaryTests": 2,
+  "randomizedOriginalLoopComparisons": 72,
+  "originalForegroundMinimumExclusive": 500,
+  "originalForegroundDifferenceExclusive": 8,
+  "originalLetterboxAndProbeDifferenceMaximum": 3,
+  "unchangedChildTimeoutMs": 180000,
+  "nativeDualThemeProducts": 616,
+  "knownNeighborProbes": 6,
+  "retainedHostedScreenshotComparisons": [
+    {
+      "theme": "pixel",
+      "id": "c24_2",
+      "foreground": 2191,
+      "outside": 0,
+      "originalSeconds": 0.09766470012255013,
+      "newSeconds": 0.0004940999206155539,
+      "identical": true
+    },
+    {
+      "theme": "origami",
+      "id": "c24_2",
+      "foreground": 2119,
+      "outside": 0,
+      "originalSeconds": 0.09722090000286698,
+      "newSeconds": 0.0005021998658776283,
+      "identical": true
+    }
+  ],
+  "priorFailure": {
+    "run": 39034560227,
+    "job": 117401913963,
+    "artifactId": 12102836688,
+    "artifactSha256": "bd8ed443041d116ef51da2a2a25f093035bbd152bfb62bc8aead41b42edf6e6a",
+    "zipCrcVerified": true,
+    "all616RendersRecordedBeforePythonFailure": true,
+    "archivedProbeTimestampUtc": "2026-10-17T13:34:50Z",
+    "archivedFailureTimestampUtc": "2026-10-17T13:37:50Z",
+    "elapsedSeconds": 180,
+    "originalChildExitSignalNotRetained": true,
+    "timingConsistentWithOriginal180SecondDeadline": true
+  },
+  "originalThresholdsAndEveryPixelPreserved": true,
+  "gameAndAssetPayloadsUnchanged": 1250,
+  "packageDependenciesAndEngineUnchanged": true,
+  "gameRulesModelsCadenceAndArtUnchanged": true,
+  "exactFailureProductAndProcessDiagnosticsAdded": true,
+  "hostedPriorSocialChecks": [
+    {
+      "platform": "windows-2022 / native island simulation",
+      "job": 117401914004,
+      "passed": true
+    },
+    {
+      "platform": "macos-15-intel / native island simulation",
+      "job": 117401914047,
+      "passed": true
+    },
+    {
+      "platform": "macos-14 / native island simulation",
+      "job": 117401914079,
+      "passed": true
+    }
+  ],
+  "currentHostedArtRecoveryNotYetEstablished": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

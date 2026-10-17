@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v263-agent-source",
+  "release": "hyper-dimension-v264-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 95079,
-      "sha256": "39fe022af7d6eec75b420e63fe90dfb9982b8db13a0551194ac653af544a269e"
+      "bytes": 95564,
+      "sha256": "ce193bb8e2afaa89100d2b82f509550823ff53b02acec9bbd56dee99c189366f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15867,
-      "sha256": "c645bfd9f9f4e171fb3a78e7e6231bcde489550c80da927c0159c537afdc6389"
+      "bytes": 15902,
+      "sha256": "0d4af0f59cb846b1815dd6515914ed5ff52e1ad66765023ba0a653404b3291d1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -9157,8 +9157,8 @@
     },
     {
       "path": "tests/v155-product-art-browser.mjs",
-      "bytes": 10729,
-      "sha256": "a5f9d2b021d6892e98411b9ec364b9c7805af1c90c4becfd4803758301470999"
+      "bytes": 9700,
+      "sha256": "6aad0d73c8ecb033af0a0c2bd76b22e4ed29204b35056a0fc943228272e267e8"
     },
     {
       "path": "tests/v156-checkpoint-restart-browser.mjs",
@@ -12974,7 +12974,32 @@
       "path": "docs/verification/v263/native-request-timing.json",
       "bytes": 1717,
       "sha256": "1aa4b9ab27162518abd4f4d0554de9cf96bd100e0742999cab5b1408229276cb"
+    },
+    {
+      "path": "tools/verify-product-renders.py",
+      "bytes": 3289,
+      "sha256": "c5a2976c28cd2617ad18f33ea4301c2a7e6359e468c26cc94ea72e53f179cd04"
+    },
+    {
+      "path": "tests/v264-product-pixels.test.mjs",
+      "bytes": 673,
+      "sha256": "62fe6f539dfad1f8674d94203639107baded9574cf66520190c0faff692db7c5"
+    },
+    {
+      "path": "tests/v264-product-pixels.test.py",
+      "bytes": 3186,
+      "sha256": "7fac4d7e7eb1f7bbeb6272d82a7143261f8972ee23159c96033faa4115661d6c"
+    },
+    {
+      "path": "docs/native-product-pixels-v264.md",
+      "bytes": 2292,
+      "sha256": "725e556f71df9710d198327dfb50905cd344f63e259bb33643f60161e61640b1"
+    },
+    {
+      "path": "docs/verification/v264/native-product-pixels.json",
+      "bytes": 2250,
+      "sha256": "e5c2813d280283ccd966d75bdbe7a3896214725d828e16c05aabf52a72b7f962"
     }
   ],
-  "publicRevision": "v263-github"
+  "publicRevision": "v264-github"
 }

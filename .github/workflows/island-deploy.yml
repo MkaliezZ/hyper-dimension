@@ -186,6 +186,7 @@ jobs:
             island/qa/v155/native-product-clips/report.json
             island/qa/v155/native-product-clips/pixel-checks.json
             island/qa/v155/native-product-clips/probe-input.json
+            island/qa/v155/native-product-clips/failure-product-svg.png
             island/qa/v155/native-product-clips/*-c24_2-svg.png
             island/qa/v219/native-painting-tools/report.json
             island/qa/v219/native-painting-tools/*.png
