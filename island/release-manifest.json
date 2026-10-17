@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v248-agent-source",
+  "release": "hyper-dimension-v249-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 88760,
-      "sha256": "8caa6b3367e207e380b87643de372996346be9bfabf6b25e9da4f6b247faa229"
+      "bytes": 89447,
+      "sha256": "5580e2cac1c2f2ff40cdc4fe0b46dd6cce3902b44d1597391ff282874db220a8"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 40326,
-      "sha256": "0638eea980cb589b5bb03d1cd61bd3d5e48223bdc13103104a5e42071426da5c"
+      "bytes": 40568,
+      "sha256": "37f8e44a2f6cef1d47e4db55cb869f0da11e3eafe529789b6e0d6d7f5f2d7efb"
     },
     {
       "path": "src/saveDelta.js",
@@ -8042,8 +8042,8 @@
     },
     {
       "path": "src/serverFarmUI.js",
-      "bytes": 8020,
-      "sha256": "6fdf334b5a7f41996c1bf1d8ffe153ad2399b2f42650dd218e848cbb085430b5"
+      "bytes": 8084,
+      "sha256": "17d89ba896d6c4da8eb55d81284b338c77d2a91d9fd6009d1538693d34c7e6d4"
     },
     {
       "path": "src/serverFieldNpcUI.js",
@@ -12392,8 +12392,8 @@
     },
     {
       "path": "tests/v224-custom-content-http.test.mjs",
-      "bytes": 4539,
-      "sha256": "2b28392567bcfbf44658b29aacbaa5d37316d1b8242453fd61b19ade798be94b"
+      "bytes": 4564,
+      "sha256": "5701cc1b71854b1f8505fbf97264158c8133b392bd7749c33c4307d327cd5a13"
     },
     {
       "path": "tests/v224-custom-content.test.mjs",
@@ -12437,8 +12437,8 @@
     },
     {
       "path": "tests/v227-custom-agent.test.mjs",
-      "bytes": 27230,
-      "sha256": "8d855e106af877b0b03849e9458b5e700191bb9f968725d4b957dd52f92f5439"
+      "bytes": 27255,
+      "sha256": "c33f85261b1cbfdfcca20fa48a5f114823767a237999fae779e06d7ae0287f13"
     },
     {
       "path": "tests/v227-custom-agent-browser.mjs",
@@ -12667,8 +12667,8 @@
     },
     {
       "path": "src/farmIntent.js",
-      "bytes": 902,
-      "sha256": "8e49ff085c9293e16ae417e9b23799eb043e97c3b513e0aa733ab8091aafad87"
+      "bytes": 919,
+      "sha256": "128e59d41a1f4ffd511a5fbbc2c59415b502eea92434a01892d2fb5f38220da3"
     },
     {
       "path": "tests/v245-moment-day-browser.mjs",
@@ -12687,8 +12687,8 @@
     },
     {
       "path": "tests/v245-player-farm-intent.test.mjs",
-      "bytes": 1798,
-      "sha256": "86c7b607c0d90a751704c3fb7439efd7bf59e9f9264824b1f185bb221a475fa9"
+      "bytes": 2685,
+      "sha256": "c67d649f96c631f852bdd01f47ccf8601f385bd95f8ede0a85b59df7fd31c5df"
     },
     {
       "path": "docs/recovery-import-preview-v247.md",
@@ -12702,8 +12702,8 @@
     },
     {
       "path": "tests/v248-checkpoint-queue.test.mjs",
-      "bytes": 7300,
-      "sha256": "c9c7a918021105e1c70d77c4de784179e0222c67671e250bdabeb2e33395e167"
+      "bytes": 8995,
+      "sha256": "66fb259e70ba4a09645decefc5c6629eab39853d6fc7a78bbab3bc5ec446ab1e"
     },
     {
       "path": "docs/recruitment-checkpoint-v248.md",
@@ -12714,7 +12714,22 @@
       "path": "docs/verification/v248/recruitment-checkpoint.json",
       "bytes": 2366,
       "sha256": "215df9c19b1f52468e9a8de3128ccd658ef09b1397a3bc0139d082c7a106b34b"
+    },
+    {
+      "path": "tests/v249-npc-farm-intent-browser.mjs",
+      "bytes": 7757,
+      "sha256": "d96156094f03c3f417d374adbca8a917d8d3c6b14da987c1132a1dce998abbc8"
+    },
+    {
+      "path": "docs/npc-farm-queue-v249.md",
+      "bytes": 2564,
+      "sha256": "01de5bdef49360666510cbb1311c5b465bb6a404c51852d4a54f3036e27386c8"
+    },
+    {
+      "path": "docs/verification/v249/npc-farm-queue.json",
+      "bytes": 2905,
+      "sha256": "4892e8fbc43e2d4c665f1e012ab8c33a8113004e24a074c45c7901b81a205dc1"
     }
   ],
-  "publicRevision": "v248-github"
+  "publicRevision": "v249-github"
 }

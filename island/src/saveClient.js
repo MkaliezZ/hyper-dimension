@@ -262,12 +262,13 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   })();
   try{await r.inflight}finally{r.inflight=null;r.reconciling=false}
  }
- function checkpoint(theme){
-  const r=record(theme),run=()=>flush(theme),result=(r.actionTail||Promise.resolve()).then(run,run);
+ function checkpointOperation(theme,operation){
+  const r=record(theme),run=async()=>{await flush(theme);if(!operation)return;const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=(r.actionTail||Promise.resolve()).then(run,run);
   // External operations wait for accepted jobs in the same queue, before a
   // later job can overtake their checkpoint. Uncertain journals still block it.
   r.actionTail=result.catch(()=>{});return result;
  }
+ function checkpoint(theme){return checkpointOperation(theme)}
  async function action(theme,input,prepareInput){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input,prepareInput),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
  }
@@ -324,7 +325,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   finally{r.reconciling=false;}
  }
  async function backups(theme){return (await request(theme,'backups')).backups}
- async function backup(theme){await checkpoint(theme);return request(theme,'backup',{expectedVersion:record(theme).version})}
+ async function backup(theme){return checkpointOperation(theme,()=>request(theme,'backup',{expectedVersion:record(theme).version}))}
  function restore(theme,id){
   const r=record(theme);if(r.restoring)return r.restoring;
   if(r.recovering||read(replacementKey(theme))||read(importKey(theme)))return Promise.reject(Object.assign(Error('上一次替换结果尚待核对，请先读取服务端进度'),{code:'action_pending'}));

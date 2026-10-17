@@ -298,6 +298,9 @@ jobs:
       - name: Native player farm intent after queued receipts
         run: node tests/v245-player-farm-intent-browser.mjs && node tests/v245-moment-day-browser.mjs
 
+      - name: Native NPC farm intent after queued receipts
+        run: node tests/v249-npc-farm-intent-browser.mjs
+
       - name: Native recovery return and visiting parties
         run: node tests/v205-recovery-return-browser.mjs && node tests/v205-visiting-party-browser.mjs
 
@@ -372,6 +375,7 @@ jobs:
             island/qa/v229/recovery-controls/*.png
             island/qa/v226/native-save-replacement/report.json
             island/qa/v226/native-save-replacement/*.png
+            island/qa/v249/npc-farm-intent/report.json
             island/qa/v221/native-catalog-counts/report.json
             island/qa/v221/native-catalog-counts/*.png
             island/qa/v222/native-recruitment-errors/report.json

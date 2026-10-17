@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp} from 'node:fs/promises';
+import {mkdtemp,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -8,7 +8,7 @@ import {createLanHttpServer} from '../server/lanServer.mjs';
 import {pack,image,info} from './v224-content-fixtures.mjs';
 
 test('authenticated art, published recipes, both appearances and exported assets remain with their owner',async()=>{
- const directory=await mkdtemp(join(tmpdir(),'hd-v224-http-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'CUSTOM-CONTENT-ONLY'}),base='http://127.0.0.1:'+service.port;
+ const directory=await mkdtemp(join(await realpath(tmpdir()),'hd-v224-http-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'CUSTOM-CONTENT-ONLY'}),base='http://127.0.0.1:'+service.port;
  const call=async(path,input,account)=>{const r=await fetch(base+path,{method:input?'POST':'GET',headers:{...(input?{'Content-Type':'application/json'}:{}),...(account?{Cookie:account.cookie,'X-HD-Island':account.id}:{})},body:input?JSON.stringify(input):undefined});return {status:r.status,body:r.headers.get('Content-Type')?.includes('json')?await r.json():Buffer.from(await r.arrayBuffer()),cookie:r.headers.get('Set-Cookie')?.split(';')[0],headers:r.headers};};
  const signup=async n=>{const r=await call('/api/lan/register',{enrollmentKey:'CUSTOM-CONTENT-ONLY',login:'custom_owner_'+n,password:'fictional-content-password',name:'共创岛主'+n,islandName:'共创测试岛'+n,avatar:'female_1',theme:n?'origami':'pixel'});assert.equal(r.status,200);return {id:r.body.view.me.id,cookie:r.cookie};};
  try{

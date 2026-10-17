@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp} from 'node:fs/promises';
+import {mkdtemp,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -182,7 +182,7 @@ test('model world context retains full custom identities and true prerequisite r
 });
 
 test('LAN manual and automatic Agents receive this owner canonical publication instead of a submitted foreign catalog',async()=>{
- const calls=[],directory=await mkdtemp(join(tmpdir(),'hd-agent-catalog-lan-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'FICTIONAL-CATALOG',agentRuntimeFactory:({directory})=>({documents:resolve(directory,'documents'),async call(method,args){calls.push({method,args});return {source:'hermes',answer:'受控测试运行端；没有实际模型调用',commands:[],decisions:[],operations:[]};},async close(){}})});
+ const calls=[],directory=await mkdtemp(join(await realpath(tmpdir()),'hd-agent-catalog-lan-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'FICTIONAL-CATALOG',agentRuntimeFactory:({directory})=>({documents:resolve(directory,'documents'),async call(method,args){calls.push({method,args});return {source:'hermes',answer:'受控测试运行端；没有实际模型调用',commands:[],decisions:[],operations:[]};},async close(){}})});
  try{
   const account=await service.identities.register({login:'catalog_author',password:'fictional-catalog-password',name:'虚构共创岛主',islandName:'共创模型岛',avatar:'male_0',theme:'pixel'}),other=await service.identities.register({login:'catalog_other',password:'fictional-catalog-password',name:'虚构邻岛',islandName:'未发布邻岛',avatar:'male_0',theme:'pixel'});
   await service.tenants.open(account.token,'pixel');await service.tenants.open(other.token,'pixel');const c=await service.tenants.get(account.token),s=(await c.saves.current('pixel')).state,manage=async(operation,fields={})=>c.cocreation.action('pixel',{operation,requestId:randomUUID(),expectedVersion:(await c.cocreation.current('pixel')).version,...fields}),p=pack();

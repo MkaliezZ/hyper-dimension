@@ -12,7 +12,7 @@ async function fixture(t){
  globalThis.localStorage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,String(v)),removeItem:k=>values.delete(k)};globalThis.sessionStorage=localStorage;globalThis.document={hidden:false,addEventListener(){}};globalThis.window={addEventListener(){},removeEventListener(){}};globalThis.location={href:'http://127.0.0.1/isolated-checkpoint',reload(){throw Error('Unexpected navigation');}};globalThis.Worker=undefined;globalThis.indexedDB=undefined;
  await mkdir('qa/v248/checkpoint',{recursive:true});const directory=await mkdtemp(join(resolve('qa/v248/checkpoint'),'fictional-')),store=createSaveStore({directory}),{document:initial}=await store.openClient('pixel',{});let local=structuredClone(initial.state);
  globalThis.fetch=async(url,init={})=>{const operation=url.split('/').at(-1),body=init.body?JSON.parse(init.body):{};calls.push({operation,body});
-  try{let r;if(operation==='open')r=await store.openClient('pixel',body);else if(operation==='save')r=await store.save('pixel',body);else if(operation==='backup')r=await store.backup('pixel',body);else if(operation==='action'){r=await store.action('pixel',body);await options.afterAction?.(r,body);if(options.lose===body.requestId)throw Error('Fictional committed response lost');}else r={document:await store.current('pixel')};return Response.json(r);}
+  try{let r;if(operation==='open')r=await store.openClient('pixel',body);else if(operation==='save')r=await store.save('pixel',body);else if(operation==='backup'){await options.beforeBackup?.(body);r=await store.backup('pixel',body);}else if(operation==='action'){r=await store.action('pixel',body);await options.afterAction?.(r,body);if(options.lose===body.requestId)throw Error('Fictional committed response lost');}else r={document:await store.current('pixel')};return Response.json(r);}
   catch(e){if(!e.code)throw e;return Response.json({error:e.message,code:e.code},{status:e.status||500});}
  };
  const c=createSaveClient({loadLocal:()=>structuredClone(initial.state),storeLocal(){},onRemoteState:(_,s)=>local=s});await c.load('pixel');local=c.status('pixel').state;calls.length=0;
@@ -42,11 +42,21 @@ test('an uncertain original command keeps its journal and blocks checkpoint unti
 
 test('a requested backup includes earlier accepted edits and excludes a later queued project',{timeout:5000},async t=>{
  const f=await fixture(t),entered=deferred(),release=deferred();f.releases.push(release.resolve);const firstId=randomUUID(),secondId=randomUUID(),day=f.initial.state.day;
+ const backupEntered=deferred(),releaseBackup=deferred();f.releases.push(releaseBackup.resolve);f.options.beforeBackup=async()=>{backupEntered.resolve();await releaseBackup.promise;};
  f.options.afterAction=async(_,b)=>{if(b.requestId===firstId){entered.resolve();await release.promise;}};
  const first=f.c.action('pixel',{kind:'commerce',operation:'plan_create',requestId:firstId,day,project:{id:'before-backup',title:'备份前筹备',targets:{wood:1}}});first.catch(()=>{});await entered.promise;
  const moved=structuredClone(f.local);moved.player.x++;f.c.enqueue('pixel',moved);const backup=f.c.backup('pixel');backup.catch(()=>{});
  const second=f.c.action('pixel',{kind:'commerce',operation:'plan_create',requestId:secondId,day,project:{id:'after-backup',title:'备份后筹备',targets:{wood:1}}});second.catch(()=>{});
- await new Promise(r=>setTimeout(r,25));assert.equal(f.calls.length,1);release.resolve();await first;const snapshot=await backup;await second;
+ await new Promise(r=>setTimeout(r,25));assert.equal(f.calls.length,1);release.resolve();await first;await backupEntered.promise;await new Promise(r=>setTimeout(r,25));assert.deepEqual(f.calls.map(c=>c.operation),['action','save','backup'],'Later actions must wait for the actual backup, including slow encoding or storage');releaseBackup.resolve();const snapshot=await backup;await second;
  assert.deepEqual(f.calls.map(c=>c.operation),['action','save','backup','action']);const latest=await f.store.current('pixel');assert(latest.state.workProjects.some(p=>p.id==='after-backup'));
  const restored=await f.store.restore('pixel',{id:snapshot.id,expectedVersion:latest.version});assert.equal(restored.document.state.player.x,f.initial.state.player.x+1);assert(restored.document.state.workProjects.some(p=>p.id==='before-backup'));assert(!restored.document.state.workProjects.some(p=>p.id==='after-backup'));assert.equal(restored.document.state.coins,0);assert.deepEqual(restored.document.state.inventory,f.initial.state.inventory);
+});
+
+test('a slow backup holds concurrent autosaves and preserves later UI edits',{timeout:5000},async t=>{
+ const f=await fixture(t),entered=deferred(),release=deferred();f.releases.push(release.resolve);f.options.beforeBackup=async()=>{entered.resolve();await release.promise;};
+ const backup=f.c.backup('pixel');backup.catch(()=>{});await entered.promise;
+ const moved=structuredClone(f.local);moved.player.x++;f.c.enqueue('pixel',moved);let saved=false;const saving=f.c.flush('pixel').then(()=>saved=true);saving.catch(()=>{});
+ await new Promise(r=>setTimeout(r,25));assert.equal(saved,false);assert.deepEqual(f.calls.map(c=>c.operation),['backup']);release.resolve();const snapshot=await backup;await saving;
+ const latest=await f.store.current('pixel');assert.equal(latest.state.player.x,f.initial.state.player.x+1);assert.equal(f.c.status('pixel').dirty,false);assert.deepEqual(f.calls.map(c=>c.operation),['backup','save']);
+ const restored=await f.store.restore('pixel',{id:snapshot.id,expectedVersion:latest.version});assert.equal(restored.document.state.player.x,f.initial.state.player.x);assert.equal(restored.document.state.coins,0);assert.deepEqual(restored.document.state.inventory,f.initial.state.inventory);
 });

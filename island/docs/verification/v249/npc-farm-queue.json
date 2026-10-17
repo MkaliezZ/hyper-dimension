@@ -1,0 +1,74 @@
+{
+  "version": "V249",
+  "sourceBaseCommit": "f0d44ad18d1d80e668770a2a2cc152392a5c10e0",
+  "originalHour": {
+    "sourceCommit": "181ef936e41ab3ffe084aed6d5ba53c5ac21838a",
+    "realHourComplete": true,
+    "passed": false,
+    "performancePassed": true,
+    "tailFramePassed": true,
+    "functionalApiPassed": false,
+    "unexpectedApiErrors": 1,
+    "error": {
+      "theme": "origami",
+      "code": "farm_stage",
+      "operation": "begin",
+      "kind": "farm",
+      "actorId": 0
+    },
+    "originalFailureRetained": true,
+    "sourcePayloadFiles": 2536
+  },
+  "deterministicNativeBaseline": {
+    "cases": 4,
+    "passed": 0,
+    "failed": 4,
+    "steps": [
+      "water",
+      "harvest"
+    ],
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "failure": "Queued NPC begin reached the server after an earlier actual completed farm receipt changed the plot stage"
+  },
+  "repair": "Check new NPC farm intents against the latest acknowledged plot after the shared queue and save checkpoint, before writing a new command journal. An obsolete unsubmitted intent returns no ticket and is rescheduled. Pending envelopes, server crop/time/seed/lease checks and settlement remain unchanged.",
+  "nativeNpcCasesPassed": 4,
+  "nativePlayerCasesPassed": 2,
+  "nativeReadinessComponentCasesPassed": 2,
+  "relatedFarmRulesPassed": 19,
+  "requiredRules": 1300,
+  "requiredRuleGroups": [
+    1286,
+    14
+  ],
+  "sourceFilesSha256": {
+    "src/farmIntent.js": "128e59d41a1f4ffd511a5fbbc2c59415b502eea92434a01892d2fb5f38220da3",
+    "src/serverFarmUI.js": "17d89ba896d6c4da8eb55d81284b338c77d2a91d9fd6009d1538693d34c7e6d4",
+    "src/saveClient.js": "37f8e44a2f6cef1d47e4db55cb869f0da11e3eafe529789b6e0d6d7f5f2d7efb"
+  },
+  "fixtures": "Explicit seeded tools and plot stages. Actual HTTP server, normal work duration and held real200 replies. No external provider, original user browser or user data.",
+  "scope": "Working-source automated Windows regression; not a passed new frozen hour, zero-start journey, human or physical multi-device acceptance.",
+  "newExactPackageAndHourPending": true,
+  "wholeGoalComplete": false,
+  "backupRace": {
+    "originalFullGatePassed": 1284,
+    "originalFullGateFailed": 1,
+    "originalFailureRetained": true,
+    "controlledSlowBackupBaselineFailed": true,
+    "fullBackupRequestNowQueued": true,
+    "concurrentAutosaveWaitsWithoutLosingNewEdits": true,
+    "recoveryChecksUnchanged": true
+  },
+  "localBackupAndCustomCatalogRulesPassed": 25,
+  "nativeSignedReplacementCasesPassed": 6,
+  "macTemporaryPath": {
+    "run": 39001947046,
+    "job": 117306549514,
+    "originalFailedTests": 2,
+    "reason": "macOS temporary-directory parent is a system symbolic-link alias; two LAN test fixtures now resolve that root before creating their private directories",
+    "runtimeDirectoryProtectionChanged": false,
+    "physicalMacOrNewHostedSuccessClaimed": false
+  }
+}
