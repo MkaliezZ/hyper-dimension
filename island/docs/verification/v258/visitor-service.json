@@ -1,0 +1,60 @@
+{
+  "version": "V258",
+  "sourceBaseCommit": "83e9a5b2efb113006a8026d05c7990f541e3fea2",
+  "rulesPassed": 1376,
+  "ruleGroups": [
+    1362,
+    14
+  ],
+  "newVisitorClockRules": 11,
+  "relatedRulesPassed": 13,
+  "originalRuntimeBaselineTests": 5,
+  "originalRuntimeBaselineFailed": 2,
+  "acceptedLeaseCanFinishDuringOtherPendingSaves": true,
+  "fullAcknowledgedMonotonicServiceRequired": true,
+  "boundedVisibleFrameSeconds": 0.75,
+  "hiddenFramesDoNotProgress": true,
+  "noDuplicateFinish": true,
+  "invalidOrMissingLeaseCannotComplete": true,
+  "simulationCropWageFerryClocksUnchanged": true,
+  "originalTicketBackendPaymentAndReservationsUnchanged": true,
+  "scopedNativeCases": [
+    {
+      "theme": "pixel",
+      "roadAndService": {
+        "wallMs": 43428,
+        "originalBudgetMs": 150000
+      },
+      "paid": 7,
+      "cost": 3,
+      "net": 4,
+      "remainingStock": 2,
+      "delayedAcceptedReplies": 6,
+      "visibleServiceSamples": 12,
+      "pauseAndQueueDiagnosticsRecorded": true,
+      "fixtureScope": "Fictional progressed islands declare three owned custom gifts. 50 declared wood/resin/fiber. Real publish records, shelf UI,32px PNG decoding, native visitor boat/land/walk/service and authoritative sale with normal clocks. Arrival must fit the finite tourist rotation at the actual ferry interval; the original150second road/service budget begins when a qualifying buyer arrives. Providers disabled. HTML-like item name is an escaping fixture. Not human or physical-device acceptance."
+    },
+    {
+      "theme": "origami",
+      "roadAndService": {
+        "wallMs": 42401,
+        "originalBudgetMs": 150000
+      },
+      "paid": 7,
+      "cost": 3,
+      "net": 4,
+      "remainingStock": 2,
+      "delayedAcceptedReplies": 7,
+      "visibleServiceSamples": 12,
+      "pauseAndQueueDiagnosticsRecorded": true,
+      "fixtureScope": "Fictional progressed islands declare three owned custom gifts. 50 declared wood/resin/fiber. Real publish records, shelf UI,32px PNG decoding, native visitor boat/land/walk/service and authoritative sale with normal clocks. Arrival must fit the finite tourist rotation at the actual ferry interval; the original150second road/service budget begins when a qualifying buyer arrives. Providers disabled. HTML-like item name is an escaping fixture. Not human or physical-device acceptance."
+    }
+  ],
+  "nativeSourceBytesBeforeAfterIdentical": true,
+  "nativeScope": "Reviewed V257 source plus accepted visitor service pose change and QA diagnostics. Native dual-style original custom-shop UI/boat/walk/service/sale flow, fictional declared stock/quality, providers disabled. Explicit slow visible frames and600ms delayed successful resident/field/farm replies after a real service grant. Original finite ferry rotation and150second road/service budget unchanged. No synthetic clock or direct sale/position edits. Not earned-zero, real model, human, physical-device or final package acceptance.",
+  "originalHostedV256OrigamiSaleFailureRetained": true,
+  "hostedRecoveryNotYetVerified": true,
+  "macIntelSoilFailureStillOpen": true,
+  "realEarnedCampaignStillIncomplete": true,
+  "wholeGoalComplete": false
+}

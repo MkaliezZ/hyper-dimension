@@ -1,5 +1,6 @@
 import {ISLAND_GEOGRAPHY} from './islandGeography.js';
 import {advanceBoatMotion} from './boatMotion.js';
+import {advanceAcceptedVisitorService} from './visitorActivityControl.js';
 import {followPendingPath} from './movement.js';
 import {ECONOMY_RULES,effectiveQuality} from './economy.js';
 import {acquireRoomSpot,releaseRoomSpot,releaseRoomGroup} from './sceneOccupancy.js';
@@ -60,10 +61,14 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
    g.stage=remote?'startingService':'servicing';g.serviceTime=0;
    a.direction=Math.atan2(r.primary.y+r.primary.h/2-a.y,r.primary.x+r.primary.w/2-a.x);
    g.status='正在体验'+r.name;
-   const start=()=>{g.stage='servicing';g.serviceTime=0;a.action={type:[1,2,17].includes(id)?'eat':id===12||id===21?'perform':'observe',t:0,duration:ECONOMY_RULES.serviceSeconds};};
+   const start=()=>{g.stage='servicing';g.serviceTime=0;g.serviceAcknowledgedAt=performance.now();a.action={type:[1,2,17].includes(id)?'eat':id===12||id===21?'perform':'observe',t:0,duration:ECONOMY_RULES.serviceSeconds};};
    if(remote)confirm(g,'begin',{guestId:g.id,stop:g.stop,buildingId:id},r=>{g.serverTicket=r.ticket;start();});else start();
   };
   if(!a.path.length)a.after();
+ }
+ function advanceService(g,dt){
+  if(!remote?.ready()||!advanceAcceptedVisitorService(g,dt))return;
+  g.stage='settlingService';confirm(g,'finish',{},r=>{const saved=r.receipt.guest;g.spent=saved.spent;g.budget=saved.budget;g.ratings=[...saved.ratings];g.stop=saved.stop;g.serverTicket=null;record(r.receipt.text);leaveRoom(g,()=>goStop(g));onChange();});
  }
  function leaveRoom(g,after){
   releaseRoomSpot('guest-'+g.id);const a=g.indoorActor;
@@ -152,11 +157,11 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
    if(g.retry&&time>=g.retryAt){const retry=g.retry;g.retry=null;navigate(g,retry.end,retry.after);}
    if(g.indoorActor?.path.length){followPath(g.indoorActor,travelDt,105);continue;}
    if(g.stage==='servicing'){
+    if(remote){advanceService(g,travelDt);continue;}
     g.serviceTime+=dt;g.indoorActor.action.t=g.serviceTime;
     if(g.serviceTime>=ECONOMY_RULES.serviceSeconds){
      const id=g.targetBuilding;
-     if(remote){g.stage='settlingService';confirm(g,'finish',{},r=>{const saved=r.receipt.guest;g.spent=saved.spent;g.budget=saved.budget;g.ratings=[...saved.ratings];g.stop=saved.stop;g.serverTicket=null;record(r.receipt.text);leaveRoom(g,()=>goStop(g));onChange();});}
-     else{const result=settleVisit(s(),g,id,'guest-'+g.id+'-'+g.stop,time);g.spent+=result.paid;g.ratings.push(result.paid?effectiveQuality(s().facilities[id])+12:18);record(result.reason);g.stop++;leaveRoom(g,()=>goStop(g));onChange();}
+     {const result=settleVisit(s(),g,id,'guest-'+g.id+'-'+g.stop,time);g.spent+=result.paid;g.ratings.push(result.paid?effectiveQuality(s().facilities[id])+12:18);record(result.reason);g.stop++;leaveRoom(g,()=>goStop(g));onChange();}
     }
    }else if(g.path.length){
     if(shouldYield(g,[...guests,...extraPassengers()])){g.walkMix=(g.walkMix||0)*Math.exp(-dt*10);g.walking=false;}
@@ -173,6 +178,7 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
   for(const b of boats)advanceBoatMotion(b,travelDt,HARBOR);
   for(const g of guests){
    if(g.stage==='departed'||g.stage==='onboard')continue;
+   if(remote&&g.stage==='servicing'){advanceService(g,travelDt);continue;}
    if(g.indoorActor?.path.length)followPendingPath(g.indoorActor,travelDt,105);
    else if(g.path.length){
     if(shouldYield(g,[...guests,...extraPassengers()])){g.walkMix=(g.walkMix||0)*Math.exp(-dt*10);g.walking=false;}

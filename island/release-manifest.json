@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v257-agent-source",
+  "release": "hyper-dimension-v258-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 92510,
-      "sha256": "e5832f77d9b2164b36d0da4b1d72279dc1802fa04b8318c5cbe40ed0b6ff3d1c"
+      "bytes": 92856,
+      "sha256": "01e97b488135f790fadaa1036d25aaee48e6c8f50783989651d8e5f6fe8e0044"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15577,
-      "sha256": "71e733b555cac26bf65bd2154f078c7b82b0e59b976e25e3eccc8d7659f8966d"
+      "bytes": 15619,
+      "sha256": "4ffacd364a8558ecb74dfbe32b72361d88e3e530a83f67d997bb9745a68b63f9"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144478,
-      "sha256": "193a3a1d3293023626db5b0965b3c6582aef5080cb102a82cb7a6af4afedfcdb"
+      "bytes": 144686,
+      "sha256": "fa06dafad28842624192139f13aea1c943892d4c731843d3d80af1bcbec31b60"
     },
     {
       "path": "src/arcade.css",
@@ -8217,8 +8217,8 @@
     },
     {
       "path": "src/visitorRuntime.js",
-      "bytes": 12986,
-      "sha256": "b717bebbf19ea7a63bb15ab01a37622da40ceff904a3ca25ee0285b68275902e"
+      "bytes": 13315,
+      "sha256": "92c0c4de71ac629e1d4278ca8632cf41b58b401acfe55993141f6eaceb06f149"
     },
     {
       "path": "src/weatherRules.js",
@@ -12482,8 +12482,8 @@
     },
     {
       "path": "tests/v228-custom-shops-browser.mjs",
-      "bytes": 13833,
-      "sha256": "9291333079278c09fb88b42e2a51b248a3248330c22f96083df5b31fd19a3ac7"
+      "bytes": 15310,
+      "sha256": "9a10b3648f116d3516b7c6d0d29081881b00764e3f2a4ab420b70910ce75690d"
     },
     {
       "path": "docs/custom-market-v230.md",
@@ -12884,7 +12884,27 @@
       "path": "public/assets/item-market-price-tags-origami-v257.png",
       "bytes": 1736706,
       "sha256": "c6fce42036cc717b205b5624d4637678af276edc5fd7751d513ade7dd342bda6"
+    },
+    {
+      "path": "src/visitorActivityControl.js",
+      "bytes": 1020,
+      "sha256": "b52d5377a1f2538b55c5a6c74961bfe1b9ddedb5e13298a1553762da652a963f"
+    },
+    {
+      "path": "tests/v258-visitor-service-clock.test.mjs",
+      "bytes": 4348,
+      "sha256": "8ec5ed7795d5ac93b2f8f6be1326e8c6b509170fa92b881a969d285a4e81efb3"
+    },
+    {
+      "path": "docs/visitor-service-v258.md",
+      "bytes": 1680,
+      "sha256": "9127da398f6e87ba3700a31879d8ed423c36fe38572b004ec21826704c3c8764"
+    },
+    {
+      "path": "docs/verification/v258/visitor-service.json",
+      "bytes": 3232,
+      "sha256": "6410bf4e814eee58e787f01cfb5b944b4c4917628c393aa1ce00dfe62d39aa59"
     }
   ],
-  "publicRevision": "v257-github"
+  "publicRevision": "v258-github"
 }
