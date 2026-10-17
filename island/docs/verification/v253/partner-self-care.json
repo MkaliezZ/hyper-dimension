@@ -1,0 +1,69 @@
+{
+  "version": "V253",
+  "sourceBaseCommit": "18a9911cb30361d12bcc13848fa9fb0049fd7059",
+  "behavior": "A hungry temporary partner with no rations or available food can gather and eat a personal mushroom meal before continuing its agreed task. It does not produce public stock or contract/wage credit.",
+  "baseline": {
+    "cases": 5,
+    "failed": 5,
+    "missingSelfCareFunctionalCases": 4,
+    "newExplicitIntentValidationPolicyCase": 1
+  },
+  "relatedRulesPassed": 41,
+  "requiredRuleGroups": [
+    1312,
+    14
+  ],
+  "requiredRules": 1326,
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "actualPersonalMealReceipt": 1,
+      "actualAgreedWorkReceipt": 1,
+      "forageWallMs": 20199,
+      "workWallMs": 20213,
+      "personalForagePublicStockGain": {},
+      "agreedWorkStockGain": {
+        "wood": 2
+      },
+      "wageUnsettledAndUnchanged": true,
+      "emptyBrowserAndDiskReplayPassed": true,
+      "noUnsettledLeaseAtTargetStop": true
+    },
+    {
+      "theme": "origami",
+      "actualPersonalMealReceipt": 1,
+      "actualAgreedWorkReceipt": 1,
+      "forageWallMs": 20183,
+      "workWallMs": 20221,
+      "personalForagePublicStockGain": {},
+      "agreedWorkStockGain": {
+        "wood": 2
+      },
+      "wageUnsettledAndUnchanged": true,
+      "emptyBrowserAndDiskReplayPassed": true,
+      "noUnsettledLeaseAtTargetStop": true
+    }
+  ],
+  "nativeScope": "Isolated native resident-runtime/SaveClient/controller component with real HTTP SaveStore and actual20s authoritative work floors. Explicit low hunger/no rations/zero materials, prepared wages, a synthetic accepted recruitment contract, a fixed awake work-hour fixture and disabled other actors/providers. Personal forage must finish without stock/wage/task gains, then the original agreed wood task delivers once. Empty browser load and independent disk reopen/replay retain both receipts. Not zero-start, full-game visuals, actual model, world-day or human acceptance.",
+  "originalUnassignedWorkContractGuardUnchanged": true,
+  "forageRequiresWorkingContractLowHungerNoRationsAndNoAvailableFood": true,
+  "otherActorsOrWrongLocationAndFoodRejected": true,
+  "existingMushroomArtAndGatherAnimationUsed": true,
+  "modelCadenceAndEconomyPolicyUnchanged": true,
+  "nativeDriverEarlierFixtureFailuresRetained": true,
+  "newCrossPlatformNativeStep": {
+    "existingJobsAndAssertionsUnchanged": true,
+    "matrixJobs": 18,
+    "newNativeCases": 2,
+    "newNativeStepTimeoutMinutes": 8,
+    "concurrencyUnchanged": true,
+    "newFailureReportRetained": true
+  },
+  "sourceSha256": {
+    "src/townSimulation.js": "0c9c334ee4da411cca695008974b641010e9d69bea440fb04c42b9b8e4b4af30",
+    "src/residentRuntime.js": "f2affba2b50ee11d434413834affbc484c7c664d3a33304b7b01311a383f9a0c",
+    "server/residentActions.mjs": "2ae9cc25566ac24630c5eb1c300583e11cd61a1ecb092f1cb1bff57af5dc29f8"
+  },
+  "actualV251MainSubFlowIsSeparateImmutableSource": true,
+  "wholeGoalComplete": false
+}

@@ -62,10 +62,15 @@ export function availableMealQuantity(s,foodId,actorId){
  const earlier=(s.npcPresence||[]).filter(p=>p.id!==actorId&&p.mealFood===foodId&&!leased.has(p.id)&&(p.mealOrder<order||p.mealOrder===order&&p.id<actorId)).length;
  return Math.max(0,availableQuantity(s,foodId)-earlier);
 }
+// A hired partner can feed themselves without producing unassigned island stock.
+export function personalForageNeeded(i,s){
+ if(i!==16||needs(i,s).hunger>=42||needs(i,s).rations>0)return false;
+ return !contentItems(s).some(x=>(x.category==='food'&&[1,2,17].includes(x.building)||['wheat','mushroom','strawberry'].includes(x.id))&&availableQuantity(s,x.id)>0);
+}
 export function mealOptions(i,s,r,time){const c=career(i,s),food=contentItems(s).filter(x=>x.category==='food'&&[1,2,17].includes(x.building)&&availableMealQuantity(s,x.id,i)>0).map(x=>({...target(x.building),action:'eat',activity:'eat',duration:10,foodId:x.id,purposeId:'need:food:'+x.id,score:100+(x.building===1?-14:0)-crowdPenalty(s,x.building,i)-repeatPenalty(c,x.building,time,s),reason:'去'+BUILDINGS[x.building].name+'享用现有的'+x.name}));
  for(const [id,bid] of [['wheat',2],['mushroom',22],['strawberry',22]])if(availableMealQuantity(s,id,i)>0)food.push({...target(bid),action:'eat',activity:'eat',duration:10,foodId:id,purposeId:'need:food:'+id,score:94-crowdPenalty(s,bid,i),reason:bid===2?'用现有小麦煮粥，补充饱足':'去营地准备'+ITEMS[id][0]+'简餐'});
  if(needs(i,s).rations>0){const bid=[19,22,2].sort((a,b)=>crowdPenalty(s,a,i)-crowdPenalty(s,b,i)||Math.abs((LEISURE_VENUES[i]||0)-a)-Math.abs((LEISURE_VENUES[i]||0)-b))[0];food.push({...target(bid),action:'eat',activity:'eat',duration:9,foodId:'rations',purposeId:'need:rations',score:92-crowdPenalty(s,bid,i),reason:'找个空闲的休息位吃自备简餐'});}
- if(!food.length)food.push({goal:'forest',buildingId:null,resource:'mushroom',action:'work',activity:'gather',duration:8,purposeId:'need:food-supply',score:104,reason:'食物库存不足，先采集可做简餐的蘑菇'});
+ if(!food.length){if(personalForageNeeded(i,s))food.push({goal:'forest',buildingId:null,foodId:'mushroom',action:'eat',activity:'gather',duration:20,purposeId:'need:forage-meal',score:104,reason:'简餐已用完，去林地采食蘑菇，照顾好自己再继续约定工作'});else food.push({goal:'forest',buildingId:null,resource:'mushroom',action:'work',activity:'gather',duration:8,purposeId:'need:food-supply',score:104,reason:'食物库存不足，先采集可做简餐的蘑菇'});}
  return food.sort((a,b)=>b.score-a.score).slice(0,2);
 }
 export function socialVenue(i,partner,s,type,time=0){
@@ -118,10 +123,14 @@ export function commitWork(i,d,s,time,options={}){
  if(d.operationId)receipts[d.operationId]={day:s.day,npcId:i,storyId:d.storyId||null,goal:d.goal,result,delta:Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before[id]||0)]).filter(([,n])=>n))};
  return result;
 }
-function executeWork(i,d,s,time,{acceptedRecipe=null}={}){const n=needs(i,s),c=career(i,s);let result='',advance=true;
+function executeWork(i,d,s,time,{acceptedRecipe=null,personalForageAccepted=false}={}){const n=needs(i,s),c=career(i,s);let result='',advance=true;
  function complete(result,advance=true){if(d.action==='work'&&advance)c.workSinceBreak=(c.workSinceBreak||0)+1;if(!advance&&d.buildingId!=null){setResidentCooldown(s,c,'retry',30,time);c.retryBuilding=d.buildingId;}if(d.purposeId?.startsWith('career:')&&advance){const expected=target(CAREERS[i].route[c.phase%CAREERS[i].route.length]);if(d.goal===expected.goal&&d.buildingId===expected.buildingId)c.phase++;}c.completed++;c.lastResult=result;c.history.push({day:s.day,daySeconds:s.economy?.daySeconds||0,time,goal:d.goal,buildingId:d.buildingId,action:d.action,purposeId:d.purposeId,result,source:d.source});c.history=c.history.slice(-16);return result;}
  if(d.facilityId){const b=s.functionalFacilities,r=functionalCommand(s,{commandId:d.operationId||('npc-tea:'+i+':'+time),displayId:d.facilityId,action:'sip',expectedRevision:b?.revision});if(!r.ok)return complete(r.reason,false);if(!r.replayed){n.hunger=Math.min(100,n.hunger+22);n.energy=Math.min(100,n.energy+7);n.social=Math.min(100,n.social+2);n.mood='温暖';}return complete('在岛上的暖手茶炉享用花茶 · 余量实际减少一杯');}
  if(d.action==='rest'){n.energy=Math.min(100,n.energy+42);n.mood='放松';return complete('在居民之家休息，恢复体力')}
+ if(d.purposeId==='need:forage-meal'){
+  if(i!==16||d.action!=='eat'||d.goal!=='forest'||d.buildingId!=null||d.foodId!=='mushroom'||!personalForageAccepted&&!personalForageNeeded(i,s))return complete('采食安排已变化，重新选择用餐地点',false);
+  n.hunger=Math.min(100,n.hunger+38);n.energy=Math.min(100,n.energy+7);n.mood='满足';return complete('在林地采食蘑菇简餐，补充饱足后继续约定工作');
+ }
  if(d.action==='eat'){let item=d.foodId;if(!item)item=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';if(item==='rations'){if(n.rations<1)return complete('自备简餐已用完，需要准备食物',false);n.rations--;n.hunger=Math.min(100,n.hunger+40);result='吃一份自备简餐（剩余 '+n.rations+' 份）';}else{const info=catalogItem(s,item),valid=info&&(info.category==='food'&&[1,2,17].includes(info.building)||['wheat','mushroom','strawberry'].includes(item));if(!valid||!commitResources(s,{owner:d.resourceOwner||null,cost:{[item]:1},category:'resident_meal',note:'居民 '+i}).ok)return complete('选定餐点已售罄或预留，重新选择食物',false);n.hunger=Math.min(100,n.hunger+(info.building===1?22:38));result='享用'+info.name;}n.energy=Math.min(100,n.energy+7);n.mood='满足';return complete(result)}
  if(d.action==='visit'){const routine=routineFor(i,d);n.energy=Math.min(100,n.energy+12);n.social=Math.min(100,n.social+6);n.mood='放松';c.workSinceBreak=0;setResidentCooldown(s,c,'personal',65,time);return complete(routine?'在'+BUILDINGS[d.buildingId].name+routine.title:'在'+(d.buildingId!=null?BUILDINGS[d.buildingId].name:TITLES[d.goal])+'体验个人兴趣与生活')}
  n.energy=Math.max(0,n.energy-5);n.hunger=Math.max(0,n.hunger-4);

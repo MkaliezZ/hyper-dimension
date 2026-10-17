@@ -474,6 +474,9 @@ jobs:
         run: node tests/v218-save-lock-browser.mjs
       - name: Native sequential resident tasks across fixed work shifts
         run: node tests/v213-task-chain-browser.mjs
+      - name: Native recruited partner food and task continuation
+        run: node tests/v253-partner-self-care-browser.mjs
+        timeout-minutes: 8
       - name: Retain native resident work diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -484,5 +487,6 @@ jobs:
             island/qa/v213/native-task-chains/*.png
             island/qa/v218/native-save-lock/report.json
             island/qa/v218/native-save-lock/*.png
+            island/qa/v253/native-partner-self-care/report.json
           if-no-files-found: ignore
           retention-days: 3

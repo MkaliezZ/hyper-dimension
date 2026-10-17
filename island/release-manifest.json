@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v252-agent-source",
+  "release": "hyper-dimension-v253-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 90696,
-      "sha256": "d6496a7ad37fd157dc0cee55e3f105e0f3b5bba7d1dd4fa67651853054bad73b"
+      "bytes": 91052,
+      "sha256": "0ffc6d13a42379c1247e6c6d98a8e4beed9d3729810e4b4a2fb40537dc6f86dd"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15318,
-      "sha256": "b509ec5f00b9705a7762dfb32da839f6a8f0759548ab83499cbe4c064dfb657a"
+      "bytes": 15356,
+      "sha256": "6c51408e4f6f34290346d6d7704194ffcc35624025845282d25ed38cf8f4b338"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6407,8 +6407,8 @@
     },
     {
       "path": "server/residentActions.mjs",
-      "bytes": 16762,
-      "sha256": "48867dfad3cf95b90287a3248733fafcca4571301c6d460692ee0d44542e30e1"
+      "bytes": 17203,
+      "sha256": "2ae9cc25566ac24630c5eb1c300583e11cd61a1ecb092f1cb1bff57af5dc29f8"
     },
     {
       "path": "server/residentChatStore.mjs",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 44177,
-      "sha256": "2e21174a4ab577f0b6c46a91b365d71b035f68a04fe8b671c68758d455b7a39d"
+      "bytes": 44481,
+      "sha256": "f2affba2b50ee11d434413834affbc484c7c664d3a33304b7b01311a383f9a0c"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8202,8 +8202,8 @@
     },
     {
       "path": "src/townSimulation.js",
-      "bytes": 25854,
-      "sha256": "aae141e1541cb3a9dbd431136e90a28872136e18aa7964b6abd8272aa24710ea"
+      "bytes": 26947,
+      "sha256": "0c9c334ee4da411cca695008974b641010e9d69bea440fb04c42b9b8e4b4af30"
     },
     {
       "path": "src/ui-v16.css",
@@ -12774,7 +12774,27 @@
       "path": "docs/verification/v252/social-meeting-distance.json",
       "bytes": 2534,
       "sha256": "1decb05a9b91ecd0e2127527a529217ba78d78350141408494bd46102e3533b9"
+    },
+    {
+      "path": "tests/v253-partner-self-care.test.mjs",
+      "bytes": 4525,
+      "sha256": "f7147c6ea9ac54ee68386fdb56d41e384f7765b665bae7185363635ef2db8dba"
+    },
+    {
+      "path": "tests/v253-partner-self-care-browser.mjs",
+      "bytes": 10520,
+      "sha256": "151eaf115239290e3625b96cb3bde35476f6308cadeef3888e4c436fbb1bfad7"
+    },
+    {
+      "path": "docs/partner-self-care-v253.md",
+      "bytes": 1812,
+      "sha256": "ff83df0556ed3e755216548714545b48bc8fc3b35312294b94350066930acf5f"
+    },
+    {
+      "path": "docs/verification/v253/partner-self-care.json",
+      "bytes": 2956,
+      "sha256": "05a973f4dab4e9c7caa2d11930c084d5fb79d01885e6cb57dee1a2c1872b0178"
     }
   ],
-  "publicRevision": "v252-github"
+  "publicRevision": "v253-github"
 }

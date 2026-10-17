@@ -4,7 +4,7 @@ import {customProductionOptions} from '../src/customProduction.js';
 import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomUUID} from 'node:crypto';
-import {hydrateTown,commitWork,RECIPES,CAREERS,career,needs} from '../src/townSimulation.js';
+import {hydrateTown,commitWork,RECIPES,CAREERS,career,needs,personalForageNeeded} from '../src/townSimulation.js';
 import {RAW_MATERIALS,catalogRecipe,catalogItem,ITEM_BY_ID,canCraft,recipeGate} from '../src/contentCatalog.js';
 import {reserveResources,releaseResources,availableQuantity,hydrateResources} from '../src/resourceLedger.js';
 import {recordTaskStep,taskOwner,hydrateTaskBoard} from '../src/taskBoard.js';
@@ -45,6 +45,10 @@ function plan(s,i,task){
  if(d.purposeId?.startsWith('career:')&&d.purposeId!=='career:'+career(i.actorId,s).phase)throw fail('职业阶段已变化','resident_plan_changed');
  const sourceOwner=task?(task.resourceOwner||taskOwner(task.id)):null;let cost={},item='service',name=d.buildingId===null?d.goal:BUILDINGS[d.buildingId].name,mode='life',duration=d.action==='rest'?14:d.action==='eat'&&d.foodId==='rations'?9:d.action==='eat'?10:12;
  if(d.facilityId){const u=functionalUnit(s,d.facilityId),p=s.placedItems?.find(p=>p.id===d.facilityId);if(d.action!=='eat'||!p||p.item!=='c1_9'||u?.phase!=='ready'||u.servings<1)throw fail('茶炉当前不能饮茶','resident_facility_changed');mode='tea';name='暖手茶炉';duration=10;}
+ else if(d.purposeId==='need:forage-meal'){
+  if(d.action!=='eat'||d.goal!=='forest'||d.buildingId!==null||d.foodId!=='mushroom'||!personalForageNeeded(i.actorId,s))throw fail('已有餐点或当前无需采食，请重新安排','resident_food');
+  mode='personal-forage';name='林地随身简餐';duration=NPC_CADENCE.workSeconds;
+ }
  else if(d.action==='eat'){
   d.foodId??=s.inventory.meal>0?'meal':s.inventory.bread>0?'bread':s.inventory.tea>0?'tea':s.inventory.wheat>0?'wheat':'rations';
   if(d.foodId==='rations'){if(needs(i.actorId,s).rations<1)throw fail('自备简餐已用完','resident_food');duration=9;}
@@ -59,7 +63,7 @@ function plan(s,i,task){
   }else if(d.goal==='plaza'){mode='observe';}else throw fail('居民工作地点无效');
  }
  d.source=task?'hermes':d.source==='deepseek'?'deepseek':'local';d.resourceOwner=null;
- let action=d.action==='rest'?'rest':d.action==='eat'?'eat':d.action==='visit'?(routineFor(i.actorId,d)?.animation||'observe'):mode==='observe'?'observe':d.buildingId!==null?ROOMS[d.buildingId].action:d.goal==='forest'?'axe':d.goal==='dock'?'fish':'gather';
+ let action=mode==='personal-forage'?'gather':d.action==='rest'?'rest':d.action==='eat'?'eat':d.action==='visit'?(routineFor(i.actorId,d)?.animation||'observe'):mode==='observe'?'observe':d.buildingId!==null?ROOMS[d.buildingId].action:d.goal==='forest'?'axe':d.goal==='dock'?'fish':'gather';
  if(d.action==='work'&&mode==='gather'){const source=ITEM_BY_ID[d.resource]?.source;if(source==='shore'||source==='greenhouse'||d.resource==='seed'||source==='forest'&&!['wood','bamboo','hardwood','twig','bark'].includes(d.resource))action='gather';}
  return {d,cost,item,name,mode,duration,sourceOwner,tool:resolveTool(s,action,{npc:true}),action};
 }
@@ -101,7 +105,7 @@ export function applyResidentCommand(s,b,i,now){
   if(t.mode==='craft'&&(!frozenRecipe||!canCraft(frozenRecipe,s,{owner:t.owner})))throw fail('本次制作条件已变化，请取消后重新安排','resident_plan_changed');
   if(t.mode==='tea'){const u=functionalUnit(s,t.intent.facilityId);if(u?.phase!=='ready'||u.servings<1)throw fail('茶炉余量已变化','resident_facility_changed');}
   if(t.intent.foodId==='rations'&&needs(t.actorId,s).rations<1)throw fail('自备简餐余量已变化','resident_food');
-  text=commitWork(t.actorId,t.intent,s,t.gameTime+t.duration,{acceptedRecipe:frozenRecipe});delta=s.taskActionReceipts[t.operationId].delta;
+  text=commitWork(t.actorId,t.intent,s,t.gameTime+t.duration,{acceptedRecipe:frozenRecipe,personalForageAccepted:t.mode==='personal-forage'});delta=s.taskActionReceipts[t.operationId].delta;
   if(t.intent.action==='eat'&&t.cost[t.item]&&delta[t.item]!==-1)throw fail('餐点尚未实际消费','resident_delivery');
   if(t.mode==='craft'&&(delta[t.item]||0)!==1)throw fail('制作尚未实际交付','resident_delivery');
   if(t.assignmentId&&!recordTaskStep(s,t.assignmentId,{operationId:t.operationId,result:text,delta,preparing:!!t.intent.preparing||t.mode==='maintenance'||t.mode==='observe'}).ok)throw fail('分工成果尚未确认','resident_task_changed');
