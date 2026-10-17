@@ -1,7 +1,15 @@
 import {seededRandom} from './gameLevels.js';
 import {validCraftEvent} from './craftGameReplay.js';
 export const MARKET_STOCK=Object.freeze({bread:6,tea:4,pottery:3,bouquet:3});
+// Version 1 is retained for saved drafts and running markets. Never reinterpret a sealed contract.
 export const MARKET_EQUIPMENT=Object.freeze({c9_0:1,c8_2:1});
+export const MARKET_EQUIPMENT_V2=Object.freeze({c9_5:1,c9_7:1});
+export function marketEquipment(event){
+ const version=event?.equipmentVersion??1;
+ if(version===1)return MARKET_EQUIPMENT;
+ if(version===2)return MARKET_EQUIPMENT_V2;
+ throw Error('Invalid market equipment contract');
+}
 export const MARKET_GOODS=Object.freeze(Object.keys(MARKET_STOCK));
 const preferences={0:['bread'],1:['pottery'],2:['tea'],3:['tea','pottery'],4:['bouquet'],5:['pottery'],6:['bread'],7:['bouquet'],8:['tea'],9:['tea'],10:['tea','bread'],11:['bread'],12:['bouquet'],13:['bouquet','pottery'],14:['pottery']};
 const sorted=a=>[...a].sort().join('|'),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);

@@ -1,6 +1,6 @@
 import {eventRequests,eventCost,validatePartyProposal} from './partyPlanning.js';
 import {FISHING_EQUIPMENT} from './fishingParty.js';
-import {MARKET_EQUIPMENT} from './marketRules.js';
+import {MARKET_EQUIPMENT_V2,marketEquipment} from './marketRules.js';
 import {COUTURE_EQUIPMENT} from './coutureRules.js';
 import {FIREWORKS_EQUIPMENT} from './fireworksRules.js';
 import {availableQuantity} from './resourceLedger.js';
@@ -12,7 +12,7 @@ import {RESIDENTS} from './world.js';
 export const PARTY_GUIDES=Object.freeze([
  {template:'night',field:'nightParty',name:'星灯夜集',item:'lantern',venue:'广场',openId:'nightPartyOpen',equipment:{},description:'四盏星灯，和伙伴一起放飞心愿。'},
  {template:'fishing',field:'fishingParty',name:'海风钓鱼大会',item:'rod',venue:'海边钓位',openId:'fishingPartyOpen',equipment:FISHING_EQUIPMENT,description:'看潮汐、把握六次提竿，分享茶点。'},
- {template:'market',field:'festivalParty',name:'海岛手作集市',item:'pottery',venue:'广场',openId:'marketPartyOpen',equipment:MARKET_EQUIPMENT,description:'陈列真实商品，为十二位居民装篮交付。'},
+ {template:'market',field:'festivalParty',name:'海岛手作集市',item:'pottery',venue:'广场',openId:'marketPartyOpen',equipment:MARKET_EQUIPMENT_V2,description:'陈列真实商品，为十二位居民装篮交付。'},
  {template:'couture',field:'coutureParty',name:'海岛穿搭大会',item:Object.keys(COUTURE_EQUIPMENT)[0],venue:'广场秀台',openId:'couturePartyOpen',equipment:COUTURE_EQUIPMENT,description:'三轮造型、四拍展示，让居民穿出个性。'},
  {template:'fireworks',field:'fireworksParty',name:'星海烟花大会',item:'firework',venue:'广场',openId:'fireworksPartyOpen',equipment:FIREWORKS_EQUIPMENT,description:'读懂海风，亲手编排三幕六枚烟花。'}
 ]);
@@ -24,13 +24,13 @@ export function activePartyTemplate(s){
 export function partyGuide(s,template){
  const c=PARTY_GUIDES.find(c=>c.template===template);if(!c)return null;
  const book=s[c.field],d=book?.draft,g=activeSession(s,c),active=activePartyTemplate(s);
- const base={...c,name:d?.name||g?.name||c.name,id:d?.id||g?.id||null,version:d?.version||g?.version||null,project:null,people:[],materials:[],missing:[],ready:false};
+ const base={...c,...(template==='market'?{equipment:marketEquipment(d||g||{equipmentVersion:2})}:{}),name:d?.name||g?.name||c.name,id:d?.id||g?.id||null,version:d?.version||g?.version||null,project:null,people:[],materials:[],missing:[],ready:false};
  if(g){
   const live=c.template==='night'||['checkin','running'].includes(g.phase),phase=g.game?.phase||g.phase;
   return {...base,phase:live?'active':'results',label:live?(phase==='checkin'?'正在赴约':phase==='results'?'等待领奖':'活动进行中'):'本场结果',message:live?(phase==='checkin'?'伙伴正在收尾工作，沿道路前往各自席位。':phase==='results'?'本场演出已结束，请打开现场核对并领取一次奖励。':'收起页面仍保留当前活动，回到现场继续。'):'查看成绩和纪念品，收起本场后再筹备下一场。',next:{kind:'book',label:live?'回到活动现场':'查看本场结果'},steps:[true,true,true,live&&phase!=='checkin',!live]};
  }
  const proposal=d||{template,name:c.name,description:'',tags:[template==='fishing'?'sea':template==='market'||template==='couture'?'craft':'stars'],difficulty:'normal',guestId:null,...(template==='night'?{fireworks:false}:{})};
- const gate=validatePartyProposal(s,proposal),cost={...eventCost(proposal),...c.equipment};
+ const gate=validatePartyProposal(s,proposal),cost={...eventCost(proposal),...(template==='market'?marketEquipment(d||{equipmentVersion:2}):c.equipment)};
  const lockedItem=[...new Set([...Object.keys(cost),...eventRequests(proposal).map(r=>r.item)])].find(id=>{const recipe=RECIPE_BY_ID[ITEM_BY_ID[id]?.recipeId];return recipe&&!recipeGate(recipe,s).ready;});
  if(!d)return {...base,phase:gate.ok?'create':'locked',label:gate.ok?'可发起':'先解锁用品',message:gate.ok?'先写下主题，再备齐实际用品，逐位对话邀请。':gate.reason,next:{kind:gate.ok?'book':'item',item:lockedItem||c.item,label:gate.ok?'设计这场相聚':'查看用品解锁'},steps:[false,false,false,false,false]};
  const project=s.workProjects?.find(p=>p.id===d.projectId),planWaiting=!!project&&['preparing','paused'].includes(project.status),owner=project&&['preparing','paused','ready'].includes(project.status)?'project:'+project.id:null;

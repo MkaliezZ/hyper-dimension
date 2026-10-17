@@ -17,7 +17,7 @@ export const ALL_RECIPES=connectWorkshops([...PRODUCT_ROWS.flatMap((rows,buildin
  if(building===1&&index>=9)category=index===10?'gift':'decor';
  if(building===10&&index>0)category=index===11?'study':index===10||index===9?'gift':'decor';
  if(building===11&&[5,6].includes(index))category=index===5?'study':'decor';
- return {id:'recipe_'+id,item:id,name,art,building,index,tier,category,price:6+tier*7+index%4};
+ return {id:'recipe_'+id,item:id,name,art,building,index,tier:building===9&&[5,7].includes(index)?0:tier,category,price:6+tier*7+index%4};
 })),...SEASONAL_RECIPES]);
 export const PRODUCTION_GRAPH=checkWorkshopGraph(ALL_RECIPES,RAW_MATERIALS);
 export const RECIPE_BY_ID=Object.fromEntries(ALL_RECIPES.map(r=>[r.id,r]));

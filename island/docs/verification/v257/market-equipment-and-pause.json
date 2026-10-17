@@ -1,0 +1,237 @@
+{
+  "version": "V257",
+  "sourceBaseCommit": "04c449a317b78b323d4e592929efc8c05e210f1c",
+  "rulesPassed": 1365,
+  "ruleGroups": [
+    1351,
+    14
+  ],
+  "newEquipmentRules": 8,
+  "controllerBaselineFailed": true,
+  "controllerCasesPassed": 8,
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "designer": true,
+      "actualFourGifts": true,
+      "realDependencyPlan": true,
+      "staffRoutes": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "separateStands": [
+        {
+          "x": 1092,
+          "y": 676.4493057911059,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 1
+        },
+        {
+          "x": 1160.4706039889186,
+          "y": 716.4706039889185,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 2
+        },
+        {
+          "x": 1200,
+          "y": 748.713650907836,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 3
+        },
+        {
+          "x": 1008,
+          "y": 722.4346273586416,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 0
+        }
+      ],
+      "actualBuyerRoutes": [
+        10,
+        13,
+        14,
+        9,
+        7,
+        0,
+        11,
+        12
+      ],
+      "threeWaves": true,
+      "manualPackClicks": 12,
+      "served": 12,
+      "missed": 0,
+      "pauseCloseReloadSameId": true,
+      "lostFinishUiRecovery": true,
+      "explicitOriginalEnvelopeReplay": true,
+      "reward": 80,
+      "actualEntryAndReturns": true,
+      "wonder": true,
+      "displayState": true,
+      "pendingDisplay": false,
+      "compactNoOverflow": true,
+      "requests": 123,
+      "allObservedFinishAttempts": 3,
+      "uiFinishAttemptsBeforeExplicitReplay": 2,
+      "additionalExactEnvelopeReplays": 1
+    },
+    {
+      "theme": "origami",
+      "designer": true,
+      "actualFourGifts": true,
+      "realDependencyPlan": true,
+      "staffRoutes": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "separateStands": [
+        {
+          "x": 1092,
+          "y": 676.6508057910967,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 1
+        },
+        {
+          "x": 1166,
+          "y": 718,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 2
+        },
+        {
+          "x": 1200,
+          "y": 748.4796509078293,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 3
+        },
+        {
+          "x": 1008,
+          "y": 722.3111273586467,
+          "inside": null,
+          "controlled": true,
+          "arrived": true,
+          "role": "staff",
+          "slot": 0
+        }
+      ],
+      "actualBuyerRoutes": [
+        0,
+        12,
+        13,
+        11,
+        10,
+        5,
+        4,
+        7,
+        9
+      ],
+      "threeWaves": true,
+      "manualPackClicks": 12,
+      "served": 12,
+      "missed": 0,
+      "pauseCloseReloadSameId": true,
+      "lostFinishUiRecovery": true,
+      "explicitOriginalEnvelopeReplay": true,
+      "reward": 79,
+      "actualEntryAndReturns": true,
+      "wonder": true,
+      "displayState": true,
+      "pendingDisplay": false,
+      "compactNoOverflow": true,
+      "requests": 133,
+      "allObservedFinishAttempts": 3,
+      "uiFinishAttemptsBeforeExplicitReplay": 2,
+      "additionalExactEnvelopeReplays": 1
+    }
+  ],
+  "pauseSnapshots": [
+    {
+      "theme": "pixel",
+      "localResults": 2,
+      "serverResults": 2
+    },
+    {
+      "theme": "origami",
+      "localResults": 2,
+      "serverResults": 2
+    }
+  ],
+  "nativeSourceBytesBeforeAfterIdentical": true,
+  "newContractEquipment": {
+    "c9_5": 1,
+    "c9_7": 1
+  },
+  "legacyContractEquipment": {
+    "c9_0": 1,
+    "c8_2": 1
+  },
+  "legacySessionsAndUndefinedOrVersion1DraftsUnchanged": true,
+  "explicitDraftUpgradePreservesGiftsMaterialsCompletedWorkAndProjectHistory": true,
+  "changedRecipeUnlocks": [
+    "recipe_c9_5",
+    "recipe_c9_7"
+  ],
+  "recipeCostsAndPricesUnchanged": true,
+  "otherRecipeUnlocksUnchanged": true,
+  "original16GoodsAnd12CoinFeeAndPayoutFormulasUnchanged": true,
+  "acceptedForeignJobJoinedBeforePauseCheckpoint": true,
+  "uncertainForeignJournalNotReplayedOrChanged": true,
+  "art": [
+    {
+      "theme": "pixel",
+      "path": "public/assets/item-market-price-tags-pixel-v257.png",
+      "bytes": 641371,
+      "sha256": "3381b69947abe900599b7a7970848c7536ef1587b9f86f79d5c7e4dc3a259152",
+      "alphaBoundingBox": [
+        0,
+        21,
+        1234,
+        1254
+      ],
+      "generated": true,
+      "manuallyVisuallyInspected": true,
+      "exactlyThreeTags": true
+    },
+    {
+      "theme": "origami",
+      "path": "public/assets/item-market-price-tags-origami-v257.png",
+      "bytes": 1736706,
+      "sha256": "c6fce42036cc717b205b5624d4637678af276edc5fd7751d513ade7dd342bda6",
+      "alphaBoundingBox": [
+        29,
+        8,
+        1225,
+        1254
+      ],
+      "generated": true,
+      "manuallyVisuallyInspected": true,
+      "exactlyThreeTags": true
+    }
+  ],
+  "actualEarnedV254MarketStillFailed": true,
+  "actualEarnedContinuationNotYetRun": true,
+  "scope": "Current real dual-theme LAN owner game UI: actual gifts, dependency plan, real road movement and separate staff/buyer positions, three waves via item/pack buttons, pause-close-reload with original ID, injected lost finish response, native UI recovery and an additional exact-envelope HTTP replay, actual returns and R wonder/display, 390px. Ordinary starting market proficiency/quality and seeded inventory, stub theme recommendation, no external models or real user data. Does not prove all event templates, zero-resource economics or human enjoyment. Controller adapters use deterministic pending-flight fixtures. No original user browser or data, actual model decisions, earned-zero completion, human or physical-device acceptance claimed.",
+  "wholeGoalComplete": false
+}

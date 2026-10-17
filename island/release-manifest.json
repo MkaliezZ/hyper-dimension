@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v256-agent-source",
+  "release": "hyper-dimension-v257-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 92187,
-      "sha256": "946d99edb5fbb3b11b86c3274d0d3c9d110c77d6199a8313c12c96fb22dc1fcb"
+      "bytes": 92510,
+      "sha256": "e5832f77d9b2164b36d0da4b1d72279dc1802fa04b8318c5cbe40ed0b6ff3d1c"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15540,
-      "sha256": "839f0b1f379cb38c0e4d073924d971ff4592bcacde351a1deba75636e7e94059"
+      "bytes": 15577,
+      "sha256": "71e733b555cac26bf65bd2154f078c7b82b0e59b976e25e3eccc8d7659f8966d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6137,8 +6137,8 @@
     },
     {
       "path": "server/festivalActions.mjs",
-      "bytes": 11970,
-      "sha256": "f9ebf2a82bca5b615d9e46bca9ae548ac5d1097026ea7d94310379e129a54bd5"
+      "bytes": 12219,
+      "sha256": "3d25c8af1c1faa0d746dadbfea9f29983aa5bd8e085df7ca1ff430bfcdc5a889"
     },
     {
       "path": "server/fieldActions.mjs",
@@ -6682,8 +6682,8 @@
     },
     {
       "path": "src/contentCatalog.js",
-      "bytes": 9904,
-      "sha256": "9cc9708f8f953e8881ba3979e2e4ef7aee880dea8ea00b775394a135c6cefad9"
+      "bytes": 9947,
+      "sha256": "7089a512acd15a3fec6ba4aebba8089f92693de0cac4c593b82175e3b1e49cdb"
     },
     {
       "path": "src/contentUI.js",
@@ -6912,8 +6912,8 @@
     },
     {
       "path": "src/festivalParty.js",
-      "bytes": 14754,
-      "sha256": "a326b7d989aacbafef09b75a8337379a31f39f11576642366b6e5862a10fdaef"
+      "bytes": 15772,
+      "sha256": "6aea1d5bcffd173c9c1415320156bd7862b579c32ceca338bd615bc961315446"
     },
     {
       "path": "src/festivalRuntime.js",
@@ -6922,8 +6922,8 @@
     },
     {
       "path": "src/festivalUI.js",
-      "bytes": 10755,
-      "sha256": "eaa455e9ca2e0bcefe03e550b7ae3663a8fc52c96f84df7a7e7c33e559963c16"
+      "bytes": 11450,
+      "sha256": "7384a9793d42834f87e41411d0c3127989bfba011d8259ce6703c2df0bbefb7a"
     },
     {
       "path": "src/fireworks-v90.css",
@@ -7227,8 +7227,8 @@
     },
     {
       "path": "src/individualItemArt.js",
-      "bytes": 8294,
-      "sha256": "5a64b48afad6d6920631bec3a201dd3695c5db6fa9ede8dc390c283a13916a0c"
+      "bytes": 8766,
+      "sha256": "93c9497f41cfebd87bde148d299604f9198f0250c164b5662a942bcae7674693"
     },
     {
       "path": "src/interiorDesign.js",
@@ -7472,8 +7472,8 @@
     },
     {
       "path": "src/marketRules.js",
-      "bytes": 9518,
-      "sha256": "798cef580dcbff68bb0e986d893350d6c5e800a10ffd3599f71852abe1605f23"
+      "bytes": 9904,
+      "sha256": "b9ce11a39d1b5baaf3dd602852a3b52d08ca64da148ed83169f3d154da4d7204"
     },
     {
       "path": "src/marketView.js",
@@ -7602,13 +7602,13 @@
     },
     {
       "path": "src/partyDesigner.js",
-      "bytes": 11294,
-      "sha256": "181e9f30b77db616e5cb17e23674e2ac698c66d982d074126e6e3028270ffaca"
+      "bytes": 11341,
+      "sha256": "3beebf546b17b000fe3da3cfe79a42cf7dd51fed191887c05f5a89b82f2f1e3a"
     },
     {
       "path": "src/partyGuide.js",
-      "bytes": 8117,
-      "sha256": "89cbaa1b4ec60451b37412a355cbd90c51745a599d25edfc12e99361297e616f"
+      "bytes": 8286,
+      "sha256": "4dcb6f92e650e78cf561ced9e241ab665aa9f1bb98674ad9b02081e55f014c43"
     },
     {
       "path": "src/partyGuideUI.js",
@@ -7627,8 +7627,8 @@
     },
     {
       "path": "src/partyPlanning.js",
-      "bytes": 17424,
-      "sha256": "15f75e4c681923cc276dc4594af167dd5a3395ae0ba8c741b34148ce33a20cd4"
+      "bytes": 17924,
+      "sha256": "dbe4a6465982c946de5bc5e2d89b51aa41be42556526321f1eebcd44146f6d55"
     },
     {
       "path": "src/partyReceipts.js",
@@ -8032,8 +8032,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 12162,
-      "sha256": "8ac539abfae795a10907086af3cc917211715084559a1c57b95965e6637151ba"
+      "bytes": 12501,
+      "sha256": "a32ecc154816f789309f2d92c8b3c4c98ec2d823225cf90039b0e61ce13cf850"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -11097,13 +11097,13 @@
     },
     {
       "path": "tests/v87-market-browser.mjs",
-      "bytes": 12852,
-      "sha256": "ffb196649aa07eebcf6ec99b347f4797027b4f17bc76d17acd2ea91634b44ec7"
+      "bytes": 14815,
+      "sha256": "090571c0cfbc0ef8d5da15d17b3df95602d62b8630133869fe820e549c24feaa"
     },
     {
       "path": "tests/v87-market.test.mjs",
-      "bytes": 19935,
-      "sha256": "83f17cfd6f86e32310dd653b5d542cdc6678cc476bf85a66b0ffd09f3de50f45"
+      "bytes": 20138,
+      "sha256": "5b4c933b83dd8f99d7963bc9ec97d79d8bcee4ec0104b6bb57919f8ca0cf586c"
     },
     {
       "path": "tests/v88-hermes-parties-browser.mjs",
@@ -11227,8 +11227,8 @@
     },
     {
       "path": "tests/v92-cooperation-fixture.mjs",
-      "bytes": 10985,
-      "sha256": "3f77c688c2d8c3602214d6c44198983ce1b7a7ba9e761796e727fe3fc6bc40de"
+      "bytes": 11200,
+      "sha256": "bf1573af1881a120718c9242efd6fe96b48b1a094d4480a62b8c991c6b7da9a5"
     },
     {
       "path": "tests/v92-cooperation-hermes.mjs",
@@ -12854,7 +12854,37 @@
       "path": "docs/verification/v256/queued-idle-wakeup.json",
       "bytes": 4280,
       "sha256": "e88c44ef44be23ddd92a2a06637f1cb65cdf95f10dd0d2500a83b763955b1df4"
+    },
+    {
+      "path": "tests/v257-market-equipment.test.mjs",
+      "bytes": 9859,
+      "sha256": "a9b9cfc7dc1fa8991a7d37f9ebef546a58cdfd8dd7a786b100ee56a253070984"
+    },
+    {
+      "path": "tests/v257-checkpoint-idle-browser.mjs",
+      "bytes": 9776,
+      "sha256": "776d0d18cf162f512291543b85375564e2d7edc7a80073e06a6a97fa6ad22a24"
+    },
+    {
+      "path": "docs/market-equipment-and-pause-v257.md",
+      "bytes": 2212,
+      "sha256": "540d30560163635a4a8372f45b74ea139abf7f756a854669c6ef750366835768"
+    },
+    {
+      "path": "docs/verification/v257/market-equipment-and-pause.json",
+      "bytes": 6514,
+      "sha256": "85f134bb4518be77b8023c7385ef232a4e7cf335adfa550defd950b5da009ba1"
+    },
+    {
+      "path": "public/assets/item-market-price-tags-pixel-v257.png",
+      "bytes": 641371,
+      "sha256": "3381b69947abe900599b7a7970848c7536ef1587b9f86f79d5c7e4dc3a259152"
+    },
+    {
+      "path": "public/assets/item-market-price-tags-origami-v257.png",
+      "bytes": 1736706,
+      "sha256": "c6fce42036cc717b205b5624d4637678af276edc5fd7751d513ade7dd342bda6"
     }
   ],
-  "publicRevision": "v256-github"
+  "publicRevision": "v257-github"
 }

@@ -1,5 +1,5 @@
 import {randomInt,createHash} from 'node:crypto';
-import {hydrateFestival,festivalSnapshot,festivalOwner,createFestivalEvent,updateFestivalEvent,inviteFestivalNpc,createFestivalPlan,cancelFestivalDraft,startFestivalParty,finishFestivalParty,abandonFestivalParty,archiveFestivalParty,validFestivalParty} from '../src/festivalParty.js';
+import {hydrateFestival,festivalSnapshot,festivalOwner,createFestivalEvent,updateFestivalEvent,upgradeFestivalEquipment,inviteFestivalNpc,createFestivalPlan,cancelFestivalDraft,startFestivalParty,finishFestivalParty,abandonFestivalParty,archiveFestivalParty,validFestivalParty} from '../src/festivalParty.js';
 import {partyDraftStamp} from '../src/partyPlanning.js';
 import {applyMarketEvent,validMarketGame} from '../src/marketRules.js';
 import {markFishingPartyDay} from './fishingActions.mjs';
@@ -9,7 +9,7 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b),digest=e=>createHash('sh
 const payments=s=>Object.fromEntries(Object.entries(s.economy?.cashReceipts||{}).filter(([id])=>/^market-\d+:(entry|reward)$/.test(id)));
 const wonderProjection=s=>({owned:s.eventWonders?.owned?.market_lantern||null,receipts:Object.fromEntries(Object.entries(s.eventWonders?.receipts||{}).filter(([id])=>/^market-\d+$/.test(id))),sources:Object.fromEntries(Object.entries(s.eventWonders?.sources||{}).filter(([id])=>/^market-\d+$/.test(id))),hosted:Object.fromEntries(Object.entries(s.achievementBook?.hosted||{}).filter(([id])=>/^market-\d+$/.test(id)))});
 const mirror=b=>({version:1,lastPartyDay:b.festival.lastDay});
-export const FESTIVAL_OPERATIONS=['festival_enable','festival_create','festival_update','festival_invite','festival_plan','festival_cancel','festival_archive','festival_steward'];
+export const FESTIVAL_OPERATIONS=['festival_enable','festival_create','festival_update','festival_upgrade','festival_invite','festival_plan','festival_cancel','festival_archive','festival_steward'];
 function sync(s,b){b.festival.snapshot=festivalSnapshot(s);b.festival.paid=payments(s);b.festival.wonders=wonderProjection(s);s.festivalControl=mirror(b);}
 export function validFestivalBook(f){
  return f===undefined||!!(f&&f.version===1&&Number.isSafeInteger(f.lastDay)&&f.lastDay>=0&&validFestivalParty({festivalParty:f.snapshot})&&f.snapshot&&f.paid&&typeof f.paid==='object'&&!Array.isArray(f.paid)&&Object.entries(f.paid).every(([id,v])=>/^market-\d+:(entry|reward)$/.test(id)&&v===true)&&f.wonders&&typeof f.wonders==='object'&&(f.hold===null||f.hold&&typeof f.hold==='object'));
@@ -46,15 +46,16 @@ export function applyFestivalManagement(s,b,i){
   checkEvent(s,i);
   if(i.operation==='festival_create')r=createFestivalEvent(s,i.proposal);
   else if(i.operation==='festival_update')r=updateFestivalEvent(s,i.proposal);
+  else if(i.operation==='festival_upgrade')r=upgradeFestivalEquipment(s);
   else if(i.operation==='festival_invite')r=inviteFestivalNpc(s,i.npcId);
   else if(i.operation==='festival_plan')r=createFestivalPlan(s);
   else if(i.operation==='festival_cancel')r=cancelFestivalDraft(s);
   else throw fail('集市管理操作无效');
  }
  if(!r?.ok)throw fail(r?.reason||'集市条件尚未满足','festival_not_ready');
- if(['festival_create','festival_update'].includes(i.operation))delete hydrateFestival(s).composer;
+ if(['festival_create','festival_update','festival_upgrade'].includes(i.operation))delete hydrateFestival(s).composer;
  if(!validFestivalParty(s))throw fail('集市记录未通过校验');
- sync(s,b);return{...r,text:({'festival_create':'集市方案已发布','festival_update':'集市方案已更新','festival_invite':'赠物已送达，居民同意参加当前版本','festival_plan':'集市物资筹备已登记','festival_cancel':'筹备已取消，未使用商品保留，已送赠物留给居民','festival_archive':'本场集市结果已归档','festival_steward':'管家集市方案和实际物资清单已登记'})[i.operation]};
+ sync(s,b);return{...r,text:({'festival_create':'集市方案已发布','festival_update':'集市方案已更新','festival_upgrade':'已改用四季摊位器具，已完成分工和赠物保留，请重新确认本版邀请','festival_invite':'赠物已送达，居民同意参加当前版本','festival_plan':'集市物资筹备已登记','festival_cancel':'筹备已取消，未使用商品保留，已送赠物留给居民','festival_archive':'本场集市结果已归档','festival_steward':'管家集市方案和实际物资清单已登记'})[i.operation]};
 }
 function actualAt(s,g,npc,target,{orderId=null}={}){
  const pose=s.festivalAttendance?.id===g.id?s.festivalAttendance.people?.[npc]:null,live=npc===-1?s.player:s.npcPresence?.find(n=>n.id===npc);

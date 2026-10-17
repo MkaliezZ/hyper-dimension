@@ -52,7 +52,12 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   buffer.splice(0,batch.prefix.length);checkpointBatch=null;
  }
  async function checkpointNow(){
-  if(!active||claiming||!ticket||recoveryRequired)return false;if(settling){if(streaming())checkpointAgain=true;return false;}if(saves.pendingAction(theme()))return false;if(!buffer.length)return true;
+  if(!active||claiming||!ticket||recoveryRequired)return false;if(settling){if(streaming())checkpointAgain=true;return false;}if(saves.pendingAction(theme())){
+   // A resident/visitor job may be legitimately ahead of this pause checkpoint.
+   // Join that accepted flight; uncertain journals remain untouched and blocked.
+   try{await saves.idle(theme());}catch{return false;}
+   if(!active||claiming||!ticket||recoveryRequired)return false;
+  }if(!buffer.length)return true;
   const prefix=buffer.slice(0,2048),input={...identity('checkpoint'),batch:ticket.nextBatch,events:structuredClone(prefix)};checkpointBatch={input,prefix};game?.setCheckpointPending?.(true);
   try{
    const response=await send(input);
@@ -122,5 +127,5 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   ticket=activeTicket?.kind===kind?activeTicket:null;lastInput=pending?.body||null;active=true;lock();
   status(ticket?'继续上次的'+ticket.name+'制作':'上次制作的结果尚待确认',recoveryMessage);
  }
- return {begin,recover,exit,refresh:()=>{if(!settling&&!buffer.length&&active){ticket=saves.status(theme()).actions?.active;if(ticket?.kind===kind)mountTicket();}},resume:async()=>{if(settling)return;if(active&&ticket){if(await checkpoint())mountTicket();}else recover();},busy:()=>active,settling:()=>settling,inspect:()=>({ticket,bufferedEvents:buffer.length,pendingCheckpointEvents:checkpointBatch?.prefix.length||0,recoveryRequired,settling,claiming,claimRequested,checkpointInFlight:!!checkpointFlight,exitRequested,exitDrainInFlight:!!exitFlight,active,lastInput}),destroy:()=>clearInterval(timer)};
+ return {begin,recover,exit,refresh:()=>{if(!settling&&!buffer.length&&active){ticket=saves.status(theme()).actions?.active;if(ticket?.kind===kind)mountTicket();}},resume:async()=>{if(settling)return;if(active&&ticket){if(await checkpoint())mountTicket();}else recover();},busy:()=>active,settling:()=>settling||!!checkpointFlight,inspect:()=>({ticket,bufferedEvents:buffer.length,pendingCheckpointEvents:checkpointBatch?.prefix.length||0,recoveryRequired,settling:settling||!!checkpointFlight,claiming,claimRequested,checkpointInFlight:!!checkpointFlight,exitRequested,exitDrainInFlight:!!exitFlight,active,lastInput}),destroy:()=>clearInterval(timer)};
 }

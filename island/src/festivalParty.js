@@ -1,6 +1,6 @@
 import {captureCooperation,validCooperationSnapshot} from './cooperationEvidence.js';
 import {eventRequests,eventCost,partyInputSignature,partyDraftStamp,validatePartyProposal,PARTY_TAGS,THEME_GUESTS,MARKET_INVITES} from './partyPlanning.js';
-import {MARKET_STOCK,MARKET_EQUIPMENT,createMarketGame,marketSummary,validMarketGame} from './marketRules.js';
+import {MARKET_STOCK,marketEquipment,createMarketGame,marketSummary,validMarketGame} from './marketRules.js';
 import {availableQuantity,reserveResources,releaseResources,commitResources,nextOperationId} from './resourceLedger.js';
 import {createProject,syncProjects,controlProject} from './projectPlans.js';
 import {relationshipInvitation} from './residentStories.js';
@@ -16,7 +16,7 @@ export function festivalSnapshot(s){const f=copy(hydrateFestival(s));delete f.co
 export function createFestivalEvent(s,input={}){
  const f=hydrateFestival(s);if(f.draft||f.session)return{ok:false,reason:'先完成或收起当前集市'};
  const checked=validatePartyProposal(s,{name:'海岛手作集市',...input,template:'market'});if(!checked.ok)return checked;
- f.draft={id:nextOperationId(s,'market').replace(':','-'),...checked.proposal,version:1,createdDay:s.day,invites:{},inviteGifts:{},revisions:[],projectId:null,projectIds:[],source:'player',runId:null,proposalId:null};
+ f.draft={id:nextOperationId(s,'market').replace(':','-'),...checked.proposal,equipmentVersion:2,version:1,createdDay:s.day,invites:{},inviteGifts:{},revisions:[],projectId:null,projectIds:[],source:'player',runId:null,proposalId:null};
  return{ok:true,event:f.draft};
 }
 export function updateFestivalEvent(s,input){
@@ -30,9 +30,22 @@ export function updateFestivalEvent(s,input){
  }
  Object.assign(d,c.proposal,{source:'player',runId:null,proposalId:null});return{ok:true,event:d,reinvite:change};
 }
+export function upgradeFestivalEquipment(s){
+ const f=hydrateFestival(s),d=f.draft;
+ if(!d||f.session)return{ok:false,reason:'只能为尚未开场的集市更换器具约定'};
+ if(d.equipmentVersion===2)return{ok:true,replayed:true,event:d};
+ if(d.version>=100000)return{ok:false,reason:'请取消当前方案后重新发布'};
+ const before=partyDraftStamp(d),project=s.workProjects?.find(p=>p.id===d.projectId);
+ if(project&&['preparing','paused','ready'].includes(project.status)){const r=controlProject(s,project.id,'cancel');if(!r.ok)return r;}
+ // Keep completed work, recruitment receipts, gifts and all project ids for cooperation evidence.
+ d.equipmentVersion=2;d.version++;d.invites={};d.projectId=null;
+ d.revisions.push({version:d.version,day:s.day,before});d.revisions=d.revisions.slice(-20);
+ Object.assign(d,{source:'player',runId:null,proposalId:null});
+ return{ok:true,event:d,reinvite:true};
+}
 export function festivalNeeds(s){
  const d=hydrateFestival(s).draft;if(!d)return null;
- const cost={...eventCost(d),...MARKET_EQUIPMENT};
+ const cost={...eventCost(d),...marketEquipment(d)};
  for(const r of eventRequests(d))if((d.inviteGifts[r.id]?.delivered?.[r.item]||0)<r.quantity)cost[r.item]=(cost[r.item]||0)+r.quantity;
  const owner=d.projectId?'project:'+d.projectId:festivalOwner(d.id);
  return{cost,missing:Object.fromEntries(Object.entries(cost).map(([id,n])=>[id,Math.max(0,n-availableQuantity(s,id,owner))]).filter(([,n])=>n))};
@@ -71,7 +84,7 @@ export function festivalReadiness(s){
  const people=eventRequests(d);if(people.some(r=>d.invites[r.id]?.version!==d.version))return{ready:false,reason:'亲自对话、交付物品，邀请所有摊主与嘉宾'};
  const blocked=people.map(r=>relationshipInvitation(s,r.id,people.map(p=>p.id))).find(r=>!r.ready);if(blocked)return{ready:false,reason:blocked.reason};
  const owner=d.projectId?'project:'+d.projectId:null;
- if(Object.entries({...eventCost(d),...MARKET_EQUIPMENT}).some(([id,n])=>availableQuantity(s,id,owner)<n))return{ready:false,reason:'需备齐16件商品、摊架用品与12岛币'};
+ if(Object.entries({...eventCost(d),...marketEquipment(d)}).some(([id,n])=>availableQuantity(s,id,owner)<n))return{ready:false,reason:'需备齐16件商品、摊架用品与12岛币'};
  return{ready:true,event:d};
 }
 export function startFestivalParty(s,{seed,theme}){
@@ -80,7 +93,7 @@ export function startFestivalParty(s,{seed,theme}){
  if(!layout)return{ok:false,reason:'广场摊位与行路空间不足，先收起周围摆件'};
  // Validate before spending; no failed setup may leave consumed goods behind.
  const game=createMarketGame(seed,d.difficulty,people.map(r=>r.id));
- releaseFestivalPlan(s,d);const owner=festivalOwner(d.id),hold=reserveResources(s,owner,{...eventCost(d),...MARKET_EQUIPMENT},{purpose:d.name+' · 商品与摊位器具'});
+ releaseFestivalPlan(s,d);const owner=festivalOwner(d.id),hold=reserveResources(s,owner,{...eventCost(d),...marketEquipment(d)},{purpose:d.name+' · 商品与摊位器具'});
  if(!hold.ok)return{ok:false,reason:'可用商品或器具不足',missing:hold.missing};
  const personalStock=Object.fromEntries(Object.entries(MARKET_STOCK).map(([id,n])=>[id,Math.min(n,s.economy?.playerGoods?.[id]||0)]));
  if(!transact(s,{cost:12,materials:{...MARKET_STOCK},owner,category:'party',receipt:d.id+':entry',note:d.name+' · 场地与16件寄售商品'})){releaseResources(s,owner);return{ok:false,reason:'开场结算未完成'};}
@@ -123,7 +136,7 @@ export function cancelFestivalDraft(s){
 export function archiveFestivalParty(s){const f=hydrateFestival(s);if(!['claimed','abandoned'].includes(f.session?.phase))return{ok:false,reason:'先结束本场集市'};f.session=null;return{ok:true};}
 const record=v=>v&&typeof v==='object'&&!Array.isArray(v),positive=v=>Number.isSafeInteger(v)&&v>0,id=v=>typeof v==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(v);
 export function validFestivalDesign(d){
- if(!record(d)||!validCooperationSnapshot(d.cooperation)||!validStewardPartyMetadata(d)||!id(d.id)||d.template!=='market'||!positive(d.version)||d.version>100000||!positive(d.createdDay)||typeof d.name!=='string'||!d.name.trim()||d.name.length>24||typeof d.description!=='string'||d.description.length>200||!['normal','easy'].includes(d.difficulty)||!Array.isArray(d.tags)||d.tags.length>2||new Set(d.tags).size!==d.tags.length||d.tags.some(t=>!PARTY_TAGS.some(p=>p.id===t))||typeof d.guestReason!=='string'||d.guestReason.length>180||d.guestId!==null&&(!THEME_GUESTS.some(g=>g.id===d.guestId&&g.tags.some(t=>d.tags.includes(t)))||MARKET_INVITES.some(r=>r.id===d.guestId)))return false;
+ if(!record(d)||d.equipmentVersion!==undefined&&d.equipmentVersion!==1&&d.equipmentVersion!==2||!validCooperationSnapshot(d.cooperation)||!validStewardPartyMetadata(d)||!id(d.id)||d.template!=='market'||!positive(d.version)||d.version>100000||!positive(d.createdDay)||typeof d.name!=='string'||!d.name.trim()||d.name.length>24||typeof d.description!=='string'||d.description.length>200||!['normal','easy'].includes(d.difficulty)||!Array.isArray(d.tags)||d.tags.length>2||new Set(d.tags).size!==d.tags.length||d.tags.some(t=>!PARTY_TAGS.some(p=>p.id===t))||typeof d.guestReason!=='string'||d.guestReason.length>180||d.guestId!==null&&(!THEME_GUESTS.some(g=>g.id===d.guestId&&g.tags.some(t=>d.tags.includes(t)))||MARKET_INVITES.some(r=>r.id===d.guestId)))return false;
  const people=new Set(eventRequests(d).map(r=>String(r.id)));
  if(!record(d.invites)||Object.entries(d.invites).some(([n,v])=>!people.has(n)||!record(v)||!positive(v.version)||v.version>d.version||!positive(v.day)))return false;
  if(!record(d.inviteGifts)||Object.entries(d.inviteGifts).some(([n,v])=>!/^([0-9]|1[0-4])$/.test(n)||!record(v)||!positive(v.day)||v.affinityGranted!==true||!record(v.delivered)||!Object.keys(v.delivered).length||Object.entries(v.delivered).some(([k,c])=>!['bread','wood','tea',...THEME_GUESTS.map(r=>r.item)].includes(k)||!positive(c)||c>99)))return false;

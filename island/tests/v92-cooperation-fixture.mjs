@@ -9,6 +9,8 @@ export async function fixture(template,theme='pixel',{proof=fixtureProof,nonTarg
  await mkdir('qa/v92',{recursive:true});let now=1791310000000;const directory=await mkdtemp(resolve('qa/v92/'+template+'-'+theme+'-')),store=createSaveStore({directory,now:()=>now}),registry=createRecruitmentStore({directory}),s=hydrateTown(createZeroState());
  s.freshStartPending=false;s.coins=140;for(const id of Object.keys(ITEM_BY_ID))s.inventory[id]=nonTargetStock;for(const f of Object.values(s.facilities))f.quality=65;s.roomGames[4]={plays:5};
  if(template==='night'){s.inventory.lantern=0;s.inventory.wood=0;}else{s.inventory.c8_2=0;s.inventory.fiber=0;}
+ // The new market contract must still have real missing work for the recruited helper.
+ if(template==='market')s.inventory.c9_7=0;
  await store.open(theme,{legacyState:s});const config=CONFIG[template],current=()=>store.current(theme),call=async(kind,operation,extra={})=>{const d=await current();return store.action(theme,{kind,operation,requestId:randomUUID(),expectedVersion:d.version,expectedSequence:d.actions?.sequence||0,epoch:d.actions?.epoch||null,day:d.state.day,...(kind==='party'&&operation==='begin'?{gameVersion:2}:{}),...extra});},manage=async(op,extra={})=>{const d=await current(),draft=d.state[config.field]?.draft;return call('commerce',op,{eventId:draft?.id??null,eventVersion:draft?.version??null,eventStamp:partyDraftStamp(draft),...extra});},save=async edit=>{const d=await current(),s=structuredClone(d.state);edit(s);return store.save(theme,{state:s,expectedVersion:d.version});},other=()=>createSaveStore({directory,now:()=>now});
  const f={template,theme,config,directory,store,registry,current,call,manage,save,other,advance:n=>now+=n};
  for(const op of ['enable','hire_enable','plan_enable',config.prefix+'_enable'])await manage(op);
@@ -24,7 +26,7 @@ export async function fixture(template,theme='pixel',{proof=fixtureProof,nonTarg
 export async function produce(f,{all=true}={}){
  let operations=0;for(let guard=0;guard<30;guard++){
   const d=await f.current(),t=d.state.agentTaskLedger.find(t=>t.projectId===f.projectId&&t.remaining>0&&!t.blocked&&['queued','waiting','running'].includes(t.status)&&(t.dependsOn||[]).every(id=>d.state.agentTaskLedger.find(x=>x.id===id)?.status==='done')&&(all||t.npcId===16));if(!t)break;
-  const decision=taskDecision(d.state,t,{reserve:false});assert(['forest','workshop','gallery'].includes(decision.goal),'fixture supplies non-target resources, unhandled goal '+decision.goal);
+  const decision=taskDecision(d.state,t,{reserve:false});assert(['forest','workshop','gallery'].includes(decision.goal)||decision.goal==='tea'&&decision.buildingId===9&&decision.recipeId==='recipe_c9_7','fixture supplies non-target resources, unhandled goal '+decision.goal);
   const begin=await f.call('resident','begin',{actorId:t.npcId,intent:{...decision,assignmentId:t.id}});
   f.advance(20000);await f.call('resident','finish',{requestId:begin.ticket.requestId,epoch:begin.ticket.epoch,sequence:begin.ticket.sequence});operations++;
  }
