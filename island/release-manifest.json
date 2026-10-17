@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v259-agent-source",
+  "release": "hyper-dimension-v260-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 93198,
-      "sha256": "dc5780892fb50f1895f3b92d44da340719dc9c9918fa9b04122e532e8e7fd901"
+      "bytes": 93546,
+      "sha256": "368d9d34e4bb645a92c25f6b4a58400e838c5ba1095cbe80abbb27138ca66245"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15619,
-      "sha256": "4ffacd364a8558ecb74dfbe32b72361d88e3e530a83f67d997bb9745a68b63f9"
+      "bytes": 15661,
+      "sha256": "58f81432d5a1c07db32a2380589ccd4166f2e2e2218dcf0bcea7aaad48289096"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -8217,8 +8217,8 @@
     },
     {
       "path": "src/visitorRuntime.js",
-      "bytes": 13315,
-      "sha256": "92c0c4de71ac629e1d4278ca8632cf41b58b401acfe55993141f6eaceb06f149"
+      "bytes": 13609,
+      "sha256": "70be735ab3b6c3ce5d4d5e70dd18f5163fb36fa04ce5dfea0b872a36ad0eec6c"
     },
     {
       "path": "src/weatherRules.js",
@@ -12914,7 +12914,22 @@
       "path": "docs/verification/v259/native-diagnostics.json",
       "bytes": 931,
       "sha256": "cb7bddac19fa352c0a1f1872996a605c23591e54f7c6c5a81e1d2daf6d539ffb"
+    },
+    {
+      "path": "tests/v260-visitor-queue-restore.test.mjs",
+      "bytes": 3234,
+      "sha256": "834df8088271fc0a62c31e2001c8464a0d9a6fb36ef0217f747b8d908398fe4f"
+    },
+    {
+      "path": "docs/visitor-queue-recovery-v260.md",
+      "bytes": 1519,
+      "sha256": "d90e31850f7cd061a1f0593a197900c324b87d5471c2bf7e6e2dcd8d7b2912dd"
+    },
+    {
+      "path": "docs/verification/v260/visitor-queue-recovery.json",
+      "bytes": 1176,
+      "sha256": "852b2b5679cc89ab5f8abd988a4d714384f1f10e4f500e2de8357693376f4dab"
     }
   ],
-  "publicRevision": "v259-github"
+  "publicRevision": "v260-github"
 }

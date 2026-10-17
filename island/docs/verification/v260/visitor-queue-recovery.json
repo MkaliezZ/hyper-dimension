@@ -1,0 +1,39 @@
+{
+  "version": "V260",
+  "sourceBaseCommit": "c720fb91c2bb8d6d703540f060bef714d10f73f0",
+  "requiredRules": 1386,
+  "ruleGroups": [
+    1372,
+    14
+  ],
+  "originalRestorationTests": 10,
+  "originalRestorationFailures": 10,
+  "relatedVisitorRulesPassed": 23,
+  "newBothThemeQueueRules": 10,
+  "persistedReservationsRegisteredBeforeAnyResumeRoute": true,
+  "fullTerminalWaitsWithoutClaimingOccupiedSlots": true,
+  "recruitedPassengerQueueRespected": true,
+  "backendQueueOccupancyAndDepartureClockChecksUnchanged": true,
+  "actualCaughtOrigamiGuests": [
+    35,
+    36,
+    37
+  ],
+  "nativeDepartedExactlyOnce": [
+    35,
+    37,
+    36
+  ],
+  "nativeDepartureWallMs": 30467,
+  "nativeBudgetMs": 150000,
+  "nativeSaveApiErrors": 0,
+  "nativePageOrAssetErrors": 0,
+  "originalEarnedDataAndFailedReportUnchanged": true,
+  "actualMarketAndHireReceiptsUnchanged": true,
+  "priorActualEarnedOrigamiOrders": 12,
+  "priorActualEarnedOrigamiReward": 77,
+  "priorMarketRewardSettlements": 1,
+  "priorEarnedJourneyStillFailedWithHistoricalQueueErrors": 546,
+  "fullEconomyOrHumanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

@@ -21,7 +21,11 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
  function fromSaved(saved){const t=TOURISTS[saved.skin],g={...t,...saved,npcId:saved.skin,isVisitor:true,x:HARBOR.entrance.x,y:HARBOR.entrance.y,face:-1,phase:saved.skin,animationPhase:saved.skin,walkMix:0,path:[],inside:null,visible:true,status:'继续已确认的游玩行程',entries:id=>slotEntries(id),arrivedAt:time-Math.max(0,(s().visitorControl?.activeSeconds||0)-saved.arrivedAt)};return g;}
  function restoreSaved(){
   const c=s().visitorControl;if(!c)return;nextBoat=time+Math.max(0,c.nextTripAt-c.activeSeconds-12);
-  const moored=new Map();for(const saved of c.guests){const g=fromSaved(saved);guests.push(g);
+  const restored=c.guests.map(saved=>({saved,g:fromSaved(saved)}));
+  // Resuming an already completed itinerary can claim a queue immediately.
+  // Register every persisted reservation before any visitor resumes its route.
+  for(const {saved,g} of restored){if(saved.phase==='reviewed')g.harborQueue=saved.queue;guests.push(g);}
+  const moored=new Map();for(const {saved,g} of restored){
    if(saved.phase==='onboard'){g.stage='onboard';g.visible=false;Object.assign(g,HARBOR.cabin);let boat=moored.get(saved.boatId);if(!boat){boat={id:++serial,serverTrip:saved.boatId,phase:'moored',t:0,x:HARBOR.berth.x,y:HARBOR.berth.y,arrivedAt:time,inbound:[],outbound:[],activePassenger:null,transferPhase:'unloading'};boats.push(boat);moored.set(saved.boatId,boat);}g.harborBoat=boat.id;boat.inbound.push(g.id);}
    else if(saved.phase==='reviewed'){g.stage='waitingBoat';g.harborQueue=saved.queue;g.waitAt=time;g.status='继续等候返程渡船';Object.assign(g,HARBOR.waiting[saved.queue]);}
    else goStop(g);
