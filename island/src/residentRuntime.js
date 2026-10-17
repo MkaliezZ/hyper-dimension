@@ -34,7 +34,7 @@ export function createResidentRuntime({npcs,getState,profile,followPath,onChange
  let environment=getEnvironment();
  const schedule=id=>residentSchedule(id,environment);
  // Filter unavailable social choices before the schedule selects its personal fallback.
- const optionsFor=(id,allowSocial=true)=>scheduledOptions(purposeOptions(id,residentRemote?.leases?{...state(),residentControl:{...state().residentControl,leases:residentRemote.leases()}}:state(),profile(id),time).filter(o=>allowSocial||o.action!=='social'),schedule(id),leisureOptions(state(),id,profile(id)));
+ const optionsFor=(id,allowSocial=true)=>scheduledOptions(purposeOptions(id,residentRemote?.leases?{...state(),residentControl:{...state().residentControl,leases:residentRemote.leases()}}:state(),profile(id),time).filter(o=>(id!==16||o.action!=='work')&&(allowSocial||o.action!=='social')),schedule(id),leisureOptions(state(),id,profile(id)));
  const choiceFor=(id,allowSocial=true)=>{const option=optionsFor(id,allowSocial).find(o=>allowSocial||o.action!=='social');return option?{...option,source:'local',speech:''}:null;};
  const health={deepseek:'等待连接',hermes:'等待连接',lastError:''};const state=()=>getState();
  function remember(i,text){const s=state();s.npcMemory[i]??=[];s.npcMemory[i].push({day:s.day,text});s.npcMemory[i]=s.npcMemory[i].slice(-16)}

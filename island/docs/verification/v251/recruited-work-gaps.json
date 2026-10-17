@@ -1,0 +1,29 @@
+{
+  "version": "V251",
+  "sourceBaseCommit": "0b8f7bcce065c616b3b4a2bbd984598ccd7fbfce",
+  "actualPriorFailure": {
+    "sourceCommit": "76e446b992461ea6b5d5c7ea247035c6e67bb788",
+    "strictGatePassed": false,
+    "rejectedResidentRequests": 9,
+    "code": "resident_task_changed",
+    "actualPixelSuppliesFishingRewardWageDepartureObserved": true,
+    "wholeActualFlowPassed": false,
+    "origamiNotExecuted": true
+  },
+  "cause": "Autonomous career production was still offered to a temporary partner with no executable agreed assignment. The authoritative server correctly rejected work outside its contract.",
+  "fix": "Only permanent residents receive autonomous production choices. A recruited partner retains personal visits, meals and rest; ready explicit agreed assignments still run through the same planner and authoritative work endpoints.",
+  "serverContractGuardsUnchanged": true,
+  "zeroResourcesAndWagesNotFabricated": true,
+  "fixtureScope": "Controlled unit fixtures with real project planning dependencies, project pause/reassignment and a deliberately synthetic accepted recruitment contract; no external models or human acceptance.",
+  "baselineCases": 12,
+  "baselineFailed": 6,
+  "relatedRulesPassed": 25,
+  "requiredRuleGroups": [
+    1304,
+    14
+  ],
+  "requiredRules": 1318,
+  "sourceSha256": "2e21174a4ab577f0b6c46a91b365d71b035f68a04fe8b671c68758d455b7a39d",
+  "actualFixedSourceContinuationPending": true,
+  "wholeGoalComplete": false
+}
