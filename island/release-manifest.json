@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v264-agent-source",
+  "release": "hyper-dimension-v265-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 95564,
-      "sha256": "ce193bb8e2afaa89100d2b82f509550823ff53b02acec9bbd56dee99c189366f"
+      "bytes": 96231,
+      "sha256": "b1dc785ff4f55afb8703583688ba42166dc3b1fb7d4fe9055d9c9302f4a9a1ba"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15902,
-      "sha256": "0d4af0f59cb846b1815dd6515914ed5ff52e1ad66765023ba0a653404b3291d1"
+      "bytes": 15943,
+      "sha256": "af69eec89675ab3e8c3babad817b982ecce570a50f98155e71249e5dfed985aa"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6047,8 +6047,8 @@
     },
     {
       "path": "server/agentService.mjs",
-      "bytes": 29085,
-      "sha256": "3e7d68c6ee12d7f1187b7932bee91e4aa1a5c4fb43d3c318234636ff90196870"
+      "bytes": 29378,
+      "sha256": "0324f7545e7503feb016b40b8d211047ef65768fb320f3bdda579f3dc18103d2"
     },
     {
       "path": "server/atomicJson.mjs",
@@ -12999,7 +12999,22 @@
       "path": "docs/verification/v264/native-product-pixels.json",
       "bytes": 2250,
       "sha256": "e5c2813d280283ccd966d75bdbe7a3896214725d828e16c05aabf52a72b7f962"
+    },
+    {
+      "path": "tests/v265-resident-json-prompt.test.mjs",
+      "bytes": 4886,
+      "sha256": "f740c129788641f4aa2e1ae21df443076618d157dcccade40bc94d8870dbb861"
+    },
+    {
+      "path": "docs/resident-json-prompt-v265.md",
+      "bytes": 2944,
+      "sha256": "a9bb4ee2bf17fd23d1ee3c999122d0a195ce6d250a5b9222a45ebeefd4977259"
+    },
+    {
+      "path": "docs/verification/v265/resident-json-prompt.json",
+      "bytes": 2348,
+      "sha256": "82f636bf1ea072c4e34a74f501cefb02b7c7caec1a99a71c5c3a5467dc8e5d71"
     }
   ],
-  "publicRevision": "v264-github"
+  "publicRevision": "v265-github"
 }

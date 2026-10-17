@@ -1,0 +1,87 @@
+{
+  "version": "V265",
+  "sourceBaseCommit": "cb005644fd010f15cec946f7feba89391305ec47",
+  "requiredRules": 1393,
+  "ruleGroups": [
+    1379,
+    14
+  ],
+  "controlledDispatchBefore": {
+    "passed": 1,
+    "failed": 1
+  },
+  "controlledDispatchAfterAndOriginalPolicyGuards": {
+    "passed": 9,
+    "failed": 0
+  },
+  "actualWirePromptExampleParsesAsJson": true,
+  "strictParserBytesUnchanged": true,
+  "modelPolicyAndCadenceUnchanged": true,
+  "noAdditionalRepairCalls": true,
+  "maxPlanningCalls": 1,
+  "maxPlanningTokens": 3000,
+  "reportedUsagePreservedForMalformedStopReply": true,
+  "originalHour": {
+    "sourceCommit": "95e0f8d39b5c5611456cbe8a6e96360ce45aa8b2",
+    "completed": true,
+    "performancePassed": true,
+    "functionalApiPassed": false,
+    "overallPassed": false,
+    "reportSha256": "362c818875ae3e3f5d69f4c52efc12224bb8cd5b217705df027597bc7a6565cf",
+    "failureCode": "model_response_format",
+    "theme": "origami",
+    "originalRawReplySha256": "e76a5d1fcb53ef9daceb2cd0f1d1fe71067e8243eff460fa8e7de3cd3519b134",
+    "httpStatus": 200,
+    "finishReason": "stop",
+    "originalMalformedReplyStillRejected": true
+  },
+  "actualProviderVerification": {
+    "model": "deepseek-flash",
+    "source": "deepseek",
+    "providerCalls": 1,
+    "acceptedIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "missingIds": [],
+    "everyPurposeWasOfferedToItsOwnResident": true,
+    "elapsedMs": 5607,
+    "usage": {
+      "input": 39229,
+      "output": 596,
+      "total": 39825,
+      "calls": 1,
+      "cacheRead": 128,
+      "uncachedInput": 39101,
+      "knownTotal": 39825,
+      "reportedCalls": 1,
+      "unknownCalls": 0
+    },
+    "fictionalCompletedHourStateMemoryClone": true,
+    "visualScheduleNull": true,
+    "completeRecipeCatalogContext": true,
+    "resourceActionsExecuted": false,
+    "originalSaveUnchanged": true,
+    "notANewNaturalHour": true
+  },
+  "runtimeChange": "one resident planning system-prompt output example",
+  "otherGameAndAssetPayloadsUnchanged": 1249,
+  "dependenciesEngineEconomyAndArtUnchanged": true,
+  "priorV264Native616ArtEvidenceInherited": true,
+  "currentHostedChecksAndNewQualifiedHourPending": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}
