@@ -1,3 +1,5 @@
+import {MAX_NAVIGATION_FRAME_SECONDS} from './frameClock.js';
+
 // A sleeping resident can honour an already accepted activity invitation.
 // An action being submitted or awaiting its authoritative receipt cannot be taken over.
 export function residentHasPendingWork(n){
@@ -6,11 +8,12 @@ export function residentHasPendingWork(n){
 
 // Granted work can finish its animation while unrelated receipts wait.
 // onDone submits the original lease; only its authoritative receipt delivers work.
-export function advanceAcceptedWorkAction(n,dt){
+export function advanceAcceptedWorkAction(n,dt,at=performance.now()){
  const d=n?.intent,a=n?.action,key=[['serverFarmTicket','serverFarmFinished','farm'],['serverFieldTicket','serverFieldFinished','field'],['serverResidentTicket','serverResidentFinished','resident']].find(([key,done])=>d?.[key]&&!d?.[done]),t=key&&d[key[0]];
  if(!t||t.kind!==key[2]||t.actor!=='npc'||t.actorId!==n.npcId||d.starting||!a||a.type!==t.action||!Number.isFinite(dt)||dt<=0)return false;
- a.t=Math.min(a.duration,a.t+dt);n.walkMix=(n.walkMix||0)*Math.exp(-dt*10);
- if(a.t>=a.duration){n.action=null;if(n.indoorActor?.action===a)n.indoorActor.action=null;a.onDone?.();}
+ const elapsed=Math.min(MAX_NAVIGATION_FRAME_SECONDS,dt);a.t=Math.min(a.duration,a.t+elapsed);n.walkMix=(n.walkMix||0)*Math.exp(-elapsed*10);
+ const ready=!Number.isFinite(a.acknowledgedAt)||Number.isFinite(at)&&at-a.acknowledgedAt>=a.duration*1000;
+ if(a.t>=a.duration&&ready){n.action=null;if(n.indoorActor?.action===a)n.indoorActor.action=null;a.onDone?.();}
  return true;
 }
 

@@ -1,6 +1,6 @@
 import {MAX_IMPORT_BYTES} from './saveLimits.js';
 import {setRecoveryDialog,readRecoveryProgress} from './actionRecoveryUI.js';
-import {modalNavigationToken} from './modalNavigation.js';
+import {modalNavigationToken,advanceModalNavigation} from './modalNavigation.js';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const labels={automatic:'自动备份',manual:'手动备份',migration:'浏览器旧档',new:'初次登岛','before-restart':'归零前备份','before-restore':'恢复前备份',recovery:'故障恢复',restore:'恢复存档',restart:'从零重开',import:'导入存档','before-import':'导入前备份'};
 const origins={'server-new':'由本机服务创建的新岛','legacy-browser':'经确认导入的浏览器旧档','local-export':'经确认导入的本机签名备份','local-checkpoint':'恢复自本机历史备份','external-state':'经确认导入的普通存档，来源未验证','legacy-export':'经确认导入的旧版备份，来源未验证','foreign-export':'经确认导入的另一安装环境备份'};
@@ -22,7 +22,7 @@ export function createSaveUI({saves,theme,openModal,toast}){
    root.querySelector('#cancelImport').onclick=show;
    const confirm=root.querySelector('#confirmImport');
    if(confirm)confirm.onclick=async()=>{confirm.disabled=true;try{await saves.importSave(style,p);}catch(error){toast(error.message);if(navigation.current())show();}};
-  }catch(error){toast(error.message);}
+  }catch(error){toast(error.message);if(token.current())show();}
  }
  async function show(){
   const style=theme();saves.cancelImportPreview(style);const s=saves.status(style);
@@ -37,8 +37,9 @@ export function createSaveUI({saves,theme,openModal,toast}){
   const root=document.querySelector('#modalRoot'),token=modalNavigationToken();
   root.querySelector('#importSaveFile').onchange=async event=>{
    const file=event.target.files?.[0];if(!file)return;
-   try{if(file.size>MAX_IMPORT_BYTES)throw Error('备份文件超过 64 MiB 容量上限');const data=JSON.parse(await file.text());if(token.current())await previewFile(style,data,file.name,null,token);}
-   catch(error){toast(error.message);}
+   advanceModalNavigation();const inputToken=modalNavigationToken();
+   try{if(file.size>MAX_IMPORT_BYTES)throw Error('备份文件超过 64 MiB 容量上限');const data=JSON.parse(await file.text());if(inputToken.current())await previewFile(style,data,file.name,null,inputToken);}
+   catch(error){toast(error.message);if(inputToken.current())show();}
   };
   const act=(id,fn)=>{const b=root.querySelector('#'+id);if(b)b.onclick=async()=>{b.disabled=true;try{await fn()}catch(error){toast(error.message)}finally{if(b.isConnected)b.disabled=false}}};
   act('previewMigration',()=>previewFile(style,null,'本机保留的浏览器旧档',s.migration.id,token));

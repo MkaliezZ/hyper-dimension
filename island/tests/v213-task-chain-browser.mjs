@@ -11,6 +11,8 @@ import {createWorkTimeBudget} from './workTimeBudget.mjs';
 import {installVisibleSlowFrames} from './visibleSlowFrames.mjs';
 
 const out=resolve(process.env.HD_QA_OUT||'qa/v213/native-task-chains');await mkdir(out,{recursive:true});
+const slowFramePolicy={normalMs:Number(process.env.HD_QA_SLOW_NORMAL_MS||75),stallMs:Number(process.env.HD_QA_SLOW_STALL_MS||650),every:Number(process.env.HD_QA_SLOW_EVERY||12)};
+assert(Number.isInteger(slowFramePolicy.normalMs)&&slowFramePolicy.normalMs>=0&&slowFramePolicy.normalMs<=1000&&Number.isInteger(slowFramePolicy.stallMs)&&slowFramePolicy.stallMs>=slowFramePolicy.normalMs&&slowFramePolicy.stallMs<=7500&&Number.isInteger(slowFramePolicy.every)&&slowFramePolicy.every>=2&&slowFramePolicy.every<=100);
 const directory=await mkdtemp(join(out,'fictional-lan-'));
 const service=await createLanHttpServer({directory,port:0,enrollmentKey:'ISOLATED-TASK-CHAIN'}),base='http://127.0.0.1:'+service.port;
 const clockFile=join(directory,'environment/environment-clock.json'),clock=JSON.parse(await readFile(clockFile,'utf8'));assert.equal(clock.rate,1);assert.equal(clock.dayLengthMs,900000);
@@ -30,7 +32,7 @@ try{
    {id:'third',npcId:5,goal:'forest',resource:'wood',quantity:2,intent:'最后回林地补两份木材',dependsOn:['second']}];
   const open=async()=>{
    const context=await browser.newContext({viewport:{width:1440,height:1000}});await context.addCookies([{name:'hd_lan_session',value:account.token,url:base,httpOnly:true,sameSite:'Strict'}]);
-   if(report.slowVisibleFrames)await context.addInitScript(installVisibleSlowFrames);
+   if(report.slowVisibleFrames)await context.addInitScript(installVisibleSlowFrames,slowFramePolicy);
    await context.addInitScript(()=>{const probe={started:performance.now(),last:null,frames:0,maxGap:0};window.nativeTaskFrames=probe;const frame=at=>{if(probe.last!==null){probe.frames++;probe.maxGap=Math.max(probe.maxGap,at-probe.last);}probe.last=at;requestAnimationFrame(frame);};requestAnimationFrame(frame);});
    await context.route('**/api/**',r=>{const path=new URL(r.request().url()).pathname;
     if(path==='/api/hermes/command')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({source:'hermes',model:'deepseek-flash',answer:'已提出三步顺序分工，等实际动作完成后记录。',runId:'fictional-chain-'+theme,commands,plans:[],parties:[],operations:[]})});

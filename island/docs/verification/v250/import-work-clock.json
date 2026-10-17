@@ -1,0 +1,187 @@
+{
+  "version": "V250",
+  "sourceBaseCommit": "76e446b992461ea6b5d5c7ea247035c6e67bb788",
+  "originalCiFailures": [
+    {
+      "run": 39001947046,
+      "job": 117306549752,
+      "case": "both signed imports lost confirmation after the actual canonical read",
+      "originalLogAndArtifactRetained": true
+    },
+    {
+      "run": 39001947046,
+      "job": 117306549597,
+      "case": "pixel first resident job exceeded120s on slow native Mac renderer",
+      "originalLogAndArtifactRetained": true
+    }
+  ],
+  "nativeImportBaseline": {
+    "cases": 6,
+    "passed": 4,
+    "failed": 2,
+    "controlledDelay": "Actual manual checkpoint completes internally, its UI continuation waits until a real signed import canonical read is pending"
+  },
+  "nativeImportFixed": {
+    "cases": 6,
+    "passed": true,
+    "lostResponseOriginalIdentityAndReentryChecksRetained": true
+  },
+  "workClockBaseline": {
+    "cases": 6,
+    "failed": 6,
+    "scope": "Controlled monotonic/visible-frame unit fixtures, regular runtime in both themes and the granted-action helper"
+  },
+  "workClockFix": "Only granted NPC actions use bounded visible steps and a full monotonic duration after grant acknowledgment. Their original authoritative lease still controls completion and resources. Ungranted callbacks and protected crop, financial, needs and effective-day clocks retain their existing step.",
+  "newClockRules": 6,
+  "relatedLifecycleAndNavigationRulesPassed": 24,
+  "relatedRoutingNeedsAndScheduleRulesPassed": 42,
+  "requiredRules": 1306,
+  "requiredRuleGroups": [
+    1292,
+    14
+  ],
+  "nativeSlowPolicies": [
+    {
+      "policy": "chain-slow",
+      "theme": "pixel",
+      "firstWorkMs": 23466,
+      "remainingWorkMs": 137513,
+      "uniqueActualReceipts": 3,
+      "documents": [
+        {
+          "label": "before-mid-chain-reload",
+          "fps": 7.8247532259666475,
+          "maxGap": 846.6999999999998,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        },
+        {
+          "label": "before-empty-browser-reopen",
+          "fps": 8.284712062188222,
+          "maxGap": 698.5,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        }
+      ]
+    },
+    {
+      "policy": "chain-slow",
+      "theme": "origami",
+      "firstWorkMs": 23960,
+      "remainingWorkMs": 136989,
+      "uniqueActualReceipts": 3,
+      "documents": [
+        {
+          "label": "before-mid-chain-reload",
+          "fps": 7.630984498321107,
+          "maxGap": 682.8000000000029,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        },
+        {
+          "label": "before-empty-browser-reopen",
+          "fps": 8.094029537907701,
+          "maxGap": 771.6000000000004,
+          "policy": {
+            "normalMs": 75,
+            "stallMs": 650,
+            "every": 12
+          }
+        }
+      ]
+    },
+    {
+      "policy": "chain-3fps",
+      "theme": "pixel",
+      "firstWorkMs": 25539,
+      "remainingWorkMs": 168731,
+      "uniqueActualReceipts": 3,
+      "documents": [
+        {
+          "label": "before-mid-chain-reload",
+          "fps": 1.8415563055896196,
+          "maxGap": 1818.5999999999985,
+          "policy": {
+            "normalMs": 300,
+            "stallMs": 1800,
+            "every": 12
+          }
+        },
+        {
+          "label": "before-empty-browser-reopen",
+          "fps": 2.31079717457114,
+          "maxGap": 1819.4000000000087,
+          "policy": {
+            "normalMs": 300,
+            "stallMs": 1800,
+            "every": 12
+          }
+        }
+      ]
+    },
+    {
+      "policy": "chain-3fps",
+      "theme": "origami",
+      "firstWorkMs": 32183,
+      "remainingWorkMs": 159674,
+      "uniqueActualReceipts": 3,
+      "documents": [
+        {
+          "label": "before-mid-chain-reload",
+          "fps": 2.4224119491941747,
+          "maxGap": 1813.1999999999998,
+          "policy": {
+            "normalMs": 300,
+            "stallMs": 1800,
+            "every": 12
+          }
+        },
+        {
+          "label": "before-empty-browser-reopen",
+          "fps": 2.210774633734966,
+          "maxGap": 1818.5999999999913,
+          "policy": {
+            "normalMs": 300,
+            "stallMs": 1800,
+            "every": 12
+          }
+        }
+      ]
+    }
+  ],
+  "clockFileAnd120s240sBudgetsUnchanged": true,
+  "needsFixture": true,
+  "modelsCalledInTheseNativeChecks": false,
+  "sourceFilesSha256": {
+    "src/saveUI.js": "7113231802d73628a679548a71f59b0f4376ddcdc393e6f1b1ec0e3162b20537",
+    "src/residentActivityControl.js": "ea624c51b94b7465ae5a516a91e21ebbb4a7a5062808b9aa80428d614b2c8de5",
+    "src/residentRuntime.js": "0a5f496e0e7bedd7ecef9ac099a0a9da5c37182d1120c55dbe566d6481241d99",
+    "src/app.js": "193a3a1d3293023626db5b0965b3c6582aef5080cb102a82cb7a6af4afedfcdb"
+  },
+  "scope": "Automated Windows native checks on isolated fictional accounts. Explicit visible RAF delays, actual wall clocks/roads and three authoritative task receipts with mid-chain reload and empty-browser reopen. Not smoothness, physical Mac, human, complete five-event or final frozen-hour acceptance.",
+  "newHostedChecksPending": true,
+  "wholeGoalComplete": false,
+  "hiddenFrameRegression": {
+    "baselineCases": 6,
+    "baselinePassed": 4,
+    "baselineFailed": 2,
+    "fix": "Pending authoritative work cannot fall through to the local completion path on a zero/hidden frame.",
+    "relatedFinalCases": 24,
+    "relatedFinalPassed": 24
+  },
+  "bedtimeFixture": {
+    "actualNpcActorContract": true,
+    "explicitMonotonicClock": true,
+    "originalOneFinishNoCancellationNoClientGoodsAssertionsRetained": true,
+    "targetedCasesPassed": 13
+  }
+}

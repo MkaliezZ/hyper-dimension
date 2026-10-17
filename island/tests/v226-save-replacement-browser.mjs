@@ -48,7 +48,9 @@ try{
    await page.waitForFunction(()=>window.islandInspect?.().startup.busy===false,null,{timeout:60000});
    if(await page.locator('#startFirstDay').isVisible())await page.locator('#startFirstDay').click();
    await page.locator('#playerBtn').click();await page.locator('#playerForm input[name=name]').fill('等待回岛-'+theme);await page.locator('#savePlayer').click();await page.locator('#closeModal').click();
-   await page.locator('#saveStatus').click();await page.locator('#saveNow').click();
+   await page.locator('#saveStatus').click();
+   if(operation==='import')await page.evaluate(()=>{const c=window.__replacementSaveClient,original=c.checkpoint,probe=window.__replacementLateSave={armed:true,waiting:false};c.checkpoint=async(...args)=>{const hold=probe.armed&&document.querySelector('#saveNow')?.disabled;if(hold)probe.armed=false;const result=await original(...args);if(hold){probe.waiting=true;await new Promise(resolve=>probe.release=resolve);}return result;};});
+   await page.locator('#saveNow').click();
    await page.waitForFunction(()=>document.querySelector('#saveStatus')?.dataset.status==='saved',null,{timeout:30000});
    assert.equal((await store.current(theme)).state.playerProfile.name,'等待回岛-'+theme);
    if(operation!=='import'){
@@ -62,11 +64,13 @@ try{
      armed=true;await page.locator('#recoveryAll').click();
     }
    }else{
+    await page.waitForFunction(()=>window.__replacementLateSave?.waiting,null,{timeout:30000});
     holdImportRead=true;
     await page.locator('#importSaveFile').setInputFiles({name:'own-signed-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
     let deadline;try{await Promise.race([importReadHeld,new Promise((_,reject)=>{deadline=setTimeout(()=>reject(Error('Import canonical read was not reached')),30000);})]);}finally{clearTimeout(deadline);}
     row.importReadPause=await page.evaluate(async theme=>{const c=window.__replacementSaveClient,before=c.status(theme).state,moved=structuredClone(before);moved.player.x++;c.enqueue(theme,moved);let flushCode;try{await c.flush(theme);}catch(e){flushCode=e.code;}return{blocked:c.blocked(theme),outgoingRejected:c.status(theme).state===before,flushCode};},theme);
-    assert.deepEqual(row.importReadPause,{blocked:true,outgoingRejected:true,flushCode:'import_pending'});releaseRead();
+    assert.deepEqual(row.importReadPause,{blocked:true,outgoingRejected:true,flushCode:'import_pending'});
+    await page.evaluate(()=>window.__replacementLateSave.release());await page.waitForFunction(()=>!document.querySelector('#saveNow')?.disabled,null,{timeout:30000});row.lateManualSaveCompletionDuringImport=true;releaseRead();
     await page.locator('#confirmImport').click();
     if(theme==='origami'){
      await page.locator('#retrySaveImport').waitFor({timeout:30000});await page.locator('#retrySaveImport').click();

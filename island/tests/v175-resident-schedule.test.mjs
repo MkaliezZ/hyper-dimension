@@ -57,11 +57,11 @@ for(const theme of ['pixel','origami'])test(theme+' LAN residents use the same c
  await evidence(theme+'-lan-night',{theme,residents:r.residents.map(c=>({id:c.person.npcId,home:c.homeId,awake:!c.homeRest,period:c.schedulePeriod,activity:c.activity})),sleepProjectionConfirmed:true});setWorldTheme('pixel');
 });
 
-test('an accepted resident lease finishes exactly once before bedtime, with no cancellation or fabricated reward',async()=>isolate(async()=>{
- let hour=9,finishes=0,cancels=0;const remote={begin:async n=>({kind:'resident',requestId:'night-handover',actorId:n.npcId,action:'axe',duration:20,operationId:'night-finish'}),finish:async()=>{finishes++;return {receipt:{text:'已确认材料入库'}};},cancel:async()=>{cancels++;}};
+test('an accepted resident lease finishes exactly once before bedtime, with no cancellation or fabricated reward',async t=>isolate(async()=>{
+ let hour=9,finishes=0,cancels=0,time=0;t.mock.method(performance,'now',()=>time*1000);const remote={begin:async n=>({kind:'resident',actor:'npc',requestId:'night-handover',actorId:n.npcId,action:'axe',duration:20,operationId:'night-finish'}),finish:async()=>{finishes++;return {receipt:{text:'已确认材料入库'}};},cancel:async()=>{cancels++;}};
  const {state,npcs,runtime}=fixture('pixel',{getEnvironment:()=>env(hour),residentRemote:remote});for(let i=1;i<16;i++)npcs[i].manualUntil=10000;
  assert(queueTask(state,{id:'finish-before-bed',npcId:0,goal:'forest',resource:'wood',intent:'晚间收尾',quantity:2},{targetItem:'wood'}).ok);
- let time=0;for(let i=0;i<1500&&!npcs[0].action;i++){time+=.1;runtime.update(.1,time);if(i%10===0)await tick();}assert(npcs[0].action);
+ for(let i=0;i<1500&&!npcs[0].action;i++){time+=.1;runtime.update(.1,time);if(i%10===0)await tick();}assert(npcs[0].action);
  hour=0;for(let i=0;i<1800&&!npcs[0].homeRest;i++){time+=.1;runtime.update(.1,time);if(i%10===0)await tick();}
  assert(npcs[0].homeRest);assert.equal(finishes,1);assert.equal(cancels,0);assert.equal(state.inventory.wood,0,'client must not mint goods already owned by server receipt');
 }));

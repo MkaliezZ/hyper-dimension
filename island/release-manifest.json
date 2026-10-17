@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v249-agent-source",
+  "release": "hyper-dimension-v250-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 89447,
-      "sha256": "5580e2cac1c2f2ff40cdc4fe0b46dd6cce3902b44d1597391ff282874db220a8"
+      "bytes": 89980,
+      "sha256": "c673529659c85d26c80979f1f19bf179cdd3bc14b93f8370b837e6605f5b46dd"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15194,
-      "sha256": "81bf5646ef88c223e8809e21055c270ba27226dce3a961bf857b4a5fcb735115"
+      "bytes": 15234,
+      "sha256": "5ad9b64bbcbebf89b6dcfdfbcce6fa8a91f7ffa68680b763d189d145fed6ac60"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144472,
-      "sha256": "8b4d6e714f2e327c5a87ff9231f8642c18ef0a0487946e4e1c2f9fb13832b1a0"
+      "bytes": 144478,
+      "sha256": "193a3a1d3293023626db5b0965b3c6582aef5080cb102a82cb7a6af4afedfcdb"
     },
     {
       "path": "src/arcade.css",
@@ -7852,8 +7852,8 @@
     },
     {
       "path": "src/residentActivityControl.js",
-      "bytes": 1856,
-      "sha256": "df5a3378e88553e75cb0fefddfe73471546f0bde661bc928e46e50782302e181"
+      "bytes": 2121,
+      "sha256": "ea624c51b94b7465ae5a516a91e21ebbb4a7a5062808b9aa80428d614b2c8de5"
     },
     {
       "path": "src/residentChatUI.js",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 44023,
-      "sha256": "4f124b2c97257cadcbd90f8dab81ee5c090ef6195124224f77397eaf51f33167"
+      "bytes": 44145,
+      "sha256": "0a5f496e0e7bedd7ecef9ac099a0a9da5c37182d1120c55dbe566d6481241d99"
     },
     {
       "path": "src/residentSchedule.js",
@@ -7967,8 +7967,8 @@
     },
     {
       "path": "src/saveUI.js",
-      "bytes": 8615,
-      "sha256": "1ca008ddcd4dc830d713aa80c3a4325cc806cea2897989c95931d75bec02af16"
+      "bytes": 8774,
+      "sha256": "7113231802d73628a679548a71f59b0f4376ddcdc393e6f1b1ec0e3162b20537"
     },
     {
       "path": "src/saveWorker.js",
@@ -9332,8 +9332,8 @@
     },
     {
       "path": "tests/v175-resident-schedule.test.mjs",
-      "bytes": 10135,
-      "sha256": "a899f0bbcd1021fd5b20c5edb49c51119c0da7db16587eaf1566283f226b6ac4"
+      "bytes": 10190,
+      "sha256": "e614a9a72692fe8c8953aa07e0c098373b84378fcea745d3bb3681f187c8f934"
     },
     {
       "path": "tests/v175-weather-browser.mjs",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 11036,
-      "sha256": "af1cce383ae466aca2e96ccf71d69e92c6af2a8de25db6397d84ea57ffeb8044"
+      "bytes": 11564,
+      "sha256": "eae3a6907b900c2bada98b6d37458d4609901a50bc444ca2bf490e0c09e2cf25"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -12412,8 +12412,8 @@
     },
     {
       "path": "tests/v226-save-replacement-browser.mjs",
-      "bytes": 11499,
-      "sha256": "8b125904e1134dbc287fe1d73f94707510b44c2cb512b0025cc717b69edaf5fd"
+      "bytes": 12249,
+      "sha256": "233fa20bd6b564d367c6e556425136905e80635d2db3ea50218ce94db33a5798"
     },
     {
       "path": "docs/save-replacement-v226.md",
@@ -12729,7 +12729,22 @@
       "path": "docs/verification/v249/npc-farm-queue.json",
       "bytes": 2905,
       "sha256": "4892e8fbc43e2d4c665f1e012ab8c33a8113004e24a074c45c7901b81a205dc1"
+    },
+    {
+      "path": "tests/v250-resident-work-clock.test.mjs",
+      "bytes": 3904,
+      "sha256": "8e6ebfa8eeda95a67179ee8fa53786e5c58cd64e0524e92ad0fb2dcf63f0357d"
+    },
+    {
+      "path": "docs/import-work-clock-v250.md",
+      "bytes": 2557,
+      "sha256": "0129a21e3d6e5894d8875097148d500a33a54700203d1bbf04f642313e849feb"
+    },
+    {
+      "path": "docs/verification/v250/import-work-clock.json",
+      "bytes": 5815,
+      "sha256": "d78ca787433b6521c794243456b16c82a7e616de69a47b0528d95d0095f68d29"
     }
   ],
-  "publicRevision": "v249-github"
+  "publicRevision": "v250-github"
 }
