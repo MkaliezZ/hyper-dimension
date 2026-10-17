@@ -344,9 +344,16 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   if(r.actionTail)await r.actionTail.catch(()=>{});
   if(read(commandKey(theme))||read(autosaveKey(theme))||read(importKey(theme)))throw Object.assign(Error('上一次操作结果尚待核对，请先恢复进度'),{code:'action_pending'});
   if(r.dirty&&!['conflict','blocked'].includes(r.status))await flush(theme);
-  let expectedVersion;try{expectedVersion=(await request(theme,'')).document?.version||null}catch(error){if(error.code!=='save_corrupt')throw error;expectedVersion='corrupt'}
+  // A save waiter may start another flight before the awaited flush returns.
+  // Drain it, then pause before the canonical read can yield to an own autosave.
+  while(r.inflight)await r.inflight;
   r.previewPreparing=true;clearTimeout(r.timer);r.timer=null;
-  try{const result=await request(theme,'import-preview',{...(migrationId?{migrationId}:{data}),expectedVersion,clientId,requestId:crypto.randomUUID()});const preview=result.preview||result;r.previewLock=preview.allowed?preview.id:null;return preview;}
+  try{
+   if(r.actionTail)await r.actionTail.catch(()=>{});
+   if(read(commandKey(theme))||read(autosaveKey(theme))||read(importKey(theme)))throw Object.assign(Error('上一次操作结果尚待核对，请先恢复进度'),{code:'action_pending'});
+   let expectedVersion;try{expectedVersion=(await request(theme,'')).document?.version||null}catch(error){if(error.code!=='save_corrupt')throw error;expectedVersion='corrupt'}
+   const result=await request(theme,'import-preview',{...(migrationId?{migrationId}:{data}),expectedVersion,clientId,requestId:crypto.randomUUID()});const preview=result.preview||result;r.previewLock=preview.allowed?preview.id:null;return preview;
+  }
   finally{r.previewPreparing=false;if(!r.previewLock&&r.dirty)schedule(r);}
  }
  function cancelImportPreview(theme){const r=record(theme);r.previewLock=null;if(r.dirty)schedule(r);}

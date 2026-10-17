@@ -21,14 +21,16 @@ try{
   await context.route('**/src/app.js',async route=>{
    const response=await route.fetch(),source=await response.text(),needle='const saveUI=createSaveUI(';
    assert.equal(source.split(needle).length,2);
-   const probe=`for(const method of ['restore','importSave','retryImport','acceptServer']){const original=saves[method];saves[method]=async(...args)=>{const outgoing=state,result=await original(...args);saves.enqueue(theme,outgoing);window.__replacementProbe={method,blocked:saves.blocked(theme),navigating:saves.status(theme).navigationPending===true,acceptedOutgoing:saves.status(theme).state===outgoing,dirty:saves.status(theme).dirty};return result;};}\n`;
+   const probe=`window.__replacementSaveClient=saves;for(const method of ['restore','importSave','retryImport','acceptServer']){const original=saves[method];saves[method]=async(...args)=>{const outgoing=state,result=await original(...args);saves.enqueue(theme,outgoing);window.__replacementProbe={method,blocked:saves.blocked(theme),navigating:saves.status(theme).navigationPending===true,acceptedOutgoing:saves.status(theme).state===outgoing,dirty:saves.status(theme).dirty};return result;};}\n`;
    await route.fulfill({response,body:source.replace(needle,probe+needle)});
   });
   const manual=theme==='origami'&&operation!=='import'||theme==='pixel'&&operation==='import',cancelCount=manual?2:1;
   let documents=0,navigationAttempts=0,armed=operation!=='lost-restore',loseImport=theme==='origami'&&operation==='import',loseRestore=operation==='lost-restore';
+  let holdImportRead=false,readHeld,releaseRead;const importReadHeld=new Promise(r=>readHeld=r),importReadRelease=new Promise(r=>releaseRead=r);
   await context.route(/\/play\?/,route=>{documents++;if(documents>1&&armed&&++navigationAttempts<=cancelCount){row.cancelledNavigations++;return route.fulfill({status:204,body:''});}return route.continue();});
   await context.route('**/api/**',async route=>{
    const req=route.request(),path=new URL(req.url()).pathname;
+   if(holdImportRead&&req.method()==='GET'&&path==='/api/saves/'+theme){holdImportRead=false;const response=await route.fetch();readHeld();await importReadRelease;return route.fulfill({response});}
    if(/^\/api\/(npc|hermes)\//.test(path)||path==='/api/lan/social/tick')return route.fulfill({status:503,contentType:'application/json',body:'{"error":"Providers disabled in replacement test"}'});
    if(req.method()==='POST'&&path==='/api/saves/'+theme+'/import'){
     row.imports.push(req.postDataJSON());
@@ -60,7 +62,11 @@ try{
      armed=true;await page.locator('#recoveryAll').click();
     }
    }else{
+    holdImportRead=true;
     await page.locator('#importSaveFile').setInputFiles({name:'own-signed-save.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
+    let deadline;try{await Promise.race([importReadHeld,new Promise((_,reject)=>{deadline=setTimeout(()=>reject(Error('Import canonical read was not reached')),30000);})]);}finally{clearTimeout(deadline);}
+    row.importReadPause=await page.evaluate(async theme=>{const c=window.__replacementSaveClient,before=c.status(theme).state,moved=structuredClone(before);moved.player.x++;c.enqueue(theme,moved);let flushCode;try{await c.flush(theme);}catch(e){flushCode=e.code;}return{blocked:c.blocked(theme),outgoingRejected:c.status(theme).state===before,flushCode};},theme);
+    assert.deepEqual(row.importReadPause,{blocked:true,outgoingRejected:true,flushCode:'import_pending'});releaseRead();
     await page.locator('#confirmImport').click();
     if(theme==='origami'){
      await page.locator('#retrySaveImport').waitFor({timeout:30000});await page.locator('#retrySaveImport').click();
@@ -92,7 +98,7 @@ try{
    assert.deepEqual(row.errors,[]);row.canonicalIdentityAndResourcesPreserved=true;row.preReplacementServerBackupPreserved=true;row.repeatedReentryStable=true;row.passed=true;
    await page.screenshot({path:join(out,theme+'-'+operation+'-returned.png')});
   }catch(error){row.failure=error.stack;process.exitCode=1;await page.screenshot({path:join(out,theme+'-'+operation+'-failure.png')}).catch(()=>{});}
-  finally{await context.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));}
+  finally{releaseRead();await context.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));}
  }
  report.passed=report.cases.every(c=>c.passed);
 }finally{await browser.close();await service.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,cases:report.cases.map(c=>({theme:c.theme,operation:c.operation,passed:c.passed,failure:c.failure}))}));}

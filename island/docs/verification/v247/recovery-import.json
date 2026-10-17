@@ -1,0 +1,94 @@
+{
+  "version": "V247",
+  "baselineSourceCommit": "6afd81c6e62ac0913c5a6a9536094c8191042330",
+  "originalFailure": {
+    "run": 38993457420,
+    "job": 117280656688,
+    "case": "pixel signed import",
+    "code": "save_conflict",
+    "status": "Retained failure; not rerun or reclassified"
+  },
+  "cause": "Own saves could advance the preview version while its canonical read yielded; a second flush waiter could already be in flight.",
+  "repair": "Drain accepted saves and pause new own writes before the canonical import read. Keep strict expected-version and signed-import validation.",
+  "deterministicBaseline": {
+    "behaviorChecks": 3,
+    "failed": 1,
+    "passed": 2
+  },
+  "newRules": 4,
+  "relatedRules": 15,
+  "requiredRules": 1295,
+  "nativeCases": [
+    {
+      "theme": "pixel",
+      "operation": "restore",
+      "passed": true,
+      "heldCanonicalRead": null,
+      "cancelledNavigations": 1,
+      "originalImportReplayedOnce": false,
+      "uncertainRestoreNotResubmitted": false
+    },
+    {
+      "theme": "pixel",
+      "operation": "import",
+      "passed": true,
+      "heldCanonicalRead": {
+        "blocked": true,
+        "outgoingRejected": true,
+        "flushCode": "import_pending"
+      },
+      "cancelledNavigations": 2,
+      "originalImportReplayedOnce": false,
+      "uncertainRestoreNotResubmitted": false
+    },
+    {
+      "theme": "pixel",
+      "operation": "lost-restore",
+      "passed": true,
+      "heldCanonicalRead": null,
+      "cancelledNavigations": 1,
+      "originalImportReplayedOnce": false,
+      "uncertainRestoreNotResubmitted": true
+    },
+    {
+      "theme": "origami",
+      "operation": "restore",
+      "passed": true,
+      "heldCanonicalRead": null,
+      "cancelledNavigations": 2,
+      "originalImportReplayedOnce": false,
+      "uncertainRestoreNotResubmitted": false
+    },
+    {
+      "theme": "origami",
+      "operation": "import",
+      "passed": true,
+      "heldCanonicalRead": {
+        "blocked": true,
+        "outgoingRejected": true,
+        "flushCode": "import_pending"
+      },
+      "cancelledNavigations": 1,
+      "originalImportReplayedOnce": true,
+      "uncertainRestoreNotResubmitted": false
+    },
+    {
+      "theme": "origami",
+      "operation": "lost-restore",
+      "passed": true,
+      "heldCanonicalRead": null,
+      "cancelledNavigations": 2,
+      "originalImportReplayedOnce": false,
+      "uncertainRestoreNotResubmitted": true
+    }
+  ],
+  "scope": "Isolated fictional accounts and new automated Windows browser contexts. Delayed actual HTTP responses and attempted ordinary client saves; no user browser, private documents, provider calls or fabricated game results. Not human or physical macOS acceptance.",
+  "previousPackage": {
+    "release": "V245",
+    "independentSteps": 36,
+    "passed": true,
+    "finalHourStarted": false,
+    "finalCandidateApproved": false
+  },
+  "wholeGoalComplete": false
+}

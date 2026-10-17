@@ -28,11 +28,11 @@ async function fixture(t,{empty=false,offline=false}={}){
    else if(operation==='action'){counters.action++;result=await store.action('pixel',body);await options.afterAction?.(result);}
    else if(operation==='import'){counters.imports++;result=await store.importClient('pixel',body);}
    else if(operation==='import-preview'){result=await store.previewImport('pixel',body);}
-   else{await options.beforeRead?.();result={document:await store.current('pixel')};}
+   else{await options.beforeRead?.();result={document:await store.current('pixel')};await options.afterRead?.(result);}
    return Response.json(result);
   }catch(error){if(!error.code)throw error;return Response.json({error:error.message,code:error.code},{status:error.status||500});}
  };
- const client=()=>{const c=createSaveClient({loadLocal:()=>structuredClone(seed),storeLocal(){}});clients.push(c);return c;};
+ const client=()=>{const c=createSaveClient({loadLocal:()=>structuredClone(seed),storeLocal(){},onStatus(){options.onStatus?.(c);}});clients.push(c);return c;};
  t.after(async()=>{
   if(clients.some(c=>c.status('pixel').navigationPending))listeners.get('pagehide')?.();
   for(const release of releases)release();
@@ -45,6 +45,50 @@ async function fixture(t,{empty=false,offline=false}={}){
 
 const deferred=()=>{let resolve;const promise=new Promise(r=>{resolve=r;});return{promise,resolve};};
 async function until(fn){for(let i=0;i<100;i++){if(fn())return;await new Promise(r=>setTimeout(r,5));}throw Error('Fixture barrier not reached');}
+
+test('import preparation pauses own saves before the canonical read yields',{timeout:5000},async t=>{
+ const f=await fixture(t),exported=await f.store.export('pixel'),entered=deferred(),release=deferred();f.releases.push(release.resolve);
+ f.options.afterRead=async()=>{f.options.afterRead=null;entered.resolve();await release.promise;};
+ const preparing=f.c.previewImport('pixel',exported);preparing.catch(()=>{});
+ try{
+  await entered.promise;
+  assert.equal(f.c.blocked('pixel'),true,'The canonical read must already own the import pause');
+  const before=f.c.status('pixel').state,attempt=structuredClone(before);attempt.player.x++;
+  f.c.enqueue('pixel',attempt);assert.equal(f.c.status('pixel').state,before);
+  await assert.rejects(f.c.flush('pixel'),e=>e.code==='import_pending');assert.equal(f.counters.save,0);
+  release.resolve();const preview=await preparing;assert.equal(preview.allowed,true);
+  await f.c.importSave('pixel',preview);assert.equal(f.counters.imports,1);assert.equal(f.counters.reloads,1);
+  const current=await f.store.current('pixel');assert.equal(current.state.coins,exported.state.coins);assert.deepEqual(current.state.inventory,exported.state.inventory);
+  assert.equal((await f.store.backups('pixel')).filter(b=>b.reason==='before-import').length,1);
+ }finally{release.resolve();await preparing.catch(()=>{});}
+});
+
+test('a failed canonical import read releases its pause and allows ordinary saving',{timeout:5000},async t=>{
+ const f=await fixture(t),exported=await f.store.export('pixel');
+ f.options.afterRead=()=>{f.options.afterRead=null;throw Error('Fictional canonical read unavailable');};
+ await assert.rejects(f.c.previewImport('pixel',exported),/canonical read unavailable/);
+ assert.equal(!!f.c.status('pixel').previewPreparing,false);assert.equal(f.c.blocked('pixel'),false);
+ const state=f.c.status('pixel').state;state.playerProfile.name='继续保存';f.c.enqueue('pixel',state);await f.c.flush('pixel');
+ assert.equal((await f.store.current('pixel')).state.playerProfile.name,'继续保存');assert.equal(f.counters.imports,0);
+});
+
+test('an import preview drains the next save started by an earlier flush waiter',{timeout:5000},async t=>{
+ const f=await fixture(t),exported=await f.store.export('pixel'),state=f.c.status('pixel').state;state.player.x++;f.c.enqueue('pixel',state);
+ let next;f.options.onStatus=c=>{if(c.status('pixel').status==='saved'){f.options.onStatus=null;const moved=structuredClone(c.status('pixel').state);moved.player.y++;c.enqueue('pixel',moved);next=c.flush('pixel');next.catch(()=>{});}};
+ const preview=await f.c.previewImport('pixel',exported);await next;
+ const current=await f.store.current('pixel');assert.equal(f.counters.save,2);assert.equal(preview.expectedVersion,current.version);assert.equal(f.c.blocked('pixel'),true);
+ await f.c.importSave('pixel',preview);assert.equal(f.counters.imports,1);assert.equal(f.counters.reloads,1);
+});
+
+test('another window changing the confirmed import version still rejects without overwriting it',{timeout:5000},async t=>{
+ const f=await fixture(t),preview=await f.c.previewImport('pixel',await f.store.export('pixel'));
+ const old=await f.store.current('pixel'),state=structuredClone(old.state);state.playerProfile.name='另一个窗口的新进度';
+ const changed=await f.store.save('pixel',{state,expectedVersion:old.version,clientId:'other-real-window',saveId:crypto.randomUUID(),activeSeconds:0});
+ await assert.rejects(f.c.importSave('pixel',preview),e=>e.code==='save_conflict'&&e.status===409);
+ const current=await f.store.current('pixel');assert.equal(current.version,changed.document.version);assert.equal(current.state.playerProfile.name,'另一个窗口的新进度');
+ assert.equal(current.state.coins,old.state.coins);assert.deepEqual(current.state.inventory,old.state.inventory);assert.equal(current.importReceipts?.length||0,0);
+ assert.equal((await f.store.backups('pixel')).filter(b=>b.reason==='before-import').length,0);assert.equal(f.counters.reloads,0);
+});
 
 test('a lost history-restore response is not replayed, even with stale action/clock journals after reload',async t=>{
  const f=await fixture(t),before=await f.store.current('pixel'),snapshot=await f.store.backup('pixel',{expectedVersion:before.version});

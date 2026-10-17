@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v245-agent-source",
+  "release": "hyper-dimension-v247-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 87739,
-      "sha256": "a52e93da61cd5d1de0d00e3b039d2a5373f79f612975d7537379d06b3a2b6b00"
+      "bytes": 88219,
+      "sha256": "87fd1a468fae5c34980152131699c646bf4ceeefb63bde5ae02eea0b06a0eb43"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 39504,
-      "sha256": "02c6c95d9550b85607cfd104a9b1b6ab6e61d2e28cdce52c6cbc4946bd4f4ce6"
+      "bytes": 39952,
+      "sha256": "1deef25a41ae3f6c90c994873928a2a7106211077e9ccfcddc1fe1c6af740628"
     },
     {
       "path": "src/saveDelta.js",
@@ -12407,13 +12407,13 @@
     },
     {
       "path": "tests/v226-save-replacement.test.mjs",
-      "bytes": 14080,
-      "sha256": "329dfa3d8d10565b2a72fd62d8224125a69db3cea4a0d915d7fbf0e5ea08b0a3"
+      "bytes": 18159,
+      "sha256": "352dd2036e5be6009ed382a03afda6379328bc81a43c69d359f57942448a53c9"
     },
     {
       "path": "tests/v226-save-replacement-browser.mjs",
-      "bytes": 10389,
-      "sha256": "336dda881de48117367938de2e039e4299ce6d0c1bc970631161bb6e986a78c4"
+      "bytes": 11499,
+      "sha256": "8b125904e1134dbc287fe1d73f94707510b44c2cb512b0025cc717b69edaf5fd"
     },
     {
       "path": "docs/save-replacement-v226.md",
@@ -12689,7 +12689,17 @@
       "path": "tests/v245-player-farm-intent.test.mjs",
       "bytes": 1798,
       "sha256": "86c7b607c0d90a751704c3fb7439efd7bf59e9f9264824b1f185bb221a475fa9"
+    },
+    {
+      "path": "docs/recovery-import-preview-v247.md",
+      "bytes": 1609,
+      "sha256": "ce2aa716b69cc18459a23d5bc7b058a4246d81632ce8799ccdfceba758b9b0a4"
+    },
+    {
+      "path": "docs/verification/v247/recovery-import.json",
+      "bytes": 2917,
+      "sha256": "0407be9e11a93a1727e033d6af771afe3545f9b19c68a27b78fe7905f693b9e5"
     }
   ],
-  "publicRevision": "v245-github"
+  "publicRevision": "v247-github"
 }
