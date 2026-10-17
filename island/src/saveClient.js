@@ -262,6 +262,12 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   })();
   try{await r.inflight}finally{r.inflight=null;r.reconciling=false}
  }
+ function checkpoint(theme){
+  const r=record(theme),run=()=>flush(theme),result=(r.actionTail||Promise.resolve()).then(run,run);
+  // External operations wait for accepted jobs in the same queue, before a
+  // later job can overtake their checkpoint. Uncertain journals still block it.
+  r.actionTail=result.catch(()=>{});return result;
+ }
  async function action(theme,input,prepareInput){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input,prepareInput),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
  }
@@ -318,7 +324,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   finally{r.reconciling=false;}
  }
  async function backups(theme){return (await request(theme,'backups')).backups}
- async function backup(theme){await flush(theme);return request(theme,'backup',{expectedVersion:record(theme).version})}
+ async function backup(theme){await checkpoint(theme);return request(theme,'backup',{expectedVersion:record(theme).version})}
  function restore(theme,id){
   const r=record(theme);if(r.restoring)return r.restoring;
   if(r.recovering||read(replacementKey(theme))||read(importKey(theme)))return Promise.reject(Object.assign(Error('上一次替换结果尚待核对，请先读取服务端进度'),{code:'action_pending'}));
@@ -444,5 +450,6 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  const api={appearance,load,enqueue,flush,action,refresh,async idle(theme){const r=record(theme);let tail;do{tail=r.actionTail;if(tail)await tail;if(r.inflight)await r.inflight;if(r.cacheTail)await r.cacheTail;}while(tail!==r.actionTail);if(read(commandKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成恢复'),{code:'action_pending'});},advanceTime(theme,dt){const r=record(theme);if(r.state?.farmControl?.version!==1&&r.state?.visitorControl?.version!==1&&r.state?.commerceControl?.version!==1&&r.state?.facilityControl?.version!==1||document.hidden)return;if(r.previewLock||r.previewPreparing||['recovering','offline','blocked','conflict','action_pending','import_pending'].includes(r.status)){r.activeSeconds=0;return}if(Number.isFinite(dt)&&dt>0&&dt<=MAX_VISIBLE_FRAME_SECONDS)r.activeSeconds=Math.min(15,(r.activeSeconds||0)+dt);},pendingAction:theme=>read(commandKey(theme)),backups,backup,restore,previewImport,importSave,retryImport,cancelImportPreview,acceptServer,
    status:theme=>record(theme),blocked:theme=>!!read(replacementKey(theme))||!!record(theme).previewLock||!!record(theme).previewPreparing||['recovering','conflict','blocked','action_pending','import_pending'].includes(record(theme).status)};
+ api.checkpoint=checkpoint;
  return storageTheme?Object.fromEntries(Object.entries(api).map(([k,fn])=>[k,(ignored,...args)=>fn(storageTheme,...args)])):api;
 }

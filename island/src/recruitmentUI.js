@@ -29,7 +29,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   const response=await fetch('/api/recruitment/'+capture.theme+'/'+operation,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(12000)});
   const data=await response.json();if(!response.ok)throw Object.assign(Error(data.error||'招聘暂不可用'),{code:data.code,status:response.status});return data;
  }
- async function flush(c){persist();await saves.flush(c.theme);if(!same(c))throw Error('小岛画风已切换，请在对应小岛继续')}
+ async function flush(c){persist();await saves.checkpoint(c.theme);if(!same(c))throw Error('小岛画风已切换，请在对应小岛继续')}
  async function applyStatus(c){
   if(!same(c))return;
   const r=hydrateRecruitment(state()),active=registry.active,history=registry.history||[];

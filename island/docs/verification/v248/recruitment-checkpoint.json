@@ -1,0 +1,49 @@
+{
+  "version": "V248",
+  "sourceBaseCommit": "181ef936e41ab3ffe084aed6d5ba53c5ac21838a",
+  "originalCiFailure": {
+    "run": 38997541832,
+    "job": 117293284626,
+    "step": "Native recruitment error recovery and request identity",
+    "case": "pixel503 cancellation",
+    "observedUiError": "作业结算待核对，请先重试该次作业",
+    "retained": true,
+    "originalImportRestoreStep": "passed remotely"
+  },
+  "deterministicNativeBaseline": {
+    "cases": 4,
+    "passed": 2,
+    "failed": 2,
+    "heldResponse": "Actual accepted200 shared commerce request; not a fabricated work result"
+  },
+  "repair": "External save checkpoints queue behind accepted actions and before later actions. Recruitment mutations, explicit save/backup, new visitor arrivals and app-level manual/agent/travel checkpoints use that barrier. A genuine uncertain durable command still blocks; no receipt or reservation is discarded.",
+  "newQueueRules": 3,
+  "requiredRules": 1298,
+  "requiredRuleGroups": [
+    1284,
+    14
+  ],
+  "nativeRecruitment": {
+    "cases": 4,
+    "passed": true,
+    "controlledInitialCoins": 100,
+    "sameHireRequestRetried": true,
+    "onlyMatchingWorldAndRequestAcknowledges": true,
+    "cancellationOnceAndOne8CoinReservationReleased": true,
+    "waitedForAcceptedRepliesInBoth503Cases": true,
+    "realContractsOrProvidersUsed": false
+  },
+  "nativeSignedRestoreImportCases": 6,
+  "nativeZeroMarketCases": 2,
+  "cashInventoryAndClockNotInjectedInZeroMarket": true,
+  "sourceFilesSha256": {
+    "src/saveClient.js": "0638eea980cb589b5bb03d1cd61bd3d5e48223bdc13103104a5e42071426da5c",
+    "src/recruitmentUI.js": "c900a1879d7bf9ad0e9b666c100ebbf3b4b5d3116017ade8386a8f5eb4bdf1b2",
+    "src/saveUI.js": "1ca008ddcd4dc830d713aa80c3a4325cc806cea2897989c95931d75bec02af16",
+    "src/serverVisitorUI.js": "87323961ba362b78d2025a34f92ef9075a0ee5f94623b564b69b5acb7a05bdf6",
+    "src/app.js": "8b4d6e714f2e327c5a87ff9231f8642c18ef0a0487946e4e1c2f9fb13832b1a0"
+  },
+  "scope": "Working-source automated Windows checks on isolated fictional data. Recruitment failures and status identity are explicit fixtures; actual error-free zero-market and signed recovery are separate checks. Not human, physical Mac, full five-template cooperation or complete long-run economy acceptance.",
+  "newExactPackageAndHourPending": true,
+  "wholeGoalComplete": false
+}

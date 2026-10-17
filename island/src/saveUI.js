@@ -43,7 +43,7 @@ export function createSaveUI({saves,theme,openModal,toast}){
   const act=(id,fn)=>{const b=root.querySelector('#'+id);if(b)b.onclick=async()=>{b.disabled=true;try{await fn()}catch(error){toast(error.message)}finally{if(b.isConnected)b.disabled=false}}};
   act('previewMigration',()=>previewFile(style,null,'本机保留的浏览器旧档',s.migration.id,token));
   act('retrySaveImport',()=>saves.retryImport(style));
-  act('saveNow',async()=>{await saves.flush(style);toast('进度已写入本机服务');if(token.current())show()});
+  act('saveNow',async()=>{await saves.checkpoint(style);toast('进度已写入本机服务');if(token.current())show()});
   act('backupNow',async()=>{await saves.backup(style);toast('已创建可恢复的存档备份');if(token.current())show()});
   act('acceptServerSave',()=>readRecoveryProgress(root,()=>saves.acceptServer(style),toast));
   act('exportPending',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(s.state,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='hyper-dimension-'+style+'-pending.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});

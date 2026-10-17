@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v247-agent-source",
+  "release": "hyper-dimension-v248-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 88219,
-      "sha256": "87fd1a468fae5c34980152131699c646bf4ceeefb63bde5ae02eea0b06a0eb43"
+      "bytes": 88760,
+      "sha256": "8caa6b3367e207e380b87643de372996346be9bfabf6b25e9da4f6b247faa229"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15157,
-      "sha256": "bb312fefd39accb394f5596b4bae4eca456503236da205c0fb8284972351d415"
+      "bytes": 15194,
+      "sha256": "81bf5646ef88c223e8809e21055c270ba27226dce3a961bf857b4a5fcb735115"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144442,
-      "sha256": "86936989b1d1847c5639dae87aaccb7481728110a9027732a402130e609cd113"
+      "bytes": 144472,
+      "sha256": "8b4d6e714f2e327c5a87ff9231f8642c18ef0a0487946e4e1c2f9fb13832b1a0"
     },
     {
       "path": "src/arcade.css",
@@ -7782,8 +7782,8 @@
     },
     {
       "path": "src/recruitmentUI.js",
-      "bytes": 26233,
-      "sha256": "35d7fe26a183e77572a80a8a00329190372de55a01c0f84e233c990af7929282"
+      "bytes": 26237,
+      "sha256": "c900a1879d7bf9ad0e9b666c100ebbf3b4b5d3116017ade8386a8f5eb4bdf1b2"
     },
     {
       "path": "src/residence-v191.css",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 39952,
-      "sha256": "1deef25a41ae3f6c90c994873928a2a7106211077e9ccfcddc1fe1c6af740628"
+      "bytes": 40326,
+      "sha256": "0638eea980cb589b5bb03d1cd61bd3d5e48223bdc13103104a5e42071426da5c"
     },
     {
       "path": "src/saveDelta.js",
@@ -7967,8 +7967,8 @@
     },
     {
       "path": "src/saveUI.js",
-      "bytes": 8610,
-      "sha256": "b9583079350165d6c0759670fff1c6e466201d2a32fab8b057398d6a82bf947a"
+      "bytes": 8615,
+      "sha256": "1ca008ddcd4dc830d713aa80c3a4325cc806cea2897989c95931d75bec02af16"
     },
     {
       "path": "src/saveWorker.js",
@@ -8067,8 +8067,8 @@
     },
     {
       "path": "src/serverVisitorUI.js",
-      "bytes": 3331,
-      "sha256": "378d97b32deb1407e469f234e3eea0805a27affffceca5899d2fbaebf5626cc4"
+      "bytes": 3336,
+      "sha256": "87323961ba362b78d2025a34f92ef9075a0ee5f94623b564b69b5acb7a05bdf6"
     },
     {
       "path": "src/shopfront-v113.css",
@@ -12307,8 +12307,8 @@
     },
     {
       "path": "tests/v222-recruitment-errors-browser.mjs",
-      "bytes": 8198,
-      "sha256": "83d2ebc627f6dc669cf5094eea23fcffed80f875edb73f3af5131df28db98032"
+      "bytes": 10038,
+      "sha256": "4e5292daf630013e8519edf24c28fd320ec05ab1b586f8de56718e7d66f212cc"
     },
     {
       "path": "docs/recruitment-recovery-v222.md",
@@ -12699,7 +12699,22 @@
       "path": "docs/verification/v247/recovery-import.json",
       "bytes": 2917,
       "sha256": "0407be9e11a93a1727e033d6af771afe3545f9b19c68a27b78fe7905f693b9e5"
+    },
+    {
+      "path": "tests/v248-checkpoint-queue.test.mjs",
+      "bytes": 7300,
+      "sha256": "c9c7a918021105e1c70d77c4de784179e0222c67671e250bdabeb2e33395e167"
+    },
+    {
+      "path": "docs/recruitment-checkpoint-v248.md",
+      "bytes": 1831,
+      "sha256": "19e6a828b0fe136547a14ee54960d637f972104d03150e86ca0a18f26495839f"
+    },
+    {
+      "path": "docs/verification/v248/recruitment-checkpoint.json",
+      "bytes": 2366,
+      "sha256": "215df9c19b1f52468e9a8de3128ccd658ef09b1397a3bc0139d082c7a106b34b"
     }
   ],
-  "publicRevision": "v247-github"
+  "publicRevision": "v248-github"
 }

@@ -17,6 +17,9 @@ on:
       - .github/workflows/island-deploy.yml
 permissions:
   contents: read
+concurrency:
+  group: island-deploy-${{ github.event.pull_request.number || github.ref }}-${{ inputs.check_scope || 'full' }}
+  cancel-in-progress: true
 jobs:
   portable-source:
     if: github.event_name != 'workflow_dispatch' || inputs.check_scope != 'soil-diagnostics'
