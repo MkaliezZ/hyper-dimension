@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Full acceptance checks or isolated soil diagnostics
+        description: Full suite, soil or recovery-input diagnostics
         type: choice
         default: full
-        options: [full, soil-diagnostics]
+        options: [full, soil-diagnostics, recovery-input]
   push:
     paths:
       - island/**
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   portable-source:
-    if: github.event_name != 'workflow_dispatch' || inputs.check_scope != 'soil-diagnostics'
+    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input')
     name: ${{ matrix.os }} / Python 3.11
     strategy:
       fail-fast: false
@@ -121,7 +121,7 @@ jobs:
           retention-days: 3
 
   native-art:
-    if: github.event_name != 'workflow_dispatch' || inputs.check_scope != 'soil-diagnostics'
+    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input')
     name: ${{ matrix.os }} / native art
     strategy:
       fail-fast: false
@@ -200,7 +200,7 @@ jobs:
           retention-days: 3
 
   native-homes:
-    if: github.event_name != 'workflow_dispatch' || inputs.check_scope != 'soil-diagnostics'
+    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input')
     name: ${{ matrix.os }} / native homes
     strategy:
       fail-fast: false
@@ -259,13 +259,15 @@ jobs:
           retention-days: 3
 
   native-gameplay:
+    if: inputs.check_scope != 'recovery-input'
     name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }}
     strategy:
       fail-fast: false
       matrix:
         os: [windows-2022, macos-14, macos-15-intel]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    # Checkout and the unchanged calendar/visitor budgets must fit the job.
+    timeout-minutes: 60
     defaults:
       run:
         working-directory: island
@@ -398,6 +400,7 @@ jobs:
   # Intel runners reached the shared 45-minute job cap during the final scene
   # test. Run the same island simulations separately from receipt tests.
   native-island-simulation:
+    if: inputs.check_scope != 'recovery-input'
     name: ${{ matrix.os }} / native island simulation
     strategy:
       fail-fast: false
@@ -458,13 +461,15 @@ jobs:
           retention-days: 3
 
   native-resident-work:
+    if: inputs.check_scope != 'recovery-input'
     name: ${{ matrix.os }} / native resident work
     strategy:
       fail-fast: false
       matrix:
         os: [windows-2022, macos-14, macos-15-intel]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    # Checkout and the unchanged calendar/visitor budgets must fit the job.
+    timeout-minutes: 60
     defaults:
       run:
         working-directory: island
@@ -499,5 +504,39 @@ jobs:
             island/qa/v218/native-save-lock/*.png
             island/qa/v253/native-partner-self-care/report.json
             island/qa/v254/native-save-io/report.json
+          if-no-files-found: ignore
+          retention-days: 3
+
+  native-recovery-input:
+    if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'recovery-input'
+    name: ${{ matrix.os }} / isolated recovery input
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: island
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install isolated browser dependencies
+        run: npm ci --ignore-scripts
+      - name: Native recovery input through workshop modal dialogs
+        run: node tests/v220-recovery-modal-browser.mjs
+      - name: Retain isolated recovery input evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-recovery-input-${{ matrix.os }}
+          path: |
+            island/qa/v220/native-recovery-modal/report.json
+            island/qa/v220/native-recovery-modal/*.png
+            island/qa/v220/native-recovery-modal/*-input-failure.zip
           if-no-files-found: ignore
           retention-days: 3

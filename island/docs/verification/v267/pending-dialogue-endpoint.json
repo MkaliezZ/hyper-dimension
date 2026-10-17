@@ -1,0 +1,88 @@
+{
+  "version": "V267",
+  "sourceBaseCommit": "9eeda73413f29ffcff3d07756d5836b57b13e2b9",
+  "runtimePayloadsByteIdenticalToQualifiedV265": 1251,
+  "gameRuntimeChange": false,
+  "originalHostedRun": 39076574776,
+  "originalHostedJob": 117524852162,
+  "originalHostedPreparationMs": 12277,
+  "originalHostedHttpAcceptanceMs": 38,
+  "originalHostedClockValuesNotRecorded": true,
+  "originalArtifactId": 12117686161,
+  "originalArtifactSha256": "7bca873e2bd2e041214af9a68fd6b256c429e21d4ce59b9e66c687e06495edc9",
+  "originalArtifactCrcVerified": true,
+  "sameAssertionFalseFailureReproducedBothThemes": true,
+  "reproductionWorkerDispatchDelayMs": 9000,
+  "clockAccelerated": false,
+  "before": [
+    {
+      "theme": "pixel",
+      "clockBefore": 14.114299999999812,
+      "clockDuring": 14.8,
+      "preparationMs": 13810,
+      "httpMs": 48
+    },
+    {
+      "theme": "origami",
+      "clockBefore": 14.191899999999771,
+      "clockDuring": 14.8,
+      "preparationMs": 13924,
+      "httpMs": 32
+    }
+  ],
+  "normalCasesPassed": 2,
+  "lateEndpointCasesPassed": 2,
+  "frozenPresentationNegativeCasesFailedAsRequired": 2,
+  "originalMinimumOneSecondNativePendingProgressRetained": true,
+  "acceptedHoldMinimumOneSecondUnlessNaturalEndpointHasLessTime": true,
+  "actualFinishedDialogueLineCountMustEqualDeclaredFixture": true,
+  "heldObservationMsUnchanged": 2600,
+  "preparationBudgetMsUnchanged": 30000,
+  "httpBudgetMsUnchanged": 10000,
+  "originalNoEarlyOutcomeNormalCancelSingleDurableOutcomeAndReloadChecksRetained": true,
+  "late": [
+    {
+      "theme": "pixel",
+      "start": 0.28370000000000073,
+      "before": 14.15519999999977,
+      "during": 14.8,
+      "duration": 14.8,
+      "minimumHeldAdvance": 0.644800000000231,
+      "actualAcceptedResponseHeld": true,
+      "noEarlyOutcome": true
+    },
+    {
+      "theme": "origami",
+      "start": 0.21510000000000223,
+      "before": 14.167899999999776,
+      "during": 14.8,
+      "duration": 14.8,
+      "minimumHeldAdvance": 0.632100000000225,
+      "actualAcceptedResponseHeld": true,
+      "noEarlyOutcome": true
+    }
+  ],
+  "existingCorePresentationRulesPassed": 4,
+  "default1393RulesInheritedFromQualifiedV265": true,
+  "workflow": {
+    "yamlParsed": true,
+    "existingJobCount": 6,
+    "existingPlatformRuns": 18,
+    "allExistingRunStepsEnvironmentAndPerStepTimeoutsUnchanged": true,
+    "allExistingFullPushAndPullRequestJobsStillRun": true,
+    "fullGameplayAndResidentJobBudgets": {
+      "previousMinutes": 45,
+      "currentMinutes": 60
+    },
+    "unchangedVisitorRotationSeconds": 720,
+    "unchangedRoadServiceSeconds": 150,
+    "originalWindowsFinalProductionStepStartedAfterMinutes": 36.5,
+    "originalTaskCalendarBoundMs": 1800000,
+    "newManualDiagnosticOnlyRunsExistingStrictV220OnThreePlatforms": true,
+    "fullSuiteNotReplacedByDiagnostic": true,
+    "permissionsAndConcurrencyUnchanged": true
+  },
+  "originalMacIntelV220InputFailureStillRequiresHostedEvidence": true,
+  "currentHostedVerificationPending": true,
+  "wholeGoalComplete": false
+}

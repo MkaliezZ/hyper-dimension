@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v266-agent-source",
+  "release": "hyper-dimension-v267-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 96790,
-      "sha256": "2339261ad71f988f088e111451cb588ac1aac297f63dea9caca4ea9796836195"
+      "bytes": 97381,
+      "sha256": "fa5b9300de471b127bcac8afd5d24b9a623fb577d40176a9ee34d6c705cbc526"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12952,8 +12952,8 @@
     },
     {
       "path": "tests/v262-social-pending-browser.mjs",
-      "bytes": 8937,
-      "sha256": "daf5e28b470f7fae6ae38ae5896c51ef57725f033b40bd71ac0569da7b8c890f"
+      "bytes": 10159,
+      "sha256": "f6cb3e760e44482047376079f60e7a41a419356a72cd8a8a0481f64143d0f3fa"
     },
     {
       "path": "docs/social-receipts-and-visits-v262.md",
@@ -13024,7 +13024,17 @@
       "path": "docs/verification/v266/recovery-input-diagnostics.json",
       "bytes": 1617,
       "sha256": "99eadbfbb9d6debb7ecc15a0ad7b2836e2ab5679bb673a5a554bd2ee3def0b78"
+    },
+    {
+      "path": "docs/pending-dialogue-endpoint-v267.md",
+      "bytes": 3292,
+      "sha256": "b944d0abc84f5c5408cd2ecff9cf921688cbea536c9528b7e57377337e5183c2"
+    },
+    {
+      "path": "docs/verification/v267/pending-dialogue-endpoint.json",
+      "bytes": 3036,
+      "sha256": "e7cf7021260aa2bc0077ed148500f7918f1c29daff929d0b7f5d1afe86c0ad03"
     }
   ],
-  "publicRevision": "v266-github"
+  "publicRevision": "v267-github"
 }
