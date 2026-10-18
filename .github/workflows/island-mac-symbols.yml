@@ -1,0 +1,61 @@
+name: Island Mac stack symbols
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run:
+        description: Run containing the owned browser samples
+        required: true
+        default: '39112397786'
+        type: string
+      artifact_name:
+        description: Owned-sample artifact from that run
+        required: true
+        default: resident-stall-macos-14
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: island-mac-symbols
+  cancel-in-progress: false
+
+jobs:
+  symbolicate:
+    name: macos-14 / owned stack symbolication
+    runs-on: macos-14
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            island/tools/symbolicate-mac-samples.py
+            island/tests/v282-mac-symbols.test.py
+          sparse-checkout-cone-mode: false
+
+      - name: Verify symbol matching and bounded extraction
+        run: python3 island/tests/v282-mac-symbols.test.py
+
+      - name: Read only the named owned-sample artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+        run: gh run download "$SOURCE_RUN" --repo "$GITHUB_REPOSITORY" --name "$ARTIFACT_NAME" --dir qa/mac-symbols/input
+
+      - name: Resolve matching official Chrome symbols
+        run: python3 island/tools/symbolicate-mac-samples.py --input qa/mac-symbols/input --output qa/mac-symbols/output --arch arm64
+
+      - name: Preserve diagnostic output
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: owned-mac-stack-symbols
+          path: |
+            qa/mac-symbols/output/report.json
+            qa/mac-symbols/output/*.symbolicated.txt
+          if-no-files-found: warn
+          retention-days: 7

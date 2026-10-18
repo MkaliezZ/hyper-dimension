@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v281-agent-source",
+  "release": "hyper-dimension-v282-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 104470,
-      "sha256": "365e49460f506ba7d5fef31d5d7bb66f4cec2b6fff893af7cee27a4a50bcc073"
+      "bytes": 104969,
+      "sha256": "6b8f4293158ca37019912f7cb6bdaecb089581c3ab9b5c3272a37ad19c76f66a"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9142,8 +9142,8 @@
     },
     {
       "path": "tests/v153-portraits-browser.mjs",
-      "bytes": 7310,
-      "sha256": "d14a8e8193d6a0e83ef0c4fd188a4d4b25bbc7aa5f2677c2f9754406fcbd6422"
+      "bytes": 8676,
+      "sha256": "c3288ae8520ffbff22181d6356cd196a2eebc22ae9b58f83b4a6d634bcd5765a"
     },
     {
       "path": "tests/v154-material-art-browser.mjs",
@@ -13097,8 +13097,8 @@
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
-      "bytes": 5239,
-      "sha256": "f8f8a679a7eb01aa300032814bf9fad4c15374c59befa76d629776519f9bd87e"
+      "bytes": 5610,
+      "sha256": "312a97f9c8d7a04d36abe695ef562e25b25e1db63304e2c5ce6138456281e14c"
     },
     {
       "path": "docs/visitor-transfer-v272.md",
@@ -13339,7 +13339,27 @@
       "path": "tests/v281-player-action-clock.test.mjs",
       "bytes": 2800,
       "sha256": "ab6bf61d4aafad3c92734041e71453806dc230a45f5324369681090eceae52d0"
+    },
+    {
+      "path": "docs/mac-stack-diagnostics-v282.md",
+      "bytes": 2140,
+      "sha256": "d61deb69e8570cc029f462627f428281b40488c508172eec0ea4741d21fb47ab"
+    },
+    {
+      "path": "docs/verification-v282.json",
+      "bytes": 869,
+      "sha256": "475f4c00763f9763d27e8c47d28440c15ec32a5db18d3a4a64deef4a8c6e3c15"
+    },
+    {
+      "path": "tools/symbolicate-mac-samples.py",
+      "bytes": 6679,
+      "sha256": "5001b14660ec79c8ffafd056a71a7b10772870f86b1618ea1a000f14925ed864"
+    },
+    {
+      "path": "tests/v282-mac-symbols.test.py",
+      "bytes": 3606,
+      "sha256": "22c743b412f23ec48382a66a1e725c17caf74c1a3255477da9f12c6950341197"
     }
   ],
-  "publicRevision": "v281-player-action-completion"
+  "publicRevision": "v282-mac-stack-diagnostics"
 }

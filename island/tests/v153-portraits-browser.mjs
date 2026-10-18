@@ -10,14 +10,15 @@ import {AVATARS} from '../src/avatarCatalog.js';
 const out=resolve(process.env.HD_QA_OUT||'qa/v153/native-portraits');await mkdir(out,{recursive:true});
 process.env.DEEPSEEK_API_KEY='';
 const directory=await mkdtemp(join(out,'private-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'ISOLATED-PORTRAITS'}),base='http://127.0.0.1:'+service.port;
-const report={scope:'Real native LAN /play chooser; fictional accounts and isolated saves, no models or user data.',cards:[],checks:[],errors:[]};let browser;
+const report={scope:'Real native LAN /play chooser; fictional accounts and isolated saves, no models or user data.',cards:[],checks:[],errors:[]};let browser,page;
 try{
  browser=await chromium.launch(browserLaunchOptions());
  for(const theme of ['pixel','origami']){
   const account=await service.identities.register({login:'portrait_'+theme,password:'fictional-password',name:'样片岛主',islandName:'立绘测试岛',avatar:'male_0',theme}),tenant=await service.tenants.get(account.token);
   const context=await browser.newContext({viewport:{width:1600,height:1200},deviceScaleFactor:1});await context.addCookies([{name:'hd_lan_session',value:account.token,url:base,httpOnly:true,sameSite:'Strict'}]);
   for(const kind of ['npc','hermes'])await context.route('**/api/'+kind+'/**',r=>r.fulfill({status:503,contentType:'application/json',body:'{"error":"models disabled in isolated test"}'}));
-  const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
+  page=await context.newPage();report.current={theme,phase:'opening'};page.on('pageerror',e=>report.errors.push(e.message));
+  const requests=new WeakMap();page.on('request',request=>{if(!request.url().endsWith('/action')||request.method()!=='POST')return;let body;try{body=request.postDataJSON()}catch{}if(body?.kind!=='personal')return;const row={kind:body.kind,operation:body.operation,avatarId:body.avatarId,requestId:body.requestId,startedAt:Date.now()};requests.set(request,row);report.personalRequests??=[];report.personalRequests.push(row);if(report.personalRequests.length>60)report.personalRequests.shift();});page.on('response',response=>{const row=requests.get(response.request());if(row){row.status=response.status();row.elapsedMs=Date.now()-row.startedAt;}});
   await page.goto(base+'/play?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverPersonal?.ready&&!document.getElementById('app').hasAttribute('aria-busy'),null,{timeout:60000});
   if(await page.locator('#startFirstDay').isVisible())await page.locator('#startFirstDay').click();
   const saveTheme=await page.evaluate(()=>islandInspect().saveTheme),slot=(await tenant.saves.current(saveTheme)).state.saveSlot;
@@ -26,7 +27,7 @@ try{
    await page.locator('[data-gender="'+gender+'"]').click();
    for(const avatar of AVATARS.filter(a=>a.gender===gender)){
     const selector='[data-avatar="'+avatar.id+'"]';
-    await page.locator(selector).click();await page.waitForSelector(selector+'.selected');
+    report.current={theme,phase:'choosing',avatarId:avatar.id};await page.locator(selector).click();await page.waitForSelector(selector+'.selected');
     assert.equal((await tenant.saves.current(saveTheme)).state.butlerAvatar,avatar.id,'Avatar choice must be confirmed in this owner save');
    }
    const cards=page.locator('.avatar-card');
@@ -74,6 +75,6 @@ print(json.dumps({"foreignArtProbes":checked,"defaultTopStripAbsent":True}))
  const {stdout}=await promisify(execFile)(python,['-X','utf8','-c',probeScript,input],{windowsHide:true,timeout:20000,maxBuffer:8000});report.pixelChecks=JSON.parse(stdout);
  for(const card of report.cards)assert.equal(card.aspect,'xMidYMid meet');
  report.passed=true;
-}catch(e){report.failure=e.stack;process.exitCode=1;console.error(e.message);}
+}catch(e){report.failure=e.stack;process.exitCode=1;console.error(e.message);let timer;report.last=await Promise.race([page?.evaluate(()=>{const s=window.islandInspect?.();return {startup:s?.startup,personal:s?.serverPersonal,selected:[...document.querySelectorAll('[data-avatar].selected')].map(e=>e.dataset.avatar),modal:document.querySelector('.modal h2')?.textContent,toast:document.getElementById('toast')?.textContent,saveMessage:document.getElementById('saveStatus')?.textContent};}).catch(()=>null),new Promise(r=>timer=setTimeout(()=>r({observationTimedOut:true}),2000))]).finally(()=>clearTimeout(timer));await page?.screenshot({path:join(out,'failure.png'),timeout:5000}).catch(()=>{});}
 finally{await browser?.close();await service.close();await writeFile(join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,checks:report.checks,pixelChecks:report.pixelChecks,failure:report.failure}));}
 

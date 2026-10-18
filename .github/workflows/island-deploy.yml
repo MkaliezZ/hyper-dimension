@@ -194,6 +194,8 @@ jobs:
         with:
           name: native-character-${{ matrix.os }}
           path: |
+            island/qa/v153/native-portraits/report.json
+            island/qa/v153/native-portraits/*.png
             island/qa/v155/native-product-clips/report.json
             island/qa/v155/native-product-clips/pixel-checks.json
             island/qa/v155/native-product-clips/probe-input.json

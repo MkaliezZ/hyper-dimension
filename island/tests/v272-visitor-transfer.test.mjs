@@ -21,10 +21,14 @@ async function fixture(theme,returning=false,early=false){
  for(const recipe of ALL_RECIPES)seed.inventory[recipe.item]=4;
  await store.open(theme,{legacyState:seed,protect:true});
  const current=()=>store.current(theme);
- const command=async(operation,args={})=>{
+ const send=async(operation,args={})=>{
   const result=await store.action(theme,{kind:'visitor',operation,requestId:randomUUID(),expectedVersion:(await current()).version,...args});
   view=result.document.state;return result;
  };
+ // Match saves.action: one island journal dispatches commands in order and
+ // reads each expected version after the previous response is accepted.
+ let commandTail=Promise.resolve();
+ const command=(...args)=>{const run=()=>send(...args),result=commandTail.then(run,run);commandTail=result.catch(()=>{});return result;};
  await command('enable',{theme});
  for(const seconds of [15,5]){clock+=seconds*1000;const doc=await current();await store.save(theme,{state:structuredClone(doc.state),expectedVersion:doc.version,activeSeconds:seconds,saveId:randomUUID()});}
  const arrival=await command('arrive'),guest=arrival.receipt.accepted[0];assert(guest);
@@ -45,7 +49,7 @@ async function fixture(theme,returning=false,early=false){
  const runtime=createVisitorRuntime({getState:()=>view,followPath,remote,onEvent(){},onChange(){}});
  if(returning)runtime.boats.push({id:42,phase:'moored',t:0,...HARBOR.berth,pending:false,inbound:[],outbound:[guest.id],activePassenger:null});
  runtime.update(0,0,0);
- return{runtime,current,before,calls,errors,id:guest.id};
+ return{runtime,current,before,calls,errors,id:guest.id,idle:()=>commandTail};
 }
 const drain=()=>new Promise(resolve=>setImmediate(resolve));
 for(const theme of ['pixel','origami'])for(const returning of [false,true])test(theme+' '+(returning?'boarding':'landing')+' reaches canonical confirmation during unrelated pending receipts',async()=>{
@@ -56,7 +60,7 @@ for(const theme of ['pixel','origami'])for(const returning of [false,true])test(
   const deadline=Date.now()+5000;while(!ownCalls().length&&Date.now()<deadline)await drain();
   assert.deepEqual(ownCalls(),[returning?'depart':'land'],'An unrelated receipt must not strand the passenger at the last painted waypoint');
   const guest=f.runtime.guests.find(g=>g.id===f.id);while(guest.remotePending&&Date.now()<deadline)await drain();
-  assert.deepEqual(f.errors,[]);
+  await f.idle();assert.deepEqual(f.errors,[]);
   const after=await f.current();assert.equal(after.state.coins,f.before.state.coins);assert.deepEqual(after.state.inventory,f.before.state.inventory);
   if(returning){assert.equal(guest.stage,'departed');assert.equal(after.actions.visitor.guests[f.id],undefined);}
   else{assert.equal(guest.stage,'walking');assert.equal(after.actions.visitor.guests[f.id].phase,'landed');}
@@ -69,6 +73,6 @@ test('arrival presentation cannot bypass the canonical boat landing time',async(
  try{
   for(let i=0;i<220;i++){f.runtime.animatePending(.1,.1);await drain();}
   const guest=f.runtime.guests.find(g=>g.id===f.id),deadline=Date.now()+5000;while(guest.remotePending&&Date.now()<deadline)await drain();
-  assert.deepEqual(f.errors,['visitor_early']);const after=await f.current();assert.equal(after.actions.visitor.guests[f.id].phase,'onboard');assert.equal(after.state.coins,f.before.state.coins);assert.deepEqual(after.state.inventory,f.before.state.inventory);
+  await f.idle();assert.deepEqual(f.errors,['visitor_early']);const after=await f.current();assert.equal(after.actions.visitor.guests[f.id].phase,'onboard');assert.equal(after.state.coins,f.before.state.coins);assert.deepEqual(after.state.inventory,f.before.state.inventory);
  }finally{f.runtime.reset();}
 });

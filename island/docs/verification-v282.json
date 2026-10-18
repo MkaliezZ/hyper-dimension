@@ -1,0 +1,29 @@
+{
+  "sourceBase": "1758a85de9e6f3b9813e8e54963958a9c8714582",
+  "unchangedExistingPayloads": 2661,
+  "changedExistingPayloads": [
+    "docs/VALIDATION.md",
+    "tests/v153-portraits-browser.mjs",
+    "tests/v272-visitor-transfer.test.mjs"
+  ],
+  "allGameRuntimeServerAndArtUnchanged": true,
+  "candidateAndHourRemainExactV281": true,
+  "v272OriginalAssertionsPreserved": true,
+  "allFixtureCommandsNowAwaited": true,
+  "forcedOverlap": {
+    "departDelayMs": 200,
+    "otherArrivalDelayMs": 30,
+    "before": {
+      "theme": "origami",
+      "passed": false,
+      "error": "save_conflict"
+    },
+    "afterAllFiveCasesPassed": true
+  },
+  "targetedDomainTests": 9,
+  "symbolSafetyUnitTests": 6,
+  "realThreeSampleMetadataParsed": true,
+  "macSymbolicationComplete": false,
+  "macRootCauseConfirmed": false,
+  "wholeGoalComplete": false
+}
