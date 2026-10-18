@@ -5,6 +5,8 @@ import {drawGroundCalibration} from './buildingGroundCalibration.js';
 import {productionGeometry,residenceGeometry,mapBuildingHit} from './buildingGeometry.js';
 import {drawResidence,residenceArtStatus,residencePortrait} from './residenceArt.js';
 import {createResidenceUI} from './residenceUI.js';
+// Module graph fetched successfully; a later initialization failure must not auto-replay.
+window.__hdIslandAppEntered=true;
 let residenceUI=null;
 import {createFarmCareUI} from './farmCareUI.js';
 let farmCareUI=null;

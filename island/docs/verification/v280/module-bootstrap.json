@@ -1,0 +1,90 @@
+{
+  "version": "V280",
+  "baselinePublicCommit": "a6b17705666e69ef5a75f71e6296394552e47b6b",
+  "hostedFailure": {
+    "run": 39106691673,
+    "job": 117614098811,
+    "artifact": 12130128522,
+    "selectedReportAndScreenshotCRCVerified": true,
+    "wholeArchiveDigestVerified": false,
+    "observedError": "Failed to fetch dynamically imported module: /src/app.js",
+    "observedScreen": "Static island shell; app module did not start, no recovery controller present.",
+    "transportRootCauseEstablished": false
+  },
+  "oldExactBootstrap": {
+    "failed": true,
+    "HTTP503Injected": true,
+    "appRequests": 1,
+    "appExecutions": 0
+  },
+  "minimalNativeCases": [
+    {
+      "theme": "pixel",
+      "mode": "transient",
+      "passed": true,
+      "appRequests": 2,
+      "appExecutions": 1,
+      "documents": 2,
+      "manualRecoveryCompleted": false
+    },
+    {
+      "theme": "origami",
+      "mode": "transient",
+      "passed": true,
+      "appRequests": 2,
+      "appExecutions": 1,
+      "documents": 2,
+      "manualRecoveryCompleted": false
+    },
+    {
+      "theme": "origami",
+      "mode": "permanent",
+      "passed": true,
+      "appRequests": 4,
+      "appExecutions": 1,
+      "documents": 4,
+      "manualRecoveryCompleted": true
+    },
+    {
+      "theme": "pixel",
+      "mode": "runtime",
+      "passed": true,
+      "appRequests": 1,
+      "appExecutions": 1,
+      "documents": 1,
+      "manualRecoveryCompleted": false
+    },
+    {
+      "theme": "pixel",
+      "mode": "no-storage",
+      "passed": true,
+      "appRequests": 1,
+      "appExecutions": 0,
+      "documents": 1,
+      "manualRecoveryCompleted": false
+    }
+  ],
+  "scope": "Real owned DOM and actual LAN bootstrap/storage/identity modules, with minimal app/steward/dock/world stubs and explicit HTTP503 or post-entry runtime failure. No game renderer, authority, saves, models, user browser or human acceptance.",
+  "relatedRecoveryRules": {
+    "tests": [
+      9
+    ],
+    "pass": [
+      9
+    ],
+    "fail": [
+      0
+    ]
+  },
+  "automaticRetryLimit": 2,
+  "retryOnlyBeforeAppEntry": true,
+  "currentUrlAppearanceAccountNamespaceProgressAndRecoveryIntentPreserved": true,
+  "realModelsCalled": false,
+  "actualFullIslandReentryAfterPatchVerified": false,
+  "hostedRepairVerified": false,
+  "rendererFreezeRootFixed": false,
+  "frozenV278HourRemainsInProgress": true,
+  "wholeGoalComplete": false,
+  "originalRecoveryWaitAssertionsFixturesAndTimeoutsPreserved": true,
+  "additionalRecoveryWaitDiagnostics": "Module HTTP status/content type and bounded loader-state observation; no headers, credentials, saves or private documents."
+}

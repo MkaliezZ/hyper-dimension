@@ -452,6 +452,9 @@ jobs:
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts
 
+      - name: Native island module download recovery
+        run: node tests/v280-module-bootstrap-browser.mjs
+
       - name: Native ferry clock ordering during background work
         run: node tests/v278-visitor-clock-browser.mjs
 
@@ -484,6 +487,7 @@ jobs:
         with:
           name: native-island-simulation-${{ matrix.os }}
           path: |
+            island/qa/v280/native-module-bootstrap/report.json
             island/qa/v278/native-visitor-clock/report.json
             island/qa/v276/native-cash/report.json
             island/qa/v276/native-cash/*.png

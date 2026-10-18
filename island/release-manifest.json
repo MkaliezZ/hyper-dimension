@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v279-agent-source",
+  "release": "hyper-dimension-v280-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 103370,
-      "sha256": "ba6cfcdb3acce51409463e5251f0e33101d09f3001c6476210b8a048974f73a9"
+      "bytes": 103912,
+      "sha256": "42a95a6902a3baf51cf99734edd3157af5df26045717e46f122e004674e2c491"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16383,
-      "sha256": "7efbc59e99a106cf50f3a720de2a556f01b46981604c3516413fd844cc09df03"
+      "bytes": 16468,
+      "sha256": "a47f411293814af75903594d85fa1a5cf08c8d4cf57d68570a997e0f8b643e72"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145223,
-      "sha256": "7224dce3a77e7518d4dfc4d01b97c575bea160168acecaac18b178a336e76234"
+      "bytes": 145350,
+      "sha256": "af973cc74dd1655900d10e1d7b793a69db3899501ae78bd9790ed42033efc002"
     },
     {
       "path": "src/arcade.css",
@@ -7287,8 +7287,8 @@
     },
     {
       "path": "src/lan-main.js",
-      "bytes": 2068,
-      "sha256": "74719408ad23d054e8ce6f8624fec821e5de833ebbaf91ecdff7de359a10df59"
+      "bytes": 4142,
+      "sha256": "9de390817f8fb6ca49d5a155cf54ba2e4f4423ed16e8d61b1044391752fed650"
     },
     {
       "path": "src/lan-social-v68.css",
@@ -12162,8 +12162,8 @@
     },
     {
       "path": "tests/v216-recovery-wait-browser.mjs",
-      "bytes": 6665,
-      "sha256": "9b73471afbdee380dc9b3f5e2c22963a6fd3507a8ac466f741627a37f3363671"
+      "bytes": 7622,
+      "sha256": "3a75f06311c2a05f11485c9b8643365cbbcd6b15a51a50c96b416760d53bd46d"
     },
     {
       "path": "tests/v216-resident-plan-readiness.test.mjs",
@@ -13299,7 +13299,22 @@
       "path": "docs/verification/v279/diagnostic-course.json",
       "bytes": 1439,
       "sha256": "309882157baa4f5eb02f50565645e805dc8b20d1b674006d18f61c885f974032"
+    },
+    {
+      "path": "tests/v280-module-bootstrap-browser.mjs",
+      "bytes": 5910,
+      "sha256": "e335ca053be1470dda6de0bdc46d5b430cfedef9699d1cc6ab4ab0c272afd636"
+    },
+    {
+      "path": "docs/module-bootstrap-v280.md",
+      "bytes": 2225,
+      "sha256": "898e983e6f108192ac035ed315696841403dab87c6d4fcd083e9ae12cb1f5ce0"
+    },
+    {
+      "path": "docs/verification/v280/module-bootstrap.json",
+      "bytes": 2727,
+      "sha256": "d0b0bb60736b51e6a049bcde99f1e69f5f3a844b00a210ddc29a9a519633d644"
     }
   ],
-  "publicRevision": "v279-owned-stall-course-preflight"
+  "publicRevision": "v280-module-transport-recovery"
 }
