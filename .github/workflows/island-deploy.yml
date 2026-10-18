@@ -438,6 +438,10 @@ jobs:
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts
 
+      - name: Native cash reporting and shared-style recovery
+        if: inputs.check_scope != 'soil-diagnostics'
+        run: node tests/v276-cash-browser.mjs
+
       - name: Native greenhouse soil care
         run: node tests/v159-soil-care-browser.mjs
 
@@ -463,6 +467,8 @@ jobs:
         with:
           name: native-island-simulation-${{ matrix.os }}
           path: |
+            island/qa/v276/native-cash/report.json
+            island/qa/v276/native-cash/*.png
             island/qa/v159/native-soil-care/report.json
             island/qa/v159/native-soil-care/*.png
             island/qa/v179/navigation-arrival/report.json

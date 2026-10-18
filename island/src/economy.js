@@ -2,6 +2,7 @@ import {specializationDelivery,recordSpecializationDelivery} from './specializat
 import {relationshipInvitation} from './residentStories.js';
 import {availableQuantity,canSpendResources,commitResources} from './resourceLedger.js';
 import {ITEM_BY_ID} from './contentCatalog.js';
+import {recordCashFlow,cashDayTotals,cashDayReport} from './cashAccounting.js';
 // Game currency policy shared by browser and deterministic simulations.
 export const ECONOMY_POLICY_VERSION=202;
 export const ECONOMY_RULES={ferryInterval:90,guestsPerBoat:2,maxGuests:6,serviceSeconds:12,partyFee:8,partyReward:20,partyPerfectBonus:2,daySeconds:900,cashReserve:20};
@@ -24,11 +25,11 @@ export function improveQuality(f,amount){if(f.quality<qualityCap(f))f.quality=Ma
 export function upgradeCost(f){const u=f.upgrades||0;return {coins:80+60*u+25*u*u,wood:3+u,stone:2+u}}
 export function maintenanceCost(f){return {coins:12+Math.ceil(Math.max(0,100-(f.condition??100))*.3),wood:1,stone:1}}
 export function canPay(s,cost,owner=null){return canSpendResources(s,cost,owner)}
-export function transact(s,{income=0,cost=0,category,note='',receipt,materials={},owner=null}){
- const e=hydrateEconomy(s);if(!Number.isInteger(income)||!Number.isInteger(cost)||income<0||cost<0||s.coins+income<cost||receipt&&e.cashReceipts[receipt])return false;
+export function transact(s,{income=0,cost=0,category='inventory',note='',receipt,materials={},owner=null}){
+ const e=hydrateEconomy(s);if(typeof category!=='string'||!Number.isInteger(income)||!Number.isInteger(cost)||income<0||cost<0||s.coins+income<cost||receipt&&e.cashReceipts[receipt])return false;
  const exchange=commitResources(s,{id:receipt?'cash:'+receipt:null,owner,cost:{...materials,coins:cost},gain:{coins:income},category,note});if(!exchange.ok||exchange.replayed)return false;
- e.costs+=cost;if(receipt)e.cashReceipts[receipt]=true;
- e.cashLedger.push({day:s.day,category,note,income,cost,net:income-cost});e.cashLedger=e.cashLedger.slice(-300);
+ if(receipt)e.cashReceipts[receipt]=true;
+ recordCashFlow(s,{income,cost,category,note});
  return true;
 }
 export function payMaterials(s,cost,category,note){
@@ -50,7 +51,7 @@ export function buySupplies(s,id){
 }
 export function visitorPrice(item,recipe=null){return recipe?.source==='cocreation'?(Number.isSafeInteger(recipe.price)?Math.max(2,Math.min(24,recipe.price)):2):recipe?.index>0?recipe.price:({outfit:9,painting:8,meal:6,bouquet:5,rod:6}[item]||4)}
 export function operatingCost(price){return Math.max(1,Math.ceil(price*.3))}
-export function dayAccounts(s){const rows=(s.economy?.cashLedger||[]).filter(r=>r.day===s.day);return rows.reduce((a,r)=>({income:a.income+r.income,cost:a.cost+r.cost,net:a.net+r.net}),{income:0,cost:0,net:0})}
+export function dayAccounts(s){return cashDayTotals(s)}
 export function partyCost({fireworks=false}={}){return {coins:ECONOMY_RULES.partyFee,lantern:1,wheat:2,...(fireworks?{firework:1}:{})}}
 export function canHostParty(s,extras={}){return [0,2].every(id=>relationshipInvitation(s,id,[0,2]).ready)&&!s.partySession&&!['checkin','running'].includes(s.fishingParty?.session?.phase)&&s.lastPartyDay!==s.day&&canPay(s,partyCost(extras))}
 export function reserveParty(s,extras={}){
@@ -89,10 +90,10 @@ export function projectedDayAccounts(s){
 }
 export function settleTownDay(s){
  const e=hydrateEconomy(s),receipt='town-day-'+s.day;if(e.cashReceipts[receipt])return false;
- const budget=townDailyBudget(s),visitorRows=e.cashLedger.filter(r=>r.day===s.day&&r.category==='visitor');
+ const budget=townDailyBudget(s);
  const cost=Math.min(budget.total,Math.max(0,availableQuantity(s,'coins')-ECONOMY_RULES.cashReserve));
  if(!transact(s,{cost,category:'town',note:'每日岛务：水电、公共补给、航务与设施管理'+(cost<budget.total?'（精简运营）':''),receipt}))return false;
- const accounts=dayAccounts(s),row={day:s.day,budget:budget.total,paid:cost,deferred:budget.total-cost,visitorIncome:visitorRows.reduce((v,r)=>v+r.income,0),visitorCost:visitorRows.reduce((v,r)=>v+r.cost,0),income:accounts.income,cost:accounts.cost,net:accounts.net,operatingNet:accounts.net-(budget.total-cost),policyVersion:budget.policyVersion};
+ const accounts=cashDayReport(s),visitor=accounts.byCategory.find(r=>r.category==='visitor'),capital=accounts.byCategory.find(r=>r.category==='upgrade'),row={day:s.day,budget:budget.total,paid:cost,deferred:budget.total-cost,visitorIncome:visitor?.income||0,visitorCost:visitor?.cost||0,income:accounts.income,cost:accounts.cost,net:accounts.net,operatingNet:accounts.net-(budget.total-cost),capitalCost:capital?.cost||0,cashComplete:accounts.complete,policyVersion:budget.policyVersion};
  e.townDays.push(row);e.townDays=e.townDays.slice(-60);return row;
 }
 export function tickTownEconomy(s,dt){

@@ -1,0 +1,185 @@
+{
+  "version": "V276",
+  "at": "2026-10-18T06:28:55.558393+00:00",
+  "baseCommit": "1dadbeda13af1c9e36c47a1de2d841203e2dbd32",
+  "publicBaselineCommit": "11926ead72656690726096658b3a1638278d2004",
+  "changes": [
+    "Bounded300-row details plus separate60-day totals preserve all paid transactions.",
+    "Public saves cannot rewrite cash details, receipt flags, lifetime costs or daily totals; original controller error precedence remains.",
+    "Routine full-cost reporting separates construction spending; explicit partial old records do not enter profitability trends."
+  ],
+  "before": {
+    "exactPublicRuntimeProbeTests": 5,
+    "passCount": 1,
+    "failCount": 4,
+    "validPurchases": 400,
+    "paidCost": 7200,
+    "previousDetailBasedReportCost": 5400,
+    "previousSettledCost": 5454,
+    "correctSettledCost": 7272,
+    "protectedBothThemeCashDetailEditsPreviouslyAccepted": true
+  },
+  "verification": {
+    "focusedInitialCasesPassed": 53,
+    "invalidMetadataBefore": {
+      "passCount": 9,
+      "failCount": 1
+    },
+    "firstFullRules": {
+      "passCount": 1412,
+      "failCount": 2,
+      "cause": "New broad journal validation intercepted existing payment-specific error codes. Moved it after the original guards; assertions were not weakened."
+    },
+    "finalFullRules": {
+      "main": 1415,
+      "windowsWriterGuards": 14,
+      "totalPassed": 1429,
+      "failed": 0,
+      "skipped": 0
+    },
+    "privateAndPublicNativeEntriesBothThemesPassed": true,
+    "nativeCases": [
+      {
+        "theme": "pixel",
+        "canonicalCost": 98,
+        "capitalCost": 80,
+        "routineProjected": -90,
+        "sameWorldThemeSwitch": true,
+        "emptyBrowserRecovered": true
+      },
+      {
+        "theme": "origami",
+        "canonicalCost": 98,
+        "capitalCost": 80,
+        "routineProjected": -90,
+        "sameWorldThemeSwitch": true,
+        "emptyBrowserRecovered": true
+      }
+    ]
+  },
+  "nativeScope": "Native cash reporting in isolated fictional LAN islands. Declared initial200coins and3wood/2stone fund one real upgrade; resting-resident needs prevent unrelated inventory consumption. Actual browser supply/upgrade requests, authoritative debit and material consumption, save, shared-theme switch and empty-browser recovery. Providers blocked; not earned-zero, physical Mac, human or one-hour acceptance.",
+  "liveUserDataOrConfigurationModified": false,
+  "currentRuntimePubliclyPublished": false,
+  "policy": {
+    "version": 202,
+    "validPriceRewardFeeAndBudgetFormulasUnchanged": true,
+    "metadataInvalidInputsRejectedBeforeCurrencyMovement": true
+  },
+  "baselineThirtyDayAccounting": {
+    "sourceCommit": "11926ead72656690726096658b3a1638278d2004",
+    "archiveSha256": "1c821dd68cf572342c5d29d43a814711c277ac0710b53750f9a67153bd52fb48",
+    "daysPerTheme": 30,
+    "initialCoins": 140,
+    "declaredStockAndClockFixtures": true,
+    "zeroStartOrHumanBalanceAcceptance": false,
+    "cases": [
+      {
+        "theme": "pixel",
+        "days": 30,
+        "initialCoins": 140,
+        "finalCoins": 107,
+        "totalNet": -33,
+        "fullOperatingNet": -33,
+        "deferred": 0,
+        "categories": {
+          "visitor": {
+            "count": 1108,
+            "income": 4451,
+            "cost": 2216,
+            "net": 2235
+          },
+          "party": {
+            "count": 60,
+            "income": 1628,
+            "cost": 336,
+            "net": 1292
+          },
+          "recruitment": {
+            "count": 30,
+            "income": 0,
+            "cost": 240,
+            "net": -240
+          },
+          "town": {
+            "count": 30,
+            "income": 0,
+            "cost": 2168,
+            "net": -2168
+          },
+          "upgrade": {
+            "count": 3,
+            "income": 0,
+            "cost": 545,
+            "net": -545
+          },
+          "maintenance": {
+            "count": 20,
+            "income": 0,
+            "cost": 607,
+            "net": -607
+          }
+        }
+      },
+      {
+        "theme": "origami",
+        "days": 30,
+        "initialCoins": 140,
+        "finalCoins": 101,
+        "totalNet": -39,
+        "fullOperatingNet": -39,
+        "deferred": 0,
+        "categories": {
+          "visitor": {
+            "count": 1108,
+            "income": 4451,
+            "cost": 2216,
+            "net": 2235
+          },
+          "party": {
+            "count": 60,
+            "income": 1622,
+            "cost": 336,
+            "net": 1286
+          },
+          "recruitment": {
+            "count": 30,
+            "income": 0,
+            "cost": 240,
+            "net": -240
+          },
+          "town": {
+            "count": 30,
+            "income": 0,
+            "cost": 2168,
+            "net": -2168
+          },
+          "upgrade": {
+            "count": 3,
+            "income": 0,
+            "cost": 545,
+            "net": -545
+          },
+          "maintenance": {
+            "count": 20,
+            "income": 0,
+            "cost": 607,
+            "net": -607
+          }
+        }
+      }
+    ],
+    "currentV276ThirtyDayClaimedPassed": false
+  },
+  "hourAttempt": {
+    "sourceCommit": "11926ead72656690726096658b3a1638278d2004",
+    "startupFailedBeforeAnyHourCase": true,
+    "cause": "Private provider capture path was outside its permitted QA directory. Preserve the guard and use its permitted scope for the next qualified-source attempt.",
+    "actualHourCompleted": false,
+    "modelsCalledBeforeFailure": false,
+    "currentV276HourClaimedPassed": false
+  },
+  "originalMacResidentRootStillOpen": true,
+  "newHostedCashResultPending": true,
+  "actualOPCOrNewPlayerAcceptanceComplete": false,
+  "wholeGoalComplete": false
+}

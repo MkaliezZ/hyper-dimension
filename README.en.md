@@ -16,7 +16,7 @@ People and briefs are fictional; AI replies, Hermes file operations and steward 
 
 | Experience | What you can do |
 | --- | --- |
-| Run and create | 25 functional building types, 19 crops, 58 materials and 308 recipes. Process goods, use tools, stock visitor shelves, prepare parties and collect wonders. |
+| Run and create | 25 functional building types, 19 crops, 58 materials and 308 recipes. Process goods, use tools, stock shelves, host parties and collect wonders; separate routine cash flow from construction spending. |
 | Residents and homes | 15 AI residents with free conversation, work schedules and relationship history; sixteen homes shaped by their owners’ jobs and interests. |
 | Your Agent steward | Choose a name and one of 12 appearances. Use Hermes for real work, recruit a temporary partner and assign residents jobs with prerequisites. |
 | Seasons and visits | Seasons last 30 visual days; weather affects farming and fishing. Evening lights, waves and moon reflections accompany visits with your steward and invited NPCs, A2A information exchange and cooperative preparation. |

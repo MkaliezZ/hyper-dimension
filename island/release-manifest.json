@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v275-agent-source",
+  "release": "hyper-dimension-v276-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3112,
-      "sha256": "94e0bb3d5aff247354e65a68bc647ffd3c3d9d1c9ef76869a6a5ec3f5b9692f3"
+      "bytes": 3156,
+      "sha256": "6417fc903b3d9d09f99559a807af561816704e800ac7faa9b66542f04c42596a"
     },
     {
       "path": "README.md",
-      "bytes": 2888,
-      "sha256": "aba37ae7b92888bdb3b157b77535be0bec27099d3ccccfd586465e3fc46a8e70"
+      "bytes": 2918,
+      "sha256": "d43d08e69dcd8f04e52d9d6db5828f2ea5171cc1c0b18c39fe87897b8e2416c7"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 101209,
-      "sha256": "179038255dee818d0ebe3784b9b38f8cf7eca23d70823cfcb8d36f332e8028b9"
+      "bytes": 101815,
+      "sha256": "0195ae0be94013d28d18a032b08fe7d941f45a642d9abf0cac62fd76fb698375"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16045,
-      "sha256": "dfcdcf86941c6c81efe79ee1588b55989a41203b9d0a2bc08f37967e6561cef3"
+      "bytes": 16176,
+      "sha256": "066cd7bfebe1addf8b2c5815873ea6a05b34559f5dd0f1c36db960fc8ec14707"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6217,8 +6217,8 @@
     },
     {
       "path": "server/lanEconomyJournal.mjs",
-      "bytes": 8112,
-      "sha256": "03bec9f1543305428e2836d4847b97300ff9ed441cff1abfc4573ca59194752d"
+      "bytes": 7988,
+      "sha256": "02a801d84b490ef2b5ace09bd52617af96544bd126ec7cfbf04b33c791642dc0"
     },
     {
       "path": "server/lanGeographyMigration.mjs",
@@ -6442,8 +6442,8 @@
     },
     {
       "path": "server/saveStore.mjs",
-      "bytes": 40707,
-      "sha256": "a892f0f62b8f80f7785c08be0e84ec692bb3c6b08ad81635b0ba31d712ce0656"
+      "bytes": 40997,
+      "sha256": "e866ee3e2fc80ef3c5618f12dea05b98dab63b764a0bf8120ad5368054f32137"
     },
     {
       "path": "server/sqliteBackup.mjs",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145175,
-      "sha256": "36ff9932f7643d96a706e48f5721591f024a2beb028a4f21497a73a896aaa7f3"
+      "bytes": 145250,
+      "sha256": "0b99e91a90434ff819ddb738d09e0c6874779dc22413e740f61a5533b93f4bd4"
     },
     {
       "path": "src/arcade.css",
@@ -6817,13 +6817,13 @@
     },
     {
       "path": "src/economy.js",
-      "bytes": 10962,
-      "sha256": "3ae5f75842d55a9fc1a7f7b074bfc8b61538fc8a2af8e1db301d1d721c8ace2b"
+      "bytes": 10914,
+      "sha256": "9bd9988759773e95c512c88a2ea48302b4faf80e80e4a3ffd1529a0df05621f9"
     },
     {
       "path": "src/economyTrend.js",
-      "bytes": 1380,
-      "sha256": "063f3159c6af1aa4181cc7ad4d1a19e19d797524acf6c259ad4212f0a83ab779"
+      "bytes": 1404,
+      "sha256": "77bba58e3b991c7571f0667cdd6e2b256fa1790efa64da60276eba8254ae0aaa"
     },
     {
       "path": "src/environment-v127.css",
@@ -13204,7 +13204,47 @@
       "path": "docs/verification/v275/raf-observation.json",
       "bytes": 3206,
       "sha256": "fd691dcc59b45ffb807dd6d0fb8c464a7b18da5c96aed3539af1fb8035aa0902"
+    },
+    {
+      "path": "src/cashAccounting.js",
+      "bytes": 3277,
+      "sha256": "09c24f684935c042ec17faedb6f0319717c69ee4a3e5178d3fad3cacd49a2b59"
+    },
+    {
+      "path": "src/cashReportView.js",
+      "bytes": 1236,
+      "sha256": "9a2e2a67301bddf10815d6b979674cb32ccd6cda80a893fbf5ba56f1007b76b2"
+    },
+    {
+      "path": "server/cashAuthority.mjs",
+      "bytes": 610,
+      "sha256": "0b798fbd46018256d674c93ba3a41d0696d9ced93ed28fbc323954965a3fb4e2"
+    },
+    {
+      "path": "tests/v276-cash-accounting.test.mjs",
+      "bytes": 5912,
+      "sha256": "24d1d1f71d7c19377c8f4106ceb074d06e063086ee421c93f85aa3277c758f4d"
+    },
+    {
+      "path": "tests/v276-cash-authority.test.mjs",
+      "bytes": 4473,
+      "sha256": "5e7080b4f8603513abc1559d170d430e1b329d972a81ff5d046a8ce03eeab459"
+    },
+    {
+      "path": "tests/v276-cash-browser.mjs",
+      "bytes": 6391,
+      "sha256": "a13d6ec1f24355934504f1a4d07da866b914281645fb384aae12c4db5fab0270"
+    },
+    {
+      "path": "docs/cash-book-v276.md",
+      "bytes": 3458,
+      "sha256": "be3733f0984d23bf81f5428ec2f9769e0252c7d940408480992c3d29dfadab4d"
+    },
+    {
+      "path": "docs/verification/v276/cash-book.json",
+      "bytes": 5897,
+      "sha256": "b42b183f75a2317b0445d9b0ba237481aae1fc9dd71b40f4b31fc3b5b1391c5c"
     }
   ],
-  "publicRevision": "v275-raf-fault-observation"
+  "publicRevision": "v276-cash-report"
 }
