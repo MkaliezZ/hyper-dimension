@@ -1,6 +1,6 @@
 {
-  "schema": 80,
-  "release": "hyper-dimension-v276-agent-source",
+  "schema": 81,
+  "release": "hyper-dimension-v277-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 101815,
-      "sha256": "0195ae0be94013d28d18a032b08fe7d941f45a642d9abf0cac62fd76fb698375"
+      "bytes": 102382,
+      "sha256": "0908e7f353771457be22299d2a152ec984a9453e257cf7174ae2dbb485568064"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16176,
-      "sha256": "066cd7bfebe1addf8b2c5815873ea6a05b34559f5dd0f1c36db960fc8ec14707"
+      "bytes": 16265,
+      "sha256": "b96cc86abf3431f2aabca4a3eaaba1420ebbf873f808f91bb4d73c904271e3cf"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145250,
-      "sha256": "0b99e91a90434ff819ddb738d09e0c6874779dc22413e740f61a5533b93f4bd4"
+      "bytes": 145223,
+      "sha256": "7224dce3a77e7518d4dfc4d01b97c575bea160168acecaac18b178a336e76234"
     },
     {
       "path": "src/arcade.css",
@@ -8217,8 +8217,8 @@
     },
     {
       "path": "src/visitorRuntime.js",
-      "bytes": 13966,
-      "sha256": "86a1739ea5bcdb0c5b3804cdda8b6b11dfa5d9ed79cd73da612e477d56bcc729"
+      "bytes": 14567,
+      "sha256": "8252e630d457c3f6ee68bd386a4b40bb0b48b18a2b1766ecd27fd55793a6809c"
     },
     {
       "path": "src/weatherRules.js",
@@ -13092,8 +13092,8 @@
     },
     {
       "path": "tests/nativeWorkJournal.mjs",
-      "bytes": 4688,
-      "sha256": "d3d8b068f4c48dab6bfb4d3429bc35f437003859767c290f0f0ecfcc8774d27b"
+      "bytes": 5786,
+      "sha256": "a6cc702e88e5dfea182ccf67da7195dc77310e3716248284fff49b2376df4394"
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
@@ -13244,7 +13244,32 @@
       "path": "docs/verification/v276/cash-book.json",
       "bytes": 5897,
       "sha256": "b42b183f75a2317b0445d9b0ba237481aae1fc9dd71b40f4b31fc3b5b1391c5c"
+    },
+    {
+      "path": "tests/nativeBrowserResources.mjs",
+      "bytes": 2278,
+      "sha256": "85361c184e95d72c61e020922d249b39cc5c9661dde2eea512f17e9be9cdda39"
+    },
+    {
+      "path": "tests/v277-visitor-service-admission.test.mjs",
+      "bytes": 3295,
+      "sha256": "4aa86572d2a744643ab559851c027a6bf07725cd2aa354a9238ff950048b0d87"
+    },
+    {
+      "path": "tests/v277-browser-resource-scope.test.mjs",
+      "bytes": 1843,
+      "sha256": "0ca4d9259ed85a6f6fb46d6cc09513647c1b8a23bd61d0035147829b08929aca"
+    },
+    {
+      "path": "docs/visitor-admission-v277.md",
+      "bytes": 3187,
+      "sha256": "912c0e92bfe897b49a12fa9053f79340aa3f0855be468cd1c944e2d635ec7ebb"
+    },
+    {
+      "path": "docs/verification/v277/visitor-admission.json",
+      "bytes": 4113,
+      "sha256": "e9d0c45d265976192755efd5833bbaefae9ad0c8d5b4e345d8890019b40e74e8"
     }
   ],
-  "publicRevision": "v276-cash-report"
+  "publicRevision": "v277-visitor-admission"
 }

@@ -1,0 +1,121 @@
+{
+  "version": "V277",
+  "at": "2026-10-18T07:04:49.350408+00:00",
+  "baselineCommit": "c15fee736c348dfd48e17a3c25155149edc68ded",
+  "changes": [
+    "Visitor arrival, door and indoor callbacks may continue when their own canonical transport is idle during unrelated domain requests. Canonical service, inventory, timing and payment validation remains in place.",
+    "Remove three unreferenced legacy scene image registrations per theme; retain all actual room atlases, farm/mine scenes and the original assets.",
+    "Add read-only owned-browser process memory/CPU and page-crash observations to native journals; original assertions and budgets retained."
+  ],
+  "before": {
+    "exactPublicRuntimeCases": 4,
+    "passed": 1,
+    "failed": 3
+  },
+  "verification": {
+    "relatedPassed": 22,
+    "existingDefaultPassed": 1429,
+    "newProcessScopePassed": 3,
+    "actualWindowsOwnedProcessProbePassed": true,
+    "nativeCases": [
+      {
+        "theme": "pixel",
+        "passed": true,
+        "roadAndService": {
+          "wallMs": 40360,
+          "originalBudgetMs": 150000
+        },
+        "delayedAcceptedOtherDomainReplies": 34,
+        "stockBefore": 1,
+        "stockAfter": 0,
+        "paid": 7,
+        "cost": 3,
+        "net": 4,
+        "emptyBrowserReopen": false,
+        "reloadedAndShelfRetained": true,
+        "originalAuthorityEarlyRejections": []
+      },
+      {
+        "theme": "origami",
+        "passed": true,
+        "roadAndService": {
+          "wallMs": 34319,
+          "originalBudgetMs": 150000
+        },
+        "delayedAcceptedOtherDomainReplies": 35,
+        "stockBefore": 1,
+        "stockAfter": 0,
+        "paid": 7,
+        "cost": 3,
+        "net": 4,
+        "emptyBrowserReopen": false,
+        "reloadedAndShelfRetained": true,
+        "originalAuthorityEarlyRejections": [
+          "visitor_early"
+        ]
+      }
+    ],
+    "currentDefaultPassed": 1436,
+    "currentDefaultBreakdown": {
+      "main": 1422,
+      "windowsWriterGuards": 14,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "memory": {
+    "cases": [
+      {
+        "theme": "pixel",
+        "oldDecodedBytes": 228322096,
+        "newDecodedBytes": 209447728,
+        "reductionBytes": 18874368,
+        "removedUnusedUrls": [
+          "/assets/gallery-pixel.png",
+          "/assets/tea-pixel.png",
+          "/assets/workshop-pixel.png"
+        ],
+        "allOtherImagesUnchanged": true,
+        "terrainFailures": 0
+      },
+      {
+        "theme": "origami",
+        "oldDecodedBytes": 230411532,
+        "newDecodedBytes": 211537164,
+        "reductionBytes": 18874368,
+        "removedUnusedUrls": [
+          "/assets/gallery-origami.png",
+          "/assets/tea-origami.png",
+          "/assets/workshop-origami.png"
+        ],
+        "allOtherImagesUnchanged": true,
+        "terrainFailures": 0
+      }
+    ],
+    "nativeMacRootClaimedFixed": false,
+    "actualProcessWorkingSetsNotUsedAsAnExactDelta": true,
+    "scope": "Same owned Windows Edge two-theme audit, only unused legacy scene registrations changed. Decoded byte count is from actual natural image dimensions; renderer RSS also includes caches and is not an exact memory-savings claim."
+  },
+  "oldHostedEvidence": {
+    "run": 39099845794,
+    "intelGameplayJob": 117593985593,
+    "intelGameplayArtifact": 12127821927,
+    "armGameplayJob": 117593985572,
+    "armGameplayArtifact": 12127069509,
+    "selectedReportEntryCRCVerified": true,
+    "wholeZipDigestClaimedVerified": false,
+    "initialWrongArtifactSelectionCorrected": true
+  },
+  "previousFinancialThirtyDay": {
+    "sourceCommit": "c15fee736c348dfd48e17a3c25155149edc68ded",
+    "passed": true,
+    "daysPerTheme": 30,
+    "deterministicClockAndDeclaredResources": true,
+    "zeroStartOrHumanAcceptance": false
+  },
+  "newSourceFullDefaultCommandPending": false,
+  "newHostedMacResultsPending": true,
+  "armWholeRendererFreezeRootEstablished": false,
+  "exactCurrentSourceHourComplete": false,
+  "wholeGoalComplete": false
+}

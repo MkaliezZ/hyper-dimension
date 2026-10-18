@@ -1,0 +1,35 @@
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+const execute=promisify(execFile);
+
+// Only PIDs returned by the CDP session of this test's owned browser are read.
+// No process inventory, command line, user browser, profile or file is queried.
+export function browserProcessIds(processes){
+ const ids=processes.map(p=>Number(p.id));
+ if(ids.some(id=>!Number.isSafeInteger(id)||id<=0))throw Error('Invalid owned-browser PID');
+ return [...new Set(ids)];
+}
+export function parseBrowserProcessRss(text,allowed){
+ const ids=new Set(allowed),out=[];
+ for(const line of text.trim().split(/\r?\n/)){
+  if(!line.trim())continue;
+  const match=line.trim().match(/^(\d+)\s+(\d+)\s+([\d.]+)\s+(\S+)$/);
+  if(!match)throw Error('Invalid browser process memory sample');
+  const id=Number(match[1]);if(!ids.has(id))throw Error('Unexpected process in browser sample');
+  out.push({id,rssBytes:Number(match[2])*1024,cpuPercent:Number(match[3]),state:match[4]});
+ }return out;
+}
+export async function observeOwnedBrowserProcesses(session,{platform=process.platform,run=execute}={}){
+ const {processInfo}=await session.send('SystemInfo.getProcessInfo'),ids=browserProcessIds(processInfo);
+ if(!ids.length)return[];
+ let memory;
+ if(platform==='win32'){
+  const command=`[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); @(Get-Process -Id ${ids.join(',')} -ErrorAction SilentlyContinue | Select-Object Id,WorkingSet64,PrivateMemorySize64) | ConvertTo-Json -Compress`;
+  const {stdout}=await run('powershell.exe',['-NoProfile','-NonInteractive','-Command',command],{encoding:'utf8',windowsHide:true,timeout:2000,maxBuffer:65536});
+  const rows=JSON.parse(stdout.trim()||'[]');memory=(Array.isArray(rows)?rows:[rows]).map(r=>({id:r.Id,rssBytes:r.WorkingSet64,privateBytes:r.PrivateMemorySize64}));
+  if(memory.some(p=>!ids.includes(p.id)))throw Error('Unexpected process in browser sample');
+ }else if(platform==='darwin'||platform==='linux'){
+  const {stdout}=await run('/bin/ps',['-o','pid=,rss=,pcpu=,stat=','-p',ids.join(',')],{encoding:'utf8',timeout:2000,maxBuffer:65536});memory=parseBrowserProcessRss(stdout,ids);
+ }else throw Error('Unsupported browser memory platform');
+ return processInfo.map(p=>({...p,...memory.find(m=>m.id===p.id)}));
+}

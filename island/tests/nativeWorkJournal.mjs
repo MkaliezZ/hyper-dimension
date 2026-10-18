@@ -1,6 +1,7 @@
 import {writeFile,rename} from 'node:fs/promises';
 import {join} from 'node:path';
 import {platform,arch,totalmem,freemem,cpus} from 'node:os';
+import {observeOwnedBrowserProcesses} from './nativeBrowserResources.mjs';
 
 // Read-only observations for the isolated native fixtures. No actor, clock,
 // receipt, inventory, model request or browser visibility is changed.
@@ -15,11 +16,16 @@ window.__nativeWorkObservation=()=>{
 
 export function createNativeWorkJournal(out,report,{deadlineMs}={}){
  if(process.env.HD_QA_WORK_JOURNAL!=='1')return{install:async()=>{},observe(){},phase(){},beforeCleanup:async()=>{},finish:async()=>{}};
- const entries=[];let active=true,tail=Promise.resolve();
+ const entries=[],browsers=new Map();let active=true,tail=Promise.resolve();
  report.nativeJournal={enabled:true,startedAt:new Date().toISOString(),host:{platform:platform(),arch:arch(),cpus:cpus().length,totalMemoryBytes:totalmem()},cleanupComplete:false};
  const flush=()=>{const encoded=JSON.stringify(report,null,2);tail=tail.then(async()=>{const tmp=join(out,'work-progress.json.tmp');await writeFile(tmp,encoded);await rename(tmp,join(out,'work-progress.json'));});return tail;};
  const timer=setInterval(()=>{
   report.nativeJournal.observedAt=new Date().toISOString();report.nativeJournal.freeMemoryBytes=freemem();report.nativeJournal.nodeRssBytes=process.memoryUsage().rss;
+  for(const probe of browsers.values()){
+   if(probe.pending||Date.now()-probe.last<10000)continue;
+   probe.pending=true;probe.last=Date.now();report.nativeJournal.browserProbePendingSince=new Date().toISOString();
+   probe.session.then(observeOwnedBrowserProcesses).then(processes=>{if(!active)return;report.nativeJournal.browserProcessSamples??=[];report.nativeJournal.browserProcessSamples.push({at:new Date().toISOString(),processes});if(report.nativeJournal.browserProcessSamples.length>12)report.nativeJournal.browserProcessSamples.shift();}).catch(e=>{if(active)report.nativeJournal.browserProbeError=String(e.message).slice(0,300);}).finally(()=>{probe.pending=false;delete report.nativeJournal.browserProbePendingSince;});
+  }
   for(const entry of entries){
    if(entry.pending||entry.page.isClosed())continue;entry.pending=true;
    entry.page.evaluate(()=>window.__nativeWorkObservation?.()).then(sample=>{if(!active||!sample)return;entry.row.nativeWorkSamples??=[];entry.row.nativeWorkSamples.push(sample);if(entry.row.nativeWorkSamples.length>60)entry.row.nativeWorkSamples.shift();}).catch(e=>{if(active&&!entry.page.isClosed()&&!/Execution context was destroyed|Cannot find context/.test(e.message))entry.row.nativeObservationError=e.message;}).finally(()=>entry.pending=false);
@@ -29,7 +35,7 @@ export function createNativeWorkJournal(out,report,{deadlineMs}={}){
  const deadline=setTimeout(async()=>{report.passed=false;report.nativeJournal.deadlineExceededMs=deadlineMs;try{await flush();}finally{process.exit(1);}},deadlineMs);deadline.unref();
  return{
   async install(context){await context.route('**/src/app.js',async route=>{try{const response=await route.fetch({maxRetries:1});await route.fulfill({response,body:(await response.text())+observation});}catch(e){report.nativeJournal.routeError=e.message;await flush();await route.abort().catch(()=>{});}});},
-  observe(page,row){entries.push({page,row,pending:false});},
+  observe(page,row){entries.push({page,row,pending:false});page.on('crash',()=>{row.nativePageCrashAt=new Date().toISOString();});const browser=page.context().browser();if(browser&&!browsers.has(browser)){const session=browser.newBrowserCDPSession();session.catch(()=>{});browsers.set(browser,{session,pending:false,last:0});}},
   phase(row,name){row.nativePhase=name;row.nativeStages??=[];row.nativeStages.push({name,at:new Date().toISOString()});},
   async beforeCleanup(){active=false;clearInterval(timer);report.nativeJournal.cleanupStartedAt=new Date().toISOString();await flush();},
   async finish(){clearTimeout(deadline);report.nativeJournal.cleanupComplete=true;report.nativeJournal.finishedAt=new Date().toISOString();await flush();}

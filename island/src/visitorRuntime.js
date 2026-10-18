@@ -179,17 +179,27 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
   for(let i=guests.length-1;i>=0;i--)if(guests[i].stage==='departed')guests.splice(i,1);
  }
  function animatePending(dt,travelDt=dt){
-  for(const b of boats)advanceBoatMotion(b,travelDt,HARBOR);
+  // This presentation pass runs during other domains' durable requests. A
+  // visitor waits for its own transport, rather than an island-wide idle gap;
+  // every admission, review and sale still uses the canonical command journal.
+  const canConfirm=()=>remote?.ready()&&!remote.settling();
+  if(remote)time+=dt;
+  for(const b of boats){
+   const phase=b.phase,progress=advanceBoatMotion(b,travelDt,HARBOR);
+   if(canConfirm()&&phase==='approaching'&&progress>=1)land(b);
+   else if(canConfirm()&&phase==='moored'){b.t+=dt;transfer(b);}
+   else if(phase==='leaving'&&progress>=1)b.phase='gone';
+  }
   for(const g of guests){
    if(g.stage==='departed'||g.stage==='onboard')continue;
    if(remote&&g.stage==='servicing'){advanceService(g,travelDt);continue;}
-   if(g.indoorActor?.path.length)followPendingPath(g.indoorActor,travelDt,105);
+   if(g.indoorActor?.path.length)(canConfirm()&&!g.remotePending?followPath:followPendingPath)(g.indoorActor,travelDt,105);
    else if(g.path.length){
     if(shouldYield(g,[...guests,...extraPassengers()])){g.walkMix=(g.walkMix||0)*Math.exp(-dt*10);g.walking=false;}
     // These crossings submit land/depart through the existing durable journal.
     // Waiting for every unrelated job to become idle can strand a passenger at
     // the last deck point; stock, timing and income remain server-authoritative.
-    else if(remote?.ready()&&!g.remotePending&&['landing','boarding'].includes(g.stage))followPath(g,travelDt,86);
+    else if(remote?.ready()&&!g.remotePending&&(canConfirm()||['landing','boarding'].includes(g.stage)))followPath(g,travelDt,86);
     else followPendingPath(g,travelDt,86);
    }
    if(g.indoorActor?.action)g.indoorActor.action.visualWait=(g.indoorActor.action.visualWait||0)+dt;

@@ -182,7 +182,7 @@ const soundMixer=getSoundMixer(),worldSound=createWorldSound(soundMixer),soundUI
 let particles=[],ripples=[],mineMeter=null,aiClock=2,aiCursor=0,aiBusy=false,partyGame=state.partySession||null,partySettling=false;
 const images={pixel:new Image(),origami:new Image()};for(const style of ['pixel','origami'])registerThemeArtwork(images[style],terrainOverviewURL(style),style);
 const houses={pixel:new Image(),origami:new Image()};for(const style of ['pixel','origami'])registerThemeArtwork(houses[style],HOUSE_ATLAS_BOUNDS[style].src,style);
-const sceneImages={};for(const place of ['farm','mine','workshop','tea','gallery'])for(const style of ['pixel','origami']){const key=place+'-'+style;sceneImages[key]=new Image();registerThemeArtwork(sceneImages[key],'/assets/'+key+'.png',style)}
+const sceneImages={};for(const place of ['farm','mine'])for(const style of ['pixel','origami']){const key=place+'-'+style;sceneImages[key]=new Image();registerThemeArtwork(sceneImages[key],'/assets/'+key+'.png',style)}
 const roomAtlases={pixel:new Image(),origami:new Image()};for(const key of ['pixel','origami'])registerThemeArtwork(roomAtlases[key],'/assets/interiors-'+key+'-v2.png',key);
 const roomPacks={pixel:[],origami:[]};for(const style of ['pixel','origami'])for(let i=0;i<7;i++){const image=new Image();registerThemeArtwork(image,'/assets/interiors-'+style+'-pack-'+i+'-v2.png',style);roomPacks[style].push(image)}
 const point=(x,y)=>({x,y});
