@@ -6,6 +6,17 @@ const report={scope:'Ordinary autonomous NPC production is suspended before the 
 async function run(theme,intent){const row={theme,intent,stage:'starting',errors:[],badAssets:[],networkFailures:[]};report.cases.push(row);let held=false,release;const released=new Promise(r=>release=r);const dir=await mkdtemp(path.join(out,theme+'-')),store=createSaveStore({directory:path.join(dir,'saves')}),state=hydrateTown(createZeroState()),recipe=RECIPE_BY_ID.recipe_c14_8;state.freshStartPending=false;state.coins=100;state.buildings[14]=1;state.inventory.seed=3;for(const p of state.plots)p.playerTended=true;for(const [id,n]of Object.entries(recipe.cost))state.inventory[id]=n;assert.equal(state.inventory.c14_8||0,0);await store.open(theme,{legacyState:state,protect:true});
  const probe=createServer();await new Promise(r=>probe.listen(0,'127.0.0.1',r));const port=probe.address().port;await new Promise(r=>probe.close(r));const server=spawn(process.execPath,[path.join(root,'server.mjs'),'--port='+port,'--theme='+theme],{cwd:root,windowsHide:true,stdio:'ignore',env:{...process.env,DEEPSEEK_API_KEY:'',HD_SAVE_DIR:path.join(dir,'saves'),HD_RUN_LEDGER_DIR:path.join(dir,'runs')}}),context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),base='http://127.0.0.1:'+port;
  page.on('pageerror',e=>row.errors.push(e.message));page.on('requestfailed',r=>{if(row.networkFailures.length<30)row.networkFailures.push({path:new URL(r.url()).pathname,error:r.failure()?.errorText});});page.on('response',r=>{if(r.url().includes('/assets/')&&r.status()>=400)row.badAssets.push(new URL(r.url()).pathname);});
+ // A native frame interruption intentionally pauses the workshop. Resume through
+ // its real button before retrying the pending pointer action; the original
+ // action timeout includes this handler. Never dismiss result/recovery dialogs.
+ row.pauseResumptions=[];
+ await page.addLocatorHandler(page.locator('.wk-session-dialog[open] [data-action="resume"]'),async button=>{
+  const snapshot=()=>page.evaluate(()=>{const g=window.islandInspect().roomGame;return {phase:g.phase,paused:g.paused,result:g.result,player:g.player,crates:g.crates,moves:g.moves,t:g.t};});
+  const before=await snapshot();assert(before.paused&&before.phase==='playing'&&!before.result);
+  await button.click();const after=await snapshot();assert.equal(after.paused,false);
+  for(const key of ['phase','result','player','crates','moves'])assert.deepEqual(after[key],before[key],'resuming preserves '+key);
+  assert(after.t>=before.t);row.pauseResumptions.push({before,after});
+ });
  await context.route('**/api/**',async r=>{const url=r.request().url(),b=r.request().method()==='POST'?r.request().postDataJSON():null;
  // The winning input may be submitted before the next result-panel paint. Hold
  // the accepted winning response, independently of browser/render scheduling.

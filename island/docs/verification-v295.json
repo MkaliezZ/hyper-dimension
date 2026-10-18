@@ -1,0 +1,70 @@
+{
+  "version": "V295",
+  "at": "2026-10-18T20:16:11.522306+00:00",
+  "productionRuntimeFilesChanged": [],
+  "unchangedTrackedRuntimeFiles": 476,
+  "driverSha256": "821a0ad85eb9adb7beabf5d924ca24214a31c705991ec724111f0a692a4d0495",
+  "officialFailure": {
+    "run": 39158195782,
+    "job": 117767765839,
+    "artifact": 12149281677,
+    "artifactSha256": "4fec264bb7e3b808bca7cfb2eff33355377b06a84cca8c34cb547ac55009c5f7",
+    "allEightCrcVerified": true,
+    "case": "pixel claim",
+    "causeShownByScreenshot": "Existing long-frame safety pause dialog intercepts next native direction button",
+    "otherThreeCasesPassed": true
+  },
+  "nativeWindowsBeforeAfter": {
+    "originalDriverExpectedBlockReproduced": true,
+    "declaredWithheldRafWallMilliseconds": 2700,
+    "originalPauseThresholdSeconds": 2,
+    "allFourAfterCasesPassed": true,
+    "exactlyOneNativeResumePerCase": true,
+    "puzzlePositionCratesMovesPreserved": true,
+    "realClaimExactlyOnceOrCancelWithoutCosts": true,
+    "gameStateClockScoreResultNotInjected": true
+  },
+  "originalFourCaseFlowWithoutFrameInjection": {
+    "passed": true,
+    "cases": 4,
+    "caseSummary": [
+      {
+        "theme": "pixel",
+        "intent": "claim",
+        "passed": true,
+        "nativeResumes": 0
+      },
+      {
+        "theme": "origami",
+        "intent": "claim",
+        "passed": true,
+        "nativeResumes": 0
+      },
+      {
+        "theme": "pixel",
+        "intent": "cancel",
+        "passed": true,
+        "nativeResumes": 0
+      },
+      {
+        "theme": "origami",
+        "intent": "cancel",
+        "passed": true,
+        "nativeResumes": 0
+      }
+    ]
+  },
+  "gatesUnchanged": [
+    "original locator and wait timeouts",
+    "game natural limit and difficulty",
+    "generated legal solution and native pointer moves",
+    "accepted winning checkpoint held until early double-click",
+    "exactly one protected reward receipt",
+    "exact raw material cost and one compost bag",
+    "cancel preserves every supplied raw input",
+    "result and recovery dialogs are not dismissed"
+  ],
+  "fullFourMapBothStylesPassed": false,
+  "hostedMacRecoveryProven": false,
+  "wholeGoalComplete": false
+}
