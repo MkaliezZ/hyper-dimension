@@ -1,0 +1,67 @@
+{
+  "version": "V292",
+  "at": "2026-10-18T17:56:35.536680+00:00",
+  "runtimeHashes": {
+    "src/lanActivitiesUI.js": "ae1ec8a34c37459f963d906fd7f097504fc8cceed0e7d1e5a84b29723f1123fb"
+  },
+  "scope": "Share the pending activity refresh promise for the same island before the existing single revision retry. Clear invalidates an older refresh so an obsolete owner cannot overwrite the next context. Original command journal, request-id recovery, exact-once authority, retry count, network deadline, event preparation and quality gates retained.",
+  "nativeComponentBefore": {
+    "cases": 2,
+    "failed": 2,
+    "actualFinishRevisions": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "nativeComponentAfter": {
+    "cases": 2,
+    "passed": 2,
+    "actualFinishRevisions": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "explicitHttpFixture": true,
+    "realAuthorityAcceptanceClaimed": false
+  },
+  "relatedAuthorityEconomyRules": {
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "terminalToolSession": 79295,
+    "scope": "Actual existing activity, visiting craft, economic book and IO rules. Economic case uses10declared fixture days per style; no real-time/new-player balance claim."
+  },
+  "lastFullDefaultRules": {
+    "version": "V291",
+    "tests": 1470,
+    "pass": 1470,
+    "currentV292FullRerun": false
+  },
+  "previousFullFlowFailure": {
+    "version": "V291-routed",
+    "allThreeGuestChallengesPassed": true,
+    "actualQualities": [
+      100,
+      100,
+      100
+    ],
+    "failedBeforeSettlement": "two definitive revision conflicts, recovery button removed while clicking",
+    "fullFlowPassed": false
+  },
+  "fullOrigamiFlowWithCandidatePending": true,
+  "allMacFailuresResolved": false,
+  "wholeGoalComplete": false
+}

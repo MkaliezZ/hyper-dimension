@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v291-agent-source",
+  "release": "hyper-dimension-v292-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 109465,
-      "sha256": "9a4b78cf149918cc0ea4fe1e470c4fb56f4c770c9f10b8d827c102643b153024"
+      "bytes": 109895,
+      "sha256": "6df1e836cdb1320fd0cd0890e699b9ae79a2c52b26f25d6b4594e8317f06ab62"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7317,8 +7317,8 @@
     },
     {
       "path": "src/lanActivitiesUI.js",
-      "bytes": 21803,
-      "sha256": "c3613da77f3b635e7fe72a3fdc17ff2cd3f9b159bfb3b228be1ae2347a29a9a6"
+      "bytes": 22137,
+      "sha256": "ae1ec8a34c37459f963d906fd7f097504fc8cceed0e7d1e5a84b29723f1123fb"
     },
     {
       "path": "src/lanAgentExchangeUI.js",
@@ -13494,7 +13494,22 @@
       "path": "docs/verification-v291.json",
       "bytes": 2197,
       "sha256": "ecdcdbc4dfabf92fb871e40854a167891b50a55e3f01e34193a916a6c2518a14"
+    },
+    {
+      "path": "tests/v292-activity-refresh-browser.mjs",
+      "bytes": 5664,
+      "sha256": "1434c431749ae3166b6651a5832eaeddf961a90fd5422df6a90d5d62bfe12480"
+    },
+    {
+      "path": "docs/activity-refresh-v292.md",
+      "bytes": 1869,
+      "sha256": "34a1967a7b8d5af23792776d9f38a5f1ea850a1f889fe5e4f3846d366d29e049"
+    },
+    {
+      "path": "docs/verification-v292.json",
+      "bytes": 1935,
+      "sha256": "148b9cbc9f4018ee09586c45093799134f7c746e6bb494b646ed9deb8b1bca5c"
     }
   ],
-  "publicRevision": "v291-visible-lobby-frame-recovery-and-receipts"
+  "publicRevision": "v292-shared-activity-refresh-before-revision-retry"
 }

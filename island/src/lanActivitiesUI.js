@@ -49,7 +49,13 @@ export function createLanActivitiesUI(api){
  root.querySelectorAll('details').forEach((x,n)=>x.open=openDetails[n]||false);for(const[id,value,checked,focused]of fields){const el=document.getElementById(id);if(el){el.value=value;el.checked=checked;if(focused)el.focus({preventScroll:true});}}
  updateLanEconomyPreview(root,doc,context.me.profile.theme);for(const el of root.querySelectorAll('#lanEconomyMode,#lanDeliveryMode,#lanEventKind,[data-lan-invite]'))el.addEventListener('change',()=>updateLanEconomyPreview(root,doc,context.me.profile.theme));
  }
- async function refresh(){if(!context||refreshing||flight||playing)return;refreshing=true;try{doc=(await request()).view;render();}catch(e){api.toast(e.message);}finally{refreshing=false;}}
+ function refresh(){
+  if(!context||flight||playing)return Promise.resolve();
+  const owner=context.me.id;if(refreshing?.owner===owner)return refreshing.promise;
+  const task={owner,promise:null};
+  task.promise=(async()=>{try{const response=await request();if(refreshing!==task||context?.me.id!==owner)return;doc=response.view;render();}catch(e){if(refreshing===task&&context?.me.id===owner)api.toast(e.message);}finally{if(refreshing===task)refreshing=null;}})();
+  refreshing=task;return task.promise;
+ }
  async function flush(){if(!playing||!trace.length||flight)return false;const e=chosen(playing),t=e?.trial;if(!t)return false;engine?.setTransportPaused(true);const old=pending();if(old&&(old.operation!=='trial_checkpoint'||old.eventId!==playing))return false;const events=old?old.events:trace.slice(0,2048);try{await command(old||{operation:'trial_checkpoint',eventId:playing,runId:t.runId,batch:t.nextBatch,events});trace.splice(0,events.length);engine?.setTransportPaused(false);return true;}catch(e){api.toast('活动进度待核对：'+e.message);return false;}}
  function mount(id){const e=chosen(id),t=e?.trial;if(!t)return;stopEngine(false);playing=id;trace=[{neutral:true}];const style=document.body.dataset.theme;modal.dataset.theme=e.theme;document.body.dataset.theme=e.theme;modal.dataset.previousTheme=style;modal.innerHTML='<div class="modal-overlay"><section class="modal game-modal cocreation-modal lan-event-game" role="dialog" aria-modal="true" aria-label="'+esc(e.title)+'"><header class="modal-head"><div><h2>'+esc(e.title)+'</h2><small>'+esc(e.ownerName)+'的邀请 · 目标品质 '+e.minQuality+'</small></div><button id="lanEventClose" class="close" aria-label="收起并保留活动进度">×</button></header><div class="modal-body"><p>'+esc(e.brief)+'</p><div id="lanEventGameRoot"></div><p class="lan-event-game-note">'+(e.economy.mode==='funded'?'完成挑战获2岛币，品质达到90获3岛币；主办方结束活动后从已预留预算发奖，按约定转交物资。':'此成绩留作真实参与凭证，不产生额外物品；制作请回自己的小岛。')+'</p></div><footer class="modal-footer"><button id="lanEventSuspend">收起并保留进度</button><button class="primary" id="lanEventClaim" disabled>保存活动成绩</button></footer></section></div>';
  engine=mountRoomGame(document.getElementById('lanEventGameRoot'),t.building,finish,{theme:e.theme,avatar:context.me.profile.avatar,standalone:true,recipe:RECIPE_BY_ID[t.recipeId],mode:String(t.difficulty),level:t.game.level,resumeGame:neutralCraftGame(structuredClone(t.game)),onGameEvent:x=>trace.push(x),onOutcome:flush,onExit:suspend,onRestart:()=>api.toast('收起本局后，可结束旧关卡再重试。'),readBest:()=>({score:0,stars:0}),writeBest:()=>{}});
@@ -75,7 +81,7 @@ export function createLanActivitiesUI(api){
  }
  async function suspend(){if(flight){api.toast('进度正在确认，请稍候收起');return;}engine?.setTransportPaused(true);trace.push({neutral:true});while(trace.length)if(!await flush()){stopEngine(false);render(true);return;}stopEngine(false);render(true);}
  function stopEngine(){if(stopping)return;stopping=true;clearInterval(timer);clearInterval(uiTimer);timer=uiTimer=null;engine?.destroy();engine=null;playing=null;trace=[];if(modal.dataset.previousTheme)document.body.dataset.theme=modal.dataset.previousTheme;modal.innerHTML='';stopping=false;}
- function clear(){clearInterval(poll);poll=null;stopEngine();context=null;doc=null;key='';signature='';root.innerHTML='';}
+ function clear(){clearInterval(poll);poll=null;refreshing=null;stopEngine();context=null;doc=null;key='';signature='';root.innerHTML='';}
  function setContext(v){if(key&&key!==v.me.id)clear();context=v;if(key===v.me.id)return;key=v.me.id;refresh();poll=setInterval(refresh,2000);}
  window.addEventListener('pagehide',()=>{engine?.destroy();clearInterval(timer);clearInterval(uiTimer);clearInterval(poll);});
  return{setContext,clear,busy:()=>flight>0||!!playing||!!pending(),inspect:()=>({doc,flight,playing,trace:trace.length,pending:pending(),game:engine?.inspect()})};
