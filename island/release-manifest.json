@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v274-agent-source",
+  "release": "hyper-dimension-v275-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 100733,
-      "sha256": "6a376167bf54e6902b7278f9b309ea27a81cc51b90b5daa5e74b19408487cb60"
+      "bytes": 101209,
+      "sha256": "179038255dee818d0ebe3784b9b38f8cf7eca23d70823cfcb8d36f332e8028b9"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 13935,
-      "sha256": "2cbd1c48323c46b2cb32e701792de84c5154de53fe7f076317380014b113a5c0"
+      "bytes": 14205,
+      "sha256": "1a19591c70ae3ab3e836a46d9944e103a4ce08006166758175342c1e3265ad83"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -13194,7 +13194,17 @@
       "path": "docs/verification/v274/frame-recovery.json",
       "bytes": 2793,
       "sha256": "6d7847e7a4a2aa5ad5310e605ad483b9bd92d508517a74d1f6638472026fc600"
+    },
+    {
+      "path": "docs/raf-observation-v275.md",
+      "bytes": 1831,
+      "sha256": "432d8eb5f982c48d416964a9fe1cf55f10d16bd27c14c2ddc18c7fb953268d24"
+    },
+    {
+      "path": "docs/verification/v275/raf-observation.json",
+      "bytes": 3206,
+      "sha256": "fd691dcc59b45ffb807dd6d0fb8c464a7b18da5c96aed3539af1fb8035aa0902"
     }
   ],
-  "publicRevision": "v274-visible-frame-recovery"
+  "publicRevision": "v275-raf-fault-observation"
 }

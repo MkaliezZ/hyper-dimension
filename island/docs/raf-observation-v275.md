@@ -1,0 +1,9 @@
+# V275 — Observe the RAF fault with real timers
+
+The Windows and Intel macOS frame-recovery artifacts failed before starting the work budget. The 30-second check was waiting for three tasks that were already present in the read-only journal. The application fallback was running, and the Windows origami resident had completed its first task. The observer itself used the RAF API deliberately suppressed by this test.
+
+Only this explicit fault now uses 100-millisecond real-timer polling for its four state waits. Normal native runs keep their original RAF polling. Task conditions, buttons, native input sequence, 30/60-second waits, 120/240-second working budgets, clock and authoritative receipt assertions are unchanged. No production module, asset, dependency or workflow changes in this iteration.
+
+Three isolated Edge controls establish the observation problem: the RAF observer times out on a true condition, the timer observer sees it, and a false condition still times out. A native negative control adds a declared 21-second real delay before sending the plan, after the 20-second RAF fault. Both styles time out despite three registered tasks. With timer observation, the same delayed native sequence completes all three tasks and empty-browser reopen in both styles, with unique real receipts. First-job usage is about 32 seconds and shared later work about 86 seconds under the unchanged limits.
+
+The original artifacts and their verified hashes are retained. These are isolated fictional Windows controls with disabled model providers, zero initial materials and declared needs/manual plans. They are not physical Mac or human acceptance. New hosted results remain pending, and the original V272 macOS compositor cause is still unproven. See the [scoped evidence](verification/v275/raf-observation.json).

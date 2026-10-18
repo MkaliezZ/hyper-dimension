@@ -12,6 +12,8 @@ import {createWorkTimeBudget} from './workTimeBudget.mjs';
 import {installVisibleSlowFrames} from './visibleSlowFrames.mjs';
 
 const rafDropAfterMs=process.env.HD_QA_RAF_DROP_AFTER_MS===undefined?null:Number(process.env.HD_QA_RAF_DROP_AFTER_MS);assert(rafDropAfterMs===null||rafDropAfterMs===20000,'Only the declared20second RAF delivery fault is supported');if(rafDropAfterMs!==null)process.env.HD_QA_WORK_JOURNAL='1';
+// RAF delivery is the injected fault, so the fault observer must use real timers.
+const faultObservationPolling=rafDropAfterMs===null?{}:{polling:100};
 const queueTargetHour=process.env.HD_QA_QUEUE_TARGET_HOUR===undefined?null:Number(process.env.HD_QA_QUEUE_TARGET_HOUR);assert(queueTargetHour===null||queueTargetHour===14,'Only the declared natural14:00queue fixture is supported');
 const out=resolve(process.env.HD_QA_OUT||'qa/v213/native-task-chains');await mkdir(out,{recursive:true});
 const slowFramePolicy={normalMs:Number(process.env.HD_QA_SLOW_NORMAL_MS||75),stallMs:Number(process.env.HD_QA_SLOW_STALL_MS||650),every:Number(process.env.HD_QA_SLOW_EVERY||12)};
@@ -42,7 +44,7 @@ try{
     if(path==='/api/hermes/command')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({source:'hermes',model:'deepseek-flash',answer:'已提出三步顺序分工，等实际动作完成后记录。',runId:'fictional-chain-'+theme,commands,plans:[],parties:[],operations:[]})});
     if(/^\/api\/(npc|hermes)\//.test(path)||path==='/api/lan/social/tick')return r.fulfill({status:503,contentType:'application/json',body:'{"error":"Isolated queue validation: providers disabled"}'});return r.continue();});
    const page=await context.newPage();workJournal.observe(page,row);workJournal.phase(row,'open');page.on('pageerror',e=>row.errors.push(e.message));page.on('response',r=>{if(new URL(r.url()).pathname.startsWith('/api/saves/')&&r.status()>=400)void r.json().then(d=>row.saveErrors.push({status:r.status(),code:d.code,error:String(d.error||'').slice(0,800),operation:r.request().postDataJSON()?.operation,kind:r.request().postDataJSON()?.kind,path:new URL(r.url()).pathname})).catch(()=>{});});await page.goto(base+'/play?qa=1');
-   await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy&&!document.querySelector('#islandBootNotice'),null,{timeout:60000});return{context,page};
+   await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy&&!document.querySelector('#islandBootNotice'),null,{...faultObservationPolling,timeout:60000});return{context,page};
   };
   let {context,page}=await open();
   async function waitForTask(id,budget){
@@ -67,13 +69,13 @@ try{
    }
    if(await page.locator('#startFirstDay').isVisible())await page.locator('#startFirstDay').click();
    await page.locator('#stewardBtn').click();await page.locator('#hermesInput').fill('请让同一位居民先收木材，再去海边，最后回林地；按顺序完成。');await page.locator('#hermesSend').click();
-   await page.waitForFunction(()=>islandInspect().agentTaskLedger.filter(t=>['first','second','third'].includes(t.id)).length===3,null,{timeout:30000});
-   await page.waitForFunction(()=>islandInspect().chat.messages.some(m=>m.status==='done'&&m.text.includes('三步顺序分工')));assert.equal(await page.locator('#stewardTasks .steward-task-dependency').count(),2);await page.screenshot({path:join(out,theme+'-queued.png')});await page.locator('#closeModal').click();
+   await page.waitForFunction(()=>islandInspect().agentTaskLedger.filter(t=>['first','second','third'].includes(t.id)).length===3,null,{...faultObservationPolling,timeout:30000});
+   await page.waitForFunction(()=>islandInspect().chat.messages.some(m=>m.status==='done'&&m.text.includes('三步顺序分工')),null,{...faultObservationPolling});assert.equal(await page.locator('#stewardTasks .steward-task-dependency').count(),2);await page.screenshot({path:join(out,theme+'-queued.png')});await page.locator('#closeModal').click();
    const initial=await page.evaluate(()=>({x:islandInspect().npcs[5].x,y:islandInspect().npcs[5].y}));
    workJournal.phase(row,'first-task');await waitForTask('first',firstBudget);
    const beforeReload=(await tenant.saves.current(theme)).state.agentTaskLedger.filter(t=>['first','second','third'].includes(t.id));assert.notEqual(beforeReload[2].status,'done');row.partialProgressBeforeReload=beforeReload.map(t=>({id:t.id,status:t.status,completed:t.completed}));
    row.documents.push(await frameSnapshot(page,'before-mid-chain-reload'));
-   await page.reload();await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy,null,{timeout:60000});
+   await page.reload();await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy,null,{...faultObservationPolling,timeout:60000});
    workJournal.phase(row,'second-task');await waitForTask('second',remainingBudget);workJournal.phase(row,'third-task');await waitForTask('third',remainingBudget);
    assert(firstBudget.usedMs<=120000);assert(remainingBudget.usedMs<=240000);
    const final=await tenant.saves.current(theme),tasks=commands.map(c=>final.state.agentTaskLedger.find(t=>t.id===c.id));assert(tasks.every((t,i)=>t.status==='done'&&t.completed===commands[i].quantity&&t.evidence.length===1));

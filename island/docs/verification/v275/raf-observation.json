@@ -1,0 +1,107 @@
+{
+  "version": "V275",
+  "at": "2026-10-18T05:32:38.833658+00:00",
+  "baseCommit": "11926ead72656690726096658b3a1638278d2004",
+  "productionRuntimeChanged": false,
+  "observerChange": "Only the declared RAF-delivery fault uses 100ms real-timer waitForFunction polling. Existing default RAF polling, conditions, native inputs and timeouts remain.",
+  "hostedArtifacts": [
+    {
+      "artifactId": 12125819258,
+      "label": "windows-2022",
+      "bytes": 1336241,
+      "sha256": "012f4d2ce0bcabe80331db984e1f451e7e540747d6b7e10cddb6fa558a26abbb",
+      "githubDigestVerified": true,
+      "CRC": true
+    },
+    {
+      "artifactId": 12126655169,
+      "label": "macos-15-intel",
+      "bytes": 1406456,
+      "sha256": "7a1b0ea81311abc380c0ab121476fcd14abf850fc89125f529124bfccf4238bb",
+      "githubDigestVerified": true,
+      "CRC": true
+    }
+  ],
+  "hostedFailure": "Both artifacts time out observing three registered tasks, before the work budget starts. Read-only journals show three tasks and the actual application fallback running.",
+  "blankDocumentObserverControls": [
+    {
+      "mode": "raf-observer",
+      "timeout": 2500,
+      "observed": false,
+      "wallMs": 2514,
+      "actual": {
+        "ready": true,
+        "dropped": 1
+      }
+    },
+    {
+      "mode": "timer-observer",
+      "timeout": 2500,
+      "observed": true,
+      "wallMs": 1528,
+      "actual": {
+        "ready": true,
+        "dropped": 0
+      }
+    },
+    {
+      "mode": "false-condition",
+      "timeout": 2500,
+      "observed": false,
+      "wallMs": 2511,
+      "actual": {
+        "ready": true,
+        "dropped": 0
+      }
+    }
+  ],
+  "nativeNegativeControl": {
+    "themesFailed": [
+      "pixel",
+      "origami"
+    ],
+    "actualRegisteredTasksEach": 3,
+    "timeoutMs": 30000,
+    "privateInputDelayRealMs": 21000
+  },
+  "patchedNative": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "budgets": {
+        "first": {
+          "usedMs": 31661,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 86772,
+          "limitMs": 240000
+        }
+      },
+      "uniqueRealTaskReceipts": 3,
+      "emptyBrowserReopened": true
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "budgets": {
+        "first": {
+          "usedMs": 32656,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 85957,
+          "limitMs": 240000
+        }
+      },
+      "uniqueRealTaskReceipts": 3,
+      "emptyBrowserReopened": true
+    }
+  ],
+  "nativeScope": "Fictional Windows Edge islands, providers disabled, zero materials and declared needs/manual plan. Same native inputs, with a declared21second real delay before sending the manual plan so the20second RAF fault precedes observation. Actual clocks, leases, unique receipts, reload and empty-browser reopen remain. Not physical Mac or human acceptance.",
+  "originalGameClockAndAssertionsUnchanged": true,
+  "originalWorkBudgetsUnchanged": true,
+  "newHostedResultPending": true,
+  "originalV272MacCompositorCauseEstablished": false,
+  "wholeGoalComplete": false
+}
