@@ -1,0 +1,60 @@
+{
+  "scope": "Visitor queue admission without waiting for unrelated guests; original financial authority unchanged",
+  "before": {
+    "hostedRun": 39117952626,
+    "intelJob": 117647539382,
+    "pixelWaitAtDoorSeconds": 106,
+    "controlledBothStylesFailed": true
+  },
+  "after": {
+    "relatedTestsPassed": 35,
+    "nativeCases": [
+      {
+        "scenario": "normal",
+        "theme": "pixel",
+        "acceptedReplyDelayMs": 0,
+        "passed": true,
+        "roadAndServiceMs": 29354,
+        "originalBudgetMs": 150000
+      },
+      {
+        "scenario": "normal",
+        "theme": "origami",
+        "acceptedReplyDelayMs": 0,
+        "passed": true,
+        "roadAndServiceMs": 29515,
+        "originalBudgetMs": 150000
+      },
+      {
+        "scenario": "accepted-response-stress",
+        "theme": "pixel",
+        "acceptedReplyDelayMs": 1000,
+        "passed": true,
+        "roadAndServiceMs": 31508,
+        "originalBudgetMs": 150000
+      },
+      {
+        "scenario": "accepted-response-stress",
+        "theme": "origami",
+        "acceptedReplyDelayMs": 1000,
+        "passed": true,
+        "roadAndServiceMs": 28465,
+        "originalBudgetMs": 150000
+      }
+    ],
+    "originalNativeTestAndDeadlinesPreserved": true,
+    "nativeSourceHashesAndTrackedDiffUnchanged": true
+  },
+  "initialNativeBasicMaterialsDeclared": true,
+  "clockInjected": false,
+  "externalModelsCalled": false,
+  "saleStillRequiresCanonicalBeginAndFinish": true,
+  "ownPendingAndLockedOrUnreadyAuthorityStillBlock": true,
+  "fullDefaultSuiteAfterThisPatchRerun": false,
+  "previousV284FullRulesPassed": 1456,
+  "frozenV281HourIncludesThisChange": false,
+  "macGpuStallFixed": false,
+  "userDataOrConfigurationTouched": false,
+  "humanOrPhysicalMacAcceptance": false,
+  "wholeGoalComplete": false
+}

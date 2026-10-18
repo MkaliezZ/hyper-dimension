@@ -15,5 +15,5 @@ export function createServerVisitor({saves,theme,persist,applyState,restore,toas
  // All recovery cards reconcile the shared journal; a card must not reinterpret another job as its own.
  retry.onclick=()=>readRecoveryProgress(bar,()=>saves.acceptServer(theme()),toast);
  read.onclick=()=>readRecoveryProgress(bar,()=>saves.acceptServer(theme()),toast);
- return {ensure(){if(!ready&&!locked&&!recovering&&!inflight&&!saves.pendingAction(theme()))recover();},command,finish:t=>send(identity(t,'finish')),cancel:t=>send(identity(t,'cancel')),recover,ready:()=>ready,settling:()=>inflight>0||locked,busy:()=>inflight>0||locked,prepareTheme:async()=>{ready=false;for(const t of all())await send(identity(t,'cancel'));},inspect:()=>({ready,inflight,locked,leases:all()})};
+ return {ensure(){if(!ready&&!locked&&!recovering&&!inflight&&!saves.pendingAction(theme()))recover();},command,finish:t=>send(identity(t,'finish')),cancel:t=>send(identity(t,'cancel')),recover,ready:()=>ready,canQueue:()=>ready&&!locked&&!recovering,settling:()=>inflight>0||locked,busy:()=>inflight>0||locked,prepareTheme:async()=>{ready=false;for(const t of all())await send(identity(t,'cancel'));},inspect:()=>({ready,inflight,locked,leases:all()})};
 }

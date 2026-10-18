@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v284-agent-source",
+  "release": "hyper-dimension-v285-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 105851,
-      "sha256": "d2c39078876c1dd2cf4bbf57280da815c5fb316e754f023bbceb667fe92a3a44"
+      "bytes": 106318,
+      "sha256": "e1cc50988ba59f933c8c9ed7ac42802b9a798776525a628a6268acd4f08cc96b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16627,
-      "sha256": "907ef1002c293afd817de684fde8373b2056aec99b86dcd0efa750b47fbaa0c1"
+      "bytes": 16661,
+      "sha256": "60f7da7d2a54667aec21a102bbeaa54dcd4705946fe2712acdb67fe95a4d9205"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145689,
-      "sha256": "6c7f1bf14ba18aa85e4c8ca68e754454422b8fd3660d7326043cebb46d14121a"
+      "bytes": 145735,
+      "sha256": "e4fc7a594ea78bc5abc6f6fd685d2ad8a53cc933efdd304b0ae7406826150930"
     },
     {
       "path": "src/arcade.css",
@@ -8067,8 +8067,8 @@
     },
     {
       "path": "src/serverVisitorUI.js",
-      "bytes": 3305,
-      "sha256": "ea1b081693a25420cd9d3ac8ac48a7b7d86ae6aa7f682a4f9651d712fbbfb01a"
+      "bytes": 3346,
+      "sha256": "201e6f63af2c9468600f0496a9066d7e19fd78d9ef9b9b22ffda6986c34f5533"
     },
     {
       "path": "src/shopfront-v113.css",
@@ -8217,8 +8217,8 @@
     },
     {
       "path": "src/visitorRuntime.js",
-      "bytes": 14567,
-      "sha256": "8252e630d457c3f6ee68bd386a4b40bb0b48b18a2b1766ecd27fd55793a6809c"
+      "bytes": 14677,
+      "sha256": "a699b4d6af245d2b5b137d3ffb025a7c80daa9748db835d9bff4d4d34c77b247"
     },
     {
       "path": "src/weatherRules.js",
@@ -13384,7 +13384,22 @@
       "path": "tests/v284-agent-shutdown.test.mjs",
       "bytes": 7753,
       "sha256": "59bc2e79cb6c2df400d6e17f74127c23e069994ac9357aec27da37a03f1d8543"
+    },
+    {
+      "path": "docs/visitor-queue-v285.md",
+      "bytes": 2395,
+      "sha256": "95c6487800c96024c8b8cdc709983185854cdc9b6acae320a85eb4771569ff2a"
+    },
+    {
+      "path": "docs/verification-v285.json",
+      "bytes": 1859,
+      "sha256": "0fb6dee94687d314aff5525cd2ced9f9bdfc95abbcd1273ce8a9c99b87e5dd03"
+    },
+    {
+      "path": "tests/v285-visitor-queue.test.mjs",
+      "bytes": 2599,
+      "sha256": "934a1e7e1599535864a00c1946edccbcb717a295856719091fbbaaaae69640eb"
     }
   ],
-  "publicRevision": "v284-steward-graceful-shutdown"
+  "publicRevision": "v285-visitor-queue-admission"
 }
