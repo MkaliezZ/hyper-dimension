@@ -314,7 +314,7 @@ jobs:
         run: node tests/v216-recovery-wait-browser.mjs
 
       - name: Native recovery input through workshop modal dialogs
-        run: node tests/v220-recovery-modal-browser.mjs
+        run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
 
       - name: Native save-dialog recovery feedback and safe re-entry
         run: node tests/v223-recovery-feedback-browser.mjs
@@ -373,6 +373,8 @@ jobs:
             island/qa/v220/native-recovery-modal/report.json
             island/qa/v220/native-recovery-modal/*.png
             island/qa/v220/native-recovery-modal/*-input-failure.zip
+            island/qa/v268/recovery-background/report.json
+            island/qa/v268/recovery-background/*.png
             island/qa/v223/native-recovery-feedback/report.json
             island/qa/v223/native-recovery-feedback/*.png
             island/qa/v229/recovery-controls/report.json
@@ -528,7 +530,7 @@ jobs:
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts
       - name: Native recovery input through workshop modal dialogs
-        run: node tests/v220-recovery-modal-browser.mjs
+        run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
       - name: Retain isolated recovery input evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -538,5 +540,7 @@ jobs:
             island/qa/v220/native-recovery-modal/report.json
             island/qa/v220/native-recovery-modal/*.png
             island/qa/v220/native-recovery-modal/*-input-failure.zip
+            island/qa/v268/recovery-background/report.json
+            island/qa/v268/recovery-background/*.png
           if-no-files-found: ignore
           retention-days: 3

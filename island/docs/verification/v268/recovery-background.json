@@ -1,0 +1,88 @@
+{
+  "version": "V268",
+  "sourceBaseCommit": "d4dcb2010d79b72d39cca395dd5d27bf7e1fc35a",
+  "at": "2026-10-18T00:20:38.758617+00:00",
+  "originalHostedRun": 39079032420,
+  "originalHostedJob": 117532329667,
+  "originalArtifactId": 12119226013,
+  "originalArtifactSha256": "9cb1d2a5bc2ca53938ddb36b48da2054f945c8104e9e0203be787ae893f9b792",
+  "originalArtifactCrcVerified": true,
+  "originalHostedFailurePreserved": true,
+  "hostedOrigamiClickInputNotDelivered": true,
+  "hostedOrigamiLongTaskDurationsDuringClickMs": [
+    60,
+    166,
+    212,
+    242,
+    1254,
+    283,
+    312,
+    243,
+    421,
+    741,
+    245,
+    214,
+    163
+  ],
+  "nativeModalClosedAndButtonHitTestClear": true,
+  "runtimeFilesChanged": [
+    "src/app.js"
+  ],
+  "remainingRuntimePayloadsUnchanged": 1250,
+  "gameStateTimeModelCadenceAndAuthorityUnchanged": true,
+  "backgroundBeforePaintsPerEightFrames": [
+    8,
+    8
+  ],
+  "backgroundAfter": [
+    {
+      "theme": "pixel",
+      "blockedPaintsPerEightFrames": 1,
+      "resizePaints": 1,
+      "resumedPaintsPerEightFrames": 8,
+      "progressAndControlsPreserved": true
+    },
+    {
+      "theme": "origami",
+      "blockedPaintsPerEightFrames": 0,
+      "resizePaints": 1,
+      "resumedPaintsPerEightFrames": 8,
+      "progressAndControlsPreserved": true
+    }
+  ],
+  "originalModalTestByteUnchanged": true,
+  "originalPlaywrightClickBudgetMs": 4000,
+  "originalModalLifecycleBackupResourceAndControlsAssertionsRetained": true,
+  "normalNativeClickWallMs": [
+    123,
+    79
+  ],
+  "cpuStressRate": 6,
+  "cpuStressBeforeNativeClickWallMs": [
+    1362,
+    2223
+  ],
+  "cpuStressAfterNativeClickWallMs": [
+    301,
+    312
+  ],
+  "cpuStressScope": "Single sample per theme on the same Windows host; not a Mac benchmark or reproduction of its exact timeout.",
+  "newBackgroundRegressionPassed": 2,
+  "existingModalNativeCasesPassed": 2,
+  "cpuStressModalCasesPassed": 2,
+  "existingRecoveryControlsCasesPassed": 2,
+  "existingGalleryCasesPassed": 2,
+  "defaultRulesPassed": 1393,
+  "workflow": {
+    "newNativeRegressionAddedToFullAndExplicitRecoveryScope": true,
+    "originalRecoveryInputCommandRetained": true,
+    "allOriginalJobsRunStepsBudgetsEnvironmentsPermissionsAndConcurrencyRetained": true,
+    "onlyAdditionalArtifactPaths": [
+      "island/qa/v268/recovery-background/report.json",
+      "island/qa/v268/recovery-background/*.png"
+    ]
+  },
+  "hostedFixVerificationPending": true,
+  "fullSuitePassed": false,
+  "wholeGoalComplete": false
+}

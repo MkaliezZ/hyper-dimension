@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v267-agent-source",
+  "release": "hyper-dimension-v268-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 97381,
-      "sha256": "fa5b9300de471b127bcac8afd5d24b9a623fb577d40176a9ee34d6c705cbc526"
+      "bytes": 97949,
+      "sha256": "19984f9ad9b857354d1bd1506624d2f3ffe36cce82d21ff7af6dc7f430e98626"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 144723,
-      "sha256": "1febebcb2fe6142e2b57642f27c4f7a4d5af9a935a8a151210b6af41081bd96a"
+      "bytes": 145097,
+      "sha256": "de25919ca4ad47e9764fe45e882820d4aca798da267502254913cb08a720ccfa"
     },
     {
       "path": "src/arcade.css",
@@ -13034,7 +13034,22 @@
       "path": "docs/verification/v267/pending-dialogue-endpoint.json",
       "bytes": 3036,
       "sha256": "e7cf7021260aa2bc0077ed148500f7918f1c29daff929d0b7f5d1afe86c0ad03"
+    },
+    {
+      "path": "tests/v268-recovery-background-browser.mjs",
+      "bytes": 5868,
+      "sha256": "9caa6a86b0b510faac8ab65c9f41da1f4db96348cd70f5164fc4be6840fc23c0"
+    },
+    {
+      "path": "docs/recovery-background-v268.md",
+      "bytes": 2635,
+      "sha256": "80cf5078c087c2d86b8fadc49e15336f0e02b498b5fac4af3bc45ff99d0a2918"
+    },
+    {
+      "path": "docs/verification/v268/recovery-background.json",
+      "bytes": 2577,
+      "sha256": "175086574bde5512737447532cce2d93a2be8252918eb12dcbbeb63877e8fafd"
     }
   ],
-  "publicRevision": "v267-github"
+  "publicRevision": "v268-github"
 }
