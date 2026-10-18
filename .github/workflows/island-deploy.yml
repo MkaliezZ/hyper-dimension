@@ -6,7 +6,7 @@ on:
         description: Full suite, soil, recovery-input or social-pending or home-journal diagnostics
         type: choice
         default: full
-        options: [full, soil-diagnostics, recovery-input, social-pending, home-journal]
+        options: [full, soil-diagnostics, recovery-input, social-pending, home-journal, frame-recovery]
   push:
     paths:
       - island/**
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   portable-source:
-    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')
+    if: (github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')
     name: ${{ matrix.os }} / Python 3.11
     strategy:
       fail-fast: false
@@ -129,7 +129,7 @@ jobs:
           retention-days: 3
 
   native-art:
-    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')
+    if: (github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')
     name: ${{ matrix.os }} / native art
     strategy:
       fail-fast: false
@@ -208,7 +208,7 @@ jobs:
           retention-days: 3
 
   native-homes:
-    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')
+    if: (github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')
     name: ${{ matrix.os }} / native homes
     strategy:
       fail-fast: false
@@ -267,7 +267,7 @@ jobs:
           retention-days: 3
 
   native-gameplay:
-    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal'
+    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery'
     name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }}
     strategy:
       fail-fast: false
@@ -418,7 +418,7 @@ jobs:
   # Intel runners reached the shared 45-minute job cap during the final scene
   # test. Run the same island simulations separately from receipt tests.
   native-island-simulation:
-    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal'
+    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery'
     name: ${{ matrix.os }} / native island simulation
     strategy:
       fail-fast: false
@@ -479,7 +479,7 @@ jobs:
           retention-days: 3
 
   native-resident-work:
-    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal'
+    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery'
     name: ${{ matrix.os }} / native resident work
     strategy:
       fail-fast: false
@@ -633,5 +633,39 @@ jobs:
             island/qa/v199/native-home-lan-14/*.png
             island/qa/v199/native-home-lan-15/report.json
             island/qa/v199/native-home-lan-15/*.png
+          if-no-files-found: ignore
+          retention-days: 3
+
+  native-frame-recovery:
+    if: github.event_name != 'workflow_dispatch' || inputs.check_scope == 'full' || inputs.check_scope == 'frame-recovery'
+    name: ${{ matrix.os }} / native frame recovery
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: island
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install locked browser driver
+        run: npm ci --ignore-scripts
+      - name: Native task delivery when visible RAF callbacks stop
+        run: node tests/v274-frame-recovery-browser.mjs
+      - name: Retain native frame recovery diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-frame-recovery-${{ matrix.os }}
+          path: |
+            island/qa/v274/native-frame-recovery/report.json
+            island/qa/v274/native-frame-recovery/work-progress.json
+            island/qa/v274/native-frame-recovery/*.png
           if-no-files-found: ignore
           retention-days: 3

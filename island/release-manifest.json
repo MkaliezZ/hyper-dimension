@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v273-agent-source",
+  "release": "hyper-dimension-v274-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 100297,
-      "sha256": "450a853837259b644f158c42f3ca21a5e514a654de5ba83562ed4bc7e4d49b4b"
+      "bytes": 100733,
+      "sha256": "6a376167bf54e6902b7278f9b309ea27a81cc51b90b5daa5e74b19408487cb60"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16014,
-      "sha256": "18d34f50c1342f62bd1f6e5b97f0184bcc96a13c01033a6d519cdcfe3b85e072"
+      "bytes": 16045,
+      "sha256": "dfcdcf86941c6c81efe79ee1588b55989a41203b9d0a2bc08f37967e6561cef3"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145097,
-      "sha256": "de25919ca4ad47e9764fe45e882820d4aca798da267502254913cb08a720ccfa"
+      "bytes": 145175,
+      "sha256": "36ff9932f7643d96a706e48f5721591f024a2beb028a4f21497a73a896aaa7f3"
     },
     {
       "path": "src/arcade.css",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 12930,
-      "sha256": "c5acc71d45089d5912ffeaf8e24ad6434b5295967c460d5c64061f5bb4acfbbf"
+      "bytes": 13935,
+      "sha256": "2cbd1c48323c46b2cb32e701792de84c5154de53fe7f076317380014b113a5c0"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -13092,8 +13092,8 @@
     },
     {
       "path": "tests/nativeWorkJournal.mjs",
-      "bytes": 4574,
-      "sha256": "d90b8d04dbd36e931aa886aeb6ca6bf1d4afa0960be015ddb926d88051271412"
+      "bytes": 4688,
+      "sha256": "d3d8b068f4c48dab6bfb4d3429bc35f437003859767c290f0f0ecfcc8774d27b"
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
@@ -13169,7 +13169,32 @@
       "path": "docs/verification/v273/source-parts.json",
       "bytes": 1438,
       "sha256": "8dfc5f6000ac5bbefd927caa977eb520119bf5bb9d0db94fc0a016eefc63c7be"
+    },
+    {
+      "path": "src/visibleFrameLoop.js",
+      "bytes": 2176,
+      "sha256": "f6da60de107d2a0457c3b059d57d5fcc7a4b0e0bb84cad1de6468795f61735c4"
+    },
+    {
+      "path": "tests/v274-frame-loop.test.mjs",
+      "bytes": 3420,
+      "sha256": "1b56fcd0d130a4979d3c6e28d87785f278aafad4d3fbc7abfdda1f87167fa136"
+    },
+    {
+      "path": "tests/v274-frame-recovery-browser.mjs",
+      "bytes": 263,
+      "sha256": "0555d6a94b12f83e552f18fb161d7f23b71aa2ea6ad3e6220b108c7654d9b9ba"
+    },
+    {
+      "path": "docs/frame-recovery-v274.md",
+      "bytes": 2275,
+      "sha256": "0c6c19d99f474ef5f34ea079dfeb13e4b3b77164894dd580a04c4f95e53a0650"
+    },
+    {
+      "path": "docs/verification/v274/frame-recovery.json",
+      "bytes": 2793,
+      "sha256": "6d7847e7a4a2aa5ad5310e605ad483b9bd92d508517a74d1f6638472026fc600"
     }
   ],
-  "publicRevision": "v273-resident-exit-source-parts"
+  "publicRevision": "v274-visible-frame-recovery"
 }

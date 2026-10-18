@@ -1,0 +1,11 @@
+# V274 — Visible frame delivery recovery
+
+The main island now keeps one animation-frame chain and a small real-time health timer. When a visible page has received no completed frame for 500 milliseconds, the timer cancels the stale request and delivers a frame using the current performance timestamp. Hidden pages do not gain fallback work. Late cancelled callbacks cannot duplicate updates, slow drawing is measured after completion, and application exceptions remain visible and stop the loop. Existing game-time, movement, working-hour, save and authoritative reward guards remain.
+
+The retained macOS ARM failure shows both the pixel application frame counter and an independent RAF probe stopping while timer-based observations continued. The page was visible, with no save lock. The origami page later stopped responding more broadly. This identifies an observable failure class; the exact host/compositor cause is still unproven, and the original hosted failure is not marked resolved.
+
+A controlled native test suppresses actual RAF callback delivery after 20 real seconds. The exact previous application fails in both styles under the original 120-second first-job budget. The repaired application passes both private and public native entries, finishes three unique authoritative tasks, and survives mid-chain reload and empty-browser reopen. First-job usage is about 22 seconds; shared later-task usage is about 117/120 seconds against the unchanged 240-second limit. The clock file is unchanged.
+
+These are isolated Windows tests with fictional accounts, zero initial materials, declared needs and a controlled manual plan; model providers are disabled. Frame callback counts are not presented-frame-rate measurements. This is not proof of recovery from a fully frozen renderer, physical Mac acceptance, or a new current-source one-hour acceptance run.
+
+Seven focused frame-loop cases and 32 related movement/clock cases pass. The default rule suites pass 1,411 cases. The opt-in command is `node tests/v274-frame-recovery-browser.mjs`; its Windows, macOS ARM and macOS Intel hosted runs remain pending. Existing workflow scopes, commands, assertions and time budgets are preserved. See the [scoped evidence](verification/v274/frame-recovery.json).

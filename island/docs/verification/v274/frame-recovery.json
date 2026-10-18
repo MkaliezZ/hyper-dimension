@@ -1,0 +1,75 @@
+{
+  "version": "V274",
+  "at": "2026-10-18T05:12:30.994171+00:00",
+  "baseCommit": "dd2e22b794e1acf2a48f0ee4437f14dcbe387ca7",
+  "runtimeChange": "One RAF chain with a real-time health timer. Only a visible page with no completed frame for 500ms runs a fallback frame; original clock, movement, shift, save and outcome guards remain.",
+  "hostedFailure": {
+    "run": 39095533091,
+    "job": 117581211009,
+    "artifactId": 12124903833,
+    "artifactSha256": "327fa48bf74ea1c242898adfb9f7d8207a97160505781d2ed69345002fded7ff",
+    "digestAndCrcVerified": true,
+    "observed": "On macOS ARM the pixel RAF and independent RAF probe stopped while timer-driven page observations continued. No save lock or hidden page was observed. Origami later stopped responding more broadly.",
+    "exactHostCompositorCauseEstablished": false,
+    "originalHostedFailureClaimedFixed": false
+  },
+  "negativeControl": {
+    "exactPriorAppModule": true,
+    "faultAfterRealMs": 20000,
+    "failedThemes": [
+      "pixel",
+      "origami"
+    ],
+    "originalFirstWorkBudgetMs": 120000,
+    "realClockUnchanged": true
+  },
+  "privatePatchedNativeBothThemesPassed": true,
+  "publicNativeEntry": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "budgets": {
+        "first": {
+          "usedMs": 22129,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 117426,
+          "limitMs": 240000
+        }
+      },
+      "uniqueRealTaskReceipts": 3,
+      "droppedRafCallbacks": 733,
+      "applicationFallbackFrames": 183,
+      "emptyBrowserReopened": true
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "budgets": {
+        "first": {
+          "usedMs": 22036,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 119981,
+          "limitMs": 240000
+        }
+      },
+      "uniqueRealTaskReceipts": 3,
+      "droppedRafCallbacks": 745,
+      "applicationFallbackFrames": 189,
+      "emptyBrowserReopened": true
+    }
+  ],
+  "isolatedRelatedCasesPassed": 39,
+  "defaultCasesPassed": 1411,
+  "scope": "Isolated fictional Windows islands, declared needs and controlled manual plan, zero initial materials, providers disabled. Fault suppresses actual RAF delivery after 20 real seconds; real timers, leases, task receipts and clock remain. Callback counts are not presented FPS. Not an exact compositor reproduction, physical Mac or human acceptance.",
+  "noSyntheticClockOrOutcome": true,
+  "originalNativeInputsAssertionsAndBudgetsPreserved": true,
+  "existingWorkflowSemanticsPreserved": true,
+  "newHostedFrameRecoveryStillPending": true,
+  "currentSourceFrozenHourComplete": false,
+  "finalPackageComplete": false,
+  "wholeGoalComplete": false
+}
