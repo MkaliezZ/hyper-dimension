@@ -1,5 +1,6 @@
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
+import {join,resolve} from 'node:path';
 const execute=promisify(execFile);
 
 // Only PIDs returned by the CDP session of this test's owned browser are read.
@@ -32,4 +33,21 @@ export async function observeOwnedBrowserProcesses(session,{platform=process.pla
   const {stdout}=await run('/bin/ps',['-o','pid=,rss=,pcpu=,stat=','-p',ids.join(',')],{encoding:'utf8',timeout:2000,maxBuffer:65536});memory=parseBrowserProcessRss(stdout,ids);
  }else throw Error('Unsupported browser memory platform');
  return processInfo.map(p=>({...p,...memory.find(m=>m.id===p.id)}));
+}
+
+// A stalled owned macOS fixture needs stacks, not a guessed browser flag.
+// Sampling is a diagnostic intervention; its caller must not report a passing
+// acceptance run after it has been triggered. No user process is enumerated.
+export async function sampleOwnedBrowserStall(session,{directory,platform=process.platform,run=execute}={}){
+ if(platform!=='darwin')return{unsupportedPlatform:true,processes:[]};
+ const {processInfo}=await session.send('SystemInfo.getProcessInfo');
+ browserProcessIds(processInfo);
+ const targets=[...processInfo.filter(p=>p.type==='renderer').sort((a,b)=>(b.cpuTime||0)-(a.cpuTime||0)).slice(0,2),...processInfo.filter(p=>p.type==='GPU').slice(0,1)],processes=[];
+ for(const target of targets){
+  const file=join(resolve(directory),'owned-browser-'+Number(target.id)+'.sample.txt'),row={id:Number(target.id),type:target.type,file};
+  try{await run('/usr/bin/sample',[String(row.id),'1','10','-file',file],{encoding:'utf8',timeout:5000,maxBuffer:65536});row.sampled=true;}
+  catch(error){row.sampled=false;row.error=String(error.message).slice(0,300);}
+  processes.push(row);
+ }
+ return{diagnosticIntervention:true,processes};
 }

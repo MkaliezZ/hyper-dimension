@@ -19,7 +19,8 @@ permissions:
   contents: read
 concurrency:
   group: island-deploy-${{ github.event.pull_request.number || github.ref }}-${{ inputs.check_scope || 'full' }}
-  cancel-in-progress: true
+  # Preserve running failure diagnostics when a reviewed main fix arrives.
+  cancel-in-progress: false
 jobs:
   portable-source:
     if: (github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')
@@ -183,6 +184,8 @@ jobs:
         run: node tests/v200-night-lighting-browser.mjs
 
       - name: Native painting tools and canvas production
+        env:
+          HD_QA_WORK_JOURNAL: "1"
         run: node tests/v219-painting-tools-browser.mjs
 
       - name: Retain native character diagnostics
@@ -197,6 +200,8 @@ jobs:
             island/qa/v155/native-product-clips/failure-product-svg.png
             island/qa/v155/native-product-clips/*-c24_2-svg.png
             island/qa/v219/native-painting-tools/report.json
+            island/qa/v219/native-painting-tools/work-progress.json
+            island/qa/v219/native-painting-tools/*.sample.txt
             island/qa/v219/native-painting-tools/*.png
             island/qa/v180/native-rig/report.json
             island/qa/v180/native-rig/*.png
@@ -290,6 +295,8 @@ jobs:
 
       - name: Native pearl cup crafting and refresh
         if: inputs.check_scope != 'soil-diagnostics'
+        env:
+          HD_QA_WORK_JOURNAL: "1"
         run: node tests/v156-pearl-cup-craft-browser.mjs
 
       - name: Native queued reward confirmation
@@ -368,6 +375,10 @@ jobs:
         with:
           name: native-soil-care-${{ matrix.os }}
           path: |
+            island/qa/v156/native-pearl-cup-craft/report.json
+            island/qa/v156/native-pearl-cup-craft/work-progress.json
+            island/qa/v156/native-pearl-cup-craft/*.sample.txt
+            island/qa/v156/native-pearl-cup-craft/*.png
             island/qa/v168/native-reward-click/report.json
             island/qa/v168/native-reward-click/*.png
             island/qa/v194/slow-result/report.json
@@ -403,12 +414,15 @@ jobs:
             island/qa/v224/native-custom-content/*.png
             island/qa/v227/native-custom-agent/report.json
             island/qa/v227/native-custom-agent/work-progress.json
+            island/qa/v227/native-custom-agent/*.sample.txt
             island/qa/v227/native-custom-agent/*.png
             island/qa/v228/native-custom-shops/report.json
             island/qa/v228/native-custom-shops/work-progress.json
+            island/qa/v228/native-custom-shops/*.sample.txt
             island/qa/v228/native-custom-shops/*.png
             island/qa/v230/native-production-market/report.json
             island/qa/v230/native-production-market/work-progress.json
+            island/qa/v230/native-production-market/*.sample.txt
             island/qa/v230/native-production-market/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
@@ -437,6 +451,9 @@ jobs:
           node-version: '24'
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts
+
+      - name: Native ferry clock ordering during background work
+        run: node tests/v278-visitor-clock-browser.mjs
 
       - name: Native cash reporting and shared-style recovery
         if: inputs.check_scope != 'soil-diagnostics'
@@ -467,6 +484,7 @@ jobs:
         with:
           name: native-island-simulation-${{ matrix.os }}
           path: |
+            island/qa/v278/native-visitor-clock/report.json
             island/qa/v276/native-cash/report.json
             island/qa/v276/native-cash/*.png
             island/qa/v159/native-soil-care/report.json
@@ -526,6 +544,7 @@ jobs:
           path: |
             island/qa/v213/native-task-chains/report.json
             island/qa/v213/native-task-chains/work-progress.json
+            island/qa/v213/native-task-chains/*.sample.txt
             island/qa/v213/native-task-chains/*.png
             island/qa/v218/native-save-lock/report.json
             island/qa/v218/native-save-lock/*.png
@@ -672,6 +691,7 @@ jobs:
           path: |
             island/qa/v274/native-frame-recovery/report.json
             island/qa/v274/native-frame-recovery/work-progress.json
+            island/qa/v274/native-frame-recovery/*.sample.txt
             island/qa/v274/native-frame-recovery/*.png
           if-no-files-found: ignore
           retention-days: 3

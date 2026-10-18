@@ -1,7 +1,7 @@
 import {writeFile,rename} from 'node:fs/promises';
 import {join} from 'node:path';
 import {platform,arch,totalmem,freemem,cpus} from 'node:os';
-import {observeOwnedBrowserProcesses} from './nativeBrowserResources.mjs';
+import {observeOwnedBrowserProcesses,sampleOwnedBrowserStall} from './nativeBrowserResources.mjs';
 
 // Read-only observations for the isolated native fixtures. No actor, clock,
 // receipt, inventory, model request or browser visibility is changed.
@@ -27,17 +27,28 @@ export function createNativeWorkJournal(out,report,{deadlineMs}={}){
    probe.session.then(observeOwnedBrowserProcesses).then(processes=>{if(!active)return;report.nativeJournal.browserProcessSamples??=[];report.nativeJournal.browserProcessSamples.push({at:new Date().toISOString(),processes});if(report.nativeJournal.browserProcessSamples.length>12)report.nativeJournal.browserProcessSamples.shift();}).catch(e=>{if(active)report.nativeJournal.browserProbeError=String(e.message).slice(0,300);}).finally(()=>{probe.pending=false;delete report.nativeJournal.browserProbePendingSince;});
   }
   for(const entry of entries){
-   if(entry.pending||entry.page.isClosed())continue;entry.pending=true;
+   if(entry.pending){
+    if(platform()==='darwin'&&Date.now()-entry.pendingSince>=15000&&!report.nativeJournal.stallSampling){
+     const probe=browsers.get(entry.page.context().browser());
+     if(probe){report.nativeJournal.stallSampling={startedAt:new Date().toISOString(),reason:'Owned page observation unresponsive for 15 seconds',diagnosticIntervention:true,acceptanceInvalidated:true};probe.session.then(session=>sampleOwnedBrowserStall(session,{directory:out})).then(result=>{report.nativeJournal.stallSampling.result=result;}).catch(error=>{report.nativeJournal.stallSampling.error=String(error.message).slice(0,300);});}
+    }continue;
+   }
+   if(entry.page.isClosed())continue;entry.pending=true;entry.pendingSince=Date.now();
    entry.page.evaluate(()=>window.__nativeWorkObservation?.()).then(sample=>{if(!active||!sample)return;entry.row.nativeWorkSamples??=[];entry.row.nativeWorkSamples.push(sample);if(entry.row.nativeWorkSamples.length>60)entry.row.nativeWorkSamples.shift();}).catch(e=>{if(active&&!entry.page.isClosed()&&!/Execution context was destroyed|Cannot find context/.test(e.message))entry.row.nativeObservationError=e.message;}).finally(()=>entry.pending=false);
   }
   flush().catch(e=>report.nativeJournal.writeError=e.message);
  },2000);timer.unref();
  const deadline=setTimeout(async()=>{report.passed=false;report.nativeJournal.deadlineExceededMs=deadlineMs;try{await flush();}finally{process.exit(1);}},deadlineMs);deadline.unref();
  return{
-  async install(context){await context.route('**/src/app.js',async route=>{try{const response=await route.fetch({maxRetries:1});await route.fulfill({response,body:(await response.text())+observation});}catch(e){report.nativeJournal.routeError=e.message;await flush();await route.abort().catch(()=>{});}});},
-  observe(page,row){entries.push({page,row,pending:false});page.on('crash',()=>{row.nativePageCrashAt=new Date().toISOString();});const browser=page.context().browser();if(browser&&!browsers.has(browser)){const session=browser.newBrowserCDPSession();session.catch(()=>{});browsers.set(browser,{session,pending:false,last:0});}},
+  async install(context,{additionalObservation=''}={}){await context.route('**/src/app.js',async route=>{try{const response=await route.fetch({maxRetries:1});await route.fulfill({response,body:(await response.text())+observation+additionalObservation});}catch(e){report.nativeJournal.routeError=e.message;await flush();await route.abort().catch(()=>{});}});},
+  observe(page,row){entries.push({page,row,pending:false});
+   const requests=new WeakMap();
+   page.on('request',request=>{if(request.method()!=='POST'||!new URL(request.url()).pathname.startsWith('/api/saves/'))return;let input;try{input=request.postDataJSON()}catch{}const sample={at:new Date().toISOString(),path:new URL(request.url()).pathname,kind:input?.kind,operation:input?.operation,requestId:input?.requestId,startedMs:Date.now()};requests.set(request,sample);row.nativeSaveRequests??=[];row.nativeSaveRequests.push(sample);if(row.nativeSaveRequests.length>120)row.nativeSaveRequests.shift();});
+   page.on('response',response=>{const sample=requests.get(response.request());if(sample){sample.status=response.status();sample.responseMs=Date.now()-sample.startedMs;}});
+   page.on('requestfinished',request=>{const sample=requests.get(request);if(sample)sample.finishedMs=Date.now()-sample.startedMs;});
+   page.on('requestfailed',request=>{const sample=requests.get(request);if(sample)sample.failure=request.failure()?.errorText||'request failed';});page.on('crash',()=>{row.nativePageCrashAt=new Date().toISOString();});const browser=page.context().browser();if(browser&&!browsers.has(browser)){const session=browser.newBrowserCDPSession();session.catch(()=>{});browsers.set(browser,{session,pending:false,last:0});}},
   phase(row,name){row.nativePhase=name;row.nativeStages??=[];row.nativeStages.push({name,at:new Date().toISOString()});},
-  async beforeCleanup(){active=false;clearInterval(timer);report.nativeJournal.cleanupStartedAt=new Date().toISOString();await flush();},
+  async beforeCleanup(){if(report.nativeJournal.stallSampling){report.passed=false;process.exitCode=1;}active=false;clearInterval(timer);report.nativeJournal.cleanupStartedAt=new Date().toISOString();await flush();},
   async finish(){clearTimeout(deadline);report.nativeJournal.cleanupComplete=true;report.nativeJournal.finishedAt=new Date().toISOString();await flush();}
  };
 }

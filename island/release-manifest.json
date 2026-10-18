@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v277-agent-source",
+  "release": "hyper-dimension-v278-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 102382,
-      "sha256": "0908e7f353771457be22299d2a152ec984a9453e257cf7174ae2dbb485568064"
+      "bytes": 102852,
+      "sha256": "acdd5c3209438b33175a1df64afa1f4f84c5f72d5419edd3d4451879300d64de"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16265,
-      "sha256": "b96cc86abf3431f2aabca4a3eaaba1420ebbf873f808f91bb4d73c904271e3cf"
+      "bytes": 16383,
+      "sha256": "7efbc59e99a106cf50f3a720de2a556f01b46981604c3516413fd844cc09df03"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -8067,8 +8067,8 @@
     },
     {
       "path": "src/serverVisitorUI.js",
-      "bytes": 3336,
-      "sha256": "87323961ba362b78d2025a34f92ef9075a0ee5f94623b564b69b5acb7a05bdf6"
+      "bytes": 3305,
+      "sha256": "ea1b081693a25420cd9d3ac8ac48a7b7d86ae6aa7f682a4f9651d712fbbfb01a"
     },
     {
       "path": "src/shopfront-v113.css",
@@ -9167,8 +9167,8 @@
     },
     {
       "path": "tests/v156-pearl-cup-craft-browser.mjs",
-      "bytes": 7317,
-      "sha256": "73825cf79b51acdc406b2ce5e9e3bd069a6de8c71141430c0a81f49f21d5778c"
+      "bytes": 7626,
+      "sha256": "e043dfacab57d725c3080f334a3ef1c4c70e7711af0d82accff57d6c6adca847"
     },
     {
       "path": "tests/v157-modal-command-navigation-browser.mjs",
@@ -12252,8 +12252,8 @@
     },
     {
       "path": "tests/v219-painting-tools-browser.mjs",
-      "bytes": 9439,
-      "sha256": "1b2767a997a37d2d1e3a846a040343163740a857c253d4fc949e01ddcb4b23bc"
+      "bytes": 9946,
+      "sha256": "2fbf0c3acb1e5fe26074739b7e067a7082162539632e22a1d5526fa501263f9d"
     },
     {
       "path": "tests/v219-production-uses.test.mjs",
@@ -13092,8 +13092,8 @@
     },
     {
       "path": "tests/nativeWorkJournal.mjs",
-      "bytes": 5786,
-      "sha256": "a6cc702e88e5dfea182ccf67da7195dc77310e3716248284fff49b2376df4394"
+      "bytes": 7610,
+      "sha256": "65d61f622aa1108d35c84d8a9c0d53ddd54d7b3f22fdd1ce12af773e67936406"
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
@@ -13247,8 +13247,8 @@
     },
     {
       "path": "tests/nativeBrowserResources.mjs",
-      "bytes": 2278,
-      "sha256": "85361c184e95d72c61e020922d249b39cc5c9661dde2eea512f17e9be9cdda39"
+      "bytes": 3481,
+      "sha256": "a43fd788afb3c03fbc94035257a2fb8da7df7dae071c1614df6a84f486f5d6ac"
     },
     {
       "path": "tests/v277-visitor-service-admission.test.mjs",
@@ -13269,7 +13269,27 @@
       "path": "docs/verification/v277/visitor-admission.json",
       "bytes": 4113,
       "sha256": "e9d0c45d265976192755efd5833bbaefae9ad0c8d5b4e345d8890019b40e74e8"
+    },
+    {
+      "path": "tests/v278-visitor-clock-browser.mjs",
+      "bytes": 4932,
+      "sha256": "34a30566c00f0187cb1aee4a75daee9b752a0d5549ac1515a758ddff38dc1376"
+    },
+    {
+      "path": "tests/v278-native-observation.test.mjs",
+      "bytes": 4064,
+      "sha256": "01b67931674361d9a73c9d569e71934a5768ceb7f10972bcc527093f694b45ba"
+    },
+    {
+      "path": "docs/visitor-clock-v278.md",
+      "bytes": 3225,
+      "sha256": "70445ec89aeaca0fae2869413d1b67850ba3bc7e831128e01c8b48946a5099ee"
+    },
+    {
+      "path": "docs/verification/v278/visitor-clock.json",
+      "bytes": 2891,
+      "sha256": "ab73474a94ba36c3d61218a8a9d161edcd87ae80cab7f315f0615a94119acd42"
     }
   ],
-  "publicRevision": "v277-visitor-admission"
+  "publicRevision": "v278-visitor-clock-ordering"
 }

@@ -1,0 +1,88 @@
+{
+  "version": "V278",
+  "baselineCommit": "aa186228e09960af33f62608e515cf493edbb81d",
+  "change": "Arrival always queues its clock checkpoint after accepted commands; unresolved journals remain blocked.",
+  "visitorAdapterSha256": "ea1b081693a25420cd9d3ac8ac48a7b7d86ae6aa7f682a4f9651d712fbbfb01a",
+  "controlledDomCases": 6,
+  "oldAdapterFirstPendingCaseFailed": true,
+  "nativeProductionSale": [
+    {
+      "theme": "pixel",
+      "roadAndService": {
+        "wallMs": 35542,
+        "originalBudgetMs": 150000
+      },
+      "acceptedOtherDomainRepliesDelayed": 33,
+      "stockBefore": 1,
+      "stockAfter": 0,
+      "paid": 7,
+      "cost": 3,
+      "reopenedShelfRetained": true,
+      "saveErrors": []
+    },
+    {
+      "theme": "origami",
+      "roadAndService": {
+        "wallMs": 35385,
+        "originalBudgetMs": 150000
+      },
+      "acceptedOtherDomainRepliesDelayed": 36,
+      "stockBefore": 1,
+      "stockAfter": 0,
+      "paid": 7,
+      "cost": 3,
+      "reopenedShelfRetained": true,
+      "saveErrors": []
+    }
+  ],
+  "nativeFixtures": {
+    "woodResinFiber": 50,
+    "needsFixture": true,
+    "clockInjected": false,
+    "realModelsCalled": false,
+    "humanOrPhysicalMacAcceptance": false
+  },
+  "localInstrumentedPaintingBothStylesPassed": true,
+  "localInstrumentedPearlCupBothStylesPassed": true,
+  "relatedRulesPassed": 40,
+  "defaultRulesPending": false,
+  "macosFailuresResolved": false,
+  "hostedEvidence": {
+    "run": 39106691673,
+    "sourceCommit": "aa186228e09960af33f62608e515cf493edbb81d",
+    "failures": [
+      {
+        "job": 117614098580,
+        "scope": "Intel native art; personal brush not equipped within original gate; selected report CRC verified, full ZIP digest not claimed"
+      },
+      {
+        "job": 117614098724,
+        "scope": "ARM native gameplay; completed pearl cup, refresh commerce-ready times out; original job omitted this artifact path, now retained"
+      },
+      {
+        "job": 117614098600,
+        "scope": "ARM resident work; owned page observations stop at roughly 65-70 seconds while owned processes remain alive with low CPU",
+        "artifact": 12130310637,
+        "wholeZipSha256Verified": "1cda007405d202619d214d0a42cc923593112e9309027ccc8874dbfddcee99d2"
+      }
+    ]
+  },
+  "macosStackSampling": {
+    "onlyOwnedCdpProcesses": true,
+    "maximumRenderers": 2,
+    "maximumGpuProcesses": 1,
+    "sampleDurationSeconds": 1,
+    "perCommandTimeoutMs": 5000,
+    "trigger": "Owned page observation pending for at least 15 seconds",
+    "samplingInvalidatesAcceptance": true,
+    "actuallyExecutedOnMac": false
+  },
+  "exactCurrentSourceHourComplete": false,
+  "wholeGoalComplete": false,
+  "defaultRules": {
+    "mainPassed": 1424,
+    "windowsWriterGuardsPassed": 14,
+    "failed": 0,
+    "skipped": 0
+  }
+}
