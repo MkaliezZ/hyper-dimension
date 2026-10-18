@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v269-agent-source",
+  "release": "hyper-dimension-v270-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 98491,
-      "sha256": "f057ff824ed5ec57db6b5d26df4896f9e355ceff19a004d89be19f2e6292ef8b"
+      "bytes": 98995,
+      "sha256": "593323d4c86152502d294569ddda6bd9a08414f2f05d558fb2f27ccf8409eb85"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9712,8 +9712,8 @@
     },
     {
       "path": "tests/v199-legacy-homes-lan-browser.mjs",
-      "bytes": 5825,
-      "sha256": "4b016ea93786991ba0f63b4ca88b5c2dee91cc4d1f919777c12bea156ada54a5"
+      "bytes": 7988,
+      "sha256": "53c8c542868795f3f6b5246ce916aee6ccafe7330685eb7847f7e7dffa4a98e6"
     },
     {
       "path": "tests/v199-legacy-homes.test.mjs",
@@ -13059,7 +13059,17 @@
       "path": "docs/verification/v269/dialogue-native-setup.json",
       "bytes": 2793,
       "sha256": "258d2df67d822dbe5b30e8b15a7ee05c6287779ffdfcaf34759f656e38869b44"
+    },
+    {
+      "path": "docs/home-journal-diagnostic-v270.md",
+      "bytes": 2267,
+      "sha256": "0744c05a00b817c5176c8fec325a3435b83c4dfe7ca9426ae2049c0986f39cea"
+    },
+    {
+      "path": "docs/verification/v270/home-journal-diagnostic.json",
+      "bytes": 1054,
+      "sha256": "d742b411dd309f5400e19118c5116b8b986290ee243f81e63cfdd38198569717"
     }
   ],
-  "publicRevision": "v269-github"
+  "publicRevision": "v270-diagnostic-branch"
 }
