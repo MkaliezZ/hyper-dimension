@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v287-agent-source",
+  "release": "hyper-dimension-v288-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 107231,
-      "sha256": "b5bb25a980d980ec8b78708ebd12e279d341bb2382053cea44b21aa0b5dc3a8d"
+      "bytes": 107789,
+      "sha256": "24a45a86993e37d88d45fb45aa34ce9aa2ee4af127e5ede5e214c03b0f4f8832"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16661,
-      "sha256": "60f7da7d2a54667aec21a102bbeaa54dcd4705946fe2712acdb67fe95a4d9205"
+      "bytes": 16692,
+      "sha256": "2bba3307dfe8ddb0eb73b625557ff372d9b05dd9708babf492bd2d29d0fde558"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6672,8 +6672,8 @@
     },
     {
       "path": "src/connectedSpriteSurface.js",
-      "bytes": 9517,
-      "sha256": "c02608ed859555d62b194b274bf30a07a614158d937b56f45cec9152d7cba06d"
+      "bytes": 9251,
+      "sha256": "2cee0af96bfe3db3721a3a20f891db19f23e1d63b4d027247fac40d6a7ec167e"
     },
     {
       "path": "src/content-ui.css",
@@ -13424,7 +13424,27 @@
       "path": "docs/verification-v287.json",
       "bytes": 704,
       "sha256": "de930a0c5bf4e89bb1ba16da0427004072e79d47f9b193337797457088761f30"
+    },
+    {
+      "path": "docs/pose-atlas-v288.md",
+      "bytes": 3555,
+      "sha256": "4e54ce45db056163d84a30b971abaeb36cf981b1ff6663bcc3f807d676df9984"
+    },
+    {
+      "path": "docs/verification-v288.json",
+      "bytes": 1480,
+      "sha256": "8e91c67fab9c36b671cc236a501190c9fa889c0c0c794749792dfc35d22a4ec0"
+    },
+    {
+      "path": "src/poseAtlas.js",
+      "bytes": 3479,
+      "sha256": "b54e8ac703856ec35f641c69d3e4d0831891bfbb4d40618a4a5b644934fa856a"
+    },
+    {
+      "path": "tests/v288-pose-atlas.test.mjs",
+      "bytes": 2883,
+      "sha256": "7002307ff6463a225c0a7a5847c780c4650d0c067c79430dae503bac14346737"
     }
   ],
-  "publicRevision": "v287-recruitment-progress-checkpoint"
+  "publicRevision": "v288-shared-character-pose-surfaces"
 }

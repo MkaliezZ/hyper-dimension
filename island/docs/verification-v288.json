@@ -1,0 +1,30 @@
+{
+  "version": "V288",
+  "changedRuntimeFiles": ["src/connectedSpriteSurface.js", "src/poseAtlas.js"],
+  "rulesSavesCadenceOceanAndAnimationPosesChanged": false,
+  "resourceChecksPassed": 5,
+  "existingMeshAndRasterChecksPassed": 9,
+  "nativeWindowsExactPixelPairs": 192,
+  "nativeWindowsPixelDifferences": 0,
+  "defaultRuleChecks": {"domain": 1452, "maintenance": 14, "pass": 1466, "fail": 0, "skipped": 0, "cancelled": 0},
+  "ordinaryFourMapReload": {"originalPassed": true, "candidatePassed": true, "originalBudgetsRetained": true},
+  "hostedMac": {
+    "runId": 39135956467,
+    "candidateJobId": 117700393025,
+    "candidateOriginalTaskChainBothStylesPassed": true,
+    "nativeMetalAndCanvasVerified": true,
+    "originalTestSha256": "1a19591c70ae3ab3e836a46d9944e103a4ce08006166758175342c1e3265ad83",
+    "originalResolutionBudgetsAndAssertionsUnchanged": true,
+    "officialArtifactSha256": "d4e64c4642ba05ed916920bcc3b70597b38b920a8f90e40f27e722c7035a009b",
+    "officialDigestAndAllCrcsVerified": true,
+    "sameRunOriginalRendererComparisonComplete": true,
+    "sameRunOriginalRendererFailedAfterMidChainReload": true,
+    "originalRendererArtifactSha256": "3415f8ddf166687c858f142c34c5ed06b243bafa436378198471068630ae583c",
+    "allMacFailuresResolved": false
+  },
+  "fullFourMapOriginalDeviceA2aQualificationPassed": false,
+  "previousExactV287ArchiveNotRelabeled": true,
+  "physicalDeviceAcceptance": false,
+  "humanAcceptance": false,
+  "wholeGoalComplete": false
+}

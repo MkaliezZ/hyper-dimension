@@ -1,7 +1,8 @@
+import {createPoseAtlas} from './poseAtlas.js';
 // A single GPU draw skins the entire connected surface. Canvas remains available
 // for hosts without WebGL; idle poses keep their direct original-image fast path.
 const MAX_TEXTURE_BYTES=96*1024*1024,textures=new Map();
-const MAX_POSE_BYTES=64*1024*1024,poses=new Map(),imageIds=new WeakMap();let poseBytes=0,poseSerial=0,themeFilter=null,blendCanvas=null,hits=0,misses=0;
+const MAX_POSE_BYTES=64*1024*1024,poseAtlas=createPoseAtlas({maxBytes:MAX_POSE_BYTES}),imageIds=new WeakMap();let poseSerial=0,themeFilter=null,blendCanvas=null,hits=0,misses=0;
 let renderer=null,unavailable=false,serial=0,bytes=0;
 function initialize(){
  if(unavailable||typeof document==='undefined')return null;
@@ -37,7 +38,7 @@ function paintSurface(ctx,img,frame,mesh){
   gl.bindBuffer(gl.ARRAY_BUFFER,r.buffer);gl.bufferData(gl.ARRAY_BUFFER,r.vertices.subarray(0,n),gl.STREAM_DRAW);gl.drawArrays(gl.TRIANGLES,0,n/4);ctx.drawImage(r.canvas,0,0,w,h,minX,minY,w/density,h/density);r.draws++;return true;
  }catch{return false;}
 }
-function clearPoses(){for(const p of poses.values()){p.image.width=0;p.image.height=0;}poses.clear();poseBytes=0;}
+function clearPoses(){poseAtlas.clear();}
 export function drawConnectedSurface(ctx,img,frame,mesh,makePose,paintFallback){
  if(typeof document==='undefined'||!makePose)return false;
  // Work and walking each have a continuous one-dimensional pose. Interpolate two
@@ -47,13 +48,15 @@ export function drawConnectedSurface(ctx,img,frame,mesh,makePose,paintFallback){
  if(!imageIds.has(img))imageIds.set(img,++poseSerial);
  const matrix=ctx.getTransform(),density=Math.ceil(Math.max(.75,Math.min(4,Math.max(Math.hypot(matrix.a,matrix.b),Math.hypot(matrix.c,matrix.d))))*4)/4,steps=64,position=p.action?Math.max(0,Math.min(1,p.t||0))*steps:Math.max(0,Math.min(1,((p.gait||0)+1)/2))*steps,first=Math.floor(position),last=Math.min(steps,first+1),fraction=position-first;
  const prefix=[imageIds.get(img),frame.x,frame.y,frame.w,frame.h,p.width,p.height,p.garment||false,p.action||'walk',p.harvest?.mode||'',mesh.rows[0],mesh.rows.at(-1),density,smoothing].join('|');
- const get=index=>{
-  const key=prefix+'|'+index;let cached=poses.get(key);if(cached){cached.used=++poseSerial;hits++;return cached;}
-  misses++;const t=index/steps,pose=p.action?{...p,t,work:Math.sin(t*Math.PI*2),harvest:p.harvest?makePose.harvest(t,p.harvest.mode):null}:{...p,gait:t*2-1},surface=makePose(pose),points=surface.vertices.flat(),x=Math.min(...points.map(p=>p.x))-2,y=Math.min(...points.map(p=>p.y))-2,w=Math.ceil((Math.max(...points.map(p=>p.x))+2-x)*density),h=Math.ceil((Math.max(...points.map(p=>p.y))+2-y)*density),image=document.createElement('canvas');image.width=w;image.height=h;const g=image.getContext('2d');g.imageSmoothingEnabled=smoothing;g.scale(density,density);g.translate(-x,-y);
-  if(!surface.deformed){const a=surface.rows[0],height=surface.rows.at(-1)-a;g.drawImage(img,frame.x,frame.y+a*frame.h,frame.w,height*frame.h,-p.width/2,(a-1)*p.height,p.width,height*p.height);}else if(!paintSurface(g,img,frame,surface))paintFallback(g,surface);
-  const size=w*h*4;while(poseBytes+size>MAX_POSE_BYTES&&poses.size){const [oldKey,old]=[...poses].reduce((a,b)=>a[1].used<b[1].used?a:b);poses.delete(oldKey);poseBytes-=old.bytes;old.image.width=0;old.image.height=0;}
-  cached={image,x,y,w:w/density,h:h/density,bytes:size,used:++poseSerial};poses.set(key,cached);poseBytes+=size;return cached;
+ const get=(index,protectedKeys=[])=>{
+  const key=prefix+'|'+index;let cached=poseAtlas.get(key);if(cached){hits++;return cached;}
+  misses++;const t=index/steps,pose=p.action?{...p,t,work:Math.sin(t*Math.PI*2),harvest:p.harvest?makePose.harvest(t,p.harvest.mode):null}:{...p,gait:t*2-1},surface=makePose(pose),points=surface.vertices.flat(),x=Math.min(...points.map(p=>p.x))-2,y=Math.min(...points.map(p=>p.y))-2,w=Math.ceil((Math.max(...points.map(p=>p.x))+2-x)*density),h=Math.ceil((Math.max(...points.map(p=>p.y))+2-y)*density);
+  cached=poseAtlas.put(key,w,h,g=>{
+   g.imageSmoothingEnabled=smoothing;g.scale(density,density);g.translate(-x,-y);
+   if(!surface.deformed){const a=surface.rows[0],height=surface.rows.at(-1)-a;g.drawImage(img,frame.x,frame.y+a*frame.h,frame.w,height*frame.h,-p.width/2,(a-1)*p.height,p.width,height*p.height);}else if(!paintSurface(g,img,frame,surface))paintFallback(g,surface);
+  },{x,y,w:w/density,h:h/density},protectedKeys);
+  if(!cached)throw Error('pose_atlas_full');return cached;
  };
- try{const a=get(first);if(fraction<1e-7||first===last){ctx.drawImage(a.image,a.x,a.y,a.w,a.h);return true;}const b=get(last),x=Math.min(a.x,b.x),y=Math.min(a.y,b.y),w=Math.ceil((Math.max(a.x+a.w,b.x+b.w)-x)*density),h=Math.ceil((Math.max(a.y+a.h,b.y+b.h)-y)*density);blendCanvas??=document.createElement('canvas');if(blendCanvas.width<w)blendCanvas.width=w;if(blendCanvas.height<h)blendCanvas.height=h;const g=blendCanvas.getContext('2d');g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,blendCanvas.width,blendCanvas.height);g.imageSmoothingEnabled=smoothing;g.globalCompositeOperation='source-over';g.globalAlpha=1-fraction;g.drawImage(a.image,(a.x-x)*density,(a.y-y)*density,a.w*density,a.h*density);g.globalCompositeOperation='lighter';g.globalAlpha=fraction;g.drawImage(b.image,(b.x-x)*density,(b.y-y)*density,b.w*density,b.h*density);g.globalAlpha=1;g.globalCompositeOperation='source-over';ctx.drawImage(blendCanvas,0,0,w,h,x,y,w/density,h/density);return true;}catch{return paintSurface(ctx,img,frame,mesh);}
+ try{const a=get(first);if(fraction<1e-7||first===last){ctx.drawImage(a.image,a.sx,a.sy,a.sw,a.sh,a.x,a.y,a.w,a.h);return true;}const b=get(last,[a.key]),x=Math.min(a.x,b.x),y=Math.min(a.y,b.y),w=Math.ceil((Math.max(a.x+a.w,b.x+b.w)-x)*density),h=Math.ceil((Math.max(a.y+a.h,b.y+b.h)-y)*density);blendCanvas??=document.createElement('canvas');if(blendCanvas.width<w)blendCanvas.width=w;if(blendCanvas.height<h)blendCanvas.height=h;const g=blendCanvas.getContext('2d');g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,blendCanvas.width,blendCanvas.height);g.imageSmoothingEnabled=smoothing;g.globalCompositeOperation='source-over';g.globalAlpha=1-fraction;g.drawImage(a.image,a.sx,a.sy,a.sw,a.sh,(a.x-x)*density,(a.y-y)*density,a.w*density,a.h*density);g.globalCompositeOperation='lighter';g.globalAlpha=fraction;g.drawImage(b.image,b.sx,b.sy,b.sw,b.sh,(b.x-x)*density,(b.y-y)*density,b.w*density,b.h*density);g.globalAlpha=1;g.globalCompositeOperation='source-over';ctx.drawImage(blendCanvas,0,0,w,h,x,y,w/density,h/density);return true;}catch{return paintSurface(ctx,img,frame,mesh);}
 }
-export function connectedSurfaceStatus(){return{backend:renderer?'WebGL connected surface':unavailable?'Canvas connected surface':'not needed',draws:renderer?.draws||0,textures:textures.size,textureBytes:bytes,limitBytes:MAX_TEXTURE_BYTES,poseCache:{entries:poses.size,bytes:poseBytes,limitBytes:MAX_POSE_BYTES,hits,misses}};}
+export function connectedSurfaceStatus(){return{backend:renderer?'WebGL connected surface':unavailable?'Canvas connected surface':'not needed',draws:renderer?.draws||0,textures:textures.size,textureBytes:bytes,limitBytes:MAX_TEXTURE_BYTES,poseCache:{...poseAtlas.inspect(),hits,misses}};}
