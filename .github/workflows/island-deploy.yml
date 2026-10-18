@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Full suite, soil or recovery-input diagnostics
+        description: Full suite, soil, recovery-input or social-pending diagnostics
         type: choice
         default: full
-        options: [full, soil-diagnostics, recovery-input]
+        options: [full, soil-diagnostics, recovery-input, social-pending]
   push:
     paths:
       - island/**
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   portable-source:
-    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input')
+    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending')
     name: ${{ matrix.os }} / Python 3.11
     strategy:
       fail-fast: false
@@ -121,7 +121,7 @@ jobs:
           retention-days: 3
 
   native-art:
-    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input')
+    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending')
     name: ${{ matrix.os }} / native art
     strategy:
       fail-fast: false
@@ -200,7 +200,7 @@ jobs:
           retention-days: 3
 
   native-homes:
-    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input')
+    if: github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending')
     name: ${{ matrix.os }} / native homes
     strategy:
       fail-fast: false
@@ -259,7 +259,7 @@ jobs:
           retention-days: 3
 
   native-gameplay:
-    if: inputs.check_scope != 'recovery-input'
+    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending'
     name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }}
     strategy:
       fail-fast: false
@@ -402,7 +402,7 @@ jobs:
   # Intel runners reached the shared 45-minute job cap during the final scene
   # test. Run the same island simulations separately from receipt tests.
   native-island-simulation:
-    if: inputs.check_scope != 'recovery-input'
+    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending'
     name: ${{ matrix.os }} / native island simulation
     strategy:
       fail-fast: false
@@ -463,7 +463,7 @@ jobs:
           retention-days: 3
 
   native-resident-work:
-    if: inputs.check_scope != 'recovery-input'
+    if: inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending'
     name: ${{ matrix.os }} / native resident work
     strategy:
       fail-fast: false
@@ -542,5 +542,38 @@ jobs:
             island/qa/v220/native-recovery-modal/*-input-failure.zip
             island/qa/v268/recovery-background/report.json
             island/qa/v268/recovery-background/*.png
+          if-no-files-found: ignore
+          retention-days: 3
+
+  native-social-pending:
+    if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'social-pending'
+    name: ${{ matrix.os }} / isolated pending dialogue
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-14, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: island
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install isolated browser dependencies
+        run: npm ci --ignore-scripts
+      - name: Native dialogue while another receipt settles
+        run: node tests/v262-social-pending-browser.mjs
+      - name: Retain isolated dialogue evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-social-pending-${{ matrix.os }}
+          path: |
+            island/qa/v262/social-pending/report.json
+            island/qa/v262/social-pending/*.png
           if-no-files-found: ignore
           retention-days: 3

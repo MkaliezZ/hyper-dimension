@@ -1,0 +1,72 @@
+{
+  "version": "V269",
+  "sourceBaseCommit": "d810116b64729a434013c8973fc1095c88809f52",
+  "at": "2026-10-18T01:10:37.551297+00:00",
+  "originalHostedRun": 39082467597,
+  "originalHostedJob": 117542391216,
+  "originalHostedPreparationMs": 16503,
+  "originalHostedHttpAcceptanceMs": 110,
+  "originalHostedActualNativeInputClockNotRecorded": true,
+  "originalArtifactId": 12120088103,
+  "originalArtifactSha256": "693fbec54d2b89a3f0cada980d2ede5f90745b55fc21604f6511cd3186612a9c",
+  "originalArtifactCrcVerified": true,
+  "originalFailurePreserved": true,
+  "matchingAssertionFalseFailureReproducedBothThemes": true,
+  "reproductionDelayBeforeNativeActivationMs": 18000,
+  "reproductionScope": "Declared real pre-input wait; not an inferred original hosted click timestamp.",
+  "originalMenusUseNativePointerInputBeforeObservingDialogue": true,
+  "preparedGatherButtonActivatedByTrustedNativeEnter": true,
+  "actualInputMustSeeSpeakingWithNoOutcome": true,
+  "nativeObservationPersistedBeforeAssertions": true,
+  "normalNativeCasesPassed": 2,
+  "cpuStressRate": 4,
+  "cpuStressNativeCasesPassed": 2,
+  "workerPreDispatchDelayMs": 9000,
+  "delayedNativeCasesPassed": 2,
+  "frozenNegativeCasesFailedAsRequired": 2,
+  "normalNativeActivationClocks": [
+    0.023799999999999273,
+    0.03879999999999927
+  ],
+  "delayedPresentation": [
+    {
+      "theme": "pixel",
+      "start": 0,
+      "before": 13.844599999999783,
+      "during": 14.8,
+      "duration": 14.8,
+      "minimumHeldAdvance": 0.9554000000002176,
+      "actualAcceptedResponseHeld": true,
+      "noEarlyOutcome": true
+    },
+    {
+      "theme": "origami",
+      "start": 0.008,
+      "before": 13.88309999999977,
+      "during": 14.8,
+      "duration": 14.8,
+      "minimumHeldAdvance": 0.916900000000231,
+      "actualAcceptedResponseHeld": true,
+      "noEarlyOutcome": true
+    }
+  ],
+  "preparationBudgetMsUnchanged": 30000,
+  "actualHttpBudgetMsUnchanged": 10000,
+  "acceptedObservationMsUnchanged": 2600,
+  "originalProgressNaturalEndpointNoEarlyOutcomeCancelUniqueSaveAndReloadAssertionsPreserved": true,
+  "runtimePayloadsByteIdenticalToV268": 1251,
+  "gameRuntimeChanged": false,
+  "default1393RulesInheritedFromExactV268": true,
+  "existingCorePresentationRulesPassedThisTurn": 4,
+  "workflow": {
+    "originalFull18PlatformChecksAndEveryOriginalStepBudgetEnvironmentPermissionAndConcurrencyPreserved": true,
+    "newExplicitScope": "social-pending",
+    "newScopeActualPlatformJobs": 3,
+    "originalFullJobsSkippedOnlyForNewExplicitScope": true,
+    "newCommand": "node tests/v262-social-pending-browser.mjs",
+    "fullSuiteSubstituted": false
+  },
+  "hostedFixVerificationPending": true,
+  "fullSuitePassed": false,
+  "wholeGoalComplete": false
+}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v268-agent-source",
+  "release": "hyper-dimension-v269-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 97949,
-      "sha256": "19984f9ad9b857354d1bd1506624d2f3ffe36cce82d21ff7af6dc7f430e98626"
+      "bytes": 98491,
+      "sha256": "f057ff824ed5ec57db6b5d26df4896f9e355ceff19a004d89be19f2e6292ef8b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12952,8 +12952,8 @@
     },
     {
       "path": "tests/v262-social-pending-browser.mjs",
-      "bytes": 10159,
-      "sha256": "f6cb3e760e44482047376079f60e7a41a419356a72cd8a8a0481f64143d0f3fa"
+      "bytes": 11513,
+      "sha256": "709654cffe2904be1ae42d9479d17ed97546f6e8689827f0416d4fc145c82dc2"
     },
     {
       "path": "docs/social-receipts-and-visits-v262.md",
@@ -13049,7 +13049,17 @@
       "path": "docs/verification/v268/recovery-background.json",
       "bytes": 2577,
       "sha256": "175086574bde5512737447532cce2d93a2be8252918eb12dcbbeb63877e8fafd"
+    },
+    {
+      "path": "docs/dialogue-native-setup-v269.md",
+      "bytes": 2808,
+      "sha256": "068052caaea53d894d9055937ac4f233379684961ebde3bef7b334c2977a3aa7"
+    },
+    {
+      "path": "docs/verification/v269/dialogue-native-setup.json",
+      "bytes": 2793,
+      "sha256": "258d2df67d822dbe5b30e8b15a7ee05c6287779ffdfcaf34759f656e38869b44"
     }
   ],
-  "publicRevision": "v268-github"
+  "publicRevision": "v269-github"
 }
