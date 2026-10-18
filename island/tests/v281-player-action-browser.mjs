@@ -35,17 +35,19 @@ async function run(theme){
   });
   await context.route('**/src/app.js',async route=>{
    const response=await route.fetch();let source=await response.text();
-   source+='\nwindow.__playerActionQA={async prepare(){for(const n of npcs){runtime.releaseActor(n);n.manualUntil=1e9;}await saves.idle(theme);},async hold(){this.foreign=await serverResident.begin({npcId:15},{goal:"plaza",action:"rest",source:"local",operationId:"qa-v281-player-"+crypto.randomUUID()});},async clear(){if(this.foreign)await serverResident.cancel(this.foreign);},inspect(){return {action:actor.action?{type:actor.action.type,t:actor.action.t,duration:actor.action.duration}:null,gatherSettling:serverGather.settling(),resident:serverResident.inspect(),pending:saves.pendingAction(theme)?.body?.kind||null,active:saves.status(theme).actions?.active?.requestId||null,wax:state.inventory.wax||0};}};';
+   source+='\nwindow.__playerActionQA={async prepare(){for(const n of npcs){runtime.releaseActor(n);n.manualUntil=1e9;}await saves.idle(theme);},async hold(){this.foreign=await serverResident.begin({npcId:15},{goal:"plaza",action:"rest",source:"local",operationId:"qa-v281-player-"+crypto.randomUUID()});},async clear(){if(this.foreign)await serverResident.cancel(this.foreign);},inspect(){return {action:actor.action?{type:actor.action.type,t:actor.action.t,duration:actor.action.duration}:null,gatherSettling:serverGather.settling(),resident:serverResident.inspect(),pending:saves.pendingAction(theme)?.body?.kind||null,holdError:this.holdError||null,active:saves.status(theme).actions?.active?.requestId||null,wax:state.inventory.wax||0};}};';
    await route.fulfill({response,body:source});
   });
   for(let i=0;i<100;i++){try{if((await fetch(base+'/api/status')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   await page.goto(base+'/?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverCommerce.ready&&!window.islandInspect().startup.busy,null,{timeout:60000});
   if(await page.locator('#closeModal').isVisible())await page.locator('#closeModal').click();
-  await page.evaluate(()=>window.__playerActionQA.prepare());await page.locator('#gatherBtn').click();await page.locator('[data-gather="wax"]').click();
-  await page.waitForFunction(()=>!!window.__playerActionQA.inspect().action,null,{timeout:15000});
+  await page.evaluate(()=>window.__playerActionQA.prepare());const actionSetupDeadline=Date.now()+15000;await page.locator('#gatherBtn').click();await page.locator('[data-gather="wax"]').click();
+  await page.waitForFunction(()=>!!window.__playerActionQA.inspect().action,null,{timeout:Math.max(1,actionSetupDeadline-Date.now())});
   const initial=await page.evaluate(()=>window.__playerActionQA.inspect());assert.equal(initial.wax,0);assert(initial.active);row.lease=initial.active;
   await page.evaluate(()=>{window.__playerActionQA.hold().catch(e=>window.__playerActionQA.holdError=e.message);});
-  for(let i=0;i<50&&!held;i++)await page.waitForTimeout(40);assert(held,'the real unrelated response must be withheld');
+  // Share the original 15s action-setup budget with request preparation; the
+  // previous separate 2s probe could expire before saves.action dispatched.
+  while(!held&&Date.now()<actionSetupDeadline)await page.waitForTimeout(40);assert(held,'the real unrelated response must be withheld');
   await page.waitForFunction(()=>{const q=window.__playerActionQA.inspect();return q.action===null&&q.gatherSettling&&q.resident.inflight>0;},null,{timeout:5000});
   const waiting=await page.evaluate(()=>window.__playerActionQA.inspect()),before=await store.current(theme);
   assert.equal(waiting.wax,0);assert.equal(before.state.inventory.wax,0);assert.equal(before.actions.active.requestId,initial.active);assert.equal(before.actions.receipts.filter(r=>r.ticket.requestId===initial.active).length,0);

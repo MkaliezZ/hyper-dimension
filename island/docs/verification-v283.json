@@ -1,0 +1,25 @@
+{
+  "hostedFailureJob": 117647539365,
+  "failureStage": "The 2s held-response probe ended before the unrelated API request was dispatched",
+  "originalCombinedSetupMaximumMs": 17000,
+  "newSharedSetupMaximumMs": 15000,
+  "originalPostHoldPoseDeadlineMs": 5000,
+  "originalReceiptDeadlineMs": 30000,
+  "originalAssertionsAndLeaseChecksPreserved": true,
+  "gameRuntimeChanged": false,
+  "wholeGoalComplete": false,
+  "sourceRuntimeActuallyExecuted": "1758a85de9e6f3b9813e8e54963958a9c8714582",
+  "controlledAcceptedSaveDelayMs": 3000,
+  "beforeSameSetupFailureReproduced": true,
+  "afterBothStylesPassed": true,
+  "originalPostHoldChecks": {
+    "poseDeadlineMs": 5000,
+    "receiptDeadlineMs": 30000,
+    "exactlyOneFinish": true,
+    "noGoodsBeforeReceipt": true,
+    "reloadUnique": true
+  },
+  "gameClockInjected": false,
+  "inventoryOrCompletedResultsInjected": false,
+  "macHostedRecoveryConfirmed": false
+}

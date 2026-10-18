@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v282-agent-source",
+  "release": "hyper-dimension-v283-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 104969,
-      "sha256": "6b8f4293158ca37019912f7cb6bdaecb089581c3ab9b5c3272a37ad19c76f66a"
+      "bytes": 105395,
+      "sha256": "d21e251806cb3a432239e76300a337bac3d120f1f2d87126176e0a6dd8138cda"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -13332,8 +13332,8 @@
     },
     {
       "path": "tests/v281-player-action-browser.mjs",
-      "bytes": 7352,
-      "sha256": "2beb210003276477a8bc9a7487ec8a2a00e3118c71e0b340dda08cf239482b4b"
+      "bytes": 7634,
+      "sha256": "dba9b20da9b5e8f26732c989f8ef34965d95f21e6ba2426fc3061b1f48f4167a"
     },
     {
       "path": "tests/v281-player-action-clock.test.mjs",
@@ -13359,7 +13359,17 @@
       "path": "tests/v282-mac-symbols.test.py",
       "bytes": 3606,
       "sha256": "22c743b412f23ec48382a66a1e725c17caf74c1a3255477da9f12c6950341197"
+    },
+    {
+      "path": "docs/player-action-preparation-v283.md",
+      "bytes": 1171,
+      "sha256": "0cb7dd2021ad4a4cfdcccd09b8a42b6df9d8e80ff62e269613bca0ed21fa9096"
+    },
+    {
+      "path": "docs/verification-v283.json",
+      "bytes": 937,
+      "sha256": "391feddb1e64abbf08bf3ab6c7417e83e083f1cfa6e0d218c741ce7767e100ae"
     }
   ],
-  "publicRevision": "v282-mac-stack-diagnostics"
+  "publicRevision": "v283-action-preparation-synchronization"
 }
