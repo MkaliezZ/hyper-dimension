@@ -1,0 +1,74 @@
+{
+  "version": "V291",
+  "at": "2026-10-18T17:43:35.189335+00:00",
+  "scope": "LAN map single-chain visible RAF recovery plus confirmed receipt interpolation without zero-progress starvation. No actor position, route, world clock, shader, art, resolution or server outcome injection.",
+  "runtimeHashes": {
+    "src/lanMap.js": "22379e0cab1e29afc99427f9aff78834696c4e687e069734803d924752c92650",
+    "src/lanMotion.js": "0657ab433b50fb9a28670193e4c6c08bf15d186a1b7cc305f033d2765a2e559f"
+  },
+  "before": [
+    {
+      "theme": "pixel",
+      "canonicalDistance": 255.47829747249736,
+      "visibleDistance": 0
+    },
+    {
+      "theme": "origami",
+      "canonicalDistance": 253.77904085794108,
+      "visibleDistance": 0
+    }
+  ],
+  "after": [
+    {
+      "theme": "pixel",
+      "canonicalDistance": 252.0242046864527,
+      "visibleDistance": 179.5155877206155,
+      "fallbackFrames": 7,
+      "nativeRafRestoredWithoutFocus": true
+    },
+    {
+      "theme": "origami",
+      "canonicalDistance": 257.8542114050138,
+      "visibleDistance": 184.81656782007434,
+      "fallbackFrames": 7,
+      "nativeRafRestoredWithoutFocus": true
+    }
+  ],
+  "newDenseReceiptRules": {
+    "tests": 4,
+    "originalFailed": 4,
+    "fixedPassed": 4
+  },
+  "relatedFrameAndMotionRules": {
+    "tests": 34,
+    "pass": 34,
+    "fail": 0
+  },
+  "fullDefaultRulesPending": false,
+  "originalNativeMotionCasesPending": false,
+  "fullFourMapOrigamiRestartRecheckPending": true,
+  "previousNaturalOrigamiFailureRetained": "10s exact visible actor union after service restart on original routed V289 runtime",
+  "wholeGoalComplete": false,
+  "fullDefaultRules": {
+    "tests": 1470,
+    "pass": 1470,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "nativeBrowserCases": {
+    "pass": 8,
+    "fail": 0,
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "conditions": [
+      "visible RAF loss without focus event",
+      "original normal movement",
+      "original committed reply loss with same request replay",
+      "original server busy with original retry bounds"
+    ]
+  },
+  "verifiedSourceUnchangedAfter": true
+}

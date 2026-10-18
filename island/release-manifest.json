@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v290-agent-source",
+  "release": "hyper-dimension-v291-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 108924,
-      "sha256": "5ac071dbfe70204053fb99b56bba3524d582b0470b32c2c4473373e83208572d"
+      "bytes": 109465,
+      "sha256": "9a4b78cf149918cc0ea4fe1e470c4fb56f4c770c9f10b8d827c102643b153024"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16692,
-      "sha256": "2bba3307dfe8ddb0eb73b625557ff372d9b05dd9708babf492bd2d29d0fde558"
+      "bytes": 16725,
+      "sha256": "a9baf105bd2e6a29df57dec47826f30e137453c599fc477b557014c4dba2ce64"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7352,13 +7352,13 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 12031,
-      "sha256": "5eda847239c05f8696db9c17bd66c678dada87c32e44640906820b67a5764d22"
+      "bytes": 12133,
+      "sha256": "22379e0cab1e29afc99427f9aff78834696c4e687e069734803d924752c92650"
     },
     {
       "path": "src/lanMotion.js",
-      "bytes": 3806,
-      "sha256": "ac5da862d2b90c31795c5a35fe87105d9981980aed00dadb4e3e78363311c228"
+      "bytes": 4135,
+      "sha256": "0657ab433b50fb9a28670193e4c6c08bf15d186a1b7cc305f033d2765a2e559f"
     },
     {
       "path": "src/lanMoveQueue.js",
@@ -13474,7 +13474,27 @@
       "path": "docs/verification-v290.json",
       "bytes": 2562,
       "sha256": "960de7d3abaceacb7bc48f969f5fc7aaf5335718bb75f2670f698887a237b585"
+    },
+    {
+      "path": "tests/v291-lan-receipts.test.mjs",
+      "bytes": 1111,
+      "sha256": "5f3615a0779c71db37b154054ffb793557674b6299e2cbd1642aa1ab792aeeb9"
+    },
+    {
+      "path": "tests/v291-lobby-frame-recovery-browser.mjs",
+      "bytes": 6780,
+      "sha256": "9a373dc1eea180010ca3f589fe72c86b7cde7bcadf97a29d93292ef20ed97b05"
+    },
+    {
+      "path": "docs/lobby-frame-recovery-v291.md",
+      "bytes": 2089,
+      "sha256": "0b8b83be1518632513341d243408cb08890813220a5b0e3e186f2fb7a5db2636"
+    },
+    {
+      "path": "docs/verification-v291.json",
+      "bytes": 2197,
+      "sha256": "ecdcdbc4dfabf92fb871e40854a167891b50a55e3f01e34193a916a6c2518a14"
     }
   ],
-  "publicRevision": "v290-manual-steward-durable-checkpoint"
+  "publicRevision": "v291-visible-lobby-frame-recovery-and-receipts"
 }

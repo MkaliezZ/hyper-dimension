@@ -29,16 +29,20 @@ function samplePath(a,p,passable,reconcile){
 }
 export function sampleLanMotion(a,p,dt,at,passable,reconcile){
  const safeDt=Math.min(.05,Math.max(0,dt));
- if(a.snapshotAt!==p.updatedAt||!a.motionSample){
+ const newSnapshot=a.snapshotAt!==p.updatedAt||!a.motionSample,sincePaint=Math.max(0,(at-(a.renderAt??at))/1000),receiptDt=Math.min(.25,Math.max(0,dt),sincePaint);
+ if(newSnapshot){
   if(a.snapshotAt!=null&&p.updatedAt<a.snapshotAt)return a;
   const interval=a.snapshotAt==null?.12:Math.max(.12,Math.min(.7,(p.updatedAt-a.snapshotAt)/1000));
   const path=samplePath(a,p,passable,reconcile),length=path.slice(1).reduce((n,v,i)=>n+distance(v,path[i]),0);
-  a.motionSample={path,length,at,duration:interval,progress:0,initial:!a.confirmedMotion};a.motionIndex=0;
+  // Include the visible interval since the previous paint when receipts
+  // arrive every frame; repeatedly starting at now would keep progress at zero.
+  const sampleAt=at-receiptDt*1000;
+  a.motionSample={path,length,at:sampleAt,duration:interval,progress:0,initial:!a.confirmedMotion};a.motionIndex=0;
   a.snapshotAt=p.updatedAt;
   a.confirmedMotion={x:p.x,y:p.y,route:(p.route||[]).map(v=>({...v}))};
  }
  const sample=a.motionSample,before={x:a.x,y:a.y},jump=distance(p,a)>80&&sample.initial;
- const elapsed=Math.min(.25,Math.max(0,(at-(a.renderAt??at))/1000));a.renderAt=at;
+ const elapsed=newSnapshot?receiptDt:Math.min(.25,sincePaint);a.renderAt=at;
  if(jump){a.x=p.x;a.y=p.y;sample.path=[{x:p.x,y:p.y}];sample.length=0;a.motionIndex=0;}
  else{
   const targetDistance=Math.max(0,Math.min(1,(at-sample.at)/(sample.duration*1000)))*sample.length;
