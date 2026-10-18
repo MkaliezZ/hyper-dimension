@@ -1,0 +1,73 @@
+{
+  "version": "V290",
+  "at": "2026-10-18T17:06:02.665765+00:00",
+  "scope": "The manual steward send now uses the existing point-in-time durable checkpoint directly. Remove only its preceding unbounded global idle drain. No SaveClient, authority, model, asset or economy changes.",
+  "sourceHashes": {
+    "src/app.js": "f24179ccaec2aee4b13f8da4b623af94b29c656bd5c1b70959da64d76126f972",
+    "src/saveClient.js": "5062ecc82d30d9f47fabcaa18fcc84bffa76e8500d5decda78a02efb83e5cd70",
+    "src/stewardChat.js": "1cd241239387f227786350b236652446fae61e68307d1cd9d58c1d87364c9292",
+    "tests/v290-steward-checkpoint-browser.mjs": "9fc341585d1b9b262e34851d0a3d2403ad41d5f3ee5b3746a0d8425ec2341e6c"
+  },
+  "relatedRules": {
+    "tests": 32,
+    "pass": 32,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "nativeCases": 2,
+  "before": [
+    {
+      "theme": "pixel",
+      "manualRequestsWhileBackgroundContinues": 0,
+      "backupCompletions": 24,
+      "observedMs": 4133
+    },
+    {
+      "theme": "origami",
+      "manualRequestsWhileBackgroundContinues": 0,
+      "backupCompletions": 23,
+      "observedMs": 4042
+    }
+  ],
+  "after": [
+    {
+      "theme": "pixel",
+      "manualRequestsWhileBackgroundContinues": 1,
+      "elapsedMs": 581,
+      "chatDurableBeforeExternal": true,
+      "earlierBackupCommittedBeforeRequest": true,
+      "subsequentBackgroundStillActive": true
+    },
+    {
+      "theme": "origami",
+      "manualRequestsWhileBackgroundContinues": 1,
+      "elapsedMs": 575,
+      "chatDurableBeforeExternal": true,
+      "earlierBackupCommittedBeforeRequest": true,
+      "subsequentBackgroundStillActive": true
+    }
+  ],
+  "originalFourSecondGatePreserved": true,
+  "fixtureReplyNotModelAcceptance": true,
+  "priorFourMapPixel": {
+    "passed": true,
+    "originalDeviceA2aJobs": 11,
+    "actualGuests": 3,
+    "ratings": 3,
+    "coinDelta": -8,
+    "materialConservation": true,
+    "exactCheckpointAndSettlementReplay": true,
+    "restartAndReturnPassed": true,
+    "scope": "Immutable V287 installed server plus three explicitly routed V289 runtime modules, all source hashes verified after. Not a fresh exact V290 package, physical multi-device or human acceptance."
+  },
+  "remaining": {
+    "origamiFourMapFullFlow": true,
+    "hostedMacMatrixRecheck": true,
+    "currentSourceArchiveAndFreshInstall": true,
+    "currentSourceHour": true,
+    "newVideo": true,
+    "actualOpcCourseAndFiveToEightNewPlayers": true
+  },
+  "wholeGoalComplete": false
+}

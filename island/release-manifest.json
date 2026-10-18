@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v289-agent-source",
+  "release": "hyper-dimension-v290-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 108357,
-      "sha256": "8d37a9cac7ff01850142e1b896362a38e9c13e636ef0c13b1818934fe4fae254"
+      "bytes": 108924,
+      "sha256": "5ac071dbfe70204053fb99b56bba3524d582b0470b32c2c4473373e83208572d"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145735,
-      "sha256": "e4fc7a594ea78bc5abc6f6fd685d2ad8a53cc933efdd304b0ae7406826150930"
+      "bytes": 145857,
+      "sha256": "f24179ccaec2aee4b13f8da4b623af94b29c656bd5c1b70959da64d76126f972"
     },
     {
       "path": "src/arcade.css",
@@ -13459,7 +13459,22 @@
       "path": "docs/verification-v289.json",
       "bytes": 2183,
       "sha256": "076b75b0b9cc6518498c9e31cecfaefc1f819bff5683c4e2b29a9f7db9fb6a3a"
+    },
+    {
+      "path": "tests/v290-steward-checkpoint-browser.mjs",
+      "bytes": 8681,
+      "sha256": "9fc341585d1b9b262e34851d0a3d2403ad41d5f3ee5b3746a0d8425ec2341e6c"
+    },
+    {
+      "path": "docs/steward-checkpoint-v290.md",
+      "bytes": 2246,
+      "sha256": "a11ada92c760bfcdf9c41f8c0c3f43e8a437658656e7775207e5540f7d549236"
+    },
+    {
+      "path": "docs/verification-v290.json",
+      "bytes": 2562,
+      "sha256": "960de7d3abaceacb7bc48f969f5fc7aaf5335718bb75f2670f698887a237b585"
     }
   ],
-  "publicRevision": "v289-visible-workshop-time-and-native-response-loss"
+  "publicRevision": "v290-manual-steward-durable-checkpoint"
 }
