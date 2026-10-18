@@ -1,0 +1,62 @@
+{
+  "version": "V289",
+  "at": "2026-10-18T16:33:21.130788+00:00",
+  "scope": "Visible workshop clock and native movement-response loss verification. No economy, reward, solver, terrain, ocean or art changes.",
+  "relatedRules": {
+    "checks": 82,
+    "pass": 82,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "command": "node --test tests/v19-play.test.mjs tests/v19-generators.test.mjs tests/v20-regressions.test.mjs tests/v39-couture.test.mjs tests/v41-pottery.test.mjs tests/v47-craft-actions.test.mjs tests/v175-active-clock.test.mjs tests/v194-result-pacing.test.mjs",
+    "observedTerminalSession": 25836
+  },
+  "nativeCases": {
+    "lowDeliveredFrameClockAndPause": 2,
+    "committedMoveReplyLossRecovery": 2,
+    "heldInputTransport": 8
+  },
+  "visibleClockAt1_5DeliveredFps": [
+    {
+      "theme": "pixel",
+      "wallSeconds": 7.015,
+      "gameSeconds": 6.982499999856934,
+      "previewSeconds": 4,
+      "paused": false,
+      "canonicalReplayExact": true,
+      "longInterruptionPausesWithoutCharge": true
+    },
+    {
+      "theme": "origami",
+      "wallSeconds": 7.016,
+      "gameSeconds": 6.476999999999986,
+      "previewSeconds": 4,
+      "paused": false,
+      "canonicalReplayExact": true,
+      "longInterruptionPausesWithoutCharge": true
+    }
+  ],
+  "originalServerInputStepCeilingSeconds": 0.05,
+  "actualThreeReplyLossesPerStyle": true,
+  "noNativeAssertsOrDeadlinesRelaxed": true,
+  "fourMapPartial": {
+    "threeActualGuestChallengesAndCanonicalResultsPassed": true,
+    "fullSettlementRestartAndReturnPassed": false,
+    "scope": "Three explicitly routed candidate runtime files over an immutable V287 installed server. Not fresh exact V289 acceptance."
+  },
+  "lastFullDefaultRules": {
+    "version": "V288",
+    "checks": 1466,
+    "notRelabeledAsV289": true
+  },
+  "remaining": {
+    "hostedMatrixRecheck": true,
+    "intelMacFrameAndSceneFailures": true,
+    "completeFourMapQualification": true,
+    "freshExactV289Package": true,
+    "currentVersionHour": true,
+    "newVideo": true,
+    "physicalMultiDeviceAndHumanAcceptance": true
+  },
+  "wholeGoalComplete": false
+}

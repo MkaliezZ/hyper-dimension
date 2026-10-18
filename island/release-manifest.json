@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v288-agent-source",
+  "release": "hyper-dimension-v289-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 107789,
-      "sha256": "24a45a86993e37d88d45fb45aa34ce9aa2ee4af127e5ede5e214c03b0f4f8832"
+      "bytes": 108357,
+      "sha256": "8d37a9cac7ff01850142e1b896362a38e9c13e636ef0c13b1818934fe4fae254"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -8257,8 +8257,8 @@
     },
     {
       "path": "src/workshopGames.js",
-      "bytes": 44971,
-      "sha256": "94517e784a233e0a4ff08856d7e61f4d994588a10d96ee8d7e58f9b855b5c7c5"
+      "bytes": 45450,
+      "sha256": "5ba1a562cce0a163077196b4188835725c6c39a9cf407ad0730d2fe2b57984b4"
     },
     {
       "path": "src/workshopPresentation.js",
@@ -9132,8 +9132,8 @@
     },
     {
       "path": "tests/v151-lobby-navigation-browser.mjs",
-      "bytes": 5345,
-      "sha256": "517780e206be69dbd30ed2a738d3d4d6e22480a4bb86864d683dea4343ecc2de"
+      "bytes": 7147,
+      "sha256": "26c52dcd75ebaff7f1401a3fb23f3c1b6c5886a3e70078ed8cdea886ce33d40a"
     },
     {
       "path": "tests/v152-motion.test.mjs",
@@ -13444,7 +13444,22 @@
       "path": "tests/v288-pose-atlas.test.mjs",
       "bytes": 2883,
       "sha256": "7002307ff6463a225c0a7a5847c780c4650d0c067c79430dae503bac14346737"
+    },
+    {
+      "path": "tests/v289-workshop-clock-browser.mjs",
+      "bytes": 8213,
+      "sha256": "67ca17b1795f95d1c7de57746f28c279e62685fef924dccf358215ac953f3ac9"
+    },
+    {
+      "path": "docs/workshop-clock-v289.md",
+      "bytes": 2498,
+      "sha256": "63abbe858a0c6c48dddb370a29e80e37aaeb847b7c8545139b3a2e7c91cc15c1"
+    },
+    {
+      "path": "docs/verification-v289.json",
+      "bytes": 2183,
+      "sha256": "076b75b0b9cc6518498c9e31cecfaefc1f819bff5683c4e2b29a9f7db9fb6a3a"
     }
   ],
-  "publicRevision": "v288-shared-character-pose-surfaces"
+  "publicRevision": "v289-visible-workshop-time-and-native-response-loss"
 }

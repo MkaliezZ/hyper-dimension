@@ -187,13 +187,13 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
   }
  }
  setupHits();const observer=new ResizeObserver(()=>{setupHits();ui(true)});observer.observe(stage);cleanup.push(()=>observer.disconnect());renderOverlay();ui(true);
- prepareStage(theme,g.kind).then(()=>{if(!alive)return;loaded=true;controlsKey='';ui(true);if(embedded&&workbench)q('.wk-production-root').innerHTML=production();if(s.phase==='intro')intro()});
+ prepareStage(theme,g.kind).then(()=>{if(!alive)return;loaded=true;last=performance.now();controlsKey='';ui(true);if(embedded&&workbench)q('.wk-production-root').innerHTML=production();if(s.phase==='intro')intro()});
  function clickAction(e){
   const b=e.target.closest('[data-action]');if(!b||b.disabled)return;const type=b.dataset.action;
   if(type==='recipe'){workbench?.onSwitchRecipe?.();return}
   if(type==='wardrobeTab'){wardrobeTab=+b.dataset.value;ui(true);return}
   if(type==='exit'){destroy();if(options.onExit)options.onExit();else root.replaceChildren();return}
-  if(type==='start'){audio.unlock();entryTime=performance.now();send({type:'start'});renderOverlay();stage.focus({preventScroll:true});return}
+  if(type==='start'){audio.unlock();entryTime=performance.now();last=entryTime;send({type:'start'});renderOverlay();stage.focus({preventScroll:true});return}
   if(type==='soundSettings'){getSoundUI().open();return}
   if(type==='sound'){audio.toggle();ui(true);return}
   if(type==='fullscreen'){if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});else section.requestFullscreen?.().catch(()=>{});return}
@@ -261,10 +261,18 @@ export function mountWorkshopGame(root,id,onFinish,baseOptions={}){
  listen(window,'blur',()=>pause('窗口已切换，倒计时与动作已暂停。'));
  listen(document,'visibilitychange',()=>{last=performance.now();painter.resetClock();if(document.hidden)pause('画面已隐藏，进度为你保留。')});
  function tick(now){
-  if(!alive||!root.isConnected)return;const elapsed=Math.max(0,(now-last)/1000),dt=Math.min(.05,elapsed);last=now;
+  if(!alive||!root.isConnected)return;const elapsed=Math.max(0,(now-last)/1000);last=now;
   if(loaded&&!paused&&!transportPaused&&!document.hidden){
    if(s.phase==='celebrating')advanceResultPresentation(s,elapsed);
-   else{if(s.phase==='playing')options.onGameEvent?.({dt});stepWorkshop(s,dt);}
+   else if(s.phase==='playing'){
+    // Keep the visible clock independent of drawing frequency. Each input
+    // remains a <=50ms physics step, exactly as the server replay requires.
+    // A long interruption pauses instead of charging unseen gameplay.
+    if(elapsed>2)pause('画面暂时停顿，挑战已暂停；继续后保留当前进度。');
+    else for(let remaining=elapsed;remaining>1e-9&&s.phase==='playing';){
+     const dt=Math.min(.05,remaining);options.onGameEvent?.({dt});stepWorkshop(s,dt);remaining-=dt;
+    }
+   }
    flushEvents();audio.tick(s);
   }
   painter.render(s,now);ui();
