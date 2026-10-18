@@ -2,37 +2,29 @@
 
 [中文](README.md) · [English](README.en.md)
 
-**一座会生活的岛，和一位能办事的管家。**
+**一座能玩的岛，一位能办事的管家。**
 
-采集、制作、经营、举办派对，与 AI 岛民自由交流；让 Hermes Agent 管家帮你整理资料、制定计划和创建真实工作文档。像素与折纸两种画风，共用同一小岛和存档。
+采集、种植、制作、经营与派对，和 AI 居民一起生活；让自己的 Hermes Agent 管家整理资料、制定计划、处理真实文档。像素与折纸两种画风，共用同一小岛和存档。
 
-## 看看小岛
+[![Hyper Dimension · 小岛生活与真实工作](island/docs/media/hyper-dimension-v272-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-[![Hyper Dimension · 小岛生活与 Agent 管家](island/docs/media/hyper-dimension-v243-island-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+**[播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living)** · 1440p / 60 fps · 原创配乐
 
-[播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living) · [会客馆导览](https://mkaliezz.github.io/hyper-dimension/#gallery)
+演示人物与资料均为虚构示例；AI 回应、Hermes 文件操作和管家 A2A 来信来自真实执行。**小游戏目前为占位演示，后续将继续优化。**
 
-原创配乐，演示资料均为虚构示例，管家文档来自真实工具执行。**小游戏目前为占位演示，后续将继续优化。**
+## 在岛上做什么
 
-## 核心体验
-
-| 玩法 | 内容 |
+| 体验 | 内容 |
 | --- | --- |
-| 小岛经营 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。采集、种植、制作；组件用于后续加工，工具可重复使用。为居民和游客提供商品与活动，成熟经营保持缓慢的挂机收益。 |
-| AI 居民 | 15 位居民拥有不同职业、性格与关系，可以自由对话、工作和共同生活。跨岛相遇会留下交流和关系记录。 |
-| 居民的家 | 十六户独立住所，围绕主人的职业与爱好设计布局，走动探索、体验家中消遣、留下手账。 |
-| Agent 管家 | 自定义姓名与 12 套形象；通过 Hermes 处理现实工作，招募临时 Agent 伙伴；可手动为居民安排最多四项顺序工作，按作息排队执行，筹备手账显示工作时段与等待原因。 |
-| 四季与双画风 | 分块四季地形、海浪天气、昼夜灯火与海面月影；每季 30 个视觉日，天气影响种植和钓鱼。 |
-| 展示与来访 | 会客馆展示经历、项目与图片，支持访客留言；联机会客厅支持随行 NPC、管家桥接与 A2A 交流。 |
-| OPC 共创 | 新增正式物品与加工配方，上传像素／折纸素材并逐件对照审核；发布后可加入居民协作筹备，按前置工序实际制作；成品可上架售予游客并设置留用量，支持导出复用与版本回退。 |
+| 经营与创造 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。加工、使用工具、备货售予游客，筹办派对与收集奇观。 |
+| 居民与家园 | 15 位 AI 居民，自由交流、职业作息与关系记录；十六户按主人职业和爱好设计的住所。 |
+| 你的 Agent 管家 | 自定义姓名与 12 套形象；Hermes 处理现实工作，招募临时伙伴，为居民安排有前置依赖的工作。 |
+| 季节与来访 | 每季 30 个视觉日，天气影响种植与钓鱼；昼夜灯火、海浪与月影。跨岛携带管家与受邀 NPC，通过 A2A 交换信息、协作筹备。 |
+| 展示与共创 | 会客馆陈列经历、项目、图片并接收留言。OPC 导入双画风物品和配方，经审核发布、制作、上架，也可导出与回退。 |
 
-| 像素 · 小墨的木榫居 | 折纸 · 知夏的拾珍屋 |
-| --- | --- |
-| ![像素木榫居独立布局](island/docs/media/home-v201-pixel-joinery.png) | ![折纸拾珍屋独立布局](island/docs/media/home-v201-origami-curator.png) |
+## 启动小岛
 
-## 快速开始
-
-支持 **Windows x64、macOS 14+（Apple Silicon / Intel）**，也可在 Ubuntu 运行。准备 Node.js 24、Python 3.11。克隆仓库后进入 `island/`；源码包可直接在根目录执行。
+准备 **Node.js 24、Python 3.11**。支持 Windows x64、macOS 14+（Apple Silicon / Intel）及 Ubuntu。克隆后进入 `island/`；独立源码包直接在根目录执行：
 
 ```sh
 node tools/agent-deploy.mjs plan
@@ -42,12 +34,10 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-macOS 和 Ubuntu 将 `--python=python` 换为 `--python=python3`；Ubuntu 还需去掉 `--offline`。启动后打开 `http://127.0.0.1:4175/play`。
+macOS / Ubuntu 使用 `--python=python3`；Ubuntu 去掉 `--offline`。启动后访问 `http://127.0.0.1:4175/play`。
 
-API 密钥保存在私有 `.env.local`；无密钥可体验规则模式。更新前备份并保留 `data/` 和私有配置。也可以把源码交给任意具备终端权限的 Agent，按 [部署指南](island/DEPLOYMENT.md) 与 [AGENTS.md](island/AGENTS.md) 完成部署。
+密钥放在私有 `.env.local`，无密钥可运行规则模式。更新时保留并备份 `data/` 和私有配置。也可把源码交给任意有终端权限的 Agent，按 [AGENTS.md](island/AGENTS.md) 与[部署指南](island/DEPLOYMENT.md) 操作。
 
-## 更多
+[下载源码](https://github.com/MkaliezZ/hyper-dimension/releases) · [OPC 共创课](island/public/assets/cocreation/course-v2.md) · [Agent / A2A](island/docs/a2a-standard-v158.md) · [教培模块](README.education.md)
 
-[部署与配置](island/DEPLOYMENT.md) · [OPC 共创课](island/public/assets/cocreation/course-v2.md) · [Agent / A2A](island/docs/a2a-standard-v158.md) · [版本下载](https://github.com/MkaliezZ/hyper-dimension/releases) · [教培模块](README.education.md)
-
-代码采用 [MIT](LICENSE) 许可；第三方组件见 [声明](island/THIRD_PARTY_NOTICES.md)。
+[MIT 许可](LICENSE) · [第三方声明](island/THIRD_PARTY_NOTICES.md)

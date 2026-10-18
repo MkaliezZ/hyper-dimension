@@ -341,13 +341,18 @@ jobs:
         run: node tests/v224-custom-content-browser.mjs
 
       - name: Native custom recipe resident preparation and reopen
+        env:
+          HD_QA_WORK_JOURNAL: "1"
         run: node tests/v227-custom-agent-browser.mjs
 
       - name: Native custom product shelves and visitor sales
+        env:
+          HD_QA_WORK_JOURNAL: "1"
         run: node tests/v228-custom-shops-browser.mjs
 
       - name: Native resident production to visitor purchase
         env:
+          HD_QA_WORK_JOURNAL: "1"
           HD_QA_SHELF_FROM_PRODUCTION: "1"
           HD_QA_OUT: qa/v230/native-production-market
         run: node tests/v228-custom-shops-browser.mjs
@@ -395,10 +400,13 @@ jobs:
             island/qa/v224/native-custom-content/report.json
             island/qa/v224/native-custom-content/*.png
             island/qa/v227/native-custom-agent/report.json
+            island/qa/v227/native-custom-agent/work-progress.json
             island/qa/v227/native-custom-agent/*.png
             island/qa/v228/native-custom-shops/report.json
+            island/qa/v228/native-custom-shops/work-progress.json
             island/qa/v228/native-custom-shops/*.png
             island/qa/v230/native-production-market/report.json
+            island/qa/v230/native-production-market/work-progress.json
             island/qa/v230/native-production-market/*.png
             island/qa/v216/native-night-planning/report.json
             island/qa/v216/native-night-planning/*.png
@@ -496,6 +504,8 @@ jobs:
         run: node tests/v254-save-io-browser.mjs
         timeout-minutes: 5
       - name: Native sequential resident tasks across fixed work shifts
+        env:
+          HD_QA_WORK_JOURNAL: "1"
         run: node tests/v213-task-chain-browser.mjs
       - name: Native recruited partner food and task continuation
         run: node tests/v253-partner-self-care-browser.mjs
@@ -507,6 +517,7 @@ jobs:
           name: native-resident-work-${{ matrix.os }}
           path: |
             island/qa/v213/native-task-chains/report.json
+            island/qa/v213/native-task-chains/work-progress.json
             island/qa/v213/native-task-chains/*.png
             island/qa/v218/native-save-lock/report.json
             island/qa/v218/native-save-lock/*.png

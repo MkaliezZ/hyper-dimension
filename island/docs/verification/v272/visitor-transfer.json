@@ -1,0 +1,91 @@
+{
+  "version": "V272",
+  "at": "2026-10-18T03:36:24.850661+00:00",
+  "baseCommit": "f2efa381fed55c92ec188f8ff75410ba2f5fa42b",
+  "originalFailure": {
+    "run": 39085611655,
+    "job": 117551623058,
+    "artifactId": 12122694086,
+    "sha256": "d2038aebc400293eb32e5a73c9a11dbaf0ae3e1be6647d120c2acd87e7b78987",
+    "fullArtifactDigestAndCrcVerified": true,
+    "rangePreviewMatchesCompleteArtifact": true,
+    "theme": "origami",
+    "landingWaypointStallSeconds": 78.8
+  },
+  "runtimeChange": "Only ready server landing/boarding paths submit their existing canonical transfer during unrelated pending work. Painted paths, passenger yields, signed journal, canonical timing, stock and income validation remain authoritative.",
+  "domainRegression": {
+    "exactPriorSourceFailed": 5,
+    "patchedRelevantCasesPassed": 41,
+    "controlledClockAndDeclaredStock": true,
+    "nativeOrZeroStartClaimed": false,
+    "earlyLandingStillRejected": true,
+    "sameCrossingSubmittedOnce": true
+  },
+  "nativeProduction": [
+    {
+      "theme": "pixel",
+      "productionDeliveries": 2,
+      "stockBefore": 1,
+      "stockAfter": 0,
+      "paid": 7,
+      "cost": 3,
+      "net": 4,
+      "actualAcceptedNpcReplyDelayMs": 2000,
+      "delayedReplies": 36,
+      "originalRoadServiceBudgetMs": 150000,
+      "roadServiceMs": 29351,
+      "reopened": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "productionDeliveries": 2,
+      "stockBefore": 1,
+      "stockAfter": 0,
+      "paid": 7,
+      "cost": 3,
+      "net": 4,
+      "actualAcceptedNpcReplyDelayMs": 2000,
+      "delayedReplies": 36,
+      "originalRoadServiceBudgetMs": 150000,
+      "roadServiceMs": 29316,
+      "reopened": true,
+      "passed": true
+    }
+  ],
+  "nativeWorkJournal": {
+    "optIn": true,
+    "localCustomPreparationBothThemesPassed": true,
+    "cleanupComplete": true,
+    "readOnlyBoundedSamples": true,
+    "noNewAnimationLoop": true,
+    "originalGates": [
+      {
+        "test": "v213-task-chain-browser.mjs",
+        "assertionsRetained": 15,
+        "timeoutsPreserved": true,
+        "nativeInputCountsPreserved": true
+      },
+      {
+        "test": "v227-custom-agent-browser.mjs",
+        "assertionsRetained": 13,
+        "timeoutsPreserved": true,
+        "nativeInputCountsPreserved": true
+      },
+      {
+        "test": "v228-custom-shops-browser.mjs",
+        "assertionsRetained": 36,
+        "timeoutsPreserved": true,
+        "nativeInputCountsPreserved": true
+      }
+    ],
+    "hostedTaskHangCauseStillOpen": true
+  },
+  "originalMacTaskHangsClaimedFixed": false,
+  "fullSuitePassed": false,
+  "currentSourceHourComplete": false,
+  "humanOrPhysicalMultiDeviceAcceptance": false,
+  "wholeGoalComplete": false,
+  "defaultRuleChecksPassed": 1398,
+  "defaultTestCommandIncludesTransferRegression": true
+}

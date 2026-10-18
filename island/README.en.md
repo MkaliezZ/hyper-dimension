@@ -2,37 +2,29 @@
 
 [中文](README.md) · [English](README.en.md)
 
-**A living island. A steward for real work.**
+**A playful island. A steward for real work.**
 
-Gather, craft, run your island, host parties and talk freely with AI residents. Delegate research, planning and real document creation to your Hermes Agent steward. Pixel and origami styles share one island and save.
+Gather, grow, craft, run your island and host parties alongside AI residents. Let your own Hermes Agent steward organize information, plan and work on real documents. Pixel and origami styles share one island and save.
 
-## See the island
+[![Hyper Dimension · Island life and real work](docs/media/hyper-dimension-v272-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-[![Hyper Dimension · Island life and Agent stewards](docs/media/hyper-dimension-v243-island-agents-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+**[Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living)** · 1440p / 60 fps · Original soundtrack
 
-[Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living) · [Explore the owner gallery](https://mkaliezz.github.io/hyper-dimension/#gallery)
+People and briefs are fictional; AI replies, Hermes file operations and steward A2A letters come from real execution. **Minigames are placeholder demonstrations and will keep improving.**
 
-Original soundtrack. Profiles and briefs are fictional; steward documents were produced with real tools. **Minigames are placeholder demonstrations and will keep improving.**
-
-## Core experiences
+## Life on the island
 
 | Experience | What you can do |
 | --- | --- |
-| Run an island | 25 functional building types, 19 crops, 58 materials and 308 recipes. Gather, grow and craft. Components feed later recipes; tools are reusable. Supply residents, visitors and events, with a modest passive surplus on mature islands. |
-| Meet AI residents | 15 residents with distinct jobs, personalities and relationships, free conversation and daily routines. Cross-island meetings retain conversations and relationship history. |
-| Visit a home | Explore sixteen distinct homes shaped by their owners’ work and interests, try personal hobbies and keep a household journal. |
-| Delegate to your steward | Choose a name and one of 12 appearances. Use Hermes for real work, recruit a temporary Agent partner, and queue up to four ordered jobs for a resident to follow during their work hours; preparation steps explain shifts and waiting reasons. |
-| Seasons and two styles | Regional seasonal terrain, waves, weather, evening lights and rippling moon reflections. Each season lasts 30 visual days; weather affects farming and fishing. |
-| Showcase and visit | Share experience, projects and images in your gallery, with guest messages. Bring NPC companions and use steward bridging and A2A in multiplayer reception. |
-| Create with OPC | Add real products and ingredient chains with pixel/origami artwork. Preview both styles for review and publish, then prepare products with residents through real prerequisite steps. List finished goods for visitors with a protected stock floor. Export for reuse and roll back versions. |
+| Run and create | 25 functional building types, 19 crops, 58 materials and 308 recipes. Process goods, use tools, stock visitor shelves, prepare parties and collect wonders. |
+| Residents and homes | 15 AI residents with free conversation, work schedules and relationship history; sixteen homes shaped by their owners’ jobs and interests. |
+| Your Agent steward | Choose a name and one of 12 appearances. Use Hermes for real work, recruit a temporary partner and assign residents jobs with prerequisites. |
+| Seasons and visits | Seasons last 30 visual days; weather affects farming and fishing. Evening lights, waves and moon reflections accompany visits with your steward and invited NPCs, A2A information exchange and cooperative preparation. |
+| Showcase and co-create | Display experience, projects and pictures in the owner gallery and receive guest messages. Import OPC products and recipes with both art styles, review, publish, produce and sell; export and roll back versions. |
 
-| Pixel · Joinery home | Origami · Curator home |
-| --- | --- |
-| ![Pixel joinery home interior](docs/media/home-v201-pixel-joinery.png) | ![Origami curator home interior](docs/media/home-v201-origami-curator.png) |
+## Start your island
 
-## Quick start
-
-Supports **Windows x64 and macOS 14+ (Apple Silicon / Intel)**; Ubuntu can also run it. Install Node.js 24 and Python 3.11. Run these commands from the game directory.
+Install **Node.js 24 and Python 3.11**. Supports Windows x64, macOS 14+ (Apple Silicon / Intel) and Ubuntu. Enter `island/` after cloning, or use the root of a standalone source archive:
 
 ```sh
 node tools/agent-deploy.mjs plan
@@ -42,12 +34,10 @@ node tools/agent-deploy.mjs verify
 node tools/agent-deploy.mjs run --mode=lan
 ```
 
-On macOS and Ubuntu, use `--python=python3` instead of `--python=python`. On Ubuntu, omit `--offline` to install online. Open `http://127.0.0.1:4175/play` after launch.
+Use `--python=python3` on macOS / Ubuntu; omit `--offline` on Ubuntu. Open `http://127.0.0.1:4175/play` after launch.
 
-Keep API keys in private `.env.local`. Rules mode works without a key. Back up and preserve `data/` and private configuration when updating. You can also give the source to any Agent with terminal access and ask it to follow [DEPLOYMENT.md](DEPLOYMENT.md) and [AGENTS.md](AGENTS.md).
+Keep keys in private `.env.local`; rules mode works without a key. Preserve and back up `data/` and private configuration when updating. Any Agent with terminal access can follow [AGENTS.md](AGENTS.md) and [DEPLOYMENT.md](DEPLOYMENT.md).
 
-## More
+[Source downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [OPC course (Chinese)](public/assets/cocreation/course-v2.md) · [Agents / A2A](docs/a2a-standard-v158.md) · [Education module](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)
 
-[Deployment and configuration](DEPLOYMENT.md) · [OPC co-creation course (Chinese)](public/assets/cocreation/course-v2.md) · [Agents / A2A](docs/a2a-standard-v158.md) · [Downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [Education module](../README.education.md)
-
-Code is [MIT](LICENSE) licensed. See [third-party notices](THIRD_PARTY_NOTICES.md).
+[MIT license](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)

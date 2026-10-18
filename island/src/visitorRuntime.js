@@ -186,6 +186,10 @@ export function createVisitorRuntime({getState,followPath,onEvent,onChange,harbo
    if(g.indoorActor?.path.length)followPendingPath(g.indoorActor,travelDt,105);
    else if(g.path.length){
     if(shouldYield(g,[...guests,...extraPassengers()])){g.walkMix=(g.walkMix||0)*Math.exp(-dt*10);g.walking=false;}
+    // These crossings submit land/depart through the existing durable journal.
+    // Waiting for every unrelated job to become idle can strand a passenger at
+    // the last deck point; stock, timing and income remain server-authoritative.
+    else if(remote?.ready()&&!g.remotePending&&['landing','boarding'].includes(g.stage))followPath(g,travelDt,86);
     else followPendingPath(g,travelDt,86);
    }
    if(g.indoorActor?.action)g.indoorActor.action.visualWait=(g.indoorActor.action.visualWait||0)+dt;

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v271-agent-source",
+  "release": "hyper-dimension-v272-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3941,
-      "sha256": "f257cb1c8dc8ad72d3b1c3b8f2a58eea4210be7c16a9d96070d5730371f82f79"
+      "bytes": 3029,
+      "sha256": "7d1826ae07f56b3455bd6a8325b6ac79ab27887e65a6b8a7b110b9d0da120b1a"
     },
     {
       "path": "README.md",
-      "bytes": 3631,
-      "sha256": "206e6dbea26203ecdc87da1b0a2787e966cc7d1b9908f19d09763881f812372e"
+      "bytes": 2796,
+      "sha256": "a2b2c9deaf46332364147ec3838d4bb7fa07dc7105038afef82cab386e2893e8"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 99373,
-      "sha256": "1815648c19d6ea796550a6c78a9e8bbaccd68a7e02dd4b43384fd0b2fcff75e1"
+      "bytes": 99826,
+      "sha256": "710b634b3b0446d08d8cea92a7f35093b78327fe1a3f1885d7b0ccafebccdf67"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15943,
-      "sha256": "af69eec89675ab3e8c3babad817b982ecce570a50f98155e71249e5dfed985aa"
+      "bytes": 15980,
+      "sha256": "8bd81645ea60e7113b192071e16b1c1ba461e91a0a1f763c5288e3c52f833cf8"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -8217,8 +8217,8 @@
     },
     {
       "path": "src/visitorRuntime.js",
-      "bytes": 13609,
-      "sha256": "70be735ab3b6c3ce5d4d5e70dd18f5163fb36fa04ce5dfea0b872a36ad0eec6c"
+      "bytes": 13966,
+      "sha256": "86a1739ea5bcdb0c5b3804cdda8b6b11dfa5d9ed79cd73da612e477d56bcc729"
     },
     {
       "path": "src/weatherRules.js",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 11564,
-      "sha256": "eae3a6907b900c2bada98b6d37458d4609901a50bc444ca2bf490e0c09e2cf25"
+      "bytes": 12036,
+      "sha256": "d41aebea9f69777fbfd6fab635acab94827862bd0395339ce737404d3ace1631"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -12442,8 +12442,8 @@
     },
     {
       "path": "tests/v227-custom-agent-browser.mjs",
-      "bytes": 7273,
-      "sha256": "c83d8fac08a5ef714b1d1733e72f2aa6ce21e2ee24a4750a3addb68ca27363e0"
+      "bytes": 7681,
+      "sha256": "0d0f0bfbc9334c2a8656152e512c8375c0cd921c09fdec76ab2b893cc738a378"
     },
     {
       "path": "docs/custom-agent-v227.md",
@@ -12482,8 +12482,8 @@
     },
     {
       "path": "tests/v228-custom-shops-browser.mjs",
-      "bytes": 15310,
-      "sha256": "9a10b3648f116d3516b7c6d0d29081881b00764e3f2a4ab420b70910ce75690d"
+      "bytes": 15798,
+      "sha256": "abf6377a54a44b497e203074b1d0bf81d4e99789ef297310b07612ae6821736c"
     },
     {
       "path": "docs/custom-market-v230.md",
@@ -13089,7 +13089,42 @@
       "path": "docs/verification/v271/modal-transport.json",
       "bytes": 2533,
       "sha256": "8ab5227f157daeca37503006c5fca00789be2f7cafd3753fdc0780939ec0b062"
+    },
+    {
+      "path": "tests/nativeWorkJournal.mjs",
+      "bytes": 4224,
+      "sha256": "36a65624746def3d46811450c081e7d4f66129fb1ef3cbe4ead5414a4f3e023e"
+    },
+    {
+      "path": "tests/v272-visitor-transfer.test.mjs",
+      "bytes": 5239,
+      "sha256": "f8f8a679a7eb01aa300032814bf9fad4c15374c59befa76d629776519f9bd87e"
+    },
+    {
+      "path": "docs/visitor-transfer-v272.md",
+      "bytes": 2007,
+      "sha256": "b2a8df4fa4bc1ca2e46676e626baed2f45db574af17155b2c4ee7d2c7a0292bd"
+    },
+    {
+      "path": "docs/verification/v272/visitor-transfer.json",
+      "bytes": 2912,
+      "sha256": "255bbcd4007ff2bf8a7ddec55ea3476b6652e6d94ecee77a2a0cbc6302945ee7"
+    },
+    {
+      "path": "docs/verification/v272/showcase.json",
+      "bytes": 6157,
+      "sha256": "ede77ac9da7b0242698eee0a7f836bc3d3c849063d946ad8e3a1bc706c5a6426"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v272-island-real-work-30s.mp4",
+      "bytes": 54684396,
+      "sha256": "8f8e449786a9c53cbbafa4f040d4baf9ba5e85b098c5e9a71f3cb3963a79f973"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v272-island-real-work-poster.png",
+      "bytes": 5727866,
+      "sha256": "1324c26c01bb54822972782e0aa12fca019da2b912eab0e77e8774051fbf8a3d"
     }
   ],
-  "publicRevision": "v271-modal-transport"
+  "publicRevision": "v272-visitor-transfer-showcase"
 }
