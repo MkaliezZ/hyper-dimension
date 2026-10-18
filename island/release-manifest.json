@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v278-agent-source",
+  "release": "hyper-dimension-v279-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 102852,
-      "sha256": "acdd5c3209438b33175a1df64afa1f4f84c5f72d5419edd3d4451879300d64de"
+      "bytes": 103370,
+      "sha256": "ba6cfcdb3acce51409463e5251f0e33101d09f3001c6476210b8a048974f73a9"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2432,8 +2432,8 @@
     },
     {
       "path": "public/assets/cocreation/course-v1.md",
-      "bytes": 6412,
-      "sha256": "95a2853f4f3da1a3655c5947e3e010136a0a0b9e9096b3b8822156982172326f"
+      "bytes": 6656,
+      "sha256": "be998c1d1e2d2b3abdd0f35e6ca45621bb3a3e8b831ae330ae0546e72a3b0bce"
     },
     {
       "path": "public/assets/cocreation/opc-patient-potter.hdpack.json",
@@ -2447,8 +2447,8 @@
     },
     {
       "path": "public/assets/cocreation/student-workbook-v1.md",
-      "bytes": 3520,
-      "sha256": "ab7c464ec228e2d2b3bc1b486a1ccd128c3ddab3cbe146736eccacc359a12632"
+      "bytes": 3774,
+      "sha256": "00f7bfde7c2ba347120d8527affcca4633fbdd9432bbbc02cf314cc5a9893838"
     },
     {
       "path": "public/assets/cooperation-monument-origami-v33.png",
@@ -11432,8 +11432,8 @@
     },
     {
       "path": "tools/cocreation-check.mjs",
-      "bytes": 2055,
-      "sha256": "2bbe22270aced4538b2dca2c16e9d734d55b1aead2ec707393d691c4c9d70e84"
+      "bytes": 2930,
+      "sha256": "0f5e166920c5cf8645963fc716e18a76bf0ce576a83b210245fa4c6579dba29d"
     },
     {
       "path": "tools/data-backup.mjs",
@@ -12352,8 +12352,8 @@
     },
     {
       "path": "public/assets/cocreation/student-workbook-v2.md",
-      "bytes": 2598,
-      "sha256": "ea07c928f39b4466f5f479bf33b283a8647d56f1b49e36957a2f853fc7f9a2ee"
+      "bytes": 3419,
+      "sha256": "d47e1f52c11b8cfa8aa2a183a19787927126d140fb3832cc4647c1d2e21d5ddc"
     },
     {
       "path": "server/coCreationAssetHttp.mjs",
@@ -13092,8 +13092,8 @@
     },
     {
       "path": "tests/nativeWorkJournal.mjs",
-      "bytes": 7610,
-      "sha256": "65d61f622aa1108d35c84d8a9c0d53ddd54d7b3f22fdd1ce12af773e67936406"
+      "bytes": 7793,
+      "sha256": "162b3b76cdde585ba5761244834cdbcad4cb510a577773ed6c09e7f6227224cb"
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
@@ -13247,8 +13247,8 @@
     },
     {
       "path": "tests/nativeBrowserResources.mjs",
-      "bytes": 3481,
-      "sha256": "a43fd788afb3c03fbc94035257a2fb8da7df7dae071c1614df6a84f486f5d6ac"
+      "bytes": 3676,
+      "sha256": "9171909889b99a6ece1b09833efcbf41e9a854d800574cd7037d8fbd62b9b901"
     },
     {
       "path": "tests/v277-visitor-service-admission.test.mjs",
@@ -13277,8 +13277,8 @@
     },
     {
       "path": "tests/v278-native-observation.test.mjs",
-      "bytes": 4064,
-      "sha256": "01b67931674361d9a73c9d569e71934a5768ceb7f10972bcc527093f694b45ba"
+      "bytes": 4397,
+      "sha256": "521ffb6a262fc2b67d9d1d1c98f1c8dfec7b422aa950f4e195e30cf1170fadd7"
     },
     {
       "path": "docs/visitor-clock-v278.md",
@@ -13289,7 +13289,17 @@
       "path": "docs/verification/v278/visitor-clock.json",
       "bytes": 2891,
       "sha256": "ab73474a94ba36c3d61218a8a9d161edcd87ae80cab7f315f0615a94119acd42"
+    },
+    {
+      "path": "docs/diagnostic-course-v279.md",
+      "bytes": 1797,
+      "sha256": "be0c482a446fc264dfe8d88b05e2373f78600cba728b9b59211971a9e48cf1b9"
+    },
+    {
+      "path": "docs/verification/v279/diagnostic-course.json",
+      "bytes": 1439,
+      "sha256": "309882157baa4f5eb02f50565645e805dc8b20d1b674006d18f61c885f974032"
     }
   ],
-  "publicRevision": "v278-visitor-clock-ordering"
+  "publicRevision": "v279-owned-stall-course-preflight"
 }

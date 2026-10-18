@@ -48,3 +48,7 @@ test('owned-page request diagnostics exclude save contents and unrelated endpoin
   await rm(out,{recursive:true,force:true});
  }
 });
+
+test('a stalled owned-process lookup is bounded before any OS sampling command',async()=>{
+ await assert.rejects(sampleOwnedBrowserStall({send:()=>new Promise(()=>{})},{directory:tmpdir(),platform:'darwin',run:async()=>assert.fail('No OS process may be sampled without an acknowledged owned PID')}),/process lookup timed out/);
+});

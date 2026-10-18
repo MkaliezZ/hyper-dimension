@@ -30,7 +30,7 @@ export function createNativeWorkJournal(out,report,{deadlineMs}={}){
    if(entry.pending){
     if(platform()==='darwin'&&Date.now()-entry.pendingSince>=15000&&!report.nativeJournal.stallSampling){
      const probe=browsers.get(entry.page.context().browser());
-     if(probe){report.nativeJournal.stallSampling={startedAt:new Date().toISOString(),reason:'Owned page observation unresponsive for 15 seconds',diagnosticIntervention:true,acceptanceInvalidated:true};probe.session.then(session=>sampleOwnedBrowserStall(session,{directory:out})).then(result=>{report.nativeJournal.stallSampling.result=result;}).catch(error=>{report.nativeJournal.stallSampling.error=String(error.message).slice(0,300);});}
+     if(probe){report.nativeJournal.stallSampling={startedAt:new Date().toISOString(),reason:'Owned page observation unresponsive for 15 seconds',diagnosticIntervention:true,acceptanceInvalidated:true};probe.session.then(session=>sampleOwnedBrowserStall(session,{directory:out})).then(result=>{report.nativeJournal.stallSampling.result=result;}).catch(error=>{report.nativeJournal.stallSampling.error=String(error.message).slice(0,300);}).finally(async()=>{if(process.env.HD_QA_STALL_DIAGNOSTIC==='1'){report.passed=false;report.nativeJournal.stallSampling.expectedDiagnosticFailure=true;await flush();process.exit(1);}});}
     }continue;
    }
    if(entry.page.isClosed())continue;entry.pending=true;entry.pendingSince=Date.now();

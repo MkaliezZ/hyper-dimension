@@ -40,8 +40,8 @@ export async function observeOwnedBrowserProcesses(session,{platform=process.pla
 // acceptance run after it has been triggered. No user process is enumerated.
 export async function sampleOwnedBrowserStall(session,{directory,platform=process.platform,run=execute}={}){
  if(platform!=='darwin')return{unsupportedPlatform:true,processes:[]};
- const {processInfo}=await session.send('SystemInfo.getProcessInfo');
- browserProcessIds(processInfo);
+ let timer,owned;try{owned=await Promise.race([session.send('SystemInfo.getProcessInfo'),new Promise((resolve,reject)=>{timer=setTimeout(()=>reject(Error('Owned-browser process lookup timed out')),2000);})]);}finally{clearTimeout(timer);}
+ const {processInfo}=owned;browserProcessIds(processInfo);
  const targets=[...processInfo.filter(p=>p.type==='renderer').sort((a,b)=>(b.cpuTime||0)-(a.cpuTime||0)).slice(0,2),...processInfo.filter(p=>p.type==='GPU').slice(0,1)],processes=[];
  for(const target of targets){
   const file=join(resolve(directory),'owned-browser-'+Number(target.id)+'.sample.txt'),row={id:Number(target.id),type:target.type,file};

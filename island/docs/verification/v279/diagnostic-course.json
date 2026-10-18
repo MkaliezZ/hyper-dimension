@@ -1,0 +1,39 @@
+{
+  "version": "V279",
+  "baselinePublicCommit": "72b4496af97e48fbebb0219456743f67fa9e0bc8",
+  "changedExistingPayloads": [
+    "public/assets/cocreation/course-v1.md",
+    "public/assets/cocreation/student-workbook-v1.md",
+    "tools/cocreation-check.mjs",
+    "public/assets/cocreation/student-workbook-v2.md",
+    "tests/nativeWorkJournal.mjs",
+    "tests/nativeBrowserResources.mjs",
+    "tests/v278-native-observation.test.mjs"
+  ],
+  "gameRulesRenderingServerAndPngUnchanged": true,
+  "currentCourse": {
+    "courseAlreadyLinkedV2BeforePatch": true,
+    "preflightNowChecksActualV2Links": true,
+    "checksPassed": 23,
+    "legacyV1RetainedWithV2Navigation": true,
+    "blankAnonymousFeedbackAdded": true,
+    "realLearnerCount": 0,
+    "humanClassValidated": false
+  },
+  "diagnostics": {
+    "manualScope": "resident-stall",
+    "platform": "macos-14",
+    "originalNativeScript": "tests/v213-task-chain-browser.mjs",
+    "originalAssertionsFixturesAndTimingGatesChanged": false,
+    "onlyOwnedProcessesSampled": true,
+    "samplingCannotCountAsAcceptance": true,
+    "manualSamplingEndsWithFailureAfterEvidenceFlush": true,
+    "ownedProcessLookupTimeoutMs": 2000,
+    "existingScopeSelectionsUnchanged": 8,
+    "focusedRulesPassed": 6,
+    "actualMacStackCollectionComplete": false
+  },
+  "defaultCurrentVersionRulesPending": true,
+  "macosRootFixed": false,
+  "wholeGoalComplete": false
+}
