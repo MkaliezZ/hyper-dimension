@@ -1,0 +1,67 @@
+{
+  "version": "V296",
+  "at": "2026-10-18T21:47:33.070461+00:00",
+  "runtimeHashes": {
+    "src/actionQueue.js": "47282448778633ff759503fa0288b57bc1348460fed68418a05206597503e4da",
+    "src/saveClient.js": "7100dc74ee0e184c91b2ec7d05c16e9f1470b4a3f7124ab20e62c94148de081d",
+    "src/serverCommerceUI.js": "94a751f0a83f1a5a3c3a19644112ae7ebc77a2a04c318c11a139c4f9de2e5bfe"
+  },
+  "behavior": "Independent shopfront settings can pass not-yet-started resident work; started requests and explicit checkpoints retain their order. Foreground and ordinary work alternate. Idle/recovery still await every earlier job. Uncertain journals and canonical authority are unchanged.",
+  "defaultRuleCounts": [
+    1465,
+    14
+  ],
+  "defaultPassed": 1479,
+  "criticalQueueSaveRulesPassed": 35,
+  "componentUsesExplicitMockAuthority": true,
+  "nativeProduction": [
+    {
+      "theme": "pixel",
+      "actualDeliveries": 2,
+      "stockBefore": 1,
+      "stockAfter": 0,
+      "gross": 7,
+      "cost": 3,
+      "net": 4,
+      "roadServiceMs": 29236,
+      "originalRoadServiceLimitMs": 150000,
+      "actualShelfAcknowledged": true,
+      "passed": true,
+      "uniformDelayAllRepliesMs": 0,
+      "acceptedBackgroundBeginReplyDelayMs": 2000,
+      "delayedBackgroundReplies": 1
+    },
+    {
+      "theme": "origami",
+      "actualDeliveries": 2,
+      "stockBefore": 1,
+      "stockAfter": 0,
+      "gross": 7,
+      "cost": 3,
+      "net": 4,
+      "roadServiceMs": 29279,
+      "originalRoadServiceLimitMs": 150000,
+      "actualShelfAcknowledged": true,
+      "passed": true,
+      "uniformDelayAllRepliesMs": 0,
+      "acceptedBackgroundBeginReplyDelayMs": 2000,
+      "delayedBackgroundReplies": 1
+    }
+  ],
+  "nativePlayerBothStylesPassed": true,
+  "nativeSaveWaiterBothStylesPassed": true,
+  "originalGameplayAndTimeoutAssertionsPreserved": true,
+  "currentFourMapBothStylesPassed": false,
+  "hostedMacAllRecovered": false,
+  "realPlayersOrPhysicalMultipleDevicesAccepted": false,
+  "wholeGoalComplete": false,
+  "nativeMusicTap": {
+    "oldActualPointerHoldMs": 807.7000000476837,
+    "newActualPointerHoldMs": 0.10000014305114746,
+    "declaredHostDownReplyDelayMs": 800,
+    "originalAssertionsAndLong740msHoldPreserved": true,
+    "originalLanDriverPassed": true,
+    "gameRuntimeChanged": false,
+    "hostedMacRecoveryClaimed": false
+  }
+}

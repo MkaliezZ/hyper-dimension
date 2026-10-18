@@ -6,7 +6,12 @@ export async function playCreative(page,inspect,id){
   const c=melodyChallenge(g.day),audio=()=>page.evaluate(async()=>{const {getSoundMixer}=await import('/src/soundMixer.js');return getSoundMixer().inspect();});
   const before=await audio();await page.locator('[data-home-listen]').click();await page.waitForFunction(()=>document.querySelector('.home-melody-reference .sounding'),null,{timeout:5000});assert.equal(await page.locator('.home-piano .pressed').count(),1);assert((await audio()).produced>before.produced);
   await page.locator('[data-home-listen]').click();assert.equal(await page.locator('.home-piano .pressed').count(),0);
-  const press=async(note,beats)=>{const r=await page.locator('[data-home-key="'+note+'"]').boundingBox();await page.mouse.move(r.x+r.width/2,r.y+r.height*.82);await page.mouse.down();if(beats===2)await new Promise(r=>setTimeout(r,740));await page.mouse.up();};
+  const press=async(note,beats)=>{
+   const r=await page.locator('[data-home-key="'+note+'"]').boundingBox(),x=r.x+r.width/2,y=r.y+r.height*.82;
+   // One native tap command cannot become a long hold while its down reply travels.
+   if(beats===1){await page.mouse.click(x,y);return;}
+   await page.mouse.move(x,y);await page.mouse.down();await new Promise(r=>setTimeout(r,740));await page.mouse.up();
+  };
   await press(0,1);assert.deepEqual((await inspect()).residences.interior.game.values,[{note:0,beats:1}]);await page.locator('[data-home-melody-undo]').click();
   await page.locator('.home-piano').focus();await page.keyboard.down('a');await new Promise(r=>setTimeout(r,740));await page.keyboard.up('a');assert.deepEqual((await inspect()).residences.interior.game.values,[{note:0,beats:2}]);await page.locator('[data-home-melody-undo]').click();
   await page.locator('[data-home-sheet]').click();assert.equal(await page.locator('.home-melody-folio.show-sheet').count(),1);

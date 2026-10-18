@@ -5,13 +5,14 @@ import {yieldForSave} from "./saveScheduler.js";
 import {mergeActionState,sameState} from './actionMerge.js';
 import {activeSlotKey,activeSaveKey,validSaveSlot} from './saveStorage.js';
 import {createSaveJournal} from './saveJournal.js';
+import {createActionQueue} from './actionQueue.js';
 import {recoverPendingProgress} from './pendingSaveRecovery.js';
 import {MAX_VISIBLE_FRAME_SECONDS} from './frameClock.js';
 import {navigateAfterRecovery} from './recoveryNavigation.js';
 import {prepareRecoveryReentry,hasRecoveryReentry,clearRecoveryReentry} from './recoveryIntent.js';
 
 export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatus=()=>{},onRemoteState=()=>{}}){
- const sessions=new Map(),journal=createSaveJournal();
+ const sessions=new Map(),journal=createSaveJournal(),operationQueues=new WeakMap();
  const yieldFrame=yieldForSave;
  let clientId;
  try{clientId=sessionStorage.getItem('hd-save-client');if(!clientId){clientId=crypto.randomUUID();sessionStorage.setItem('hd-save-client',clientId)}}catch{clientId=crypto.randomUUID()}
@@ -270,15 +271,23 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   })();
   try{await r.inflight}finally{r.inflight=null;r.reconciling=false}
  }
+ function queueOperation(r,run,options){
+  if(!operationQueues.has(r))operationQueues.set(r,createActionQueue());
+  const result=operationQueues.get(r).enqueue(run,options),settled=result.catch(()=>{});
+  // idle/recovery must still await every earlier queued operation, even when
+  // an independent foreground setting finishes before some of that work.
+  r.actionTail=r.actionTail?Promise.all([r.actionTail,settled]).then(()=>{}):settled;
+  return result;
+ }
  function checkpointOperation(theme,operation){
-  const r=record(theme),run=async()=>{await flush(theme);if(!operation)return;const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=(r.actionTail||Promise.resolve()).then(run,run);
+  const r=record(theme),run=async()=>{await flush(theme);if(!operation)return;const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true});
   // External operations wait for accepted jobs in the same queue, before a
   // later job can overtake their checkpoint. Uncertain journals still block it.
-  r.actionTail=result.catch(()=>{});return result;
+  return result;
  }
  function checkpoint(theme){return checkpointOperation(theme)}
- async function action(theme,input,prepareInput){
-  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});const run=()=>actionNow(theme,input,prepareInput),result=(r.actionTail||Promise.resolve()).then(run,run);r.actionTail=result.catch(()=>{});return result;
+ async function action(theme,input,prepareInput,options){
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});return queueOperation(r,()=>actionNow(theme,input,prepareInput),options);
  }
  async function actionNow(theme,input,prepareInput){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});

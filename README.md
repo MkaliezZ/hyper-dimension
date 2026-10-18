@@ -6,7 +6,7 @@
 
 采集、种植、制作、经营与派对，和 AI 居民一起生活；让自己的 Hermes Agent 管家整理资料、制定计划、处理真实文档。像素与折纸两种画风，共用同一小岛和存档。
 
-[![Hyper Dimension · 小岛生活与真实工作](island/docs/media/hyper-dimension-v272-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · 小岛生活与真实工作](island/docs/media/hyper-dimension-v296-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 **[播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living)** · 1440p / 60 fps · 原创配乐
 
@@ -16,7 +16,7 @@
 
 | 体验 | 内容 |
 | --- | --- |
-| 经营与创造 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。制作备货、使用工具、接待游客、派对与奇观；账目区分日常经营和建设投入。 |
+| 经营与创造 | 25 类功能建筑、19 种作物、58 种素材、308 个配方。制作备货、设置货架、接待游客、使用工具、派对与奇观；账目区分日常经营和建设投入。 |
 | 居民与家园 | 15 位 AI 居民，自由交流、职业作息与关系记录；十六户按主人职业和爱好设计的住所。 |
 | 你的 Agent 管家 | 自定义姓名与 12 套形象；Hermes 处理现实工作，招募临时伙伴，为居民安排有前置依赖的工作。 |
 | 季节与来访 | 每季 30 个视觉日，天气影响种植与钓鱼；昼夜灯火、海浪与月影。跨岛携带管家与受邀 NPC，通过 A2A 交换信息、协作筹备。 |

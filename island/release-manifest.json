@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v295-agent-source",
+  "release": "hyper-dimension-v296-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -48,12 +48,12 @@
     {
       "path": "README.en.md",
       "bytes": 3156,
-      "sha256": "6417fc903b3d9d09f99559a807af561816704e800ac7faa9b66542f04c42596a"
+      "sha256": "e7256adade7d54b2e65d911d3cd84616f56d871ad400e481e7bcdd29af45f314"
     },
     {
       "path": "README.md",
-      "bytes": 2918,
-      "sha256": "d43d08e69dcd8f04e52d9d6db5828f2ea5171cc1c0b18c39fe87897b8e2416c7"
+      "bytes": 2933,
+      "sha256": "844044152d6d01c7122df9da2aa6dc719d268e03d99a467bc716a356630c8cdc"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 111027,
-      "sha256": "ef00a557de5319690daf8ef6a31671696f143ecb5a7530309a3e95c6eb08b477"
+      "bytes": 111441,
+      "sha256": "99b5cd4411d13d7c9c179bea1e9bd83fa38cb0669cebe7ce7b069dd2a3cf8129"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16725,
-      "sha256": "a9baf105bd2e6a29df57dec47826f30e137453c599fc477b557014c4dba2ce64"
+      "bytes": 16801,
+      "sha256": "f64dc573d791758245d6aa6473692b9b62b42c98b1d1a635a1eb0f5e7a6ed3e4"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 41090,
-      "sha256": "5062ecc82d30d9f47fabcaa18fcc84bffa76e8500d5decda78a02efb83e5cd70"
+      "bytes": 41516,
+      "sha256": "7100dc74ee0e184c91b2ec7d05c16e9f1470b4a3f7124ab20e62c94148de081d"
     },
     {
       "path": "src/saveDelta.js",
@@ -8027,8 +8027,8 @@
     },
     {
       "path": "src/serverCommerceUI.js",
-      "bytes": 3028,
-      "sha256": "aa5471d7f4191890024e545a193a56b1dd2029ec0dee977cf2b8904b2db668be"
+      "bytes": 3081,
+      "sha256": "94a751f0a83f1a5a3c3a19644112ae7ebc77a2a04c318c11a139c4f9de2e5bfe"
     },
     {
       "path": "src/serverCraftUI.js",
@@ -9702,8 +9702,8 @@
     },
     {
       "path": "tests/v198-creative-input.mjs",
-      "bytes": 4193,
-      "sha256": "6293cd6063c39c356a7a42f0170084d4a1bbd888b8fb5576234c3b41fbc39fc3"
+      "bytes": 4338,
+      "sha256": "045114af90ef936aa76d838b8c02f18950d9020767d11cc7731f467cb572d330"
     },
     {
       "path": "tests/v199-legacy-homes-browser.mjs",
@@ -13544,7 +13544,47 @@
       "path": "docs/verification-v295.json",
       "bytes": 2253,
       "sha256": "305a3012c87291a0a8423cef88937281d8ac03180293cf1ed128344ce106dbc6"
+    },
+    {
+      "path": "src/actionQueue.js",
+      "bytes": 988,
+      "sha256": "47282448778633ff759503fa0288b57bc1348460fed68418a05206597503e4da"
+    },
+    {
+      "path": "tests/v296-action-queue.test.mjs",
+      "bytes": 3346,
+      "sha256": "dad66151b1872dd57ddfd4426ed876a3071ab15879425a758c07f95dc327c161"
+    },
+    {
+      "path": "tests/v296-action-queue-transport.test.mjs",
+      "bytes": 5274,
+      "sha256": "6bff5dbb8b932d6e1ef040f07b814dc632c1a5d19700c67c0f6ace3e8fa3dc70"
+    },
+    {
+      "path": "docs/action-queue-v296.md",
+      "bytes": 2204,
+      "sha256": "2e2715c578e5609e1372d9fd0cd0f68420a8e64ca24cf60640c636a894b6489e"
+    },
+    {
+      "path": "docs/verification-v296.json",
+      "bytes": 2342,
+      "sha256": "65e1b9d31a541696dea3260a581d637b4a2e1350ea28ee13d8221cbfcc63fd62"
+    },
+    {
+      "path": "docs/verification-v296-showcase.json",
+      "bytes": 979,
+      "sha256": "a31fb623182dfcdef3928ad22efa42b7a3652425afed713c5d4a8e379e177f6f"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v296-island-real-work-30s.mp4",
+      "bytes": 42550603,
+      "sha256": "1719941d55ca8af779cdf0332f957f0afb623012c08f767fe2a332c9a6040c4d"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v296-island-real-work-poster.png",
+      "bytes": 6413960,
+      "sha256": "abd6eee91b619e033a9b78a55fda6d3f7a1e17d95d7efe5634e1db0abb13c11a"
     }
   ],
-  "publicRevision": "v295-native-workshop-pause-resumption"
+  "publicRevision": "v296-fair-shelves-current-island-film"
 }
