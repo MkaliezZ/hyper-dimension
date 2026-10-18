@@ -709,34 +709,46 @@ jobs:
 
   native-resident-stall:
     if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'resident-stall'
-    name: macos-14 / resident stall diagnostic
+    name: macos-14 / resident ${{ matrix.mode }} GPU diagnostic
     runs-on: macos-14
     timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [default, metal-ganesh]
     defaults:
       run:
         working-directory: island
         shell: bash
+    env:
+      HD_QA_NATIVE_MODE: ${{ matrix.mode }}
+      HD_QA_NATIVE_MODE_OUT: qa/mac-native-metal/${{ matrix.mode }}
+      HD_QA_WORK_JOURNAL: "1"
+      HD_QA_STALL_DIAGNOSTIC: "1"
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts
-      - name: Diagnose the original resident chain without weakening its gates
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-          HD_QA_STALL_DIAGNOSTIC: "1"
-        run: node tests/v213-task-chain-browser.mjs
+      - name: Diagnose the original chain with one native GPU backend
+        run: node ../.github/scripts/mac-native-metal-diagnostic.mjs
+      - name: Verify mode identity and the unchanged original test
+        if: always()
+        run: node ../.github/scripts/mac-native-metal-diagnostic.mjs verify
       - name: Retain owned resident stall observations
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: resident-stall-macos-14
+          name: resident-metal-macos-14-${{ matrix.mode }}
           path: |
+            island/qa/mac-native-metal/${{ matrix.mode }}/native-mode.json
             island/qa/v213/native-task-chains/report.json
             island/qa/v213/native-task-chains/work-progress.json
             island/qa/v213/native-task-chains/*.sample.txt
             island/qa/v213/native-task-chains/*.png
           if-no-files-found: ignore
-          retention-days: 3
+          retention-days: 7
