@@ -714,9 +714,9 @@ jobs:
 
   native-resident-stall:
     if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'resident-stall'
-    name: macos-14 / resident stall diagnostic
-    runs-on: macos-14
-    timeout-minutes: 45
+    name: macos-15-intel / original painting tools on V288
+    runs-on: macos-15-intel
+    timeout-minutes: 60
     defaults:
       run:
         working-directory: island
@@ -726,22 +726,27 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
-      - name: Install isolated browser dependencies
+      - name: Install locked browser dependencies
         run: npm ci --ignore-scripts
-      - name: Diagnose the original resident chain without weakening its gates
+      - name: Observe the unchanged painting test on the current renderer
         env:
-          HD_QA_WORK_JOURNAL: "1"
-          HD_QA_STALL_DIAGNOSTIC: "1"
-        run: node tests/v213-task-chain-browser.mjs
-      - name: Retain owned resident stall observations
+          HD_QA_WORK_JOURNAL: '1'
+          HD_QA_STALL_DIAGNOSTIC: '1'
+          HD_QA_PAINTING_OUT: qa/mac-painting-v288
+        run: node ../.github/scripts/mac-painting-diagnostic.mjs
+      - name: Verify native GPU and unchanged test and ocean
+        if: always()
+        run: node ../.github/scripts/mac-painting-diagnostic.mjs verify
+      - name: Retain isolated current-version painting observations
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: resident-stall-macos-14
+          name: original-painting-v288-macos-15-intel
           path: |
-            island/qa/v213/native-task-chains/report.json
-            island/qa/v213/native-task-chains/work-progress.json
-            island/qa/v213/native-task-chains/*.sample.txt
-            island/qa/v213/native-task-chains/*.png
+            island/qa/mac-painting-v288/painting-mode.json
+            island/qa/v219/native-painting-tools/report.json
+            island/qa/v219/native-painting-tools/work-progress.json
+            island/qa/v219/native-painting-tools/*.sample.txt
+            island/qa/v219/native-painting-tools/*.png
           if-no-files-found: ignore
           retention-days: 3
