@@ -1,0 +1,209 @@
+{
+  "version": "V294",
+  "at": "2026-10-18T19:50:08.931164+00:00",
+  "runtimeFilesChanged": [
+    "src/app.js"
+  ],
+  "appSha256": "b95ab063d10116d2028af613e11ed192ea2b0f8a85121af42a570ad00d07ce2c",
+  "change": "Keep only an obscured personal-modal world backdrop while its real command settles; resize redraws once and ordinary animation resumes after the actual receipt. No game state, clock, animation density, NPC cadence, save/recovery authority or result changed.",
+  "nativeComparison": {
+    "scope": "Owned fictional fresh LAN accounts and actual personal-avatar authority. Hold a real already-committed response while observing native RAF/main-canvas paints. Before/after comparison proves backdrop behavior, not reproduction of a physical Mac timeout or overall game FPS. No model, user browser or document data; no clock/resource/outcome injection.",
+    "cases": [
+      {
+        "mode": "before",
+        "theme": "pixel",
+        "waiting": {
+          "painted": 8,
+          "milliseconds": 69.69999980926514,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "resized": {
+          "painted": 8,
+          "milliseconds": 58.09999990463257,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false,
+          "totalSinceResize": 13
+        },
+        "resumed": {
+          "painted": 8,
+          "milliseconds": 60.59999990463257,
+          "personal": {
+            "ready": true,
+            "inflight": 0,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "realChoiceConfirmed": true,
+        "sameSaveSlot": true,
+        "passed": false
+      },
+      {
+        "mode": "before",
+        "theme": "origami",
+        "waiting": {
+          "painted": 8,
+          "milliseconds": 61.299999952316284,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "resized": {
+          "painted": 8,
+          "milliseconds": 117.5,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false,
+          "totalSinceResize": 12
+        },
+        "resumed": {
+          "painted": 8,
+          "milliseconds": 62.90000009536743,
+          "personal": {
+            "ready": true,
+            "inflight": 0,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "realChoiceConfirmed": true,
+        "sameSaveSlot": true,
+        "passed": false
+      },
+      {
+        "mode": "after",
+        "theme": "pixel",
+        "waiting": {
+          "painted": 0,
+          "milliseconds": 63.09999990463257,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "resized": {
+          "painted": 0,
+          "milliseconds": 61.299999952316284,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false,
+          "totalSinceResize": 1
+        },
+        "resumed": {
+          "painted": 8,
+          "milliseconds": 70.29999995231628,
+          "personal": {
+            "ready": true,
+            "inflight": 0,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "realChoiceConfirmed": true,
+        "sameSaveSlot": true,
+        "passed": true
+      },
+      {
+        "mode": "after",
+        "theme": "origami",
+        "waiting": {
+          "painted": 0,
+          "milliseconds": 61.700000047683716,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "resized": {
+          "painted": 0,
+          "milliseconds": 61.39999985694885,
+          "personal": {
+            "ready": true,
+            "inflight": 1,
+            "locked": false
+          },
+          "hidden": false,
+          "totalSinceResize": 1
+        },
+        "resumed": {
+          "painted": 8,
+          "milliseconds": 65.29999995231628,
+          "personal": {
+            "ready": true,
+            "inflight": 0,
+            "locked": false
+          },
+          "hidden": false
+        },
+        "realChoiceConfirmed": true,
+        "sameSaveSlot": true,
+        "passed": true
+      }
+    ],
+    "qualifiedProductClaimed": false
+  },
+  "nativePortableRegression": {
+    "cases": 2,
+    "passed": true,
+    "actualServerChoiceConfirmed": true,
+    "normalCleanup": true
+  },
+  "existingNativeRegression": {
+    "fullPortraitChooser": {
+      "twoStylesAll13Choices": true,
+      "refreshSameSlot": true,
+      "narrowWidths": [
+        390,
+        768
+      ],
+      "foreignArtAndCropProbes": true
+    },
+    "recoveryBackdrop": {
+      "twoStyles": true,
+      "original4000msClickGate": true,
+      "originalProgressPreserved": true
+    }
+  },
+  "hostedIntelPortraitFailure": {
+    "run": 39151968972,
+    "job": 117750534875,
+    "actualAvatarResponseStatus": 200,
+    "actualAvatarResponseMs": 265,
+    "selectedStayedOld": true,
+    "localReproductionOfMacTimeoutClaimed": false,
+    "hostedAfterChangePassed": false
+  },
+  "fourMapRenderDiagnosis": {
+    "originalCharacterAblationHadHeavyTracing": true,
+    "readonlyUntracedSamples": 159,
+    "textureEvictionsObserved": 0,
+    "poseEvictionsObserved": 0,
+    "perActorBlendCandidateRejected": true,
+    "rootCauseProven": false,
+    "fullFourMapFlowPassed": false
+  },
+  "fullGoalComplete": false,
+  "allMacFailuresResolved": false
+}

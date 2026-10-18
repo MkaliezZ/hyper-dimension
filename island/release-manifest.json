@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v293-agent-source",
+  "release": "hyper-dimension-v294-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 110247,
-      "sha256": "bbf2207aa1595ab5d424bcdd264dd651cec432bd1a8b8a433529ee6136db4fe2"
+      "bytes": 110639,
+      "sha256": "d441c940d5f96e16d4a1ae4a6690d2ebc62acbe63a0bea4123175e055ca67cf1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145857,
-      "sha256": "f24179ccaec2aee4b13f8da4b623af94b29c656bd5c1b70959da64d76126f972"
+      "bytes": 146253,
+      "sha256": "b95ab063d10116d2028af613e11ed192ea2b0f8a85121af42a570ad00d07ce2c"
     },
     {
       "path": "src/arcade.css",
@@ -13519,7 +13519,22 @@
       "path": "docs/verification-v293.json",
       "bytes": 2358,
       "sha256": "62ebc213092278f1e5fb769eae893878edad7d43b597fe117c61dad020606127"
+    },
+    {
+      "path": "tests/v294-personal-backdrop-browser.mjs",
+      "bytes": 6089,
+      "sha256": "242a7fba103157f15064a336f60f8da07cc54af313a257bc93748e96e8dd2b37"
+    },
+    {
+      "path": "docs/personal-modal-v294.md",
+      "bytes": 1673,
+      "sha256": "5ab69452d7cc1f9be0f8d0b4c4a8df897fe5510699c64302770e2c08d939fd55"
+    },
+    {
+      "path": "docs/verification-v294.json",
+      "bytes": 6012,
+      "sha256": "2debaa6b827c6df69e178aa0bdb654e4ddfe02e61fa2f8ded566a7626a60d0db"
     }
   ],
-  "publicRevision": "v293-native-painting-input-and-isolated-context-cleanup"
+  "publicRevision": "v294-personal-command-modal-backdrop"
 }

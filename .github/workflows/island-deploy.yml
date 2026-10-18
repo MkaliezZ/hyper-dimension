@@ -165,6 +165,10 @@ jobs:
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v153-portraits-browser.mjs
 
+      - name: Native personal modal receipt and backdrop
+        if: inputs.check_scope != 'soil-diagnostics'
+        working-directory: island
+        run: node tests/v294-personal-backdrop-browser.mjs
       - name: Native material item art
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v154-material-art-browser.mjs
@@ -201,6 +205,8 @@ jobs:
             island/qa/v155/native-product-clips/probe-input.json
             island/qa/v155/native-product-clips/failure-product-svg.png
             island/qa/v155/native-product-clips/*-c24_2-svg.png
+            island/qa/v294/personal-backdrop/report.json
+            island/qa/v294/personal-backdrop/*.png
             island/qa/v219/native-painting-tools/report.json
             island/qa/v219/native-painting-tools/work-progress.json
             island/qa/v219/native-painting-tools/*.sample.txt
