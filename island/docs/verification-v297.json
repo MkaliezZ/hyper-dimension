@@ -1,0 +1,40 @@
+{
+  "version": "V297",
+  "at": "2026-10-18T22:56:11.862233+00:00",
+  "runtimeHashes": {
+    "src/connectedSpriteSurface.js": "c2e84cff5021d9277e7174340805c34f7dd72a6fc38d78b6e5df9dc775b526ed",
+    "src/gpuCompletion.js": "26aa288f0abdbd0020e96877dd4c841c90a202a33d815a99ea40d5b7e6227918"
+  },
+  "behavior": "WebGL2 initialization and texture allocations submit fences and yield between zero-timeout polls. Compile/link, upload-error and context-loss handling remain. One allocation is pending at a time; already validated Canvas atlas poses remain usable. Temporary fallback poses are not retained.",
+  "defaultRuleCounts": [
+    1474,
+    14
+  ],
+  "defaultPassed": 1488,
+  "newGpuRulesPassed": 9,
+  "nativeExactPixelCases": 192,
+  "nativePixelDifferences": 0,
+  "nativeOriginalRigBothStyles": true,
+  "nativeOriginalPlayerBothStyles": true,
+  "nativeOriginalCustomProductsBothStyles": true,
+  "nativeFourMapControl": {
+    "maps": 4,
+    "warmSeconds": 12,
+    "actualCanonicalResponse": true,
+    "heldAcceptedResponseMs": 500,
+    "rafCompletionMs": 554,
+    "timerCompletionMs": 555,
+    "originalCompletionDeadlineMs": 3000,
+    "nativeClickAndAuthorityBudgetMs": 10000,
+    "allFourUseGpu": true,
+    "uploadFailures": 0,
+    "modelsCalled": false,
+    "originalFictionalStateAndSourceGuarded": true,
+    "scope": "One Windows process and four owned fictional browser maps, historical immutable installation with seven exact current renderer modules. Native subscription action after warming. Not final current-version full A2A/event/economic journey, physical devices or human acceptance."
+  },
+  "unchangedTextureBudgetBytes": 100663296,
+  "unchangedPoseBudgetBytes": 67108864,
+  "allHostedFailuresRecovered": false,
+  "knownRemaining": "Current exact-package installation/hour, full two-style multi-island flows, host startup stall investigation, hosted Windows/macOS recovery, public video playback and actual course/new-player acceptance.",
+  "wholeGoalComplete": false
+}

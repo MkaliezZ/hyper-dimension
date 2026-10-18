@@ -1,35 +1,53 @@
 import {createPoseAtlas} from './poseAtlas.js';
+import {afterGpuCommands} from './gpuCompletion.js';
 // A single GPU draw skins the entire connected surface. Canvas remains available
 // for hosts without WebGL; idle poses keep their direct original-image fast path.
-const MAX_TEXTURE_BYTES=96*1024*1024,textures=new Map();
+const MAX_TEXTURE_BYTES=96*1024*1024,textures=new Map(),failedImages=new WeakSet();let uploadFailures=0;
 const MAX_POSE_BYTES=64*1024*1024,poseAtlas=createPoseAtlas({maxBytes:MAX_POSE_BYTES}),imageIds=new WeakMap();let poseSerial=0,themeFilter=null,blendCanvas=null,hits=0,misses=0;
 let renderer=null,unavailable=false,serial=0,bytes=0;
 function initialize(){
  if(unavailable||typeof document==='undefined')return null;
  if(renderer)return renderer;
  try{
-  const canvas=document.createElement('canvas'),gl=canvas.getContext('webgl',{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false,preserveDrawingBuffer:false});if(!gl){unavailable=true;return null;}
-  const compile=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('sprite_shader_unavailable');return s;};
-  const precision=gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER,gl.HIGH_FLOAT)?.precision?'highp':'mediump';
-  const vertex=compile(gl.VERTEX_SHADER,'attribute vec2 position;attribute vec2 uv;uniform vec2 surface;varying vec2 textureUV;void main(){gl_Position=vec4(position.x/surface.x*2.0-1.0,1.0-position.y/surface.y*2.0,0.0,1.0);textureUV=uv;}'),fragment=compile(gl.FRAGMENT_SHADER,'precision '+precision+' float;uniform sampler2D artwork;uniform vec4 cropBounds;varying vec2 textureUV;void main(){vec4 c=texture2D(artwork,clamp(textureUV,cropBounds.xy,cropBounds.zw));gl_FragColor=vec4(c.rgb*c.a,c.a);}'),program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error('sprite_program_unavailable');gl.deleteShader(vertex);gl.deleteShader(fragment);
-  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();renderer=null;unavailable=true;textures.clear();bytes=0;});
-  gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);const position=gl.getAttribLocation(program,'position'),uv=gl.getAttribLocation(program,'uv');gl.enableVertexAttribArray(position);gl.enableVertexAttribArray(uv);gl.vertexAttribPointer(position,2,gl.FLOAT,false,16,0);gl.vertexAttribPointer(uv,2,gl.FLOAT,false,16,8);gl.uniform1i(gl.getUniformLocation(program,'artwork'),0);gl.disable(gl.BLEND);gl.disable(gl.DEPTH_TEST);gl.clearColor(0,0,0,0);
-  renderer={canvas,gl,buffer,surface:gl.getUniformLocation(program,'surface'),cropBounds:gl.getUniformLocation(program,'cropBounds'),vertices:new Float32Array(240*4),draws:0};return renderer;
+  const canvas=document.createElement('canvas'),gl=canvas.getContext('webgl2',{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false,preserveDrawingBuffer:false});if(!gl){unavailable=true;return null;}
+  const compile=(type,source)=>{const s=gl.createShader(type);if(!s)throw Error('sprite_shader_unavailable');gl.shaderSource(s,source);gl.compileShader(s);return s;};
+  const vertex=compile(gl.VERTEX_SHADER,'#version 300 es\nlayout(location=0) in vec2 position;layout(location=1) in vec2 uv;uniform vec2 surface;out vec2 textureUV;void main(){gl_Position=vec4(position.x/surface.x*2.0-1.0,1.0-position.y/surface.y*2.0,0.0,1.0);textureUV=uv;}'),fragment=compile(gl.FRAGMENT_SHADER,'#version 300 es\nprecision highp float;uniform sampler2D artwork;uniform vec4 cropBounds;in vec2 textureUV;out vec4 color;void main(){vec4 c=texture(artwork,clamp(textureUV,cropBounds.xy,cropBounds.zw));color=vec4(c.rgb*c.a,c.a);}'),program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);
+  const buffer=gl.createBuffer(),r={canvas,gl,buffer,vertices:new Float32Array(240*4),draws:0,maxTextureSize:0,pending:null,ready:false,cancelInitialize:null};renderer=r;
+  const abandon=()=>{r.cancelInitialize?.();for(const entry of textures.values())entry.cancel?.();renderer=null;unavailable=true;textures.clear();bytes=0;clearPoses();};
+  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();abandon();});
+  // Link/limit queries also wait for their fence, rather than stalling another
+  // island's drawing task while a newly opened map compiles the same program.
+  r.cancelInitialize=afterGpuCommands(gl,()=>{
+   if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error('sprite_program_unavailable');
+   gl.deleteShader(vertex);gl.deleteShader(fragment);r.maxTextureSize=gl.getParameter(gl.MAX_TEXTURE_SIZE);if(gl.getError()!==gl.NO_ERROR)throw Error('sprite_setup_failed');
+   gl.useProgram(program);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(0);gl.enableVertexAttribArray(1);gl.vertexAttribPointer(0,2,gl.FLOAT,false,16,0);gl.vertexAttribPointer(1,2,gl.FLOAT,false,16,8);gl.uniform1i(gl.getUniformLocation(program,'artwork'),0);gl.disable(gl.BLEND);gl.disable(gl.DEPTH_TEST);gl.clearColor(0,0,0,0);r.surface=gl.getUniformLocation(program,'surface');r.cropBounds=gl.getUniformLocation(program,'cropBounds');r.ready=true;r.cancelInitialize=null;
+  },()=>{try{gl.deleteShader(vertex);gl.deleteShader(fragment);gl.deleteProgram(program);gl.deleteBuffer(buffer);}finally{abandon();}});return r;
  }catch{unavailable=true;renderer=null;return null;}
 }
-function texture(r,img,smooth){
+function texture(r,img){
  let entry=textures.get(img);const {gl}=r;
- if(!entry){const width=img.naturalWidth||img.width,height=img.naturalHeight||img.height;if(!width||!height||Math.max(width,height)>gl.getParameter(gl.MAX_TEXTURE_SIZE))return null;
+ // Only one allocation is submitted at a time, with no later drawing commands
+ // on this context until its error check completes. Cached CPU poses stay valid.
+ if(!r.ready||r.pending||failedImages.has(img))return null;
+ if(!entry){const width=img.naturalWidth||img.width,height=img.naturalHeight||img.height;if(!width||!height||Math.max(width,height)>r.maxTextureSize)return null;
   const size=width*height*4;if(size>MAX_TEXTURE_BYTES)return null;
   while(bytes+size>MAX_TEXTURE_BYTES&&textures.size){const [key,old]=[...textures].reduce((a,b)=>a[1].used<b[1].used?a:b);gl.deleteTexture(old.texture);textures.delete(key);bytes-=old.bytes;}
-  const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);if(gl.getError()!==gl.NO_ERROR){gl.deleteTexture(t);return null;}gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);entry={texture:t,width,height,bytes:size,used:0,smooth:null};textures.set(img,entry);bytes+=size;
+  const t=gl.createTexture();if(!t)return null;
+  entry={texture:t,width,height,bytes:size,used:++serial,smooth:null,ready:false,cancel:null};textures.set(img,entry);bytes+=size;r.pending=entry;
+  const reject=()=>{entry.cancel?.();gl.deleteTexture(t);if(textures.get(img)===entry){textures.delete(img);bytes-=size;}if(r.pending===entry)r.pending=null;failedImages.add(img);uploadFailures++;};
+  try{
+   gl.bindTexture(gl.TEXTURE_2D,t);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+   entry.cancel=afterGpuCommands(gl,()=>{if(gl.getError()!==gl.NO_ERROR)throw Error('sprite_upload_failed');entry.ready=true;entry.cancel=null;r.pending=null;},reject);
+  }catch{reject();}
+  return null;
  }
- entry.used=++serial;gl.bindTexture(gl.TEXTURE_2D,entry.texture);if(entry.smooth!==smooth){const mode=smooth?gl.LINEAR:gl.NEAREST;gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,mode);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,mode);entry.smooth=smooth;}return entry;
+ if(!entry.ready)return null;entry.used=++serial;return entry;
 }
 function paintSurface(ctx,img,frame,mesh){
  const r=initialize();if(!r)return false;
  try{
-  const t=texture(r,img,ctx.imageSmoothingEnabled);if(!t)return false;
+  const t=texture(r,img);if(!t)return false;
+  const smooth=ctx.imageSmoothingEnabled;r.gl.bindTexture(r.gl.TEXTURE_2D,t.texture);if(t.smooth!==smooth){const mode=smooth?r.gl.LINEAR:r.gl.NEAREST;r.gl.texParameteri(r.gl.TEXTURE_2D,r.gl.TEXTURE_MIN_FILTER,mode);r.gl.texParameteri(r.gl.TEXTURE_2D,r.gl.TEXTURE_MAG_FILTER,mode);t.smooth=smooth;}
   const points=mesh.vertices.flat(),minX=Math.min(...points.map(p=>p.x))-2,maxX=Math.max(...points.map(p=>p.x))+2,minY=Math.min(...points.map(p=>p.y))-2,maxY=Math.max(...points.map(p=>p.y))+2,matrix=ctx.getTransform(),density=Math.max(.75,Math.min(4,Math.max(Math.hypot(matrix.a,matrix.b),Math.hypot(matrix.c,matrix.d)))),w=Math.ceil((maxX-minX)*density),h=Math.ceil((maxY-minY)*density);
   // Fixed buckets avoid reallocating the GPU surface on each gait phase.
   const bucket=n=>2**Math.ceil(Math.log2(Math.max(32,n))),bw=bucket(w),bh=bucket(h);if(r.canvas.width<bw)r.canvas.width=bw;if(r.canvas.height<bh)r.canvas.height=bh;
@@ -51,6 +69,9 @@ export function drawConnectedSurface(ctx,img,frame,mesh,makePose,paintFallback){
  const get=(index,protectedKeys=[])=>{
   const key=prefix+'|'+index;let cached=poseAtlas.get(key);if(cached){hits++;return cached;}
   misses++;const t=index/steps,pose=p.action?{...p,t,work:Math.sin(t*Math.PI*2),harvest:p.harvest?makePose.harvest(t,p.harvest.mode):null}:{...p,gait:t*2-1},surface=makePose(pose),points=surface.vertices.flat(),x=Math.min(...points.map(p=>p.x))-2,y=Math.min(...points.map(p=>p.y))-2,w=Math.ceil((Math.max(...points.map(p=>p.x))+2-x)*density),h=Math.ceil((Math.max(...points.map(p=>p.y))+2-y)*density);
+  // Already validated poses remain drawable during another upload. Only a
+  // missing deformed pose waits; its temporary Canvas fallback is never cached.
+  if(surface.deformed){const r=initialize();if(r&&!texture(r,img))throw Error('sprite_gpu_pending');}
   cached=poseAtlas.put(key,w,h,g=>{
    g.imageSmoothingEnabled=smoothing;g.scale(density,density);g.translate(-x,-y);
    if(!surface.deformed){const a=surface.rows[0],height=surface.rows.at(-1)-a;g.drawImage(img,frame.x,frame.y+a*frame.h,frame.w,height*frame.h,-p.width/2,(a-1)*p.height,p.width,height*p.height);}else if(!paintSurface(g,img,frame,surface))paintFallback(g,surface);
@@ -59,4 +80,4 @@ export function drawConnectedSurface(ctx,img,frame,mesh,makePose,paintFallback){
  };
  try{const a=get(first);if(fraction<1e-7||first===last){ctx.drawImage(a.image,a.sx,a.sy,a.sw,a.sh,a.x,a.y,a.w,a.h);return true;}const b=get(last,[a.key]),x=Math.min(a.x,b.x),y=Math.min(a.y,b.y),w=Math.ceil((Math.max(a.x+a.w,b.x+b.w)-x)*density),h=Math.ceil((Math.max(a.y+a.h,b.y+b.h)-y)*density);blendCanvas??=document.createElement('canvas');if(blendCanvas.width<w)blendCanvas.width=w;if(blendCanvas.height<h)blendCanvas.height=h;const g=blendCanvas.getContext('2d');g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,blendCanvas.width,blendCanvas.height);g.imageSmoothingEnabled=smoothing;g.globalCompositeOperation='source-over';g.globalAlpha=1-fraction;g.drawImage(a.image,a.sx,a.sy,a.sw,a.sh,(a.x-x)*density,(a.y-y)*density,a.w*density,a.h*density);g.globalCompositeOperation='lighter';g.globalAlpha=fraction;g.drawImage(b.image,b.sx,b.sy,b.sw,b.sh,(b.x-x)*density,(b.y-y)*density,b.w*density,b.h*density);g.globalAlpha=1;g.globalCompositeOperation='source-over';ctx.drawImage(blendCanvas,0,0,w,h,x,y,w/density,h/density);return true;}catch{return paintSurface(ctx,img,frame,mesh);}
 }
-export function connectedSurfaceStatus(){return{backend:renderer?'WebGL connected surface':unavailable?'Canvas connected surface':'not needed',draws:renderer?.draws||0,textures:textures.size,textureBytes:bytes,limitBytes:MAX_TEXTURE_BYTES,poseCache:{...poseAtlas.inspect(),hits,misses}};}
+export function connectedSurfaceStatus(){return{backend:renderer?'WebGL2 connected surface':unavailable?'Canvas connected surface':'not needed',ready:!!renderer?.ready,draws:renderer?.draws||0,textures:textures.size,pendingUploads:renderer?.pending?1:0,uploadFailures,textureBytes:bytes,limitBytes:MAX_TEXTURE_BYTES,poseCache:{...poseAtlas.inspect(),hits,misses}};}

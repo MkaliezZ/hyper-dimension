@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v296-agent-source",
+  "release": "hyper-dimension-v297-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 111441,
-      "sha256": "99b5cd4411d13d7c9c179bea1e9bd83fa38cb0669cebe7ce7b069dd2a3cf8129"
+      "bytes": 111867,
+      "sha256": "503be72a262d5f7be9bfcd1b64a6a7268e50c649e484d57e4589f5a2d41158e1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16801,
-      "sha256": "f64dc573d791758245d6aa6473692b9b62b42c98b1d1a635a1eb0f5e7a6ed3e4"
+      "bytes": 16836,
+      "sha256": "c36c330192b015ccfd38ed403a64062f87cd2a739fd6eedd034ac9c6a230b07c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6672,8 +6672,8 @@
     },
     {
       "path": "src/connectedSpriteSurface.js",
-      "bytes": 9251,
-      "sha256": "2cee0af96bfe3db3721a3a20f891db19f23e1d63b4d027247fac40d6a7ec167e"
+      "bytes": 10835,
+      "sha256": "c2e84cff5021d9277e7174340805c34f7dd72a6fc38d78b6e5df9dc775b526ed"
     },
     {
       "path": "src/content-ui.css",
@@ -13584,7 +13584,27 @@
       "path": "docs/media/hyper-dimension-v296-island-real-work-poster.png",
       "bytes": 6413960,
       "sha256": "abd6eee91b619e033a9b78a55fda6d3f7a1e17d95d7efe5634e1db0abb13c11a"
+    },
+    {
+      "path": "src/gpuCompletion.js",
+      "bytes": 1106,
+      "sha256": "26aa288f0abdbd0020e96877dd4c841c90a202a33d815a99ea40d5b7e6227918"
+    },
+    {
+      "path": "tests/v297-gpu-completion.test.mjs",
+      "bytes": 8073,
+      "sha256": "4448c068b023cfcd4f66a55f9b18d31b2b8655c43c1323bbb2af093ab815208d"
+    },
+    {
+      "path": "docs/renderer-validation-v297.md",
+      "bytes": 2134,
+      "sha256": "165050477f0b11037f00f28ff6edd638ff26b515b35ebd715e50975c94386167"
+    },
+    {
+      "path": "docs/verification-v297.json",
+      "bytes": 2024,
+      "sha256": "f80ce97eb8940f980afa7231aa0f6f79483d3c2598607d416bca87d2acce63f3"
     }
   ],
-  "publicRevision": "v296-fair-shelves-current-island-film"
+  "publicRevision": "v297-yielding-gpu-upload-validation"
 }
