@@ -1,4 +1,5 @@
 import {terrainParcel} from './terrainParcelAnchors.js';
+import {nearbyObstacleTest} from './nearbyObstacles.js';
 import {worldBaseEdge} from './worldNavigationEdges.js';
 import {ISLAND_GEOGRAPHY,PERMANENT_HOMES} from './islandGeography.js';
 import {terrainSurfaceWalkable,terrainMovementCost,TERRAIN_NAVIGATION} from './terrainNavigation.js';
@@ -113,7 +114,7 @@ export function worldWalkable(x,y){return worldWalkableForTheme(worldTheme,x,y,w
 // Explicit theme keeps server-side routing independent of the active browser theme.
 // Baked edges cover static terrain; moving people remain real dynamic obstacles.
 export function findWorldPathForTheme(theme,start,end,avoid=[]){
- const blocked=avoid.length?(x,y)=>avoid.some(p=>Math.hypot(p.x-x,p.y-y)<15):null;
+ const blocked=avoid.length?nearbyObstacleTest(avoid,15):null;
  const free=(x,y)=>worldWalkableForTheme(theme,x,y)&&(!blocked||!blocked(x,y));
  return findPath(start,end,free,CELL,terrainMovementCost,{theme,blocked});
 }

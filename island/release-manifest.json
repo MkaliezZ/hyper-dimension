@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v297-agent-source",
+  "release": "hyper-dimension-v298-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 111867,
-      "sha256": "503be72a262d5f7be9bfcd1b64a6a7268e50c649e484d57e4589f5a2d41158e1"
+      "bytes": 112314,
+      "sha256": "b0b1d9cc6aabe7f5b393e4f9d6d5b7ad81af79574218238c67c905cdb5a168a8"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2172,13 +2172,13 @@
     },
     {
       "path": "package-lock.json",
-      "bytes": 793,
-      "sha256": "8fc4b6f4a988692fbaa02f81e93bcd08ec3ab10f65905cef72a22049c291cc93"
+      "bytes": 789,
+      "sha256": "d6f1d6a80d766dd2ab5f28f8b16ef4ec17e63c813f3422d5f7d9814db1f893f9"
     },
     {
       "path": "package.json",
-      "bytes": 16836,
-      "sha256": "c36c330192b015ccfd38ed403a64062f87cd2a739fd6eedd034ac9c6a230b07c"
+      "bytes": 16873,
+      "sha256": "9075d28a62f88ca79d1df1d4fa4710d86df4eaf4d58736692d1984ab67d164db"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -8287,13 +8287,13 @@
     },
     {
       "path": "src/world.js",
-      "bytes": 16279,
-      "sha256": "2b1c175c5afe89f3f57bd3f49308923b504b726687157f8e87d176f00c5e935c"
+      "bytes": 16316,
+      "sha256": "9b5265ab4e8deb02176a9fc9002326f51d85af4ee46d2d797e4a998132bfc83a"
     },
     {
       "path": "src/worldNavigationEdges.js",
       "bytes": 145449,
-      "sha256": "a64b0331f0af2ceaa82cb3c97020db8dc136afc98d2aff5b2e8eefd03881dd7a"
+      "sha256": "c933c31c219111479b22300af7505934b019f5c7e65b7b068f374ebb7f7160ca"
     },
     {
       "path": "src/worldSession.js",
@@ -13604,7 +13604,27 @@
       "path": "docs/verification-v297.json",
       "bytes": 2024,
       "sha256": "f80ce97eb8940f980afa7231aa0f6f79483d3c2598607d416bca87d2acce63f3"
+    },
+    {
+      "path": "src/nearbyObstacles.js",
+      "bytes": 1516,
+      "sha256": "24c2cfec7e8b02ff0663bcb3c64ed35588b268ec9d3b233cd244abeef0cb1491"
+    },
+    {
+      "path": "tests/v298-nearby-obstacles.test.mjs",
+      "bytes": 2719,
+      "sha256": "b38b02f4e975f62e315df6524100b68c1b06db4a49d9ccb4328a9ad8b23ab0b4"
+    },
+    {
+      "path": "docs/nearby-routing-v298.md",
+      "bytes": 2204,
+      "sha256": "6d3c1e793c9f5c93bcdcd3fcc62055faf2ebc662e76fd4ab1fe157bb141d5649"
+    },
+    {
+      "path": "docs/verification-v298.json",
+      "bytes": 2455,
+      "sha256": "e949d2d86a0b6eab2c5bfe2f6e16cdb577fd7f0df861d55f75e2e5b84e75e177"
     }
   ],
-  "publicRevision": "v297-yielding-gpu-upload-validation"
+  "publicRevision": "v298-nearby-obstacles-and-locked-official-driver"
 }

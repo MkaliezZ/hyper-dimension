@@ -239,7 +239,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native archive and mineral homes
         run: node tests/v197-research-homes-browser.mjs
       - name: Native archive journal across appearance switch
@@ -299,7 +299,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
 
       - name: Native pearl cup crafting and refresh
         if: inputs.check_scope != 'soil-diagnostics'
@@ -463,7 +463,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
 
       - name: Native island module download recovery
         run: node tests/v280-module-bootstrap-browser.mjs
@@ -544,7 +544,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native Windows save lock contention and unique delivery
         if: runner.os == 'Windows'
         run: node tests/v218-save-lock-browser.mjs
@@ -594,7 +594,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native recovery input through workshop modal dialogs
         run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
       - name: Retain isolated recovery input evidence
@@ -630,7 +630,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native dialogue while another receipt settles
         run: node tests/v262-social-pending-browser.mjs
       - name: Retain isolated dialogue evidence
@@ -663,7 +663,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native curator journal across appearance switch
         run: node tests/v199-legacy-homes-lan-browser.mjs
       - name: Native steward journal and exchange entry
@@ -702,7 +702,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install locked browser driver
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native task delivery when visible RAF callbacks stop
         run: node tests/v274-frame-recovery-browser.mjs
       - name: Retain native frame recovery diagnostics
@@ -733,7 +733,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Diagnose the original resident chain without weakening its gates
         env:
           HD_QA_WORK_JOURNAL: "1"

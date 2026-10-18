@@ -1,0 +1,55 @@
+{
+  "version": "V298",
+  "at": "2026-10-18T23:30:34.235437+00:00",
+  "runtimeHashes": {
+    "src/connectedSpriteSurface.js": "c2e84cff5021d9277e7174340805c34f7dd72a6fc38d78b6e5df9dc775b526ed",
+    "src/gpuCompletion.js": "26aa288f0abdbd0020e96877dd4c841c90a202a33d815a99ea40d5b7e6227918",
+    "src/world.js": "9b5265ab4e8deb02176a9fc9002326f51d85af4ee46d2d797e4a998132bfc83a",
+    "src/nearbyObstacles.js": "24c2cfec7e8b02ff0663bcb3c64ed35588b268ec9d3b233cd244abeef0cb1491",
+    "src/worldNavigationEdges.js": "c933c31c219111479b22300af7505934b019f5c7e65b7b068f374ebb7f7160ca"
+  },
+  "navigation": "Moving obstacles are snapshotted into nearby buckets per synchronous path search. Exact Math.hypot distance<15, route nodes, weights, search budget and game clocks remain. Official navigation rebuild changed only source fingerprint; both terrain edge arrays are identical.",
+  "newNavigationRulesPassed": 4,
+  "randomPointComparisons": 36000,
+  "bothStyleExactRouteComparisons": 6,
+  "defaultRuleCounts": [
+    1478,
+    14
+  ],
+  "defaultPassed": 1492,
+  "nativeLostMovementBothStyles": true,
+  "nativeTaskChains": [
+    {
+      "theme": "pixel",
+      "firstWorkingMs": 20945,
+      "firstLimitMs": 120000,
+      "remainingSharedWorkingMs": 108732,
+      "remainingLimitMs": 240000,
+      "midChainReloadAndEmptyBrowserReopenPassed": true
+    },
+    {
+      "theme": "origami",
+      "firstWorkingMs": 20904,
+      "firstLimitMs": 120000,
+      "remainingSharedWorkingMs": 107358,
+      "remainingLimitMs": 240000,
+      "midChainReloadAndEmptyBrowserReopenPassed": true
+    }
+  ],
+  "modelsInTheseChecks": "Blocked; deterministic fictional replies, no human or physical-device claim.",
+  "registryRepair": {
+    "version": "1.63.0",
+    "integrity": "sha512-rYCsBF/M5HjUch52bbtVONEFjv6Xu8sm8h72dNlR5bzIE1fvC/bxgspzkjSfU+MweEMmPM8KJebG6nnyxo5mCg==",
+    "tarballSha256": "208593d4e1bcd8f8fe5f869cad1cc332dc7f1d70dc1d58c102dc3ac36e30f26c",
+    "freshOfficialRegistryNpmCiPassed": true,
+    "all114DriverFilesIdentical": true,
+    "workflowRegistryOnlyEdits": 9,
+    "hostedRecoveryConfirmed": false
+  },
+  "currentFullFourMapUntracedQualificationPassed": false,
+  "inspectorEnabledFourMapDiagnosticPassed": true,
+  "inspectorDiagnosticIsNotPerformanceQualification": true,
+  "actualFourMapFailureRetained": true,
+  "sourceCanvasAndGpuRenderingUnchangedFromV297": true,
+  "wholeGoalComplete": false
+}
