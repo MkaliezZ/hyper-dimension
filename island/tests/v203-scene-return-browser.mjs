@@ -26,6 +26,8 @@ try{
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();
   await context.route('**/api/**',r=>{const p=new URL(r.request().url()).pathname;return p.startsWith('/api/npc/')||p.startsWith('/api/hermes/')||p.endsWith('/suggest')?r.fulfill({status:503,contentType:'application/json',body:'{"error":"Providers disabled for scene navigation regression"}'}):r.continue();});
   page.on('pageerror',e=>row.errors.push(e.message));page.on('response',r=>{if(r.url().includes('/assets/')&&r.status()>=400)row.badAssets.push(new URL(r.url()).pathname);});
+  // Metadata-only diagnostics in this owned fixture; assertions and timing stay unchanged.
+  await context.route('**/src/app.js',async route=>{const response=await route.fetch();const source=await response.text();await route.fulfill({response,body:source+'\nwindow.__sceneReturnObservation=()=>{const s=saves.status(theme);return {scene,at:performance.now(),hidden:document.hidden,frameLoop:frameLoop.inspect(),recoveryBoot,changingTheme,blocked:saves.blocked(theme),save:{status:s.status,capturing:!!s.capturing,reconciling:!!s.reconciling,commandSending:!!s.commandSending},player:{x:actor.x,y:actor.y,path:actor.path.length,action:actor.action?{type:actor.action.type,t:actor.action.t,duration:actor.action.duration,awaitingReceipt:!!actor.action.awaitingReceipt,acceptedLease:actor.action.acceptedLease||null}:null},gather:{busy:serverGather.busy(),settling:serverGather.settling()},resident:serverResident.inspect(),active:s.actions?.active?{kind:s.actions.active.kind||"gather",requestId:s.actions.active.requestId}:null};};'});});
   const inspect=()=>page.evaluate(()=>window.islandInspect());
   const ready=()=>page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!window.islandInspect().startup.busy&&!document.getElementById('islandBootNotice'),null,{timeout:60000});
   const close=async()=>{if(await page.locator('#closeModal').isVisible())await page.locator('#closeModal').click();};
@@ -48,7 +50,7 @@ try{
    row.stage='farm-to-forest';await gather('fiber');row.fiber=(await inspect()).journey.stats.gathered.fiber;
    row.stage='refresh';await page.reload();await ready();const after=(await inspect()).actor;assert(worldWalkable(after.x,after.y));await gather('wood');
    await page.screenshot({path:path.join(out,theme+'-returned.png')});assert.deepEqual(row.errors,[]);assert.deepEqual(row.badAssets,[]);row.passed=true;
-  }catch(e){row.failure=e.stack;await page.screenshot({path:path.join(out,theme+'-failure.png')}).catch(()=>{});throw e;}
+  }catch(e){row.failure=e.stack;let observationTimer;row.last=await Promise.race([page.evaluate(()=>window.__sceneReturnObservation?.()).catch(()=>null),new Promise(resolve=>{observationTimer=setTimeout(()=>resolve({observationTimedOut:true}),2000);})]).finally(()=>clearTimeout(observationTimer));await page.screenshot({path:path.join(out,theme+'-failure.png')}).catch(()=>{});throw e;}
   finally{await context.close();server.kill();await writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));}
  }
  report.passed=true;

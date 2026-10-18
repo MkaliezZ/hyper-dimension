@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v280-agent-source",
+  "release": "hyper-dimension-v281-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 103912,
-      "sha256": "42a95a6902a3baf51cf99734edd3157af5df26045717e46f122e004674e2c491"
+      "bytes": 104470,
+      "sha256": "365e49460f506ba7d5fef31d5d7bb66f4cec2b6fff893af7cee27a4a50bcc073"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16468,
-      "sha256": "a47f411293814af75903594d85fa1a5cf08c8d4cf57d68570a997e0f8b643e72"
+      "bytes": 16592,
+      "sha256": "9674130da4130817db1ba8271db5b550366582781b4e916a90ec2d9e28c4c0dc"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 145350,
-      "sha256": "af973cc74dd1655900d10e1d7b793a69db3899501ae78bd9790ed42033efc002"
+      "bytes": 145689,
+      "sha256": "6c7f1bf14ba18aa85e4c8ca68e754454422b8fd3660d7326043cebb46d14121a"
     },
     {
       "path": "src/arcade.css",
@@ -9762,8 +9762,8 @@
     },
     {
       "path": "tests/v203-scene-return-browser.mjs",
-      "bytes": 7311,
-      "sha256": "daff84641f9296117187937bb003c48e1848761bc9ef177435e4975f056c0edc"
+      "bytes": 8616,
+      "sha256": "cb0327ec1a572609d3c2be8d2f9087d017cab064981bf93958a58b41b2493848"
     },
     {
       "path": "tests/v204-save-waiter-browser.mjs",
@@ -13314,7 +13314,32 @@
       "path": "docs/verification/v280/module-bootstrap.json",
       "bytes": 2727,
       "sha256": "d0b0bb60736b51e6a049bcde99f1e69f5f3a844b00a210ddc29a9a519633d644"
+    },
+    {
+      "path": "docs/player-action-clock-v281.md",
+      "bytes": 2490,
+      "sha256": "1f4ff0894d7ad253b77da9e6f179651f3e9bf87ddec690aea8322476b5b4d6b1"
+    },
+    {
+      "path": "docs/verification-v281.json",
+      "bytes": 1429,
+      "sha256": "0041a348a47e247d8fdd094cd7ce3daf86c7f8e0db435beeed655cd11fa9e0a1"
+    },
+    {
+      "path": "src/playerActionLifecycle.js",
+      "bytes": 1973,
+      "sha256": "c2243a058207354f5658a935118f563e3e62803e934b3242144fe020d60a2b58"
+    },
+    {
+      "path": "tests/v281-player-action-browser.mjs",
+      "bytes": 7352,
+      "sha256": "2beb210003276477a8bc9a7487ec8a2a00e3118c71e0b340dda08cf239482b4b"
+    },
+    {
+      "path": "tests/v281-player-action-clock.test.mjs",
+      "bytes": 2800,
+      "sha256": "ab6bf61d4aafad3c92734041e71453806dc230a45f5324369681090eceae52d0"
     }
   ],
-  "publicRevision": "v280-module-transport-recovery"
+  "publicRevision": "v281-player-action-completion"
 }

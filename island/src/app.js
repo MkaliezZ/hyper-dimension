@@ -119,6 +119,7 @@ import {mountActivityGame} from './activityGames.js';
 import {followPath,followPendingPath,navigationArrival} from './movement.js';
 import {visibleFrameSeconds,visibleNavigationSeconds} from './frameClock.js';
 import {advancePendingActionPose} from './residentActivityControl.js';
+import {bindAcceptedPlayerAction,advanceAcceptedPlayerAction} from './playerActionLifecycle.js';
 import {shouldYield} from './harborNavigation.js';
 import {cropPickerMarkup} from './cropPickerUI.js';
 import {drawCropPlant,prepareCropArt,cropPlantingGrid,cropArtStatus} from './cropArt.js';
@@ -255,7 +256,7 @@ function updateSceneUI(){const world=scene==='world';$('mapBadge').classList.tog
 function releasePlayerStations(){endToolUse(state,actor.action?.equipment);endToolUse(state,gatheringToolUse);gatheringToolUse=null;releasePlayerCraft();playerCraftIntent=null;playerRoomWait=null;releaseRoomSpot('player');if(playerFarmClaim!=null)runtime?.releaseFarm(playerFarmClaim);playerFarmClaim=null}
 function setScene(next,bid=0){placementUI?.cancel(false);closeModal();releasePlayerStations();if(scene==='world')persist();scene=next;sceneBuilding=bid;actor.path=[];actor.after=null;actor.action=null;if(next==='world'){Object.assign(actor,nearestWalkable(state.player.x,state.player.y));camera.x=ISLAND_GEOGRAPHY.spawn.x;camera.y=ISLAND_GEOGRAPHY.spawn.y}else{actor.x=500;actor.y=545;camera.x=SCENE.width/2;camera.y=SCENE.height/2}zoom=next==='world'?1.55:1;clampCamera();updateSceneUI();toast(next==='farm'?'锄地 → 播种 → 浇水 → 收获':next==='mine'?'点击矿脉，把握挥镐时机':next==='world'?'已返回小岛':`进入${BUILDINGS[bid]?.name||'室内'}`)}
 function planMove(target,after=null){if(actor.action)releasePlayerStations();const walk=scene==='world'?worldWalkable:(x,y)=>scene==='farm'||scene==='mine'?sceneWalkable(scene,x,y):roomWalkable(sceneBuilding,x,y);const path=findPath(point(actor.x,actor.y),target,walk,scene==='world'?WORLD_CELL:20);if(path.length===0){if(distance(actor,target)<35&&after)after();else toast('暂时无法走到那里');return}actor.path=path;actor.after=after;actor.action=null}
-function startAction(type,duration,onContact,onDone,toolUse=null){endToolUse(state,actor.action?.equipment);const equipment=toolUse||beginToolUse(state,type,duration);actor.direction=scene==='world'?(actor.face<0?Math.PI:0):-Math.PI/2;actor.path=[];actor.walking=false;actor.action={type,equipment,roomId:scene==='world'||scene==='farm'||scene==='mine'?null:sceneBuilding,t:0,duration:equipment.duration,contact:false,onContact,onDone:()=>{endToolUse(state,equipment);onDone?.()}};}
+function startAction(type,duration,onContact,onDone,toolUse=null,lease=null){endToolUse(state,actor.action?.equipment);const equipment=toolUse||beginToolUse(state,type,duration);actor.direction=scene==='world'?(actor.face<0?Math.PI:0):-Math.PI/2;actor.path=[];actor.walking=false;actor.action={type,equipment,roomId:scene==='world'||scene==='farm'||scene==='mine'?null:sceneBuilding,t:0,duration:equipment.duration,contact:false,onContact,onDone:()=>{endToolUse(state,equipment);onDone?.()}};if(lease)bindAcceptedPlayerAction(actor,lease);}
 function enterHotspot(type){if(type==='farm'||type==='mine')setScene(type);else if(type==='forest')collectWood();else if(type==='plaza')showParty();else if(type==='dock')showBusiness()}
 const portfolioUI=createPortfolioUI({theme:()=>theme,openModal,toast,api:location.pathname==='/play'?'/api/lan/portfolio':'/api/portfolio',name:()=>state.playerProfile?.name||'本岛岛主'});
 function clickWorld(p){const person=mapCharacters.pick(p);if(person){if(person.kind==='visitor')showGuest(person.actor);else if(person.kind==='resident')talk(person.npcId);return;}const hall=portfolioHit(p.x,p.y);if(hall){planMove(PORTFOLIO_SITE.entry,navigationArrival(()=>portfolioUI.open(hall==='guestbook'?'guestbook':'gallery')));return;}const display=hitDecoration(state,p.x,p.y);if(display){placementUI.card(display.id);return}const mine=HOTSPOTS.find(h=>h.type==='mine'&&distance(p,h)<h.r),farm=HOTSPOTS.find(h=>h.type==='farm'&&distance(p,h)<h.r);if(farm||mine){const h=farm||mine;planMove(h.entry,navigationArrival(()=>enterHotspot(h.type)));return}
@@ -492,7 +493,7 @@ function animatePendingSave(dt,travelDt=dt){
  animateParticles(dt);
  if(celebration)return;
  visitors?.animatePending(dt,travelDt);
- if(!actor.action)followPendingPath(actor,travelDt,scene==='world'?142:130);else advancePendingActionPose(actor,dt);
+ if(!actor.action)followPendingPath(actor,travelDt,scene==='world'?142:130);else if(!advanceAcceptedPlayerAction(actor,travelDt,saves.status(theme).actions?.active,{onContact:action=>worldSound.contact(action)}))advancePendingActionPose(actor,dt);
  for(const n of npcs){if(n.indoorActor?.path.length)followPendingPath(n.indoorActor,travelDt,108);else if(!n.action&&(!n.recruitControlled||!shouldYield(n,[...npcs,...(visitors?.guests||[])])))followPendingPath(n,travelDt,n.recruitControlled?78:n.partyControlled?65:55+(n.npcId%3)*2);if(n.action&&!runtime.advanceAcceptedWorkAction(n,travelDt))advancePendingActionPose(n,dt);}
  runtime.advancePendingMeetings(dt);
 }
@@ -624,18 +625,18 @@ contentUI=createContentUI({farmCare:()=>farmCareUI.open(),shopfront:id=>shopfron
 equipmentUI=createEquipmentUI({command:(operation,args)=>serverPersonal.command(operation,{day:state.day,...args}),state:()=>state,theme:()=>theme,openModal,persist,renderUI,toast,detail:id=>contentUI.detail(id),back:()=>contentUI.player()});
 serverGather=createServerGather({saves,theme:()=>theme,persist,toast,
  applyState:next=>{state=next;renderUI();},
- startAnimation:(ticket,done)=>{startAction(ticket.action,ticket.duration,()=>burst(actor.x,actor.y-28,'#a8ce90',14),done,{tool:ticket.tool,owner:ticket.owner,duration:ticket.duration});actor.action.output=ticket.item;},
+ startAnimation:(ticket,done)=>{startAction(ticket.action,ticket.duration,()=>burst(actor.x,actor.y-28,'#a8ce90',14),done,{tool:ticket.tool,owner:ticket.owner,duration:ticket.duration},ticket);actor.action.output=ticket.item;},
  stopAnimation:()=>{actor.action=null;actor.path=[];actor.after=null;},
  onGain:receipt=>{const t=receipt.ticket;spawnItem(t.item);spawnText(actor.x,actor.y-45,'+'+t.amount+' '+t.name);log('采集'+t.name+' ×'+t.amount+'。');},
  onRelease:()=>releaseRoomSpot('player')
 });
 serverCraft=createServerCraft({saves,theme:()=>theme,persist,toast,continuousCheckpoint:true,applyState:next=>{state=next;renderUI();},mount:mountServerCraft,
  closeGame:()=>{roomGame=null;closeModal();releaseRoomSpot('player');},
- animate:ticket=>new Promise(resolve=>{roomGame=null;closeModal();acquireRoomSpot(ticket.building,'player','work');const room=ROOMS[ticket.building];startAction(room.action,ticket.duration,()=>burst(actor.x,actor.y-45,room.color,20),resolve,{tool:ticket.tool,owner:ticket.owner,duration:ticket.duration});actor.action.output=ticket.item;}),
+ animate:ticket=>new Promise(resolve=>{roomGame=null;closeModal();acquireRoomSpot(ticket.building,'player','work');const room=ROOMS[ticket.building];startAction(room.action,ticket.duration,()=>burst(actor.x,actor.y-45,room.color,20),resolve,{tool:ticket.tool,owner:ticket.owner,duration:ticket.duration},ticket);actor.action.output=ticket.item;}),
  onComplete:receipt=>{const t=receipt.ticket;if(receipt.outcome==='finished'){spawnItem(t.item);spawnText(actor.x,actor.y-44,'+1 '+t.name);log('在'+BUILDINGS[t.building].name+'制作'+t.name+'，品质 '+receipt.quality+'。');toast('制作完成 · '+t.name+' ×1');contentUI.detail(t.item,{crafted:true})}else toast(receipt.outcome==='practiced'?'练习已完成，本局未消耗材料':'已取消制作，材料已解除预留');renderUI();}
 });
 serverFarm=createServerFarm({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI();},
- startAnimation:(t,done)=>{if(scene!=='farm')setScene('farm');runtime.claimFarm(t.index);playerFarmClaim=t.index;const q=farmPlots[t.index];const run=()=>{actor.face=1;startAction(t.action,t.duration,()=>{const p=plotPoint(q,.5,.65);burst(p.x,p.y,t.step==='water'?'#93cdf0':t.step==='harvest'?CROPS[t.crop].color:t.step==='fertilize'?'#96b875':'#90734e',18)},done,{tool:t.tool,owner:t.owner,duration:t.duration});actor.action.output=t.step==='harvest'?t.item:null;actor.action.crop=t.crop;actor.action.harvestMode=t.harvestMode||cropHarvestProfile(t.crop)?.mode};if(distance(actor,q.entry)<35)run();else planMove(q.entry,run);},
+ startAnimation:(t,done)=>{if(scene!=='farm')setScene('farm');runtime.claimFarm(t.index);playerFarmClaim=t.index;const q=farmPlots[t.index];const run=()=>{actor.face=1;startAction(t.action,t.duration,()=>{const p=plotPoint(q,.5,.65);burst(p.x,p.y,t.step==='water'?'#93cdf0':t.step==='harvest'?CROPS[t.crop].color:t.step==='fertilize'?'#96b875':'#90734e',18)},done,{tool:t.tool,owner:t.owner,duration:t.duration},t);actor.action.output=t.step==='harvest'?t.item:null;actor.action.crop=t.crop;actor.action.harvestMode=t.harvestMode||cropHarvestProfile(t.crop)?.mode};if(distance(actor,q.entry)<35)run();else planMove(q.entry,run);},
  stopAnimation:()=>{actor.action=null;actor.path=[];actor.after=null;},onRelease:releasePlayerStations,onWaterRelease:(index,id)=>runtime.releaseFarm(index,'facility:'+id),
  onReceipt:r=>{if(r.outcome==='finished'){if(r.ticket.step==='harvest'){const q=farmPlots[r.ticket.index],p=plotPoint(q,.5,.65);spawnItem(r.ticket.item,p.x,p.y);spawnText(p.x,p.y-20,'+'+r.gain[r.ticket.item]+' '+CROPS[r.ticket.crop].name);}log(r.text);toast(r.text);}else toast(r.text);renderUI();queueMicrotask(()=>farmCareUI?.paint());}
 });
@@ -647,7 +648,7 @@ function mountServerField(ticket,controls){
  roomGame={inspect:()=>raw.inspect(),destroy:()=>serverField.exit()};return raw;
 }
 serverField=createServerCraft({saves,theme:()=>theme,continuousCheckpoint:true,persist,toast,kind:'field',idPrefix:'field',noun:'采集',beginInput:(input,task,mode)=>({...input,actor:'player',mode}),restartInput:t=>({field:t.field,index:t.index,itemId:t.item}),shouldRecover:(active,pending)=>!(pending?.body?.actor==='npc'||saves.status(theme).actions?.field?.leases?.[pending?.body?.requestId]),applyState:next=>{state=next;renderUI()},mount:mountServerField,closeGame:()=>{roomGame=null;closeModal()},
- animate:t=>new Promise(done=>{roomGame=null;closeModal();const run=()=>{startAction(t.action,t.duration,()=>{const p=t.field==='mine'?mineRocks[t.index]:actor;burst(p.x,p.y,t.field==='mine'?'#84d6dc':'#9bcbd8',20)},done,{tool:t.tool,owner:t.owner,duration:t.duration});actor.action.output=t.item;};if(t.field==='mine'){if(scene!=='mine')setScene('mine');const p=mineRocks[t.index];actor.face=p.x>=actor.x?1:-1;planMove({x:p.x,y:p.y+76},run);}else run();}),
+ animate:t=>new Promise(done=>{roomGame=null;closeModal();const run=()=>{startAction(t.action,t.duration,()=>{const p=t.field==='mine'?mineRocks[t.index]:actor;burst(p.x,p.y,t.field==='mine'?'#84d6dc':'#9bcbd8',20)},done,{tool:t.tool,owner:t.owner,duration:t.duration},t);actor.action.output=t.item;};if(t.field==='mine'){if(scene!=='mine')setScene('mine');const p=mineRocks[t.index];actor.face=p.x>=actor.x?1:-1;planMove({x:p.x,y:p.y+76},run);}else run();}),
  onComplete:r=>{if(r.outcome==='finished'){const p=r.ticket.field==='mine'?mineRocks[r.ticket.index]:actor;for(const [id,n]of Object.entries(r.gain)){spawnItem(id,p.x,p.y);spawnText(p.x,p.y-35,'+'+n+' '+ITEMS[id][0]);}log(r.text);toast(r.text);}else toast(r.text);renderUI();}
 });
 serverFieldNpc=createServerFieldNpc({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI()}});
@@ -659,7 +660,7 @@ serverParty=createServerCraft({saves,theme:()=>theme,persist,toast,kind:'party',
  mount:(ticket,controls)=>{roomGame=null;openModal(ticket.name+' · '+(ticket.game.engine==='night-sky'?'共绘星图':'四盏星灯'),'本场进度已保存在小岛，收起页面后可继续相聚。','<div id="nightPartyRoot"></div>');$('modalRoot').querySelector('.modal').classList.add('night-party-modal');
   const raw=mountNightParty($('nightPartyRoot'),ticket,controls,{theme,people:(ticket.design?.participants||[0,2]).map(id=>({id,name:profile(id).name})),arrived:()=>nightPartyArrived(state),sound:s=>soundMixer.play(s),effect:precise=>burst(actor.x,actor.y-75,precise?'#ffe9a0':'#c2e5d4',20)});roomGame={inspect:raw.inspect,destroy:raw.destroy};return raw;},
  closeGame:()=>{roomGame=null;closeModal();partyGame=state.partySession||null;partySettling=false;},
- animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>{burst(actor.x,actor.y-65,'#f9d378',35);if(t.fireworks){burst(actor.x-70,actor.y-135,'#ec97aa',28);burst(actor.x+70,actor.y-155,'#94dbe0',28)}},done);}),
+ animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>{burst(actor.x,actor.y-65,'#f9d378',35);if(t.fireworks){burst(actor.x-70,actor.y-135,'#ec97aa',28);burst(actor.x+70,actor.y-155,'#94dbe0',28)}},done,null,t);}),
  onComplete:r=>{partyGame=null;partySettling=false;log(r.text);toast(r.text);renderUI();nightUI.open();}
 });
 
@@ -676,7 +677,7 @@ serverFishing=createServerCraft({saves,theme:()=>theme,continuousCheckpoint:true
  applyState:next=>{state=next;renderUI();},
  mount:(ticket,controls)=>fishingUI.mount(ticket,controls),
  closeGame:()=>{closeModal();partySettling=false;},
- animate:t=>new Promise(done=>{fishingUI.stopGame();closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f9d378',35),done);}),
+ animate:t=>new Promise(done=>{fishingUI.stopGame();closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f9d378',35),done,null,t);}),
  onComplete:r=>{partySettling=false;log(r.text);toast(r.text);fishingRuntime.release();renderUI();fishingUI.open();}
 });
 festivalUI=createFestivalUI({state:()=>state,theme:()=>theme,profile,portrait:halfPortrait,openModal,toast,persist,command:(op,args={})=>serverCommerce.command(op,{day:state.day,...args}),back:showParty,play:{resume:()=>serverFestival.resume()},collections:()=>collectionsUI.open(),start:async d=>{try{if(serverFestival.busy()){await serverFestival.resume();return;}await serverFestival.begin({eventId:d.id,eventVersion:d.version,eventStamp:partyDraftStamp(d)});}catch(e){toast(e.message);}}});
@@ -690,7 +691,7 @@ serverFestival=createServerCraft({saves,theme:()=>theme,continuousCheckpoint:tru
   const raw=mountMarket($('marketPartyRoot'),ticket,controls,{theme,profile,portrait:halfPortrait,ready:()=>festivalRuntime.ready(),arrived:o=>festivalRuntime.arrived(o),sound:s=>soundMixer.play(s),burst:()=>burst(actor.x,actor.y-55,'#f1d587',12)});roomGame={inspect:raw.inspect,destroy:raw.destroy};return raw;
  },
  closeGame:()=>{roomGame=null;closeModal();partySettling=false;},
- animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f8d68d',35),done);}),
+ animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f8d68d',35),done,null,t);}),
  onComplete:r=>{partySettling=false;log(r.text);toast(r.text);festivalRuntime.release();renderUI();festivalUI.open();}
 });
 coutureUI=createCoutureUI({state:()=>state,theme:()=>theme,profile,portrait:halfPortrait,openModal,toast,persist,command:(op,args={})=>serverCommerce.command(op,{day:state.day,...args}),back:showParty,play:{resume:()=>serverCouture.resume()},collections:()=>collectionsUI.open(),start:async d=>{try{if(serverCouture.busy()){await serverCouture.resume();return;}await serverCouture.begin({eventId:d.id,eventVersion:d.version,eventStamp:partyDraftStamp(d)});}catch(e){toast(e.message);}}});
@@ -705,7 +706,7 @@ serverCouture=createServerCraft({saves,theme:()=>theme,continuousCheckpoint:true
   const raw=mountCouture($('couturePartyRoot'),ticket,controls,{theme,profile,portrait:halfPortrait,ready:()=>coutureRuntime.ready(),arrived:id=>coutureRuntime.arrived(id),model:id=>npcs[id],layout:g.layout,sound:s=>soundMixer.play(s),burst:()=>burst(actor.x,actor.y-55,'#f1d587',12)});roomGame={inspect:raw.inspect,destroy:raw.destroy};return raw;
  },
  closeGame:()=>{roomGame=null;closeModal();partySettling=false;},
- animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f8d68d',35),done);}),
+ animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f8d68d',35),done,null,t);}),
  onComplete:r=>{partySettling=false;log(r.text);toast(r.text);coutureRuntime.release();renderUI();coutureUI.open();}
 });
 fireworksUI=createFireworksUI({state:()=>state,theme:()=>theme,profile,portrait:halfPortrait,openModal,toast,persist,command:(op,args={})=>serverCommerce.command(op,{day:state.day,...args}),back:showParty,play:{resume:()=>serverFireworks.resume()},collections:()=>collectionsUI.open(),start:async d=>{try{if(serverFireworks.busy()){await serverFireworks.resume();return;}await serverFireworks.begin({eventId:d.id,eventVersion:d.version,eventStamp:partyDraftStamp(d)});}catch(e){toast(e.message);}}});
@@ -720,7 +721,7 @@ serverFireworks=createServerCraft({saves,theme:()=>theme,continuousCheckpoint:tr
   const raw=mountFireworks($('fireworksPartyRoot'),ticket,controls,{theme,profile,portrait:halfPortrait,ready:()=>fireworksRuntime.ready(),participants:g.participants.map(p=>p.id),present:id=>state.fireworksAttendance?.people[id]?.arrived===true,sound:s=>soundMixer.play(s),burst:()=>burst(actor.x,actor.y-55,'#f1d587',12)});roomGame={inspect:raw.inspect,destroy:raw.destroy};return raw;
  },
  closeGame:()=>{roomGame=null;closeModal();partySettling=false;},
- animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f8d68d',35),done);}),
+ animate:t=>new Promise(done=>{roomGame=null;closeModal();partySettling=true;startAction('celebrate',t.duration,()=>burst(actor.x,actor.y-70,'#f8d68d',35),done,null,t);}),
  onComplete:r=>{partySettling=false;log(r.text);toast(r.text);fireworksRuntime.release();renderUI();fireworksUI.open();}
 });
 serverVisitor=createServerVisitor({saves,theme:()=>theme,persist,toast,applyState:next=>{state=next;renderUI()},restore:()=>visitors.reset()});

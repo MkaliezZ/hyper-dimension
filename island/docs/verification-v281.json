@@ -1,0 +1,52 @@
+{
+  "version": 281,
+  "scope": "Actual isolated Windows native game and authoritative services; models disabled, no user data, no physical Mac or human acceptance.",
+  "rules": {
+    "related": 29,
+    "defaultMain": 1437,
+    "windowsRuntimeGuards": 14,
+    "defaultTotal": 1451,
+    "failed": 0
+  },
+  "nativeBefore": {
+    "theme": "pixel",
+    "passed": false,
+    "actualAcceptedResidentResponseHeld": true,
+    "poseSeconds": 1.6,
+    "durationSeconds": 1.6,
+    "finishRequests": 0,
+    "wax": 0
+  },
+  "nativeAfter": [
+    {
+      "theme": "pixel",
+      "passed": true,
+      "poseFinishedBeforeForeignReceipt": true,
+      "inventoryAndReceiptWaitForAuthority": true,
+      "finishRequests": 1,
+      "waxAfterReceipt": 2,
+      "reloadUnique": true
+    },
+    {
+      "theme": "origami",
+      "passed": true,
+      "poseFinishedBeforeForeignReceipt": true,
+      "inventoryAndReceiptWaitForAuthority": true,
+      "finishRequests": 1,
+      "waxAfterReceipt": 2,
+      "reloadUnique": true
+    }
+  ],
+  "sceneReturnBothStyles": true,
+  "v280FrozenReentryBothStyles": true,
+  "priorHour": {
+    "version": 278,
+    "completed": false,
+    "lastMinute": 50,
+    "failure": "EPERM while atomically replacing the private test progress report",
+    "passed": false
+  },
+  "macRootCauseConfirmed": false,
+  "fullAcceptanceComplete": false,
+  "wholeGoalComplete": false
+}
