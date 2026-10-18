@@ -1,0 +1,84 @@
+{
+  "version": "V273",
+  "at": "2026-10-18T04:48:06.996157+00:00",
+  "baseCommit": "b391883c2015c1ffad6532e9603333d4c28935da",
+  "runtimeChange": "Only exitRoom pose cleanup uses the existing navigationArrival marker. Work, inventory and receipt callbacks retain their original gates.",
+  "originalHostedIssue": {
+    "run": 39091824192,
+    "job": 117570006051,
+    "artifactId": 12123439079,
+    "artifactSha256": "c4b1e8a56f1cb203e1c9257e8a69b02c15f9422fe6d215ca04fb5ca53cfe6e13",
+    "fullDigestAndCrcVerified": true,
+    "originalExactCauseEstablished": false
+  },
+  "domainRegression": {
+    "exactPriorModuleTests": {
+      "tests": 6,
+      "pass": 4,
+      "fail": 2
+    },
+    "patchedRelatedCasesPassed": 28,
+    "taskCompletionAndInventoryUnaffectedByPose": true,
+    "offShiftHungerPauseAndOwnPendingGuardsRetained": true
+  },
+  "normalSlowFrameNativeBothThemesPassed": true,
+  "overnightNative": [
+    {
+      "theme": "pixel",
+      "preQueueRealWaitMs": 128307,
+      "queueAt": "14:00",
+      "thirdTaskPeriods": [
+        "leisure",
+        "sleep",
+        "leisure",
+        "work"
+      ],
+      "budgets": {
+        "first": {
+          "usedMs": 23008,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 100017,
+          "limitMs": 240000
+        }
+      },
+      "uniqueTaskReceipts": 3,
+      "emptyBrowserReopened": true,
+      "passed": true
+    },
+    {
+      "theme": "origami",
+      "preQueueRealWaitMs": 128305,
+      "queueAt": "14:00",
+      "thirdTaskPeriods": [
+        "leisure",
+        "sleep",
+        "leisure",
+        "work"
+      ],
+      "budgets": {
+        "first": {
+          "usedMs": 22492,
+          "limitMs": 120000
+        },
+        "remaining": {
+          "usedMs": 102314,
+          "limitMs": 240000
+        }
+      },
+      "uniqueTaskReceipts": 3,
+      "emptyBrowserReopened": true,
+      "passed": true
+    }
+  ],
+  "nativeScope": "Fictional zero-material islands, explicit needs and controlled manual plan, providers blocked. Real leases and clocks; declared first-party visible slow frames. Not real-model, physical Mac or human acceptance.",
+  "journalShapeBothThemesPassed": true,
+  "defaultRulesPassed": 1404,
+  "existingNativeInputsAssertionsAndTimeoutsRetained": true,
+  "separateOptInBoundaryEntry": "node tests/v273-shift-boundary-browser.mjs",
+  "hostedFrameStallsStillUnderInvestigation": true,
+  "fullSuitePassed": false,
+  "newFrozenSourceHourComplete": false,
+  "wholeGoalComplete": false
+}

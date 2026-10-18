@@ -36,6 +36,8 @@ node tools/agent-deploy.mjs run --mode=lan
 
 macOS / Ubuntu 使用 `--python=python3`；Ubuntu 去掉 `--offline`。启动后访问 `http://127.0.0.1:4175/play`。
 
+若下载到分卷，先按[分卷说明](docs/source-parts.md)校验合并，再部署。
+
 密钥放在私有 `.env.local`，无密钥可运行规则模式。更新时保留并备份 `data/` 和私有配置。也可把源码交给任意有终端权限的 Agent，按 [AGENTS.md](AGENTS.md) 与[部署指南](DEPLOYMENT.md) 操作。
 
 [下载源码](https://github.com/MkaliezZ/hyper-dimension/releases) · [OPC 共创课](public/assets/cocreation/course-v2.md) · [Agent / A2A](docs/a2a-standard-v158.md) · [教培模块](https://github.com/MkaliezZ/hyper-dimension/blob/main/README.education.md)

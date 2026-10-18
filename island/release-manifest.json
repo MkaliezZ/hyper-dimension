@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v272-agent-source",
+  "release": "hyper-dimension-v273-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -37,8 +37,8 @@
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 17775,
-      "sha256": "b6201e50c74c9a509ff654afa87b6e117a00f36fe0c64e1e0be703274fecb246"
+      "bytes": 7774,
+      "sha256": "f106c9543cea1c3d20b0c48e1667e6bdda260b4a603984b1fabcd9d6413902c2"
     },
     {
       "path": "LICENSE",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3029,
-      "sha256": "7d1826ae07f56b3455bd6a8325b6ac79ab27887e65a6b8a7b110b9d0da120b1a"
+      "bytes": 3112,
+      "sha256": "94e0bb3d5aff247354e65a68bc647ffd3c3d9d1c9ef76869a6a5ec3f5b9692f3"
     },
     {
       "path": "README.md",
-      "bytes": 2796,
-      "sha256": "a2b2c9deaf46332364147ec3838d4bb7fa07dc7105038afef82cab386e2893e8"
+      "bytes": 2888,
+      "sha256": "aba37ae7b92888bdb3b157b77535be0bec27099d3ccccfd586465e3fc46a8e70"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 99826,
-      "sha256": "710b634b3b0446d08d8cea92a7f35093b78327fe1a3f1885d7b0ccafebccdf67"
+      "bytes": 100297,
+      "sha256": "450a853837259b644f158c42f3ca21a5e514a654de5ba83562ed4bc7e4d49b4b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 15980,
-      "sha256": "8bd81645ea60e7113b192071e16b1c1ba461e91a0a1f763c5288e3c52f833cf8"
+      "bytes": 16014,
+      "sha256": "18d34f50c1342f62bd1f6e5b97f0184bcc96a13c01033a6d519cdcfe3b85e072"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 45808,
-      "sha256": "fa93c14284b59bfde02c69c68e6eb08af829959c003c45dd2e6da2935ef10492"
+      "bytes": 45876,
+      "sha256": "e311398f82bef29b20f1b338c3fec6227d2c6e00c2b400756f10feca6c5c122f"
     },
     {
       "path": "src/residentSchedule.js",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 12036,
-      "sha256": "d41aebea9f69777fbfd6fab635acab94827862bd0395339ce737404d3ace1631"
+      "bytes": 12930,
+      "sha256": "c5acc71d45089d5912ffeaf8e24ad6434b5295967c460d5c64061f5bb4acfbbf"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -13092,8 +13092,8 @@
     },
     {
       "path": "tests/nativeWorkJournal.mjs",
-      "bytes": 4224,
-      "sha256": "36a65624746def3d46811450c081e7d4f66129fb1ef3cbe4ead5414a4f3e023e"
+      "bytes": 4574,
+      "sha256": "d90b8d04dbd36e931aa886aeb6ca6bf1d4afa0960be015ddb926d88051271412"
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
@@ -13124,7 +13124,52 @@
       "path": "docs/media/hyper-dimension-v272-island-real-work-poster.png",
       "bytes": 5727866,
       "sha256": "1324c26c01bb54822972782e0aa12fca019da2b912eab0e77e8774051fbf8a3d"
+    },
+    {
+      "path": "docs/deployment-notes-through-v272.md",
+      "bytes": 17775,
+      "sha256": "b6201e50c74c9a509ff654afa87b6e117a00f36fe0c64e1e0be703274fecb246"
+    },
+    {
+      "path": "docs/source-parts.md",
+      "bytes": 3620,
+      "sha256": "aeb0833a0731de992bedb48f7725974a12ea6c2905c0ac778b90b2f2c4a61bd3"
+    },
+    {
+      "path": "tests/test_source_parts.py",
+      "bytes": 7769,
+      "sha256": "6e7cd0898fe23f7067217c31d62a66e326d065821bc1fb9833189e561880d280"
+    },
+    {
+      "path": "tests/v273-resident-exit.test.mjs",
+      "bytes": 2823,
+      "sha256": "e529318b33ea45c19ab0eadf28cb2ad4f2b1fa089831405c8d64e242ef7898eb"
+    },
+    {
+      "path": "tests/v273-shift-boundary-browser.mjs",
+      "bytes": 263,
+      "sha256": "590dafb72699a85a8be7eeba7b82321acf4050624b8e7f2b7b291d18f884ac16"
+    },
+    {
+      "path": "tools/source-parts.py",
+      "bytes": 10966,
+      "sha256": "8a6e82a0fe01b267b5caba0d1b22c63ee23118213279292910b499fd0e978d2f"
+    },
+    {
+      "path": "docs/resident-exit-v273.md",
+      "bytes": 2217,
+      "sha256": "9438fdc0e4cf740afbf14ab9391e45bda06216c442c5ac611c31b9f7ba434a86"
+    },
+    {
+      "path": "docs/verification/v273/resident-exit.json",
+      "bytes": 2585,
+      "sha256": "adaff5a7903aed541dd63294cbfa2f3903123c0ab3a708242b741e8a8de8dfa3"
+    },
+    {
+      "path": "docs/verification/v273/source-parts.json",
+      "bytes": 1438,
+      "sha256": "8dfc5f6000ac5bbefd927caa977eb520119bf5bb9d0db94fc0a016eefc63c7be"
     }
   ],
-  "publicRevision": "v272-visitor-transfer-showcase"
+  "publicRevision": "v273-resident-exit-source-parts"
 }

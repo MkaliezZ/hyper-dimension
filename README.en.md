@@ -36,6 +36,8 @@ node tools/agent-deploy.mjs run --mode=lan
 
 Use `--python=python3` on macOS / Ubuntu; omit `--offline` on Ubuntu. Open `http://127.0.0.1:4175/play` after launch.
 
+For split downloads, [verify and assemble the parts](island/docs/source-parts.md) first.
+
 Keep keys in private `.env.local`; rules mode works without a key. Preserve and back up `data/` and private configuration when updating. Any Agent with terminal access can follow [AGENTS.md](island/AGENTS.md) and [DEPLOYMENT.md](island/DEPLOYMENT.md).
 
 [Source downloads](https://github.com/MkaliezZ/hyper-dimension/releases) · [OPC course (Chinese)](island/public/assets/cocreation/course-v2.md) · [Agents / A2A](island/docs/a2a-standard-v158.md) · [Education module](README.education.md)

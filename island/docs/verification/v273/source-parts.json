@@ -1,0 +1,37 @@
+{
+  "version": "V273",
+  "at": "2026-10-18T04:48:06.996157+00:00",
+  "tool": "tools/source-parts.py",
+  "toolSha256": "8a6e82a0fe01b267b5caba0d1b22c63ee23118213279292910b499fd0e978d2f",
+  "stdlibOnly": true,
+  "unitCasesPassed": 9,
+  "unitScope": "Windows filesystem and CLI, plus POSIX exclusive-link code path on the local filesystem; no physical Mac claim.",
+  "actualArchive": {
+    "sourceCommit": "b391883c2015c1ffad6532e9603333d4c28935da",
+    "candidateOnly": true,
+    "bytes": 2571033794,
+    "sha256": "a84363213553078fdea22cc679a39228ee4e872dcf629a8f34d5464a8742d0db",
+    "parts": [
+      {
+        "name": "Hyper-Dimension-Agent-Source-v272-candidate.zip.part001",
+        "bytes": 1000000000,
+        "sha256": "b29cdc58ac5288d0f9d64b530c2ce92c8203e60edfe5adc462318aa0bc4ebf47"
+      },
+      {
+        "name": "Hyper-Dimension-Agent-Source-v272-candidate.zip.part002",
+        "bytes": 1000000000,
+        "sha256": "921761f1a58317f309dd4ad9f29f385774377f799dcc87632ba50c0a108a0164"
+      },
+      {
+        "name": "Hyper-Dimension-Agent-Source-v272-candidate.zip.part003",
+        "bytes": 571033794,
+        "sha256": "a3226befea969c6ae60937d677f0314aa32a67ab0ed419b7889a62d86fcbedd8"
+      }
+    ],
+    "assembledHashMatched": true,
+    "originalPreserved": true
+  },
+  "everyPartAtMostBytes": 1000000000,
+  "finalV273ArchiveClaimedVerified": false,
+  "wholeGoalComplete": false
+}

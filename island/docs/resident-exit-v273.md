@@ -1,0 +1,11 @@
+# V273 — Room exits and portable source delivery
+
+A queued resident could reach the interior exit and keep one final waypoint while unrelated save receipts settled. The exit callback only clears the resident's pose, room and intent; it now uses the existing navigation-only arrival marker. Work outcomes, inventory, fixed work shifts and canonical receipts retain their original guards.
+
+The exact old resident module fails both room-exit controls while passing the four off-shift, hunger, pause and own-pending controls. The patch passes all six and 22 existing related cases. Normal slow-frame native queues pass in both styles. A separate real-clock run waits until natural14:00, completes the second task near16:19, crosses leisure,22:00sleep,06:00leisure and07:00work, and completes the third task with unique receipts and fresh-browser recovery. Shared later-work usage is100017/102314ms under the original240000ms limit. The first120000ms and overall two-visual-day guards are unchanged. The fixture uses zero initial materials, explicit needs and a controlled manual plan; providers are disabled. It is not a human or physical macOS acceptance run.
+
+The separate opt-in command is `node tests/v273-shift-boundary-browser.mjs`; the existing full native command is preserved. Bounded diagnostics additionally record indoor pose and arrival markers. The hosted macOS animation-frame stall observed later remains a separate investigation; this exit repair is not claimed to solve it.
+
+Deployment instructions now describe current commands, preserved data and source-part assembly; the old guide is retained verbatim as historical notes. The Python standard-library parts tool verifies all slices and the combined ZIP, preserves conflicting output and publishes without overwriting another writer. Nine filesystem/CLI controls and an actual2571033794-byte candidate round trip pass. Three parts are at most one billion bytes each. This demonstrates the tool using the V272 candidate, not a completed final V273 package or physical Mac deployment.
+
+See [exit scope](verification/v273/resident-exit.json), [parts scope](verification/v273/source-parts.json) and [assembly instructions](source-parts.md).

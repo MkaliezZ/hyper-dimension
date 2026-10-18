@@ -11,13 +11,14 @@ import {residentSchedule} from '../src/residentSchedule.js';
 import {createWorkTimeBudget} from './workTimeBudget.mjs';
 import {installVisibleSlowFrames} from './visibleSlowFrames.mjs';
 
+const queueTargetHour=process.env.HD_QA_QUEUE_TARGET_HOUR===undefined?null:Number(process.env.HD_QA_QUEUE_TARGET_HOUR);assert(queueTargetHour===null||queueTargetHour===14,'Only the declared natural14:00queue fixture is supported');
 const out=resolve(process.env.HD_QA_OUT||'qa/v213/native-task-chains');await mkdir(out,{recursive:true});
 const slowFramePolicy={normalMs:Number(process.env.HD_QA_SLOW_NORMAL_MS||75),stallMs:Number(process.env.HD_QA_SLOW_STALL_MS||650),every:Number(process.env.HD_QA_SLOW_EVERY||12)};
 assert(Number.isInteger(slowFramePolicy.normalMs)&&slowFramePolicy.normalMs>=0&&slowFramePolicy.normalMs<=1000&&Number.isInteger(slowFramePolicy.stallMs)&&slowFramePolicy.stallMs>=slowFramePolicy.normalMs&&slowFramePolicy.stallMs<=7500&&Number.isInteger(slowFramePolicy.every)&&slowFramePolicy.every>=2&&slowFramePolicy.every<=100);
 const directory=await mkdtemp(join(out,'fictional-lan-'));
 const service=await createLanHttpServer({directory,port:0,enrollmentKey:'ISOLATED-TASK-CHAIN'}),base='http://127.0.0.1:'+service.port;
 const clockFile=join(directory,'environment/environment-clock.json'),clock=JSON.parse(await readFile(clockFile,'utf8'));assert.equal(clock.rate,1);assert.equal(clock.dayLengthMs,900000);
-const report={scope:'Native manual-chat queue registration, actual NPC movement/tool actions and authoritative task receipts, mid-chain reload and empty-browser reopen. Fictional accounts, zero initial materials, needs fixture, deterministic model reply; providers blocked, no accelerated clock, no user browser/data. Original first-job120seconds and shared remaining-chain240seconds count fixed working hours; calendar waiting is separate and bounded by two visual days. Not real model decision or human acceptance.',cases:[],slowVisibleFrames:process.env.HD_QA_SLOW_RENDER==='1',passed:false};let browser;
+const report={scope:'Native manual-chat queue registration, actual NPC movement/tool actions and authoritative task receipts, mid-chain reload and empty-browser reopen. Fictional accounts, zero initial materials, needs fixture, deterministic model reply; providers blocked, no accelerated clock, no user browser/data. Original first-job120seconds and shared remaining-chain240seconds count fixed working hours; calendar waiting is separate and bounded by two visual days. Not real model decision or human acceptance.',cases:[],naturalQueueTargetHour:queueTargetHour,slowVisibleFrames:process.env.HD_QA_SLOW_RENDER==='1',passed:false};let browser;
 const workJournal=createNativeWorkJournal(out,report,{deadlineMs:1980000});
 async function frameSnapshot(page,label){return page.evaluate(label=>{const p=window.nativeTaskFrames;if(!p)return null;const seconds=(performance.now()-p.started)/1000;return{label,seconds,frames:p.frames,fps:p.frames/seconds,maxGap:p.maxGap,visible:!document.hidden,policy:window.nativeTaskFramePolicy||null};},label);}
 try{
@@ -57,6 +58,12 @@ try{
   }
 
   try{
+   if(queueTargetHour!==null){
+    workJournal.phase(row,'wait-for-natural-shift-boundary');const waitStarted=Date.now();
+    while(environmentAt(clock,Date.now()).hour<queueTargetHour){assert(Date.now()-waitStarted<180000,'Natural pre-queue wait exceeded three real minutes');await page.waitForTimeout(250);}
+    const queuedEnvironment=environmentAt(clock,Date.now());assert(queuedEnvironment.hour<queueTargetHour+.3,'Fixture startup missed the declared14:00queue window');
+    row.declaredPreQueueWait={wallMs:Date.now()-waitStarted,clock:queuedEnvironment.clockText,targetHour:queueTargetHour,clockChanged:false};
+   }
    if(await page.locator('#startFirstDay').isVisible())await page.locator('#startFirstDay').click();
    await page.locator('#stewardBtn').click();await page.locator('#hermesInput').fill('请让同一位居民先收木材，再去海边，最后回林地；按顺序完成。');await page.locator('#hermesSend').click();
    await page.waitForFunction(()=>islandInspect().agentTaskLedger.filter(t=>['first','second','third'].includes(t.id)).length===3,null,{timeout:30000});

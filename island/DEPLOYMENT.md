@@ -1,161 +1,92 @@
-# Hyper Dimension · Agent 部署交付 V131
+# Hyper Dimension · Agent 部署指南
 
-V118：部署时选择 pixel 或 origami 作为默认外观，两个外观共用同一个存档，不需要部署两套游戏。首次进入通过 world-session.json 固定存档身份；旧的另一份主题存档保留，不能擅自合并或删除。完整 data 备份同时保留居民私聊、身份绑定和原档。
+本包交付源码与资源，入口为 **AGENTS.md**、**deploy.json** 和 **release-manifest.json**。任何有终端与文件权限的开发 Agent 均可按同一协议部署。运行环境在目标机重建，无需双击安装器。
 
-V108 增加主子 Agent 协商记录和完成制作的重试保护；按工作量修复 Intel Mac 长测试超时，保留 20 轮全链路断言。双画风结果提交的拒绝、异常与成功路径已在真实浏览器验证。新源码包的完整回归状态以公开 CI 为准。
+This is an Agent-deployable source and asset package. Read **AGENTS.md**, **deploy.json** and **release-manifest.json**, then rebuild the runtime on the target computer. It works with any development Agent that has terminal and filesystem access.
 
-V107 修复居民途中库存变化导致的任务目的地过期：人物正常走路重新规划，客户端和服务器共享配方下一步规则；服务端权限检查保留。659项规则通过；两种画风真实Flash/Hermes各完成一项零资源配方工作、工坊制作与空浏览器恢复。四种途中变化回归明确采用模拟交付夹具，不冒称真实模型复现。
+## 1. 获取源码 / Get the source
 
-V107是截止后的修复更新。V106源码包及v0.41文档于2026-10-07 23:18:49（UTC+8）发布，在两小时截止前；完整目标仍为4项本地闭环、14项进行中。macOS14+两架构仍为依赖/协议验证，尚无实体Mac签收。V106最终包实际一小时证据只适用于V106；V107尚未做完整一小时。
+克隆官方仓库后进入 `island/`，或解压独立源码 ZIP 并进入其根目录。若下载的是 `.part001` 等分卷，先按[分卷说明](docs/source-parts.md)校验合并。源码版本与文件摘要以本目录的 `release-manifest.json` 为准。
 
-经济政策未改变：双画风共12种、每种30个游戏日的领域模拟通过。稳定期挂机全成本日均净额为−5.72至−4.20币，加入每天一项亲手订单后为+4.44至+5.32币。减免不形成债务，低余额实际现金变化和全成本净额分列；这不等于真实AI、所有招聘工资及五类活动联合经济验收。
+Enter `island/` after cloning, or the root of the standalone source ZIP. For `.part001` downloads, [verify and assemble the parts](docs/source-parts.md) first. Check this directory's release manifest for its source payload and checksums.
 
+## 2. 准备目标机 / Prepare the computer
 
-本包是源码与资源交付，入口为 **AGENTS.md** 与 **deploy.json**。交给有终端和文件权限的任意开发Agent即可按同一协议部署；不依赖Codex、双击安装器或特定IDE。支持Windows x64、macOS 14+ Apple Silicon/Intel，Linux路径亦提供。Mac实机验收单列，不冒称已在Mac完成试玩。
+| 平台 / Platform | 解释器 / Interpreter | 安装方式 / Setup |
+| --- | --- | --- |
+| Windows x64 | Node.js 24，64 位 CPython 3.11 | 可使用 `--offline` |
+| macOS 14+ Apple Silicon / Intel | Node.js 24，CPython 3.11，匹配本机架构 | 可使用 `--offline` |
+| Ubuntu / 其他受支持 Linux | Node.js 24，CPython 3.11 | 去掉 `--offline`，安装锁定版本依赖 |
 
-## 准备
+Node 最低版本为 22.13，推荐 24.19；Python 支持 3.11–3.13，首选 3.11。其他 Python 版本需联网安装本机依赖。`doctor` 会核对实际解释器与离线 wheel 的兼容性；不兼容时保留现有环境并返回错误。
 
-目标机安装Node.js（最低22.13，推荐已验证24.19）和Python 3.11–3.13；首选3.11。Agent先识别实际架构和解释器，不把Windows虚拟环境拷贝到Mac。依赖用package-lock.json和vendor/requirements-agent.lock固定；Hermes源归档固定摘要。项目内重建.runtime/python，不全局安装应用依赖。
+Node 22.13+ and Python 3.11–3.13 are supported; prefer Node 24.19 and CPython 3.11. Offline wheels require the listed platform, architecture and Python version. `doctor` checks the actual interpreter before installation. Preserve existing environments when a check fails.
 
-- [Python官方虚拟环境说明](https://docs.python.org/3.11/library/venv.html)：Windows解释器在Scripts，Mac在bin；环境不能直接跨路径搬运。
-- [npm官方清洁安装说明](https://docs.npmjs.com/cli/v11/commands/npm-ci/)：使用锁文件，依赖不匹配时失败。
+## 3. 部署和启动 / Deploy and run
 
-## 统一命令
+Windows PowerShell，在源码根目录运行：
 
-以下命令在Windows PowerShell、macOS Terminal和Linux终端均相同，工作目录为解压根目录：
+```powershell
+node tools/agent-deploy.mjs plan
+node tools/agent-deploy.mjs doctor --python=python --offline
+node tools/agent-deploy.mjs setup --python=python --offline
+node tools/agent-deploy.mjs verify
+node tools/agent-deploy.mjs run --mode=lan
+```
 
-    node tools/agent-deploy.mjs plan
-    node tools/agent-deploy.mjs doctor
-    node tools/agent-deploy.mjs setup --python=python3.11
-    node tools/agent-deploy.mjs verify
-    node tools/agent-deploy.mjs run --mode=lan
+macOS 使用 `--python=python3`；Linux 同时去掉 `--offline`。`setup` 在 `.runtime/` 内重建环境并使用锁定的依赖，不能把 Windows 虚拟环境直接复制到 macOS。
 
-Windows可改为 setup --python=python，或传入Python完整路径。setup为非交互式命令，会在项目内部创建环境、安装固定依赖并生成私有空配置；不会覆盖已有.env.local、游戏进度或现有不兼容虚拟环境。没有API密钥也能先验证页面和规则，AI显示未配置；Agent不得假称真实AI已连通。
+Use `--python=python3` on macOS; on Linux also omit `--offline`. Setup rebuilds the target runtime inside `.runtime/` from pinned dependencies. Virtual environments must be rebuilt for the target platform.
 
-单机两画风：
+默认地址为 `http://127.0.0.1:4175/play`。首次注册的邀请信息在本机服务日志中。若需其他设备在局域网访问，明确指定监听地址和端口：
 
-    node tools/agent-deploy.mjs run --mode=pixel
-    node tools/agent-deploy.mjs run --mode=origami
+The default URL is `http://127.0.0.1:4175/play`. Local service logs contain the registration invitation. To accept other computers on the LAN, explicitly choose the listen address and port:
 
-端口冲突时传 --port=新端口。LAN默认本机监听；需要实际局域网时明确传 --host=0.0.0.0。不是商业公网发布流程。
+```sh
+node tools/agent-deploy.mjs run --mode=lan --host=0.0.0.0 --port=4175
+```
 
-## 密钥与运行
+其他设备使用这台电脑的局域网地址。独立外观默认入口也可用 `--mode=pixel`（4173）或 `--mode=origami`（4174）。像素与折纸共用同一小岛身份，切换外观经过存档事务；保留另一份旧主题档，不自动合并。
 
-将用户提供的DEEPSEEK_API_KEY写入生成的.env.local，或注入服务进程环境，不放在命令参数、报告、Git或交付包里。模型固定deepseek-flash，无Pro回退，原自动冷却300/600/950秒。
+Other computers use the host's LAN address. Standalone appearance defaults are `--mode=pixel` (4173) and `--mode=origami` (4174). Both appearances share the island identity; keep old theme saves and preserve the appearance transaction.
 
-run以前台进程工作，适合Agent自己的后台执行工具/终端会话管理；Windows启动后台进程需隐藏窗口。保留进程身份/日志并用对应执行会话停止；不得用宽泛killall或按名称批量结束Node/Python。不要因关闭浏览器停止服务器。
+`run` 是持续运行的前台进程，Agent 应使用自己的后台会话工具管理。Windows 后台窗口需隐藏。保留进程身份，只停止本项目对应的会话；关闭浏览器后服务继续运行。
 
-## 首次与更新
+Keep `run` alive through the Agent's process/session manager; hide background windows on Windows. Preserve process identity and stop only the matching project session. Closing a browser does not stop the server.
 
-默认地址：http://127.0.0.1:4175/play；账号首次注册的邀请信息在服务的本机日志。没有存档时第一天零币零物资，所有建筑开放但图纸/设施/玩法仍有解锁条件。
+## 4. AI 与原机管家 / AI and the original-device steward
 
-更新时先停止本项目写入进程，使用 tools/data-backup.mjs 创建并校验完整私有备份，在新源码目录重新setup；按用户明确选择恢复进度。原存档、签名配置、Hermes原生会话和外部文档成果一起保留，不自动重放现实任务。不能直接把Windows的虚拟环境或执行路径搬到Mac；文档路径迁移需实际重新核对。
+密钥保存在私有 `.env.local` 或服务进程环境中，不放进命令参数、Git、报告或公开包。模型固定为 `deepseek-flash`，无 Pro 回退；自动冷却为 300 / 600 / 950 秒。无密钥可使用规则模式，验收报告应说明 AI 配置状态。
 
-## Agent验收输出
+Keep the key in private `.env.local` or process environment, never command arguments or public files. The model is `deepseek-flash` with the existing 300 / 600 / 950-second automatic cadence. Rules mode works without a key; report the actual model configuration.
 
-提交操作系统/架构、Node/Python/Hermes版本、安装模式、命令退出码、健康检查、访问URL、原数据保留、实际测试范围及缺口。doctor/verify输出JSON，不打印密钥。必须实际访问双主题、采集/保存/空缓存恢复；真实模型由用户配置后另验，不把规则回退当AI成功。
+需要管家处理岛主原机文件时，按[原机桥接指南](docs/device-bridge-v138.md)在原机运行 `node tools/steward-bridge.mjs --help`，从管家入口配对，核对标记并设置工作区。原机自行读取密钥；保留私有桥接状态以支持重连。跨岛 A2A 说明见[协议文档](docs/a2a-standard-v158.md)。
 
-## 离线及已验证范围
+For original-device file work, follow the [bridge guide](docs/device-bridge-v138.md): pair from the steward UI, verify the pairing mark and choose the workspace. The original computer reads its own key. Preserve bridge state for reconnects. See the [A2A protocol](docs/a2a-standard-v158.md) for cross-island communication.
 
-Windows/macOS 14+ CPython3.11可用随包对应wheel与npm tarball：setup --offline。Python3.12/3.13及Linux需要本平台依赖，默认从固定版本下载；Windows专用依赖带平台条件，不能强装pywin32。setup不使用未固定的Hermes最新版。跨平台环境探测/路径/条件依赖与命令协议必须测试；Mac实体机器验证仍待。
+## 5. 保存与更新 / Saves and updates
 
-离线部署先运行 `node tools/agent-deploy.mjs doctor --offline --python=目标解释器`。检查会读取所选解释器的实际实现、版本、位数、平台与 macOS 版本；不兼容时在创建运行环境或写入存档目录之前返回 `offline-wheels` 原因。请指定 64 位 CPython 3.11，或移除 `--offline` 使用联网安装。直接运行 Python 安装脚本也会先执行相同范围的检查，避免出现已经解压 Hermes 才发现没有兼容 wheel 的半成品目录。
+无存档时从第一天零币、零库存开始。存档由本机服务持久化；更新时保留完整 `data/`、私有 `.env.local`、签名配置、Hermes 会话与外部文档成果，不自动重放现实工作。
 
-完整R01–R18/F01–F28/30T范围保持。此前13:18:38截止未达成；最新两小时截止为2026-10-07 23:37:43（UTC+8），完整验收亦未按时完成，继续执行且不重新计时。程序可启动、专项通过不代表完整游戏质量/真人/一小时验收。
+New islands start on day one with zero coins and inventory. The local service persists saves. Preserve the complete `data/`, private configuration, signing state, Hermes sessions and external document results. Do not automatically replay real file work during an update.
 
-## 浏览器验收（Windows / macOS）
+先停止本项目写入服务，再创建并核验私有备份。以下目录应由 Agent 根据实际位置选择：
 
-安装目标机的 Chrome、Edge 或 Chromium 后，在解压根目录运行：
+Stop the matching project's writers before creating and verifying a private backup. Choose backup paths for the actual installation:
 
-    npm run test:release:browser
+```sh
+node tools/data-backup.mjs create --out=../Hyper-Dimension-Backup
+node tools/data-backup.mjs verify --backup=../Hyper-Dimension-Backup
+```
 
-验收脚本自动定位 Windows 和 macOS 的已安装浏览器；macOS 同时检查 /Applications 和用户 Applications。需要指定位置时，在 PowerShell 设置 $env:HD_QA_BROWSER='浏览器完整路径'；在 macOS Terminal 设置 export HD_QA_BROWSER='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'。浏览器作为参数数组启动，路径中的空格不会改变命令含义。未安装浏览器时会明确失败，并给出配置入口。
+在新源码目录重新执行部署检查与安装；按用户选择恢复进度。外部成果目录可在备份命令中通过 `--documents-root=允许目录` 明确指定。保留原档，遇到冲突报告真实错误，不清空数据换取启动成功。
 
-此命令使用独立测试账号、临时服务端存档和动态端口验证两主题的采集、保存、空浏览器恢复；不使用当前游戏数据，不调用模型。Mac 实机测试仍需在真实 Mac 执行，跨平台路径测试不能替代它。
+Rebuild and verify the new source runtime, then restore the selected progress. Approved external result directories can be included with `--documents-root=PATH`. Retain originals and report conflicts without clearing data.
 
-## V101 物资账本与旧档升级
+## 6. 交接证据 / Handoff evidence
 
-游戏物资的交易编号、预留占用、收据和历史事件由本机服务确认。浏览器可以保存角色资料与画面状态；采集、制作、赠礼、订单和跨岛物资仍使用服务端操作接口。出现 resource_state_conflict 时读取服务端已确认的记录，不把被拒绝的物资历史强制写回。
+Agent 应交付：目标 OS/架构、Node/Python/Hermes 版本、安装模式、命令退出码、运行版本、访问 URL，以及实际测试范围。实际验证登录、双画风共档、零资源采集、存档与新浏览器恢复；配置 AI 后另验居民回复和管家工作。平台自动检查、自然运行记录、实体设备及真人体验分别记录。
 
-已有本机存档首次打开会先留下 before-resource-authority 检查点，再启用账本保护。早期没有 action book 的存档保留原岛屿、天数、金币、物资和活动；只解除旧 player-tool: 画面占用，不返还或消费物品。已有服务端作业和项目占用继续保留。进行中的旧夜集不会因账本升级自动关闭；仍使用页面的明确结束入口。旧数字形式的居民故事编号继续可读，新的画面交谈编号不再推进物资交易序号。
+Report the target OS/architecture, runtime versions, setup mode, command exit codes, source version, URL and actual checks. Exercise login, shared saves across both appearances, collection, persistence and fresh-browser recovery. Verify residents and steward work after configuring AI. Keep automated checks, natural runs, physical-device results and human experience separate.
 
-更新源码后重新载入游戏页面，让新前端与服务端共同启用保护；跨平台迁移仍保留完整私有备份并在目标系统重建运行时。V101 的这部分保护不代表全世界时间、关系与人物状态都已迁到服务端；完整剩余验收继续。
-
-## V103 正常保存与备份运行范围
-
-正常可见游戏在保存与作业回执等待期间继续累计有效时间；冲突、导入、恢复、切换画风和会客仍暂停。渡船靠岸与离港的画面移动连续，登岛、服务、返程、消耗与奖励仍由确认后的状态机执行。
-
-现代运行端会在 .runtime/data-lease-registry 留下与真实数据运行锁绑定的私有登记。独立数据目录的实例不再误拦截其他目录的维护；同一数据目录、祖先或子目录中的活跃写入锁仍拒绝备份与恢复。旧未登记写入端仍需停机。登记或锁损坏时保留原文件并拒绝无法核对的维护，不强制绕过。
-
-更新应用仍按前面的停机、完整私有备份、重新setup和验证流程进行；运行登记是目标机私有状态，不随源码包分发。游戏日900秒、低频Flash/Hermes间隔与原奖励公式保持。
-
-## V104 栈桥移动
-
-人物经过短距离路径节点时仍遵守每帧的移动距离，不提前跳到节点。两套码头和全部候船位的登岛/返船路径在30、60、165、240 FPS检查；等待回执时依旧暂缓到达回调。服务端最早登岛/登船时间和库存竞争保护保持，正常餐点或矿脉竞争不解除保护。实体Mac和完整游戏签收仍分别记录。
-
-## V105 经营费用与筹备作业
-
-全岛25座设施的基础每日管理费用从80调整为84岛币，游戏日仍为900秒有效时间。手作、采集与生活委托的奖励不变，主动收入不会提高每日管理费。7日域模拟的稳定挂机均值为每日−1.2至−5.8岛币，加入每日一次手作委托后均值为+3.8至+9；单日仍有波动。这是调参证据，真实模型的一小时、五类活动与招募工资组合仍待完整验收。
-
-打开既有存档时，由服务端先保留before-economy-policy检查点，再更新受保护的费用口径。正在进行的原游戏日沿用原12/26/32政策，下一游戏日起采用新政策；天数、进度、金币、资源、作业和历史结算不因迁移重置。不把被拒绝的浏览器政策强行写回。升级按停机、完整私有备份、部署新源码和重新载入页面执行，避免旧前端继续提交旧口径。
-
-已分派的农田或矿洞作业在没有可用田块/矿脉时保留原分工并等待，空闲后调用对应的田间或采矿接口，不创建普通居民观察作业作为替代交付。两画风从零集市验证完成实际采集、三分钟作物生长、居民筹备、亲自赠礼邀请、步行到场、各12份销售与唯一奖励；筹备观察上限为30分钟，居民进餐和作物生长按真实过程等待。该开发验证不替代最终包的完整一小时、Mac实机或真人验收。
-
-降低折纸纹理密度的实验未通过画质检查，已恢复V104已核验的纹理处理；仍保留对卡顿与动画的后续检查。
-
-## V106 招聘确认与交付时间
-
-2026-10-07：邀请、取消失败申请与续约的工资预留/释放改由服务端经营命令确认，不再由浏览器修改受保护的物资账本。两种画风从零实际采集、委托和游客收入后各完成一次真实 DeepSeek Flash/Hermes 主子招聘：乘船走桥到岛、交付物资、按实际贡献支付一次工资、离岛、空浏览器恢复；这不是十场活动或真人验收。默认655项规则通过，之后仍要独立解压部署复核。
-
-用户最新交付截止为2026-10-07 23:37:43（UTC+8），此前截止未达成的历史保留。Windows x64 与 macOS14+ Apple Silicon/Intel共用Agent源码、离线条件依赖与plan/doctor/setup/verify/run协议；Mac依赖检查不代表实体Mac验收。
-
-V105最终源码包的双风格从零实际一小时已完成，三次900秒结算和空浏览器恢复通过，无页面/素材异常；观察到约564ms与2388ms帧峰，且测量脚本与其他QA产生额外主机负载，不能宣称卡顿消除。V106自身一小时需单列，以最终不可变包的结果为准。
-
-## V109 港口美术更新
-
-双画风登船舷梯改为配套透明素材，校正船体贴图位置、邻帧裁切和近侧绳栏遮挡。逻辑路线、存档坐标和收益规则保持。两版隔离零开局的实际首船、游客过桥及服务端上岛确认通过；连续路线、满队候船和航行回归通过。素材与生成提示见 docs/harbor-art-v109.md。V108 三平台 CI 已通过；本次 V109 以对应提交的 CI 为准，实体 Mac 和完整真人验收仍待。
-
-## V110 经典小游戏结算恢复
-
-连连看与三消等待控制器确认结算后才销毁结果页；暂拒或异常时保留成绩及重试，提交中禁止重复领取或换关。八组结果页夹具与四场房屋内实际通关/网络故障恢复通过，磁盘确认材料按配方扣取、预留释放和成品唯一发放。新测试命令 npm run test:classic-settlement；详细范围见 docs/classic-settlement-v110.md。V109 三平台 CI 已通过；V110 以对应提交的 CI 为准，完整游戏和真人验收继续。
-
-## V111 居民协作更新
-
-客户端与后端需一起更新：支持按职业与活动缺口分工、实际农田收获回执及合作田垄保留。旧单计划约定继续读取。更新前备份 data，保留私有配置与现有存档；停止本项目三个服务后同步源码，再启动并刷新页面。详细变化与验证范围见 docs/resident-cooperation-v111.md。
-
-## V112 居民生活更新
-
-性格、实际休闲经历和相处边界参与居民决策；读书、音乐和配色动作与生产区分，休闲不产出物品。旧档兼容，边界使用有效游戏时间并支持重载。更新时一起部署前后端，保留数据并先验证备份。专项双画风、14 项新规则和界面证据见 docs/resident-life-v112.md；全产品、长线生活分布、真人和实体 Mac 验收仍在进行。
-
-## V113 商铺货架更新
-
-25 座建筑和 300 件制品可以配置售卖清单与制作留用数量。旧档维持自动陈列；配置走本机服务，已确认游客交易按原价完成。更新时先备份数据并同步前后端。704 项本地默认检查、双画风原生交易及 390px 界面证据见 docs/shopfronts-v113.md；不代表完整经济长线、真人或 Mac 实机验收。
-
-## V114 制作与居民活动修复
-
-制作中的材料成本固定到开工记录，更新配方不改动旧批次；普通居民暂时无法交谈时重新选择可执行目的，管家日常避免进入不支持的普通居民社交分支。备份数据并同步前后端，保留 legacyRecipeDefinitions-v32.js 历史材料表。716 项默认检查、双画风真实制作/管家动作及 4 份现有岛屿存档只读兼容通过；仍不等于完整验收。详见 docs/production-contracts-v114.md。
-
-## V115 Windows 保存恢复
-
-新增 server/atomicJson.mjs 并由 saveStore.mjs 调用；必须一起更新并重启服务。Windows 原子替换遇临时占用时最多等待 680 毫秒再试，持续失败保留旧文件并报告原错误。720 项本地默认检查与真实 Windows 短/长占用边界通过。先备份存档，无需重置岛屿；详见 docs/save-recovery-v115.md。
-
-## Shared season clock / 共享四季时钟
-
-The clock is local by default and shared across appearances and visits. Optional central-server settings are read from private `.env.local`; no save or portfolio payload is uploaded. See [environment-v131.md](docs/environment-v131.md) for configuration, protocol and verification scope.
-
-
-V134: one visual day is 15 minutes, each season lasts 30 visual days. Day/night scene lighting is paused. Legacy local seven-day clocks migrate once while retaining their current season and hour; central-provider settings remain authoritative. / V134 每季 30 个视觉日，昼夜视觉效果暂停；旧本地时钟保留当前季节与小时并迁移，总服务器配置保持权威。
-
-## 原机管家连接 / Connect an original computer
-
-完成运行环境配置后，可运行 `node tools/steward-bridge.mjs --help`。在管家入口生成配对码，填写工作区、保留私有状态目录，核对标记后连接。[双平台命令、重连与回执恢复](docs/device-bridge-v138.md)。原机密钥由原机读取，不放进配对命令。 / Configure the runtime, pair from the steward, select the workspace and preserve the private state directory. The original device reads its own provider key.
-
-
-## V171 · 新地形会客与建筑校准
-
-会客连续改点保留最新目的地，原请求恢复仍在；更新后开放旧会客房的地形适配先保存校验原档到私有data/_lan/geography-backups。地块中心、房屋底座、点击范围与入口可用`align=1`图层核对，见[说明](docs/lobby-ground-v171.md)。新修复的原生证据和跨平台CI各自记录；本机用户存档、API配置与原机工作目录必须保留。
-
-
-## V172 · Busy save entry recovery
-
-Identity reads no longer wait behind home-save writes. `/play` transient failures render a recoverable HTML entry; explicit busy open responses retry with bounded delay. Home production/travel exclusion remains enforced. See [validation](docs/save-entry-v172.md). Preserve existing data and .env.local when replacing source files.
+历史说明保留于[部署记录](docs/deployment-notes-through-v272.md)，当前验收证据见[验证索引](docs/VALIDATION.md)。
