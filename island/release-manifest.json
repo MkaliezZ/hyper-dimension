@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v292-agent-source",
+  "release": "hyper-dimension-v293-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 109895,
-      "sha256": "6df1e836cdb1320fd0cd0890e699b9ae79a2c52b26f25d6b4594e8317f06ab62"
+      "bytes": 110247,
+      "sha256": "bbf2207aa1595ab5d424bcdd264dd651cec432bd1a8b8a433529ee6136db4fe2"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12252,8 +12252,8 @@
     },
     {
       "path": "tests/v219-painting-tools-browser.mjs",
-      "bytes": 9946,
-      "sha256": "2fbf0c3acb1e5fe26074739b7e067a7082162539632e22a1d5526fa501263f9d"
+      "bytes": 10599,
+      "sha256": "48e0d9c46c884bfaf69331eef9a74032a7242d9893a4e0303a90f01e2808eec0"
     },
     {
       "path": "tests/v219-production-uses.test.mjs",
@@ -13509,7 +13509,17 @@
       "path": "docs/verification-v292.json",
       "bytes": 1935,
       "sha256": "148b9cbc9f4018ee09586c45093799134f7c746e6bb494b646ed9deb8b1bca5c"
+    },
+    {
+      "path": "docs/painting-input-v293.md",
+      "bytes": 1386,
+      "sha256": "06a629eff981bea76e2f14d8b77b51a4ab675fa85f596768d4c8606218fa0700"
+    },
+    {
+      "path": "docs/verification-v293.json",
+      "bytes": 2358,
+      "sha256": "62ebc213092278f1e5fb769eae893878edad7d43b597fe117c61dad020606127"
     }
   ],
-  "publicRevision": "v292-shared-activity-refresh-before-revision-retry"
+  "publicRevision": "v293-native-painting-input-and-isolated-context-cleanup"
 }

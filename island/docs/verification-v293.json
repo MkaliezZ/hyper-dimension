@@ -1,0 +1,86 @@
+{
+  "version": "V293",
+  "at": "2026-10-18T19:17:45.846872+00:00",
+  "runtimeFilesChanged": [],
+  "unchangedTrackedRuntimeFiles": 476,
+  "driverSha256": "48e0d9c46c884bfaf69331eef9a74032a7242d9893a4e0303a90f01e2808eec0",
+  "officialFailure": {
+    "run": 39151968972,
+    "job": 117750534848,
+    "artifactId": 12146576872,
+    "artifactSha256": "c4e6d5f1e47be073bcdb03bc1cc6c6d05a885cf5f85b80999c80900267ae7461",
+    "fullDigestAndAllCrcVerified": true,
+    "theme": "origami",
+    "strokesCompleted": 4,
+    "completedStrokeQualities": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "seconds": 180.0223000000119,
+    "passed": false
+  },
+  "nativeWindowsAfter": {
+    "passed": true,
+    "cases": [
+      {
+        "theme": "pixel",
+        "result": {
+          "passed": true,
+          "quality": 100,
+          "score": 5000,
+          "total": 100,
+          "stars": 3,
+          "seconds": 36.43100000066808,
+          "seed": 2210724790
+        },
+        "brushReturned": true,
+        "canvasConsumed": true,
+        "refreshPreserved": true
+      },
+      {
+        "theme": "origami",
+        "result": {
+          "passed": true,
+          "quality": 100,
+          "score": 5000,
+          "total": 100,
+          "stars": 3,
+          "seconds": 36.78600000062035,
+          "seed": 72753021
+        },
+        "brushReturned": true,
+        "canvasConsumed": true,
+        "refreshPreserved": true
+      }
+    ],
+    "cleanupComplete": true,
+    "fixture": "Prepared canvas and reusable brush with declared raw inventory, native mouse drawing and actual server replay; not zero-start or human acceptance"
+  },
+  "brushRules": {
+    "passed": 8,
+    "failed": 0
+  },
+  "gatesRetained": [
+    "180 second natural game limit",
+    "quality threshold",
+    "continuous speed/path/color/ink/drying rules",
+    "server input replay",
+    "exactly one gain and exact costs",
+    "reusable brush retained",
+    "canvas consumed",
+    "reload persistence",
+    "390px result close geometry"
+  ],
+  "v292FreshInstallation": {
+    "exactArchive": true,
+    "steps": 19,
+    "passed": true,
+    "defaultRules": 1470,
+    "notRelabeledV293": true
+  },
+  "fullFourMapBothStylesPassed": false,
+  "allMacFailuresResolved": false,
+  "wholeGoalComplete": false
+}
