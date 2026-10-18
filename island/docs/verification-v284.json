@@ -1,0 +1,31 @@
+{
+  "scope": "Graceful LAN local steward runtime shutdown and durable accepted work only",
+  "before": {
+    "cases": 3,
+    "passed": 0,
+    "failed": 3,
+    "failures": ["pixel accepted work interrupted", "origami accepted work interrupted", "runtime created after shutdown during owner lookup"]
+  },
+  "after": {
+    "focusedCases": 5,
+    "focusedPassed": 5,
+    "relatedIncludingFocused": 48,
+    "relatedPassed": 48,
+    "originalOwnerAgentCases": 4,
+    "originalOwnerAgentPassed": 4,
+    "uniqueTotal": 52
+  },
+  "acceptedBackgroundWorkDrained": true,
+  "durableResultBeforeRuntimeClose": true,
+  "newAdmissionsAfterShutdownRejected": true,
+  "restartReplayDoesNotRunWorkAgain": true,
+  "failedPersistenceRetainsShutdownFailure": true,
+  "remoteBridgeShutdownDrainingImplemented": false,
+  "fakeRuntimeResultsExplicit": true,
+  "externalModelsCalled": false,
+  "userDataOrConfigurationTouched": false,
+  "fullDefaultSuiteRerun": false,
+  "frozenV281HourIncludesThisChange": false,
+  "physicalMacOrHumanAcceptance": false,
+  "wholeGoalComplete": false
+}

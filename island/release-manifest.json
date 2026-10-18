@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v283-agent-source",
+  "release": "hyper-dimension-v284-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 105395,
-      "sha256": "d21e251806cb3a432239e76300a337bac3d120f1f2d87126176e0a6dd8138cda"
+      "bytes": 105851,
+      "sha256": "d2c39078876c1dd2cf4bbf57280da815c5fb316e754f023bbceb667fe92a3a44"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16592,
-      "sha256": "9674130da4130817db1ba8271db5b550366582781b4e916a90ec2d9e28c4c0dc"
+      "bytes": 16627,
+      "sha256": "907ef1002c293afd817de684fde8373b2056aec99b86dcd0efa750b47fbaa0c1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6202,8 +6202,8 @@
     },
     {
       "path": "server/lanAgentService.mjs",
-      "bytes": 17541,
-      "sha256": "9ee804610910eb013eb3463adcb65b62474384191696f1470b12326a2c207f19"
+      "bytes": 18415,
+      "sha256": "e8a3fb7163f7c8d05b725ff07542fe9e73f46fd6e56d7962e49e984c573020fc"
     },
     {
       "path": "server/lanAgentWorker.mjs",
@@ -13369,7 +13369,22 @@
       "path": "docs/verification-v283.json",
       "bytes": 937,
       "sha256": "391feddb1e64abbf08bf3ab6c7417e83e083f1cfa6e0d218c741ce7767e100ae"
+    },
+    {
+      "path": "docs/agent-shutdown-v284.md",
+      "bytes": 2393,
+      "sha256": "8a56190d631f9ec018f6964eff884185c0ed0b01c547b467795368c544499c9f"
+    },
+    {
+      "path": "docs/verification-v284.json",
+      "bytes": 1061,
+      "sha256": "7fa0b699fd014ac68eaa9ecbf51836e5e55d0662175729bfb57530c6a27f9753"
+    },
+    {
+      "path": "tests/v284-agent-shutdown.test.mjs",
+      "bytes": 7753,
+      "sha256": "59bc2e79cb6c2df400d6e17f74127c23e069994ac9357aec27da37a03f1d8543"
     }
   ],
-  "publicRevision": "v283-action-preparation-synchronization"
+  "publicRevision": "v284-steward-graceful-shutdown"
 }

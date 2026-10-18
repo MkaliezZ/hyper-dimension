@@ -36,16 +36,17 @@ export function createOwnerRuntime({directory,ownerId,islandDirectory=directory,
  };
 }
 export function createLanAgentService({directory,identities,tenants,runtimeFactory=createOwnerRuntime,socialContext=async()=>({}),now=Date.now}){
- const accounts=new Map();let closed=false,recruitmentHooks=null;
+ const accounts=new Map();let closed=false,recruitmentHooks=null,closingPromise=null;
  async function account(token){
   if(closed)throw fail('管家服务正在关闭','lan_agent_closed',503);
   const c=await tenants.get(token);
+  if(closed)throw fail('管家服务正在关闭','lan_agent_closed',503);
   let promise=accounts.get(c.accountId);
   if(!promise){promise=(async()=>{
    const dir=resolve(directory,'_lan','agents',c.accountId);await mkdir(dir,{recursive:true});const file=resolve(dir,'conversation.json');
    let state;try{state=JSON.parse(await readFile(file,'utf8'));if(state.version!==1||!Array.isArray(state.jobs))throw Error('invalid agent journal')}
    catch(e){if(e.code!=='ENOENT')throw fail('管家记录无法核对，原记录已保留','lan_agent_corrupt',503);state={version:1,jobs:[],seeds:{}};}
-   const a={dir,file,state,runtime:runtimeFactory({directory:dir,ownerId:c.accountId,islandDirectory:c.directory}),tail:Promise.resolve(),running:null,automatic:new Set(),automaticTasks:new Map()};
+   const a={dir,file,state,runtime:runtimeFactory({directory:dir,ownerId:c.accountId,islandDirectory:c.directory}),tail:Promise.resolve(),running:null,manualTask:null,manualPersistenceError:null,automatic:new Set(),automaticTasks:new Map()};
    let changed=false;for(const j of state.jobs)if(j.status==='running'){j.status='unconfirmed';j.error='服务重启前的执行结果尚未确认，请先检查成果；不会自动重复执行。';changed=true;}
    if(changed)await persist(a);return a;
   })();accounts.set(c.accountId,promise);promise.catch(()=>accounts.delete(c.accountId));}
@@ -71,6 +72,7 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
   if(input.resumeSessionId!==undefined&&(typeof input.resumeSessionId!=='string'||!/^[-A-Za-z0-9_]{6,100}$/.test(input.resumeSessionId)))throw fail('请选择有效的工作记录','lan_agent_session',400);
   const fingerprint=hash({theme,message,includeWorkProject:!!input.includeWorkProject,...(input.resumeSessionId?{resumeSessionId:input.resumeSessionId}:{})});
   return lock(a,async()=>{
+   if(closed)throw fail('管家服务正在关闭','lan_agent_closed',503);
    const old=a.state.jobs.find(j=>j.id===requestId);
    if(old){if(old.fingerprint!==fingerprint)throw fail('同一委托编号不能更换内容','lan_agent_replay');return clone(old);}
    if(a.running)throw fail('管家正在完成上一项委托，可先查看进度','lan_agent_busy');
@@ -88,9 +90,9 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
    delete data.ownerId;delete data.runtime;delete data.directory;
    Object.assign(data,manualPartyContext(state,theme,{saveSlot:input.saveSlot,visiting:!!presence}),agentCatalogContext(state));
    if(presence){data.residents=[];data.built=[];data.recipes=[];data.customPreparableRecipes=[];data.inventory=state.inventory||{};}
-   void Promise.resolve(a.automaticTasks.get('steward')).catch(()=>{}).then(()=>a.runtime.call('command',data)).then(result=>lock(a,async()=>{
-    job.result=result;job.status=result.source==='hermes'?'completed':'failed';job.finishedAt=now();await persist(a);
-   }),error=>lock(a,async()=>{job.status='unconfirmed';job.error=String(error.message).slice(0,300);job.finishedAt=now();await persist(a);})).catch(()=>{job.status='unconfirmed';job.error='执行记录保存失败，请检查文档成果后核对';}).finally(()=>{a.running=null;});
+   a.manualTask=Promise.resolve(a.automaticTasks.get('steward')).catch(()=>{}).then(()=>a.runtime.call('command',data)).then(result=>lock(a,async()=>{
+    job.result=result;job.status=result.source==='hermes'?'completed':'failed';job.finishedAt=now();await persist(a);a.manualPersistenceError=null;
+   }),error=>lock(a,async()=>{job.status='unconfirmed';job.error=String(error.message).slice(0,300);job.finishedAt=now();await persist(a);a.manualPersistenceError=null;})).catch(error=>{a.manualPersistenceError=error;job.status='unconfirmed';job.error='执行记录保存失败，请检查文档成果后核对';}).finally(()=>{a.running=null;a.manualTask=null;});
    return clone(job);
   });
  }
@@ -165,6 +167,16 @@ export function createLanAgentService({directory,identities,tenants,runtimeFacto
   async wait(token,input){const job=await submit(token,input),{a}=await account(token);while(a.running===job.id)await new Promise(r=>setTimeout(r,100));const done=a.state.jobs.find(j=>j.id===job.id);if(!done.result)throw fail(done.error||'委托尚待核对','lan_agent_unconfirmed',409);return {...clone(done.result),requestId:done.id};},
   async residentChat(token,method,args){const {a}=await account(token);if(!['residentChatHistory','residentChatSend'].includes(method))throw fail('不支持此居民对话操作','resident_chat_method',400);return a.runtime.call(method,args);},
   async work(token,method,args){const {a}=await account(token);if(!['list','project','detail','preview','download','ledger','policy'].includes(method))throw fail('不支持此管家操作','lan_agent_method',400);return a.runtime.call(method,args);},
-  async close(){closed=true;for(const promise of accounts.values()){try{const a=await promise;await a.runtime.close();await a.tail;}catch{}}accounts.clear();}
+  close(){closed=true;return closingPromise??=(async()=>{
+    const errors=[];await Promise.all([...accounts.values()].map(async promise=>{try{
+     const a=await promise;await a.tail;
+     // Accepted manual jobs outlive their HTTP response. Persist them before ending the owner runtime.
+     await Promise.allSettled([...a.automaticTasks.values(),a.manualTask].filter(Boolean));await a.tail;
+     if(a.manualPersistenceError)throw a.manualPersistenceError;
+     await a.runtime.close();await a.tail;
+    }catch(error){errors.push(error);}}));
+    if(errors.length)throw new AggregateError(errors,'管家执行或结果记录尚未完整收尾，运行锁保留');
+    accounts.clear();
+   })();}
  };
 }
