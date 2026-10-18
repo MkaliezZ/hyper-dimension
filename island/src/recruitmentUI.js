@@ -19,7 +19,7 @@ function autonomyMarkup(registry,candidates,busy){
 }
 
 export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,back,projects,refreshActor,command}){
- let selectedCandidate='mai',selectedPlan=null,editPending=null,registry=null,error='',errorRequestId=null,pollError='',busy=false,polling=false,generation=0,lastSignature='',lastPoll=0;
+ let selectedCandidate='mai',selectedPlan=null,editPending=null,registry=null,error='',errorRequestId=null,pollError='',busy=false,polling=false,generation=0,lastSignature='',lastPoll=0,submission=null;
  // Successful background reads only acknowledge mutations present in this world.
  function actionError(message,requestId=null){error=message;errorRequestId=requestId;}
  const $=id=>document.getElementById(id);
@@ -29,7 +29,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   const response=await fetch('/api/recruitment/'+capture.theme+'/'+operation,{method:body?'POST':'GET',headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(12000)});
   const data=await response.json();if(!response.ok)throw Object.assign(Error(data.error||'招聘暂不可用'),{code:data.code,status:response.status});return data;
  }
- async function flush(c){persist();await saves.checkpoint(c.theme);if(!same(c))throw Error('小岛画风已切换，请在对应小岛继续')}
+ async function flush(c,{persistLocal=true}={}){if(persistLocal)persist();await saves.checkpoint(c.theme);if(!same(c))throw Error('小岛画风已切换，请在对应小岛继续')}
  async function applyStatus(c){
   if(!same(c))return;
   const r=hydrateRecruitment(state()),active=registry.active,history=registry.history||[];
@@ -72,10 +72,13 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   finally{polling=false;paint();if(!same(c))void poll(true)}
  }
  async function submit(projectId,existingId=null,mode='hire',candidateId=selectedCandidate,recallId=null,source='user'){
-  if(busy)return;const c=here(),id=existingId||crypto.randomUUID();busy=true;actionError('');paint();
-  try{await command('hire_prepare',{contractId:id,projectId,candidateId,mode,recallId,source,day:state().day});if(!same(c))return;await flush(c);await api(mode,mode==='retry'?{id}:mode==='recall'?{id:recallId,requestId:id,projectId}:{requestId:id,projectId,candidateId,source},c)}
+  if(busy)return;const c=here(),id=existingId||crypto.randomUUID();busy=true;submission={id,phase:'preparing'};actionError('');paint(true);
+  try{await command('hire_prepare',{contractId:id,projectId,candidateId,mode,recallId,source,day:state().day});if(!same(c))return;submission={id,phase:'saving'};paint(true);
+   // hire_prepare already durably captured its input. Drain later accepted work
+   // without manufacturing another identical dirty snapshot before the invite.
+   await flush(c,{persistLocal:false});submission={id,phase:'sending'};paint(true);await api(mode,mode==='retry'?{id}:mode==='recall'?{id:recallId,requestId:id,projectId}:{requestId:id,projectId,candidateId,source},c)}
   catch(e){if(same(c)){actionError(e.message,id);if(source==='primary'&&e.status>=400&&e.status<500){await command('hire_release',{contractId:id,day:state().day});}}}
-  finally{busy=false;await poll(true);if(same(c))paint()}
+  finally{busy=false;submission=null;if(same(c))paint();await poll(true);if(same(c))paint()}
  }
 
 
@@ -132,21 +135,22 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   $('recruitLibrary').onclick=()=>library.open();$('recruitBack').onclick=back;$('recruitProjects').onclick=projects;paint(true);void poll(true);
  }
  function paint(force=false){
-  const root=$('recruitmentPanel');if(!root)return;
+  const root=$('recruitmentPanel');if(!root)return;root.setAttribute('aria-busy',String(busy));
   if(!force&&root.contains(document.activeElement)&&['SELECT','INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
   const r=hydrateRecruitment(state()),a=r.active,pending=r.pending,candidates=registry?.candidates||RECRUIT_CANDIDATES,candidate=a?.profile||registry?.active?.profile||candidates.find(c=>c.id===(pending?.candidateId||selectedCandidate))||RECRUIT_CANDIDATE,progress=recruitmentProgress(state());
   const renewPlans=(state().workProjects||[]).filter(p=>['preparing','paused'].includes(p.status)),renewReady=renewalReadiness(state(),registry?.active);
   const plans=(state().workProjects||[]).filter(p=>p.status==='preparing'),contract=registry?.active;
   selectedPlan=plans.some(p=>p.id===selectedPlan)?selectedPlan:plans[0]?.id;const eligible=selectedPlan?projectSteps(state(),selectedPlan).filter(t=>t.remaining>0&&t.npcId!==-1&&!t.blocked&&candidateStepAllowed(candidate,t)).length:0;
-  const issue=error||pollError;const signature=JSON.stringify([theme(),selectedCandidate,selectedPlan,candidates,a,progress,pending,plans.map(p=>[p.id,p.status]),contract?.phase,registry?.history,registry?.candidateRecords,registry?.renewal,registry?.autonomy,state().recruitment.renewal,renewReady,renewPlans,error,pollError,busy]);
+  const progressText=busy&&submission?({preparing:'正在确认筹备与预留报酬…',saving:'正在保存本次筹备，确认后再联系伙伴…',sending:'已发出邀请，正在等待伙伴回应…'})[submission.phase]:'';
+  const issue=error||pollError;const signature=JSON.stringify([theme(),selectedCandidate,selectedPlan,candidates,a,progress,pending,plans.map(p=>[p.id,p.status]),contract?.phase,registry?.history,registry?.candidateRecords,registry?.renewal,registry?.autonomy,state().recruitment.renewal,renewReady,renewPlans,error,pollError,busy,submission]);
   if(!force&&(lastSignature===signature||document.activeElement?.closest('#recruitPolicyForm')))return;lastSignature=signature;
   const details=[...root.querySelectorAll('details[open]')].map(d=>d.dataset.history),body=root.closest('.modal-body'),scroll=body.scrollTop;
   const status=a?RECRUIT_STAGE_LABEL[a.phase]:contract?labels[contract.phase]:pending?'招聘请求等待确认':'一席空位，等一位新朋友';
   root.innerHTML=(!a&&!contract&&!pending?candidateBoard(candidates,candidate.id,theme(),here().world):'')+'<section class="recruit-hero"><div class="recruit-portrait">'+avatarPortrait(candidate.appearance,theme())+'<span>临时协作伙伴</span></div><article><small>ISLAND / A SHORT STAY</small><h3>'+esc(candidate.name)+'</h3><p class="recruit-role">'+esc(candidate.job)+'</p><p>'+esc(candidate.backstory)+'</p><div class="recruit-tags">'+candidateSkills(candidate).map(t=>'<span>'+esc(t)+'</span>').join('')+'</div><p class="recruit-personality">'+esc(candidate.personality)+'</p></article></section>'+
    '<section class="recruit-contract"><div class="recruit-section-title"><h4>'+esc(status)+'</h4><span>临时席位 '+(contract||a||pending?'1':'0')+' / 1</span></div><p class="recruit-terms">聘期 2 个游戏日 · 最多 8 岛币<br>先预留报酬，按约定数量的实际交付比例结算，向上取整；未交付不收费。聘期到达或工作结束后交接离岛。</p>'+
    (a?'<h4>'+esc(a.title)+'</h4><ul class="recruit-steps">'+progress.steps.map(t=>'<li>'+itemMarkup(t.item,theme(),'recruit-item')+'<span><b>'+esc(ITEM_BY_ID[t.item]?.name||t.item)+'</b><small>伙伴交付 '+t.delivered+' / '+t.quantity+' · '+(t.owner===16?'由伙伴负责':'已满足或交接')+'</small></span></li>').join('')+'</ul><div class="recruit-totals"><span>第 '+a.startedDay+' 天 — 第 '+a.expiresDay+' 天</span><b>'+(a.feePaid===null?'当前应结 '+progress.fee:'已结算 '+a.feePaid)+' 岛币</b></div><button class="secondary" id="recruitCancel" data-id="'+a.id+'" '+(a.leaveRequested||busy?'disabled':'')+'>结束聘约并交接</button>':
-   contract||pending?'<div class="recruit-await"><span class="recruit-pulse"></span><p>'+esc(contract?labels[contract.phase]:'请求结果尚未确认，继续查询不会重复招聘。')+'</p></div>'+
-    (pending&&!contract?'<button class="primary" id="recruitResume">继续确认同一申请</button>':'')+'<button class="secondary" id="recruitCancel" data-id="'+(contract?.id||pending.id)+'" '+(busy?'disabled':'')+'>取消本次到岛</button>':
+   contract||pending?'<div class="recruit-await"><span class="recruit-pulse"></span><p>'+esc(progressText||(contract?labels[contract.phase]:'请求结果尚未确认，继续查询不会重复招聘。'))+'</p></div>'+
+    (pending&&!contract?'<button class="primary" id="recruitResume" '+(busy?'disabled':'')+'>'+(busy?'正在处理本次申请…':'继续确认同一申请')+'</button>':'')+'<button class="secondary" id="recruitCancel" data-id="'+(contract?.id||pending.id)+'" '+(busy?'disabled':'')+'>取消本次到岛</button>':
    plans.length?'<label class="recruit-plan-label">这次一起准备什么？<select id="recruitPlan">'+plans.map(p=>'<option value="'+p.id+'" '+(p.id===selectedPlan?'selected':'')+'>'+esc(p.title)+'</option>').join('')+'</select></label><button class="primary" id="recruitHire" '+(busy||!eligible?'disabled':'')+'>邀请'+esc(candidate.name)+'协作 · 预留 8 岛币</button><p class="recruit-match" role="status">'+(eligible?'这份清单有 '+eligible+' 项工作符合伙伴职业，由主子 Agent 商定本次分工。':'这份清单没有符合伙伴职业的待办，请更换伙伴或筹备清单。')+'</p>':
    '<div class="recruit-empty"><b>先写一份筹备清单</b><p>确定要准备的物资，管家才能与伙伴商量具体分工。</p><button class="primary" id="recruitCreatePlan">去写清单</button></div>')+
    (issue?'<p class="recruit-error" role="status">'+esc(issue)+'</p><button class="secondary" id="recruitRefresh">重新查询</button>':'')+'</section>'+

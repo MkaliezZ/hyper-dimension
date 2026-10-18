@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v286-agent-source",
+  "release": "hyper-dimension-v287-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 106738,
-      "sha256": "1018d344f54558e3d6ff139f3caa57524642f15a0df5efb442bdd33ec01bdf99"
+      "bytes": 107231,
+      "sha256": "b5bb25a980d980ec8b78708ebd12e279d341bb2382053cea44b21aa0b5dc3a8d"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7782,8 +7782,8 @@
     },
     {
       "path": "src/recruitmentUI.js",
-      "bytes": 26237,
-      "sha256": "c900a1879d7bf9ad0e9b666c100ebbf3b4b5d3116017ade8386a8f5eb4bdf1b2"
+      "bytes": 27014,
+      "sha256": "3fd7c23865cfb75e5fda56f8a5c497605ac04d7dee2330631cffee90ed453c4b"
     },
     {
       "path": "src/residence-v191.css",
@@ -12502,8 +12502,8 @@
     },
     {
       "path": "docs/acceptance-session-v231.md",
-      "bytes": 4736,
-      "sha256": "8374be064d5afb31beabae6ceaad49ae9bad622e34368a39a1c966a4f2e15e09"
+      "bytes": 4785,
+      "sha256": "831530f45627b3222be9e00ce464efadd1d71115b7c6d8c0c7cd358ad8e612f5"
     },
     {
       "path": "docs/multi-island-economy-v231.md",
@@ -13409,7 +13409,22 @@
       "path": "docs/verification-v286.json",
       "bytes": 725,
       "sha256": "9e73345fbb3a74699e1f61634d2e40cef6b3ab157bd9d3b37a7356d64c51ba29"
+    },
+    {
+      "path": "tests/v287-recruitment-progress-browser.mjs",
+      "bytes": 8217,
+      "sha256": "097076e01ec5318f387aff82189ae9f8ed982289dc3d6559c089405c7a9e9d2f"
+    },
+    {
+      "path": "docs/recruitment-progress-v287.md",
+      "bytes": 2051,
+      "sha256": "655ffe0229b1d33fcaa684fa1c0f1401181842c1f8e3b7c6b3d7b74eb9cf96bc"
+    },
+    {
+      "path": "docs/verification-v287.json",
+      "bytes": 704,
+      "sha256": "de930a0c5bf4e89bb1ba16da0427004072e79d47f9b193337797457088761f30"
     }
   ],
-  "publicRevision": "v286-native-fixture-synchronization"
+  "publicRevision": "v287-recruitment-progress-checkpoint"
 }

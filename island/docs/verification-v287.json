@@ -1,0 +1,23 @@
+{
+  "version": "V287",
+  "changedRuntimeFiles": [
+    "src/recruitmentUI.js"
+  ],
+  "serverEconomicAndModelRulesChanged": false,
+  "before": {
+    "twoNativeStylesReproducedEnabledIgnoredRetry": true
+  },
+  "after": {
+    "nativeHeldReceiptProgressCases": 2,
+    "originalErrorRecoveryCases": 4,
+    "boundedSlowFrameCases": 4,
+    "relatedAuthorityAndRecoveryChecks": 27,
+    "originalLimitsRequestIdsAndMoneyAssertionsRetained": true,
+    "singleSalaryReservationAndReleaseVerified": true
+  },
+  "hostedIntelRequestPreparationFailureResolved": false,
+  "macGpuStallResolved": false,
+  "physicalDeviceAcceptance": false,
+  "humanAcceptance": false,
+  "wholeGoalComplete": false
+}
