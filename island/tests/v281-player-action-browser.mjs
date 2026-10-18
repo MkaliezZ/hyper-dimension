@@ -12,7 +12,8 @@ import {HOTSPOTS} from '../src/world.js';
 
 const root=path.resolve(import.meta.dirname,'..'),out=path.resolve(process.env.HD_QA_OUT||'qa/v281/native-player-action');
 await mkdir(out,{recursive:true});
-const report={scope:'Owned native game in both styles. A fictional fresh island starts at the forest entrance; NPC decisions are suspended. Actual gather and unrelated resident leases use the real server. One accepted resident response is withheld below its original network timeout; no animation time, completed action, inventory or receipt is injected. Provider calls and user data are excluded. Not physical Mac, full-day scheduling or human acceptance.',cases:[],passed:false};
+const observerDelayMs=Number(process.env.HD_QA_ACTION_OBSERVER_DELAY_MS||0);assert([0,3000].includes(observerDelayMs),'Only the declared3second observer-latency fixture is supported');
+const report={observerDelayMs,scope:'Owned native game in both styles. A fictional fresh island starts at the forest entrance; NPC decisions are suspended. Actual gather and unrelated resident leases use the real server. One accepted resident response is withheld below its original network timeout; no animation time, completed action, inventory or receipt is injected. Provider calls and user data are excluded. Not physical Mac, full-day scheduling or human acceptance.',cases:[],passed:false};
 const portFor=async()=>{const s=createServer();await new Promise(r=>s.listen(0,'127.0.0.1',r));const p=s.address().port;await new Promise(r=>s.close(r));return p;};
 let browser;
 async function run(theme){
@@ -35,18 +36,34 @@ async function run(theme){
   });
   await context.route('**/src/app.js',async route=>{
    const response=await route.fetch();let source=await response.text();
-   source+='\nwindow.__playerActionQA={async prepare(){for(const n of npcs){runtime.releaseActor(n);n.manualUntil=1e9;}await saves.idle(theme);},async hold(){this.foreign=await serverResident.begin({npcId:15},{goal:"plaza",action:"rest",source:"local",operationId:"qa-v281-player-"+crypto.randomUUID()});},async clear(){if(this.foreign)await serverResident.cancel(this.foreign);},inspect(){return {action:actor.action?{type:actor.action.type,t:actor.action.t,duration:actor.action.duration}:null,gatherSettling:serverGather.settling(),resident:serverResident.inspect(),pending:saves.pendingAction(theme)?.body?.kind||null,holdError:this.holdError||null,active:saves.status(theme).actions?.active?.requestId||null,wax:state.inventory.wax||0};}};';
+   source+=`
+window.__playerActionQA={
+ async prepare(){for(const n of npcs){runtime.releaseActor(n);n.manualUntil=1e9;}await saves.idle(theme);this.armed=true;},
+ async hold(){this.foreign=await serverResident.begin({npcId:15},{goal:"plaza",action:"rest",source:"local",operationId:"qa-v281-player-"+crypto.randomUUID()});},
+ async clear(){if(this.foreign)await serverResident.cancel(this.foreign);},
+ inspect(){return {action:actor.action?{type:actor.action.type,t:actor.action.t,duration:actor.action.duration,acceptedLease:actor.action.acceptedLease}:null,gatherSettling:serverGather.settling(),resident:serverResident.inspect(),pending:saves.pendingAction(theme)?.body?.kind||null,holdError:this.holdError||null,active:saves.status(theme).actions?.active?.requestId||null,wax:state.inventory.wax||0};}
+};
+// Queue the real unrelated command in the same turn as the actual granted
+// animation. External browser-observer round trips must not create the overlap.
+const nativeStartAction=startAction;
+startAction=(...args)=>{const result=nativeStartAction(...args),q=window.__playerActionQA,ticket=args[5];
+ if(q.armed&&ticket&&actor.action?.acceptedLease?.requestId===ticket.requestId&&(ticket.kind||"gather")==="gather"){
+  q.armed=false;q.initial=q.inspect();q.hold().catch(error=>q.holdError=error.message);
+ }
+ return result;
+};`;
    await route.fulfill({response,body:source});
   });
   for(let i=0;i<100;i++){try{if((await fetch(base+'/api/status')).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   await page.goto(base+'/?qa=1');await page.waitForFunction(()=>window.islandInspect?.().serverCommerce.ready&&!window.islandInspect().startup.busy,null,{timeout:60000});
   if(await page.locator('#closeModal').isVisible())await page.locator('#closeModal').click();
   await page.evaluate(()=>window.__playerActionQA.prepare());const actionSetupDeadline=Date.now()+15000;await page.locator('#gatherBtn').click();await page.locator('[data-gather="wax"]').click();
-  await page.waitForFunction(()=>!!window.__playerActionQA.inspect().action,null,{timeout:Math.max(1,actionSetupDeadline-Date.now())});
-  const initial=await page.evaluate(()=>window.__playerActionQA.inspect());assert.equal(initial.wax,0);assert(initial.active);row.lease=initial.active;
-  await page.evaluate(()=>{window.__playerActionQA.hold().catch(e=>window.__playerActionQA.holdError=e.message);});
-  // Share the original 15s action-setup budget with request preparation; the
-  // previous separate 2s probe could expire before saves.action dispatched.
+  await page.waitForFunction(()=>!!window.__playerActionQA.initial,null,{timeout:Math.max(1,actionSetupDeadline-Date.now())});
+  if(observerDelayMs)await page.waitForTimeout(observerDelayMs);
+  const initial=await page.evaluate(()=>window.__playerActionQA.initial);assert.equal(initial.wax,0);assert(initial.active);assert.equal(initial.action.acceptedLease.requestId,initial.active);row.lease=initial.active;
+  row.realForeignCommandQueuedAtGrantedAnimation=true;
+  // Keep the original setup, network and completion budgets. Only the real
+  // fixture command's trigger moves from observer latency to the grant event.
   while(!held&&Date.now()<actionSetupDeadline)await page.waitForTimeout(40);assert(held,'the real unrelated response must be withheld');
   await page.waitForFunction(()=>{const q=window.__playerActionQA.inspect();return q.action===null&&q.gatherSettling&&q.resident.inflight>0;},null,{timeout:5000});
   const waiting=await page.evaluate(()=>window.__playerActionQA.inspect()),before=await store.current(theme);

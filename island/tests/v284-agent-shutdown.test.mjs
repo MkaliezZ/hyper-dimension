@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,readFile,writeFile,mkdir,unlink,rmdir} from 'node:fs/promises';
+import {mkdtemp,readFile,writeFile,mkdir,unlink,rmdir,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -8,10 +8,13 @@ import {setImmediate as nextTurn} from 'node:timers/promises';
 import {createLanHttpServer} from '../server/lanServer.mjs';
 import {createLanAgentService} from '../server/lanAgentService.mjs';
 
+// macOS /var and configured temporary roots may be links. Canonicalize the
+// owned fixture root; production data-path link checks remain unchanged.
+const temporaryRoot=await realpath(tmpdir());
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return{promise,resolve,reject};};
 
 for(const theme of ['pixel','origami'])test(`${theme}: graceful shutdown persists accepted background work before closing its runtime`,async()=>{
- const directory=await mkdtemp(resolve(tmpdir(),'hd-agent-shutdown-')),started=deferred(),finish=deferred();
+ const directory=await mkdtemp(resolve(temporaryRoot,'hd-agent-shutdown-')),started=deferred(),finish=deferred();
  let service,reopened,stopping,finished=false,runtimeClosed=false,prematureClose=false,calls=0;
  const factory=({directory})=>({documents:resolve(directory,'documents'),async call(method){
   if(method!=='command')return{hermes:{configured:true}};
@@ -44,7 +47,7 @@ for(const theme of ['pixel','origami'])test(`${theme}: graceful shutdown persist
 });
 
 test('shutdown during owner lookup rejects work that was never accepted',async()=>{
- const directory=await mkdtemp(resolve(tmpdir(),'hd-agent-shutdown-race-')),lookup=deferred();let created=0;
+ const directory=await mkdtemp(resolve(temporaryRoot,'hd-agent-shutdown-race-')),lookup=deferred();let created=0;
  const service=createLanAgentService({directory,identities:{},tenants:{get:()=>lookup.promise},runtimeFactory:()=>{created++;throw Error('Must not create a runtime after shutdown');}});
  const submitting=service.submit('fictional-session',{theme:'pixel',requestId:randomUUID(),message:'Unaccepted fictional work'});
  const rejected=assert.rejects(submitting,e=>e.code==='lan_agent_closed');
@@ -53,7 +56,7 @@ test('shutdown during owner lookup rejects work that was never accepted',async()
 });
 
 test('HTTP shutdown drains an already accepted job after its202response',async()=>{
- const directory=await mkdtemp(resolve(tmpdir(),'hd-agent-http-shutdown-')),started=deferred(),finish=deferred();
+ const directory=await mkdtemp(resolve(temporaryRoot,'hd-agent-http-shutdown-')),started=deferred(),finish=deferred();
  let service,stopping,completed=false,closedEarly=false,calls=0;
  try{
   service=await createLanHttpServer({directory,port:0,enrollmentKey:'OWNED-HTTP-SHUTDOWN',agentRuntimeFactory:()=>({documents:directory,async call(method){
@@ -73,7 +76,7 @@ test('HTTP shutdown drains an already accepted job after its202response',async()
 });
 
 test('failed result persistence keeps shutdown failed instead of releasing the data lease',async()=>{
- const directory=await mkdtemp(resolve(tmpdir(),'hd-agent-persist-shutdown-')),started=deferred(),finish=deferred();
+ const directory=await mkdtemp(resolve(temporaryRoot,'hd-agent-persist-shutdown-')),started=deferred(),finish=deferred();
  let service,stopping,file,before,obstructed=false,runtimeClosed=false;
  try{
   service=await createLanHttpServer({directory,port:0,enrollmentKey:'OWNED-PERSIST-SHUTDOWN',agentRuntimeFactory:()=>({documents:directory,async call(method){

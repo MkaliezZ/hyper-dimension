@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v285-agent-source",
+  "release": "hyper-dimension-v286-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 106318,
-      "sha256": "e1cc50988ba59f933c8c9ed7ac42802b9a798776525a628a6268acd4f08cc96b"
+      "bytes": 106738,
+      "sha256": "1018d344f54558e3d6ff139f3caa57524642f15a0df5efb442bdd33ec01bdf99"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -13332,8 +13332,8 @@
     },
     {
       "path": "tests/v281-player-action-browser.mjs",
-      "bytes": 7634,
-      "sha256": "dba9b20da9b5e8f26732c989f8ef34965d95f21e6ba2426fc3061b1f48f4167a"
+      "bytes": 8487,
+      "sha256": "a067bb1902443f34f33bd854b221b33d2bdf35f79b14148beb19423c341ae795"
     },
     {
       "path": "tests/v281-player-action-clock.test.mjs",
@@ -13382,8 +13382,8 @@
     },
     {
       "path": "tests/v284-agent-shutdown.test.mjs",
-      "bytes": 7753,
-      "sha256": "59bc2e79cb6c2df400d6e17f74127c23e069994ac9357aec27da37a03f1d8543"
+      "bytes": 7978,
+      "sha256": "51ac9fc222111ee2908752dca3ff5e20076bb725b8567dfd1523d97d5b500af5"
     },
     {
       "path": "docs/visitor-queue-v285.md",
@@ -13399,7 +13399,17 @@
       "path": "tests/v285-visitor-queue.test.mjs",
       "bytes": 2599,
       "sha256": "934a1e7e1599535864a00c1946edccbcb717a295856719091fbbaaaae69640eb"
+    },
+    {
+      "path": "docs/native-fixtures-v286.md",
+      "bytes": 1993,
+      "sha256": "db740881dcc7da1e82edd840ab35e55780895013de99b4c11c93938c9f14ff41"
+    },
+    {
+      "path": "docs/verification-v286.json",
+      "bytes": 725,
+      "sha256": "9e73345fbb3a74699e1f61634d2e40cef6b3ab157bd9d3b37a7356d64c51ba29"
     }
   ],
-  "publicRevision": "v285-visitor-queue-admission"
+  "publicRevision": "v286-native-fixture-synchronization"
 }

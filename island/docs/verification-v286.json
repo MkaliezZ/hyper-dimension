@@ -1,0 +1,22 @@
+{
+  "version": "V286",
+  "scope": "Isolated fixture synchronization and canonical temporary roots; production payload unchanged fromV285.",
+  "before": {
+    "observerLatencySeconds": 3,
+    "originalObserverOverlapFailed": true,
+    "linkedOwnedTemporaryRootFailures": 4,
+    "linkedOwnedTemporaryRootPasses": 1
+  },
+  "after": {
+    "nativeWindowsDualStyleCases": 4,
+    "originalTimingAndRewardAssertionsRetained": true,
+    "shutdownChecksNativeAndLinkedTemp": 10,
+    "productionDataPathLinkGuardUnchanged": true
+  },
+  "productionChanges": [],
+  "hostedMacVerified": false,
+  "macGpuStallResolved": false,
+  "physicalMacVerified": false,
+  "humanAcceptance": false,
+  "wholeGoalComplete": false
+}
