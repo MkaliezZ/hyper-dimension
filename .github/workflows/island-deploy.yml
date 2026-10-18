@@ -95,6 +95,9 @@ jobs:
       - name: Native late successful modal navigation
         run: node tests/v157-modal-command-navigation-browser.mjs
 
+      - name: Native committed modal response loss and bounded replay
+        run: node tests/v271-modal-transport-browser.mjs
+
       - name: Retain native navigation diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -117,6 +120,9 @@ jobs:
             island/qa/v156/checkpoint-restart/*.png
             island/qa/v157/modal-command-navigation/report.json
             island/qa/v157/modal-command-navigation/*.png
+            island/qa/v271/modal-transport/**/report.json
+            island/qa/v271/modal-transport/**/*-transport.jsonl
+            island/qa/v271/modal-transport/report.json
           if-no-files-found: ignore
           retention-days: 3
 

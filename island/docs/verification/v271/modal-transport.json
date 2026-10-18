@@ -1,0 +1,92 @@
+{
+  "version": "V271",
+  "at": "2026-10-18T02:47:11.002411+00:00",
+  "sourceBase": "55a83dd39a7a93741fca4cac9c9ca1f4ec5cd3d5",
+  "originalFailure": {
+    "run": 39085611655,
+    "job": 117551623081,
+    "operation": "final origami item use",
+    "logError": "route.fetch ECONNRESET",
+    "originalReportMissing": true,
+    "originalResetTimingUnknown": true
+  },
+  "controlledProof": {
+    "noRetryLostRealCommitCorrectlyFailed": true,
+    "singleRetrySameSignedRequestPassed": true,
+    "twoLostRepliesStillFailed": true,
+    "exactlyOneCanonicalReceipt": true,
+    "allTwelveOriginalCasesPassed": true,
+    "publicRegressionThreeCasesPassed": true
+  },
+  "originalInputsAssertionsAndTimeoutsPreserved": true,
+  "runtimePayloadsByteIdenticalToV269": 1251,
+  "homeJournalDiagnostic": {
+    "run": 39087118301,
+    "sourceCommit": "6ad4556482a4529e04e3c1beb1c3e91b4b6faa85",
+    "artifactDigestsAndZipCRCVerified": true,
+    "cases": [
+      {
+        "platform": "macos14",
+        "homeId": 14,
+        "sharedStyleRecord": true,
+        "completedDays": 1,
+        "passed": true
+      },
+      {
+        "platform": "macos14",
+        "homeId": 15,
+        "sharedStyleRecord": true,
+        "completedDays": 1,
+        "passed": true
+      },
+      {
+        "platform": "macos-intel",
+        "homeId": 14,
+        "sharedStyleRecord": true,
+        "completedDays": 1,
+        "passed": true
+      },
+      {
+        "platform": "macos-intel",
+        "homeId": 15,
+        "sharedStyleRecord": true,
+        "completedDays": 1,
+        "passed": true
+      },
+      {
+        "platform": "windows",
+        "homeId": 14,
+        "sharedStyleRecord": true,
+        "completedDays": 1,
+        "passed": true
+      },
+      {
+        "platform": "windows",
+        "homeId": 15,
+        "sharedStyleRecord": true,
+        "completedDays": 1,
+        "passed": true
+      }
+    ],
+    "originalMainFailureUnresolved": true
+  },
+  "openMacArmTimeouts": [
+    {
+      "job": 117551623012,
+      "test": "v227-custom-agent-browser",
+      "resolved": false
+    },
+    {
+      "job": 117551623008,
+      "test": "v213-task-chain-browser",
+      "resolved": false
+    }
+  ],
+  "fullSuitePassed": false,
+  "humanAcceptance": false,
+  "physicalMultiDeviceAcceptance": false,
+  "wholeGoalComplete": false,
+  "publicOriginalTwelveCasesPassed": true,
+  "publicThreeTransportControlsPassed": true,
+  "allExistingWorkflowSemanticsPreserved": true
+}

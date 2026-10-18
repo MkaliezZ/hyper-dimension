@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v270-agent-source",
+  "release": "hyper-dimension-v271-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 98995,
-      "sha256": "593323d4c86152502d294569ddda6bd9a08414f2f05d558fb2f27ccf8409eb85"
+      "bytes": 99373,
+      "sha256": "1815648c19d6ea796550a6c78a9e8bbaccd68a7e02dd4b43384fd0b2fcff75e1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9172,8 +9172,8 @@
     },
     {
       "path": "tests/v157-modal-command-navigation-browser.mjs",
-      "bytes": 9692,
-      "sha256": "f20863c8912bc0393d6eeabda7575fa416438c434bd9df6f2e6a6776e0026550"
+      "bytes": 11204,
+      "sha256": "e771e73f012868e4386f1cd395293a3ff67d137496f4be310ae30540600e4484"
     },
     {
       "path": "tests/v158-a2a-live.mjs",
@@ -13069,7 +13069,27 @@
       "path": "docs/verification/v270/home-journal-diagnostic.json",
       "bytes": 1054,
       "sha256": "d742b411dd309f5400e19118c5116b8b986290ee243f81e63cfdd38198569717"
+    },
+    {
+      "path": "tests/modalReplyLossFixture.mjs",
+      "bytes": 986,
+      "sha256": "c2535e10f06cbf7ac653f8b99988038f71d9c01389d718e2c07827490e97292b"
+    },
+    {
+      "path": "tests/v271-modal-transport-browser.mjs",
+      "bytes": 3357,
+      "sha256": "ca9804433c8cff329ccd27f410f20f22cac34c53395ba3335de3b503e8bc5eb0"
+    },
+    {
+      "path": "docs/modal-transport-v271.md",
+      "bytes": 2376,
+      "sha256": "b8f5e4cc66cd98472b8bd3937f3fa000e23e8764afdb23bb7e9a59a06e12062c"
+    },
+    {
+      "path": "docs/verification/v271/modal-transport.json",
+      "bytes": 2533,
+      "sha256": "8ab5227f157daeca37503006c5fca00789be2f7cafd3753fdc0780939ec0b062"
     }
   ],
-  "publicRevision": "v270-diagnostic-branch"
+  "publicRevision": "v271-modal-transport"
 }
