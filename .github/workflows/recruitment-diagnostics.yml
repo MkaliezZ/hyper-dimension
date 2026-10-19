@@ -1,0 +1,34 @@
+name: Island recruitment diagnostics
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: island-recruitment-diagnostics-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  recruitment-progress:
+    name: macos-15-intel / recruitment scheduling
+    runs-on: macos-15-intel
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install isolated browser dependencies
+        working-directory: island
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
+      - name: Observe the original recruitment deadlines
+        run: node .github/diagnostics/recruitment-progress.mjs
+      - name: Retain owned recruitment scheduling observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: recruitment-scheduling-macos-15-intel
+          path: |
+            island/qa/v287/native-recruitment-progress/report.json
+            island/qa/v287/native-recruitment-progress/scheduling-journal-*.json
+            island/qa/v287/native-recruitment-progress/*.png
+          if-no-files-found: error
+          retention-days: 3

@@ -1,0 +1,100 @@
+// Observe the unmodified recruitment test on its fictional islands. These hooks
+// record scheduling boundaries only; they never resolve a receipt or change time.
+import {createRequire} from 'node:module';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {spawnSync} from 'node:child_process';
+
+const root=resolve('island'),require=createRequire(join(root,'package.json'));
+const {chromium}=require('playwright-core');
+const out=resolve(process.env.HD_QA_OUT||join(root,'qa/v287/native-recruitment-progress'));
+await mkdir(out,{recursive:true});
+const originalLaunch=chromium.launch.bind(chromium),cases=[];
+const record=(row,event,details={})=>{if(row.events.length<1500)row.events.push({at:Date.now(),event,...details});};
+const safeError=error=>String(error?.message||error).slice(0,300);
+function insert(source,needle,replacement){
+ if(source.split(needle).length!==2)throw Error('Recruitment diagnostic source hook changed: '+needle);
+ return source.replace(needle,replacement);
+}
+function observeClient(source){
+ const mark='window.__hdRecruitMark?.';
+ source=insert(source,'function cache(r){',`function cache(r){${mark}('cache',{theme:r.theme,generation:r.generation});`);
+ source=insert(source,'function status(r,name,message){',`function status(r,name,message){${mark}('status',{theme:r.theme,name});`);
+ source=insert(source,'function queueOperation(r,run,options){',`function queueOperation(r,run,options){${mark}('queue',{theme:r.theme,barrier:!!options?.barrier});`);
+ source=insert(source,'async function actionNow(theme,input,prepareInput){',`async function actionNow(theme,input,prepareInput){${mark}('action-start',{theme,kind:input.kind,operation:input.operation});`);
+ source=insert(source,'const response=await journal.request(',`${mark}('request-start',{theme,operation});const response=await journal.request(`);
+ return insert(source,'const data=response.data||JSON.parse(response.text);',`${mark}('request-end',{theme,operation,status:response.status});const data=response.data||JSON.parse(response.text);`);
+}
+function observeJournal(source){
+ source=insert(source,'const id=++sequence,timer=',"const id=++sequence;window.__hdRecruitMark?.('rpc-start',{id,operation});const timer=");
+ return insert(source,'pending.delete(data.id);clearTimeout(call.timer);',"pending.delete(data.id);clearTimeout(call.timer);window.__hdRecruitMark?.('rpc-end',{id:data.id,error:!!data.error});");
+}
+if(process.argv.includes('--check-hooks')){
+ for(const [file,transform] of [['saveClient.js',observeClient],['saveJournal.js',observeJournal]]){
+  const result=spawnSync(process.execPath,['--check','--input-type=module'],{input:transform(await readFile(join(root,'src',file),'utf8')),encoding:'utf8'});
+  if(result.status!==0)throw Error(result.stderr||'Diagnostic module did not parse');
+ }
+ const original=chromium.launch;chromium.launch=originalLaunch;
+ if(chromium.launch!==originalLaunch)throw Error('Browser launch cannot be observed');
+ chromium.launch=original;
+ console.log(JSON.stringify({sourceHooksParsed:2,originalTestUnmodified:true,browserStarted:false}));
+ process.exit(0);
+}
+chromium.launch=async(...args)=>{
+ const browser=await originalLaunch(...args),originalContext=browser.newContext.bind(browser);
+ browser.newContext=async(...contextArgs)=>{
+  const context=await originalContext(...contextArgs),row={context:cases.length+1,events:[],sourceHooks:[],pages:[]};cases.push(row);
+  await context.addInitScript(()=>{
+   const events=[];window.__hdRecruitDiagnostic={events,longTasks:[]};
+   window.__hdRecruitMark=(event,details={})=>{if(events.length<1500)events.push({at:performance.now(),event,...details});};
+   try{new PerformanceObserver(list=>{for(const task of list.getEntries())if(window.__hdRecruitDiagnostic.longTasks.length<120)window.__hdRecruitDiagnostic.longTasks.push({start:task.startTime,duration:task.duration});}).observe({type:'longtask',buffered:true});}catch{}
+  });
+  context.on('page',page=>{
+   row.pages.push(page);
+   page.on('request',request=>{
+    const path=new URL(request.url()).pathname;if(!path.startsWith('/api/'))return;
+    let input;try{input=request.postDataJSON();}catch{}
+    record(row,'request',{path,method:request.method(),...(input&&typeof input==='object'?{kind:input.kind,operation:input.operation}:{} )});
+   });
+   page.on('response',response=>{const path=new URL(response.url()).pathname;if(path.startsWith('/api/'))record(row,'response',{path,status:response.status()});});
+   page.on('requestfailed',request=>{const path=new URL(request.url()).pathname;if(path.startsWith('/api/'))record(row,'requestfailed',{path,error:request.failure()?.errorText});});
+   page.on('pageerror',error=>record(row,'pageerror',{error:safeError(error)}));
+  });
+  await context.route('**/src/saveClient.js',async route=>{
+   const response=await route.fetch(),source=observeClient(await response.text());
+   row.sourceHooks.push('saveClient');await route.fulfill({response,body:source});
+  });
+  await context.route('**/src/saveJournal.js',async route=>{
+   const response=await route.fetch(),source=observeJournal(await response.text());
+   row.sourceHooks.push('saveJournal');await route.fulfill({response,body:source});
+  });
+  const originalClose=context.close.bind(context);
+  context.close=async(...closeArgs)=>{
+   try{
+    row.snapshots=[];
+    for(const page of row.pages){
+     if(page.isClosed())continue;
+     let timer;
+     try{row.snapshots.push(await Promise.race([page.evaluate(()=>{
+      const progress=window.__recruitProgress,view=window.islandInspect?.(),theme=view?.theme;
+      const status=progress&&theme?progress.saves.status(theme):null;
+      return {diagnostic:window.__hdRecruitDiagnostic,foreign:window.__recruitForeign,theme,
+       save:status?Object.fromEntries(['status','message','dirty','capturing','reconciling','pending','recovering'].map(k=>[k,status[k]])):null,
+       resumeDisabled:document.querySelector('#recruitResume')?.disabled,
+       busy:document.querySelector('#recruitmentPanel')?.getAttribute('aria-busy'),
+       feedback:document.querySelector('.recruit-await')?.textContent};
+     }),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Diagnostic snapshot unavailable within2000ms')),2000))]));}
+     catch(error){row.snapshots.push({error:safeError(error)});}finally{clearTimeout(timer);}
+    }
+    await writeFile(join(out,'scheduling-journal-'+row.context+'.json'),JSON.stringify({...row,pages:row.pages.length},null,2));
+   }finally{await originalClose(...closeArgs);}
+  };
+  return context;
+ };
+ return browser;
+};
+// The original test retains its inputs, assertions, response-loss choreography
+// and8000ms limits. Import it from its actual package so module identity is kept.
+process.chdir(root);
+await import(pathToFileURL(join(root,'tests/v287-recruitment-progress-browser.mjs')).href);
