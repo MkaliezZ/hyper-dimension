@@ -1,0 +1,9 @@
+# Manual save confirmations
+
+The save page now keeps a confirmation for the specific manual checkpoint. The island can continue producing later changes, so its live autosave status can remain pending after that checkpoint was acknowledged. The page shows these separately and never labels the whole current world clean merely because one manual save finished.
+
+The confirmation is published only after the existing checkpoint promise resolves and retains its acknowledged version and timestamp. A new attempt clears the previous confirmation; a rejection displays an unconfirmed result. An older completion cannot replace a different open panel or a newer attempt. Appearance-specific presentation does not claim another appearance's old manual confirmation.
+
+The Intel hosted cash check previously waited for a transient global `saved` badge after switching appearance. Its retained screenshot showed the manual button enabled and the page refreshed to later pending changes. The native check now waits for the explicit manual acknowledgment with version and timestamp. The original 30-second manual-save and 60-second opening limits, actual 18-coin supply purchase, 80-coin upgrade, material consumption, 98-coin canonical costs, two-entry ledger, shared-style switch and empty-browser recovery assertions remain.
+
+Local native normal-speed runs passed both appearances, as did actual-DOM acknowledgment, rejection, navigation and retry probes and 16 related queue/navigation/paint rules. An additional CPU-throttled run confirmed both manual saves but failed during artwork loading when reopening its final empty browser; an unmodified baseline also failed while reopening. That separate slow-renderer boundary is retained as unresolved and is not counted as recovery qualification. Current hosted matrix and a focused Intel follow-up remain required. Automated owned fictional contexts are not human or physical-device acceptance.

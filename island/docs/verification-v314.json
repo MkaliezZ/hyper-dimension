@@ -1,0 +1,35 @@
+{
+  "version": "V314",
+  "at": "2026-10-19T13:03:30.985587+00:00",
+  "passed": true,
+  "scope": "Manual save acknowledgment UI and native cash/recovery assertions; not whole-game acceptance.",
+  "normalNativeCashBothStylesPassed": true,
+  "manualFeedbackBothStylesPassed": true,
+  "actualCanonicalCost": 98,
+  "actualCapitalCost": 80,
+  "actualCashAfterSupplyAndUpgrade": 102,
+  "actualLedgerEntriesAfterEmptyBrowserRecovery": 2,
+  "originalSupplyUpgradeCostsAndRecoveryAssertionsRetained": true,
+  "original30000And60000MillisecondLimitsRetained": true,
+  "globalPendingStatusNotMisrepresentedAsClean": true,
+  "scopedRuleTests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "fullDefaultRulesRerun": false,
+  "cpu2AdditionalProbe": {
+    "passed": false,
+    "manualConfirmationBothStylesPassed": true,
+    "failurePhase": "theme-artwork during empty-browser reopening",
+    "unmodifiedBaselineAlsoFailedDuringEmptyBrowserOpening": true,
+    "notQualifiedAsCpu2Recovery": true
+  },
+  "hostedRepairConfirmed": false,
+  "wholeGoalComplete": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "sourceHashes": {
+    "src/saveUI.js": "aa4334470377a311867f328e2d997e6f8a162f405a7b6b88ee276a142b11e392",
+    "tests/v276-cash-browser.mjs": "99b909c8c7261796ae7436b5b31e0185f342f05257b9bbe07c3760614d7332a3",
+    "tests/v314-manual-save-feedback-browser.mjs": "05d47718bab297ae903fb800d265d2d29f8b7a5a02ddf82f269a25ba2c0b3cb7"
+  }
+}

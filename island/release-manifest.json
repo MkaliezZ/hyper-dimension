@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v313-agent-source",
+  "release": "hyper-dimension-v314-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 119344,
-      "sha256": "4641f41e604de943a1689b80d0a0c86fbc71058ee2319209aa5a0a698b7a0025"
+      "bytes": 119888,
+      "sha256": "d10f4348045aac28059d5f5a3824d5fd11a666746a2219552d18c0bd9a93ce5f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7967,8 +7967,8 @@
     },
     {
       "path": "src/saveUI.js",
-      "bytes": 8774,
-      "sha256": "7113231802d73628a679548a71f59b0f4376ddcdc393e6f1b1ec0e3162b20537"
+      "bytes": 10107,
+      "sha256": "aa4334470377a311867f328e2d997e6f8a162f405a7b6b88ee276a142b11e392"
     },
     {
       "path": "src/saveWorker.js",
@@ -13232,8 +13232,8 @@
     },
     {
       "path": "tests/v276-cash-browser.mjs",
-      "bytes": 6391,
-      "sha256": "a13d6ec1f24355934504f1a4d07da866b914281645fb384aae12c4db5fab0270"
+      "bytes": 7208,
+      "sha256": "99b909c8c7261796ae7436b5b31e0185f342f05257b9bbe07c3760614d7332a3"
     },
     {
       "path": "docs/cash-book-v276.md",
@@ -13929,7 +13929,22 @@
       "path": "docs/verification-v313.json",
       "bytes": 2004,
       "sha256": "49e3908142161ece3447e23e8a884faf45fd4039af8ae53f4f67ff44a7b6fcf9"
+    },
+    {
+      "path": "docs/manual-save-feedback-v314.md",
+      "bytes": 1944,
+      "sha256": "936f579dbdf106283482cde66ca7bd913acc9c8aad9f1381bad02e53c3a78863"
+    },
+    {
+      "path": "docs/verification-v314.json",
+      "bytes": 1460,
+      "sha256": "1a1eefb1f72a7dce71f356b83228aefd6c0160f2fec3ea74389a356ebf2828c2"
+    },
+    {
+      "path": "tests/v314-manual-save-feedback-browser.mjs",
+      "bytes": 5650,
+      "sha256": "05d47718bab297ae903fb800d265d2d29f8b7a5a02ddf82f269a25ba2c0b3cb7"
     }
   ],
-  "publicRevision": "v313-native-painting-resume"
+  "publicRevision": "v314-manual-save-confirmation"
 }

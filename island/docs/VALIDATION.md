@@ -936,3 +936,8 @@ Intel Mac 旧失败的报告与截图显示主模块未能载入，页面只有�
 ## V313 · 原生绘画暂停续做检查
 
 自动检查通过真实按钮处理安全暂停，核对笔触、分数与材料身份保留；产品暂停、游戏品质、时间与结算规则保持不变。双画风强制中途暂停完成制作及刷新，普通流程及托管结果单独核对。见[范围](native-painting-pause-v313.md)。
+
+
+## V314 - Manual save acknowledgment
+
+The save page distinguishes an acknowledged manual checkpoint from later pending island changes. Native cash and shared-style empty-browser recovery passed both appearances locally with original resource, ledger and timeout assertions. The related slow-renderer artwork startup failure remains separately unqualified. See [manual-save-feedback-v314.md](manual-save-feedback-v314.md) and [verification-v314.json](verification-v314.json). Hosted current-source and full delivery acceptance remain pending.

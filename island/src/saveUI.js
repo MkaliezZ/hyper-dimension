@@ -5,6 +5,12 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const labels={automatic:'自动备份',manual:'手动备份',migration:'浏览器旧档',new:'初次登岛','before-restart':'归零前备份','before-restore':'恢复前备份',recovery:'故障恢复',restore:'恢复存档',restart:'从零重开',import:'导入存档','before-import':'导入前备份'};
 const origins={'server-new':'由本机服务创建的新岛','legacy-browser':'经确认导入的浏览器旧档','local-export':'经确认导入的本机签名备份','local-checkpoint':'恢复自本机历史备份','external-state':'经确认导入的普通存档，来源未验证','legacy-export':'经确认导入的旧版备份，来源未验证','foreign-export':'经确认导入的另一安装环境备份'};
 export function createSaveUI({saves,theme,openModal,toast}){
+ const manualSaves=new Map();let manualSequence=0;
+ function manualFeedback(style){
+  const result=manualSaves.get(style),status=result?.status||'idle';
+  const message=status==='complete'?'本次手动保存已确认。此后产生的新进度会继续自动写入。':status==='saving'?'正在确认本次手动保存…':status==='failed'?'本次手动保存未确认：'+result.message:'点击「立即保存」可确认当前进度已写入本机服务。';
+  return '<p class="hint" role="status" data-manual-save="'+status+'" data-manual-save-id="'+esc(result?.id||'')+'" data-manual-save-version="'+esc(result?.version||'')+'" data-manual-save-updated-at="'+esc(result?.updatedAt||'')+'">'+esc(message)+'</p>';
+ }
  function recoveryModal(...args){openModal(...args);setRecoveryDialog(true);}
  const summary=(s,title)=>'<section class="save-source-card"><h3>'+esc(title)+'</h3><p>'+esc(s?.name||'岛主')+' · '+esc(s?.island||'小岛')+'</p><dl><div><dt>游戏日期</dt><dd>第 '+esc(s?.day??'—')+' 天</dd></div><div><dt>岛币</dt><dd>'+esc(s?.coins??'—')+'</dd></div><div><dt>物品总数</dt><dd>'+esc(s?.goods??'—')+'</dd></div></dl></section>';
  async function previewFile(style,data,label,migrationId,token){
@@ -27,7 +33,7 @@ export function createSaveUI({saves,theme,openModal,toast}){
  async function show(){
   const style=theme();saves.cancelImportPreview(style);const s=saves.status(style);
   recoveryModal('小岛存档','本机服务保存 · 浏览器缓存 · 历史可恢复',
-   '<section class="journal-opening"><h3>'+esc(s.message)+'</h3><p>游戏运行时，每约 5 秒自动写入本机服务。每 5 分钟保留一份历史备份，重开、恢复和手动备份会单独保留。</p><p>关闭网页不会计算离线天数。换浏览器或清理网页缓存后，会从本机服务继续进度。</p><p>存档来源：'+esc(origins[s.provenance?.origin]||'历史版本存档，未记录来源')+'。</p></section>'+
+   '<section class="journal-opening"><h3>'+esc(s.message)+'</h3>'+manualFeedback(style)+'<p>游戏运行时，每约 5 秒自动写入本机服务。每 5 分钟保留一份历史备份，重开、恢复和手动备份会单独保留。</p><p>关闭网页不会计算离线天数。换浏览器或清理网页缓存后，会从本机服务继续进度。</p><p>存档来源：'+esc(origins[s.provenance?.origin]||'历史版本存档，未记录来源')+'。</p></section>'+
    (s.migration?'<section class="hint save-migration"><h3>发现保留的浏览器旧档</h3><p>第 '+esc(s.migration.summary.day)+' 天 · '+esc(s.migration.summary.coins)+' 岛币 · '+esc(s.migration.summary.goods)+' 件物品。当前新岛没有自动继承旧档资源。</p><button class="secondary" id="previewMigration">查看旧档导入预览</button><a class="secondary" href="/api/saves/'+style+'/migration-export" download>下载原始旧档</a></section>':'')+
    (s.status==='import_pending'?'<div class="hint"><b>导入结果尚待核对，游戏已暂停。</b><p>已保留这次确认编号。重试会读取同一次导入结果。</p><button class="primary" id="retrySaveImport">核对导入并继续</button></div>':'')+
    (s.status==='blocked'&&s.message.includes('正在会客')?'<div class="hint"><p>本岛生产已暂停，随行身份和已有进度保留。</p><a class="primary" href="/">返回正在进行的会客</a></div>':'')+
@@ -44,7 +50,13 @@ export function createSaveUI({saves,theme,openModal,toast}){
   const act=(id,fn)=>{const b=root.querySelector('#'+id);if(b)b.onclick=async()=>{b.disabled=true;try{await fn()}catch(error){toast(error.message)}finally{if(b.isConnected)b.disabled=false}}};
   act('previewMigration',()=>previewFile(style,null,'本机保留的浏览器旧档',s.migration.id,token));
   act('retrySaveImport',()=>saves.retryImport(style));
-  act('saveNow',async()=>{await saves.checkpoint(style);toast('进度已写入本机服务');if(token.current())show()});
+  act('saveNow',async()=>{
+   const result={id:String(++manualSequence),status:'saving'};manualSaves.set(style,result);
+   const paint=()=>{if(token.current()&&manualSaves.get(style)===result){const feedback=root.querySelector('[data-manual-save]');if(feedback)feedback.outerHTML=manualFeedback(style);}};paint();
+   try{await saves.checkpoint(style);const acknowledged=saves.status(style);Object.assign(result,{status:'complete',version:acknowledged.version,updatedAt:acknowledged.updatedAt});}
+   catch(error){Object.assign(result,{status:'failed',message:error.message});paint();throw error;}
+   toast('本次进度已写入本机服务');if(token.current()&&manualSaves.get(style)===result)show();
+  });
   act('backupNow',async()=>{await saves.backup(style);toast('已创建可恢复的存档备份');if(token.current())show()});
   act('acceptServerSave',()=>readRecoveryProgress(root,()=>saves.acceptServer(style),toast));
   act('exportPending',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(s.state,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='hyper-dimension-'+style+'-pending.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});

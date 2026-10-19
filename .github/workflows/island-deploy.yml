@@ -546,6 +546,9 @@ jobs:
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v276-cash-browser.mjs
 
+      - name: Manual save acknowledgment and failure feedback
+        run: node tests/v314-manual-save-feedback-browser.mjs
+
       - name: Native greenhouse soil care
         run: node tests/v159-soil-care-browser.mjs
 
@@ -579,6 +582,7 @@ jobs:
             island/qa/v278/native-visitor-clock/report.json
             island/qa/v276/native-cash/report.json
             island/qa/v276/native-cash/*.png
+            island/qa/v314/manual-save-feedback/report.json
             island/qa/v159/native-soil-care/report.json
             island/qa/v159/native-soil-care/*.png
             island/qa/v179/navigation-arrival/report.json
