@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v322-agent-source",
+  "release": "hyper-dimension-v323-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 123814,
-      "sha256": "7366f55300d4162fedc86cde8aad69a52ede312e54674f4ba5481a415577e5de"
+      "bytes": 124342,
+      "sha256": "35834bf0f4e9bd9ed324a4880d6854de9af2291353fae096544f2b59f3884a82"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17403,
-      "sha256": "1291d612b707cf84206b163801aeed25296f1a433bdfa35abf60f753eb736224"
+      "bytes": 17474,
+      "sha256": "d18367fbdc107b389804509b8f5d484142a779bee6f03054ed972ed5b3bb7ba4"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7782,8 +7782,8 @@
     },
     {
       "path": "src/recruitmentUI.js",
-      "bytes": 27014,
-      "sha256": "3fd7c23865cfb75e5fda56f8a5c497605ac04d7dee2330631cffee90ed453c4b"
+      "bytes": 27490,
+      "sha256": "8c5156afef300d314c192794428b4c48f6684cfc87feb729d8a2924323b5d4df"
     },
     {
       "path": "src/residence-v191.css",
@@ -10947,8 +10947,8 @@
     },
     {
       "path": "tests/v75-recruit-renewal.test.mjs",
-      "bytes": 9159,
-      "sha256": "ef60ca520ea280b942101f85218722c361f6c75c32d5b64c9e65c93bbb96d86e"
+      "bytes": 10158,
+      "sha256": "c04abd28b56a6ee0d42de9b0008ad59efb62b448f54431c13aceeb0784ac4fe7"
     },
     {
       "path": "tests/v76-autonomy-fixture.mjs",
@@ -10967,8 +10967,8 @@
     },
     {
       "path": "tests/v76-recruit-autonomy.test.mjs",
-      "bytes": 10673,
-      "sha256": "6531612923f77d88b4045badd939ea0347daf3cf939492a46ea8694301086528"
+      "bytes": 11696,
+      "sha256": "070f26b21927990af25dedce60217affc60f65b83babd8bd13fc083ca4fe71cb"
     },
     {
       "path": "tests/v77-guest-cooperation-browser.mjs",
@@ -14069,7 +14069,22 @@
       "path": "docs/verification-v322.json",
       "bytes": 2020,
       "sha256": "5f124495b76aa84455efd4fd49e1797ff8cf80024981e57ffe00de47c869b0d0"
+    },
+    {
+      "path": "tests/v323-recruitment-focused-status-browser.mjs",
+      "bytes": 7975,
+      "sha256": "afbe7180006fe8c1ba0306bf56785c4081c2c3e1bdf853b36831c9fd120fc7dc"
+    },
+    {
+      "path": "docs/recruitment-focused-status-v323.md",
+      "bytes": 2262,
+      "sha256": "bfb47347e466e144cb5c0be97ce47fff70c8397a45a588c2f78e81028e03de9f"
+    },
+    {
+      "path": "docs/verification-v323.json",
+      "bytes": 1832,
+      "sha256": "3120a9fc34c4d3174070d7b049111c642f964877812df26701536ce67f8f786a"
     }
   ],
-  "publicRevision": "v322-static-shelf-backdrop-and-world-resume"
+  "publicRevision": "v323-focused-recruitment-status-and-protected-fixtures"
 }

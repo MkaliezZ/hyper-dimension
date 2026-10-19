@@ -379,6 +379,10 @@ jobs:
         if: matrix.group == 'content'
         run: node tests/v222-recruitment-errors-browser.mjs
 
+      - name: Native recruitment status recovery while editing policy
+        if: matrix.group == 'content'
+        run: node tests/v323-recruitment-focused-status-browser.mjs
+
       - name: Native recruitment progress behind accepted work
         if: matrix.group == 'content'
         run: node tests/v287-recruitment-progress-browser.mjs
@@ -489,6 +493,8 @@ jobs:
             island/qa/v221/native-catalog-counts/*.png
             island/qa/v222/native-recruitment-errors/report.json
             island/qa/v222/native-recruitment-errors/*.png
+            island/qa/v323/native-recruitment-focus/*.json
+            island/qa/v323/native-recruitment-focus/*.png
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/*.png
             island/qa/v306/native-field-start-timeout/report.json

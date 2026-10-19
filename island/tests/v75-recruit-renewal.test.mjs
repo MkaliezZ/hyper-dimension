@@ -1,16 +1,18 @@
 
-import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {writeFile} from 'node:fs/promises';
+import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {mkdir,writeFile} from 'node:fs/promises';
 import {finishVisit} from './v72-recruitment-fixture.mjs';import {resolveTravelRecruitment,travelPerson} from '../server/lanTravelParty.mjs';
 import {fixture,meet} from './v74-travel-fixture.mjs';import {proof} from './v72-recruitment-fixture.mjs';import {prepareRecruitmentRenewal,releaseRecruitmentRenewal,renewalReadiness} from '../src/recruitmentRenewal.js';import {controlProject} from '../src/projectPlans.js';import {beginTaskStep} from '../src/taskBoard.js';import {createRecruitmentService} from '../server/recruitmentService.mjs';
+await mkdir('qa/v75',{recursive:true});
 async function call(f,kind,operation,args={}){const c=await f.service.tenants.get(f.accounts[1].token),d=await f.read();return c.saves.action(f.theme,{kind,operation,requestId:randomUUID(),expectedVersion:d.version,epoch:d.actions?.epoch??null,expectedSequence:d.actions?.sequence||0,day:d.state.day,...args});}
-async function delivered(f){await f.update(s=>{controlProject(s,'travel-plan','resume');const t=s.agentTaskLedger.find(t=>t.npcId===16);beginTaskStep(s,t.id);});
+async function delivered(f){for(const op of ['enable','hire_enable','plan_enable'])await call(f,'commerce',op);if((await f.read()).state.workProjects.find(p=>p.id==='travel-plan').status==='paused')await call(f,'commerce','plan_control',{projectId:'travel-plan',control:'resume'});
  const d=await f.read(),t=d.state.agentTaskLedger.find(t=>t.npcId===16),start=await call(f,'resident','begin',{actorId:16,gameTime:0,intent:{goal:'forest',action:'work',resource:'wood',buildingId:null,assignmentId:t.id,operationId:t.operationId}});
  f.advance(20000);const c=await f.service.tenants.get(f.accounts[1].token),done=await c.saves.action(f.theme,{kind:'resident',operation:'finish',requestId:start.ticket.requestId,epoch:start.ticket.epoch,sequence:start.ticket.sequence,expectedVersion:start.document.version});
- await f.update(s=>{const task=s.agentTaskLedger.find(t=>t.id===start.ticket.assignmentId);controlProject(s,'travel-plan','pause');});
+ if((await f.read()).state.workProjects.find(p=>p.id==='travel-plan').status==='preparing')await call(f,'commerce','plan_control',{projectId:'travel-plan',control:'pause'});
  return done.receipt.gain.wood;
 }
 async function propose(f,id=randomUUID()){
- await f.update(s=>{assert(prepareRecruitmentRenewal(s,{id,oldId:f.contract.id,projectId:'travel-plan'}).ok);});
+ for(const op of ['enable','hire_enable','plan_enable'])await call(f,'commerce',op);
+ await call(f,'commerce','hire_renew_prepare',{contractId:f.contract.id,renewalId:id,projectId:'travel-plan'});
  const next=await f.store.renew(f.theme,await f.read(),{id:f.contract.id,requestId:id,projectId:'travel-plan'});await f.store.complete(f.theme,id,1,proof(next.contract.context));return(await f.store.peek(f.theme,id));
 }
 for(const theme of ['pixel','origami'])test(theme+' atomic in-place renewal keeps pose, settles real first delivery once, independent new wage and durable commit',{timeout:90000},async()=>{
@@ -37,10 +39,15 @@ for(const theme of ['pixel','origami'])test(theme+' atomic in-place renewal keep
  }finally{await f.service.close();}
 });
 test('changed quantity rejects renewal with no partial old fee or new binding; cancelling restores original contract',async()=>{
- const f=await fixture();try{await call(f,'commerce','enable');await call(f,'commerce','hire_enable');const next=await propose(f),before=await f.read();await f.update(s=>{s.agentTaskLedger.find(t=>t.npcId===16).remaining--;});
+ const f=await fixture();try{await call(f,'commerce','enable');await call(f,'commerce','hire_enable');const next=await propose(f),before=await f.read();// A different resident actually supplies material after the agreement; the renewal must reject its stale quantity.
+ if((await f.read()).state.workProjects.find(p=>p.id==='travel-plan').status==='paused')await call(f,'commerce','plan_control',{projectId:'travel-plan',control:'resume'});
+ const supply=await call(f,'resident','begin',{actorId:0,gameTime:0,intent:{goal:'forest',action:'work',resource:'wood',buildingId:null}});f.advance(20000);
+ await call(f,'resident','finish',{requestId:supply.ticket.requestId,epoch:supply.ticket.epoch,sequence:supply.ticket.sequence});
+ if((await f.read()).state.workProjects.find(p=>p.id==='travel-plan').status==='preparing')await call(f,'commerce','plan_control',{projectId:'travel-plan',control:'pause'});
+
  const version=(await f.read()).version;await assert.rejects(call(f,'commerce','hire_renew',{contractId:f.contract.id,renewalId:next.id}),e=>e.code==='hire_renewal');
  const d=await f.read();assert.equal(d.version,version);assert.equal(d.state.coins,before.state.coins);assert.equal(d.state.recruitment.active.id,f.contract.id);assert.equal(d.state.recruitment.active.feePaid,null);
- await f.store.cancel(f.theme,d,next.id);await f.update(s=>releaseRecruitmentRenewal(s,next.id));assert.equal((await f.store.list(f.theme,await f.read())).active.id,f.contract.id);assert(!(await f.read()).state.resourceLedger.reservations['hire:'+next.id]);
+ await f.store.cancel(f.theme,d,next.id);await call(f,'commerce','hire_renew_release',{contractId:f.contract.id,renewalId:next.id});assert.equal((await f.store.list(f.theme,await f.read())).active.id,f.contract.id);assert(!(await f.read()).state.resourceLedger.reservations['hire:'+next.id]);
  }finally{await f.service.close();}
 });
 test('renewal admission refuses duplicate pending, work, exhaustion, absent hold, wrong owner and limit',async()=>{

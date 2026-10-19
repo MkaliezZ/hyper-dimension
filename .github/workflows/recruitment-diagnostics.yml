@@ -45,6 +45,10 @@ jobs:
       - name: Observe original recruitment status error recovery deadlines
         if: inputs.test_case == 'recruitment-errors'
         run: node .github/diagnostics/recruitment-errors.mjs
+      - name: Native recruitment status while the unsaved policy input stays focused
+        if: inputs.test_case == 'recruitment-errors'
+        working-directory: island
+        run: node tests/v323-recruitment-focused-status-browser.mjs
       - name: Verify bounded source GET retry on real connection resets
         if: inputs.test_case == 'recovery-return'
         run: node .github/diagnostics/recovery-return.mjs --check-transport
@@ -106,6 +110,8 @@ jobs:
             island/qa/v222/native-recruitment-errors/report.json
             island/qa/v222/native-recruitment-errors/status-observations-*.json
             island/qa/v222/native-recruitment-errors/*.png
+            island/qa/v323/native-recruitment-focus/*.json
+            island/qa/v323/native-recruitment-focus/*.png
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/scheduling-journal-*.json
             island/qa/v287/native-recruitment-progress/*.png

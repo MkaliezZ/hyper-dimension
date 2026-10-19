@@ -1,0 +1,56 @@
+{
+  "version": "V323",
+  "at": "2026-10-19T23:12:16.679937+00:00",
+  "runtimeChange": "Recruitment status notices update independently of the protected focused policy form.",
+  "sourceFiles": [
+    "src/recruitmentUI.js"
+  ],
+  "oldFocusedBaseline": {
+    "version": "V322",
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "bothFailOriginal8000msRecoveryGate": true,
+    "actualSuccessfulStatusReadReturned": true,
+    "draftAndFocusPreserved": true
+  },
+  "candidateNative": {
+    "themes": [
+      "pixel",
+      "origami"
+    ],
+    "bothPassed": true,
+    "originalRecoveryBudgetMs": 8000,
+    "originalInputIdentityFocusAndDraftPreserved": true,
+    "twoDeclaredTransientGET503Replies": true,
+    "realSuccessfulStatusReads": true,
+    "policyNotSubmitted": true,
+    "noRecruitmentMutationOrNewHold": true,
+    "coinsUnchanged": 100,
+    "frameLoopContinues": true,
+    "errorHTMLIsText": true
+  },
+  "originalV222Cases": {
+    "passed": 4,
+    "assertionsAndDeadlinesUnchanged": true
+  },
+  "relatedRules": {
+    "Node22": 21,
+    "Node25": 21,
+    "protectedPlanningAndRecruitmentTransactions": true,
+    "defaultRestoredCases": 9,
+    "defaultExpectedTotal": 1644
+  },
+  "preservedFailures": [
+    "Initial native fixture waited for a collapsed form to be visible; invalid setup, not a product result.",
+    "Original protected-state legacy fixtures:14 pass and7 fail; owned leaked service worker was identified and stopped.",
+    "Fixture migration authority/plan-state and missing-output-directory errors retained before final21-case passes."
+  ],
+  "authorityRulesModelsEconomyAndCadenceUnchanged": true,
+  "sameOldUnfocusedHosted409RootConfirmed": false,
+  "hostedCurrentSourcePending": true,
+  "exactNewArchiveInstallPending": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

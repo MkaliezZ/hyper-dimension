@@ -22,6 +22,14 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
  let selectedCandidate='mai',selectedPlan=null,editPending=null,registry=null,error='',errorRequestId=null,pollError='',busy=false,polling=false,generation=0,lastSignature='',lastPoll=0,submission=null;
  // Successful background reads only acknowledge mutations present in this world.
  function actionError(message,requestId=null){error=message;errorRequestId=requestId;}
+ function paintIssue(root){
+  const slot=root.querySelector('[data-recruit-notice]');if(!slot)return;
+  const message=String(error||pollError||'');
+  if(!message){if(slot.firstChild)slot.replaceChildren();return;}
+  let notice=slot.querySelector('.recruit-error');
+  if(!notice){slot.innerHTML='<p class="recruit-error" role="status"></p><button class="secondary" id="recruitRefresh">重新查询</button>';notice=slot.querySelector('.recruit-error');slot.querySelector('#recruitRefresh').onclick=()=>poll(true);}
+  if(notice.textContent!==message)notice.textContent=message;
+ }
  const $=id=>document.getElementById(id);
  const here=()=>({theme:theme(),world:recruitmentWorldKey(state(),theme()),generation});
  const same=c=>c.theme===theme()&&c.world===recruitmentWorldKey(state(),theme())&&c.generation===generation;
@@ -135,14 +143,14 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
   $('recruitLibrary').onclick=()=>library.open();$('recruitBack').onclick=back;$('recruitProjects').onclick=projects;paint(true);void poll(true);
  }
  function paint(force=false){
-  const root=$('recruitmentPanel');if(!root)return;root.setAttribute('aria-busy',String(busy));
+  const root=$('recruitmentPanel');if(!root)return;root.setAttribute('aria-busy',String(busy));paintIssue(root);
   if(!force&&root.contains(document.activeElement)&&['SELECT','INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
   const r=hydrateRecruitment(state()),a=r.active,pending=r.pending,candidates=registry?.candidates||RECRUIT_CANDIDATES,candidate=a?.profile||registry?.active?.profile||candidates.find(c=>c.id===(pending?.candidateId||selectedCandidate))||RECRUIT_CANDIDATE,progress=recruitmentProgress(state());
   const renewPlans=(state().workProjects||[]).filter(p=>['preparing','paused'].includes(p.status)),renewReady=renewalReadiness(state(),registry?.active);
   const plans=(state().workProjects||[]).filter(p=>p.status==='preparing'),contract=registry?.active;
   selectedPlan=plans.some(p=>p.id===selectedPlan)?selectedPlan:plans[0]?.id;const eligible=selectedPlan?projectSteps(state(),selectedPlan).filter(t=>t.remaining>0&&t.npcId!==-1&&!t.blocked&&candidateStepAllowed(candidate,t)).length:0;
   const progressText=busy&&submission?({preparing:'正在确认筹备与预留报酬…',saving:'正在保存本次筹备，确认后再联系伙伴…',sending:'已发出邀请，正在等待伙伴回应…'})[submission.phase]:'';
-  const issue=error||pollError;const signature=JSON.stringify([theme(),selectedCandidate,selectedPlan,candidates,a,progress,pending,plans.map(p=>[p.id,p.status]),contract?.phase,registry?.history,registry?.candidateRecords,registry?.renewal,registry?.autonomy,state().recruitment.renewal,renewReady,renewPlans,error,pollError,busy,submission]);
+  const signature=JSON.stringify([theme(),selectedCandidate,selectedPlan,candidates,a,progress,pending,plans.map(p=>[p.id,p.status]),contract?.phase,registry?.history,registry?.candidateRecords,registry?.renewal,registry?.autonomy,state().recruitment.renewal,renewReady,renewPlans,error,pollError,busy,submission]);
   if(!force&&(lastSignature===signature||document.activeElement?.closest('#recruitPolicyForm')))return;lastSignature=signature;
   const details=[...root.querySelectorAll('details[open]')].map(d=>d.dataset.history),body=root.closest('.modal-body'),scroll=body.scrollTop;
   const status=a?RECRUIT_STAGE_LABEL[a.phase]:contract?labels[contract.phase]:pending?'招聘请求等待确认':'一席空位，等一位新朋友';
@@ -153,7 +161,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
     (pending&&!contract?'<button class="primary" id="recruitResume" '+(busy?'disabled':'')+'>'+(busy?'正在处理本次申请…':'继续确认同一申请')+'</button>':'')+'<button class="secondary" id="recruitCancel" data-id="'+(contract?.id||pending.id)+'" '+(busy?'disabled':'')+'>取消本次到岛</button>':
    plans.length?'<label class="recruit-plan-label">这次一起准备什么？<select id="recruitPlan">'+plans.map(p=>'<option value="'+p.id+'" '+(p.id===selectedPlan?'selected':'')+'>'+esc(p.title)+'</option>').join('')+'</select></label><button class="primary" id="recruitHire" '+(busy||!eligible?'disabled':'')+'>邀请'+esc(candidate.name)+'协作 · 预留 8 岛币</button><p class="recruit-match" role="status">'+(eligible?'这份清单有 '+eligible+' 项工作符合伙伴职业，由主子 Agent 商定本次分工。':'这份清单没有符合伙伴职业的待办，请更换伙伴或筹备清单。')+'</p>':
    '<div class="recruit-empty"><b>先写一份筹备清单</b><p>确定要准备的物资，管家才能与伙伴商量具体分工。</p><button class="primary" id="recruitCreatePlan">去写清单</button></div>')+
-   (issue?'<p class="recruit-error" role="status">'+esc(issue)+'</p><button class="secondary" id="recruitRefresh">重新查询</button>':'')+'</section>'+
+   '<div data-recruit-notice></div>'+'</section>'+
 
    (here().world===contract?.world?recruitmentExchange(contract,state(),theme()):'')+autonomyMarkup(registry,candidates,busy)+(a?.autonomousDecision?'<section class="recruit-autonomy"><h4>管家自主邀请的伙伴</h4><p>'+esc(a.autonomousDecision.reason)+'</p><details data-history="autonomy-source"><summary>本次决策来源</summary><p>巡查运行 <code>'+esc(a.autonomousDecision.runId)+'</code></p><p>用量记录 <code>'+esc(a.autonomousDecision.ledgerRunId)+'</code></p><p>招聘政策第 '+a.autonomousDecision.policyVersion+' 版</p></details></section>':'')+
    (a?'<section class="recruit-renewal"><h4>继续留岛协作</h4><p>每段续约 2 个游戏日，另预留 8 岛币；旧聘约按实际交付单独结算。最多连续续约三次。</p>'+
@@ -164,7 +172,7 @@ export function createRecruitmentUI({state,theme,saves,persist,openModal,toast,b
    '<section class="recruit-history"><h4>来过小岛的故事</h4>'+((registry?.history||[]).slice(0,8).map(h=>'<details class="recruit-record" data-history="'+h.id+'"><summary>'+esc(h.profile?.name||'小麦')+' · '+esc(h.context?.project?.title||'一次到岛邀请')+' · '+esc(labels[h.phase]||h.phase)+'</summary>'+h.events.slice(-5).map(e=>'<p>'+esc(e.text)+'</p>').join('')+profileEditMarkup(h)+(h.delivery?'<p>实际交付 '+h.delivery.delivered+' / '+h.delivery.quantity+' 份 · 报酬 '+h.delivery.fee+' 岛币</p>':'')+(h.runs?.at(-1)?.child?'<p>主运行 <code>'+esc(h.runs.at(-1).parent.id)+'</code><br>子运行 <code>'+esc(h.runs.at(-1).child.id)+'</code></p>':'')+(!h.renewalOf&&['failed','interrupted'].includes(h.phase)&&!a&&!contract&&!pending?'<button class="secondary" data-recruit-retry="'+h.id+'" data-project="'+h.projectId+'" data-candidate-id="'+esc(h.candidateId||'mai')+'">重试这份筹备委托</button>':'')+(h.phase==='departed'&&h.world===here().world&&!a&&!contract&&!pending&&plans.length?'<p>再次邀请会沿用上次档案，重新商量上方选中的筹备清单。</p><button class="secondary" data-recruit-recall="'+esc(h.id)+'" data-candidate-id="'+esc(h.candidateId||'mai')+'" '+(!candidates.some(c=>c.id===h.candidateId)?'disabled':'')+'>再次邀请'+esc(h.profile?.name||'伙伴')+' · 新聘约</button>'+(!candidates.some(c=>c.id===h.candidateId)?'<p>请先在候选档案库恢复这位伙伴。</p>':''):'')+'</details>').join('')||'<p>下一位朋友的经历，会从这里开始。</p>')+'</section>';
   if(location.pathname==='/play'){const ids=[...(a?[a.id]:[]),...(registry?.history||[]).filter(h=>h.world===here().world).map(h=>h.id)];for(const id of ids){const record=[...root.querySelectorAll('details')].find(d=>d.dataset.history===(id===a?.id?'active':id));if(record){const b=document.createElement('button');b.className='secondary';b.textContent='翻看这份聘约的跨岛相遇';b.dataset.recruitTravel=id;b.onclick=()=>openResidentTravelHistory({npcId:16,theme:theme(),contractId:id,openModal,back:open});record.append(b);}}}
   root.querySelectorAll('details').forEach(d=>{d.open=details.includes(d.dataset.history)});body.scrollTop=scroll;
-  if($('recruitPolicyForm'))$('recruitPolicyForm').onsubmit=savePolicy;
+  paintIssue(root);if($('recruitPolicyForm'))$('recruitPolicyForm').onsubmit=savePolicy;
   if($('recruitRenew'))$('recruitRenew').onclick=()=>renew($('recruitRenewPlan').value);
   if($('recruitRenewRetry'))$('recruitRenewRetry').onclick=()=>renew(state().recruitment.renewal.projectId);
   if($('recruitRenewCancel'))$('recruitRenewCancel').onclick=cancelRenewal;
