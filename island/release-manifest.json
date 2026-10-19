@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v305-agent-source",
+  "release": "hyper-dimension-v306-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 115801,
-      "sha256": "1beb88b7d8e224031f044911a3e1a83d8c7aaec4aa06abe81550ad36f22fe949"
+      "bytes": 116177,
+      "sha256": "7591126943ceaf97fe960c9cbe4b0a7b6004f11a15f930c998431955fd575367"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17127,
-      "sha256": "5d253525e05531675d54bc5725c3440a7b3737f698088f15a25a7ed27732439c"
+      "bytes": 17167,
+      "sha256": "e7401389a6cec442417a9abb9e0fb64524639de98947ed27e977fbe887455ba4"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 7530,
-      "sha256": "9796e5b76219f3c5152daa43437fb802e58d81afb13e2700c5f0187702586557"
+      "bytes": 7704,
+      "sha256": "3582beadc2fcea2240e5fc0c95917238dc5110c8841744e183ba57eceefe6c21"
     },
     {
       "path": "src/saveLimits.js",
@@ -13794,7 +13794,27 @@
       "path": "docs/verification-v305.json",
       "bytes": 2745,
       "sha256": "67639d800c1b69fe24d99e92130d7be31759c275f883b2a8df34997a0e7c211e"
+    },
+    {
+      "path": "tests/v306-field-start-timeout.test.mjs",
+      "bytes": 4506,
+      "sha256": "79d1e160aa324451b4c3d5e3eae8aad975150c2d049a8b5b647698050b530860"
+    },
+    {
+      "path": "tests/v306-field-start-timeout-browser.mjs",
+      "bytes": 7360,
+      "sha256": "b1f90a835008a1125783e584352221d61e1e01d2ba8a7849c8b0df7f5090f47c"
+    },
+    {
+      "path": "docs/npc-mine-timeout-v306.md",
+      "bytes": 2293,
+      "sha256": "d782024a50a9dfe714e4d39557c871de700c57adff1909e3c99b27fe7aba2d7d"
+    },
+    {
+      "path": "docs/verification-v306.json",
+      "bytes": 2821,
+      "sha256": "8aa838a25cbb00678bf0f2855b71666e63a9b8914411fad1a11db3270c875dac"
     }
   ],
-  "publicRevision": "v305-catalog-refresh"
+  "publicRevision": "v306-npc-mine-timeout"
 }

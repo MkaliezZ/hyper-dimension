@@ -39,10 +39,11 @@ export function createSaveJournal(){
   const run=async()=>{if(enabled)return rpc('request',value);const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(value.url,{...value.init,signal:controller.signal,cache:'no-store'});return {ok:response.ok,status:response.status,text:await response.text()};}finally{clearTimeout(timer)}};
   try{return await run();}catch(error){
    let body;try{body=JSON.parse(value.init.body);}catch{}
-   // Only an expired fetch of an already journaled visitor command gets one
-   // identical replay. The authority resolves its existing request ID; no new
-   // booking, payment or reward is created. Other losses retain manual recovery.
-   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&body?.kind==='visitor'&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
+   // One identical replay may read a journaled visitor outcome or an NPC mine
+   // reservation after its fetch expires. Keep player work, field completion
+   // and other losses on the existing manual recovery path.
+   const npcMineStart=body?.kind==='field'&&body.operation==='begin'&&body.field==='mine'&&body.actor==='npc'&&Number.isInteger(body.actorId)&&body.actorId>=0&&body.actorId<=16;
+   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&(body?.kind==='visitor'||npcMineStart)&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
    throw error;
   }
  }

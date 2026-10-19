@@ -1,0 +1,76 @@
+{
+  "version": "V306",
+  "at": "2026-10-19T08:13:28.951556+00:00",
+  "observedHostedFailure": {
+    "run": 39214060492,
+    "job": 117934181749,
+    "step": "Native resident production to visitor purchase",
+    "theme": "pixel",
+    "phase": "NPC project delivered actual component/product; a later NPC mining begin fetch aborted, durable action pending and recovery locked the shelf save button",
+    "hostedInitialCommitNotDirectlyObserved": true,
+    "origamiOriginalCasePassed": true
+  },
+  "repair": {
+    "onlyExpiredNPCMineBeginGetsOneIdenticalReplay": true,
+    "sameRequestBytesVersionSequenceAndIdentity": true,
+    "npcIds": {
+      "minimum": 0,
+      "maximum": 16
+    },
+    "originalFetchTimeoutMs": 12000,
+    "persistentTimeoutStillRequiresManualRecovery": true,
+    "ordinaryConnectionLossStillRequiresManualRecovery": true,
+    "playerFieldWorkFinishCancelCheckpointAndOtherActionsNotExtended": true,
+    "visitorExistingPolicyRetained": true,
+    "authoritativeLedgerVersionChecksUnchanged": true
+  },
+  "nativeDeclaredResponseLoss": {
+    "baselineBothThemesPendingAndLocked": true,
+    "committedBeginReplyWithheldUntilActualOriginalFetchTimeout": true,
+    "bothThemesRecoveredSameLease": true,
+    "actualNativeButtonUsable": true,
+    "normal20SecondWorkClock": true,
+    "oneReceiptOneMineralAndDiskReplay": true,
+    "minimalShellNotFullHostedReproduction": true
+  },
+  "defaultRules": {
+    "passed": 1575,
+    "newTests": 12,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ]
+  },
+  "originalFullProductionMarket": {
+    "bothThemesPassed": true,
+    "actualResidentPrerequisiteAndProduct": true,
+    "explicitShelfSettingsRoundTripAnd32pxImages": true,
+    "realBoatLandingWalkServiceAndSale": true,
+    "paid": 7,
+    "operatingCost": 3,
+    "saleStockReducedOnce": true,
+    "reopenConfirmed": true,
+    "originalAssertionsAndDeadlinesUnchanged": true,
+    "declaredFixtureResources": true,
+    "clockInjected": false
+  },
+  "localInfrastructure": {
+    "firstNode22AttemptInterruptedByENOSPC": true,
+    "notAcceptedAsPass": true,
+    "isolatedWorkingTestOutputsMovedToRoomyDiskWithEveryFileHashChecked": true,
+    "originalQAPathsPreserved": true,
+    "node25FrozenCompleteProofRetained": true,
+    "linkedQARunRejected22DataPathLinkChecks": true,
+    "linkedQARunNotAccepted": true,
+    "ordinarySourceCopyAllPayloadHashesVerified": true,
+    "dataPathLinkProtectionUnchanged": true,
+    "node22RerunPassed": true,
+    "userDataOrConfigurationMoved": false
+  },
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "hostedWindowsProductionRecoveryConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "wholeGoalComplete": false
+}
