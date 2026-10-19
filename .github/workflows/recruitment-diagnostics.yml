@@ -5,7 +5,7 @@ on:
       test_case:
         description: Keep the original native assertions and budgets; use the real pause/resume button
         type: choice
-        options: [recruitment, player-action, custom-content, pearl-cup]
+        options: [recruitment, player-action, custom-content, pearl-cup, save-replacement]
         default: recruitment
       profiler:
         description: Sample only the owned native fixture page CPU stack
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   recruitment-progress:
-    name: ${{ inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
+    name: ${{ inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'save-replacement' && 'macos-15-intel / save replacement' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
     runs-on: ${{ inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
     timeout-minutes: 45
     steps:
@@ -38,6 +38,7 @@ jobs:
           HD_QA_RECRUIT_BACKDROP: ${{ inputs.backdrop_candidate && '1' || '0' }}
           HD_QA_NATIVE_CASE: ${{ inputs.test_case || 'recruitment' }}
           HD_QA_PEARL_PAUSE: ${{ inputs.test_case == 'pearl-cup' && '1' || '0' }}
+          HD_QA_HOLD_POST_CHECKPOINT: ${{ inputs.test_case == 'save-replacement' && '1' || '0' }}
           HD_QA_NATIVE_PROFILE: ${{ inputs.profiler && '1' || '0' }}
         run: node .github/diagnostics/recruitment-progress.mjs
       - name: Retain owned native scheduling observations
@@ -54,6 +55,9 @@ jobs:
             island/qa/v281/native-player-action/scheduling-journal-*.json
             island/qa/v281/native-player-action/*.png
             island/qa/v281/native-player-action/*.cpuprofile
+            island/qa/v226/native-save-replacement/report.json
+            island/qa/v226/native-save-replacement/scheduling-journal-*.json
+            island/qa/v226/native-save-replacement/*.png
             island/qa/v156/native-pearl-cup-craft/report.json
             island/qa/v156/native-pearl-cup-craft/work-progress.json
             island/qa/v156/native-pearl-cup-craft/scheduling-journal-*.json

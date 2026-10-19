@@ -1,0 +1,68 @@
+{
+  "version": "V309",
+  "at": "2026-10-19T10:25:42.730222+00:00",
+  "observedHostedFailures": [
+    {
+      "run": 39225273325,
+      "job": 117986138149,
+      "os": "macos-14",
+      "test": "visible RAF callback loss",
+      "observation": "Both styles completed three authoritative task receipts and observed the declared RAF loss plus fallback frames. Pixel failed at final screenshot with Page.captureScreenshot Unable to capture screenshot; the later failure screenshot succeeded."
+    },
+    {
+      "run": 39225273325,
+      "job": 117986138372,
+      "os": "macos-15-intel",
+      "test": "signed import and historical restore reentry",
+      "observation": "First pixel restore case waited for the transient saved label before issuing restore. restoreRequests stayed zero; five other cases passed. No hosted manual-checkpoint completion probe was available."
+    }
+  ],
+  "repair": {
+    "productionRuntimeUnchangedFromV308": true,
+    "screenshotRetryOnlySpecificProtocolError": true,
+    "captureStillRequired": true,
+    "oneRetryWithinOriginal30000msTotalBudget": true,
+    "persistentOtherClosedAndDeadlineErrorsRemainFailures": true,
+    "manualSaveWaitsActualCheckpointPromiseAndAuthoritativeName": true,
+    "manualCheckpoint30000msBudgetRetained": true,
+    "allOriginalIdentityResourcesBackupsLostResponseAndReentryAssertionsRetained": true,
+    "laterRealWriteFixtureHoldsOnlyItsResponseAfterActualCommit": true,
+    "noInjectedGameResultReceiptOrClock": true
+  },
+  "localNativeChecks": {
+    "normalReplacementCasesPassed": 6,
+    "heldLaterWriteReplacementCasesPassed": 6,
+    "heldWriteShowsSavingAfterManualCheckpointActuallyCompleted": true,
+    "rafLossBothStylesPassed": true,
+    "threeRealReceiptsPerStyle": true,
+    "firstWorkBudgetMs": 120000,
+    "remainingChainSharedBudgetMs": 240000,
+    "normalClockFileUnchanged": true,
+    "completedScreenshotPNGsVerified": true
+  },
+  "ruleQualification": {
+    "existing1587ChecksReusedFromV308": true,
+    "basePublicCommit": "404660168dceb70843e444fc9c5049148425d4ea",
+    "productionRuntimeAndExistingDefaultRuleFilesUnchanged": true,
+    "newChecksPassed": 6,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "defaultScriptOnlyPrefixesNewTest": true,
+    "fullCurrent1593SuiteNotRerun": true
+  },
+  "publicationSource": {
+    "unchangedLineEndingsRestored": true,
+    "normalizedExecutableTextMatchesNativeQualifiedFiles": true
+  },
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "hostedMac14FrameRecoveryConfirmed": false,
+  "hostedIntelRestoreRecoveryConfirmed": false,
+  "unrelatedIntelPlayerSetupFailureStillUnderDiagnosis": true,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

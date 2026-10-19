@@ -367,6 +367,8 @@ jobs:
 
       - name: Native signed import and historical restore re-entry
         if: matrix.group == 'navigation'
+        env:
+          HD_QA_HOLD_POST_CHECKPOINT: "1"
         run: node tests/v226-save-replacement-browser.mjs
 
       - name: Native current catalog totals and preserved legacy achievements

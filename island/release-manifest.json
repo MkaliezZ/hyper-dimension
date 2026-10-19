@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v308-agent-source",
+  "release": "hyper-dimension-v309-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 116944,
-      "sha256": "d44e7bb38f06d3b38c10306f689ee84162826254aa90e01a8af31a02f8bd3887"
+      "bytes": 117419,
+      "sha256": "4ee293100652a478ea98f40b45aebdcbf6b3fee0115dca3ebf7e6b16773bcbb8"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17210,
-      "sha256": "982821813201382b995a85a6d174d4c2e2f6b529236b31795dbfb1ed03f2a7e2"
+      "bytes": 17248,
+      "sha256": "9831eb62048b5123a5eedaf76f14ec40f39ca66ac0a6fd640b3fb24867b2a47d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -12062,8 +12062,8 @@
     },
     {
       "path": "tests/v213-task-chain-browser.mjs",
-      "bytes": 14205,
-      "sha256": "1a19591c70ae3ab3e836a46d9944e103a4ce08006166758175342c1e3265ad83"
+      "bytes": 14442,
+      "sha256": "9c8a3fbe71c0222da9b862308778ee185b3911dc388292955ae7282508062071"
     },
     {
       "path": "docs/task-chains-v213.md",
@@ -12412,8 +12412,8 @@
     },
     {
       "path": "tests/v226-save-replacement-browser.mjs",
-      "bytes": 12249,
-      "sha256": "233fa20bd6b564d367c6e556425136905e80635d2db3ea50218ce94db33a5798"
+      "bytes": 14858,
+      "sha256": "d9ca61b475f9eb8bd16e93a889dc643aeae20d027ad67133508996f971da3884"
     },
     {
       "path": "docs/save-replacement-v226.md",
@@ -13844,7 +13844,27 @@
       "path": "docs/verification-v308.json",
       "bytes": 2949,
       "sha256": "85270ee1f5e0ba6dae53fa086fcfefe260a4aec9d583ee7702ff4f448179f81e"
+    },
+    {
+      "path": "tests/nativeScreenshot.mjs",
+      "bytes": 850,
+      "sha256": "803f33aff91982315844951d43a5c316870be72404a9b24cb78741b4c1ddb9a1"
+    },
+    {
+      "path": "tests/v309-native-screenshot.test.mjs",
+      "bytes": 2682,
+      "sha256": "89e7946aaed5ce36dd4d178387c1093fb43e32228265a56985d1da8af66f2270"
+    },
+    {
+      "path": "docs/native-evidence-v309.md",
+      "bytes": 2074,
+      "sha256": "90fa169e5b37609c69b19ae3df70a6240375c38c56eba850e96bbfb473ec0e90"
+    },
+    {
+      "path": "docs/verification-v309.json",
+      "bytes": 2886,
+      "sha256": "aba4888c1c8990a957e8e9323f1da80d24b55cc8ae825fa1b39031b2b111ab26"
     }
   ],
-  "publicRevision": "v308-resident-start-timeout"
+  "publicRevision": "v309-native-evidence"
 }
