@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v317-agent-source",
+  "release": "hyper-dimension-v318-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 121423,
-      "sha256": "ca6ff8796c8c925f815f719c2c8282acf416034a4eb286a667afac40baa0fae1"
+      "bytes": 121930,
+      "sha256": "c60817a8e358087762d6b3966537056c702eed3048bc831bec123df06abc0ce0"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -8187,8 +8187,8 @@
     },
     {
       "path": "src/themeArtwork.js",
-      "bytes": 1184,
-      "sha256": "a9298967402831a34ad7b89e066180c3edc2c5c4316999b2ccb8d88f382bd736"
+      "bytes": 2215,
+      "sha256": "d1e195bb83e0556192aa9a5a038cfd3ca4b27edfdee96f953c3b1fb9baff54f3"
     },
     {
       "path": "src/toolArt.js",
@@ -13232,8 +13232,8 @@
     },
     {
       "path": "tests/v276-cash-browser.mjs",
-      "bytes": 7208,
-      "sha256": "99b909c8c7261796ae7436b5b31e0185f342f05257b9bbe07c3760614d7332a3"
+      "bytes": 7680,
+      "sha256": "5e0939640305bf1322195686bc670872af8ccbc9f5632a699d5e10d013bc8a2d"
     },
     {
       "path": "docs/cash-book-v276.md",
@@ -13984,7 +13984,22 @@
       "path": "docs/manual-plan-queue-v317.md",
       "bytes": 2268,
       "sha256": "cae0b2c92d8cffcc7d3cbc7af63fe3cdbfd3fc13312cbf340cbf81e81adde5dd"
+    },
+    {
+      "path": "tests/v318-artwork-decode.test.mjs",
+      "bytes": 3929,
+      "sha256": "a702eddc096dcb8172626d1b94f3e535bf10edf23d4cf81ee0b42ca50c09e714"
+    },
+    {
+      "path": "docs/verification-v318.json",
+      "bytes": 1829,
+      "sha256": "2123d6f3946fc98228d52f1a9802eb6f37942ea43d3a4ca7ac2bd49cb36be28f"
+    },
+    {
+      "path": "docs/artwork-decode-recovery-v318.md",
+      "bytes": 2003,
+      "sha256": "a379ce215e29f3c435b6ad4d90b364bfa242a601655741634899a4a752f9383f"
     }
   ],
-  "publicRevision": "v317-manual-plan-queue"
+  "publicRevision": "v318-bounded-artwork-decode"
 }

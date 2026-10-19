@@ -956,3 +956,8 @@ All six default independent-receipt scenarios and one additional real mid-board 
 ## V317 - Manual project queue
 
 Manual plan creation can pass unstarted background jobs while retaining active-receipt and checkpoint ordering. Both controlled native appearances and the original concurrent recipe preparation/reopen flow pass locally; related rules pass24 cases per tested runtime. Hosted Windows recovery and the full matrix remain pending. See [manual-plan-queue-v317.md](manual-plan-queue-v317.md) and [verification-v317.json](verification-v317.json).
+
+
+## V318 - Bounded artwork decode recovery
+
+Required images receive bounded read-only decode retries while permanent failures remain errors. The original cash/shared-style empty-browser flow passes both appearances under2xCPU, recording actual second-decode recovery without altering financial or timing assertions. See [artwork-decode-recovery-v318.md](artwork-decode-recovery-v318.md) and [verification-v318.json](verification-v318.json). Current hosted and final-package/hour acceptance remain pending.

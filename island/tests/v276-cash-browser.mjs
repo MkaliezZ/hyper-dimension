@@ -4,6 +4,7 @@ import {join,resolve} from 'node:path';
 import {createRequire} from 'node:module';
 import {pathToFileURL,fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url)),out=resolve(process.env.HD_QA_OUT||'qa/v276/native-cash');await mkdir(out,{recursive:true});
+const cpuRate=Number(process.env.HD_QA_CDP_CPU||1);assert(Number.isFinite(cpuRate)&&cpuRate>=1&&cpuRate<=4,'CPU diagnostic rate must be between1and4');
 const {chromium}=createRequire(join(root,'package.json'))('playwright-core');
 const {browserLaunchOptions}=await import(pathToFileURL(join(root,'tests/browserRuntime.mjs')));
 const {createLanHttpServer}=await import(pathToFileURL(join(root,'server/lanServer.mjs')));
@@ -22,7 +23,7 @@ try{
   const open=async()=>{
    const context=await browser.newContext({viewport:{width:1440,height:1000}});await context.addCookies([{name:'hd_lan_session',value:account.token,url:base,httpOnly:true,sameSite:'Strict'}]);
    await context.route('**/api/**',route=>/\/api\/(npc|hermes)\//.test(route.request().url())?route.fulfill({status:503,contentType:'application/json',body:'{"error":"isolated cash verification, providers disabled"}'}):route.continue());
-   const page=await context.newPage();page.on('pageerror',error=>row.errors.push(error.message));await page.goto(base+'/play?qa=1');try{await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy&&!document.querySelector('#islandBootNotice'),null,{timeout:60000});}catch(error){row.openFailure=await page.evaluate(()=>{const i=window.islandInspect?.();return{theme:i?.theme,coins:i?.coins,startup:i?.startup,save:i?.save,commerce:i?.serverCommerce,status:document.querySelector('#saveStatus')?.dataset.status,statusText:document.querySelector('#saveStatus')?.textContent,notice:document.querySelector('#islandBootNotice')?.textContent};}).catch(()=>null);await page.screenshot({path:join(out,theme+'-boot-failure.png'),timeout:10000}).catch(()=>{});throw error;}return{page,context};
+   const page=await context.newPage();if(cpuRate>1){const cdp=await context.newCDPSession(page);await cdp.send('Emulation.setCPUThrottlingRate',{rate:cpuRate});}page.on('pageerror',error=>row.errors.push(error.message));await page.goto(base+'/play?qa=1');try{await page.waitForFunction(()=>window.islandInspect?.().serverCommerce?.ready&&!islandInspect().startup.busy&&!document.querySelector('#islandBootNotice'),null,{timeout:60000});}catch(error){row.openFailure=await page.evaluate(()=>{const i=window.islandInspect?.();return{theme:i?.theme,coins:i?.coins,startup:i?.startup,save:i?.save,commerce:i?.serverCommerce,status:document.querySelector('#saveStatus')?.dataset.status,statusText:document.querySelector('#saveStatus')?.textContent,notice:document.querySelector('#islandBootNotice')?.textContent,moduleFailure:window.__hdModuleBootstrapFailure};}).catch(()=>null);await page.screenshot({path:join(out,theme+'-boot-failure.png'),timeout:10000}).catch(()=>{});throw error;}row.cpuThrottlingRate=cpuRate;row.successfulArtworkOpens??=[];row.successfulArtworkOpens.push(await page.evaluate(()=>islandInspect().startup.art));return{page,context};
   };
   let {page,context}=await open();
   try{

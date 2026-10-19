@@ -1,0 +1,55 @@
+{
+  "version": "V318",
+  "at": "2026-10-19T14:56:25.421468+00:00",
+  "passed": true,
+  "scope": "Bounded read-only image decode recovery and original slow-renderer cash/shared-style empty-browser flow.",
+  "sourceHashes": {
+    "src/themeArtwork.js": "d1e195bb83e0556192aa9a5a038cfd3ca4b27edfdee96f953c3b1fb9baff54f3",
+    "tests/v276-cash-browser.mjs": "5e0939640305bf1322195686bc670872af8ccbc9f5632a699d5e10d013bc8a2d",
+    "tests/v318-artwork-decode.test.mjs": "a702eddc096dcb8172626d1b94f3e535bf10edf23d4cf81ee0b42ca50c09e714"
+  },
+  "baselineCpu2EmptyBrowserFailedAtArtwork": true,
+  "baselineEncodingErrorsWithValidImageDimensions": 2,
+  "baselineAssetNetworkFailures": 0,
+  "publicCpu2BothStylesPassed": true,
+  "actualNativeRecoveredImages": [
+    {
+      "url": "/assets/map-tiles-v169/pixel-overview.png",
+      "theme": "pixel",
+      "attempts": 2
+    },
+    {
+      "url": "/assets/interiors-pixel-pack-5-v2.png",
+      "theme": "pixel",
+      "attempts": 2
+    },
+    {
+      "url": "/assets/interiors-pixel-pack-6-v2.png",
+      "theme": "pixel",
+      "attempts": 2
+    }
+  ],
+  "actualCanonicalCost": 98,
+  "actualCapitalCost": 80,
+  "twoLedgerEntriesAfterEmptyBrowserRecovery": true,
+  "original30000And60000BudgetsAndFinancialAssertionsRetained": true,
+  "defaultCpuProfileUnchanged": true,
+  "maximumAutomaticDecodeAttempts": 3,
+  "decodeRetryDelaysMilliseconds": [
+    150,
+    350
+  ],
+  "permanentImageFailureStillRejectsActivation": true,
+  "inFlightActivationDeduplicated": true,
+  "relatedRuleTests": {
+    "node22Passed": 6,
+    "node25Passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "fullDefaultRulesRerun": false,
+  "hostedCurrentRepairConfirmed": false,
+  "currentSourceArchiveFreshInstallAndNaturalHourPassed": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

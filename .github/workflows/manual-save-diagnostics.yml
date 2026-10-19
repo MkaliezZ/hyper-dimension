@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Manual save, resident busy, reward drain or manual project queue
+        description: Manual save, resident busy, rewards, project queue or artwork startup
         type: choice
         default: manual-save
-        options: [manual-save, resident-busy-market, reward-drain, plan-queue]
+        options: [manual-save, resident-busy-market, reward-drain, plan-queue, artwork-startup]
 permissions:
   contents: read
 concurrency:
@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   intel-native:
-    name: ${{ inputs.check_scope == 'plan-queue' && 'windows-2022 / manual project queue and resident preparation' || inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || inputs.check_scope == 'reward-drain' && 'macos-15-intel / independent receipt pause recovery' || 'macos-15-intel / manual save and cash recovery' }}
-    runs-on: ${{ (inputs.check_scope == 'resident-busy-market' || inputs.check_scope == 'plan-queue') && 'windows-2022' || 'macos-15-intel' }}
+    name: ${{ inputs.check_scope == 'artwork-startup' && 'windows-2022 / slow artwork startup and cash recovery' || inputs.check_scope == 'plan-queue' && 'windows-2022 / manual project queue and resident preparation' || inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || inputs.check_scope == 'reward-drain' && 'macos-15-intel / independent receipt pause recovery' || 'macos-15-intel / manual save and cash recovery' }}
+    runs-on: ${{ (inputs.check_scope == 'resident-busy-market' || inputs.check_scope == 'plan-queue' || inputs.check_scope == 'artwork-startup') && 'windows-2022' || 'macos-15-intel' }}
     timeout-minutes: 45
     defaults:
       run:
@@ -60,11 +60,20 @@ jobs:
         env:
           HD_QA_WORK_JOURNAL: '1'
         run: node tests/v227-custom-agent-browser.mjs
+      - name: Bounded image decode and seasonal loading rules
+        if: inputs.check_scope == 'artwork-startup'
+        run: node --test tests/v318-artwork-decode.test.mjs tests/v176-season-artwork-loading.test.mjs
+      - name: Native slow-renderer cash and shared-style recovery
+        if: inputs.check_scope == 'artwork-startup'
+        env:
+          HD_QA_CDP_CPU: '2'
+          HD_QA_OUT: qa/v318/native-cash-cpu2
+        run: node tests/v276-cash-browser.mjs
       - name: Retain fictional native evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-manual-save-${{ inputs.check_scope == 'plan-queue' && 'windows-2022-plan-queue' || inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || inputs.check_scope == 'reward-drain' && 'macos-15-intel-reward-drain' || 'macos-15-intel' }}
+          name: native-manual-save-${{ inputs.check_scope == 'artwork-startup' && 'windows-2022-artwork-startup' || inputs.check_scope == 'plan-queue' && 'windows-2022-plan-queue' || inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || inputs.check_scope == 'reward-drain' && 'macos-15-intel-reward-drain' || 'macos-15-intel' }}
           path: |
             island/qa/v314/manual-save-feedback/report.json
             island/qa/v276/native-cash/report.json
@@ -82,5 +91,7 @@ jobs:
             island/qa/v227/native-custom-agent/report.json
             island/qa/v227/native-custom-agent/work-progress.json
             island/qa/v227/native-custom-agent/*.png
+            island/qa/v318/native-cash-cpu2/report.json
+            island/qa/v318/native-cash-cpu2/*.png
           if-no-files-found: error
           retention-days: 3
