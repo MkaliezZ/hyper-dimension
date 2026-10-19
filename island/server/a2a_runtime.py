@@ -3,10 +3,14 @@ import json,uuid,os,re
 from model_policy import DEEPSEEK_MODEL
 from recruited_agent import usage
 def run_collaboration(packet,AIAgent,registry,observe_agent,session_db=None):
-    data=packet['payload'];stage=data['stage'];replies=[]
+    data=packet['payload'];stage=data['stage'];replies=[];observed=False
     allowed={'offer':['propose'],'review':['accept','decline','clarify'],'confirm':['confirm','clarify'],'exchange':['share','clarify','decline']}[stage]
-    def observe(args,**kw):return json.dumps(data,ensure_ascii=False)
+    def observe(args,**kw):
+        nonlocal observed
+        observed=True
+        return json.dumps(data,ensure_ascii=False)
     def reply(args,**kw):
+        if not observed:return json.dumps({'ok':False,'reason':'请先调用a2a_observe核对本轮真实资料，再登记答复。'},ensure_ascii=False)
         decision=args.get('decision');message=str(args.get('message') or '').strip()
         if decision not in allowed or not 4<=len(message)<=360:return json.dumps({'ok':False,'reason':'答复类型或文字长度无效'},ensure_ascii=False)
         if decision=='confirm' and not data.get('receipt',{}).get('verified'):return json.dumps({'ok':False,'reason':'没有可核验的服务端执行回执'},ensure_ascii=False)
@@ -38,5 +42,13 @@ def run_collaboration(packet,AIAgent,registry,observe_agent,session_db=None):
     observe_agent(agent,run_id)
     if set(agent.valid_tool_names)!={'a2a_observe','a2a_reply'}:raise RuntimeError('A2A tool boundary mismatch')
     result=agent.run_conversation('请完成当前'+stage+'阶段的协作答复。',system_message=prompt)
+    # A model may stop after announcing its next tool call. Continue that same
+    # conversation once, only while its original six-call budget remains. Never
+    # infer a decision from prose, replay a registered reply or retry a failure.
+    if not result.get('failed') and not replies:
+        calls=result.get('api_calls');history=result.get('messages')
+        if isinstance(calls,int) and not isinstance(calls,bool) and 1<=calls<6 and isinstance(history,list) and history:
+            agent.max_iterations=6-calls
+            result=agent.run_conversation('本轮尚未登记有效工具答复，刚才的文字不代表工具已经执行。请继续当前协作：尚未观察则先调用a2a_observe，再根据真实资料调用a2a_reply。不要只说明下一步，不要编造执行结果。',system_message=prompt,conversation_history=history)
     if result.get('failed') or not replies:raise RuntimeError('A2A没有产生有效工具答复')
     return {'source':'hermes','model':DEEPSEEK_MODEL,'runId':run_id,'reply':replies[0],'tools':sorted(agent.valid_tool_names)}

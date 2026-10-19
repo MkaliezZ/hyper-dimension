@@ -1,0 +1,41 @@
+{
+  "version": "V301",
+  "at": "2026-10-19T01:21:43.270812+00:00",
+  "cause": "A real Flash A2A offer ended after announcing an observation, with one API call, zero tool calls and no registered reply. Text was correctly rejected.",
+  "sameConversationContinuedAtMostOnce": true,
+  "remainingOriginalSixCallBudgetUsed": true,
+  "providerFailuresNeverAutomaticallyRetried": true,
+  "observationRequiredBeforeReply": true,
+  "registeredReplyNeverSynthesizedFromTextOrReplayed": true,
+  "fundedExecutionRemainsSeparateOwnerAuthorizedServerAction": true,
+  "defaultRules": {
+    "node": "22.13.0",
+    "passed": 1511,
+    "failed": 0
+  },
+  "offlineBehaviorCases": 8,
+  "actualHermesDeterministicProvider": {
+    "sameHistory": true,
+    "calls": 4,
+    "sessions": 1,
+    "registeredReplies": 1,
+    "exactTwoToolBoundary": true
+  },
+  "actualFlashTwoOwnerPreparation": {
+    "stages": [
+      "offer",
+      "review",
+      "confirm"
+    ],
+    "linkedLedgerRuns": 3,
+    "verifiedCoinsReserved": 12,
+    "verifiedWoodReserved": 2
+  },
+  "initialFixtureFailuresRetained": true,
+  "allRendererSourcesUnchangedFromV300": true,
+  "fullCurrentFourOwnerFlowPassed": false,
+  "exactCurrentArchiveFreshInstallAndHourPassed": false,
+  "hostedWindowsAndMacRecoveryConfirmed": false,
+  "wholeGoalComplete": false,
+  "scope": "Isolated fictional owners on one Windows host. Forced early-text case uses the actual Hermes worker with a deterministic loopback provider; separate preparation uses actual DeepSeek Flash. Neither proves full four-owner journey, physical multi-device, OPC class or real-player acceptance."
+}

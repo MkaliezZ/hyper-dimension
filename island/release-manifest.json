@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v300-agent-source",
+  "release": "hyper-dimension-v301-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 113383,
-      "sha256": "e59d207ef7989aa279f35586cbb49c0ce77a21cc6cdfdb4989b67befd2ff178c"
+      "bytes": 113882,
+      "sha256": "2266370255ede8cb9bc01e760bc0c4d78e95d7cae03d944d36ad072554ca31ab"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16949,
-      "sha256": "5d4d09d4c131cdb649e0662a4fa14312e663371c62f436cfd275e2d22a469e73"
+      "bytes": 16984,
+      "sha256": "182880e5a9d6e86ad89116bc908971ba195f1867f4e3c2fe4fccf22b89ed2680"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6042,8 +6042,8 @@
     },
     {
       "path": "server/a2a_runtime.py",
-      "bytes": 6061,
-      "sha256": "ff74af183ee4bca78c57eda3658eac0f843a58c40acbcd39fe1c1f230f057c77"
+      "bytes": 7144,
+      "sha256": "3c7c499a0443bd34d7e1d274ad3ff3d71e78dd5070aaf87758497141cc2666f9"
     },
     {
       "path": "server/agentService.mjs",
@@ -10817,8 +10817,8 @@
     },
     {
       "path": "tests/v67-a2a-live.mjs",
-      "bytes": 4095,
-      "sha256": "b16f983511b7fae823771c630717d6c016d4bf256659ffbfd4013b4793bf69b0"
+      "bytes": 4360,
+      "sha256": "62f25201a06363e0ce76467e31cfa653993eb045cd49278a4a9a0039b3249972"
     },
     {
       "path": "tests/v67-a2a.test.mjs",
@@ -13679,7 +13679,27 @@
       "path": "docs/verification-v300.json",
       "bytes": 2629,
       "sha256": "11ffc59954fa0b9ab93cddf0fdca7597b846c5f3450733f36d33638f1e3436a3"
+    },
+    {
+      "path": "tests/v301-a2a-completion.test.mjs",
+      "bytes": 674,
+      "sha256": "149299e0ff765c6d7f86837f1cca4bc034f6b5a7ac2e6f1593b398475c90c6d3"
+    },
+    {
+      "path": "tests/v301-a2a-completion.test.py",
+      "bytes": 5096,
+      "sha256": "bc46894ca5a71b36d34e844faadef8fafd34b40f2e8bff2c4cc583034d600fa0"
+    },
+    {
+      "path": "docs/a2a-completion-v301.md",
+      "bytes": 1879,
+      "sha256": "0cab393efae65c2c8acd6cca947bbc677744b47eaea41cbee288c62946d46cba"
+    },
+    {
+      "path": "docs/verification-v301.json",
+      "bytes": 1646,
+      "sha256": "5e8c792f7a46e15edd42e764679fd90bbf1f7d51d2b890fd28447dd5fee02fee"
     }
   ],
-  "publicRevision": "v300-worker-connected-surfaces"
+  "publicRevision": "v301-a2a-tool-continuation"
 }
