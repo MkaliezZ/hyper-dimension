@@ -2,6 +2,8 @@
 
 你正在接手Hyper Dimension的可部署源码包。读 deploy.json、DEPLOYMENT.md 和本文件，然后完成目标机部署并给出证据。该协议不限Agent品牌/IDE；无需双击安装器。
 
+新部署优先选择普通项目目录，例如 Windows `C:\HyperDimension` 或 macOS `~/HyperDimension`。管家文档工作区使用独立的普通文件夹；`.codex`、`.agents`、`.ssh`、`.aws`、`.git` 等配置目录有文件保护。已有安装保留原数据与私有设置。
+
 ## 顺序
 
 1. 保留用户现有数据，确认当前目录/实际Windows或Mac架构、Node/Python版本。先运行 node tools/agent-deploy.mjs plan 和 doctor。

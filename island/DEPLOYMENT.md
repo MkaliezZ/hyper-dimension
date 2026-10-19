@@ -10,6 +10,10 @@ This is an Agent-deployable source and asset package. Read **AGENTS.md**, **depl
 
 Enter `island/` after cloning, or the root of the standalone source ZIP. For `.part001` downloads, [verify and assemble the parts](docs/source-parts.md) first. Check this directory's release manifest for its source payload and checksums.
 
+新部署请使用普通项目目录，例如 Windows `C:\HyperDimension` 或 macOS `~/HyperDimension`。为管家选择独立的普通文档工作区；`.codex`、`.agents`、`.ssh`、`.aws`、`.git` 等配置目录受到文件保护。已有安装保留原数据与私有设置。
+
+For a new deployment, use a regular project directory such as `C:\HyperDimension` on Windows or `~/HyperDimension` on macOS. Choose a separate regular folder for steward documents. Configuration directories such as `.codex`, `.agents`, `.ssh`, `.aws` and `.git` have file protection. Preserve existing installation data and private settings.
+
 ## 2. 准备目标机 / Prepare the computer
 
 | 平台 / Platform | 解释器 / Interpreter | 安装方式 / Setup |

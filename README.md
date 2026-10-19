@@ -6,7 +6,7 @@
 
 采集、种植、制作、经营与派对，和 AI 居民一起生活；让自己的 Hermes Agent 管家整理资料、制定计划、处理真实文档。像素与折纸两种画风，共用同一小岛和存档。
 
-[![Hyper Dimension · 小岛生活与真实工作](island/docs/media/hyper-dimension-v296-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · 小岛生活与真实工作](island/docs/media/hyper-dimension-v320-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
 **[播放 30 秒演示](https://mkaliezz.github.io/hyper-dimension/#living)** · 1440p / 60 fps · 原创配乐
 

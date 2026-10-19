@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v319-agent-source",
+  "release": "hyper-dimension-v320-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -32,13 +32,13 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2677,
-      "sha256": "5a6f5e26a50f41e9b2bf24d27c1cb76698ba84641784cca7016c9b1fa70976aa"
+      "bytes": 2967,
+      "sha256": "c0e07bc8405f9846232862c591ce0931b94c3181385ac8371d495557ac2a8abf"
     },
     {
       "path": "DEPLOYMENT.md",
-      "bytes": 7774,
-      "sha256": "f106c9543cea1c3d20b0c48e1667e6bdda260b4a603984b1fabcd9d6413902c2"
+      "bytes": 8401,
+      "sha256": "15df96cade7c8999364592e991724a8e248455a6403dd8c597ab4286788fc521"
     },
     {
       "path": "LICENSE",
@@ -48,12 +48,12 @@
     {
       "path": "README.en.md",
       "bytes": 3156,
-      "sha256": "e7256adade7d54b2e65d911d3cd84616f56d871ad400e481e7bcdd29af45f314"
+      "sha256": "b343ed9ff02b63f45d95fbc5be34451b13b3384b538a30f32b37ffcfb2e06571"
     },
     {
       "path": "README.md",
       "bytes": 2933,
-      "sha256": "844044152d6d01c7122df9da2aa6dc719d268e03d99a467bc716a356630c8cdc"
+      "sha256": "194ece232c6ab0fbf5aba403f28f2a564cf9839f8694081c63a74a65879502c2"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 122353,
-      "sha256": "8eff4918361a9a695fb689926ac90f581a5d9714ade7b972ea4d6e86ec8cb739"
+      "bytes": 122875,
+      "sha256": "34d4a768493faa4b42e403b3ad8ba6d70de2503aedc6f49f72eeca7f9ca93441"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9777,8 +9777,8 @@
     },
     {
       "path": "tests/v205-recovery-return-browser.mjs",
-      "bytes": 9330,
-      "sha256": "d8b328fbe7ddaa3ae509808dcb1a8529790ac0aae269039007901f93b9f79c63"
+      "bytes": 9484,
+      "sha256": "916fabde784b841d3e3afb7bd9f584c8ac6d08ee6d11a9b0ca09d2a2c3b79656"
     },
     {
       "path": "tests/v205-recovery-return.test.mjs",
@@ -14009,6 +14009,26 @@
       "path": "docs/verification-v319.json",
       "bytes": 1768,
       "sha256": "f749f0a664c5644c5374dcd70b0e185168994da9afe50ce5137a5966f7303638"
+    },
+    {
+      "path": "docs/current-delivery-v320.md",
+      "bytes": 3276,
+      "sha256": "41104712ff471b87e07ceb04fb356ec6cd8ba0d7fd42d445f55f91a1fda2e325"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v320-island-real-work-30s.mp4",
+      "bytes": 34697394,
+      "sha256": "f393c96e7895e4e3b07ae3feffc66b08c4698ad18bf130f29f12ab0fc347f188"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v320-island-real-work-poster.png",
+      "bytes": 6303772,
+      "sha256": "bb871290114bdf54937b9d70388e68df610df6f8f1ca92b3131f8130894f6e18"
+    },
+    {
+      "path": "docs/verification-v320.json",
+      "bytes": 4177,
+      "sha256": "466f56c6ac2f5ab6f81c5fc3b58f1792c299e8842843ba64dcb6c512720b9ca7"
     }
   ],
   "publicRevision": "v319-native-greenhouse-pause-and-source-inventory"

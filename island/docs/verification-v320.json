@@ -1,0 +1,116 @@
+{
+  "version": "V320",
+  "scope": "Current media and deployable source bundle; game runtime unchanged from the executed V318 baseline.",
+  "executedRuntimeCommit": "1b88723551b0d8652c6381be79b737a875c7be76",
+  "executedArchiveSha256": "8c006a243d0f447c158519aaf504569af3055e6ae45f3153f58ecc1699ba10a6",
+  "film": {
+    "sha256": "f393c96e7895e4e3b07ae3feffc66b08c4698ad18bf130f29f12ab0fc347f188",
+    "bytes": 34697394,
+    "duration": 30,
+    "frames": 1800,
+    "width": 2560,
+    "height": 1440,
+    "fps": 60,
+    "allFootageNew": true,
+    "temporalInterpolation": false,
+    "previousFrameSubstitution": false,
+    "minigameInsideBuildingModal": true,
+    "actualHermesFileReadEditReadback": true,
+    "actualA2AInformationExchange": true,
+    "placeholderNotice": true,
+    "endingSeconds": 4,
+    "fictionalDataOnly": true
+  },
+  "realHour": [
+    {
+      "theme": "pixel",
+      "samples": 61,
+      "wallSeconds": 3603.6477999999524,
+      "meanFps": 158.44472925462014,
+      "frameP95Ms": 6.25,
+      "frameP99Ms": 12.25,
+      "pageErrors": 0,
+      "missingAssets": 0,
+      "unexpectedApiErrors": 0,
+      "emptyBrowserReopenPreserved": true,
+      "coinsBeforeAndAfterReopen": 81,
+      "completedTownDays": 3,
+      "modelsActuallyAnswered": 12
+    },
+    {
+      "theme": "origami",
+      "samples": 61,
+      "wallSeconds": 3600.526,
+      "meanFps": 153.0737453360981,
+      "frameP95Ms": 12.25,
+      "frameP99Ms": 12.25,
+      "pageErrors": 0,
+      "missingAssets": 0,
+      "unexpectedApiErrors": 0,
+      "emptyBrowserReopenPreserved": true,
+      "coinsBeforeAndAfterReopen": 90,
+      "completedTownDays": 3,
+      "modelsActuallyAnswered": 12
+    }
+  ],
+  "fourIndependentClients": {
+    "bothStylesPassed": true,
+    "oneWindowsHost": true,
+    "separateBrowsers": 4,
+    "originalDeviceCLIProcesses": 4,
+    "consentingNPCCompanions": 8,
+    "realFlashHermes": true,
+    "fundedEventFlowsPerStyle": 3,
+    "postCommitReplyLossAndRestartChecked": true,
+    "notPhysicalMultipleDevices": true
+  },
+  "thirtyDayAccounting": {
+    "bothStylesPassed": true,
+    "syntheticInitialStockAndClockDeclared": true,
+    "snapshotsPerStyle": 6807,
+    "deferredCosts": 0,
+    "capitalCost": 545,
+    "operatingNetExcludingCapital": {
+      "pixel": 507,
+      "origami": 512
+    },
+    "notNaturalZeroStartBalanceAcceptance": true
+  },
+  "localNativeVideoPlayback": {
+    "fullThirtySecondsEnded": true,
+    "playedFramesDuringOriginalThreeSecondGate": 181,
+    "droppedFramesDuringOriginalGate": 0,
+    "range206Verified": true,
+    "notLiveGameFPS": true,
+    "browser": "Chromium headless shell, explicit owned browser",
+    "defaultEdgeCadenceStillUnresolved": true
+  },
+  "hostedRecoverySourceGet": {
+    "run": 39300733524,
+    "job": 118224950964,
+    "originalNativeCasesPassed": 4,
+    "getOnlyMaxRetries": 1,
+    "actionFaultRoutesAndAssertionsUnchanged": true
+  },
+  "hostedIntelChainFollowup": {
+    "run": 39309658330,
+    "job": 118255651548,
+    "originalCasesPassed": 2,
+    "originalGatesUnchanged": true,
+    "conflictReproduced": false,
+    "rootCauseRepairClaimed": false
+  },
+  "openItems": [
+    "Default Edge native playback still drops frames across three encodes; Chromium passes the unchanged native gate and full ending. Browser-specific cause is unresolved.",
+    "Earlier Intel Mac task-chain reload entered a real save conflict; an observed two-style follow-up passed without reproducing it. No runtime root-cause repair claimed.",
+    "Original same-browser four-context stress is still unresolved.",
+    "Earlier Windows recruitment status miss has a passing four-case observed follow-up; root cause is not established.",
+    "This exact newly sealed source package still needs its own archive/parts/fresh-install verification.",
+    "Public CDN playback still needs post-publication verification.",
+    "Actual5-8new-player acceptance, physical devices, and OPC pilot depend on participants arranged by the user.",
+    "Minigame feel, complete art/animation/audio coverage, and long-term progression remain in scope."
+  ],
+  "fullMatrixPassed": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}
