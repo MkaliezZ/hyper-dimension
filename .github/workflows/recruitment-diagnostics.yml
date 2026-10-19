@@ -66,8 +66,7 @@ jobs:
         run: node tests/v228-custom-shops-browser.mjs
       - name: Native shelf sales with one actual expired mining completion
         if: inputs.test_case == 'field-finish'
-        working-directory: island
-        run: node tests/v321-field-finish-market-browser.mjs
+        run: node .github/diagnostics/field-finish-market.mjs
       - name: Retain owned native scheduling observations
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

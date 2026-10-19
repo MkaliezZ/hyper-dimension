@@ -1,0 +1,7 @@
+# Mining completion fixture
+
+The first Windows follow-up on source dea8c4b passed both real20second-work/12second-expiration cases and all four original shelf-sale cases. Its additional fault-occurrence assertion failed because neither autonomous schedule mined before the shelf case ended. The full isolated artifact12221713819 is retained; its verified ZIP SHA-256 is5914920f5458986277adb5579aa3ef9720813143087b8c7aa5e22a971833f69b. This is a missing fixture precondition, not a demonstrated second sale or receipt failure.
+
+The diagnostic driver deliberately starts one NPC15 mining job through the application's existing field controller before each original shelf case. A test-only source wrapper exposes that controller call; production source files, actor positions, clocks, inventory and results are not directly edited. It waits the normal20second lease readiness and original12second fetch expiration, requires one mineral receipt and one ore-durability reduction, then runs the unmodified original shelf and fault assertions. This checks real controller/Worker/HTTP/disk recovery followed by sales; it does not claim autonomous movement or human interaction acceptance.
+
+Both appearances pass locally against the exact freshly deployed V321 source, with source files unchanged. The earlier hosted failure remains recorded. A new hosted run must confirm this explicit precondition; no original deadlines, stock, price, cost, reload or mandatory-fault assertions have been removed or increased. This diagnostic does not change the sealed island source archive.
