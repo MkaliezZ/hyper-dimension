@@ -1,0 +1,70 @@
+{
+  "version": "V321",
+  "at": "2026-10-19T21:03:18.299361+00:00",
+  "passed": true,
+  "scope": "Bounded replay of a confirmed NPC mining completion after the original fetch expires; original native custom-shelf sales under normal and expired-reply conditions. Fictional automated fixtures on one Windows host.",
+  "originalFailure": {
+    "run": 39314211365,
+    "job": 118271349340,
+    "step": "Native custom product shelves and visitor sales",
+    "expiredNpcMiningFinishRetainedPendingFieldAndBlockedVisitorClock": true
+  },
+  "runtimeSourceHashes": {
+    "src/saveClient.js": "7b559ebb88e33c2b48baceee2711c385c5a62d00df0ae8a6ca4f40d9a3ff864c",
+    "src/saveJournal.js": "44c97d94c9d937990e288052f1b016b4a4305ee92bec8b620cd3fdc447d446bb",
+    "server/saveStore.mjs": "e866ee3e2fc80ef3c5618f12dea05b98dab63b764a0bf8120ad5368054f32137",
+    "server/fieldActions.mjs": "f7a19a6377f5dad1e2b1fbea4d8376488ffa6c2fcc0b4db6e4544a52b7a70feb"
+  },
+  "baselineBothStylesFailOriginalTimeout": true,
+  "candidateBothStylesRecoverActualTimeout": true,
+  "originalFetchDeadlineMilliseconds": 12000,
+  "originalMiningWorkSeconds": 20,
+  "oneIdenticalCompletionReplay": true,
+  "oneMineralGainAndOneOreDamage": true,
+  "noOptimisticStock": true,
+  "diskReceiptReplayUnique": true,
+  "defaultRules": {
+    "node22Passed": 1635,
+    "node25Passed": 1635,
+    "failed": 0,
+    "skipped": 0,
+    "finalRuntimeIsolationGroupRetained": true
+  },
+  "marketNormalBothStylesPassed": true,
+  "marketExpiredCompletionBothStylesPassed": true,
+  "originalFiniteTouristRotationAnd150SecondServiceGatesRetained": true,
+  "actualSale": {
+    "paid": 7,
+    "cost": 3,
+    "initialCustomGiftStock": 3,
+    "afterOneSale": 2
+  },
+  "fixtureDeclaredSyntheticStartingResources": true,
+  "fixtureProvidersDisabled": true,
+  "clockOrResultInjected": false,
+  "marketFaultObservations": [
+    {
+      "theme": "pixel",
+      "heldReplies": 1,
+      "identicalFinishRequests": 2,
+      "authorityFirstReplyReplayed": false,
+      "replayedSuccessObserved": true
+    },
+    {
+      "theme": "origami",
+      "heldReplies": 1,
+      "identicalFinishRequests": 2,
+      "authorityFirstReplyReplayed": false,
+      "replayedSuccessObserved": true
+    }
+  ],
+  "negativeBoundaries": "Player work/cancel, unconfirmed or mismatched leases, non-mining work, explicit HTTP errors and ordinary connection loss are not automatically completed. Persistent expiration stops after one replay.",
+  "hostedCurrentRepairConfirmed": false,
+  "currentSourceArchiveFreshInstallQualified": false,
+  "olderNaturalHourAndFourOwnerEvidence": "Previously executed V318 source remains separately attributed; V321 is not relabeled as a new natural-hour or physical multi-device run.",
+  "publicPlayerLoadingCheckPassed": false,
+  "publicPlayerIssue": "Current public connection reached93percent at45seconds; preparation progress remains visible. Default Edge presentation cadence is separately unresolved.",
+  "humanOrPhysicalDeviceAcceptance": false,
+  "newPlayerAndOPCPilot": "User is preparing actual participants/devices/time.",
+  "wholeGoalComplete": false
+}

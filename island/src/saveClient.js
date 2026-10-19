@@ -89,7 +89,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   for(let attempt=0;;attempt++){
    // Only an authoritative lease already known before this attempt can authorize
    // a bounded completion replay. Stored or merely well-shaped inputs cannot.
-   const completionLease=operation==='action'&&body?.kind==='resident'&&body.operation==='finish'?record(theme).actions?.resident?.leases?.[body.requestId]:null;
+   const completionLease=operation==='action'&&body?.operation==='finish'&&['resident','field'].includes(body.kind)?record(theme).actions?.[body.kind]?.leases?.[body.requestId]:null;
    const response=await journal.request('/api/saves/'+theme+(operation?'/'+operation:''),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:payload},metadataOnly,actionsBase?.version,completionLease);
    const data=response.data||JSON.parse(response.text);
    if(!response.ok){

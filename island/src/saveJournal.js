@@ -36,17 +36,18 @@ export function createSaveJournal(){
  async function remove(key){await commit([[key,null]]);}
  async function request(url,init,metadataOnly=false,actionsVersion=null,completionLease=null){
   const island=namespace.match(/^hd-lan:([a-f0-9-]{36}):$/)?.[1],value={metadataOnly,actionsVersion,url:enabled?new URL(url,location.href).href:url,init:{...init,headers:{...init?.headers,...(enabled&&island?{'X-HD-Island':island}:{})}}};
-  const knownCompletion=completionLease&&Object.fromEntries(['kind','actor','actorId','requestId','epoch','sequence'].map(k=>[k,completionLease[k]]));
+  const knownCompletion=completionLease&&Object.fromEntries(['kind','field','actor','actorId','requestId','epoch','sequence'].map(k=>[k,completionLease[k]]));
   const run=async()=>{if(enabled)return rpc('request',value);const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(value.url,{...value.init,signal:controller.signal,cache:'no-store'});return {ok:response.ok,status:response.status,text:await response.text()};}finally{clearTimeout(timer)}};
   try{return await run();}catch(error){
    let body;try{body=JSON.parse(value.init.body);}catch{}
    // One identical replay may read a journaled visitor outcome or an NPC work
-   // reservation after its fetch expires. A known NPC resident completion may
-   // read its identical receipt once; player work and cancellations stay manual.
+   // reservation after its fetch expires. Known NPC resident/mining completions
+   // may read their identical receipt once; player work and cancellations stay manual.
    const npcMineStart=body?.kind==='field'&&body.operation==='begin'&&body.field==='mine'&&body.actor==='npc'&&Number.isInteger(body.actorId)&&body.actorId>=0&&body.actorId<=16;
    const npcResidentStart=body?.kind==='resident'&&body.operation==='begin'&&(body.actor===undefined||body.actor==='npc')&&Number.isInteger(body.actorId)&&body.actorId>=0&&body.actorId<=16&&body.intent&&!Array.isArray(body.intent)&&['work','eat','rest','visit'].includes(body.intent.action)&&typeof body.intent.goal==='string'&&body.intent.goal.length>0&&body.intent.goal.length<=40;
    const residentFinish=body?.kind==='resident'&&body.operation==='finish'&&knownCompletion?.kind==='resident'&&knownCompletion.actor==='npc'&&Number.isSafeInteger(knownCompletion.actorId)&&knownCompletion.actorId>=0&&knownCompletion.actorId<=16&&typeof body.epoch==='string'&&body.epoch.length>0&&Number.isSafeInteger(body.sequence)&&body.sequence>0&&body.requestId===knownCompletion.requestId&&body.epoch===knownCompletion.epoch&&body.sequence===knownCompletion.sequence;
-   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&(body?.kind==='visitor'||npcMineStart||npcResidentStart||residentFinish)&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
+   const mineFinish=body?.kind==='field'&&body.operation==='finish'&&knownCompletion?.kind==='field'&&knownCompletion.field==='mine'&&knownCompletion.actor==='npc'&&Number.isSafeInteger(knownCompletion.actorId)&&knownCompletion.actorId>=0&&knownCompletion.actorId<=16&&typeof body.epoch==='string'&&body.epoch.length>0&&Number.isSafeInteger(body.sequence)&&body.sequence>0&&body.requestId===knownCompletion.requestId&&body.epoch===knownCompletion.epoch&&body.sequence===knownCompletion.sequence;
+   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&(body?.kind==='visitor'||npcMineStart||npcResidentStart||residentFinish||mineFinish)&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
    throw error;
   }
  }

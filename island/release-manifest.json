@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v320-agent-source",
+  "release": "hyper-dimension-v321-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 122875,
-      "sha256": "34d4a768493faa4b42e403b3ad8ba6d70de2503aedc6f49f72eeca7f9ca93441"
+      "bytes": 123339,
+      "sha256": "4d3ac63a55cfe1bbfecdb08a011c22a9b69bbede7dfddeaa998297d15ff190cb"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17369,
-      "sha256": "e452d122d7a64f332aeb20c0df74382aa2b16299f1355f03412c023c492875a4"
+      "bytes": 17403,
+      "sha256": "1291d612b707cf84206b163801aeed25296f1a433bdfa35abf60f753eb736224"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 42414,
-      "sha256": "516e7bf398e0f0f2cb0183763b679065901d34a0fd227b93f93e39f7d5cd25c4"
+      "bytes": 42435,
+      "sha256": "7b559ebb88e33c2b48baceee2711c385c5a62d00df0ae8a6ca4f40d9a3ff864c"
     },
     {
       "path": "src/saveDelta.js",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 8790,
-      "sha256": "ad9a70aac60fe01fa09b6057caddf4d8780b9d3f889446c3923fc32a2bd6146e"
+      "bytes": 9314,
+      "sha256": "44c97d94c9d937990e288052f1b016b4a4305ee92bec8b620cd3fdc447d446bb"
     },
     {
       "path": "src/saveLimits.js",
@@ -14029,7 +14029,32 @@
       "path": "docs/verification-v320.json",
       "bytes": 4177,
       "sha256": "466f56c6ac2f5ab6f81c5fc3b58f1792c299e8842843ba64dcb6c512720b9ca7"
+    },
+    {
+      "path": "tests/v321-field-finish-timeout.test.mjs",
+      "bytes": 5587,
+      "sha256": "bfe416ec61093344215970b33c4d2be6682a11420f1f4caaf4e9dba466214e1d"
+    },
+    {
+      "path": "tests/v321-field-finish-timeout-browser.mjs",
+      "bytes": 8473,
+      "sha256": "8cfa76fde64eeb3b312a91b8e06794cae0802645076df0d55f1c1e9f40bc40ce"
+    },
+    {
+      "path": "tests/v321-field-finish-market-browser.mjs",
+      "bytes": 3790,
+      "sha256": "8591e25227cbc9b86a86682b064ad56af89161f3254e2fdeb4030664a02d64ac"
+    },
+    {
+      "path": "docs/npc-mine-completion-v321.md",
+      "bytes": 2179,
+      "sha256": "73f6d2cec2f82e08d0471d851513dea357fdf1afac30933ecc96283db7fb1de8"
+    },
+    {
+      "path": "docs/verification-v321.json",
+      "bytes": 3101,
+      "sha256": "c7c09e10c27a3eed1110cee542ce7e380ebf69281c9bd27e1951075635ce745c"
     }
   ],
-  "publicRevision": "v319-native-greenhouse-pause-and-source-inventory"
+  "publicRevision": "v321-confirmed-npc-mining-completion-recovery"
 }
