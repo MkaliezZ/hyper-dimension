@@ -1,0 +1,24 @@
+{
+  "version": "V316",
+  "at": "2026-10-19T13:36:20.955671+00:00",
+  "passed": true,
+  "scope": "Native independent receipt driver resumes actual safety pause; product runtime unchanged fromV315.",
+  "sourceHashes": {
+    "tests/v170-reward-drain-browser.mjs": "783382a7021566cc5f6ab942a351a69409a844318b2b73da348c87f83776dee0"
+  },
+  "normalAllSixCasesPassed": true,
+  "forcedOrigamiCancelCasePassed": true,
+  "nativeCasesPassed": 7,
+  "actualPauseResumeCountInForcedCase": 1,
+  "boardPlayerCratesMovesScoreHistorySeedPreserved": true,
+  "originalClaimCancelAndExplicitRecoveryAssertionsRetained": true,
+  "originalSixDefaultScenariosRetained": true,
+  "original120MillisecondMovesAnd30000MillisecondWaitsRetained": true,
+  "runtimeSourceUnchangedFromV315": true,
+  "inheritedV315RulesPerRuntime": 29,
+  "fullDefaultRulesRerun": false,
+  "hostedIntelRepairConfirmed": false,
+  "inheritedSlowArtworkStartupStillUnqualified": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

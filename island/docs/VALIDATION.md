@@ -946,3 +946,8 @@ The save page distinguishes an acknowledged manual checkpoint from later pending
 ## V315 - Resident identity-busy reply recovery
 
 An explicit503/lan_busy reply now uses the existing bounded durable-action retry policy with identical request bytes. Four baseline native cases fail and four candidate cases pass; the original production-to-visitor-purchase flow also passes both appearances locally. Original time, resource and unique-receipt assertions remain. See [resident-lan-busy-v315.md](resident-lan-busy-v315.md) and [verification-v315.json](verification-v315.json). Current hosted and broad delivery acceptance remain pending.
+
+
+## V316 - Native receipt pause interaction
+
+All six default independent-receipt scenarios and one additional real mid-board pause/cancel scenario pass locally. The driver operates Continue and verifies the board is preserved, keeping original claim, cancellation, uncertainty and timing assertions. Runtime is unchanged fromV315. See [native-receipt-pause-v316.md](native-receipt-pause-v316.md) and [verification-v316.json](verification-v316.json). Hosted and broader delivery acceptance remain pending.

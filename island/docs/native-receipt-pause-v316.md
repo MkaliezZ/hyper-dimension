@@ -1,0 +1,7 @@
+# Native receipt driver through a real pause
+
+The retained Intel receipt artifact has four successful default scenarios and two origami scenarios blocked while clicking the Sokoban board. Its failure screenshot shows the ordinary renderer-hitch safety pause; no craft checkpoint, farm lock or resident recovery panel is blocking. The driver omitted the real Continue control.
+
+The native receipt driver now clicks that control and compares player position, crates, moves, score, history and seed before and after resuming. It never disables the product pause, changes game time or injects completion. The default remains all six pixel/origami claim, cancel and cancel-recovery scenarios. Each original actual checkpoint hold, double native claim, foreign resident receipt, single protected craft receipt, no-cost/no-gain cancellation, retained uncertain resident journal and explicit recovery assertion remains, with the same120ms moves and30000ms waits.
+
+The full six-scenario local run and an additional origami cancellation with a real mid-board toolbar pause pass. The forced scenario preserves the progressed board and cancels without consuming materials or granting a product. Runtime and the V315 rule inputs are unchanged; no new full default rule run is claimed. Current-source Intel hosted follow-up and the complete matrix remain pending. The previously recorded slow-renderer artwork startup boundary remains unqualified. Owned automatic fictional runs are not human or physical multi-device acceptance.

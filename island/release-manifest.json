@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v315-agent-source",
+  "release": "hyper-dimension-v316-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 120443,
-      "sha256": "ca0a4a00547721ef6ea70938b660dcf90a1f972502e0719c76cbf7ab256f5017"
+      "bytes": 120949,
+      "sha256": "654096794af76b96b379f66dfb3364df08bda0a6648862cfbe6a5aa94ceb852a"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9277,8 +9277,8 @@
     },
     {
       "path": "tests/v170-reward-drain-browser.mjs",
-      "bytes": 13228,
-      "sha256": "e71b40d801fd66fb9983f1da06f756859599ac7844fac754d96af5b5b4326453"
+      "bytes": 15018,
+      "sha256": "783382a7021566cc5f6ab942a351a69409a844318b2b73da348c87f83776dee0"
     },
     {
       "path": "tests/v171-lan-geography.test.mjs",
@@ -13959,7 +13959,17 @@
       "path": "docs/resident-lan-busy-v315.md",
       "bytes": 1927,
       "sha256": "03a16af2af882dc6296661f664991901ee45b4834324b636588dbb8260c7eb9c"
+    },
+    {
+      "path": "docs/verification-v316.json",
+      "bytes": 1006,
+      "sha256": "4766626d58bcecfe379f36274d9728d7f4da7538104a265b1cffde3a854c153c"
+    },
+    {
+      "path": "docs/native-receipt-pause-v316.md",
+      "bytes": 1516,
+      "sha256": "a0973d2c12966b547ba7c99189a5959f5120b12fb1a887eb6db760a6b1dc078e"
     }
   ],
-  "publicRevision": "v315-resident-identity-busy"
+  "publicRevision": "v316-native-receipt-resume"
 }

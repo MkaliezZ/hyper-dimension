@@ -6,7 +6,7 @@ on:
         description: Manual save confirmation or resident identity-busy production market
         type: choice
         default: manual-save
-        options: [manual-save, resident-busy-market]
+        options: [manual-save, resident-busy-market, reward-drain]
 permissions:
   contents: read
 concurrency:
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   intel-native:
-    name: ${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || 'macos-15-intel / manual save and cash recovery' }}
+    name: ${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || inputs.check_scope == 'reward-drain' && 'macos-15-intel / independent receipt pause recovery' || 'macos-15-intel / manual save and cash recovery' }}
     runs-on: ${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022' || 'macos-15-intel' }}
     timeout-minutes: 45
     defaults:
@@ -30,7 +30,7 @@ jobs:
       - name: Manual save feedback preserves acknowledgments and rejects failures
         run: node tests/v314-manual-save-feedback-browser.mjs
       - name: Native cash reporting and shared-style recovery
-        if: inputs.check_scope != 'resident-busy-market'
+        if: inputs.check_scope != 'resident-busy-market' && inputs.check_scope != 'reward-drain'
         run: node tests/v276-cash-browser.mjs
       - name: Resident begin recovers identical identity-busy replies
         if: inputs.check_scope == 'resident-busy-market'
@@ -42,11 +42,21 @@ jobs:
           HD_QA_SHELF_FROM_PRODUCTION: '1'
           HD_QA_OUT: qa/v230/native-production-market
         run: node tests/v228-custom-shops-browser.mjs
+      - name: Native continued Sokoban board and cancellation
+        if: inputs.check_scope == 'reward-drain'
+        env:
+          HD_QA_DRAIN_PAUSE: '1'
+          HD_QA_DRAIN_CASE: origami:cancel
+          HD_QA_OUT: qa/v316/forced-reward-drain
+        run: node tests/v170-reward-drain-browser.mjs
+      - name: Native independent receipt and close recovery
+        if: inputs.check_scope == 'reward-drain'
+        run: node tests/v170-reward-drain-browser.mjs
       - name: Retain fictional native evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-manual-save-${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || 'macos-15-intel' }}
+          name: native-manual-save-${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || inputs.check_scope == 'reward-drain' && 'macos-15-intel-reward-drain' || 'macos-15-intel' }}
           path: |
             island/qa/v314/manual-save-feedback/report.json
             island/qa/v276/native-cash/report.json
@@ -55,5 +65,9 @@ jobs:
             island/qa/v230/native-production-market/report.json
             island/qa/v230/native-production-market/work-progress.json
             island/qa/v230/native-production-market/*.png
+            island/qa/v170/native-reward-drain/report.json
+            island/qa/v170/native-reward-drain/*.png
+            island/qa/v316/forced-reward-drain/report.json
+            island/qa/v316/forced-reward-drain/*.png
           if-no-files-found: error
           retention-days: 3
