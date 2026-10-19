@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v312-agent-source",
+  "release": "hyper-dimension-v313-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 118998,
-      "sha256": "8bc2e74043c0990ab29a51bcb2fe212c3d92f132127f5d5329ec6721a244a257"
+      "bytes": 119344,
+      "sha256": "4641f41e604de943a1689b80d0a0c86fbc71058ee2319209aa5a0a698b7a0025"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12252,8 +12252,8 @@
     },
     {
       "path": "tests/v219-painting-tools-browser.mjs",
-      "bytes": 10599,
-      "sha256": "48e0d9c46c884bfaf69331eef9a74032a7242d9893a4e0303a90f01e2808eec0"
+      "bytes": 12705,
+      "sha256": "f1d82a6400d7eb3e8525cf4deacdb3f677e22804038c9f7ae01c278a5bf9f040"
     },
     {
       "path": "tests/v219-production-uses.test.mjs",
@@ -13919,7 +13919,17 @@
       "path": "docs/verification-v312.json",
       "bytes": 2613,
       "sha256": "2d294420d6676909741e1f69abb91f08394c2463b03857e3b7b72adb5120b4db"
+    },
+    {
+      "path": "docs/native-painting-pause-v313.md",
+      "bytes": 1619,
+      "sha256": "21f9b6265aed81f89c39f2eaecfbbeffdeb6c5e1c64ccc36a423f0817ce194b0"
+    },
+    {
+      "path": "docs/verification-v313.json",
+      "bytes": 2004,
+      "sha256": "49e3908142161ece3447e23e8a884faf45fd4039af8ae53f4f67ff44a7b6fcf9"
     }
   ],
-  "publicRevision": "v312-world-paint-floor"
+  "publicRevision": "v313-native-painting-resume"
 }

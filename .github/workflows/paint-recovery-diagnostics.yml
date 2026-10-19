@@ -1,6 +1,12 @@
 name: Island paint recovery diagnostics
 on:
   workflow_dispatch:
+    inputs:
+      check_scope:
+        description: Original paint/save checks or native painting with a real mid-stroke pause
+        type: choice
+        default: paint-recovery
+        options: [paint-recovery, painting-tools]
 permissions:
   contents: read
 concurrency:
@@ -8,8 +14,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   windows-native:
-    name: windows-2022 / original paint and save checks
-    runs-on: windows-2022
+    name: ${{ inputs.check_scope == 'painting-tools' && 'macos-15-intel / native painting tools' || 'windows-2022 / original paint and save checks' }}
+    runs-on: ${{ inputs.check_scope == 'painting-tools' && 'macos-15-intel' || 'windows-2022' }}
     timeout-minutes: 45
     defaults:
       run:
@@ -22,17 +28,29 @@ jobs:
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Original personal modal receipt and backdrop
+        if: inputs.check_scope != 'painting-tools'
         run: node tests/v294-personal-backdrop-browser.mjs
       - name: Original Windows save lock contention and unique delivery
+        if: inputs.check_scope != 'painting-tools'
         run: node tests/v218-save-lock-browser.mjs
       - name: Original granted player action during an unrelated receipt
+        if: inputs.check_scope != 'painting-tools'
         run: node tests/v281-player-action-browser.mjs
+      - name: Original painting tools with a native mid-stroke pause
+        if: inputs.check_scope == 'painting-tools'
+        env:
+          HD_QA_PAINT_PAUSE: '1'
+          HD_QA_WORK_JOURNAL: '1'
+        run: node tests/v219-painting-tools-browser.mjs
       - name: Retain fictional native evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-paint-recovery-windows-2022
+          name: native-paint-recovery-${{ inputs.check_scope == 'painting-tools' && 'macos-15-intel-painting' || 'windows-2022' }}
           path: |
+            island/qa/v219/native-painting-tools/report.json
+            island/qa/v219/native-painting-tools/work-progress.json
+            island/qa/v219/native-painting-tools/*.png
             island/qa/v294/personal-backdrop/report.json
             island/qa/v294/personal-backdrop/*.png
             island/qa/v218/native-save-lock/report.json

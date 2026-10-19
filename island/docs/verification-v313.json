@@ -1,0 +1,53 @@
+{
+  "version": "V313",
+  "at": "2026-10-19T12:24:20.815442+00:00",
+  "hostedFailure": {
+    "run": 39240604814,
+    "job": 118039802187,
+    "sourceCommit": "18d0ec0ee70e24d3e6444b657518654a367dfeed",
+    "artifact": 12184768603,
+    "isolatedReportAndFailureImageCRCsAndSHA256Verified": true,
+    "fullArchiveSHA256Verified": false,
+    "origamiPaused": true,
+    "gameSeconds": 23.10399999999982,
+    "stroke": 1,
+    "transportPaused": false,
+    "checkpointPending": false,
+    "craftRecoveryRequired": false,
+    "cause": "The renderer safety-pause dialog remained open; the native driver never clicked Continue and exhausted its gesture loop."
+  },
+  "repair": {
+    "onlyNativeDriverAndManualDiagnosticChanged": true,
+    "realResumeButtonRequired": true,
+    "paintedWorkScoreArcColorInkSeedAndReportsPreserved": true,
+    "forcedMidStrokePauseViaRealToolbarButton": true,
+    "runtimeSourceAndTwoSecondSafetyPauseRuleUnchanged": true,
+    "maximumGestureIterations": 1800,
+    "naturalGameClockAndOriginalQualityAndCostAssertionsUnchanged": true,
+    "noNewGameOutcomeOrRewardInjected": true
+  },
+  "local": {
+    "forcedPauseBothStylesPassed": true,
+    "ordinaryBothStylesPending": false,
+    "actualUniquePaintingReceiptBrushReturnCanvasConsumptionAndReloadChecked": true,
+    "ordinaryBothStylesPassed": true,
+    "forcedAndNormalActualPaintingCasesPassed": 4
+  },
+  "rules": {
+    "inheritedFromSourceCommit": "5a7dfae79f4f05ca6fbb3f9b73633a33540d0c63",
+    "previousDefaultsPassedPerRuntime": 1617,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "runtimeAndDefaultRuleInputsUnchanged": true,
+    "defaultsRerunForThisNativeDriverOnlyChange": false
+  },
+  "hostedPaintingRepairConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "physicalOrHumanAcceptance": false,
+  "wholeGoalComplete": false
+}
