@@ -287,13 +287,14 @@ jobs:
 
   native-gameplay:
     if: (inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery') && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }}
+    name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }} / ${{ matrix.group }}
     strategy:
       fail-fast: false
       matrix:
         os: [windows-2022, macos-14, macos-15-intel]
+        group: [reward, receipt, navigation, content]
     runs-on: ${{ matrix.os }}
-    # Checkout and the unchanged calendar/visitor budgets must fit the job.
+    # Each isolated group keeps the original tests, clocks and one-hour job limit.
     timeout-minutes: 60
     defaults:
       run:
@@ -308,81 +309,103 @@ jobs:
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
 
       - name: Native pearl cup crafting and refresh
-        if: inputs.check_scope != 'soil-diagnostics'
+        if: matrix.group == 'reward' && inputs.check_scope != 'soil-diagnostics'
         env:
           HD_QA_WORK_JOURNAL: "1"
         run: node tests/v156-pearl-cup-craft-browser.mjs
 
       - name: Native queued reward confirmation
+        if: matrix.group == 'reward'
         run: node tests/v168-reward-click-browser.mjs
 
       - name: Native low-frame-rate result and queued reward
+        if: matrix.group == 'reward'
         env:
           HD_REWARD_INTENTS: claim
         run: node tests/v194-result-pacing-browser.mjs
 
       - name: Native independent receipt and close recovery
+        if: matrix.group == 'receipt'
         run: node tests/v170-reward-drain-browser.mjs
 
       - name: Browser save waiter and authoritative craft ordering
+        if: matrix.group == 'receipt'
         run: node tests/v204-save-waiter-browser.mjs
 
       - name: Native player farm intent after queued receipts
+        if: matrix.group == 'receipt'
         run: node tests/v245-player-farm-intent-browser.mjs && node tests/v245-moment-day-browser.mjs
 
       - name: Native NPC farm intent after queued receipts
+        if: matrix.group == 'receipt'
         run: node tests/v249-npc-farm-intent-browser.mjs
 
       - name: Native recovery return and visiting parties
+        if: matrix.group == 'receipt'
         run: node tests/v205-recovery-return-browser.mjs && node tests/v205-visiting-party-browser.mjs
 
       - name: Native confirmed return after two cancelled navigations
+        if: matrix.group == 'navigation'
         run: node tests/v214-recovery-link-browser.mjs
 
       - name: Native re-entry while recovery read is pending
+        if: matrix.group == 'navigation'
         run: node tests/v216-recovery-wait-browser.mjs
 
       - name: Native recovery input through workshop modal dialogs
+        if: matrix.group == 'navigation'
         run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
 
       - name: Native save-dialog recovery feedback and safe re-entry
+        if: matrix.group == 'navigation'
         run: node tests/v223-recovery-feedback-browser.mjs
 
       - name: Native recovery controls follow in-flight reads
+        if: matrix.group == 'navigation'
         run: node tests/v229-recovery-controls-browser.mjs
 
       - name: Native signed import and historical restore re-entry
+        if: matrix.group == 'navigation'
         run: node tests/v226-save-replacement-browser.mjs
 
       - name: Native current catalog totals and preserved legacy achievements
+        if: matrix.group == 'navigation'
         run: node tests/v221-catalog-counts-browser.mjs
 
       - name: Native recruitment error recovery and request identity
+        if: matrix.group == 'content'
         run: node tests/v222-recruitment-errors-browser.mjs
 
       - name: Native recruitment progress behind accepted work
+        if: matrix.group == 'content'
         run: node tests/v287-recruitment-progress-browser.mjs
 
       - name: Native confirmed publication and catalog synchronization
+        if: matrix.group == 'content'
         run: node tests/v305-catalog-refresh-browser.mjs
 
       - name: Native custom products, artwork, reuse and cross-owner import
+        if: matrix.group == 'content'
         run: node tests/v224-custom-content-browser.mjs
 
       - name: Native visitor timeout retains one settlement
+        if: matrix.group == 'content'
         run: node tests/v303-visitor-timeout-browser.mjs
 
       - name: Native custom recipe resident preparation and reopen
+        if: matrix.group == 'content'
         env:
           HD_QA_WORK_JOURNAL: "1"
         run: node tests/v227-custom-agent-browser.mjs
 
       - name: Native custom product shelves and visitor sales
+        if: matrix.group == 'content'
         env:
           HD_QA_WORK_JOURNAL: "1"
         run: node tests/v228-custom-shops-browser.mjs
 
       - name: Native resident production to visitor purchase
+        if: matrix.group == 'content'
         env:
           HD_QA_WORK_JOURNAL: "1"
           HD_QA_SHELF_FROM_PRODUCTION: "1"
@@ -390,13 +413,14 @@ jobs:
         run: node tests/v228-custom-shops-browser.mjs
 
       - name: Native night planning skips empty purposes
+        if: matrix.group == 'content'
         run: node tests/v216-night-planning-browser.mjs
 
       - name: Retain isolated visitor timeout diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-visitor-timeout-${{ matrix.os }}
+          name: native-visitor-timeout-${{ matrix.os }}-${{ matrix.group }}
           path: island/qa/v303/native-visitor-timeout/report.json
           if-no-files-found: ignore
           retention-days: 3
@@ -405,7 +429,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-soil-care-${{ matrix.os }}
+          name: native-soil-care-${{ matrix.os }}-${{ matrix.group }}
           path: |
             island/qa/v156/native-pearl-cup-craft/report.json
             island/qa/v156/native-pearl-cup-craft/work-progress.json
