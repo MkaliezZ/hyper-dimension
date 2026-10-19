@@ -1,0 +1,51 @@
+{
+  "version": "V322",
+  "at": "2026-10-19T22:07:40.815145+00:00",
+  "passed": true,
+  "scope": "Static blurred world backdrop while a shop shelf modal owns input. Normal updates,receipts,resize invalidation and world repaint after closing remain.",
+  "sourceAppSHA256": "722664c0af09744cb8525597432e427b52cdc6f8a87613a83f2ae94d4111cd9e",
+  "changedRuntimeFiles": [
+    "src/app.js"
+  ],
+  "hostedComparison": {
+    "run": 39330286847,
+    "job": 118326450482,
+    "artifact": 12224617359,
+    "fullArtifactZipSHA256": "c2165782f507058760898b14ebb6883bec3bea49f117e46b0fd0305bed5e3ee8",
+    "fullZipCRCAndGitHubDigestVerified": true,
+    "jobConclusion": "failure",
+    "originalFirstBothStylesPassed": true,
+    "candidateBothStylesPassed": true,
+    "originalAfterBothStylesFailedImageDeadline": true,
+    "negativeControlFailureRetained": true,
+    "original5000msPNGAnd150SecondServiceGatesRetained": true,
+    "originalAfterObservedResponseMaxMilliseconds": 13439,
+    "candidateObservedResponseMaxMilliseconds": 2458
+  },
+  "relatedRules": {
+    "node22Passed": 34,
+    "node25Passed": 34,
+    "failed": 0,
+    "skipped": 0
+  },
+  "localActualProduct": {
+    "baselineBothStylesRejectUnretainedBackdrop": true,
+    "candidateBothStylesPass": true,
+    "originalPNGPriceCostStockReloadAssertionsRetained": true,
+    "worldDrawsDuring1200msShelfHold": [
+      0,
+      0
+    ],
+    "simulationClockAdvancesDuringShelfHold": true,
+    "closingModalResumesWorldDrawing": true,
+    "oneResizeInvalidationPaintAllowed": true,
+    "testCleanupFailureHandlingKeepsIndependentCasesAndNonzeroExit": true
+  },
+  "serverEconomyClockModelsAssetsAndAnimationAlgorithmsChanged": false,
+  "currentFullDefaultRulesRerun": false,
+  "currentSourceArchiveFreshInstallQualified": false,
+  "hostedReleasedProductConfirmed": false,
+  "olderFullRulesAndNaturalHour": "V3211635default rules and V318natural-hour/four-owner evidence remain separately attributed.",
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

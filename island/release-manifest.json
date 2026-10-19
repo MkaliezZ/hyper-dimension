@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v321-agent-source",
+  "release": "hyper-dimension-v322-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 123339,
-      "sha256": "4d3ac63a55cfe1bbfecdb08a011c22a9b69bbede7dfddeaa998297d15ff190cb"
+      "bytes": 123814,
+      "sha256": "7366f55300d4162fedc86cde8aad69a52ede312e54674f4ba5481a415577e5de"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 146849,
-      "sha256": "4faaae431d920952f5bc5a939abe6b360abf78588f7785ea99adc61bc324402f"
+      "bytes": 147130,
+      "sha256": "722664c0af09744cb8525597432e427b52cdc6f8a87613a83f2ae94d4111cd9e"
     },
     {
       "path": "src/arcade.css",
@@ -14054,7 +14054,22 @@
       "path": "docs/verification-v321.json",
       "bytes": 3101,
       "sha256": "c7c09e10c27a3eed1110cee542ce7e380ebf69281c9bd27e1951075635ce745c"
+    },
+    {
+      "path": "tests/v322-shelf-backdrop-browser.mjs",
+      "bytes": 3997,
+      "sha256": "e1c27afe63ece99cbf34eb7a6aa71f37520bb2be8a778481e656ff2407e7b02a"
+    },
+    {
+      "path": "docs/shelf-backdrop-v322.md",
+      "bytes": 1824,
+      "sha256": "0f8e34402d3a139a1082459941c30be254bed59d33f03f3ad3faae7d0407cd6c"
+    },
+    {
+      "path": "docs/verification-v322.json",
+      "bytes": 2020,
+      "sha256": "5f124495b76aa84455efd4fd49e1797ff8cf80024981e57ffe00de47c869b0d0"
     }
   ],
-  "publicRevision": "v321-confirmed-npc-mining-completion-recovery"
+  "publicRevision": "v322-static-shelf-backdrop-and-world-resume"
 }
