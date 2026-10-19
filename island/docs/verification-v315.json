@@ -1,0 +1,39 @@
+{
+  "version": "V315",
+  "at": "2026-10-19T13:22:19.486096+00:00",
+  "passed": true,
+  "scope": "Bounded durable503/lan_busy recovery and the unchanged resident-production market scenario.",
+  "sourceHashes": {
+    "src/saveClient.js": "516e7bf398e0f0f2cb0183763b679065901d34a0fd227b93f93e39f7d5cd25c4",
+    "tests/v254-save-io-retry.test.mjs": "7af24e011f9f01f769d8c01ecb74f71e1378adeab6043273cd416be12ab06ae8",
+    "tests/v315-resident-lan-busy-browser.mjs": "f4548551e3a902a299faf0d816f5368b9921f5b5bc55343fdaff096218222beb"
+  },
+  "baselineNativeCasesFailed": 4,
+  "candidateNativeCasesPassed": 4,
+  "bothStylesAndBeforeAfterCommitCovered": true,
+  "byteIdenticalOriginalRequestPreserved": true,
+  "maximumAttempts": 3,
+  "retryDelaysMilliseconds": [
+    250,
+    750
+  ],
+  "originalFetchTimeoutMilliseconds": 12000,
+  "normalResidentWorkSeconds": 20,
+  "diskReplayAndSingleMaterialReceiptPassed": true,
+  "originalProductionMarketBothStylesPassed": true,
+  "marketPngDeadlineMilliseconds": 5000,
+  "marketRoadAndServiceBudgetMilliseconds": 150000,
+  "originalMarketAssertionsAndTouristRotationUnchanged": true,
+  "naturalIdentityLockTimeoutNotReproducedInLocalMarketRetest": true,
+  "scopedRules": {
+    "node22Passed": 29,
+    "node25Passed": 29,
+    "failed": 0
+  },
+  "unknownPersistentAndDefiniteNon503ErrorsRetainManualRecovery": true,
+  "fullDefaultRulesRerun": false,
+  "hostedRepairConfirmed": false,
+  "inheritedV314SlowArtworkStartupStillUnqualified": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

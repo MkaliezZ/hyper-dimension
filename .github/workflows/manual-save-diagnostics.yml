@@ -1,15 +1,21 @@
 name: Island manual save diagnostics
 on:
   workflow_dispatch:
+    inputs:
+      check_scope:
+        description: Manual save confirmation or resident identity-busy production market
+        type: choice
+        default: manual-save
+        options: [manual-save, resident-busy-market]
 permissions:
   contents: read
 concurrency:
-  group: island-manual-save-${{ github.ref }}
+  group: island-manual-save-${{ github.ref }}-${{ inputs.check_scope || 'manual-save' }}
   cancel-in-progress: false
 jobs:
   intel-native:
-    name: macos-15-intel / manual save and cash recovery
-    runs-on: macos-15-intel
+    name: ${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || 'macos-15-intel / manual save and cash recovery' }}
+    runs-on: ${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022' || 'macos-15-intel' }}
     timeout-minutes: 45
     defaults:
       run:
@@ -24,15 +30,30 @@ jobs:
       - name: Manual save feedback preserves acknowledgments and rejects failures
         run: node tests/v314-manual-save-feedback-browser.mjs
       - name: Native cash reporting and shared-style recovery
+        if: inputs.check_scope != 'resident-busy-market'
         run: node tests/v276-cash-browser.mjs
+      - name: Resident begin recovers identical identity-busy replies
+        if: inputs.check_scope == 'resident-busy-market'
+        run: node tests/v315-resident-lan-busy-browser.mjs
+      - name: Native resident production to visitor purchase
+        if: inputs.check_scope == 'resident-busy-market'
+        env:
+          HD_QA_WORK_JOURNAL: '1'
+          HD_QA_SHELF_FROM_PRODUCTION: '1'
+          HD_QA_OUT: qa/v230/native-production-market
+        run: node tests/v228-custom-shops-browser.mjs
       - name: Retain fictional native evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-manual-save-macos-15-intel
+          name: native-manual-save-${{ inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || 'macos-15-intel' }}
           path: |
             island/qa/v314/manual-save-feedback/report.json
             island/qa/v276/native-cash/report.json
             island/qa/v276/native-cash/*.png
+            island/qa/v315/native-resident-lan-busy/report.json
+            island/qa/v230/native-production-market/report.json
+            island/qa/v230/native-production-market/work-progress.json
+            island/qa/v230/native-production-market/*.png
           if-no-files-found: error
           retention-days: 3

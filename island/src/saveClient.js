@@ -85,7 +85,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   const payload=body===undefined?undefined:encoded??await journal.encode(body);
   // Only durable game commands may replay here. Keep the exact bytes, version and
   // request ID, including when the server committed before its reply was lost.
-  const delays=[250,750],transientCodes=new Set(['EPERM','EACCES','EBUSY','save_busy','save_unavailable']);
+  const delays=[250,750],transientCodes=new Set(['EPERM','EACCES','EBUSY','save_busy','save_unavailable','lan_busy']);
   for(let attempt=0;;attempt++){
    // Only an authoritative lease already known before this attempt can authorize
    // a bounded completion replay. Stored or merely well-shaped inputs cannot.

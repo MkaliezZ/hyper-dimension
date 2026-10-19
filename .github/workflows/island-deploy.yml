@@ -407,6 +407,10 @@ jobs:
         if: matrix.group == 'content'
         run: node tests/v311-resident-finish-timeout-browser.mjs
 
+      - name: Native resident identity-busy reply recovery
+        if: matrix.group == 'content'
+        run: node tests/v315-resident-lan-busy-browser.mjs
+
       - name: Native custom recipe resident preparation and reopen
         if: matrix.group == 'content'
         env:
@@ -486,6 +490,7 @@ jobs:
             island/qa/v306/native-field-start-timeout/report.json
             island/qa/v308/native-resident-start-timeout/report.json
             island/qa/v311/native-resident-finish-timeout/report.json
+            island/qa/v315/native-resident-lan-busy/report.json
             island/qa/v305/native-catalog-refresh/report.json
             island/qa/v305/native-catalog-refresh/*.png
             island/qa/v224/native-custom-content/report.json

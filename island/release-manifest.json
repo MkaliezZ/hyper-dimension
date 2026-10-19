@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v314-agent-source",
+  "release": "hyper-dimension-v315-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 119888,
-      "sha256": "d10f4348045aac28059d5f5a3824d5fd11a666746a2219552d18c0bd9a93ce5f"
+      "bytes": 120443,
+      "sha256": "ca0a4a00547721ef6ea70938b660dcf90a1f972502e0719c76cbf7ab256f5017"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 42403,
-      "sha256": "946f3e94a974db93a8a9b6d7aea74d96e2a003d4d72b5e058dac40913a4b177f"
+      "bytes": 42414,
+      "sha256": "516e7bf398e0f0f2cb0183763b679065901d34a0fd227b93f93e39f7d5cd25c4"
     },
     {
       "path": "src/saveDelta.js",
@@ -12797,8 +12797,8 @@
     },
     {
       "path": "tests/v254-save-io-retry.test.mjs",
-      "bytes": 4476,
-      "sha256": "ec94eb33663ef3cea521f278fcdf5fb9afd31620b1bcd6db9316192560d50b0f"
+      "bytes": 4562,
+      "sha256": "7af24e011f9f01f769d8c01ecb74f71e1378adeab6043273cd416be12ab06ae8"
     },
     {
       "path": "tests/v254-windows-sharing.test.mjs",
@@ -13944,7 +13944,22 @@
       "path": "tests/v314-manual-save-feedback-browser.mjs",
       "bytes": 5650,
       "sha256": "05d47718bab297ae903fb800d265d2d29f8b7a5a02ddf82f269a25ba2c0b3cb7"
+    },
+    {
+      "path": "tests/v315-resident-lan-busy-browser.mjs",
+      "bytes": 8125,
+      "sha256": "f4548551e3a902a299faf0d816f5368b9921f5b5bc55343fdaff096218222beb"
+    },
+    {
+      "path": "docs/verification-v315.json",
+      "bytes": 1549,
+      "sha256": "b08e6a5993cabb7ac6229310ff10bdeacf9036bcdc1efa490a72b4fba65a57dd"
+    },
+    {
+      "path": "docs/resident-lan-busy-v315.md",
+      "bytes": 1927,
+      "sha256": "03a16af2af882dc6296661f664991901ee45b4834324b636588dbb8260c7eb9c"
     }
   ],
-  "publicRevision": "v314-manual-save-confirmation"
+  "publicRevision": "v315-resident-identity-busy"
 }

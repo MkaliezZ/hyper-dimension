@@ -1,0 +1,9 @@
+# Resident work during identity writer contention
+
+The retained Windows production-market report contains one explicit503/lan_busy reply to resident/begin. The client kept its unresolved envelope, the resident controller displayed recovery, and the subsequent real shelf click was correctly blocked. Origami completed in the same run. The fault was the missing identity-busy code in the existing durable-action HTTP retry policy.
+
+Only lan_busy is added to that explicit503 code list. The existing250/750ms delays, maximum three attempts, original request bytes, version, sequence, epoch, client ID and request ID remain. No generic network error, unknown code or arbitrary operation is newly replayed. Persistent busy replies retain the recovery envelope and stop later actions. No server receipt, lock, resource validation or work-duration rule changes.
+
+Four owned native Worker/HTTP scenarios reproduce both appearances before and after a real begin commit. The exact pre-fix client fails all four and opens recovery. The candidate recovers the identical request after two declared busy replies, owns one lease, waits the normal20seconds, gains wood once and preserves disk replay. Related Node22/25 rule groups each pass29checks, including persistent and unknown errors. The unchanged production-to-purchase browser scenario also passes both appearances, including native PNG decoding, the finite tourist rotation, original150second walking/service budget, shelf reload and authoritative7coin sale with3coin cost. The natural lock timeout did not recur in that local full-flow retest; the injected contract probe is the deterministic regression proof.
+
+The current-source Windows hosted follow-up and full matrix remain pending. The previously recorded slow-renderer artwork startup boundary is not qualified by this repair. These checks use fictional owned contexts and are not human or physical multi-device acceptance.

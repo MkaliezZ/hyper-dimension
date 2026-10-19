@@ -941,3 +941,8 @@ Intel Mac 旧失败的报告与截图显示主模块未能载入，页面只有�
 ## V314 - Manual save acknowledgment
 
 The save page distinguishes an acknowledged manual checkpoint from later pending island changes. Native cash and shared-style empty-browser recovery passed both appearances locally with original resource, ledger and timeout assertions. The related slow-renderer artwork startup failure remains separately unqualified. See [manual-save-feedback-v314.md](manual-save-feedback-v314.md) and [verification-v314.json](verification-v314.json). Hosted current-source and full delivery acceptance remain pending.
+
+
+## V315 - Resident identity-busy reply recovery
+
+An explicit503/lan_busy reply now uses the existing bounded durable-action retry policy with identical request bytes. Four baseline native cases fail and four candidate cases pass; the original production-to-visitor-purchase flow also passes both appearances locally. Original time, resource and unique-receipt assertions remain. See [resident-lan-busy-v315.md](resident-lan-busy-v315.md) and [verification-v315.json](verification-v315.json). Current hosted and broad delivery acceptance remain pending.
