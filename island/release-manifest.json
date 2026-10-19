@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v301-agent-source",
+  "release": "hyper-dimension-v302-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 113882,
-      "sha256": "2266370255ede8cb9bc01e760bc0c4d78e95d7cae03d944d36ad072554ca31ab"
+      "bytes": 114400,
+      "sha256": "e8d46ceffe31696907a191ed5d5998cedd128dd057f928f7fdf89a639b63bce7"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16984,
-      "sha256": "182880e5a9d6e86ad89116bc908971ba195f1867f4e3c2fe4fccf22b89ed2680"
+      "bytes": 17017,
+      "sha256": "d80eabc0143d38e0dd8039a79eebbf748742f03297cff262e2f46f9b6042b781"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 146253,
-      "sha256": "b95ab063d10116d2028af613e11ed192ea2b0f8a85121af42a570ad00d07ce2c"
+      "bytes": 146481,
+      "sha256": "799e113212c6e4c899381f4926e8fbf286e5bfb8308e47926956e68aa88e3220"
     },
     {
       "path": "src/arcade.css",
@@ -6847,8 +6847,8 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 10258,
-      "sha256": "dd746eb633dcfe4e4fb677046ee3775c1d2a09d7cba5883b03656777daa69dfa"
+      "bytes": 10378,
+      "sha256": "d6255dc603fc801f3a80359d3f078ef333ee7e72cfaceb4bf17cb78bdad04a08"
     },
     {
       "path": "src/environmentUI.js",
@@ -7582,8 +7582,8 @@
     },
     {
       "path": "src/oceanShader.js",
-      "bytes": 6021,
-      "sha256": "8c89265c8097ac6f69d050f104d995bc0519f0a78e3047ee4c737fb77e4cd758"
+      "bytes": 1002,
+      "sha256": "ae1aeb180a031b2ce2da28802b26daaa5403cfd28642801a6f4b819c0ceaf908"
     },
     {
       "path": "src/outdoorOccupancy.js",
@@ -8932,8 +8932,8 @@
     },
     {
       "path": "tests/v127-environment-compatible-browser.mjs",
-      "bytes": 6817,
-      "sha256": "7f16394efd5dc61bc19e72b8afac6bbfef95b7450349843dc89d1d70806980f5"
+      "bytes": 8267,
+      "sha256": "4ee23e62c7d52d22d8e3baac8b24bd5a08577bdd20f3927cc3e53591c2ddd2a6"
     },
     {
       "path": "tests/v127-environment-components.mjs",
@@ -13699,7 +13699,37 @@
       "path": "docs/verification-v301.json",
       "bytes": 1646,
       "sha256": "5e8c792f7a46e15edd42e764679fd90bbf1f7d51d2b890fd28447dd5fee02fee"
+    },
+    {
+      "path": "src/oceanShaderCore.js",
+      "bytes": 5720,
+      "sha256": "ede20c788825dfcfee18446b995b412e6d4f8812dc83ec7033dd90f5ffbb128e"
+    },
+    {
+      "path": "src/oceanShaderWorker.js",
+      "bytes": 1990,
+      "sha256": "fde1246642afb3e412577c450c743e876b2f1eac8431e9aaede1db834400cc29"
+    },
+    {
+      "path": "src/oceanSurfaceClient.js",
+      "bytes": 4085,
+      "sha256": "3bd47048661f278a7caca3b49e4f8cb4f0f540b217d3a2b85d4cd863de12fb8b"
+    },
+    {
+      "path": "tests/v302-ocean-worker.test.mjs",
+      "bytes": 4643,
+      "sha256": "a2dfa678aacff420450a88b0e3b60a34f8829d6375ea08e3116d43873397ef6f"
+    },
+    {
+      "path": "docs/ocean-worker-v302.md",
+      "bytes": 1841,
+      "sha256": "8e04ba02fbb52b2f6d1fc75e7007e37f23ce5438e75275abdef32809b98aae21"
+    },
+    {
+      "path": "docs/verification-v302.json",
+      "bytes": 2793,
+      "sha256": "6ca6a59c547463b51fe60602317b7528aae630fa5aecc642fd9e689d3cc1c521"
     }
   ],
-  "publicRevision": "v301-a2a-tool-continuation"
+  "publicRevision": "v302-ocean-worker"
 }

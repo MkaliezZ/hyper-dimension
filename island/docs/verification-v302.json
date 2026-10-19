@@ -1,0 +1,94 @@
+{
+  "version": "V302",
+  "at": "2026-10-19T03:38:33.835062+00:00",
+  "cause": {
+    "profileRun": 39190770377,
+    "profiledWallMs": 34639.5,
+    "oceanShaderSelfMs": 14720.1,
+    "oceanShaderInclusiveMs": 14868.6,
+    "scope": "One owned Intel Mac native player fixture; resident/recruitment failures are tracked independently until hosted verification."
+  },
+  "renderer": {
+    "sameShaderConstants": true,
+    "fullBackingResolutionRetained": true,
+    "gpuQueriesAndProducerCompletionInWorker": true,
+    "oneFrameInFlightAndOneNewestRequest": true,
+    "cameraThemeSizeMismatchRejected": true,
+    "bitmapOwnershipExplicit": true,
+    "originalCanvasFallbackRetained": true,
+    "actualGpuContextLossAndRestorationPassed": true,
+    "mainThreadGpuContextsInNativeCompatibility": 0
+  },
+  "recruitment": {
+    "pendingBackdropRetained": true,
+    "clockSimulationReceiptsAndOriginal8000msLimitsUnchanged": true,
+    "bothStylesPassed": true
+  },
+  "defaultRules": {
+    "passed": 1518,
+    "failed": 0,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ]
+  },
+  "nativePixels": {
+    "cases": 48,
+    "changedChannels": 0,
+    "mainThreadGpuContextsAdded": 0,
+    "bothStylesAndNightUniforms": true
+  },
+  "nativePlayerBothStyles": true,
+  "nativeRecruitmentBothStyles": true,
+  "nativeResidentBothStyles": true,
+  "residentOriginalWorkingBudgetsMs": {
+    "first": 120000,
+    "remainingShared": 240000
+  },
+  "compatibilityChecks": [
+    {
+      "theme": "pixel",
+      "sharedRoom": true,
+      "clockId": "shared-environment-compat",
+      "revision": 1,
+      "season": "winter",
+      "hourDifference": 0.0003093359374943816,
+      "calendar": true
+    },
+    {
+      "theme": "origami",
+      "sharedRoom": true,
+      "clockId": "shared-environment-compat",
+      "revision": 1,
+      "season": "winter",
+      "hourDifference": 0.00011199869791056472,
+      "calendar": true
+    },
+    {
+      "contextLoss": true,
+      "fallbackRendered": true,
+      "recoveredToWebGL": true,
+      "renderThread": "worker",
+      "mainThreadGPUContexts": 0
+    },
+    {
+      "webglUnavailable": true,
+      "canvasFallback": true,
+      "viewport": [
+        960,
+        680
+      ],
+      "performance": {
+        "meanMs": 7.708750000000001,
+        "p95Ms": 8.100000000000364,
+        "gapsOver50": 0
+      }
+    }
+  ],
+  "nativeProvidersCalled": false,
+  "clockInjected": false,
+  "currentHostedMacRecoveryConfirmed": false,
+  "currentArchiveFreshInstallAndHourPassed": false,
+  "wholeGoalComplete": false,
+  "scope": "Isolated fictional native browser fixtures on one Windows host. Original clocks, authority receipts, first120second/shared240second resident budgets and browser deadlines remain. This is not physical Mac/multi-device, real-player or OPC course acceptance."
+}

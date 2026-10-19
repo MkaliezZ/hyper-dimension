@@ -2,7 +2,7 @@ import {drawWorldNightLighting,nightLightingStatus} from './nightLightingRendere
 import {WORLD,MAP_EXTENT} from './world.js';
 import {terrainTileStatus} from './mapTiles.js';
 import {SEASONS,seasonalTerrain} from './seasonTerrain.js';
-import {drawOceanShader} from './oceanShader.js';
+import {drawOceanShader,oceanShaderStatus} from './oceanShader.js';
 import {buildEnvironmentGeometry} from './environmentGeometry.js';
 import {terrainViewport} from './mapTileLayout.js';
 import {rainParticle,weatherParticleBudget} from './weatherVisuals.js';
@@ -26,7 +26,7 @@ function oceanSurface(target,f,theme){let b=buffers.get(target.canvas);if(!b){b=
 function finishOcean(surface){const {buffer:b,paint,target}=surface;paint.save();paint.setTransform(1,0,0,1,0,0);paint.globalCompositeOperation='destination-in';paint.drawImage(b.mask,0,0);paint.restore();target.save();target.setTransform(1,0,0,1,0,0);target.drawImage(b.wave,0,0);target.restore();}
 export function drawOceanMotion(ctx,image,theme,time,env){
  const f=prepare(image,theme),view=terrainViewport(ctx.getTransform(),ctx.canvas.width,ctx.canvas.height);if(!f||!view){latest={...latest,ready:false};return;}
- if(drawOceanShader(ctx,f,theme,time,env)){latest={ready:true,theme,ripples:230,waveLoops:3,coastLoops:f.coast.length,maskVersion:127,backend:'webgl2'};return;}
+ if(drawOceanShader(ctx,f,theme,time,env)){latest={ready:true,theme,ripples:230,waveLoops:3,coastLoops:f.coast.length,maskVersion:127,backend:'webgl2-worker',oceanWorker:oceanShaderStatus(ctx.canvas)};return;}
  const pixel=theme==='pixel',surface=oceanSurface(ctx,f,theme);ctx=surface.paint;let ripples=0,waveLoops=0;ctx.save();
  // Three shoreward crests: translucent swell, bright breaking rim and dispersing foam.
  for(let band=0;band<3;band++){const progress=fract(time/6.8+band/3),offset=(1-progress)*27,alpha=Math.pow(Math.sin(progress*Math.PI),1.35);if(alpha<.02)continue;
@@ -40,7 +40,7 @@ export function drawOceanMotion(ctx,image,theme,time,env){
  }
  // Broken sunlight trails sample the same water mask as shoreline foam.
  const reflection='255,244,184';for(let i=0;i<68;i++){const y=70+i*17.2,x=W-260+Math.sin(y*.016+time*.18)*45+Math.sin(i*5.1)*35;if(!visible({x,y},view)||!f.isWater(x,y))continue;const pulse=Math.max(0,Math.sin(time*1.1+i*1.73)),length=5+pulse*16;ctx.fillStyle='rgba('+reflection+','+((.07+pulse*.18)*(1-(env.night||0)))+')';if(pixel)ctx.fillRect(Math.round(x-length/2),Math.round(y),Math.round(length),1.4);else{ctx.beginPath();ctx.moveTo(x-length/2,y);ctx.lineTo(x,y-1.6);ctx.lineTo(x+length/2,y);ctx.lineTo(x,y+1.2);ctx.closePath();ctx.fill();}}
- ctx.restore();finishOcean(surface);latest={ready:true,theme,ripples,waveLoops,coastLoops:f.coast.length,maskVersion:127,backend:'canvas-compatible'};
+ ctx.restore();finishOcean(surface);latest={ready:true,theme,ripples,waveLoops,coastLoops:f.coast.length,maskVersion:127,backend:'canvas-compatible',oceanWorker:oceanShaderStatus(surface.target.canvas)};
 }
 // Each season uses newly drawn blossoms, foliage or snow in the original high-resolution forest geometry.
 export function drawSeasonTerrain(ctx,image,theme,env){prepare(image,theme);}
