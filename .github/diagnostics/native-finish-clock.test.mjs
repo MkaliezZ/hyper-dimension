@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {test} from 'node:test';
+import {assertNativeFinishClock} from './native-finish-clock.mjs';
+const make=(abort=12000,retry=12250)=>[{requestId:'owned',phase:'start',at:100,origin:1000},{requestId:'owned',phase:'abort',at:100+abort,origin:1000},{requestId:'owned',phase:'start',at:100+retry,origin:1000}];
+test('actual12000ms expiration and250ms replay pass without depending on Node observation arrival',()=>{assert.equal(assertNativeFinishClock(make(),'owned').retryMs,12250);});
+test('a delayed first Node observation cannot shorten the measured native expiration',()=>{const events=make();events[0].nodeObservedAt=2100;events[2].nodeObservedAt=12350;assert(events[2].nodeObservedAt-events[0].nodeObservedAt<11500);assert.equal(assertNativeFinishClock(events,'owned').abortMs,12000);});
+test('an actual early fetch expiration remains a failure',()=>{assert.throws(()=>assertNativeFinishClock(make(10650,12250),'owned'),/expiration gate/);});
+test('an early replay remains a failure',()=>{assert.throws(()=>assertNativeFinishClock(make(12000,10650),'owned'),/replay timing gate/);});
+test('retrying before the real abort delay is not accepted',()=>{assert.throws(()=>assertNativeFinishClock(make(12000,12010),'owned'),/retry delay/);});
+test('missing abort or extra replays cannot qualify the fault',()=>{assert.throws(()=>assertNativeFinishClock(make().filter(r=>r.phase!=='abort'),'owned'),/actually expire/);assert.throws(()=>assertNativeFinishClock([...make(),make()[2]],'owned'),/Exactly one/);});
+test('different clock origins and absent native times fail closed',()=>{const split=make();split[2].origin=2000;assert.throws(()=>assertNativeFinishClock(split,'owned'),/One native/);const absent=make();delete absent[0].at;assert.throws(()=>assertNativeFinishClock(absent,'owned'),/One native/);});

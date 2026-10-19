@@ -68,6 +68,9 @@ jobs:
         env:
           HD_QA_OUT: island/qa/v322/native-shelf-baseline-after
         run: node .github/diagnostics/shelf-artwork.mjs
+      - name: Native completion clock boundary rules
+        if: inputs.test_case == 'field-finish'
+        run: node --test .github/diagnostics/native-finish-clock.test.mjs
       - name: Native confirmed mining finish after the original fetch expires
         if: inputs.test_case == 'field-finish'
         working-directory: island

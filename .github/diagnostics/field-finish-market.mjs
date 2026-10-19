@@ -45,6 +45,6 @@ chromium.launch=async(...args)=>{
  };return browser;
 };
 process.env.HD_QA_WORK_JOURNAL='1';process.chdir(root);
-await import(pathToFileURL(join(root,'tests/v321-field-finish-market-browser.mjs')));
+await import(new URL('./field-finish-clock-case.mjs',import.meta.url));
 assert(!process.exitCode);assert.equal(preparations.length,2);
 console.log(JSON.stringify({explicitControllerPreparation:true,actualTwentySecondWorkAndOriginalTwelveSecondExpiration:true,oneRealReceiptPerStyle:true,allOriginalShelfAndFaultGatesRetained:true,autonomousNpcMovementClaimed:false}));

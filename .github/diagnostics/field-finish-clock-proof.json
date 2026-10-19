@@ -1,0 +1,74 @@
+{
+  "at": "2026-10-19T22:35:18.888946+00:00",
+  "scope": "Read-only timing correction in isolated diagnostic caller; sealed V322 island source unchanged.",
+  "sealedSourceCommit": "88c83cc156bbbbc7540db6380c2562dfecd7290d",
+  "sealedIslandTree": "e63a96dc41612d61b224b04cdd2171076e3206c9",
+  "runtimeChanged": false,
+  "originalFailure": {
+    "run": 39333414800,
+    "job": 118336909903,
+    "artifact": 12225686786,
+    "artifactSHA256": "a97d77432f4359a2f79724fa407273bb219bc1be0843137202fba74f1c12c007",
+    "retainedAsFailure": true
+  },
+  "boundaryRulesPerRuntime": {
+    "Node22": 7,
+    "Node25": 7
+  },
+  "delayedNodeObservationMs": 2000,
+  "delayedObserverNativeBothStyles": [
+    {
+      "theme": "pixel",
+      "nodeObservedGapMs": 10249,
+      "nativeTiming": {
+        "abortMs": 12001.600000143051,
+        "retryMs": 12252.900000095367,
+        "clockOrigin": 1792449000359.8,
+        "clock": "native Worker performance.now",
+        "originalFetchTimeoutMs": 12000
+      }
+    },
+    {
+      "theme": "origami",
+      "nodeObservedGapMs": 10246,
+      "nativeTiming": {
+        "abortMs": 12004.900000095367,
+        "retryMs": 12257.700000047684,
+        "clockOrigin": 1792449000562.5,
+        "clock": "native Worker performance.now",
+        "originalFetchTimeoutMs": 12000
+      }
+    }
+  ],
+  "finalDiagnosticOnExactV322ArchiveBothStyles": [
+    {
+      "theme": "pixel",
+      "nodeObservedGapMs": 12251,
+      "nativeTiming": {
+        "abortMs": 12000.200000047684,
+        "retryMs": 12251.400000095367,
+        "clockOrigin": 1792449123764,
+        "clock": "native Worker performance.now",
+        "originalFetchTimeoutMs": 12000
+      }
+    },
+    {
+      "theme": "origami",
+      "nodeObservedGapMs": 12264,
+      "nativeTiming": {
+        "abortMs": 12000.5,
+        "retryMs": 12256.200000047684,
+        "clockOrigin": 1792449124081.2,
+        "clock": "native Worker performance.now",
+        "originalFetchTimeoutMs": 12000
+      }
+    }
+  ],
+  "all2810PayloadsUnchangedAfterNativeRun": true,
+  "original11500msToleranceFor12000msTimerRetained": true,
+  "actualAbortAnd250msReplayRequired": true,
+  "allOriginalShelfAndEconomicGatesRetained": true,
+  "newHostedOutcomePending": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}
