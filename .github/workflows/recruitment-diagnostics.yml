@@ -5,7 +5,7 @@ on:
       test_case:
         description: Keep the original native assertions and budgets; use the real pause/resume button
         type: choice
-        options: [recruitment, recruitment-errors, player-action, custom-content, pearl-cup, save-replacement, custom-shops]
+        options: [recruitment, recruitment-errors, recovery-return, player-action, custom-content, pearl-cup, save-replacement, custom-shops]
         default: recruitment
       profiler:
         description: Sample only the owned native fixture page CPU stack
@@ -22,8 +22,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   recruitment-progress:
-    name: ${{ inputs.test_case == 'recruitment-errors' && 'windows-2022 / recruitment status recovery' || inputs.test_case == 'custom-shops' && 'windows-2022 / custom shelf artwork' || inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'save-replacement' && 'macos-15-intel / save replacement' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
-    runs-on: ${{ (inputs.test_case == 'custom-shops' || inputs.test_case == 'recruitment-errors') && 'windows-2022' || inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
+    name: ${{ inputs.test_case == 'recovery-return' && 'macos-14 / recovery return source retry' || inputs.test_case == 'recruitment-errors' && 'windows-2022 / recruitment status recovery' || inputs.test_case == 'custom-shops' && 'windows-2022 / custom shelf artwork' || inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'save-replacement' && 'macos-15-intel / save replacement' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
+    runs-on: ${{ (inputs.test_case == 'custom-shops' || inputs.test_case == 'recruitment-errors') && 'windows-2022' || (inputs.test_case == 'custom-content' || inputs.test_case == 'recovery-return') && 'macos-14' || 'macos-15-intel' }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -34,7 +34,7 @@ jobs:
         working-directory: island
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Observe the original native interaction deadlines
-        if: inputs.test_case != 'recruitment-errors'
+        if: inputs.test_case != 'recruitment-errors' && inputs.test_case != 'recovery-return'
         env:
           HD_QA_RECRUIT_BACKDROP: ${{ inputs.backdrop_candidate && '1' || '0' }}
           HD_QA_NATIVE_CASE: ${{ inputs.test_case || 'recruitment' }}
@@ -45,12 +45,22 @@ jobs:
       - name: Observe original recruitment status error recovery deadlines
         if: inputs.test_case == 'recruitment-errors'
         run: node .github/diagnostics/recruitment-errors.mjs
+      - name: Verify bounded source GET retry on real connection resets
+        if: inputs.test_case == 'recovery-return'
+        run: node .github/diagnostics/recovery-return.mjs --check-transport
+      - name: Native recovery return with bounded source GET retry
+        if: inputs.test_case == 'recovery-return'
+        run: node .github/diagnostics/recovery-return.mjs
       - name: Retain owned native scheduling observations
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-${{ (inputs.test_case == 'custom-shops' || inputs.test_case == 'recruitment-errors') && 'windows-2022' || inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
+          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-${{ (inputs.test_case == 'custom-shops' || inputs.test_case == 'recruitment-errors') && 'windows-2022' || (inputs.test_case == 'custom-content' || inputs.test_case == 'recovery-return') && 'macos-14' || 'macos-15-intel' }}
           path: |
+            island/qa/v205/native-recovery-return/report.json
+            island/qa/v205/native-recovery-return/*.png
+            island/qa/v205/native-visiting-party/report.json
+            island/qa/v205/native-visiting-party/*.png
             island/qa/v222/native-recruitment-errors/report.json
             island/qa/v222/native-recruitment-errors/status-observations-*.json
             island/qa/v222/native-recruitment-errors/*.png
