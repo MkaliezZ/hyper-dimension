@@ -1,5 +1,6 @@
-// Observe the unmodified recruitment test on its fictional islands. These hooks
-// record scheduling boundaries only; they never resolve a receipt or change time.
+// Observe the unmodified recruitment test on its fictional islands. Baseline
+// hooks only record scheduling. The opt-in candidate retains the island backdrop
+// during recruitment; neither mode resolves receipts or changes the game clock.
 import {createRequire} from 'node:module';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
@@ -8,6 +9,7 @@ import {spawnSync} from 'node:child_process';
 
 const root=resolve('island'),require=createRequire(join(root,'package.json'));
 const {chromium}=require('playwright-core');
+const backdropCandidate=process.env.HD_QA_RECRUIT_BACKDROP==='1';
 const out=resolve(process.env.HD_QA_OUT||join(root,'qa/v287/native-recruitment-progress'));
 await mkdir(out,{recursive:true});
 const originalLaunch=chromium.launch.bind(chromium),cases=[];
@@ -30,21 +32,42 @@ function observeJournal(source){
  source=insert(source,'const id=++sequence,timer=',"const id=++sequence;window.__hdRecruitMark?.('rpc-start',{id,operation});const timer=");
  return insert(source,'pending.delete(data.id);clearTimeout(call.timer);',"pending.delete(data.id);clearTimeout(call.timer);window.__hdRecruitMark?.('rpc-end',{id:data.id,error:!!data.error});");
 }
+function candidateBackdrop(source){
+ return insert(source,'const personalWaiting=!!modal',`const recruitmentWaiting=!!modal&&!!$('modalRoot').querySelector('#recruitmentPanel[aria-busy="true"]');if(recruitmentWaiting&&render.recruitmentSnapshot&&!render.invalidated)return;render.recruitmentSnapshot=recruitmentWaiting;const personalWaiting=!!modal`);
+}
 if(process.argv.includes('--check-hooks')){
- for(const [file,transform] of [['saveClient.js',observeClient],['saveJournal.js',observeJournal]]){
+ for(const [file,transform] of [['saveClient.js',observeClient],['saveJournal.js',observeJournal],['app.js',candidateBackdrop]]){
   const result=spawnSync(process.execPath,['--check','--input-type=module'],{input:transform(await readFile(join(root,'src',file),'utf8')),encoding:'utf8'});
   if(result.status!==0)throw Error(result.stderr||'Diagnostic module did not parse');
  }
  const original=chromium.launch;chromium.launch=originalLaunch;
  if(chromium.launch!==originalLaunch)throw Error('Browser launch cannot be observed');
  chromium.launch=original;
- console.log(JSON.stringify({sourceHooksParsed:2,originalTestUnmodified:true,browserStarted:false}));
+ console.log(JSON.stringify({sourceHooksParsed:3,originalTestUnmodified:true,browserStarted:false}));
  process.exit(0);
 }
 chromium.launch=async(...args)=>{
  const browser=await originalLaunch(...args),originalContext=browser.newContext.bind(browser);
  browser.newContext=async(...contextArgs)=>{
-  const context=await originalContext(...contextArgs),row={context:cases.length+1,events:[],sourceHooks:[],pages:[]};cases.push(row);
+  const context=await originalContext(...contextArgs),row={context:cases.length+1,variant:backdropCandidate?'pending-backdrop-candidate':'unchanged-game-baseline',events:[],sourceHooks:[],pages:[]};cases.push(row);
+  if(backdropCandidate){
+   // The original test registers its own app hook last. Observe that hook's
+   // actual fetched response so its recruitment fixture remains unchanged.
+   const originalRoute=context.route.bind(context);
+   context.route=async(pattern,handler,...routeArgs)=>{
+    if(pattern!=='**/src/app.js')return originalRoute(pattern,handler,...routeArgs);
+    return originalRoute(pattern,async route=>handler(new Proxy(route,{get(target,key){
+     if(key==='fetch')return async(...fetchArgs)=>{
+      const response=await target.fetch(...fetchArgs);
+      return new Proxy(response,{get(value,property){
+       if(property==='text')return async()=>{const source=candidateBackdrop(await value.text());row.sourceHooks.push('pending-recruitment-backdrop-candidate');return source;};
+       const member=Reflect.get(value,property,value);return typeof member==='function'?member.bind(value):member;
+      }});
+     };
+     const member=Reflect.get(target,key,target);return typeof member==='function'?member.bind(target):member;
+    }})),...routeArgs);
+   };
+  }
   await context.addInitScript(()=>{
    const events=[];window.__hdRecruitDiagnostic={events,longTasks:[]};
    window.__hdRecruitMark=(event,details={})=>{if(events.length<1500)events.push({at:performance.now(),event,...details});};

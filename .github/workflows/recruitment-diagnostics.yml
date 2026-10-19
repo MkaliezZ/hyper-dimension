@@ -1,6 +1,11 @@
 name: Island recruitment diagnostics
 on:
   workflow_dispatch:
+    inputs:
+      backdrop_candidate:
+        description: Evaluate a pending-recruitment backdrop candidate without changing the game source
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -20,6 +25,8 @@ jobs:
         working-directory: island
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Observe the original recruitment deadlines
+        env:
+          HD_QA_RECRUIT_BACKDROP: ${{ inputs.backdrop_candidate && '1' || '0' }}
         run: node .github/diagnostics/recruitment-progress.mjs
       - name: Retain owned recruitment scheduling observations
         if: always()
