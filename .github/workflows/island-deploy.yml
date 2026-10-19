@@ -363,6 +363,9 @@ jobs:
       - name: Native recruitment progress behind accepted work
         run: node tests/v287-recruitment-progress-browser.mjs
 
+      - name: Native confirmed publication and catalog synchronization
+        run: node tests/v305-catalog-refresh-browser.mjs
+
       - name: Native custom products, artwork, reuse and cross-owner import
         run: node tests/v224-custom-content-browser.mjs
 
@@ -441,6 +444,8 @@ jobs:
             island/qa/v222/native-recruitment-errors/*.png
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/*.png
+            island/qa/v305/native-catalog-refresh/report.json
+            island/qa/v305/native-catalog-refresh/*.png
             island/qa/v224/native-custom-content/report.json
             island/qa/v224/native-custom-content/*.png
             island/qa/v227/native-custom-agent/report.json

@@ -286,6 +286,17 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   return result;
  }
  function checkpoint(theme){return checkpointOperation(theme)}
+ // Keep the acknowledged read in the same queue barrier as its checkpoint.
+ // A queued resident/visitor command must not reserve the pre-refresh version.
+ function checkpointAndRefresh(theme){
+  const r=record(theme),run=async()=>{
+   await flush(theme);while(r.inflight)await r.inflight;
+   const pending=refresh(theme,{withinQueue:true});r.inflight=pending;
+   try{return await pending}finally{if(r.inflight===pending)r.inflight=null;}
+  };
+  return queueOperation(r,run,{barrier:true});
+ }
+
  async function action(theme,input,prepareInput,options){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});return queueOperation(r,()=>actionNow(theme,input,prepareInput),options);
  }
@@ -332,9 +343,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    await cache(r);throw error;
   }finally{r.commandSending=false;r.reconciling=false;if(r.dirty&&!read(commandKey(theme)))schedule(r);}
  }
- async function refresh(theme){
+ async function refresh(theme,{withinQueue=false}={}){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))return;if(r.commandSending||r.inflight||read(commandKey(theme))||read(autosaveKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成该次操作'),{code:'action_pending'});
-  const {document:doc}=await request(theme,'');if(!doc||doc.version===r.version)return;if(doc.state.saveSlot!==r.state?.saveSlot){await replaceObservedProgress(r,doc,'小岛进度已更新，正在重新进入…',{waitForActions:true});return;}
+  const {document:doc}=await request(theme,'');if(!doc||doc.version===r.version)return;if(doc.state.saveSlot!==r.state?.saveSlot){await replaceObservedProgress(r,doc,'小岛进度已更新，正在重新进入…',{waitForActions:!withinQueue});return;}
   try{
    if(r.dirty){const result=await reconcile(r,r.remoteEncoded||r.remoteState,doc,r.remoteEncoded?'document.state':undefined);r.state=result.state;onRemoteState(theme,r.state);await remember(r,doc);r.dirty=result.dirty||r.generation!==result.generation;await cache(r);status(r,r.dirty?'pending':'saved','跨岛结算已核对，本岛操作已保留');if(r.dirty)schedule(r);return;}
    r.reconciling=true;r.state=doc.state;r.activeSeconds=0;onRemoteState(theme,r.state);await remember(r,doc);await forget(autosaveKey(theme));await forget(pendingKey(theme));await cache(r);status(r,'saved','跨岛结算与本岛进度已同步');
@@ -466,7 +477,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   r.appearanceRequest??={expectedVersion:r.version,appearance:next,requestId:crypto.randomUUID(),clientId};if(r.appearanceRequest.appearance!==next)throw Error('请先完成上次画风切换');
   try{const {document:doc}=await request(theme,'appearance',r.appearanceRequest);r.state=doc.state;r.dirty=false;await remember(r,doc);await cache(r);r.appearanceRequest=null;status(r,'saved','画风已切换 · 同一座小岛的进度');return r.state;}catch(e){if(e.status&&e.status<500)r.appearanceRequest=null;throw e;}
  }
- const api={appearance,load,enqueue,flush,action,refresh,async idle(theme){const r=record(theme);let tail;do{tail=r.actionTail;if(tail)await tail;if(r.inflight)await r.inflight;if(r.cacheTail)await r.cacheTail;}while(tail!==r.actionTail);if(read(commandKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成恢复'),{code:'action_pending'});},advanceTime(theme,dt){const r=record(theme);if(r.state?.farmControl?.version!==1&&r.state?.visitorControl?.version!==1&&r.state?.commerceControl?.version!==1&&r.state?.facilityControl?.version!==1||document.hidden)return;if(r.previewLock||r.previewPreparing||['recovering','offline','blocked','conflict','action_pending','import_pending'].includes(r.status)){r.activeSeconds=0;return}if(Number.isFinite(dt)&&dt>0&&dt<=MAX_VISIBLE_FRAME_SECONDS)r.activeSeconds=Math.min(15,(r.activeSeconds||0)+dt);},pendingAction:theme=>read(commandKey(theme)),backups,backup,restore,previewImport,importSave,retryImport,cancelImportPreview,acceptServer,
+ const api={appearance,load,enqueue,flush,action,refresh,checkpointAndRefresh,async idle(theme){const r=record(theme);let tail;do{tail=r.actionTail;if(tail)await tail;if(r.inflight)await r.inflight;if(r.cacheTail)await r.cacheTail;}while(tail!==r.actionTail);if(read(commandKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成恢复'),{code:'action_pending'});},advanceTime(theme,dt){const r=record(theme);if(r.state?.farmControl?.version!==1&&r.state?.visitorControl?.version!==1&&r.state?.commerceControl?.version!==1&&r.state?.facilityControl?.version!==1||document.hidden)return;if(r.previewLock||r.previewPreparing||['recovering','offline','blocked','conflict','action_pending','import_pending'].includes(r.status)){r.activeSeconds=0;return}if(Number.isFinite(dt)&&dt>0&&dt<=MAX_VISIBLE_FRAME_SECONDS)r.activeSeconds=Math.min(15,(r.activeSeconds||0)+dt);},pendingAction:theme=>read(commandKey(theme)),backups,backup,restore,previewImport,importSave,retryImport,cancelImportPreview,acceptServer,
    status:theme=>record(theme),blocked:theme=>!!read(replacementKey(theme))||!!record(theme).previewLock||!!record(theme).previewPreparing||['recovering','conflict','blocked','action_pending','import_pending'].includes(record(theme).status)};
  api.checkpoint=checkpoint;
  return storageTheme?Object.fromEntries(Object.entries(api).map(([k,fn])=>[k,(ignored,...args)=>fn(storageTheme,...args)])):api;

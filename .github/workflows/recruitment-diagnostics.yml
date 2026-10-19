@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       test_case:
-        description: Keep the original recruitment or player-action assertions and budgets
+        description: Keep the original recruitment, player-action or custom-content assertions and budgets
         type: choice
-        options: [recruitment, player-action]
+        options: [recruitment, player-action, custom-content]
         default: recruitment
       profiler:
         description: Sample only the owned native fixture page CPU stack
@@ -22,8 +22,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   recruitment-progress:
-    name: macos-15-intel / recruitment scheduling
-    runs-on: macos-15-intel
+    name: ${{ inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || 'macos-15-intel / recruitment scheduling' }}
+    runs-on: ${{ inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -43,7 +43,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-macos-15-intel
+          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-${{ inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
           path: |
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/scheduling-journal-*.json
@@ -53,5 +53,9 @@ jobs:
             island/qa/v281/native-player-action/scheduling-journal-*.json
             island/qa/v281/native-player-action/*.png
             island/qa/v281/native-player-action/*.cpuprofile
+            island/qa/v224/native-custom-content/report.json
+            island/qa/v224/native-custom-content/scheduling-journal-*.json
+            island/qa/v224/native-custom-content/*.png
+            island/qa/v224/native-custom-content/*.cpuprofile
           if-no-files-found: error
           retention-days: 3

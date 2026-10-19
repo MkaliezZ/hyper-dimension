@@ -10,12 +10,12 @@ import {spawnSync} from 'node:child_process';
 const root=resolve('island'),require=createRequire(join(root,'package.json'));
 const {chromium}=require('playwright-core');
 const nativeCase=process.env.HD_QA_NATIVE_CASE||'recruitment';
-if(!['recruitment','player-action'].includes(nativeCase))throw Error('Unknown native diagnostic case');
+if(!['recruitment','player-action','custom-content'].includes(nativeCase))throw Error('Unknown native diagnostic case');
 const backdropCandidate=process.env.HD_QA_RECRUIT_BACKDROP==='1';
 if(backdropCandidate&&nativeCase!=='recruitment')throw Error('Recruitment candidate cannot modify player-action diagnostics');
 const profileEnabled=process.env.HD_QA_NATIVE_PROFILE==='1';
-const nativeTest=nativeCase==='recruitment'?'v287-recruitment-progress-browser.mjs':'v281-player-action-browser.mjs';
-const out=resolve(process.env.HD_QA_OUT||join(root,nativeCase==='recruitment'?'qa/v287/native-recruitment-progress':'qa/v281/native-player-action'));
+const nativeTest=({'recruitment':'v287-recruitment-progress-browser.mjs','player-action':'v281-player-action-browser.mjs','custom-content':'v224-custom-content-browser.mjs'})[nativeCase];
+const out=resolve(process.env.HD_QA_OUT||join(root,({'recruitment':'qa/v287/native-recruitment-progress','player-action':'qa/v281/native-player-action','custom-content':'qa/v224/native-custom-content'})[nativeCase]));
 await mkdir(out,{recursive:true});
 const originalLaunch=chromium.launch.bind(chromium),cases=[];
 const record=(row,event,details={})=>{if(row.events.length<1500)row.events.push({at:Date.now(),event,...details});};
@@ -45,9 +45,9 @@ async function snapshot(row,page,phase){
  let timer;
  try{row.snapshots.push({phase,...await Promise.race([page.evaluate(()=>{
   const progress=window.__recruitProgress,view=window.islandInspect?.(),theme=view?.theme;
-  const status=progress&&theme?progress.saves.status(theme):null;
+  const status=progress&&theme?progress.saves.status(theme):null,co=view?.cocreation;
   return {diagnostic:window.__hdRecruitDiagnostic,foreign:window.__recruitForeign,theme,playerAction:window.__playerActionQA?.inspect(),
-   ocean:{backend:view?.environment?.art?.backend,worker:view?.environment?.art?.oceanWorker},frameLoop:view?.frameLoop,raster:view?.rendering?.raster,
+   ocean:{backend:view?.environment?.art?.backend,worker:view?.environment?.art?.oceanWorker},frameLoop:view?.frameLoop,raster:view?.rendering?.raster,cocreation:co?{view:co.view,chosen:co.chosen,flight:co.flight,pending:!!co.pending,catalogSync:co.catalogSync,badges:document.querySelector('.co-badges')?.textContent}:null,saveUI:{status:document.querySelector('#saveStatus')?.dataset.status,message:document.querySelector('#saveStatus')?.textContent},
    save:status?Object.fromEntries(['status','message','dirty','capturing','reconciling','pending','recovering'].map(k=>[k,status[k]])):null,
    resumeDisabled:document.querySelector('#recruitResume')?.disabled,
    busy:document.querySelector('#recruitmentPanel')?.getAttribute('aria-busy'),

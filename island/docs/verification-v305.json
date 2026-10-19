@@ -1,0 +1,68 @@
+{
+  "version": "V305",
+  "at": "2026-10-19T06:48:32.034585+00:00",
+  "observedHostedFailure": {
+    "run": 39202401744,
+    "job": 117913423718,
+    "step": "Native custom products, artwork, reuse and cross-owner import",
+    "theme": "pixel",
+    "phase": "Cross-owner imported version active in co-creation document, UI active-version badge did not appear within original 30000ms",
+    "retainedReaderErrorOrScreenshot": false,
+    "exactHostedUnderlyingSaveErrorNotEstablished": true
+  },
+  "repair": {
+    "checkpointAndCatalogReadShareOneActionQueueBarrier": true,
+    "earlierActualSaveFlightsDrained": true,
+    "newWorldAdoptionDoesNotWaitOnOwnQueue": true,
+    "confirmedPublicationDisplayedBeforeGameCatalogSync": true,
+    "craftEntryDisabledUntilGameSyncConfirmed": true,
+    "syncErrorHasExplicitRetry": true,
+    "syncRetryReadsWithoutRepublishing": true,
+    "lateCompletionDoesNotReopenOldDetails": true,
+    "uncertainOtherCommandsRemainManual": true,
+    "originalNetworkTimeoutsRetryRulesAndGameClocksUnchanged": true
+  },
+  "isolatedQueueReproduction": {
+    "oldCallsOverlap": true,
+    "oldResidentRequestVersion": "v1",
+    "oldRejectedCode": "save_conflict",
+    "newCallsDoNotOverlap": true,
+    "newResidentRequestVersion": "v2",
+    "bothNewOperationsConfirmed": true,
+    "scope": "Actual client queue and mocked HTTP documents; establishes the interleaving mechanism, not a full reproduction of the original Mac runner."
+  },
+  "nativeComponent": {
+    "baselineOldModuleFailsBothThemes": true,
+    "canonicalActivationSucceededOnceBeforeInjectedRefreshFailure": true,
+    "repairPassedBothThemes": true,
+    "oneActivationAcrossSyncRetry": true,
+    "retryUsesRealCanonicalCatalogRead": true,
+    "lateNavigationPreserved": true,
+    "minimalShellWithoutIslandRenderer": true,
+    "declaredRefreshErrorInjected": true,
+    "initialFixtureScopeHeaderIssueCorrectedBeforeBaselineComparison": true
+  },
+  "defaultRules": {
+    "passed": 1563,
+    "newTests": 5,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ]
+  },
+  "originalNativeContentBothThemes": {
+    "artworkDecoded": true,
+    "canonicalGamesAndMaterialReuse": true,
+    "giftApplied": true,
+    "crossOwnerAssetsImportedAndCrafted": true,
+    "assertionsAndOriginalTimeoutsUnchanged": true,
+    "declaredFixtureMaterials": true,
+    "scope": "Owned fictional game sessions on one Windows host, not real users or physical multi-device acceptance."
+  },
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "hostedMac14RecoveryConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "wholeGoalComplete": false
+}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v304-agent-source",
+  "release": "hyper-dimension-v305-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 115376,
-      "sha256": "26871740e09ad58c22e47ab41a22ba0089eb29dec1cb4eb8c83382edd789151c"
+      "bytes": 115801,
+      "sha256": "1beb88b7d8e224031f044911a3e1a83d8c7aaec4aa06abe81550ad36f22fe949"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17091,
-      "sha256": "b9990e2ee7bfb2e7c7cd13b7fbcd72abb2b67f22e23f65fdb064fbde3f40d55d"
+      "bytes": 17127,
+      "sha256": "5d253525e05531675d54bc5725c3440a7b3737f698088f15a25a7ed27732439c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 146481,
-      "sha256": "799e113212c6e4c899381f4926e8fbf286e5bfb8308e47926956e68aa88e3220"
+      "bytes": 146449,
+      "sha256": "92b43a06f6d65a27177dd3e79fd0ddbcb74e369f752ab824465582ce7c525189"
     },
     {
       "path": "src/arcade.css",
@@ -6657,8 +6657,8 @@
     },
     {
       "path": "src/cocreationUI.js",
-      "bytes": 27323,
-      "sha256": "0d719048bbbed879ad733c49e5f14046f94ff46304ee7f34261e3c3a10f1bc51"
+      "bytes": 29481,
+      "sha256": "72270c6c747b9fa1ed2190390d50ad199c8feb1e0199225af7e0fbd37836df19"
     },
     {
       "path": "src/collections-v33.css",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 41516,
-      "sha256": "7100dc74ee0e184c91b2ec7d05c16e9f1470b4a3f7124ab20e62c94148de081d"
+      "bytes": 42064,
+      "sha256": "76b7a03a60eadf6a90cd7e0b8f8e045bb4db1d8ded4c261c5349db61d958c317"
     },
     {
       "path": "src/saveDelta.js",
@@ -13774,7 +13774,27 @@
       "path": "docs/raster-visibility-v304.md",
       "bytes": 2000,
       "sha256": "0aebf6f3f55c3f8e511f5e353cf2ed2c01558af9906c183a932b4bef5105373e"
+    },
+    {
+      "path": "tests/v305-catalog-refresh.test.mjs",
+      "bytes": 6079,
+      "sha256": "a728d6b0e4355a786889ebe7b06b03b4a119a3ac70ea6a92545f515298ea05cb"
+    },
+    {
+      "path": "tests/v305-catalog-refresh-browser.mjs",
+      "bytes": 7812,
+      "sha256": "f9476e690e0ee203f1f6cd1796af30ff6dd008172c135a14e784ac9eea3acc01"
+    },
+    {
+      "path": "docs/catalog-refresh-v305.md",
+      "bytes": 2045,
+      "sha256": "2c542a0e23c135871e0e417d9b343011201801b7d7ec7502d01534ab8b6d6766"
+    },
+    {
+      "path": "docs/verification-v305.json",
+      "bytes": 2745,
+      "sha256": "67639d800c1b69fe24d99e92130d7be31759c275f883b2a8df34997a0e7c211e"
     }
   ],
-  "publicRevision": "v304-raster-visibility"
+  "publicRevision": "v305-catalog-refresh"
 }
