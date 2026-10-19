@@ -312,6 +312,7 @@ jobs:
         if: matrix.group == 'reward' && inputs.check_scope != 'soil-diagnostics'
         env:
           HD_QA_WORK_JOURNAL: "1"
+          HD_QA_PEARL_PAUSE: "1"
         run: node tests/v156-pearl-cup-craft-browser.mjs
 
       - name: Native queued reward confirmation

@@ -1,0 +1,81 @@
+{
+  "version": "V307",
+  "at": "2026-10-19T08:29:42.892521+00:00",
+  "hostedFailure": {
+    "run": 39214060492,
+    "job": 117934181714,
+    "os": "macos-15-intel",
+    "theme": "origami",
+    "step": "Native pearl cup crafting and refresh",
+    "observedScreenshot": "Native Slight Rest pause dialog with Continue Challenge, preserved memory board; no recovery lock",
+    "diagnosticHookPreviouslyCalledThemeStringAsFunction": true
+  },
+  "repair": {
+    "nativeContinueButtonOnly": true,
+    "loopObservesPausedStateWithoutSendingGameplayInput": true,
+    "pointerRaceHandlerSharesSameResumeOwner": true,
+    "scoreFoundPairsTurnsMovesSeedPhaseAndResultPreserved": true,
+    "original1000Iterations90msWaitAndCommandTimeoutsUnchanged": true,
+    "originalCostGainReceiptRefreshAndArtworkAssertionsRetained": true,
+    "noOutcomeClockOrStateInjection": true,
+    "diagnosticReadHookFixed": true,
+    "explicitNativePauseNowExercisedInCI": true,
+    "forcedPauseAfterRealScoredPair": true
+  },
+  "nativeCases": [
+    {
+      "name": "native-normal",
+      "bothStylesPassed": true,
+      "resumeCounts": {
+        "pixel": 0,
+        "origami": 0
+      },
+      "scoredPairsPreservedThroughForcedPause": false,
+      "cost": {
+        "c15_1": 1,
+        "pearl": 2,
+        "quartz": 1
+      },
+      "gain": {
+        "c1_11": 1
+      },
+      "oneReceiptAndRefreshPreserved": true
+    },
+    {
+      "name": "native-explicit-pause",
+      "bothStylesPassed": true,
+      "resumeCounts": {
+        "pixel": 1,
+        "origami": 1
+      },
+      "scoredPairsPreservedThroughForcedPause": true,
+      "cost": {
+        "c15_1": 1,
+        "pearl": 2,
+        "quartz": 1
+      },
+      "gain": {
+        "c1_11": 1
+      },
+      "oneReceiptAndRefreshPreserved": true
+    }
+  ],
+  "runtimeCodeChanged": false,
+  "defaultRulesQualification": {
+    "reusedFromGameSource": "fb80e6d07c7b8ea8a0a159bb97ecc2e47746e5c0",
+    "passed": 1575,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "defaultTestSetAndRuntimeUnchanged": true,
+    "notRerunThisTestOnlyRevision": true
+  },
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "physicalOrHumanAcceptance": false,
+  "hostedMacIntelPearlRecoveryConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "wholeGoalComplete": false
+}

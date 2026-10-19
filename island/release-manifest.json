@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v306-agent-source",
+  "release": "hyper-dimension-v307-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 116177,
-      "sha256": "7591126943ceaf97fe960c9cbe4b0a7b6004f11a15f930c998431955fd575367"
+      "bytes": 116575,
+      "sha256": "07af2c6483475636c10831dccaee73f316c789353e6df59d8cade3f7c557fd43"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9167,8 +9167,8 @@
     },
     {
       "path": "tests/v156-pearl-cup-craft-browser.mjs",
-      "bytes": 7626,
-      "sha256": "e043dfacab57d725c3080f334a3ef1c4c70e7711af0d82accff57d6c6adca847"
+      "bytes": 9509,
+      "sha256": "88a09eb0be3681831d01e47c3023cff91b7fa85d3f9b55bf9f691b1cd4f25ad7"
     },
     {
       "path": "tests/v157-modal-command-navigation-browser.mjs",
@@ -13814,7 +13814,17 @@
       "path": "docs/verification-v306.json",
       "bytes": 2821,
       "sha256": "8aa838a25cbb00678bf0f2855b71666e63a9b8914411fad1a11db3270c875dac"
+    },
+    {
+      "path": "docs/native-pause-v307.md",
+      "bytes": 1400,
+      "sha256": "ea204f013571fea96b1b1a4aab3ea98008e82b20fc8adf15dbaa7dbb0f14effb"
+    },
+    {
+      "path": "docs/verification-v307.json",
+      "bytes": 2443,
+      "sha256": "6187f8e8571578be079b6877a4aed46aea130a7fcd37702b9f1bdf2d5db83f2e"
     }
   ],
-  "publicRevision": "v306-npc-mine-timeout"
+  "publicRevision": "v307-native-pause"
 }

@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       test_case:
-        description: Keep the original recruitment, player-action or custom-content assertions and budgets
+        description: Keep the original native assertions and budgets; use the real pause/resume button
         type: choice
-        options: [recruitment, player-action, custom-content]
+        options: [recruitment, player-action, custom-content, pearl-cup]
         default: recruitment
       profiler:
         description: Sample only the owned native fixture page CPU stack
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   recruitment-progress:
-    name: ${{ inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || 'macos-15-intel / recruitment scheduling' }}
+    name: ${{ inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
     runs-on: ${{ inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
     timeout-minutes: 45
     steps:
@@ -37,6 +37,7 @@ jobs:
         env:
           HD_QA_RECRUIT_BACKDROP: ${{ inputs.backdrop_candidate && '1' || '0' }}
           HD_QA_NATIVE_CASE: ${{ inputs.test_case || 'recruitment' }}
+          HD_QA_PEARL_PAUSE: ${{ inputs.test_case == 'pearl-cup' && '1' || '0' }}
           HD_QA_NATIVE_PROFILE: ${{ inputs.profiler && '1' || '0' }}
         run: node .github/diagnostics/recruitment-progress.mjs
       - name: Retain owned native scheduling observations
@@ -53,6 +54,11 @@ jobs:
             island/qa/v281/native-player-action/scheduling-journal-*.json
             island/qa/v281/native-player-action/*.png
             island/qa/v281/native-player-action/*.cpuprofile
+            island/qa/v156/native-pearl-cup-craft/report.json
+            island/qa/v156/native-pearl-cup-craft/work-progress.json
+            island/qa/v156/native-pearl-cup-craft/scheduling-journal-*.json
+            island/qa/v156/native-pearl-cup-craft/*.png
+            island/qa/v156/native-pearl-cup-craft/*.cpuprofile
             island/qa/v224/native-custom-content/report.json
             island/qa/v224/native-custom-content/scheduling-journal-*.json
             island/qa/v224/native-custom-content/*.png
