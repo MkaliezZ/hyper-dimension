@@ -1,0 +1,60 @@
+{
+  "version": "V319",
+  "passed": true,
+  "scope": "Native greenhouse QA continuation through a genuine playing-session pause; game/runtime unchanged from V318.",
+  "sourceHashes": {
+    "tests/v159-soil-care-browser.mjs": "8de6896995421003a3ea6de808b0299c167bf33defaeaf345dd10812a9fc8abc"
+  },
+  "baselineBothStylesFailedUnderRealPause": true,
+  "candidateBothStylesPassed": true,
+  "actualResumeButton": true,
+  "resumePreserves": [
+    "phase",
+    "result",
+    "player",
+    "crates",
+    "moves"
+  ],
+  "clockNotDecreased": true,
+  "cases": [
+    {
+      "theme": "pixel",
+      "craftingMoves": 128,
+      "actualCraftedOneBag": true,
+      "realGrowthWallSeconds": 184.97,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true,
+      "passed": true,
+      "pauseResumptions": 1
+    },
+    {
+      "theme": "origami",
+      "craftingMoves": 131,
+      "actualCraftedOneBag": true,
+      "realGrowthWallSeconds": 185.535,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true,
+      "passed": true,
+      "pauseResumptions": 1
+    }
+  ],
+  "hostedRepairConfirmed": false,
+  "fullMatrixPassed": false,
+  "wholeGoalComplete": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "fixtures": "Original recipe raw inputs, seeds, funds and building unlock; actual native Pause/Continue only; no finished compost/crop or clock injected.",
+  "relatedRules": {
+    "node22Passed": 21,
+    "node25Passed": 21,
+    "failed": 0,
+    "skipped": 0
+  }
+}

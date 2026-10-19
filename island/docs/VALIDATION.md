@@ -961,3 +961,8 @@ Manual plan creation can pass unstarted background jobs while retaining active-r
 ## V318 - Bounded artwork decode recovery
 
 Required images receive bounded read-only decode retries while permanent failures remain errors. The original cash/shared-style empty-browser flow passes both appearances under2xCPU, recording actual second-decode recovery without altering financial or timing assertions. See [artwork-decode-recovery-v318.md](artwork-decode-recovery-v318.md) and [verification-v318.json](verification-v318.json). Current hosted and final-package/hour acceptance remain pending.
+
+
+## V319 · 温室推箱检查暂停续玩
+
+仅修正原生检查脚本在正常暂停时继续点击底层方向键的问题。旧脚本双画风故障复现；修正后通过真实继续按钮，完成制作、施肥、180 秒完整生长、收获与刷新唯一结算。游戏规则与运行代码不变；托管 Intel Mac 恢复仍待确认。见[验证范围](native-soil-pause-v319.md)。

@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Manual save, resident busy, rewards, project queue or artwork startup
+        description: Manual save, residents, rewards, project queue, artwork or soil care
         type: choice
         default: manual-save
-        options: [manual-save, resident-busy-market, reward-drain, plan-queue, artwork-startup]
+        options: [manual-save, resident-busy-market, reward-drain, plan-queue, artwork-startup, soil-care]
 permissions:
   contents: read
 concurrency:
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   intel-native:
-    name: ${{ inputs.check_scope == 'artwork-startup' && 'windows-2022 / slow artwork startup and cash recovery' || inputs.check_scope == 'plan-queue' && 'windows-2022 / manual project queue and resident preparation' || inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || inputs.check_scope == 'reward-drain' && 'macos-15-intel / independent receipt pause recovery' || 'macos-15-intel / manual save and cash recovery' }}
+    name: ${{ inputs.check_scope == 'soil-care' && 'macos-15-intel / native greenhouse pause and full growth' || inputs.check_scope == 'artwork-startup' && 'windows-2022 / slow artwork startup and cash recovery' || inputs.check_scope == 'plan-queue' && 'windows-2022 / manual project queue and resident preparation' || inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || inputs.check_scope == 'reward-drain' && 'macos-15-intel / independent receipt pause recovery' || 'macos-15-intel / manual save and cash recovery' }}
     runs-on: ${{ (inputs.check_scope == 'resident-busy-market' || inputs.check_scope == 'plan-queue' || inputs.check_scope == 'artwork-startup') && 'windows-2022' || 'macos-15-intel' }}
     timeout-minutes: 45
     defaults:
@@ -69,11 +69,20 @@ jobs:
           HD_QA_CDP_CPU: '2'
           HD_QA_OUT: qa/v318/native-cash-cpu2
         run: node tests/v276-cash-browser.mjs
+      - name: Native greenhouse crafting and complete crop growth
+        if: inputs.check_scope == 'soil-care'
+        run: node tests/v159-soil-care-browser.mjs
+      - name: Native greenhouse pause continuation and complete crop growth
+        if: inputs.check_scope == 'soil-care'
+        env:
+          HD_QA_FORCE_SOIL_PAUSE: '1'
+          HD_QA_OUT: qa/v319/native-soil-pause
+        run: node tests/v159-soil-care-browser.mjs
       - name: Retain fictional native evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-manual-save-${{ inputs.check_scope == 'artwork-startup' && 'windows-2022-artwork-startup' || inputs.check_scope == 'plan-queue' && 'windows-2022-plan-queue' || inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || inputs.check_scope == 'reward-drain' && 'macos-15-intel-reward-drain' || 'macos-15-intel' }}
+          name: native-manual-save-${{ inputs.check_scope == 'soil-care' && 'macos-15-intel-soil-care' || inputs.check_scope == 'artwork-startup' && 'windows-2022-artwork-startup' || inputs.check_scope == 'plan-queue' && 'windows-2022-plan-queue' || inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || inputs.check_scope == 'reward-drain' && 'macos-15-intel-reward-drain' || 'macos-15-intel' }}
           path: |
             island/qa/v314/manual-save-feedback/report.json
             island/qa/v276/native-cash/report.json
@@ -93,5 +102,9 @@ jobs:
             island/qa/v227/native-custom-agent/*.png
             island/qa/v318/native-cash-cpu2/report.json
             island/qa/v318/native-cash-cpu2/*.png
+            island/qa/v159/native-soil-care/report.json
+            island/qa/v159/native-soil-care/*.png
+            island/qa/v319/native-soil-pause/report.json
+            island/qa/v319/native-soil-pause/*.png
           if-no-files-found: error
           retention-days: 3
