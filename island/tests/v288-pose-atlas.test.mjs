@@ -38,3 +38,17 @@ test('oversized poses fall back without creating or evicting surfaces',()=>{
  assert.equal(cache.put('too-large',20,20,()=>{}),null);assert.equal(cache.get('a'),a);assert.equal(canvases.length,count);
  cache.clear();assert.equal(cache.inspect().bytes,0);assert.equal(cache.inspect().entries,0);assert.equal(cache.inspect().pages,0);assert.equal(a.image.width,0);
 });
+
+test('varying pose bounds reuse exact-size workspaces instead of resetting GPU backings every frame',()=>{
+ let resets=0;const images=[];
+ const cache=createPoseAtlas({canvas(){let width=0,height=0;const image={get width(){return width;},set width(v){resets++;width=v;},get height(){return height;},set height(v){resets++;height=v;},getContext:()=>new Proxy({},{get:()=>()=>{}})};images.push(image);return image;}});
+ for(let n=0;n<2000;n++){const w=30+n%3,h=60+n%4,entry=cache.put('phase-'+n,w,h,()=>{});assert.equal(entry.sw,w);assert.equal(entry.sh,h);}
+ assert(resets<100,'Exact-size reuse must avoid thousands of surface resets');
+ assert.equal(cache.inspect().workspaceSurfaces,12);assert(cache.inspect().workspaceBytes<=cache.inspect().workspaceLimitBytes);
+ cache.clear();assert.equal(cache.inspect().workspaceBytes,0);assert.equal(cache.inspect().workspaceSurfaces,0);assert(images.every(image=>image.width===0&&image.height===0));
+});
+
+test('workspace reuse remains bounded across many different exact dimensions',()=>{
+ const {cache}=fixture();for(let n=0;n<100;n++)assert(cache.put('shape-'+n,30+n,80+n,()=>{}));
+ assert(cache.inspect().workspaceSurfaces<=32);assert(cache.inspect().workspaceBytes<=cache.inspect().workspaceLimitBytes);
+});

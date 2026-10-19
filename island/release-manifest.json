@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v299-agent-source",
+  "release": "hyper-dimension-v300-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 112751,
-      "sha256": "786a117e741c040b6dac2a821e273f779370f06a32418d1a00a276dcf7702e67"
+      "bytes": 113383,
+      "sha256": "e59d207ef7989aa279f35586cbb49c0ce77a21cc6cdfdb4989b67befd2ff178c"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16912,
-      "sha256": "dde120b767a1d7d3d17e0cb7cc7d2094f273b41a605a378c860d48985a7e73a1"
+      "bytes": 16949,
+      "sha256": "5d4d09d4c131cdb649e0662a4fa14312e663371c62f436cfd275e2d22a469e73"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6672,8 +6672,8 @@
     },
     {
       "path": "src/connectedSpriteSurface.js",
-      "bytes": 11353,
-      "sha256": "34a4f3f2f7087089606a6d142e7139917e29243583cfd510ff3c5b3ad1fc6d45"
+      "bytes": 13024,
+      "sha256": "eb232d442c1d4f48e14edc2ffc1d7a60f2159751717e0f48308ee7bb6f904c1a"
     },
     {
       "path": "src/content-ui.css",
@@ -8127,8 +8127,8 @@
     },
     {
       "path": "src/spriteRaster.js",
-      "bytes": 2550,
-      "sha256": "e7ace589d87c2ca2482f54796dde49e7d492e6a76bfd1b216630e3c60880eac3"
+      "bytes": 2945,
+      "sha256": "3d875059bf01520949e0bab9bf9e474dd955f30422201f8d977e525438c20170"
     },
     {
       "path": "src/spriteRasterWorker.js",
@@ -13437,13 +13437,13 @@
     },
     {
       "path": "src/poseAtlas.js",
-      "bytes": 3479,
-      "sha256": "b54e8ac703856ec35f641c69d3e4d0831891bfbb4d40618a4a5b644934fa856a"
+      "bytes": 4284,
+      "sha256": "8b6099466952ff89979076d501020f322f084a6b0633bedc94844f73fd4cdb0a"
     },
     {
       "path": "tests/v288-pose-atlas.test.mjs",
-      "bytes": 2883,
-      "sha256": "7002307ff6463a225c0a7a5847c780c4650d0c067c79430dae503bac14346737"
+      "bytes": 4137,
+      "sha256": "d0ba7721ee6e91dbf00ddb8bb1435c2eb637d25f39d68d88e9b800dabb6cf39a"
     },
     {
       "path": "tests/v289-workshop-clock-browser.mjs",
@@ -13644,7 +13644,42 @@
       "path": "docs/verification-v299.json",
       "bytes": 2134,
       "sha256": "e68ec57f093794227e8674cbbd228f4791df160e3c0709bb8bcdf5459894d0c9"
+    },
+    {
+      "path": "src/connectedSurfaceClient.js",
+      "bytes": 4864,
+      "sha256": "3c0a989a1583b6da937c1c3b4d9bbe9d17bf6e77b54908b5fa21dc089e2b7d77"
+    },
+    {
+      "path": "src/connectedSurfaceWorker.js",
+      "bytes": 2986,
+      "sha256": "bf7b15b7ddc62eb8a264b82003fd258a7f48111d9f28a9b76e62c16e6d106f15"
+    },
+    {
+      "path": "src/spriteSource.js",
+      "bytes": 487,
+      "sha256": "97a33a0f25e17eb0003b243cb3cbe25355b7fde05fcefad3ef5f7745b9b10bcc"
+    },
+    {
+      "path": "src/spriteSourceDecoder.js",
+      "bytes": 2332,
+      "sha256": "dc13f68eb0b9211dacff5132461f7248125c90e9597644c4e3123c4e179e9c6e"
+    },
+    {
+      "path": "tests/v300-connected-worker.test.mjs",
+      "bytes": 7290,
+      "sha256": "3730197a55d3f90af531e807bf1ea74acebf103e88370d54fd9b278aa0a27afe"
+    },
+    {
+      "path": "docs/worker-rendering-v300.md",
+      "bytes": 2832,
+      "sha256": "d91c0c56bad2baa292d79a006a67a92f7fd98c9a7611032e295c013bc144a542"
+    },
+    {
+      "path": "docs/verification-v300.json",
+      "bytes": 2629,
+      "sha256": "11ffc59954fa0b9ab93cddf0fdca7597b846c5f3450733f36d33638f1e3436a3"
     }
   ],
-  "publicRevision": "v299-ordered-agent-verification-and-bounded-upload-batches"
+  "publicRevision": "v300-worker-connected-surfaces"
 }

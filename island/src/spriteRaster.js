@@ -1,4 +1,5 @@
 // Crop once at the current backing-pixel scale. Rig segments still move independently.
+import {registerSpriteSource,spriteSource} from './spriteSource.js';
 export function createSpriteRasterCache({maxPixels=4*1024*1024,canvas=()=>document.createElement('canvas'),bitmap=typeof createImageBitmap==='function'? (...args)=>createImageBitmap(...args):null}={}){
  const identities=new WeakMap(),entries=new Map(),queue=[];let serial=0,pixels=0,hits=0,misses=0,active=0,refined=0;
  const dispose=value=>value.image?.close?.();
@@ -6,7 +7,7 @@ export function createSpriteRasterCache({maxPixels=4*1024*1024,canvas=()=>docume
   while(bitmap&&active<2&&queue.length){
    const job=queue.shift();if(entries.get(job.key)!==job.value)continue;active++;
    Promise.resolve().then(()=>bitmap(job.image,job.frame.x,job.frame.y,job.frame.w,job.frame.h,{resizeWidth:job.width,resizeHeight:job.height,resizeQuality:'high'}))
-    .then(image=>{if(entries.get(job.key)!==job.value){image.close?.();return;}dispose(job.value);job.value.image=image;refined++;})
+    .then(image=>{if(entries.get(job.key)!==job.value){image.close?.();return;}const source=spriteSource(job.image);if(source)registerSpriteSource(image,{kind:'refined',source,frame:job.frame,options:{resizeWidth:job.width,resizeHeight:job.height,resizeQuality:'high'}});dispose(job.value);job.value.image=image;refined++;})
     .catch(()=>{}).finally(()=>{active--;pump();});
   }
  }
@@ -24,6 +25,7 @@ export function createSpriteRasterCache({maxPixels=4*1024*1024,canvas=()=>docume
   const surface=canvas();surface.width=w;surface.height=h;
   const draw=surface.getContext('2d');draw.imageSmoothingEnabled=true;draw.imageSmoothingQuality='low';
   draw.drawImage(image,frame.x,frame.y,frame.w,frame.h,0,0,w,h);
+  const source=spriteSource(image);if(source)registerSpriteSource(surface,{kind:'preview',source,frame:{...frame},width:w,height:h});
   const value={image:surface,frame:{x:0,y:0,w,h,aspectRatio:frame.w/frame.h},pixels:w*h};
   entries.set(key,value);pixels+=value.pixels;misses++;
   while(pixels>maxPixels&&entries.size>1){const oldest=entries.keys().next().value,retired=entries.get(oldest);pixels-=retired.pixels;entries.delete(oldest);dispose(retired);}

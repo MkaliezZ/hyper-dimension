@@ -2,7 +2,8 @@
 // keeps its original pixel dimensions and a transparent one-pixel gutter.
 export function createPoseAtlas({maxBytes=64*1024*1024,pageSize=1024,canvas=()=>document.createElement('canvas')}={}){
  if(!Number.isInteger(pageSize)||pageSize<4||!Number.isFinite(maxBytes)||maxBytes<64)throw TypeError('Invalid pose atlas budget');
- const pages=[],entries=new Map();let bytes=0,serial=0,evictions=0,workspace=null;
+ const pages=[],entries=new Map(),workspaces=new Map();let bytes=0,serial=0,evictions=0,workspaceBytes=0;
+ const WORKSPACE_LIMIT=4*1024*1024,WORKSPACE_COUNT=32;
  const bucket=n=>2**Math.ceil(Math.log2(n));
  function space(page,w,h,commit=false){
   let x=page.x,y=page.y,row=page.row;
@@ -31,6 +32,16 @@ export function createPoseAtlas({maxBytes=64*1024*1024,pageSize=1024,canvas=()=>
   const page={image,width,height,bytes:size,x:0,y:0,row:0,keys:new Set(),used:++serial};pages.push(page);bytes+=size;
   return {page,...space(page,paddedW,paddedH,true)};
  }
+ function workspaceFor(w,h){
+  const key=w+':'+h,found=workspaces.get(key);
+  if(found){workspaces.delete(key);workspaces.set(key,found);return found.image;}
+  const size=w*h*4,limit=Math.max(WORKSPACE_LIMIT,size);
+  while(workspaces.size&&(workspaces.size>=WORKSPACE_COUNT||workspaceBytes+size>limit)){
+   const [oldKey,old]=workspaces.entries().next().value;workspaces.delete(oldKey);workspaceBytes-=old.bytes;
+   old.image.width=0;old.image.height=0;
+  }
+  const image=canvas();image.width=w;image.height=h;workspaces.set(key,{image,bytes:size});workspaceBytes+=size;return image;
+ }
  return {
   get(key){const entry=entries.get(key);if(entry)entry.page.used=++serial;return entry;},
   put(key,w,h,paint,fields={},protectedKeys=[]){
@@ -39,7 +50,9 @@ export function createPoseAtlas({maxBytes=64*1024*1024,pageSize=1024,canvas=()=>
    const slot=allocate(w,h,protectedKeys);if(!slot)return null;
    // Paint at the same origin and exact backing dimensions as the old standalone
    // pose surface. A subsequent integer copy cannot perturb joint-edge sampling.
-   workspace??=canvas();if(workspace.width!==w)workspace.width=w;if(workspace.height!==h)workspace.height=h;
+   // Keep exact backing dimensions without reallocating the same GPU Canvas
+   // on every small change in a walking pose's bounds.
+   const workspace=workspaceFor(w,h);
    const draw=workspace.getContext('2d');draw.save();try{
     draw.setTransform(1,0,0,1,0,0);draw.globalAlpha=1;draw.globalCompositeOperation='source-over';draw.clearRect(0,0,w,h);
     draw.beginPath();draw.rect(0,0,w,h);draw.clip();paint(draw);
@@ -51,7 +64,7 @@ export function createPoseAtlas({maxBytes=64*1024*1024,pageSize=1024,canvas=()=>
    }finally{g.restore();}
    const entry={...fields,key,image:page.image,sx:x,sy:y,sw:w,sh:h,page};page.keys.add(key);page.used=++serial;entries.set(key,entry);return entry;
   },
-  clear(){for(const page of [...pages])remove(page);if(workspace){workspace.width=0;workspace.height=0;}},
-  inspect:()=>({entries:entries.size,bytes,limitBytes:maxBytes,pages:pages.length,workspaceBytes:workspace?workspace.width*workspace.height*4:0,evictions})
+  clear(){for(const page of [...pages])remove(page);for(const {image}of workspaces.values()){image.width=0;image.height=0;}workspaces.clear();workspaceBytes=0;},
+  inspect:()=>({entries:entries.size,bytes,limitBytes:maxBytes,pages:pages.length,workspaceBytes,workspaceSurfaces:workspaces.size,workspaceLimitBytes:WORKSPACE_LIMIT,evictions})
  };
 }

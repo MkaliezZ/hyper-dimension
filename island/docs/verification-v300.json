@@ -1,0 +1,71 @@
+{
+  "version": "V300",
+  "at": "2026-10-19T00:57:59.790070+00:00",
+  "defaultRules": {
+    "node": "25.8.1",
+    "groups": [
+      1496,
+      14
+    ],
+    "passed": 1510,
+    "failed": 0
+  },
+  "renderer": {
+    "actualNativeStallCaptured": "WebGL2.getError blocked over70seconds; later evidence included live canvas resize and bitmap copying. No memory-pressure cause inferred.",
+    "GPUQueriesShadersUploadsAndRasterizationInArtworkWorker": true,
+    "mainThreadWebGLContextsCreatedIn192Cases": 0,
+    "sameInitialViewport": [
+      300,
+      150
+    ],
+    "unchangedMeshShaderPoseInterpolationDensityActorsAndClocks": true,
+    "nativeExactPixelCases": 192,
+    "nativeExactRefinedTextureCases": 64,
+    "allChangedChannels": 0,
+    "temporaryPreview": "Original direct Canvas rendering remains; no approximate reconstruction or GPU cache of its low-quality preview. Exact high-quality refinement is recreated from original same-origin artwork inside the worker.",
+    "poseAtlasLimitBytes": 67108864,
+    "textureLimitBytes": 100663296,
+    "pendingRasterLimitBytes": 16777216,
+    "maximumPendingRasters": 32,
+    "exactSizeWorkspacePool": {
+      "count": 32,
+      "normalBytes": 4194304,
+      "largePoseSupportPreserved": true
+    },
+    "explicitBitmapOwnershipAndStaleReplyDisposal": true,
+    "errorFenceOOMContextLossAndFallbackHandlingRetained": true
+  },
+  "untracedFourMap": {
+    "passed": true,
+    "simultaneousNativeViews": 4,
+    "fourActualGpuWorkersReady": true,
+    "uploadFailures": 0,
+    "actualAuthorityCommitAndHeldResponseMs": 500,
+    "rafCompletionMs": 920,
+    "timerCompletionMs": 1811,
+    "originalAuthorityDeadlineMs": 10000,
+    "originalCompletionDeadlineMs": 3000,
+    "debuggerSABOrHeaderChanges": false,
+    "fullRealProviderFourOwnerFlowQualified": false
+  },
+  "nativeOriginalFlows": {
+    "rigDecodedFramesPerStyle": 224,
+    "playerGrantedActionsAndUniqueReload": true,
+    "customProductUploadCraftReuseGiftCrossOwnerImport": true,
+    "actualLostMovementReceiptRetry": true,
+    "bothStyles": true,
+    "initialFailuresRetained": [
+      "v670",
+      "v671",
+      "v674",
+      "v675",
+      "v679",
+      "v681",
+      "v684"
+    ]
+  },
+  "hostedWindowsAndMacRecoveryConfirmed": false,
+  "exactFinalPackageFreshInstallAndHourPassed": false,
+  "wholeGoalComplete": false,
+  "verificationScope": "Local Windows native browser with fictional islands and explicitly controlled providers. Not physical multi-device,real players,OPC class,complete real-provider four-owner flow or a universal60fps claim."
+}
