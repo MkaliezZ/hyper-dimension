@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v311-agent-source",
+  "release": "hyper-dimension-v312-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 118699,
-      "sha256": "c3cda46524cb67e7052c137161b67a1669512c6e3a172578d68e7864a2149227"
+      "bytes": 118998,
+      "sha256": "8bc2e74043c0990ab29a51bcb2fe212c3d92f132127f5d5329ec6721a244a257"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17332,
-      "sha256": "239e1cc55e44a59c4dceecd2b7bd8ca2da594086d7cf2c71f7fc069bfc0c1dd0"
+      "bytes": 17369,
+      "sha256": "e452d122d7a64f332aeb20c0df74382aa2b16299f1355f03412c023c492875a4"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 146826,
-      "sha256": "c9f4b005dbacab56dc0f2b70c1fff9817a4a0a47d70a431a9c914c0453a578ba"
+      "bytes": 146849,
+      "sha256": "4faaae431d920952f5bc5a939abe6b360abf78588f7785ea99adc61bc324402f"
     },
     {
       "path": "src/arcade.css",
@@ -7957,8 +7957,8 @@
     },
     {
       "path": "src/saveScheduler.js",
-      "bytes": 1049,
-      "sha256": "ff0eb0e3e240d455dd0a6ca5d9b4fd0db18c082d9ddd977646fc4706d721edb6"
+      "bytes": 1182,
+      "sha256": "1a5aa6b2b71f1fe08faae3c4e23a0e758ce9141bd87f8793be98213802f908eb"
     },
     {
       "path": "src/saveStorage.js",
@@ -13904,7 +13904,22 @@
       "path": "tests/v311-gather-catalog-browser.mjs",
       "bytes": 6275,
       "sha256": "bf2659674920df951bc5ac1cd535b3f4b8a8aa8a7cee1844948311affaf0b3aa"
+    },
+    {
+      "path": "tests/v312-world-save-paint.test.mjs",
+      "bytes": 2079,
+      "sha256": "20a7baf486384c6be6b6a91e506a1e4c7d1b37ed971c426c7867ad1648bd967b"
+    },
+    {
+      "path": "docs/world-paint-v312.md",
+      "bytes": 1558,
+      "sha256": "ce366e294d839902eee70ba1ec65cd74789921356ea6733f0c950836bcb187af"
+    },
+    {
+      "path": "docs/verification-v312.json",
+      "bytes": 2613,
+      "sha256": "2d294420d6676909741e1f69abb91f08394c2463b03857e3b7b72adb5120b4db"
     }
   ],
-  "publicRevision": "v311-resident-and-gather-recovery"
+  "publicRevision": "v312-world-paint-floor"
 }

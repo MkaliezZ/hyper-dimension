@@ -1,4 +1,4 @@
-import {deferSavePaint} from './saveScheduler.js';
+import {deferWorldSavePaint as deferSavePaint} from './saveScheduler.js';
 import {cashReportHTML} from './cashReportView.js';
 import {createVisibleFrameLoop} from './visibleFrameLoop.js';
 import {ISLAND_GEOGRAPHY,PERMANENT_HOMES,homeForResident,homeDisplayName} from './islandGeography.js';

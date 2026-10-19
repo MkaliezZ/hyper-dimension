@@ -1,0 +1,43 @@
+name: Island paint recovery diagnostics
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: island-paint-recovery-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  windows-native:
+    name: windows-2022 / original paint and save checks
+    runs-on: windows-2022
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: island
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install isolated browser dependencies
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
+      - name: Original personal modal receipt and backdrop
+        run: node tests/v294-personal-backdrop-browser.mjs
+      - name: Original Windows save lock contention and unique delivery
+        run: node tests/v218-save-lock-browser.mjs
+      - name: Original granted player action during an unrelated receipt
+        run: node tests/v281-player-action-browser.mjs
+      - name: Retain fictional native evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-paint-recovery-windows-2022
+          path: |
+            island/qa/v294/personal-backdrop/report.json
+            island/qa/v294/personal-backdrop/*.png
+            island/qa/v218/native-save-lock/report.json
+            island/qa/v218/native-save-lock/*.png
+            island/qa/v281/native-player-action/report.json
+            island/qa/v281/native-player-action/*.png
+          if-no-files-found: error
+          retention-days: 3

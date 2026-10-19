@@ -1,0 +1,78 @@
+{
+  "version": "V312",
+  "at": "2026-10-19T11:56:38.789166+00:00",
+  "hosted": {
+    "run": 39240604814,
+    "sourceCommit": "18d0ec0ee70e24d3e6444b657518654a367dfeed",
+    "lockJob": 118039802326,
+    "backdropJob": 118039802506,
+    "lockArtifact": 12184101025,
+    "backdropArtifact": 12183108526,
+    "selectedEntryCRCsAndSHA256Verified": true,
+    "fullArchiveSHA256Verified": false,
+    "lockFailure": "Origami gather catalogue lost forest source button; same owner-marker collision repaired in V311.",
+    "pixelResumedPaints": 5,
+    "observedRAFFrames": 8,
+    "originalRequiredPaints": 6
+  },
+  "repair": {
+    "worldPaintFloorAfterEachSaveDeferral": 3,
+    "minimumNormalWorldPaintsPerEightCallbacks": 6,
+    "existingSaveHelperCompatibilityRetained": true,
+    "saveFallbackMs": 100,
+    "snapshotWorkerAndAuthorityUnchanged": true,
+    "existingTestSourcesAssertionsAndDeadlinesUnchanged": true
+  },
+  "local": {
+    "oldPendingCapturePolicyPaintedOnlyFourOfEight": true,
+    "oldWardrobeRunPassedSoHostedFailureNotClaimedLocallyReproduced": true,
+    "candidateUnchangedWardrobeBothStylesPassed": true,
+    "candidatePixelPaints": 7,
+    "candidateOrigamiPaints": 8,
+    "afterV311UnchangedWindowsLockBothStylesPassed": true,
+    "nativePlayerBothStylesCPU2NormalAndThreeSecondLateObserverPassed": true
+  },
+  "rules": {
+    "pending": false,
+    "addedBoundaryChecks": 3,
+    "totalPassedPerRuntime": 1617,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "failedOrSkipped": 0
+  },
+  "hostedRepairConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false,
+  "parentV311HostedRecovery": {
+    "sourceCommit": "d2528d132f9307d3119b9cbbd8436bf931f44233",
+    "fullMatrixRecovered": false,
+    "currentV312HostedQualified": false,
+    "checks": [
+      {
+        "case": "recovered-player",
+        "run": 39247121975,
+        "job": 118041638619,
+        "artifact": 12184232047,
+        "bothStylesPassed": true,
+        "selectedEntryCRCAndSHA256Verified": true,
+        "fullArchiveSHA256Verified": false
+      },
+      {
+        "case": "recovered-market",
+        "run": 39247143737,
+        "job": 118043602812,
+        "artifact": 12183877963,
+        "bothStylesPassed": true,
+        "selectedEntryCRCAndSHA256Verified": true,
+        "fullArchiveSHA256Verified": false
+      }
+    ],
+    "passed": true
+  }
+}
