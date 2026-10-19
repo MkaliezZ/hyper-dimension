@@ -1,0 +1,53 @@
+{
+  "version": "V303",
+  "at": "2026-10-19T04:37:53.222763+00:00",
+  "observedHostedFailure": {
+    "run": 39195999541,
+    "job": 117879181237,
+    "step": "Native custom recipe resident preparation and reopen",
+    "theme": "origami",
+    "visitorRequestAborted": true,
+    "residentWorkFrozenSeconds": 19.116,
+    "residentWorkDurationSeconds": 20,
+    "rootScope": "The hosted journal shows a visitor transport abort followed by global pending recovery. The isolated regression reproduces this freeze with the actual original fetch timeout; hosted transport exception details were not retained."
+  },
+  "repair": {
+    "onlyVisitorActionFetchTimeoutReplays": true,
+    "additionalAttempts": 1,
+    "sameDurableRequestBytesIdentityVersionAndHeaders": true,
+    "originalFetchTimeoutMs": 12000,
+    "originalWorkerRequestTimeoutMs": 15000,
+    "ordinaryConnectionLossStillManual": true,
+    "explicitHttpRejectionsUnchanged": true,
+    "nonVisitorAndImportsNotReplayed": true
+  },
+  "defaultRules": {
+    "passed": 1550,
+    "newBoundaryTests": 32,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ]
+  },
+  "nativeTimeout": {
+    "baselineFailedBothStyles": true,
+    "actualTwelveSecondTimeoutThenOneReplayBothStyles": true,
+    "oneReceiptOnePaymentOneStockCost": true,
+    "emptyBrowserAndIndependentDiskReplay": true,
+    "setupClockInjected": true,
+    "setupCoins": 100,
+    "scope": "The fixture clock prepares an already-ready service; the transport timeout itself is real wall time. This is a recovery regression, not natural gameplay or earned-zero qualification."
+  },
+  "originalCustomProjectBothStyles": true,
+  "originalPlayerActionsBothStyles": true,
+  "originalCustomProjectTimeoutMs": 180000,
+  "originalPlayerSetupTimeoutMs": 15000,
+  "providersCalled": false,
+  "rendererChanged": false,
+  "hostedWindowsRecoveryConfirmed": false,
+  "hostedMacPlayerFailureStillOpen": true,
+  "hostedMacHomesBrowserLaunchFailureStillOpen": true,
+  "currentArchiveFreshInstallAndHourPassed": false,
+  "wholeGoalComplete": false,
+  "scope": "Isolated fictional fixtures on one Windows host. Automated rules/native checks are not human, OPC course or physical-device acceptance."
+}

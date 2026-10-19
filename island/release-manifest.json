@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v302-agent-source",
+  "release": "hyper-dimension-v303-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 114400,
-      "sha256": "e8d46ceffe31696907a191ed5d5998cedd128dd057f928f7fdf89a639b63bce7"
+      "bytes": 114961,
+      "sha256": "bafdd3f99c33871a29844b020c412cba9fe0545fa3ac99380df75e251452a17f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17017,
-      "sha256": "d80eabc0143d38e0dd8039a79eebbf748742f03297cff262e2f46f9b6042b781"
+      "bytes": 17053,
+      "sha256": "30f1406cc7fca17a593bc5d116bd74b2f198903a4716baeba67bd13b1da33369"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 6759,
-      "sha256": "57f20a3bb9cb0c8900bb54c05cc5af45451016e58fc4467d7428afec5d52f08b"
+      "bytes": 7530,
+      "sha256": "9796e5b76219f3c5152daa43437fb802e58d81afb13e2700c5f0187702586557"
     },
     {
       "path": "src/saveLimits.js",
@@ -7972,8 +7972,8 @@
     },
     {
       "path": "src/saveWorker.js",
-      "bytes": 3095,
-      "sha256": "2d3eb36a51efd2c39488ca1fae6bff221ccec5a7446d90cab7485c7632ab924f"
+      "bytes": 3146,
+      "sha256": "26006ffc02dcfd722d246a7cb9edaebc3fe407cdedcc3f1c4865b5b62849b595"
     },
     {
       "path": "src/sceneOccupancy.js",
@@ -13729,7 +13729,27 @@
       "path": "docs/verification-v302.json",
       "bytes": 2793,
       "sha256": "6ca6a59c547463b51fe60602317b7528aae630fa5aecc642fd9e689d3cc1c521"
+    },
+    {
+      "path": "tests/v303-visitor-timeout.test.mjs",
+      "bytes": 4756,
+      "sha256": "af52c3fdeb3a37a5221be214497576c474d6266e957cf3b09b29b19cd7852cf4"
+    },
+    {
+      "path": "tests/v303-visitor-timeout-browser.mjs",
+      "bytes": 7912,
+      "sha256": "798978730c1bc6937785ecbea719b347ac5476d2e62db2b55c7266fcd7db4f27"
+    },
+    {
+      "path": "docs/verification-v303.json",
+      "bytes": 2192,
+      "sha256": "e8bdc4ef5b93cf8bae3ed2bc86dbae60b776624cc903dab78968607956bcd87b"
+    },
+    {
+      "path": "docs/visitor-timeout-v303.md",
+      "bytes": 1916,
+      "sha256": "cd60a72a703bcba35fb3310566c15a2712c15dc557abb7fcf35c821fdf895846"
     }
   ],
-  "publicRevision": "v302-ocean-worker"
+  "publicRevision": "v303-visitor-timeout"
 }

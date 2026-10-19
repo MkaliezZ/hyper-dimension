@@ -34,7 +34,18 @@ export function createSaveJournal(){
   for(const [key,value] of changes){if(value===null){raw.delete(key);parsed.delete(key);}else{raw.set(key,value);parsed.delete(key);}}}
  async function set(key,value,serialized){const text=serialized??await encode(value);await commit([[key,text]]);parsed.set(key,value);}
  async function remove(key){await commit([[key,null]]);}
- async function request(url,init,metadataOnly=false,actionsVersion=null){const island=namespace.match(/^hd-lan:([a-f0-9-]{36}):$/)?.[1];if(enabled)return rpc('request',{metadataOnly,actionsVersion,url:new URL(url,location.href).href,init:{...init,headers:{...init.headers,...(island?{'X-HD-Island':island}:{})}}});const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(url,{...init,signal:controller.signal,cache:'no-store'});return {ok:response.ok,status:response.status,text:await response.text()};}finally{clearTimeout(timer)}}
+ async function request(url,init,metadataOnly=false,actionsVersion=null){
+  const island=namespace.match(/^hd-lan:([a-f0-9-]{36}):$/)?.[1],value={metadataOnly,actionsVersion,url:enabled?new URL(url,location.href).href:url,init:{...init,headers:{...init?.headers,...(enabled&&island?{'X-HD-Island':island}:{})}}};
+  const run=async()=>{if(enabled)return rpc('request',value);const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(value.url,{...value.init,signal:controller.signal,cache:'no-store'});return {ok:response.ok,status:response.status,text:await response.text()};}finally{clearTimeout(timer)}};
+  try{return await run();}catch(error){
+   let body;try{body=JSON.parse(value.init.body);}catch{}
+   // Only an expired fetch of an already journaled visitor command gets one
+   // identical replay. The authority resolves its existing request ID; no new
+   // booking, payment or reward is created. Other losses retain manual recovery.
+   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&body?.kind==='visitor'&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
+   throw error;
+  }
+ }
  function has(key){return enabled?raw.has(key):!!localStorage.getItem(key);}
  async function encode(value){return enabled?rpc('encode',value):JSON.stringify(value);}
  async function encodeSnapshot(value,channel,{isCurrent=()=>true,onCaptured=()=>{}}={}){

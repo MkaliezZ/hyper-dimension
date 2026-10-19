@@ -360,6 +360,9 @@ jobs:
       - name: Native custom products, artwork, reuse and cross-owner import
         run: node tests/v224-custom-content-browser.mjs
 
+      - name: Native visitor timeout retains one settlement
+        run: node tests/v303-visitor-timeout-browser.mjs
+
       - name: Native custom recipe resident preparation and reopen
         env:
           HD_QA_WORK_JOURNAL: "1"
@@ -379,6 +382,15 @@ jobs:
 
       - name: Native night planning skips empty purposes
         run: node tests/v216-night-planning-browser.mjs
+
+      - name: Retain isolated visitor timeout diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-visitor-timeout-${{ matrix.os }}
+          path: island/qa/v303/native-visitor-timeout/report.json
+          if-no-files-found: ignore
+          retention-days: 3
 
       - name: Retain isolated native soil-care diagnostics
         if: always()
