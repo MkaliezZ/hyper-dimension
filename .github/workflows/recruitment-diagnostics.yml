@@ -2,6 +2,15 @@ name: Island recruitment diagnostics
 on:
   workflow_dispatch:
     inputs:
+      test_case:
+        description: Keep the original recruitment or player-action assertions and budgets
+        type: choice
+        options: [recruitment, player-action]
+        default: recruitment
+      profiler:
+        description: Sample only the owned native fixture page CPU stack
+        type: boolean
+        default: false
       backdrop_candidate:
         description: Evaluate a pending-recruitment backdrop candidate without changing the game source
         type: boolean
@@ -24,18 +33,25 @@ jobs:
       - name: Install isolated browser dependencies
         working-directory: island
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Observe the original recruitment deadlines
+      - name: Observe the original native interaction deadlines
         env:
           HD_QA_RECRUIT_BACKDROP: ${{ inputs.backdrop_candidate && '1' || '0' }}
+          HD_QA_NATIVE_CASE: ${{ inputs.test_case || 'recruitment' }}
+          HD_QA_NATIVE_PROFILE: ${{ inputs.profiler && '1' || '0' }}
         run: node .github/diagnostics/recruitment-progress.mjs
-      - name: Retain owned recruitment scheduling observations
+      - name: Retain owned native scheduling observations
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: recruitment-scheduling-macos-15-intel
+          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-macos-15-intel
           path: |
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/scheduling-journal-*.json
             island/qa/v287/native-recruitment-progress/*.png
+            island/qa/v287/native-recruitment-progress/*.cpuprofile
+            island/qa/v281/native-player-action/report.json
+            island/qa/v281/native-player-action/scheduling-journal-*.json
+            island/qa/v281/native-player-action/*.png
+            island/qa/v281/native-player-action/*.cpuprofile
           if-no-files-found: error
           retention-days: 3
