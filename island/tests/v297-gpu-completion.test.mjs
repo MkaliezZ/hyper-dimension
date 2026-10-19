@@ -83,3 +83,34 @@ test('context loss cancels pending upload validation and clears retained surface
  const f=await rendererFixture(t);f.beginUpload();const before=f.calls.filter(c=>c==='getError').length;let prevented=false;f.lose();f.listeners.get('webglcontextlost')({preventDefault(){prevented=true;}});
  const status=f.renderer.connectedSurfaceStatus();assert(prevented);assert.equal(status.backend,'Canvas connected surface');assert.equal(status.textureBytes,0);assert.equal(status.poseCache.entries,0);assert.equal(f.timers.size,0);assert.equal(f.calls.filter(c=>c==='getError').length,before);
 });
+
+test('same-turn textures share the latest fence and become drawable only after one full batch error check',async t=>{
+ const f=await rendererFixture(t);f.beginUpload();const second={width:66,height:128};
+ assert.equal(f.draw(second),false);assert.equal(f.renderer.connectedSurfaceStatus().pendingUploads,2);
+ assert.equal(f.timers.size,1,'The older fence poll must be cancelled');
+ const before=f.calls.filter(c=>c==='getError').length;
+ f.gl.waitState=f.gl.CONDITION_SATISFIED;f.run();
+ assert.equal(f.calls.filter(c=>c==='getError').length-before,1);
+ assert.equal(f.draw(),true);assert.equal(f.draw(second),true);
+ assert.equal(f.renderer.connectedSurfaceStatus().pendingUploads,0);
+});
+
+test('a rejected batch discards every unvalidated texture and releases the entire byte budget',async t=>{
+ const f=await rendererFixture(t);f.beginUpload();assert.equal(f.draw({width:66,height:128}),false);
+ f.error(1285);f.gl.waitState=f.gl.CONDITION_SATISFIED;f.run();
+ const status=f.renderer.connectedSurfaceStatus();
+ assert.equal(status.textures,0);assert.equal(status.textureBytes,0);assert.equal(status.uploadFailures,2);
+ assert.equal(status.poseCache.entries,0);assert.deepEqual(f.deleted,[1,2]);assert.equal(f.timers.size,0);
+});
+
+test('upload batches keep a fixed eight-image bound while later images remain eligible after validation',async t=>{
+ const f=await rendererFixture(t);f.beginUpload();
+ const images=Array.from({length:8},(_,i)=>({width:65+i,height:128}));
+ for(const image of images)assert.equal(f.draw(image),false);
+ assert.equal(f.renderer.connectedSurfaceStatus().pendingUploads,8);
+ assert.equal(f.renderer.connectedSurfaceStatus().textures,8);
+ f.gl.waitState=f.gl.CONDITION_SATISFIED;f.run();
+ assert.equal(f.draw(images.at(-1)),false);
+ assert.equal(f.renderer.connectedSurfaceStatus().pendingUploads,1);
+ f.run();assert.equal(f.draw(images.at(-1)),true);
+});

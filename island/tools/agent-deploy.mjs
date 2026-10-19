@@ -5,6 +5,7 @@ import {readFile,writeFile,mkdir,open,lstat} from 'node:fs/promises';
 import {spawn,execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 import {verifyPayload} from './releaseCommon.mjs';
+import {runVerificationTests} from './verificationCommands.mjs';
 import {acquireDataLease,assertNoLegacyRuntime} from '../server/dataLease.mjs';
 const exec=promisify(execFile);
 export function nodeSupported(version){const [major,minor]=version.split('.').map(Number);return major===22&&minor>=13||major===23&&minor>=4||major>=24;}
@@ -72,7 +73,7 @@ export async function deployMain(argv,root=resolve(import.meta.dirname,'..')){
   await run(plan.python,[join(root,'tools/agent-install.py'),'--verify-only'],{root});
   await run(plan.python,[join(root,'tests/v202-offline-prerequisites.test.py')],{root});
   await run(plan.python,[join(root,'tests/v213-dispatch-order.test.py')],{root});
-  const pkg=JSON.parse(await readFile(join(root,'package.json'),'utf8')),testArgs=pkg.scripts.test.split(' ').slice(1);await run(process.execPath,testArgs,{root,env:{DEEPSEEK_API_KEY:''}});
+  const pkg=JSON.parse(await readFile(join(root,'package.json'),'utf8'));await runVerificationTests(pkg.scripts.test,args=>run(process.execPath,args,{root,env:{DEEPSEEK_API_KEY:''}}));
   await run(process.execPath,[join(root,'tools/cocreation-check.mjs')],{root});
   console.log(JSON.stringify({verified:true,modelsCalled:false,scope:'payload + native runtime imports + default rules + course environment; not hardware/human acceptance'}));return;
  }

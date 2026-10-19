@@ -1,0 +1,72 @@
+{
+  "version": "V299",
+  "at": "2026-10-19T00:11:06.613554+00:00",
+  "defaultRules": [
+    {
+      "node": "25.8.1",
+      "groups": [
+        1485,
+        14
+      ],
+      "passed": 1499,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    {
+      "node": "22.13.0",
+      "groups": [
+        1485,
+        14
+      ],
+      "passed": 1499,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    }
+  ],
+  "agentVerification": {
+    "entireDefaultChainValidatedBeforeExecution": true,
+    "orderedIndependentProcesses": true,
+    "firstFailureStopsLaterGroup": true,
+    "shell": false,
+    "oldBehaviorProved": [
+      {
+        "node": "25.8.1",
+        "oldVerifierMergedGroups": true,
+        "failedFirstStillLaunchedSecond": true
+      },
+      {
+        "node": "22.13.0",
+        "oldVerifierMergedGroups": true,
+        "failedFirstStillLaunchedSecond": true
+      }
+    ],
+    "initialNestedFixtureIssueRetained": true,
+    "initialMinimumNodeExecutableAliasFailureRetained": true,
+    "minimumNodeRuntimeScopeRecheckedWithByteIdenticalOfficialNodeExe": true
+  },
+  "renderer": {
+    "maximumUploadBatch": 8,
+    "latestFenceIncludesAllBatchAllocations": true,
+    "oneErrorCheckForWholeBatch": true,
+    "failedBatchDiscardsAllUnvalidatedTextures": true,
+    "contextLossCancelsBatch": true,
+    "geometryDensityActorCountsAndClockUnchanged": true,
+    "nativeExactPixelCases": 192,
+    "changedChannels": 0,
+    "nativeRigDecodedFramesPerTheme": 224,
+    "fullUntracedFourMapPassed": false,
+    "fullUntracedFailureRetained": true
+  },
+  "nativeGrantedPlayerActions": {
+    "bothStyles": true,
+    "actualAuthorityAndHeldUnrelatedReceipt": true,
+    "exactlyOneFinishAndReload": true,
+    "originalSetupNetworkCompletionBudgetsUnchanged": true,
+    "newSparseFailureTimings": true,
+    "hostedIntelMacFailureResolved": false
+  },
+  "wholeGoalComplete": false,
+  "verificationScope": "Windows native browser and actual Node22.13/25.8 processes; no real players, physical Mac or complete multiplayer-performance claim."
+}

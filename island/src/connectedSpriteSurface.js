@@ -13,7 +13,7 @@ function initialize(){
   const compile=(type,source)=>{const s=gl.createShader(type);if(!s)throw Error('sprite_shader_unavailable');gl.shaderSource(s,source);gl.compileShader(s);return s;};
   const vertex=compile(gl.VERTEX_SHADER,'#version 300 es\nlayout(location=0) in vec2 position;layout(location=1) in vec2 uv;uniform vec2 surface;out vec2 textureUV;void main(){gl_Position=vec4(position.x/surface.x*2.0-1.0,1.0-position.y/surface.y*2.0,0.0,1.0);textureUV=uv;}'),fragment=compile(gl.FRAGMENT_SHADER,'#version 300 es\nprecision highp float;uniform sampler2D artwork;uniform vec4 cropBounds;in vec2 textureUV;out vec4 color;void main(){vec4 c=texture(artwork,clamp(textureUV,cropBounds.xy,cropBounds.zw));color=vec4(c.rgb*c.a,c.a);}'),program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);
   const buffer=gl.createBuffer(),r={canvas,gl,buffer,vertices:new Float32Array(240*4),draws:0,maxTextureSize:0,pending:null,ready:false,cancelInitialize:null};renderer=r;
-  const abandon=()=>{r.cancelInitialize?.();for(const entry of textures.values())entry.cancel?.();renderer=null;unavailable=true;textures.clear();bytes=0;clearPoses();};
+  const abandon=()=>{r.cancelInitialize?.();r.pending?.cancel?.();renderer=null;unavailable=true;textures.clear();bytes=0;clearPoses();};
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();abandon();});
   // Link/limit queries also wait for their fence, rather than stalling another
   // island's drawing task while a newly opened map compiles the same program.
@@ -26,22 +26,44 @@ function initialize(){
 }
 function texture(r,img){
  let entry=textures.get(img);const {gl}=r;
- // Only one allocation is submitted at a time, with no later drawing commands
- // on this context until its error check completes. Cached CPU poses stay valid.
- if(!r.ready||r.pending||failedImages.has(img))return null;
- if(!entry){const width=img.naturalWidth||img.width,height=img.naturalHeight||img.height;if(!width||!height||Math.max(width,height)>r.maxTextureSize)return null;
-  const size=width*height*4;if(size>MAX_TEXTURE_BYTES)return null;
-  while(bytes+size>MAX_TEXTURE_BYTES&&textures.size){const [key,old]=[...textures].reduce((a,b)=>a[1].used<b[1].used?a:b);gl.deleteTexture(old.texture);textures.delete(key);bytes-=old.bytes;}
-  const t=gl.createTexture();if(!t)return null;
-  entry={texture:t,width,height,bytes:size,used:++serial,smooth:null,ready:false,cancel:null};textures.set(img,entry);bytes+=size;r.pending=entry;
-  const reject=()=>{entry.cancel?.();gl.deleteTexture(t);if(textures.get(img)===entry){textures.delete(img);bytes-=size;}if(r.pending===entry)r.pending=null;failedImages.add(img);uploadFailures++;};
-  try{
-   gl.bindTexture(gl.TEXTURE_2D,t);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-   entry.cancel=afterGpuCommands(gl,()=>{if(gl.getError()!==gl.NO_ERROR)throw Error('sprite_upload_failed');entry.ready=true;entry.cancel=null;r.pending=null;},reject);
-  }catch{reject();}
-  return null;
+ if(!r.ready||failedImages.has(img))return null;
+ if(entry)return entry.ready&&!r.pending?(entry.used=++serial,entry):null;
+ // Up to eight allocations from the same drawing turn share their latest
+ // completion fence and error query. No draw uses this context until the whole
+ // batch validates. Replacing a fence includes every newly submitted upload.
+ if(r.pending?.entries.length>=8)return null;
+ const width=img.naturalWidth||img.width,height=img.naturalHeight||img.height;
+ if(!width||!height||Math.max(width,height)>r.maxTextureSize)return null;
+ const size=width*height*4;if(size>MAX_TEXTURE_BYTES)return null;
+ while(bytes+size>MAX_TEXTURE_BYTES){
+  const candidates=[...textures].filter(([,value])=>value.ready);
+  if(!candidates.length)return null;
+  const [key,old]=candidates.reduce((a,b)=>a[1].used<b[1].used?a:b);
+  gl.deleteTexture(old.texture);textures.delete(key);bytes-=old.bytes;
  }
- if(!entry.ready)return null;entry.used=++serial;return entry;
+ const t=gl.createTexture();if(!t)return null;
+ entry={texture:t,width,height,bytes:size,used:++serial,smooth:null,ready:false};
+ textures.set(img,entry);bytes+=size;
+ const batch=r.pending||{entries:[],cancel:null,done:false};r.pending=batch;
+ batch.entries.push({img,entry});batch.cancel?.();batch.cancel=null;
+ const reject=()=>{
+  if(batch.done)return;batch.done=true;batch.cancel?.();batch.cancel=null;
+  for(const {img,entry}of batch.entries){
+   gl.deleteTexture(entry.texture);
+   if(textures.get(img)===entry){textures.delete(img);bytes-=entry.bytes;}
+   failedImages.add(img);uploadFailures++;
+  }
+  if(r.pending===batch)r.pending=null;
+ };
+ try{
+  gl.bindTexture(gl.TEXTURE_2D,t);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  batch.cancel=afterGpuCommands(gl,()=>{
+   if(gl.getError()!==gl.NO_ERROR)throw Error('sprite_upload_failed');
+   for(const {entry}of batch.entries)entry.ready=true;
+   batch.done=true;batch.cancel=null;if(r.pending===batch)r.pending=null;
+  },reject);
+ }catch{reject();}
+ return null;
 }
 function paintSurface(ctx,img,frame,mesh){
  const r=initialize();if(!r)return false;
@@ -80,4 +102,4 @@ export function drawConnectedSurface(ctx,img,frame,mesh,makePose,paintFallback){
  };
  try{const a=get(first);if(fraction<1e-7||first===last){ctx.drawImage(a.image,a.sx,a.sy,a.sw,a.sh,a.x,a.y,a.w,a.h);return true;}const b=get(last,[a.key]),x=Math.min(a.x,b.x),y=Math.min(a.y,b.y),w=Math.ceil((Math.max(a.x+a.w,b.x+b.w)-x)*density),h=Math.ceil((Math.max(a.y+a.h,b.y+b.h)-y)*density);blendCanvas??=document.createElement('canvas');if(blendCanvas.width<w)blendCanvas.width=w;if(blendCanvas.height<h)blendCanvas.height=h;const g=blendCanvas.getContext('2d');g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,blendCanvas.width,blendCanvas.height);g.imageSmoothingEnabled=smoothing;g.globalCompositeOperation='source-over';g.globalAlpha=1-fraction;g.drawImage(a.image,a.sx,a.sy,a.sw,a.sh,(a.x-x)*density,(a.y-y)*density,a.w*density,a.h*density);g.globalCompositeOperation='lighter';g.globalAlpha=fraction;g.drawImage(b.image,b.sx,b.sy,b.sw,b.sh,(b.x-x)*density,(b.y-y)*density,b.w*density,b.h*density);g.globalAlpha=1;g.globalCompositeOperation='source-over';ctx.drawImage(blendCanvas,0,0,w,h,x,y,w/density,h/density);return true;}catch{return paintSurface(ctx,img,frame,mesh);}
 }
-export function connectedSurfaceStatus(){return{backend:renderer?'WebGL2 connected surface':unavailable?'Canvas connected surface':'not needed',ready:!!renderer?.ready,draws:renderer?.draws||0,textures:textures.size,pendingUploads:renderer?.pending?1:0,uploadFailures,textureBytes:bytes,limitBytes:MAX_TEXTURE_BYTES,poseCache:{...poseAtlas.inspect(),hits,misses}};}
+export function connectedSurfaceStatus(){return{backend:renderer?'WebGL2 connected surface':unavailable?'Canvas connected surface':'not needed',ready:!!renderer?.ready,draws:renderer?.draws||0,textures:textures.size,pendingUploads:renderer?.pending?.entries.length||0,uploadFailures,textureBytes:bytes,limitBytes:MAX_TEXTURE_BYTES,poseCache:{...poseAtlas.inspect(),hits,misses}};}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v298-agent-source",
+  "release": "hyper-dimension-v299-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 112314,
-      "sha256": "b0b1d9cc6aabe7f5b393e4f9d6d5b7ad81af79574218238c67c905cdb5a168a8"
+      "bytes": 112751,
+      "sha256": "786a117e741c040b6dac2a821e273f779370f06a32418d1a00a276dcf7702e67"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 16873,
-      "sha256": "9075d28a62f88ca79d1df1d4fa4710d86df4eaf4d58736692d1984ab67d164db"
+      "bytes": 16912,
+      "sha256": "dde120b767a1d7d3d17e0cb7cc7d2094f273b41a605a378c860d48985a7e73a1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6672,8 +6672,8 @@
     },
     {
       "path": "src/connectedSpriteSurface.js",
-      "bytes": 10835,
-      "sha256": "c2e84cff5021d9277e7174340805c34f7dd72a6fc38d78b6e5df9dc775b526ed"
+      "bytes": 11353,
+      "sha256": "34a4f3f2f7087089606a6d142e7139917e29243583cfd510ff3c5b3ad1fc6d45"
     },
     {
       "path": "src/content-ui.css",
@@ -11407,8 +11407,8 @@
     },
     {
       "path": "tools/agent-deploy.mjs",
-      "bytes": 9802,
-      "sha256": "b23bc61e0735cacbb1098f9d15f81f2d6fb897332c7d88c866672644648ad22a"
+      "bytes": 9862,
+      "sha256": "dafaf65315d74515b8b5cd6782701072b27040ee5de67a05e2b7c6336b0c20ba"
     },
     {
       "path": "tools/agent-install.py",
@@ -13332,8 +13332,8 @@
     },
     {
       "path": "tests/v281-player-action-browser.mjs",
-      "bytes": 8487,
-      "sha256": "a067bb1902443f34f33bd854b221b33d2bdf35f79b14148beb19423c341ae795"
+      "bytes": 9641,
+      "sha256": "75de8c80bd689d318a65770b181aaef1dea4eb0c829501d09c0e1a375604bba1"
     },
     {
       "path": "tests/v281-player-action-clock.test.mjs",
@@ -13592,8 +13592,8 @@
     },
     {
       "path": "tests/v297-gpu-completion.test.mjs",
-      "bytes": 8073,
-      "sha256": "4448c068b023cfcd4f66a55f9b18d31b2b8655c43c1323bbb2af093ab815208d"
+      "bytes": 9957,
+      "sha256": "e9def3039ccdd4a3448639987fa2745eea0d8cf35553b21ecd0fa8d53c13fb0a"
     },
     {
       "path": "docs/renderer-validation-v297.md",
@@ -13624,7 +13624,27 @@
       "path": "docs/verification-v298.json",
       "bytes": 2455,
       "sha256": "e949d2d86a0b6eab2c5bfe2f6e16cdb577fd7f0df861d55f75e2e5b84e75e177"
+    },
+    {
+      "path": "tools/verificationCommands.mjs",
+      "bytes": 997,
+      "sha256": "84b522c3d900b521f1c591d908ea288e5d4870330e982faffcb5dccc4cd22003"
+    },
+    {
+      "path": "tests/v299-agent-verification.test.mjs",
+      "bytes": 3402,
+      "sha256": "a3d9e5016996e6ad67419146fe66b7c247b7e1030df406ec2066b2dc7650f60e"
+    },
+    {
+      "path": "docs/agent-verification-v299.md",
+      "bytes": 2294,
+      "sha256": "c1672297fb3329906748432dd0c707827e2a645e91856635a865fbf872d1f888"
+    },
+    {
+      "path": "docs/verification-v299.json",
+      "bytes": 2134,
+      "sha256": "e68ec57f093794227e8674cbbd228f4791df160e3c0709bb8bcdf5459894d0c9"
     }
   ],
-  "publicRevision": "v298-nearby-obstacles-and-locked-official-driver"
+  "publicRevision": "v299-ordered-agent-verification-and-bounded-upload-batches"
 }
