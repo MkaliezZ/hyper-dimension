@@ -46,7 +46,7 @@
       "pauseResumptions": 1
     }
   ],
-  "hostedRepairConfirmed": false,
+  "hostedRepairConfirmed": true,
   "fullMatrixPassed": false,
   "wholeGoalComplete": false,
   "humanOrPhysicalDeviceAcceptance": false,
@@ -56,5 +56,10 @@
     "node25Passed": 21,
     "failed": 0,
     "skipped": 0
-  }
+  },
+  "hostedRun": 39284841398,
+  "hostedJob": 118167764027,
+  "hostedArtifact": 12203248179,
+  "hostedCasesPassed": 4,
+  "sourceInventoryOmissionReconciled": true
 }

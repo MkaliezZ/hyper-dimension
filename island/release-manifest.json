@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v318-agent-source",
+  "release": "hyper-dimension-v319-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 121930,
-      "sha256": "c60817a8e358087762d6b3966537056c702eed3048bc831bec123df06abc0ce0"
+      "bytes": 122353,
+      "sha256": "8eff4918361a9a695fb689926ac90f581a5d9714ade7b972ea4d6e86ec8cb739"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9192,8 +9192,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 15070,
-      "sha256": "5d71c55322e7b965975b0cf24f36657e12292ffe952de54a26f4fff06867eddd"
+      "bytes": 16183,
+      "sha256": "8de6896995421003a3ea6de808b0299c167bf33defaeaf345dd10812a9fc8abc"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -13999,7 +13999,17 @@
       "path": "docs/artwork-decode-recovery-v318.md",
       "bytes": 2003,
       "sha256": "a379ce215e29f3c435b6ad4d90b364bfa242a601655741634899a4a752f9383f"
+    },
+    {
+      "path": "docs/native-soil-pause-v319.md",
+      "bytes": 1620,
+      "sha256": "1f462f9b985c8b7f28461d923af11199a73d0b6e8bb37a0099d507ea89e566dc"
+    },
+    {
+      "path": "docs/verification-v319.json",
+      "bytes": 1768,
+      "sha256": "f749f0a664c5644c5374dcd70b0e185168994da9afe50ce5137a5966f7303638"
     }
   ],
-  "publicRevision": "v318-bounded-artwork-decode"
+  "publicRevision": "v319-native-greenhouse-pause-and-source-inventory"
 }

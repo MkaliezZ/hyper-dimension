@@ -965,4 +965,4 @@ Required images receive bounded read-only decode retries while permanent failure
 
 ## V319 · 温室推箱检查暂停续玩
 
-仅修正原生检查脚本在正常暂停时继续点击底层方向键的问题。旧脚本双画风故障复现；修正后通过真实继续按钮，完成制作、施肥、180 秒完整生长、收获与刷新唯一结算。游戏规则与运行代码不变；托管 Intel Mac 恢复仍待确认。见[验证范围](native-soil-pause-v319.md)。
+仅修正原生检查脚本在正常暂停时继续点击底层方向键的问题。旧脚本双画风故障复现；修正后通过真实继续按钮，完成制作、施肥、180 秒完整生长、收获与刷新唯一结算。游戏规则与运行代码不变；托管 Intel Mac 普通与主动暂停的四个案例已通过。见[验证范围](native-soil-pause-v319.md)。
