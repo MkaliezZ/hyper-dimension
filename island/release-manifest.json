@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v309-agent-source",
+  "release": "hyper-dimension-v310-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 117419,
-      "sha256": "4ee293100652a478ea98f40b45aebdcbf6b3fee0115dca3ebf7e6b16773bcbb8"
+      "bytes": 118104,
+      "sha256": "b7dcbff686fc4799914ed9572ba5670aca84bfc696cd2768cbfff58ecebbfbac"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17248,
-      "sha256": "9831eb62048b5123a5eedaf76f14ec40f39ca66ac0a6fd640b3fb24867b2a47d"
+      "bytes": 17288,
+      "sha256": "10037922cef56d48ea1997202db29cd65135f68cf47cb4856fb661cc3178338d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 146449,
-      "sha256": "92b43a06f6d65a27177dd3e79fd0ddbcb74e369f752ab824465582ce7c525189"
+      "bytes": 146822,
+      "sha256": "9518b9bc68218dff67084b06cb4afe7b863c4a690a32ec55f215ac9ff6af5b10"
     },
     {
       "path": "src/arcade.css",
@@ -6687,8 +6687,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 18280,
-      "sha256": "870b3c312a89c8235d9d33c580465bb6d9aea90188324ff26635a7e2914d2da2"
+      "bytes": 18348,
+      "sha256": "fe2d4c5c95ecc55109efda0ef4677a3ac00154cd8e074a4505a22017cb79079b"
     },
     {
       "path": "src/conversationFallback.js",
@@ -7957,8 +7957,8 @@
     },
     {
       "path": "src/saveScheduler.js",
-      "bytes": 642,
-      "sha256": "a44fc5268c966fe5c6188c582ceb68045ac9c4886931276663fa00f7ea2d5d6b"
+      "bytes": 1049,
+      "sha256": "ff0eb0e3e240d455dd0a6ca5d9b4fd0db18c082d9ddd977646fc4706d721edb6"
     },
     {
       "path": "src/saveStorage.js",
@@ -13864,7 +13864,22 @@
       "path": "docs/verification-v309.json",
       "bytes": 2886,
       "sha256": "aba4888c1c8990a957e8e9323f1da80d24b55cc8ae825fa1b39031b2b111ab26"
+    },
+    {
+      "path": "tests/v310-save-paint-priority.test.mjs",
+      "bytes": 2875,
+      "sha256": "78093b9a0ce52f3da402803ef3f5b060ba880226408870143f23d90c0f0af013"
+    },
+    {
+      "path": "docs/save-paint-priority-v310.md",
+      "bytes": 2734,
+      "sha256": "0215caa7b1133690d7cb86a4cff325a908f1dd77ebd027207fc0ea8786b175a7"
+    },
+    {
+      "path": "docs/verification-v310.json",
+      "bytes": 2965,
+      "sha256": "68d2c343b94d31596c763a4cb11362f4a638b740ec23384887004d09478ee56b"
     }
   ],
-  "publicRevision": "v309-native-evidence"
+  "publicRevision": "v310-save-paint-priority"
 }

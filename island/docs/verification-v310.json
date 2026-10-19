@@ -1,0 +1,81 @@
+{
+  "version": "V310",
+  "at": "2026-10-19T10:51:27.294500+00:00",
+  "observedFailure": {
+    "run": 39225273325,
+    "job": 117986137807,
+    "sourceCommit": "404660168dceb70843e444fc9c5049148425d4ea",
+    "phase": "native player action preparation",
+    "budgetMs": 15000
+  },
+  "profile": {
+    "run": 39237247406,
+    "job": 118009203693,
+    "sourceCommit": "404660168dceb70843e444fc9c5049148425d4ea",
+    "passed": false,
+    "phase": "real unrelated resident response not held before original preparation deadline",
+    "sampleMs": 26777.217,
+    "drawWorldInclusiveSampleMs": 6503.2,
+    "firstSoundContextSelfSampleMs": 1824.1,
+    "notAnAllDeviceBenchmark": true
+  },
+  "repair": {
+    "staticCollectionBackdropRetained": true,
+    "resizeStillPaints": true,
+    "onlyOneConsecutiveDurablePreparationPaintMayBeDeferred": true,
+    "simulationAcceptedActionsNavigationAndClockKeepUpdating": true,
+    "soundKept": true,
+    "snapshotCompletionNetworkDeadlinesAndAuthorityUnchanged": true,
+    "nativePlayerTestUnchanged": true,
+    "original15000msPreparationBudgetRetained": true
+  },
+  "localNative": {
+    "cpuThrottleRate": 2,
+    "initialBaselineAndCatalogCandidateBothPassed": true,
+    "hostedFailureNotReproducedLocally": true,
+    "completeCandidateBothStylesNormalAnd3000msObserverDelayPassed": true,
+    "poseFinishedWhileRealForeignReceiptWasHeld": true,
+    "inventoryStillWaitedForAuthority": true,
+    "oneFinishOneGainAndReloadPreserved": true,
+    "readOnlyCountersConfirmedCatalogPaintsZero": true,
+    "readOnlyCountersConfirmedMaximumConsecutiveDeferredPaintsOne": true
+  },
+  "rules": {
+    "qualificationPending": false,
+    "newBoundaryChecks": 7,
+    "focusedChecksPassedPerRuntime": 38,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "fullDefaultsPassedPerRuntime": 1600,
+    "failures": 0,
+    "skipped": 0,
+    "executableSourceUnchangedAfter": true
+  },
+  "parentHostedRecovery": {
+    "sourceCommit": "8918757b56eb6baf6f577fc56f5740ed0cbf826e",
+    "restoreRun": 39237678197,
+    "restoreJob": 118010627748,
+    "sixCasesPassed": true,
+    "frameRun": 39237682964,
+    "bothStylesThreeRealTaskReceiptsAndRequiredPNGsOnWindowsMacARMMacIntel": true,
+    "selectedArtifactEntryCRCsVerified": true,
+    "fullArtifactZipSHA256Verified": false
+  },
+  "hostedPlayerSetupRepairConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false,
+  "currentOtherHostedFailure": {
+    "run": 39237541020,
+    "job": 118012487788,
+    "sourceCommit": "8918757b56eb6baf6f577fc56f5740ed0cbf826e",
+    "phase": "custom shelf PNG decode exceeded original 5000 ms in both styles",
+    "diagnosisPending": true,
+    "originalNativeTestAndBudgetUnchanged": true
+  }
+}

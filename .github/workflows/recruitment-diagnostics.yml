@@ -5,7 +5,7 @@ on:
       test_case:
         description: Keep the original native assertions and budgets; use the real pause/resume button
         type: choice
-        options: [recruitment, player-action, custom-content, pearl-cup, save-replacement]
+        options: [recruitment, player-action, custom-content, pearl-cup, save-replacement, custom-shops]
         default: recruitment
       profiler:
         description: Sample only the owned native fixture page CPU stack
@@ -22,8 +22,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   recruitment-progress:
-    name: ${{ inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'save-replacement' && 'macos-15-intel / save replacement' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
-    runs-on: ${{ inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
+    name: ${{ inputs.test_case == 'custom-shops' && 'windows-2022 / custom shelf artwork' || inputs.test_case == 'custom-content' && 'macos-14 / catalog synchronization' || inputs.test_case == 'save-replacement' && 'macos-15-intel / save replacement' || inputs.test_case == 'pearl-cup' && 'macos-15-intel / pearl cup pause' || 'macos-15-intel / recruitment scheduling' }}
+    runs-on: ${{ inputs.test_case == 'custom-shops' && 'windows-2022' || inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -45,12 +45,17 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-${{ inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
+          name: native-scheduling-${{ inputs.test_case || 'recruitment' }}-${{ inputs.test_case == 'custom-shops' && 'windows-2022' || inputs.test_case == 'custom-content' && 'macos-14' || 'macos-15-intel' }}
           path: |
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/scheduling-journal-*.json
             island/qa/v287/native-recruitment-progress/*.png
             island/qa/v287/native-recruitment-progress/*.cpuprofile
+            island/qa/v228/native-custom-shops/report.json
+            island/qa/v228/native-custom-shops/work-progress.json
+            island/qa/v228/native-custom-shops/scheduling-journal-*.json
+            island/qa/v228/native-custom-shops/*.png
+            island/qa/v228/native-custom-shops/*.cpuprofile
             island/qa/v281/native-player-action/report.json
             island/qa/v281/native-player-action/scheduling-journal-*.json
             island/qa/v281/native-player-action/*.png

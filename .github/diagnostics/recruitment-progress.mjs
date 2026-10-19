@@ -10,12 +10,12 @@ import {spawnSync} from 'node:child_process';
 const root=resolve('island'),require=createRequire(join(root,'package.json'));
 const {chromium}=require('playwright-core');
 const nativeCase=process.env.HD_QA_NATIVE_CASE||'recruitment';
-if(!['recruitment','player-action','custom-content','pearl-cup','save-replacement'].includes(nativeCase))throw Error('Unknown native diagnostic case');
+if(!['recruitment','player-action','custom-content','pearl-cup','save-replacement','custom-shops'].includes(nativeCase))throw Error('Unknown native diagnostic case');
 const backdropCandidate=process.env.HD_QA_RECRUIT_BACKDROP==='1';
 if(backdropCandidate&&nativeCase!=='recruitment')throw Error('Recruitment candidate cannot modify player-action diagnostics');
 const profileEnabled=process.env.HD_QA_NATIVE_PROFILE==='1';
-const nativeTest=({'recruitment':'v287-recruitment-progress-browser.mjs','player-action':'v281-player-action-browser.mjs','custom-content':'v224-custom-content-browser.mjs','pearl-cup':'v156-pearl-cup-craft-browser.mjs','save-replacement':'v226-save-replacement-browser.mjs'})[nativeCase];
-const out=resolve(process.env.HD_QA_OUT||join(root,({'recruitment':'qa/v287/native-recruitment-progress','player-action':'qa/v281/native-player-action','custom-content':'qa/v224/native-custom-content','pearl-cup':'qa/v156/native-pearl-cup-craft','save-replacement':'qa/v226/native-save-replacement'})[nativeCase]));
+const nativeTest=({'recruitment':'v287-recruitment-progress-browser.mjs','player-action':'v281-player-action-browser.mjs','custom-content':'v224-custom-content-browser.mjs','pearl-cup':'v156-pearl-cup-craft-browser.mjs','save-replacement':'v226-save-replacement-browser.mjs','custom-shops':'v228-custom-shops-browser.mjs'})[nativeCase];
+const out=resolve(process.env.HD_QA_OUT||join(root,({'recruitment':'qa/v287/native-recruitment-progress','player-action':'qa/v281/native-player-action','custom-content':'qa/v224/native-custom-content','pearl-cup':'qa/v156/native-pearl-cup-craft','save-replacement':'qa/v226/native-save-replacement','custom-shops':'qa/v228/native-custom-shops'})[nativeCase]));
 await mkdir(out,{recursive:true});
 const originalLaunch=chromium.launch.bind(chromium),cases=[];
 const record=(row,event,details={})=>{if(row.events.length<1500)row.events.push({at:Date.now(),event,...details});};
@@ -48,6 +48,7 @@ async function snapshot(row,page,phase){
   const status=progress&&theme?progress.saves.status(theme):null,co=view?.cocreation;
   return {diagnostic:window.__hdRecruitDiagnostic,foreign:window.__recruitForeign,theme,playerAction:window.__playerActionQA?.inspect(),
    ocean:{backend:view?.environment?.art?.backend,worker:view?.environment?.art?.oceanWorker},frameLoop:view?.frameLoop,raster:view?.rendering?.raster,cocreation:co?{view:co.view,chosen:co.chosen,flight:co.flight,pending:!!co.pending,catalogSync:co.catalogSync,badges:document.querySelector('.co-badges')?.textContent}:null,saveUI:{status:document.querySelector('#saveStatus')?.dataset.status,message:document.querySelector('#saveStatus')?.textContent},
+   artworkRequests:performance.getEntriesByType('resource').filter(e=>/\/api\/cocreation\/(pixel|origami)\/art\//.test(e.name)).slice(-12).map(e=>({path:new URL(e.name).pathname,initiatorType:e.initiatorType,startTime:e.startTime,duration:e.duration,responseEnd:e.responseEnd,transferSize:e.transferSize,decodedBodySize:e.decodedBodySize})),
    save:status?Object.fromEntries(['status','message','dirty','capturing','reconciling','pending','recovering'].map(k=>[k,status[k]])):null,
    resumeDisabled:document.querySelector('#recruitResume')?.disabled,
    busy:document.querySelector('#recruitmentPanel')?.getAttribute('aria-busy'),
@@ -130,6 +131,7 @@ chromium.launch=async(...args)=>{
     record(row,'request',{path,method:request.method(),...(input&&typeof input==='object'?{kind:input.kind,operation:input.operation}:{} )});
    });
    page.on('response',response=>{const path=new URL(response.url()).pathname;if(path.startsWith('/api/'))record(row,'response',{path,status:response.status()});});
+   page.on('requestfinished',request=>{const path=new URL(request.url()).pathname;if(/^\/api\/cocreation\/(pixel|origami)\/art\//.test(path))record(row,'artwork-finished',{path,timing:request.timing()});});
    page.on('requestfailed',request=>{const path=new URL(request.url()).pathname;if(path.startsWith('/api/'))record(row,'requestfailed',{path,error:request.failure()?.errorText});});
    page.on('pageerror',error=>record(row,'pageerror',{error:safeError(error)}));
   });

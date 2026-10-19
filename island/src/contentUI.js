@@ -95,6 +95,7 @@ export function createContentUI(api){
   const rows=RAW_MATERIALS.filter(i=>i.source===source),s=state();
   openModal('采集手账','每种素材都有采集地点、操作动作和制作用途',
    '<div class="content-tabs">'+Object.entries(sources).map(([key,n])=>'<button data-source="'+key+'" class="'+(key===source?'active':'')+'">'+n+'</button>').join('')+'</div><p class="hint">'+({forest:'到达林地后采集。木料使用斧头，植物与蜂产物使用采集动作。',mine:'选择矿种，再进入矿洞敲击矿脉。击碎后获得选定矿物。',farm:'逐块锄地、选择种子、浇水、等待成熟并收获；通用种子从收获与种苗研究取得。',greenhouse:'在育苗温室培育区采收花草，制作种苗和花艺。',shore:'沿码头海岸拾取冲上岸的材料。珊瑚碎片来自漂流物。',fishing:'持续控制浮标位置，完成收线后取得海产。'}[source])+'</p><div class="catalog-grid">'+rows.map(i=>'<button class="catalog-card" data-gather="'+i.id+'">'+icon(i.id)+'<b>'+esc(i.name)+'</b><small>持有 ×'+s.inventory[i.id]+'</small></button>').join('')+'</div>');
+  root().querySelector('.modal').classList.add('collection-modal');
   bind('[data-source]',el=>collection(el.dataset.source));bind('[data-gather]',el=>gather(ITEM_BY_ID[el.dataset.gather]));
  }
  return {player,wardrobe,bag,recipes,collection,detail};
