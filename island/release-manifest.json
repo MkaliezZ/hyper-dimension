@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v316-agent-source",
+  "release": "hyper-dimension-v317-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 120949,
-      "sha256": "654096794af76b96b379f66dfb3364df08bda0a6648862cfbe6a5aa94ceb852a"
+      "bytes": 121423,
+      "sha256": "ca6ff8796c8c925f815f719c2c8282acf416034a4eb286a667afac40baa0fae1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -8027,8 +8027,8 @@
     },
     {
       "path": "src/serverCommerceUI.js",
-      "bytes": 3081,
-      "sha256": "94a751f0a83f1a5a3c3a19644112ae7ebc77a2a04c318c11a139c4f9de2e5bfe"
+      "bytes": 3260,
+      "sha256": "5a087c3cc28868059524e700935382fed94384594d761bf5d6ed8118bbcbb292"
     },
     {
       "path": "src/serverCraftUI.js",
@@ -12442,8 +12442,8 @@
     },
     {
       "path": "tests/v227-custom-agent-browser.mjs",
-      "bytes": 7681,
-      "sha256": "0d0f0bfbc9334c2a8656152e512c8375c0cd921c09fdec76ab2b893cc738a378"
+      "bytes": 7857,
+      "sha256": "65e4000190239a84e0672f06cc9939650786186b4d44e0b5eea0a491729afd8e"
     },
     {
       "path": "docs/custom-agent-v227.md",
@@ -13969,7 +13969,22 @@
       "path": "docs/native-receipt-pause-v316.md",
       "bytes": 1516,
       "sha256": "a0973d2c12966b547ba7c99189a5959f5120b12fb1a887eb6db760a6b1dc078e"
+    },
+    {
+      "path": "tests/v317-plan-queue-browser.mjs",
+      "bytes": 9534,
+      "sha256": "c6635be1ead4ac71db523eacb7b31e066728d92dd36a08fb1ba008be91c6c6a8"
+    },
+    {
+      "path": "docs/verification-v317.json",
+      "bytes": 1434,
+      "sha256": "870b3feb44d326fe1b5e116ac69b679901ba97599efdc7d9b04d22bc15424190"
+    },
+    {
+      "path": "docs/manual-plan-queue-v317.md",
+      "bytes": 2268,
+      "sha256": "cae0b2c92d8cffcc7d3cbc7af63fe3cdbfd3fc13312cbf340cbf81e81adde5dd"
     }
   ],
-  "publicRevision": "v316-native-receipt-resume"
+  "publicRevision": "v317-manual-plan-queue"
 }

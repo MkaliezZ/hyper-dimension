@@ -417,6 +417,10 @@ jobs:
           HD_QA_WORK_JOURNAL: "1"
         run: node tests/v227-custom-agent-browser.mjs
 
+      - name: Native manual planning through queued resident work
+        if: matrix.group == 'content'
+        run: node tests/v317-plan-queue-browser.mjs
+
       - name: Native custom product shelves and visitor sales
         if: matrix.group == 'content'
         env:
@@ -491,6 +495,8 @@ jobs:
             island/qa/v308/native-resident-start-timeout/report.json
             island/qa/v311/native-resident-finish-timeout/report.json
             island/qa/v315/native-resident-lan-busy/report.json
+            island/qa/v317/native-plan-queue/report.json
+            island/qa/v317/native-plan-queue/*.png
             island/qa/v305/native-catalog-refresh/report.json
             island/qa/v305/native-catalog-refresh/*.png
             island/qa/v224/native-custom-content/report.json

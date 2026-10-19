@@ -1,0 +1,33 @@
+{
+  "version": "V317",
+  "at": "2026-10-19T14:35:14.534305+00:00",
+  "passed": true,
+  "scope": "Manual plan creation uses existing foreground scheduling without crossing active receipts or checkpoint barriers.",
+  "sourceHashes": {
+    "src/serverCommerceUI.js": "5a087c3cc28868059524e700935382fed94384594d761bf5d6ed8118bbcbb292",
+    "tests/v227-custom-agent-browser.mjs": "65e4000190239a84e0672f06cc9939650786186b4d44e0b5eea0a491729afd8e",
+    "tests/v317-plan-queue-browser.mjs": "c6635be1ead4ac71db523eacb7b31e066728d92dd36a08fb1ba008be91c6c6a8"
+  },
+  "controlledOldNativeCasesFailed": 2,
+  "controlledCandidateNativeCasesPassed": 2,
+  "activeReceiptBeforePlanAndBackgroundAfterPlanVerified": true,
+  "tenDeclaredWoodReservedOnceAndDiskReopened": true,
+  "noStockOrCashCreated": true,
+  "localOriginalCustomAgentBothStylesPassed": true,
+  "localUnmodifiedOriginalAlsoPassed": true,
+  "exactHostedSlowFilesystemTimingReproduced": false,
+  "originalConcurrentThemesNormalWorkTimesRecipeDeliveriesAndReloadAssertionsRetained": true,
+  "originalTimeoutBudgetsUnchanged": true,
+  "relatedRuleTests": {
+    "node22Passed": 24,
+    "node25Passed": 24,
+    "failed": 0,
+    "skipped": 0
+  },
+  "fullDefaultRulesRerun": false,
+  "hostedWindowsRepairConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "inheritedSlowArtworkStartupStillUnqualified": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

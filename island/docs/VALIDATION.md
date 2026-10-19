@@ -951,3 +951,8 @@ An explicit503/lan_busy reply now uses the existing bounded durable-action retry
 ## V316 - Native receipt pause interaction
 
 All six default independent-receipt scenarios and one additional real mid-board pause/cancel scenario pass locally. The driver operates Continue and verifies the board is preserved, keeping original claim, cancellation, uncertainty and timing assertions. Runtime is unchanged fromV315. See [native-receipt-pause-v316.md](native-receipt-pause-v316.md) and [verification-v316.json](verification-v316.json). Hosted and broader delivery acceptance remain pending.
+
+
+## V317 - Manual project queue
+
+Manual plan creation can pass unstarted background jobs while retaining active-receipt and checkpoint ordering. Both controlled native appearances and the original concurrent recipe preparation/reopen flow pass locally; related rules pass24 cases per tested runtime. Hosted Windows recovery and the full matrix remain pending. See [manual-plan-queue-v317.md](manual-plan-queue-v317.md) and [verification-v317.json](verification-v317.json).
