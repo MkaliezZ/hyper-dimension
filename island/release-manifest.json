@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v303-agent-source",
+  "release": "hyper-dimension-v304-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 114961,
-      "sha256": "bafdd3f99c33871a29844b020c412cba9fe0545fa3ac99380df75e251452a17f"
+      "bytes": 115376,
+      "sha256": "26871740e09ad58c22e47ab41a22ba0089eb29dec1cb4eb8c83382edd789151c"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17053,
-      "sha256": "30f1406cc7fca17a593bc5d116bd74b2f198903a4716baeba67bd13b1da33369"
+      "bytes": 17091,
+      "sha256": "b9990e2ee7bfb2e7c7cd13b7fbcd72abb2b67f22e23f65fdb064fbde3f40d55d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7727,8 +7727,8 @@
     },
     {
       "path": "src/rasterQuality.js",
-      "bytes": 5836,
-      "sha256": "60e9f523692c3723539a82542b260212fa574f2d316faf8a7cc23ce78f5355e4"
+      "bytes": 5995,
+      "sha256": "10607d0aeb82464c8fd3388f8624d77940df92942c846d7c3afacd00c6472713"
     },
     {
       "path": "src/rasterQualityWorker.js",
@@ -13749,7 +13749,32 @@
       "path": "docs/visitor-timeout-v303.md",
       "bytes": 1916,
       "sha256": "cd60a72a703bcba35fb3310566c15a2712c15dc557abb7fcf35c821fdf895846"
+    },
+    {
+      "path": "src/rasterVisibility.js",
+      "bytes": 1180,
+      "sha256": "89089c67469562e151a79005904d242ed65b61785918906df4e8eb7078721870"
+    },
+    {
+      "path": "tests/v304-raster-visibility.test.mjs",
+      "bytes": 4029,
+      "sha256": "7a4e88bbb87219d60ad01df359a5c7c13c4fb8a8a9d88632dc9d14a7d4feb6d4"
+    },
+    {
+      "path": "tests/v304-raster-visibility-browser.mjs",
+      "bytes": 6876,
+      "sha256": "b0cb706611fc000bf5a6857d132b39fc28890e41a83137c695f28ca7b533ab4b"
+    },
+    {
+      "path": "docs/verification-v304.json",
+      "bytes": 3450,
+      "sha256": "bb6d0b9c29fdbebedf54d7922c05bc8c6b289c4b7b27ee296e4dcfcfc8d555eb"
+    },
+    {
+      "path": "docs/raster-visibility-v304.md",
+      "bytes": 2000,
+      "sha256": "0aebf6f3f55c3f8e511f5e353cf2ed2c01558af9906c183a932b4bef5105373e"
     }
   ],
-  "publicRevision": "v303-visitor-timeout"
+  "publicRevision": "v304-raster-visibility"
 }

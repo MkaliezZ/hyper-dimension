@@ -165,6 +165,9 @@ jobs:
         if: inputs.check_scope != 'soil-diagnostics'
         run: node tests/v153-portraits-browser.mjs
 
+      - name: Native raster visibility without pixel changes
+        run: node tests/v304-raster-visibility-browser.mjs
+
       - name: Native personal modal receipt and backdrop
         if: inputs.check_scope != 'soil-diagnostics'
         working-directory: island
@@ -205,6 +208,7 @@ jobs:
             island/qa/v155/native-product-clips/probe-input.json
             island/qa/v155/native-product-clips/failure-product-svg.png
             island/qa/v155/native-product-clips/*-c24_2-svg.png
+            island/qa/v304/native-raster-visibility/report.json
             island/qa/v294/personal-backdrop/report.json
             island/qa/v294/personal-backdrop/*.png
             island/qa/v219/native-painting-tools/report.json
@@ -251,6 +255,8 @@ jobs:
       - name: Native curator and steward homes
         run: node tests/v199-legacy-homes-browser.mjs
       - name: Native curator journal across appearance switch
+        env:
+          DEBUG: pw:browser
         run: node tests/v199-legacy-homes-lan-browser.mjs
       - name: Native steward journal and exchange entry
         env:
@@ -677,6 +683,8 @@ jobs:
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
       - name: Native curator journal across appearance switch
+        env:
+          DEBUG: pw:browser
         run: node tests/v199-legacy-homes-lan-browser.mjs
       - name: Native steward journal and exchange entry
         env:

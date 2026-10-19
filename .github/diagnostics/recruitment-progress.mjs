@@ -47,7 +47,7 @@ async function snapshot(row,page,phase){
   const progress=window.__recruitProgress,view=window.islandInspect?.(),theme=view?.theme;
   const status=progress&&theme?progress.saves.status(theme):null;
   return {diagnostic:window.__hdRecruitDiagnostic,foreign:window.__recruitForeign,theme,playerAction:window.__playerActionQA?.inspect(),
-   ocean:{backend:view?.environment?.art?.backend,worker:view?.environment?.art?.oceanWorker},frameLoop:view?.frameLoop,
+   ocean:{backend:view?.environment?.art?.backend,worker:view?.environment?.art?.oceanWorker},frameLoop:view?.frameLoop,raster:view?.rendering?.raster,
    save:status?Object.fromEntries(['status','message','dirty','capturing','reconciling','pending','recovering'].map(k=>[k,status[k]])):null,
    resumeDisabled:document.querySelector('#recruitResume')?.disabled,
    busy:document.querySelector('#recruitmentPanel')?.getAttribute('aria-busy'),

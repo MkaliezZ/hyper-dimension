@@ -1,0 +1,103 @@
+{
+  "version": "V304",
+  "at": "2026-10-19T04:58:46.570357+00:00",
+  "observedHostedFailure": {
+    "run": 39195999541,
+    "job": 117879181270,
+    "step": "Native granted player actions during unrelated receipts",
+    "theme": "origami",
+    "originalSetupDeadlineMs": 15000
+  },
+  "cpuEvidence": {
+    "diagnosticRun": 39197680659,
+    "artifactId": 12163490838,
+    "originalGameAndDeadlinesUnchanged": true,
+    "origamiBeforeReloadProfileMs": 19989.9,
+    "origamiRenderInclusiveMs": 9542.9,
+    "buildingResidenceAndHarborRasterSelfApproxMs": 6818.3,
+    "diagnosticPassingIsNotMatrixRecovery": true
+  },
+  "repair": {
+    "skipOnlyFullyInvisibleSourceOverRaster": true,
+    "allFourCornersInBackingCanvasSpace": true,
+    "devicePixelFringe": 2,
+    "ambiguousFiltersShadowsCompositesKeepOriginalPath": true,
+    "reconstructionAndCacheUnchanged": true,
+    "resolutionArtAnimationClockAndDeadlinesUnchanged": true
+  },
+  "defaultRules": {
+    "passed": 1558,
+    "newBoundaryTests": 8,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ]
+  },
+  "nativePixels": {
+    "exactMatches": 120,
+    "actualLocalBuildingResidenceAndDockAssetsBothThemes": true,
+    "backingDensities": [
+      1,
+      2
+    ],
+    "tenDrawingModes": true,
+    "originalBaselineNormalizedSha256": "60e9f523692c3723539a82542b260212fa574f2d316faf8a7cc23ce78f5355e4",
+    "originalComparisonDrawCalls": 120,
+    "currentComparisonDrawCalls": 108,
+    "bothCacheEntries": 6,
+    "cacheBytes": 104847184,
+    "cacheUnchanged": true,
+    "performanceOrFpsGainClaimed": false
+  },
+  "originalPlayerActionsBothStyles": true,
+  "originalPlayerSetupTimeoutMs": 15000,
+  "actualIslandRasterCounters": [
+    {
+      "theme": "pixel",
+      "raster": {
+        "ready": 4,
+        "pending": 0,
+        "failures": 0,
+        "bytes": 35655088,
+        "encodedBytes": 13177427,
+        "evictions": 0,
+        "processed": 4,
+        "processingMs": 903.2999999523163,
+        "draws": 6960,
+        "culled": 3876,
+        "storage": "decoded-image",
+        "backend": "Worker GPU reconstruction",
+        "cacheLimitBytes": 268435456
+      }
+    },
+    {
+      "theme": "origami",
+      "raster": {
+        "ready": 4,
+        "pending": 0,
+        "failures": 0,
+        "bytes": 100639984,
+        "encodedBytes": 30004606,
+        "evictions": 0,
+        "processed": 4,
+        "processingMs": 1303.3999998569489,
+        "draws": 6930,
+        "culled": 3476,
+        "storage": "decoded-image",
+        "backend": "Worker GPU reconstruction",
+        "cacheLimitBytes": 268435456
+      }
+    }
+  ],
+  "providersCalled": false,
+  "hostedMacPlayerRecoveryConfirmed": false,
+  "hostedMacHomesBrowserLaunchFailureStillOpen": true,
+  "hostedMacImportPreparationSaveFailureStillOpen": true,
+  "hostedWindowsVisitorRecoveryConfirmed": false,
+  "currentArchiveFreshInstallAndHourPassed": false,
+  "wholeGoalComplete": false,
+  "scope": "Owned fictional fixtures on one Windows host. Exact native RGBA comparison and unchanged original player gate are automated evidence, not physical Mac, real players, OPC course or natural-hour qualification.",
+  "originalSignedImportAndRestoreCasesPassedLocally": 6,
+  "nativePixelHarnessClosesFixtureOnLaunchFailure": true,
+  "nativePixelFinalHarnessSha256": "b0cb706611fc000bf5a6857d132b39fc28890e41a83137c695f28ca7b533ab4b"
+}

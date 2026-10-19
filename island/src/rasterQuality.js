@@ -1,8 +1,9 @@
 import {artworkURL,shoreOptions,fadeIslandEdge} from './rasterProcessing.js';
+import {rasterOutsideCanvas} from './rasterVisibility.js';
 // Only original artwork URLs enter the worker; animation uses cached static images.
 const entries=new WeakMap(),queue=[],cache=new Map(),maxBytes=64*1024*1024*4;
 let worker=null,busy=false,disabled=false,serial=0,backend='preparing';
-const requests=new Map(),stats={ready:0,pending:0,failures:0,bytes:0,encodedBytes:0,evictions:0,processed:0,processingMs:0};
+const requests=new Map(),stats={ready:0,pending:0,failures:0,bytes:0,encodedBytes:0,evictions:0,processed:0,processingMs:0,draws:0,culled:0};
 function failWorker(){
  disabled=true;backend='native canvas';worker?.terminate();worker=null;
  for(const r of requests.values()){clearTimeout(r.timer);r.reject(Error('raster_worker_unavailable'));}
@@ -73,6 +74,7 @@ function surfaceFor(source,theme,shore=null){
 function draw(ctx,source,theme,shore,rect){
  if(!(source.naturalWidth||source.width))return;
  const e=surfaceFor(source,theme,shore),factor=e.factor;
+ if(rasterOutsideCanvas(ctx,e.surface,rect)){stats.culled++;return;}stats.draws++;
  ctx.save();ctx.imageSmoothingEnabled=theme!=='pixel';ctx.imageSmoothingQuality='high';
  if(rect.length===8){const [x,y,w,h,dx,dy,dw,dh]=rect;ctx.drawImage(e.surface,x*factor,y*factor,w*factor,h*factor,dx,dy,dw,dh);}
  else ctx.drawImage(e.surface,...rect);
