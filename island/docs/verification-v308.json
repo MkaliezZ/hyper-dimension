@@ -1,0 +1,87 @@
+{
+  "version": "V308",
+  "at": "2026-10-19T08:46:29.473057+00:00",
+  "observedHostedFailure": {
+    "run": 39221404202,
+    "job": 117957689825,
+    "sourceCommit": "fb80e6d07c7b8ea8a0a159bb97ecc2e47746e5c0",
+    "step": "Native custom product shelves and visitor sales",
+    "theme": "origami",
+    "phase": "A resident begin fetch aborted before shelf selection; action_pending and resident recovery overlay intercepted the click. Pixel case passed.",
+    "hostedInitialCommitNotDirectlyObserved": true,
+    "noExplicitSaveHTTPErrorObserved": true
+  },
+  "repair": {
+    "onlyExpiredValidNPCResidentBeginGetsOneIdenticalReplay": true,
+    "sameRequestBytesVersionSequenceAndIdentity": true,
+    "npcIds": {
+      "minimum": 0,
+      "maximum": 16
+    },
+    "intentActions": [
+      "work",
+      "eat",
+      "rest",
+      "visit"
+    ],
+    "originalFetchTimeoutMs": 12000,
+    "pauseBeforeSingleReplayMs": 250,
+    "persistentTimeoutStillRequiresManualRecovery": true,
+    "ordinaryConnectionLossStillRequiresManualRecovery": true,
+    "residentFinishCancelCheckpointPlayerAndRealityNotExtended": true,
+    "existingVisitorAndNPCMinePolicyRetained": true,
+    "backendLedgerSignatureAndVersionChecksUnchanged": true
+  },
+  "nativeDeclaredResponseLoss": {
+    "baselineRealTimeoutLockedBothStyles": true,
+    "committedBeginReplyWithheldUntilActualOriginalFetchTimeout": true,
+    "bothStylesRecoveredSameLease": true,
+    "nativeButtonUsable": true,
+    "normal20SecondWorkClock": true,
+    "oneReceiptUnchangedForestYieldTwo": true,
+    "reopenAndBeginReplayNotDuplicated": true,
+    "minimalShellNotFullHostedReproduction": true
+  },
+  "defaultRules": {
+    "passed": 1587,
+    "newTests": 12,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "physicalSourceCopyAllHashesVerified": true,
+    "dataPathLinkProtectionUnchanged": true
+  },
+  "originalMarketChecks": {
+    "original-custom-shops": {
+      "bothStylesPassed": true,
+      "declaredInitialResources": true,
+      "production": false,
+      "stockReducedOnce": true,
+      "actualFerryLandingWalkingAndService": true,
+      "artworkDecoded32px": true,
+      "shelfAndPurposeRoundTrip": true,
+      "reopenConfirmed": true,
+      "paid": 7,
+      "operatingCost": 3
+    },
+    "original-production-market": {
+      "bothStylesPassed": true,
+      "declaredInitialResources": true,
+      "production": true,
+      "stockReducedOnce": true,
+      "actualFerryLandingWalkingAndService": true,
+      "artworkDecoded32px": true,
+      "shelfAndPurposeRoundTrip": true,
+      "reopenConfirmed": true,
+      "paid": 7,
+      "operatingCost": 3
+    }
+  },
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "hostedWindowsShopRecoveryConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "wholeGoalComplete": false
+}

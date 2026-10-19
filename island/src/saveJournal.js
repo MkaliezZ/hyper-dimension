@@ -39,11 +39,12 @@ export function createSaveJournal(){
   const run=async()=>{if(enabled)return rpc('request',value);const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(value.url,{...value.init,signal:controller.signal,cache:'no-store'});return {ok:response.ok,status:response.status,text:await response.text()};}finally{clearTimeout(timer)}};
   try{return await run();}catch(error){
    let body;try{body=JSON.parse(value.init.body);}catch{}
-   // One identical replay may read a journaled visitor outcome or an NPC mine
-   // reservation after its fetch expires. Keep player work, field completion
-   // and other losses on the existing manual recovery path.
+   // One identical replay may read a journaled visitor outcome or an NPC work
+   // reservation after its fetch expires. Player work and work completion keep
+   // their existing manual recovery path; no new identity or intent is created.
    const npcMineStart=body?.kind==='field'&&body.operation==='begin'&&body.field==='mine'&&body.actor==='npc'&&Number.isInteger(body.actorId)&&body.actorId>=0&&body.actorId<=16;
-   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&(body?.kind==='visitor'||npcMineStart)&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
+   const npcResidentStart=body?.kind==='resident'&&body.operation==='begin'&&(body.actor===undefined||body.actor==='npc')&&Number.isInteger(body.actorId)&&body.actorId>=0&&body.actorId<=16&&body.intent&&!Array.isArray(body.intent)&&['work','eat','rest','visit'].includes(body.intent.action)&&typeof body.intent.goal==='string'&&body.intent.goal.length>0&&body.intent.goal.length<=40;
+   if((error.code==='save_request_timeout'||error.name==='AbortError')&&value.init.method==='POST'&&new URL(value.url,'http://localhost/').pathname.match(/^\/api\/saves\/(pixel|origami)\/action$/)&&(body?.kind==='visitor'||npcMineStart||npcResidentStart)&&typeof body.requestId==='string'&&body.requestId){await new Promise(resolve=>setTimeout(resolve,250));return run();}
    throw error;
   }
  }

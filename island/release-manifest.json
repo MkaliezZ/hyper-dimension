@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v307-agent-source",
+  "release": "hyper-dimension-v308-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 116575,
-      "sha256": "07af2c6483475636c10831dccaee73f316c789353e6df59d8cade3f7c557fd43"
+      "bytes": 116944,
+      "sha256": "d44e7bb38f06d3b38c10306f689ee84162826254aa90e01a8af31a02f8bd3887"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17167,
-      "sha256": "e7401389a6cec442417a9abb9e0fb64524639de98947ed27e977fbe887455ba4"
+      "bytes": 17210,
+      "sha256": "982821813201382b995a85a6d174d4c2e2f6b529236b31795dbfb1ed03f2a7e2"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 7704,
-      "sha256": "3582beadc2fcea2240e5fc0c95917238dc5110c8841744e183ba57eceefe6c21"
+      "bytes": 8128,
+      "sha256": "573bcf70f550b73fd54dc8e1ca0171e4d8e178e36865c0ab1a041709deae4dd9"
     },
     {
       "path": "src/saveLimits.js",
@@ -13824,7 +13824,27 @@
       "path": "docs/verification-v307.json",
       "bytes": 2443,
       "sha256": "6187f8e8571578be079b6877a4aed46aea130a7fcd37702b9f1bdf2d5db83f2e"
+    },
+    {
+      "path": "tests/v308-resident-start-timeout.test.mjs",
+      "bytes": 4754,
+      "sha256": "c644e0461ba98b61c54d868fbf187fa8fcd7eea3c6d3a7d13c61232dfe355e46"
+    },
+    {
+      "path": "tests/v308-resident-start-timeout-browser.mjs",
+      "bytes": 7446,
+      "sha256": "37a9dc5a238cc6edff5d7b338b49ff1a13321fc54ff34c18421b1e4ad5bc8c00"
+    },
+    {
+      "path": "docs/resident-start-timeout-v308.md",
+      "bytes": 2104,
+      "sha256": "ba3b1f0b40a5e85f96092908849f662c660d2c35d80a8ccf2dec02bc1f2c13de"
+    },
+    {
+      "path": "docs/verification-v308.json",
+      "bytes": 2949,
+      "sha256": "85270ee1f5e0ba6dae53fa086fcfefe260a4aec9d583ee7702ff4f448179f81e"
     }
   ],
-  "publicRevision": "v307-native-pause"
+  "publicRevision": "v308-resident-start-timeout"
 }

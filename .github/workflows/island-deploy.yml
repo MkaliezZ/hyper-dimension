@@ -397,6 +397,10 @@ jobs:
         if: matrix.group == 'content'
         run: node tests/v306-field-start-timeout-browser.mjs
 
+      - name: Native resident reservation response timeout
+        if: matrix.group == 'content'
+        run: node tests/v308-resident-start-timeout-browser.mjs
+
       - name: Native custom recipe resident preparation and reopen
         if: matrix.group == 'content'
         env:
@@ -474,6 +478,7 @@ jobs:
             island/qa/v287/native-recruitment-progress/report.json
             island/qa/v287/native-recruitment-progress/*.png
             island/qa/v306/native-field-start-timeout/report.json
+            island/qa/v308/native-resident-start-timeout/report.json
             island/qa/v305/native-catalog-refresh/report.json
             island/qa/v305/native-catalog-refresh/*.png
             island/qa/v224/native-custom-content/report.json
