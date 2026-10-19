@@ -38,7 +38,36 @@ function observeJournal(source){
  return insert(source,'pending.delete(data.id);clearTimeout(call.timer);',"pending.delete(data.id);clearTimeout(call.timer);window.__hdRecruitMark?.('rpc-end',{id:data.id,error:!!data.error});");
 }
 function candidateBackdrop(source){
+ if(source.includes('const recruitmentWaiting=!!modal'))return source;
  return insert(source,'const personalWaiting=!!modal',`const recruitmentWaiting=!!modal&&!!$('modalRoot').querySelector('#recruitmentPanel[aria-busy="true"]');if(recruitmentWaiting&&render.recruitmentSnapshot&&!render.invalidated)return;render.recruitmentSnapshot=recruitmentWaiting;const personalWaiting=!!modal`);
+}
+async function snapshot(row,page,phase){
+ let timer;
+ try{row.snapshots.push({phase,...await Promise.race([page.evaluate(()=>{
+  const progress=window.__recruitProgress,view=window.islandInspect?.(),theme=view?.theme;
+  const status=progress&&theme?progress.saves.status(theme):null;
+  return {diagnostic:window.__hdRecruitDiagnostic,foreign:window.__recruitForeign,theme,playerAction:window.__playerActionQA?.inspect(),
+   ocean:{backend:view?.environment?.art?.backend,worker:view?.environment?.art?.oceanWorker},frameLoop:view?.frameLoop,
+   save:status?Object.fromEntries(['status','message','dirty','capturing','reconciling','pending','recovering'].map(k=>[k,status[k]])):null,
+   resumeDisabled:document.querySelector('#recruitResume')?.disabled,
+   busy:document.querySelector('#recruitmentPanel')?.getAttribute('aria-busy'),
+   feedback:document.querySelector('.recruit-await')?.textContent};
+ }),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Diagnostic snapshot unavailable within2000ms')),2000))])});}
+ catch(error){row.snapshots.push({phase,error:safeError(error)});}finally{clearTimeout(timer);}
+}
+function beginProfile(context,page,row,index,phase){
+ const ready=context.newCDPSession(page).then(async session=>{
+  await session.send('Profiler.enable');await session.send('Profiler.setSamplingInterval',{interval:1000});await session.send('Profiler.start');return session;
+ });
+ ready.catch(error=>record(row,'profile-start-error',{phase,error:safeError(error)}));
+ return {ready,index,phase,stopped:false};
+}
+async function stopProfile(row,job){
+ if(!job||job.stopped)return;job.stopped=true;let timer,session;
+ try{
+  const result=await Promise.race([(async()=>{session=await job.ready;return await session.send('Profiler.stop');})(),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Diagnostic profiler stop unavailable within5000ms')),5000))]);
+  const file='scheduling-profile-'+row.context+'-'+job.index+'-'+job.phase+'.cpuprofile';await writeFile(join(out,file),JSON.stringify(result.profile));row.profiles.push({file,phase:job.phase,nodes:result.profile.nodes.length,samples:result.profile.samples?.length||0,wallMs:(result.profile.endTime-result.profile.startTime)/1000});
+ }catch(error){row.profiles.push({phase:job.phase,error:safeError(error)});}finally{clearTimeout(timer);if(session)await session.detach().catch(()=>{});else job.ready.then(value=>value.detach()).catch(()=>{});}
 }
 if(process.argv.includes('--check-hooks')){
  for(const [file,transform] of [['saveClient.js',observeClient],['saveJournal.js',observeJournal],['app.js',candidateBackdrop]]){
@@ -54,7 +83,7 @@ if(process.argv.includes('--check-hooks')){
 chromium.launch=async(...args)=>{
  const browser=await originalLaunch(...args),originalContext=browser.newContext.bind(browser);
  browser.newContext=async(...contextArgs)=>{
-  const context=await originalContext(...contextArgs),row={context:cases.length+1,nativeCase,variant:backdropCandidate?'pending-backdrop-candidate':'unchanged-game-baseline',events:[],sourceHooks:[],pages:[]},profileJobs=[];cases.push(row);
+  const context=await originalContext(...contextArgs),row={context:cases.length+1,nativeCase,variant:backdropCandidate?'pending-backdrop-candidate':'unchanged-game-baseline',events:[],sourceHooks:[],pages:[],snapshots:[],profiles:[]},profileJobs=[];cases.push(row);
   if(backdropCandidate){
    // The original test registers its own app hook last. Observe that hook's
    // actual fetched response so its recruitment fixture remains unchanged.
@@ -83,11 +112,17 @@ chromium.launch=async(...args)=>{
    if(profileEnabled){
     // This session belongs solely to the newly created fictional fixture page.
     // Sampling never attaches to an existing or user-owned browser.
-    const ready=context.newCDPSession(page).then(async session=>{
-     await session.send('Profiler.enable');await session.send('Profiler.setSamplingInterval',{interval:1000});await session.send('Profiler.start');return session;
-    });
-    ready.catch(error=>record(row,'profile-start-error',{error:safeError(error)}));
-    profileJobs.push({ready,index:row.pages.length});
+    const index=row.pages.length;let phase=1,job=beginProfile(context,page,row,index,phase);profileJobs.push(job);
+    const originalReload=page.reload.bind(page);
+    // Preserve the critical completed interaction before its original reload.
+    // Chrome may reset a CPU profile and init-script observations on navigation.
+    // This collection starts only after the test has called its actual reload;
+    // it never runs inside or extends an interaction assertion's deadline.
+    page.reload=async(...reloadArgs)=>{
+     await snapshot(row,page,'before-reload-'+phase);await stopProfile(row,job);
+     const result=await originalReload(...reloadArgs);
+     job=beginProfile(context,page,row,index,++phase);profileJobs.push(job);return result;
+    };
    }
    page.on('request',request=>{
     const path=new URL(request.url()).pathname;if(!path.startsWith('/api/'))return;
@@ -109,29 +144,11 @@ chromium.launch=async(...args)=>{
   const originalClose=context.close.bind(context);
   context.close=async(...closeArgs)=>{
    try{
-    row.snapshots=[];
     for(const page of row.pages){
      if(page.isClosed())continue;
-     let timer;
-     try{row.snapshots.push(await Promise.race([page.evaluate(()=>{
-      const progress=window.__recruitProgress,view=window.islandInspect?.(),theme=view?.theme;
-      const status=progress&&theme?progress.saves.status(theme):null;
-      return {diagnostic:window.__hdRecruitDiagnostic,foreign:window.__recruitForeign,theme,playerAction:window.__playerActionQA?.inspect(),
-       save:status?Object.fromEntries(['status','message','dirty','capturing','reconciling','pending','recovering'].map(k=>[k,status[k]])):null,
-       resumeDisabled:document.querySelector('#recruitResume')?.disabled,
-       busy:document.querySelector('#recruitmentPanel')?.getAttribute('aria-busy'),
-       feedback:document.querySelector('.recruit-await')?.textContent};
-     }),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Diagnostic snapshot unavailable within2000ms')),2000))]));}
-     catch(error){row.snapshots.push({error:safeError(error)});}finally{clearTimeout(timer);}
+     await snapshot(row,page,'context-close');
     }
-    row.profiles=[];
-    for(const job of profileJobs){
-     let timer,session;
-     try{
-      const result=await Promise.race([(async()=>{session=await job.ready;return await session.send('Profiler.stop');})(),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Diagnostic profiler stop unavailable within5000ms')),5000))]);
-      const file='scheduling-profile-'+row.context+'-'+job.index+'.cpuprofile';await writeFile(join(out,file),JSON.stringify(result.profile));row.profiles.push({file,nodes:result.profile.nodes.length,samples:result.profile.samples?.length||0});
-     }catch(error){row.profiles.push({error:safeError(error)});}finally{clearTimeout(timer);await session?.detach().catch(()=>{});}
-    }
+    for(const job of profileJobs)await stopProfile(row,job);
     await writeFile(join(out,'scheduling-journal-'+row.context+'.json'),JSON.stringify({...row,pages:row.pages.length},null,2));
    }finally{await originalClose(...closeArgs);}
   };
