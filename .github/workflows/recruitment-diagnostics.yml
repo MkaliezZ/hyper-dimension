@@ -12,7 +12,7 @@ on:
         type: boolean
         default: false
       backdrop_candidate:
-        description: Evaluate a pending-recruitment backdrop candidate without changing the game source
+        description: Evaluate a pending-recruitment or static-shelf backdrop candidate without changing the game source
         type: boolean
         default: false
 permissions:
@@ -57,6 +57,17 @@ jobs:
       - name: Observe original custom shelf image loading and native CPU
         if: inputs.test_case == 'custom-shops'
         run: node .github/diagnostics/shelf-artwork.mjs
+      - name: Compare static shelf backdrop under the original native assertions
+        if: always() && inputs.test_case == 'custom-shops' && inputs.backdrop_candidate
+        env:
+          HD_QA_SHELF_STATIC_BACKDROP: '1'
+          HD_QA_OUT: island/qa/v322/native-shelf-static-candidate
+        run: node .github/diagnostics/shelf-artwork.mjs
+      - name: Reobserve the original shelf backdrop after the candidate
+        if: always() && inputs.test_case == 'custom-shops' && inputs.backdrop_candidate
+        env:
+          HD_QA_OUT: island/qa/v322/native-shelf-baseline-after
+        run: node .github/diagnostics/shelf-artwork.mjs
       - name: Native confirmed mining finish after the original fetch expires
         if: inputs.test_case == 'field-finish'
         working-directory: island
@@ -96,6 +107,14 @@ jobs:
             island/qa/v287/native-recruitment-progress/scheduling-journal-*.json
             island/qa/v287/native-recruitment-progress/*.png
             island/qa/v287/native-recruitment-progress/*.cpuprofile
+            island/qa/v322/native-shelf-baseline-after/*.json
+            island/qa/v322/native-shelf-baseline-after/*.png
+            island/qa/v322/native-shelf-baseline-after/*.cpuprofile
+            island/qa/v322/native-shelf-static-candidate/report.json
+            island/qa/v322/native-shelf-static-candidate/work-progress.json
+            island/qa/v322/native-shelf-static-candidate/*.json
+            island/qa/v322/native-shelf-static-candidate/*.png
+            island/qa/v322/native-shelf-static-candidate/*.cpuprofile
             island/qa/v228/native-custom-shops/report.json
             island/qa/v228/native-custom-shops/artwork-observations-*.json
             island/qa/v228/native-custom-shops/artwork-profile-*.cpuprofile
