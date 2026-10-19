@@ -87,7 +87,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   // request ID, including when the server committed before its reply was lost.
   const delays=[250,750],transientCodes=new Set(['EPERM','EACCES','EBUSY','save_busy','save_unavailable']);
   for(let attempt=0;;attempt++){
-   const response=await journal.request('/api/saves/'+theme+(operation?'/'+operation:''),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:payload},metadataOnly,actionsBase?.version);
+   // Only an authoritative lease already known before this attempt can authorize
+   // a bounded completion replay. Stored or merely well-shaped inputs cannot.
+   const completionLease=operation==='action'&&body?.kind==='resident'&&body.operation==='finish'?record(theme).actions?.resident?.leases?.[body.requestId]:null;
+   const response=await journal.request('/api/saves/'+theme+(operation?'/'+operation:''),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:payload},metadataOnly,actionsBase?.version,completionLease);
    const data=response.data||JSON.parse(response.text);
    if(!response.ok){
     if(operation==='action'&&body?.requestId&&response.status===503&&transientCodes.has(data.code)&&attempt<delays.length){await new Promise(resolve=>setTimeout(resolve,delays[attempt]));continue;}

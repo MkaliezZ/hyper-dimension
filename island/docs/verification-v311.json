@@ -1,0 +1,71 @@
+{
+  "version": "V311",
+  "at": "2026-10-19T11:31:54.988480+00:00",
+  "observedHostedFailure": {
+    "run": 39240657210,
+    "job": 118020387991,
+    "sourceCommit": "18d0ec0ee70e24d3e6444b657518654a367dfeed",
+    "bothStylesPNGCheckPassed": true,
+    "origamiMarketAndReloadPassed": true,
+    "pixelFailure": "No qualifying buyer within original finite rotation; an unrelated NPC resident finish request timed out and left the shared journal action_pending. Two visitor finishes were queued but never reached HTTP.",
+    "artifact": 12180924945,
+    "selectedArtifactEntryCRCsAndSHA256Verified": true,
+    "fullArchiveSHA256Verified": false
+  },
+  "repair": {
+    "knownAuthoritativeResidentLeaseRequiredBeforeAttempt": true,
+    "onlyNPCResidentFinish": true,
+    "sameRequestBytesVersionEpochSequenceClientId": true,
+    "originalFetchTimeoutMs": 12000,
+    "originalRetryDelayMs": 250,
+    "maximumIdenticalReplays": 1,
+    "noOptimisticRewardsOrAlteredWorkDuration": true,
+    "serverAuthorityAndLedgerUnchanged": true,
+    "cancellationPlayerRealityUnknownLeaseOrdinaryLossAndExplicitRejectionsUnchanged": true,
+    "persistentTimeoutStillRequiresReconciliation": true,
+    "originalMarketAndPNGAssertionsAndDeadlinesUnchanged": true
+  },
+  "localNative": {
+    "oldSourceBothStylesReproducedBlockedCompletion": true,
+    "candidateBothStylesPassed": true,
+    "normalWorkSeconds": 20,
+    "firstActualCommittedFinishResponseWithheldUntilOriginalTimeout": true,
+    "frontendStockZeroWhileAuthorityStockTwo": true,
+    "exactlyOneCompletionReceiptAndMaterialGain": true,
+    "subsequentVisitorControllerContinues": true,
+    "diskReopenAndSameReceiptReplayUnique": true,
+    "minimalPageNotRenderedWorldMotionTest": true
+  },
+  "rules": {
+    "qualificationPending": false,
+    "finalSourceQualificationPending": false,
+    "newBoundaryChecks": 14,
+    "passedPerRuntime": 1614,
+    "nodeVersions": [
+      "22.13.0",
+      "25.8.1"
+    ],
+    "failedOrSkipped": 0
+  },
+  "hostedCompletionRepairConfirmed": false,
+  "currentFullMatrixRecovered": false,
+  "currentArchiveFreshInstallAndNaturalHourPassed": false,
+  "providersCalled": false,
+  "userBrowserRead": false,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false,
+  "gatherCatalog": {
+    "hostedRun": 39240668540,
+    "hostedJob": 118026084174,
+    "artifact": 12183525265,
+    "selectedArtifactEntriesCRCAndSHA256Verified": true,
+    "rootCause": "Gather catalogue reused the collection book marker; ordinary HUD refresh let the wonder-book painter replace it.",
+    "distinctGatherMarkerAndBackdropSelector": true,
+    "bookPainterAndStylesUnchanged": true,
+    "oldSourceBothStylesReproduced": true,
+    "candidateBothStylesGatherTabsBookAndReturnPassed": true,
+    "originalPlayerActionTestAndDeadlinesUnchanged": true,
+    "hostedRepairConfirmed": false,
+    "unchangedOriginalPlayerBothStylesPassedLocally": true
+  }
+}

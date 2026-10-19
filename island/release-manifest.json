@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v310-agent-source",
+  "release": "hyper-dimension-v311-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 118104,
-      "sha256": "b7dcbff686fc4799914ed9572ba5670aca84bfc696cd2768cbfff58ecebbfbac"
+      "bytes": 118699,
+      "sha256": "c3cda46524cb67e7052c137161b67a1669512c6e3a172578d68e7864a2149227"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17288,
-      "sha256": "10037922cef56d48ea1997202db29cd65135f68cf47cb4856fb661cc3178338d"
+      "bytes": 17332,
+      "sha256": "239e1cc55e44a59c4dceecd2b7bd8ca2da594086d7cf2c71f7fc069bfc0c1dd0"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 146822,
-      "sha256": "9518b9bc68218dff67084b06cb4afe7b863c4a690a32ec55f215ac9ff6af5b10"
+      "bytes": 146826,
+      "sha256": "c9f4b005dbacab56dc0f2b70c1fff9817a4a0a47d70a431a9c914c0453a578ba"
     },
     {
       "path": "src/arcade.css",
@@ -6687,8 +6687,8 @@
     },
     {
       "path": "src/contentUI.js",
-      "bytes": 18348,
-      "sha256": "fe2d4c5c95ecc55109efda0ef4677a3ac00154cd8e074a4505a22017cb79079b"
+      "bytes": 18352,
+      "sha256": "20ca66d4ef1ad9accb1bb9436f86b2e79767f9b0f3098fa00db23fd0eae67904"
     },
     {
       "path": "src/conversationFallback.js",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 42064,
-      "sha256": "76b7a03a60eadf6a90cd7e0b8f8e045bb4db1d8ded4c261c5349db61d958c317"
+      "bytes": 42403,
+      "sha256": "946f3e94a974db93a8a9b6d7aea74d96e2a003d4d72b5e058dac40913a4b177f"
     },
     {
       "path": "src/saveDelta.js",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 8128,
-      "sha256": "573bcf70f550b73fd54dc8e1ca0171e4d8e178e36865c0ab1a041709deae4dd9"
+      "bytes": 8790,
+      "sha256": "ad9a70aac60fe01fa09b6057caddf4d8780b9d3f889446c3923fc32a2bd6146e"
     },
     {
       "path": "src/saveLimits.js",
@@ -13879,7 +13879,32 @@
       "path": "docs/verification-v310.json",
       "bytes": 2965,
       "sha256": "68d2c343b94d31596c763a4cb11362f4a638b740ec23384887004d09478ee56b"
+    },
+    {
+      "path": "tests/v311-resident-finish-timeout.test.mjs",
+      "bytes": 5575,
+      "sha256": "5db984ca17904659e0a889c7eac5057119345f6f79698e1dae8ad8dfcab22aa6"
+    },
+    {
+      "path": "tests/v311-resident-finish-timeout-browser.mjs",
+      "bytes": 8449,
+      "sha256": "8804d86087a46a47f55767f31ec2cc03efe7141b8f48aacae1eee4e317ae3e72"
+    },
+    {
+      "path": "docs/resident-completion-v311.md",
+      "bytes": 2904,
+      "sha256": "52207c8b82804837c31d990a1515d800bc3f48285c7fbc8672ab768e63b7c6eb"
+    },
+    {
+      "path": "docs/verification-v311.json",
+      "bytes": 2980,
+      "sha256": "3a783d0184cd4e6e1d318d3714649f432eb5ac4e9363031aafd876321b541413"
+    },
+    {
+      "path": "tests/v311-gather-catalog-browser.mjs",
+      "bytes": 6275,
+      "sha256": "bf2659674920df951bc5ac1cd535b3f4b8a8aa8a7cee1844948311affaf0b3aa"
     }
   ],
-  "publicRevision": "v310-save-paint-priority"
+  "publicRevision": "v311-resident-and-gather-recovery"
 }

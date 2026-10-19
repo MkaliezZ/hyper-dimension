@@ -403,6 +403,10 @@ jobs:
         if: matrix.group == 'content'
         run: node tests/v308-resident-start-timeout-browser.mjs
 
+      - name: Native known NPC completion response timeout
+        if: matrix.group == 'content'
+        run: node tests/v311-resident-finish-timeout-browser.mjs
+
       - name: Native custom recipe resident preparation and reopen
         if: matrix.group == 'content'
         env:
@@ -481,6 +485,7 @@ jobs:
             island/qa/v287/native-recruitment-progress/*.png
             island/qa/v306/native-field-start-timeout/report.json
             island/qa/v308/native-resident-start-timeout/report.json
+            island/qa/v311/native-resident-finish-timeout/report.json
             island/qa/v305/native-catalog-refresh/report.json
             island/qa/v305/native-catalog-refresh/*.png
             island/qa/v224/native-custom-content/report.json
@@ -531,6 +536,9 @@ jobs:
       - name: Native granted player actions during unrelated receipts
         run: node tests/v281-player-action-browser.mjs
 
+      - name: Native gathering catalogue survives HUD refresh
+        run: node tests/v311-gather-catalog-browser.mjs
+
       - name: Native ferry clock ordering during background work
         run: node tests/v278-visitor-clock-browser.mjs
 
@@ -566,6 +574,8 @@ jobs:
             island/qa/v280/native-module-bootstrap/report.json
             island/qa/v281/native-player-action/report.json
             island/qa/v281/native-player-action/*.png
+            island/qa/v311/native-gather-catalog/report.json
+            island/qa/v311/native-gather-catalog/*.png
             island/qa/v278/native-visitor-clock/report.json
             island/qa/v276/native-cash/report.json
             island/qa/v276/native-cash/*.png
