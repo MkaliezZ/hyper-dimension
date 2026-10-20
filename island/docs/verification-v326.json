@@ -1,0 +1,21 @@
+{
+  "version": "V326",
+  "at": "2026-10-20T01:39:54.109627+00:00",
+  "baseGameSourceCommit": "eca8dc63f7c8701f02ac03ea4048fc746958c9b1",
+  "diagnosticsRepositoryCommit": "1f64881eda7358dbe363a8f68ef5ef4cd5d1b57b",
+  "nativeManualBatchBaselineReproducedBothStyles": true,
+  "nativeCandidateCases": 8,
+  "nativeCandidatePassed": true,
+  "focusedRulesPassed": 16,
+  "firstWorkBudgetMs": 120000,
+  "sharedRemainingWorkBudgetMs": 240000,
+  "originalClockModelsAndAuthorityUnchanged": true,
+  "hostedFailureRootConfirmed": false,
+  "wholeGoalComplete": false,
+  "portableOrdinaryPathPayloads": 2825,
+  "portableDefaultRulesPassed": 1657,
+  "originalFullNativeResidentBothStylesPassed": true,
+  "originalNativeClockUnchanged": true,
+  "nativeWorkBudgetsAndActorsUnchanged": true,
+  "onlyTestTrailingBlankLinesNormalizedAfterPortableRun": true
+}

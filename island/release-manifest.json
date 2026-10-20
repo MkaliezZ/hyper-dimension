@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v325-agent-source",
+  "release": "hyper-dimension-v326-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 125338,
-      "sha256": "af6c2925bef6cbcc8cf06cf886d31fc90a3cd76486a0f351ec304a43c9e6ea15"
+      "bytes": 125849,
+      "sha256": "07f328095305226d0ea1ceab94c9184b28438f419e2f411f716fc76baf308efa"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17544,
-      "sha256": "031eae5569b93dbd5ddbb5166a8e0c02355e5c12931d7bfa352470ad6bbbd7ab"
+      "bytes": 17580,
+      "sha256": "5c266c0f37029aebdc7ac77372e15acc401701352979106807b219b594495b85"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147130,
-      "sha256": "722664c0af09744cb8525597432e427b52cdc6f8a87613a83f2ae94d4111cd9e"
+      "bytes": 147146,
+      "sha256": "72a1fe47a5f3d10ab3e167a0a645485e5cc20a970742036fb0933c1ebde751a1"
     },
     {
       "path": "src/arcade.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 45876,
-      "sha256": "e311398f82bef29b20f1b338c3fec6227d2c6e00c2b400756f10feca6c5c122f"
+      "bytes": 45896,
+      "sha256": "6e86eea6895936838117dd364f2c65880feddd2a4b8c52820386afc133d0fd78"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8027,8 +8027,8 @@
     },
     {
       "path": "src/serverCommerceUI.js",
-      "bytes": 3260,
-      "sha256": "5a087c3cc28868059524e700935382fed94384594d761bf5d6ed8118bbcbb292"
+      "bytes": 3440,
+      "sha256": "1319854b2dbd2e8a06b6bcc9005c26ad083c2783fcff698b16584353810f6c48"
     },
     {
       "path": "src/serverCraftUI.js",
@@ -14124,7 +14124,27 @@
       "path": "docs/mine-rejection-v325.md",
       "bytes": 1806,
       "sha256": "8c3d3d071ba14bbe4249d489c6024ea5c45c3cc1aedc36f0ab777f7a6bc836b3"
+    },
+    {
+      "path": "tests/v326-manual-planning.test.mjs",
+      "bytes": 3290,
+      "sha256": "787dd488bb42e394f9fbf74964072e68dde968add5d6557e5602c3dd21279dc0"
+    },
+    {
+      "path": "tests/v326-manual-batch-browser.mjs",
+      "bytes": 8736,
+      "sha256": "0a20d7f102fedfcee01ec71b28a54f70080b32e7c0bb66d2c925e2af876064e4"
+    },
+    {
+      "path": "docs/manual-planning-v326.md",
+      "bytes": 1828,
+      "sha256": "3f9d1bcd53b55b5258200d5a2985a3defe155d3c4cfdac417e63251e101bc923"
+    },
+    {
+      "path": "docs/verification-v326.json",
+      "bytes": 838,
+      "sha256": "70b5247d40d65787cf4afda9159b64a485dd3afa9a88b8ff5127ba6b91310950"
     }
   ],
-  "publicRevision": "v325-explicit-occupied-mine-rejection"
+  "publicRevision": "v326-manual-steward-batch-priority"
 }
