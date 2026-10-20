@@ -239,10 +239,15 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   if(['conflict','blocked'].includes(r.status))throw Error(r.message);
  }
  function hasAcknowledgedPlanningCheckpoint(r,theme,input,options){return options?.foreground===true&&input.kind==='commerce'&&input.operation==='plan_batch'&&Number.isSafeInteger(input.day)&&input.day===r.actions?.commerce?.snapshot?.day&&typeof r.planningCheckpointWorld==='string'&&r.planningCheckpointWorld===r.state?.saveSlot&&!!r.version&&!!baselineText(r);}
- async function flush(theme){
+ async function flush(theme,through=null){
   const r=record(theme);
   assertFlushAllowed(r,theme);
-  if(r.inflight){await r.inflight;if(r.dirty)return flush(theme);return}
+  if(r.inflight){
+   await r.inflight;
+   const covered=through&&r.acknowledgedSave?.world===through.world&&r.acknowledgedSave.generation>=through.generation;
+   if(r.dirty&&!covered)return flush(theme,through);
+   return;
+  }
   if(!r.dirty||!r.state)return;
   clearTimeout(r.timer);r.timer=null;
   r.inflight=(async()=>{
@@ -263,7 +268,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     let merged;if(farm){merged=await reconcile(r,journal.serialized(autosaveKey(theme)),doc,'body.state');r.state=merged.state;onRemoteState(theme,r.state);await forget(autosaveKey(theme));}
     await remember(r,doc);r.dirty=farm?merged.dirty||r.generation!==merged.generation:r.generation!==generation;
     if(!r.dirty)await forget(pendingKey(theme));
-    await cache(r);status(r,r.dirty?'pending':'saved',r.dirty?'新进度等待保存':'进度已保存到本机服务');
+    await cache(r);
+    // A replayed older autosave did not send this capture's later edits.
+    if(!farm||newAuto)r.acknowledgedSave={world:cached.state.saveSlot,generation};
+    status(r,r.dirty?'pending':'saved',r.dirty?'新进度等待保存':'进度已保存到本机服务');
     if(r.dirty)schedule(r);
    }catch(error){
     r.activeSeconds=0;
@@ -302,7 +310,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   return result;
  }
  function checkpointOperation(theme,operation,{foreground=false}={}){
-  const r=record(theme),run=async()=>{await flush(theme);if(!operation){if(foreground&&r.version&&baselineText(r))r.planningCheckpointWorld=r.state?.saveSlot;return;}const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true,foreground});
+  // A pure foreground checkpoint covers the user's requested generation.
+  // Later simulation saves remain durable without delaying the model request.
+  const r=record(theme),through=foreground&&!operation?{world:r.state?.saveSlot,generation:r.generation}:null,run=async()=>{await flush(theme,through);if(!operation){if(foreground&&r.version&&baselineText(r))r.planningCheckpointWorld=r.state?.saveSlot;return;}const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true,foreground});
   // External operations wait for accepted jobs in the same queue, before a
   // later job can overtake their checkpoint. Uncertain journals still block it.
   return result;

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v332-agent-source",
+  "release": "hyper-dimension-v333-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 131269,
-      "sha256": "b06b36f63392b9028674b2918f64b653e78aa0b81cd784f437e2d22c308e4073"
+      "bytes": 131656,
+      "sha256": "c650b49bcc686df94ad011ad4cd2b8bb3f9c21340440ca975b69de694abd8d7e"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18019,
-      "sha256": "ff379cd6df3f5a40efbec21977556ffb3feec1d94ea614fd56235514a72eb3ee"
+      "bytes": 18155,
+      "sha256": "3a6e9427d3b4818958e010fa78b6b5296673eb75f5374d87ccd98eda785fe327"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 45029,
-      "sha256": "3eea5a69cbc2f3e17558c3cc88fb32643a45bfb0894878fed62466d72448c54e"
+      "bytes": 45605,
+      "sha256": "8dc904b798e66f6a26677c39ae475bcb1a2f8fa0f2b6918c135574ba0c23ba1c"
     },
     {
       "path": "src/saveDelta.js",
@@ -14284,7 +14284,27 @@
       "path": "docs/verification-v332.json",
       "bytes": 999,
       "sha256": "c4cf0163d73ff98ff28696a2cf86beb47a9d3320b1a0fc7352733c1667a285da"
+    },
+    {
+      "path": "docs/foreground-generation-v333.md",
+      "bytes": 2071,
+      "sha256": "987889fd4e30be84c7f8d73aa7375be39307b45a2cd150d76c4e090779a54aa7"
+    },
+    {
+      "path": "docs/verification-v333.json",
+      "bytes": 1000,
+      "sha256": "e840281122f6ccdd01f5251bf4a38559e30742451dab1584d391fd8b175ad674"
+    },
+    {
+      "path": "tests/v333-foreground-checkpoint.test.mjs",
+      "bytes": 8283,
+      "sha256": "cf249e73c774e24290b10f2e72c5233a59792a3b2ea5c593a11ecda2b45a6cea"
+    },
+    {
+      "path": "tests/v333-foreground-checkpoint-browser.mjs",
+      "bytes": 7800,
+      "sha256": "ce858b3d4cf218a2442ccbbc4e878039cacfe0d7619fbdac5d9188e984d37788"
     }
   ],
-  "publicRevision": "v332-npc-farm-start-timeout"
+  "publicRevision": "v333-foreground-save-generation"
 }

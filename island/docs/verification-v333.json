@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-20T11:42:14.625281+00:00",
+  "basePublicCommit": "c6310b84ca9f562f1b2cb7eff6f22834922e3d95",
+  "policyCasesPassed": 3,
+  "portableNativeCasesPassed": 4,
+  "privateOriginalCandidateNativeCasesPassed": 8,
+  "originalResidentChainStylesPassed": 2,
+  "originalManualControlCasesPassed": 6,
+  "focusedUniqueCasesPassed": 91,
+  "initialJunctionFailuresRetained": 2,
+  "unchangedV95OrdinaryPathRerunPassed": 13,
+  "defaultSuitePending": false,
+  "exactArchivePending": true,
+  "latestPackagedVersion": "V331",
+  "hostedRecoveryNotClaimed": true,
+  "fourMapPassed": false,
+  "wholeGoalComplete": false,
+  "defaultRulesPassed": 1752,
+  "defaultCounts": [
+    1738,
+    14
+  ],
+  "defaultSnapshotPayloadsVerified": 2857,
+  "defaultSnapshotSourceBeforeAfterIdentical": true,
+  "finalLineEndingNormalizationOnly": true,
+  "byteIdenticalTestedRuntimeSHA256": "8dc904b798e66f6a26677c39ae475bcb1a2f8fa0f2b6918c135574ba0c23ba1c",
+  "allGameplayTestCodeAndAssertionsEquivalentIgnoringCRLF": true
+}

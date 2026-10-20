@@ -1045,3 +1045,7 @@ Required images receive bounded read-only decode retries while permanent failure
 ## V332 · NPC 农活预约回包超时
 
 明确超时后的农活预约可按原编号有限重放，连续超时仍保留人工恢复。对照、负例与未通过范围见[后台农活恢复](farm-start-timeout-v332.md)。自动检查不代表真人／物理多设备验收。
+
+## V333 · 本次管家输入的保存确认
+
+前台检查点只确认已经实际保存的本次输入，不持续追等之后的后台变化；旧自动保存重放、普通保存、实际操作及更早屏障继续保留保护。原生对照和未通过范围见[保存代次边界](foreground-generation-v333.md)。自动检查不代表托管恢复、完整联机或真人验收。
