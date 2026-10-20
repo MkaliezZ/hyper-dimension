@@ -1,0 +1,49 @@
+name: Island resident backend diagnostics
+on:
+  workflow_dispatch:
+    inputs:
+      target_os:
+        description: Observe the original task-chain deadlines on an isolated hosted runner
+        type: choice
+        default: windows-2022
+        options: [windows-2022, macos-14, macos-15-intel]
+permissions:
+  contents: read
+concurrency:
+  group: island-resident-backend-diagnostics-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  observed-resident-chain:
+    name: ${{ inputs.target_os }} / original resident chain backend timing
+    runs-on: ${{ inputs.target_os }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install the original isolated browser dependency
+        working-directory: island
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
+      - name: Verify original observation hooks and read-only helper boundaries
+        run: node --test .github/diagnostics/resident-backend.test.mjs
+      - name: Collect the original native resident task-chain outcome
+        env:
+          DEEPSEEK_API_KEY: ''
+        run: node .github/diagnostics/resident-backend.mjs
+      - name: Retain original outcome and live backend evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: resident-backend-${{ inputs.target_os }}
+          path: |
+            island/qa/resident-backend-diagnostics/run.json
+            island/qa/resident-backend-diagnostics/report.json
+            island/qa/resident-backend-diagnostics/work-progress.json
+            island/qa/resident-backend-diagnostics/backend-*.json
+            island/qa/resident-backend-diagnostics/server-cpu-*.cpuprofile
+            island/qa/resident-backend-diagnostics/observed-fixture.mjs
+            island/qa/resident-backend-diagnostics/*.png
+            island/qa/resident-backend-diagnostics/*.sample.txt
+          if-no-files-found: warn
+          retention-days: 3
