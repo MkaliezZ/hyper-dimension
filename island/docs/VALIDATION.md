@@ -1080,3 +1080,7 @@ Required images receive bounded read-only decode retries while permanent failure
 ### V337 · 固定原生视觉对照的历史原件
 
 Windows 原生素材检查在开始比较之前，发现按当前源码反推的历史基线哈希变化。测试现读取独立保存的原始模块，仍校验既有 SHA-256；120 组零像素差异、真实素材重建、屏外省略与破坏性合成等断言全部保留。此修复不改变游戏运行逻辑，也不通过更新基线哈希接受新画面。
+
+## V338 · Visitor arrival receipts
+
+[Arrival recovery](arrival-recovery-v338.md) adds bounded reuse of the original room-join request after transient writer/transport failures. Actual HTTP busy and lost post-commit reply recover with one journal receipt, one arrival event and one guest. Existing business and identity rejection boundaries remain. Full four-map native and real-player/OPC acceptance remain open.

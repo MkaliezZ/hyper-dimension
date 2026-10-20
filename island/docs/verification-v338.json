@@ -1,0 +1,30 @@
+{
+  "version": "V338",
+  "at": "2026-10-20T19:46:09.706059+00:00",
+  "runtimeChange": "src/lanCommandRetry.js: bounded same-ID arrival retry",
+  "newRelatedCases": 4,
+  "existingRelatedCases": 4,
+  "actualHttpBusyAndLostCommittedArrivalReply": true,
+  "journalReceipts": 1,
+  "arrivalEvents": 1,
+  "guestCopies": 1,
+  "originalAttemptLimit": 3,
+  "originalBackoffMs": [
+    300,
+    800
+  ],
+  "originalRequestDeadlineMs": 12000,
+  "fullDefaultSuitePending": false,
+  "fourMapFullNativeQualified": false,
+  "privateGraphicsCandidatesPublished": false,
+  "realPlayersAndOpcQualified": false,
+  "wholeGoalComplete": false,
+  "fullDefaultSuitePassed": 1773,
+  "fullDefaultSuiteCounts": [
+    1759,
+    14
+  ],
+  "noSkippedOrCancelledDefaultCases": true,
+  "sourceAndDefaultArgumentsVerifiedBeforeAndAfter": true,
+  "completedAt": "2026-10-20T19:53:05.463534+00:00"
+}

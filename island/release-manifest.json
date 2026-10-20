@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v337-agent-source",
+  "release": "hyper-dimension-v338-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 134692,
-      "sha256": "45b00d372da534fd61ec12b285cee9ea2055d60343e608b05f9c6a97b26b83a2"
+      "bytes": 135107,
+      "sha256": "8526cbb817d56b02fc5b124ba883e6ab1abd5a6f0910cfc59bc0d5a6b4c8edba"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18296,
-      "sha256": "4a36bbf040f4d1b2261e732d86451abed2a90f7104bef46991abd7ad80bbd2d2"
+      "bytes": 18330,
+      "sha256": "4566ca5c77bc83efd607f8297d7163978840db3959255e418c215bb4b8e649ad"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7332,8 +7332,8 @@
     },
     {
       "path": "src/lanCommandRetry.js",
-      "bytes": 699,
-      "sha256": "79f2434e7ec357b4178e2b7ba2a3c88da7c3b97218cd63b7b96c413c16105b5e"
+      "bytes": 714,
+      "sha256": "1be68be3027602330c53cb77b5c5a983feab5ad755bd625d19c06f6d458a76d8"
     },
     {
       "path": "src/lanEconomyUI.js",
@@ -14369,7 +14369,23 @@
       "path": "tests/fixtures/raster-before-v304.js",
       "bytes": 5836,
       "sha256": "60e9f523692c3723539a82542b260212fa574f2d316faf8a7cc23ce78f5355e4"
+    },
+    {
+      "path": "tests/v338-arrival-retry.test.mjs",
+      "bytes": 5852,
+      "sha256": "0a61d9de8c9ab46d7fcccf19f0805e1fafbacf37d8977f4d2f9db0ff21caf425"
+    },
+    {
+      "path": "docs/arrival-recovery-v338.md",
+      "bytes": 1598,
+      "sha256": "65281850b13cdc362b8fb46cb52370df97cd8e39fd280831e76ee04ce8b8a8b5"
+    },
+    {
+      "path": "docs/verification-v338.json",
+      "bytes": 864,
+      "sha256": "6850ebef2f0baa4ac19ea8e6e157a373a974b5dff940127445f2778c8f018da2"
     }
   ],
-  "publicRevision": "v333-foreground-save-generation"
+  "publicRevision": "v333-foreground-save-generation",
+  "generatedAt": "2026-10-20T19:46:09.712433+00:00"
 }
