@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 129350,
-      "sha256": "daa56c20a001a3079d105d08f963a54c58b2bc8a35d4254ab44a68abc00b0e56"
+      "bytes": 130211,
+      "sha256": "36a9240bd5c9b035385b344c7d1fdd2ebf35ffa5c75254c82a7bf6cf101112d1"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9147,8 +9147,8 @@
     },
     {
       "path": "tests/v154-material-art-browser.mjs",
-      "bytes": 8512,
-      "sha256": "ee2a942271fdef6d10e7ce6912f9b26833924cf4e70ce820c42f74a4158f03e5"
+      "bytes": 8681,
+      "sha256": "f39a5c176ba1b8cc11f63d6b2b56cacaf71d0559d5e2f3af62c18dc93d6a51f8"
     },
     {
       "path": "tests/v155-checkpoint-restart-browser.mjs",
