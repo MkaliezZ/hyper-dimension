@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v328-agent-source",
+  "release": "hyper-dimension-v329-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 128632,
-      "sha256": "dbed6a9cc2a343d4b71ec35d92c5863e1a838234e67c9b49ca0440850392195e"
+      "bytes": 129350,
+      "sha256": "daa56c20a001a3079d105d08f963a54c58b2bc8a35d4254ab44a68abc00b0e56"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17733,
-      "sha256": "0a98c53a9b6220d3878908ab05e0b1e2682a667c105051f3db954b0971683ae1"
+      "bytes": 17773,
+      "sha256": "b12250ee168290b1ce0b7958116495c66cae41a51e336b157282a7e7878894e8"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 43482,
-      "sha256": "c3ab060a28750f22b31850a02d760fcd14bc97f32c131ba5b80edd9c8fe6e280"
+      "bytes": 44745,
+      "sha256": "852fd8816f2541eef36c3219b7ddc29268f90c858f37c6e1189661732a8a765e"
     },
     {
       "path": "src/saveDelta.js",
@@ -14209,7 +14209,27 @@
       "path": "docs/verification-v328.json",
       "bytes": 1304,
       "sha256": "d0c3590b7f374b42c1c6ef217eed5d55a47c032a0bda8993c8dab7fa45857a50"
+    },
+    {
+      "path": "tests/v329-planning-checkpoint.test.mjs",
+      "bytes": 5938,
+      "sha256": "4bdcbf112336dfee05c33c46a4c2da0b70e989a280d780a058c295103d4928e2"
+    },
+    {
+      "path": "tests/v329-acknowledged-planning-browser.mjs",
+      "bytes": 12631,
+      "sha256": "c9a7e3837f1c3087ae062cbf102c28a75d5cbf37aee17f29bfb9bdea50d44d87"
+    },
+    {
+      "path": "docs/acknowledged-planning-v329.md",
+      "bytes": 3206,
+      "sha256": "f360bd0848bf725d071c9e3ad4bc947a2ca40fa4be2ad0fa4da3554a5792eace"
+    },
+    {
+      "path": "docs/verification-v329.json",
+      "bytes": 1171,
+      "sha256": "62811ac462742d887eca52d721d4005e6ca2b1cf92c8dd2fc6b0b4b36e0d71bc"
     }
   ],
-  "publicRevision": "v328-user-chat-save-checkpoint"
+  "publicRevision": "v329-acknowledged-planning-registration"
 }

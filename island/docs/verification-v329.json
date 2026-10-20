@@ -1,0 +1,31 @@
+{
+  "version": "V329",
+  "at": "2026-10-20T05:10:04.766322+00:00",
+  "basePublicCommit": "523aec443cbfc2275aeb6dba17d4858a98b86d7b",
+  "failedHostedRun": 39369881732,
+  "failedHostedJob": 118456401295,
+  "failedArtifact": 12241237994,
+  "artifactSHA256": "f85f9cfee6fea424fe88120f737cf4ba386402a425fa99ca6f4e371466fe98a8",
+  "artifactBytes": 8233961,
+  "artifactCRCAndDigestVerified": true,
+  "originalNativeRegistrationNegativeCases": 2,
+  "candidateNativeProtocolCasesPassed": 14,
+  "pureClientProtectionRulesPassed": 16,
+  "originalFullResidentChainBothStylesPassed": true,
+  "originalManualAutoBarrierUncertainCasesPassed": 8,
+  "originalForegroundCheckpointCasesPassed": 2,
+  "serverModelsResourcesClockDeadlinesAndQueueFairnessUnchanged": true,
+  "changedRuntime": [
+    "src/saveClient.js"
+  ],
+  "defaultVerificationPending": false,
+  "portableNativeVerificationPending": false,
+  "exactArchivePending": true,
+  "hostedRestorationNotClaimed": true,
+  "fourMapStillUnqualified": true,
+  "wholeGoalComplete": false,
+  "defaultRulesPassed": 1720,
+  "preparedPayloads": 2842,
+  "portableNativeProtocolCasesPassed": 14,
+  "persistedOriginalCompletionCasesPassed": 6
+}

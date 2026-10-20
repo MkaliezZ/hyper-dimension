@@ -227,14 +227,18 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   if(!r.commandSending&&!hasCommand(theme)&&!['conflict','blocked','offline','action_pending'].includes(r.status))status(r,'pending','进度待保存 · 自动写入中');
   schedule(r);
  }
- async function flush(theme){
-  const r=record(theme);
+ function assertFlushAllowed(r,theme){
   if(read(replacementKey(theme)))throw Object.assign(Error('进度替换结果尚待核对'),{code:'action_pending'});
   if(r.previewLock||r.previewPreparing||read(importKey(theme)))throw Object.assign(Error('存档导入尚待确认'),{code:'import_pending'});
   if(r.recovering)throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});
   if(r.status==='action_pending')throw Object.assign(Error(r.message||'操作结果尚待核对'),{code:'action_pending'});
   if(r.commandSending||read(commandKey(theme)))throw Object.assign(Error('作业结算待核对，请先重试该次作业'),{code:'action_pending'});
   if(['conflict','blocked'].includes(r.status))throw Error(r.message);
+ }
+ function hasAcknowledgedPlanningCheckpoint(r,theme,input,options){return options?.foreground===true&&input.kind==='commerce'&&input.operation==='plan_batch'&&Number.isSafeInteger(input.day)&&input.day===r.actions?.commerce?.snapshot?.day&&typeof r.planningCheckpointWorld==='string'&&r.planningCheckpointWorld===r.state?.saveSlot&&!!r.version&&!!baselineText(r);}
+ async function flush(theme){
+  const r=record(theme);
+  assertFlushAllowed(r,theme);
   if(r.inflight){await r.inflight;if(r.dirty)return flush(theme);return}
   if(!r.dirty||!r.state)return;
   clearTimeout(r.timer);r.timer=null;
@@ -295,7 +299,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   return result;
  }
  function checkpointOperation(theme,operation,{foreground=false}={}){
-  const r=record(theme),run=async()=>{await flush(theme);if(!operation)return;const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true,foreground});
+  const r=record(theme),run=async()=>{await flush(theme);if(!operation){if(foreground&&r.version&&baselineText(r))r.planningCheckpointWorld=r.state?.saveSlot;return;}const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true,foreground});
   // External operations wait for accepted jobs in the same queue, before a
   // later job can overtake their checkpoint. Uncertain journals still block it.
   return result;
@@ -313,14 +317,23 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
 
  async function action(theme,input,prepareInput,options){
-  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});return queueOperation(r,()=>actionNow(theme,input,prepareInput),options);
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});return queueOperation(r,()=>actionNow(theme,input,prepareInput,options),options);
  }
- async function actionNow(theme,input,prepareInput){
+ async function actionNow(theme,input,prepareInput,options){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});
   let envelope=read(commandKey(theme)),basePath=envelope?.baseDocument?'baseDocument.document.state':'baseState';
   if(envelope&&(envelope.body.requestId!==input.requestId||envelope.body.operation!==input.operation))throw Object.assign(Error('另一次作业结果待核对，请先重试'),{code:'action_pending'});
   if(!envelope){
-   await flush(theme);
+   // A manual planning batch only records proposals against canonical state.
+   // Its pre-provider foreground checkpoint already acknowledged the user input.
+   // Keep newer local edits durable in the same command journal and reconcile
+   // them after the reply;the ordinary autosave retains their clock/state write.
+   // Never bypass an active/uncertain autosave,an earlier barrier,or import/recovery.
+   if(hasAcknowledgedPlanningCheckpoint(r,theme,input,options)){
+    assertFlushAllowed(r,theme);while(r.inflight)await r.inflight;assertFlushAllowed(r,theme);
+    if(!hasAcknowledgedPlanningCheckpoint(r,theme,input,options)||read(autosaveKey(theme)))await flush(theme);
+    r.planningCheckpointWorld=null;
+   }else await flush(theme);
    // A flush waiter can start its next save before this outer await resumes.
    // Drain that actual flight before reserving the command's acknowledged version.
    while(r.inflight)await r.inflight;
