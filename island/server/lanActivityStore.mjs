@@ -13,6 +13,15 @@ const strict=(v,keys)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.key
 export function createLanActivityStore({directory,identities,tenants,now=()=>Date.now(),settlementFault=()=>{}}){
  const root=resolve(directory,'_lan'),file=join(root,'activities.json'),previous=join(root,'activities.previous.json'),lock=join(root,'activities.lock');
  async function locked(fn){await mkdir(root,{recursive:true});const token=randomUUID(),start=Date.now();let acquired=false;while(!acquired){try{const f=await openExclusiveFile(lock);await f.writeFile(JSON.stringify({pid:process.pid,token}));await f.close();acquired=true;}catch(e){if(e.code!=='EEXIST')throw e;try{const owner=JSON.parse(await readFile(lock,'utf8'));try{process.kill(owner.pid,0)}catch(e){if(e.code!=='EPERM'){await unlink(lock);continue;}}}catch{try{if(Date.now()-(await stat(lock)).mtimeMs>30000){await unlink(lock);continue;}}catch{}}if(Date.now()-start>5000)throw fail('活动档案正在写入，请稍后重试','lan_event_busy',503);await new Promise(r=>setTimeout(r,30));}}try{return await fn();}finally{try{await releaseOwnedLock(lock,token)}catch{}}}
+ // Simultaneous save requests wait for one ongoing settlement reconciliation.
+ // This is not a timed cache:the next call after settlement starts a new check.
+ // Views/actions retain their own authority lock and cross-process ownership.
+ let reconcileFlight=null;
+ function reconcileBarrier(){
+  if(reconcileFlight)return reconcileFlight;
+  const flight=locked(async()=>{await reconcile();}).finally(()=>{if(reconcileFlight===flight)reconcileFlight=null;});
+  reconcileFlight=flight;return flight;
+ }
  async function read(){try{const d=JSON.parse(await readFile(file,'utf8'));if(d.schema!==1||!d.events||!d.follows||!Array.isArray(d.requests)||d.checksum!==sha({...d,checksum:undefined}))throw fail('活动档案校验失败，原文件已保留','lan_event_corrupt',503);return d;}catch(e){if(e.code!=='ENOENT')throw e.code==='lan_event_corrupt'?e:fail('活动档案无法读取，原文件已保留','lan_event_corrupt',503);const d={schema:1,revision:0,events:{},follows:{},requests:[],updatedAt:now()};d.checksum=sha(d);await atomic(file,d);return d;}}
  async function save(d,old){d.revision=old.revision+1;d.updatedAt=now();delete d.checksum;d.checksum=sha(d);await atomic(previous,old);await atomic(file,d);}
  const economy=createLanActivityEconomy({tenants,now}),settlements=createLanSettlementCoordinator({file:join(root,'settlement-pending.json'),tenants,save,fault:settlementFault});
@@ -27,7 +36,7 @@ export function createLanActivityStore({directory,identities,tenants,now=()=>Dat
  async function checkRoom(e,a){const r=await identities.roomStateForServer(e.roomId);if(r.owner!==e.owner||!r.members[a.id])throw fail('请先用会客口令进入主办岛主的房间','lan_event_room');return r;}
  async function admission(e,a){const room=await checkRoom(e,a);const proof=await economy.admission(e,a,a.profile.theme),doc=proof.document,missing=proof.missing;if(missing.length)throw fail('尚未带齐：'+missing.join('、'),'lan_event_items');if(e.requirements.garment&&!(e.economy&&a.id===e.owner)&&!wornItems(doc.state).includes(e.requirements.garment))throw fail('请先穿上'+GARMENTS[e.requirements.garment].name,'lan_event_outfit');return{worldKey:doc.state.saveSlot,theme:doc.theme,saveVersion:doc.version,at:now(),items:clone(e.requirements.items),garment:e.requirements.garment,arrivalProof:clone(room.members[a.id].arrivalProof||null)};}
  return{directory:root,
- async reconcile(){return locked(async()=>{await reconcile();});},
+ reconcile:reconcileBarrier,
  async view(token){const a=await identities.authorize(token);return locked(async()=>projection(await reconcile(),a));},
  async action(token,i){strict(i,['operation','requestId','eventId','expectedRevision','roomId','title','kind','brief','invitees','requirements','prepareSeconds','difficulty','minQuality','response','runId','batch','events','stars','comment','hostId','subscribed','economyMode','deliveryMode']);if(!/^[a-zA-Z0-9-]{8,80}$/.test(i.requestId||''))throw fail('请求编号无效','lan_event_invalid',400);const a=await identities.authorize(token);
  return locked(async()=>{const old=await reconcile(),d=clone(old),fingerprint=sha(i),prior=[...(d.fundedRequests||[]),...d.requests].find(r=>r.accountId===a.id&&r.id===i.requestId);if(prior){if(prior.fingerprint!==fingerprint)throw fail('同一请求不能修改活动内容','lan_event_id_conflict');if(prior.error)throw Object.assign(Error(prior.error.message),prior.error);return{view:projection(d,a),...clone(prior.result),replayed:true};}let result={eventId:null,receipt:null},walletSteps=[];

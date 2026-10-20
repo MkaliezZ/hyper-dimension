@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v333-agent-source",
+  "release": "hyper-dimension-v334-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 132662,
-      "sha256": "86b8053e02e1730d7fcfe853eefd53a2aefd63999c066b6a542f352c2517421d"
+      "bytes": 133095,
+      "sha256": "ba06f62d6fb574517096475015a41d45cf0634fc99d5837d4e55fb5debe28cda"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18155,
-      "sha256": "3a6e9427d3b4818958e010fa78b6b5296673eb75f5374d87ccd98eda785fe327"
+      "bytes": 18192,
+      "sha256": "2b7958177f08ad730420ccc4b7ef3a191251ef0e97a316ab13c0aceb5682d08e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6197,8 +6197,8 @@
     },
     {
       "path": "server/lanActivityStore.mjs",
-      "bytes": 18846,
-      "sha256": "79ae32c080ff7b513d2e38d1c2a8efc07e91a4a83e5f753379c6c3eb8ccffe40"
+      "bytes": 19311,
+      "sha256": "3ba7c94f98ddc0b1d8afee0f074a2fea85d3effa69335600dc8d22d0adefcf15"
     },
     {
       "path": "server/lanAgentService.mjs",
@@ -14304,6 +14304,21 @@
       "path": "tests/v333-foreground-checkpoint-browser.mjs",
       "bytes": 7800,
       "sha256": "ce858b3d4cf218a2442ccbbc4e878039cacfe0d7619fbdac5d9188e984d37788"
+    },
+    {
+      "path": "docs/activity-barrier-v334.md",
+      "bytes": 1418,
+      "sha256": "c5611894f05cd6fc47c6ef2ed9eb070cebee50fa5ed48f133f6bef6a52de9215"
+    },
+    {
+      "path": "docs/verification-v334.json",
+      "bytes": 1322,
+      "sha256": "bb65d408821b75b18aca9fb14ac4c4a43a40f0adcf473c61d134237e63672963"
+    },
+    {
+      "path": "tests/v334-activity-barrier.test.mjs",
+      "bytes": 4776,
+      "sha256": "f517a96085ecc8659b1889e3e937625c804921329dcb4e1e8e55eed668123fad"
     }
   ],
   "publicRevision": "v333-foreground-save-generation"

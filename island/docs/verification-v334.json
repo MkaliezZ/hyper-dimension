@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-20T13:09:37.119840+00:00",
+  "basePublicCommit": "8e572b2ae3312d8c8fedbee02c406d5eb78727a7",
+  "runtimeChanged": [
+    "server/lanActivityStore.mjs"
+  ],
+  "relatedNode22Tests": {
+    "tests": 25,
+    "pass": 25,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "filesTested": [
+    "v334-activity-barrier.test.mjs",
+    "v58-lan-economy.test.mjs",
+    "v255-lan-activity-io.test.mjs"
+  ],
+  "scope": "Actual filesystem, original funded accounting fixtures and real Windows sharing; two themes and32joined callers wait for persisted settlement. Declared100coin/material/controlled-time fixtures,not human play.",
+  "coalescing": "Only simultaneous public reconcile() calls within one store;no completed result cache. Views/actions and cross-process locks unchanged.",
+  "newDefaultSuiteNotRun": false,
+  "newArchiveNotSealed": true,
+  "latestSealedArchive": "V333 at db123959f4",
+  "macModalFailureNotClaimedFixed": true,
+  "nativeFourMapStillUnqualified": true,
+  "nativeGraphicsCandidatesNotAdopted": true,
+  "newVideoDelivered": false,
+  "humanOrOpcValidated": false,
+  "wholeGoalComplete": false,
+  "defaultSuitePassed": 1757,
+  "defaultCounts": [
+    1743,
+    14
+  ],
+  "defaultSnapshotPayloadsVerified": 2860,
+  "defaultSourceBeforeAfterIdentical": true,
+  "defaultRuntime": "Node22"
+}
