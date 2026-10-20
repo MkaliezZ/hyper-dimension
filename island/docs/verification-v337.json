@@ -28,5 +28,14 @@
   "newArchiveSealed": false,
   "newVideoDelivered": false,
   "humanOrOpcAcceptance": false,
-  "wholeGoalComplete": false
+  "wholeGoalComplete": false,
+  "nativeVisibilityReference": {
+    "failureJob": 118829675609,
+    "artifactInspected": 12291412924,
+    "failureBeforePixelComparison": true,
+    "historicalOriginalSource": "tests/fixtures/raster-before-v304.js",
+    "unchangedHistoricalSha256": "60e9f523692c3723539a82542b260212fa574f2d316faf8a7cc23ce78f5355e4",
+    "original120PixelAndCullingAndCompositeAssertionsRetained": true,
+    "runtimeChangedByFixtureRepair": false
+  }
 }

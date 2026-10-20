@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 134271,
-      "sha256": "4f1ade0d7eae764b4cef43d1c0b93235ec30a64f4454e833edd5ce1b29f20e7d"
+      "bytes": 134692,
+      "sha256": "45b00d372da534fd61ec12b285cee9ea2055d60343e608b05f9c6a97b26b83a2"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -13762,8 +13762,8 @@
     },
     {
       "path": "tests/v304-raster-visibility-browser.mjs",
-      "bytes": 6876,
-      "sha256": "b0cb706611fc000bf5a6857d132b39fc28890e41a83137c695f28ca7b533ab4b"
+      "bytes": 6743,
+      "sha256": "52b27aebcf5b34d904a0ccd1ed16072da1f0f72a59e8ed356f19e089c3e43751"
     },
     {
       "path": "docs/verification-v304.json",
@@ -14357,13 +14357,18 @@
     },
     {
       "path": "docs/verification-v337.json",
-      "bytes": 1424,
-      "sha256": "0e9ef96f85fde4a16ec63d0ceb7f485081fddca273977112245356b29159f932"
+      "bytes": 1860,
+      "sha256": "55ed3f772b36e6d3c1bb9e4cf0b7402369445fec0f0f39fbe4d9a53376f3cf4a"
     },
     {
       "path": "tests/v337-raster-state.test.mjs",
       "bytes": 1605,
       "sha256": "7d42bce6cc715aec0a6207df1a5d3acfd2d64299718fd5f4b8d9fd01894aab7a"
+    },
+    {
+      "path": "tests/fixtures/raster-before-v304.js",
+      "bytes": 5836,
+      "sha256": "60e9f523692c3723539a82542b260212fa574f2d316faf8a7cc23ce78f5355e4"
     }
   ],
   "publicRevision": "v333-foreground-save-generation"

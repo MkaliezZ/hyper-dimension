@@ -7,8 +7,8 @@ import {chromium} from 'playwright-core';
 import {browserLaunchOptions} from './browserRuntime.mjs';
 
 const root=resolve(import.meta.dirname,'..'),out=resolve(process.env.HD_QA_OUT||'qa/v304/native-raster-visibility');await mkdir(out,{recursive:true});
-const source=(await readFile(join(root,'src/rasterQuality.js'),'utf8')).replaceAll('\r\n','\n');
-const baseline=source.replace("import {rasterOutsideCanvas} from './rasterVisibility.js';\n",'').replace(',draws:0,culled:0','').replace(' if(rasterOutsideCanvas(ctx,e.surface,rect)){stats.culled++;return;}stats.draws++;\n','');
+// Keep the actual pre-culling module immutable across later runtime changes.
+const baseline=(await readFile(join(root,'tests/fixtures/raster-before-v304.js'),'utf8')).replaceAll('\r\n','\n');
 const pin='60e9f523692c3723539a82542b260212fa574f2d316faf8a7cc23ce78f5355e4';assert.equal(createHash('sha256').update(baseline).digest('hex'),pin,'The comparison must retain the actual pre-change implementation');
 const report={scope:'Owned native Canvas and the actual local building/residence/dock artwork in both styles, compared to the SHA-pinned original raster module before culling. Includes real reconstruction Workers, both backing densities, transforms, source crops, reverse rectangles, filters, shadows and destructive compositing. No game state, clock, providers, user browser or human acceptance.',baselineNormalizedSha256:pin,cases:[],errors:[],passed:false};
 const server=createServer(async(req,res)=>{try{
