@@ -22,7 +22,7 @@ try{
   await writeFile(join(out,name+'-stdout.log'),stdout);await writeFile(join(out,name+'-stderr.log'),stderr);
   const actual=JSON.parse(await readFile(join(directory,'report.json'),'utf8'));
   const events=(await readFile(proof,'utf8')).trim().split('\n').map(s=>JSON.parse(s));
-  const row={name,...exit,expectedExit:expected,attempts:events.length,requestIds:[...new Set(events.map(e=>e.requestId))],originalPassed:!!actual.passed};report.cases.push(row);
+  const row={name,...exit,expectedExit:expected,attempts:events.length,requestIds:[...new Set(events.map(e=>e.requestId))],originalPassed:!!actual.passed,childFailure:actual.failure||null,childStage:actual.cases[0]?.stage||null,serverBeforeCleanup:actual.cases[0]?.serverBeforeCleanup||null,serverExitObservation:actual.cases[0]?.serverExitObservation||null,serverLogFiles:actual.cases[0]?.serverLogFiles||null};report.cases.push(row);
   assert.equal(exit.code,expected);assert.equal(exit.signal,null);assert.equal(events.length,retries+1);assert.equal(row.requestIds.length,1);
   assert.equal(events[0].replayed,false);assert.equal(events[0].replyLost,true);
   if(retries){assert.equal(events[1].replayed,true);assert.deepEqual(events[1].receipt,events[0].receipt);assert.equal(events[1].replyLost,losses===2);}

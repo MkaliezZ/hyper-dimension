@@ -133,6 +133,9 @@ jobs:
             island/qa/v157/modal-command-navigation/*.png
             island/qa/v271/modal-transport/**/report.json
             island/qa/v271/modal-transport/**/*-transport.jsonl
+            island/qa/v271/modal-transport/**/*-requests.jsonl
+            island/qa/v271/modal-transport/**/*-stdout.log
+            island/qa/v271/modal-transport/**/*-stderr.log
             island/qa/v271/modal-transport/report.json
           if-no-files-found: ignore
           retention-days: 3

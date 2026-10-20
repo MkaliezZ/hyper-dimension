@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 131656,
-      "sha256": "c650b49bcc686df94ad011ad4cd2b8bb3f9c21340440ca975b69de694abd8d7e"
+      "bytes": 132662,
+      "sha256": "86b8053e02e1730d7fcfe853eefd53a2aefd63999c066b6a542f352c2517421d"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9172,8 +9172,8 @@
     },
     {
       "path": "tests/v157-modal-command-navigation-browser.mjs",
-      "bytes": 11204,
-      "sha256": "e771e73f012868e4386f1cd395293a3ff67d137496f4be310ae30540600e4484"
+      "bytes": 11908,
+      "sha256": "05b1ed45d3c45a8096c9698736870669db2f678c9b29d62bd95e07ac32140a90"
     },
     {
       "path": "tests/v158-a2a-live.mjs",
@@ -13072,13 +13072,13 @@
     },
     {
       "path": "tests/modalReplyLossFixture.mjs",
-      "bytes": 986,
-      "sha256": "c2535e10f06cbf7ac653f8b99988038f71d9c01389d718e2c07827490e97292b"
+      "bytes": 2483,
+      "sha256": "173a5e47b6c0f458354b67aeb86b96ed5273ab487028a109004e0174e4d2aaca"
     },
     {
       "path": "tests/v271-modal-transport-browser.mjs",
-      "bytes": 3357,
-      "sha256": "ca9804433c8cff329ccd27f410f20f22cac34c53395ba3335de3b503e8bc5eb0"
+      "bytes": 3614,
+      "sha256": "06992c6c303280c865a88ecf2dcd3d84620cd6da5fd34cc1d77cd43d75b9f1a0"
     },
     {
       "path": "docs/modal-transport-v271.md",
