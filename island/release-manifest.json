@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 127152,
-      "sha256": "8c98599a3ca27d8cad435d96bb0279436d7e01afde3c90e149b880dd78b2827b"
+      "bytes": 128632,
+      "sha256": "dbed6a9cc2a343d4b71ec35d92c5863e1a838234e67c9b49ca0440850392195e"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9762,8 +9762,8 @@
     },
     {
       "path": "tests/v203-scene-return-browser.mjs",
-      "bytes": 14019,
-      "sha256": "319b8121fdee5e52c243cbc2c5eae0b4e34f58ba4e9677958c9eb0ea8132d3c1"
+      "bytes": 14202,
+      "sha256": "8b47350d15740c541ac90b172f7a5c7488dc3a7588a1bf4fb783a75f8b75e0d0"
     },
     {
       "path": "tests/v204-save-waiter-browser.mjs",
@@ -12952,8 +12952,8 @@
     },
     {
       "path": "tests/v262-social-pending-browser.mjs",
-      "bytes": 11513,
-      "sha256": "709654cffe2904be1ae42d9479d17ed97546f6e8689827f0416d4fc145c82dc2"
+      "bytes": 13066,
+      "sha256": "2bffd8f45bd51c13d5e8259eca780453c311a51294b80054c930b2183072c94e"
     },
     {
       "path": "docs/social-receipts-and-visits-v262.md",
