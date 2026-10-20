@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-20T16:47:46.914997+00:00",
+  "basePublicCommit": "b51a1859845f9b1cdfca7ed62a9c7245359036cb",
+  "runtimeChanged": [
+    "src/connectedSurfaceWorker.js"
+  ],
+  "relatedTestsPassed": 25,
+  "queueControl": {
+    "readyHeadNoLongerWaitsForColdTail": true,
+    "original32RequestsCompleteOnceInFifoOrder": true,
+    "invalidHeadsRetireInOrder": true
+  },
+  "nativeGraphicsControl": {
+    "publicV335ModulesVersusOnlyWorkerQueueChange": true,
+    "exactCachedGpuPixelPairs": 10,
+    "differentChannels": 0,
+    "workerCacheActuallyRequired": true,
+    "nativeHardwareWebGL2": true
+  },
+  "same15000msHealthDeadline": true,
+  "same96MiBTexture64MiBPose32RequestBudgets": true,
+  "sameGpuShaderMeshDensitySnapshotOwnershipCancellationAndArt": true,
+  "privateMainGpuFallbackUiAndTransportExperimentsIncluded": false,
+  "fullFourSimultaneousMapsQualified": false,
+  "fullMultiIslandA2aJointActivitiesQualified": false,
+  "nativeFourMapFailureRetained": "Focus document observation exceeded its original10000ms budget in the private combined candidate.",
+  "newArchiveSealed": false,
+  "newVideoDelivered": false,
+  "realHumanOrOpcAcceptance": false,
+  "wholeGoalComplete": false
+}

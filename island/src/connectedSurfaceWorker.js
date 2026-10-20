@@ -10,18 +10,20 @@ function drop(index,error){const [job]=jobs.splice(index,1);send({kind:'raster',
 function pump(){
  timer=null;if(flight||!jobs.length)return;
  try{
-  let ready=true;
-  for(let i=0;i<jobs.length;i++){
-   const image=images.get(jobs[i].imageId);
-   if(!image){drop(i--,'artwork_evicted');continue;}
-   if(connectedTextureFailed(image.bitmap)){drop(i--,'sprite_upload_failed');continue;}
-   if(!prepareConnectedTexture(image.bitmap))ready=false;
+  // Later cold uploads must not postpone an already-ready oldest pose.
+  // Retire invalid heads in order, then prepare only the current head. The
+  // existing GPU fence, independent snapshot and cancellation identity remain.
+  while(jobs.length){
+   const image=images.get(jobs[0].imageId);
+   if(!image){drop(0,'artwork_evicted');continue;}
+   if(connectedTextureFailed(image.bitmap)){drop(0,'sprite_upload_failed');continue;}
+   break;
   }
-  if(status().backend==='Canvas connected surface')throw Error('sprite_gpu_unavailable');
-  if(!ready){schedule();return;}
   if(!jobs.length)return;
   const job=jobs[0],image=images.get(job.imageId);
-  if(!image){drop(0,'artwork_evicted');schedule();return;}
+  const ready=prepareConnectedTexture(image.bitmap);
+  if(status().backend==='Canvas connected surface')throw Error('sprite_gpu_unavailable');
+  if(!ready){schedule();return;}
   image.used=++serial;
   const rendered=renderConnectedSurfaceInWorker(image.bitmap,job.frame,job.mesh,job.density,job.smoothing);
   if(!rendered){schedule();return;}
