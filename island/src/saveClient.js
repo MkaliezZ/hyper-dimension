@@ -107,7 +107,10 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    const data=response.data||JSON.parse(response.text);
    if(!response.ok){
-    const durableRequest=operation==='action'&&body?.requestId||operation==='save'&&body?.saveId&&body?.expectedVersion&&['save_busy','lan_event_busy'].includes(data.code);
+    // lan_busy is a definite rejection before the guarded home save executes.
+    // Replay its existing journal just like a save-lock rejection; keep the
+    // same save ID, expected version, state and active time across attempts.
+    const durableRequest=operation==='action'&&body?.requestId||operation==='save'&&body?.saveId&&body?.expectedVersion&&['save_busy','lan_busy','lan_event_busy'].includes(data.code);
     if(durableRequest&&response.status===503&&transientCodes.has(data.code)&&attempt<delays.length){await new Promise(resolve=>setTimeout(resolve,delays[attempt]));continue;}
     throw Object.assign(Error(data.error||'存档服务未连接'),{code:data.code,status:response.status,retryAfter:data.retryAfter});
    }

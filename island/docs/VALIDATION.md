@@ -1084,3 +1084,7 @@ Windows 原生素材检查在开始比较之前，发现按当前源码反推的
 ## V338 · Visitor arrival receipts
 
 [Arrival recovery](arrival-recovery-v338.md) adds bounded reuse of the original room-join request after transient writer/transport failures. Actual HTTP busy and lost post-commit reply recover with one journal receipt, one arrival event and one guest. Existing business and identity rejection boundaries remain. Full four-map native and real-player/OPC acceptance remain open.
+
+## V339 · Autosave identity-writer recovery
+
+[Autosave recovery](autosave-identity-recovery-v339.md) extends the existing bounded, byte-identical durable-save retry to explicit `503 / lan_busy` replies. This keeps manual preparation behind the acknowledged original save, without repeating its active-time advance. Persistent contention and non-retry failures retain their recovery journals. Hosted Windows content recovery and full multi-island acceptance remain unconfirmed.

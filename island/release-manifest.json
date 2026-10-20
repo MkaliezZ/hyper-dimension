@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v338-agent-source",
+  "release": "hyper-dimension-v339-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 135107,
-      "sha256": "8526cbb817d56b02fc5b124ba883e6ab1abd5a6f0910cfc59bc0d5a6b4c8edba"
+      "bytes": 135586,
+      "sha256": "982e72faa4c0f049b39ae23e46581496d5b81c63d6c5b1cf3aace539a0a38ac3"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18330,
-      "sha256": "4566ca5c77bc83efd607f8297d7163978840db3959255e418c215bb4b8e649ad"
+      "bytes": 18374,
+      "sha256": "7edb066b3e69625439a021d5b800510314c98b3a6d0615701d1ab9b7ff229cc5"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 45605,
-      "sha256": "8dc904b798e66f6a26677c39ae475bcb1a2f8fa0f2b6918c135574ba0c23ba1c"
+      "bytes": 45850,
+      "sha256": "79ed86724e88e8a2d50af23db90ee6ab62317c1f3ef17ca91efeedc8a4e74111"
     },
     {
       "path": "src/saveDelta.js",
@@ -12442,8 +12442,8 @@
     },
     {
       "path": "tests/v227-custom-agent-browser.mjs",
-      "bytes": 7857,
-      "sha256": "65e4000190239a84e0672f06cc9939650786186b4d44e0b5eea0a491729afd8e"
+      "bytes": 9027,
+      "sha256": "13e6d53a46f416b10530689caa50bae5ae4444d7dc3b4581db87d597c2dd88eb"
     },
     {
       "path": "docs/custom-agent-v227.md",
@@ -14384,8 +14384,23 @@
       "path": "docs/verification-v338.json",
       "bytes": 864,
       "sha256": "6850ebef2f0baa4ac19ea8e6e157a373a974b5dff940127445f2778c8f018da2"
+    },
+    {
+      "path": "tests/v339-autosave-identity-retry.test.mjs",
+      "bytes": 6203,
+      "sha256": "c266be113b619cebeae007c450a2514cc0a9919509074413b992538be771df09"
+    },
+    {
+      "path": "docs/autosave-identity-recovery-v339.md",
+      "bytes": 2273,
+      "sha256": "94bf276acb1c26044cb21c59fb41fa767708c019dd00f5430c8c7792e834b968"
+    },
+    {
+      "path": "docs/verification-v339.json",
+      "bytes": 964,
+      "sha256": "f04e2a6b9db1a7f67a69a40bc79e84da421c256924989ce8d359670d70709250"
     }
   ],
   "publicRevision": "v333-foreground-save-generation",
-  "generatedAt": "2026-10-20T19:46:09.712433+00:00"
+  "generatedAt": "2026-10-20T20:51:54.346036+00:00"
 }
