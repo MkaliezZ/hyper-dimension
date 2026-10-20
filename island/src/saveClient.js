@@ -294,13 +294,13 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   r.actionTail=r.actionTail?Promise.all([r.actionTail,settled]).then(()=>{}):settled;
   return result;
  }
- function checkpointOperation(theme,operation){
-  const r=record(theme),run=async()=>{await flush(theme);if(!operation)return;const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true});
+ function checkpointOperation(theme,operation,{foreground=false}={}){
+  const r=record(theme),run=async()=>{await flush(theme);if(!operation)return;const pending=operation();r.inflight=pending;try{return await pending}finally{if(r.inflight===pending)r.inflight=null}},result=queueOperation(r,run,{barrier:true,foreground});
   // External operations wait for accepted jobs in the same queue, before a
   // later job can overtake their checkpoint. Uncertain journals still block it.
   return result;
  }
- function checkpoint(theme){return checkpointOperation(theme)}
+ function checkpoint(theme,options){return checkpointOperation(theme,undefined,options)}
  // Keep the acknowledged read in the same queue barrier as its checkpoint.
  // A queued resident/visitor command must not reserve the pre-refresh version.
  function checkpointAndRefresh(theme){

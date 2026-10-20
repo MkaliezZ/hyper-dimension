@@ -437,6 +437,14 @@ jobs:
       - name: Native committed completion recovery after two lost replies
         if: matrix.group == 'content'
         run: node tests/v327-completion-recovery-browser.mjs
+      - name: Native explicit chat checkpoint admission
+        if: matrix.group == 'content'
+        run: node tests/v328-manual-checkpoint-browser.mjs
+
+      - name: Native durable completion recovery across reload
+        if: matrix.group == 'content'
+        run: node tests/v328-persisted-completion-browser.mjs
+
 
 
 
@@ -519,6 +527,8 @@ jobs:
             island/qa/v317/native-plan-queue/report.json
             island/qa/v326/native-manual-batch/report.json
             island/qa/v327/native-completion-recovery/report.json
+            island/qa/v328/native-manual-checkpoint/report.json
+            island/qa/v328/native-persisted-completion/report.json
             island/qa/v317/native-plan-queue/*.png
             island/qa/v305/native-catalog-refresh/report.json
             island/qa/v305/native-catalog-refresh/*.png

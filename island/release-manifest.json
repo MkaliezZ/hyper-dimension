@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v327-agent-source",
+  "release": "hyper-dimension-v328-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 126641,
-      "sha256": "7813fffd49071f3748b1d5d1b7b2f41417da0c9432c01953e7c6011d645ba057"
+      "bytes": 127152,
+      "sha256": "8c98599a3ca27d8cad435d96bb0279436d7e01afde3c90e149b880dd78b2827b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17691,
-      "sha256": "0d0431d9c4388c950534ce81e98d992eb3329b8cb7e5545f59cc4f662c32c9f0"
+      "bytes": 17733,
+      "sha256": "0a98c53a9b6220d3878908ab05e0b1e2682a667c105051f3db954b0971683ae1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147146,
-      "sha256": "72a1fe47a5f3d10ab3e167a0a645485e5cc20a970742036fb0933c1ebde751a1"
+      "bytes": 147163,
+      "sha256": "d68e2ef954f35419dc3e10ac2cbffda358d7b9693b398aa8bcf56159b17ae726"
     },
     {
       "path": "src/arcade.css",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 43423,
-      "sha256": "9814565bd545ef6e76095e6b89e0bca1c4643f632fb933f0f4852c422b2d15da"
+      "bytes": 43482,
+      "sha256": "c3ab060a28750f22b31850a02d760fcd14bc97f32c131ba5b80edd9c8fe6e280"
     },
     {
       "path": "src/saveDelta.js",
@@ -13547,8 +13547,8 @@
     },
     {
       "path": "src/actionQueue.js",
-      "bytes": 988,
-      "sha256": "47282448778633ff759503fa0288b57bc1348460fed68418a05206597503e4da"
+      "bytes": 1082,
+      "sha256": "55da6d15437476c231d36ac656515803756ef97a6a613ff716cacf4de8bba7d7"
     },
     {
       "path": "tests/v296-action-queue.test.mjs",
@@ -14184,7 +14184,32 @@
       "path": "docs/verification-v327.json",
       "bytes": 1240,
       "sha256": "a6fb5a1feeb9f4d02d706f122008bacbe3fb079c87a91fdd54f456dd816cd0b1"
+    },
+    {
+      "path": "tests/v328-foreground-checkpoint.test.mjs",
+      "bytes": 2899,
+      "sha256": "acbfc07d48b2f7a67294c6515ecca0dd0664f8e20924c7bafad06dc140896419"
+    },
+    {
+      "path": "tests/v328-manual-checkpoint-browser.mjs",
+      "bytes": 9387,
+      "sha256": "cc9892d6dbe7a197859217564c464220196103c1d31eec8d46e2d8c5bb40c88c"
+    },
+    {
+      "path": "tests/v328-persisted-completion-browser.mjs",
+      "bytes": 13629,
+      "sha256": "6b44f11483bcb9641214e1b42884b2d489900f34f5f2a736255188985fb0a377"
+    },
+    {
+      "path": "docs/foreground-checkpoint-v328.md",
+      "bytes": 3469,
+      "sha256": "30a6667c0928e758f8e5d028ef4d375f118db0688d125f2ff172c1d3571b9945"
+    },
+    {
+      "path": "docs/verification-v328.json",
+      "bytes": 1304,
+      "sha256": "d0c3590b7f374b42c1c6ef217eed5d55a47c032a0bda8993c8dab7fa45857a50"
     }
   ],
-  "publicRevision": "v327-canonical-completion-receipt-recovery"
+  "publicRevision": "v328-user-chat-save-checkpoint"
 }
