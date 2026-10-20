@@ -1,0 +1,36 @@
+{
+  "version": "V327",
+  "at": "2026-10-20T02:25:13.766405+00:00",
+  "baseGameCommit": "e710eaec4ef6604066a2784e4ad09511bac7675a",
+  "previousGoalTurnClassification": "progress",
+  "confirmedHostedCommittedReceiptRun": 39354178296,
+  "confirmedHostedVisitorFinishRequest": "775838b1-fafa-4f62-ad46-260b4d13e852",
+  "doubleLostNativeBaselineBothStyles": true,
+  "explicitWorldIdentityBaselineBothStyles": true,
+  "completionContractAndClientRules": 37,
+  "saleEvidenceRules": 6,
+  "nativeCompletionCases": 12,
+  "onlyOneExtraReadNoExtraMutation": true,
+  "originalFetchDeadlineMs": 12000,
+  "originalFirstAndRemainingWorkBudgetMs": [
+    120000,
+    240000
+  ],
+  "originalProductionAndRoadBudgetMs": [
+    180000,
+    150000
+  ],
+  "fullOriginalResidentAndMarketAndPackagePending": false,
+  "allHostedCausesConfirmed": false,
+  "wholeGoalComplete": false,
+  "originalResidentChainBothStylesPassed": true,
+  "originalResidentClockUnchanged": true,
+  "actualResidentProductionToTwoLostVisitorSaleBothStylesPassed": true,
+  "marketPaid": 7,
+  "marketCost": 3,
+  "canonicalSaleDeduplicated": true,
+  "originalRoadAndServiceBudgetMs": 150000,
+  "defaultRulesPassed": 1700,
+  "controlledPayloads": 2833,
+  "exactNewArchiveInstallPending": true
+}

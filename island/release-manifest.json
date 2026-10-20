@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v326-agent-source",
+  "release": "hyper-dimension-v327-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 125849,
-      "sha256": "07f328095305226d0ea1ceab94c9184b28438f419e2f411f716fc76baf308efa"
+      "bytes": 126641,
+      "sha256": "7813fffd49071f3748b1d5d1b7b2f41417da0c9432c01953e7c6011d645ba057"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17580,
-      "sha256": "5c266c0f37029aebdc7ac77372e15acc401701352979106807b219b594495b85"
+      "bytes": 17691,
+      "sha256": "0d0431d9c4388c950534ce81e98d992eb3329b8cb7e5545f59cc4f662c32c9f0"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 42435,
-      "sha256": "7b559ebb88e33c2b48baceee2711c385c5a62d00df0ae8a6ca4f40d9a3ff864c"
+      "bytes": 43423,
+      "sha256": "9814565bd545ef6e76095e6b89e0bca1c4643f632fb933f0f4852c422b2d15da"
     },
     {
       "path": "src/saveDelta.js",
@@ -12482,8 +12482,8 @@
     },
     {
       "path": "tests/v228-custom-shops-browser.mjs",
-      "bytes": 15798,
-      "sha256": "abf6377a54a44b497e203074b1d0bf81d4e99789ef297310b07612ae6821736c"
+      "bytes": 17890,
+      "sha256": "63f430cf6b0be8867250ad35a762e5a0397d77ab8d3f907e2bc0a32e02009390"
     },
     {
       "path": "docs/custom-market-v230.md",
@@ -14144,7 +14144,47 @@
       "path": "docs/verification-v326.json",
       "bytes": 838,
       "sha256": "70b5247d40d65787cf4afda9159b64a485dd3afa9a88b8ff5127ba6b91310950"
+    },
+    {
+      "path": "src/completionReceiptRecovery.js",
+      "bytes": 2675,
+      "sha256": "b44b253de20dc70f1bda932ee9db24c7aa27523488dd206b9fc888297131efbe"
+    },
+    {
+      "path": "tests/v327-completion-receipt.test.mjs",
+      "bytes": 4505,
+      "sha256": "4bec4e4562ef6f7ad04118224ad1fc1b3588fcee937491e9687d36d735a6ebdf"
+    },
+    {
+      "path": "tests/v327-completion-client.test.mjs",
+      "bytes": 7966,
+      "sha256": "094c5305162265f645dc7770664dc153434f1c993d7d23e8cecdb9d9040e2164"
+    },
+    {
+      "path": "tests/v327-completion-recovery-browser.mjs",
+      "bytes": 11183,
+      "sha256": "409f965ad3eb024e786e28fbaae9d50f3b0e486137212e570344386cddc2d948"
+    },
+    {
+      "path": "tests/visitorSaleEvidence.mjs",
+      "bytes": 1357,
+      "sha256": "38b247723a012af00e3f3ad9fe7c09f4f495a052af4b1310830b4d266cd4f782"
+    },
+    {
+      "path": "tests/v327-sale-evidence.test.mjs",
+      "bytes": 3180,
+      "sha256": "63fb6da39cba626d755b4f2aa0fd319f1b388156513dbba6e5df3863ec601a8c"
+    },
+    {
+      "path": "docs/completion-recovery-v327.md",
+      "bytes": 3764,
+      "sha256": "244844021c20db9ef28c4757db9507e670abbc659eb7493cc11290bd6f9f9e6d"
+    },
+    {
+      "path": "docs/verification-v327.json",
+      "bytes": 1240,
+      "sha256": "a6fb5a1feeb9f4d02d706f122008bacbe3fb079c87a91fdd54f456dd816cd0b1"
     }
   ],
-  "publicRevision": "v326-manual-steward-batch-priority"
+  "publicRevision": "v327-canonical-completion-receipt-recovery"
 }

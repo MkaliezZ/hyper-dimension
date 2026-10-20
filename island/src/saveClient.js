@@ -1,4 +1,5 @@
 import {isSaveCapacityError} from './saveLimits.js';
+import {completionRecoveryContext,canonicalCompletionResult} from './completionReceiptRecovery.js';
 import {assertCurrentFarmIntent} from './farmIntent.js';
 import {applySaveResponseActions} from './saveResponse.js';
 import {yieldForSave} from "./saveScheduler.js";
@@ -82,6 +83,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function request(theme,operation,body,encoded,metadataOnly=false){
   const actionsBase=metadataOnly?{version:record(theme).version,actions:record(theme).actions}:null;
+  const recovery=operation==='action'?completionRecoveryContext(body,record(theme).actions,record(theme).state?.saveSlot):null;
   const payload=body===undefined?undefined:encoded??await journal.encode(body);
   // Only durable game commands may replay here. Keep the exact bytes, version and
   // request ID, including when the server committed before its reply was lost.
@@ -90,7 +92,17 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    // Only an authoritative lease already known before this attempt can authorize
    // a bounded completion replay. Stored or merely well-shaped inputs cannot.
    const completionLease=operation==='action'&&body?.operation==='finish'&&['resident','field'].includes(body.kind)?record(theme).actions?.[body.kind]?.leases?.[body.requestId]:null;
-   const response=await journal.request('/api/saves/'+theme+(operation?'/'+operation:''),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:payload},metadataOnly,actionsBase?.version,completionLease);
+   let response;
+   try{response=await journal.request('/api/saves/'+theme+(operation?'/'+operation:''),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:payload},metadataOnly,actionsBase?.version,completionLease);}
+   catch(error){
+    // The existing identical transport retries have already ended. Read once;
+    // only a canonical finished receipt for the acknowledged lease can release it.
+    if(recovery&&(error.code==='save_request_timeout'||error.name==='AbortError')&&record(theme).state?.saveSlot===recovery.worldKey&&record(theme).actions?.epoch===recovery.ticket.epoch){
+     try{const canonical=await request(theme,'');if(record(theme).state?.saveSlot===recovery.worldKey&&record(theme).actions?.epoch===recovery.ticket.epoch){const result=canonicalCompletionResult(recovery,canonical.document);if(result)return result;}}catch{}
+    }
+    // A failed/mismatched read must preserve the original uncertain error and journal.
+    throw error;
+   }
    const data=response.data||JSON.parse(response.text);
    if(!response.ok){
     if(operation==='action'&&body?.requestId&&response.status===503&&transientCodes.has(data.code)&&attempt<delays.length){await new Promise(resolve=>setTimeout(resolve,delays[attempt]));continue;}
