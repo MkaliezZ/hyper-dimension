@@ -22,8 +22,12 @@ self.onmessage=({data})=>{
   // Finish the producer's actual GPU work before handing its bitmap to Canvas.
   // No main-thread drawImage can force this shader's pending GPU readback.
   job.cancel=afterGpuCommands(target.gl,()=>{
-   if(flight!==job)return;const bitmap=target.canvas.transferToImageBitmap();
-   try{send({kind:'frame',requestId:frame.requestId,bitmap},[bitmap]);flight=null;}catch(error){bitmap.close();throw error;}
+   if(flight!==job)return;
+   Promise.resolve().then(()=>createImageBitmap(target.canvas)).then(bitmap=>{
+    if(flight!==job){bitmap.close();return;}
+    try{send({kind:'frame',requestId:frame.requestId,bitmap},[bitmap]);flight=null;}
+    catch(error){bitmap.close();throw error;}
+   }).catch(error=>{if(flight!==job)return;flight=null;send(target.gl.isContextLost()?{kind:'lost'}:{kind:'fatal',error:error.message});});
   },error=>{if(flight!==job)return;flight=null;send(target.gl.isContextLost()?{kind:'lost'}:{kind:'fatal',error:error.message});});
  }catch(error){flight?.cancel?.();flight=null;send({kind:'fatal',error:error.message});}
 };

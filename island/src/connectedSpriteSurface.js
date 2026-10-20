@@ -87,7 +87,7 @@ function paintNativeSurface(ctx,img,frame,mesh){
  if(!raster)return false;
  try{ctx.drawImage(raster.canvas,...raster.draw);return true;}catch{return false;}
 }
-export function renderConnectedSurfaceInWorker(img,frame,mesh,density,smoothing){return nativeSurfaceRaster(img,frame,mesh,density,smoothing);}
+export function renderConnectedSurfaceInWorker(img,frame,mesh,density,smoothing){const raster=nativeSurfaceRaster(img,frame,mesh,density,smoothing);return raster?{...raster,gl:renderer.gl}:null;}
 function paintSurface(ctx,img,frame,mesh){return remote?false:paintNativeSurface(ctx,img,frame,mesh);}
 export function prepareConnectedTexture(img){const r=initialize();return r?!!texture(r,img):false;}
 export function connectedTextureFailed(img){return failedImages.has(img);}

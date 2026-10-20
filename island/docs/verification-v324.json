@@ -1,0 +1,66 @@
+{
+  "version": "V324",
+  "at": "2026-10-20T00:23:18.398053+00:00",
+  "basePublicCommit": "da061ef961f8a5059db9101a43cc80c6d6301473",
+  "runtimeChange": "Worker producer GPU completion followed by an independent ImageBitmap copy, with one surface in flight until that copy is delivered. Sprite queue empty after evictions is explicitly safe.",
+  "preservedNegativeEvidence": [
+    "Unmodified freshly installed V323 fourth-map click failed its original30second budget (q1004).",
+    "Read-only observed native drawImage failed to return across two independent500ms snapshots while other maps and observer progressed (q1007).",
+    "Direct compatible-ocean clipping candidate still failed original reload; never published (q1012).",
+    "COOP/COEP+observer passes are controlled diagnostics only (q1006/q1009), not default browser qualification."
+  ],
+  "nativeDefaultHardwareFourRetainedMaps": {
+    "candidate": "q1015",
+    "bothStylesPassed": true,
+    "source": "Immutable V323 fresh archive plus exactly3declared producer source overrides",
+    "models": "Actual original-device Hermes and DeepSeek Flash",
+    "originalAssertionsAndBudgets": true,
+    "ownersPerStyle": 4,
+    "ordinaryConsentingCompanions": 8,
+    "stewards": 4,
+    "realA2aJobsPerStyle": 11,
+    "fundedPreparations": 3,
+    "pointerMinigameTrials": 3,
+    "actualPostCommitCheckpointAndSettlementResponseLoss": true,
+    "sameIdentityRecoveryUniqueSettlementRestartAndReturn": true,
+    "initial100CoinsAndCarriedMaterialsSynthetic": true,
+    "laterClockNeedsInventoryOrResultsInjected": false,
+    "testOnlyObservationHeadersOrBackendOverride": false
+  },
+  "pixelOutputMicrofixture": {
+    "q1014": "7 actual GPU output pairs byte-identical and nonblank, synthetic asymmetric sprite+coast fixtures; not human visual acceptance"
+  },
+  "additionalReviewChange": "After q1015, an empty evicted-image queue guard was added; its negative/continued-valid-request regression passes. No successful producer flow changes.",
+  "deterministicRelevantChecks": {
+    "Node22": 45,
+    "Node25": 45
+  },
+  "nativeNavigationBothStyles": {
+    "q1019": true,
+    "unchangedSuccessfulPathAssertions": true,
+    "manuallyHeldPollAndMoveGatesNowFailExplicitlyAfter30000ms": true,
+    "routesReleasedOnFailure": true
+  },
+  "hostedMacIncident": {
+    "run": 39333365457,
+    "job": 118338641760,
+    "conclusion": "cancelled after60minutes",
+    "artifact": 12230353198,
+    "artifactSha256": "fdab8683973533188d1ef64f5b57d18ad82d56e3efb94efed02494ea3841a9d2",
+    "digestAndCRCVerified": true,
+    "appearanceReportPassedBeforeSubsequentNavigationTest": true,
+    "rootConfirmed": false
+  },
+  "hostedWindowsResidentIncident": {
+    "run": 39340265862,
+    "job": 118377068232,
+    "artifact": 12230674164,
+    "artifactSha256": "04c2cdad90ad12381777f47015fe41e65d41b715f0ef9918e060d26db21e3854",
+    "digestAndCRCVerified": true,
+    "pixelPassedOrigamiFailed": true,
+    "failure": "Original first-task120000ms work budget exceeded after two NPC resident finish replies aborted; durable action_pending remains. Root and hosted recovery unconfirmed. No blind rerun or timeout/assertion weakening."
+  },
+  "exactNewArchiveInstallPending": true,
+  "physicalDeviceOrHumanAcceptance": false,
+  "wholeGoalComplete": false
+}

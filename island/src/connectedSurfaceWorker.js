@@ -1,13 +1,14 @@
 import {prepareConnectedTexture,renderConnectedSurfaceInWorker,connectedTextureFailed,connectedSurfaceStatus} from './connectedSpriteSurface.js';
 import {decodeSpriteSource,spriteSourceStatus} from './spriteSourceDecoder.js';
+import {afterGpuCommands} from './gpuCompletion.js';
 const images=new Map(),jobs=[],MAX_IMAGE_BYTES=96*1024*1024;
-let bytes=0,serial=0,timer=null;
+let bytes=0,serial=0,timer=null,flight=null;
 const status=()=>({...connectedSurfaceStatus(),...spriteSourceStatus(),artworkBitmapBytes:bytes,artworkBitmapLimitBytes:MAX_IMAGE_BYTES});
 const send=(data,transfer=[])=>self.postMessage({...data,status:status()},transfer);
-function schedule(){if(timer===null)timer=setTimeout(pump,8);}
+function schedule(){if(timer===null&&!flight)timer=setTimeout(pump,8);}
 function drop(index,error){const [job]=jobs.splice(index,1);send({kind:'raster',key:job.key,requestId:job.requestId,error});}
 function pump(){
- timer=null;if(!jobs.length)return;
+ timer=null;if(flight||!jobs.length)return;
  try{
   let ready=true;
   for(let i=0;i<jobs.length;i++){
@@ -18,16 +19,26 @@ function pump(){
   }
   if(status().backend==='Canvas connected surface')throw Error('sprite_gpu_unavailable');
   if(!ready){schedule();return;}
-  while(jobs.length){
-   const job=jobs[0],image=images.get(job.imageId);
-   if(!image){drop(0,'artwork_evicted');continue;}
-   image.used=++serial;
-   const rendered=renderConnectedSurfaceInWorker(image.bitmap,job.frame,job.mesh,job.density,job.smoothing);
-   if(!rendered){schedule();return;}
-   const bitmap=rendered.canvas.transferToImageBitmap();jobs.shift();
-   try{send({kind:'raster',key:job.key,requestId:job.requestId,bitmap,draw:rendered.draw},[bitmap]);}catch(error){bitmap.close();throw error;}
-  }
- }catch(error){send({kind:'fatal',error:error.message});}
+  if(!jobs.length)return;
+  const job=jobs[0],image=images.get(job.imageId);
+  if(!image){drop(0,'artwork_evicted');schedule();return;}
+  image.used=++serial;
+  const rendered=renderConnectedSurfaceInWorker(image.bitmap,job.frame,job.mesh,job.density,job.smoothing);
+  if(!rendered){schedule();return;}
+  const pending={job,cancel:null};flight=pending;
+  const reject=error=>{if(flight!==pending)return;flight=null;send({kind:'fatal',error:error.message});};
+  pending.cancel=afterGpuCommands(rendered.gl,()=>{
+   if(flight!==pending)return;
+   // Keep the producer surface stable until an independent snapshot is ready.
+   // No next pose overwrites or transfers away this live drawing buffer.
+   Promise.resolve().then(()=>createImageBitmap(rendered.canvas)).then(bitmap=>{
+    if(flight!==pending){bitmap.close();return;}
+    try{send({kind:'raster',key:job.key,requestId:job.requestId,bitmap,draw:rendered.draw},[bitmap]);}
+    catch(error){bitmap.close();throw error;}
+    jobs.shift();flight=null;schedule();
+   }).catch(reject);
+  },reject);
+ }catch(error){flight?.cancel?.();flight=null;send({kind:'fatal',error:error.message});}
 }
 self.onmessage=async({data})=>{
  if(data.kind==='image'||data.kind==='image-source'){

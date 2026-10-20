@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v323-agent-source",
+  "release": "hyper-dimension-v324-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 124342,
-      "sha256": "35834bf0f4e9bd9ed324a4880d6854de9af2291353fae096544f2b59f3884a82"
+      "bytes": 124884,
+      "sha256": "081b948f7b2840e3c3ec237ecdcdd929c1338a7029566833abf275f4e2c55372"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17474,
-      "sha256": "d18367fbdc107b389804509b8f5d484142a779bee6f03054ed972ed5b3bb7ba4"
+      "bytes": 17544,
+      "sha256": "031eae5569b93dbd5ddbb5166a8e0c02355e5c12931d7bfa352470ad6bbbd7ab"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6672,8 +6672,8 @@
     },
     {
       "path": "src/connectedSpriteSurface.js",
-      "bytes": 13024,
-      "sha256": "eb232d442c1d4f48e14edc2ffc1d7a60f2159751717e0f48308ee7bb6f904c1a"
+      "bytes": 13076,
+      "sha256": "83a5403bf75b2ec1c30ea34dcb757de5380bf011ef891c003149ed5267856fe3"
     },
     {
       "path": "src/content-ui.css",
@@ -9132,8 +9132,8 @@
     },
     {
       "path": "tests/v151-lobby-navigation-browser.mjs",
-      "bytes": 7147,
-      "sha256": "26c52dcd75ebaff7f1401a3fb23f3c1b6c5886a3e70078ed8cdea886ce33d40a"
+      "bytes": 7670,
+      "sha256": "f73257d7c583f944d6504f4beea796369734b556bd9fa458107ccacd0e398c77"
     },
     {
       "path": "tests/v152-motion.test.mjs",
@@ -13652,8 +13652,8 @@
     },
     {
       "path": "src/connectedSurfaceWorker.js",
-      "bytes": 2986,
-      "sha256": "bf7b15b7ddc62eb8a264b82003fd258a7f48111d9f28a9b76e62c16e6d106f15"
+      "bytes": 3636,
+      "sha256": "e70c0aa90910e74ce79658c5a3c95704487e212af705a9334290810ddc1220a6"
     },
     {
       "path": "src/spriteSource.js",
@@ -13707,8 +13707,8 @@
     },
     {
       "path": "src/oceanShaderWorker.js",
-      "bytes": 1990,
-      "sha256": "fde1246642afb3e412577c450c743e876b2f1eac8431e9aaede1db834400cc29"
+      "bytes": 2209,
+      "sha256": "c84e2322c9026aede3e0a2682a42be3cab2811a92b00f3fa890b886e7f216dfd"
     },
     {
       "path": "src/oceanSurfaceClient.js",
@@ -14084,7 +14084,32 @@
       "path": "docs/verification-v323.json",
       "bytes": 1832,
       "sha256": "3120a9fc34c4d3174070d7b049111c642f964877812df26701536ce67f8f786a"
+    },
+    {
+      "path": "tests/v324-producer-snapshot.test.mjs",
+      "bytes": 6157,
+      "sha256": "b26268a01d1849fab6c8c913a1ca505329b3c08ff507bb507e6e12a7feaee338"
+    },
+    {
+      "path": "tests/nativeGate.mjs",
+      "bytes": 366,
+      "sha256": "43b7532c4164dbb58feb6b4a85dd8f9cca72139ba98b33adae961bd37796cae3"
+    },
+    {
+      "path": "tests/v324-native-gate.test.mjs",
+      "bytes": 1141,
+      "sha256": "983b20e493d7607d673b45d16f636aa773de7fcb8ad0ec3c430aa31691c372f7"
+    },
+    {
+      "path": "docs/verification-v324.json",
+      "bytes": 3281,
+      "sha256": "61bd88cf34e337617c7f7295ff2e5cc3e8df9d4f0ca17369fa4d2870fadc6e85"
+    },
+    {
+      "path": "docs/producer-snapshots-v324.md",
+      "bytes": 2350,
+      "sha256": "8ff05acc173fd80650e56ad64087afbd86be72d4dfd3a46625c4bff840860465"
     }
   ],
-  "publicRevision": "v323-focused-recruitment-status-and-protected-fixtures"
+  "publicRevision": "v324-independent-gpu-producer-snapshots"
 }
