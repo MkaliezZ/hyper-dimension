@@ -1,0 +1,36 @@
+{
+  "version": "V340",
+  "at": "2026-10-20T22:02:23.123169+00:00",
+  "runtimeChanged": [
+    "server/lanIdentityStore.mjs"
+  ],
+  "newRegressionCases": 8,
+  "newRoomControlsBaselinePass": 3,
+  "newRoomControlsBaselineFail": 3,
+  "newHttpControlsBaselineFail": 2,
+  "candidateCasesPassed": 8,
+  "existingAuthorityCasesPassedSeparately": 15,
+  "fullDefaultSuitePending": false,
+  "fullDefaultExpected": 1791,
+  "readOnlyCurrentGeographyUsesCommittedSnapshot": true,
+  "legacyMigrationKeepsOriginalLockBackupAndTimeout": true,
+  "mutationLocksTravelExclusionAndFiveSecondTimeoutUnchanged": true,
+  "origamiPrivateFourMapFullPassed": true,
+  "pixelPrivateFourMapFundedPreparationsPassed": 3,
+  "pixelPrivateFourMapRefreshFailed": true,
+  "bothStyleFullFourMapQualificationComplete": false,
+  "privateGraphicsCandidatesPublished": false,
+  "hostedRecoveryConfirmed": false,
+  "newArchiveSealed": false,
+  "newVideoDelivered": false,
+  "humanPhysicalAndOpcAcceptanceComplete": false,
+  "wholeGoalComplete": false,
+  "fullDefaultSuitePassed": 1791,
+  "fullDefaultSuiteCounts": [
+    1777,
+    14
+  ],
+  "noSkippedOrCancelledDefaultCases": true,
+  "sourceBeforeAndAfterVerified": true,
+  "completedAt": "2026-10-20T22:06:13.392386+00:00"
+}

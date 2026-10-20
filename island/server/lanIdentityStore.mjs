@@ -76,6 +76,12 @@ export function createLanIdentityStore({directory,now=()=>Date.now(),sessionMs=7
  entry,
  async presence(token){return (await entry(token)).presence;},
  async withHomeIsland(accountId,theme,work){return locked(async()=>{const d=await read(),a=d.accounts[accountId];if(!a)throw fail('岛主身份不存在','lan_unauthorized',401);const r=membership(d,accountId);if(resolveTravel&&r&&(r.members[accountId].travel?.homeTheme||a.profile.theme)===theme)throw fail('岛主与随行伙伴正在会客，请先结束行程再恢复原岛生产','lan_travel_active');return work();});},
- async roomStateForServer(id){return locked(async()=>{const d=await read();return clone(room(d,id));});}
+ // Read the last complete atomic commit without competing with home writes.
+ // Legacy geography still migrates through the original exclusive writer path.
+ async roomStateForServer(id){
+  let d;try{d=await committed();}catch(e){if(e.code!=='ENOENT')throw e;return locked(async()=>clone(room(await read(),id)));}
+  if(adaptOpenRoomGeography(d,now()).changed)return locked(async()=>clone(room(await read(),id)));
+  return clone(room(d,id));
+ }
  };
 }

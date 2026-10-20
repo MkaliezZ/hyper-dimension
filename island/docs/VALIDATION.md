@@ -1088,3 +1088,7 @@ Windows 原生素材检查在开始比较之前，发现按当前源码反推的
 ## V339 · Autosave identity-writer recovery
 
 [Autosave recovery](autosave-identity-recovery-v339.md) extends the existing bounded, byte-identical durable-save retry to explicit `503 / lan_busy` replies. This keeps manual preparation behind the acknowledged original save, without repeating its active-time advance. Persistent contention and non-retry failures retain their recovery journals. Hosted Windows content recovery and full multi-island acceptance remain unconfirmed.
+
+## V340 · Committed room snapshots
+
+[Room snapshots](committed-room-snapshots-v340.md) removes write-lock contention from current-geography server room reads. Detached atomic snapshots preserve checksum validation; legacy migration, backups, mutation locks, travel exclusion and the original lock timeout remain. Eight new regression controls cover both themes and actual concurrent HTTP collaboration polling. The private graphics refresh failure and complete multi-island qualification remain open.

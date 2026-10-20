@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v339-agent-source",
+  "release": "hyper-dimension-v340-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 135586,
-      "sha256": "982e72faa4c0f049b39ae23e46581496d5b81c63d6c5b1cf3aace539a0a38ac3"
+      "bytes": 136089,
+      "sha256": "0c00700061ca6125da965d3521a57932a97939d5e8889eb68d9a33b57687ac6d"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18374,
-      "sha256": "7edb066b3e69625439a021d5b800510314c98b3a6d0615701d1ab9b7ff229cc5"
+      "bytes": 18408,
+      "sha256": "11bd0322c4fd647c2a64158c3f0e367e74b07e03e2c3f40532d2cf73dcc2bdca"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6232,8 +6232,8 @@
     },
     {
       "path": "server/lanIdentityStore.mjs",
-      "bytes": 25539,
-      "sha256": "1a26ff800346bfdfed71282a7592debd374c44f38a629b9707b229bfc81278ce"
+      "bytes": 25878,
+      "sha256": "dd730ef83e9074af73f672296f5f54934ec0a247a9a34858e9edc1ec6bc3a1cc"
     },
     {
       "path": "server/lanRoomResidents.mjs",
@@ -14399,8 +14399,23 @@
       "path": "docs/verification-v339.json",
       "bytes": 964,
       "sha256": "f04e2a6b9db1a7f67a69a40bc79e84da421c256924989ce8d359670d70709250"
+    },
+    {
+      "path": "tests/v340-room-snapshot.test.mjs",
+      "bytes": 7199,
+      "sha256": "0784f02aa542aaa67a7f3de9a8d8885fe0d36fbe60564415d9bb2fbdd2183146"
+    },
+    {
+      "path": "docs/verification-v340.json",
+      "bytes": 1232,
+      "sha256": "d96939ab394f938b1098240fda4f7e190a3b9e626c4fefd97104e90c0636b7af"
+    },
+    {
+      "path": "docs/committed-room-snapshots-v340.md",
+      "bytes": 1916,
+      "sha256": "7ad58b64d042f16692d9e2fe572f41421ed4db23a427500dae02fe78ac79882a"
     }
   ],
   "publicRevision": "v333-foreground-save-generation",
-  "generatedAt": "2026-10-20T20:51:54.346036+00:00"
+  "generatedAt": "2026-10-20T22:02:23.123169+00:00"
 }
