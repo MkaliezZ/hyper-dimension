@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v329-agent-source",
+  "release": "hyper-dimension-v330-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 130211,
-      "sha256": "36a9240bd5c9b035385b344c7d1fdd2ebf35ffa5c75254c82a7bf6cf101112d1"
+      "bytes": 130657,
+      "sha256": "ac1f9f4d5afc0891e0de8f71cdd9b35f09f37655e642537cbd09d3681f1c2434"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17773,
-      "sha256": "b12250ee168290b1ce0b7958116495c66cae41a51e336b157282a7e7878894e8"
+      "bytes": 17806,
+      "sha256": "46cbb55c5dc622628d2e4733c28c603345989295df9f39735bd9c2c29552a7fb"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 44745,
-      "sha256": "852fd8816f2541eef36c3219b7ddc29268f90c858f37c6e1189661732a8a765e"
+      "bytes": 45029,
+      "sha256": "3eea5a69cbc2f3e17558c3cc88fb32643a45bfb0894878fed62466d72448c54e"
     },
     {
       "path": "src/saveDelta.js",
@@ -12797,8 +12797,8 @@
     },
     {
       "path": "tests/v254-save-io-retry.test.mjs",
-      "bytes": 4562,
-      "sha256": "7af24e011f9f01f769d8c01ecb74f71e1378adeab6043273cd416be12ab06ae8"
+      "bytes": 4596,
+      "sha256": "6046f905545b4533cadc38fd15acbd855f0b9b642d4b829221b22e5c249e3925"
     },
     {
       "path": "tests/v254-windows-sharing.test.mjs",
@@ -14229,7 +14229,27 @@
       "path": "docs/verification-v329.json",
       "bytes": 1171,
       "sha256": "62811ac462742d887eca52d721d4005e6ca2b1cf92c8dd2fc6b0b4b36e0d71bc"
+    },
+    {
+      "path": "tests/v330-durable-busy.test.mjs",
+      "bytes": 5297,
+      "sha256": "fa70c158647b568a62ffea1fd452263d7303aa3052e7bdfc6d7d0612da021652"
+    },
+    {
+      "path": "tests/v330-durable-lock-browser.mjs",
+      "bytes": 8379,
+      "sha256": "f16b400a7c32b853be4fefb67078d52a1e33108be1574f98227a09ec58e42cf9"
+    },
+    {
+      "path": "docs/durable-lock-replay-v330.md",
+      "bytes": 2380,
+      "sha256": "0aa2fa8c00c34153d3d403c9d5e226b59bad2bc320d59563416139ca14bd4bf1"
+    },
+    {
+      "path": "docs/verification-v330.json",
+      "bytes": 1078,
+      "sha256": "eaebdcf37d2583908fb4e7673467f96c37fd5a29a36dc67aa5e48779daa011ae"
     }
   ],
-  "publicRevision": "v329-acknowledged-planning-registration"
+  "publicRevision": "v330-durable-activity-lock-replay"
 }

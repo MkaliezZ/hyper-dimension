@@ -10,7 +10,7 @@ async function fixture(fn){
  finally{if(client){const s=client.status('pixel');clearTimeout(s.timer);clearTimeout(s.cacheTimer);await s.cacheTail?.catch(()=>{});}for(const name of names){if(previous[name])Object.defineProperty(globalThis,name,previous[name]);else delete globalThis[name];}}
 }
 
-for(const code of ['EPERM','lan_busy'])for(const committedBeforeError of [false,true])test('a temporary '+code+' reply retries the same durable command '+(committedBeforeError?'after an actual commit':'before commit')+' without a second gain',()=>fixture(async({seed,make})=>{
+for(const code of ['EPERM','lan_busy','lan_event_busy'])for(const committedBeforeError of [false,true])test('a temporary '+code+' reply retries the same durable command '+(committedBeforeError?'after an actual commit':'before commit')+' without a second gain',()=>fixture(async({seed,make})=>{
  let canonical=structuredClone(seed),calls=0,commits=0;const bodies=[];
  globalThis.fetch=async(url,init)=>{
   if(url.endsWith('/open'))return Response.json({document:{version:'v1',state:structuredClone(canonical)}});
@@ -23,7 +23,7 @@ for(const code of ['EPERM','lan_busy'])for(const committedBeforeError of [false,
  assert.equal(calls,3);assert.equal(new Set(bodies).size,1,'Request/version/epoch/sequence/client ID must remain byte-identical');assert.equal(JSON.parse(bodies[0]).expectedVersion,'v1');assert.equal(commits,1);assert.equal(result.state.inventory.wood,2);assert.equal(client.status('pixel').state.coins,0);assert.equal(client.pendingAction('pixel'),null);assert.equal(client.status('pixel').status,'saved');
 }));
 
-for(const code of ['EPERM','lan_busy'])test('persistent '+code+' failure stops after bounded retries and retains the original recovery envelope',()=>fixture(async({seed,make})=>{
+for(const code of ['EPERM','lan_busy','lan_event_busy'])test('persistent '+code+' failure stops after bounded retries and retains the original recovery envelope',()=>fixture(async({seed,make})=>{
  const bodies=[];globalThis.fetch=async(url,init)=>{if(url.endsWith('/open'))return Response.json({document:{version:'v1',state:seed}});bodies.push(init.body);return Response.json({error:'Still occupied',code},{status:503});};
  const client=make();await client.load('pixel');await assert.rejects(client.action('pixel',{kind:'field',operation:'begin',requestId:'fictional-persistent-command'}),e=>e.status===503&&e.code===code);assert.equal(bodies.length,3);assert.equal(new Set(bodies).size,1);assert.equal(client.pendingAction('pixel').body.requestId,'fictional-persistent-command');assert.equal(client.status('pixel').status,'action_pending');assert.equal(client.status('pixel').state.inventory.wood,0);
  await assert.rejects(client.action('pixel',{kind:'field',operation:'begin',requestId:'must-not-overtake'}),e=>e.code==='action_pending');assert.equal(bodies.length,3);

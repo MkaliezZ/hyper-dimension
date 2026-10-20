@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-20T06:54:27.930676+00:00",
+  "basePublicCommit": "f9dc883f3efb182dbdad21adb54e578d1811032b",
+  "failedRun": 39375661590,
+  "failedResidentJob": 118478043601,
+  "artifact": 12244320882,
+  "artifactSHA256": "4e304667ae12565531f34b6eaefd43f5e533b487ef3eedd1c861c923b5b23e58",
+  "failedCustomJob": 118478043337,
+  "customArtifact": 12243658708,
+  "customArtifactSHA256": "18187d5813ca228ea2d8e5b1c7e7ac7a7f2be4d167b9eefc3358de6aa14e685b",
+  "baselineActualLockNegativeCases": 4,
+  "candidateNarrowActualLockCasesPending": false,
+  "focusedRulesPassed": 42,
+  "defaultAndPortableNativePending": false,
+  "exactArchivePending": true,
+  "hostedRecoveryNotClaimed": true,
+  "wholeGoalComplete": false,
+  "candidateNarrowActualLockCasesPassed": 4,
+  "portableActualLockCasesPassed": 4,
+  "acknowledgedPlanningCasesPassed": 14,
+  "persistedOriginalCompletionCasesPassed": 6,
+  "originalFullResidentChainStylesPassed": 2,
+  "originalFullCustomProjectStylesPassed": 2,
+  "defaultRulesPassed": 1735,
+  "defaultCounts": [
+    1721,
+    14
+  ],
+  "preparedPayloads": 2846
+}

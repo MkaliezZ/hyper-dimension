@@ -85,9 +85,11 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   const actionsBase=metadataOnly?{version:record(theme).version,actions:record(theme).actions}:null;
   const recovery=operation==='action'?completionRecoveryContext(body,record(theme).actions,record(theme).state?.saveSlot):null;
   const payload=body===undefined?undefined:encoded??await journal.encode(body);
-  // Only durable game commands may replay here. Keep the exact bytes, version and
+  // Only durable commands or definite idempotent save-lock replies may replay.
+  // Unavailable/unknown autosaves retain their original explicit recovery path.
+  // Keep the exact bytes, version and
   // request ID, including when the server committed before its reply was lost.
-  const delays=[250,750],transientCodes=new Set(['EPERM','EACCES','EBUSY','save_busy','save_unavailable','lan_busy']);
+  const delays=[250,750],transientCodes=new Set(['EPERM','EACCES','EBUSY','save_busy','save_unavailable','lan_busy','lan_event_busy']);
   for(let attempt=0;;attempt++){
    // Only an authoritative lease already known before this attempt can authorize
    // a bounded completion replay. Stored or merely well-shaped inputs cannot.
@@ -105,7 +107,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    }
    const data=response.data||JSON.parse(response.text);
    if(!response.ok){
-    if(operation==='action'&&body?.requestId&&response.status===503&&transientCodes.has(data.code)&&attempt<delays.length){await new Promise(resolve=>setTimeout(resolve,delays[attempt]));continue;}
+    const durableRequest=operation==='action'&&body?.requestId||operation==='save'&&body?.saveId&&body?.expectedVersion&&['save_busy','lan_event_busy'].includes(data.code);
+    if(durableRequest&&response.status===503&&transientCodes.has(data.code)&&attempt<delays.length){await new Promise(resolve=>setTimeout(resolve,delays[attempt]));continue;}
     throw Object.assign(Error(data.error||'存档服务未连接'),{code:data.code,status:response.status,retryAfter:data.retryAfter});
    }
    if(data.document){applySaveResponseActions(data.document,actionsBase);Object.defineProperty(data.document,'encoded',{value:response.text});}
