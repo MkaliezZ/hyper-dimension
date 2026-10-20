@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-20T18:59:09.677402+00:00",
+  "basePublicCommit": "eefa9ebecef5e5e0f2ccb61051f6ae8b03bc7c2c",
+  "runtimeChanged": [
+    "src/rasterQuality.js"
+  ],
+  "observedBefore": {
+    "nativeHallCanvasRestoreMaxMs": 6401.5,
+    "repeatedFourOwnerPreferenceDiagnosticCompletedRounds": 5,
+    "notFullFlowQualification": true
+  },
+  "change": "Restore only the two sampling properties changed by drawRaster; no native save/restore stack round trip inside that function.",
+  "nativeGraphicsControl": {
+    "warmOriginalSelfComparisons": 42,
+    "warmCandidateComparisons": 42,
+    "changedChannels": 0,
+    "sameOriginalImagesWorkerSamplingCropGeometry": true,
+    "originalColdProductionFirstDrawDifferenceRetainedSeparately": true,
+    "pixelReadbackFixtureExplicitNativeContext": true
+  },
+  "newRelatedCasesPassed": 3,
+  "privateCombinedCandidateCasesPassed": 47,
+  "privateCombinedCasesNotPublicDefaultCount": true,
+  "sameModelResourcesActorCountsTimeoutsQualityMemoryAndFinancialAssertions": true,
+  "otherPrivateGraphicsUiAndEndpointPrototypesIncluded": false,
+  "fullFourSimultaneousMapsQualified": false,
+  "latestPrivateFourMapFailure": "Fourth map did not retain both required original actual GPU producer endpoints at initial readiness; original assertion failed and was retained.",
+  "newArchiveSealed": false,
+  "newVideoDelivered": false,
+  "humanOrOpcAcceptance": false,
+  "wholeGoalComplete": false
+}

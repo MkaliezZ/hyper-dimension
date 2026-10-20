@@ -75,10 +75,14 @@ function draw(ctx,source,theme,shore,rect){
  if(!(source.naturalWidth||source.width))return;
  const e=surfaceFor(source,theme,shore),factor=e.factor;
  if(rasterOutsideCanvas(ctx,e.surface,rect)){stats.culled++;return;}stats.draws++;
- ctx.save();ctx.imageSmoothingEnabled=theme!=='pixel';ctx.imageSmoothingQuality='high';
- if(rect.length===8){const [x,y,w,h,dx,dy,dw,dh]=rect;ctx.drawImage(e.surface,x*factor,y*factor,w*factor,h*factor,dx,dy,dw,dh);}
- else ctx.drawImage(e.surface,...rect);
- ctx.restore();
+ // This draw only changes sampling. Keep the caller's transform/clip/path in
+ // place instead of pushing and restoring the entire native Canvas stack.
+ const smoothing=ctx.imageSmoothingEnabled,quality=ctx.imageSmoothingQuality;
+ try{
+  ctx.imageSmoothingEnabled=theme!=='pixel';ctx.imageSmoothingQuality='high';
+  if(rect.length===8){const [x,y,w,h,dx,dy,dw,dh]=rect;ctx.drawImage(e.surface,x*factor,y*factor,w*factor,h*factor,dx,dy,dw,dh);}
+  else ctx.drawImage(e.surface,...rect);
+ }finally{ctx.imageSmoothingEnabled=smoothing;ctx.imageSmoothingQuality=quality;}
 }
 export function drawRaster(ctx,source,theme,...rect){draw(ctx,source,theme,null,rect);}
 export function drawIslandRaster(ctx,source,theme,extent,...rect){draw(ctx,source,theme,shoreOptions({...extent,rim:128}),rect);}

@@ -1070,3 +1070,8 @@ Required images receive bounded read-only decode retries while permanent failure
 ## V336 · 后续冷贴图不再阻塞已就绪队首
 
 绘制队列只准备当前有效队首，保留原来的顺序、十五秒健康保护和 GPU 位图所有权。25 项相关检查及公开 V335 基线的十组原生 GPU 像素对照通过。完整四地图联机仍未验收通过，范围见 [就绪姿态队列](worker-ready-queue-v336.md)。
+
+
+## V337 · 建筑采样设置直接恢复
+
+建筑绘制只恢复实际修改的两项采样设置，避免完整 Canvas 状态栈恢复；保留原图、尺寸与采样。三项规则和 42 组预热后的候选及原实现自对照通过，原有冷启动自差异单列。完整四地图组合仍未通过，见[采样状态说明](raster-sampling-state-v337.md)。
