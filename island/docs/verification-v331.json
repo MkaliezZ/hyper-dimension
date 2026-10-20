@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-20T08:13:14.313619+00:00",
+  "basePublicCommit": "7f7f30bc91e69bea98f0850f3c8f201028567084",
+  "privateNativeControlCasesPassed": 8,
+  "portableNativeCasesPending": false,
+  "originalTaskAndCustomBothStylesPending": false,
+  "default1735ChecksPending": false,
+  "exactArchivePending": true,
+  "currentHostedRun": 39384608522,
+  "currentResidentJob": 118505851099,
+  "currentCustomJob": 118505851135,
+  "artifactReportEvidence": "Selected real ZIP entries CRC verified;whole archive digests are API metadata only,not verified by the partial reader.",
+  "hostedRecoveryNotClaimed": true,
+  "unknownReservationPolicyUnchanged": true,
+  "wholeGoalComplete": false,
+  "portableNativeCasesPassed": 6,
+  "originalFullResidentChainStylesPassed": 2,
+  "originalFullCustomProjectStylesPassed": 2,
+  "defaultRulesPassed": 1735,
+  "defaultCounts": [
+    1721,
+    14
+  ],
+  "preparedPayloads": 2849,
+  "preparedPayloadsUnchanged": true,
+  "sourceByteOnlyFollowup": "The added app binding line CRLF is changed to LF for diff hygiene; its JavaScript is unchanged."
+}

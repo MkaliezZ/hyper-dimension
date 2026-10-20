@@ -89,7 +89,8 @@
     "test:task-pause-restart": "node tests/v245-paused-restart-browser.mjs",
     "test:hosting-native": "node tests/v93-hosting-browser.mjs",
     "test:moment-day": "node tests/v245-moment-day-browser.mjs",
-    "test:player-farm-intent": "node --test tests/v245-player-farm-intent.test.mjs && node tests/v245-player-farm-intent-browser.mjs"
+    "test:player-farm-intent": "node --test tests/v245-player-farm-intent.test.mjs && node tests/v245-player-farm-intent-browser.mjs",
+    "test:manual-project-controls-native": "node tests/v331-manual-controls-browser.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.63.0"

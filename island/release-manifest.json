@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v330-agent-source",
+  "release": "hyper-dimension-v331-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 130657,
-      "sha256": "ac1f9f4d5afc0891e0de8f71cdd9b35f09f37655e642537cbd09d3681f1c2434"
+      "bytes": 130988,
+      "sha256": "73c3c5fd1145fe8396eef07738a688d03cb701fce5b49934dd2a9256e4f3a7d3"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17806,
-      "sha256": "46cbb55c5dc622628d2e4733c28c603345989295df9f39735bd9c2c29552a7fb"
+      "bytes": 17896,
+      "sha256": "bfe86b794472ea1b76e8a8580617339f3409f828ef20d1cf96b8b0a86fd6d07c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147163,
-      "sha256": "d68e2ef954f35419dc3e10ac2cbffda358d7b9693b398aa8bcf56159b17ae726"
+      "bytes": 147196,
+      "sha256": "217150a05e664b64cf3b95d27df27bdb979e2a9b2aa215bd06d3cef9202d0208"
     },
     {
       "path": "src/arcade.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 45896,
-      "sha256": "6e86eea6895936838117dd364f2c65880feddd2a4b8c52820386afc133d0fd78"
+      "bytes": 45912,
+      "sha256": "967df7ca12442b53428b99b0d7abc27c74e13157377b8c97c26a2189dbfeae43"
     },
     {
       "path": "src/residentSchedule.js",
@@ -8027,8 +8027,8 @@
     },
     {
       "path": "src/serverCommerceUI.js",
-      "bytes": 3440,
-      "sha256": "1319854b2dbd2e8a06b6bcc9005c26ad083c2783fcff698b16584353810f6c48"
+      "bytes": 3479,
+      "sha256": "1cb63260e79289ff50df4bd1f589c6ada6b73b7d70cd7194cc42f80b11367ecd"
     },
     {
       "path": "src/serverCraftUI.js",
@@ -14249,7 +14249,22 @@
       "path": "docs/verification-v330.json",
       "bytes": 1078,
       "sha256": "eaebdcf37d2583908fb4e7673467f96c37fd5a29a36dc67aa5e48779daa011ae"
+    },
+    {
+      "path": "tests/v331-manual-controls-browser.mjs",
+      "bytes": 9509,
+      "sha256": "df7ce7c86bcfc8ab5a3c9ff5ca5a75c065c2fd7b8798c8cfcba2cd906516fb05"
+    },
+    {
+      "path": "docs/manual-controls-v331.md",
+      "bytes": 1912,
+      "sha256": "3b90a59f9271d9f6aae4cf4cd0b6742ccce384855e8efbe52132442647fbd7c6"
+    },
+    {
+      "path": "docs/verification-v331.json",
+      "bytes": 1072,
+      "sha256": "c2798d2849f3fa1b4b9f7c084ac86c03f685b5095ceb96bc47b54f310160b075"
     }
   ],
-  "publicRevision": "v330-durable-activity-lock-replay"
+  "publicRevision": "v331-manual-project-controls"
 }
