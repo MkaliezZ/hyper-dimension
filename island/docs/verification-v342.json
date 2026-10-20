@@ -1,0 +1,50 @@
+{
+  "version": "V342",
+  "at": "2026-10-20T23:22:53.153689+00:00",
+  "runtimeChanged": [
+    "src/saveClient.js",
+    "src/residentRuntime.js",
+    "src/app.js"
+  ],
+  "newDefaultCases": 15,
+  "newDefaultExpectedTotal": 1811,
+  "fullDefaultPending": false,
+  "originalNativeAssertionsAndBudgetsRetained": true,
+  "nativeRejectionUsesActualExternalLease": true,
+  "noAutomaticCommandResubmission": true,
+  "noCompletedWorkOrClockInjection": true,
+  "latestHostedRecoveryConfirmed": false,
+  "privateGraphicsCandidateUnpublished": true,
+  "newArchiveSealed": false,
+  "newVideoDelivered": false,
+  "realPlayerOrPhysicalMacAcceptance": false,
+  "wholeGoalComplete": false,
+  "firstDefaultRetained": {
+    "cases": 1791,
+    "passed": 1789,
+    "failed": 2,
+    "cause": "The first candidate read progress too broadly for manual actions and after failed refresh barriers; both original assertions retained"
+  },
+  "automaticReconciliationLimitedToBoundNpcBegins": true,
+  "failedReadBarrierRetained": true,
+  "macOSHostedFailure": {
+    "run": 39505616920,
+    "job": 118932281583,
+    "code": "data_path_link",
+    "cause": "The room-snapshot HTTP fixture used the system temporary-directory alias",
+    "fixtureUsesCanonicalTemporaryRoot": true,
+    "productionLinkRejectionUnchanged": true,
+    "originalEightAssertionsAndBudgetsUnchanged": true,
+    "hostedRecoveryConfirmed": false
+  },
+  "fullDefaultPassed": 1811,
+  "fullDefaultCounts": [
+    1797,
+    14
+  ],
+  "noDefaultFailuresSkipsOrCancellations": true,
+  "finalNativeSourceVerifiedBeforeAndAfter": true,
+  "finalLocalNativeCasesPassed": 6,
+  "hostedSuccessorRecoveryConfirmed": false,
+  "completedAt": "2026-10-20T23:43:56.410916+00:00"
+}

@@ -120,6 +120,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function remember(r,doc){
   await yieldFrame();
+  r.refreshReadFailed=false;
   r.remoteEncoded=doc.encoded||null;r.remoteVersion=doc.version;r.version=doc.version;r.updatedAt=doc.updatedAt;r.actions=doc.actions||null;r.provenance=doc.provenance||null;r.remoteState=doc.encoded?null:structuredClone(doc.state);
   try{localStorage.setItem(metaKey(r.theme),JSON.stringify({version:r.version,updatedAt:r.updatedAt}))}catch{}
  }
@@ -382,6 +383,26 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    return {...response,get state(){return r.state;}};
   }catch(error){
    const uncertain=!Number.isInteger(error.status)||!error.code||error.status>=500||[401,403,408,429].includes(error.status)||error.code==='save_unavailable'||error.code==='save_busy';
+   // A bound NPC start rejected for its stale version accepted no command.
+   // Preserve a failed explicit read barrier; do not silently repeat that read.
+   // Reconcile only
+   // independent progress; retain the rejected intent and report its rejection.
+   // Never resubmit it, infer a receipt, or choose between overlapping edits.
+   const rejected=envelope.body,npc=Number.isSafeInteger(rejected.actorId)&&rejected.actorId>=0&&rejected.actorId<=16;
+   const residentStart=rejected.kind==='resident'&&(rejected.actor===undefined||rejected.actor==='npc')&&rejected.intent&&!Array.isArray(rejected.intent)&&['work','eat','rest','visit'].includes(rejected.intent.action)&&typeof rejected.intent.goal==='string'&&rejected.intent.goal.length>0&&rejected.intent.goal.length<=40;
+   const fieldStart=rejected.kind==='field'&&rejected.field==='mine'&&rejected.actor==='npc'&&Number.isSafeInteger(rejected.index)&&rejected.index>=0&&typeof rejected.itemId==='string'&&rejected.itemId.length>0;
+   const farmStart=rejected.kind==='farm'&&rejected.actor==='npc'&&Number.isSafeInteger(rejected.index)&&rejected.index>=0&&rejected.index<8&&['hoe','sow','water','harvest'].includes(rejected.step);
+   if(npc&&rejected.operation==='begin'&&(residentStart||fieldStart||farmStart)&&!r.refreshReadFailed&&error.status===409&&error.code==='save_conflict'&&(r.remoteEncoded||r.remoteState)){
+    try{
+     const {document:doc}=await request(theme,'');
+     if(!doc?.version||doc.version===envelope.body.expectedVersion||doc.state?.saveSlot!==r.state?.saveSlot)throw error;
+     const result=await reconcile(r,r.remoteEncoded||r.remoteState,doc,r.remoteEncoded?'document.state':undefined);
+     await journal.set(commandKey(theme)+'-previous',{...envelope,rejected:true,reason:'save_conflict',savedAt:new Date().toISOString()});
+     r.state=result.state;onRemoteState(theme,r.state);await remember(r,doc);r.dirty=result.dirty||r.generation!==result.generation;
+     await forget(commandKey(theme));if(!r.dirty)await forget(pendingKey(theme));await cache(r);status(r,r.dirty?'pending':'saved','进度已同步；刚才的作业未执行，可重新安排');
+     throw Object.assign(error,{independentProgressReconciled:true});
+    }catch(rebaseError){if(rebaseError.independentProgressReconciled)throw rebaseError;}
+   }
    if(!uncertain)await forget(commandKey(theme));
    status(r,isSaveCapacityError(error)||error.code==='lan_travel_active'?'blocked':['save_conflict','resource_state_conflict'].includes(error.code)?'conflict':uncertain?'action_pending':'saved',uncertain?'作业结算待核对 · 请重试':error.message);
    await cache(r);throw error;
@@ -389,7 +410,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  async function refresh(theme,{withinQueue=false}={}){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))return;if(r.commandSending||r.inflight||read(commandKey(theme))||read(autosaveKey(theme)))throw Object.assign(Error('作业结果待核对，请先完成该次操作'),{code:'action_pending'});
-  const {document:doc}=await request(theme,'');if(!doc||doc.version===r.version)return;if(doc.state.saveSlot!==r.state?.saveSlot){await replaceObservedProgress(r,doc,'小岛进度已更新，正在重新进入…',{waitForActions:!withinQueue});return;}
+  let doc;try{({document:doc}=await request(theme,''));r.refreshReadFailed=false;}catch(error){r.refreshReadFailed=true;throw error;}if(!doc||doc.version===r.version)return;if(doc.state.saveSlot!==r.state?.saveSlot){await replaceObservedProgress(r,doc,'小岛进度已更新，正在重新进入…',{waitForActions:!withinQueue});return;}
   try{
    if(r.dirty){const result=await reconcile(r,r.remoteEncoded||r.remoteState,doc,r.remoteEncoded?'document.state':undefined);r.state=result.state;onRemoteState(theme,r.state);await remember(r,doc);r.dirty=result.dirty||r.generation!==result.generation;await cache(r);status(r,r.dirty?'pending':'saved','跨岛结算已核对，本岛操作已保留');if(r.dirty)schedule(r);return;}
    r.reconciling=true;r.state=doc.state;r.activeSeconds=0;onRemoteState(theme,r.state);await remember(r,doc);await forget(autosaveKey(theme));await forget(pendingKey(theme));await cache(r);status(r,'saved','跨岛结算与本岛进度已同步');

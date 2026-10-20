@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v341-agent-source",
+  "release": "hyper-dimension-v342-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 136767,
-      "sha256": "02c3f6129d7aaf9d50f1a9660f0b5a1b41f24f0dec0716f13cdf87b6f2177573"
+      "bytes": 137404,
+      "sha256": "ae8f06037ed07f26ab33ce9f064babd20b851a1f8abd51d7297986da364f7d79"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18446,
-      "sha256": "cbbc09644b71eba41eb56fdf6980cf0a3d5ed83c26798b9505116ee037fdd7e8"
+      "bytes": 18531,
+      "sha256": "f13f40872f0392619257a4b3424e0c9bddcab1c5e806eb627d184501e6fffb6c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147196,
-      "sha256": "217150a05e664b64cf3b95d27df27bdb979e2a9b2aa215bd06d3cef9202d0208"
+      "bytes": 147233,
+      "sha256": "74ebe09e7fce37f6a38321a5e0e2ffd38ce8ef1e05728d683c798fa9145c9e01"
     },
     {
       "path": "src/arcade.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 45912,
-      "sha256": "967df7ca12442b53428b99b0d7abc27c74e13157377b8c97c26a2189dbfeae43"
+      "bytes": 46550,
+      "sha256": "3fd9e9d795fb649e4315fe813ca71dae24709758f600812f025ce1dd07ef9fef"
     },
     {
       "path": "src/residentSchedule.js",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 45850,
-      "sha256": "79ed86724e88e8a2d50af23db90ee6ab62317c1f3ef17ca91efeedc8a4e74111"
+      "bytes": 48273,
+      "sha256": "b771238292ee14ca81dbd38d46c33739560701ffc6c59bb9b65ac5d79f7eb23d"
     },
     {
       "path": "src/saveDelta.js",
@@ -14402,8 +14402,8 @@
     },
     {
       "path": "tests/v340-room-snapshot.test.mjs",
-      "bytes": 7199,
-      "sha256": "0784f02aa542aaa67a7f3de9a8d8885fe0d36fbe60564415d9bb2fbdd2183146"
+      "bytes": 7240,
+      "sha256": "8cc7762f355558a1ee597967a859e48d097979ee01682377c3d0d7eb7e1545d8"
     },
     {
       "path": "docs/verification-v340.json",
@@ -14429,6 +14429,31 @@
       "path": "docs/verification-v341.json",
       "bytes": 1717,
       "sha256": "6eb18435118b361fc0b6e371f88ee76bacf02637bbd2257199ade43d4bb88560"
+    },
+    {
+      "path": "tests/v342-rejected-action-progress.test.mjs",
+      "bytes": 8355,
+      "sha256": "fde4198a6e4e8f93b945f8274593f64932af83bf90cbca3cc7ae19be2f85c3d6"
+    },
+    {
+      "path": "tests/v342-pending-idle-timers.test.mjs",
+      "bytes": 2659,
+      "sha256": "13f915821225ad17ff3d3591189ee10de6b1949c7e30ae098ee4d1728deb1839"
+    },
+    {
+      "path": "tests/v342-rejected-action-browser.mjs",
+      "bytes": 6227,
+      "sha256": "b930a830adc2431e81cc2b6f0152040c0b42674e0927aa76fab6d7a14534433a"
+    },
+    {
+      "path": "docs/rejected-command-progress-v342.md",
+      "bytes": 2954,
+      "sha256": "8f71c93d191f9f9b76d856fba5c248e1d05f532d098e97326e9ffd70c4c5d7a2"
+    },
+    {
+      "path": "docs/verification-v342.json",
+      "bytes": 1699,
+      "sha256": "41ee7f4e2f8b06967505cb117edeb1de2d60faedea2aba37a28231ec5049563c"
     }
   ],
   "publicRevision": "v333-foreground-save-generation",

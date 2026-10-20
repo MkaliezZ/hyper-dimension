@@ -1096,3 +1096,7 @@ Windows 原生素材检查在开始比较之前，发现按当前源码反推的
 ## V341 · Activity clarification
 
 [Activity clarification](a2a-clarification-v341.md) adds bound host/guest model roles, an explicit host explanation turn, standard A2A mapping, replay/restart and bounded-round handling. Native modal checks pass in both themes, including draft/caret preservation, lost replies, legacy capability handling and explicit single resource reservation. Real role exchanges completed in both host styles; the retained first gear-fixture error was recovered from the same original reservation. Full default and real missing-material results are recorded separately. The private four-map graphics failure and complete delivery acceptance remain open.
+
+## V342 · Rejected commands and idle waits
+
+[Progress reconciliation](rejected-command-progress-v342.md) reads independent canonical progress after an explicitly rejected stale command without resubmission or fabricated execution. Conflicting edits and uncertain outcomes remain protected. Idle resident backoffs advance while unrelated persistence settles; normal work authorization and real lease duration remain. The added native IndexedDB/HTTP control preserves the original held lease and zero earned materials. Full default, final local native and hosted successor results are tracked separately; complete delivery remains open.

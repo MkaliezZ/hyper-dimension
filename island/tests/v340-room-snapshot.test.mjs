@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,readFile,writeFile,readdir} from 'node:fs/promises';
+import {mkdtemp,readFile,writeFile,readdir,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -11,7 +11,7 @@ const {createLanIdentityStore}=await import(pathToFileURL(join(root,'server/lanI
 const {ISLAND_GEOGRAPHY}=await import(pathToFileURL(join(root,'src/islandGeography.js')));
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 async function fixture(theme='pixel'){
- const directory=await mkdtemp(join(tmpdir(),'hd-room-snapshot-')),store=createLanIdentityStore({directory});
+ const directory=await mkdtemp(join(await realpath(tmpdir()),'hd-room-snapshot-')),store=createLanIdentityStore({directory});
  const owner=await store.register({login:'snapshot_owner',password:'fictional-password',name:'测试岛主',islandName:'快照测试岛',avatar:'female_1',theme});
  const writer=await store.register({login:'snapshot_writer',password:'fictional-password',name:'测试存档',islandName:'另一测试岛',avatar:'male_1',theme});
  const created=await store.action(owner.token,{operation:'room_create',requestId:randomUUID(),title:'只读快照会客',maxPlayers:4});
@@ -56,7 +56,7 @@ test('legacy migration still respects the original live writer timeout and does 
 });
 for(const theme of ['origami','pixel'])test(theme+' HTTP collaboration polls read a committed room while another island holds the identity writer',async()=>{
  const {createLanHttpServer}=await import(pathToFileURL(join(root,'server/lanServer.mjs')));
- const directory=await mkdtemp(join(tmpdir(),'hd-http-room-snapshot-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'FICTIONAL-ROOM-SNAPSHOT'});let release,held;
+ const directory=await mkdtemp(join(await realpath(tmpdir()),'hd-http-room-snapshot-')),service=await createLanHttpServer({directory,port:0,enrollmentKey:'FICTIONAL-ROOM-SNAPSHOT'});let release,held;
  try{
   const users=[];for(let n=0;n<2;n++){
    const user=await service.identities.register({login:'snapshot_http_'+n,password:'fictional-password',name:'测试岛主'+n,islandName:'HTTP测试岛'+n,avatar:n?'male_1':'female_1',theme});users.push(user);await service.tenants.open(user.token,theme);
