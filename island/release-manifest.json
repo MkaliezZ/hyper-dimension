@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v340-agent-source",
+  "release": "hyper-dimension-v341-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3156,
-      "sha256": "b343ed9ff02b63f45d95fbc5be34451b13b3384b538a30f32b37ffcfb2e06571"
+      "bytes": 3228,
+      "sha256": "07080cdbcc85cf7b3cbe18e43c750bccddba6d146e0b0ca31bbbdb2fc344449a"
     },
     {
       "path": "README.md",
-      "bytes": 2933,
-      "sha256": "194ece232c6ab0fbf5aba403f28f2a564cf9839f8694081c63a74a65879502c2"
+      "bytes": 2987,
+      "sha256": "8d78a63d576eef64e36e8bcc2d247f4bde524a6ce929259f14c5fea71d99814f"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 136089,
-      "sha256": "0c00700061ca6125da965d3521a57932a97939d5e8889eb68d9a33b57687ac6d"
+      "bytes": 136767,
+      "sha256": "02c3f6129d7aaf9d50f1a9660f0b5a1b41f24f0dec0716f13cdf87b6f2177573"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -92,8 +92,8 @@
     },
     {
       "path": "docs/a2a-standard-v158.md",
-      "bytes": 10688,
-      "sha256": "94819aec082e6de76dcca7b7a58fad4a6dd1fdb8844a26127945595e714469cb"
+      "bytes": 11359,
+      "sha256": "d7697e7bffab5fcd44445208a65c67726f6716bddc06dfd6178b1b8fd4d462b0"
     },
     {
       "path": "docs/browser-snapshot-v149.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18408,
-      "sha256": "11bd0322c4fd647c2a64158c3f0e367e74b07e03e2c3f40532d2cf73dcc2bdca"
+      "bytes": 18446,
+      "sha256": "cbbc09644b71eba41eb56fdf6980cf0a3d5ed83c26798b9505116ee037fdd7e8"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6037,13 +6037,13 @@
     },
     {
       "path": "server/a2aGateway.mjs",
-      "bytes": 17060,
-      "sha256": "0d67e7c62811274e1e493e8d94a852cb7ec183877a55938e5efd45cccba3b884"
+      "bytes": 17207,
+      "sha256": "fe9a2bed256b30dba2fd501a33dd19479e45744582e08f70c020bd359066fdd5"
     },
     {
       "path": "server/a2a_runtime.py",
-      "bytes": 7144,
-      "sha256": "3c7c499a0443bd34d7e1d274ad3ff3d71e78dd5070aaf87758497141cc2666f9"
+      "bytes": 8545,
+      "sha256": "2f502dc5cb0953cb867bfe19905c6146496e640b75199daa91ded40dd4aa4d40"
     },
     {
       "path": "server/agentService.mjs",
@@ -6212,8 +6212,8 @@
     },
     {
       "path": "server/lanCollaborationStore.mjs",
-      "bytes": 20160,
-      "sha256": "61dd6d71eb2ace2c00ab8d417aa6db8586a24bb74e58016fa5f392a5537a6a81"
+      "bytes": 22109,
+      "sha256": "2e632f3f56a89e78c3124e1f3ec2240a34e14ec35163dedf7c12897214dbb4bc"
     },
     {
       "path": "server/lanEconomyJournal.mjs",
@@ -7297,8 +7297,8 @@
     },
     {
       "path": "src/lan-steward-v65.css",
-      "bytes": 8906,
-      "sha256": "76777670e0d7901469e6995a6a22a99d796ffdc919b7ce943751557cbefa090b"
+      "bytes": 9125,
+      "sha256": "cff59443ebff10f3a399c2f0e1cb9578682ab4325514d9dbad2312141c84a0c1"
     },
     {
       "path": "src/lan-v148.css",
@@ -7327,8 +7327,8 @@
     },
     {
       "path": "src/lanCollaborationUI.js",
-      "bytes": 7474,
-      "sha256": "a7c21fc42c323287167e51331b6226d2a981fa2f8c49b024c01fc4762f84b554"
+      "bytes": 9245,
+      "sha256": "5bb7a199b750982dfbd482b085bd156bfcfd92c3441d51d70c4f2c0aa6863f7e"
     },
     {
       "path": "src/lanCommandRetry.js",
@@ -8367,8 +8367,8 @@
     },
     {
       "path": "tests/fixtures/a2a-standard.mjs",
-      "bytes": 4468,
-      "sha256": "679df8d0ac66fb8f4733c0a762700acd0fee71159e711e8000a39affc5568e9e"
+      "bytes": 4544,
+      "sha256": "ecae5079a8953985b48b66b8d0d9603cb08c85ee4cbe5c97a643f06819abb52f"
     },
     {
       "path": "tests/fixtures/cooperation-v30.json",
@@ -14414,8 +14414,23 @@
       "path": "docs/committed-room-snapshots-v340.md",
       "bytes": 1916,
       "sha256": "7ad58b64d042f16692d9e2fe572f41421ed4db23a427500dae02fe78ac79882a"
+    },
+    {
+      "path": "tests/v341-a2a-clarification.test.mjs",
+      "bytes": 8736,
+      "sha256": "70e9356649b1391fec1b7bd19257e5d446aa8e9db8aa45a2591166a487cdce61"
+    },
+    {
+      "path": "docs/a2a-clarification-v341.md",
+      "bytes": 3534,
+      "sha256": "60ffe9fcb53e982f72956e833ca38473d132370e26801c5bc7f6908e8fadeff9"
+    },
+    {
+      "path": "docs/verification-v341.json",
+      "bytes": 1717,
+      "sha256": "6eb18435118b361fc0b6e371f88ee76bacf02637bbd2257199ade43d4bb88560"
     }
   ],
   "publicRevision": "v333-foreground-save-generation",
-  "generatedAt": "2026-10-20T22:02:23.123169+00:00"
+  "generatedAt": "2026-10-20T22:43:00.723986+00:00"
 }

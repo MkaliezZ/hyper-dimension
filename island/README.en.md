@@ -19,7 +19,7 @@ People and briefs are fictional; AI replies, Hermes file operations and steward 
 | Run and create | 25 functional building types, 19 crops, 58 materials and 308 recipes. Process goods, use tools, stock shelves, host parties and collect wonders; separate routine cash flow from construction spending. |
 | Residents and homes | 15 AI residents with free conversation, work schedules and relationship history; sixteen homes shaped by their owners’ jobs and interests. |
 | Your Agent steward | Choose a name and one of 12 appearances. Use Hermes for real work, recruit a temporary partner and assign residents jobs with prerequisites. |
-| Seasons and visits | Seasons last 30 visual days; weather affects farming and fishing. Evening lights, waves and moon reflections accompany visits with your steward and invited NPCs, A2A information exchange and cooperative preparation. |
+| Seasons and visits | Seasons last 30 visual days; weather affects farming and fishing. Evening lights, waves and moon reflections accompany visits with your steward and invited NPCs, A2A information exchange, cooperative preparation and clarification questions. Visiting owners confirm resource reservations. |
 | Showcase and co-create | Display experience, projects and pictures in the owner gallery and receive guest messages. Import OPC products and recipes with both art styles, review, publish, produce and sell; export and roll back versions. |
 
 ## Start your island

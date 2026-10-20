@@ -19,6 +19,7 @@ function nextAction(t,owner){if(terminal.has(t.status)||['thinking','executing']
  if(t.capability==='island.information')return t.status==='retry'?(t.turnOwnerId===owner?'retry':null):t.nextOwnerId===owner?'respond':null;
  const receiver=owner===t.recipient.ownerAccountId;
  if(t.status==='retry')return (t.stage==='review'?receiver:!receiver)?'retry':null;
+ if(!receiver&&t.status==='needs_information'&&t.stage==='review'&&(t.clarificationRemaining??3)>0)return 'clarify';
  if(receiver&&['offered','needs_information'].includes(t.status))return 'review';
  if(receiver&&['accepted','execution_failed'].includes(t.status))return 'execute';
  if(!receiver&&t.receipt&&['executed','needs_information'].includes(t.status))return 'confirm';
@@ -78,8 +79,8 @@ export function createA2AGateway({identities,collaboration,now=Date.now}){
   async function answer(task){let t=task;while(!config.returnImmediately&&['thinking','executing'].includes(t.status)){if(closing||signal?.aborted)throw fail(-32603,'Request interrupted; query the original task before retrying');await new Promise(r=>setTimeout(r,250));t=await find(token,t.id);}return {task:taskView(t,owner,config.historyLength)};}
   if(replay){if(replay.clientMessages.find(x=>x.owner===owner&&x.messageId===m.messageId).fingerprint!==fingerprint)throw invalid('The same messageId cannot change content');return answer(replay);}
   if(m.taskId){const t=await find(token,m.taskId);contextMatch(t,m.contextId);if(extension.recipientId&&extension.recipientId!==t.recipient.ownerAccountId||extension.eventId&&extension.eventId!==t.eventId||extension.capability&&extension.capability!==t.capability)throw invalid('Task identity cannot be changed');
-   const action=extension.action||nextAction(t,owner);if(action==='execute'&&extension.action!=='execute')throw invalid('The invited owner must explicitly specify action=execute');if(!['respond','review','confirm','retry','execute'].includes(action))throw invalid('No executable turn is available to this owner');
-   command={operation:action,taskId:t.id,...(action==='respond'?{message:text}:{})};
+   const action=extension.action||nextAction(t,owner);if(action==='execute'&&extension.action!=='execute')throw invalid('The invited owner must explicitly specify action=execute');if(!['respond','review','confirm','retry','execute','clarify'].includes(action))throw invalid('No executable turn is available to this owner');
+   command={operation:action,taskId:t.id,...(['respond','clarify'].includes(action)?{message:text}:{})};
   }else{const capability=extension.capability||'island.information';if(!['island.information','event.checkin'].includes(capability))throw invalid('Unknown island capability');if(extension.action)throw invalid('An action requires taskId');extension.recipientId??=view.peers.length===1?view.peers[0].ownerAccountId:undefined;id(extension.recipientId,'recipientId');const presence=await identities.presence(token);if(m.contextId&&m.contextId!==presence?.roomId)throw invalid('contextId must be the owner’s current room');
    command=capability==='island.information'?{operation:'exchange',recipientId:extension.recipientId,topic:text}:{operation:'offer',recipientId:extension.recipientId,eventId:id(extension.eventId,'eventId')};
   }

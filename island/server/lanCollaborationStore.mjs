@@ -27,11 +27,11 @@ export function createLanCollaborationStore({directory,identities,tenants,activi
   return {room,e};
  }
  async function preparation(t,e){const p=t.recipient,doc=await tenants.readIslandForServer(p.ownerAccountId,p.homeTheme);if(!doc||doc.state.saveSlot!==p.homeWorldKey)throw fail('对方原岛档案已变化','a2a_world');const s=doc.state,held=s.lanEconomyControl?.holds?.['event:'+e.id+':entry:'+p.ownerAccountId]?.cost||{},missing=[];
-  for(const i of e.requirements.items)if(availableQuantity(s,i.item)+(e.economy.delivery==='transfer'?(held[i.item]||0):0)<i.quantity)missing.push(ITEM_BY_ID[i.item].name+' ×'+i.quantity);
-  if(e.requirements.garment&&!wornItems(s).includes(e.requirements.garment))missing.push('穿上'+GARMENTS[e.requirements.garment].name);
-  if(s.coins+(held.coins||0)<(e.economy.entryFee||0))missing.push('入场费 '+e.economy.entryFee+' 岛币');
-  if(e.participants.find(x=>x.id===p.ownerAccountId)?.response!=='accepted')missing.push('先接受活动邀请');
-  return {ready:missing.length===0,missing};
+  const items=e.requirements.items.map(i=>{const available=availableQuantity(s,i.item),reserved=e.economy.delivery==='transfer'?(held[i.item]||0):0,shortfall=Math.max(0,i.quantity-available-reserved),row={item:i.item,name:ITEM_BY_ID[i.item].name,required:i.quantity,available,reserved,shortfall};if(shortfall)missing.push(row.name+'还差 '+shortfall+'（共需 '+i.quantity+'，可用 '+available+'，已预留 '+reserved+'）');return row;});
+  const garment=e.requirements.garment?{id:e.requirements.garment,name:GARMENTS[e.requirements.garment].name,worn:wornItems(s).includes(e.requirements.garment)}:null;if(garment&&!garment.worn)missing.push('穿上'+garment.name);
+  const entryFee={required:e.economy.entryFee||0,available:s.coins,reserved:held.coins||0};entryFee.shortfall=Math.max(0,entryFee.required-entryFee.available-entryFee.reserved);if(entryFee.shortfall)missing.push('入场费还差 '+entryFee.shortfall+' 岛币（共需 '+entryFee.required+'，可用 '+entryFee.available+'，已预留 '+entryFee.reserved+'）');
+  const invitationAccepted=e.participants.find(x=>x.id===p.ownerAccountId)?.response==='accepted';if(!invitationAccepted)missing.push('先接受活动邀请');
+  return {ready:missing.length===0,missing,items,entryFee,garment,invitationAccepted};
  }
  async function reconcile(d){let changed=false;for(const t of Object.values(d.tasks)){if(terminal.has(t.status))continue;
   if(t.status!=='executing'&&!permits(d,t)){t.status='cancelled';t.error=information(t)?'一方已关闭信息交流，往来信件仍保留在手账。':'一方已关闭协作接收，后续往来停止。';t.updatedAt=now();changed=true;continue;}
@@ -40,12 +40,17 @@ export function createLanCollaborationStore({directory,identities,tenants,activi
   catch(e){if(e.code==='lan_room_missing'||e.code==='lan_room_closed'){t.status='cancelled';t.error=information(t)?'会客已结束，往来信件仍保留在手账。':'会客已结束；活动预留由原活动账本处理。';t.updatedAt=now();changed=true;}else throw e;}
   if(!terminal.has(t.status)&&now()>t.expiresAt){t.status='expired';t.error=information(t)?'这段交流已到期，往来信件仍保留在手账。':'协作约定已到期，未自动执行物资操作。';t.updatedAt=now();changed=true;}
  }return changed;}
- const publicTask=t=>{const row=clone(t);if(information(row)&&/活动预留/.test(row.error||''))row.error='会客已结束，往来信件仍保留在手账。';return row;};
+ const publicTask=t=>{const row=clone(t);if(information(row)&&/活动预留/.test(row.error||''))row.error='会客已结束，往来信件仍保留在手账。';if(!information(row))row.clarificationRemaining=Math.max(0,3-(row.clarifications?.length||0));return row;};
  function project(d,id){return {enabled:!!d.preferences[id]?.receive,informationEnabled:!!d.preferences[id]?.informationReceive,tasks:Object.values(d.tasks).filter(t=>participant(t,id)).sort((a,b)=>b.createdAt-a.createdAt).map(publicTask),preferences:Object.fromEntries(Object.entries(d.preferences).map(([id,p])=>[id,!!p.receive])),capabilities:['event.checkin','island.information']};}
  function launch(t,token,stage){const promise=(async()=>{
   try{
    const {room,e}=await validate(t,token),person=stage==='exchange'?(t.turnOwnerId===t.sender.ownerAccountId?t.sender:t.recipient):stage==='review'?t.recipient:t.sender,peer=person.actorId===t.sender.actorId?t.recipient:t.sender;
    const payload={stage,taskId:t.id,theme:person.homeTheme,actor:person,peer,contract:t.contract,messages:t.messages.slice(-6),parentRunId:t.messages.at(-1)?.ledgerRunId||null,preparation:stage==='review'?await preparation(t,e):null,receipt:stage==='confirm'?t.receipt:null};
+   if(!information(t)){
+    const guest=person.ownerAccountId===t.recipient.ownerAccountId;
+    payload.assignment={actorRole:guest?'guest':'host',peerRole:guest?'host':'guest',hostOwnerAccountId:t.sender.ownerAccountId,guestOwnerAccountId:t.recipient.ownerAccountId,entryItemsOwnerAccountId:t.recipient.ownerAccountId,entryFeeOwnerAccountId:t.recipient.ownerAccountId,preparationOwnerAccountId:t.recipient.ownerAccountId,executionRequiresGuestOwnerConfirmation:true};
+    if(t.clarifications?.length)payload.clarification=clone(t.clarifications.at(-1));
+   }
    if(stage==='exchange'){const doc=await tenants.readIslandForServer(person.ownerAccountId,person.homeTheme);if(!doc||doc.state.saveSlot!==person.homeWorldKey)throw fail('本人原岛档案已变化','a2a_world');Object.assign(payload,{capability:t.capability,requestText:t.turnText,sharedContext:islandExchangeContext(doc.state,person,room.members[person.ownerAccountId].travel.members)});}
    if(stage==='confirm'&&!e.participants.find(x=>x.id===t.recipient.ownerAccountId)?.checkedIn)throw fail('原活动的入场准备记录已失效','a2a_receipt');
    const result=await agents.collaborate(token,payload);
@@ -93,6 +98,11 @@ export function createLanCollaborationStore({directory,identities,tenants,activi
       if(i.operation==='respond'){if(t.status!=='awaiting_response'||t.nextOwnerId!==a.id)throw fail('请等待对方管家答复后再接续交流','a2a_stage');t.turnOwnerId=a.id;t.turnText=i.message===undefined?'请根据对方消息回应，并介绍本人岛屿相关的真实情况。':textInput(i.message,'补充问题');}
       else if(i.operation==='retry'){if(t.status!=='retry'||t.turnOwnerId!==a.id)throw fail('当前不能重试该轮交流','a2a_stage');}
       else throw fail('信息交流不执行物资操作','a2a_stage');t.stage='exchange';
+     }else if(i.operation==='clarify'){
+      if(a.id!==t.sender.ownerAccountId||t.status!=='needs_information'||t.stage!=='review')throw fail('当前没有需要主办岛主回复的准备问题','a2a_stage');
+      if((t.clarifications?.length||0)>=3)throw fail('本次协作已补充三轮，请重新商定活动后再发起','a2a_capacity');
+      const answer=textInput(i.message,'岛主补充说明'),question=t.messages.at(-1);
+      t.clarifications??=[];t.clarifications.push({question:question?.text||'',answer,ownerAccountId:a.id,parentRunId:question?.ledgerRunId||null,at:now()});t.stage='offer';
      }else if(i.operation==='review'){if(a.id!==t.recipient.ownerAccountId||!['offered','needs_information','retry'].includes(t.status))throw fail('当前不是你的审阅阶段','a2a_stage');t.stage='review';}
      else if(i.operation==='confirm'){if(a.id!==t.sender.ownerAccountId||!t.receipt||!['executed','retry','needs_information'].includes(t.status))throw fail('尚无可确认的执行回执','a2a_stage');t.stage='confirm';}
      else if(i.operation==='retry'){if(t.status!=='retry'||a.id!==(t.stage==='review'?t.recipient:t.sender).ownerAccountId)throw fail('当前不能重试该阶段','a2a_stage');}

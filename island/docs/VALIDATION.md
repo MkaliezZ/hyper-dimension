@@ -1092,3 +1092,7 @@ Windows 原生素材检查在开始比较之前，发现按当前源码反推的
 ## V340 · Committed room snapshots
 
 [Room snapshots](committed-room-snapshots-v340.md) removes write-lock contention from current-geography server room reads. Detached atomic snapshots preserve checksum validation; legacy migration, backups, mutation locks, travel exclusion and the original lock timeout remain. Eight new regression controls cover both themes and actual concurrent HTTP collaboration polling. The private graphics refresh failure and complete multi-island qualification remain open.
+
+## V341 · Activity clarification
+
+[Activity clarification](a2a-clarification-v341.md) adds bound host/guest model roles, an explicit host explanation turn, standard A2A mapping, replay/restart and bounded-round handling. Native modal checks pass in both themes, including draft/caret preservation, lost replies, legacy capability handling and explicit single resource reservation. Real role exchanges completed in both host styles; the retained first gear-fixture error was recovered from the same original reservation. Full default and real missing-material results are recorded separately. The private four-map graphics failure and complete delivery acceptance remain open.

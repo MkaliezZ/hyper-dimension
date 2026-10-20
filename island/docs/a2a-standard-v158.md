@@ -96,3 +96,7 @@ Install the SDK in a separate test directory; it is not a game runtime dependenc
 ## 依据 / References
 
 接口按 [A2A v1.0.1 specification](https://github.com/a2aproject/A2A/blob/v1.0.1/docs/specification.md) 和 [normative protocol definitions](https://github.com/a2aproject/A2A/blob/v1.0.1/specification/a2a.proto) 实现；客户端核对使用 [official JavaScript SDK](https://github.com/a2aproject/a2a-js)。未实现的能力没有在卡中宣称提供。
+
+## Activity clarification
+
+When a visiting steward asks a preparation question, the host task exposes `metadata[extension].nextAction = "clarify"`. Send a normal text `SendMessage` with the same `taskId` and a fresh `messageId`; `metadata[extension].action = "clarify"` may be explicit. The text is the host owner's explanation, not a changed contract or execution consent. Replay the same message ID and body after uncertain transport. The visiting steward reviews the forwarded answer. Three owner explanations are allowed per task; resource reservation still requires the visiting owner's explicit `action = "execute"`. [Flow and boundary](a2a-clarification-v341.md).
