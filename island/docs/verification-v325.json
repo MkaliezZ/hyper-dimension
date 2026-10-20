@@ -1,0 +1,25 @@
+{
+  "version": "V325",
+  "at": "2026-10-20T00:53:10.405984+00:00",
+  "baseCommit": "d7689df54b46d6700327c94fb2202a137f3cd817",
+  "runtime": "Only409 field_occupied rejected mine begin with no accepted ticket and no pending command releases its own controller lock; no cancellation,new production,coin/material award or automatic replay occurs. Other rejected/uncertain kinds keep recovery.",
+  "baselineNativeDOMBothStylesReproduced": true,
+  "candidateNativeDOMCases": 12,
+  "candidateRealServerBothStylesPassed": true,
+  "officialNpcLeaseSeconds": 20,
+  "actualPlayer409FieldOccupiedObserved": true,
+  "noTicketPendingOrPersonalOreGainOnRejection": true,
+  "leasePreservedUntilOfficialCancel": true,
+  "originalPointerMiningActualOreForestHoeReturnAndReloadPassed": true,
+  "originalMining12SecondGateAnd12AttemptLimitRetained": true,
+  "portableFixtureRetargetsOnlyActualConfirmedOccupiedResponses": true,
+  "preservedNegative": "First actual server fixture omitted expectedVersion on cancelling its own NPC lease and stopped. That negative and reports remain; corrected fixture uses current-version official cancellation.",
+  "exactNewArchivePending": true,
+  "hostedCurrentCommitPending": true,
+  "otherKnownFailures": [
+    "V324 exact four-map focusOwner page.evaluate liveness negative remains; candidate prior passes do not override it",
+    "V323 Windows resident finish timeout and old Mac navigation cancellation remain unconfirmed"
+  ],
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false
+}

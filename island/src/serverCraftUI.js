@@ -32,7 +32,12 @@ export function createServerCraft({saves,theme,persist,applyState,mount,closeGam
   if(active){status('先完成上次制作','继续或取消这次作业后，再开新的工作台。');return}
   active=true;lock({title:'正在准备'+noun,message:'正在登记本次操作，请稍候。',canRecover:false});status('正在准备工作台','正在登记配方并为本次制作留好材料…',false);
   try{const response=await send({...beginInput(recipeId,taskId,mode),kind,operation:'begin',requestId:crypto.randomUUID()});if(!done(response))mountTicket()}
-  catch(e){failure(e)}
+  catch(e){
+   // An explicit rejected mine begin owns no work to recover. A lost response,
+   // existing ticket or another durable command must retain its recovery lock.
+   if(kind==='field'&&lastInput?.field==='mine'&&e.status===409&&e.code==='field_occupied'&&!ticket&&!saves.pendingAction(theme())){await exit();toast('这块矿脉正在作业，请选择其他矿脉。');return;}
+   failure(e);
+  }
  }
  function checkpoint(){
   if(checkpointFlight){if(streaming())checkpointAgain=true;return checkpointFlight;}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v324-agent-source",
+  "release": "hyper-dimension-v325-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 124884,
-      "sha256": "081b948f7b2840e3c3ec237ecdcdd929c1338a7029566833abf275f4e2c55372"
+      "bytes": 125338,
+      "sha256": "af6c2925bef6cbcc8cf06cf886d31fc90a3cd76486a0f351ec304a43c9e6ea15"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -8032,8 +8032,8 @@
     },
     {
       "path": "src/serverCraftUI.js",
-      "bytes": 12501,
-      "sha256": "a32ecc154816f789309f2d92c8b3c4c98ec2d823225cf90039b0e61ce13cf850"
+      "bytes": 12883,
+      "sha256": "baaad736f17212e348e0894196193873eaae79e2bd355cd668b891ebd23d1884"
     },
     {
       "path": "src/serverFacilityUI.js",
@@ -9762,8 +9762,8 @@
     },
     {
       "path": "tests/v203-scene-return-browser.mjs",
-      "bytes": 8616,
-      "sha256": "cb0327ec1a572609d3c2be8d2f9087d017cab064981bf93958a58b41b2493848"
+      "bytes": 14019,
+      "sha256": "319b8121fdee5e52c243cbc2c5eae0b4e34f58ba4e9677958c9eb0ea8132d3c1"
     },
     {
       "path": "tests/v204-save-waiter-browser.mjs",
@@ -14109,7 +14109,22 @@
       "path": "docs/producer-snapshots-v324.md",
       "bytes": 2350,
       "sha256": "8ff05acc173fd80650e56ad64087afbd86be72d4dfd3a46625c4bff840860465"
+    },
+    {
+      "path": "tests/v325-mine-rejection-browser.mjs",
+      "bytes": 4420,
+      "sha256": "cae117b68a46308755da963b97e4093b8cc55455bf38621304a0ef6c04b81789"
+    },
+    {
+      "path": "docs/verification-v325.json",
+      "bytes": 1525,
+      "sha256": "38c1011f3ca214a538571501e0cef323ea9f138017783a04ea4b74ca5cb146a5"
+    },
+    {
+      "path": "docs/mine-rejection-v325.md",
+      "bytes": 1806,
+      "sha256": "8c3d3d071ba14bbe4249d489c6024ea5c45c3cc1aedc36f0ab777f7a6bc836b3"
     }
   ],
-  "publicRevision": "v324-independent-gpu-producer-snapshots"
+  "publicRevision": "v325-explicit-occupied-mine-rejection"
 }
