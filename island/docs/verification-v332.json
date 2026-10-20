@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-20T08:42:00.276157+00:00",
+  "basePublicCommit": "2d86a450b71b04fbf8be6adcb53602210471e78a",
+  "privateNativePairCasesPassed": 6,
+  "privateFirstFixtureAttemptFailed": true,
+  "portableFourNativeCasesPending": false,
+  "policy14CasesPending": false,
+  "originalTaskAndCustomBothStylesPending": false,
+  "default1749ChecksPending": false,
+  "exactArchivePending": true,
+  "hostedRecoveryNotClaimed": true,
+  "unknownNonTimeoutAndPlayerPolicyUnchanged": true,
+  "wholeGoalComplete": false,
+  "portableNativeCasesPassed": 4,
+  "policyCasesPassed": 14,
+  "originalFullResidentChainStylesPassed": 2,
+  "originalFullCustomProjectStylesPassed": 2,
+  "defaultRulesPassed": 1749,
+  "defaultCounts": [
+    1735,
+    14
+  ],
+  "preparedPayloadsUnchanged": 2853,
+  "v332ArchiveNotSealed": true,
+  "latestPackagedVersion": "V331",
+  "runtimeModuleMatchesPreparedSHA256": "68667e17e1f0ec27115d604dd01ab14d466e7bee7536321f76a70f11f8da5d7a",
+  "runtimeUnchangedAfterPreparedVerification": true
+}

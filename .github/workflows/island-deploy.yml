@@ -415,6 +415,11 @@ jobs:
         if: matrix.group == 'content'
         run: node tests/v306-field-start-timeout-browser.mjs
 
+      - name: Native NPC farm reservation timeout and protected recovery
+        if: matrix.group == 'content'
+        timeout-minutes: 3
+        run: node tests/v332-farm-start-timeout-browser.mjs
+
       - name: Native resident reservation response timeout
         if: matrix.group == 'content'
         run: node tests/v308-resident-start-timeout-browser.mjs
@@ -539,6 +544,7 @@ jobs:
             island/qa/v328/native-manual-checkpoint/report.json
             island/qa/v328/native-persisted-completion/report.json
             island/qa/v331/native-manual-controls/report.json
+            island/qa/v332/native-farm-start/report.json
             island/qa/v317/native-plan-queue/*.png
             island/qa/v305/native-catalog-refresh/report.json
             island/qa/v305/native-catalog-refresh/*.png

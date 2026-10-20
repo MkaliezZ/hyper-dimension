@@ -1040,3 +1040,8 @@ Required images receive bounded read-only decode retries while permanent failure
 ## V331 · 用户筹备操作优先级
 
 筹备页面的领取等明确用户操作可经过原队列的本地前台通道，自动顺序、活动事务和早先检查点保护保留。对照、负例及仍未通过范围见[筹备控制](manual-controls-v331.md)。本机或自动检查不代表真人／物理多设备验收。
+
+
+## V332 · NPC 农活预约回包超时
+
+明确超时后的农活预约可按原编号有限重放，连续超时仍保留人工恢复。对照、负例与未通过范围见[后台农活恢复](farm-start-timeout-v332.md)。自动检查不代表真人／物理多设备验收。

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v331-agent-source",
+  "release": "hyper-dimension-v332-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 130988,
-      "sha256": "73c3c5fd1145fe8396eef07738a688d03cb701fce5b49934dd2a9256e4f3a7d3"
+      "bytes": 131269,
+      "sha256": "b06b36f63392b9028674b2918f64b653e78aa0b81cd784f437e2d22c308e4073"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 17896,
-      "sha256": "bfe86b794472ea1b76e8a8580617339f3409f828ef20d1cf96b8b0a86fd6d07c"
+      "bytes": 18019,
+      "sha256": "ff379cd6df3f5a40efbec21977556ffb3feec1d94ea614fd56235514a72eb3ee"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 9314,
-      "sha256": "44c97d94c9d937990e288052f1b016b4a4305ee92bec8b620cd3fdc447d446bb"
+      "bytes": 9604,
+      "sha256": "68667e17e1f0ec27115d604dd01ab14d466e7bee7536321f76a70f11f8da5d7a"
     },
     {
       "path": "src/saveLimits.js",
@@ -14264,7 +14264,27 @@
       "path": "docs/verification-v331.json",
       "bytes": 1072,
       "sha256": "c2798d2849f3fa1b4b9f7c084ac86c03f685b5095ceb96bc47b54f310160b075"
+    },
+    {
+      "path": "tests/v332-farm-start-timeout.test.mjs",
+      "bytes": 5374,
+      "sha256": "66ebf016750a8506b7c6abfc424414068033b3437832f2be74fcf550dfb48234"
+    },
+    {
+      "path": "tests/v332-farm-start-timeout-browser.mjs",
+      "bytes": 9073,
+      "sha256": "289f005c342d5b07b38fbf94913cabb67088e5df24a39de2fc81f664254b43fa"
+    },
+    {
+      "path": "docs/farm-start-timeout-v332.md",
+      "bytes": 1921,
+      "sha256": "2cdffcef8aac0dcaac7c3a939d385dc70f8d0d21dfe422f650180087e5d8a28d"
+    },
+    {
+      "path": "docs/verification-v332.json",
+      "bytes": 999,
+      "sha256": "c4cf0163d73ff98ff28696a2cf86beb47a9d3320b1a0fc7352733c1667a285da"
     }
   ],
-  "publicRevision": "v331-manual-project-controls"
+  "publicRevision": "v332-npc-farm-start-timeout"
 }
