@@ -7,10 +7,10 @@ export function createConnectedSurfaceClient({
  bitmap=(image)=>createImageBitmap(image,{premultiplyAlpha:'none'}),
  isBitmap=image=>typeof ImageBitmap==='function'&&image instanceof ImageBitmap,
  maxRequests=32,maxBytes=16*1024*1024,onReset=()=>{},
- schedule=(fn,ms)=>setTimeout(fn,ms),cancel=clearTimeout
+ schedule=(fn,ms)=>setTimeout(fn,ms),cancel=clearTimeout,clock=Date.now
 }={}){
  const images=new WeakMap(),failed=new WeakSet(),pending=new Map(),registration=new Map();
- let target=null,disabled=false,serial=0,imageSerial=0,bytes=0;
+ let target=null,disabled=false,serial=0,imageSerial=0,bytes=0,lastRasterAt=null,expiredRasters=0;
  let status={backend:'not needed',ready:false,draws:0,textures:0,pendingUploads:0,uploadFailures:0,textureBytes:0,limitBytes:96*1024*1024};
  const finish=entry=>{cancel(entry.timer);pending.delete(entry.key);bytes-=entry.bytes;};
  function fail(reason='sprite_worker_unavailable'){
@@ -31,6 +31,9 @@ export function createConnectedSurfaceClient({
      registration.delete(data.requestId);cancel(entry.timer);
      data.error?entry.reject(Error(data.error)):entry.resolve(data.imageId);return;
     }
+    // A completed older pose still proves this worker is making progress.
+    if(data.kind==='raster'&&!data.error&&data.bitmap||data.kind==='raster-cancelled')lastRasterAt=clock();
+    if(data.kind==='raster-cancelled')return;
     const entry=pending.get(data.key);
     if(!entry||entry.requestId!==data.requestId){data.bitmap?.close();return;}
     finish(entry);
@@ -70,7 +73,17 @@ export function createConnectedSurfaceClient({
    if(pending.size>=maxRequests||size>maxBytes||bytes+size>maxBytes)return false;
    if(!start())return false;
    const requestId=++serial,entry={key,image,requestId,receive,bytes:size,phase:'image',timer:null};
-   entry.timer=schedule(()=>fail(entry.phase==='image'?'sprite_image_copy_timeout':'sprite_raster_timeout'),15000);
+   entry.timer=schedule(()=>{
+    if(pending.get(key)!==entry)return;
+    if(entry.phase==='image'){fail('sprite_image_copy_timeout');return;}
+    // A pose deadline includes its queue wait. Expire only that pose while
+    // completed peers demonstrate a live worker; never tear down the GPU for
+    // healthy queue pressure. A worker with no completed output for the same
+    // original 15 seconds still follows the original failure/fallback path.
+    if(lastRasterAt===null||clock()-lastRasterAt>=15000){fail('sprite_raster_timeout');return;}
+    finish(entry);expiredRasters++;
+    try{target?.postMessage({kind:'cancel-raster',key:entry.key,requestId:entry.requestId});}catch{fail('sprite_worker_error');}
+   },15000);
    pending.set(key,entry);bytes+=size;
    imageId(image).then(id=>{
     if(disabled||pending.get(key)!==entry)return;
@@ -78,7 +91,7 @@ export function createConnectedSurfaceClient({
    }).catch(()=>{if(pending.get(key)===entry)finish(entry);});
    return true;
   },
-  inspect:()=>({...status,renderThread:'worker',pendingRasters:pending.size,pendingRasterBytes:bytes,pendingRasterLimitBytes:maxBytes}),
+  inspect:()=>({...status,renderThread:'worker',pendingRasters:pending.size,pendingRasterBytes:bytes,pendingRasterLimitBytes:maxBytes,expiredRasters}),
   dispose:fail
  };
 }

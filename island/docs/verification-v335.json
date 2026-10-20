@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-20T14:55:47.385747+00:00",
+  "basePublicCommit": "7b0f95b589ac706998993e18b7323da1c83713af",
+  "runtimeChanged": [
+    "src/connectedSurfaceClient.js",
+    "src/connectedSurfaceWorker.js"
+  ],
+  "relatedTests": {
+    "tests": 23,
+    "pass": 23,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "nativeGraphicsControl": {
+    "passed": true,
+    "realDeadlineMs": 15000,
+    "responseHoldDeclared": true,
+    "baselineWorkerTerminations": 1,
+    "candidateWorkerTerminations": 0,
+    "baselineVisiblePeerPoses": 3,
+    "candidateVisiblePosesIncludingResumedSameKey": 4,
+    "actualLateBitmapClosed": true,
+    "dedicatedNativeWebGL2": true,
+    "noGameStateModelOrClockInjection": true
+  },
+  "originalRenderAndMemoryBudgetsRetained": true,
+  "privateCpuPboFifoUiPrototypesIncluded": false,
+  "noTimeoutIncrease": true,
+  "newArchiveSealed": false,
+  "newVideoDelivered": false,
+  "fourSimultaneousMapsQualified": false,
+  "fullMultiIslandA2aJointActivityQualified": false,
+  "realHumanOrOpcAcceptance": false,
+  "wholeGoalComplete": false
+}

@@ -33,7 +33,7 @@ function pump(){
    // No next pose overwrites or transfers away this live drawing buffer.
    Promise.resolve().then(()=>createImageBitmap(rendered.canvas)).then(bitmap=>{
     if(flight!==pending){bitmap.close();return;}
-    try{send({kind:'raster',key:job.key,requestId:job.requestId,bitmap,draw:rendered.draw},[bitmap]);}
+    try{if(job.cancelled){bitmap.close();send({kind:'raster-cancelled',key:job.key,requestId:job.requestId});}else send({kind:'raster',key:job.key,requestId:job.requestId,bitmap,draw:rendered.draw},[bitmap]);}
     catch(error){bitmap.close();throw error;}
     jobs.shift();flight=null;schedule();
    }).catch(reject);
@@ -57,6 +57,15 @@ self.onmessage=async({data})=>{
    images.set(data.imageId,{bitmap,bytes:size,used:++serial});bytes+=size;
    send({kind:'registered',requestId:data.requestId,imageId:data.imageId});
   }catch(error){if(bitmap)dispose(bitmap);send({kind:'registered',requestId:data.requestId,imageId:data.imageId,error:error.message});}
+ }else if(data.kind==='cancel-raster'){
+  const index=jobs.findIndex(job=>job.key===data.key&&job.requestId===data.requestId);
+  if(index>=0){
+   // Finish a live GPU surface before reuse; queued obsolete poses can retire.
+   // Both identities prevent a late cancellation touching a newer same-key pose.
+   if(flight?.job===jobs[index])jobs[index].cancelled=true;
+   else jobs.splice(index,1);
+  }
+  if(jobs.length)schedule();
  }else if(data.kind==='raster'){
   jobs.push(data);schedule();
  }

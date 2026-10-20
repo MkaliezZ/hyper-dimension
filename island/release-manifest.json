@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v334-agent-source",
+  "release": "hyper-dimension-v335-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 133095,
-      "sha256": "ba06f62d6fb574517096475015a41d45cf0634fc99d5837d4e55fb5debe28cda"
+      "bytes": 133547,
+      "sha256": "53457f954aa6037f10f2779d705fd98f271700f43caff6b154c6720a3a66d321"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18192,
-      "sha256": "2b7958177f08ad730420ccc4b7ef3a191251ef0e97a316ab13c0aceb5682d08e"
+      "bytes": 18230,
+      "sha256": "be9b52392fbfcdaa9ab7056c436e9d968bcd73b75ebfe3ebd6fa6d3ee9d97d00"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -13647,13 +13647,13 @@
     },
     {
       "path": "src/connectedSurfaceClient.js",
-      "bytes": 4864,
-      "sha256": "3c0a989a1583b6da937c1c3b4d9bbe9d17bf6e77b54908b5fa21dc089e2b7d77"
+      "bytes": 5768,
+      "sha256": "d8be016ec5f6510aa8e1826c08f3a63475f32d1f5be4e38d8b789cc9eed6098b"
     },
     {
       "path": "src/connectedSurfaceWorker.js",
-      "bytes": 3636,
-      "sha256": "e70c0aa90910e74ce79658c5a3c95704487e212af705a9334290810ddc1220a6"
+      "bytes": 4171,
+      "sha256": "7264075b98386abd688676429c04320f789f660e7236cea5cb63939634f41025"
     },
     {
       "path": "src/spriteSource.js",
@@ -14319,6 +14319,21 @@
       "path": "tests/v334-activity-barrier.test.mjs",
       "bytes": 4776,
       "sha256": "f517a96085ecc8659b1889e3e937625c804921329dcb4e1e8e55eed668123fad"
+    },
+    {
+      "path": "docs/pose-queue-health-v335.md",
+      "bytes": 1674,
+      "sha256": "42f15d9c2dd68e89c657e6f00c05f8780cfd1912351cab94a802013f9079ea3a"
+    },
+    {
+      "path": "docs/verification-v335.json",
+      "bytes": 1071,
+      "sha256": "ce35d27e575d58b3e343c5e71f6b66b9a06029b5bbc8c0b5fd959ffdfc6436b9"
+    },
+    {
+      "path": "tests/v335-pose-queue-health.test.mjs",
+      "bytes": 6580,
+      "sha256": "f25754d42dada5c91140ca2474fbdc7b4b92bbade0044af93a4faa6f19e59da7"
     }
   ],
   "publicRevision": "v333-foreground-save-generation"
