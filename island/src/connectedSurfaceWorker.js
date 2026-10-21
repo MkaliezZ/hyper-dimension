@@ -67,7 +67,7 @@ const receive=async({data})=>{
    // Finish a live GPU surface before reuse; queued obsolete poses can retire.
    // Both identities prevent a late cancellation touching a newer same-key pose.
    if(flight?.job===jobs[index])jobs[index].cancelled=true;
-   else jobs.splice(index,1);
+   else{const [cancelled]=jobs.splice(index,1);send({kind:'raster-cancelled',key:cancelled.key,requestId:cancelled.requestId});}
   }
   if(jobs.length)schedule();
  }else if(data.kind==='raster'){

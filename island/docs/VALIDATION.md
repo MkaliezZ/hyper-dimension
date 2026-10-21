@@ -1163,3 +1163,15 @@ The prior V350 archive passed22 independent installation checks but failed its f
 The hosted Windows ferry-clock probe used a two-argument save-client spy that dispatched an arrival without the real client's queued flush and prepareInput callback. The current visitor adapter intentionally performs that eligibility check inside one authoritative queue entry. The spy now observes dispatch after its controlled checkpoint and invokes preparation with acknowledged actions. All six cases and every prior assertion remain; two added guards require arrival preparation and prevent uncertain-journal preparation. Pending resident receipts, original uncertainty, early-arrival rejection, normal arrival and ordinary service admission retain their original expectations. The separate native v351 fixture exercises actual SaveClient, Worker/IndexedDB and HTTP SaveStore. Game modules, clocks, resources, request budgets and model cadence are unchanged.
 
 Windows 日志与隔离报告确认旧测试桩漏掉事务内准备回调；本机先复现原失败，再保留原六组断言修正观察器。此项是测试协议修复，不将局部通过写成托管矩阵、当前源码包、实体设备或完整 Goal 验收通过。
+
+
+## V353 · 绘制请求与 Worker 健康期限 / Raster request and worker health deadlines
+
+- 修复已复现的期限归属错误：图像准备时间和此前闲置时间不能算作刚提交的 GPU 作业无响应。单个请求仍在原有 15 秒到期；独立健康检查只对实际提交但尚未确认的绘制作业计时，连续 15 秒没有真实输出或取消回执仍回退。
+- 过期作业在相同 key 与 requestId 的实际回执到达前仍占用队列和像素字节预算。保留 32 请求、16 MiB 未确认输出、96 MiB 纹理与 64 MiB 姿态缓存上限；排队取消新增精确回执，在途 GPU 表面仍须等原有完成栅栏与快照。
+- Node 22.13 与 24.19 各通过 27 项相关检查；完整默认规则 2005 项通过。独立原生 WebGL 对照在双画风均重现旧客户端错误回退；候选保持 Worker，原请求正常过期并关闭迟到位图，新绘制与旧版本的 RGBA 像素逐字节一致。对照显式延迟一次图像准备和一次已完成结果交付，不改变产品时钟或超时参数。原有三步居民任务、途中重载、空浏览器恢复均在双画风通过，保留 30 秒注册及 120/240 秒工作时段预算。
+- 隔离原生作业日志增加只读绘制健康、保存队列及管家请求时序；不保存提示词、对话、密钥、文档或工作区。完整四岛、当前交付包、托管 Windows/macOS 与 20 分钟自然运行仍需各自证据。此处定向复现尚不能证明先前四岛失败的唯一原因。
+
+The reproduced defect charged image preparation and earlier idle time against newly submitted GPU work. The original 15-second request expiry remains; a separate watchdog measures actual outstanding raster work and still falls back after 15 seconds without genuine output or cancellation acknowledgement. Expired work retains its request and pixel-byte capacity until the exact identity is acknowledged. All queue, texture, pose-cache, artwork, resolution, geometry and interpolation limits are retained.
+
+Both Node versions passed 27 related contracts; all 2005 default rules passed. Owned native WebGL controls reproduce the old false retirement in both styles; the candidate keeps the worker, expires the old request, closes its late bitmap and returns byte-identical RGBA pixels for fresh drawing. Both styles also passed the original three-task chain, reload and empty-browser recovery within unchanged registration and working-time budgets. These focused regressions are not full four-island, physical Mac, human, or current exact-package acceptance. Read-only native diagnostics record queue and request timing without prompts, conversation bodies, keys or document paths.

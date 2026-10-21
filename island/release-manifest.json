@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v352-agent-source",
+  "release": "hyper-dimension-v353-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 145734,
-      "sha256": "7734be3c3e176e27ab82ecaa7e10911985ed827c4a821d3c0a4e9cc95793cf2c"
+      "bytes": 148446,
+      "sha256": "930aabaa6836f6e9e5020abdc7509339483d913692a312a6e92ae24c372119fc"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19215,
-      "sha256": "f9ef4b18df8fb8ddccf3459f6bac0b2c61f216b887cf46ee5e9130c53388cfa1"
+      "bytes": 19333,
+      "sha256": "c68a7ab547816210ec9e09c10aa96c71a0e6024feb18381fa9da2823f48528bd"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -13092,8 +13092,8 @@
     },
     {
       "path": "tests/nativeWorkJournal.mjs",
-      "bytes": 7793,
-      "sha256": "162b3b76cdde585ba5761244834cdbcad4cb510a577773ed6c09e7f6227224cb"
+      "bytes": 8278,
+      "sha256": "be080c8de0b17f84349b1c2eb47a93e808753e0839f25dede251c685481695ab"
     },
     {
       "path": "tests/v272-visitor-transfer.test.mjs",
@@ -13277,8 +13277,8 @@
     },
     {
       "path": "tests/v278-native-observation.test.mjs",
-      "bytes": 4397,
-      "sha256": "521ffb6a262fc2b67d9d1d1c98f1c8dfec7b422aa950f4e195e30cf1170fadd7"
+      "bytes": 6326,
+      "sha256": "d526d6f0421c1bcb4fbf947ae5a692ea32358fab62d62eba05d068349f227231"
     },
     {
       "path": "docs/visitor-clock-v278.md",
@@ -13647,13 +13647,13 @@
     },
     {
       "path": "src/connectedSurfaceClient.js",
-      "bytes": 5829,
-      "sha256": "898ece861d4b96caee7a4a76c15d76b1c22ff921cd2234c7d8f83e90c4fba37f"
+      "bytes": 7838,
+      "sha256": "c9f12b0cf544639ae18c2b0899b353914663370a6cc0a5fb4a6d020db1b82db4"
     },
     {
       "path": "src/connectedSurfaceWorker.js",
-      "bytes": 4472,
-      "sha256": "e2a04b1d7fb5c89b5d1fe9f6bd69f47eee5fb86d743811f09b863ab88a25c5bf"
+      "bytes": 4571,
+      "sha256": "7520da358607c82205edb627a7cf5b79f45e5b390efe9269890d0c0ed9cc6d4c"
     },
     {
       "path": "src/spriteSource.js",
@@ -14332,8 +14332,8 @@
     },
     {
       "path": "tests/v335-pose-queue-health.test.mjs",
-      "bytes": 6975,
-      "sha256": "030dc8b00c68e2d553004d1c89704b17ced837bdb5b2622c171621159d575752"
+      "bytes": 7218,
+      "sha256": "bcbb1106228d6d7e6e7943058bfe96ce107f3dff6e1685f1e2498ce317f8b8a7"
     },
     {
       "path": "docs/worker-ready-queue-v336.md",
@@ -14679,8 +14679,18 @@
       "path": "tests/v351-visitor-checkpoint-browser.mjs",
       "bytes": 7322,
       "sha256": "7df5d8513434cf7a85039fd8819af9d8da7bc21acd522ea1d9b80ff1db9e5d1c"
+    },
+    {
+      "path": "tests/v353-raster-liveness.test.mjs",
+      "bytes": 6087,
+      "sha256": "8e6fad8954435c0ee801f7626818d635421e4e40704f0370f56d1cbb7746c0ed"
+    },
+    {
+      "path": "tests/v353-raster-liveness-browser.mjs",
+      "bytes": 7770,
+      "sha256": "4e46278d9af988c36855753835851c841d631dcdaf8dd76a514f64505e9f7882"
     }
   ],
-  "publicRevision": "v352-visitor-clock-protocol-fixture",
+  "publicRevision": "v353-raster-work-liveness",
   "generatedAt": "2026-10-21T12:57:16.457236+00:00"
 }

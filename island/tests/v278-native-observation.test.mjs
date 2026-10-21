@@ -52,3 +52,23 @@ test('owned-page request diagnostics exclude save contents and unrelated endpoin
 test('a stalled owned-process lookup is bounded before any OS sampling command',async()=>{
  await assert.rejects(sampleOwnedBrowserStall({send:()=>new Promise(()=>{})},{directory:tmpdir(),platform:'darwin',run:async()=>assert.fail('No OS process may be sampled without an acknowledged owned PID')}),/process lookup timed out/);
 });
+
+test('steward timing observations exclude prompts and secrets and retain only twelve request receipts',async()=>{
+ const before=process.env.HD_QA_WORK_JOURNAL;process.env.HD_QA_WORK_JOURNAL='1';
+ const out=await mkdtemp(join(tmpdir(),'hd-steward-observation-')),report={cases:[]},row={};
+ const page=new EventEmitter();page.context=()=>({browser:()=>null});page.isClosed=()=>true;
+ const journal=createNativeWorkJournal(out,report,{deadlineMs:60000});
+ try{
+  journal.observe(page,row);
+  const request=i=>({url:()=> 'http://127.0.0.1/api/hermes/command',method:()=> 'POST',postDataJSON:()=>({requestId:'fictional-'+i,message:'PRIVATE_PROMPT',history:['PRIVATE_HISTORY'],apiKey:'PRIVATE_KEY',workspace:'PRIVATE_PATH'}),failure:()=>({errorText:'fixture aborted'})});
+  for(let i=0;i<14;i++)page.emit('request',request(i));
+  assert.equal(row.nativeSaveRequests,undefined);assert.equal(row.nativeStewardRequests.length,12);assert.equal(row.nativeStewardRequests[0].requestId,'fictional-2');
+  const last=request(14);page.emit('request',last);page.emit('response',{request:()=>last,status:()=>200});page.emit('requestfinished',last);
+  assert.equal(row.nativeStewardRequests.length,12);assert.equal(row.nativeStewardRequests.at(-1).status,200);assert(Number.isFinite(row.nativeStewardRequests.at(-1).finishedMs));
+  const encoded=JSON.stringify(row);for(const secret of ['PRIVATE_PROMPT','PRIVATE_HISTORY','PRIVATE_KEY','PRIVATE_PATH'])assert(!encoded.includes(secret));
+  assert.deepEqual(Object.keys(row.nativeStewardRequests.at(-1)).sort(),['at','path','kind','operation','requestId','startedMs','status','responseMs','finishedMs'].sort());
+ }finally{
+  await journal.beforeCleanup();await journal.finish();if(before===undefined)delete process.env.HD_QA_WORK_JOURNAL;else process.env.HD_QA_WORK_JOURNAL=before;
+  assert(out.startsWith(join(tmpdir(),'hd-steward-observation-')));await rm(out,{recursive:true,force:true});
+ }
+});

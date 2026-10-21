@@ -45,7 +45,9 @@ async function workerFixture(){
  return{posts,timers,fences,copies,draws,request,cancel,gpuCancels:()=>gpuCancels,pump(){assert(timers.length);timers.shift()();}};
 }
 test('queued cancellation matches both key and request identity',async()=>{
- const f=await workerFixture();await f.request('same',1);await f.request('same',2);await f.cancel('same',1);f.pump();assert.deepEqual(f.draws,[2]);await f.cancel('same',1);assert.equal(f.gpuCancels(),0);f.fences[0]();await flush();f.copies[0].resolve({close(){assert.fail('Transferred live snapshot must not close in producer');}});await flush();assert.equal(f.posts.at(-1).requestId,2);assert.equal(f.posts.at(-1).kind,'raster');
+ const f=await workerFixture();await f.request('same',1);await f.request('same',2);await f.cancel('same',1);
+ assert.deepEqual(f.posts.filter(p=>p.kind==='raster-cancelled').map(p=>[p.key,p.requestId]),[['same',1]],'Only the exact cancelled request releases its submitted slot');
+ f.pump();assert.deepEqual(f.draws,[2]);await f.cancel('same',1);assert.equal(f.posts.filter(p=>p.kind==='raster-cancelled').length,1);assert.equal(f.gpuCancels(),0);f.fences[0]();await flush();f.copies[0].resolve({close(){assert.fail('Transferred live snapshot must not close in producer');}});await flush();assert.equal(f.posts.at(-1).requestId,2);assert.equal(f.posts.at(-1).kind,'raster');
 });
 test('cancelled in-flight work completes without surface reuse,then closes its bitmap once',async()=>{
  const f=await workerFixture();await f.request('pose',1);f.pump();await f.cancel('pose',1);await f.request('pose',2);assert.equal(f.gpuCancels(),0);assert.deepEqual(f.draws,[1]);f.fences[0]();await flush();let closed=0;f.copies[0].resolve({close(){closed++;}});await flush();assert.equal(closed,1);assert.equal(f.posts.at(-1).kind,'raster-cancelled');assert.equal(f.posts.at(-1).requestId,1);f.pump();assert.deepEqual(f.draws,[1,2]);
