@@ -8,6 +8,10 @@ const MAX_POSE_BYTES=64*1024*1024,poseAtlas=createPoseAtlas({maxBytes:MAX_POSE_B
 let renderer=null,unavailable=false,serial=0,bytes=0;
 let poseEpoch=0;
 const remote=typeof document!=='undefined'&&typeof Worker==='function'&&typeof OffscreenCanvas==='function'&&typeof createImageBitmap==='function'?createConnectedSurfaceClient({onReset:()=>clearPoses()}):null;
+// Load the owned module endpoint while the application loads its initial art
+// and save. Actual image/raster requests retain their original 15-second clocks.
+// The worker's own import has no document and cannot create another endpoint.
+remote?.prepare?.();
 function initialize(){
  if(unavailable||typeof document==='undefined'&&typeof OffscreenCanvas==='undefined')return null;
  if(renderer)return renderer;

@@ -45,6 +45,7 @@ function pump(){
  }catch(error){flight?.cancel?.();flight=null;send({kind:'fatal',error:error.message});}
 }
 const receive=async({data})=>{
+ if(data.kind==='warm'){send({kind:'ready'});return;}
  if(data.kind==='image'||data.kind==='image-source'){
   let bitmap=data.bitmap;
   try{

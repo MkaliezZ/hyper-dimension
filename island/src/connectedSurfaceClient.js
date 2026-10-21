@@ -11,7 +11,7 @@ export function createConnectedSurfaceClient({
  schedule=(fn,ms)=>setTimeout(fn,ms),cancel=clearTimeout,clock=Date.now
 }={}){
  const images=new WeakMap(),failed=new WeakSet(),pending=new Map(),registration=new Map(),submitted=new Map();
- let target=null,disabled=false,serial=0,imageSerial=0,bytes=0,lastRasterAt=null,expiredRasters=0,acquiring=0,acquiringBytes=0,submittedBytes=0,healthTimer=null,healthDeadline=null;
+ let target=null,disabled=false,serial=0,imageSerial=0,bytes=0,lastRasterAt=null,expiredRasters=0,acquiring=0,acquiringBytes=0,submittedBytes=0,healthTimer=null,healthDeadline=null,warmStartedAt=null,workerReadyAt=null;
  let status={backend:'not needed',ready:false,draws:0,textures:0,pendingUploads:0,uploadFailures:0,textureBytes:0,limitBytes:96*1024*1024};
  const finish=entry=>{if(pending.get(entry.key)!==entry)return;cancel(entry.timer);pending.delete(entry.key);bytes-=entry.bytes;if(entry.phase==='image'){acquiring--;acquiringBytes-=entry.bytes;}};
  const releaseSubmitted=requestId=>{const job=submitted.get(requestId);if(job){submittedBytes-=job.bytes;submitted.delete(requestId);}};
@@ -37,6 +37,7 @@ export function createConnectedSurfaceClient({
    target.onmessage=({data})=>{
     if(disabled){data.bitmap?.close();return;}
     if(data.status)status=data.status;
+    if(data.kind==='ready'){workerReadyAt=clock();return;}
     if(data.kind==='fatal'){data.bitmap?.close();fail(data.error||'sprite_worker_error');return;}
     if(data.kind==='registered'){
      const entry=registration.get(data.requestId);if(!entry)return;
@@ -81,6 +82,11 @@ export function createConnectedSurfaceClient({
   images.set(image,ready);ready.catch(()=>images.delete(image));return ready;
  }
  return {
+  prepare(){
+   if(disabled)return false;if(warmStartedAt!==null)return true;
+   const endpoint=start();if(!endpoint)return false;warmStartedAt=clock();
+   try{endpoint.postMessage({kind:'warm'});return true;}catch{fail('sprite_worker_unavailable');return false;}
+  },
   request(key,image,raster,receive){
    if(disabled||failed.has(image)||pending.has(key))return false;
    // The existing low-quality preview keeps its original direct Canvas path.
@@ -110,7 +116,7 @@ export function createConnectedSurfaceClient({
    }).catch(()=>{if(pending.get(key)===entry)finish(entry);});
    return true;
   },
-  inspect:()=>({...status,renderThread:'worker',pendingRasters:pending.size,pendingRasterBytes:bytes,pendingRasterLimitBytes:maxBytes,submittedRasters:submitted.size,submittedRasterBytes:submittedBytes,outstandingRasterBytes:acquiringBytes+submittedBytes,expiredRasters}),
+  inspect:()=>({...status,renderThread:'worker',workerBoot:{requestedAt:warmStartedAt,readyAt:workerReadyAt,ready:workerReadyAt!==null},pendingRasters:pending.size,pendingRasterBytes:bytes,pendingRasterLimitBytes:maxBytes,submittedRasters:submitted.size,submittedRasterBytes:submittedBytes,outstandingRasterBytes:acquiringBytes+submittedBytes,expiredRasters}),
   dispose:fail
  };
 }
