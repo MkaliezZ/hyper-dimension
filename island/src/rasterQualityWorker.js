@@ -1,3 +1,4 @@
+import {serveGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 import {artworkURL,shoreOptions,fadeIslandEdge,RASTER_VERTEX,RASTER_FRAGMENT} from './rasterProcessing.js';
 // A serial workspace limits temporary GPU surfaces; no island state enters this worker.
 let workspace=null,noGPU=false,tail=Promise.resolve();
@@ -47,6 +48,8 @@ async function render(data){
   if(surface){surface.width=1;surface.height=1;}if(masked){masked.width=1;masked.height=1;}
  }
 }
-self.onmessage=({data})=>{
+const receive=({data})=>{
  tail=tail.then(async()=>{try{self.postMessage({requestId:data.requestId,...await render(data)});}catch(e){self.postMessage({requestId:data.requestId,error:e.message||'raster_processing_failed'});}});
 };
+
+serveGpuWorkerEndpoint(receive);

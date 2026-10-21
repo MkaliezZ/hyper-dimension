@@ -1,3 +1,4 @@
+import {createGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 import {artworkURL,shoreOptions,fadeIslandEdge} from './rasterProcessing.js';
 import {rasterOutsideCanvas} from './rasterVisibility.js';
 // Only original artwork URLs enter the worker; animation uses cached static images.
@@ -11,7 +12,7 @@ function failWorker(){
 }
 function request(job){
  if(disabled||typeof Worker==='undefined'){disabled=true;backend='native canvas';return Promise.reject(Error('raster_worker_unavailable'));}
- if(!worker){worker=new Worker(new URL('./rasterQualityWorker.js',import.meta.url),{type:'module'});worker.onerror=failWorker;worker.onmessage=({data})=>{
+ if(!worker){worker=createGpuWorkerEndpoint(new URL('./rasterQualityWorker.js',import.meta.url));worker.onerror=failWorker;worker.onmessage=({data})=>{
   const r=requests.get(data.requestId);if(!r)return;requests.delete(data.requestId);clearTimeout(r.timer);data.error?r.reject(Error(data.error)):r.resolve(data);
  };}
  const requestId=++serial;

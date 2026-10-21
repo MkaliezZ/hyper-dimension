@@ -1,5 +1,6 @@
+import {serveGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 const images=new Map();let pixels=0;const maxPixels=32*1024*1024;
-self.onmessage=async({data})=>{
+const receive=async({data})=>{
  const {requestId,operation,imageId}=data;
  try{
   if(operation==='register'){
@@ -16,3 +17,5 @@ self.onmessage=async({data})=>{
   self.postMessage({requestId,bitmap},[bitmap]);
  }catch(error){self.postMessage({requestId,error:error.message||'artwork_refinement_failed'})}
 };
+
+serveGpuWorkerEndpoint(receive);

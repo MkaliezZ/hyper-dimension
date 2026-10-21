@@ -1,0 +1,55 @@
+{
+  "version": "V347 candidate",
+  "publicBaseVersion": "V346",
+  "publicBaseCommit": "52e05638c2d56a6a13189478e9ebf3580130c452",
+  "candidateOnly": false,
+  "relatedCasesPassed": 150,
+  "preservedPriorCasesInRelatedGroup": 25,
+  "newAdditionalDefaultCases": 125,
+  "fullDefaultExpectedCounts": [
+    1973,
+    14
+  ],
+  "sourceCodeMatchesNativeCandidate": true,
+  "terrainNativeExactPixelPairs": 704,
+  "terrainCanonicalAssets": 352,
+  "terrainProofReusedWithThreeModulesAndAssetsUnchanged": true,
+  "graphicsSourceOverrides": 27,
+  "gpuNativeExactPixelPairs": 88,
+  "gpuExactProofIncludesEveryEightBitAlphaAndTwoBackgrounds": true,
+  "retainedBitmapIndependentAcrossPlaneReuse": true,
+  "gpuFrameUsesCpuOwnedPixels": true,
+  "gpuSnapshotMaximumBytes": 268435456,
+  "gpuPollDelayMs": 8,
+  "gpuHealthClientDeadlineMs": 15000,
+  "gpuCompletionUsesVisibleTasksWhereAvailable": false,
+  "rejectedSchedulingExperimentAbsent": true,
+  "underlyingTimeoutRootCauseProved": false,
+  "bothStyleFullQualificationPending": false,
+  "fullDefaultPending": false,
+  "finalArchiveSealed": false,
+  "newVideoDelivered": false,
+  "wholeGoalComplete": false,
+  "completedAt": "2026-10-21T05:18:59.400329+00:00",
+  "bothStyleFullFourMapQualificationPassed": true,
+  "originalNativeAssertionGroupsPreserved": 144,
+  "fullDefaultCasesPassed": 1987,
+  "fullDefaultCounts": [
+    1973,
+    14
+  ],
+  "sourceVerifiedBeforeAndAfterBothNativeThemesAndDefault": true,
+  "actualNativeCases": [
+    {
+      "theme": "pixel",
+      "providerCaptures": 113,
+      "concurrentMapSamples": 4
+    },
+    {
+      "theme": "origami",
+      "providerCaptures": 113,
+      "concurrentMapSamples": 4
+    }
+  ],
+  "hostedSuccessorPending": true
+}

@@ -1,8 +1,11 @@
+import {drawCanvasOcean,canvasOceanStatus,releaseCanvasOcean} from './oceanCanvasSurface.js';
+import {renderCanvasOcean} from './oceanCanvasRenderer.js';
+export function releaseOceanMotion(canvas){releaseCanvasOcean(canvas);releaseOceanShader(canvas);}
 import {drawWorldNightLighting,nightLightingStatus} from './nightLightingRenderer.js';
 import {WORLD,MAP_EXTENT} from './world.js';
 import {terrainTileStatus} from './mapTiles.js';
 import {SEASONS,seasonalTerrain} from './seasonTerrain.js';
-import {drawOceanShader,oceanShaderStatus} from './oceanShader.js';
+import {drawOceanShader,oceanShaderStatus,releaseOceanShader} from './oceanShader.js';
 import {buildEnvironmentGeometry} from './environmentGeometry.js';
 import {terrainViewport} from './mapTileLayout.js';
 import {rainParticle,weatherParticleBudget} from './weatherVisuals.js';
@@ -27,20 +30,10 @@ function finishOcean(surface){const {buffer:b,paint,target}=surface;paint.save()
 export function drawOceanMotion(ctx,image,theme,time,env){
  const f=prepare(image,theme),view=terrainViewport(ctx.getTransform(),ctx.canvas.width,ctx.canvas.height);if(!f||!view){latest={...latest,ready:false};return;}
  if(drawOceanShader(ctx,f,theme,time,env)){latest={ready:true,theme,ripples:230,waveLoops:3,coastLoops:f.coast.length,maskVersion:127,backend:'webgl2-worker',oceanWorker:oceanShaderStatus(ctx.canvas)};return;}
- const pixel=theme==='pixel',surface=oceanSurface(ctx,f,theme);ctx=surface.paint;let ripples=0,waveLoops=0;ctx.save();
- // Three shoreward crests: translucent swell, bright breaking rim and dispersing foam.
- for(let band=0;band<3;band++){const progress=fract(time/6.8+band/3),offset=(1-progress)*27,alpha=Math.pow(Math.sin(progress*Math.PI),1.35);if(alpha<.02)continue;
-  for(const full of f.coast){if(full.length<40)continue;const points=full.filter((_,i)=>i%4===0);if(!points.some(p=>visible(p,view,35)))continue;waveLoops++;ctx.strokeStyle='rgba(112,227,238,'+(alpha*.19)+')';ctx.lineWidth=pixel?6:8;crest(ctx,points,offset+3,time,pixel);ctx.strokeStyle='rgba(243,255,243,'+(alpha*(pixel?.34:.28))+')';ctx.lineWidth=pixel?1.6:1.2;crest(ctx,points,offset,time,pixel);ctx.strokeStyle='rgba(215,249,245,'+(alpha*.25)+')';ctx.lineWidth=.8;crest(ctx,points,offset-2,time,pixel);}
+ if(drawCanvasOcean(ctx,f,theme,time,env,view)){
+  const status=canvasOceanStatus(ctx.canvas);latest={ready:status.ready,theme,ripples:230,waveLoops:3,coastLoops:f.coast.length,maskVersion:127,backend:status.backend,oceanWorker:oceanShaderStatus(ctx.canvas),compatibleWorker:status};return;
  }
- // World-anchored wavelets never restart when dragging, zooming or opening a room.
- for(let i=0;i<230;i++){const x=hash(i*3.1)*W+Math.sin(time*.24+i)*4,y=hash(i*5.3+2)*H+Math.sin(time*.36+i*.7)*1.8;if(!visible({x,y},view)||!f.isWater(x,y))continue;
-  const pulse=Math.pow(Math.max(0,Math.sin(time*.82+i*2.31)),2),length=7+hash(i+4)*13,alpha=(.11+.24*pulse);ripples++;
-  ctx.strokeStyle='rgba(225,251,248,'+alpha+')';ctx.lineWidth=pixel?1.7:1.1;ctx.beginPath();ctx.moveTo(x-length/2,y);if(pixel){ctx.lineTo(x-2,y);ctx.lineTo(x-2,y-1.5);ctx.lineTo(x+length/2,y-1.5);}else ctx.quadraticCurveTo(x,y-2.4,x+length/2,y-.9);ctx.stroke();
-  if(!pixel&&pulse>.55){ctx.fillStyle='rgba(178,238,248,'+(pulse*.1)+')';ctx.beginPath();ctx.moveTo(x-length/2,y+2);ctx.lineTo(x+length/2,y+1);ctx.lineTo(x+length/3,y+5);ctx.closePath();ctx.fill();}
- }
- // Broken sunlight trails sample the same water mask as shoreline foam.
- const reflection='255,244,184';for(let i=0;i<68;i++){const y=70+i*17.2,x=W-260+Math.sin(y*.016+time*.18)*45+Math.sin(i*5.1)*35;if(!visible({x,y},view)||!f.isWater(x,y))continue;const pulse=Math.max(0,Math.sin(time*1.1+i*1.73)),length=5+pulse*16;ctx.fillStyle='rgba('+reflection+','+((.07+pulse*.18)*(1-(env.night||0)))+')';if(pixel)ctx.fillRect(Math.round(x-length/2),Math.round(y),Math.round(length),1.4);else{ctx.beginPath();ctx.moveTo(x-length/2,y);ctx.lineTo(x,y-1.6);ctx.lineTo(x+length/2,y);ctx.lineTo(x,y+1.2);ctx.closePath();ctx.fill();}}
- ctx.restore();finishOcean(surface);latest={ready:true,theme,ripples,waveLoops,coastLoops:f.coast.length,maskVersion:127,backend:'canvas-compatible',oceanWorker:oceanShaderStatus(surface.target.canvas)};
+ const counts=renderCanvasOcean(ctx,f,theme,time,env,view);latest={ready:true,theme,...counts,maskVersion:127,backend:'canvas-compatible',oceanWorker:oceanShaderStatus(ctx.canvas)};
 }
 // Each season uses newly drawn blossoms, foliage or snow in the original high-resolution forest geometry.
 export function drawSeasonTerrain(ctx,image,theme,env){prepare(image,theme);}

@@ -1,3 +1,5 @@
+import {captureGpuFrame} from './gpuFrameSnapshot.js';
+import {serveGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 import {prepareConnectedTexture,renderConnectedSurfaceInWorker,connectedTextureFailed,connectedSurfaceStatus} from './connectedSpriteSurface.js';
 import {decodeSpriteSource,spriteSourceStatus} from './spriteSourceDecoder.js';
 import {afterGpuCommands} from './gpuCompletion.js';
@@ -33,7 +35,7 @@ function pump(){
    if(flight!==pending)return;
    // Keep the producer surface stable until an independent snapshot is ready.
    // No next pose overwrites or transfers away this live drawing buffer.
-   Promise.resolve().then(()=>createImageBitmap(rendered.canvas)).then(bitmap=>{
+   Promise.resolve().then(()=>captureGpuFrame(rendered.gl,rendered.canvas)).then(bitmap=>{
     if(flight!==pending){bitmap.close();return;}
     try{if(job.cancelled){bitmap.close();send({kind:'raster-cancelled',key:job.key,requestId:job.requestId});}else send({kind:'raster',key:job.key,requestId:job.requestId,bitmap,draw:rendered.draw},[bitmap]);}
     catch(error){bitmap.close();throw error;}
@@ -42,7 +44,7 @@ function pump(){
   },reject);
  }catch(error){flight?.cancel?.();flight=null;send({kind:'fatal',error:error.message});}
 }
-self.onmessage=async({data})=>{
+const receive=async({data})=>{
  if(data.kind==='image'||data.kind==='image-source'){
   let bitmap=data.bitmap;
   try{
@@ -73,3 +75,5 @@ self.onmessage=async({data})=>{
  }
 };
 function dispose(image){if(image.close)image.close();else{image.width=0;image.height=0;}}
+
+serveGpuWorkerEndpoint(receive);

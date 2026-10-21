@@ -2,6 +2,7 @@ import {WORLD} from './world.js';
 import {createOceanSurfaceClient} from './oceanSurfaceClient.js';
 export {coastDistanceTexture} from './oceanShaderCore.js';
 const surfaces=new WeakMap();
+export function releaseOceanShader(canvas){const surface=surfaces.get(canvas);if(surface){surface.dispose();surfaces.delete(canvas);}}
 export function oceanShaderStatus(canvas){return surfaces.get(canvas)?.inspect()||{backend:'canvas-compatible',ready:false,renderThread:'worker'};}
 export function drawOceanShader(target,field,theme,time,env){
  if(typeof Worker!=='function'||typeof OffscreenCanvas!=='function')return false;

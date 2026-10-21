@@ -1,4 +1,6 @@
+const snapshotStub='// Snapshot acquisition is stubbed here to isolate producer ordering; the real\n// pixel plane has its own contracts and native zero-difference comparisons.\nconst captureGpuFrame=(_gl,canvas)=>createImageBitmap(canvas);\n';
 import test from 'node:test';
+import {serveGpuWorkerEndpoint} from '../src/gpuWorkerEndpoint.js';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
@@ -32,13 +34,13 @@ test('original pending count,byte limits and disposal ownership remain bounded',
 async function workerFixture(){
  const source=(await readFile(new URL('../src/connectedSurfaceWorker.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
  const posts=[],timers=[],fences=[],copies=[],draws=[],self={postMessage:data=>posts.push(data)},canvas={},gl={};let gpuCancels=0;
- const context={self,Uint8Array,setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
+ const context={serveGpuWorkerEndpoint:receive=>serveGpuWorkerEndpoint(receive,self),self,Uint8Array,setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
   afterGpuCommands(_gl,done){fences.push(done);return()=>gpuCancels++;},
   createImageBitmap(){let resolve;const promise=new Promise(r=>resolve=r);copies.push({resolve});return promise;},
   connectedSurfaceStatus:()=>({backend:'WebGL2 connected surface'}),spriteSourceStatus:()=>({}),connectedTextureFailed:()=>false,prepareConnectedTexture:()=>true,
   renderConnectedSurfaceInWorker(_image,_frame,mesh){draws.push(mesh.id);return{canvas,gl,draw:[0,0,1,1]};}
  };
- vm.runInNewContext(source,context);await self.onmessage({data:{kind:'image',requestId:100,imageId:1,bitmap:{width:1,height:1,close(){}}}});
+ vm.runInNewContext(snapshotStub+source,context);await self.onmessage({data:{kind:'image',requestId:100,imageId:1,bitmap:{width:1,height:1,close(){}}}});
  const request=(key,id)=>self.onmessage({data:{kind:'raster',key,requestId:id,imageId:1,frame:{},mesh:{id},density:1,smoothing:false}}),cancel=(key,id)=>self.onmessage({data:{kind:'cancel-raster',key,requestId:id}});
  return{posts,timers,fences,copies,draws,request,cancel,gpuCancels:()=>gpuCancels,pump(){assert(timers.length);timers.shift()();}};
 }

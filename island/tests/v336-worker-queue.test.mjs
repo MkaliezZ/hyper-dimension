@@ -1,4 +1,6 @@
+const snapshotStub='// Snapshot acquisition is stubbed here to isolate producer ordering; the real\n// pixel plane has its own contracts and native zero-difference comparisons.\nconst captureGpuFrame=(_gl,canvas)=>createImageBitmap(canvas);\n';
 import test from 'node:test';
+import {serveGpuWorkerEndpoint} from '../src/gpuWorkerEndpoint.js';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
@@ -8,7 +10,7 @@ async function fixture(){
  const source=(await readFile(new URL('../src/connectedSurfaceWorker.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'');
  const posts=[],timers=[],prepared=[],drawn=[];let cold=false,closed=0;
  const self={postMessage:(data,transfer)=>posts.push({data,transfer})};
- vm.runInNewContext(source,{self,setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
+ vm.runInNewContext(snapshotStub+source,{serveGpuWorkerEndpoint:receive=>serveGpuWorkerEndpoint(receive,self),self,setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
   connectedSurfaceStatus:()=>({backend:'WebGL2 connected surface'}),spriteSourceStatus:()=>({}),
   prepareConnectedTexture:img=>{prepared.push(img.tag);return img.tag==='ready'||cold;},
   connectedTextureFailed:img=>img.tag==='failed',

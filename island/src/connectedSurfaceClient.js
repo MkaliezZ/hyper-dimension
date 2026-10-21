@@ -1,9 +1,10 @@
+import {createGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 // Only original artwork and mesh coordinates enter this worker. Save state,
 // character decisions, tool contacts and authority receipts remain on their
 // existing threads. Every returned bitmap has one explicit owner and is closed.
 import {spriteSource} from './spriteSource.js';
 export function createConnectedSurfaceClient({
- worker=()=>new Worker(new URL('./connectedSurfaceWorker.js',import.meta.url),{type:'module'}),
+ worker=()=>createGpuWorkerEndpoint(new URL('./connectedSurfaceWorker.js',import.meta.url)),
  bitmap=(image)=>createImageBitmap(image,{premultiplyAlpha:'none'}),
  isBitmap=image=>typeof ImageBitmap==='function'&&image instanceof ImageBitmap,
  maxRequests=32,maxBytes=16*1024*1024,onReset=()=>{},

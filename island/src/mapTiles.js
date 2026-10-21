@@ -1,3 +1,5 @@
+import {createGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
+import {terrainPixelSurface,prepareTerrainPixelSurface} from './terrainPixelSurface.js';
 import {terrainDensity} from './terrainResolution.js';
 import {terrainViewport,tileIntersects} from './mapTileLayout.js';
 import {loadTerrainTile,closeTerrainSurface} from './mapTileLoader.js';
@@ -12,7 +14,7 @@ const stats={loads:0,failures:0,evictions:0,redraws:0,bytes:0,retries:0};
 function dispose(entry){for(const key of ['bitmap','preview'])if(entry[key]){stats.bytes-=entry[key].width*entry[key].height*4;closeTerrainSurface(entry[key]);entry[key]=null;}}
 function workerFailure(){
  workerUnavailable=true;worker?.terminate();worker=null;
- for(const [id,job]of jobs)if(job.backend==='worker'){clearTimeout(job.timer);job.entry.pending=false;jobs.delete(id);}
+ for(const [id,job]of jobs)if(job.backend==='worker'){clearTimeout(job.timer);job.controller?.abort(Error('terrain_load_timeout'));job.entry.pending=false;jobs.delete(id);}
  revision++;pump();
 }
 function select(theme){
@@ -33,6 +35,21 @@ function receive(data){
  const job=jobs.get(data.requestId);
  if(!job||job.generation!==generation){closeTerrainSurface(data.bitmap);return;}
  const entry=job.entry;
+ if(data.phase==='compatible'&&job.backend==='worker'){
+  entry.compatible=true;startCompatible(job,data.requestId);return;
+ }
+ if(data.phase==='source'&&job.backend==='worker'){
+  if(job.sourcePending)return;job.sourcePending=true;const controller=new AbortController();job.controller=controller;
+  prepareTerrainPixelSurface(data,entry.tile,{preview:!!data.preview,density:entry.tile.density,signal:controller.signal}).then(bitmap=>{
+   if(jobs.get(data.requestId)!==job||job.generation!==generation){closeTerrainSurface(bitmap);return;}
+   receive({requestId:data.requestId,phase:data.preview?'preview':'ready',bitmap,nativeDensity:data.nativeDensity});
+   if(data.preview)receive({requestId:data.requestId,phase:'error',error:data.error||'terrain_tile_failed'});
+  },error=>receive({requestId:data.requestId,phase:'error',error:error.message}));return;
+ }
+ if(Object.hasOwn(data,'pixels')){
+  try{data.bitmap=terrainPixelSurface(data);}
+  catch(error){data={requestId:data.requestId,phase:'error',error:error.message};}
+ }
  if(data.bitmap){
   const key=data.phase==='ready'?'bitmap':'preview';
   if(entry[key]){stats.bytes-=entry[key].width*entry[key].height*4;closeTerrainSurface(entry[key]);}
@@ -48,10 +65,16 @@ function receive(data){
   evict();pump();
  }
 }
+function startCompatible(job,requestId){
+ clearTimeout(job.timer);const {entry}=job,tile=entry.tile,controller=new AbortController();
+ job.backend='main';job.controller=controller;job.timer=setTimeout(()=>controller.abort(Error('terrain_load_timeout')),Math.max(0,job.deadline-performance.now()));
+ loadTerrainTile(tile,{signal:controller.signal,density:tile.density,onMetadata:m=>{if(jobs.get(requestId)===job)entry.nativeDensity=m.nativeDensity;},onPreview:bitmap=>receive({requestId,phase:'preview',bitmap})})
+  .then(bitmap=>receive({requestId,phase:'ready',bitmap}),error=>receive({requestId,phase:'error',error:error.message}));
+}
 function pump(){
  if(!workerUnavailable&&(typeof Worker==='undefined'||typeof OffscreenCanvas==='undefined'))workerUnavailable=true;
  if(!workerUnavailable&&!worker){
-  try{worker=new Worker(new URL('./mapTileWorker.js',import.meta.url),{type:'module'});worker.onerror=event=>{event.preventDefault();workerFailure();};worker.onmessage=({data})=>receive(data);}
+  try{worker=createGpuWorkerEndpoint(new URL('./mapTileWorker.js',import.meta.url));worker.onerror=event=>{event.preventDefault();workerFailure();};worker.onmessage=({data})=>receive(data);}
   catch{workerUnavailable=true;worker=null;}
  }
  for(const tile of wanted){
@@ -65,13 +88,10 @@ function pump(){
   else if(entry.failed)stats.retries++;
   if(entry.bitmap&&!entry.failed)entry.attempts=0;
   entry.pending=true;entry.attempts++;const requestId=++serial;
-  if(workerUnavailable){
-   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(Error('terrain_load_timeout')),45_000);
-   jobs.set(requestId,{entry,generation,timer,controller,backend:'main'});
-   loadTerrainTile(tile,{signal:controller.signal,density:tile.density,onMetadata:m=>entry.nativeDensity=m.nativeDensity,onPreview:bitmap=>receive({requestId,phase:'preview',bitmap})})
-    .then(bitmap=>receive({requestId,phase:'ready',bitmap}),error=>receive({requestId,phase:'error',error:error.message}));
+  if(workerUnavailable||entry.compatible){
+   const job={entry,generation,deadline:performance.now()+45_000,backend:'main'};jobs.set(requestId,job);startCompatible(job,requestId);
   }else{
-   const timer=setTimeout(workerFailure,45_000);jobs.set(requestId,{entry,generation,timer,backend:'worker'});
+   const timer=setTimeout(workerFailure,45_000);jobs.set(requestId,{entry,generation,timer,deadline:performance.now()+45_000,backend:'worker'});
    try{worker.postMessage({requestId,id:tile.id,theme:tile.theme,season:tile.season,density:tile.density});}catch{workerFailure();break;}
   }
  }

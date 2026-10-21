@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v346-agent-source",
+  "release": "hyper-dimension-v347-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 139942,
-      "sha256": "e098c649b8e2543570b3ea98c4ec9cfaac4e0b2014302baa484fadafb60980a5"
+      "bytes": 140755,
+      "sha256": "1dad482f5e747c0734bf42551c47ca81638afa8badedfda56780dc2918c3d252"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18687,
-      "sha256": "628424a5069c47b61ebc849b7906375817f8e3a9a0f6461e51b27a0f53763b4a"
+      "bytes": 19050,
+      "sha256": "47c29daf8e5aa07874ccf86536ea7cb2d815f7cfb886785e41958c9d3b855c8d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6847,8 +6847,8 @@
     },
     {
       "path": "src/environmentRenderer.js",
-      "bytes": 10378,
-      "sha256": "d6255dc603fc801f3a80359d3f078ef333ee7e72cfaceb4bf17cb78bdad04a08"
+      "bytes": 8587,
+      "sha256": "9cdd66027aa83f7a5270deb1b4bcda55ac6a17774895dd10b56e5f7b31e2f30a"
     },
     {
       "path": "src/environmentUI.js",
@@ -7112,8 +7112,8 @@
     },
     {
       "path": "src/harbor.js",
-      "bytes": 5867,
-      "sha256": "41d005dd49b7ae9efb319a2c34e87089a9f8c01abf082a442471e5634fefaa4d"
+      "bytes": 5889,
+      "sha256": "c9090f401eb0083b1a288fcee086150d7f81a08282e67eae767582fef292c413"
     },
     {
       "path": "src/harborArtwork.js",
@@ -7352,8 +7352,8 @@
     },
     {
       "path": "src/lanMap.js",
-      "bytes": 12133,
-      "sha256": "22379e0cab1e29afc99427f9aff78834696c4e687e069734803d924752c92650"
+      "bytes": 12504,
+      "sha256": "d7de93f5f63114a1fde74331b05b9cf41e2abbe0c8bee2ebcc6ddbd6b7318c10"
     },
     {
       "path": "src/lanMotion.js",
@@ -7387,8 +7387,8 @@
     },
     {
       "path": "src/lanUI.js",
-      "bytes": 19758,
-      "sha256": "1e9d4ac3db0710929cc25e27d401a9a00719ff533d820474adf395f76227df47"
+      "bytes": 20385,
+      "sha256": "9e4bab645853889c58ffdf83ae280306e9735ce2766dc0d03e071898820e1ee3"
     },
     {
       "path": "src/lanWonderEvidence.js",
@@ -7452,13 +7452,13 @@
     },
     {
       "path": "src/mapTileWorker.js",
-      "bytes": 2227,
-      "sha256": "7be6d3e3b1cde7ec08baa1069ee6c9cbf820b01a4e49ae9657c4dbfb53424c6b"
+      "bytes": 2014,
+      "sha256": "3d13088266a89dc62a7f4c1915d187ff7a005f1732e13820795f6e25e7fbb643"
     },
     {
       "path": "src/mapTiles.js",
-      "bytes": 9528,
-      "sha256": "cbb2cb972437de76ff30925ce9892169d6a87b0f50e2ca0f77ea749c27552901"
+      "bytes": 11080,
+      "sha256": "91176e1e09d15e022f11f1608d96c2faedfdb068f026632d5db1397afc53c083"
     },
     {
       "path": "src/market-v87.css",
@@ -7582,8 +7582,8 @@
     },
     {
       "path": "src/oceanShader.js",
-      "bytes": 1002,
-      "sha256": "ae1aeb180a031b2ce2da28802b26daaa5403cfd28642801a6f4b819c0ceaf908"
+      "bytes": 1137,
+      "sha256": "b9b0de0342bae858caced8c973a9f23be1cd0c20055d5ef432755154f51f2ead"
     },
     {
       "path": "src/outdoorOccupancy.js",
@@ -7677,8 +7677,8 @@
     },
     {
       "path": "src/portfolioArt.js",
-      "bytes": 1515,
-      "sha256": "ef70195f0b65fad8ac6b23c0c35422ef66478de930d54a235222cf357e006848"
+      "bytes": 1685,
+      "sha256": "1b17971fb22e8a73e402362399d04e602545468df42260b38a114a58fc42c53d"
     },
     {
       "path": "src/portfolioLandmark.js",
@@ -7727,13 +7727,13 @@
     },
     {
       "path": "src/rasterQuality.js",
-      "bytes": 6290,
-      "sha256": "59d9299ce43278e22f700cc857726ab38a786608233868d6f9ad518248ae34d6"
+      "bytes": 6351,
+      "sha256": "68102806b6677ad541d1d79fb8d10c1d51ea760b2518f93bc7b00570059413bf"
     },
     {
       "path": "src/rasterQualityWorker.js",
-      "bytes": 4686,
-      "sha256": "36e251c424628a23b50179636c3f7f54ee1d4d69560acc98a672f41b857fb74b"
+      "bytes": 4782,
+      "sha256": "ca4af79b037d3744a026d16e6313d3bceb1da61d75cffd67d3ec4804c8f99c31"
     },
     {
       "path": "src/recipeContracts.js",
@@ -8132,13 +8132,13 @@
     },
     {
       "path": "src/spriteRasterWorker.js",
-      "bytes": 1397,
-      "sha256": "2928b4a2b5280a65e3586b5f7b85bda3f113d9ffe4e1f897c91d33a5cd6164c1"
+      "bytes": 1493,
+      "sha256": "d9dc6c6e22f99ab2948019eb12a7b0fc4113c39d3a079f9b8729d6c5d260a9b3"
     },
     {
       "path": "src/spriteRefiner.js",
-      "bytes": 1888,
-      "sha256": "ad9539500b48a70115c1d389b6d4e0104e7b0ab173e4d48c187517c78a886ec3"
+      "bytes": 1949,
+      "sha256": "6c40475127c5a69eb2fd7e529f86c50cf8cf7325ff68105ddf77631179f65706"
     },
     {
       "path": "src/stewardChat.js",
@@ -13647,13 +13647,13 @@
     },
     {
       "path": "src/connectedSurfaceClient.js",
-      "bytes": 5768,
-      "sha256": "d8be016ec5f6510aa8e1826c08f3a63475f32d1f5be4e38d8b789cc9eed6098b"
+      "bytes": 5829,
+      "sha256": "898ece861d4b96caee7a4a76c15d76b1c22ff921cd2234c7d8f83e90c4fba37f"
     },
     {
       "path": "src/connectedSurfaceWorker.js",
-      "bytes": 4311,
-      "sha256": "3f636f00780a4cb0883637f1ab06891b54112bc8d4ec9de34278bdb779359204"
+      "bytes": 4472,
+      "sha256": "e2a04b1d7fb5c89b5d1fe9f6bd69f47eee5fb86d743811f09b863ab88a25c5bf"
     },
     {
       "path": "src/spriteSource.js",
@@ -13702,18 +13702,18 @@
     },
     {
       "path": "src/oceanShaderCore.js",
-      "bytes": 5720,
-      "sha256": "ede20c788825dfcfee18446b995b412e6d4f8812dc83ec7033dd90f5ffbb128e"
+      "bytes": 7049,
+      "sha256": "d6f738e5689f059a7631542f1f9c90c7aed91db48fdb77558e9735dee0657e61"
     },
     {
       "path": "src/oceanShaderWorker.js",
-      "bytes": 2209,
-      "sha256": "c84e2322c9026aede3e0a2682a42be3cab2811a92b00f3fa890b886e7f216dfd"
+      "bytes": 2341,
+      "sha256": "428a81ce33cbfe680786745b3aadad01bc096d3d17fbea65503c782088d4f63b"
     },
     {
       "path": "src/oceanSurfaceClient.js",
-      "bytes": 4085,
-      "sha256": "3bd47048661f278a7caca3b49e4f8cb4f0f540b217d3a2b85d4cd863de12fb8b"
+      "bytes": 4146,
+      "sha256": "8ba5990a08911e43853d92a6b166c56afff1793b0711f40a60c88d0cb1a9ca9f"
     },
     {
       "path": "tests/v302-ocean-worker.test.mjs",
@@ -14087,8 +14087,8 @@
     },
     {
       "path": "tests/v324-producer-snapshot.test.mjs",
-      "bytes": 6157,
-      "sha256": "b26268a01d1849fab6c8c913a1ca505329b3c08ff507bb507e6e12a7feaee338"
+      "bytes": 6552,
+      "sha256": "2d3997f99d5d28694b98f01458124f1402387d81abf1464a18a08524e9a22f5f"
     },
     {
       "path": "tests/nativeGate.mjs",
@@ -14332,8 +14332,8 @@
     },
     {
       "path": "tests/v335-pose-queue-health.test.mjs",
-      "bytes": 6580,
-      "sha256": "f25754d42dada5c91140ca2474fbdc7b4b92bbade0044af93a4faa6f19e59da7"
+      "bytes": 6975,
+      "sha256": "030dc8b00c68e2d553004d1c89704b17ced837bdb5b2622c171621159d575752"
     },
     {
       "path": "docs/worker-ready-queue-v336.md",
@@ -14347,8 +14347,8 @@
     },
     {
       "path": "tests/v336-worker-queue.test.mjs",
-      "bytes": 3048,
-      "sha256": "7a94550ceadf62bc7c0b1f21e3d9f3f6628cb41d87a5143701b3c73483a1177c"
+      "bytes": 3443,
+      "sha256": "999a5e338a1de3a6ace78e023b6669c9fdc22ebe04ca32a6447f504d5d6b03ff"
     },
     {
       "path": "docs/raster-sampling-state-v337.md",
@@ -14519,8 +14519,118 @@
       "path": "docs/verification-v346.json",
       "bytes": 1691,
       "sha256": "ba76f42b2daef30a7518dc0d6d8686ae143e208b2ccadcd7ba28a1fa0733aec9"
+    },
+    {
+      "path": "docs/rendering-v347.md",
+      "bytes": 2318,
+      "sha256": "d857a84233c955caa35ac3bebbffab88b3fd5d3ad3cd17e6b0caf0bc30b33d95"
+    },
+    {
+      "path": "docs/verification-v347.json",
+      "bytes": 1707,
+      "sha256": "d9bf5dd70137bbf48e62cb22f46482542da95dd4bf92e1221a7c884ec8a22263"
+    },
+    {
+      "path": "src/gpuFrameSnapshot.js",
+      "bytes": 3188,
+      "sha256": "fbc79e8d90d2840cbf2280649ef9587a90d3124d365c5defff63cad05ae97ffc"
+    },
+    {
+      "path": "src/gpuWorkerEndpoint.js",
+      "bytes": 3396,
+      "sha256": "c404907727727082297b1193b0cc93de555685647d546d8e0e3c235f7e561fc5"
+    },
+    {
+      "path": "src/lanArtworkLoader.js",
+      "bytes": 1341,
+      "sha256": "a199252421890cc0124a601821c950f62e5deb9364050df202ec5cfc4b51e5e4"
+    },
+    {
+      "path": "src/lanRoomMarkup.js",
+      "bytes": 1459,
+      "sha256": "fc37980a103ab5a5f5f362a744b66e20d6f54a2faba8db547f4a0b071ea621f2"
+    },
+    {
+      "path": "src/mapTextLayout.js",
+      "bytes": 1460,
+      "sha256": "adc4f4c6367163e55a44ab4e0cc6b2975b51f358d9a77087cabe26c5cd3fe450"
+    },
+    {
+      "path": "src/oceanCanvasRenderer.js",
+      "bytes": 5157,
+      "sha256": "931eb2d8a4fccef082914539edcbcfea380542d259b3f6403c5538208b60b1b6"
+    },
+    {
+      "path": "src/oceanCanvasSurface.js",
+      "bytes": 1954,
+      "sha256": "660c2583ae2a7820a39a2594d64ea18ee466741619f19b76af51936383361de4"
+    },
+    {
+      "path": "src/oceanCanvasWorker.js",
+      "bytes": 2907,
+      "sha256": "8f0b5c7a583e06f27b6de3cda457ccb84b8182bd58e8e2e7b728ffc47c66b0b1"
+    },
+    {
+      "path": "src/terrainPixelSurface.js",
+      "bytes": 3145,
+      "sha256": "a49f0029e5c1b9a68658aff87d6951c284f0baa78830cb6588e9fb8facb3a26c"
+    },
+    {
+      "path": "src/terrainPngPixels.js",
+      "bytes": 5545,
+      "sha256": "17e2e1972f2ac13bd998ebf0b010a35752b0f1dc2a0bd8e5b97b41f5b0c19554"
+    },
+    {
+      "path": "tests/v347-endpoint-contract.test.mjs",
+      "bytes": 2741,
+      "sha256": "1b2296f7384fbedce8db096b305ef0b111171314520ddf9f9b107d6d3145636b"
+    },
+    {
+      "path": "tests/v347-endpoint-lifecycle.test.mjs",
+      "bytes": 5006,
+      "sha256": "6f3b3351f2dd147ac1ebddebf2ab92cb3c669f8221bd3c2503ba124485ba4ca5"
+    },
+    {
+      "path": "tests/v347-gpu-snapshot.test.mjs",
+      "bytes": 5907,
+      "sha256": "08df59b412aac6fd89133d3d51708fab11e04e44457cf10cdcb9461849c088bc"
+    },
+    {
+      "path": "tests/v347-lan-artwork-retry.test.mjs",
+      "bytes": 3177,
+      "sha256": "d4f0cef5927cd2cdb2e3fa55b623098e100155e0c48df78de2c55335e179853b"
+    },
+    {
+      "path": "tests/v347-map-text-layout.test.mjs",
+      "bytes": 2829,
+      "sha256": "74656849f8b2523a161d8573fc829586476f8a92fd764e46ddef2555a46a9477"
+    },
+    {
+      "path": "tests/v347-ocean-canvas.test.mjs",
+      "bytes": 7002,
+      "sha256": "68b3f1ed003b0cb96100cb2a71625a0952b65e93807a28789e7daad4bcc906be"
+    },
+    {
+      "path": "tests/v347-ocean-initialize.test.mjs",
+      "bytes": 8706,
+      "sha256": "3933d1cd86e51d5847919d83e07af32cd231b86579635e189dd788f8d7059ae9"
+    },
+    {
+      "path": "tests/v347-painter-state.test.mjs",
+      "bytes": 2156,
+      "sha256": "82c05bc8630235d3edfacb8733ce79d8a657ad5933321ec60b0ad5cae8f8bd1d"
+    },
+    {
+      "path": "tests/v347-terrain-owner-contract.test.mjs",
+      "bytes": 15210,
+      "sha256": "0b93e40e15df5cb63a957d2691626af8a5e76027bbbf4b75fef9f114b62aa0fa"
+    },
+    {
+      "path": "tests/v347-terrain-png.test.mjs",
+      "bytes": 6767,
+      "sha256": "dc7200844f48e615b2500bc207afe393a6de0813931857e8b0e804649558061b"
     }
   ],
   "publicRevision": "v346-acknowledged-save-publication",
-  "generatedAt": "2026-10-21T04:48:49.683742+00:00"
+  "generatedAt": "2026-10-21T05:18:59.407139+00:00"
 }

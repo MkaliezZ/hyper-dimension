@@ -1124,3 +1124,9 @@ See [save publication](save-publication-v346.md) and [verification](verification
 ## Hosted native observations after V346
 
 The latest V346 run retained two unresolved native observations: macOS 14 reached both mature-crop screenshots but its soil-care command did not finish before the original 45-minute job limit; Intel macOS failed the unchanged four-frame progress assertion during the original 1,200 ms project-form observation. Neither is a confirmed runtime repair. Soil-care now persists host-only stage and cleanup checkpoints without page/Worker polling, and the project-form report retains its before/after frame counts and read-only long-task observations before asserting. All original gameplay assertions, growth duration, dimensions and timeout values remain unchanged. CI retains the incremental soil-care report even if browser reads or cleanup stop responding. README and user data are unchanged.
+
+## V347 rendering candidate
+
+See [rendering ownership and independent frame snapshots](rendering-v347.md) and [verification](verification-v347.json). Original GPU, actor, resolution and timing requirements remain.
+
+The candidate runtime passed 1,987 default cases (1,973 + 14), with no failures, skips or cancellations. The original complete four-map command passed independently in both themes, including actual original-device CLI/Flash/Hermes A2A, funded activities, native game input, lost replies, reload, restart and return. All 144 original assertion groups and their actor/timing/quality/authority limits were retained. This is isolated automation, not physical multi-device, real new-player, OPC classroom or complete-goal acceptance; the exact underlying browser/driver timeout cause remains unproved.

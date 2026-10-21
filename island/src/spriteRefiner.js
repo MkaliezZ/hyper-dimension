@@ -1,10 +1,11 @@
+import {createGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 // Only artwork enters this worker; save state and game outcomes stay with their own services.
 export function createSpriteRefiner(){
  if(typeof Worker==='undefined')return null;
  let worker=null,serial=0,imageSerial=0,registered=new WeakMap();const imageIds=new WeakMap(),pending=new Map();
  function start(){
   if(worker)return worker;
-  worker=new Worker(new URL('./spriteRasterWorker.js',import.meta.url),{type:'module'});
+  worker=createGpuWorkerEndpoint(new URL('./spriteRasterWorker.js',import.meta.url));
   worker.onmessage=({data})=>{const p=pending.get(data.requestId);if(!p){data.bitmap?.close?.();return;}pending.delete(data.requestId);data.error?p.reject(Error(data.error)):p.resolve(data.bitmap||true);};
   worker.onerror=()=>{for(const p of pending.values())p.reject(Error('Artwork refinement unavailable'));pending.clear();worker?.terminate();worker=null;registered=new WeakMap();};
   return worker;

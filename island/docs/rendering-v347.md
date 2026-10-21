@@ -1,0 +1,11 @@
+# Rendering ownership and independent frame snapshots
+
+Each document owns its workers and surfaces. Dedicated workers are preferred; the compatibility endpoint is retained for hosts without that transport. Navigation releases only the owning document and closes late bitmaps. Back/forward-cache suspension retains its own endpoint.
+
+The terrain producer decodes bounded PNG data on a CPU worker and transfers raw pixels. It owns no drawing surface or ImageBitmap. The document prepares the original resize and shoreline mask in bounded row chunks, checks generation/cancellation and releases stale surfaces. The existing two-job, 128 MiB decoded-cache and 45-second end-to-end limits remain. Unsupported PNG profiles retain the original decoder path. Native reference comparisons cover both themes, four seasons and both source densities.
+
+After the original GPU fence completes, the sprite and ocean workers copy the frame into a bounded CPU pixel plane. Returned bitmaps do not share the live GL drawing buffer. Row orientation and the actual context alpha format are preserved. Premultiplied ocean bytes are converted to straight ImageData and premultiplied when creating the bitmap; straight sprite bytes retain their original format. A per-context plane is reused only after its bitmap promise settles, and simultaneous copies stay independent. Actual GPU comparison covers 88 exact pairs, including every eight-bit alpha, transparent and opaque backgrounds, and retained frames across plane reuse. The shaders, rendering dimensions and original eight-millisecond completion polls and 15-second health limits are unchanged. The earlier prioritized-task experiment was rejected and is absent.
+
+Room updates retain the live map canvas. Name/dialogue measurements retain fractional native font metrics and are invalidated when fonts change. Artwork loading can retry a failed decode. The asynchronous Canvas-compatible ocean keeps its original coastline and animation; full native four-map qualification still requires the primary GPU producers.
+
+See [verification](verification-v347.json). Pixel equality and rule contracts do not prove a complete game journey or the unresolved browser/driver timeout root cause. Physical Windows/Mac devices, real new players and an OPC classroom remain separate acceptance work.

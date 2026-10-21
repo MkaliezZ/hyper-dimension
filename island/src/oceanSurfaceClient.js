@@ -1,6 +1,7 @@
+import {createGpuWorkerEndpoint} from './gpuWorkerEndpoint.js';
 // One completed full-resolution ocean frame, one in flight, and one newest
 // requested camera. Only artwork geometry/uniforms enter this Worker.
-export function createOceanSurfaceClient({worker=()=>new Worker(new URL('./oceanShaderWorker.js',import.meta.url),{type:'module'}),schedule=setTimeout,cancel=clearTimeout,maxFrameBytes=256*1024*1024}={}){
+export function createOceanSurfaceClient({worker=()=>createGpuWorkerEndpoint(new URL('./oceanShaderWorker.js',import.meta.url)),schedule=setTimeout,cancel=clearTimeout,maxFrameBytes=256*1024*1024}={}){
  const fields=new WeakMap(),registrations=new Map();let endpoint=null,disabled=false,lost=false,serial=0,fieldSerial=0,wanted=null,currentKey=null,flight=null,latest=null;
  let stats={backend:'ocean worker pending',ready:false,draws:0,discarded:0};
  const closeLatest=()=>{latest?.bitmap.close();latest=null;};

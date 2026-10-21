@@ -1,4 +1,6 @@
+const snapshotStub='// Snapshot acquisition is stubbed here to isolate producer ordering; the real\n// pixel plane has its own contracts and native zero-difference comparisons.\nconst captureGpuFrame=(_gl,canvas)=>createImageBitmap(canvas);\n';
 import test from 'node:test';
+import {serveGpuWorkerEndpoint} from '../src/gpuWorkerEndpoint.js';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
@@ -10,14 +12,14 @@ async function fixture(kind){
  const name=kind==='sprite'?'connectedSurfaceWorker.js':'oceanShaderWorker.js',source=(await readFile(new URL(name,sourceRoot),'utf8')).replace(/^import .*;\n/gm,'');
  const posts=[],timers=[],fences=[],snapshots=[],draws=[],self={postMessage:value=>posts.push(value)},canvas={frame:null,transferToImageBitmap(){throw Error('The live producer must not be transferred');}},gl={lost:false,isContextLost(){return this.lost;}};
  let lifecycle;
- const context={self,Uint8Array,OffscreenCanvas:class{},setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
+ const context={serveGpuWorkerEndpoint:receive=>serveGpuWorkerEndpoint(receive,self),self,Uint8Array,OffscreenCanvas:class{},setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
   afterGpuCommands(_gl,validate,reject){const entry={validate,reject,cancelled:false};fences.push(entry);return()=>{entry.cancelled=true;};},
   createImageBitmap(value){assert.equal(value,canvas);const pending=deferred();snapshots.push({frame:canvas.frame,...pending});return pending.promise;},
   decodeSpriteSource:async()=>image(),spriteSourceStatus:()=>({}),connectedSurfaceStatus:()=>({backend:'WebGL2 connected surface'}),connectedTextureFailed:()=>false,prepareConnectedTexture:()=>true,
   renderConnectedSurfaceInWorker(_image,_frame,mesh){canvas.frame=mesh.id;draws.push(mesh.id);return{canvas,gl,draw:[0,0,32,48]};},
   coastDistanceTexture:()=>new Uint8Array(16),createOceanRenderer(_canvas,options){lifecycle=options;return{canvas,gl,lost:false,draw(frame){canvas.frame=frame.requestId;draws.push(frame.requestId);}};}
  };
- vm.runInNewContext(source,context,{filename:name});
+ vm.runInNewContext(snapshotStub+source,context,{filename:name});
  if(kind==='sprite')await self.onmessage({data:{kind:'image',requestId:1,imageId:1,bitmap:image()}});
  else self.onmessage({data:{kind:'field',fieldId:1,width:2,height:2,cell:4,water:new Uint8Array([0,1,1,1])}});
  const request=id=>kind==='sprite'?self.onmessage({data:{kind:'raster',key:'pose-'+id,requestId:id,imageId:1,frame:{},mesh:{id},density:1,smoothing:false}}):self.onmessage({data:{kind:'frame',frame:{requestId:id,fieldId:1}}});

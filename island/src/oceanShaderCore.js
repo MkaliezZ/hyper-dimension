@@ -1,3 +1,4 @@
+import {afterGpuCommands} from './gpuCompletion.js';
 export const vertex=`#version 300 es
 in vec2 position;void main(){gl_Position=vec4(position,0.,1.);}`;
 export const fragment=`#version 300 es
@@ -15,21 +16,40 @@ export function coastDistanceTexture(field){const {width:w,height:h,water,cell}=
  const pixels=new Uint8Array(w*h*2);for(let i=0;i<d.length;i++){pixels[i*2]=Math.min(255,Math.round(d[i]*cell*2));pixels[i*2+1]=water[i]?255:0;}return pixels;
 }
 
-// Called only in the ocean artwork Worker. GPU queries and drawing never run
-// on the island animation/receipt thread. Shader constants retain their source.
-export function createOceanRenderer(canvas,{onLost=()=>{},onRestored=()=>{}}={}){
+// Shader completion is queried without blocking when the native extension is
+// available. The compatibility path retains GPU completion before validation.
+export function createOceanRenderer(canvas,{onLost=()=>{},onRestored=()=>{},schedule=(fn,ms)=>setTimeout(fn,ms),cancel=clearTimeout}={}){
  const gl=canvas.getContext('webgl2',{alpha:true,antialias:false,depth:false,stencil:false,premultipliedAlpha:true,powerPreference:'high-performance'});if(!gl)throw Error('ocean_gpu_unavailable');
- function compile(type,source){const shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS)){gl.deleteShader(shader);throw Error('ocean_shader_compile');}return shader;}
- const program=gl.createProgram(),vs=compile(gl.VERTEX_SHADER,vertex),fs=compile(gl.FRAGMENT_SHADER,fragment);gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);gl.deleteShader(vs);gl.deleteShader(fs);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error('ocean_shader_link');
- gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);const index=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(index);gl.vertexAttribPointer(index,2,gl.FLOAT,false,0,0);
- const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
- const u=Object.fromEntries(['resolution','worldSize','inverseCamera','coastField','time','pixelStyle','night'].map(k=>[k,gl.getUniformLocation(program,k)]));let fieldId=null;
- const renderer={canvas,gl,lost:false,draw(frame,field){
-  if(renderer.lost)throw Error('ocean_context_lost');
+ const parallel=gl.getExtension('KHR_parallel_shader_compile');
+ function compile(type,source){const shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);return shader;}
+ const program=gl.createProgram(),vs=compile(gl.VERTEX_SHADER,vertex),fs=compile(gl.FRAGMENT_SHADER,fragment);gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);
+ let texture=null,u=null,fieldId=null,timer=null,cancelFence=null,pending=true,resolveReady,rejectReady;
+ const whenReady=new Promise((resolve,reject)=>{resolveReady=resolve;rejectReady=reject;});
+ const clean=()=>{if(timer!==null){cancel(timer);timer=null;}cancelFence?.();cancelFence=null;};
+ const fail=error=>{if(!pending)return;pending=false;clean();gl.deleteShader(vs);gl.deleteShader(fs);rejectReady(error);};
+ const renderer={canvas,gl,lost:false,ready:false,whenReady,parallelCompile:!!parallel,draw(frame,field){
+  if(renderer.lost)throw Error('ocean_context_lost');if(!renderer.ready)throw Error('ocean_renderer_pending');
   if(canvas.width!==frame.width||canvas.height!==frame.height){canvas.width=frame.width;canvas.height=frame.height;}
   gl.useProgram(program);gl.viewport(0,0,canvas.width,canvas.height);gl.bindTexture(gl.TEXTURE_2D,texture);
   if(fieldId!==frame.fieldId){gl.pixelStorei(gl.UNPACK_ALIGNMENT,1);gl.texImage2D(gl.TEXTURE_2D,0,gl.RG8,field.width,field.height,0,gl.RG,gl.UNSIGNED_BYTE,field.pixels);fieldId=frame.fieldId;}
   gl.uniform2f(u.resolution,canvas.width,canvas.height);gl.uniform2f(u.worldSize,frame.worldWidth,frame.worldHeight);gl.uniformMatrix3fv(u.inverseCamera,false,new Float32Array(frame.inverse));gl.uniform1i(u.coastField,0);gl.uniform1f(u.time,frame.time);gl.uniform1f(u.pixelStyle,frame.theme==='pixel'?1:0);gl.uniform1f(u.night,Math.max(0,Math.min(1,frame.night||0)));gl.drawArrays(gl.TRIANGLES,0,6);
  }};
- canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();renderer.lost=true;onLost();});canvas.addEventListener('webglcontextrestored',()=>onRestored());return renderer;
+ function finish(){
+  if(!pending)return;
+  try{
+   if(gl.isContextLost())throw Error('ocean_context_lost');
+   if(!gl.getProgramParameter(program,gl.LINK_STATUS)){
+    if(!gl.getShaderParameter(vs,gl.COMPILE_STATUS)||!gl.getShaderParameter(fs,gl.COMPILE_STATUS))throw Error('ocean_shader_compile');
+    throw Error('ocean_shader_link');
+   }
+   gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);const index=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(index);gl.vertexAttribPointer(index,2,gl.FLOAT,false,0,0);
+   texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+   u=Object.fromEntries(['resolution','worldSize','inverseCamera','coastField','time','pixelStyle','night'].map(k=>[k,gl.getUniformLocation(program,k)]));
+   pending=false;clean();gl.deleteShader(vs);gl.deleteShader(fs);renderer.ready=true;resolveReady(renderer);
+  }catch(error){fail(error);}
+ }
+ function poll(){timer=null;if(!pending)return;try{if(gl.isContextLost())throw Error('ocean_context_lost');if(!gl.getProgramParameter(program,parallel.COMPLETION_STATUS_KHR)){timer=schedule(poll,8);return;}finish();}catch(error){fail(error);}}
+ canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();renderer.lost=true;fail(Error('ocean_context_lost'));onLost();});canvas.addEventListener('webglcontextrestored',()=>onRestored());
+ try{if(parallel){gl.flush();timer=schedule(poll,8);}else cancelFence=afterGpuCommands(gl,finish,fail);}catch(error){fail(error);}
+ return renderer;
 }
