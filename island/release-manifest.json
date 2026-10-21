@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3228,
-      "sha256": "07080cdbcc85cf7b3cbe18e43c750bccddba6d146e0b0ca31bbbdb2fc344449a"
+      "bytes": 3235,
+      "sha256": "7502cddfde441f61460df88766167416304b847c3f26cd2de5de433513124496"
     },
     {
       "path": "README.md",
-      "bytes": 2987,
-      "sha256": "8d78a63d576eef64e36e8bcc2d247f4bde524a6ce929259f14c5fea71d99814f"
+      "bytes": 2998,
+      "sha256": "5609a49ce359034e1f7553c2ed949e895e31bceeabaf1f5ab078f414803fdfda"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -14629,6 +14629,26 @@
       "path": "tests/v347-terrain-png.test.mjs",
       "bytes": 6767,
       "sha256": "dc7200844f48e615b2500bc207afe393a6de0813931857e8b0e804649558061b"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v347-island-real-work-30s.mp4",
+      "bytes": 43073162,
+      "sha256": "dcb7a5dc11f9532b45203f970ac3dbf2c3f8c556c270f2b18f30b971e9f43177"
+    },
+    {
+      "path": "docs/media/hyper-dimension-v347-island-real-work-poster.png",
+      "bytes": 6324811,
+      "sha256": "a399171a577ce0ad92aeb5d217453712f4fd7a8a1dfa4686729d685fb19d0b96"
+    },
+    {
+      "path": "docs/showcase-v347.json",
+      "bytes": 4677,
+      "sha256": "1eca90bbf86fff909296f19f5e54734514a9a1db84573f4efcdb57a14bca2dd9"
+    },
+    {
+      "path": "docs/showcase-v347.md",
+      "bytes": 1798,
+      "sha256": "94eacbf1ce2009488cbd9a53b6e91bd2addc5e56f304a868670c494549c6e65d"
     }
   ],
   "publicRevision": "v346-acknowledged-save-publication",

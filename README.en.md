@@ -6,9 +6,9 @@
 
 Gather, grow, craft, run your island and host parties alongside AI residents. Let your own Hermes Agent steward organize information, plan and work on real documents. Pixel and origami styles share one island and save.
 
-[![Hyper Dimension · Island life and real work](island/docs/media/hyper-dimension-v320-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
+[![Hyper Dimension · Island life and real work](island/docs/media/hyper-dimension-v347-island-real-work-poster.png)](https://mkaliezz.github.io/hyper-dimension/#living)
 
-**[Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living)** · 1440p / 60 fps · Original soundtrack
+**[Watch the 30-second demo](https://mkaliezz.github.io/hyper-dimension/#living)** · 1440p · 60 fps video · Original soundtrack
 
 People and briefs are fictional; AI replies, Hermes file operations and steward A2A letters come from real execution. **Minigames are placeholder demonstrations and will keep improving.**
 

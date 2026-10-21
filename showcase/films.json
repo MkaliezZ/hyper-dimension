@@ -1,8 +1,30 @@
 {
-  "version": "V320",
+  "version": "V347",
   "films": [
     {
       "id": "living",
+      "version": "V347",
+      "filename": "hyper-dimension-v347-island-real-work-30s.mp4",
+      "duration": 30,
+      "sha256": "dcb7a5dc11f9532b45203f970ac3dbf2c3f8c556c270f2b18f30b971e9f43177",
+      "poster": "assets/hyper-dimension-v347-island-real-work-poster.png",
+      "download": "media/hyper-dimension-v347-island-real-work-30s.mp4",
+      "title": {
+        "zh": "30 秒 · 会生活的岛，能办事的管家",
+        "en": "30 seconds · Island life and real work"
+      },
+      "caption": {
+        "zh": "双画风 · AI 居民 · 原机文件工作 · 真实 A2A 来信",
+        "en": "Two styles · AI residents · Real file work · A2A letters"
+      },
+      "description": {
+        "zh": "新录制 V347 双画风海岛、AI 居民真实回复、12 套管家形象与会客馆；原机 Hermes 实际读取、修改并复核虚构文件，两位管家真实 A2A 来信，以及建筑弹窗内小游戏完成与领奖。1440p / 60 fps 离线等时步导出，原创配乐与完整结尾；成片帧率不代表实时性能。演示人物和资料均为虚构示例，小游戏为占位演示，后续继续优化。",
+        "en": "Fresh V347 dual-style islands, genuine AI resident replies, twelve steward appearances and the owner gallery. Original-device Hermes reads, edits and verifies a fictional file; two stewards exchange genuine A2A letters; a minigame completes and pays out inside its building popup. Offline 1440p/60 fps equal-step export, original music and a complete ending; film frame rate is not live performance. People and briefs are fictional; minigames are placeholder demonstrations and will improve."
+      },
+      "mediaRevision": 1
+    },
+    {
+      "id": "living-v320",
       "version": "V320",
       "filename": "hyper-dimension-v320-island-real-work-30s.mp4",
       "duration": 30,
@@ -10,8 +32,8 @@
       "poster": "assets/hyper-dimension-v320-island-real-work-poster.png",
       "download": "media/hyper-dimension-v320-island-real-work-30s.mp4",
       "title": {
-        "zh": "30 秒 · 会生活的岛，能办事的管家",
-        "en": "30 seconds · Island life and real work"
+        "zh": "往期 · V320 小岛与真实工作",
+        "en": "Archive · V320 island life and real work"
       },
       "caption": {
         "zh": "双画风 · AI 居民 · 原机文件工作 · 真实 A2A 来信",

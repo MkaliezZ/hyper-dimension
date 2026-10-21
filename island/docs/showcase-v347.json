@@ -1,0 +1,142 @@
+{
+  "duration": 30,
+  "frames": 1800,
+  "width": 2560,
+  "height": 1440,
+  "fps": 60,
+  "uniformTimestamps": true,
+  "temporalInterpolation": false,
+  "previousFrameSubstitution": false,
+  "allFootageNew": true,
+  "nativeViewportPaddingChecked": true,
+  "actualHermesFileReadEditReadback": true,
+  "actualA2AInformationExchange": true,
+  "providerCallsDuringAgentDisplay": 0,
+  "minigameInsideBuildingModal": true,
+  "actualFourLaunchFinishUniquePayoutAndReload": true,
+  "placeholderNotice": true,
+  "originalProjectBGMReused": true,
+  "endingSeconds": 4,
+  "fictionalDataOnly": true,
+  "livePerformanceOrHumanAcceptance": false,
+  "filename": "hyper-dimension-v347-island-real-work-30s.mp4",
+  "bytes": 43073162,
+  "sha256": "dcb7a5dc11f9532b45203f970ac3dbf2c3f8c556c270f2b18f30b971e9f43177",
+  "schema": 1,
+  "version": "V347",
+  "sourceRuntimeCommit": "6e284ec4f5654dd18f21152aeebd33a422a26157",
+  "renderMode": "offline native browser frames at equal simulation-time intervals",
+  "liveGame60FpsClaimed": false,
+  "assistantVisualAndIsolatedPlaybackReview": true,
+  "humanAcceptance": false,
+  "shots": [
+    {
+      "at": 0,
+      "seconds": 3,
+      "sourceStart": 0.5,
+      "frames": 180,
+      "zh": "一座能玩的岛，一位能办事的管家",
+      "en": "A playful island. A steward for real work.",
+      "sourceSha256": "d803c363b37a455d9af17cfa8f4ad0949f557377cf3f4a88e4b7bde898aec5ed"
+    },
+    {
+      "at": 3,
+      "seconds": 2,
+      "sourceStart": 1,
+      "frames": 120,
+      "zh": "像素与折纸，同一座岛，同一份生活",
+      "en": "Two art styles. One island. One save.",
+      "sourceSha256": "e21cffe496304d50b15e5f43739da1c92d093532a81e945c974f911d6a34f27a"
+    },
+    {
+      "at": 5,
+      "seconds": 3,
+      "sourceStart": 0.5,
+      "frames": 180,
+      "zh": "和 AI 居民聊聊今天的故事",
+      "en": "Talk with AI residents about island life.",
+      "sourceSha256": "864e65b8781d7e5e3127b379d432c0064ac7c424120b38b12a8ce087859b16ea"
+    },
+    {
+      "at": 8,
+      "seconds": 1.5,
+      "sourceStart": 0.4,
+      "frames": 90,
+      "zh": "把现实任务交给自己的 Hermes 管家",
+      "en": "Give your own Hermes steward a real task.",
+      "sourceSha256": "26289b18b224b013dff2eff772187f3b8e42496e7e3bb496a894b6be7e549014"
+    },
+    {
+      "at": 9.5,
+      "seconds": 4,
+      "sourceStart": 0.5,
+      "frames": 240,
+      "zh": "实际读写文档，执行后再核对",
+      "en": "Read, edit and verify real files.",
+      "sourceSha256": "e480d1124e422a3e1b16eda5cb72faa8996b5489a833a80def7b02932d9765bd"
+    },
+    {
+      "at": 13.5,
+      "seconds": 3.5,
+      "sourceStart": 0.5,
+      "frames": 210,
+      "zh": "管家通过 A2A 交换活动信息",
+      "en": "Stewards exchange event information through A2A.",
+      "sourceSha256": "c3fcd13c693e6c319b62fd828c97145fdbeebaa43fbe09096706e0bc1bbfd85d"
+    },
+    {
+      "at": 17.0,
+      "seconds": 1,
+      "sourceStart": 0.5,
+      "frames": 60,
+      "zh": "管家名字与形象，由你决定",
+      "en": "Choose your steward’s name and appearance.",
+      "sourceSha256": "7e88f9df093d7cf60615dcc74b4fed83571f635706f48177039c6ec0d259b24c"
+    },
+    {
+      "at": 18.0,
+      "seconds": 1,
+      "sourceStart": 0.5,
+      "frames": 60,
+      "zh": "找到属于你的小岛伙伴",
+      "en": "Find the companion who feels right for your island.",
+      "sourceSha256": "8a46ac18e27231da5f1a68fcf00a8abb89249257ee96cc0c457d536ebd3ec8f6"
+    },
+    {
+      "at": 19.0,
+      "seconds": 2.5,
+      "sourceStart": 0.5,
+      "frames": 150,
+      "zh": "在会客馆展示你的经历与作品",
+      "en": "Show your story and projects in the owner gallery.",
+      "sourceSha256": "31808258804dc71ca50c6462a56775dcdfafa99d7f7fbdbf38e25acedd161981"
+    },
+    {
+      "at": 21.5,
+      "seconds": 3,
+      "sourceStart": 1,
+      "frames": 180,
+      "zh": "一起准备，点亮岛上的夜空",
+      "en": "Prepare together. Light up the island sky.",
+      "sourceSha256": "7da279649dbcba3a8ee72ca8e96781cae14b6ded6948a6261df0b528730f309d"
+    },
+    {
+      "at": 24.5,
+      "seconds": 1.5,
+      "sourceStart": 0.5,
+      "frames": 90,
+      "zh": "小游戏为占位演示，后续持续打磨",
+      "en": "Minigames are placeholder demos, with more polish to come.",
+      "sourceSha256": "eed12b317f01f85e795f73ede6815390389848df23c82e64d366816cd7cc26fc"
+    },
+    {
+      "at": 26.0,
+      "seconds": 4,
+      "sourceStart": 0,
+      "frames": 240,
+      "zh": "Hyper Dimension",
+      "en": "PLAY + REAL WORK",
+      "sourceSha256": "d43c46b473dba5e0a19c08f86da06397d0e92b0777450cf2a0785e10daed9e19"
+    }
+  ]
+}
