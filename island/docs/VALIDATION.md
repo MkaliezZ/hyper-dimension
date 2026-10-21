@@ -1142,3 +1142,8 @@ The native NPC mining recovery gate measures work from the canonical lease `star
 ## V349: business ledger input and retained backdrop
 
 The business ledger retains its blurred world backdrop while simulation and receipts continue. Resize and closing repaint normally. The original custom-shop sales fixture is unchanged. [Scope, negative control and current boundaries](business-ledger-backdrop-v349.md). Current hosted, accounting, archive, physical-device and human acceptance remain separate.
+
+
+## V350: awaited native checkpoint receipt observation
+
+The checkpoint-reload fixture now awaits the actual trial-finish HTTP response and its asynchronous JSON observation before checking the recorded receipt. All prior assertions remain, including the original50second gameplay loop,12second accepted-checkpoint observation, canonical run identity, quality, unique settlement and material/currency conservation. Game code, network responses and clocks are unchanged. A250msdelay confined to the diagnostic response observer reproduces the old reporting race after canonical completion; the corrected fixture passes that delayed control in both styles. Failed candidate reports remain retained; complete archive, hosted, physical-device and human acceptance remain separate.

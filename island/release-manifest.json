@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v349-agent-source",
+  "release": "hyper-dimension-v350-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 142205,
-      "sha256": "88d638468b8f8125d77b5ee90008220c3960e88a87318043ca83b1f325da7181"
+      "bytes": 142983,
+      "sha256": "bf3613739af311ceed522f4a8fc71bfc88344cc510a82a70dc43058ba811542b"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -12932,8 +12932,8 @@
     },
     {
       "path": "tests/v261-native-checkpoint-browser.mjs",
-      "bytes": 10306,
-      "sha256": "6da70a5265fdb925ab308657883457fb40f06e8888e93025ae039a4e094d1833"
+      "bytes": 10813,
+      "sha256": "183f8cb17da8e297efa26496172d818bb66355539e7fec8fae4746c2ba1ebc50"
     },
     {
       "path": "docs/lan-activity-recovery-v261.md",
@@ -14671,6 +14671,6 @@
       "sha256": "178e3b04a7ff412d27e6270d210b96932c6b1a06c605bc4d3c8e2ca3f31e0e06"
     }
   ],
-  "publicRevision": "v349-business-document-backdrop-native-output-parent",
-  "generatedAt": "2026-10-21T09:41:21.361910+00:00"
+  "publicRevision": "v350-native-checkpoint-receipt-observation",
+  "generatedAt": "2026-10-21T11:04:27.515007+00:00"
 }
