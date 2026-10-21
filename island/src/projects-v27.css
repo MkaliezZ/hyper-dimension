@@ -1,4 +1,8 @@
 .project-modal{width:min(980px,96vw)}
+/* This opaque form retains the painted island. Blur that cached canvas rather
+   than repeatedly sampling the whole viewport behind an interactive document. */
+.modal-overlay:has(.project-modal){backdrop-filter:none}
+body:has(#modalRoot .project-modal) #game{filter:blur(4px)}
 .plan-intro{padding:20px 24px;background:var(--paper,#fff7db);border-bottom:2px solid #c5b487;color:#354b40}
 .plan-intro small,.project-card header small{letter-spacing:.12em;color:#6b795b;font-size:12px}
 .project-modal.has-projects .plan-intro{padding:12px 18px}.project-modal.has-projects .plan-intro small,.project-modal.has-projects .plan-intro h3{display:none}.project-modal.has-projects .plan-intro p{font-size:15px}

@@ -29,7 +29,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    const cached=r.publishingRequest?await capturePublication(r):await cache(r),generation=cached.generation,current=cached.state;
    // The durable snapshot is already isolated. Send its text instead of making
    // another synchronous clone of the live game state on every receipt.
-   const result=await journal.reconcile(base,cached.serialized,remote.encoded||remote.state,path,current);
+   const result=await journal.reconcile(base,cached.serialized,remote.encoded||remote.state,path,current,{includeSerialized:!!r.publishingRequest&&journal.enabled()});
    if(generation===r.generation&&current===r.state)return {...result,generation};
   }
  }
@@ -144,18 +144,22 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   const requests=retireKeys.filter(key=>key!==pendingKey(r.theme)).map(key=>[key,journal.serialized(key)]).filter(([,value])=>value!=null);
   const prior=r.cacheTail;
   let releasePublication;r.publicationBarrier=new Promise(resolve=>{releasePublication=resolve;});
-  let result,retiring=false;
+  let result,serialized,retiring=false;
   try{
    if(prior)await prior;
    r.publishingRequest=requests;
    for(;;){
     result=await reconcile(r,base,doc,path);const current=r.state;
-    const serialized=result.dirty?await journal.encodeSnapshot(result.state,r.theme+':publication-result:'+result.state.saveSlot):null;
+    // The merge worker already owns this exact result. Reuse its JSON for the
+    // durable publication instead of recapturing it and sending another RPC.
+    serialized=journal.enabled()?result.serialized??await journal.encodeSnapshot(result.state,r.theme+':publication-result:'+result.state.saveSlot):result.dirty?await journal.encodeSnapshot(result.state,r.theme+':publication-result:'+result.state.saveSlot):null;
     if(current!==r.state||result.generation!==r.generation)continue;
     const savedAt=new Date().toISOString(),changes=retireKeys.map(key=>[key,null]);
     if(serialized){
      const baseline=doc.encoded||JSON.stringify({document:{version:doc.version,state:doc.state}});
-     changes.push([activeSaveKey(r.theme),serialized],[pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(doc.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(savedAt)+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+baseline+'}']);
+     changes.push([activeSaveKey(r.theme),serialized]);
+     if(result.dirty)changes.push([pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(doc.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(savedAt)+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+baseline+'}']);
+     if(journal.enabled())changes.push(['hyper-dimension-'+r.theme+'-journal-stamp',JSON.stringify({savedAt,version:doc.version,clientId})]);
     }
     retiring=true;await journal.commit(changes);
     // IDB cleanup yields; repeat the merge for edits made during the commit.
@@ -167,6 +171,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    throw error;
   }finally{r.publishingRequest=null;r.publicationBarrier=null;releasePublication();}
   remember(r,doc);r.state=result.state;r.dirty=result.dirty||r.generation!==result.generation;
+  // The same transaction persisted the acknowledged state, version stamp and
+  // outgoing-request retirement. Legacy storeLocal callbacks retain their path.
+  if(journal.enabled())r.cachedSnapshot={state:r.state,serialized,generation:result.generation,version:r.version,dirty:r.dirty,baseDocumentEncoded:baselineText(r)};
   onRemoteState(r.theme,r.state);return result;
  }
  const hasCommand=theme=>{try{return journal.has(commandKey(theme))}catch{return false}};
@@ -316,7 +323,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     const {document:doc}=await request(theme,'save',body,encoded,true);
     let merged;if(farm)merged=await publishAcknowledged(r,doc,journal.serialized(autosaveKey(theme)),'body.state',[autosaveKey(theme),pendingKey(theme)]);
     else remember(r,doc);r.dirty=farm?merged.dirty||r.generation!==merged.generation:r.generation!==generation;
-    if(!r.dirty)await forget(pendingKey(theme));
+    if(!r.dirty&&read(pendingKey(theme)))await forget(pendingKey(theme));
     await cache(r);
     // A replayed older autosave did not send this capture's later edits.
     if(!farm||newAuto)r.acknowledgedSave={world:cached.state.saveSlot,generation};

@@ -69,8 +69,8 @@ export function createSaveJournal(){
   }catch(error){snapshots.delete(channel);throw error;}
  }
  function serialized(key){return enabled?raw.get(key):localStorage.getItem(key);}
- async function reconcile(base,local,remote,path,current){
-  if(enabled){const result=await rpc('merge',{base,local,remote,path,delta:!!current});return {state:current?applyImmutableSnapshotChanges(current,result.changes,true):JSON.parse(result.serialized),dirty:result.dirty};}
+ async function reconcile(base,local,remote,path,current,{includeSerialized=false}={}){
+  if(enabled){const result=await rpc('merge',{base,local,remote,path,delta:!!current,includeSerialized});return {state:current?applyImmutableSnapshotChanges(current,result.changes,true):JSON.parse(result.serialized),dirty:result.dirty,...(includeSerialized&&typeof result.serialized==='string'?{serialized:result.serialized}:{})};}
   if(typeof base==='string')base=JSON.parse(base);for(const key of path?.split('.')||[])base=base[key];
   if(typeof remote==='string')remote=JSON.parse(remote).document.state;if(typeof local==='string')local=JSON.parse(local);const state=mergeActionState(base,local,remote);return {state,dirty:!sameState(state,remote)};
  }

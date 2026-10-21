@@ -109,7 +109,7 @@ jobs:
 
       - name: Retain native navigation diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-navigation-${{ matrix.os }}
           path: |
@@ -208,7 +208,7 @@ jobs:
 
       - name: Retain native character diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-character-${{ matrix.os }}
           path: |
@@ -279,7 +279,7 @@ jobs:
         run: node tests/v199-legacy-homes-lan-browser.mjs
       - name: Retain native residence diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-residences-${{ matrix.os }}
           path: |
@@ -445,6 +445,10 @@ jobs:
         timeout-minutes: 3
         run: node tests/v331-manual-controls-browser.mjs
 
+      - name: Native strict save publication across edits and reload
+        if: matrix.group == 'receipt'
+        run: node tests/v355-publication-browser.mjs
+        timeout-minutes: 3
       - name: Native project form retains backdrop without pausing work or input
         if: matrix.group == 'content'
         timeout-minutes: 3
@@ -501,7 +505,7 @@ jobs:
 
       - name: Retain isolated visitor timeout diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-visitor-timeout-${{ matrix.os }}-${{ matrix.group }}
           path: island/qa/v303/native-visitor-timeout/report.json
@@ -510,7 +514,7 @@ jobs:
 
       - name: Retain isolated native soil-care diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-soil-care-${{ matrix.os }}-${{ matrix.group }}
           path: |
@@ -525,6 +529,7 @@ jobs:
             island/qa/v170/native-reward-drain/report.json
             island/qa/v170/native-reward-drain/*.png
             island/qa/v204/browser-save-waiter/report.json
+            island/qa/v355/native-publication/report.json
             island/qa/v205/native-recovery-return/report.json
             island/qa/v205/native-recovery-return/*.png
             island/qa/v205/native-visiting-party/report.json
@@ -659,7 +664,7 @@ jobs:
 
       - name: Retain isolated native island diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-island-simulation-${{ matrix.os }}
           path: |
@@ -739,7 +744,7 @@ jobs:
         timeout-minutes: 8
       - name: Retain native resident work diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-resident-work-${{ matrix.os }}
           path: |
@@ -783,7 +788,7 @@ jobs:
         run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
       - name: Retain isolated recovery input evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-recovery-input-${{ matrix.os }}
           path: |
@@ -819,7 +824,7 @@ jobs:
         run: node tests/v262-social-pending-browser.mjs
       - name: Retain isolated dialogue evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-social-pending-${{ matrix.os }}
           path: |
@@ -858,7 +863,7 @@ jobs:
         run: node tests/v199-legacy-homes-lan-browser.mjs
       - name: Retain isolated home journal evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-home-journal-${{ matrix.os }}
           path: |
@@ -893,7 +898,7 @@ jobs:
         run: node tests/v274-frame-recovery-browser.mjs
       - name: Retain native frame recovery diagnostics
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: native-frame-recovery-${{ matrix.os }}
           path: |
@@ -927,7 +932,7 @@ jobs:
         run: node tests/v213-task-chain-browser.mjs
       - name: Retain owned resident stall observations
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
         with:
           name: resident-stall-macos-14
           path: |

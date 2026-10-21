@@ -25,6 +25,8 @@ try{for(const theme of ['pixel','origami']){
   await page.evaluate(()=>{const canvas=document.querySelector('#game'),ctx=canvas.getContext('2d'),real=ctx.clearRect;window.projectBackdropProbe={clears:0,frames:0,longTasks:[]};if(PerformanceObserver.supportedEntryTypes.includes('longtask'))new PerformanceObserver(list=>{for(const e of list.getEntries()){projectBackdropProbe.longTasks.push({startTime:e.startTime,duration:e.duration});if(projectBackdropProbe.longTasks.length>40)projectBackdropProbe.longTasks.shift();}}).observe({type:'longtask'});ctx.clearRect=function(...args){projectBackdropProbe.clears++;return real.apply(this,args);};const frame=()=>{projectBackdropProbe.frames++;requestAnimationFrame(frame);};requestAnimationFrame(frame);});
   await page.waitForFunction(()=>projectBackdropProbe.clears>=4,null,{timeout:10000});
   await page.locator('#stewardBtn').click();await page.locator('#stewardProjects').click();await page.waitForTimeout(200);
+  const compositor=await page.evaluate(()=>({backdrop:getComputedStyle(document.querySelector('.modal-overlay')).backdropFilter,canvas:getComputedStyle(document.querySelector('#game')).filter}));
+  assert.equal(compositor.backdrop,'none');assert.equal(compositor.canvas,'blur(4px)');row.compositor=compositor;
   const before=await page.evaluate(()=>({at:performance.now(),hidden:document.hidden,frameLoop:islandInspect().frameLoop,longTasks:[...projectBackdropProbe.longTasks],clears:projectBackdropProbe.clears,frames:projectBackdropProbe.frames,seconds:__nativeWorkObservation().gameSeconds,width:document.querySelector('#game').width,height:document.querySelector('#game').height}));
   await page.waitForTimeout(1200);const held=await page.evaluate(()=>({at:performance.now(),hidden:document.hidden,frameLoop:islandInspect().frameLoop,longTasks:[...projectBackdropProbe.longTasks],clears:projectBackdropProbe.clears,frames:projectBackdropProbe.frames,seconds:__nativeWorkObservation().gameSeconds,width:document.querySelector('#game').width,height:document.querySelector('#game').height}));
   row.retainedBackdrop={before,held};
@@ -34,6 +36,7 @@ try{for(const theme of ['pixel','origami']){
   const project=await page.locator('[data-project]').getAttribute('data-project'),canonical=await tenant.saves.current(theme);assert.equal(canonical.state.workProjects.find(p=>p.id===project).status,'ready');assert.equal(canonical.state.inventory.wood,20);assert.equal(canonical.state.coins,0);
   await page.setViewportSize({width:1380,height:960});await page.waitForFunction(n=>projectBackdropProbe.clears>n,held.clears);const resized=await page.evaluate(()=>projectBackdropProbe.clears);await page.waitForTimeout(250);assert.equal(await page.evaluate(()=>projectBackdropProbe.clears),resized);
   await page.locator('#closeModal').click();await page.waitForFunction(n=>projectBackdropProbe.clears>=n+4,resized,{timeout:10000});
+  assert.equal(await page.evaluate(()=>getComputedStyle(document.querySelector('#game')).filter),'none');
   const commands=row.requests.filter(r=>r.operation==='plan_create');assert.equal(commands.length,1);assert.equal(commands[0].foregroundInBody,false);assert.deepEqual(row.errors,[]);
   row.resizeRedrew=true;row.closingResumedNormalDrawing=true;row.singleCanonicalPlan=true;row.passed=true;
  }catch(error){row.failure=error.stack;process.exitCode=1;}

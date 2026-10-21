@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v354-agent-source",
+  "release": "hyper-dimension-v355-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 151075,
-      "sha256": "f8bc721bd4ba113fbebc4d2cff3726e9f954f09d515aa5fb42a16641a16e0d71"
+      "bytes": 154539,
+      "sha256": "93132b57e5eeb7fa63f2bf264eae187eb9fb49a90afaaf2c262655113b80a67f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19451,
-      "sha256": "7bb13e148ede52e62400fe0097aa4720511b7053bc1134380494fc628317f8b6"
+      "bytes": 19490,
+      "sha256": "dfdc8c8950ef601311977d434c63fda6dcdbccab2e48f31982e21a1087356c68"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7717,8 +7717,8 @@
     },
     {
       "path": "src/projects-v27.css",
-      "bytes": 3963,
-      "sha256": "662effc31044df9808d748c6c3362b35ded83726c3827f13486a6e4de2a7fdcf"
+      "bytes": 4241,
+      "sha256": "1084f9103e382dc9b4e748e49711a84d7be4116613cd5b1d6d221689ebf42ceb"
     },
     {
       "path": "src/rasterProcessing.js",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 51227,
-      "sha256": "7f5a4f039ae8763b44bf0f7f57ef9fb2a9686ba3309e9b8160e9a2df3e9e5da2"
+      "bytes": 52110,
+      "sha256": "c11e036bd8a570a153d2343f01e24429dba6ac132f29e4508ff8a5f52bb4dd89"
     },
     {
       "path": "src/saveDelta.js",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 9604,
-      "sha256": "68667e17e1f0ec27115d604dd01ab14d466e7bee7536321f76a70f11f8da5d7a"
+      "bytes": 9745,
+      "sha256": "ed2c721c4bb2311a5917c7b70aa5be2585bee8fa1cad96b230e110ebfdc3ed2f"
     },
     {
       "path": "src/saveLimits.js",
@@ -7972,8 +7972,8 @@
     },
     {
       "path": "src/saveWorker.js",
-      "bytes": 3146,
-      "sha256": "26006ffc02dcfd722d246a7cb9edaebc3fe407cdedcc3f1c4865b5b62849b595"
+      "bytes": 3213,
+      "sha256": "1980fedcb2b8a499d27a2613e181eb65bb6d6844f769f401c2e6a2783e1c7767"
     },
     {
       "path": "src/sceneOccupancy.js",
@@ -14467,8 +14467,8 @@
     },
     {
       "path": "tests/v343-project-backdrop-browser.mjs",
-      "bytes": 6998,
-      "sha256": "c7e561297681f2d6152ebf4a5c2c224d984ada835db95753b64a6144a3f009e3"
+      "bytes": 7414,
+      "sha256": "eba5688584e61ec4fd8a3d9d695701e882439f4b815683869946c34a558a9a09"
     },
     {
       "path": "docs/task-receipt-history-v343.md",
@@ -14699,8 +14699,18 @@
       "path": "tests/v354-decoded-artwork.test.mjs",
       "bytes": 2986,
       "sha256": "7b555524238c6756fa8d6aceb44fd9f2c76222a24c49b20c9986b2b58db2bbb7"
+    },
+    {
+      "path": "tests/v355-modern-publication.test.mjs",
+      "bytes": 8923,
+      "sha256": "0919489338209424eda35b4aea607d721f56e1281123a91b559957e4317f480a"
+    },
+    {
+      "path": "tests/v355-publication-browser.mjs",
+      "bytes": 10197,
+      "sha256": "8a18b1b11d10276b4dbbf1ba2b68fcb2c5d84bfa1ad03fa7369e1c7ae436e309"
     }
   ],
-  "publicRevision": "v354-decoded-artwork-reuse",
-  "generatedAt": "2026-10-21T12:57:16.457236+00:00"
+  "publicRevision": "v355-durable-publication",
+  "generatedAt": "2026-10-21T17:20:03.059048+00:00"
 }
