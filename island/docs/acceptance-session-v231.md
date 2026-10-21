@@ -1,48 +1,51 @@
 # 新玩家与 OPC 试课任务卡
 
-适用：当前交付候选包；正式场次开始前记录 release-manifest.json 中的版本、实际源码提交、交付包 SHA-256 和平台。此文是执行方案，尚无真人签收结果。自动化验证另存，不计入下表人数。
+适用：当前交付候选。每次场次记录实际 release-manifest.json 版本、源码提交、交付包 SHA-256、平台与设备。正式游戏观察统一为每人 20 分钟实际时间；历史场次保留原版本和时长。当前文件是执行方案，空白表不代表已有真人签收。
 
-## 人员与准备
+## 组织与计时
 
-- 邀请 5–8 位未玩过本项目的玩家，用 P01–P08 记录；不要求提供真实姓名。
-- 覆盖像素和折纸两种画风、Windows 与 macOS。联机场次安排一位岛主和三位访客，使用各自账户与设备；其余玩家进行单机或下一场测试。
-- 交付入口为源码包内 `AGENTS.md` 与 `DEPLOYMENT.md`，交给玩家选择的 Agent 部署。保留首轮失败与修复耗时，不用已配置好的开发机代替新环境。
-- 默认用独立测试账户、虚构人物和虚构工作文件。模型密钥由各设备持有人私下配置，不写进作品包、截图或结果表。
+- 5–8 位实际新玩家，用匿名编号记录；覆盖两种画风和 Windows / macOS。自动化账户不计人数。
+- 每位玩家的正式观察窗口为 **20 分钟实际时间**。部署、模型私有配置、测试账户准备各自单记耗时，不伪装成游玩时间；不加速世界时钟。
+- 四人访问组使用四台实际设备及各自账户。其余玩家覆盖单机新档、恢复和经营；按实际到场条件分配，不生成虚构签收。
+- 四人组需要的活动和物资可事前通过真实游玩准备，留下来源。准备档不算零资源开局证据。准备不齐的活动标“未执行”，不临时预置库存冒充完成。
+- 工作文件使用独立文件夹和虚构材料，模型密钥仅由设备持有人私下配置。
 
-## 第一场：首次游玩与恢复，45–60 分钟
+## 共同步骤与任务分配
 
-| 任务 | 玩家需要完成 | 留下的证据 |
+| 时间 | 玩家操作 | 记录什么 |
 | --- | --- | --- |
-| 启动 | 根据交付说明进入新岛；确认初始库存和余额 | 平台、实际部署耗时、失败及处理记录 |
-| 首次制作 | 自己采集、找配方、完成一种制作并找到用途 | 扣料前后库存、用途是否能独立理解 |
-| 居民与管家 | 找一位居民交流；给管家安排一项顺序工作；使用虚构文件完成一项实际工作 | 居民身份对应、原任务编号、实际交付或失败原因 |
-| 恢复 | 工作进行中关页，重新进入；再开一个新浏览器会话读取同岛 | 同一进度与任务续做，没有重复物资或反复确认弹窗 |
-| 外观 | 切换画风与管家形象后刷新 | 同一库存和世界；所选形象保留 |
-| 经营 | 解释制作物的用途，主动上架，等待真实游客交易 | 留用量、实际成交、费用与净额；未成交如实记录 |
+| 0–3 分钟 | 进入小岛，点击目的地、进出建筑，确认可交互与角色身份；四人组完成连接 | 卡住、错人、错误遮挡、等待时长与实际运行版本 |
+| 3–17 分钟 | 按下方分工操作；失败时保留页面和步骤 | 原请求编号、实际库存/现金变化、交付物、是否求助 |
+| 17–20 分钟 | 保存、关闭页面、重新进入；确认同一小岛、形象、任务和物品，再提交评价 | 是否重复扣料/领奖、是否反复确认、丢失内容与手感评分 |
 
-不在普通流程失败后直接预置库存。确需切换到教学岛继续观察时，保留失败，标明教学岛来源，后续记录不作为零资源开局证据。
+### 单机分工（在参与者之间覆盖）
 
-## 第二场：四设备访问与共同活动，60–90 分钟
+- **新档与制作：** 核对零币零库存；自己采集并完成一种制作，解释制作品用途，尝试实际使用或上架。小游戏只按当前演示功能记录完成、取消和领奖体验。
+- **居民与管家：** 自由询问一位居民；修改管家名称/形象；安排一项有先后依赖的工作并观察进度。用虚构文件做一项真实文档任务，检查文件实际内容。未收齐结果时记录原编号和“待确认”，不重复发起可能已执行的写入。
+- **经营与恢复：** 备货、设置留用量，记录真实游客成交或未成交、成本和净额；中途重开并切换画风，检查同一存档与任务续接。
 
-1. 每位访客邀请最多两位愿意同行的居民；自己的管家自动同行。记录拒绝理由，不能把未同意的居民直接添加到队伍。
-2. 主办方发送活动邀请、物资和服装要求，并留出准备时间；访客从自己的存档完成准备。
-3. 各管家交流本岛公开信息，核对活动准备。由访客本人明确执行物资预留；其他账户不能代为扣料。
-4. 观察来宾与随行居民通过码头和道路上岛、分开站位，与主岛居民交流；信息与记忆须归属正确人物和原岛。
-5. 主办方开场，至少两位访客完成活动。中途关闭一位访客页面再续接；结束后核对实际物资与奖励来源。
-6. 参与者评分、订阅，返回原岛保存并刷新；确认原管家名称、形象、原任务和物品仍正确。记录一次断线或取消后的退款结果。
+### 四设备访问组
 
-已验证的能力应逐项记录。通用跨岛供应链、所有活动模板或本人设备端任务若未在该场实际完成，不填写通过。
+1. 访客必须带本人管家；邀请愿意同行的居民，保留拒绝结果和实际随行名单。
+2. 管家用 A2A 交流公开信息、活动要求和分工；由物资所有者本人确认预留，核对各自库存。
+3. 实际上岛、与岛主居民交流，核对人物身份、记忆和消息归属。原机文档工作仍由原机执行。
+4. 完成一项已准备好的共同活动。保留真实开场、操作、结算与评价；未完成不填通过。
+5. 至少一位访客中途关页再续接，结束后返岛，检查物资、奖励、名称、形象与任务；记录断线/取消后的实际退款结果。
 
-## OPC：150 分钟作品课
+## 判定与记录
 
-使用游戏内共创工坊提供的[课程](../public/assets/cocreation/course-v2.md)与[练习册](../public/assets/cocreation/student-workbook-v2.md)。至少两位实际学员完成组件→成品、双画风 PNG、审核启用、正式制作、用途/上架、导出给另一位岛主、修改和回退。记录讲授、独立操作、求助和返工的实际时间；不能用 Agent 自动完成的全部操作替代学员作品。
+使用[空白结果表](acceptance-results-template.csv)。每个任务只填 **通过 / 失败 / 未执行**；20 分钟到时结束观察，未完成如实记录。进入、保存、唯一扣料/奖励、任务交付和身份归属的失败需要修复后由原报告者复测。不同版本的结果不合并成同一版本全通过。截图只保留必要界面和虚构成果，不收集真实个人文档或密钥。
 
-## 记录与签收
+结果表为空白模板，不能因填写了编号便计作真人验收。保留部署耗时、操作求助、失败复现和复测证据。20 分钟观察不能证明长期经济、所有小游戏手感或所有活动模板已完成验收。
 
-使用[空白结果表](acceptance-results-template.csv)，每个任务一行。状态只能填“通过 / 失败 / 未执行”，失败项附复现步骤和修复后复测记录。只收集必要截图与虚构任务成果；原始日志先保留在测试者设备上。
+## OPC 试课单列
 
-发布验收结论前，至少收齐 5 位新玩家的首次体验记录、四设备访问记录和一次实际 OPC 试课记录。影响进入、保存、物资唯一性或管家任务交付的问题必须修复并由原报告者复测；界面意见和手感评分单列。记录仍缺失时保持待验收，不以人数占位或自动测试补齐。
+至少两位实际学员完成组件→成品、双画风 PNG、审核启用、正式制作、用途/上架、跨岛导出给另一位岛主、独立修改和回退。实际 OPC 课程使用[课程](../public/assets/cocreation/course-v2.md)与[练习册](../public/assets/cocreation/student-workbook-v2.md)，按已有 150 分钟试教基线执行，记录讲授、学员独立操作、求助、修订、跨岛复做和回退。20 分钟游戏验收不替代完整课程，也不将 Agent 自动作品计作学员学会。人员与场次由用户准备，目前没有实际课堂签收记录。
 
-## English summary
+正式签收前至少收齐 5 位新玩家的首次体验记录、四设备访问记录和一次实际 OPC 试课记录；未完成的项目保持待验收。
 
-Recruit 5–8 actual first-time players. Record clean Agent-led deployment, first crafting/use, resident and steward work, interruption recovery, shared-theme persistence and real visitor sales. A separate four-device session covers companions, explicit A2A preparation, funded activities, ratings and return. Run the 150-minute OPC lesson with actual learners. Keep failures and retests; automated fictional checks never count as human acceptance.
+## English
+
+Use 5–8 actual newcomers and real Windows/macOS devices. Each formal observation lasts 20 real minutes: 3 minutes to enter and check movement, 14 minutes of assigned solo or four-device tasks, then 3 minutes to save, reopen and report. Record installation, private configuration and legitimate activity preparation separately. Prepared saves never count as zero-start evidence. Keep the world clock unchanged. Verify actual files, stock, cash, consented companions, A2A ownership, settlement and return. Mark each task pass, fail or not executed; retain failures and reporter retests.
+
+No automated account or empty template counts as a participant. The separate 150-minute OPC pilot requires at least two actual learners to create components and finished items, make both PNG styles, review and publish, craft and use or list, export across islands, then independently revise and roll back. Before acceptance, collect at least five newcomer records, the four-device visit record and an actual OPC class record. Short observation does not establish learning, long-term balance or full product acceptance.

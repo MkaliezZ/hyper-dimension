@@ -1175,3 +1175,14 @@ Windows 日志与隔离报告确认旧测试桩漏掉事务内准备回调；本
 The reproduced defect charged image preparation and earlier idle time against newly submitted GPU work. The original 15-second request expiry remains; a separate watchdog measures actual outstanding raster work and still falls back after 15 seconds without genuine output or cancellation acknowledgement. Expired work retains its request and pixel-byte capacity until the exact identity is acknowledged. All queue, texture, pose-cache, artwork, resolution, geometry and interpolation limits are retained.
 
 Both Node versions passed 27 related contracts; all 2005 default rules passed. Owned native WebGL controls reproduce the old false retirement in both styles; the candidate keeps the worker, expires the old request, closes its late bitmap and returns byte-identical RGBA pixels for fresh drawing. Both styles also passed the original three-task chain, reload and empty-browser recovery within unchanged registration and working-time budgets. These focused regressions are not full four-island, physical Mac, human, or current exact-package acceptance. Read-only native diagnostics record queue and request timing without prompts, conversation bodies, keys or document paths.
+
+
+## V354 · 复用已经精修的角色位图 / Reuse decoded character artwork
+
+- 已经由原有精修 Worker 生成的不可变 ImageBitmap 直接通过结构化克隆交给绘制 Worker，避免再次请求、解码和缩放原图。HTML 图片及其他有来源描述的非位图仍走原有来源路径，临时 Canvas 预览不进入正式姿态缓存。原图不转移、不关闭；保留所有请求期限、完成栅栏、像素和纹理预算。
+- Node 22.13 与 24.19 各通过 24 项相关检查。实际发行角色 PNG、原有精修 Worker 与原生 WebGL 的六例对照中，两画风旧版本均在受控的重复下载延迟下触发原有 15 秒图像准备超时；候选无需第三次下载，原图保持可用，与正常旧版本的 RGBA 逐字节一致。此复现证明重复准备的缺口，不代表已证明托管 Windows 失败的唯一原因。
+- 完整默认检查 2,008 项通过。原有双画风三步居民分工通过，三个真实回执、刷新和空浏览器重开保留；30 秒登记、首项 120 秒及后续共用 240 秒工作预算均未扩大。新增原生克隆检查接入原居民作业平台检查，原步骤保留。
+- 新玩家任务卡同步为每人 20 分钟真实观察，仍需 5–8 位真人、Windows/macOS 与四台设备的访问记录。部署与活动筹备单记；150 分钟实际 OPC 试课单列。空白模板不计为验收。
+- V353 两画风 20 分钟原始观测已收齐，但进度报告写入遇到 Windows EPERM，此后独立补查两画风重开、现金与账本保留及全部 2,934 文件来源一致性通过；原失败保留，不改写整轮通过。V354 新交付包、完整托管恢复与更广验收仍待各自证据。README 未加入流水线记录。
+
+The drawing worker now structured-clones an immutable ImageBitmap already produced by the existing artwork-refinement worker. It no longer fetches, decodes and resizes that artwork again. Live originals remain attached; non-bitmap sources and preview handling, 15-second deadlines, GPU fences and memory limits remain unchanged. Both Node versions pass 24 related checks. Six native controls use actual shipped PNGs: the old acquisition times out under a declared redundant-fetch delay, whereas both candidate styles avoid that fetch and produce byte-identical RGBA pixels. The unchanged two-style three-task flow also passes. This focused reproduction does not establish the hosted failure's unique cause or prove the full delivery goal. The newcomer protocol now uses 20 actual minutes per person; actual participants, devices and the separate OPC pilot remain required.

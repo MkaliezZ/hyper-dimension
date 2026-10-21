@@ -724,6 +724,9 @@ jobs:
         run: node tests/v330-durable-lock-browser.mjs
         timeout-minutes: 3
 
+      - name: Native decoded character artwork without repeated source acquisition
+        run: node tests/v354-decoded-artwork-browser.mjs
+        timeout-minutes: 2
       - name: Native sequential resident tasks across fixed work shifts
         env:
           HD_QA_WORK_JOURNAL: "1"
@@ -741,6 +744,7 @@ jobs:
           name: native-resident-work-${{ matrix.os }}
           path: |
             island/qa/v330/native-durable-lock/report.json
+            island/qa/v354/native-decoded-artwork/report.json
             island/qa/v329/native-acknowledged-planning/report.json
             island/qa/v213/native-task-chains/report.json
             island/qa/v213/native-task-chains/work-progress.json

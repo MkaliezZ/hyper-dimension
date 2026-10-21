@@ -67,7 +67,11 @@ export function createConnectedSurfaceClient({
   const id=++imageSerial;
   // Decoded ImageBitmaps are immutable and structured-cloneable. Share a clone
   // with the worker without detaching or recreating the live game's bitmap.
-  const source=spriteSource(image),ownedCopy=!source&&!isBitmap(image);
+  // A refined ImageBitmap already contains the exact original crop/resize.
+  // Clone that immutable bitmap directly instead of fetching and decoding its
+  // source a second time. Canvas/HTML images still use their source operation,
+  // avoiding readback of a live drawing surface on the animation thread.
+  const source=isBitmap(image)?null:spriteSource(image),ownedCopy=!source&&!isBitmap(image);
   ready=Promise.resolve().then(()=>source?null:ownedCopy?bitmap(image):image).then(copy=>new Promise((resolve,reject)=>{
    const endpoint=start();if(!endpoint){if(ownedCopy)copy.close();reject(Error('sprite_worker_unavailable'));return;}
    const requestId=++serial,timer=schedule(()=>fail('sprite_image_registration_timeout'),15000);registration.set(requestId,{timer,resolve,reject});
