@@ -1112,3 +1112,7 @@ See [bounded receipt history and rendering](task-receipt-history-v343.md) and [v
 The release changes its content identifier, not its manifest protocol. Restore the unchanged format to schema80, which the production loader requires. A new check reads this actual shipped manifest; future-format and checksum-corruption negatives retain the original rejection. See [verification](verification-v344.json). Hosted platform successors remain unconfirmed; resident work timing and private graphics qualification are separate.
 
 The shipped loader and doctor accept the corrected source manifest. All 1,820 default cases (1,806 + 14) pass with no failures, skips or cancellations. The project form native command passes both themes using the same opt-in observer now explicitly enabled in CI; all original assertions and its three-minute gate remain. The separate Windows resident-work timeout is still under investigation.
+
+## V345 queued assignment progress
+
+See [assignment progress while peers save](queued-assignment-progress-v345.md) and [verification](verification-v345.json). The original native task budgets and authoritative completion policy remain unchanged. Hosted recovery is unconfirmed.

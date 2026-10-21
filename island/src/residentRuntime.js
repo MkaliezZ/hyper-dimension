@@ -141,6 +141,27 @@ export function createResidentRuntime({npcs,getState,profile,followPath,onChange
   releasePlot(n);n.path=[];n.after=null;n.target=null;n.queuedDecision=null;n.roomQueued=false;n.walking=false;
   if(n.inside!=null)exitRoom(n,0);n.intent=null;n.think=0;n.status='工作时段已到，开始已排队的分工';
  }
+ // Existing server-owned assignments can navigate and request their next lease
+ // while peers save. No autonomous choice/model call or local delivery runs here.
+ function advancePendingAssignments(dt,now){
+  if(!Number.isFinite(dt)||dt<=0||!Number.isFinite(now)||!state().planningControl?.enabled||!residentRemote||!farmRemote||!fieldRemote)return;
+  time=now;environment=getEnvironment();
+  const arrived=a=>{if(a?.path?.length===1&&Math.hypot(a.path[0].x-a.x,a.path[0].y-a.y)<=1e-8)followPath(a,0,0);};
+  for(const n of npcs){
+   if(n.recruitControlled||n.partyControlled||n.homeRest||n.action||n.meeting||residentHasPendingWork(n)||time<(n.manualUntil||0))continue;
+   const pending=nextTask(state(),n.npcId);if(!pending||taskWorkWindow(n.npcId,environment,needs(n.npcId,state())))continue;
+   if(n.intent){
+    if(n.intent.assignmentId!==pending.id)continue;
+    if(n.roomQueued){const claim=promoteRoomSpot('npc-'+n.npcId);if(claim){n.roomQueued=false;const a=n.indoorActor,bid=n.inside,d=n.intent;a.path=findPath(a,claim.point,(x,y)=>roomWalkable(bid,x,y),20);a.after=()=>act(n,d);if(!a.path.length)a.after();}continue;}
+    arrived(n.indoorActor||n);continue;
+   }
+   if(n.path.length||n.inside!=null||n.roomQueued)continue;
+   n.assignment={...pending.command,npcId:pending.npcId,projectId:pending.projectId,resourceOwner:pending.resourceOwner,targetItem:pending.targetItem};
+   wakeQueuedIdle(n,schedule(n.npcId),needs(n.npcId,state()));if(n.think>0)continue;
+   const decision=planAssignedTask(state(),pending);if(decision.blocked||!decision.goal)continue;
+   n.queuedDecision=null;begin(n,{...decision,duration:12,source:'hermes',assignmentId:pending.id,projectId:pending.projectId,activity:'station'});
+  }
+ }
  // Receipt waits pause new decisions, not an already running idle backoff.
  // This changes no saved state and cannot start work, models or a new purpose.
  function advancePendingIdleTimers(dt){
@@ -158,5 +179,5 @@ export function createResidentRuntime({npcs,getState,profile,followPath,onChange
  function syncProjectActors(){syncProjects(state());for(const n of npcs){if(n.partyControlled)continue;if(!n.assignment){const pending=nextTask(state(),n.npcId);if(pending)n.assignment={...pending.command,npcId:pending.npcId,projectId:pending.projectId,resourceOwner:pending.resourceOwner,targetItem:pending.targetItem};}const id=n.assignment?.id||n.intent?.assignmentId,t=state().agentTaskLedger?.find(t=>t.id===id);if(t?.projectId&&(!['queued','running'].includes(t.status)||t.npcId!==n.npcId))stopAssignment(n)}}
  async function manageProject(id,action,npcId,options){const result=planningRemote?await planningRemote(action==='assign'?'assign':'control',{id,action,npcId},options):action==='assign'?assignProjectStep(state(),id,npcId):controlProject(state(),id,action);if(result.ok){if(action==='assign'){const n=npcs[result.previousNpcId];if(n?.assignment?.id===id||n?.intent?.assignmentId===id)stopAssignment(n)}syncProjectActors();for(const n of npcs)if(!n.action&&!n.path.length)n.think=0;onChange()}return result}
  async function createPreparation(project){const result=planningRemote?await planningRemote('create',{project}):createProject(state(),project);if(result.ok){syncProjectActors();onChange()}return result}
- reset();return {update,reset,advanceAcceptedWorkAction,advancePendingMeetings,advancePendingIdleTimers,steward,recoverSteward,createPreparation,health,recheckAutomatic:()=>{batchAt=time+1;stewardAt=time+4;conversationAt=time},person,taskAvailability:id=>taskWorkWindow(id,getEnvironment(),needs(id,state())),meetings,manageTask,manageProject,releaseActor:stopAssignment,syncProjects:syncProjectActors,claimFarm:(i,owner='player')=>{if(farmReservations.has(i)&&farmReservations.get(i)!==owner)return false;farmReservations.set(i,owner);return true},releaseFarm:(i,owner='player')=>{if(farmReservations.get(i)===owner)farmReservations.delete(i)},cadence:NPC_CADENCE,refresh:()=>{syncPresence()}};
+ reset();return {update,reset,advanceAcceptedWorkAction,advancePendingMeetings,advancePendingIdleTimers,advancePendingAssignments,steward,recoverSteward,createPreparation,health,recheckAutomatic:()=>{batchAt=time+1;stewardAt=time+4;conversationAt=time},person,taskAvailability:id=>taskWorkWindow(id,getEnvironment(),needs(id,state())),meetings,manageTask,manageProject,releaseActor:stopAssignment,syncProjects:syncProjectActors,claimFarm:(i,owner='player')=>{if(farmReservations.has(i)&&farmReservations.get(i)!==owner)return false;farmReservations.set(i,owner);return true},releaseFarm:(i,owner='player')=>{if(farmReservations.get(i)===owner)farmReservations.delete(i)},cadence:NPC_CADENCE,refresh:()=>{syncPresence()}};
 }

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v344-agent-source",
+  "release": "hyper-dimension-v345-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 138584,
-      "sha256": "8a4067232b90dc1dd7f93885d7e3057f1640171f0420697a1dc8d9c15097cc3e"
+      "bytes": 138863,
+      "sha256": "4c7f3ff150eb814c58cdc8616c68ee1fe9cd400c845d7f7d0a958a20569eab8d"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18611,
-      "sha256": "a7a44912c0c4f1962b54d49575f1974db303bbb9a440e1505821cfe7804cec61"
+      "bytes": 18650,
+      "sha256": "de5674f8cd38c59c93093c3a7e490ab42165d58965dd55f93a12d0a627e0e7b2"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147568,
-      "sha256": "1f2cfc2d37f67a5ca0ba2f5e4ec01fc2530cb35f2e747c1958a66a0413acf291"
+      "bytes": 147610,
+      "sha256": "4ee8ee08092c2d379b2a57c878dc70a81251e687c2b8e56861061a0de8f766f6"
     },
     {
       "path": "src/arcade.css",
@@ -7877,8 +7877,8 @@
     },
     {
       "path": "src/residentRuntime.js",
-      "bytes": 46550,
-      "sha256": "3fd9e9d795fb649e4315fe813ca71dae24709758f600812f025ce1dd07ef9fef"
+      "bytes": 48300,
+      "sha256": "64a016d09c7fb59f7e8498936b8bcca239db54cb8ecf2d2fb24ffcf9df1b97f2"
     },
     {
       "path": "src/residentSchedule.js",
@@ -14489,8 +14489,23 @@
       "path": "docs/verification-v344.json",
       "bytes": 1106,
       "sha256": "6cb17446a4a482d5eb798b201806ec5a372aefe6bba2e4f7f97fbd2d08283c5a"
+    },
+    {
+      "path": "tests/v345-pending-assignment.test.mjs",
+      "bytes": 5250,
+      "sha256": "a39847741e3ddbbcf6e0014447850740c15571c9cbc1936ba7b4fe6235ce1494"
+    },
+    {
+      "path": "docs/queued-assignment-progress-v345.md",
+      "bytes": 1946,
+      "sha256": "918b92d96e9ef236e46dffa2854ff1a280e767ed52d35a6c2403e9a0c94d6ff3"
+    },
+    {
+      "path": "docs/verification-v345.json",
+      "bytes": 1287,
+      "sha256": "b448eb01edeab3fc32fe66081b75aed634ed6d64ef9b4d1cb70b9bf76a731f3d"
     }
   ],
-  "publicRevision": "v344-release-format",
-  "generatedAt": "2026-10-21T01:30:23.677256+00:00"
+  "publicRevision": "v345-queued-work-progress",
+  "generatedAt": "2026-10-21T01:43:04.285046+00:00"
 }

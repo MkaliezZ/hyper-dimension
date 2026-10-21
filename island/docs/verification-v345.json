@@ -1,0 +1,44 @@
+{
+  "version": "V345",
+  "basePublicCommit": "e5e909f421b9fc50dd464e27aea7daf6ace5e349",
+  "firstReproduction": {
+    "pass": 24,
+    "fail": 2,
+    "source": "Actual application pending-save frame and real resident runtime"
+  },
+  "relatedCasesPassed": 39,
+  "originalHostedFailure": {
+    "run": 39522229167,
+    "job": 118978448044,
+    "theme": "origami",
+    "firstTaskWorkingTimeLimitMs": 120000
+  },
+  "serverOwnedAssignmentsOnly": true,
+  "noAutonomousChoicesOrModelRequestsInPendingPump": true,
+  "noLocalCreditOrCompletion": true,
+  "workShiftNeedsDependenciesOwnershipAndBackoffPreserved": true,
+  "fullDefaultPending": false,
+  "originalNativeRegressionsPending": false,
+  "readmeUnchanged": true,
+  "graphicsCandidateIncluded": false,
+  "wholeGoalComplete": false,
+  "completedAt": "2026-10-21T01:43:04.285046+00:00",
+  "fullDefaultPassed": 1846,
+  "fullDefaultCounts": [
+    1832,
+    14
+  ],
+  "fullDefaultSourceVerifiedBeforeAndAfter": true,
+  "finalNativeCasesPassed": 6,
+  "originalNativeAssertionsAndTimeoutUnchanged": true,
+  "nativeSourceVerifiedBeforeAndAfter": true,
+  "firstTaskWorkingMs": {
+    "pixel": 21625,
+    "origami": 21155
+  },
+  "remainingChainWorkingMs": {
+    "pixel": 108478,
+    "origami": 107639
+  },
+  "hostedSuccessorRecoveryConfirmed": false
+}

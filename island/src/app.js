@@ -496,7 +496,7 @@ function animatePendingSave(dt,travelDt=dt){
  visitors?.animatePending(dt,travelDt);
  if(!actor.action)followPendingPath(actor,travelDt,scene==='world'?142:130);else if(!advanceAcceptedPlayerAction(actor,travelDt,saves.status(theme).actions?.active,{onContact:action=>worldSound.contact(action)}))advancePendingActionPose(actor,dt);
  for(const n of npcs){if(n.indoorActor?.path.length)followPendingPath(n.indoorActor,travelDt,108);else if(!n.action&&(!n.recruitControlled||!shouldYield(n,[...npcs,...(visitors?.guests||[])])))followPendingPath(n,travelDt,n.recruitControlled?78:n.partyControlled?65:55+(n.npcId%3)*2);if(n.action&&!runtime.advanceAcceptedWorkAction(n,travelDt))advancePendingActionPose(n,dt);}
- runtime.advancePendingMeetings(dt);runtime.advancePendingIdleTimers(dt);
+ runtime.advancePendingMeetings(dt);runtime.advancePendingIdleTimers(dt);runtime.advancePendingAssignments(dt,now);
 }
 function update(dt,travelDt=dt){if(window.hdLanOverlayOpen||recoveryBoot||crossSocialSending||changingTheme)return;serverCommerce?.ensure();serverFacility?.ensure();serverPersonal?.ensure();if(changingTheme||saves.blocked(theme)||state.freshStartPending)return;
  // Visible, unblocked play remains active while durable receipts settle. Only
