@@ -64,8 +64,12 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
  function cache(r){
   clearTimeout(r.cacheTimer);r.cacheTimer=null;
+  // A capture already queued before publication must finish with that earlier
+  // baseline. Later captures wait for the publication that existed when queued.
+  // This lets the publisher drain a closed prefix without waiting for new edits.
+  const publication=r.publicationBarrier;
   const run=async()=>{
-   while(r.publicationBarrier)await r.publicationBarrier;
+   if(publication)await publication;
    // enqueue marks every progress change; reuse only a journal already committed for
    // this exact state, generation and server version. Receipts invalidate the memo.
    const memo=r.cachedSnapshot;if(memo&&memo.state===r.state&&memo.generation===r.generation&&memo.version===r.version&&memo.dirty===r.dirty)return memo;
@@ -138,10 +142,12 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  // edits use the new baseline in the same transaction as the outgoing deletion.
  async function publishAcknowledged(r,doc,base,path,retireKeys){
   const requests=retireKeys.filter(key=>key!==pendingKey(r.theme)).map(key=>[key,journal.serialized(key)]).filter(([,value])=>value!=null);
-  let prior;do{prior=r.cacheTail;if(prior)await prior;}while(prior!==r.cacheTail);
+  const prior=r.cacheTail;
   let releasePublication;r.publicationBarrier=new Promise(resolve=>{releasePublication=resolve;});
-  r.publishingRequest=requests;let result,retiring=false;
+  let result,retiring=false;
   try{
+   if(prior)await prior;
+   r.publishingRequest=requests;
    for(;;){
     result=await reconcile(r,base,doc,path);const current=r.state;
     const serialized=result.dirty?await journal.encodeSnapshot(result.state,r.theme+':publication-result:'+result.state.saveSlot):null;

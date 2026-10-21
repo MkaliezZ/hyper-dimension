@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v347-agent-source",
+  "release": "hyper-dimension-v348-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 140755,
-      "sha256": "1dad482f5e747c0734bf42551c47ca81638afa8badedfda56780dc2918c3d252"
+      "bytes": 141789,
+      "sha256": "64b27fb15356616e41d79d5327e0b69e4d41f0c7a639f3d08a62ad1d0806f36e"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19050,
-      "sha256": "47c29daf8e5aa07874ccf86536ea7cb2d815f7cfb886785e41958c9d3b855c8d"
+      "bytes": 19094,
+      "sha256": "ee4400df0b49e6cdb48986832c15f02f824fdd39a11d8eefe708fe32d857af8e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 50991,
-      "sha256": "91b6b010abfa211f4b4a31ea865cbba871d8c9c5879655fac5ed74948c7b6394"
+      "bytes": 51227,
+      "sha256": "7f5a4f039ae8763b44bf0f7f57ef9fb2a9686ba3309e9b8160e9a2df3e9e5da2"
     },
     {
       "path": "src/saveDelta.js",
@@ -13802,8 +13802,8 @@
     },
     {
       "path": "tests/v306-field-start-timeout-browser.mjs",
-      "bytes": 7360,
-      "sha256": "b1f90a835008a1125783e584352221d61e1e01d2ba8a7849c8b0df7f5090f47c"
+      "bytes": 7937,
+      "sha256": "c822302f58c219745a0ebe5ed1f3348924eb811089dcb14014ee0d045163af6d"
     },
     {
       "path": "docs/npc-mine-timeout-v306.md",
@@ -14649,8 +14649,18 @@
       "path": "docs/showcase-v347.md",
       "bytes": 1798,
       "sha256": "94eacbf1ce2009488cbd9a53b6e91bd2addc5e56f304a868670c494549c6e65d"
+    },
+    {
+      "path": "tests/v348-save-publication-prefix.test.mjs",
+      "bytes": 4990,
+      "sha256": "1ec4c35469c79553b7dcfe93b42ce16bd48bfb37df60118f4f190b74f66dfb60"
+    },
+    {
+      "path": "docs/save-publication-prefix-v348.md",
+      "bytes": 2321,
+      "sha256": "404f707b02083aa7388bbe622f2129386b21d514d5eef8b6353ed90b4d3b9775"
     }
   ],
-  "publicRevision": "v346-acknowledged-save-publication",
-  "generatedAt": "2026-10-21T05:18:59.407139+00:00"
+  "publicRevision": "v348-cache-prefix-publication",
+  "generatedAt": "2026-10-21T07:37:36.001111+00:00"
 }
