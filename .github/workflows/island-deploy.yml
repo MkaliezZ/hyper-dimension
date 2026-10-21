@@ -1,948 +1,139 @@
-name: Island deployment checks
-on:
+name: Connectivity allocation candidate (diagnostic only)
+'on':
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Full suite, soil, recovery-input or social-pending or home-journal diagnostics
+        description: Original resident and production flows; not release acceptance
         type: choice
-        default: full
-        options: [full, soil-diagnostics, recovery-input, social-pending, home-journal, frame-recovery, resident-stall]
-  push:
-    paths:
-      - island/**
-      - .github/workflows/island-deploy.yml
-  pull_request:
-    paths:
-      - island/**
-      - .github/workflows/island-deploy.yml
+        default: allocation-candidate
+        options:
+        - allocation-candidate
 permissions:
   contents: read
 concurrency:
-  group: island-deploy-${{ github.event.pull_request.number || github.ref }}-${{ inputs.check_scope || 'full' }}
-  # Preserve running failure diagnostics when a reviewed main fix arrives.
+  group: connectivity-allocation-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  portable-source:
-    if: ((github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')) && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / Python 3.11
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    # Native rule and interaction limits remain in their tests. Large source-art
-    # checkout can take 30 minutes on hosted runners before validation begins.
-    timeout-minutes: 60
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.11'
-      - name: Verify portable source archive parts
-        run: python tests/test_source_parts.py -v
-      - name: Inspect deployment plan
-        run: node tools/agent-deploy.mjs plan
-      - name: Verify target platform
-        run: node tools/agent-deploy.mjs doctor --python=python
-      - name: Rebuild runtime from bundled dependencies
-        run: node tools/agent-deploy.mjs setup --python=python --offline
-      - name: Verify source and default rules
-        run: node tools/agent-deploy.mjs verify
-      - name: Verify native steward submission ordering
-        run: node tests/v145-steward-preflight-browser.mjs
-
-      - name: Native refresh baseline recovery
-        run: node tests/v160-reload-baseline-browser.mjs
-
-      - name: Native map save conflict recovery
-        working-directory: island
-        run: node tests/v146-map-save-conflict-browser.mjs
-
-      - name: Native expanded geography and shared homes
-        run: node tests/v169-geography-browser.mjs
-
-      - name: Native lobby request and motion rules
-        run: node --test tests/v148-identity.test.mjs tests/v148-motion.test.mjs tests/v148-travel-schema.test.mjs tests/v152-motion.test.mjs tests/v201-lan-request.test.mjs
-      - name: Native lobby appearance
-        run: node tests/v148-lobby-browser.mjs
-      - name: Native lobby delayed and lost movement replies
-        run: node tests/v151-lobby-navigation-browser.mjs
-      - name: Native lobby NPC motion
-        run: node tests/v171-lobby-motion-browser.mjs
-
-      - name: Native gallery backdrop and resize
-        run: node tests/v196-gallery-backdrop-browser.mjs
-
-
-
-
-      - name: Native lobby lost movement receipt
-        env:
-          HD_MOTION_FAULT: lost
-          HD_QA_OUT: qa/v194/movement-lost
-        run: node tests/v171-lobby-motion-browser.mjs
-
-      - name: Native low-frame-rate farm navigation
-        run: node tests/v173-farm-navigation-browser.mjs
-
-      - name: Native protected checkpoint restart
-        run: node tests/v156-checkpoint-restart-browser.mjs
-
-
-      - name: Print protected checkpoint diagnostics
-        if: always()
-        run: |
-          node --input-type=module -e "import {existsSync,readFileSync} from 'node:fs'; const f='qa/v156/checkpoint-restart/report.json'; if(existsSync(f)) console.log(readFileSync(f,'utf8')); else console.log('Checkpoint report unavailable: step did not finish');"
-
-      - name: Native late successful modal navigation
-        run: node tests/v157-modal-command-navigation-browser.mjs
-
-      - name: Native committed modal response loss and bounded replay
-        run: node tests/v271-modal-transport-browser.mjs
-
-      - name: Retain native navigation diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-navigation-${{ matrix.os }}
-          path: |
-            island/qa/v171/native-lobby-motion/report.json
-            island/qa/v171/native-lobby-motion/*motion-samples.json
-            island/qa/v171/native-lobby-motion/*.png
-            island/qa/v194/movement-lost/report.json
-            island/qa/v194/movement-lost/*motion-samples.json
-            island/qa/v194/movement-lost/*.png
-            island/qa/v173/native-farm-navigation/report.json
-            island/qa/v173/native-farm-navigation/*.png
-            island/qa/v151/native-navigation/report.json
-            island/qa/v151/native-navigation/*.png
-            island/qa/v148/native-lobby/report.json
-            island/qa/v148/native-lobby/*.png
-            island/qa/v196/gallery-backdrop/report.json
-            island/qa/v196/gallery-backdrop/*.png
-            island/qa/v156/checkpoint-restart/report.json
-            island/qa/v156/checkpoint-restart/*.png
-            island/qa/v157/modal-command-navigation/report.json
-            island/qa/v157/modal-command-navigation/*.png
-            island/qa/v271/modal-transport/**/report.json
-            island/qa/v271/modal-transport/**/*-transport.jsonl
-            island/qa/v271/modal-transport/**/*-requests.jsonl
-            island/qa/v271/modal-transport/**/*-stdout.log
-            island/qa/v271/modal-transport/**/*-stderr.log
-            island/qa/v271/modal-transport/report.json
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-art:
-    if: ((github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')) && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / native art
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
+  resident:
+    name: Windows original resident flow with allocation candidate
+    runs-on: windows-2022
     timeout-minutes: 45
     defaults:
       run:
         working-directory: island
         shell: bash
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - if: inputs.check_scope != 'soil-diagnostics'
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.11'
-      - name: Inspect deployment plan
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tools/agent-deploy.mjs plan
-      - name: Verify target platform
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tools/agent-deploy.mjs doctor --python=python
-      - name: Rebuild runtime from bundled dependencies
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tools/agent-deploy.mjs setup --python=python --offline
-
-      - name: Native steward portraits
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v153-portraits-browser.mjs
-
-      - name: Native raster visibility without pixel changes
-        run: node tests/v304-raster-visibility-browser.mjs
-
-      - name: Native personal modal receipt and backdrop
-        if: inputs.check_scope != 'soil-diagnostics'
-        working-directory: island
-        run: node tests/v294-personal-backdrop-browser.mjs
-      - name: Native material item art
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v154-material-art-browser.mjs
-
-      - name: Native recipe product art
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v155-product-art-browser.mjs
-
-      - name: Native connected characters and dressed tools
-        run: node tests/v180-rig-browser.mjs
-
-      - name: Native seasonal terrain in home and meeting room
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v187-season-browser.mjs
-
-      - name: Native clock-driven night lighting
-        run: node tests/v200-night-lighting-browser.mjs
-
-      - name: Native painting tools and canvas production
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-        run: node tests/v219-painting-tools-browser.mjs
-
-      - name: Retain native character diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-character-${{ matrix.os }}
-          path: |
-            island/qa/v154/native-material-clips/report.json
-            island/qa/v154/native-material-clips/probe-input.json
-            island/qa/v154/native-material-clips/pixel-checks.json
-            island/qa/v154/native-material-clips/*.png
-            island/qa/v153/native-portraits/report.json
-            island/qa/v153/native-portraits/*.png
-            island/qa/v155/native-product-clips/report.json
-            island/qa/v155/native-product-clips/pixel-checks.json
-            island/qa/v155/native-product-clips/probe-input.json
-            island/qa/v155/native-product-clips/failure-product-svg.png
-            island/qa/v155/native-product-clips/*-c24_2-svg.png
-            island/qa/v304/native-raster-visibility/report.json
-            island/qa/v294/personal-backdrop/report.json
-            island/qa/v294/personal-backdrop/*.png
-            island/qa/v219/native-painting-tools/report.json
-            island/qa/v219/native-painting-tools/work-progress.json
-            island/qa/v219/native-painting-tools/*.sample.txt
-            island/qa/v219/native-painting-tools/*.png
-            island/qa/v180/native-rig/report.json
-            island/qa/v180/native-rig/*.png
-            island/qa/v187/native-seasons/report.json
-            island/qa/v187/native-seasons/*.png
-            island/qa/v200/native-night/report.json
-            island/qa/v200/native-night/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-homes:
-    if: ((github.event_name != 'workflow_dispatch' || (inputs.check_scope != 'soil-diagnostics' && inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal')) && (github.event_name != 'workflow_dispatch' || inputs.check_scope != 'frame-recovery')) && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / native homes
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 60
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Native archive and mineral homes
-        run: node tests/v197-research-homes-browser.mjs
-      - name: Native archive journal across appearance switch
-        run: node tests/v197-research-homes-lan-browser.mjs
-      - name: Native music and tailor homes
-        run: node tests/v198-creative-homes-browser.mjs
-      - name: Native music journal across appearance switch
-        run: node tests/v198-creative-homes-lan-browser.mjs
-      - name: Native curator and steward homes
-        run: node tests/v199-legacy-homes-browser.mjs
-      - name: Native curator journal across appearance switch
-        env:
-          DEBUG: pw:browser
-        run: node tests/v199-legacy-homes-lan-browser.mjs
-      - name: Native steward journal and exchange entry
-        env:
-          HD_HOME_ID: '15'
-        run: node tests/v199-legacy-homes-lan-browser.mjs
-      - name: Retain native residence diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-residences-${{ matrix.os }}
-          path: |
-            island/qa/v197/native-homes/report.json
-            island/qa/v197/native-homes/*.png
-            island/qa/v197/native-home-lan-10/report.json
-            island/qa/v197/native-home-lan-10/*.png
-            island/qa/v198/native-homes/report.json
-            island/qa/v198/native-homes/*.png
-            island/qa/v198/native-home-lan-12/report.json
-            island/qa/v198/native-home-lan-12/*.png
-            island/qa/v199/native-homes/report.json
-            island/qa/v199/native-homes/*.png
-            island/qa/v199/native-home-lan-14/report.json
-            island/qa/v199/native-home-lan-14/*.png
-            island/qa/v199/native-home-lan-15/report.json
-            island/qa/v199/native-home-lan-15/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-gameplay:
-    if: (inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery') && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / ${{ inputs.check_scope == 'soil-diagnostics' && 'soil diagnostics' || 'native gameplay' }} / ${{ matrix.group }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-        group: [reward, receipt, navigation, content]
-    runs-on: ${{ matrix.os }}
-    # Each isolated group keeps the original tests, clocks and one-hour job limit.
-    timeout-minutes: 60
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-
-      - name: Native pearl cup crafting and refresh
-        if: matrix.group == 'reward' && inputs.check_scope != 'soil-diagnostics'
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-          HD_QA_PEARL_PAUSE: "1"
-        run: node tests/v156-pearl-cup-craft-browser.mjs
-
-      - name: Native queued reward confirmation
-        if: matrix.group == 'reward'
-        run: node tests/v168-reward-click-browser.mjs
-
-      - name: Native low-frame-rate result and queued reward
-        if: matrix.group == 'reward'
-        env:
-          HD_REWARD_INTENTS: claim
-        run: node tests/v194-result-pacing-browser.mjs
-
-      - name: Native independent receipt and close recovery
-        if: matrix.group == 'receipt'
-        run: node tests/v170-reward-drain-browser.mjs
-
-      - name: Browser save waiter and authoritative craft ordering
-        if: matrix.group == 'receipt'
-        run: node tests/v204-save-waiter-browser.mjs
-
-      - name: Native player farm intent after queued receipts
-        if: matrix.group == 'receipt'
-        run: node tests/v245-player-farm-intent-browser.mjs && node tests/v245-moment-day-browser.mjs
-
-      - name: Native NPC farm intent after queued receipts
-        if: matrix.group == 'receipt'
-        run: node tests/v249-npc-farm-intent-browser.mjs
-
-      - name: Native recovery return and visiting parties
-        if: matrix.group == 'receipt'
-        run: node tests/v205-recovery-return-browser.mjs && node tests/v205-visiting-party-browser.mjs
-
-      - name: Native confirmed return after two cancelled navigations
-        if: matrix.group == 'navigation'
-        run: node tests/v214-recovery-link-browser.mjs
-
-      - name: Native re-entry while recovery read is pending
-        if: matrix.group == 'navigation'
-        run: node tests/v216-recovery-wait-browser.mjs
-
-      - name: Native recovery input through workshop modal dialogs
-        if: matrix.group == 'navigation'
-        run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
-
-      - name: Native save-dialog recovery feedback and safe re-entry
-        if: matrix.group == 'navigation'
-        run: node tests/v223-recovery-feedback-browser.mjs
-
-      - name: Native recovery controls follow in-flight reads
-        if: matrix.group == 'navigation'
-        run: node tests/v229-recovery-controls-browser.mjs
-
-      - name: Native signed import and historical restore re-entry
-        if: matrix.group == 'navigation'
-        env:
-          HD_QA_HOLD_POST_CHECKPOINT: "1"
-        run: node tests/v226-save-replacement-browser.mjs
-
-      - name: Native current catalog totals and preserved legacy achievements
-        if: matrix.group == 'navigation'
-        run: node tests/v221-catalog-counts-browser.mjs
-
-      - name: Native recruitment error recovery and request identity
-        if: matrix.group == 'content'
-        run: node tests/v222-recruitment-errors-browser.mjs
-
-      - name: Native recruitment status recovery while editing policy
-        if: matrix.group == 'content'
-        run: node tests/v323-recruitment-focused-status-browser.mjs
-
-      - name: Native recruitment progress behind accepted work
-        if: matrix.group == 'content'
-        run: node tests/v287-recruitment-progress-browser.mjs
-
-      - name: Native confirmed publication and catalog synchronization
-        if: matrix.group == 'content'
-        run: node tests/v305-catalog-refresh-browser.mjs
-
-      - name: Native custom products, artwork, reuse and cross-owner import
-        if: matrix.group == 'content'
-        run: node tests/v224-custom-content-browser.mjs
-
-      - name: Native visitor timeout retains one settlement
-        if: matrix.group == 'content'
-        run: node tests/v303-visitor-timeout-browser.mjs
-
-      - name: Native NPC mine reservation response timeout
-        if: matrix.group == 'content'
-        run: node tests/v306-field-start-timeout-browser.mjs
-
-      - name: Native NPC farm reservation timeout and protected recovery
-        if: matrix.group == 'content'
-        timeout-minutes: 3
-        run: node tests/v332-farm-start-timeout-browser.mjs
-
-      - name: Native resident reservation response timeout
-        if: matrix.group == 'content'
-        run: node tests/v308-resident-start-timeout-browser.mjs
-
-      - name: Native known NPC completion response timeout
-        if: matrix.group == 'content'
-        run: node tests/v311-resident-finish-timeout-browser.mjs
-
-      - name: Native resident identity-busy reply recovery
-        if: matrix.group == 'content'
-        run: node tests/v315-resident-lan-busy-browser.mjs
-
-      - name: Native foreground checkpoint acknowledges only the requested input
-        if: matrix.group == 'content'
-        timeout-minutes: 3
-        run: node tests/v333-foreground-checkpoint-browser.mjs
-
-      - name: Native manual project controls preserve receipt and checkpoint order
-        if: matrix.group == 'content'
-        timeout-minutes: 3
-        run: node tests/v331-manual-controls-browser.mjs
-
-      - name: Native strict save publication across edits and reload
-        if: matrix.group == 'receipt'
-        run: node tests/v355-publication-browser.mjs
-        timeout-minutes: 3
-      - name: Native project form retains backdrop without pausing work or input
-        if: matrix.group == 'content'
-        timeout-minutes: 3
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-        run: node tests/v343-project-backdrop-browser.mjs
-
-      - name: Native custom recipe resident preparation and reopen
-        if: matrix.group == 'content'
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-        run: node tests/v227-custom-agent-browser.mjs
-
-      - name: Native manual planning through queued resident work
-        if: matrix.group == 'content'
-        run: node tests/v317-plan-queue-browser.mjs
-      - name: Native manual steward batch priority and protected receipts
-        run: node tests/v326-manual-batch-browser.mjs
-      - name: Native committed completion recovery after two lost replies
-        if: matrix.group == 'content'
-        run: node tests/v327-completion-recovery-browser.mjs
-      - name: Native explicit chat checkpoint admission
-        if: matrix.group == 'content'
-        run: node tests/v328-manual-checkpoint-browser.mjs
-
-      - name: Native durable completion recovery across reload
-        if: matrix.group == 'content'
-        run: node tests/v328-persisted-completion-browser.mjs
-
-
-
-
-      - name: Native business ledger backdrop and live simulation
-        if: matrix.group == 'content'
-        run: node tests/v349-business-backdrop-browser.mjs
-
-      - name: Native custom product shelves and visitor sales
-        if: matrix.group == 'content'
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-        run: node tests/v228-custom-shops-browser.mjs
-
-      - name: Native resident production to visitor purchase
-        if: matrix.group == 'content'
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-          HD_QA_SHELF_FROM_PRODUCTION: "1"
-          HD_QA_OUT: qa/v230/native-production-market
-        run: node tests/v228-custom-shops-browser.mjs
-
-      - name: Native night planning skips empty purposes
-        if: matrix.group == 'content'
-        run: node tests/v216-night-planning-browser.mjs
-
-      - name: Retain isolated visitor timeout diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-visitor-timeout-${{ matrix.os }}-${{ matrix.group }}
-          path: island/qa/v303/native-visitor-timeout/report.json
-          if-no-files-found: ignore
-          retention-days: 3
-
-      - name: Retain isolated native soil-care diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-soil-care-${{ matrix.os }}-${{ matrix.group }}
-          path: |
-            island/qa/v156/native-pearl-cup-craft/report.json
-            island/qa/v156/native-pearl-cup-craft/work-progress.json
-            island/qa/v156/native-pearl-cup-craft/*.sample.txt
-            island/qa/v156/native-pearl-cup-craft/*.png
-            island/qa/v168/native-reward-click/report.json
-            island/qa/v168/native-reward-click/*.png
-            island/qa/v194/slow-result/report.json
-            island/qa/v194/slow-result/*.png
-            island/qa/v170/native-reward-drain/report.json
-            island/qa/v170/native-reward-drain/*.png
-            island/qa/v204/browser-save-waiter/report.json
-            island/qa/v355/native-publication/report.json
-            island/qa/v205/native-recovery-return/report.json
-            island/qa/v205/native-recovery-return/*.png
-            island/qa/v205/native-visiting-party/report.json
-            island/qa/v205/native-visiting-party/*.png
-            island/qa/v214/native-recovery-link/report.json
-            island/qa/v214/native-recovery-link/*.png
-            island/qa/v216/native-recovery-wait/report.json
-            island/qa/v216/native-recovery-wait/*.png
-            island/qa/v220/native-recovery-modal/report.json
-            island/qa/v220/native-recovery-modal/*.png
-            island/qa/v220/native-recovery-modal/*-input-failure.zip
-            island/qa/v268/recovery-background/report.json
-            island/qa/v268/recovery-background/*.png
-            island/qa/v223/native-recovery-feedback/report.json
-            island/qa/v223/native-recovery-feedback/*.png
-            island/qa/v229/recovery-controls/report.json
-            island/qa/v229/recovery-controls/*.png
-            island/qa/v226/native-save-replacement/report.json
-            island/qa/v226/native-save-replacement/*.png
-            island/qa/v249/npc-farm-intent/report.json
-            island/qa/v221/native-catalog-counts/report.json
-            island/qa/v221/native-catalog-counts/*.png
-            island/qa/v222/native-recruitment-errors/report.json
-            island/qa/v222/native-recruitment-errors/*.png
-            island/qa/v323/native-recruitment-focus/*.json
-            island/qa/v323/native-recruitment-focus/*.png
-            island/qa/v287/native-recruitment-progress/report.json
-            island/qa/v287/native-recruitment-progress/*.png
-            island/qa/v306/native-field-start-timeout/report.json
-            island/qa/v308/native-resident-start-timeout/report.json
-            island/qa/v311/native-resident-finish-timeout/report.json
-            island/qa/v315/native-resident-lan-busy/report.json
-            island/qa/v317/native-plan-queue/report.json
-            island/qa/v326/native-manual-batch/report.json
-            island/qa/v327/native-completion-recovery/report.json
-            island/qa/v328/native-manual-checkpoint/report.json
-            island/qa/v328/native-persisted-completion/report.json
-            island/qa/v331/native-manual-controls/report.json
-            island/qa/v332/native-farm-start/report.json
-            island/qa/v333/native-foreground-checkpoint/report.json
-            island/qa/v317/native-plan-queue/*.png
-            island/qa/v305/native-catalog-refresh/report.json
-            island/qa/v305/native-catalog-refresh/*.png
-            island/qa/v224/native-custom-content/report.json
-            island/qa/v224/native-custom-content/*.png
-            island/qa/v343/native-project-backdrop/report.json
-            island/qa/v343/native-project-backdrop/work-progress.json
-            island/qa/v227/native-custom-agent/report.json
-            island/qa/v227/native-custom-agent/work-progress.json
-            island/qa/v227/native-custom-agent/*.sample.txt
-            island/qa/v227/native-custom-agent/*.png
-            island/qa/v228/native-custom-shops/report.json
-            island/qa/v228/native-custom-shops/work-progress.json
-            island/qa/v228/native-custom-shops/*.sample.txt
-            island/qa/v228/native-custom-shops/*.png
-            island/qa/v230/native-production-market/report.json
-            island/qa/v230/native-production-market/work-progress.json
-            island/qa/v230/native-production-market/*.sample.txt
-            island/qa/v230/native-production-market/*.png
-            island/qa/v216/native-night-planning/report.json
-            island/qa/v216/native-night-planning/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  # Intel runners reached the shared 45-minute job cap during the final scene
-  # test. Run the same island simulations separately from receipt tests.
-  native-island-simulation:
-    if: (inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery') && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / native island simulation
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: '24'
+    - name: Install isolated browser dependencies
+      run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
+    - name: Verify original test and reviewed candidate; prepare diagnostics
+      run: "mkdir -p qa/resident-registration-trace\ncat > qa/resident-registration-trace/preload.mjs <<'TRACE_JS'\nimport\
+        \ {mkdir,appendFile,writeFile} from 'node:fs/promises';\nimport {writeFileSync} from 'node:fs';\nimport {resolve,join}\
+        \ from 'node:path';\nimport {createRequire} from 'node:module';\nimport {monitorEventLoopDelay,performance} from 'node:perf_hooks';\n\
+        \n// Diagnostic only: the original test, timing gates and inputs are\n// unchanged. Only this invocation's owned browser\
+        \ pages are profiled.\nconst directory=resolve('qa/resident-registration-trace');\nawait mkdir(directory,{recursive:true});\n\
+        const histogram=monitorEventLoopDelay({resolution:20});histogram.enable();\nlet previous=performance.eventLoopUtilization(),last=performance.now();\n\
+        const summary={diagnosticOnly:true,acceptanceClaimed:false,candidateOnlyConnectivityAllocationChanged:true,\n  startedAt:new\
+        \ Date().toISOString(),pid:process.pid,pageProfiles:[],errors:[]};\nconst timer=setInterval(()=>{\n const now=performance.now(),utilization=performance.eventLoopUtilization(previous);\n\
+        \ previous=performance.eventLoopUtilization();\n const row={at:new Date().toISOString(),elapsedMs:now-last,eventLoopUtilization:utilization.utilization,\n\
+        \   eventLoopMeanMs:Number.isFinite(histogram.mean)?histogram.mean/1e6:null,eventLoopMaxMs:histogram.max/1e6,\n  \
+        \ memory:process.memoryUsage(),cpu:process.cpuUsage()};last=now;histogram.reset();\n void appendFile(join(directory,'node-event-loop.ndjson'),JSON.stringify(row)+'\\\
+        n').catch(e=>summary.errors.push(e.message));\n},1000);timer.unref();\nconst {chromium}=createRequire(resolve('package.json'))('playwright-core');\n\
+        const launch=chromium.launch.bind(chromium);let contexts=0,pages=0;\nchromium.launch=async(...args)=>{\n const browser=await\
+        \ launch(...args),newContext=browser.newContext.bind(browser);\n browser.newContext=async(...contextArgs)=>{\n  const\
+        \ context=await newContext(...contextArgs),contextId=++contexts,owned=[];\n  const newPage=context.newPage.bind(context),close=context.close.bind(context);\n\
+        \  context.newPage=async(...pageArgs)=>{\n   const page=await newPage(...pageArgs),pageId=++pages,row={contextId,pageId,startedAt:new\
+        \ Date().toISOString()};\n   summary.pageProfiles.push(row);\n   try{\n    const session=await context.newCDPSession(page);await\
+        \ session.send('Profiler.enable');\n    await session.send('Profiler.setSamplingInterval',{interval:1000});await session.send('Profiler.start');\n\
+        \    let finished=false;\n    owned.push(async()=>{\n     if(finished)return;finished=true;\n     try{const {profile}=await\
+        \ session.send('Profiler.stop');const name='owned-page-'+pageId+'.cpuprofile';\n      await writeFile(join(directory,name),JSON.stringify(profile));row.file=name;row.samples=profile.samples?.length??0;\n\
+        \      row.finishedAt=new Date().toISOString();await session.detach();}\n     catch(error){row.error=String(error.message).slice(0,400);}\n\
+        \    });\n   }catch(error){row.error=String(error.message).slice(0,400);}\n   return page;\n  };\n  context.close=async(...closeArgs)=>{await\
+        \ Promise.allSettled(owned.map(stop=>stop()));return close(...closeArgs);};\n  return context;\n };\n return browser;\n\
+        };\nprocess.on('exit',()=>{clearInterval(timer);histogram.disable();summary.finishedAt=new Date().toISOString();\n\
+        \ try{writeFileSync(join(directory,'instrumentation-summary.json'),JSON.stringify(summary,null,2));}catch{}});\n\n\
+        // The candidate changes only allocation inside the same full connectivity search.\n\nTRACE_JS\nnode --input-type=module\
+        \ - <<'JS'\nimport {readFileSync,writeFileSync} from 'node:fs';\nimport {createHash} from 'node:crypto';\nimport assert\
+        \ from 'node:assert/strict';\nconst sha=file=>createHash('sha256').update(readFileSync(file)).digest('hex');\nassert.equal(sha('tests/v213-task-chain-browser.mjs'),'9c8a3fbe71c0222da9b862308778ee185b3911dc388292955ae7282508062071');\n\
+        assert.equal(sha('src/placements.js'),'3b046e32e57116f49a8667c335760c39bb535fede9603056e72e934562bb3c61');\nwriteFileSync('qa/resident-registration-trace/source-contract.json',JSON.stringify({base:'4fe21e0c075969bbac81bbd229ab0d91f20e67da',candidatePlacementsSha256:'3b046e32e57116f49a8667c335760c39bb535fede9603056e72e934562bb3c61',originalTest:'v213-task-chain-browser.mjs',originalTestSha256:'9c8a3fbe71c0222da9b862308778ee185b3911dc388292955ae7282508062071',assertionsClocksAndDeadlinesUnchanged:true,diagnosticOnly:true,notReleaseManifestQualification:true}));\n\
+        JS\n"
+    - name: Original resident assertions and deadlines with CPU and IO observations
+      env:
+        HD_QA_OUT: qa/resident-registration-trace/native-resident
+        HD_QA_WORK_JOURNAL: '1'
+      run: node --cpu-prof --cpu-prof-dir=qa/resident-registration-trace --cpu-prof-interval=1000 --trace-events-enabled --trace-event-categories=v8,node.fs.async,node.fs.sync,node.perf
+        '--trace-event-file-pattern=qa/resident-registration-trace/node-trace-${pid}.json' --import ./qa/resident-registration-trace/preload.mjs
+        tests/v213-task-chain-browser.mjs
+    - name: Retain isolated diagnostic evidence
+      if: always()
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      with:
+        name: allocation-candidate-resident-windows
+        path: island/qa/resident-registration-trace/
+        if-no-files-found: error
+        retention-days: 3
+  production:
+    name: Windows original production flow with allocation candidate
+    runs-on: windows-2022
     timeout-minutes: 45
     defaults:
       run:
         working-directory: island
         shell: bash
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-
-      - name: Native island module download recovery
-        run: node tests/v280-module-bootstrap-browser.mjs
-
-      - name: Native granted player actions during unrelated receipts
-        run: node tests/v281-player-action-browser.mjs
-
-      - name: Native gathering catalogue survives HUD refresh
-        run: node tests/v311-gather-catalog-browser.mjs
-
-      - name: Native ferry clock ordering during background work
-        run: node tests/v278-visitor-clock-browser.mjs
-
-      - name: Native cash reporting and shared-style recovery
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v276-cash-browser.mjs
-
-      - name: Manual save acknowledgment and failure feedback
-        run: node tests/v314-manual-save-feedback-browser.mjs
-
-      - name: Native greenhouse soil care
-        run: node tests/v159-soil-care-browser.mjs
-
-      - name: Native views during an independent resident receipt
-        run: node tests/v179-navigation-arrival-browser.mjs
-
-      - name: Native NPC sow and water during independent receipts
-        run: node tests/v179-npc-work-browser.mjs
-
-      - name: Native resident social continuity after reload
-        run: node tests/v221-resident-reentry-browser.mjs
-
-      - name: Native dialogue while another receipt settles
-        run: node tests/v262-social-pending-browser.mjs
-
-      - name: Native explicit occupied-mine rejection controls
-        run: node tests/v325-mine-rejection-browser.mjs
-
-      - name: Native synchronization after a rejected stale command
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v342-rejected-action-browser.mjs
-
-      - name: Native interior return points and forest navigation
-        if: inputs.check_scope != 'soil-diagnostics'
-        run: node tests/v203-scene-return-browser.mjs
-
-      - name: Retain isolated native island diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-island-simulation-${{ matrix.os }}
-          path: |
-            island/qa/v280/native-module-bootstrap/report.json
-            island/qa/v281/native-player-action/report.json
-            island/qa/v281/native-player-action/*.png
-            island/qa/v311/native-gather-catalog/report.json
-            island/qa/v311/native-gather-catalog/*.png
-            island/qa/v278/native-visitor-clock/report.json
-            island/qa/v276/native-cash/report.json
-            island/qa/v276/native-cash/*.png
-            island/qa/v314/manual-save-feedback/report.json
-            island/qa/v159/native-soil-care/report.json
-            island/qa/v159/native-soil-care/work-progress.json
-            island/qa/v159/native-soil-care/*.png
-            island/qa/v179/navigation-arrival/report.json
-            island/qa/v179/navigation-arrival/*.png
-            island/qa/v179/npc-work/report.json
-            island/qa/v179/npc-work/*.png
-            island/qa/v221/native-resident-reentry/report.json
-            island/qa/v221/native-resident-reentry/*.png
-            island/qa/v262/social-pending/report.json
-            island/qa/v262/social-pending/*.png
-            island/qa/v325/mine-rejection/report.json
-            island/qa/v342/native-rejected-command/report.json
-            island/qa/v203/native-scene-return/report.json
-            island/qa/v203/native-scene-return/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-resident-work:
-    if: (inputs.check_scope != 'recovery-input' && inputs.check_scope != 'social-pending' && inputs.check_scope != 'home-journal' && inputs.check_scope != 'frame-recovery') && inputs.check_scope != 'resident-stall'
-    name: ${{ matrix.os }} / native resident work
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    # Checkout and the unchanged calendar/visitor budgets must fit the job.
-    timeout-minutes: 60
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Native Windows save lock contention and unique delivery
-        if: runner.os == 'Windows'
-        run: node tests/v218-save-lock-browser.mjs
-      - name: Native durable task recovery after transient I/O replies
-        run: node tests/v254-save-io-browser.mjs
-        timeout-minutes: 5
-      - name: Native acknowledged planning and protected snapshots
-        run: node tests/v329-acknowledged-planning-browser.mjs
-
-      - name: Native idempotent saves through actual activity lock contention
-        run: node tests/v330-durable-lock-browser.mjs
-        timeout-minutes: 3
-
-      - name: Native decoded character artwork without repeated source acquisition
-        run: node tests/v354-decoded-artwork-browser.mjs
-        timeout-minutes: 2
-      - name: Native original artwork after early graphics module preparation
-        run: node tests/v356-worker-boot-browser.mjs
-        timeout-minutes: 3
-      - name: Native sequential resident tasks across fixed work shifts
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-        run: node tests/v213-task-chain-browser.mjs
-      - name: Native user checkpoint through autonomous ferry queue
-        run: node tests/v351-visitor-checkpoint-browser.mjs
-        timeout-minutes: 2
-      - name: Native recruited partner food and task continuation
-        run: node tests/v253-partner-self-care-browser.mjs
-        timeout-minutes: 8
-      - name: Retain native resident work diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-resident-work-${{ matrix.os }}
-          path: |
-            island/qa/v330/native-durable-lock/report.json
-            island/qa/v354/native-decoded-artwork/report.json
-            island/qa/v356/native-worker-boot/report.json
-            island/qa/v329/native-acknowledged-planning/report.json
-            island/qa/v213/native-task-chains/report.json
-            island/qa/v213/native-task-chains/work-progress.json
-            island/qa/v213/native-task-chains/*.sample.txt
-            island/qa/v213/native-task-chains/*.png
-            island/qa/v351/visitor-checkpoint/report.json
-            island/qa/v351/visitor-checkpoint/*-failure.png
-            island/qa/v218/native-save-lock/report.json
-            island/qa/v218/native-save-lock/*.png
-            island/qa/v253/native-partner-self-care/report.json
-            island/qa/v254/native-save-io/report.json
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-recovery-input:
-    if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'recovery-input'
-    name: ${{ matrix.os }} / isolated recovery input
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Native recovery input through workshop modal dialogs
-        run: node tests/v220-recovery-modal-browser.mjs && node tests/v268-recovery-background-browser.mjs
-      - name: Retain isolated recovery input evidence
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-recovery-input-${{ matrix.os }}
-          path: |
-            island/qa/v220/native-recovery-modal/report.json
-            island/qa/v220/native-recovery-modal/*.png
-            island/qa/v220/native-recovery-modal/*-input-failure.zip
-            island/qa/v268/recovery-background/report.json
-            island/qa/v268/recovery-background/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-social-pending:
-    if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'social-pending'
-    name: ${{ matrix.os }} / isolated pending dialogue
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Native dialogue while another receipt settles
-        run: node tests/v262-social-pending-browser.mjs
-      - name: Retain isolated dialogue evidence
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-social-pending-${{ matrix.os }}
-          path: |
-            island/qa/v262/social-pending/report.json
-            island/qa/v262/social-pending/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-home-journal:
-    if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'home-journal'
-    name: ${{ matrix.os }} / isolated home journal
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Native curator journal across appearance switch
-        env:
-          DEBUG: pw:browser
-        run: node tests/v199-legacy-homes-lan-browser.mjs
-      - name: Native steward journal and exchange entry
-        env:
-          HD_HOME_ID: '15'
-        run: node tests/v199-legacy-homes-lan-browser.mjs
-      - name: Retain isolated home journal evidence
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-home-journal-${{ matrix.os }}
-          path: |
-            island/qa/v199/native-home-lan-14/report.json
-            island/qa/v199/native-home-lan-14/*.png
-            island/qa/v199/native-home-lan-15/report.json
-            island/qa/v199/native-home-lan-15/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-frame-recovery:
-    if: github.event_name != 'workflow_dispatch' || inputs.check_scope == 'full' || inputs.check_scope == 'frame-recovery'
-    name: ${{ matrix.os }} / native frame recovery
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 60
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install locked browser driver
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Native task delivery when visible RAF callbacks stop
-        run: node tests/v274-frame-recovery-browser.mjs
-      - name: Retain native frame recovery diagnostics
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: native-frame-recovery-${{ matrix.os }}
-          path: |
-            island/qa/v274/native-frame-recovery/report.json
-            island/qa/v274/native-frame-recovery/work-progress.json
-            island/qa/v274/native-frame-recovery/*.sample.txt
-            island/qa/v274/native-frame-recovery/*.png
-          if-no-files-found: ignore
-          retention-days: 3
-
-  native-resident-stall:
-    if: github.event_name == 'workflow_dispatch' && inputs.check_scope == 'resident-stall'
-    name: macos-14 / resident stall diagnostic
-    runs-on: macos-14
-    timeout-minutes: 45
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Install isolated browser dependencies
-        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Diagnose the original resident chain without weakening its gates
-        env:
-          HD_QA_WORK_JOURNAL: "1"
-          HD_QA_STALL_DIAGNOSTIC: "1"
-        run: node tests/v213-task-chain-browser.mjs
-      - name: Retain owned resident stall observations
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, native Node24 and bounded transport backoff
-        with:
-          name: resident-stall-macos-14
-          path: |
-            island/qa/v213/native-task-chains/report.json
-            island/qa/v213/native-task-chains/work-progress.json
-            island/qa/v213/native-task-chains/*.sample.txt
-            island/qa/v213/native-task-chains/*.png
-          if-no-files-found: ignore
-          retention-days: 3
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: '24'
+    - name: Install isolated browser dependencies
+      run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
+    - name: Verify original test and reviewed candidate; prepare diagnostics
+      run: "mkdir -p qa/resident-registration-trace\ncat > qa/resident-registration-trace/preload.mjs <<'TRACE_JS'\nimport\
+        \ {mkdir,appendFile,writeFile} from 'node:fs/promises';\nimport {writeFileSync} from 'node:fs';\nimport {resolve,join}\
+        \ from 'node:path';\nimport {createRequire} from 'node:module';\nimport {monitorEventLoopDelay,performance} from 'node:perf_hooks';\n\
+        \n// Diagnostic only: the original test, timing gates and inputs are\n// unchanged. Only this invocation's owned browser\
+        \ pages are profiled.\nconst directory=resolve('qa/resident-registration-trace');\nawait mkdir(directory,{recursive:true});\n\
+        const histogram=monitorEventLoopDelay({resolution:20});histogram.enable();\nlet previous=performance.eventLoopUtilization(),last=performance.now();\n\
+        const summary={diagnosticOnly:true,acceptanceClaimed:false,candidateOnlyConnectivityAllocationChanged:true,\n  startedAt:new\
+        \ Date().toISOString(),pid:process.pid,pageProfiles:[],errors:[]};\nconst timer=setInterval(()=>{\n const now=performance.now(),utilization=performance.eventLoopUtilization(previous);\n\
+        \ previous=performance.eventLoopUtilization();\n const row={at:new Date().toISOString(),elapsedMs:now-last,eventLoopUtilization:utilization.utilization,\n\
+        \   eventLoopMeanMs:Number.isFinite(histogram.mean)?histogram.mean/1e6:null,eventLoopMaxMs:histogram.max/1e6,\n  \
+        \ memory:process.memoryUsage(),cpu:process.cpuUsage()};last=now;histogram.reset();\n void appendFile(join(directory,'node-event-loop.ndjson'),JSON.stringify(row)+'\\\
+        n').catch(e=>summary.errors.push(e.message));\n},1000);timer.unref();\nconst {chromium}=createRequire(resolve('package.json'))('playwright-core');\n\
+        const launch=chromium.launch.bind(chromium);let contexts=0,pages=0;\nchromium.launch=async(...args)=>{\n const browser=await\
+        \ launch(...args),newContext=browser.newContext.bind(browser);\n browser.newContext=async(...contextArgs)=>{\n  const\
+        \ context=await newContext(...contextArgs),contextId=++contexts,owned=[];\n  const newPage=context.newPage.bind(context),close=context.close.bind(context);\n\
+        \  context.newPage=async(...pageArgs)=>{\n   const page=await newPage(...pageArgs),pageId=++pages,row={contextId,pageId,startedAt:new\
+        \ Date().toISOString()};\n   summary.pageProfiles.push(row);\n   try{\n    const session=await context.newCDPSession(page);await\
+        \ session.send('Profiler.enable');\n    await session.send('Profiler.setSamplingInterval',{interval:1000});await session.send('Profiler.start');\n\
+        \    let finished=false;\n    owned.push(async()=>{\n     if(finished)return;finished=true;\n     try{const {profile}=await\
+        \ session.send('Profiler.stop');const name='owned-page-'+pageId+'.cpuprofile';\n      await writeFile(join(directory,name),JSON.stringify(profile));row.file=name;row.samples=profile.samples?.length??0;\n\
+        \      row.finishedAt=new Date().toISOString();await session.detach();}\n     catch(error){row.error=String(error.message).slice(0,400);}\n\
+        \    });\n   }catch(error){row.error=String(error.message).slice(0,400);}\n   return page;\n  };\n  context.close=async(...closeArgs)=>{await\
+        \ Promise.allSettled(owned.map(stop=>stop()));return close(...closeArgs);};\n  return context;\n };\n return browser;\n\
+        };\nprocess.on('exit',()=>{clearInterval(timer);histogram.disable();summary.finishedAt=new Date().toISOString();\n\
+        \ try{writeFileSync(join(directory,'instrumentation-summary.json'),JSON.stringify(summary,null,2));}catch{}});\n\n\
+        // The candidate changes only allocation inside the same full connectivity search.\n\nTRACE_JS\nnode --input-type=module\
+        \ - <<'JS'\nimport {readFileSync,writeFileSync} from 'node:fs';\nimport {createHash} from 'node:crypto';\nimport assert\
+        \ from 'node:assert/strict';\nconst sha=file=>createHash('sha256').update(readFileSync(file)).digest('hex');\nassert.equal(sha('tests/v228-custom-shops-browser.mjs'),'63f430cf6b0be8867250ad35a762e5a0397d77ab8d3f907e2bc0a32e02009390');\n\
+        assert.equal(sha('src/placements.js'),'3b046e32e57116f49a8667c335760c39bb535fede9603056e72e934562bb3c61');\nwriteFileSync('qa/resident-registration-trace/source-contract.json',JSON.stringify({base:'4fe21e0c075969bbac81bbd229ab0d91f20e67da',candidatePlacementsSha256:'3b046e32e57116f49a8667c335760c39bb535fede9603056e72e934562bb3c61',originalTest:'v228-custom-shops-browser.mjs',originalTestSha256:'63f430cf6b0be8867250ad35a762e5a0397d77ab8d3f907e2bc0a32e02009390',assertionsClocksAndDeadlinesUnchanged:true,diagnosticOnly:true,notReleaseManifestQualification:true}));\n\
+        JS\n"
+    - name: Original production assertions and deadlines with CPU and IO observations
+      env:
+        HD_QA_OUT: qa/resident-registration-trace/native-production
+        HD_QA_WORK_JOURNAL: '1'
+        HD_QA_SHELF_FROM_PRODUCTION: '1'
+      run: node --cpu-prof --cpu-prof-dir=qa/resident-registration-trace --cpu-prof-interval=1000 --trace-events-enabled --trace-event-categories=v8,node.fs.async,node.fs.sync,node.perf
+        '--trace-event-file-pattern=qa/resident-registration-trace/node-trace-${pid}.json' --import ./qa/resident-registration-trace/preload.mjs
+        tests/v228-custom-shops-browser.mjs
+    - name: Retain isolated diagnostic evidence
+      if: always()
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      with:
+        name: allocation-candidate-production-windows
+        path: island/qa/resident-registration-trace/
+        if-no-files-found: error
+        retention-days: 3
