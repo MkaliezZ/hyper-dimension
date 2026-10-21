@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {resolve,join} from 'node:path';
+import {dirname,resolve,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 
 const root=resolve(import.meta.dirname,'..');
-const output=resolve(process.env.HD_QA_OUT||'qa/v349/native-business-ledger');await mkdir(output,{recursive:false});
+const output=resolve(process.env.HD_QA_OUT||'qa/v349/native-business-ledger');await mkdir(dirname(output),{recursive:true});await mkdir(output,{recursive:false});
 for(const name of Object.keys(process.env))if(name.startsWith('HD_')||/KEY|TOKEN|SECRET/.test(name))delete process.env[name];
 const load=path=>import(pathToFileURL(join(root,path)));
 const {chromium}=createRequire(join(root,'package.json'))('playwright-core');
