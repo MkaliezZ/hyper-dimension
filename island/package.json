@@ -92,7 +92,8 @@
     "test:player-farm-intent": "node --test tests/v245-player-farm-intent.test.mjs && node tests/v245-player-farm-intent-browser.mjs",
     "test:manual-project-controls-native": "node tests/v331-manual-controls-browser.mjs",
     "test:npc-farm-start-native": "node tests/v332-farm-start-timeout-browser.mjs",
-    "test:foreground-checkpoint-native": "node tests/v333-foreground-checkpoint-browser.mjs"
+    "test:foreground-checkpoint-native": "node tests/v333-foreground-checkpoint-browser.mjs",
+    "test:business-ledger-native": "node tests/v349-business-backdrop-browser.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.63.0"

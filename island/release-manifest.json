@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v348-agent-source",
+  "release": "hyper-dimension-v349-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 141789,
-      "sha256": "64b27fb15356616e41d79d5327e0b69e4d41f0c7a639f3d08a62ad1d0806f36e"
+      "bytes": 142205,
+      "sha256": "88d638468b8f8125d77b5ee90008220c3960e88a87318043ca83b1f325da7181"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19094,
-      "sha256": "ee4400df0b49e6cdb48986832c15f02f824fdd39a11d8eefe708fe32d857af8e"
+      "bytes": 19178,
+      "sha256": "563fb4634ada83f026db170339db21fe0ed38c588d62045d7ca60d9d2128368a"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147610,
-      "sha256": "4ee8ee08092c2d379b2a57c878dc70a81251e687c2b8e56861061a0de8f766f6"
+      "bytes": 147655,
+      "sha256": "e377c3935be7043516b20f72ba48cc89635dca68f9bea5bec369256798a2ebcb"
     },
     {
       "path": "src/arcade.css",
@@ -14659,8 +14659,18 @@
       "path": "docs/save-publication-prefix-v348.md",
       "bytes": 2321,
       "sha256": "404f707b02083aa7388bbe622f2129386b21d514d5eef8b6353ed90b4d3b9775"
+    },
+    {
+      "path": "tests/v349-business-backdrop-browser.mjs",
+      "bytes": 6216,
+      "sha256": "26033ee51987d15151fe212b36dc936c1ce283a900cd5aedcbb865b8a4a55c3a"
+    },
+    {
+      "path": "docs/business-ledger-backdrop-v349.md",
+      "bytes": 1848,
+      "sha256": "178e3b04a7ff412d27e6270d210b96932c6b1a06c605bc4d3c8e2ca3f31e0e06"
     }
   ],
-  "publicRevision": "v348-cache-prefix-publication",
-  "generatedAt": "2026-10-21T07:37:36.001111+00:00"
+  "publicRevision": "v349-business-document-backdrop",
+  "generatedAt": "2026-10-21T09:23:00.158345+00:00"
 }

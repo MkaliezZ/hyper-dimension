@@ -1,0 +1,9 @@
+# V349: responsive business ledger backdrop
+
+The business ledger is an opaque document over a blurred island backdrop. Retain that existing world canvas while the document owns input, as the shelf and project documents already do. Resize still repaints, closing the document resumes world drawing, and simulation, normal work leases, visitors and save receipts continue through the unchanged update path. Indoor games and visible world scenes retain their original rendering.
+
+The V348 Windows content job failed on the first business-button click after the handler had opened the ledger: the original 30-second click acknowledgement expired. The isolated screenshot shows the ledger, and the read-only journal shows a live frame loop with no save conflict or page error. This supports investigating rendering pressure; the exact hosted timeout has not been reproduced on the local GPU.
+
+The targeted baseline observes repeated actual world drawing behind the business document in both styles. The candidate observes retained background pixels, normal game-clock advancement, resize repaint and normal drawing after closing. The original custom-shelf/visitor-sale fixture is unchanged and passes locally in both styles, including native product choice, 32px image decode, narrow layout, real boat/road/service, a paid sale, inventory decrement and reopen persistence. No click timeout, ferry rotation, 150-second service limit, currency, stock, model cadence or gameplay assertion is relaxed.
+
+This change does not close the separate current Intel player-action failure, the current candidate accounting timeout, physical Mac or multi-device validation, real new-player acceptance, OPC trial, or full Goal acceptance. Existing failed artifacts and earlier package evidence are retained. Current hosted recovery requires the new source run to pass.

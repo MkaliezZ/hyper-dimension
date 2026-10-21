@@ -477,6 +477,10 @@ jobs:
 
 
 
+      - name: Native business ledger backdrop and live simulation
+        if: matrix.group == 'content'
+        run: node tests/v349-business-backdrop-browser.mjs
+
       - name: Native custom product shelves and visitor sales
         if: matrix.group == 'content'
         env:

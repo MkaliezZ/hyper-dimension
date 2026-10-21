@@ -1137,3 +1137,8 @@ The candidate runtime passed 1,987 default cases (1,973 + 14), with no failures,
 The client drains the cache prefix present at response arrival and places later captures behind the publication barrier. Existing durable retirement, edit reconciliation and uncertain-request retention remain mandatory. [Publication order and regression boundary](save-publication-prefix-v348.md). Native, hosted, archive, physical-device and human validation are separate evidence; this change does not assert complete acceptance.
 
 The native NPC mining recovery gate measures work from the canonical lease `startedAt` and verifies the exact `readyAt - startedAt` duration. It records HTTP receipt before durable commit and retains the later commit observation separately. Slow disk commit must not create an additional work interval or shorten the original fetch deadline. A real 650 ms observation delay reproduced the previous timing assertion in both styles; the corrected measurement preserves the normal 20-second work, exact request replay and unique material receipt.
+
+
+## V349: business ledger input and retained backdrop
+
+The business ledger retains its blurred world backdrop while simulation and receipts continue. Resize and closing repaint normally. The original custom-shop sales fixture is unchanged. [Scope, negative control and current boundaries](business-ledger-backdrop-v349.md). Current hosted, accounting, archive, physical-device and human acceptance remain separate.
