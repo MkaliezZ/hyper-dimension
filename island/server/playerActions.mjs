@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {validResourceBook,clearResourceState} from './resourceAuthority.mjs';
 import {recordCooperativeWonder,assertWonderState,enableWonderState,syncWonderState,clearWonderState,validWonderBook} from './wonderAuthority.mjs';
 import {validHostingBook} from '../src/partyHosting.js';
@@ -118,6 +119,6 @@ function applyGatherCommandInner(state,book,input,now){
  }
  releaseResources(state,ticket.owner);
  const receipt={ticket,outcome:input.operation==='finish'?'finished':'cancelled',at:now,gain:input.operation==='finish'?{[ticket.item]:ticket.amount}:{},day:state.day};
- book.receipts.push(receipt);book.receipts=book.receipts.slice(-128);book.active=null;
+ appendActionReceipt(book,receipt);book.active=null;
  return {ticket,receipt};
 }

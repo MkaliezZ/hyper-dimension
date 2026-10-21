@@ -1,6 +1,6 @@
 {
-  "schema": 80,
-  "release": "hyper-dimension-v342-agent-source",
+  "schema": 81,
+  "release": "hyper-dimension-v343-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 137404,
-      "sha256": "ae8f06037ed07f26ab33ce9f064babd20b851a1f8abd51d7297986da364f7d79"
+      "bytes": 137711,
+      "sha256": "252089b39a61247e5e81394f134a07f7806bcefca6d9c5d886b8a7ed8bd3f98f"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18531,
-      "sha256": "f13f40872f0392619257a4b3424e0c9bddcab1c5e806eb627d184501e6fffb6c"
+      "bytes": 18574,
+      "sha256": "4a1002d2f6cc90fd6ab3c0313264819e3ecbfb05ca9d5be8f0b40fcce3260406"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6067,18 +6067,18 @@
     },
     {
       "path": "server/commerceActions.mjs",
-      "bytes": 14233,
-      "sha256": "53c227d309ab066cd74f3d6f6c817387c7a139c2143ab293ebd657d6dfdff343"
+      "bytes": 14269,
+      "sha256": "c4675a8e73a267e441586dd2c0537c0dee4a3f3f85566d945e665004c331154f"
     },
     {
       "path": "server/coutureActions.mjs",
-      "bytes": 12224,
-      "sha256": "6f714b0732ccf3e73aa3c96c28fcb8086151eb2f206228170401546396f75c52"
+      "bytes": 12260,
+      "sha256": "660f23e5b56314f220566a1536f1e70cc45d84560c1f42e2618daa0927882128"
     },
     {
       "path": "server/craftActions.mjs",
-      "bytes": 10890,
-      "sha256": "74538148b3ec03996abc755f79ea8a5d528e97dcfc995a88bf6b617d38de4690"
+      "bytes": 10926,
+      "sha256": "1ce4e525818793240af5ca4c789361347568fc49efb7e8c727ee2c0ff1489c40"
     },
     {
       "path": "server/crossIslandTasks.mjs",
@@ -6127,33 +6127,33 @@
     },
     {
       "path": "server/facilityActions.mjs",
-      "bytes": 8353,
-      "sha256": "f1a0afb9aaad718e6c15cd7e37669cb39b34d397570d27fbc2685554527e3b1d"
+      "bytes": 8389,
+      "sha256": "50475f775bbd6a080c7680cca07cb0b0449f1219fa922bb81036e92e143bdc6e"
     },
     {
       "path": "server/farmActions.mjs",
-      "bytes": 19031,
-      "sha256": "2711b8838264902a0fba8f0064203c1fc6434574cebea49955710a92a144cd16"
+      "bytes": 19067,
+      "sha256": "6fbe7df539cd89f1f200f728b2f851a11069aa433e172babaad386afaaf1598f"
     },
     {
       "path": "server/festivalActions.mjs",
-      "bytes": 12219,
-      "sha256": "3d25c8af1c1faa0d746dadbfea9f29983aa5bd8e085df7ca1ff430bfcdc5a889"
+      "bytes": 12255,
+      "sha256": "8b5e7db0d4656ef26b5d0671353e391dde18324a12c41c1c7e090cc786b515b3"
     },
     {
       "path": "server/fieldActions.mjs",
-      "bytes": 14553,
-      "sha256": "f7a19a6377f5dad1e2b1fbea4d8376488ffa6c2fcc0b4db6e4544a52b7a70feb"
+      "bytes": 14589,
+      "sha256": "23f203ea086a03c0b74cdfafa1cf351e97ee9dddf6b299115beac29a557e6761"
     },
     {
       "path": "server/fireworksActions.mjs",
-      "bytes": 13317,
-      "sha256": "a4c7bb9e79b9094134b9940512c3cdee27ea5b89b2a3efde0626a1d146094241"
+      "bytes": 13353,
+      "sha256": "86af92680f856a92a19bed5c384fe143303a24fa9bf325bac9e16c643e067b76"
     },
     {
       "path": "server/fishingActions.mjs",
-      "bytes": 11618,
-      "sha256": "286d40fbcbf1db54667aa0d22b9a79424e78962323e9b88120c689ee71c930d3"
+      "bytes": 11654,
+      "sha256": "3234f3e800781d96274dc68ce4afe3d1c58c8046441156f055e47adac93f003e"
     },
     {
       "path": "server/gameEnvironment.mjs",
@@ -6327,8 +6327,8 @@
     },
     {
       "path": "server/partyActions.mjs",
-      "bytes": 9433,
-      "sha256": "bcd972c1c4df0fb00d706f142ff03d5f87b78d2c970844358d669c61d8214d7c"
+      "bytes": 9469,
+      "sha256": "995685753ed84bf4137931bfa85a994c76573a75d82a5d9fa202c0a94324b414"
     },
     {
       "path": "server/partyHostingActions.mjs",
@@ -6352,8 +6352,8 @@
     },
     {
       "path": "server/personalActions.mjs",
-      "bytes": 8082,
-      "sha256": "0e14878d61b1220fe75bfbb5a3ce04e5fc34cfbd544a6558f382985ec4f39b9a"
+      "bytes": 8118,
+      "sha256": "624702b9733a748c4403c66f9fd45b69704751fd3823d41ea7ed8fa58ccea643"
     },
     {
       "path": "server/planningAuthority.mjs",
@@ -6367,8 +6367,8 @@
     },
     {
       "path": "server/playerActions.mjs",
-      "bytes": 14967,
-      "sha256": "3b4e8adc1c67fc09641ffdf7e8284e3c229917fffa68b7494b0bab677f9733c8"
+      "bytes": 14997,
+      "sha256": "92a857f26a230789b2698b21563cef847c08dd1ecff85973662d03d6d116d8cb"
     },
     {
       "path": "server/portfolioHttp.mjs",
@@ -6407,8 +6407,8 @@
     },
     {
       "path": "server/residentActions.mjs",
-      "bytes": 17203,
-      "sha256": "2ae9cc25566ac24630c5eb1c300583e11cd61a1ecb092f1cb1bff57af5dc29f8"
+      "bytes": 17239,
+      "sha256": "0947f19f776b5676b65332ddfade7052d3ef694399384dcbebd2a6cc6bd5f667"
     },
     {
       "path": "server/residentChatStore.mjs",
@@ -6477,8 +6477,8 @@
     },
     {
       "path": "server/visitorActions.mjs",
-      "bytes": 13693,
-      "sha256": "b1bd43e74b6f82aa2ef47308a57031e47f32c6d25003a48a11b5c1f7b734568a"
+      "bytes": 13729,
+      "sha256": "37eb34d0dd263bf05845fa2967a718adfff28425a81be330f038ccd3c920c341"
     },
     {
       "path": "server/wonderAuthority.mjs",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147233,
-      "sha256": "74ebe09e7fce37f6a38321a5e0e2ffd38ce8ef1e05728d683c798fa9145c9e01"
+      "bytes": 147568,
+      "sha256": "1f2cfc2d37f67a5ca0ba2f5e4ec01fc2530cb35f2e747c1958a66a0413acf291"
     },
     {
       "path": "src/arcade.css",
@@ -14454,8 +14454,33 @@
       "path": "docs/verification-v342.json",
       "bytes": 1699,
       "sha256": "41ee7f4e2f8b06967505cb117edeb1de2d60faedea2aba37a28231ec5049563c"
+    },
+    {
+      "path": "server/actionReceiptHistory.mjs",
+      "bytes": 997,
+      "sha256": "96f24cf8e8fc8732664dad0559e18bf189f050b4c34d23be5f0f1f75936f16d8"
+    },
+    {
+      "path": "tests/v343-task-receipt-retention.test.mjs",
+      "bytes": 5652,
+      "sha256": "788e4eebb74847bf5bff97dcf5cba25ec50b0dad75b5711f3332d42ea05790e2"
+    },
+    {
+      "path": "tests/v343-project-backdrop-browser.mjs",
+      "bytes": 6406,
+      "sha256": "28da59f3a356253a866376cb968846e5575ac89cdc9c7bebcb3e85c284f9cb96"
+    },
+    {
+      "path": "docs/task-receipt-history-v343.md",
+      "bytes": 2532,
+      "sha256": "515eafc2f4d3542ca3a62bbeed2b0e0f14ea14ace4a89e102d7f398fbf40ce30"
+    },
+    {
+      "path": "docs/verification-v343.json",
+      "bytes": 1275,
+      "sha256": "bc2f0bb76c9a53dd6df11b9e9ac8a2ce10fca7dadca5b0b3842fa605eaa31345"
     }
   ],
-  "publicRevision": "v333-foreground-save-generation",
-  "generatedAt": "2026-10-20T22:43:00.723986+00:00"
+  "publicRevision": "v343-assigned-receipt-history",
+  "generatedAt": "2026-10-21T00:35:12.140247+00:00"
 }

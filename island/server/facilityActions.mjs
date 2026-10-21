@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {validPlacements as validLegacyPlacements} from '../src/legacyPlacementValidation.js';
 import {hydrateFunctionalFacilities,functionalCommand,validFunctionalFacilities} from '../src/functionalFacilities.js';
 import {FUNCTIONAL_FACILITIES} from '../src/facilityCatalog.js';
@@ -48,5 +49,5 @@ export function applyFacilityCommand(s,b,i,now){
  if(!details?.ok)throw fail(details?.reason||'设施条件不满足','facility_not_ready');
  if(['load','resume'].includes(i.operation)&&['growing','brewing'].includes(s.functionalFacilities.units[i.displayId]?.phase)){b.facility.productionAt??={};b.facility.productionAt[i.displayId]=now;}for(const id of Object.keys(b.facility.productionAt||{}))if(!s.functionalFacilities.units[id]||s.functionalFacilities.units[id].phase==='idle')delete b.facility.productionAt[id];
  b.sequence=sequence;const ticket={kind:'facility',command:i.operation,item:'facility',requestId:i.requestId,epoch:b.epoch,sequence,signature:signature(i),day:s.day,duration:0,startedAt:now,readyAt:now,expiresAt:now+30*60000};
- const receipt={ticket,outcome:'finished',at:now,day:s.day,text:details.text,cashDelta:s.coins-before.coins,stockDelta:Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before.inventory[id]||0)]).filter(([,n])=>n!==0)),details};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);syncFacilityState(s,b);return {ticket,receipt};
+ const receipt={ticket,outcome:'finished',at:now,day:s.day,text:details.text,cashDelta:s.coins-before.coins,stockDelta:Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before.inventory[id]||0)]).filter(([,n])=>n!==0)),details};appendActionReceipt(b,receipt);syncFacilityState(s,b);return {ticket,receipt};
 }

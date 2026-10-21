@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {configureShopfront,validShopfronts,shopfrontCatalog,validShopfrontCatalog} from '../src/shopfronts.js';
 import {HOSTING_OPERATIONS,hostingSignature,applyHostingManagement} from './partyHostingActions.mjs';
 import {hostingDraft} from '../src/partyHosting.js';
@@ -74,5 +75,5 @@ export function applyCommerceCommand(s,b,i,now){
  if(i.verifiedProposal?.autoHost===true&&i.operation.endsWith('_steward')&&details?.ok&&!details.replayed){const template=i.verifiedProposal.template||'fishing',d=hostingDraft(s,template);const hosting=applyHostingManagement(s,b,{...i,operation:'host_arm',template,eventId:d.id,eventVersion:d.version,eventStamp:partyDraftStamp(d)},{source:'hermes',runId:i.runId,proposalId:i.proposalId});details={...details,hosting,waiting:'已委托管家等待这一版用品与亲自邀请齐备，回到小岛后召集开场；现场小游戏由你操作。'};}
  b.sequence=sequence;const ticket={kind:'commerce',command:i.operation,item:'commerce',requestId:i.requestId,epoch:b.epoch,sequence,signature:signature(i),day:s.day,startedAt:now,readyAt:now,expiresAt:now+30*60*1000,duration:0};
  const receipt={ticket,outcome:'finished',at:now,day:s.day,text,cashDelta:s.coins-before.coins,stockDelta:Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before.inventory[id]||0)]).filter(([,n])=>n!==0)),details:details||null};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);sync(s,b);return {ticket,receipt};
+ appendActionReceipt(b,receipt);sync(s,b);return {ticket,receipt};
 }

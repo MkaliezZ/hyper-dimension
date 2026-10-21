@@ -1100,3 +1100,8 @@ Windows 原生素材检查在开始比较之前，发现按当前源码反推的
 ## V342 · Rejected commands and idle waits
 
 [Progress reconciliation](rejected-command-progress-v342.md) reads independent canonical progress after an explicitly rejected stale command without resubmission or fabricated execution. Conflicting edits and uncertain outcomes remain protected. Idle resident backoffs advance while unrelated persistence settles; normal work authorization and real lease duration remain. The added native IndexedDB/HTTP control preserves the original held lease and zero earned materials. Full default, final local native and hosted successor results are tracked separately; complete delivery remains open.
+
+
+## V343 assigned work receipts and project form
+
+See [bounded receipt history and rendering](task-receipt-history-v343.md) and [verification boundaries](verification-v343.json). Original native work/form time limits and all existing assertions are retained; hosted successor recovery remains unconfirmed.

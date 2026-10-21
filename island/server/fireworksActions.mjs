@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {releaseResources} from '../src/resourceLedger.js';
 import {fireworksTarget} from '../src/fireworksLayout.js';
 import {randomInt,createHash} from 'node:crypto';
@@ -120,5 +121,5 @@ export function applyFireworksCommand(s,b,i,now){
  }else{details=abandonFireworksParty(s);if(!details.ok)throw fail(details.reason,'action_ledger_conflict');outcome='cancelled';text='烟花大会提前结束，实际烟花和主题旗已解除留用；场地费、实际发射烟花、后台茶与已交赠物不退，不发完成收益。';}
  const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;
  const receipt={ticket,outcome,at:now,day:s.day,text,reward:outcome==='finished'?details.reward:0,details};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;b.fireworks.hold=null;delete s.fireworksAttendance;sync(s,b);return{ticket,receipt};
+ appendActionReceipt(b,receipt);b.active=null;b.fireworks.hold=null;delete s.fireworksAttendance;sync(s,b);return{ticket,receipt};
 }

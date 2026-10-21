@@ -445,6 +445,11 @@ jobs:
         timeout-minutes: 3
         run: node tests/v331-manual-controls-browser.mjs
 
+      - name: Native project form retains backdrop without pausing work or input
+        if: matrix.group == 'content'
+        timeout-minutes: 3
+        run: node tests/v343-project-backdrop-browser.mjs
+
       - name: Native custom recipe resident preparation and reopen
         if: matrix.group == 'content'
         env:
@@ -559,6 +564,8 @@ jobs:
             island/qa/v305/native-catalog-refresh/*.png
             island/qa/v224/native-custom-content/report.json
             island/qa/v224/native-custom-content/*.png
+            island/qa/v343/native-project-backdrop/report.json
+            island/qa/v343/native-project-backdrop/work-progress.json
             island/qa/v227/native-custom-agent/report.json
             island/qa/v227/native-custom-agent/work-progress.json
             island/qa/v227/native-custom-agent/*.sample.txt

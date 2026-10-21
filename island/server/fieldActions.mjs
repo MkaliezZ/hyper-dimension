@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomInt,randomUUID,createHash} from 'node:crypto';
@@ -98,5 +99,5 @@ export function applyFieldCommand(s,b,i,now){enableField(s,b,now);assertFieldSta
  if(i.operation==='cancel'&&t.assignmentId){const task=s.agentTaskLedger.find(x=>x.id===t.assignmentId);if(task?.status==='running'&&task.operationId===t.operationId){task.status='queued';delete task.operationId}}
  if(i.operation==='cancel'&&t.storyId)interruptResidentStory(s,t.storyId,t.operationId);
  releaseResources(s,t.owner);if(t.actor==='player')b.active=null;else delete b.field.leases[t.requestId];
- const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;const receipt={ticket,outcome:i.operation==='finish'?'finished':'cancelled',gain,cost:{},quality,strong,text,at:now,day:s.day};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);sync(s,b);return {ticket,receipt};
+ const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;const receipt={ticket,outcome:i.operation==='finish'?'finished':'cancelled',gain,cost:{},quality,strong,text,at:now,day:s.day};appendActionReceipt(b,receipt);sync(s,b);return {ticket,receipt};
 }

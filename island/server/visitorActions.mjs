@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {hydrateTown,TOURISTS,assessIsland,settleVisit,reviewVisit,visitQuote} from '../src/townSimulation.js';
 import {ECONOMY_RULES,effectiveQuality} from '../src/economy.js';
 import {HARBOR_LAYOUTS,BUILDINGS} from '../src/world.js';
@@ -51,7 +52,7 @@ export function visitorReplay(doc,i){
 function ticket(s,b,i,now,extra={}){
  const sequence=++b.sequence;return {kind:'visitor',command:i.operation,item:'visitor',requestId:i.requestId,epoch:b.epoch,sequence,owner:VISITOR_LEASE_PREFIX+b.epoch+':'+sequence,signature:signature(i),day:s.day,startedAt:now,readyAt:now,expiresAt:now+30*60*1000,duration:0,...extra};
 }
-function append(s,b,t,result={},outcome='finished',now){const receipt={ticket:t,outcome,at:now,day:s.day,...result};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);sync(s,b);return {ticket:t,receipt};}
+function append(s,b,t,result={},outcome='finished',now){const receipt={ticket:t,outcome,at:now,day:s.day,...result};appendActionReceipt(b,receipt);sync(s,b);return {ticket:t,receipt};}
 function guest(v,id){const g=v.guests[id];if(!Number.isSafeInteger(id)||!g)throw fail('游客已经离岛或行程不存在','visitor_stale');return g;}
 export function applyVisitorCommand(s,b,i,now){
  if(!idOK(i.requestId))throw fail('游客命令编号无效');if(i.operation==='enable'){enable(s,b,now,(i.appearance||i.theme));return {ticket:null,receipt:null};}

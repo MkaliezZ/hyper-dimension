@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {randomInt,createHash} from 'node:crypto';
 import {hydrateFestival,festivalSnapshot,festivalOwner,createFestivalEvent,updateFestivalEvent,upgradeFestivalEquipment,inviteFestivalNpc,createFestivalPlan,cancelFestivalDraft,startFestivalParty,finishFestivalParty,abandonFestivalParty,archiveFestivalParty,validFestivalParty} from '../src/festivalParty.js';
 import {partyDraftStamp} from '../src/partyPlanning.js';
@@ -120,5 +121,5 @@ export function applyFestivalCommand(s,b,i,now){
  }else{details=abandonFestivalParty(s);if(!details.ok)throw fail(details.reason,'action_ledger_conflict');outcome='cancelled';text='集市已收摊，未售商品退回；已售商品和场地费不退，本场不发完成收益。';}
  const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;
  const receipt={ticket,outcome,at:now,day:s.day,text,reward:outcome==='finished'?details.reward:0,details};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;b.festival.hold=null;delete s.festivalAttendance;sync(s,b);return{ticket,receipt};
+ appendActionReceipt(b,receipt);b.active=null;b.festival.hold=null;delete s.festivalAttendance;sync(s,b);return{ticket,receipt};
 }

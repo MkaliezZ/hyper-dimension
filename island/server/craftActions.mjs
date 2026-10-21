@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {recipeContract,acceptedRecipe,validAcceptedRecipe} from '../src/recipeContracts.js';
 import {randomInt,createHash} from 'node:crypto';
 import {RECIPE_BY_ID,catalogRecipe,canCraft,recipeGate,hydrateContent,takeCraftNutrition} from '../src/contentCatalog.js';
@@ -113,5 +114,5 @@ export function applyCraftCommand(s,b,input,now){
  releaseResources(s,t.owner);if(outcome==='cancelled')returnProjectHold(s,t);
  const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;
  const receipt={ticket,outcome,gain,cost:outcome==='finished'?{...acceptedRecipe(t).cost}:{},quality,resourceReceiptId,at:now,day:s.day};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;return {ticket,receipt};
+ appendActionReceipt(b,receipt);b.active=null;return {ticket,receipt};
 }

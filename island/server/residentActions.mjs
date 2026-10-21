@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {recipeContract,acceptedRecipe,validAcceptedRecipe} from '../src/recipeContracts.js';
 import {routineFor} from '../src/residentLife.js';
 import {customProductionOptions} from '../src/customProduction.js';
@@ -112,5 +113,5 @@ export function applyResidentCommand(s,b,i,now){
   if(t.storyId){const story=recordResidentStoryWork(s,t.storyId,t.actorId,t.operationId);storyResolved=story.ok&&story.episode.status==='resolved';}
  }else{if(t.assignmentId){const task=s.agentTaskLedger.find(x=>x.id===t.assignmentId);if(task?.status==='running'&&task.operationId===t.operationId){task.status='queued';delete task.operationId;}}if(t.storyId)interruptResidentStory(s,t.storyId,t.operationId);}
  releaseResources(s,t.owner);if(i.operation==='cancel')returnTransfer(s,t);delete b.resident.leases[t.requestId];
- const receipt={ticket:{...t},outcome:i.operation==='finish'?'finished':'cancelled',gain:Object.fromEntries(Object.entries(delta).filter(([,n])=>n>0)),cost:Object.fromEntries(Object.entries(delta).filter(([,n])=>n<0).map(([id,n])=>[id,-n])),text,storyResolved,at:now,day:s.day};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);sync(s,b);return {ticket:receipt.ticket,receipt};
+ const receipt={ticket:{...t},outcome:i.operation==='finish'?'finished':'cancelled',gain:Object.fromEntries(Object.entries(delta).filter(([,n])=>n>0)),cost:Object.fromEntries(Object.entries(delta).filter(([,n])=>n<0).map(([id,n])=>[id,-n])),text,storyResolved,at:now,day:s.day};appendActionReceipt(b,receipt);sync(s,b);return {ticket:receipt.ticket,receipt};
 }

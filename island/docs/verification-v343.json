@@ -1,0 +1,40 @@
+{
+  "version": "V343",
+  "basePublicCommit": "4bca0cf0dfdaf31cb7b78582fa1f031e6b95db23",
+  "failedRun": 39516929302,
+  "failedJobs": [
+    118954185916,
+    118954186262
+  ],
+  "failedLogsAndArtifactsRetainedLocally": true,
+  "actionReceiptLimitUnchanged": 128,
+  "assignedCompletionReserve": 64,
+  "taskCompletionReconstruction": false,
+  "newDefaultCases": 6,
+  "fullDefaultPending": false,
+  "originalNativeAssertionsAndBudgetsUnchanged": true,
+  "simulationClockAndWorkLeasesUnchanged": true,
+  "worldResolutionUnchanged": true,
+  "newNativeFormControlPending": false,
+  "originalNativeRegressionsPending": false,
+  "hostedSuccessorRecoveryConfirmed": false,
+  "privateGraphicsCandidateIncluded": false,
+  "fourMapRefreshStallResolved": false,
+  "userServiceRestarted": false,
+  "newArchiveSealed": false,
+  "newVideoDelivered": false,
+  "humanAcceptanceComplete": false,
+  "wholeGoalComplete": false,
+  "completedAt": "2026-10-21T00:35:12.140247+00:00",
+  "fullDefaultPassed": 1817,
+  "fullDefaultCounts": [
+    1803,
+    14
+  ],
+  "noDefaultFailuresSkipsOrCancellations": true,
+  "finalNativeCasesPassed": 6,
+  "finalRuntimeSourceVerifiedBeforeAndAfter": true,
+  "firstDefaultAlsoPassed": 1817,
+  "firstNativeAlsoPassed": 6,
+  "formattingOnlyFinalPassRepeated": true
+}

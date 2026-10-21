@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {recordResidentStoryWork,interruptResidentStory} from '../src/residentStories.js';
 import {cooperationWorkAuthorized,cooperationFarmAvailable,bindCooperationPlot,releaseCooperationPlotToPlayer} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
@@ -152,5 +153,5 @@ export function applyFarmCommand(s,b,input,now){
  if(input.operation==='cancel'&&t.storyId)interruptResidentStory(s,t.storyId,t.operationId);
  releaseResources(s,t.owner);releaseTaskHold(s,t,input.operation==='cancel');
  const receipt={ticket:t,outcome:input.operation==='finish'?'finished':'cancelled',at:now,day:s.day,gain,cost,text};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);if(t.actor==='player')b.active=null;else delete f.leases[t.requestId];sync(s,b);return {ticket:t,receipt};
+ appendActionReceipt(b,receipt);if(t.actor==='player')b.active=null;else delete f.leases[t.requestId];sync(s,b);return {ticket:t,receipt};
 }

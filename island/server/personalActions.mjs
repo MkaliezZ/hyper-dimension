@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {AVATAR_BY_ID} from '../src/avatarCatalog.js';
 import {createHash} from 'node:crypto';
 import {evaluateHomeActivity} from '../src/homeActivities.js';
@@ -66,5 +67,5 @@ export function applyPersonalCommand(s,b,i,now){
  if(!details?.ok)throw fail(details?.text||details?.reason||'操作条件尚未满足','personal_unavailable');
  const sequence=++b.sequence,ticket={kind:'personal',command:i.operation,item:'personal',requestId:i.requestId,epoch:b.epoch,sequence,signature:signature(i),day:s.day,duration:0,startedAt:now,readyAt:now,expiresAt:now+1800000};
  const receipt={ticket,outcome:'finished',at:now,day:s.day,text:details.text,cashDelta:s.coins-before.coins,stockDelta:Object.fromEntries(Object.entries(s.inventory).map(([id,n])=>[id,n-(before.inventory[id]||0)]).filter(([,n])=>n!==0)),details};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);syncPersonalState(s,b);return {ticket,receipt};
+ appendActionReceipt(b,receipt);syncPersonalState(s,b);return {ticket,receipt};
 }

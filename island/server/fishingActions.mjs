@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 
 import {randomInt,createHash} from 'node:crypto';
 import {createFishingMatch} from '../src/fishingRules.js';
@@ -65,5 +66,5 @@ export function applyFishingCommand(s,b,i,now){
  if(!['finish','cancel'].includes(i.operation))throw fail('不支持的比赛操作');let details=null,text='比赛中止，开场用品已投入，钓具和海风旗已解除预留。',outcome='cancelled';
  if(i.operation==='finish'){if(g.phase!=='running'||t.game.match.phase!=='results')throw fail('六竿比赛尚未完成','fishing_unfinished');if(now<t.readyAt)throw fail('颁奖动作尚未完成','action_early');if(now>t.expiresAt)throw fail('比赛已过期，可以结束本场','action_expired');details=finishFishingParty(s);if(!details.ok||details.replayed)throw fail(details.reason||'奖励账本不一致','action_ledger_conflict');trackJourney(s,'party',{kind:'fishing',eventId:g.id});text='钓鱼大会完成，'+details.result.raw+'分，获得 '+details.reward+' 岛币。';outcome='finished';}
  else abandonFishingParty(s);
- const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;const receipt={ticket,outcome,at:now,day:s.day,text,reward:details?.reward||0,details};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;b.fishing.hold=null;delete s.fishingAttendance;sync(s,b);return{ticket,receipt};
+ const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;const receipt={ticket,outcome,at:now,day:s.day,text,reward:details?.reward||0,details};appendActionReceipt(b,receipt);b.active=null;b.fishing.hold=null;delete s.fishingAttendance;sync(s,b);return{ticket,receipt};
 }

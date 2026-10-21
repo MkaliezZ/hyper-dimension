@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {coutureTarget} from '../src/coutureLayout.js';
 import {randomInt,createHash} from 'node:crypto';
 import {hydrateCouture,coutureSnapshot,coutureOwner,createCoutureEvent,updateCoutureEvent,inviteCoutureNpc,createCouturePlan,cancelCoutureDraft,startCoutureParty,finishCoutureParty,abandonCoutureParty,archiveCoutureParty,validCoutureParty} from '../src/coutureParty.js';
@@ -120,5 +121,5 @@ export function applyCoutureCommand(s,b,i,now){
  }else{details=abandonCoutureParty(s);if(!details.ok)throw fail(details.reason,'action_ledger_conflict');outcome='cancelled';text='穿搭大会提前结束，实际服装和主题旗已解除留用；场地费、修整纤维、后台茶与已交赠物不退，不发完成收益。';}
  const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;
  const receipt={ticket,outcome,at:now,day:s.day,text,reward:outcome==='finished'?details.reward:0,details};
- b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;b.couture.hold=null;delete s.coutureAttendance;sync(s,b);return{ticket,receipt};
+ appendActionReceipt(b,receipt);b.active=null;b.couture.hold=null;delete s.coutureAttendance;sync(s,b);return{ticket,receipt};
 }

@@ -1,3 +1,4 @@
+import {appendActionReceipt} from './actionReceiptHistory.mjs';
 import {captureCooperation} from '../src/cooperationEvidence.js';
 import {awardNightCooperation} from '../src/eventWonders.js';
 import{assertNightPlanning,syncNightPlanning,checkNightEvent}from'./nightPlanningActions.mjs';
@@ -63,5 +64,5 @@ export function applyPartyCommand(s,b,i,now){
  }
  completeNightDraft(s,t,outcome,reward,t.game.score);
  if(outcome==='finished')awardNightCooperation(s,{...(t.design||{}),id:t.eventId,eventId:t.eventId,template:'night',entryReceiptId:t.entryReceiptId,outfit:t.outfit,fireworks:t.fireworks,phase:'finished',endedDay:s.day,paid:reward,score:t.game.score});
- const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;const receipt={ticket,outcome,at:now,day:s.day,reward,score:t.game.score,text};b.receipts.push(receipt);b.receipts=b.receipts.slice(-128);b.active=null;delete s.nightAttendance;sync(s,b);return {ticket,receipt};
+ const ticket={...t};delete ticket.game;delete ticket.lastBatchHash;const receipt={ticket,outcome,at:now,day:s.day,reward,score:t.game.score,text};appendActionReceipt(b,receipt);b.active=null;delete s.nightAttendance;sync(s,b);return {ticket,receipt};
 }
