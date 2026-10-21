@@ -669,6 +669,7 @@ jobs:
             island/qa/v276/native-cash/*.png
             island/qa/v314/manual-save-feedback/report.json
             island/qa/v159/native-soil-care/report.json
+            island/qa/v159/native-soil-care/work-progress.json
             island/qa/v159/native-soil-care/*.png
             island/qa/v179/navigation-arrival/report.json
             island/qa/v179/navigation-arrival/*.png

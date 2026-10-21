@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 139107,
-      "sha256": "e1204b99bee83cadff5f43f7c5c2f4092a2b4ec9fd1b6c0b4389909a348db674"
+      "bytes": 139942,
+      "sha256": "e098c649b8e2543570b3ea98c4ec9cfaac4e0b2014302baa484fadafb60980a5"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9192,8 +9192,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 16183,
-      "sha256": "8de6896995421003a3ea6de808b0299c167bf33defaeaf345dd10812a9fc8abc"
+      "bytes": 17810,
+      "sha256": "8d77b7ca65cffc5d6d3e5e3984a85437b0d2f1af8b8f6f2ff84e9efbcb0d9b83"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -14467,8 +14467,8 @@
     },
     {
       "path": "tests/v343-project-backdrop-browser.mjs",
-      "bytes": 6406,
-      "sha256": "28da59f3a356253a866376cb968846e5575ac89cdc9c7bebcb3e85c284f9cb96"
+      "bytes": 6998,
+      "sha256": "c7e561297681f2d6152ebf4a5c2c224d984ada835db95753b64a6144a3f009e3"
     },
     {
       "path": "docs/task-receipt-history-v343.md",
@@ -14522,5 +14522,5 @@
     }
   ],
   "publicRevision": "v346-acknowledged-save-publication",
-  "generatedAt": "2026-10-21T03:21:55.510386+00:00"
+  "generatedAt": "2026-10-21T04:48:49.683742+00:00"
 }

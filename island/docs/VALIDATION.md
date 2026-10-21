@@ -1120,3 +1120,7 @@ See [assignment progress while peers save](queued-assignment-progress-v345.md) a
 ## V346 acknowledged progress publication
 
 See [save publication](save-publication-v346.md) and [verification](verification-v346.json). Native recovery and hosted outcomes are reported separately from the deterministic publication regression.
+
+## Hosted native observations after V346
+
+The latest V346 run retained two unresolved native observations: macOS 14 reached both mature-crop screenshots but its soil-care command did not finish before the original 45-minute job limit; Intel macOS failed the unchanged four-frame progress assertion during the original 1,200 ms project-form observation. Neither is a confirmed runtime repair. Soil-care now persists host-only stage and cleanup checkpoints without page/Worker polling, and the project-form report retains its before/after frame counts and read-only long-task observations before asserting. All original gameplay assertions, growth duration, dimensions and timeout values remain unchanged. CI retains the incremental soil-care report even if browser reads or cleanup stop responding. README and user data are unchanged.
