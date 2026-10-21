@@ -10,28 +10,45 @@ const liveOwnerProcesses=new Set();
 const fail=(message,code,status=409)=>Object.assign(Error(message),{code,status});
 const clone=structuredClone,hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 export function createOwnerRuntime({directory,ownerId,islandDirectory=directory,documentRoot}){
- const documents=documentRoot?resolve(documentRoot):resolve(directory,'documents'),pending=new Map();let child=null,serial=0,idle=null,closed=false;
- async function start(){
-  if(closed)throw fail('管家运行端已停止','lan_agent_closed',503);
-  if(child)return child;
-  await mkdir(documents,{recursive:true});
-  if(child)return child;
-  if(liveOwnerProcesses.size>=4)throw fail('四位岛主的管家运行端正在使用中，请稍后再试','lan_agent_capacity',503);
-  child=fork(resolve(root,'server/lanAgentWorker.mjs'),[],{cwd:root,windowsHide:true,stdio:['ignore','ignore','ignore','ipc'],env:{...process.env,
-   HD_SAVE_DIR:islandDirectory,HD_RUN_LEDGER_DIR:resolve(directory,'runs'),HD_ARTIFACT_DIR:resolve(directory,'artifacts'),
-   HD_HERMES_HOME:resolve(directory,'hermes'),HD_STEWARD_WORKDIR:documents,TERMINAL_CWD:documents,HD_DOCUMENT_ROOT:documents,HD_AGENT_OWNER:ownerId}});
-  const proc=child;liveOwnerProcesses.add(proc);
-  proc.on('message',r=>{const w=pending.get(r.id);if(!w)return;pending.delete(r.id);clearTimeout(w.timer);r.error?w.reject(Object.assign(fail(r.error.message,r.error.code||'lan_agent_runtime',r.error.status||503),{retryAfter:r.error.retryAfter||0})):w.accept(r.value);scheduleIdle();});
-  const gone=()=>{liveOwnerProcesses.delete(proc);if(child===proc)child=null;for(const w of pending.values()){clearTimeout(w.timer);w.reject(fail('管家执行端断开，结果尚未确认，请先检查文档成果','lan_agent_interrupted',503));}pending.clear();};
-  proc.once('exit',gone);proc.once('error',gone);return proc;
+ const documents=documentRoot?resolve(documentRoot):resolve(directory,'documents'),pending=new Map();let child=null,serial=0,idle=null,closed=false,retirement=null,closingPromise=null;
+ function retire(proc){
+  if(retirement?.proc===proc)return retirement.promise;
+  if(!liveOwnerProcesses.has(proc))return Promise.resolve();
+  let resolveRetired;const promise=new Promise(resolve=>resolveRetired=resolve);retirement={proc,promise,resolve:resolveRetired};
+  // A close message makes the worker stop accepting requests before it exits.
+  // Keep its capacity slot and wait for actual exit; never reuse or replay it.
+  if(proc.connected)proc.send({method:'close'},()=>{});
+  return promise;
  }
- function scheduleIdle(){clearTimeout(idle);if(!pending.size)idle=setTimeout(()=>{if(!pending.size&&child?.connected)child.send({method:'close'});},180000).unref();}
+ async function start(id){
+  for(;;){
+   if(closed)throw fail('管家运行端已停止','lan_agent_closed',503);
+   if(!pending.has(id))return null;
+   if(retirement){await retirement.promise;continue;}
+   if(child){if(child.connected)return child;await retire(child);continue;}
+   await mkdir(documents,{recursive:true});
+   if(closed)throw fail('管家运行端已停止','lan_agent_closed',503);
+   if(!pending.has(id))return null;
+   if(child||retirement)continue;
+   if(liveOwnerProcesses.size>=4)throw fail('四位岛主的管家运行端正在使用中，请稍后再试','lan_agent_capacity',503);
+   const proc=child=fork(resolve(root,'server/lanAgentWorker.mjs'),[],{cwd:root,windowsHide:true,stdio:['ignore','ignore','ignore','ipc'],env:{...process.env,
+    HD_SAVE_DIR:islandDirectory,HD_RUN_LEDGER_DIR:resolve(directory,'runs'),HD_ARTIFACT_DIR:resolve(directory,'artifacts'),
+    HD_HERMES_HOME:resolve(directory,'hermes'),HD_STEWARD_WORKDIR:documents,TERMINAL_CWD:documents,HD_DOCUMENT_ROOT:documents,HD_AGENT_OWNER:ownerId}});
+   liveOwnerProcesses.add(proc);let exited=false;
+   proc.on('message',r=>{const w=pending.get(r.id);if(w?.proc!==proc)return;pending.delete(r.id);clearTimeout(w.timer);r.error?w.reject(Object.assign(fail(r.error.message,r.error.code||'lan_agent_runtime',r.error.status||503),{retryAfter:r.error.retryAfter||0})):w.accept(r.value);scheduleIdle(proc);});
+   const interrupt=()=>{for(const[id,w]of pending)if(w.proc===proc){pending.delete(id);clearTimeout(w.timer);w.reject(fail('管家执行端断开，结果尚未确认，请先检查文档成果','lan_agent_interrupted',503));}};
+   const gone=()=>{if(exited)return;exited=true;liveOwnerProcesses.delete(proc);if(child===proc)child=null;interrupt();if(retirement?.proc===proc){const retired=retirement;retirement=null;retired.resolve();}};
+   proc.once('exit',gone);proc.once('error',()=>{if(exited)return;interrupt();if(!proc.pid)gone();else void retire(proc);});return proc;
+  }
+ }
+ function scheduleIdle(proc){clearTimeout(idle);if(!closed&&!pending.size&&child===proc&&!retirement)idle=setTimeout(()=>{if(!pending.size&&child===proc)void retire(proc);},180000).unref();}
  return{
-  async call(method,args={}){clearTimeout(idle);const proc=await start(),id=++serial;return new Promise((accept,reject)=>{
-   const timer=setTimeout(()=>{pending.delete(id);reject(fail('管家请求超时，执行结果尚未确认','lan_agent_timeout',503));if(proc.connected)proc.send({method:'close'});},260000);
-   pending.set(id,{accept,reject,timer});proc.send({id,method,args},e=>{if(e){clearTimeout(timer);pending.delete(id);reject(e)}});
+  call(method,args={}){clearTimeout(idle);const id=++serial;return new Promise((accept,reject)=>{
+   const w={accept,reject,proc:null,timer:null};pending.set(id,w);
+   w.timer=setTimeout(()=>{pending.delete(id);reject(fail('管家请求超时，执行结果尚未确认','lan_agent_timeout',503));if(w.proc)void retire(w.proc);},260000);
+   void(async()=>{for(;;){const proc=await start(id);if(!proc||pending.get(id)!==w)return;if(child!==proc||retirement||!proc.connected)continue;w.proc=proc;proc.send({id,method,args},e=>{if(e&&pending.get(id)===w){clearTimeout(w.timer);pending.delete(id);reject(e);void retire(proc);}});return;}})().catch(e=>{if(pending.get(id)===w){pending.delete(id);clearTimeout(w.timer);reject(e);if(w.proc)void retire(w.proc);}});
   });},
-  async close(){closed=true;clearTimeout(idle);if(!child)return;const proc=child;await new Promise(r=>{proc.once('exit',r);proc.once('error',r);if(proc.connected)proc.send({method:'close'});else r();});},
+  close(){if(closingPromise)return closingPromise;closed=true;clearTimeout(idle);for(const[id,w]of pending)if(!w.proc){pending.delete(id);clearTimeout(w.timer);w.reject(fail('管家运行端已停止','lan_agent_closed',503));}return closingPromise=child?retire(child):Promise.resolve();},
   documents
  };
 }

@@ -1147,3 +1147,12 @@ The business ledger retains its blurred world backdrop while simulation and rece
 ## V350: awaited native checkpoint receipt observation
 
 The checkpoint-reload fixture now awaits the actual trial-finish HTTP response and its asynchronous JSON observation before checking the recorded receipt. All prior assertions remain, including the original50second gameplay loop,12second accepted-checkpoint observation, canonical run identity, quality, unique settlement and material/currency conservation. Game code, network responses and clocks are unchanged. A250msdelay confined to the diagnostic response observer reproduces the old reporting race after canonical completion; the corrected fixture passes that delayed control in both styles. Failed candidate reports remain retained; complete archive, hosted, physical-device and human acceptance remain separate.
+
+
+## V351: owner worker retirement and autonomous visitor checkpoints
+
+管家闲置180秒后开始退出的工作进程不再接收新请求；新请求等待该进程真正退出后才建立新执行端。保留四进程容量和原260秒请求期限，真正中断的文档工作仍保持待确认，不自动重做。自动游客到港资格检查放在同一笔队列事务的保存确认之后，不再建立阻塞手动委托的独立屏障。当前权威到港时刻、原编号重试、材料和货币权限保持不变。
+
+Old-code negative controls reproduce both races. The current lifecycle contracts pass on Node22 and Node24; related bridge/receipt/shutdown checks pass. Native Worker/IndexedDB/SaveStore controls pass both styles, including rejection of an early ferry without creating an uncertain command. The unchanged native three-task fixture passes both styles with its original30second registration,120second first-task and240second remaining working-time budgets, mid-chain reload and empty-browser reopen. These are isolated automated checks, not physical-device or human acceptance.
+
+The prior V350 archive passed22 independent installation checks but failed its full four-map restart/return ledger request. That failed candidate remains retained; a current replacement archive and full four-map qualification are not yet accepted. The current hosted Windows resident-work failure requires a successor result before recovery can be claimed. Natural acceptance remains20minutes per style; OPC and actual new-player sessions remain separate.

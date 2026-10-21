@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v350-agent-source",
+  "release": "hyper-dimension-v351-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 142983,
-      "sha256": "bf3613739af311ceed522f4a8fc71bfc88344cc510a82a70dc43058ba811542b"
+      "bytes": 144548,
+      "sha256": "c0d1b0a5f55e102142ea6bcaf0f61346dc1ec65abc14155660118f13772e94a3"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19178,
-      "sha256": "563fb4634ada83f026db170339db21fe0ed38c588d62045d7ca60d9d2128368a"
+      "bytes": 19215,
+      "sha256": "f9ef4b18df8fb8ddccf3459f6bac0b2c61f216b887cf46ee5e9130c53388cfa1"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6202,8 +6202,8 @@
     },
     {
       "path": "server/lanAgentService.mjs",
-      "bytes": 18415,
-      "sha256": "e8a3fb7163f7c8d05b725ff07542fe9e73f46fd6e56d7962e49e984c573020fc"
+      "bytes": 19938,
+      "sha256": "0966e3470987715e8139647c0ed1d5e8625db7d47e04cf74919624e9809fc7cf"
     },
     {
       "path": "server/lanAgentWorker.mjs",
@@ -8067,8 +8067,8 @@
     },
     {
       "path": "src/serverVisitorUI.js",
-      "bytes": 3346,
-      "sha256": "201e6f63af2c9468600f0496a9066d7e19fd78d9ef9b9b22ffda6986c34f5533"
+      "bytes": 3656,
+      "sha256": "7eebe338607a227887b66d1d4dd40d06691d7ee65a1e66f1c1da0b211789a223"
     },
     {
       "path": "src/shopfront-v113.css",
@@ -14669,8 +14669,18 @@
       "path": "docs/business-ledger-backdrop-v349.md",
       "bytes": 1848,
       "sha256": "178e3b04a7ff412d27e6270d210b96932c6b1a06c605bc4d3c8e2ca3f31e0e06"
+    },
+    {
+      "path": "tests/v351-owner-retirement.test.mjs",
+      "bytes": 7042,
+      "sha256": "ae43947e66e530d66a7e00eaea103c79f675a6e8959dc61ae446bc23442e2279"
+    },
+    {
+      "path": "tests/v351-visitor-checkpoint-browser.mjs",
+      "bytes": 7322,
+      "sha256": "7df5d8513434cf7a85039fd8819af9d8da7bc21acd522ea1d9b80ff1db9e5d1c"
     }
   ],
-  "publicRevision": "v350-native-checkpoint-receipt-observation",
-  "generatedAt": "2026-10-21T11:04:27.515007+00:00"
+  "publicRevision": "v351-owner-retirement-visitor-checkpoint",
+  "generatedAt": "2026-10-21T12:15:03.715759+00:00"
 }

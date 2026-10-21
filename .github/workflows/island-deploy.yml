@@ -728,6 +728,9 @@ jobs:
         env:
           HD_QA_WORK_JOURNAL: "1"
         run: node tests/v213-task-chain-browser.mjs
+      - name: Native user checkpoint through autonomous ferry queue
+        run: node tests/v351-visitor-checkpoint-browser.mjs
+        timeout-minutes: 2
       - name: Native recruited partner food and task continuation
         run: node tests/v253-partner-self-care-browser.mjs
         timeout-minutes: 8
@@ -743,6 +746,8 @@ jobs:
             island/qa/v213/native-task-chains/work-progress.json
             island/qa/v213/native-task-chains/*.sample.txt
             island/qa/v213/native-task-chains/*.png
+            island/qa/v351/visitor-checkpoint/report.json
+            island/qa/v351/visitor-checkpoint/*-failure.png
             island/qa/v218/native-save-lock/report.json
             island/qa/v218/native-save-lock/*.png
             island/qa/v253/native-partner-self-care/report.json
