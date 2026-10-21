@@ -1116,3 +1116,7 @@ The shipped loader and doctor accept the corrected source manifest. All 1,820 de
 ## V345 queued assignment progress
 
 See [assignment progress while peers save](queued-assignment-progress-v345.md) and [verification](verification-v345.json). The original native task budgets and authoritative completion policy remain unchanged. Hosted recovery is unconfirmed.
+
+## V346 acknowledged progress publication
+
+See [save publication](save-publication-v346.md) and [verification](verification-v346.json). Native recovery and hosted outcomes are reported separately from the deterministic publication regression.

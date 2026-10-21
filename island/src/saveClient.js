@@ -26,7 +26,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  const record=theme=>{if(!sessions.has(theme))sessions.set(theme,{theme,state:null,version:null,dirty:false,inflight:null,timer:null,status:'loading',message:'正在读取服务端存档',updatedAt:'',generation:0});return sessions.get(theme)};
  async function reconcile(r,base,remote,path){
   r.reconciling=true;for(;;){
-   const cached=await cache(r),generation=cached.generation,current=cached.state;
+   const cached=r.publishingRequest?await capturePublication(r):await cache(r),generation=cached.generation,current=cached.state;
    // The durable snapshot is already isolated. Send its text instead of making
    // another synchronous clone of the live game state on every receipt.
    const result=await journal.reconcile(base,cached.serialized,remote.encoded||remote.state,path,current);
@@ -65,6 +65,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  function cache(r){
   clearTimeout(r.cacheTimer);r.cacheTimer=null;
   const run=async()=>{
+   while(r.publicationBarrier)await r.publicationBarrier;
    // enqueue marks every progress change; reuse only a journal already committed for
    // this exact state, generation and server version. Receipts invalidate the memo.
    const memo=r.cachedSnapshot;if(memo&&memo.state===r.state&&memo.generation===r.generation&&memo.version===r.version&&memo.dirty===r.dirty)return memo;
@@ -118,11 +119,49 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
    return data;
   }
  }
- async function remember(r,doc){
-  await yieldFrame();
+ function remember(r,doc){
   r.refreshReadFailed=false;
   r.remoteEncoded=doc.encoded||null;r.remoteVersion=doc.version;r.version=doc.version;r.updatedAt=doc.updatedAt;r.actions=doc.actions||null;r.provenance=doc.provenance||null;r.remoteState=doc.encoded?null:structuredClone(doc.state);
   try{localStorage.setItem(metaKey(r.theme),JSON.stringify({version:r.version,updatedAt:r.updatedAt}))}catch{}
+ }
+ // Capture publication input without overwriting an already acknowledged durable
+ // snapshot while the IDB commit and a new local edit overlap.
+ async function capturePublication(r){
+  for(;;){
+   const state=r.state,generation=r.generation;
+   try{const serialized=await journal.encodeSnapshot(state,r.theme+':publication-input:'+state.saveSlot,{isCurrent:()=>state===r.state&&generation===r.generation});
+    if(state===r.state&&generation===r.generation)return {state,generation,serialized};
+   }catch(error){if(error.code!=='snapshot_retry')throw error;}
+  }
+ }
+ // Publish one acknowledged state/version only after durable retirement. Local
+ // edits use the new baseline in the same transaction as the outgoing deletion.
+ async function publishAcknowledged(r,doc,base,path,retireKeys){
+  const requests=retireKeys.filter(key=>key!==pendingKey(r.theme)).map(key=>[key,journal.serialized(key)]).filter(([,value])=>value!=null);
+  let prior;do{prior=r.cacheTail;if(prior)await prior;}while(prior!==r.cacheTail);
+  let releasePublication;r.publicationBarrier=new Promise(resolve=>{releasePublication=resolve;});
+  r.publishingRequest=requests;let result,retiring=false;
+  try{
+   for(;;){
+    result=await reconcile(r,base,doc,path);const current=r.state;
+    const serialized=result.dirty?await journal.encodeSnapshot(result.state,r.theme+':publication-result:'+result.state.saveSlot):null;
+    if(current!==r.state||result.generation!==r.generation)continue;
+    const savedAt=new Date().toISOString(),changes=retireKeys.map(key=>[key,null]);
+    if(serialized){
+     const baseline=doc.encoded||JSON.stringify({document:{version:doc.version,state:doc.state}});
+     changes.push([activeSaveKey(r.theme),serialized],[pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(doc.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(savedAt)+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+baseline+'}']);
+    }
+    retiring=true;await journal.commit(changes);
+    // IDB cleanup yields; repeat the merge for edits made during the commit.
+    if(current===r.state&&result.generation===r.generation)break;
+   }
+  }catch(error){
+   // Preserve the exact original request on failed cleanup or a new overlap.
+   if(retiring&&requests.length)await journal.commit(requests);
+   throw error;
+  }finally{r.publishingRequest=null;r.publicationBarrier=null;releasePublication();}
+  remember(r,doc);r.state=result.state;r.dirty=result.dirty||r.generation!==result.generation;
+  onRemoteState(r.theme,r.state);return result;
  }
  const hasCommand=theme=>{try{return journal.has(commandKey(theme))}catch{return false}};
  function schedule(r,delay=5000){
@@ -269,8 +308,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     const body=auto?.body||{expectedVersion:r.version,clientId};
     const encoded=auto&&!newAuto?undefined:'{"state":'+cached.serialized+',"expectedVersion":'+JSON.stringify(r.version)+',"clientId":'+JSON.stringify(clientId)+(auto?',"saveId":'+JSON.stringify(auto.body.saveId)+',"activeSeconds":'+auto.body.activeSeconds:'')+'}';
     const {document:doc}=await request(theme,'save',body,encoded,true);
-    let merged;if(farm){merged=await reconcile(r,journal.serialized(autosaveKey(theme)),doc,'body.state');r.state=merged.state;onRemoteState(theme,r.state);await forget(autosaveKey(theme));}
-    await remember(r,doc);r.dirty=farm?merged.dirty||r.generation!==merged.generation:r.generation!==generation;
+    let merged;if(farm)merged=await publishAcknowledged(r,doc,journal.serialized(autosaveKey(theme)),'body.state',[autosaveKey(theme),pendingKey(theme)]);
+    else remember(r,doc);r.dirty=farm?merged.dirty||r.generation!==merged.generation:r.generation!==generation;
     if(!r.dirty)await forget(pendingKey(theme));
     await cache(r);
     // A replayed older autosave did not send this capture's later edits.
@@ -376,9 +415,8 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
   r.commandSending=true;clearTimeout(r.timer);r.timer=null;status(r,'saving','正在核对作业');
   try{
    const response=await request(theme,'action',envelope.body,undefined,true),doc=response.document;
-   const result=await reconcile(r,journal.serialized(commandKey(theme)),doc,basePath),merged=result.state;
-   r.state=merged;onRemoteState(theme,r.state);await remember(r,doc);r.dirty=result.dirty||r.generation!==result.generation;
-   await forget(commandKey(theme));await forget(pendingKey(theme));await cache(r);
+   const result=await publishAcknowledged(r,doc,journal.serialized(commandKey(theme)),basePath,[commandKey(theme),pendingKey(theme)]);
+   r.dirty=result.dirty||r.generation!==result.generation;await cache(r);
    status(r,r.dirty?'pending':'saved','作业已保存到本机服务');// Controllers may resume after another local change; never republish the earlier snapshot.
    return {...response,get state(){return r.state;}};
   }catch(error){
@@ -532,6 +570,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
 
  function suspend(){for(const r of sessions.values())if(r.dirty&&!r.recovering&&!r.previewLock&&!r.previewPreparing&&!read(importKey(r.theme))&&!read(replacementKey(r.theme))){
   // pagehide can terminate a worker: retain a synchronous emergency journal only here.
+  // If unload races an IDB publication, retain the exact idempotent request
+  // beside the outgoing local snapshot; startup can read its real receipt.
+  for(const [key,value] of r.publishingRequest||[])try{localStorage.setItem(key,value)}catch{}
   try{const serialized=JSON.stringify(r.state);if(!journal.enabled())storeLocal(r.theme,r.state,serialized);localStorage.setItem(journal.enabled()?'hyper-dimension-'+r.theme+'-emergency-save':pendingKey(r.theme),'{"baseVersion":'+JSON.stringify(r.version)+',"state":'+serialized+',"savedAt":'+JSON.stringify(new Date().toISOString())+',"clientId":'+JSON.stringify(clientId)+',"baseDocument":'+(baselineText(r)||'null')+'}');}catch{}
   cache(r).catch(()=>{});flush(r.theme).catch(()=>{});
  }}

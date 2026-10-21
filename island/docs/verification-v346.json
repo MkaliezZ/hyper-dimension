@@ -1,0 +1,55 @@
+{
+  "version": "V346",
+  "scope": "Publish accepted action/autosave outcomes together with their acknowledged version only after outgoing journal retirement.",
+  "hostedFailures": [
+    {
+      "run": 39528943443,
+      "job": 118993430619,
+      "platform": "windows-2022",
+      "failure": "origami mid-chain reload save conflict"
+    },
+    {
+      "run": 39528943443,
+      "job": 118993430591,
+      "platform": "macos-15-intel",
+      "failure": "pixel shelf reload save conflict after successful sale"
+    }
+  ],
+  "publicationRegressionBefore": {
+    "pass": 0,
+    "fail": 4
+  },
+  "publicationAndRetirementBoundaryCases": 16,
+  "relatedControlsPassed": 49,
+  "fullDefaultPending": false,
+  "originalNativeRegressionsPending": false,
+  "hostedRecoveryConfirmed": false,
+  "strictOverlapAndIslandIdentityChecksRetained": true,
+  "originalRequestRestoredOnRetirementFailure": true,
+  "noRewardClockOrBudgetChanges": true,
+  "graphicsCandidateIncluded": false,
+  "userServiceNotRestarted": true,
+  "wholeGoalComplete": false,
+  "acceptedPendingAndRequestRetirementAtomic": true,
+  "unloadDuringRetirementKeepsExactRequest": true,
+  "backgroundCacheWaitsForPublication": true,
+  "completedAt": "2026-10-21T03:21:55.510386+00:00",
+  "fullDefaultPassed": 1862,
+  "fullDefaultCounts": [
+    1848,
+    14
+  ],
+  "fullDefaultSourceVerifiedBeforeAndAfter": true,
+  "finalNativeCasesPassed": 4,
+  "originalNativeAssertionsAndTimeoutUnchanged": true,
+  "nativeSourceVerifiedBeforeAndAfter": true,
+  "firstTaskWorkingMs": {
+    "pixel": 21016,
+    "origami": 21556
+  },
+  "remainingChainWorkingMs": {
+    "pixel": 108380,
+    "origami": 107409
+  },
+  "hostedSuccessorRecoveryConfirmed": false
+}

@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v345-agent-source",
+  "release": "hyper-dimension-v346-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 138863,
-      "sha256": "4c7f3ff150eb814c58cdc8616c68ee1fe9cd400c845d7f7d0a958a20569eab8d"
+      "bytes": 139107,
+      "sha256": "e1204b99bee83cadff5f43f7c5c2f4092a2b4ec9fd1b6c0b4389909a348db674"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18650,
-      "sha256": "de5674f8cd38c59c93093c3a7e490ab42165d58965dd55f93a12d0a627e0e7b2"
+      "bytes": 18687,
+      "sha256": "628424a5069c47b61ebc849b7906375817f8e3a9a0f6461e51b27a0f53763b4a"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 48273,
-      "sha256": "b771238292ee14ca81dbd38d46c33739560701ffc6c59bb9b65ac5d79f7eb23d"
+      "bytes": 50991,
+      "sha256": "91b6b010abfa211f4b4a31ea865cbba871d8c9c5879655fac5ed74948c7b6394"
     },
     {
       "path": "src/saveDelta.js",
@@ -14504,8 +14504,23 @@
       "path": "docs/verification-v345.json",
       "bytes": 1287,
       "sha256": "b448eb01edeab3fc32fe66081b75aed634ed6d64ef9b4d1cb70b9bf76a731f3d"
+    },
+    {
+      "path": "tests/v346-save-publication.test.mjs",
+      "bytes": 8489,
+      "sha256": "62395bda3069d8b8b67c1e1455d88f40ef5c850c074d49c2a28a8175228e237e"
+    },
+    {
+      "path": "docs/save-publication-v346.md",
+      "bytes": 2096,
+      "sha256": "6d6043df409f36d6cf2073aef1828b6437e34dfaa70443cc192ca78b35371f68"
+    },
+    {
+      "path": "docs/verification-v346.json",
+      "bytes": 1691,
+      "sha256": "ba76f42b2daef30a7518dc0d6d8686ae143e208b2ccadcd7ba28a1fa0733aec9"
     }
   ],
-  "publicRevision": "v345-queued-work-progress",
-  "generatedAt": "2026-10-21T01:43:04.285046+00:00"
+  "publicRevision": "v346-acknowledged-save-publication",
+  "generatedAt": "2026-10-21T03:21:55.510386+00:00"
 }
