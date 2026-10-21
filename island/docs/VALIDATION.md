@@ -1105,3 +1105,10 @@ Windows 原生素材检查在开始比较之前，发现按当前源码反推的
 ## V343 assigned work receipts and project form
 
 See [bounded receipt history and rendering](task-receipt-history-v343.md) and [verification boundaries](verification-v343.json). Original native work/form time limits and all existing assertions are retained; hosted successor recovery remains unconfirmed.
+
+
+## V344 deployment manifest format
+
+The release changes its content identifier, not its manifest protocol. Restore the unchanged format to schema80, which the production loader requires. A new check reads this actual shipped manifest; future-format and checksum-corruption negatives retain the original rejection. See [verification](verification-v344.json). Hosted platform successors remain unconfirmed; resident work timing and private graphics qualification are separate.
+
+The shipped loader and doctor accept the corrected source manifest. All 1,820 default cases (1,806 + 14) pass with no failures, skips or cancellations. The project form native command passes both themes using the same opt-in observer now explicitly enabled in CI; all original assertions and its three-minute gate remain. The separate Windows resident-work timeout is still under investigation.

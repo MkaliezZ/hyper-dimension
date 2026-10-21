@@ -1,6 +1,6 @@
 {
-  "schema": 81,
-  "release": "hyper-dimension-v343-agent-source",
+  "schema": 80,
+  "release": "hyper-dimension-v344-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 137711,
-      "sha256": "252089b39a61247e5e81394f134a07f7806bcefca6d9c5d886b8a7ed8bd3f98f"
+      "bytes": 138584,
+      "sha256": "8a4067232b90dc1dd7f93885d7e3057f1640171f0420697a1dc8d9c15097cc3e"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 18574,
-      "sha256": "4a1002d2f6cc90fd6ab3c0313264819e3ecbfb05ca9d5be8f0b40fcce3260406"
+      "bytes": 18611,
+      "sha256": "a7a44912c0c4f1962b54d49575f1974db303bbb9a440e1505821cfe7804cec61"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -14479,8 +14479,18 @@
       "path": "docs/verification-v343.json",
       "bytes": 1275,
       "sha256": "bc2f0bb76c9a53dd6df11b9e9ac8a2ce10fca7dadca5b0b3842fa605eaa31345"
+    },
+    {
+      "path": "tests/v344-release-manifest.test.mjs",
+      "bytes": 1805,
+      "sha256": "3214683df75516ba5d38c0c4133ad4bd8a485a249eca186b96d74190558c7cde"
+    },
+    {
+      "path": "docs/verification-v344.json",
+      "bytes": 1106,
+      "sha256": "6cb17446a4a482d5eb798b201806ec5a372aefe6bba2e4f7f97fbd2d08283c5a"
     }
   ],
-  "publicRevision": "v343-assigned-receipt-history",
-  "generatedAt": "2026-10-21T00:35:12.140247+00:00"
+  "publicRevision": "v344-release-format",
+  "generatedAt": "2026-10-21T01:30:23.677256+00:00"
 }

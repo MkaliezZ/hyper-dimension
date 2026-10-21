@@ -1,0 +1,32 @@
+{
+  "version": "V344",
+  "basePublicCommit": "688810c9732713376315550f85394556f1b69956",
+  "manifestFormatUnchanged": true,
+  "supportedManifestSchemaRestoredTo80": true,
+  "productionLoaderAndIntegrityChecksUnchanged": true,
+  "firstActualArtifactTest": {
+    "passed": 2,
+    "failed": 1,
+    "cause": "Shipped schema81 rejected by the unchanged production loader"
+  },
+  "newActualArtifactAndNegativeChecks": 3,
+  "readmeUnchanged": true,
+  "graphicsCandidateIncluded": false,
+  "residentTaskTimingFailureStillUnderInvestigation": true,
+  "wholeGoalComplete": false,
+  "completedAt": "2026-10-21T01:30:23.677256+00:00",
+  "fullDefaultPassed": 1820,
+  "fullDefaultCounts": [
+    1806,
+    14
+  ],
+  "fullDefaultSourceVerifiedBeforeAndAfter": true,
+  "actualDeploymentDoctorPassed": true,
+  "actualDeploymentLoaderChecksPassed": 3,
+  "nativeProjectFormCasesPassed": 2,
+  "nativeFormCaseSourceVerifiedBeforeAndAfter": true,
+  "ciFormFailureJob": 118978448384,
+  "ciFormObserverEnvironmentRestored": true,
+  "originalNativeAssertionsAndTimeoutUnchanged": true,
+  "hostedSuccessorRecoveryConfirmed": false
+}

@@ -448,6 +448,8 @@ jobs:
       - name: Native project form retains backdrop without pausing work or input
         if: matrix.group == 'content'
         timeout-minutes: 3
+        env:
+          HD_QA_WORK_JOURNAL: "1"
         run: node tests/v343-project-backdrop-browser.mjs
 
       - name: Native custom recipe resident preparation and reopen
