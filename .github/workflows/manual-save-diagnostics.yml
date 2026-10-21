@@ -1,23 +1,22 @@
-name: Island manual save diagnostics
-on:
+name: Island player-start timing diagnostic
+"on":
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Manual save, residents, rewards, project queue, artwork, soil care or source inventory
+        description: Read-only timing diagnosis on the isolated branch; no acceptance claim
         type: choice
+        options: [manual-save]
         default: manual-save
-        options: [manual-save, resident-busy-market, reward-drain, plan-queue, artwork-startup, soil-care, source-inventory]
 permissions:
   contents: read
 concurrency:
-  group: island-manual-save-${{ github.ref }}-${{ inputs.check_scope || 'manual-save' }}
+  group: island-player-start-diagnostic-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  intel-native:
-    if: inputs.check_scope != 'source-inventory'
-    name: ${{ inputs.check_scope == 'soil-care' && 'macos-15-intel / native greenhouse pause and full growth' || inputs.check_scope == 'artwork-startup' && 'windows-2022 / slow artwork startup and cash recovery' || inputs.check_scope == 'plan-queue' && 'windows-2022 / manual project queue and resident preparation' || inputs.check_scope == 'resident-busy-market' && 'windows-2022 / resident busy and production market' || inputs.check_scope == 'reward-drain' && 'macos-15-intel / independent receipt pause recovery' || 'macos-15-intel / manual save and cash recovery' }}
-    runs-on: ${{ (inputs.check_scope == 'resident-busy-market' || inputs.check_scope == 'plan-queue' || inputs.check_scope == 'artwork-startup') && 'windows-2022' || 'macos-15-intel' }}
-    timeout-minutes: 45
+  intel-player-timing:
+    name: macos-15-intel / original player gates with read-only save timings
+    runs-on: macos-15-intel
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: island
@@ -28,118 +27,59 @@ jobs:
           node-version: '24'
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Manual save feedback preserves acknowledgments and rejects failures
-        run: node tests/v314-manual-save-feedback-browser.mjs
-      - name: Native cash reporting and shared-style recovery
-        if: inputs.check_scope == 'manual-save'
-        run: node tests/v276-cash-browser.mjs
-      - name: Resident begin recovers identical identity-busy replies
-        if: inputs.check_scope == 'resident-busy-market'
-        run: node tests/v315-resident-lan-busy-browser.mjs
-      - name: Native resident production to visitor purchase
-        if: inputs.check_scope == 'resident-busy-market'
-        env:
-          HD_QA_WORK_JOURNAL: '1'
-          HD_QA_SHELF_FROM_PRODUCTION: '1'
-          HD_QA_OUT: qa/v230/native-production-market
-        run: node tests/v228-custom-shops-browser.mjs
-      - name: Native continued Sokoban board and cancellation
-        if: inputs.check_scope == 'reward-drain'
-        env:
-          HD_QA_DRAIN_PAUSE: '1'
-          HD_QA_DRAIN_CASE: origami:cancel
-          HD_QA_OUT: qa/v316/forced-reward-drain
-        run: node tests/v170-reward-drain-browser.mjs
-      - name: Native independent receipt and close recovery
-        if: inputs.check_scope == 'reward-drain'
-        run: node tests/v170-reward-drain-browser.mjs
-      - name: Manual plan waits for active receipt and passes unstarted work
-        if: inputs.check_scope == 'plan-queue'
-        run: node tests/v317-plan-queue-browser.mjs
-      - name: Native custom recipe resident preparation and reopen
-        if: inputs.check_scope == 'plan-queue'
-        env:
-          HD_QA_WORK_JOURNAL: '1'
-        run: node tests/v227-custom-agent-browser.mjs
-      - name: Bounded image decode and seasonal loading rules
-        if: inputs.check_scope == 'artwork-startup'
-        run: node --test tests/v318-artwork-decode.test.mjs tests/v176-season-artwork-loading.test.mjs
-      - name: Native slow-renderer cash and shared-style recovery
-        if: inputs.check_scope == 'artwork-startup'
-        env:
-          HD_QA_CDP_CPU: '2'
-          HD_QA_OUT: qa/v318/native-cash-cpu2
-        run: node tests/v276-cash-browser.mjs
-      - name: Native greenhouse crafting and complete crop growth
-        if: inputs.check_scope == 'soil-care'
-        run: node tests/v159-soil-care-browser.mjs
-      - name: Native greenhouse pause continuation and complete crop growth
-        if: inputs.check_scope == 'soil-care'
-        env:
-          HD_QA_FORCE_SOIL_PAUSE: '1'
-          HD_QA_OUT: qa/v319/native-soil-pause
-        run: node tests/v159-soil-care-browser.mjs
-      - name: Retain fictional native evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: native-manual-save-${{ inputs.check_scope == 'soil-care' && 'macos-15-intel-soil-care' || inputs.check_scope == 'artwork-startup' && 'windows-2022-artwork-startup' || inputs.check_scope == 'plan-queue' && 'windows-2022-plan-queue' || inputs.check_scope == 'resident-busy-market' && 'windows-2022-busy' || inputs.check_scope == 'reward-drain' && 'macos-15-intel-reward-drain' || 'macos-15-intel' }}
-          path: |
-            island/qa/v314/manual-save-feedback/report.json
-            island/qa/v276/native-cash/report.json
-            island/qa/v276/native-cash/*.png
-            island/qa/v315/native-resident-lan-busy/report.json
-            island/qa/v230/native-production-market/report.json
-            island/qa/v230/native-production-market/work-progress.json
-            island/qa/v230/native-production-market/*.png
-            island/qa/v170/native-reward-drain/report.json
-            island/qa/v170/native-reward-drain/*.png
-            island/qa/v316/forced-reward-drain/report.json
-            island/qa/v316/forced-reward-drain/*.png
-            island/qa/v317/native-plan-queue/report.json
-            island/qa/v317/native-plan-queue/*.png
-            island/qa/v227/native-custom-agent/report.json
-            island/qa/v227/native-custom-agent/work-progress.json
-            island/qa/v227/native-custom-agent/*.png
-            island/qa/v318/native-cash-cpu2/report.json
-            island/qa/v318/native-cash-cpu2/*.png
-            island/qa/v159/native-soil-care/report.json
-            island/qa/v159/native-soil-care/*.png
-            island/qa/v319/native-soil-pause/report.json
-            island/qa/v319/native-soil-pause/*.png
-          if-no-files-found: error
-          retention-days: 3
-
-  source-inventory:
-    if: inputs.check_scope == 'source-inventory'
-    name: ${{ matrix.os }} / sealed source inventory and target platform
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, macos-14, macos-15-intel]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: island
-        shell: bash
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.11'
-      - name: Verify every source payload and target platform
+      - name: Prepare original fixture with bounded read-only save timing observations
         run: |
-          node -e "require('node:fs').mkdirSync('qa/v319/source-inventory',{recursive:true})"
-          node tools/agent-deploy.mjs doctor --python=python > qa/v319/source-inventory/report.json
-      - name: Retain source inventory and platform report
+          python3 - <<'PY'
+          from pathlib import Path
+          import re,json,hashlib
+
+          root=Path.cwd();q=root/'qa/diagnostics-player-start';q.mkdir(parents=True,exist_ok=False)
+          source=(root/'tests/v281-player-action-browser.mjs').read_text('utf-8')
+          original=source
+          def module(match):
+           name=match[1]
+           if name.startswith('.'):
+            target=(root/'tests'/name).resolve().as_uri()
+           elif name=='playwright-core':target=(root/'node_modules/playwright-core/index.mjs').as_uri()
+           else:return match[0]
+           return "from '"+target+"'"
+          source=re.sub(r"from '([^']+)'",module,source)
+          old="const root=path.resolve(import.meta.dirname,'..'),out="
+          new="const root="+json.dumps(str(root))+",out="
+          assert source.count(old)==1;source=source.replace(old,new)
+          old=" let release,held=false;const gate=new Promise(r=>release=r);"
+          new=old+"\n const diagnostic=await context.newCDPSession(page);await diagnostic.send('Emulation.setCPUThrottlingRate',{rate:1});row.diagnosticCpuThrottleRate=4;\n await context.route('**/src/saveClient.js',async route=>{const response=await route.fetch();let body=await response.text();const add=(old,next)=>{assert.equal(body.split(old).length-1,1,old);body=body.replace(old,next)};add(' function cache(r){',' function cache(r){globalThis.__saveTiming?.(\"cache-enqueue\",r);');add('   if(publication)await publication;','   globalThis.__saveTiming?.(\"cache-run\",r);if(publication)await publication;');add('await journal.encodeSnapshot(snapshotState,','await (globalThis.__saveTiming?.(\"snapshot-start\",r),journal.encodeSnapshot(snapshotState,');add('r.capturing=false;}});','r.capturing=false;}}));globalThis.__saveTiming?.(\"snapshot-end\",r);');add(' async function actionNow(theme,input,prepareInput,options){',' async function actionNow(theme,input,prepareInput,options){globalThis.__saveTiming?.(\"action-now-\"+input.kind+\"-\"+input.operation,record(theme));');add(' async function publishAcknowledged(r,doc,base,path,retireKeys){',' async function publishAcknowledged(r,doc,base,path,retireKeys){globalThis.__saveTiming?.(\"publication-start\",r);');add('  onRemoteState(r.theme,r.state);return result;','  onRemoteState(r.theme,r.state);globalThis.__saveTiming?.(\"publication-end\",r);return result;');await route.fulfill({response,body});});"
+          assert source.count(old)==1;source=source.replace(old,new)
+          old="window.__playerActionQA={"
+          new="globalThis.__saveTimingRows=[];globalThis.__saveTiming=(phase,r)=>{globalThis.__saveTimingRows.push({at:performance.now(),phase,generation:r.generation,status:r.status,dirty:r.dirty,capturing:!!r.capturing});if(globalThis.__saveTimingRows.length>300)globalThis.__saveTimingRows.shift();};\n"+old
+          assert source.count(old)==1;source=source.replace(old,new)
+          old="holdError:this.holdError||null,active:"
+          new="holdError:this.holdError||null,diagnosticSaveTiming:globalThis.__saveTimingRows,active:"
+          assert source.count(old)==1;source=source.replace(old,new)
+          old="row.realForeignCommandQueuedAtGrantedAnimation=true;"
+          new=old+"row.diagnosticSaveTiming=await page.evaluate(()=>globalThis.__saveTimingRows);"
+          assert source.count(old)==1;source=source.replace(old,new)
+          target=q/'player-start-timing.mjs';assert not target.exists();target.write_text(source,encoding='utf-8')
+          (q/'player-start-timing-preparation.json').write_text(json.dumps({'originalFixtureSHA256':hashlib.sha256(original.encode()).hexdigest(),'diagnosticOnly':True,'acceptanceClaim':False,'cpuRate':1,'readOnlyBoundedSaveTimingsAdded':True,'originalSetupNetworkCompletionAndEconomyAssertionsRetained':True,'sourceArchiveOrUserDataChanged':False,'wholeGoalComplete':False},indent=2)+'\n',encoding='utf-8')
+          print('Prepared normal-host read-only save timing observation with original action gates retained; no acceptance result yet.')
+          PY
+      - name: Diagnose original setup, overlap, authority and reopen gates
+        timeout-minutes: 4
+        env:
+          DEEPSEEK_API_KEY: ''
+          HD_QA_OUT: qa/diagnostics-player-start/result
+        run: |
+          node --check qa/diagnostics-player-start/player-start-timing.mjs
+          node qa/diagnostics-player-start/player-start-timing.mjs
+      - name: Retain fictional diagnostic evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: source-inventory-${{ matrix.os }}
-          path: island/qa/v319/source-inventory/report.json
+          name: native-player-start-save-timings-macos-15-intel
+          path: |
+            island/qa/diagnostics-player-start/player-start-timing-preparation.json
+            island/qa/diagnostics-player-start/result/report.json
+            island/qa/diagnostics-player-start/result/*-failure.png
+            island/qa/diagnostics-player-start/result/*-confirmed.png
           if-no-files-found: error
           retention-days: 3
