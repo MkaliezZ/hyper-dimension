@@ -1156,3 +1156,10 @@ The checkpoint-reload fixture now awaits the actual trial-finish HTTP response a
 Old-code negative controls reproduce both races. The current lifecycle contracts pass on Node22 and Node24; related bridge/receipt/shutdown checks pass. Native Worker/IndexedDB/SaveStore controls pass both styles, including rejection of an early ferry without creating an uncertain command. The unchanged native three-task fixture passes both styles with its original30second registration,120second first-task and240second remaining working-time budgets, mid-chain reload and empty-browser reopen. These are isolated automated checks, not physical-device or human acceptance.
 
 The prior V350 archive passed22 independent installation checks but failed its full four-map restart/return ledger request. That failed candidate remains retained; a current replacement archive and full four-map qualification are not yet accepted. The current hosted Windows resident-work failure requires a successor result before recovery can be claimed. Natural acceptance remains20minutes per style; OPC and actual new-player sessions remain separate.
+
+
+## V352: ferry-clock protocol observation
+
+The hosted Windows ferry-clock probe used a two-argument save-client spy that dispatched an arrival without the real client's queued flush and prepareInput callback. The current visitor adapter intentionally performs that eligibility check inside one authoritative queue entry. The spy now observes dispatch after its controlled checkpoint and invokes preparation with acknowledged actions. All six cases and every prior assertion remain; two added guards require arrival preparation and prevent uncertain-journal preparation. Pending resident receipts, original uncertainty, early-arrival rejection, normal arrival and ordinary service admission retain their original expectations. The separate native v351 fixture exercises actual SaveClient, Worker/IndexedDB and HTTP SaveStore. Game modules, clocks, resources, request budgets and model cadence are unchanged.
+
+Windows 日志与隔离报告确认旧测试桩漏掉事务内准备回调；本机先复现原失败，再保留原六组断言修正观察器。此项是测试协议修复，不将局部通过写成托管矩阵、当前源码包、实体设备或完整 Goal 验收通过。

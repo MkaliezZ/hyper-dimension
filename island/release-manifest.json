@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v351-agent-source",
+  "release": "hyper-dimension-v352-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 144548,
-      "sha256": "c0d1b0a5f55e102142ea6bcaf0f61346dc1ec65abc14155660118f13772e94a3"
+      "bytes": 145734,
+      "sha256": "7734be3c3e176e27ab82ecaa7e10911985ed827c4a821d3c0a4e9cc95793cf2c"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -13272,8 +13272,8 @@
     },
     {
       "path": "tests/v278-visitor-clock-browser.mjs",
-      "bytes": 4932,
-      "sha256": "34a30566c00f0187cb1aee4a75daee9b752a0d5549ac1515a758ddff38dc1376"
+      "bytes": 5805,
+      "sha256": "68cc93507623983522b3f4305874d3e2dbe9aac8d2f593236f0ba7dc6e9959e6"
     },
     {
       "path": "tests/v278-native-observation.test.mjs",
@@ -14681,6 +14681,6 @@
       "sha256": "7df5d8513434cf7a85039fd8819af9d8da7bc21acd522ea1d9b80ff1db9e5d1c"
     }
   ],
-  "publicRevision": "v351-owner-retirement-visitor-checkpoint",
-  "generatedAt": "2026-10-21T12:15:03.715759+00:00"
+  "publicRevision": "v352-visitor-clock-protocol-fixture",
+  "generatedAt": "2026-10-21T12:57:16.457236+00:00"
 }
