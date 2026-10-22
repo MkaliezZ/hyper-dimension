@@ -1,0 +1,57 @@
+{
+  "version": "V361",
+  "basePublicCommit": "8920e9a1fc2ca0b587275f386eb2f0e1d85a8e17",
+  "workerDeadlineRegression": {
+    "before": {
+      "passed": 0,
+      "failed": 6
+    },
+    "afterRelated": {
+      "passed": 97,
+      "failed": 0
+    }
+  },
+  "native": [
+    {
+      "name": "worker-deadline",
+      "cases": 2,
+      "passed": true
+    },
+    {
+      "name": "task-interruption",
+      "cases": 4,
+      "passed": true
+    },
+    {
+      "name": "player-action",
+      "cases": 2,
+      "passed": true
+    },
+    {
+      "name": "task-chain",
+      "cases": 2,
+      "passed": true
+    },
+    {
+      "name": "custom-agent",
+      "cases": 2,
+      "passed": true
+    }
+  ],
+  "nativeCases": 12,
+  "rpcDeadlineMs": 15000,
+  "fetchDeadlineMs": 12000,
+  "originalActionSetupBudgetMs": 15000,
+  "originalFirstWorkBudgetMs": 120000,
+  "originalRemainingWorkBudgetMs": 240000,
+  "productionDeadlinesIncreased": false,
+  "realProvidersCalled": false,
+  "historicalCiRootCauseProved": false,
+  "newHostedResultsPending": true,
+  "newArchiveAndTwentyMinuteQualificationPending": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "wholeGoalComplete": false,
+  "defaultRulesPassed": 2089,
+  "newDeadlineRulesNode22Passed": 6,
+  "newDeadlineRulesNode24Passed": 6
+}

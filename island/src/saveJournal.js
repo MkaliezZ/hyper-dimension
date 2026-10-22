@@ -13,7 +13,7 @@ export function createSaveJournal(){
   worker.onerror=()=>{for(const call of pending.values()){clearTimeout(call.timer);call.reject(Error('浏览器暂存后台不可用，未提交新作业'));}pending.clear();};
  }catch{}
  async function rpc(operation,value){if(operation==="encode"||operation==="merge")await yieldForSave();return new Promise((resolve,reject)=>{
-  const id=++sequence,timer=setTimeout(()=>{pending.delete(id);reject(Error('浏览器暂存写入超时，未提交新作业'));},operation==='request'?15000:12000);
+  const id=++sequence,timer=setTimeout(()=>{pending.delete(id);reject(operation==='request'?Object.assign(Error('存档服务响应超时，已保留本次操作供核对'),{code:'save_request_timeout'}):Error('浏览器暂存写入超时，未提交新作业'));},operation==='request'?15000:12000);
   pending.set(id,{resolve,reject,timer});try{worker.postMessage({id,operation,value});}catch(e){pending.delete(id);clearTimeout(timer);reject(e);}
  });}
  async function prepare(theme){if(ready.has(theme))return ready.get(theme);const job=(async()=>{

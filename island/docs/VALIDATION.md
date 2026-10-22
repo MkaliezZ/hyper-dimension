@@ -1233,3 +1233,8 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V360 · A2A原机重连与关闭收尾 / A2A reconnect and shutdown
 
 真实SDK复核发现旧轮询连接阻止关闭及在途图片端口误拒绝，现按实际响应与处理函数完成后平稳收尾，并等待已接受写入。两版本关联检查、原标准→游戏→标准及服务/CLI重连已通过；原失败、诊断干预与验收边界见[A2A重连记录](a2a-reconnect-v360.md)。
+
+
+## V361 · 后台存档回执等待 / Save worker acknowledgement
+
+修复网络 RPC 超时误分类，保留原等待和同编号恢复限制；两画风实际 Worker 回执丢失、分工接续和配方原生检查见[记录](save-worker-deadline-v361.md)。托管、交付包和真人边界分开核对。

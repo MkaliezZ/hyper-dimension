@@ -43,7 +43,7 @@ async function run(theme){
    const response=await route.fetch();let source=await response.text();
    source+=`
 window.__playerActionQA={
- async prepare(){for(const n of npcs){runtime.releaseActor(n);n.manualUntil=1e9;}await saves.idle(theme);this.armed=true;},
+ async prepare(){for(const n of npcs){runtime.releaseActor(n);n.manualUntil=1e9;}await saves.checkpoint(theme);await saves.idle(theme);this.armed=true;},
  async hold(){this.foreign=await serverResident.begin({npcId:15},{goal:"plaza",action:"rest",source:"local",operationId:"qa-v281-player-"+crypto.randomUUID()});},
  async clear(){if(this.foreign)await serverResident.cancel(this.foreign);},
  inspect(){const r=saves.status(theme);return {save:{status:r.status,dirty:r.dirty,capturing:!!r.capturing,reconciling:!!r.reconciling,commandSending:!!r.commandSending,inflight:!!r.inflight,generation:r.generation,cacheError:!!r.cacheError},action:actor.action?{type:actor.action.type,t:actor.action.t,duration:actor.action.duration,acceptedLease:actor.action.acceptedLease}:null,gatherSettling:serverGather.settling(),resident:serverResident.inspect(),pending:saves.pendingAction(theme)?.body?.kind||null,holdError:this.holdError||null,active:saves.status(theme).actions?.active?.requestId||null,wax:state.inventory.wax||0};}

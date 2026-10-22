@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v360-agent-source",
+  "release": "hyper-dimension-v361-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 160666,
-      "sha256": "9fc827ffffb016bba2c3b0faed24086d5940b3e2da068efc5d2a50c77eb1d867"
+      "bytes": 160976,
+      "sha256": "3acb8269ca93a31a97599ec05f6105d215993ab1ae53c3527a01a107251100f4"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 20046,
-      "sha256": "0fff5962be53b97c6dd3286b051534fb66e544d788c375ef6dd555279a5aff94"
+      "bytes": 20087,
+      "sha256": "604c27ffeb78adf50d0c7d6b6768b13d749aa0570c3e9b2b9b1182f51b19119c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7942,8 +7942,8 @@
     },
     {
       "path": "src/saveJournal.js",
-      "bytes": 9745,
-      "sha256": "ed2c721c4bb2311a5917c7b70aa5be2585bee8fa1cad96b230e110ebfdc3ed2f"
+      "bytes": 9879,
+      "sha256": "02b021f76503605c45f25fd3c38c5e88460ccd503cb02cdb5cf31d6f1ac46986"
     },
     {
       "path": "src/saveLimits.js",
@@ -13332,8 +13332,8 @@
     },
     {
       "path": "tests/v281-player-action-browser.mjs",
-      "bytes": 9641,
-      "sha256": "75de8c80bd689d318a65770b181aaef1dea4eb0c829501d09c0e1a375604bba1"
+      "bytes": 9671,
+      "sha256": "1117ff0c84f76747796ce4d24e3b53428078e0904df12396073b47fa4b340eeb"
     },
     {
       "path": "tests/v281-player-action-clock.test.mjs",
@@ -14797,8 +14797,8 @@
     },
     {
       "path": "tests/v359-task-interruption-browser.mjs",
-      "bytes": 14930,
-      "sha256": "356b8a66a91535ff13f40950bf1d6b9a40b890f9e2b348cde6e251a4da9c45b7"
+      "bytes": 14994,
+      "sha256": "438dc258cc9097cc65e5a58556b2d903e87495f575926e5fa5118d38f69019e7"
     },
     {
       "path": "docs/a2a-reconnect-v360.md",
@@ -14819,8 +14819,28 @@
       "path": "tests/v360-http-drain.test.mjs",
       "bytes": 3136,
       "sha256": "1afe061ffb5523536059a6a20fda340ab18bba4e7d56d7932aa196a744f4ff86"
+    },
+    {
+      "path": "docs/save-worker-deadline-v361.md",
+      "bytes": 2834,
+      "sha256": "8329c466532a3071ec4e09f8307b5b08f1599489877ac68772b242d352e7839d"
+    },
+    {
+      "path": "docs/verification-v361.json",
+      "bytes": 1268,
+      "sha256": "a6849a48773d0070b2eec2239c82f978364974d1e3a5c0d4c9e438908344b039"
+    },
+    {
+      "path": "tests/v361-save-worker-deadline-browser.mjs",
+      "bytes": 8466,
+      "sha256": "652c27a16c55d2ac7eaa57698901e06ccfea02564b1e32689c5b6ee5cbdc4c2d"
+    },
+    {
+      "path": "tests/v361-save-worker-deadline.test.mjs",
+      "bytes": 2978,
+      "sha256": "427b40dc879cb156c5cf3b1d98b6a65e9c2145599f605c792da61f4b702df379"
     }
   ],
-  "publicRevision": "v360-a2a-reconnect",
-  "generatedAt": "2026-10-22T10:39:05.269312+00:00"
+  "publicRevision": "v361-save-worker-deadline",
+  "generatedAt": "2026-10-22T19:18:35.414234+00:00"
 }
