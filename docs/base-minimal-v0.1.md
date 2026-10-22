@@ -2,6 +2,8 @@
 
 这是现有仓库内的新通用切片，入口为 `python -m base` 和 `python -m base.mcp`。未替换 Hyper Dimension 原有入口、教师策略、档案或数据库。旧英语专用接口保持原语义。
 
+学员交付以源码开发包与网页启动为默认路径，不需要MCP桥接或DSH。`base.mcp`只是可选产品接口，依赖在requirements-mcp.lock中，默认requirements.lock不含MCP。
+
 `base-starter/scripts/build_distribution.py` 从唯一源码 `src/base`、分发说明 `base-starter` 和基础测试生成独立分发包；不包含旧产品后端和业务数据库。运行时底座使用独立数据目录。
 
 ## 数据与业务边界
