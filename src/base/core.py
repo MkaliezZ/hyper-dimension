@@ -9,7 +9,7 @@ import secrets
 import sqlite3
 from uuid import uuid4
 from base.app.activities import prepare_activity
-from base.app.assessment import validate_activity, evaluate_submission
+from base.app.assessment import validate_activity, evaluate_submission, valid_number
 
 
 def now():
@@ -44,7 +44,7 @@ class Store:
             db.close()
 
     def authorize(self, token):
-        if not isinstance(token, str) or not token or not hmac.compare_digest(token, self.owner_token):
+        if not isinstance(token, str) or not token or not token.isascii() or not hmac.compare_digest(token, self.owner_token):
             raise PermissionError('请先登录维护者入口')
 
     def create(self, learner, draft=None, request_key=None):
@@ -80,7 +80,7 @@ class Store:
     def public_task(self, token):
         task = self.task(token)
         allowed = ('name', 'activity_title', 'instructions', 'criteria', 'next_step', 'material', 'mode')
-        return {'learner': task['learner'], 'activity': {k: task['snapshot'][k] for k in allowed}, 'submissions': self.submissions(task['id'])}
+        return {'learner': task['learner'], 'activity': {**{k: task['snapshot'][k] for k in allowed}, 'rubric': task['snapshot'].get('rubric', [])}, 'submissions': self.submissions(task['id'])}
 
     def submissions(self, task_id=None):
         with self.db() as db:
@@ -105,17 +105,29 @@ class Store:
             db.execute('INSERT INTO submissions VALUES (?,?,?,?,?,?)', (result['id'], task['id'], request_key, answer, json.dumps(evaluation, ensure_ascii=False), result['created']))
         return result
 
-    def feedback(self, submission_id, comment, next_step):
+    def feedback(self, submission_id, comment, next_step, scores=None):
         if not all(isinstance(x, str) and 0 < len(x.strip()) <= 20000 for x in (comment, next_step)):
             raise ValueError('反馈和下一步均须填写1至20000字')
         result = {'status': 'reviewed', 'comment': comment, 'next_step': next_step, 'correct': None}
         with self.db() as db:
-            if not db.execute('SELECT 1 FROM submissions WHERE id=?', (submission_id,)).fetchone():
+            row = db.execute('SELECT t.snapshot FROM submissions s JOIN tasks t ON s.task_id=t.id WHERE s.id=?', (submission_id,)).fetchone()
+            if not row:
                 raise KeyError('找不到这次提交')
+            if scores is not None:
+                rubric = json.loads(row['snapshot']).get('rubric', [])
+                if not rubric or not isinstance(scores, list) or len(scores) != len(rubric):
+                    raise ValueError('scores：须与此活动发布时的评价维度完全对应')
+                verified = []
+                for entry, rule in zip(scores, rubric):
+                    if not isinstance(entry, dict) or entry.get('label') != rule['label'] or not valid_number(entry.get('score')) or not 0 <= entry['score'] <= rule['max_score']:
+                        raise ValueError('scores：维度顺序须一致，得分须在0至该项满分之间')
+                    verified.append({'label': rule['label'], 'score': entry['score'], 'max_score': rule['max_score']})
+                result.update(scores=verified, total=sum(v['score'] for v in verified), max_total=sum(v['max_score'] for v in verified))
             db.execute('INSERT INTO reviews(submission_id,evaluation,created) VALUES (?,?,?)', (submission_id, json.dumps(result, ensure_ascii=False), now()))
             db.execute('UPDATE submissions SET evaluation=? WHERE id=?', (json.dumps(result, ensure_ascii=False), submission_id))
         return result
 
     def tasks(self):
         with self.db() as db:
-            return [dict(row) for row in db.execute('SELECT id,learner_id,learner,token,created FROM tasks ORDER BY created')]
+            rows = db.execute('SELECT * FROM tasks ORDER BY created').fetchall()
+        return [{k: row[k] for k in ('id', 'learner_id', 'learner', 'token', 'created')} | {'rubric': json.loads(row['snapshot']).get('rubric', [])} for row in rows]

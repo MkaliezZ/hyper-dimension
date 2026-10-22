@@ -4,5 +4,31 @@
   "instructions": "写一份小型交接说明，包含现状、待办和验收方法。",
   "criteria": "接手者能明确下一步行动，并知道如何检查完成。",
   "next_step": "请同伴试用说明，根据反馈修订。",
-  "mode": "text"
+  "mode": "text",
+  "rubric": [
+    {
+      "label": "现状清楚",
+      "max_score": 5
+    },
+    {
+      "label": "待办可执行",
+      "max_score": 5
+    },
+    {
+      "label": "验收可检查",
+      "max_score": 5
+    }
+  ],
+  "structure": {
+    "sections": [
+      "现状",
+      "待办",
+      "验收"
+    ],
+    "min_chars": 10,
+    "max_chars": 500,
+    "vague_phrases": [
+      "差不多"
+    ]
+  }
 }

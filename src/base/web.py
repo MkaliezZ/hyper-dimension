@@ -50,7 +50,7 @@ def create_app(data=None):
 
     @app.get('/healthz')
     def health():
-        return {'ok': True, 'version': '0.1.0'}
+        return {'ok': True, 'version': '0.2.1'}
 
     @app.get('/', response_class=HTMLResponse)
     @app.get('/learn/{token}', response_class=HTMLResponse)
@@ -96,6 +96,6 @@ def create_app(data=None):
     async def feedback(submission_id: str, request: Request):
         owner(request)
         body = await payload(request)
-        return store.feedback(submission_id, body.get('comment'), body.get('next_step'))
+        return store.feedback(submission_id, body.get('comment'), body.get('next_step'), body.get('scores'))
 
     return app

@@ -11,6 +11,11 @@ args.output.parent.mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(args.output, 'w', zipfile.ZIP_DEFLATED) as archive:
     for directory, target in [(repo/'src/base', 'src/base'), (repo/'base-starter', '')]:
         for file in directory.rglob('*'):
+            relative = file.relative_to(directory)
+            if directory.name == 'base-starter' and relative.parts[0] not in {'README.md', 'AGENTS.md', '.gitignore', 'requirements.lock', 'requirements-mcp.lock', 'scripts', 'docs', 'examples'}:
+                continue
+            if any(part in {'data', '.venv', '.git', '.pytest_cache', '__pycache__'} for part in relative.parts):
+                continue
             if not file.is_file() or '__pycache__' in file.parts or file.name == 'build_distribution.py':
                 continue
             archive.write(file, str(Path(target)/file.relative_to(directory)))

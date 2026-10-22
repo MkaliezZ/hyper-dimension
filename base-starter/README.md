@@ -15,13 +15,13 @@
 
 另开终端执行 `.\scripts\check.ps1` 做临时数据自检，不修改当前学习记录。启动终端按 Ctrl+C 停止。
 
-若8765已占用，使用 `.\scripts\start.ps1 -Port 8766`，浏览器也改用8766；不要结束不属于本工程的进程。自检通过只证明保存与反馈管线可运行，改版后还需用自己的资料和提交内容完成一次业务验证。
+若8765已占用，使用 `.\scripts\start.ps1 -Port 8766`，浏览器也改用8766；不要结束不属于本工程的进程。自检通过只证明保存与反馈管线可运行。改版后更新src/base/app/acceptance.json，再执行check.ps1 -Business和verify.ps1验证自己的业务；无需另写HTTP测试脚本。
 
 安装只需首次执行；缺少Python时先安装Python 3.11以上。可通过 `setup.ps1 -PythonPath "完整python.exe路径"` 指定解释器。依赖下载需要网络，失败时脚本会停止，不能继续假装安装完成。PowerShell若阻止本地脚本，可仅对本次启动使用 `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1`，不要修改整机策略。
 
 ## 做自己的伴学
 
-主要修改 `src/base/app/`。先改 config.json、knowledge/material.txt、prompts/activity.txt；要新判分再改 assessment.py。修改后重启，创建新活动。旧活动保留原资料与规则参数快照，不能拿旧链接判断新配置是否生效。具体字段与备份见 [开发指南](docs/开发指南.md)。
+主要修改 `src/base/app/`。先改 config.json、knowledge/material.txt、prompts/activity.txt；要新判分再改 assessment.py；可选structure配置提供结构提示，rubric配置提供分项得分。修改后重启，创建新活动。旧活动保留原资料与规则参数快照，不能拿旧链接判断新配置是否生效。具体字段与备份见 [开发指南](docs/开发指南.md)。
 
 默认文字活动不会自动给出教学评价：学习者提交后显示待反馈，维护者填写具体意见。自动评价仅用于 numeric 模式确定的数值等值判定。材料与提示词不是自动生成器；是否接入AI生成、使用什么工具，由开发者按自己的应用需要决定。
 
@@ -30,3 +30,5 @@
 此实例仅在本机监听。学习链接只授予该活动及其历史记录的访问权限，请只交给对应学习者。管理口令不要发给学习者。局域网需通过 start.ps1 -HostAddress 0.0.0.0 开放，并使用本机实际IP地址；公网部署与TLS尚未验收。
 
 分发时不要带 data、.venv 或真实教材。examples仅供参考，无需安装或注册。源码MIT许可，保留LICENSE。
+
+隔离试验：`scripts/start.ps1 -Port 8766 -DataPath data/my-test`。对应管理口令位置由启动终端提示。验证目录及清理边界见开发指南。

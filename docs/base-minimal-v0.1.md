@@ -1,5 +1,13 @@
 # base 最小闭环 0.1 实现契约
 
+## 0.2.1修订
+
+页面直接显示活动next_step；start.ps1支持-Port/-DataPath；随包check -Business与verify提供业务样例及真实HTTP验收。验收输入为app/acceptance.json。所有操作默认不依赖MCP或模型。
+
+可选structure在app层给出段落/字数/模糊词辅助提示，状态保持pending，不自动给教学分数。可选rubric为label/max_score数组；维护者反馈可传scores（label/score数组），由服务端按发布快照验证维度、范围与数值，计算total/max_total。得分与反馈一起入库并保留修订历史。没有量规时仍是普通文字反馈。GET /api/manage和学习活动公开返回量规定义，学习者无评分写权限。
+
+备份支持工程data下的隔离目录；verify.ps1只启动并停止自己的进程树。默认源码包不分发任何data目录或凭据。教学效果、真人上手、其他系统及公网仍需另测。
+
 这是现有仓库内的新通用切片，入口为 `python -m base` 和 `python -m base.mcp`。未替换 Hyper Dimension 原有入口、教师策略、档案或数据库。旧英语专用接口保持原语义。
 
 学员交付以源码开发包与网页启动为默认路径，不需要MCP桥接或DSH。`base.mcp`只是可选产品接口，依赖在requirements-mcp.lock中，默认requirements.lock不含MCP。

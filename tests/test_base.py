@@ -90,3 +90,90 @@ def test_http_roles_origin_and_complete_loop(tmp_path):
     assert result['submissions'][0]['evaluation']['next_step'] == '再做一次。'
     assert 'owner_token' not in json.dumps(result)
     assert learner.get('/learn/'+task['token']).status_code == 200
+
+
+def test_structural_hints_never_award_grade(tmp_path):
+    from base.app.assessment import evaluate_submission, validate_activity
+    draft = text_activity() | {'structure': {'sections': ['现状', '行动'], 'min_chars': 8, 'max_chars': 40, 'vague_phrases': ['差不多']}}
+    validate_activity(draft)
+    bad = evaluate_submission(draft, '现状差不多')
+    assert bad['status'] == 'pending' and bad['correct'] is None and 'total' not in bad
+    assert bad['structure']['missing_sections'] == ['行动']
+    assert bad['structure']['vague_phrases'] == ['差不多'] and not bad['structure']['length_ok']
+    good = evaluate_submission(draft, '现状已观察；行动先试做一个小任务。')
+    assert good['status'] == 'pending' and good['structure']['length_ok']
+    assert not good['structure']['missing_sections']
+    with pytest.raises(ValueError):
+        validate_activity(text_activity() | {'structure': {'min_chars': 10, 'max_chars': 2}})
+
+
+def test_structured_scores_snapshot_validation_and_restart(tmp_path):
+    rubric = [{'label': '清楚', 'max_score': 5}, {'label': '可执行', 'max_score': 10}]
+    service = Store(tmp_path)
+    task = service.create('评分合成学习者', text_activity() | {'rubric': rubric})
+    row = service.submit(task['token'], '行动说明', 'one')
+    scores = [{'label': '清楚', 'score': 4}, {'label': '可执行', 'score': 8}]
+    result = service.feedback(row['id'], '补充时间。', '明天再试。', scores)
+    assert result['total'] == 12 and result['max_total'] == 15
+    rubric[0]['max_score'] = 100
+    assert Store(tmp_path).public_task(task['token'])['submissions'][0]['evaluation']['scores'][0]['max_score'] == 5
+    assert service.tasks()[0]['rubric'][0]['max_score'] == 5
+    for invalid in ([], [{'label': '清楚', 'score': 6}, scores[1]], [{'label': '清楚', 'score': True}, scores[1]], [{'label': '其他', 'score': 1}, scores[1]]):
+        with pytest.raises(ValueError):
+            service.feedback(row['id'], '反馈', '下一步', invalid)
+    with pytest.raises(PermissionError):
+        service.authorize('错误口令')
+
+
+def test_score_api_rejects_student_write(tmp_path):
+    app = create_app(tmp_path)
+    owner, learner = TestClient(app), TestClient(app)
+    owner.post('/api/login', json={'token': app.state.store.owner_token})
+    draft = text_activity() | {'rubric': [{'label': '内容', 'max_score': 10}]}
+    task = owner.post('/api/tasks', json={'learner': '合成', 'draft': draft}).json()
+    row = learner.post('/api/learn/'+task['token'], json={'answer': '内容', 'request_key': 'one'}).json()
+    payload = {'comment': '反馈', 'next_step': '修订', 'scores': [{'label': '内容', 'score': 9}]}
+    assert learner.post('/api/feedback/'+row['id'], json=payload).status_code == 403
+    assert owner.post('/api/feedback/'+row['id'], json=payload).json()['total'] == 9
+    assert learner.get('/api/learn/'+task['token']).json()['submissions'][0]['evaluation']['total'] == 9
+
+
+def test_backup_supports_isolated_data_and_safe_restore(tmp_path):
+    from pathlib import Path
+    import shutil
+    import subprocess
+    import sys
+    import zipfile
+    project = tmp_path / 'starter'
+    (project / 'scripts').mkdir(parents=True)
+    (project / 'src/base/app').mkdir(parents=True)
+    script = project / 'scripts/backup.py'
+    root = Path(__file__).resolve().parents[1]
+    source = root / 'base-starter/scripts/backup.py'
+    shutil.copy(source if source.exists() else root / 'scripts/backup.py', script)
+    service = Store(project / 'data/isolated')
+    service.create('合成备份学习者')
+    archive = project / 'data/backup.zip'
+    subprocess.run([sys.executable, str(script), 'backup', str(archive)], check=True, capture_output=True)
+    with zipfile.ZipFile(archive) as z:
+        assert 'data/isolated/base.sqlite3' in z.namelist()
+        assert 'data/backup.zip' not in z.namelist()
+    restored = tmp_path / 'restored'
+    subprocess.run([sys.executable, str(script), 'restore', str(archive), str(restored)], check=True, capture_output=True)
+    assert (restored / 'data/isolated/base.sqlite3').read_bytes() == service.path.read_bytes()
+    malicious = tmp_path / 'invalid.zip'
+    with zipfile.ZipFile(malicious, 'w') as z:
+        z.writestr('../escape.txt', 'must not escape')
+    result = subprocess.run([sys.executable, str(script), 'restore', str(malicious), str(tmp_path/'empty')], capture_output=True)
+    assert result.returncode != 0 and not (tmp_path/'escape.txt').exists()
+
+
+def test_separate_data_directories_do_not_share_identity(tmp_path):
+    a, b = Store(tmp_path / 'first'), Store(tmp_path / 'second')
+    task = a.create('同名合成学习者')
+    assert a.owner_token != b.owner_token
+    with pytest.raises(PermissionError):
+        b.authorize(a.owner_token)
+    with pytest.raises(KeyError):
+        b.public_task(task['token'])
+    assert b.tasks() == []

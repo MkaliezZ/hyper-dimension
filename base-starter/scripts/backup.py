@@ -9,7 +9,7 @@ p.add_argument('archive', type=Path)
 p.add_argument('destination', type=Path, nargs='?')
 a = p.parse_args()
 if a.action == 'backup':
-    if not (ROOT/'data/base/base.sqlite3').exists():
+    if not any((ROOT/'data').rglob('base.sqlite3')):
         p.error('还没有数据库，请先启动并完成演示')
     with zipfile.ZipFile(a.archive, 'x', zipfile.ZIP_DEFLATED) as z:
         for folder, prefix in [(ROOT/'data', 'data'), (ROOT/'src/base/app', 'app')]:

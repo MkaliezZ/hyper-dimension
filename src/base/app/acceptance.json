@@ -1,0 +1,6 @@
+{
+  "answer": "我会先选一个小任务试做，写下观察结果，再根据反馈调整下一次行动。",
+  "mode": "text",
+  "expected_status": "pending",
+  "expected_comment_contains": "等待维护者"
+}
