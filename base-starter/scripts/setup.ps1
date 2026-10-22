@@ -1,4 +1,4 @@
-param([string]$PythonPath = 'python')
+﻿param([string]$PythonPath = 'python')
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $taskRoot

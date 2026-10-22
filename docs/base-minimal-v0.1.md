@@ -1,6 +1,10 @@
 # base 最小闭环 0.1 实现契约
 
-## 0.3.1换学科复做修订（当前）
+## 0.3.2Windows安装兼容修订（当前）
+
+DSH独立复做发现无BOM中文脚本在Windows PowerShell5.1可能解析失败。四个随包ps1统一使用UTF-8 BOM，并用powershell.exe实际解析全部脚本的回归测试覆盖；不通过要求学员改装PowerShell7规避。
+
+## 0.3.1换学科复做修订
 
 通用教学测试显式创建文字或数值活动，不再依赖默认应用保持text或assessment_version为1。策略返回只要求非空action/suggestion，动作名称由业务决定；HTTP和MCP验收不再锁定示例的revise/transfer。异常策略输出给出指向app/strategy.py的输入错误。最短调用示例按mode选择提交值，避免切换到numeric后误提交文字。
 

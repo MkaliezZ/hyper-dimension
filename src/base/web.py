@@ -53,7 +53,7 @@ def create_app(data=None):
 
     @app.get('/healthz')
     def health():
-        return {'ok': True, 'version': '0.3.1'}
+        return {'ok': True, 'version': '0.3.2'}
 
     @app.get('/', response_class=HTMLResponse)
     @app.get('/learn/{token}', response_class=HTMLResponse)

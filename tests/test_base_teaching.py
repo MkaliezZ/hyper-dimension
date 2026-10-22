@@ -249,3 +249,26 @@ def test_configure_script_validates_before_replacing_and_keeps_backup(tmp_path):
     result = subprocess.run([sys.executable, str(tmp_path/'scripts/configure.py'), '--goal', ''], capture_output=True)
     assert result.returncode != 0 and config.read_bytes() == valid
     assert len(list(config.parent.glob('config.*.bak'))) == 1
+
+
+def test_windows_powershell_can_parse_all_starter_scripts(tmp_path):
+    executable = shutil.which('powershell.exe')
+    if executable is None:
+        pytest.skip('Windows PowerShell不可用；须在目标Windows另验')
+    root = Path(__file__).resolve().parents[1]
+    scripts = root/'base-starter/scripts'
+    if not scripts.exists():
+        scripts = root/'scripts'
+    probe = tmp_path/'parse.ps1'
+    probe.write_text('''param([string]$Root)
+$failed = $false
+foreach ($file in Get-ChildItem -LiteralPath $Root -Filter '*.ps1') {
+    $parseTokens = $null
+    $parseErrors = $null
+    [void][System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$parseTokens, [ref]$parseErrors)
+    if ($parseErrors.Count -gt 0) { Write-Output $file.Name; $failed = $true }
+}
+if ($failed) { exit 1 }
+''', encoding='ascii')
+    result = subprocess.run([executable, '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', str(probe), '-Root', str(scripts)], capture_output=True)
+    assert result.returncode == 0, result.stdout.decode(errors='replace')

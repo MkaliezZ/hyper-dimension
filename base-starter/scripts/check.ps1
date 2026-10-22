@@ -1,4 +1,4 @@
-param([switch]$Business)
+﻿param([switch]$Business)
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $taskRoot

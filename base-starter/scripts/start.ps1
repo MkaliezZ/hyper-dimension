@@ -1,4 +1,4 @@
-param([int]$Port = 8765, [string]$HostAddress = '127.0.0.1', [string]$DataPath = 'data/base')
+﻿param([int]$Port = 8765, [string]$HostAddress = '127.0.0.1', [string]$DataPath = 'data/base')
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $taskRoot
