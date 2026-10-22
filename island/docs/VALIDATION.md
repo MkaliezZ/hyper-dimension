@@ -1247,3 +1247,7 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V363 · 可见帧兜底与恢复观察 / Visible watchdog and recovery observation
 
 全量矩阵新结束的两项 Mac 失败已保留：可见 RAF 缺失时的时钟损失，以及正常重新载入期间测试过早读取接口。定向修复保留原时间步长、结算断言和测试时限；V362 封存包不覆盖。见[修复范围](visible-recovery-v363.md)与[验证记录](verification-v363.json)，托管恢复需由新提交的 CI 确认。
+
+## V364 · 养护检查的画风隔离 / Independent soil-care contexts
+
+V363 的 Windows 养护检查在物品详情已打开后遇到测试输入等待超时。两套独立画风检查改为依次运行，上一环境与其 Worker 清理后才启动下一环境；即使前项失败也继续另一画风。各项原生操作、真实 180 秒生长、结算断言及原时限不变。只变更 CI 场景调度，生产与小游戏实现不变，V362 封存包不覆盖。见[范围与保留边界](soil-ci-isolation-v364.md)及[验证记录](verification-v364.json)。

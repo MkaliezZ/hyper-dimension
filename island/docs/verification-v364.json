@@ -1,0 +1,49 @@
+{
+  "version": "V364",
+  "scope": "CI soil-care appearance isolation only",
+  "originalFailure": {
+    "run": 39865339707,
+    "job": 120126017424,
+    "step": "Native greenhouse soil care",
+    "appearance": "origami",
+    "retained": true
+  },
+  "productionChanges": [],
+  "originalAssertionsAndTimeoutsPreserved": true,
+  "relatedRulesPassed": 37,
+  "nativeCases": [
+    {
+      "appearance": "pixel",
+      "passed": true,
+      "actualCraftedOneBag": true,
+      "actualSoilAnimation": true,
+      "realGrowthWallSeconds": 185.649,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true
+    },
+    {
+      "appearance": "origami",
+      "passed": true,
+      "actualCraftedOneBag": true,
+      "actualSoilAnimation": true,
+      "realGrowthWallSeconds": 181.719,
+      "harvest": {
+        "wheat": 3,
+        "seed": 1,
+        "nutritionRemaining": 2
+      },
+      "refreshedExactlyOnce": true
+    }
+  ],
+  "hostedRecoveryConfirmed": false,
+  "newArchiveCreated": false,
+  "sealedV362ArchivePreserved": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "at": "2026-10-22T22:53:36.332Z",
+  "previousContextRetiredBeforeNextStart": true,
+  "allPerCaseCodeByteIdentical": true
+}

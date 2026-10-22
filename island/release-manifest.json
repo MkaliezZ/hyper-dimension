@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v363-agent-source",
+  "release": "hyper-dimension-v364-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 161731,
-      "sha256": "544da4835889ae444ff7e7616ecd8a587b6ffd9937acd80691887e208304ba79"
+      "bytes": 162302,
+      "sha256": "7ca0b8a08125c83cbdbd02294fb502d6ba210bb4f3763d9b11c6056f92afc208"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9192,8 +9192,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 17810,
-      "sha256": "8d77b7ca65cffc5d6d3e5e3984a85437b0d2f1af8b8f6f2ff84e9efbcb0d9b83"
+      "bytes": 18149,
+      "sha256": "e89ea6fc7058881b3db0552e780637cacbb6ccf6e334db4760132dd06f51811b"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -14874,8 +14874,18 @@
       "path": "docs/verification-v363.json",
       "bytes": 1990,
       "sha256": "5d5fbc2f4aed16e6b3bb1cb0ec445335ffc23042115ad30fc9876c913865e74c"
+    },
+    {
+      "path": "docs/soil-ci-isolation-v364.md",
+      "bytes": 2122,
+      "sha256": "aa940ab193be83115c2ed270e1c2e46335c5fbc2fac9856bd756d9261d03a717"
+    },
+    {
+      "path": "docs/verification-v364.json",
+      "bytes": 1265,
+      "sha256": "23ccce8e0219946f170908df5e62ecf7eeb0fabc61a0ac262325ecfa6d5b9a13"
     }
   ],
-  "publicRevision": "v363-visible-recovery",
-  "generatedAt": "2026-10-22T22:28:31.300Z"
+  "publicRevision": "v364-soil-ci-isolation",
+  "generatedAt": "2026-10-22T22:53:36.343Z"
 }
