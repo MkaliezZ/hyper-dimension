@@ -3,20 +3,25 @@ on:
   workflow_dispatch:
     inputs:
       check_scope:
-        description: Original paint/save checks or native painting with a real mid-stroke pause
+        description: Isolated canonical receipt boundary qualification
         type: choice
         default: paint-recovery
         options: [paint-recovery, painting-tools]
 permissions:
   contents: read
 concurrency:
-  group: island-paint-recovery-${{ github.ref }}
+  group: save-receipt-boundary-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  windows-native:
-    name: ${{ inputs.check_scope == 'painting-tools' && 'macos-15-intel / native painting tools' || 'windows-2022 / original paint and save checks' }}
-    runs-on: ${{ inputs.check_scope == 'painting-tools' && 'macos-15-intel' || 'windows-2022' }}
-    timeout-minutes: 45
+  native-boundary:
+    name: ${{ matrix.os }} / receipt boundary / observer ${{ matrix.delay }}ms
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-15-intel]
+        delay: [0, 3000]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: island
@@ -27,34 +32,16 @@ jobs:
           node-version: '24'
       - name: Install isolated browser dependencies
         run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
-      - name: Original personal modal receipt and backdrop
-        if: inputs.check_scope != 'painting-tools'
-        run: node tests/v294-personal-backdrop-browser.mjs
-      - name: Original Windows save lock contention and unique delivery
-        if: inputs.check_scope != 'painting-tools'
-        run: node tests/v218-save-lock-browser.mjs
-      - name: Original granted player action during an unrelated receipt
-        if: inputs.check_scope != 'painting-tools'
-        run: node tests/v281-player-action-browser.mjs
-      - name: Original painting tools with a native mid-stroke pause
-        if: inputs.check_scope == 'painting-tools'
+      - name: Actual player animation with an accepted withheld foreign receipt
         env:
-          HD_QA_PAINT_PAUSE: '1'
-          HD_QA_WORK_JOURNAL: '1'
-        run: node tests/v219-painting-tools-browser.mjs
-      - name: Retain fictional native evidence
+          HD_QA_ACTION_OBSERVER_DELAY_MS: ${{ matrix.delay }}
+        run: node ../diagnostics/save-receipt-boundary-v361.mjs
+      - name: Retain actual authority and unchanged deadline evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: native-paint-recovery-${{ inputs.check_scope == 'painting-tools' && 'macos-15-intel-painting' || 'windows-2022' }}
+          name: receipt-boundary-${{ matrix.os }}-${{ matrix.delay }}
           path: |
-            island/qa/v219/native-painting-tools/report.json
-            island/qa/v219/native-painting-tools/work-progress.json
-            island/qa/v219/native-painting-tools/*.png
-            island/qa/v294/personal-backdrop/report.json
-            island/qa/v294/personal-backdrop/*.png
-            island/qa/v218/native-save-lock/report.json
-            island/qa/v218/native-save-lock/*.png
             island/qa/v281/native-player-action/report.json
             island/qa/v281/native-player-action/*.png
           if-no-files-found: error
