@@ -1,0 +1,61 @@
+{
+  "version": "V365",
+  "scope": "Canonical compost accounting in the CI fixture; autonomous NPC work remains enabled",
+  "originalFailure": {
+    "run": 39865339707,
+    "job": 120126017759,
+    "step": "Native greenhouse soil care",
+    "appearance": "origami",
+    "canonicalPlayerProduced": 1,
+    "canonicalPlayerConsumed": 1,
+    "canonicalPaidNpcProduced": 1,
+    "canonicalInventory": 1,
+    "retained": true
+  },
+  "productionChanges": [],
+  "timeoutsChanged": false,
+  "playerSingleProductionAndConsumptionRequired": true,
+  "npcOutputRequiresFullRecipeCost": true,
+  "relatedRulesPassed": 45,
+  "retainedSnapshotReplays": [
+    {
+      "source": "retained V364 actual native save",
+      "theme": "pixel",
+      "playerProduced": 1,
+      "playerConsumed": 1,
+      "npcProduced": 0,
+      "remaining": 0,
+      "npcReceiptIds": [],
+      "passed": true
+    },
+    {
+      "source": "retained V364 actual native save",
+      "theme": "origami",
+      "playerProduced": 1,
+      "playerConsumed": 1,
+      "npcProduced": 0,
+      "remaining": 0,
+      "npcReceiptIds": [],
+      "passed": true
+    },
+    {
+      "source": "retained hosted canonical compost fields and receipts only",
+      "theme": "origami",
+      "playerProduced": 1,
+      "playerConsumed": 1,
+      "npcProduced": 1,
+      "remaining": 1,
+      "npcReceiptIds": [
+        "npc-work:d847ba21-986e-4476-9ebc-875a1056a3a4:craft"
+      ],
+      "passed": true
+    }
+  ],
+  "freshNativeWalkthrough": "not rerun for V365; two complete V364 cases retained separately",
+  "hostedRecoveryConfirmed": false,
+  "newArchiveCreated": false,
+  "sealedV362ArchivePreserved": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "at": "2026-10-22T22:59:19.873Z",
+  "otherPerCaseCodeUnchanged": true
+}

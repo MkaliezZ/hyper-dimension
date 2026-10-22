@@ -1251,3 +1251,7 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V364 · 养护检查的画风隔离 / Independent soil-care contexts
 
 V363 的 Windows 养护检查在物品详情已打开后遇到测试输入等待超时。两套独立画风检查改为依次运行，上一环境与其 Worker 清理后才启动下一环境；即使前项失败也继续另一画风。各项原生操作、真实 180 秒生长、结算断言及原时限不变。只变更 CI 场景调度，生产与小游戏实现不变，V362 封存包不覆盖。见[范围与保留边界](soil-ci-isolation-v364.md)及[验证记录](verification-v364.json)。
+
+## V365 · 养护检查与居民实际产出 / Compost receipt accounting
+
+Intel Mac 的同一养护检查已完成收获和刷新，但 NPC 在期间另行扣料制作了一袋肥料，最终总库存为 1；原末尾固定为 0 的预期不符合该检查保留的居民自主工作。改为逐笔核对玩家产出、一次施肥和有完整配方成本的 NPC 制作回执，库存必须精确相符，无来源增量与重复扣除仍失败。生产、小游戏和时限不变。见[账本证据与范围](soil-receipt-accounting-v365.md)及[验证记录](verification-v365.json)。

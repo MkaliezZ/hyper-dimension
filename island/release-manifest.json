@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v364-agent-source",
+  "release": "hyper-dimension-v365-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 162302,
-      "sha256": "7ca0b8a08125c83cbdbd02294fb502d6ba210bb4f3763d9b11c6056f92afc208"
+      "bytes": 162891,
+      "sha256": "75a27345b92f9460c0ebbfb698aae676c1b5f75bc947c5b0cbe4a88a08bc97ac"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 20175,
-      "sha256": "621d58f4d59e0c6e56408296bf1026ae4089905db4b77812c545b92fcd2dc78d"
+      "bytes": 20211,
+      "sha256": "5946c4ce3f916eced6f2953ebe63963ed03f1d3caa4e279cdae7d006aec6b137"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -9192,8 +9192,8 @@
     },
     {
       "path": "tests/v159-soil-care-browser.mjs",
-      "bytes": 18149,
-      "sha256": "e89ea6fc7058881b3db0552e780637cacbb6ccf6e334db4760132dd06f51811b"
+      "bytes": 18252,
+      "sha256": "67ccf5eb14db7611efb11a898c0042d0fc4ad8e08329819a1cd1f60c5af82c82"
     },
     {
       "path": "tests/v159-soil-care.test.mjs",
@@ -14884,8 +14884,28 @@
       "path": "docs/verification-v364.json",
       "bytes": 1265,
       "sha256": "23ccce8e0219946f170908df5e62ecf7eeb0fabc61a0ac262325ecfa6d5b9a13"
+    },
+    {
+      "path": "tests/soilInventoryAccounting.mjs",
+      "bytes": 1595,
+      "sha256": "0c7660bf5ba0223a8bb65de1a6bce09362babc97c24345dc999a8e1998e47035"
+    },
+    {
+      "path": "tests/v365-soil-accounting.test.mjs",
+      "bytes": 3882,
+      "sha256": "86ce6ac565f5d5ca9bdb3207faa9a9ebc59130f032e431a9f845309cf72a63ea"
+    },
+    {
+      "path": "docs/soil-receipt-accounting-v365.md",
+      "bytes": 1575,
+      "sha256": "b08ac573cc54f96981181a5adea095b599ebb658cdbc11982fbeb8f0b35544db"
+    },
+    {
+      "path": "docs/verification-v365.json",
+      "bytes": 1767,
+      "sha256": "dc9e9535048005717fccade7f7a92227d83214e813d0a1633597d6dc642c3f49"
     }
   ],
-  "publicRevision": "v364-soil-ci-isolation",
-  "generatedAt": "2026-10-22T22:53:36.343Z"
+  "publicRevision": "v365-soil-receipt-accounting",
+  "generatedAt": "2026-10-22T22:59:19.882Z"
 }
