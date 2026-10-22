@@ -9,6 +9,9 @@ import {worldSlots,worldWalkableForTheme,HARBOR_LAYOUTS,HOTSPOTS,WORLD,WORLD_CEL
 import {wonderPlacements} from './fishingWonderArt.js';
 export const PLACEMENT_LIMIT=64,PLACEMENT_GRID=8;
 const kinds=new Set(['decor','collection','component']),directions=['朝前','朝右','朝后','朝左'];
+// Reuse the eight offsets: constructing nine arrays for every visited cell
+// produces a large short-lived heap during each authoritative save check.
+const connectivityOffsets=new Int8Array([1,0,-1,0,0,1,0,-1,1,1,1,-1,-1,1,-1,-1]);
 const key=s=>typeof s==='string'&&/^[a-zA-Z0-9_.:-]{1,150}$/.test(s)&&!['__proto__','constructor','prototype'].includes(s);
 export const canPlaceItem=(id,s=null)=>{const item=catalogItem(s,id);return !!item&&(kinds.has(item.category)||!!functionalDefinition(id))&&id!=='c16_4';};
 export function displayShape(item,rotation=0,s=null){
@@ -30,11 +33,12 @@ export function connectedPlacements(s,theme,{except=null,extra=null}={}){
  const ok=(x,y)=>{if(x<0||y<0||x>=w||y>=h)return false;const n=y*w+x;if(mask[n]<0)mask[n]=worldWalkableForTheme(theme,x*cell,y*cell,obstacles)?1:0;return mask[n]===1;};
  const nearest=p=>{let best=null;for(let y=Math.round(p.y/cell)-1;y<=Math.round(p.y/cell)+1;y++)for(let x=Math.round(p.x/cell)-1;x<=Math.round(p.x/cell)+1;x++){const d=Math.hypot(x*cell-p.x,y*cell-p.y);if(d<=32&&ok(x,y)&&(!best||d<best.d))best={x,y,d};}return best;};
  const source=nearest(HARBOR_LAYOUTS[theme].entrance);if(!source)return {ok:false,reason:'码头入口被阻断'};
- const visited=new Uint8Array(w*h),queue=[source.y*w+source.x];visited[queue[0]]=1;
- for(let head=0;head<queue.length;head++){
+ const visited=new Uint8Array(w*h),queue=new Uint32Array(w*h);let tail=1;queue[0]=source.y*w+source.x;visited[queue[0]]=1;
+ for(let head=0;head<tail;head++){
   const n=queue[head],x=n%w,y=Math.floor(n/w);
-  for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]){
-   const xx=x+dx,yy=y+dy,k=yy*w+xx;if(!ok(xx,yy)||visited[k]||dx&&dy&&(!ok(x+dx,y)||!ok(x,y+dy)))continue;visited[k]=1;queue.push(k);
+  for(let offset=0;offset<connectivityOffsets.length;offset+=2){
+   const dx=connectivityOffsets[offset],dy=connectivityOffsets[offset+1];
+   const xx=x+dx,yy=y+dy,k=yy*w+xx;if(!ok(xx,yy)||visited[k]||dx&&dy&&(!ok(x+dx,y)||!ok(x,y+dy)))continue;visited[k]=1;queue[tail++]=k;
   }
  }
  for(const p of anchors(theme)){const a=nearest(p);if(!a||!visited[a.y*w+a.x])return {ok:false,reason:p.name+'需要保留通路'};}

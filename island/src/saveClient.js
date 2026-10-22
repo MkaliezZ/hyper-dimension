@@ -1,5 +1,6 @@
 import {isSaveCapacityError} from './saveLimits.js';
 import {completionRecoveryContext,canonicalCompletionResult} from './completionReceiptRecovery.js';
+import {residentStartRecoveryContext,canonicalResidentStartResult} from './residentStartRecovery.js';
 import {assertCurrentFarmIntent} from './farmIntent.js';
 import {applySaveResponseActions} from './saveResponse.js';
 import {yieldForSave} from "./saveScheduler.js";
@@ -89,6 +90,7 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  async function request(theme,operation,body,encoded,metadataOnly=false){
   const actionsBase=metadataOnly?{version:record(theme).version,actions:record(theme).actions}:null;
   const recovery=operation==='action'?completionRecoveryContext(body,record(theme).actions,record(theme).state?.saveSlot):null;
+  const residentStart=operation==='action'?residentStartRecoveryContext(body,record(theme).actions,record(theme).state?.saveSlot):null;
   const payload=body===undefined?undefined:encoded??await journal.encode(body);
   // Only durable commands or definite idempotent save-lock replies may replay.
   // Unavailable/unknown autosaves retain their original explicit recovery path.
@@ -106,6 +108,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
     // only a canonical finished receipt for the acknowledged lease can release it.
     if(recovery&&(error.code==='save_request_timeout'||error.name==='AbortError')&&record(theme).state?.saveSlot===recovery.worldKey&&record(theme).actions?.epoch===recovery.ticket.epoch){
      try{const canonical=await request(theme,'');if(record(theme).state?.saveSlot===recovery.worldKey&&record(theme).actions?.epoch===recovery.ticket.epoch){const result=canonicalCompletionResult(recovery,canonical.document);if(result)return result;}}catch{}
+    }
+    if(residentStart&&(error.code==='save_request_timeout'||error.name==='AbortError')&&record(theme).state?.saveSlot===residentStart.worldKey&&record(theme).actions?.epoch===residentStart.input.epoch){
+     try{const canonical=await request(theme,'');if(record(theme).state?.saveSlot===residentStart.worldKey&&record(theme).actions?.epoch===residentStart.input.epoch){const result=canonicalResidentStartResult(residentStart,canonical.document);if(result)return result;}}catch{}
     }
     // A failed/mismatched read must preserve the original uncertain error and journal.
     throw error;

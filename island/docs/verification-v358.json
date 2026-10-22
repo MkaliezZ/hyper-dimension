@@ -1,0 +1,75 @@
+{
+  "version": "V358",
+  "basePublicCommit": "ca27dd0b8fbf9c65b6711eabd8e73ea408266850",
+  "status": "local-controls-passed-hosted-and-final-package-pending",
+  "relatedTests": {
+    "Node22": 93,
+    "Node24": 93
+  },
+  "originalTaskChain": {
+    "bothStyles": true,
+    "queueRegistrationTimeoutMs": 30000,
+    "firstWorkBudgetMs": 120000,
+    "remainingSharedWorkBudgetMs": 240000,
+    "midChainReload": true,
+    "emptyBrowserReopen": true,
+    "uniqueFinishedReceiptsPerStyle": 3
+  },
+  "nativeBackdrop": {
+    "bothStyles": true,
+    "simulationContinues": true,
+    "resizeRepaints": true,
+    "closeResumesPainting": true,
+    "providerReplySynthetic": true,
+    "initialNeedsSynthetic": true
+  },
+  "nativeLostResidentBegin": {
+    "bothStyles": true,
+    "withheldResponsesPerStyle": 2,
+    "originalFetchTimeoutMs": 12000,
+    "canonicalReadPerStyle": 1,
+    "actualUniqueLeaseAndReceipt": true,
+    "noSynthesizedRewards": true,
+    "declaredAxeAndWorldIdentityFixture": true
+  },
+  "originalHostedProductionAndSale": {
+    "bothStyles": true,
+    "initialResourcesSynthetic": true,
+    "finished": true
+  },
+  "zeroGatherProductionAndSale": {
+    "bothStyles": true,
+    "initialResourcesSynthetic": false,
+    "clockInjected": false,
+    "providersBlocked": true,
+    "gatherActionsPerStyle": 5,
+    "midProductionReload": true,
+    "lostFinishResponsesPerStyle": 2,
+    "saleSource": "canonical-read",
+    "originalRoadAndServiceBudgetMs": 150000
+  },
+  "priorA2aQualification": {
+    "sourceVersion": "V357",
+    "bothStylesFourMaps": true,
+    "originalDeviceCliPerStyle": 4,
+    "actualA2aMessagesPerStyle": 11,
+    "fullFourMapInitialResourcesSynthetic": true,
+    "fullFourMapClockInjected": false,
+    "currentChangedSaveCandidateMustBeRequalifiedInFinalPackage": true
+  },
+  "hostedRecoveryConfirmed": false,
+  "newArchiveAllocated": false,
+  "humanAcceptance": false,
+  "physicalMacOrMultiDeviceAcceptance": false,
+  "opcPiloting": false,
+  "wholeGoalComplete": false,
+  "defaultNode24Tests": {
+    "passed": 2066,
+    "failed": 0,
+    "groups": [
+      2052,
+      14
+    ],
+    "originalDefaultCommandRetained": true
+  }
+}

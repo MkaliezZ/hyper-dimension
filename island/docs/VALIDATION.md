@@ -1218,3 +1218,8 @@ The original five-second identity-writer deadline now uses a monotonic elapsed c
 - 双画风原生界面、必带本人管家及已同意随行的居民、原机归属与货币物资保持均核对。该链路未注入进度或时钟，但属于同机自动化，不代表实体多设备、Mac、居民社交事件、真人及完整 Goal。旧失败、错误 SDK Part 解析夹具和错误 QA 联接路径的失败均保留；生产保护未放宽。完整默认检查2,029项（2,015＋14）通过，无失败、跳过或取消；2,945个源码载荷摘要逐一核对。未生成新的大体积交付包，本次先发布A2A源码修复。
 
 Explicit peer routing and native/standard input history now share the same persistent task. Three real original-device Hermes/Flash turns traverse the official SDK, native UI with post-commit response loss, and SDK continuation; service/CLI restart preserves history without another run. Fictional private file work remains on each original device. This is same-host automated technical evidence, not physical-device, human or complete-product acceptance. [Details](a2a-roundtrip-v357.md) · [Summary](verification-v357.json).
+
+
+## V358 · 居民作业续做、等待背景与游客经济 / Resident continuation, waiting backdrop and visitor economy
+
+保留原有请求、工作时长与断言，修复连续丢失开工响应后的原租约接续，减少存档连通校验分配，并在管家等待时保留已绘背景。相关Node22/24、原始三步续做、双画风真实响应丢失及零资源采集到游客购买已通过本地隔离检查；模型回复或需求夹具逐项声明。主分支托管恢复、最终源码包与实际设备/真人验收仍待各自证据。详细机制、范围与结构化记录见[居民作业续做](resident-continuation-v358.md)。

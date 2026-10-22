@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v357-agent-source",
+  "release": "hyper-dimension-v358-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3362,
-      "sha256": "79c6d05307fa177fa78232d81b4a7ac55dcbdd7946196f3105ef26bad2336058"
+      "bytes": 3500,
+      "sha256": "8f9c2bd4f34512be27fcc3e5162db94987b0e9c0141d74719cace60af2be62b6"
     },
     {
       "path": "README.md",
-      "bytes": 3116,
-      "sha256": "e41f5423c06c7e0a97dc6e156ef1559d478f131912caec066110befed01a7cf0"
+      "bytes": 3218,
+      "sha256": "719ebf4c95205aa5b080ac9c467594730409a6b87a03259a6e756335b63554e1"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 159177,
-      "sha256": "9ed48d86785dfb250f4fc34fdc8ffcc8250fe12933d411980306df2b372b06cf"
+      "bytes": 159832,
+      "sha256": "0cf5fa54436401512587cdc48c1da97c2b01c5f9e830e102db6d70abcc988da9"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19662,
-      "sha256": "e96fd7e4587d74b0537ac225bd3af7ff0987b04a461d70f36a32e9289641aa8c"
+      "bytes": 19888,
+      "sha256": "57a42ffedc15ce8e2f9db6cec49321a5e59200f14e4211aa2d003d4d1d7c447e"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 147655,
-      "sha256": "e377c3935be7043516b20f72ba48cc89635dca68f9bea5bec369256798a2ebcb"
+      "bytes": 148172,
+      "sha256": "f472d6f3d64677f54a0ea0ec95991bd6ebf38dfd049077e2cfcad348a7d5b100"
     },
     {
       "path": "src/arcade.css",
@@ -7667,8 +7667,8 @@
     },
     {
       "path": "src/placements.js",
-      "bytes": 13718,
-      "sha256": "691638a510194a5c0980b144f4558870b7a53f6676ba1c8a79dbeed5312a26e9"
+      "bytes": 14042,
+      "sha256": "3b046e32e57116f49a8667c335760c39bb535fede9603056e72e934562bb3c61"
     },
     {
       "path": "src/portfolio-v130.css",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 52110,
-      "sha256": "c11e036bd8a570a153d2343f01e24429dba6ac132f29e4508ff8a5f52bb4dd89"
+      "bytes": 52833,
+      "sha256": "f5614bb69658ca492e5b23b02e77c41244301481df5c545da6243ee450051cfe"
     },
     {
       "path": "src/saveDelta.js",
@@ -14744,8 +14744,38 @@
       "path": "docs/verification-v357.json",
       "bytes": 1408,
       "sha256": "7e3dbdce43ad82a4569d30d96c9d2fdfa6dd263c8208c9ecf05f5ed4f75a17fa"
+    },
+    {
+      "path": "docs/resident-continuation-v358.md",
+      "bytes": 3960,
+      "sha256": "2f4f5e56015feeae6f326647144a986abaf363bc12ad7c0b49740dff434962ab"
+    },
+    {
+      "path": "docs/verification-v358.json",
+      "bytes": 2148,
+      "sha256": "97c5d9d0e9b70980eac3ff942a9a67f4577a277eeb342da644c311c1faf45057"
+    },
+    {
+      "path": "src/residentStartRecovery.js",
+      "bytes": 3298,
+      "sha256": "2afd874a0b21a3a84e63cadc7e11694e41c558936ee59d60ff90284c4e989d54"
+    },
+    {
+      "path": "tests/v358-resident-start-recovery-browser.mjs",
+      "bytes": 7851,
+      "sha256": "c75308810966e88287e9f4cb3b5b01b2d398b2cca03681af0803c7c280a65329"
+    },
+    {
+      "path": "tests/v358-resident-start-recovery.test.mjs",
+      "bytes": 8589,
+      "sha256": "80add266364447b652175a7503e9582fd0b3d98b63c223accf9e2b69108101c0"
+    },
+    {
+      "path": "tests/v358-steward-backdrop-browser.mjs",
+      "bytes": 7089,
+      "sha256": "001c0ba4228164c3ef0f703f8f53b71bb8b8d61947d0883dded3820729390a46"
     }
   ],
-  "publicRevision": "v357-a2a-bidirectional-continuity",
-  "generatedAt": "2026-10-22T08:04:05.755480+00:00"
+  "publicRevision": "v358-resident-continuation",
+  "generatedAt": "2026-10-22T08:50:52.840084+00:00"
 }

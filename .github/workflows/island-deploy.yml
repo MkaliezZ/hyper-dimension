@@ -739,6 +739,12 @@ jobs:
         env:
           HD_QA_WORK_JOURNAL: "1"
         run: node tests/v213-task-chain-browser.mjs
+      - name: Native pending steward backdrop with live NPCs and real clocks
+        run: node tests/v358-steward-backdrop-browser.mjs
+        timeout-minutes: 4
+      - name: Native resident lease after two actual lost acknowledgements
+        run: node tests/v358-resident-start-recovery-browser.mjs
+        timeout-minutes: 4
       - name: Native user checkpoint through autonomous ferry queue
         run: node tests/v351-visitor-checkpoint-browser.mjs
         timeout-minutes: 2
@@ -754,6 +760,8 @@ jobs:
             island/qa/v330/native-durable-lock/report.json
             island/qa/v354/native-decoded-artwork/report.json
             island/qa/v356/native-worker-boot/report.json
+            island/qa/v358/native-steward-backdrop/report.json
+            island/qa/v358/native-resident-start-recovery/report.json
             island/qa/v329/native-acknowledged-planning/report.json
             island/qa/v213/native-task-chains/report.json
             island/qa/v213/native-task-chains/work-progress.json
