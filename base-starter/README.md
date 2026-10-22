@@ -15,6 +15,8 @@
 
 另开终端执行 `.\scripts\check.ps1` 做临时数据自检，不修改当前学习记录。启动终端按 Ctrl+C 停止。
 
+若8765已占用，使用 `.\scripts\start.ps1 -Port 8766`，浏览器也改用8766；不要结束不属于本工程的进程。自检通过只证明保存与反馈管线可运行，改版后还需用自己的资料和提交内容完成一次业务验证。
+
 安装只需首次执行；缺少Python时先安装Python 3.11以上。可通过 `setup.ps1 -PythonPath "完整python.exe路径"` 指定解释器。依赖下载需要网络，失败时脚本会停止，不能继续假装安装完成。PowerShell若阻止本地脚本，可仅对本次启动使用 `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1`，不要修改整机策略。
 
 ## 做自己的伴学
