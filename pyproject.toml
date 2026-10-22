@@ -38,6 +38,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 hyper_dimension = ["schemas/*.json"]
+base = ["page.html", "app/*.json", "app/knowledge/*.txt", "app/prompts/*.txt"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

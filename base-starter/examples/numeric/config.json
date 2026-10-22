@@ -1,0 +1,9 @@
+{
+  "name": "分数伴学",
+  "activity_title": "把分数写成小数",
+  "instructions": "将 1/2 写成小数。",
+  "criteria": "数值与给定分数等值。",
+  "next_step": "再写一个与 1/2 等值的分数。",
+  "mode": "numeric",
+  "expected": "1/2"
+}
