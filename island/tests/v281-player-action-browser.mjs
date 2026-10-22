@@ -35,7 +35,18 @@ async function run(theme){
   await context.route('**/api/saves/**/action',async route=>{
    const input=route.request().postDataJSON();row.requests.push({kind:input.kind||'gather',operation:input.operation,requestId:input.requestId});
    if(input.kind==='resident'&&input.operation==='begin'&&input.intent?.operationId?.startsWith('qa-v281-player-')){
-    const response=await route.fetch();assert.equal(response.status(),200);held=true;await gate;return route.fulfill({response});
+    const fetching=route.fetch().then(response=>({response}),error=>({error}));
+    // Observe actual acceptance without waiting for Playwright to buffer the
+    // complete response body. Its delivery is the response this test withholds.
+    // Keep the same original end-to-end setup deadline and all UI/outcome gates.
+    while(Date.now()<actionSetupDeadline){
+     const document=await store.current(theme),ticket=document.actions?.resident?.leases?.[input.requestId];
+     if(ticket?.kind==='resident'&&ticket.actorId===input.actorId&&ticket.epoch===input.epoch&&ticket.sequence===input.expectedSequence+1&&ticket.intent?.operationId===input.intent.operationId){
+      row.acceptedForeignStart={at:Date.now(),requestId:ticket.requestId,version:document.version,epoch:ticket.epoch,sequence:ticket.sequence};held=true;break;
+     }
+     await new Promise(resolve=>setTimeout(resolve,40));
+    }
+    await gate;const {response,error}=await fetching;if(error)throw error;assert.equal(response.status(),200);return route.fulfill({response});
    }
    return route.continue();
   });
@@ -69,7 +80,7 @@ startAction=(...args)=>{const result=nativeStartAction(...args),q=window.__playe
   row.realForeignCommandQueuedAtGrantedAnimation=true;
   // Keep the original setup, network and completion budgets. Only the real
   // fixture command's trigger moves from observer latency to the grant event.
-  while(!held&&Date.now()<actionSetupDeadline)await page.waitForTimeout(40);assert(held,'the real unrelated response must be withheld');
+  while(!held&&Date.now()<actionSetupDeadline)await page.waitForTimeout(40);assert(held,'the real unrelated response must be withheld');assert(row.acceptedForeignStart.at<=actionSetupDeadline,'Canonical acceptance observation must fit the original15second setup budget');
   await page.waitForFunction(()=>{const q=window.__playerActionQA.inspect();return q.action===null&&q.gatherSettling&&q.resident.inflight>0;},null,{timeout:5000});
   const waiting=await page.evaluate(()=>window.__playerActionQA.inspect()),before=await store.current(theme);
   assert.equal(waiting.wax,0);assert.equal(before.state.inventory.wax,0);assert.equal(before.actions.active.requestId,initial.active);assert.equal(before.actions.receipts.filter(r=>r.ticket.requestId===initial.active).length,0);

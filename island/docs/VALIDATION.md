@@ -1238,3 +1238,8 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V361 · 后台存档回执等待 / Save worker acknowledgement
 
 修复网络 RPC 超时误分类，保留原等待和同编号恢复限制；两画风实际 Worker 回执丢失、分工接续和配方原生检查见[记录](save-worker-deadline-v361.md)。托管、交付包和真人边界分开核对。
+
+
+## V362 · 委派队列与真实回执观察 / Delegated queue and receipt observation
+
+委派作业公平优先，回执观察采用原15秒内实际持久租约；原工作、动画和资源断言保留。当前CI修正、Win/IntelMac对照及A2A边界见[记录](delegated-queue-v362.md)。

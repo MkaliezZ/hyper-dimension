@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v361-agent-source",
+  "release": "hyper-dimension-v362-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 160976,
-      "sha256": "3acb8269ca93a31a97599ec05f6105d215993ab1ae53c3527a01a107251100f4"
+      "bytes": 161272,
+      "sha256": "170b24167b3b060b00ef4bef22ada51573429d01d16596d8c00a5169afed51ce"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 20087,
-      "sha256": "604c27ffeb78adf50d0c7d6b6768b13d749aa0570c3e9b2b9b1182f51b19119c"
+      "bytes": 20132,
+      "sha256": "2c322923d6836dc771824780fe2c61f693b649d976aae2f6012012bc6d0f6699"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -7932,8 +7932,8 @@
     },
     {
       "path": "src/saveClient.js",
-      "bytes": 52833,
-      "sha256": "f5614bb69658ca492e5b23b02e77c41244301481df5c545da6243ee450051cfe"
+      "bytes": 53041,
+      "sha256": "92b293033cff862136a9deb2dc6df33dfd42edc95b2e6e7c5df49d7967aa5d17"
     },
     {
       "path": "src/saveDelta.js",
@@ -13332,8 +13332,8 @@
     },
     {
       "path": "tests/v281-player-action-browser.mjs",
-      "bytes": 9671,
-      "sha256": "1117ff0c84f76747796ce4d24e3b53428078e0904df12396073b47fa4b340eeb"
+      "bytes": 10718,
+      "sha256": "60d550f10cfe26a767b6b384317ac815b73b9ba17e25f52a752185927349dd3a"
     },
     {
       "path": "tests/v281-player-action-clock.test.mjs",
@@ -14839,8 +14839,28 @@
       "path": "tests/v361-save-worker-deadline.test.mjs",
       "bytes": 2978,
       "sha256": "427b40dc879cb156c5cf3b1d98b6a65e9c2145599f605c792da61f4b702df379"
+    },
+    {
+      "path": "docs/delegated-queue-v362.md",
+      "bytes": 3117,
+      "sha256": "e0997b61b408b0f4b39120bfc3c43fea2fe9a2d21a29081d81e6ac5e76c42d2a"
+    },
+    {
+      "path": "docs/verification-v362.json",
+      "bytes": 1525,
+      "sha256": "05c4b8c62b3587e985dd39dc381e51193ef0ff0b95ad394a99e3a8be610cd488"
+    },
+    {
+      "path": "src/assignedActionPriority.js",
+      "bytes": 1361,
+      "sha256": "9620fbf568fe727cafd874141e699d83bf44bad25eb3f0f3e2f52ffdafbb09ef"
+    },
+    {
+      "path": "tests/v362-assigned-action-priority.test.mjs",
+      "bytes": 3578,
+      "sha256": "21b20ec32e7c19b41342af3347701a1b5609fc06a66b09c46728c497a0150e49"
     }
   ],
-  "publicRevision": "v361-save-worker-deadline",
-  "generatedAt": "2026-10-22T19:18:35.414234+00:00"
+  "publicRevision": "v362-delegated-queue",
+  "generatedAt": "2026-10-22T20:15:43.184587+00:00"
 }

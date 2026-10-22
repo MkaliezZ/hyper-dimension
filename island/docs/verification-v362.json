@@ -1,0 +1,53 @@
+{
+  "version": "V362",
+  "basePublicCommit": "438dc29d5ca96374ecf8cceacd8d6a19ab4537b3",
+  "queuePolicyRulesNode22Passed": 8,
+  "relatedRulesNode24Passed": 63,
+  "native": [
+    {
+      "name": "task-chain",
+      "cases": 2,
+      "passed": true
+    },
+    {
+      "name": "task-interruption",
+      "cases": 4,
+      "passed": true
+    },
+    {
+      "name": "custom-agent",
+      "cases": 2,
+      "passed": true
+    }
+  ],
+  "nativeCasesPassed": 8,
+  "hostedReceiptBoundary": {
+    "run": 39841768168,
+    "cases": 8,
+    "windowsAndIntelMac": true,
+    "observerDelaysMs": [
+      0,
+      3000
+    ],
+    "setupBudgetMs": 15000,
+    "largestActualCommitObservationMs": 13928,
+    "authoritativeIdentityAndHttp200Required": true
+  },
+  "deadlinesIncreased": false,
+  "activeTransactionsAndCheckpointsPreserved": true,
+  "automaticFifoGetsAlternatingTurns": true,
+  "currencyMaterialWorkDurationAndModelCadenceUnchanged": true,
+  "a2aFullFlowBaseline": {
+    "sourceVersion": "V361",
+    "sourceCommit": "438dc29d5ca96374ecf8cceacd8d6a19ab4537b3",
+    "bothStyles": true,
+    "fourOwners": true,
+    "realOriginalDeviceProcesses": 4,
+    "realFlashHermes": true,
+    "originalGateBodySHA256": "5c92dd97b9a47ce7eb3879b5647af653fac20849948fb85f8932ec2f8f13a726"
+  },
+  "physicalMultideviceOrHumanAcceptance": false,
+  "latestUserScope": "A2A works, fix current CI blockers, directly deliver; no further minigame repairs or extra long acceptance cycle.",
+  "newHostedMainChecksPending": true,
+  "wholeGoalComplete": false
+}

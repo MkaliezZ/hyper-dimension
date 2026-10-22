@@ -8,6 +8,7 @@ import {mergeActionState,sameState} from './actionMerge.js';
 import {activeSlotKey,activeSaveKey,validSaveSlot} from './saveStorage.js';
 import {createSaveJournal} from './saveJournal.js';
 import {createActionQueue} from './actionQueue.js';
+import {assignedActionForeground} from './assignedActionPriority.js';
 import {recoverPendingProgress} from './pendingSaveRecovery.js';
 import {MAX_VISIBLE_FRAME_SECONDS} from './frameClock.js';
 import {navigateAfterRecovery} from './recoveryNavigation.js';
@@ -391,7 +392,9 @@ export function createSaveClient({storageTheme=null,loadLocal,storeLocal,onStatu
  }
 
  async function action(theme,input,prepareInput,options){
-  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});return queueOperation(r,()=>actionNow(theme,input,prepareInput,options),options);
+  const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});
+  const queueOptions=options?.foreground!==false&&assignedActionForeground(input,r.actions)?{...options,foreground:true}:options;
+  return queueOperation(r,()=>actionNow(theme,input,prepareInput,options),queueOptions);
  }
  async function actionNow(theme,input,prepareInput,options){
   const r=record(theme);if(r.recovering||read(replacementKey(theme)))throw Object.assign(Error('正在核对进度，请稍候'),{code:'save_recovering'});if(r.commandSending)throw Object.assign(Error('作业结算进行中'),{code:'action_pending'});
