@@ -282,7 +282,10 @@ class Store:
         return {'learner_id': learner_id, 'encountered': len(tasks), 'completed': len(latest), 'meets_criteria': sum(v.get('judgement') == 'meets_criteria' for v in latest.values()), 'independent_transfer': len(transfers & current_passed), 'open_activities': sum(s != 'archived' for s in states.values()), 'pending_submissions': sum(v['status'] == 'pending' and states[k] != 'archived' for k,v in latest.items()), 'needs_revision': sum(v.get('judgement') == 'needs_revision' and states[k] != 'archived' for k,v in latest.items()), 'events': [{**dict(e), 'detail': json.loads(e['detail'])} for e in events], 'meaning': '接触=已发布活动，完成=已有提交；达标与独立迁移各自需要明确证据；计数不是掌握度。'}
 
     def next_plan(self, learner_id):
-        return plan_next(self.learner(learner_id)['profile'], self.growth(learner_id))
+        result = plan_next(self.learner(learner_id)['profile'], self.growth(learner_id))
+        if not isinstance(result, dict) or any(not isinstance(result.get(k), str) or not 0 < len(result[k].strip()) <= limit for k,limit in [('action',80),('suggestion',20000)]):
+            raise ValueError('app/strategy.py：plan_next须返回非空action（最多80字）和suggestion（最多20000字），动作名称由业务决定')
+        return result
 
     def tasks(self):
         with self.db() as db:

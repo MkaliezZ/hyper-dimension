@@ -1,6 +1,12 @@
 # base 最小闭环 0.1 实现契约
 
-## 0.3.0通用教学切片（当前）
+## 0.3.1换学科复做修订（当前）
+
+通用教学测试显式创建文字或数值活动，不再依赖默认应用保持text或assessment_version为1。策略返回只要求非空action/suggestion，动作名称由业务决定；HTTP和MCP验收不再锁定示例的revise/transfer。异常策略输出给出指向app/strategy.py的输入错误。最短调用示例按mode选择提交值，避免切换到numeric后误提交文字。
+
+管理网页依据profile_schema渲染SubjectFields中的简单类型及枚举字段；嵌套结构仍由具体应用开发。维护者可在本次活动表单调整文字/数值模式和任务说明，发布时保存独立快照，不改旧活动。get_context返回档案Schema供客户端理解扩展字段。
+
+## 0.3.0通用教学切片
 
 通用约定在app/teaching.json；可选档案与学科字段Schema在app/profile.py；下一步策略在app/strategy.py。目标、成果与来源随活动快照保存，文件摘要改变时取消对应资料的旧核验标记。所有入口共用Store。
 

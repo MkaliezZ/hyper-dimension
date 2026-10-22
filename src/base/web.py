@@ -53,7 +53,7 @@ def create_app(data=None):
 
     @app.get('/healthz')
     def health():
-        return {'ok': True, 'version': '0.3.0'}
+        return {'ok': True, 'version': '0.3.1'}
 
     @app.get('/', response_class=HTMLResponse)
     @app.get('/learn/{token}', response_class=HTMLResponse)
@@ -78,9 +78,10 @@ def create_app(data=None):
     def manage(request: Request):
         owner(request)
         from base.app.activities import prepare_activity
+        from base.app.profile import LearningProfile
         from base.teaching import teaching_rules, check_activity
         preview = prepare_activity()
-        return {'preview': preview, 'teaching': teaching_rules(), 'check': check_activity(preview), 'instance_id': store.instance_id, 'learners': store.learners(), 'tasks': store.tasks(), 'submissions': store.submissions()}
+        return {'preview': preview, 'profile_schema': LearningProfile.model_json_schema(), 'teaching': teaching_rules(), 'check': check_activity(preview), 'instance_id': store.instance_id, 'learners': store.learners(), 'tasks': store.tasks(), 'submissions': store.submissions()}
 
     @app.post('/api/tasks')
     async def create(request: Request):

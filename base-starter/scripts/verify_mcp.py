@@ -47,7 +47,7 @@ async def run(folder, log):
             row = client.post('/api/learn/'+task['token'],json={'answer':answer,'request_key':'one'}).json()
             saved = await call('record_feedback',{'submission_id':row['id'],'comment':'合成评阅：已有证据，继续换情境验证。','next_step':'换情境复做','scores':[{'label':'证据','score':4}],'judgement':'meets_criteria','request_key':'review'})
             check(saved['total']==4 and client.get('/api/learn/'+task['token']).json()['submissions'][0]['evaluation']['total']==4, 'MCP分项反馈与网页读取共用数据服务')
-            check((await call('get_growth',{'learner_id':p['id']}))['meets_criteria']==1 and (await call('plan_next',{'learner_id':p['id']}))['action']=='transfer', 'MCP成长与普通策略函数')
+            check((await call('get_growth',{'learner_id':p['id']}))['meets_criteria']==1 and bool((await call('plan_next',{'learner_id':p['id']}))['suggestion']), 'MCP成长与普通策略函数（允许业务自定义动作名称）')
             await call('verify_transfer',{'submission_id':row['id'],'context':'合成新情境核验；仅测试管线，不宣称真实迁移','independent':True})
             check((await call('get_growth',{'learner_id':p['id']}))['independent_transfer']==1, 'MCP人工迁移证据记录')
             records = await call('list_records')

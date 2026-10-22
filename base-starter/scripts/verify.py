@@ -84,7 +84,7 @@ def run():
                 followup = request(owner, 'POST', '/api/tasks', {'learner': task['learner'], 'learner_id': task['learner_id']})
                 check(followup['learner_id'] == task['learner_id'] != other['learner_id'], '跨活动复用稳定身份，同名档案不合并')
                 growth = request(owner, 'GET', '/api/growth/'+task['learner_id'])
-                check(growth['growth']['completed']==1 and growth['growth']['meets_criteria']==0 and growth['plan']['action']=='revise', '完成和分数不自动推定达标；策略建议修订')
+                check(growth['growth']['completed']==1 and growth['growth']['meets_criteria']==0 and bool(growth['plan']['suggestion']), '完成和分数不自动推定达标；策略返回业务建议')
                 check(learner.get('/api/growth/'+task['learner_id']).status_code == 403, '学习者不能越权读取学习档案与成长')
                 passed = dict(feedback, judgement='meets_criteria', request_key='feedback-two')
                 request(owner, 'POST', '/api/feedback/'+row['id'], passed)

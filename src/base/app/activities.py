@@ -34,4 +34,5 @@ def prepare_activity():
 
 def generation_context():
     from base.teaching import teaching_rules
-    return {'activity': prepare_activity(), 'prompt': (ROOT / 'prompts' / 'activity.txt').read_text(encoding='utf-8-sig'), 'teaching': teaching_rules()}
+    from base.app.profile import LearningProfile
+    return {'activity': prepare_activity(), 'profile_schema': LearningProfile.model_json_schema(), 'prompt': (ROOT / 'prompts' / 'activity.txt').read_text(encoding='utf-8-sig'), 'teaching': teaching_rules()}
