@@ -1,3 +1,4 @@
+import {createDrainingHttpServer} from './httpDrain.mjs';
 import {serveCoCreationAssets} from './coCreationAssetHttp.mjs';
 import {createA2AGateway,A2A_VERSION} from './a2aGateway.mjs';
 import {createDeviceBridgeStore,BRIDGE_BODY_BYTES} from './deviceBridgeStore.mjs';
@@ -15,7 +16,7 @@ import {createLanCollaborationStore} from './lanCollaborationStore.mjs';
 import {NPC_CADENCE} from '../src/npcCadence.js';
 import {createLanAgentService} from './lanAgentService.mjs';
 import {createLanActivityStore} from './lanActivityStore.mjs';
-import {createServer} from 'node:http';import {readFile,writeFile,mkdir,stat} from 'node:fs/promises';import {resolve,extname,sep} from 'node:path';import {networkInterfaces,hostname} from 'node:os';import {randomBytes,timingSafeEqual} from 'node:crypto';import {createLanIdentityStore} from './lanIdentityStore.mjs';import {createLanTenantServices} from './lanTenantServices.mjs';import {MAX_SAVE_BYTES,MAX_IMPORT_BYTES} from './saveStore.mjs';import {CO_CREATION_EXAMPLES} from '../src/cocreation.js';
+import {readFile,writeFile,mkdir,stat} from 'node:fs/promises';import {resolve,extname,sep} from 'node:path';import {networkInterfaces,hostname} from 'node:os';import {randomBytes,timingSafeEqual} from 'node:crypto';import {createLanIdentityStore} from './lanIdentityStore.mjs';import {createLanTenantServices} from './lanTenantServices.mjs';import {MAX_SAVE_BYTES,MAX_IMPORT_BYTES} from './saveStore.mjs';import {CO_CREATION_EXAMPLES} from '../src/cocreation.js';
 const root=resolve(import.meta.dirname,'..'),mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2','.json':'application/json; charset=utf-8','.md':'text/plain; charset=utf-8'};
 const err=(message,code,status)=>Object.assign(Error(message),{code,status}),json=(res,status,data,headers={})=>res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}).end(JSON.stringify(data));
 async function body(req,limit=12000){if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw err('请使用小岛页面提交JSON请求','lan_content_type',415);try{return await readJsonBody(req,limit)}catch(e){if(e.code==='body_too_large')throw err('请求内容过大','lan_body_size',413);throw err('请求格式无效','lan_invalid',400);}}
@@ -28,7 +29,8 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  const identities=createLanIdentityStore({directory,now,getEnvironment:()=>environmentAt(environmentService.view().clock,now()),personalRuntime:true,resolveTravel:async account=>resolveTravelRecruitment(directory,account,await tenants.readIslandForServer(account.id,account.profile.theme))}),tenants=createLanTenantServices({directory,identities,environmentProvider:()=>environmentService.view(),now}),knownHosts=new Set(['127.0.0.1','localhost',hostname().toLowerCase(),...interfaces()]),rate=new Map();
  if(!enrollmentKey){const dir=resolve(directory,'_lan');await mkdir(dir,{recursive:true});const file=resolve(dir,'enrollment.json');try{enrollmentKey=JSON.parse(await readFile(file,'utf8')).key}catch(e){if(e.code!=='ENOENT')throw e;enrollmentKey=randomBytes(6).toString('hex').toUpperCase();await writeFile(file,JSON.stringify({key:enrollmentKey},null,2)+'\n',{mode:0o600});}}
  if(typeof enrollmentKey!=='string'||enrollmentKey.length<8||enrollmentKey.length>80)throw Error('Invalid enrollment key');
- function allowed(req){let h;try{h=new URL('http://'+req.headers.host)}catch{return false;}if(!knownHosts.has(h.hostname.toLowerCase())||Number(h.port||80)!==server.address()?.port||req.headers['sec-fetch-site']==='cross-site')return false;if(req.headers.origin){try{if(new URL(req.headers.origin).origin!==h.origin)return false;}catch{return false;}}return true;}
+ let boundPort=port;
+ function allowed(req){let h;try{h=new URL('http://'+req.headers.host)}catch{return false;}if(!knownHosts.has(h.hostname.toLowerCase())||Number(h.port||80)!==boundPort||req.headers['sec-fetch-site']==='cross-site')return false;if(req.headers.origin){try{if(new URL(req.headers.origin).origin!==h.origin)return false;}catch{return false;}}return true;}
  function throttle(req,type){const key=(req.socket.remoteAddress||'unknown')+':'+type+(type==='normal'?':'+token(req):''),entry=rate.get(key)||{at:now(),count:0};if(now()-entry.at>60000){entry.at=now();entry.count=0;}entry.count++;rate.set(key,entry);if(entry.count>(type==='auth'?12:240))throw err('请求过于频繁，请稍后再试','lan_rate',429);if(rate.size>512)for(const[k,v]of rate)if(now()-v.at>60000)rate.delete(k);}
  const environmentService=await createEnvironmentService({directory:environmentDirectory||process.env.HD_ENVIRONMENT_DIR||resolve(directory,'environment'),now,...(environmentClockProvider===undefined?{}:{centralClockProvider:environmentClockProvider})});cleanup.push(()=>environmentService.close());
  const activities=createLanActivityStore({directory,identities,tenants,now});
@@ -44,7 +46,7 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  const homeServices=createLanHomeServices({identities,tenants,agents,now});
  cleanup.push(()=>homeServices.close());
  agents.setRecruitmentHooks({observe:(...args)=>homeServices.recruitmentObservation(...args),decide:(...args)=>homeServices.recruitmentDecision(...args)});
- const server=createServer(async(req,res)=>{try{
+ const {server,close:closeHttp}=createDrainingHttpServer(async(req,res)=>{try{
  if(!allowed(req))return json(res,403,{error:'只接受当前联机小岛页面的同源请求',code:'lan_origin'});
  const pathname=decodeURIComponent(new URL(req.url,'http://'+req.headers.host).pathname);
  if(pathname==='/api/world/environment')return json(res,req.method==='GET'?200:405,req.method==='GET'?environmentService.view():{error:'世界时钟为只读接口'});
@@ -139,8 +141,8 @@ export async function createLanHttpServer({environmentClockProvider,environmentD
  json(res,e.status||503,{error:e.status?e.message:'联机服务暂不可用，现有档案已保留',code:e.code||'lan_unavailable',retryAfter},headers);
  }});
  await social.reconcileRooms().catch(e=>{socialRecovery.ready=false;socialRecovery.code=e.code||'lan_social_recovery';});
- await new Promise((accept,reject)=>{server.once('error',reject);server.listen(port,host,accept);});
- let closePromise;const close=()=>closePromise??=(async()=>{const errors=[];a2a.close();await bridge.close();await new Promise(r=>{server.close(r);server.closeIdleConnections();});for(const stop of [()=>environmentService.close(),()=>social.close(),()=>collaboration.close(),()=>homeServices.close(),()=>bridge.close(),()=>agents.close()])try{await stop()}catch(e){errors.push(e)}if(errors.length)throw new AggregateError(errors,'运行端未全部停止，数据运行锁保留');await dataLease.release();})();
+ await new Promise((accept,reject)=>{server.once('error',reject);server.listen(port,host,accept);});boundPort=server.address().port;
+ let closePromise;const close=()=>closePromise??=(async()=>{const errors=[];a2a.close();await bridge.close();await closeHttp();for(const stop of [()=>environmentService.close(),()=>social.close(),()=>collaboration.close(),()=>homeServices.close(),()=>bridge.close(),()=>agents.close()])try{await stop()}catch(e){errors.push(e)}if(errors.length)throw new AggregateError(errors,'运行端未全部停止，数据运行锁保留');await dataLease.release();})();
  return{server,environmentService,identities,tenants,activities,agents,bridge,collaboration,a2a,social,homeServices,enrollmentKey,port:server.address().port,host,close};
  }catch(e){for(const close of cleanup.reverse())await close().catch(()=>{});await dataLease.release();throw e;}
 }

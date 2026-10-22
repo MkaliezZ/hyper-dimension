@@ -1228,3 +1228,8 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V359 · 任务中断与岛主交付 / Task interruption and owner delivery
 
 岛主实际采集、矿物、渔获与收获会计入接受动作时绑定的筹备步骤；暂停、取消或改派不补记旧任务。双画风原生中断、重启、接管与零资源游客购买已核对，原断言及期限保留。实际夹具、托管未决事项和独立验收边界见[任务交付记录](player-delivery-v359.md)。
+
+
+## V360 · A2A原机重连与关闭收尾 / A2A reconnect and shutdown
+
+真实SDK复核发现旧轮询连接阻止关闭及在途图片端口误拒绝，现按实际响应与处理函数完成后平稳收尾，并等待已接受写入。两版本关联检查、原标准→游戏→标准及服务/CLI重连已通过；原失败、诊断干预与验收边界见[A2A重连记录](a2a-reconnect-v360.md)。

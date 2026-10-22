@@ -1,0 +1,68 @@
+{
+  "version": "V360",
+  "basePublicCommit": "8b7875ab3be1dd1dc2f0231f9b49096c15bb54f5",
+  "status": "local-controls-and-full-default-passed-hosted-and-final-package-pending",
+  "originalV359SdkFailurePreserved": true,
+  "liveDiagnosis": {
+    "closingListenerStillServedOldPollingConnection": true,
+    "observedRequests": [
+      "GET /api/lan/view"
+    ],
+    "originalAssetsDeniedAfterListenerAddressBecameNull": true,
+    "ownedDiagnosticInterventionNotQualification": true
+  },
+  "beforeFixHttpStrategy": {
+    "tests": 3,
+    "passed": 1,
+    "failed": 2,
+    "oldPollingAndEarlyWriteReleaseReproduced": true
+  },
+  "relatedTests": {
+    "Node22": 26,
+    "Node24": 26
+  },
+  "repair": {
+    "acceptedResponsesDrainWithoutForceDestroy": true,
+    "acceptedHandlerWritesFinishAfterClientDisconnect": true,
+    "boundHostPortRetained": true,
+    "sameOriginChecksRetained": true,
+    "shutdownIdempotent": true
+  },
+  "realA2a": {
+    "officialSdk": true,
+    "originalDeviceClis": 2,
+    "nativeBothStyles": true,
+    "realHermesFlashTurns": 3,
+    "sdkNativeSdkContinuity": true,
+    "postcommitReplyLoss": true,
+    "sameRequestNoAdditionalModelRun": true,
+    "serviceAndOriginalCliRestart": true,
+    "transcriptAndFictionalFileResultsPreserved": true,
+    "initialResourcesSynthetic": false,
+    "clockInjected": false,
+    "userDocumentsRead": false,
+    "originalTestAndTimeoutsUnchanged": true
+  },
+  "priorFourMapProof": {
+    "version": "V359",
+    "bothStyles": true,
+    "physicalDevices": false,
+    "finalFrozenV360MustRequalify": true
+  },
+  "macV358RecoveryInputTimeoutRootCauseNotProvenByThisRepair": true,
+  "newArchiveAllocated": false,
+  "humanAcceptance": false,
+  "physicalMacOrMultiDeviceAcceptance": false,
+  "opcPilot": false,
+  "wholeGoalComplete": false,
+  "defaultTests": {
+    "Node24": 2083,
+    "parts": [
+      2069,
+      14
+    ],
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  }
+}

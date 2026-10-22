@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v359-agent-source",
+  "release": "hyper-dimension-v360-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 160259,
-      "sha256": "3a50f2eb5b3895b4826219392a1991830a319e8e813787e4731e905ca936b656"
+      "bytes": 160666,
+      "sha256": "9fc827ffffb016bba2c3b0faed24086d5940b3e2da068efc5d2a50c77eb1d867"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 20015,
-      "sha256": "c5292662d2bc540c49cb0397c12ebc37a4ffb58bc753774de1ac3295534e8b9c"
+      "bytes": 20046,
+      "sha256": "0fff5962be53b97c6dd3286b051534fb66e544d788c375ef6dd555279a5aff94"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6242,8 +6242,8 @@
     },
     {
       "path": "server/lanServer.mjs",
-      "bytes": 28240,
-      "sha256": "ffd524a78513d674eb1d0f94456c7000397c393fe8eedec22b4a489b08c4b3a5"
+      "bytes": 28276,
+      "sha256": "43b1fdd2fccdb3dcf4a5c5d047e2b5663dd31006251363edea0581463b411d74"
     },
     {
       "path": "server/lanSettlementCoordinator.mjs",
@@ -14799,8 +14799,28 @@
       "path": "tests/v359-task-interruption-browser.mjs",
       "bytes": 14930,
       "sha256": "356b8a66a91535ff13f40950bf1d6b9a40b890f9e2b348cde6e251a4da9c45b7"
+    },
+    {
+      "path": "docs/a2a-reconnect-v360.md",
+      "bytes": 3362,
+      "sha256": "789399e978260e07189d167084e62fd549727752a204baf3aa3d8e8e5ea3360d"
+    },
+    {
+      "path": "docs/verification-v360.json",
+      "bytes": 1931,
+      "sha256": "f014c7677513fa7ecd74ffec2a3d480a04491d912e2ec4a2f6d454d18ffd33e1"
+    },
+    {
+      "path": "server/httpDrain.mjs",
+      "bytes": 1654,
+      "sha256": "46dd311083616dd452a4db39863fe8ea67cf964ce8d67e9df480b444d97d0f34"
+    },
+    {
+      "path": "tests/v360-http-drain.test.mjs",
+      "bytes": 3136,
+      "sha256": "1afe061ffb5523536059a6a20fda340ab18bba4e7d56d7932aa196a744f4ff86"
     }
   ],
-  "publicRevision": "v359-player-task-delivery",
-  "generatedAt": "2026-10-22T09:55:54.544381+00:00"
+  "publicRevision": "v360-a2a-reconnect",
+  "generatedAt": "2026-10-22T10:39:05.269312+00:00"
 }
