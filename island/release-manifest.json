@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v358-agent-source",
+  "release": "hyper-dimension-v359-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3500,
-      "sha256": "8f9c2bd4f34512be27fcc3e5162db94987b0e9c0141d74719cace60af2be62b6"
+      "bytes": 3580,
+      "sha256": "374f07f3e6da7303e3c2d4ce5e9c6b70df2c7bad5712ae3f89576598af172edb"
     },
     {
       "path": "README.md",
-      "bytes": 3218,
-      "sha256": "719ebf4c95205aa5b080ac9c467594730409a6b87a03259a6e756335b63554e1"
+      "bytes": 3278,
+      "sha256": "54d4093173e91406968256b35d6f2b3a72c02254eb2d38d1dc619894257040d9"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 159832,
-      "sha256": "0cf5fa54436401512587cdc48c1da97c2b01c5f9e830e102db6d70abcc988da9"
+      "bytes": 160259,
+      "sha256": "3a50f2eb5b3895b4826219392a1991830a319e8e813787e4731e905ca936b656"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19888,
-      "sha256": "57a42ffedc15ce8e2f9db6cec49321a5e59200f14e4211aa2d003d4d1d7c447e"
+      "bytes": 20015,
+      "sha256": "c5292662d2bc540c49cb0397c12ebc37a4ffb58bc753774de1ac3295534e8b9c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6132,8 +6132,8 @@
     },
     {
       "path": "server/farmActions.mjs",
-      "bytes": 19067,
-      "sha256": "6fbe7df539cd89f1f200f728b2f851a11069aa433e172babaad386afaaf1598f"
+      "bytes": 19356,
+      "sha256": "08cbac99ffa00705334a635bed8dcfdbd61005770f61472709c27face21464bb"
     },
     {
       "path": "server/festivalActions.mjs",
@@ -6142,8 +6142,8 @@
     },
     {
       "path": "server/fieldActions.mjs",
-      "bytes": 14589,
-      "sha256": "23f203ea086a03c0b74cdfafa1cf351e97ee9dddf6b299115beac29a557e6761"
+      "bytes": 14883,
+      "sha256": "c19d5e4d665feb92800b330ad07a61107151c40f85d467391c6ea762259a05af"
     },
     {
       "path": "server/fireworksActions.mjs",
@@ -6367,8 +6367,8 @@
     },
     {
       "path": "server/playerActions.mjs",
-      "bytes": 14997,
-      "sha256": "92a857f26a230789b2698b21563cef847c08dd1ecff85973662d03d6d116d8cb"
+      "bytes": 15385,
+      "sha256": "c7355bb5f43f15ba6430ec96108801883429619727b8ec484817bc7cb0df5a4a"
     },
     {
       "path": "server/portfolioHttp.mjs",
@@ -6542,8 +6542,8 @@
     },
     {
       "path": "src/app.js",
-      "bytes": 148172,
-      "sha256": "f472d6f3d64677f54a0ea0ec95991bd6ebf38dfd049077e2cfcad348a7d5b100"
+      "bytes": 148709,
+      "sha256": "d1d49b3b8b16b6193fe9d5a5ff79819bdf4d7d8aa77bae58d63b1600b0bce6e3"
     },
     {
       "path": "src/arcade.css",
@@ -7707,13 +7707,13 @@
     },
     {
       "path": "src/projectPlans.js",
-      "bytes": 13937,
-      "sha256": "876bf723f342053592d77868d87c29c8e37214f5dcda428c796e8cd81df597e3"
+      "bytes": 14052,
+      "sha256": "97767714211734e47a8fbc21e763513210c53c4abaa628e23548b3a4931239ce"
     },
     {
       "path": "src/projectUI.js",
-      "bytes": 9748,
-      "sha256": "2eabb7400ed44b3f480ee568e25ae1eed6908101e914bf6cff81c552fabc68c2"
+      "bytes": 9753,
+      "sha256": "b21b20602cf8b8d370b3119e290362556f273b1f814a19690af27b0c7bd39805"
     },
     {
       "path": "src/projects-v27.css",
@@ -8042,8 +8042,8 @@
     },
     {
       "path": "src/serverFarmUI.js",
-      "bytes": 8084,
-      "sha256": "17d89ba896d6c4da8eb55d81284b338c77d2a91d9fd6009d1538693d34c7e6d4"
+      "bytes": 8142,
+      "sha256": "ffd767e80bff0a8327ad1812bb0d7ecb7735fb1979bd1f7ba215064964e2278e"
     },
     {
       "path": "src/serverFieldNpcUI.js",
@@ -8052,8 +8052,8 @@
     },
     {
       "path": "src/serverGatherUI.js",
-      "bytes": 4708,
-      "sha256": "9dc6b6570e9b152429c1a276d291b189a81e70dd7b35a2115cd359d7ce5a236c"
+      "bytes": 4766,
+      "sha256": "16c0dd4f1c1102d6048f5d082ad0de41b946c5b02ecf0fad24c99c3723f19139"
     },
     {
       "path": "src/serverPersonalUI.js",
@@ -8157,8 +8157,8 @@
     },
     {
       "path": "src/taskBoard.js",
-      "bytes": 4901,
-      "sha256": "6ff765a1267e808aea82e1ab440c4290f36d2c73805e18eebca838614d61a89a"
+      "bytes": 5037,
+      "sha256": "f00c0a8477088be87b840a249c7e9ac12b8b76df24b5d68ab42b05dca24d70b3"
     },
     {
       "path": "src/terrainJoinRepairs.js",
@@ -14774,8 +14774,33 @@
       "path": "tests/v358-steward-backdrop-browser.mjs",
       "bytes": 7089,
       "sha256": "001c0ba4228164c3ef0f703f8f53b71bb8b8d61947d0883dded3820729390a46"
+    },
+    {
+      "path": "docs/player-delivery-v359.md",
+      "bytes": 4561,
+      "sha256": "13818e00d44ae5e3e302f1b1c341a39ecc11a76fe7ebdbd750ec9e6782fd3565"
+    },
+    {
+      "path": "docs/verification-v359.json",
+      "bytes": 2769,
+      "sha256": "84c69b3d783b40b370e37724fda2aa570fa796b188fcbc5c6904e3ae5da4490a"
+    },
+    {
+      "path": "server/playerTaskDelivery.mjs",
+      "bytes": 2665,
+      "sha256": "56ba9a6b457a401d68a7af3272b1a8ba2b7f520ded4fcba0ed17ad542f6db049"
+    },
+    {
+      "path": "tests/v359-player-task-delivery.test.mjs",
+      "bytes": 7079,
+      "sha256": "3ba200257604c097fd280f9d4c40d568186becf1b02444ed5178f0e9dd17f032"
+    },
+    {
+      "path": "tests/v359-task-interruption-browser.mjs",
+      "bytes": 14930,
+      "sha256": "356b8a66a91535ff13f40950bf1d6b9a40b890f9e2b348cde6e251a4da9c45b7"
     }
   ],
-  "publicRevision": "v358-resident-continuation",
-  "generatedAt": "2026-10-22T08:50:52.840084+00:00"
+  "publicRevision": "v359-player-task-delivery",
+  "generatedAt": "2026-10-22T09:55:54.544381+00:00"
 }

@@ -1,0 +1,86 @@
+{
+  "version": "V359",
+  "basePublicCommit": "35b3f84343966d8a95bdc8986171d1f0031ef41b",
+  "status": "local-controls-and-full-default-passed-hosted-and-final-package-pending",
+  "relatedTests": {
+    "Node22": 78,
+    "Node24": 78
+  },
+  "playerRawTaskDelivery": {
+    "gatherMineFishingHarvestBothStyles": true,
+    "serverReceiptBoundToOriginalStepAndAssignmentGeneration": true,
+    "serviceRestartAndReplayUniqueCredit": true,
+    "cancelPauseResumeReassignmentRejectLateTaskCredit": true,
+    "realInventoryGainRetained": true,
+    "explicitSameItemSelection": true,
+    "unitClockSynthetic": true,
+    "unitToolsAndMatureCropSynthetic": true
+  },
+  "nativeTaskInterruption": {
+    "bothStyles": true,
+    "caseCount": 4,
+    "initialCoinsAndMaterialsZero": true,
+    "initialNpcNeedsSynthetic": true,
+    "providerProposalsSynthetic": true,
+    "providersBlocked": true,
+    "clockInjected": false,
+    "actualPartialQuantityBeforePause": 2,
+    "actualFinalQuantity": 6,
+    "uniqueCompletedReceiptsPerTask": 3,
+    "realPauseCommitThenResponseLoss": true,
+    "sameRequestRecovery": true,
+    "serviceAndEmptyBrowserRestart": true,
+    "nativeOwnerTakeoverCancelsOriginalNpcLease": true,
+    "actualPlayerDeliveryBoundToTask": true,
+    "cancelPreservesEarnedStockAndReleasesHold": true
+  },
+  "originalThreeTaskChainAndRecoveryInput": {
+    "bothStyles": true,
+    "assertionsAndDeadlinesUnchanged": true,
+    "recoveryClickTimeoutMs": 4000
+  },
+  "zeroResourceEconomy": {
+    "bothStyles": true,
+    "clockInjected": false,
+    "initialResourcesSynthetic": false,
+    "providersBlocked": true,
+    "gatherActionsPerStyle": 5,
+    "midProductionReload": true,
+    "lostSaleFinishResponsesPerStyle": 2,
+    "canonicalUniqueSale": true,
+    "originalRoadAndServiceBudgetMs": 150000
+  },
+  "priorA2aQualificationVersion": "V357",
+  "finalFrozenSourceNeedsCompleteA2aRequalification": true,
+  "hostedObservation": {
+    "v358WindowsResidentWorkRecovered": true,
+    "v358WindowsContentPassed": true,
+    "v358SqlPassed": true,
+    "v358MacIntelRecoveryInputStillUnresolved": true,
+    "firstTargetedMacDiagnosticPassedButNotRootCauseProof": true,
+    "fullPredecessorMacDiagnosticPending": false,
+    "fullPredecessorMacDiagnosticPassed": true,
+    "diagnosticRun": 39756940000,
+    "originalClickTimeoutMs": 4000,
+    "fullPredecessorDiagnosticClickMs": {
+      "pixel": 913,
+      "origami": 173
+    },
+    "diagnosticNotOriginalWholeWorkflowRecovery": true
+  },
+  "newArchiveAllocated": false,
+  "humanAcceptance": false,
+  "physicalMultiDeviceAcceptance": false,
+  "opcPiloting": false,
+  "wholeGoalComplete": false,
+  "defaultTests": {
+    "Node24": 2080,
+    "parts": [
+      2066,
+      14
+    ],
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  }
+}

@@ -27,9 +27,9 @@ export function createServerGather({saves,theme,persist,applyState,startAnimatio
   show('正在采集'+ticket.name,'完成动作后，收获会放入背包。');
   startAnimation(ticket,()=>finish());cancel.focus();
  }
- async function begin(itemId){
+ async function begin(itemId,options={}){
   if(active)return;lock();
-  try{const r=await send({operation:'begin',itemId,requestId:crypto.randomUUID()});if(!complete(r))play();}
+  try{const r=await send({operation:'begin',itemId,requestId:crypto.randomUUID(),...(options.taskId?{taskId:options.taskId}:{})});if(!complete(r))play();}
   catch(e){failure(e);}
  }
  async function finish(){

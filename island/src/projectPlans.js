@@ -131,7 +131,7 @@ export function controlProject(s,id,action){
  else if(action==='resume'&&p.status==='paused'){p.status='preparing';note(p,s,'继续准备剩余物资')}
  else return {ok:false,reason:'当前状态不能执行此操作'};
  p.revision++;
- for(const t of projectSteps(s,id)){if(action==='cancel'){t.status=t.status==='done'?'done':'cancelled';delete t.operationId}else if(action==='pause'&&t.remaining>0){t.status='paused';delete t.operationId}}
+ for(const t of projectSteps(s,id)){if(action==='cancel'){if(t.status!=='done')t.assignmentVersion=(t.assignmentVersion||0)+1;t.status=t.status==='done'?'done':'cancelled';delete t.operationId}else if(action==='pause'&&t.remaining>0){t.status='paused';t.assignmentVersion=(t.assignmentVersion||0)+1;delete t.operationId}}
  syncProjects(s);return {ok:true,project:p};
 }
 export function assignProjectStep(s,id,npcId){

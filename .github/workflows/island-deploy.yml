@@ -745,6 +745,9 @@ jobs:
       - name: Native resident lease after two actual lost acknowledgements
         run: node tests/v358-resident-start-recovery-browser.mjs
         timeout-minutes: 4
+      - name: Native partial delivery pause restart and owner takeover
+        run: node tests/v359-task-interruption-browser.mjs
+        timeout-minutes: 9
       - name: Native user checkpoint through autonomous ferry queue
         run: node tests/v351-visitor-checkpoint-browser.mjs
         timeout-minutes: 2
@@ -762,6 +765,8 @@ jobs:
             island/qa/v356/native-worker-boot/report.json
             island/qa/v358/native-steward-backdrop/report.json
             island/qa/v358/native-resident-start-recovery/report.json
+            island/qa/v359/native-task-interruption/report.json
+            island/qa/v359/native-task-interruption/*-failure.png
             island/qa/v329/native-acknowledged-planning/report.json
             island/qa/v213/native-task-chains/report.json
             island/qa/v213/native-task-chains/work-progress.json

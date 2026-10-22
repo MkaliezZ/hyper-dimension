@@ -22,7 +22,7 @@ People and briefs are fictional; AI replies, Hermes file operations and steward 
 | Seasons and visits | Seasons last 30 visual days; weather affects farming and fishing. Evening lights, waves and moon reflections accompany visits with your steward and invited NPCs, A2A information exchange, cooperative preparation and clarification questions. Visiting owners confirm resource reservations. |
 | Showcase and co-create | Display experience, projects and pictures in the owner gallery and receive guest messages. Import OPC products and recipes with both art styles, review, publish, produce and sell; export and roll back versions. |
 
-Standard A2A clients and in-game letters can continue the same conversation, preserving both owners’ questions and replies. Resident assignments continue after refresh; interrupted acknowledgements reuse the confirmed original job instead of submitting another.
+Standard A2A clients and in-game letters can continue the same conversation, preserving both owners’ questions and replies. Resident assignments support resume, pause and owner takeover; materials you actually collect advance the matching preparation step. Interrupted acknowledgements reuse the original job to prevent duplicate settlement.
 
 ## Start your island
 

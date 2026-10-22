@@ -149,7 +149,7 @@ function patchHUD(id,html){const el=$(id),signature=html.replace(/art-clip-\d+/g
 const residentOrder=RESIDENTS.map((r,i)=>({r,i})).filter(({r})=>r.kind!=='hermes').map(({i})=>i);
 let coCreationUI=null,workbenchUI=null,runManagementUI=null,npcAuditUI=null,recruitmentUI=null,recruitmentRuntime=null,fishingUI=null,fishingRuntime=null,nightRuntime=null,festivalRuntime=null,festivalUI=null,coutureRuntime=null,coutureUI=null,fireworksRuntime=null,fireworksUI=null;
 let partyGuideUI=null,partyHosting=null;
-let contentUI,placementUI=null,collectionsUI=null,journeyUI=null,stewardChat=null,projectUI=null,celebration=null,playerCraftOwner=null,playerPlanStep=null,playerCraftIntent=null;
+let contentUI,placementUI=null,collectionsUI=null,journeyUI=null,stewardChat=null,projectUI=null,celebration=null,playerCraftOwner=null,playerPlanStep=null,playerGatherTask=null,playerCraftIntent=null;
 function hydrateIslandSave(s,forTheme=theme){hydrateTown(s);clearToolLeases(s);syncWonders(s);refreshAchievements(s);hydrateJourney(s);hydrateSpecialization(s);hydratePlacements(s,forTheme);hydrateFunctionalFacilities(s);hydrateNpcProfileAudit(s);return s;}
 const canvas=$('game'),ctx=canvas.getContext('2d');
 const query=new URLSearchParams(location.search);
@@ -369,9 +369,9 @@ const farmPlots=[];function syncFarmPlots(){farmPlots.splice(0,farmPlots.length,
 const mineRocks=Array.from({length:6},(_,i)=>({x:320+(i%3)*180,y:170+Math.floor(i/3)*145}));
 function clickFarm(p){if(actor.action)return;const i=farmPlots.findIndex(q=>insidePlot(q,p));if(i<0){planMove(p);return}planMove(farmPlots[i].entry,()=>farmStep(i))}
 function farmStep(i){const plot=state.plots[i];if(plot.stage===3){toast(cropInfo(plot).name+'还需 '+Math.ceil(remaining(plot))+' 秒成熟');return}if(plot.stage===1){if(!runtime.claimFarm(i)){toast('居民或滴灌正在照料这块田，请选另一块田');return}playerFarmClaim=i;openModal('选择本次作物','顺着季节播种 · 已种作物可跨季收获',cropPickerMarkup(environment.sample(),itemIcon));document.querySelectorAll('[data-crop]').forEach(btn=>btn.onclick=()=>{const crop=btn.dataset.crop;closeModal();runFarmAction(i,crop)});return}runFarmAction(i)}
-function runFarmAction(i,crop=null){const plot=state.plots[i],step=({0:'hoe',1:'sow',2:'water',4:'harvest'})[plot.stage];if(!step)return;if(!runtime.claimFarm(i)){toast('这块田正在作业，请选另一块田');return}playerFarmClaim=i;serverFarm.begin(i,step,crop||plot.crop||state.selectedCrop||'wheat');}
+function runFarmAction(i,crop=null){const plot=state.plots[i],step=({0:'hoe',1:'sow',2:'water',4:'harvest'})[plot.stage];if(!step)return;if(!runtime.claimFarm(i)){toast('这块田正在作业，请选另一块田');return}playerFarmClaim=i;const chosen=crop||plot.crop||state.selectedCrop||'wheat';serverFarm.begin(i,step,chosen,playerGatherOptions(CROPS[chosen]?.item));}
 function clickMine(p){const i=mineRocks.findIndex(r=>distance(p,r)<75);if(i<0){planMove(p);return}const r=mineRocks[i];if(state.oreNodes[i].hp<=0){toast('这处矿脉暂时采空，稍后会恢复');return}const near=point(r.x,r.y+76);planMove(near,()=>showMineMeter(i))}
-function showMineMeter(i){if(serverFieldNpc?.occupied(i)){toast('居民正在开采这处矿脉，请选择另一处');return}serverField.begin({field:'mine',index:i,itemId:state.mineResource||'ore'});}
+function showMineMeter(i){if(serverFieldNpc?.occupied(i)){toast('居民正在开采这处矿脉，请选择另一处');return}serverField.begin({field:'mine',index:i,itemId:state.mineResource||'ore',...playerGatherOptions(state.mineResource||'ore')});}
 function strikeMine(){document.querySelector('#mineStrike')?.click();}
 function clickInterior(p){if(actor.action)return;const r=ROOMS[sceneBuilding],f=r.primary;if(p.x>=f.x-25&&p.x<=f.x+f.w+25&&p.y>=f.y-25&&p.y<=f.y+f.h+25){const claim=acquireRoomSpot(sceneBuilding,'player','work');if(!claim){toast('室内客满，请稍后再来');return}planMove(claim.point,()=>{if(claim.role==='queue'){playerRoomWait=sceneBuilding;toast('已排队，工作台空出后会自动前往')}else showInteriorAction()});return}releasePlayerStations();planMove(p)}
 function showInteriorAction(){
@@ -607,15 +607,16 @@ function showBusiness(){
 
 function itemIcon(id){return itemMarkup(id,theme,'inline-icon',state)}
 function collectWood(){contentUI.collection('forest')}
-function gatherItem(item){
- closeModal();
+function playerGatherOptions(item){if(!playerGatherTask)return {};const selected=state.agentTaskLedger?.find(t=>t.id===playerGatherTask);if(selected&&selected.targetItem!==item)return {};const task=playerProjectTask(state,item,playerGatherTask);if(task)return {taskId:task.id};playerGatherTask=null;return {}}
+function gatherItem(item,planTask=null){
+ closeModal();playerGatherTask=planTask;
  if(item.source==='farm'&&item.id!=='seed'){setScene('farm');state.selectedCrop=CROPS[item.id]?item.id:'wheat';toast(item.id==='seed'?'收获作物可回收种子，研究温室种苗可得到种子 ×2':'选择空田种植'+item.name);return}
  if(item.source==='mine'){state.mineResource=item.id;setScene('mine');toast('当前矿种：'+item.name+'，击碎矿脉取得矿物');return}
- const collect=()=>serverGather.begin(item.id);
+ const collect=()=>serverGather.begin(item.id,playerGatherOptions(item.id));
  if(item.source==='greenhouse'||item.id==='seed'){setScene(BUILDINGS[14].kind,14);const claim=acquireRoomSpot(14,'player','work');if(claim?.role==='work')planMove(claim.point,collect);else{releaseRoomSpot('player');toast('温室培育台正在使用，请稍后采收')}return}
  if(scene!=='world')setScene('world');const hotspot=HOTSPOTS.find(h=>h.type===(item.source==='forest'?'forest':'dock'));
  planMove(hotspot.entry,()=>{if(item.source!=='fishing'){collect();return}
- serverField.begin({field:'fishing',itemId:item.id});
+ serverField.begin({field:'fishing',itemId:item.id,...playerGatherOptions(item.id)});
  });camera.x=hotspot.x;camera.y=hotspot.y;clampCamera();
 }
 function chooseRecipe(recipe,planTask=null){if(!recipeGate(recipe,state).ready){toast(recipeGate(recipe,state).text);return}state.craftSelection[recipe.building]=recipe.id;persist();closeModal();setScene(BUILDINGS[recipe.building].kind,recipe.building);playerPlanStep=planTask;playerCraftIntent={building:recipe.building,recipeId:recipe.id,planTask};const claim=acquireRoomSpot(recipe.building,'player','work');if(!claim){playerCraftIntent=null;toast('工作台正在使用，请稍后再来');return}planMove(claim.point,()=>{if(claim.role==='queue'){playerRoomWait=recipe.building;toast('已排队，等候工作台')}else showInteriorAction()});}

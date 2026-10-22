@@ -1,4 +1,5 @@
 import {appendActionReceipt} from './actionReceiptHistory.mjs';
+import {bindPlayerTaskDelivery,creditPlayerTaskDelivery} from './playerTaskDelivery.mjs';
 import {cooperationWorkAuthorized} from '../src/residentCooperation.js';
 import {beginAssignedStep} from './planningAuthority.mjs';
 import {randomInt,randomUUID,createHash} from 'node:crypto';
@@ -19,7 +20,7 @@ import {fishingWeather} from '../src/weatherRules.js';
 export const FIELD_LEASE_PREFIX='server-field:';
 const fail=(message,code='field_invalid')=>Object.assign(Error(message),{status:409,code});
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
-const beginSignature=i=>hash(['field','itemId','actor','actorId','index','mode','assignmentId','operationId','storyId','purposeId','source'].map(k=>i[k]??null));
+const beginSignature=i=>hash(['field','itemId','actor','actorId','index','mode','assignmentId','operationId','storyId','purposeId','source'].map(k=>i[k]??null).concat(i.taskId!=null?['player-task',i.taskId]:[]));
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const nodeOK=n=>Number.isInteger(n)&&n>=0&&n<6;
 const raw=(id,field)=>RAW_MATERIALS.find(i=>i.id===id&&i.source===(field==='mine'?'mine':'fishing'));
@@ -64,6 +65,7 @@ export function applyFieldCommand(s,b,i,now){enableField(s,b,now);assertFieldSta
   }
   const t={kind:'field',beginSignature:beginSignature(i),field:i.field,requestId:i.requestId,epoch:b.epoch,sequence,item:item.id,name,actor,actorId,index:i.field==='mine'?i.index:null,expectedHp:i.field==='mine'?s.oreNodes[i.index].hp:null,owner,reservedItems,action,tool,duration,mode,seed,difficulty,game,nextBatch:1,day:s.day,startedAt:now,readyAt:actor==='npc'?now+Math.ceil(duration*1000):null,expiresAt:now+30*60*1000,operationId,assignmentId:task?.id||null,assignmentVersion:task?.assignmentVersion||0,storyId,purposeId:String(i.purposeId||'').slice(0,100),source:task?'hermes':i.source==='deepseek'?'deepseek':'local'};
   if(actor==='player')t.readyAt=now+Math.ceil(duration*1000);
+  if(actor==='player'){const playerTask=bindPlayerTaskDelivery(s,b,i,item.id);if(playerTask)t.playerTask=playerTask;}
   b.sequence=sequence;if(actor==='player')b.active=t;else b.field.leases[t.requestId]=t;sync(s,b);return {ticket:t,receipt:null};
  }
  const t=fieldTickets(b).find(t=>t.requestId===i.requestId&&t.epoch===i.epoch&&t.sequence===i.sequence);if(!t)throw fail('作业已结束或来自旧存档','action_stale');
@@ -93,7 +95,7 @@ export function applyFieldCommand(s,b,i,now){enableField(s,b,now);assertFieldSta
    if(t.field==='mine'){const node=s.oreNodes[t.index];node.hp=Math.max(0,node.hp-result.damage);gain.stone=1;if(node.hp===0){gain[t.item]=(gain[t.item]||0)+2;node.regen=10;s.tasks.mine=true;}text=(strong?'精准敲击':'敲击命中')+'，石材 ×1'+(node.hp===0?'、'+RAW_MATERIALS.find(x=>x.id===t.item).name+' ×2':'，矿脉剩余 '+node.hp+' 点');}
    else{gain[t.item]=1;text='海边钓场收获'+RAW_MATERIALS.find(x=>x.id===t.item).name+' ×1';}
    const id='field:'+b.epoch+':'+t.sequence,paid=commitResources(s,{id,owner:t.owner,gain,category:'player_field',note:t.name});if(!paid.ok||paid.replayed)throw fail('物资账本与作业不一致','action_ledger_conflict');
-   for(const [item,n]of Object.entries(gain)){recordPlayerGoods(s,item,n);trackJourney(s,'gather',{item,amount:n});}s.gatherCounts??={};s.gatherCounts[t.field]=(s.gatherCounts[t.field]||0)+1;
+   for(const [item,n]of Object.entries(gain)){recordPlayerGoods(s,item,n);trackJourney(s,'gather',{item,amount:n});}creditPlayerTaskDelivery(s,t,gain);s.gatherCounts??={};s.gatherCounts[t.field]=(s.gatherCounts[t.field]||0)+1;
   }
  }
  if(i.operation==='cancel'&&t.assignmentId){const task=s.agentTaskLedger.find(x=>x.id===t.assignmentId);if(task?.status==='running'&&task.operationId===t.operationId){task.status='queued';delete task.operationId}}

@@ -1,4 +1,5 @@
 import {appendActionReceipt} from './actionReceiptHistory.mjs';
+import {bindPlayerTaskDelivery,creditPlayerTaskDelivery,validPlayerTaskTicket} from './playerTaskDelivery.mjs';
 import {validResourceBook,clearResourceState} from './resourceAuthority.mjs';
 import {recordCooperativeWonder,assertWonderState,enableWonderState,syncWonderState,clearWonderState,validWonderBook} from './wonderAuthority.mjs';
 import {validHostingBook} from '../src/partyHosting.js';
@@ -39,7 +40,7 @@ export function gatherRule(itemId){
 export function validActionBook(book,{legacyGeometry=false}={}){
  if(book===undefined)return true;
  if(!book||book.version!==1||!idOK(book.epoch)||!Number.isSafeInteger(book.sequence)||book.sequence<0||!Array.isArray(book.receipts)||book.receipts.length>128||!validHostingBook(book.hosting)||!validPlanningBook(book.planning)||!validPersonalBook(book.personal)||!validResourceBook(book.resources)||!validFarmBook(book.farm,book)||!validFieldBook(book.field,book)||!validResidentBook(book.resident,book)||!validVisitorBook(book.visitor,book)||!validCommerceBook(book.commerce)||!validPartyBook(book.party)||!validHireBook(book.hire)||!validFireworksBook(book.fireworks)||!validCoutureBook(book.couture)||!validFestivalBook(book.festival)||!validFishingBook(book.fishing)||!validFacilityBook(book.facility,{legacyGeometry})||!validWonderBook(book.wonders))return false;
- const validTicket=(t,receipt=false)=>t&&idOK(t.requestId)&&t.epoch===book.epoch&&Number.isSafeInteger(t.sequence)&&t.sequence>0&&t.sequence<=book.sequence&&typeof t.item==='string'&&Number.isFinite(t.readyAt)&&Number.isFinite(t.expiresAt)&&Number.isFinite(t.duration)&&(t.kind==='personal'?validPersonalTicket(t):t.kind==='facility'?validFacilityTicket(t):t.kind==='fireworks'?validFireworksTicket(t,receipt):t.kind==='couture'?validCoutureTicket(t,receipt):t.kind==='festival'?validFestivalTicket(t,receipt):t.kind==='fishing'?validFishingTicket(t,receipt):t.kind==='party'?validPartyTicket(t,receipt):t.kind==='commerce'?validCommerceTicket(t):t.kind==='visitor'?validVisitorTicket(t):t.kind==='resident'?validResidentTicket(t):t.kind==='field'?validFieldTicket(t,receipt):t.kind==='farm'?validFarmTicket(t):t.kind==='craft'?validCraftTicket(t,receipt):t.duration>=.85&&t.duration<=1.6);
+ const validTicket=(t,receipt=false)=>t&&idOK(t.requestId)&&t.epoch===book.epoch&&Number.isSafeInteger(t.sequence)&&t.sequence>0&&t.sequence<=book.sequence&&typeof t.item==='string'&&Number.isFinite(t.readyAt)&&Number.isFinite(t.expiresAt)&&Number.isFinite(t.duration)&&validPlayerTaskTicket(t)&&(t.kind==='personal'?validPersonalTicket(t):t.kind==='facility'?validFacilityTicket(t):t.kind==='fireworks'?validFireworksTicket(t,receipt):t.kind==='couture'?validCoutureTicket(t,receipt):t.kind==='festival'?validFestivalTicket(t,receipt):t.kind==='fishing'?validFishingTicket(t,receipt):t.kind==='party'?validPartyTicket(t,receipt):t.kind==='commerce'?validCommerceTicket(t):t.kind==='visitor'?validVisitorTicket(t):t.kind==='resident'?validResidentTicket(t):t.kind==='field'?validFieldTicket(t,receipt):t.kind==='farm'?validFarmTicket(t):t.kind==='craft'?validCraftTicket(t,receipt):t.duration>=.85&&t.duration<=1.6);
  if(book.active!==null&&!validTicket(book.active))return false;
  return book.receipts.every(r=>validTicket(r.ticket,true)&&['finished','cancelled','practiced'].includes(r.outcome)&&Number.isFinite(r.at));
 }
@@ -69,7 +70,7 @@ export function actionReplay(doc,input){
  if(input.operation==='begin'){
   const t=b.active?.requestId===input.requestId?b.active:null;
   const done=b.receipts.find(r=>r.ticket.requestId===input.requestId);
-  if(t||done){const ticket=t||done.ticket;if(ticket.item!==input.itemId)throw fail('同一作业编号不能更换采集物',409,'action_id_conflict');return {document:doc,ticket,receipt:done||null,replayed:true};}
+  if(t||done){const ticket=t||done.ticket;if(ticket.item!==input.itemId||(ticket.playerTask?.requestedTaskId??null)!==(input.taskId??null))throw fail('同一作业编号不能更换采集物或筹备步骤',409,'action_id_conflict');return {document:doc,ticket,receipt:done||null,replayed:true};}
  }else{
   const r=b.receipts.find(r=>r.ticket.epoch===input.epoch&&r.ticket.sequence===input.sequence&&r.ticket.requestId===input.requestId);
   if(r)return {document:doc,ticket:r.ticket,receipt:r,replayed:true};
@@ -102,7 +103,8 @@ function applyGatherCommandInner(state,book,input,now){
   const r=gatherRule(input.itemId),tool=resolveTool(state,r.action),duration=Math.round(Math.max(.85,r.seconds*(tool?.durationScale||1))*1000)/1000;
   const sequence=book.sequence+1,owner=ACTION_LEASE_PREFIX+book.epoch+':'+sequence;
   if(tool?.source==='owned'&&!reserveResources(state,owner,{[tool.id]:1},{purpose:'服务端采集 '+r.name}).ok)throw fail('工具正在被其他作业使用',409,'action_tool');
-  const ticket={requestId:input.requestId,epoch:book.epoch,sequence,...r,tool,duration,owner,day:state.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+30*60*1000};
+  const playerTask=bindPlayerTaskDelivery(state,book,input,r.item);
+  const ticket={requestId:input.requestId,epoch:book.epoch,sequence,...r,tool,duration,owner,day:state.day,startedAt:now,readyAt:now+Math.ceil(duration*1000),expiresAt:now+30*60*1000,...(playerTask?{playerTask}:{})};
   book.sequence=sequence;book.active=ticket;return {ticket,receipt:null};
  }
  const ticket=book.active;
@@ -116,6 +118,7 @@ function applyGatherCommandInner(state,book,input,now){
   if(!paid.ok||paid.replayed)throw fail('采集物资账本与作业不一致，请读取服务端进度',409,'action_ledger_conflict');
   state.gatherCounts??={};state.gatherCounts[rule.source]=(state.gatherCounts[rule.source]||0)+1;
   recordPlayerGoods(state,rule.item,rule.amount);trackJourney(state,'gather',{item:rule.item,amount:rule.amount});
+  creditPlayerTaskDelivery(state,ticket,{[rule.item]:rule.amount});
  }
  releaseResources(state,ticket.owner);
  const receipt={ticket,outcome:input.operation==='finish'?'finished':'cancelled',at:now,gain:input.operation==='finish'?{[ticket.item]:ticket.amount}:{},day:state.day};

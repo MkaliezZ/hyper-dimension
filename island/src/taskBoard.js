@@ -38,8 +38,8 @@ export function recordTaskStep(s,id,{operationId,result,delta={},preparing=false
 }
 export function controlTask(s,id,action){
  const t=hydrateTaskBoard(s).find(t=>t.id===id);if(!t||!t.command)return {ok:false,reason:'missing_task'};
- if(action==='cancel'&&ACTIVE.has(t.status)){t.status='cancelled';t.result='已取消，已完成产出保留，剩余预留已释放';releaseResources(s,taskOwner(id))}
- else if(action==='pause'&&['queued','running','waiting'].includes(t.status)){t.status='paused';t.result='已暂停，保留任务进度与物资预留'}
+ if(action==='cancel'&&ACTIVE.has(t.status)){t.status='cancelled';t.assignmentVersion=(t.assignmentVersion||0)+1;delete t.operationId;t.result='已取消，已完成产出保留，剩余预留已释放';releaseResources(s,taskOwner(id))}
+ else if(action==='pause'&&['queued','running','waiting'].includes(t.status)){t.status='paused';t.assignmentVersion=(t.assignmentVersion||0)+1;delete t.operationId;t.result='已暂停，保留任务进度与物资预留'}
  else if(action==='resume'&&['paused','interrupted','failed'].includes(t.status)){t.status='queued';t.result='继续执行剩余工作'}
  else return {ok:false,reason:'invalid_transition'};
  t.history??=[];t.history.push({day:s.day,status:t.status,text:t.result});return {ok:true,task:t};

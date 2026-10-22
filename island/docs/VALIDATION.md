@@ -1223,3 +1223,8 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V358 · 居民作业续做、等待背景与游客经济 / Resident continuation, waiting backdrop and visitor economy
 
 保留原有请求、工作时长与断言，修复连续丢失开工响应后的原租约接续，减少存档连通校验分配，并在管家等待时保留已绘背景。相关Node22/24、原始三步续做、双画风真实响应丢失及零资源采集到游客购买已通过本地隔离检查；模型回复或需求夹具逐项声明。主分支托管恢复、最终源码包与实际设备/真人验收仍待各自证据。详细机制、范围与结构化记录见[居民作业续做](resident-continuation-v358.md)。
+
+
+## V359 · 任务中断与岛主交付 / Task interruption and owner delivery
+
+岛主实际采集、矿物、渔获与收获会计入接受动作时绑定的筹备步骤；暂停、取消或改派不补记旧任务。双画风原生中断、重启、接管与零资源游客购买已核对，原断言及期限保留。实际夹具、托管未决事项和独立验收边界见[任务交付记录](player-delivery-v359.md)。
