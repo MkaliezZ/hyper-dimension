@@ -6,7 +6,10 @@ export function createVisibleFrameLoop(onFrame,{
  scheduleTimer=globalThis.setTimeout.bind(globalThis),
  cancelTimer=globalThis.clearTimeout.bind(globalThis),
  now=()=>performance.now(),visible=()=>!globalThis.document?.hidden,
- staleAfterMs=500,checkEveryMs=250
+ // Stay below the unchanged 150ms visible simulation step cap. A visible
+ // surface can lose RAF callbacks while retaining a modal backdrop; waiting
+ // 500ms would advance only 150ms of game time on each real fallback tick.
+ staleAfterMs=100,checkEveryMs=50
 }={}){
  if(typeof onFrame!=='function'||typeof requestFrame!=='function'||typeof cancelFrame!=='function'||!Number.isFinite(staleAfterMs)||staleAfterMs<=0||!Number.isFinite(checkEveryMs)||checkEveryMs<=0)throw TypeError('Invalid visible frame loop');
  let running=false,frameId=null,timerId=null,generation=0,lastCompletedAt=0;

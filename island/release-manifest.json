@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v362-agent-source",
+  "release": "hyper-dimension-v363-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 161272,
-      "sha256": "170b24167b3b060b00ef4bef22ada51573429d01d16596d8c00a5169afed51ce"
+      "bytes": 161731,
+      "sha256": "544da4835889ae444ff7e7616ecd8a587b6ffd9937acd80691887e208304ba79"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 20132,
-      "sha256": "2c322923d6836dc771824780fe2c61f693b649d976aae2f6012012bc6d0f6699"
+      "bytes": 20175,
+      "sha256": "621d58f4d59e0c6e56408296bf1026ae4089905db4b77812c545b92fcd2dc78d"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -13172,8 +13172,8 @@
     },
     {
       "path": "src/visibleFrameLoop.js",
-      "bytes": 2176,
-      "sha256": "f6da60de107d2a0457c3b059d57d5fcc7a4b0e0bb84cad1de6468795f61735c4"
+      "bytes": 2402,
+      "sha256": "8801a99bcdbb70f0cb157b21bd63585b9b9f5c36c631c3a55c08dc46c4d61d31"
     },
     {
       "path": "tests/v274-frame-loop.test.mjs",
@@ -14772,8 +14772,8 @@
     },
     {
       "path": "tests/v358-steward-backdrop-browser.mjs",
-      "bytes": 7089,
-      "sha256": "001c0ba4228164c3ef0f703f8f53b71bb8b8d61947d0883dded3820729390a46"
+      "bytes": 7715,
+      "sha256": "1ec296b8aa7189009e57728a3cde5e202d9fcb9a319d428596b78e52b16ee3cf"
     },
     {
       "path": "docs/player-delivery-v359.md",
@@ -14797,8 +14797,8 @@
     },
     {
       "path": "tests/v359-task-interruption-browser.mjs",
-      "bytes": 14994,
-      "sha256": "438dc258cc9097cc65e5a58556b2d903e87495f575926e5fa5118d38f69019e7"
+      "bytes": 15027,
+      "sha256": "3f6c3d8ae333cf3b636f1427c826d0e128e81b931ffab2f15c34a20703a6f9d3"
     },
     {
       "path": "docs/a2a-reconnect-v360.md",
@@ -14859,8 +14859,23 @@
       "path": "tests/v362-assigned-action-priority.test.mjs",
       "bytes": 3578,
       "sha256": "21b20ec32e7c19b41342af3347701a1b5609fc06a66b09c46728c497a0150e49"
+    },
+    {
+      "path": "tests/v363-visible-clock-liveness.test.mjs",
+      "bytes": 1236,
+      "sha256": "52b754b12b7325b09b167a172028f6e470b315509c8f322693da52bc81780068"
+    },
+    {
+      "path": "docs/visible-recovery-v363.md",
+      "bytes": 3689,
+      "sha256": "0f4ca69cd6ddc0698a2333c2e0e470e8afc85b85b1310c45b5103d4853c4581d"
+    },
+    {
+      "path": "docs/verification-v363.json",
+      "bytes": 1990,
+      "sha256": "5d5fbc2f4aed16e6b3bb1cb0ec445335ffc23042115ad30fc9876c913865e74c"
     }
   ],
-  "publicRevision": "v362-delegated-queue",
-  "generatedAt": "2026-10-22T20:15:43.184587+00:00"
+  "publicRevision": "v363-visible-recovery",
+  "generatedAt": "2026-10-22T22:28:31.300Z"
 }

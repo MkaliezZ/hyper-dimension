@@ -1243,3 +1243,7 @@ Explicit peer routing and native/standard input history now share the same persi
 ## V362 · 委派队列与真实回执观察 / Delegated queue and receipt observation
 
 委派作业公平优先，回执观察采用原15秒内实际持久租约；原工作、动画和资源断言保留。当前CI修正、Win/IntelMac对照及A2A边界见[记录](delegated-queue-v362.md)。
+
+## V363 · 可见帧兜底与恢复观察 / Visible watchdog and recovery observation
+
+全量矩阵新结束的两项 Mac 失败已保留：可见 RAF 缺失时的时钟损失，以及正常重新载入期间测试过早读取接口。定向修复保留原时间步长、结算断言和测试时限；V362 封存包不覆盖。见[修复范围](visible-recovery-v363.md)与[验证记录](verification-v363.json)，托管恢复需由新提交的 CI 确认。

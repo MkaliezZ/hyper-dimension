@@ -1,0 +1,71 @@
+{
+  "version": "V363",
+  "scope": "Visible watchdog and native recovery initialization only",
+  "baseCommit": "7275453edebc5583ea91c4a159eb88da09d9a390",
+  "originalHostedRun": 39848041014,
+  "retainedFailures": [
+    {
+      "job": 120067844780,
+      "platform": "macos-15-intel",
+      "step": "Native pending steward backdrop with live NPCs and real clocks"
+    },
+    {
+      "job": 120067844865,
+      "platform": "macos-14",
+      "step": "Native partial delivery pause restart and owner takeover"
+    }
+  ],
+  "oldDefaultClockRegressionFailed": true,
+  "frameLoopAndClockRulesPassed": 8,
+  "normalNativeBackdropStylesPassed": 2,
+  "lostRafNativeControl": {
+    "stylesPassed": 2,
+    "clockDeltaSeconds": [
+      2.9726999998569488,
+      3.000699999952317
+    ],
+    "actualFallbackFrames": [
+      29,
+      28
+    ],
+    "timestampsSynthetic": false,
+    "firstObserverFailureRetained": true,
+    "firstObserverFailure": "Test observer itself used the deliberately withheld RAF; clock had advanced 2.9886s. Independent read polling fixed; same 30000ms wait and busy assertion retained."
+  },
+  "nativeInterruption": {
+    "casesPassed": 4,
+    "styles": [
+      "pixel",
+      "origami"
+    ],
+    "pauseResumeCancelRestartAndOwnerTakeover": true,
+    "actualPostcommitPauseLoss": true,
+    "originalIdsReceiptsAndResourcesAsserted": true
+  },
+  "protectedVisibleFrameSeconds": 0.15,
+  "originalAssertionsAndTimeoutsPreserved": true,
+  "a2aBackendCliProtocolChanged": false,
+  "sealedV362ArchiveOverwritten": false,
+  "physicalMacOrHumanAcceptance": false,
+  "hostedRecoveryConfirmed": false,
+  "wholeGoalComplete": false,
+  "defaultRules": {
+    "passed": 2098,
+    "failed": 0,
+    "orderedGroups": [
+      {
+        "args": 279,
+        "passed": 2084,
+        "failed": 0
+      },
+      {
+        "args": 2,
+        "passed": 14,
+        "failed": 0
+      }
+    ],
+    "fullRuntimeInstallerRerun": false
+  },
+  "relatedClockRulesPassed": 52,
+  "payloadFilesVerified": 2971
+}
