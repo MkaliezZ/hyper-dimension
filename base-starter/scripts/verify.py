@@ -69,17 +69,34 @@ def run():
                 check(fixture.get('expected_comment_contains','') in evaluation['comment'], '业务反馈包含样例预期')
                 check(request(learner, 'POST', route, {'answer': fixture['answer'], 'request_key': 'sample'})['id'] == row['id'], '提交重试不重复')
                 check(learner.get('/api/manage').status_code == 403, '学习者不能读取管理资料')
-                feedback = {'comment': '合成验收反馈：请补充具体观察。', 'next_step': '修订后再提交一次。'}
+                feedback = {'comment': '合成验收反馈：请补充具体观察。', 'next_step': '修订后再提交一次。', 'judgement': 'needs_revision', 'request_key': 'feedback-one'}
                 rubric = public['activity'].get('rubric', [])
                 if rubric:
                     feedback['scores'] = [{'label': r['label'], 'score': r['max_score']} for r in rubric]
-                request(owner, 'POST', '/api/feedback/'+row['id'], feedback)
+                saved_feedback = request(owner, 'POST', '/api/feedback/'+row['id'], feedback)
+                check(request(owner, 'POST', '/api/feedback/'+row['id'], feedback) == saved_feedback, '反馈重试返回同一评阅回执')
                 result = request(learner, 'GET', route)['submissions'][0]['evaluation']
                 check(result['status']=='reviewed' and result['next_step']==feedback['next_step'], '维护者反馈与下一步可读取')
                 if rubric:
                     check(result['total']==sum(r['max_score'] for r in rubric), '分项得分与服务端汇总')
                 other = request(owner, 'POST', '/api/tasks', {'learner': '合成业务验收学习者'})
                 check(not request(learner, 'GET', '/api/learn/'+other['token'])['submissions'], '同名学习链接隔离')
+                followup = request(owner, 'POST', '/api/tasks', {'learner': task['learner'], 'learner_id': task['learner_id']})
+                check(followup['learner_id'] == task['learner_id'] != other['learner_id'], '跨活动复用稳定身份，同名档案不合并')
+                growth = request(owner, 'GET', '/api/growth/'+task['learner_id'])
+                check(growth['growth']['completed']==1 and growth['growth']['meets_criteria']==0 and growth['plan']['action']=='revise', '完成和分数不自动推定达标；策略建议修订')
+                check(learner.get('/api/growth/'+task['learner_id']).status_code == 403, '学习者不能越权读取学习档案与成长')
+                passed = dict(feedback, judgement='meets_criteria', request_key='feedback-two')
+                request(owner, 'POST', '/api/feedback/'+row['id'], passed)
+                request(owner, 'POST', '/api/transfer/'+row['id'], {'context':'合成测试：已人工确认新情境且未提示，仅验证记录管线', 'independent':True})
+                check(request(owner, 'GET', '/api/growth/'+task['learner_id'])['growth']['independent_transfer']==1, '人工迁移核验与作品证据关联（不代表真实教学有效）')
+                revision = request(learner, 'POST', route, {'answer':fixture['answer'], 'request_key':'revision'})
+                check(revision['id'] != row['id'] and len(request(learner,'GET',route)['submissions'])==2, '修订新增记录，原稿反馈仍保留')
+                request(owner, 'POST', '/api/tasks/'+task['id']+'/state', {'state':'paused'})
+                check(learner.post(route,json={'answer':fixture['answer'],'request_key':'blocked'}).status_code==400, '暂停由服务端阻止新提交')
+                request(owner, 'POST', '/api/tasks/'+task['id']+'/state', {'state':'active'})
+                request(owner, 'POST', '/api/tasks/'+task['id']+'/state', {'state':'archived'})
+                check(request(learner,'GET',route)['state']=='archived' and owner.post('/api/feedback/'+row['id'],json=dict(passed,request_key='blocked-feedback')).status_code==400, '归档只读，记录仍可查阅')
         finally:
             if process.poll() is None:
                 if os.name == 'nt':
@@ -90,7 +107,7 @@ def run():
     # Restart persistence independently from UI; only count/feedback, never print credentials.
     sys.path.insert(0, str(ROOT/'src'))
     from base.core import Store
-    check(Store(data).submissions()[0]['evaluation']['status']=='reviewed', '停止后重新读取持久化反馈')
+    check(next(v for v in Store(data).submissions() if v['id']==row['id'])['evaluation']['status']=='reviewed', '停止后重新读取持久化反馈')
     with socket.socket() as sock:
         check(sock.connect_ex(('127.0.0.1',port)) != 0, '已停止自身服务，不遗留监听')
     report = {'ok':True, 'scope':'business-example-and-real-http', 'checks':checks, 'seconds':round(time.monotonic()-started,3), 'mcp_used':False,'model_used':False,'teaching_quality_verified':False,'ui_clicks_verified':False,'cross_instance_http_verified':False,'scoring_note':'量规满分是合成字段/汇总/保存测试，不代表教学评分质量','data_dir':str(data.relative_to(ROOT))}

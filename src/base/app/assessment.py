@@ -32,6 +32,8 @@ def validate_activity(draft):
             raise ValueError('rubric：名称不能重复，max_score必须为正数')
         labels.add(item['label'])
     structure_hint(draft, '')  # Also validate optional structure configuration.
+    from base.teaching import validate_teaching_fields
+    validate_teaching_fields(draft)
     return draft
 
 

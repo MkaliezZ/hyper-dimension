@@ -16,9 +16,10 @@ with zipfile.ZipFile(args.output, 'w', zipfile.ZIP_DEFLATED) as archive:
                 continue
             if any(part in {'data', '.venv', '.git', '.pytest_cache', '__pycache__'} for part in relative.parts):
                 continue
-            if not file.is_file() or '__pycache__' in file.parts or file.name == 'build_distribution.py':
+            if not file.is_file() or '__pycache__' in file.parts or file.suffix == '.bak' or file.name == 'build_distribution.py':
                 continue
             archive.write(file, str(Path(target)/file.relative_to(directory)))
     archive.write(repo/'LICENSE', 'LICENSE')
     archive.write(repo/'tests/test_base.py', 'tests/test_base.py')
+    archive.write(repo/'tests/test_base_teaching.py', 'tests/test_base_teaching.py')
 print(args.output)

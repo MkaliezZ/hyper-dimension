@@ -30,5 +30,18 @@
     "vague_phrases": [
       "差不多"
     ]
-  }
+  },
+  "goal": "能写出使接手者可行动、可验收的交接说明。",
+  "deliverable": "提交现状、待办、验收三部分说明；按反馈修订。",
+  "assessment_version": "1",
+  "sources": [
+    {
+      "title": "开发包自编示例（使用前核验）",
+      "file": "knowledge/material.txt",
+      "locator": "全文",
+      "version": "1",
+      "extraction_status": "readable",
+      "verification_status": "unverified"
+    }
+  ]
 }

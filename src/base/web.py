@@ -43,14 +43,17 @@ def create_app(data=None):
         store.authorize(request.cookies.get('base_owner'))
 
     async def payload(request):
-        body = await request.json()
+        try:
+            body = await request.json()
+        except ValueError:
+            raise ValueError('请求内容须为有效JSON对象') from None
         if not isinstance(body, dict):
             raise ValueError('请求内容必须是一个对象')
         return body
 
     @app.get('/healthz')
     def health():
-        return {'ok': True, 'version': '0.2.1'}
+        return {'ok': True, 'version': '0.3.0'}
 
     @app.get('/', response_class=HTMLResponse)
     @app.get('/learn/{token}', response_class=HTMLResponse)
@@ -75,13 +78,38 @@ def create_app(data=None):
     def manage(request: Request):
         owner(request)
         from base.app.activities import prepare_activity
-        return {'preview': prepare_activity(), 'tasks': store.tasks(), 'submissions': store.submissions()}
+        from base.teaching import teaching_rules, check_activity
+        preview = prepare_activity()
+        return {'preview': preview, 'teaching': teaching_rules(), 'check': check_activity(preview), 'instance_id': store.instance_id, 'learners': store.learners(), 'tasks': store.tasks(), 'submissions': store.submissions()}
 
     @app.post('/api/tasks')
     async def create(request: Request):
         owner(request)
         body = await payload(request)
-        return store.create(body.get('learner'), body.get('draft'), body.get('request_key'))
+        return store.create(body.get('learner'), body.get('draft'), body.get('request_key'), body.get('learner_id'))
+
+    @app.post('/api/learners')
+    async def save_learner(request: Request):
+        owner(request)
+        body = await payload(request)
+        return store.save_learner(body.get('name'), body.get('profile'), body.get('learner_id'), body.get('request_key'))
+
+    @app.get('/api/growth/{learner_id}')
+    def growth(learner_id: str, request: Request):
+        owner(request)
+        return {'growth': store.growth(learner_id), 'plan': store.next_plan(learner_id)}
+
+    @app.post('/api/tasks/{task_id}/state')
+    async def state(task_id: str, request: Request):
+        owner(request)
+        body = await payload(request)
+        return store.set_state(task_id, body.get('state'))
+
+    @app.post('/api/transfer/{submission_id}')
+    async def transfer(submission_id: str, request: Request):
+        owner(request)
+        body = await payload(request)
+        return store.verify_transfer(submission_id, body.get('context'), body.get('independent'))
 
     @app.get('/api/learn/{token}')
     def learn(token: str):
@@ -96,6 +124,6 @@ def create_app(data=None):
     async def feedback(submission_id: str, request: Request):
         owner(request)
         body = await payload(request)
-        return store.feedback(submission_id, body.get('comment'), body.get('next_step'), body.get('scores'))
+        return store.feedback(submission_id, body.get('comment'), body.get('next_step'), body.get('scores'), body.get('judgement'), body.get('request_key'))
 
     return app
