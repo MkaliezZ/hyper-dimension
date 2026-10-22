@@ -22,6 +22,8 @@ People and briefs are fictional; AI replies, Hermes file operations and steward 
 | Seasons and visits | Seasons last 30 visual days; weather affects farming and fishing. Evening lights, waves and moon reflections accompany visits with your steward and invited NPCs, A2A information exchange, cooperative preparation and clarification questions. Visiting owners confirm resource reservations. |
 | Showcase and co-create | Display experience, projects and pictures in the owner gallery and receive guest messages. Import OPC products and recipes with both art styles, review, publish, produce and sell; export and roll back versions. |
 
+Standard A2A clients and in-game letters can continue the same conversation, preserving both owners’ questions and replies.
+
 ## Start your island
 
 Install **Node.js 24 and Python 3.11**. Supports Windows x64, macOS 14+ (Apple Silicon / Intel) and Ubuntu. Enter `island/` after cloning, or use the root of a standalone source archive:

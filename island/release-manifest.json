@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v356-agent-source",
+  "release": "hyper-dimension-v357-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -47,13 +47,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 3235,
-      "sha256": "7502cddfde441f61460df88766167416304b847c3f26cd2de5de433513124496"
+      "bytes": 3362,
+      "sha256": "79c6d05307fa177fa78232d81b4a7ac55dcbdd7946196f3105ef26bad2336058"
     },
     {
       "path": "README.md",
-      "bytes": 2998,
-      "sha256": "5609a49ce359034e1f7553c2ed949e895e31bceeabaf1f5ab078f414803fdfda"
+      "bytes": 3116,
+      "sha256": "e41f5423c06c7e0a97dc6e156ef1559d478f131912caec066110befed01a7cf0"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 157344,
-      "sha256": "0fe06161f97d5113c1a4ca2c5e66581b7e9cd0f086f56385c13e7a92bfe63179"
+      "bytes": 159177,
+      "sha256": "9ed48d86785dfb250f4fc34fdc8ffcc8250fe12933d411980306df2b372b06cf"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -92,8 +92,8 @@
     },
     {
       "path": "docs/a2a-standard-v158.md",
-      "bytes": 11359,
-      "sha256": "d7697e7bffab5fcd44445208a65c67726f6716bddc06dfd6178b1b8fd4d462b0"
+      "bytes": 11773,
+      "sha256": "0a53c9a3820b502973da6dc192a36abdfac638aa8e107f5626f3784f90f7a655"
     },
     {
       "path": "docs/browser-snapshot-v149.md",
@@ -2177,8 +2177,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 19555,
-      "sha256": "c834b9dbec045f375a62b49c2313c71089d3a0c4133542b3fca625837f613051"
+      "bytes": 19662,
+      "sha256": "e96fd7e4587d74b0537ac225bd3af7ff0987b04a461d70f36a32e9289641aa8c"
     },
     {
       "path": "public/assets/FusionPixel-OFL.txt",
@@ -6037,8 +6037,8 @@
     },
     {
       "path": "server/a2aGateway.mjs",
-      "bytes": 17207,
-      "sha256": "fe9a2bed256b30dba2fd501a33dd19479e45744582e08f70c020bd359066fdd5"
+      "bytes": 17283,
+      "sha256": "447f177a95b0a4a52deb5350a6ffe20987edda9cbe0ed8f32be7ace2443eec23"
     },
     {
       "path": "server/a2a_runtime.py",
@@ -6212,8 +6212,8 @@
     },
     {
       "path": "server/lanCollaborationStore.mjs",
-      "bytes": 22109,
-      "sha256": "2e632f3f56a89e78c3124e1f3ec2240a34e14ec35163dedf7c12897214dbb4bc"
+      "bytes": 22586,
+      "sha256": "66cb9fc87b89e9d169babb3a22d7aa0e06e57b00e42a02d1e354b2ce675f277b"
     },
     {
       "path": "server/lanEconomyJournal.mjs",
@@ -14724,8 +14724,28 @@
       "path": "tests/v356-writer-clock.test.mjs",
       "bytes": 2573,
       "sha256": "36e5d9735b94fe30abd8794a608fc53de335ebd4cf5c861ac795c4660239d944"
+    },
+    {
+      "path": "tests/v357-a2a-roundtrip.test.mjs",
+      "bytes": 6183,
+      "sha256": "453833e5f1cd8b90a9fc953473a0b8d60ccf94f801d0902ff5f85e522f62f026"
+    },
+    {
+      "path": "tests/v357-a2a-live-roundtrip.mjs",
+      "bytes": 12963,
+      "sha256": "67e0cad67ff62c7956a262b2ae33e1c2649ac96e65736a8708b256253faec556"
+    },
+    {
+      "path": "docs/a2a-roundtrip-v357.md",
+      "bytes": 3657,
+      "sha256": "b7130dbfa8119515b7d17fadf0fdcb4181d5bd0a7137b573e105bff2ed0706f4"
+    },
+    {
+      "path": "docs/verification-v357.json",
+      "bytes": 1408,
+      "sha256": "7e3dbdce43ad82a4569d30d96c9d2fdfa6dd263c8208c9ecf05f5ed4f75a17fa"
     }
   ],
-  "publicRevision": "v356-monotonic-writer-worker-boot",
-  "generatedAt": "2026-10-21T18:04:39.671429+00:00"
+  "publicRevision": "v357-a2a-bidirectional-continuity",
+  "generatedAt": "2026-10-22T08:04:05.755480+00:00"
 }

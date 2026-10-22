@@ -41,18 +41,18 @@ This is a stable identifier defined here. Put its object in `message.metadata[UR
 
 | 字段 / Field | 用途 / Purpose |
 | --- | --- |
-| `recipientId` | 扩展卡中当前同房间的目标岛主 / Target owner from the extended card |
+| `recipientId` | 扩展卡中当前同房间的目标岛主 / Target owner from the extended card; on continuation, the other participant relative to the authenticated caller |
 | `capability` | `island.information`（默认/default）或/or `event.checkin` |
 | `eventId` | 活动准备必须为本人活动、对方已受邀 / Preparation requires an owned event with that invitee |
 | `action` | 接续任务时 `respond`、`review`、`retry`、`confirm`；预留必须明确 `execute` / Follow-up operation; reservation requires explicit `execute` |
 
-新请求必须有唯一 `messageId`、`ROLE_USER` 和非空文字（合计最多500字）。接续时设置 `taskId`；若附带 `contextId`，须匹配原房间。重复同一消息编号和内容不会再启动模型或预留物资；改内容必须换编号。传输用的 JSON-RPC `id` 只关联响应，可以复用。
+新请求必须有唯一 `messageId`、`ROLE_USER` 和非空文字（合计最多500字）。接续时设置 `taskId`；若附带 `contextId`，须匹配原房间。接续消息中的 `recipientId` 指当前调用者的对方管家，来访管家回信时应指定主岛，而不是始终指定最初的来访者。重复同一消息编号和内容不会再启动模型或预留物资；改内容必须换编号。传输用的 JSON-RPC `id` 只关联响应，可以复用。
 
 A new request needs a unique `messageId`, `ROLE_USER` and nonempty text, up to 500 characters total. Continue with `taskId`; an optional `contextId` must match its room. Replaying the same message and content does not invoke the model or reserve resources again. Changed content needs a new message ID. JSON-RPC `id` is only response correlation and may be reused.
 
-任务状态遵循 `TASK_STATE_*`。本轮管家回信后可能是 `TASK_STATE_INPUT_REQUIRED`，等待对方岛主继续，不会冒充整个活动已办成。`configuration.returnImmediately=true` 可先取得工作中任务；默认等待完成、失败、取消或需要输入。`historyLength=0` 不返回历史，未指定时返回本任务保留的历史。旧内部协议任务没有标准输入记录，因此其历史仅包含已保存的管家回信。
+任务状态遵循 `TASK_STATE_*`。本轮管家回信后可能是 `TASK_STATE_INPUT_REQUIRED`，等待对方岛主继续，不会冒充整个活动已办成。`configuration.returnImmediately=true` 可先取得工作中任务；默认等待完成、失败、取消或需要输入。`historyLength=0` 不返回历史，未指定时返回本任务保留的历史。新游戏界面的开场主题和实际补充文字也进入同一份标准历史；程序生成的默认提示不冒充用户输入。旧记录不补造过去没有保存的输入。
 
-States use `TASK_STATE_*`. A reply can leave the task in `TASK_STATE_INPUT_REQUIRED` for the other owner, not claim that a whole party is completed. `configuration.returnImmediately=true` returns a working task; the default waits for a terminal or interrupted state. `historyLength=0` omits history; an omitted limit returns retained history. Legacy internal-protocol tasks have saved steward replies but no standard client-input history.
+States use `TASK_STATE_*`. A reply can leave the task in `TASK_STATE_INPUT_REQUIRED` for the other owner, not claim that a whole party is completed. `configuration.returnImmediately=true` returns a working task; the default waits for a terminal or interrupted state. `historyLength=0` omits history; an omitted limit returns retained history. New in-game topics and owner-entered follow-up text share the same standard history. Generated default prompts are not recorded as owner input. Older records are not backfilled with invented inputs.
 
 活动准备顺序：主岛提出 → 来访管家审阅 → 来访岛主明确 `action=execute` → 受保护活动账本核对并预留 → 主岛管家确认回执。普通“同意”的文字不会自动扣取物资。这里完成的是入场准备，实际活动交付和收益仍由活动结束结算。正在核对物资或已结束的任务不可取消；这不会隐藏已经发生的账本操作。
 

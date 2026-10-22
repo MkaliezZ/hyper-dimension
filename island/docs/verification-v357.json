@@ -1,0 +1,41 @@
+{
+  "version": "V357",
+  "parentSourceCommit": "4fe21e0c075969bbac81bbd229ab0d91f20e67da",
+  "scope": "A2A source repairs and automated technical roundtrip; no final archive qualification",
+  "baselineRegressionCasesFailed": 3,
+  "focusedNode24CasesPassed": 20,
+  "focusedNode22RelatedCasesPassed": 37,
+  "additionalExplicitPeerEventCasePassed": true,
+  "officialSdk": "@a2a-js/sdk 1.3.0",
+  "actualHermesA2ARuns": 3,
+  "runtimeModel": "deepseek-flash",
+  "actualOriginalDeviceCliProcesses": 2,
+  "actualFictionalDocumentReadEditReadbackJobs": 2,
+  "nativeThemes": [
+    "pixel",
+    "origami"
+  ],
+  "standardNativeStandardContinuity": true,
+  "nativePostCommitResponseLossReplayedWithoutAdditionalRun": true,
+  "serviceAndCliRestartPreservedHistoryAndResults": true,
+  "requiredStewardAndConsentingResidentCarried": true,
+  "gameClockOrProgressOrInventoryInjected": false,
+  "currencyAndInventoryUnchanged": true,
+  "sameWindowsHost": true,
+  "physicalMultiDevicePassed": false,
+  "macHardwarePassed": false,
+  "humanAcceptancePassed": false,
+  "npcSocialEncounterAcceptancePassedByThisRun": false,
+  "wholeGoalComplete": false,
+  "defaultTestsPassed": 2029,
+  "defaultGroups": [
+    2015,
+    14
+  ],
+  "defaultNodeVersion": "24.19.0",
+  "defaultTestsFailed": 0,
+  "defaultTestsSkipped": 0,
+  "defaultTestsCancelled": 0,
+  "manifestPayloadFiles": 2945,
+  "finalCurrentArchiveQualificationPassed": false
+}

@@ -111,7 +111,11 @@ export function createLanCollaborationStore({directory,identities,tenants,activi
      if(!execution){t.status='thinking';t.runtimeOwner=instanceId;t.attempt=randomUUID();launchTask=clone(t);}
     }
    }
-   if(t){t.updatedAt=now();if(i.a2aMessage){t.clientMessages??=[];t.clientMessages.push({...i.a2aMessage,owner:a.id,actionHash:hash({...i,requestId:undefined}),beforeAgentCount:t.messages.length,at:now()});}}
+   if(t){t.updatedAt=now();const nativeText=i.operation==='exchange'?i.topic:['respond','clarify'].includes(i.operation)?i.message:null;
+    // Native and standard clients share one conversation. Preserve only text
+    // actually entered by an owner; generated default prompts are not user turns.
+    const input=i.a2aMessage||(typeof nativeText==='string'&&nativeText.trim()?{messageId:'ui:'+i.requestId,text:nativeText.trim(),fingerprint:hash([a.id,i.operation,t.id,nativeText.trim()]),origin:'game-ui'}:null);
+    if(input){t.clientMessages??=[];t.clientMessages.push({...input,owner:a.id,actionHash:hash({...i,requestId:undefined}),beforeAgentCount:t.messages.length,at:now()});}}
    d.requests.push({id:i.requestId,owner:a.id,fingerprint,taskId:t?.id||null});d.requests=d.requests.slice(-2000);await save(d);
    return {view:project(d,a.id),taskId:t?.id||null,replayed:false};
   });

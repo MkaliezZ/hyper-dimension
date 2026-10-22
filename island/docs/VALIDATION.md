@@ -1208,3 +1208,13 @@ The modern journal atomically persists the acknowledged merged snapshot, version
 - Node 22 与 24 各通过 21 项相关检查。原有双画风三步居民任务通过，三份真实任务回执、途中刷新与空浏览器恢复保留；30 秒登记、首项 120 秒及剩余共用 240 秒工作预算未扩大。V355 独立 Windows 源码包 30 项安装通过的记录仍归属 V355；它的托管失败原样保留，完整封装验收随修复后的当前版本进行。
 
 The original five-second identity-writer deadline now uses a monotonic elapsed clock. Persistent timestamps, session expiry, stale-file checks and world clocks retain their existing sources. Controlled forward/backward wall corrections reproduce the old early/overlong waits; both Node versions preserve the original live lock, committed document and503response. Graphics modules start asynchronously during initial loading, before demand for the first pose; this does not delay game entry or change request deadlines, GPU fences, image ownership or budgets. Six actual-PNG/native-WebGL controls include two expected cold-start timeouts; both early-started styles complete within the unchanged request limit and match normal RGBA pixels exactly. The original three-task, reload and empty-browser flow passes both styles. These focused results do not establish a unique hosted-platform cause, physical Mac or complete product acceptance.
+
+
+## V357 · 双向 A2A 与跨客户端接续 / Bidirectional A2A continuity
+
+- 标准接续消息以当前调用者的对方为 `recipientId`，修复访客明确指定主岛管家时被误拒绝的问题。任务、房间、原岛及双边同意校验保留。
+- 游戏界面实际输入的开场主题、补充问题和澄清与标准消息共用耐久历史；重复请求不重复登记，不补造默认提示或旧输入。
+- 官方 SDK 与两份真实原机 CLI/Hermes/DeepSeek Flash 完成三轮标准→游戏→标准交流，主岛回信经历实际提交后丢包与同编号核对。双方各完成一次虚构文档读、改、回读；服务和连接端重启后任务、运行关联和成果保持，实际 A2A 仍仅三轮。
+- 双画风原生界面、必带本人管家及已同意随行的居民、原机归属与货币物资保持均核对。该链路未注入进度或时钟，但属于同机自动化，不代表实体多设备、Mac、居民社交事件、真人及完整 Goal。旧失败、错误 SDK Part 解析夹具和错误 QA 联接路径的失败均保留；生产保护未放宽。完整默认检查2,029项（2,015＋14）通过，无失败、跳过或取消；2,945个源码载荷摘要逐一核对。未生成新的大体积交付包，本次先发布A2A源码修复。
+
+Explicit peer routing and native/standard input history now share the same persistent task. Three real original-device Hermes/Flash turns traverse the official SDK, native UI with post-commit response loss, and SDK continuation; service/CLI restart preserves history without another run. Fictional private file work remains on each original device. This is same-host automated technical evidence, not physical-device, human or complete-product acceptance. [Details](a2a-roundtrip-v357.md) · [Summary](verification-v357.json).
