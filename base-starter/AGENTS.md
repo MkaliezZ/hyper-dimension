@@ -1,6 +1,6 @@
 # base 学员开发约定
 
-先读README和docs/开发指南.md，先运行默认闭环，再修改src/base/app。这里没有插件ID或注册流程。
+先读00-学员使用说明.txt、README和docs/开发指南.md，先运行默认闭环，再修改src/base/app。可复制的执行提示在docs/让AI开发伴学MCP-起始提示词.txt，验收记录用docs/伴学MCP-验收清单.txt。这里没有插件ID或注册流程。
 
 先读docs/通用教学规则与修改入口.md。通用约定在app/teaching.json，类型化档案在app/profile.py，策略在app/strategy.py。具体活动明确目标、成果、评价依据与下一步；不要把结构通过、提交完成或分数当成能力达标。资料可读不等于知识已核验。学科规则与资料仍由开发者填写。
 
