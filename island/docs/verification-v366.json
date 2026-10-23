@@ -1,0 +1,72 @@
+{
+  "version": "V366",
+  "scope": "Coherent server/renderer snapshot observation in the native lobby CI check",
+  "originalFailure": {
+    "run": 39868825056,
+    "job": 120163932020,
+    "step": "Native lobby appearance",
+    "rendererTimestamp": 1792715112817,
+    "latestViewTimestamp": 1792715113322,
+    "retained": true
+  },
+  "productionChanges": [],
+  "originalMotionAssertionsPreserved": true,
+  "originalExplicitTimeoutsPreserved": true,
+  "cachedGalleryPaintBudgetMs": 1500,
+  "relatedRulesPassed": 11,
+  "minimalBrowserObserverControlsPassed": 4,
+  "nativeLobbyCases": [
+    {
+      "theme": "pixel",
+      "bootstrap503Retried": true,
+      "periodic503NoRedirect": true,
+      "appearancePersisted": true,
+      "sameSaveSlot": true,
+      "cachedOpenMs": 21.40000009536743,
+      "cachedOpenWallMs": 95,
+      "noSystemHands": true,
+      "unsavedDraftPreserved": true,
+      "desktopMap": {
+        "width": 1518,
+        "height": 844
+      },
+      "compactNoOverflow": true,
+      "motionSamples": 600,
+      "idleSamples": 600,
+      "movingSamples": 0,
+      "serverFacingPreserved": true
+    },
+    {
+      "theme": "origami",
+      "bootstrap503Retried": true,
+      "periodic503NoRedirect": true,
+      "appearancePersisted": true,
+      "sameSaveSlot": true,
+      "cachedOpenMs": 28.699999809265137,
+      "cachedOpenWallMs": 83,
+      "noSystemHands": true,
+      "unsavedDraftPreserved": true,
+      "desktopMap": {
+        "width": 1520,
+        "height": 844
+      },
+      "compactNoOverflow": true,
+      "motionSamples": 600,
+      "idleSamples": 522,
+      "movingSamples": 78,
+      "serverFacingPreserved": true
+    }
+  ],
+  "hostedRecoveryConfirmed": false,
+  "newArchiveCreated": false,
+  "sealedV362ArchivePreserved": true,
+  "humanOrPhysicalDeviceAcceptance": false,
+  "at": "2026-10-23T00:38:21.416Z",
+  "originalOtherNativeSourceUnchanged": true,
+  "minimalBrowserControls": [
+    "interleaved newer view waits for the matching renderer receipt",
+    "returned observation stays detached after a later view update",
+    "a renderer that never consumes the view fails at the declared control deadline",
+    "matched but incorrect idle facing still fails the original assertion"
+  ]
+}

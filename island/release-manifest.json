@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v365-agent-source",
+  "release": "hyper-dimension-v366-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 162891,
-      "sha256": "75a27345b92f9460c0ebbfb698aae676c1b5f75bc947c5b0cbe4a88a08bc97ac"
+      "bytes": 163469,
+      "sha256": "38b9398adf7d1378f7a67192fb3fd63c3eb014534566779320f0c4ab890d2c5d"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -9117,8 +9117,8 @@
     },
     {
       "path": "tests/v148-lobby-browser.mjs",
-      "bytes": 8660,
-      "sha256": "aebb893033282ddbf5265caa1345172ba7b1af3fd144ed0cc62361735a17db65"
+      "bytes": 8519,
+      "sha256": "e2bd20e08b0ff32dcbd06055e197f785d80aafb7c48498c3589a86bea3ea557c"
     },
     {
       "path": "tests/v148-motion.test.mjs",
@@ -14904,8 +14904,23 @@
       "path": "docs/verification-v365.json",
       "bytes": 1767,
       "sha256": "dc9e9535048005717fccade7f7a92227d83214e813d0a1633597d6dc642c3f49"
+    },
+    {
+      "path": "tests/lanMotionSnapshot.mjs",
+      "bytes": 712,
+      "sha256": "9e274f44ffd2d26977c3501b7c8c271891ed969b3953063e648229bdf599c530"
+    },
+    {
+      "path": "docs/lobby-observation-v366.md",
+      "bytes": 1504,
+      "sha256": "eede1127e9a0cf1a8e1e21d86a807be74dbd858401363f3e7c167d163adb6df5"
+    },
+    {
+      "path": "docs/verification-v366.json",
+      "bytes": 2225,
+      "sha256": "72d85ccdb273211c1d7d2de5497cb550bd731ebfdff54571b3ddbc552e902e59"
     }
   ],
-  "publicRevision": "v365-soil-receipt-accounting",
-  "generatedAt": "2026-10-22T22:59:19.882Z"
+  "publicRevision": "v366-coherent-lobby-observer",
+  "generatedAt": "2026-10-23T00:38:21.423Z"
 }
