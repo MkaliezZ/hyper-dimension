@@ -1,6 +1,6 @@
 {
   "schema": 80,
-  "release": "hyper-dimension-v366-agent-source",
+  "release": "hyper-dimension-v367-agent-source",
   "target": "agent-source",
   "platforms": [
     "windows-x64",
@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 163469,
-      "sha256": "38b9398adf7d1378f7a67192fb3fd63c3eb014534566779320f0c4ab890d2c5d"
+      "bytes": 164074,
+      "sha256": "6925c80f88367f84fd23c1f02e2fc1d1eb779ae9d891c58de4b5def44eae808a"
     },
     {
       "path": "docs/a2a-information-v137.md",
@@ -14467,8 +14467,8 @@
     },
     {
       "path": "tests/v343-project-backdrop-browser.mjs",
-      "bytes": 7414,
-      "sha256": "eba5688584e61ec4fd8a3d9d695701e882439f4b815683869946c34a558a9a09"
+      "bytes": 8596,
+      "sha256": "070e7045ac62705b708cf3e05115d9bdf411d4eaf5370cc5f31fb56d561ced6e"
     },
     {
       "path": "docs/task-receipt-history-v343.md",
@@ -14919,8 +14919,18 @@
       "path": "docs/verification-v366.json",
       "bytes": 2225,
       "sha256": "72d85ccdb273211c1d7d2de5497cb550bd731ebfdff54571b3ddbc552e902e59"
+    },
+    {
+      "path": "docs/verification-v367.json",
+      "bytes": 2850,
+      "sha256": "d7bfc6355b94402a4a0adc26c5368197393cfd67f8a2b317461817dd25ef040b"
+    },
+    {
+      "path": "docs/project-backdrop-observation-v367.md",
+      "bytes": 1762,
+      "sha256": "d8ae9a53e9cae77b60114189dc42f833ab51055e722d19fce7f6718f8eacfd0b"
     }
   ],
-  "publicRevision": "v366-coherent-lobby-observer",
-  "generatedAt": "2026-10-23T00:38:21.423Z"
+  "publicRevision": "v367-application-backdrop-observer",
+  "generatedAt": "2026-10-23T01:26:10.473Z"
 }

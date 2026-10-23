@@ -1,0 +1,116 @@
+{
+  "version": "V367",
+  "at": "2026-10-23T01:26:10.464Z",
+  "scope": "Count application updates rather than an independent RAF probe in the project-backdrop CI check",
+  "originalFailure": {
+    "run": 39868825056,
+    "job": 120163932350,
+    "step": 34,
+    "check": "Native project form retains backdrop without pausing work or input",
+    "theme": "pixel",
+    "rawRafCallbacks": 3,
+    "applicationRafUpdates": 3,
+    "applicationFallbackUpdates": 6,
+    "gameSeconds": 1.0281000000001401,
+    "elapsedMs": 1242.3999999999069,
+    "retained": true
+  },
+  "changedProductionFiles": [],
+  "originalAssertionLineUnchanged": true,
+  "originalExplicitTimeoutsUnchanged": true,
+  "retentionWindowMs": 1200,
+  "minimumApplicationUpdateIncreaseExclusive": 3,
+  "relatedRulesPassed": 26,
+  "nativePassingCases": 4,
+  "nativeExpectedFailureControls": 2,
+  "cases": [
+    {
+      "mode": "normal",
+      "theme": "pixel",
+      "passed": true,
+      "expectedFailure": false,
+      "applicationUpdates": 157,
+      "rawRafCallbacks": 157,
+      "gameSeconds": 1.2125999999999977,
+      "retainedClears": [
+        20,
+        20
+      ],
+      "nativePlanCreateMs": 233
+    },
+    {
+      "mode": "normal",
+      "theme": "origami",
+      "passed": true,
+      "expectedFailure": false,
+      "applicationUpdates": 156,
+      "rawRafCallbacks": 156,
+      "gameSeconds": 1.2093999999999987,
+      "retainedClears": [
+        21,
+        21
+      ],
+      "nativePlanCreateMs": 251
+    },
+    {
+      "mode": "lost-raf",
+      "theme": "pixel",
+      "passed": true,
+      "expectedFailure": false,
+      "applicationUpdates": 10,
+      "rawRafCallbacks": 0,
+      "gameSeconds": 1.1353999998569484,
+      "retainedClears": [
+        18,
+        18
+      ],
+      "nativePlanCreateMs": 237
+    },
+    {
+      "mode": "lost-raf",
+      "theme": "origami",
+      "passed": true,
+      "expectedFailure": false,
+      "applicationUpdates": 10,
+      "rawRafCallbacks": 0,
+      "gameSeconds": 1.1504000000953678,
+      "retainedClears": [
+        17,
+        17
+      ],
+      "nativePlanCreateMs": 312
+    },
+    {
+      "mode": "stopped-loop",
+      "theme": "pixel",
+      "passed": false,
+      "expectedFailure": true,
+      "applicationUpdates": 0,
+      "rawRafCallbacks": 158,
+      "gameSeconds": 0,
+      "retainedClears": [
+        16,
+        16
+      ],
+      "nativePlanCreateMs": null
+    },
+    {
+      "mode": "stopped-loop",
+      "theme": "origami",
+      "passed": false,
+      "expectedFailure": true,
+      "applicationUpdates": 0,
+      "rawRafCallbacks": 157,
+      "gameSeconds": 0,
+      "retainedClears": [
+        19,
+        19
+      ],
+      "nativePlanCreateMs": null
+    }
+  ],
+  "hostedRecoveryConfirmed": false,
+  "newArchiveCreated": false,
+  "sealedV362ArchivePreserved": true,
+  "humanOrPhysicalDeviceAcceptance": false
+}

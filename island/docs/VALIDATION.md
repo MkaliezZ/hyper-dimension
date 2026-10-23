@@ -1259,3 +1259,7 @@ Intel Mac 的同一养护检查已完成收获和刷新，但 NPC 在期间另�
 ## V366 · 会客厅同帧观察 / Coherent lobby observations
 
 ARM Mac 的会客厅检查把最新 HTTP 视图与上一已绘制帧作比较，时间戳相差 505 毫秒。采样改为等待渲染端消费同一回执，再冻结观察结果；原 40 轮时间戳和静止朝向断言、原有明确时限及 1500 毫秒展馆缓存指标保留。只修改 CI 观察工具，生产、A2A 和小游戏实现不变。Windows 养护检查已在托管 CI 恢复通过，其余结果分开记录。见[范围](lobby-observation-v366.md)及[验证记录](verification-v366.json)。
+
+## V367 · Project backdrop observation
+
+The native project form observer counts actual application RAF and visible fallback deliveries, retaining the original update threshold, 1200 ms interval and all input/save/resize/close assertions. 26 related rules pass, four native appearance flows pass (normal and withheld RAF), and two stopped-application controls fail as expected despite a live unrelated RAF probe. Production and A2A are unchanged. Hosted confirmation pending; V362 sealed archives unchanged. See [details](project-backdrop-observation-v367.md) and [verification](verification-v367.json).
